@@ -1,0 +1,7 @@
+<label *ngIf="option.label">{{option?.label}}</label>
+<ng-container *ngTemplateOutlet="inputTemp"> </ng-container>
+<i *ngIf="option.icon" class="{{option.icon}}"></i>
+
+<ng-template #inputTemp>
+    <input [type]="option.type" [placeholder]="option.placeholder" [required]="option.required" [(ngModel)]="value" />
+</ng-template>

@@ -1,0 +1,16 @@
+// Reset
+
+@import '../themes/default';
+
+// Component
+@mixin reset-component {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $primary-text-color;
+  font-size: $nm-font-size;
+  font-variant: $nm-font-variant;
+  line-height: $nm-line-height;
+  list-style: none;
+  font-feature-settings: 'tnum';
+}

@@ -20,9 +20,11 @@
     ],
     "paths": {
       "ng-moon": [
+        "dist/ng-moon",
         "dist/ng-moon"
       ],
       "ng-moon/*": [
+        "dist/ng-moon/*",
         "dist/ng-moon/*"
       ]
     }

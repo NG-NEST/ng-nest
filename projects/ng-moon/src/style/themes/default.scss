@@ -1,0 +1,57 @@
+// Color
+$primary-color-dark: #303f9f;
+$primary-color: #3f51b5;
+$primary-color-light: #c5cae9;
+$primary-color-text: #ffffff;
+$accent-color: #ff5722;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #bdbdbd;
+
+// Font
+$nm-font-size: 12px;
+$nm-font-variant: tabular-nums;
+$nm-font-size-sm: $nm-font-size - 2px;
+$nm-font-size-md: $nm-font-size + 2px;
+$nm-font-size-lg: $nm-font-size-md + 2px;
+$nm-font-size-bg: $nm-font-size-lg + 2px;
+$nm-line-height: 1.5;
+
+
+// Paddings
+$nm-padding-bg: 16px;
+$nm-padding-lg: 12px;
+$nm-padding-md: 10px;
+$nm-padding-sm: 8px;
+$nm-padding-xs: 6px;
+$nm-padding-ss: 4px;
+
+// Border
+$nm-border-color: rgba(0, 0, 0, 0.75);
+$nm-border-style: solid;
+$nm-border-width: 1px;
+$nm-border-radius: 2px;
+
+// Animation
+$nm-animation-duration-slow: 0.3s;
+$nm-animation-duration-base: 0.2s;
+$nm-animation-duration-fast: 0.1s;
+
+// Controls
+$nm-control-padding-horizontal: $nm-padding-xs;
+$nm-control-padding-horizontal-sm: $nm-padding-ss;
+$nm-control-padding-horizontal-lg: $nm-padding-lg;
+$nm-control-padding-vertical: $nm-padding-xs;
+$nm-control-padding-vertical-sm: $nm-padding-ss;
+$nm-control-padding-vertical-lg: $nm-padding-lg;
+
+// Input
+$nm-input-padding-horizontal: $nm-control-padding-horizontal;
+$nm-input-padding-horizontal-sm: $nm-control-padding-horizontal-sm;
+$nm-input-padding-horizontal-lg: $nm-control-padding-horizontal-lg;
+$nm-input-padding-vertical: $nm-control-padding-vertical;
+$nm-input-padding-vertical-sm: $nm-control-padding-vertical-sm;
+$nm-input-padding-vertical-lg: $nm-control-padding-vertical-lg;
+$nm-input-color: $primary-text-color;
+$nm-input-placeholder-color: $divider-color;
+$nm-input-background-color: white;

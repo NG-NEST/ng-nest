@@ -1,0 +1,10 @@
+// Input
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+nm-input {
+  @include reset-component();
+  @include input();
+}

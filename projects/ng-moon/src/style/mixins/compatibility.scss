@@ -1,0 +1,30 @@
+// Compatibility for browsers
+
+@import "../themes/default";
+
+// Placeholder text
+@mixin placeholder($color: $nm-input-placeholder-color) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+  // Safari and Chrome
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+
+// Element hover
+@mixin hover($color: $primary-color) {
+  border-color: $color;
+}
+
+// Element focus
+@mixin focus($color: $primary-color) {
+  box-shadow: 0 0 1px 1px lighten($color, 40%);
+}
