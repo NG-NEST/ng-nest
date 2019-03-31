@@ -1,0 +1,26 @@
+// Input
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index.scss";
+
+@mixin input {
+  display: inline-block;
+  position: relative;
+  > input {
+    padding: $nm-input-padding-vertical $nm-control-padding-horizontal;
+    width: 100%;
+    color: $nm-input-color;
+    background-color: $nm-input-background-color;
+    background-image: none;
+    border: $nm-border-width $nm-border-style $nm-border-color;
+    border-radius: $nm-border-radius;
+    transition: border-color $nm-animation-duration-slow, box-shadow $nm-animation-duration-slow;
+    @include placeholder();
+    &:hover {
+      @include hover();
+    }
+    &:focus {
+      @include focus();
+    }
+  }
+}
