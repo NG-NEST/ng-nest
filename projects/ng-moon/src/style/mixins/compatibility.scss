@@ -3,7 +3,7 @@
 @import "../themes/default";
 
 // Placeholder text
-@mixin placeholder($color: $nm-input-placeholder-color) {
+@mixin placeholder($color: $input-placeholder-color) {
   // Firefox
   &::-moz-placeholder {
     color: $color;
@@ -26,5 +26,6 @@
 
 // Element focus
 @mixin focus($color: $primary-color) {
-  box-shadow: 0 0 1px 1px lighten($color, 40%);
+  border-color: $color;
+  box-shadow: 0 0 1px 2px lighten($color, 40%);
 }

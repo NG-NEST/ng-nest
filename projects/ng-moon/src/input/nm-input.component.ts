@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef, Renderer2, ElementRef } from '@angular/core';
 import { InputOption, InputLayoutEnum, InputTypeEnum, InputIconLayoutEnum } from './nm-input.type';
 import { fillDefault } from '../core/util';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -52,8 +52,12 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   }
 
   constructor(
-    protected cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private ele: ElementRef
+  ) {
+    this.renderer.addClass(this.ele.nativeElement, 'nm-input');
+  }
 
   ngOnInit() {
     fillDefault(this.option, this._default)

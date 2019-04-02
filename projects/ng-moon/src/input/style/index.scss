@@ -4,7 +4,7 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
-nm-input {
+.#{$nm-prefix}-input {
   @include reset-component();
   @include input();
 }

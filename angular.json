@@ -133,7 +133,10 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ng-moon/tsconfig.lib.json",
-            "project": "projects/ng-moon/ng-package.json"
+            "project": "projects/ng-moon/ng-package.json",
+            "styles": [
+              "projects/ng-moon/src/ng-moon.scss"
+            ]
           }
         },
         "test": {
