@@ -1,63 +1,59 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NmInputComponent } from './nm-input.component';
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { NmInputModule } from './nm-input.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputOption, InputSizeEnum } from './nm-input.type';
+import { NmInputComponent } from "./nm-input.component";
+import { Component, DebugElement } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { NmInputModule } from "./nm-input.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { InputOption, InputSizeEnum, prefix } from "./nm-input.type";
 
-describe('input', () => {
+describe(prefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NmInputModule, FormsModule, ReactiveFormsModule],
-      declarations: [
-        NmTestInputWithNmInputComponent
-      ]
-    })
-      .compileComponents();
+      declarations: [TestNmInputComponent]
+    }).compileComponents();
   }));
-
-  describe('single input', () => {
-    describe('input with nm-input', () => {
-      let fixture: ComponentFixture<NmTestInputWithNmInputComponent>;
-      let testComponent: NmTestInputWithNmInputComponent;
-      let inputElement: DebugElement;
-      beforeEach(() => {
-        fixture = TestBed.createComponent(NmTestInputWithNmInputComponent);
-        testComponent = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
-        inputElement = fixture.debugElement.query(By.directive(NmInputComponent));
-      });
-      it('should disabled work', () => {
-        fixture.detectChanges();
-        expect(inputElement.nativeElement.classList).not.toContain('nm-input-disabled');
-        testComponent.option = { disabled: true };
-        fixture.detectChanges();
-        expect(inputElement.nativeElement.classList).toContain('nm-input-disabled');
-      });
-      it('should size work', () => {
-        testComponent.option = { size: InputSizeEnum.Small };
-        fixture.detectChanges();
-        expect(inputElement.nativeElement.classList).toContain('nm-input-sm');
-        testComponent.option = { size: InputSizeEnum.Large };
-        fixture.detectChanges();
-        expect(inputElement.nativeElement.classList).toContain('nm-input-lg');
-      });
-    })
-  })
+  describe(`default`, () => {
+    let fixture: ComponentFixture<TestNmInputComponent>;
+    let testComponent: TestNmInputComponent;
+    let inputElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestNmInputComponent);
+      testComponent = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
+      inputElement = fixture.debugElement.query(By.directive(NmInputComponent));
+    });
+    it("should className", () => {
+      fixture.detectChanges();
+      expect(inputElement.nativeElement.classList).toContain(prefix);
+    });
+    it("should disabled", () => {
+      fixture.detectChanges();
+      expect(inputElement.nativeElement.classList).not.toContain(
+        `${prefix}-disabled`
+      );
+      testComponent.option.disabled = true;
+      fixture.detectChanges();
+      expect(inputElement.nativeElement.classList).toContain(
+        `${prefix}-disabled`
+      );
+    });
+    it("should placeholder", () => {
+      const placeholder = "please input";
+      // testComponent.
+      fixture.detectChanges();
+      //inputElement.nativeElement.classList
+    });
+  });
 });
 
 @Component({
-  selector: 'nm-test-input-width-input',
+  selector: "test-nm-input",
   template: `
-    <nm-input [option]="option"></nm-input>
+    <nm-input [(option)]="option"></nm-input>
   `
 })
-export class NmTestInputWithNmInputComponent {
+class TestNmInputComponent {
   option: InputOption = {};
-  constructor() { }
-  ngOnInit() {
-
-  }
 }

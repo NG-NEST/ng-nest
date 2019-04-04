@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ng-moon": "ng build ng-moon && node ./scripts/build/generate-scss.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -1,38 +1,64 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef, Renderer2, ElementRef } from '@angular/core';
-import { InputOption, InputLayoutEnum, InputTypeEnum, InputIconLayoutEnum } from './nm-input.type';
-import { fillDefault } from '../core/util';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { noop } from 'rxjs';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  forwardRef,
+  ChangeDetectorRef,
+  Renderer2,
+  ElementRef,
+  Input,
+  HostBinding,
+  OnChanges
+} from "@angular/core";
+import {
+  InputOption,
+  InputLayoutEnum,
+  InputTypeEnum,
+  InputIconLayoutEnum,
+  InputSizeEnum,
+  prefix
+} from "./nm-input.type";
+import { fillDefault } from "../core/util";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { noop } from "rxjs";
 
 @Component({
-  selector: 'nm-input',
-  templateUrl: './nm-input.component.html',
+  selector: "nm-input",
+  templateUrl: "./nm-input.component.html",
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['option'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => NmInputComponent),
-    multi: true
-  }],
-  host: {
-    '[class.nm-input-disabled]': 'option.disabled',
-    '[class.nm-input-lg]': `option.size === 'large'`,
-    '[class.nm-input-sm]': `option.size === 'small'`
-  }
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NmInputComponent),
+      multi: true
+    }
+  ]
 })
-export class NmInputComponent implements OnInit, ControlValueAccessor {
-
+export class NmInputComponent
+  implements OnInit, OnChanges, ControlValueAccessor {
+  @Input()
   option: InputOption = {};
 
-  private _default: InputOption = {
+  @HostBinding(`class.${prefix}-disabled`) get disabled() {
+    return this.option.disabled;
+  }
+  @HostBinding(`class.${prefix}-lg`) get lg() {
+    return this.option.size === InputSizeEnum.Large;
+  }
+  @HostBinding(`class.${prefix}-sm`) get sm() {
+    return this.option.size === InputSizeEnum.Small;
+  }
+
+  private default: InputOption = {
     layout: InputLayoutEnum.Vertical,
-    label: '',
+    label: "",
     required: false,
-    placeholder: '',
+    placeholder: "",
     type: InputTypeEnum.Text,
     iconLayout: InputIconLayoutEnum.Right
-  }
+  };
 
   value: string | number;
   onChangeFn: (val: string | number) => void = noop;
@@ -56,12 +82,13 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     private renderer: Renderer2,
     private ele: ElementRef
   ) {
-    this.renderer.addClass(this.ele.nativeElement, 'nm-input');
+    this.renderer.addClass(this.ele.nativeElement, prefix);
   }
 
   ngOnInit() {
-    fillDefault(this.option, this._default)
+    fillDefault(this.option, this.default);
   }
 
+  ngOnChanges() {
+  }
 }
-

@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "dist/ng-moon/ng-moon.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -133,10 +134,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ng-moon/tsconfig.lib.json",
-            "project": "projects/ng-moon/ng-package.json",
-            "styles": [
-              "projects/ng-moon/src/ng-moon.scss"
-            ]
+            "project": "projects/ng-moon/ng-package.json"
           }
         },
         "test": {
