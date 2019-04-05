@@ -27,5 +27,4 @@ export interface InputOption {
   icon?: string;
   iconLayout?: InputIconLayoutEnum;
   key?: string;
-  [prop: string]: any;
 }

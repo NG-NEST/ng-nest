@@ -39,16 +39,26 @@ import { noop } from "rxjs";
 export class NmInputComponent
   implements OnInit, OnChanges, ControlValueAccessor {
   @Input()
-  option: InputOption = {};
+  layout?: InputLayoutEnum;
+  @Input()
+  label?: string;
+  @Input()
+  type?: InputTypeEnum;
+  @Input()
+  placeholder?: string;
+  @Input()
+  required?: boolean;
+  @Input()
+  disabled?: boolean;
+  @Input()
+  icon?: string;
+  @Input()
+  iconLayout?: InputIconLayoutEnum;
+  @Input()
+  key?: string;
 
-  @HostBinding(`class.${prefix}-disabled`) get disabled() {
-    return this.option.disabled;
-  }
-  @HostBinding(`class.${prefix}-lg`) get lg() {
-    return this.option.size === InputSizeEnum.Large;
-  }
-  @HostBinding(`class.${prefix}-sm`) get sm() {
-    return this.option.size === InputSizeEnum.Small;
+  @HostBinding(`class.${prefix}-disabled`) get getDisabled() {
+    return this.disabled;
   }
 
   private default: InputOption = {
@@ -86,9 +96,9 @@ export class NmInputComponent
   }
 
   ngOnInit() {
-    fillDefault(this.option, this.default);
+    console.log(this)
+    // fillDefault(this.option, this.default);
   }
 
-  ngOnChanges() {
-  }
+  ngOnChanges() {}
 }
