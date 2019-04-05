@@ -1,13 +1,12 @@
-<label *ngIf="option.label">{{ option?.label }}</label>
+<label *ngIf="label">{{ label }}</label>
 <ng-container *ngTemplateOutlet="inputTemp"> </ng-container>
-<i *ngIf="option.icon" class="{{ option.icon }}"></i>
+<i *ngIf="icon" class="{{ icon }}"></i>
 
 <ng-template #inputTemp>
-  {{ option.placeholder }}
   <input
-    [type]="option.type"
-    [placeholder]="option.placeholder"
-    [required]="option.required"
+    [type]="type"
+    [placeholder]="placeholder"
+    [required]="required"
     [(ngModel)]="value"
   />
 </ng-template>

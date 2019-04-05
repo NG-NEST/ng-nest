@@ -5,7 +5,7 @@
 
 @mixin input {
   display: flex;
-  input {
+  > input {
     padding: $input-padding-vertical $control-padding-horizontal;
     flex: 1;
     font-size: $font-size;

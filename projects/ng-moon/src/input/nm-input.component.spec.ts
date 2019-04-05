@@ -24,26 +24,26 @@ describe(prefix, () => {
       fixture.detectChanges();
       inputElement = fixture.debugElement.query(By.directive(NmInputComponent));
     });
+    it("should create", () => {
+      expect(inputElement).toBeDefined();
+    });
     it("should className", () => {
       fixture.detectChanges();
       expect(inputElement.nativeElement.classList).toContain(prefix);
     });
     it("should disabled", () => {
-      fixture.detectChanges();
-      expect(inputElement.nativeElement.classList).not.toContain(
-        `${prefix}-disabled`
-      );
-      testComponent.option.disabled = true;
+      testComponent.disabled = true;
       fixture.detectChanges();
       expect(inputElement.nativeElement.classList).toContain(
         `${prefix}-disabled`
       );
     });
     it("should placeholder", () => {
-      const placeholder = "please input";
+      const placeholder = "Please input";
+      testComponent.placeholder = placeholder;
       // testComponent.
       fixture.detectChanges();
-      //inputElement.nativeElement.classList
+      console.log(inputElement)
     });
   });
 });
@@ -51,9 +51,10 @@ describe(prefix, () => {
 @Component({
   selector: "test-nm-input",
   template: `
-    <nm-input [(option)]="option"></nm-input>
+    <nm-input [disabled]="disabled" [placeholder]="placeholder"></nm-input>
   `
 })
 class TestNmInputComponent {
-  option: InputOption = {};
+  disabled: boolean;
+  placeholder: string;
 }
