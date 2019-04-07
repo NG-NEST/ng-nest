@@ -9,7 +9,6 @@
     padding: $input-padding-vertical $control-padding-horizontal;
     flex: 1;
     font-size: $font-size;
-    color: $input-color;
     background-color: $input-background-color;
     background-image: none;
     border: $border-width $border-style $border-color;
@@ -22,6 +21,9 @@
     &:focus {
       @include focus();
       outline: 0;
+    }
+    &[disabled] {
+      color: $secondary-text-color;
     }
   }
 }

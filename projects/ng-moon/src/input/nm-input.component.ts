@@ -8,20 +8,18 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding,
-  OnChanges
+  HostBinding
 } from "@angular/core";
 import {
-  InputOption,
   InputLayoutEnum,
   InputTypeEnum,
   InputIconLayoutEnum,
-  InputSizeEnum,
-  prefix
+  prefix,
+  InputOption
 } from "./nm-input.type";
-import { fillDefault } from "../core/util";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { noop } from "rxjs";
+import { fillDefault } from "../core/util/option";
 
 @Component({
   selector: "nm-input",
@@ -36,8 +34,7 @@ import { noop } from "rxjs";
     }
   ]
 })
-export class NmInputComponent
-  implements OnInit, OnChanges, ControlValueAccessor {
+export class NmInputComponent implements OnInit, ControlValueAccessor {
   @Input()
   layout?: InputLayoutEnum;
   @Input()
@@ -54,21 +51,29 @@ export class NmInputComponent
   icon?: string;
   @Input()
   iconLayout?: InputIconLayoutEnum;
-  @Input()
-  key?: string;
+
+  private default: InputOption = {
+    layout: InputLayoutEnum.Vertical,
+    placeholder: "",
+    type: InputTypeEnum.Text,
+    iconLayout: InputIconLayoutEnum.Right
+  };
 
   @HostBinding(`class.${prefix}-disabled`) get getDisabled() {
     return this.disabled;
   }
 
-  private default: InputOption = {
-    layout: InputLayoutEnum.Vertical,
-    label: "",
-    required: false,
-    placeholder: "",
-    type: InputTypeEnum.Text,
-    iconLayout: InputIconLayoutEnum.Right
-  };
+  @HostBinding(`class.${prefix}-required`) get getRequired() {
+    return this.required;
+  }
+
+  @HostBinding(`class.${prefix}-horizontal`) get getHLayout() {
+    return this.layout === InputLayoutEnum.Horizontal;
+  }
+
+  @HostBinding(`class.${prefix}-vertical`) get getVLayout() {
+    return this.layout === InputLayoutEnum.Vertical;
+  }
 
   value: string | number;
   onChangeFn: (val: string | number) => void = noop;
@@ -76,7 +81,7 @@ export class NmInputComponent
 
   writeValue(val: string | number): void {
     this.value = val ? val : null;
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   registerOnChange(fn: any): void {
@@ -96,9 +101,6 @@ export class NmInputComponent
   }
 
   ngOnInit() {
-    console.log(this)
-    // fillDefault(this.option, this.default);
+    fillDefault(this, this.default);
   }
-
-  ngOnChanges() {}
 }

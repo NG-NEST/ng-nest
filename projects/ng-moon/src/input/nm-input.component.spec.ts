@@ -5,7 +5,12 @@ import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { InputOption, InputSizeEnum, prefix } from "./nm-input.type";
+import {
+  prefix,
+  InputLayoutEnum,
+  InputTypeEnum,
+  InputIconLayoutEnum
+} from "./nm-input.type";
 
 describe(prefix, () => {
   beforeEach(async(() => {
@@ -14,36 +19,68 @@ describe(prefix, () => {
       declarations: [TestNmInputComponent]
     }).compileComponents();
   }));
-  describe(`default`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestNmInputComponent>;
     let testComponent: TestNmInputComponent;
-    let inputElement: DebugElement;
+    let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmInputComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      inputElement = fixture.debugElement.query(By.directive(NmInputComponent));
+      debugElement = fixture.debugElement.query(By.directive(NmInputComponent));
     });
-    it("should create", () => {
-      expect(inputElement).toBeDefined();
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
     });
-    it("should className", () => {
+    it("should className.", () => {
       fixture.detectChanges();
-      expect(inputElement.nativeElement.classList).toContain(prefix);
+      expect(debugElement.nativeElement.classList).toContain(prefix);
     });
-    it("should disabled", () => {
+    it("should disabled.", () => {
       testComponent.disabled = true;
+      testComponent.value = "this value is disabled";
       fixture.detectChanges();
-      expect(inputElement.nativeElement.classList).toContain(
+      expect(debugElement.nativeElement.classList).toContain(
         `${prefix}-disabled`
       );
     });
-    it("should placeholder", () => {
+    it("should required.", () => {
+      testComponent.required = true;
+      testComponent.label = "name";
+      fixture.detectChanges();
+      expect(debugElement.nativeElement.classList).toContain(
+        `${prefix}-required`
+      );
+    });
+    it("should placeholder.", () => {
       const placeholder = "Please input";
       testComponent.placeholder = placeholder;
-      // testComponent.
       fixture.detectChanges();
-      console.log(inputElement)
+      let input = debugElement.nativeElement.querySelector("input");
+      expect(input.placeholder).toContain(placeholder);
+    });
+    it("should label.", () => {
+      const name = "name";
+      testComponent.label = name;
+      fixture.detectChanges();
+      let label = debugElement.nativeElement.querySelector("label");
+      expect(label.innerText).toContain(name);
+    });
+    it("should layout horizontal.", () => {
+      testComponent.layout = InputLayoutEnum.Horizontal;
+      testComponent.label = "name";
+      fixture.detectChanges();
+      expect(debugElement.nativeElement.classList).toContain(
+        `${prefix}-horizontal`
+      );
+    });
+    it("should layout vertical.", () => {
+      testComponent.layout = InputLayoutEnum.Vertical;
+      testComponent.label = "name";
+      fixture.detectChanges();
+      expect(debugElement.nativeElement.classList).toContain(
+        `${prefix}-vertical`
+      );
     });
   });
 });
@@ -51,10 +88,27 @@ describe(prefix, () => {
 @Component({
   selector: "test-nm-input",
   template: `
-    <nm-input [disabled]="disabled" [placeholder]="placeholder"></nm-input>
+    <nm-input
+      [layout]="layout"
+      [label]="label"
+      [type]="type"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [icon]="icon"
+      [iconLayout]="iconLayout"
+      [(ngModel)]="value"
+    ></nm-input>
   `
 })
 class TestNmInputComponent {
-  disabled: boolean;
-  placeholder: string;
+  layout?: InputLayoutEnum;
+  label?: string;
+  type?: InputTypeEnum;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  icon?: string;
+  iconLayout?: InputIconLayoutEnum;
+  value?: string | number;
 }

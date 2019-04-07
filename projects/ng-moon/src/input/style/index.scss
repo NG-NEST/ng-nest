@@ -7,4 +7,28 @@
 .#{$nm-prefix}-input {
   @include reset-component();
   @include input();
+  &-horizontal {
+    align-items: center;
+    > label {
+      margin-right: 0.375rem;
+    }
+  }
+  &-vertical {
+    flex-direction: column;
+    > label {
+      display: inline-block;
+      margin-bottom: 0.125rem;
+    }
+  }
+  &-required {
+    > label {
+      &:after {
+        content: "*";
+        font-size: $font-size + 0.375rem;
+        margin-left: 0.125rem;
+        color: $accent-color;
+        position: absolute;
+      }
+    }
+  }
 }
