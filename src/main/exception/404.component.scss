@@ -1,0 +1,23 @@
+exception-404 {
+  > .main {
+    padding: 8rem 1.5rem;
+    > h1 {
+      text-align: center;
+      font-size: 5rem;
+      color: gray;
+      margin-bottom: 0.125rem;
+    }
+    > p {
+      text-align: center;
+      &.text {
+        margin-bottom: 1rem;
+      }
+      &.link {
+        margin-bottom: 3rem;
+        > a {
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}

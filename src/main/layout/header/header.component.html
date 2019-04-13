@@ -1,0 +1,26 @@
+<ul>
+  <li class="logo"><img src="assets/img/logo.png" /></li>
+  <li>
+    <a routerLink="./home" routerLinkActive="active" i18n="@@home">首页</a>
+  </li>
+  <li>
+    <a routerLink="./demo" routerLinkActive="active" i18n="@@demo">示例</a>
+  </li>
+  <li>
+    <a routerLink="./docs" routerLinkActive="active" i18n="@@docs">文档</a>
+  </li>
+  <li>
+    <a routerLink="./news" routerLinkActive="active" i18n="@@news">最新</a>
+  </li>
+</ul>
+<ul>
+  <li class="github">
+    <a href="https://github.com/NG-NEST" target="_blank">
+      <i class="icon icon-github"></i>
+    </a>
+  </li>
+  <li class="lang">
+    <a *ngIf="lang !== 'en'" (click)="push('en')">English</a>
+    <a *ngIf="lang !== 'zh'" (click)="push('zh')">中文</a>
+  </li>
+</ul>

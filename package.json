@@ -1,18 +1,24 @@
 {
-  "name": "ng-moon-doc",
+  "name": "ng-nest-site",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start:en": "ng serve --configuration=en",
+    "start:zh": "ng serve --configuration=zh",
+    "build": "ng build --prod && npm run build:en && npm run build:zh",
+    "build:en": "ng build --prod --configuration=production-en",
+    "build:zh": "ng build --prod --configuration=production-zh",
     "build:ng-moon": "ng build ng-moon && node ./scripts/build/generate-scss.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "extract": "ng xi18n --output-path=locale"
   },
   "private": false,
   "dependencies": {
     "@angular/animations": "~7.2.0",
+    "@angular/cdk": "^7.3.7",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
@@ -26,7 +32,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular-devkit/build-ng-packagr": "~0.13.0",
     "@angular/cli": "~7.3.6",
     "@angular/compiler-cli": "~7.2.0",

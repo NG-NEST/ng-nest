@@ -1,0 +1,31 @@
+// Input
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index.scss";
+
+@mixin input {
+  display: flex;
+  > input {
+    padding: 0 $control-padding-horizontal;
+    flex: 1;
+    height: $font-size + 1rem;
+    font-size: $font-size;
+    background-color: $input-background-color;
+    background-image: none;
+    border: $border-width $border-style $border-color;
+    border-radius: $border-radius;
+    transition: border-color $animation-duration-slow,
+      box-shadow $animation-duration-slow;
+    @include placeholder();
+    &:hover {
+      @include hover();
+    }
+    &:focus {
+      @include focus();
+      outline: 0;
+    }
+    &[disabled] {
+      color: $secondary-text-color;
+    }
+  }
+}

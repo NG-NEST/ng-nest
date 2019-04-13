@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const sourcePath = path.resolve(__dirname, "../../projects/ng-moon/src");
+const sourcePath = path.resolve(__dirname, "../../libraries/ng-moon/src");
 const targetPath = path.resolve(__dirname, "../../dist/ng-moon");
 
 const targetFolder = fs.readdirSync(targetPath);

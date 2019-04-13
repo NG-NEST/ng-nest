@@ -1,0 +1,36 @@
+$prefix: ns;
+
+// Color
+$primary-color-dark: #303f9f;
+$primary-color: #3f51b5;
+$primary-color-light: #c5cae9;
+$primary-color-text: #ffffff;
+$accent-color: #ff5722;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #bdbdbd;
+
+// ----  1rem = 16px  -----
+// |  px  |     rem       |
+// ------------------------
+// |  2   | 2/16 = .125   |
+// |  4   | 4/16 = .25    |
+// |  6   | 6/16 = .375   |
+// |  8   | 8/16 = .5     |
+// |  10  | 10/16 = .625  |
+// |  12  | 12/16 = .75   |
+// |  14  | 14/16 = .875  |
+// |  16  | 16/16 = 1     |
+// |  18  | 18/16 = 1.125 |
+// |  20  | 20/16 = 1.25  |
+// |  24  | 24/16 = 1.5   |
+// |  30  | 30/16 = 1.875 |
+// |  36  | 36/16 = 2.25  |
+// |  42  | 42/16 = 2.625 |
+// |  48  | 48/16 = 3     |
+
+$header-height: 3.75rem;
+$sider-width: 16.25rem;
+$box-shadow: 0 0.125rem 0.25rem 0 rgba(197, 197, 197, 0.3);
+$transition-duration: 0.3s;
+$transition-duration-slow: 0.5s;
