@@ -1,0 +1,52 @@
+$nm-prefix: nm;
+
+// Color
+$primary-color-dark: #303f9f;
+$primary-color: #3f51b5;
+$primary-color-light: #c5cae9;
+$primary-color-text: #ffffff;
+$accent-color: #ff5722;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #bdbdbd;
+
+// Font
+$font-size: 0.875rem;
+$font-variant: tabular-nums;
+$font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei,
+  sans-serif;
+$font-size-sm: $font-size - 0.125rem;
+$font-size-md: $font-size + 0.125rem;
+$font-size-lg: $font-size-md + 0.125rem;
+$font-size-bg: $font-size-lg + 0.125rem;
+$line-height: 1.5;
+
+// Paddings
+$padding-bg: 1rem;
+$padding-lg: 0.875rem;
+$padding-md: 0.75rem;
+$padding-sm: 0.525rem;
+$padding-xs: 0.4rem;
+$padding-ss: 0.275rem;
+
+// Border
+$border-color: rgba(0, 0, 0, 0.45);
+$border-style: solid;
+$border-width: 1px;
+$border-radius: 2px;
+
+// Animation
+$animation-duration-slow: 0.3s;
+$animation-duration-base: 0.2s;
+$animation-duration-fast: 0.1s;
+
+// Controls
+$control-padding-horizontal: $padding-xs;
+$control-padding-vertical: $padding-xs;
+
+// Input
+$input-padding-horizontal: $control-padding-horizontal;
+$input-padding-vertical: $control-padding-vertical;
+$input-color: $primary-text-color;
+$input-placeholder-color: $divider-color;
+$input-background-color: white;

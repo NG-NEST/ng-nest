@@ -1,0 +1,17 @@
+@import "src/styles/index";
+
+ns-index {
+  > section {
+    > .row {
+      display: flex;
+      justify-content: flex-start;
+      padding: 2rem 0;
+      border-bottom: 1px solid $divider-color;
+      > .content {
+      }
+      &:nth-of-type(1) {
+        padding-top: 0;
+      }
+    }
+  }
+}

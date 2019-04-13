@@ -1,0 +1,31 @@
+@import "src/styles/index";
+
+ns-demo {
+  > section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .card {
+      margin-top: 1.5rem;
+      margin-right: 1.5rem;
+      padding: 0.75rem;
+      border-radius: 0.175rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      max-width: 64rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        transition: box-shadow 0.3s;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+      }
+      > a {
+        width: 100%;
+        display: block;
+        > img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

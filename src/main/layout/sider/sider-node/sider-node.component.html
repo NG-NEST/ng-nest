@@ -1,0 +1,46 @@
+<a
+  *ngIf="option.router && option.router != '$'"
+  (click)="sider(option)"
+  routerLink="{{ option.router }}"
+  routerLinkActive="active"
+  title="{{ option.title }}"
+  [ngStyle]="{ 'padding-left.rem': 0.75 * level }"
+>
+  <ng-container
+    *ngTemplateOutlet="itemTemp; context: { option: option }"
+  ></ng-container>
+</a>
+<a
+  *ngIf="!option.router || option.router == '$'"
+  (click)="toggle($event, option)"
+  title="{{ option.title }}"
+  [ngStyle]="{ 'padding-left.rem': 0.75 * level }"
+>
+  <ng-container
+    *ngTemplateOutlet="itemTemp; context: { option: option }"
+  ></ng-container>
+</a>
+<ul
+  *ngIf="(child.length > 0 ? true : false) && option.childrenShow"
+  [ngClass]="{ 'first-node': level == 1 && layoutService.shrink }"
+>
+  <li
+    ns-sider-node
+    *ngFor="let item of child"
+    [option]="item"
+    [level]="level"
+  ></li>
+</ul>
+
+<ng-template #itemTemp let-opt="option">
+  <i class="icon {{ opt.icon }} menu"></i>
+  <p>
+    {{ opt.label }} <span *ngIf="opt.enLabel">{{ opt.enLabel }}</span>
+  </p>
+  <i
+    [ngStyle]="{ display: !(child.length > 0 ? true : false) ? 'none' : '' }"
+    class="icon icon-{{
+      opt.childrenShow ? 'arrow-down' : 'arrow-right'
+    }} arrow"
+  ></i>
+</ng-template>
