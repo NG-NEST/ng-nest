@@ -8,13 +8,8 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { RouterModule } from "@angular/router";
 import { DevelopingComponent } from "./developing/developing.component";
 import { NmAnchorComponent } from "./anchor/anchor.component";
-import { NmAnchorLinkComponent } from "./anchor/anchor-link.component";
 
-const components = [
-  DevelopingComponent,
-  NmAnchorComponent,
-  NmAnchorLinkComponent
-];
+const components = [DevelopingComponent, NmAnchorComponent];
 
 const entryComponents = [];
 

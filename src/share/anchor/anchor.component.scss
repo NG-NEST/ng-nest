@@ -1,0 +1,19 @@
+@import "src/styles/index";
+.nm-anchor {
+  &-open {
+    margin-right: 17.5rem;
+    > ul.title {
+      width: 17.5rem;
+      height: calc(100% - #{$header-height});
+      z-index: 10;
+      position: fixed;
+      top: $header-height;
+      right: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      > li {
+        list-style-type: square;
+      }
+    }
+  }
+}

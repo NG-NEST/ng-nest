@@ -9,7 +9,6 @@ import { SimpleReuseStrategy } from './simple-reuse-srategy';
     RouterModule.forRoot(
       mainRoutes,
       {
-        useHash: true,
         enableTracing: false,
         anchorScrolling: 'enabled',
         preloadingStrategy: SelectivePreloadingStrategy
