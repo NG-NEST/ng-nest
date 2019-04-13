@@ -1,0 +1,6 @@
+<ng-content></ng-content>
+<ul class="title">
+  <li *ngFor="let item of list">
+    <a [href]="item.href">{{ item.title }}</a>
+  </li>
+</ul>
