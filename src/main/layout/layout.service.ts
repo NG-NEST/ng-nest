@@ -1,10 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ElementRef } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { environment } from "src/environments/environment";
+import { Subject } from "rxjs";
+import { CdkScrollable } from "@angular/cdk/overlay";
 
 @Injectable({ providedIn: "root" })
 export class LayoutService {
+  contentRef: ElementRef;
+  contentScrolling = new Subject<CdkScrollable>();
   shrink = false;
 
   menus: Menu[] = [
