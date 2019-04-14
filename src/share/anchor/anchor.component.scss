@@ -1,18 +1,40 @@
 @import "src/styles/index";
+
 .nm-anchor {
   &-open {
     margin-right: 17.5rem;
     > ul.title {
       width: 17.5rem;
-      height: calc(100% - #{$header-height});
+      height: calc(100% - #{$header-height+3rem});
       z-index: 10;
       position: fixed;
       top: $header-height;
       right: 0;
       overflow-y: auto;
       overflow-x: hidden;
+      margin: 1.5rem 1rem;
       > li {
-        list-style-type: square;
+        list-style-type: none;
+        border-left: 1px solid $divider-color;
+        > a {
+          display: block;
+          color: $secondary-text-color;
+          border-left: 1px solid white;
+          > span {
+            cursor: pointer;
+          }
+          > i {
+            margin-right: 0.125rem;
+          }
+        }
+        &.active {
+          border-color: $primary-color;
+          background-color: rgba($primary-text-color, 0.05);
+          > a {
+            color: $primary-color;
+            border-color: $primary-color;
+          }
+        }
       }
     }
   }
