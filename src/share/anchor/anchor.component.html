@@ -1,6 +1,12 @@
 <ng-content></ng-content>
-<ul class="title">
-  <li *ngFor="let item of list">
-    <a [href]="item.href">{{ item.title }}</a>
+<ul class="title" #scrolling>
+  <li
+    *ngFor="let item of list; index as i"
+    [ngClass]="{ active: i === active }"
+  >
+    <a (click)="nav(item, i)" [ngStyle]="{ 'padding-left.rem': item.left }">
+      <i class="icon icon-corners"></i>
+      <span>{{ item.title }}</span>
+    </a>
   </li>
 </ul>

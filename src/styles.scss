@@ -5,24 +5,30 @@
 
 @font-face {
   font-family: "titillium";
-  src: url("assets/fonts/titillium.eot?#") format("eot"), url("assets/fonts/titillium.woff") format("woff"),
-    url("assets/fonts/titillium.ttf") format("truetype"), url("assets/fonts/titillium.svg#titillium") format("svg");
+  src: url("assets/fonts/titillium.eot?#") format("eot"),
+    url("assets/fonts/titillium.woff") format("woff"),
+    url("assets/fonts/titillium.ttf") format("truetype"),
+    url("assets/fonts/titillium.svg#titillium") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "ubuntu";
-  src: url("assets/fonts/ubuntu.eot?#") format("eot"), url("assets/fonts/ubuntu.ttf") format("truetype"),
-    url("assets/fonts/ubuntu.woff") format("woff"), url("assets/fonts/ubuntu.svg#ubuntu") format("svg");
+  src: url("assets/fonts/ubuntu.eot?#") format("eot"),
+    url("assets/fonts/ubuntu.ttf") format("truetype"),
+    url("assets/fonts/ubuntu.woff") format("woff"),
+    url("assets/fonts/ubuntu.svg#ubuntu") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "iconfont";
-  src: url("assets/fonts/iconfont.eot?#") format("eot"), url("assets/fonts/iconfont.woff") format("woff"),
-    url("assets/fonts/iconfont.ttf") format("truetype"), url("assets/fonts/iconfont.svg#iconfont") format("svg");
+  src: url("assets/fonts/iconfont.eot?#") format("eot"),
+    url("assets/fonts/iconfont.woff") format("woff"),
+    url("assets/fonts/iconfont.ttf") format("truetype"),
+    url("assets/fonts/iconfont.svg#iconfont") format("svg");
 }
 
 .icon {
@@ -84,6 +90,14 @@
   content: "\e603";
 }
 
+.icon-cicle:before {
+  content: "\e6a4";
+}
+
+.icon-corners:before {
+  content: "\e60a";
+}
+
 *,
 :after,
 :before {
@@ -104,6 +118,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: #fafafa;
+  height: 100%;
+  overflow: hidden;
 }
 
 span,
@@ -151,13 +167,14 @@ a {
 code,
 pre,
 tt {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+    monospace;
 }
 
 body,
 input {
-  font-family: "ubuntu", -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
-    WenQuanYi Micro Hei, sans-serif;
+  font-family: "ubuntu", -apple-system, SF UI Text, Arial, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
 }
 
 a,

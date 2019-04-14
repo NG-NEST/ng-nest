@@ -61,7 +61,8 @@ ns-layout {
     left: 0;
     z-index: 9;
     box-shadow: $box-shadow;
-    transition: width $transition-duration-slow, padding $transition-duration-slow;
+    transition: width $transition-duration-slow,
+      padding $transition-duration-slow;
     padding-top: 1rem;
     padding-bottom: 1rem;
     li {
@@ -78,7 +79,8 @@ ns-layout {
           text-overflow: ellipsis;
           white-space: nowrap;
           margin: 0 0.25rem;
-          transition: visibility $transition-duration, opacity $transition-duration;
+          transition: visibility $transition-duration,
+            opacity $transition-duration;
           flex: 1;
           visibility: hidden;
           opacity: 0;
@@ -90,7 +92,8 @@ ns-layout {
         i {
           font-size: 1rem;
           visibility: hidden;
-          transition: visibility $transition-duration, opacity $transition-duration;
+          transition: visibility $transition-duration,
+            opacity $transition-duration;
           opacity: 0;
           &.menu {
             font-size: 1.25rem;
@@ -130,30 +133,34 @@ ns-layout {
   }
 
   > ns-content {
-    padding-top: $header-height;
-    padding-left: 0;
-    height: 100%;
-    display: block;
-    transition: padding $transition-duration-slow;
-    section {
-    }
-  }
-
-  > ns-footer {
+    top: $header-height;
+    left: 0;
+    height: calc(100% - #{$header-height});
+    position: fixed;
+    overflow: auto;
     width: 100%;
     display: block;
-    margin-top: 1.5rem;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0) 100%);
-    > section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      > p {
-        text-align: center;
-        font-size: 0.625rem;
-        line-height: 1.75rem;
-        margin: 2rem 0;
-        color: #777;
+    transition: padding $transition-duration-slow;
+    > ns-footer {
+      width: 100%;
+      display: block;
+      margin-top: 1.5rem;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.7) 0,
+        rgba(255, 255, 255, 0) 100%
+      );
+      > section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > p {
+          text-align: center;
+          font-size: 0.625rem;
+          line-height: 1.75rem;
+          margin: 2rem 0;
+          color: #777;
+        }
       }
     }
   }
@@ -182,9 +189,9 @@ ns-layout {
     }
     > ns-content {
       padding-left: $sider-width;
-    }
-    > ns-footer {
-      display: none;
+      > ns-footer {
+        display: none;
+      }
     }
   }
 }
