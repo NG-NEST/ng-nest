@@ -3,7 +3,7 @@
 .nm-example {
   display: flex;
   min-height: 20rem;
-  box-shadow: 0 0 0.375rem rgba(197, 197, 197, 0.7);
+  box-shadow: $docs-box-shadow;
   > ul.menus {
     min-width: 7rem;
     margin: 0;
@@ -26,11 +26,33 @@
   }
   > div.contents {
     flex: 1;
-    > div {
-      padding: 0.5rem;
+    > div.row {
+      padding: 1.5rem;
       display: none;
       &.active {
         display: block;
+      }
+      > div.component {
+        > p {
+          position: relative;
+          padding: 2rem;
+          margin-bottom: 1.5rem;
+          border: 1px solid $docs-component-border-color;
+          background-color: white;
+          border-radius: 0.25rem;
+          margin: 0;
+        }
+        > div.explain {
+          border: 1px solid $docs-component-border-color;
+          border-top: 0;
+          background-color: white;
+          padding: 0.125rem 2rem;
+        }
+      }
+      ul {
+        > li {
+          list-style-type: square;
+        }
       }
     }
   }
