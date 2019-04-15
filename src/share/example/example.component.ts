@@ -42,7 +42,9 @@ export class NmExampleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setElements() {
     this.menus = this.ele.nativeElement.querySelectorAll("ul.menus>li");
-    this.contents = this.ele.nativeElement.querySelectorAll("div.contents>div");
+    this.contents = this.ele.nativeElement.querySelectorAll(
+      "div.contents>div.row"
+    );
     this.menus.forEach((menu, index) => {
       // toDo: unlisten click
       const click = this.render.listen(menu, "click", () => {
