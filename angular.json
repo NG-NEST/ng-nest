@@ -23,8 +23,14 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["dist/ng-moon/ng-moon.scss", "src/styles.scss"],
-            "scripts": [],
+            "styles": [
+              "dist/ng-moon/ng-moon.scss",
+              "node_modules/highlight.js/styles/github.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
