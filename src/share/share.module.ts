@@ -9,8 +9,15 @@ import { RouterModule } from "@angular/router";
 import { DevelopingComponent } from "./developing/developing.component";
 import { NmAnchorComponent } from "./anchor/anchor.component";
 import { NmExampleComponent } from "./example/example.component";
+import { NmCodeComponent } from "./code/code.component";
+import { HighlightModule } from 'ngx-highlightjs';
 
-const components = [DevelopingComponent, NmAnchorComponent, NmExampleComponent];
+const components = [
+  DevelopingComponent,
+  NmAnchorComponent,
+  NmExampleComponent,
+  NmCodeComponent
+];
 
 const entryComponents = [];
 
@@ -22,7 +29,8 @@ const modules = [
   OverlayModule,
   PortalModule,
   DragDropModule,
-  LayoutModule
+  LayoutModule,
+  HighlightModule
 ];
 
 const providers = [];

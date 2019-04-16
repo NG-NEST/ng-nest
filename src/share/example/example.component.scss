@@ -33,20 +33,58 @@
         display: block;
       }
       > div.component {
-        > p {
+        > div.show {
           position: relative;
           padding: 2rem;
           margin-bottom: 1.5rem;
           border: 1px solid $docs-component-border-color;
           background-color: white;
           border-radius: 0.25rem;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
           margin: 0;
+          > div.tools {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            left: 0;
+            bottom: -1rem;
+            > a {
+              color: $secondary-text-color;
+              height: 2rem;
+              width: 2rem;
+              border-radius: 1rem;
+              text-align: center;
+              line-height: 2rem;
+              display: inline-block;
+              background-color: white;
+              i {
+                font-size: 1rem;
+                transition: font-size $transition-duration;
+              }
+              &:hover {
+                color: $primary-color;
+                i {
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+        }
+        > div.code {
+          padding: 0 2rem;
+          background-color: white;
         }
         > div.explain {
           border: 1px solid $docs-component-border-color;
+          border-radius: 0.25rem;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
           border-top: 0;
           background-color: white;
-          padding: 0.125rem 2rem;
+          padding: 1.125rem 2rem;
         }
       }
       ul {

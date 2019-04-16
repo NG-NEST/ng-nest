@@ -1,9 +1,9 @@
 <a
   *ngIf="option.router && option.router != '$'"
   (click)="sider(option)"
-  routerLink="{{ option.router }}"
-  routerLinkActive="active"
-  title="{{ option.title }}"
+  [routerLink]="[option.router]"
+  [routerLinkActive]="'active'"
+  [title]="option.title"
   [ngStyle]="{ 'padding-left.rem': 0.75 * level }"
 >
   <ng-container
@@ -13,7 +13,7 @@
 <a
   *ngIf="!option.router || option.router == '$'"
   (click)="toggle($event, option)"
-  title="{{ option.title }}"
+  [title]="option.title"
   [ngStyle]="{ 'padding-left.rem': 0.75 * level }"
 >
   <ng-container
