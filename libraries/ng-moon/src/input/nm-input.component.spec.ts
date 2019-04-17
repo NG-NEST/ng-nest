@@ -7,9 +7,9 @@ import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   prefix,
-  InputLayoutEnum,
-  InputTypeEnum,
-  InputIconLayoutEnum
+  NmInputLayoutEnum,
+  NmInputTypeEnum,
+  NmInputIconLayoutEnum
 } from "./nm-input.type";
 
 describe(prefix, () => {
@@ -67,19 +67,19 @@ describe(prefix, () => {
       expect(label.innerText).toContain(name);
     });
     it("should layout horizontal.", () => {
-      testComponent.layout = InputLayoutEnum.Horizontal;
+      testComponent.layout = NmInputLayoutEnum.Horizontal;
       testComponent.label = "name";
       fixture.detectChanges();
       expect(debugElement.nativeElement.classList).toContain(
-        `${prefix}-horizontal`
+        `${prefix}-${NmInputLayoutEnum.Horizontal}`
       );
     });
     it("should layout vertical.", () => {
-      testComponent.layout = InputLayoutEnum.Vertical;
+      testComponent.layout = NmInputLayoutEnum.Vertical;
       testComponent.label = "name";
       fixture.detectChanges();
       expect(debugElement.nativeElement.classList).toContain(
-        `${prefix}-vertical`
+        `${prefix}-${NmInputLayoutEnum.Vertical}`
       );
     });
   });
@@ -89,26 +89,26 @@ describe(prefix, () => {
   selector: "test-nm-input",
   template: `
     <nm-input
-      [layout]="layout"
-      [label]="label"
-      [type]="type"
-      [placeholder]="placeholder"
-      [required]="required"
-      [disabled]="disabled"
-      [icon]="icon"
-      [iconLayout]="iconLayout"
+      [nmLayout]="layout"
+      [nmLabel]="label"
+      [nmType]="type"
+      [nmPlaceholder]="placeholder"
+      [nmRequired]="required"
+      [nmDisabled]="disabled"
+      [nmIcon]="icon"
+      [nmIconLayout]="iconLayout"
       [(ngModel)]="value"
     ></nm-input>
   `
 })
 class TestNmInputComponent {
-  layout?: InputLayoutEnum;
+  layout?: NmInputLayoutEnum;
   label?: string;
-  type?: InputTypeEnum;
+  type?: NmInputTypeEnum;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   icon?: string;
-  iconLayout?: InputIconLayoutEnum;
+  iconLayout?: NmInputIconLayoutEnum;
   value?: string | number;
 }

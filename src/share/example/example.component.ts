@@ -9,7 +9,6 @@ import {
   OnDestroy,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { Subscribable } from "rxjs";
 
 @Component({
   selector: "nm-example",

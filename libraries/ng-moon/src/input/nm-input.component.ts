@@ -11,11 +11,11 @@ import {
   HostBinding
 } from "@angular/core";
 import {
-  InputLayoutEnum,
-  InputTypeEnum,
-  InputIconLayoutEnum,
+  NmInputLayoutEnum,
+  NmInputTypeEnum,
+  NmInputIconLayoutEnum,
   prefix,
-  InputOption
+  NmInputOption
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { noop } from "rxjs";
@@ -35,28 +35,20 @@ import { fillDefault } from "../core/util/option";
   ]
 })
 export class NmInputComponent implements OnInit, ControlValueAccessor {
-  @Input()
-  layout?: InputLayoutEnum;
-  @Input()
-  label?: string;
-  @Input()
-  type?: InputTypeEnum;
-  @Input()
-  placeholder?: string;
-  @Input()
-  required?: boolean;
-  @Input()
-  disabled?: boolean;
-  @Input()
-  icon?: string;
-  @Input()
-  iconLayout?: InputIconLayoutEnum;
+  @Input() nmLayout?: NmInputLayoutEnum;
+  @Input() nmLabel?: string;
+  @Input() nmType?: NmInputTypeEnum;
+  @Input() nmPlaceholder?: string;
+  @Input() nmRequired?: boolean;
+  @Input() nmDisabled?: boolean;
+  @Input() nmIcon?: string;
+  @Input() nmIconLayout?: NmInputIconLayoutEnum;
 
-  private default: InputOption = {
-    layout: InputLayoutEnum.Vertical,
-    placeholder: "",
-    type: InputTypeEnum.Text,
-    iconLayout: InputIconLayoutEnum.Right
+  private default: NmInputOption = {
+    nmLayout: NmInputLayoutEnum.Vertical,
+    nmPlaceholder: "",
+    nmType: NmInputTypeEnum.Text,
+    nmIconLayout: NmInputIconLayoutEnum.Right
   };
 
   @HostBinding(`class.${prefix}`) className() {
@@ -64,19 +56,21 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   }
 
   @HostBinding(`class.${prefix}-disabled`) get getDisabled() {
-    return this.disabled;
+    return this.nmDisabled;
   }
 
   @HostBinding(`class.${prefix}-required`) get getRequired() {
-    return this.required;
+    return this.nmRequired;
   }
 
-  @HostBinding(`class.${prefix}-horizontal`) get getHLayout() {
-    return this.layout === InputLayoutEnum.Horizontal;
+  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Horizontal}`)
+  get getLayoutHorizontal() {
+    return this.nmLayout === NmInputLayoutEnum.Horizontal;
   }
 
-  @HostBinding(`class.${prefix}-vertical`) get getVLayout() {
-    return this.layout === InputLayoutEnum.Vertical;
+  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Vertical}`)
+  get getLayoutVertical() {
+    return this.nmLayout === NmInputLayoutEnum.Vertical;
   }
 
   value: string | number;

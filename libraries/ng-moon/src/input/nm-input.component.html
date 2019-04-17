@@ -1,13 +1,13 @@
-<label *ngIf="label">{{ label }}</label>
+<label *ngIf="nmLabel">{{ nmLabel }}</label>
 <ng-container *ngTemplateOutlet="inputTemp"> </ng-container>
-<i *ngIf="icon" class="{{ icon }}"></i>
+<i *ngIf="nmIcon" class="{{ nmIcon }}"></i>
 
 <ng-template #inputTemp>
   <input
-    [type]="type"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
+    [type]="nmType"
+    [placeholder]="nmPlaceholder"
+    [required]="nmRequired"
+    [disabled]="nmDisabled"
     [(ngModel)]="value"
   />
 </ng-template>

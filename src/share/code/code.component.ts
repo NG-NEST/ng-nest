@@ -2,12 +2,10 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  AfterViewInit,
   ElementRef,
   HostBinding,
   Renderer2,
   ChangeDetectionStrategy,
-  OnDestroy,
   Input
 } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
@@ -27,10 +25,7 @@ export class NmCodeComponent implements OnInit {
   @Input("nmCodeType") codeType: NmCodeType;
   safeCode: SafeHtml;
   constructor(
-    private ele: ElementRef,
-    private render: Renderer2,
-    private domSanitizer: DomSanitizer
-  ) {}
+      ) {}
 
   ngOnInit() {
     this.setCode();
@@ -38,7 +33,7 @@ export class NmCodeComponent implements OnInit {
 
   setCode() {
     // 去除首尾的换行和空格
-    this.safeCode = this.code.replace(/^\s+|\s+$/g, "");
+    this.safeCode = this.code.replace(/(^\s*)|(\s*$)/g, "");
   }
 }
 
