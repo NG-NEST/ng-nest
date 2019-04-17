@@ -1,33 +1,11 @@
 @import "src/styles/index";
 
-.nm-example {
+.nm-api {
   display: flex;
   min-height: 20rem;
   box-shadow: $docs-box-shadow;
-  > ul.menus {
-    min-width: 7rem;
-    margin: 0;
-    padding: 0.5rem 0;
-    border-right: 1px solid $border-color;
-    > li {
-      list-style-type: none;
-      margin: 0 0.5rem;
-      padding: 0.125rem 0.875rem;
-      cursor: pointer;
-      border-radius: 0.125rem;
-      &.active {
-        background-color: rgba($primary-text-color, 0.05);
-        color: $primary-color;
-      }
-      &:hover {
-        color: $primary-color;
-      }
-    }
-  }
   > div.contents {
     flex: 1;
-    width: 100%;
-    overflow: hidden;
     > div.row {
       padding: 1.5rem;
       display: none;
@@ -93,13 +71,14 @@
               }
             }
             > div.code-list {
-              // padding: 2rem;
               height: inherit;
               border: 1px solid $docs-component-border-color;
             }
           }
         }
         > div.explain {
+          font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+            monospace;
           border: 1px solid $docs-component-border-color;
           border-radius: 0.25rem;
           border-top-left-radius: 0;

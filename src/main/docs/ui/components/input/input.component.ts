@@ -1,51 +1,65 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, OnInit, Renderer2 } from "@angular/core";
+import { toggleClass } from "src/share/core/style";
 
 @Component({
   selector: "ns-input",
   templateUrl: "./input.component.html",
   encapsulation: ViewEncapsulation.None
 })
-export class InputComponent {
-  typescriptCode: string = `
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { Router } from "@angular/router";
+export class InputComponent implements OnInit {
+  ex1Code1: string = `<nm-input [nmPlaceholder]="'默认'"></nm-input>`;
 
-@Component({
-    selector: "ns-news",
-    templateUrl: "./news.component.html",
-    styleUrls: ["./news.component.scss"],
-    encapsulation: ViewEncapsulation.None
-})
-export class NewsComponent implements OnInit {
-  constructor(public router: Router) {}
+  ex2Code1: string = `
+  <nm-input [nmType]="'text'" [nmPlaceholder]="'文本'"></nm-input>
+  <br />
+  <nm-input [nmType]="'number'" [nmPlaceholder]="'数字'"></nm-input>
+  <br />
+  <nm-input [nmType]="'password'" [nmPlaceholder]="'密码'"></nm-input>`;
+
+  api1Code1: string = `
+/**
+ * Input 参数对象
+ */
+export interface NmInputOption {
+  /** 布局方式，默认 Vertical */
+  nmLayout?: NmInputLayoutEnum;
+  /** Label 内容 */
+  nmLabel?: string;
+  /** Input 输入类型 */
+  nmType?: NmInputTypeEnum;
+  /** 提示描述 */
+  nmPlaceholder?: string;
+  /** 必填 */
+  nmRequired?: boolean;
+  /** 禁用 */
+  nmDisabled?: boolean;
+  /** 图标 */
+  nmIcon?: string;
+  /** 图标布局方式，默认 Right */
+  nmIconLayout?: NmInputIconLayoutEnum;
+}
+
+  export enum NmInputLayoutEnum {
+    Horizontal = "horizontal",
+    Vertical = "vertical"
+  }
+
+  export enum NmInputTypeEnum {
+    Text = "text",
+    Password = "password",
+    Number = "number"
+  }
+
+  export enum NmInputIconLayoutEnum {
+    Left = "left",
+    Right = "right"
+  }`;
+
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit() {}
-}`;
-  htmlCode: string = `
-<section class="main">
-  <h1 i18n="@@developing">开发中</h1>
-  <p class="text" i18n="@@developing.text">抱歉，这个页面正在设计开发中</p>
-  <p class="link">
-    <a (click)="push()" i18n="@@home">首页</a>
-    <a (click)="back()" i18n="@@back">返回</a>
-  </p>
-</section>`;
-  scssCode: string = `
-  @import "src/styles/index";
 
-  ns-index {
-    > section {
-      > .row {
-        display: flex;
-        justify-content: flex-start;
-        padding: 2rem 0;
-        border-bottom: 1px solid $divider-color;
-        > .content {
-        }
-        &:nth-of-type(1) {
-          padding-top: 0;
-        }
-      }
-    }
-  }`;
+  toggle(code: HTMLElement) {
+    toggleClass(code, "toggle");
+  }
 }

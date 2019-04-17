@@ -23,15 +23,15 @@
       <div class="row">
         <div class="component">
           <div class="show">
-            <nm-input [placeholder]="'默认'"></nm-input>
-            <div class="tools">
-              <a><i class="icon icon-code"></i></a>
-            </div>
+            <nm-input [nmPlaceholder]="'默认'"></nm-input>
           </div>
-          <div class="code">
-            <nm-code [nmCode]="typescriptCode"></nm-code>
-            <nm-code [nmCode]="htmlCode"></nm-code>
-            <nm-code [nmCode]="scssCode"></nm-code>
+          <div class="code" #ex1>
+            <div class="tools">
+              <a (click)="toggle(ex1)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="ex1Code1"></nm-code>
+            </div>
           </div>
           <div class="explain">
             <ul>
@@ -49,13 +49,64 @@
           </div>
         </div>
       </div>
-      <div class="row">2</div>
+      <div class="row">
+        <div class="component">
+          <div class="show">
+            <nm-input [nmType]="'text'" [nmPlaceholder]="'文本'"></nm-input>
+            <br />
+            <nm-input [nmType]="'number'" [nmPlaceholder]="'数字'"></nm-input>
+            <br />
+            <nm-input [nmType]="'password'" [nmPlaceholder]="'密码'"></nm-input>
+          </div>
+          <div class="code" #ex2>
+            <div class="tools">
+              <a (click)="toggle(ex2)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="ex2Code1"></nm-code>
+            </div>
+          </div>
+          <div class="explain">
+            <ul>
+              <li>
+                <span class="red">width</span> 根据父元素宽度自动撑开到100%
+              </li>
+              <li>
+                包含三种显示样式 <span class="red">default</span> 、<span
+                  class="red"
+                  >hover</span
+                >
+                、<span class="red">focus</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="row">3</div>
       <div class="row">4</div>
       <div class="row">5</div>
     </div>
   </nm-example>
   <h2>API</h2>
+  <nm-api>
+    <div class="contents">
+      <div class="row active">
+        <div class="component">
+          <div class="code toggle" #api1>
+            <div class="tools">
+              <a (click)="toggle(api1)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="api1Code1"></nm-code>
+            </div>
+          </div>
+          <div class="explain">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nm-api>
   <h2>样式参数</h2>
   <h2>样式参数</h2>
   <h2>样式参数</h2>

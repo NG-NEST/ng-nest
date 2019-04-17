@@ -10,13 +10,15 @@ import { DevelopingComponent } from "./developing/developing.component";
 import { NmAnchorComponent } from "./anchor/anchor.component";
 import { NmExampleComponent } from "./example/example.component";
 import { NmCodeComponent } from "./code/code.component";
-import { HighlightModule } from 'ngx-highlightjs';
+import { HighlightModule } from "ngx-highlightjs";
+import { NmApiComponent } from "./api/api.component";
 
 const components = [
   DevelopingComponent,
   NmAnchorComponent,
   NmExampleComponent,
-  NmCodeComponent
+  NmCodeComponent,
+  NmApiComponent
 ];
 
 const entryComponents = [];
