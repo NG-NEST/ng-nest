@@ -4,31 +4,34 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
-.#{$nm-prefix}-input {
+:host {
   @include reset-component();
   @include input();
-  &-horizontal {
-    align-items: center;
-    > label {
-      margin-right: 0.375rem;
+}
+
+:host(.#{$prefix}-required) {
+  > label {
+    &:after {
+      content: "*";
+      font-size: $font-size + 0.375rem;
+      margin-left: 0.125rem;
+      color: $accent-color;
+      position: absolute;
     }
   }
-  &-vertical {
-    flex-direction: column;
-    > label {
-      display: inline-block;
-      margin-bottom: 0.125rem;
-    }
+}
+
+:host(.#{$prefix}-horizontal) {
+  align-items: center;
+  label {
+    margin-right: 0.375rem;
   }
-  &-required {
-    > label {
-      &:after {
-        content: "*";
-        font-size: $font-size + 0.375rem;
-        margin-left: 0.125rem;
-        color: $accent-color;
-        position: absolute;
-      }
-    }
+}
+
+:host(.#{$prefix}-vertical) {
+  flex-direction: column;
+  label {
+    display: inline-block;
+    margin-bottom: 0.125rem;
   }
 }
