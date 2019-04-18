@@ -27,5 +27,5 @@
 // Element focus
 @mixin focus($color: $primary-color) {
   border-color: $color;
-  box-shadow: 0 1px 3px rgba(lighten($color, 40%), 0.75);
+  box-shadow: 0 0 4px 2px rgba(lighten($color, 40%), 0.75);
 }

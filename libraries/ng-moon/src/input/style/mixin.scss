@@ -2,6 +2,7 @@
 
 @import "../../style/themes/default";
 @import "../../style/mixins/index.scss";
+@import "./param";
 
 @mixin input {
   display: flex;

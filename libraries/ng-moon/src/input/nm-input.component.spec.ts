@@ -23,24 +23,28 @@ describe(prefix, () => {
     let fixture: ComponentFixture<TestNmInputComponent>;
     let testComponent: TestNmInputComponent;
     let debugElement: DebugElement;
+    let element: Element;
+    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmInputComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(NmInputComponent));
+      element = debugElement.nativeElement;
+      shadowRoot = element.shadowRoot;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
     });
     it("should className.", () => {
       fixture.detectChanges();
-      expect(debugElement.nativeElement.classList).toContain(prefix);
+      expect(element.classList).toContain(prefix);
     });
     it("should disabled.", () => {
       testComponent.disabled = true;
       testComponent.value = "this value is disabled";
       fixture.detectChanges();
-      expect(debugElement.nativeElement.classList).toContain(
+      expect(element.classList).toContain(
         `${prefix}-disabled`
       );
     });
@@ -48,7 +52,7 @@ describe(prefix, () => {
       testComponent.required = true;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(debugElement.nativeElement.classList).toContain(
+      expect(element.classList).toContain(
         `${prefix}-required`
       );
     });
@@ -56,21 +60,21 @@ describe(prefix, () => {
       const placeholder = "Please input";
       testComponent.placeholder = placeholder;
       fixture.detectChanges();
-      let input = debugElement.nativeElement.querySelector("input");
+      let input = shadowRoot.querySelector("input");
       expect(input.placeholder).toContain(placeholder);
     });
     it("should label.", () => {
       const name = "name";
       testComponent.label = name;
       fixture.detectChanges();
-      let label = debugElement.nativeElement.querySelector("label");
+      let label = shadowRoot.querySelector("label");
       expect(label.innerText).toContain(name);
     });
     it("should layout horizontal.", () => {
       testComponent.layout = NmInputLayoutEnum.Horizontal;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(debugElement.nativeElement.classList).toContain(
+      expect(element.classList).toContain(
         `${prefix}-${NmInputLayoutEnum.Horizontal}`
       );
     });
@@ -78,7 +82,7 @@ describe(prefix, () => {
       testComponent.layout = NmInputLayoutEnum.Vertical;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(debugElement.nativeElement.classList).toContain(
+      expect(element.classList).toContain(
         `${prefix}-${NmInputLayoutEnum.Vertical}`
       );
     });
