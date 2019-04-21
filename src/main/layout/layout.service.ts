@@ -39,7 +39,7 @@ export class LayoutService {
       parentId: "1-2",
       label: "按钮",
       enLabel: "Button",
-      router: ""
+      router: "./docs/ui/components/input-bak"
     },
     {
       id: "1-2-3",

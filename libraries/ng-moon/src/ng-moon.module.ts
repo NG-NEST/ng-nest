@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { NmInputModule } from './input/nm-input.module';
+import { NmInputModule } from './components/input/nm-input.module';
 
-export * from './input';
+export * from './components/input';
 
 @NgModule({
   exports: [
