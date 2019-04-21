@@ -11,7 +11,7 @@
     </li>
   </ul>
   <h2>示例代码</h2>
-  <nm-example #ex>
+  <nm-example>
     <ul class="menus">
       <li>默认</li>
       <li>类型</li>
@@ -21,6 +21,33 @@
     </ul>
     <div class="contents">
       <div class="row">
+        <div class="component">
+          <div class="show">
+            <nm-input [nmPlaceholder]="'默认'"></nm-input>
+          </div>
+          <div class="code" #ex1>
+            <div class="tools">
+              <a (click)="toggle(ex1)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="ex1Code1"></nm-code>
+            </div>
+          </div>
+          <div class="explain">
+            <ul>
+              <li>
+                <span class="red">width</span> 根据父元素宽度自动撑开到100%
+              </li>
+              <li>
+                包含三种显示样式 <span class="red">default</span> 、<span
+                  class="red"
+                  >hover</span
+                >
+                、<span class="red">focus</span>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="component">
           <div class="show">
             <nm-input [nmPlaceholder]="'默认'"></nm-input>
@@ -100,9 +127,7 @@
               <nm-code [nmCode]="api1Code1"></nm-code>
             </div>
           </div>
-          <div class="explain">
-
-          </div>
+          <div class="explain"></div>
         </div>
       </div>
     </div>

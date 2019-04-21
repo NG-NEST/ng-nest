@@ -19,7 +19,7 @@ import {
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { noop } from "rxjs";
-import { fillDefault } from "../core/util/option";
+import { fillDefault } from "../../core/util/option";
 
 @Component({
   selector: "nm-input",
