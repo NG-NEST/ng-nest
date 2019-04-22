@@ -1,14 +1,75 @@
 <section nm-anchor>
   <h1 id="输入框-input">输入框 Input</h1>
-<p>通过键盘输入内容，是最基础的表单交互元素。</p>
-<h2 id="使用场景">使用场景</h2>
-<p>当需要用户输入文字、字母、数字等内容时，就会用到输入框。</p>
-<h2 id="使用规范">使用规范</h2>
-<ul>
-<li>输入的内容不易过长，20 个字符以下。</li>
-<li>如果内容是固定场景下的，需要做好各自的约定，比如只能输入字母或者数字。</li>
-</ul>
+  <p>通过键盘输入内容，是最基础的表单交互元素。</p>
+  <h2 id="使用场景">使用场景</h2>
+  <p>当需要用户输入文字、字母、数字等内容时，就会用到输入框。</p>
+  <h2 id="使用规范">使用规范</h2>
+  <ul>
+    <li>输入的内容不易过长，20 个字符以下。</li>
+    <li>
+      如果内容是固定场景下的，需要做好各自的约定，比如只能输入字母或者数字。
+    </li>
+  </ul>
 
-  {{ examples }}
+  <h2>示例代码</h2>
+  <nm-example>
+    <ul class="menus">
+      <li>默认</li>
+      <li>类型</li>
+    </ul>
+    <div class="contents">
+      <div class="row">
+        <div class="component">
+          <div class="show">
+            <nm-input [nmPlaceholder]="'默认'"></nm-input>
+          </div>
+          <div class="code" #ex0>
+            <div class="tools">
+              <a (click)="toggle(ex0)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="''"></nm-code>
+            </div>
+          </div>
+          <div class="explain">
+            <ul>
+              <li><code>width</code> 根据父元素宽度自动撑开到 100%</li>
+              <li>
+                包含三种显示样式 <code>default</code> 、<code>hover</code>
+                、<code>focus</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="component">
+          <div class="show">
+            <nm-input [nmType]="'text'" [nmPlaceholder]="'文本'"></nm-input>
+            <br />
+            <nm-input [nmType]="'number'" [nmPlaceholder]="'数字'"></nm-input>
+            <br />
+            <nm-input [nmType]="'password'" [nmPlaceholder]="'密码'"></nm-input>
+          </div>
+          <div class="code" #ex1>
+            <div class="tools">
+              <a (click)="toggle(ex1)"><i class="icon icon-code"></i></a>
+            </div>
+            <div class="code-list">
+              <nm-code [nmCode]="''"></nm-code>
+            </div>
+          </div>
+          <div class="explain">
+            <ul>
+              <li><code>width</code> 根据父元素宽度自动撑开到 100%</li>
+              <li>
+                包含三种显示样式 <code>default</code> 、<code>hover</code>
+                、<code>focus</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nm-example>
 </section>
-<h2>示例代码</h2>undefined
