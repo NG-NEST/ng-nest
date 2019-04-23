@@ -1,5 +1,5 @@
 <label *ngIf="nmLabel">{{ nmLabel }}</label>
-<ng-container *ngTemplateOutlet="inputTemp"> </ng-container>
+<ng-container *ngTemplateOutlet="inputTemp"></ng-container>
 <i *ngIf="nmIcon" class="{{ nmIcon }}"></i>
 
 <ng-template #inputTemp>
@@ -11,10 +11,3 @@
     [(ngModel)]="value"
   />
 </ng-template>
-
-<nm-code [nmCode]="'<nm-input [nmType]="'text'\" [nmPlaceholder]=\"'文本'\"></nm-input>
-  <br />
-  <nm-input [nmType]=\"'number'\" [nmPlaceholder]=\"'数字'\"></nm-input>
-  <br />
-  <nm-input [nmType]=\"'password'\" [nmPlaceholder]=\"'密码'\"></nm-input>
-  '"></nm-code>

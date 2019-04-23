@@ -64,13 +64,11 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     return this.nmRequired;
   }
 
-  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Horizontal}`)
-  get getLayoutHorizontal() {
+  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Horizontal}`) get getLayoutHorizontal() {
     return this.nmLayout === NmInputLayoutEnum.Horizontal;
   }
 
-  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Vertical}`)
-  get getLayoutVertical() {
+  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Vertical}`) get getLayoutVertical() {
     return this.nmLayout === NmInputLayoutEnum.Vertical;
   }
 
@@ -88,7 +86,7 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
-    this.onChangeFn = fn;
+    this.onTouchedFn = fn;
   }
 
   constructor(private cdr: ChangeDetectorRef) {}
