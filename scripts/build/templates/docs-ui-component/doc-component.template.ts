@@ -7,6 +7,7 @@ import { toggleClass } from "src/share/core/style";
   encapsulation: ViewEncapsulation.None
 })
 export class NmDoc{{ componentName }}Component {
+  {{ param }}
   toggle(code: HTMLElement) {
     toggleClass(code, "toggle");
   }

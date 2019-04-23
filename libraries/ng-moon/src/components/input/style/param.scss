@@ -1,3 +1,13 @@
 // Input style paramters
 
 $prefix: $nm-prefix + "-input";
+
+$input-font-size: $font-size;
+$input-padding: 0 $control-padding-horizontal;
+$input-color: $primary-text-color;
+$input-placeholder-color: $divider-color;
+$input-background-color: white;
+$input-border: $border-width $border-style $border-color;
+$input-border-radius: $border-radius;
+
+$input-disabled-color: $secondary-text-color;

@@ -5,12 +5,7 @@ import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {
-  prefix,
-  NmInputLayoutEnum,
-  NmInputTypeEnum,
-  NmInputIconLayoutEnum
-} from "./nm-input.type";
+import { prefix, NmInputLayoutEnum, NmInputTypeEnum, NmInputIconLayoutEnum } from "./nm-input.type";
 
 describe(prefix, () => {
   beforeEach(async(() => {
@@ -44,17 +39,13 @@ describe(prefix, () => {
       testComponent.disabled = true;
       testComponent.value = "this value is disabled";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${prefix}-disabled`
-      );
+      expect(element.classList).toContain(`${prefix}-disabled`);
     });
     it("should required.", () => {
       testComponent.required = true;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${prefix}-required`
-      );
+      expect(element.classList).toContain(`${prefix}-required`);
     });
     it("should placeholder.", () => {
       const placeholder = "Please input";
@@ -74,17 +65,13 @@ describe(prefix, () => {
       testComponent.layout = NmInputLayoutEnum.Horizontal;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${prefix}-${NmInputLayoutEnum.Horizontal}`
-      );
+      expect(element.classList).toContain(`${prefix}-${NmInputLayoutEnum.Horizontal}`);
     });
     it("should layout vertical.", () => {
       testComponent.layout = NmInputLayoutEnum.Vertical;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${prefix}-${NmInputLayoutEnum.Vertical}`
-      );
+      expect(element.classList).toContain(`${prefix}-${NmInputLayoutEnum.Vertical}`);
     });
   });
 });

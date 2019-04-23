@@ -21,6 +21,12 @@
   }
 }
 
+:host(.#{$prefix}-disabled) {
+  > input {
+    background-color: rgba(0, 0, 0, 0.045);
+  }
+}
+
 :host(.#{$prefix}-horizontal) {
   align-items: center;
   label {

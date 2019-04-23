@@ -7,7 +7,7 @@
       <a (click)="toggle(ex{{ index }})"><i class="icon icon-code"></i></a>
     </div>
     <div class="code-list">
-      <nm-code [nmCode]="'{{ codeEscape }}'"></nm-code>
+      <nm-code [nmCode]="ex{{ index }}Code{{ index }}"></nm-code>
     </div>
   </div>
   <div class="explain">
