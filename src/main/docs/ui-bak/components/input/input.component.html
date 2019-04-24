@@ -21,7 +21,7 @@
     <nm-input [nmPlaceholder]="'默认'"></nm-input>
 
   </div>
-  <div class="code" #ex0>
+  <div class="code toggle" #ex0>
     <div class="tools">
       <a (click)="toggle(ex0)"><i class="icon icon-code"></i></a>
     </div>
@@ -46,7 +46,7 @@
 <nm-input [nmType]="'password'" [nmPlaceholder]="'密码'"></nm-input>
 
   </div>
-  <div class="code" #ex1>
+  <div class="code toggle" #ex1>
     <div class="tools">
       <a (click)="toggle(ex1)"><i class="icon icon-code"></i></a>
     </div>
@@ -67,7 +67,7 @@
 <nm-input [nmDisabled]="true" [nmPlaceholder]="'禁用'"></nm-input>
 
   </div>
-  <div class="code" #ex2>
+  <div class="code toggle" #ex2>
     <div class="tools">
       <a (click)="toggle(ex2)"><i class="icon icon-code"></i></a>
     </div>
@@ -88,7 +88,7 @@
 <nm-input [nmLabel]="'垂直'" [nmLayout]="'vertical'" [nmPlaceholder]="'垂直'"></nm-input>
 
   </div>
-  <div class="code" #ex3>
+  <div class="code toggle" #ex3>
     <div class="tools">
       <a (click)="toggle(ex3)"><i class="icon icon-code"></i></a>
     </div>
@@ -114,6 +114,24 @@
           </div>
           <div class="code-list">
             <nm-code [nmCode]="api1Code1"></nm-code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nm-api>
+
+  <h2>样式参数</h2>
+  <nm-api>
+  <div class="contents">
+    <div class="row active">
+      <div class="component">
+        <div class="code toggle" #style1>
+          <div class="tools">
+            <a (click)="toggle(style1)"><i class="icon icon-code"></i></a>
+          </div>
+          <div class="code-list">
+            <nm-code [nmCode]="style1Code1"></nm-code>
           </div>
         </div>
       </div>

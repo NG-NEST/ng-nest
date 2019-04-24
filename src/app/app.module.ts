@@ -32,6 +32,7 @@ export function hljsLanguages() {
     HttpClientModule,
     ShareModule,
     MainRoutesModule,
+    NgMoonModule,
     HighlightModule.forRoot({
       languages: hljsLanguages
     })

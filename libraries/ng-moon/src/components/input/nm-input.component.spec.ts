@@ -5,9 +5,9 @@ import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { prefix, NmInputLayoutEnum, NmInputTypeEnum, NmInputIconLayoutEnum } from "./nm-input.type";
+import { InputPrefix, NmInputLayoutEnum, NmInputTypeEnum, NmInputIconLayoutEnum } from "./nm-input.type";
 
-describe(prefix, () => {
+describe(InputPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NmInputModule, FormsModule, ReactiveFormsModule],
@@ -33,19 +33,19 @@ describe(prefix, () => {
     });
     it("should className.", () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(prefix);
+      expect(element.classList).toContain(InputPrefix);
     });
     it("should disabled.", () => {
       testComponent.disabled = true;
       testComponent.value = "this value is disabled";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${prefix}-disabled`);
+      expect(element.classList).toContain(`${InputPrefix}-disabled`);
     });
     it("should required.", () => {
       testComponent.required = true;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${prefix}-required`);
+      expect(element.classList).toContain(`${InputPrefix}-required`);
     });
     it("should placeholder.", () => {
       const placeholder = "Please input";
@@ -65,13 +65,13 @@ describe(prefix, () => {
       testComponent.layout = NmInputLayoutEnum.Horizontal;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${prefix}-${NmInputLayoutEnum.Horizontal}`);
+      expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Horizontal}`);
     });
     it("should layout vertical.", () => {
       testComponent.layout = NmInputLayoutEnum.Vertical;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${prefix}-${NmInputLayoutEnum.Vertical}`);
+      expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
     });
   });
 });

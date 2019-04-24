@@ -1,0 +1,16 @@
+<nm-api>
+  <div class="contents">
+    <div class="row active">
+      <div class="component">
+        <div class="code toggle" #style{{ index }}>
+          <div class="tools">
+            <a (click)="toggle(style{{ index }})"><i class="icon icon-code"></i></a>
+          </div>
+          <div class="code-list">
+            <nm-code [nmCode]="style{{ index }}Code{{ index }}"></nm-code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nm-api>

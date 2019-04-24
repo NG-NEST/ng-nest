@@ -27,53 +27,67 @@ ex3Code3 = `<nm-input [nmLabel]="'默认'" [nmPlaceholder]="'默认'"></nm-input
 <br />
 <nm-input [nmLabel]="'垂直'" [nmLayout]="'vertical'" [nmPlaceholder]="'垂直'"></nm-input>
 `;
-api1Code1 = `export const prefix = "nm-input";
+api1Code1 = `export const InputPrefix = "nm-input";
 
-/** Input 参数对象 */
+// Input 参数对象
 export interface NmInputOption {
-  /** 布局方式，默认 Vertical */
+  // 布局方式，默认 Vertical
   nmLayout?: NmInputLayoutEnum;
-  /** Label 内容 */
+  // Label 内容
   nmLabel?: string;
-  /** Input 输入类型 */
+  // Input 输入类型
   nmType?: NmInputTypeEnum;
-  /** 提示描述 */
+  // 提示描述
   nmPlaceholder?: string;
-  /** 必填 */
+  // 必填
   nmRequired?: boolean;
-  /** 禁用 */
+  // 禁用
   nmDisabled?: boolean;
-  /** 图标 */
+  // 图标
   nmIcon?: string;
-  /** 图标布局方式，默认 Right */
+  // 图标布局方式，默认 Right
   nmIconLayout?: NmInputIconLayoutEnum;
 }
 
-/** 布局方式，此处指文本跟输入框的位置 */
+// 布局方式，此处指文本跟输入框的位置
 export enum NmInputLayoutEnum {
-  /** 水平 */
+  // 水平
   Horizontal = "horizontal",
-  /** 垂直 */
+  // 垂直
   Vertical = "vertical"
 }
 
-/** 输入框类型 */
+// 输入框类型
 export enum NmInputTypeEnum {
-  /** 文本 */
+  // 文本
   Text = "text",
-  /** 密码 */
+  // 密码
   Password = "password",
-  /** 数字 */
+  // 数字
   Number = "number"
 }
 
-/** 图标布局方式，指在输入框中的位置 */
+// 图标布局方式，指在输入框中的位置
 export enum NmInputIconLayoutEnum {
-  /** 靠左 */
+  // 靠左
   Left = "left",
-  /** 靠右 */
+  // 靠右
   Right = "right"
 }
+`;
+style1Code1 = `// Input style paramters
+
+$prefix: $nm-prefix + "-input";
+
+$input-font-size: $font-size;
+$input-padding: 0 $control-padding-horizontal;
+$input-color: $primary-text-color;
+$input-placeholder-color: $divider-color;
+$input-background-color: white;
+$input-border: $border-width $border-style $border-color;
+$input-border-radius: $border-radius;
+
+$input-disabled-color: $secondary-text-color;
 `;
 
   toggle(code: HTMLElement) {

@@ -1,4 +1,4 @@
-export const prefix = "nm-input";
+export const InputPrefix = "nm-input";
 
 // Input 参数对象
 export interface NmInputOption {

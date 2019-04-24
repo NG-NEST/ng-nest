@@ -9,6 +9,7 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "input", pathMatch: "full" },
       { path: "input", loadChildren: "./input/input.module#InputModule" },
+      { path: "icon", loadChildren: "../../ui-bak/components/icon/icon.module#NmDocIconModule" },
       { path: "input-bak", loadChildren: "../../ui-bak/components/input/input.module#NmDocInputModule" }
     ]
   }

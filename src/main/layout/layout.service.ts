@@ -28,6 +28,13 @@ export class LayoutService {
     },
     { id: "1-2", parentId: "1", label: "基本组件" },
     {
+      id: "1-2-20",
+      parentId: "1-2",
+      label: "图标",
+      enLabel: "Icon",
+      router: "./docs/ui/components/icon"
+    },
+    {
       id: "1-2-1",
       parentId: "1-2",
       label: "输入框",
@@ -146,11 +153,9 @@ export class LayoutService {
   ];
 
   constructor(private router: Router) {
-    this.router.events
-      .pipe(filter(x => x instanceof NavigationEnd))
-      .subscribe((x: NavigationEnd) => {
-        this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
-      });
+    this.router.events.pipe(filter(x => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
+      this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
+    });
   }
 }
 
