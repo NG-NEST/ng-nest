@@ -11,7 +11,7 @@
     "build:zh": "ng build --prod --configuration=production-zh",
     "build:ng-moon": "ng build ng-moon",
     "build:docs": "node ./scripts/build/generate-docs-ui-components.js",
-    "test": "ng test",
+    "test": "ng test ng-moon",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "extract": "ng xi18n --output-path=locale"
