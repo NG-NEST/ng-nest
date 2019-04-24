@@ -1,0 +1,9 @@
+// Input
+
+@import "../../../style/themes/default";
+@import "../../../style/mixins/index.scss";
+@import "./param";
+
+@mixin icon {
+  display: flex;
+}

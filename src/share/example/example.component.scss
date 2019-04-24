@@ -5,21 +5,36 @@
   box-shadow: $docs-box-shadow;
   > ul.menus {
     min-width: 7rem;
-    margin: 0;
-    padding: 0.5rem 0;
-    border-right: 1px solid $border-color;
+    margin: 1.5rem 0;
+    position: relative;
+    height: fit-content;
     > li {
       list-style-type: none;
-      margin: 0 0.5rem;
+      // margin: 0 0.5rem;
       padding: 0.125rem 0.875rem;
       cursor: pointer;
       border-radius: 0.125rem;
+      height: 2rem;
+      border-right: 2px solid $border-color;
       &.active {
-        background-color: rgba($primary-text-color, 0.05);
+        // background-color: rgba($primary-text-color, 0.05);
         color: $primary-color;
       }
       &:hover {
         color: $primary-color;
+      }
+      &.menu-highlight {
+        position: absolute;
+        display: block;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: rgba(33, 33, 33, 0.05);
+        z-index: 1;
+        height: 2rem;
+        border-right: 2px solid $primary-color;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
       }
     }
   }

@@ -28,22 +28,25 @@ function docComponentHtml(doc, filePath, dirName) {
   // component html
   const examples = exampleTemlate(dirName);
   const api = apiTemplate(dirName);
+  const styleParam = styleParamTemplate(dirName);
   let htmlTemplate = fs
     .readFileSync(`${docsTemplatesPath}/doc-component.template.html`, "utf8")
     .replace(/{{ content }}/g, doc)
     .replace(/{{ examples }}/g, examples.content)
-    .replace(/{{ api }}/g, api.content);
+    .replace(/{{ api }}/g, api.content)
+    .replace(/{{ styleParam }}/g, styleParam.content);
   // add examples
   fs.writeFileSync(path.join(filePath, `${dirName}.component.html`), htmlTemplate, "utf8");
-  // console.log(htmlTemplate);
 
   // component ts
   const tsTemplate = fs
     .readFileSync(`${docsTemplatesPath}/doc-component.template.ts`, "utf8")
     .replace(/{{ component }}/g, dirName)
     .replace(/{{ componentName }}/g, firstLetterCapital(dirName))
-    .replace(/{{ param }}/g, paramCodes(examples.codes) + paramCodes(api.codes));
-
+    .replace(
+      /{{ param }}/g,
+      paramCodes(examples.codes) + paramCodes(api.codes) + paramCodes(styleParam.codes)
+    );
   fs.writeFileSync(path.join(filePath, `${dirName}.component.ts`), tsTemplate, "utf8");
 
   // component module
@@ -106,7 +109,10 @@ function exConRowComTemplate(name, examPath, index) {
     .readFileSync(`${docsTemplatesPath}/example-row-component.template.html`, "utf8")
     .replace(/{{ code }}/g, code)
     .replace(/{{ index }}/g, index)
-    .replace(/{{ explain }}/g, parseDocMd(fs.readFileSync(`${examPath}/${name}.md`, "utf8")).content);
+    .replace(
+      /{{ explain }}/g,
+      parseDocMd(fs.readFileSync(`${examPath}/${name}.md`, "utf8")).content
+    );
 
   return {
     code: code,
@@ -120,6 +126,21 @@ function apiTemplate(dirName) {
   let typeFile = fs.readFileSync(`${componentsPath}/${dirName}/nm-${dirName}.type.ts`, "utf8");
   let index = 1;
   let codes = [{ key: `api1Code1`, value: typeFile }];
+  return {
+    codes: codes,
+    content: template.replace(/{{ index }}/g, index)
+  };
+}
+
+// style param
+function styleParamTemplate(dirName) {
+  let template = fs.readFileSync(
+    `${docsTemplatesPath}/style-param-component.template.html`,
+    "utf8"
+  );
+  let typeFile = fs.readFileSync(`${componentsPath}/${dirName}/style/param.scss`, "utf8");
+  let index = 1;
+  let codes = [{ key: `style1Code1`, value: typeFile }];
   return {
     codes: codes,
     content: template.replace(/{{ index }}/g, index)

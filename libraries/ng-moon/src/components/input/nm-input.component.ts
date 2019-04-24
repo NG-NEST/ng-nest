@@ -14,7 +14,7 @@ import {
   NmInputLayoutEnum,
   NmInputTypeEnum,
   NmInputIconLayoutEnum,
-  prefix,
+  InputPrefix,
   NmInputOption
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -52,23 +52,23 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     nmIconLayout: NmInputIconLayoutEnum.Right
   };
 
-  @HostBinding(`class.${prefix}`) className() {
+  @HostBinding(`class.${InputPrefix}`) className() {
     return true;
   }
 
-  @HostBinding(`class.${prefix}-disabled`) get getDisabled() {
+  @HostBinding(`class.${InputPrefix}-disabled`) get getDisabled() {
     return this.nmDisabled;
   }
 
-  @HostBinding(`class.${prefix}-required`) get getRequired() {
+  @HostBinding(`class.${InputPrefix}-required`) get getRequired() {
     return this.nmRequired;
   }
 
-  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Horizontal}`) get getLayoutHorizontal() {
+  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Horizontal}`) get getLayoutHorizontal() {
     return this.nmLayout === NmInputLayoutEnum.Horizontal;
   }
 
-  @HostBinding(`class.${prefix}-${NmInputLayoutEnum.Vertical}`) get getLayoutVertical() {
+  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Vertical}`) get getLayoutVertical() {
     return this.nmLayout === NmInputLayoutEnum.Vertical;
   }
 
