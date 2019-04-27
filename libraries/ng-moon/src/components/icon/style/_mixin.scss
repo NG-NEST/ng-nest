@@ -5,5 +5,7 @@
 @import "./param";
 
 @mixin icon {
-  display: flex;
+  display: inline-block;
+  line-height: 0;
+  text-align: center;
 }

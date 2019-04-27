@@ -46,7 +46,10 @@ export class NmIconComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmTypeChange = changes.nmType;
-    nmTypeChange.currentValue !== nmTypeChange.previousValue && this.setSvgElement();
+    if (nmTypeChange.currentValue !== nmTypeChange.previousValue) {
+      this.setSvgElement();
+      this.renderer.addClass(this.elementRef.nativeElement, `${this.nmType}`);
+    }
   }
 
   setSvgElement() {
@@ -64,10 +67,6 @@ export class NmIconComponent implements OnInit, OnChanges {
         this.renderer.appendChild(this.elementRef.nativeElement, x);
       });
   }
-
-  // ngOnChanges() {
-  //   console.log(this.nmType);
-  // }
 
   setSourceUrl(type: string) {
     if (typeof type === "undefined") return;

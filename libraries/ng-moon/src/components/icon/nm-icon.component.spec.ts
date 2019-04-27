@@ -34,10 +34,30 @@ describe(IconPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(IconPrefix);
     });
-    it("should icon.", () => {
+    it("should ant-design fill icon.", () => {
       testComponent.type = "adf-shopping";
       fixture.detectChanges();
-      // expect(element.classList).toContain(`required`);
+      expect(element.classList).toContain(testComponent.type);
+    });
+    it("should ant-design outline icon.", () => {
+      testComponent.type = "ado-shopping";
+      fixture.detectChanges();
+      expect(element.classList).toContain(testComponent.type);
+    });
+    it("should ant-design twotone icon.", () => {
+      testComponent.type = "adt-shopping";
+      fixture.detectChanges();
+      expect(element.classList).toContain(testComponent.type);
+    });
+    it("should eva fill icon.", () => {
+      testComponent.type = "eaf-shopping-bag";
+      fixture.detectChanges();
+      expect(element.classList).toContain(testComponent.type);
+    });
+    it("should eva outline icon.", () => {
+      testComponent.type = "eao-shopping-bag";
+      fixture.detectChanges();
+      expect(element.classList).toContain(testComponent.type);
     });
   });
 });
