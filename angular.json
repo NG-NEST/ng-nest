@@ -186,6 +186,7 @@
     },
     "ng-moon": {
       "root": "libraries/ng-moon",
+      "sourceRoot": "libraries/ng-moon/src",
       "projectType": "library",
       "prefix": "nm",
       "schematics": {
@@ -204,7 +205,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libraries/ng-moon/test.ts",
+            "main": "libraries/ng-moon/src/test.ts",
             "tsConfig": "libraries/ng-moon/tsconfig.spec.json",
             "karmaConfig": "libraries/ng-moon/karma.conf.js"
           }

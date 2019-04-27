@@ -7,7 +7,8 @@ import {
   Renderer2,
   AfterViewInit,
   OnDestroy,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Input
 } from "@angular/core";
 import { reqAnimFrame } from "../core/animation";
 
@@ -19,8 +20,12 @@ import { reqAnimFrame } from "../core/animation";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmExampleComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() nmLayoutType: "row" | "column" = "row";
   @HostBinding("class.nm-example") className() {
     return true;
+  }
+  @HostBinding("class.nm-example-column") get row() {
+    return this.nmLayoutType === "column";
   }
   ulMenus: HTMLElement;
   menus: HTMLElement[];
@@ -55,6 +60,8 @@ export class NmExampleComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         if (index === 0) {
           this.render.addClass(menu, "active");
+          this.nmLayoutType === "column" &&
+            this.render.setStyle(this.menuHighlight, "width", `${menu.clientWidth}px`);
           this.activeMenu = menu;
         }
         this.menusClickSub.push(click);
@@ -81,24 +88,35 @@ export class NmExampleComponent implements OnInit, AfterViewInit, OnDestroy {
     this.render.removeClass(this.activeContent, "active");
     this.render.addClass(this.contentRows[index], "active");
     this.activeContent = this.contentRows[index];
-    if (this.menuHighlight)
-      this.topTo(this.menuHighlight, this.menuHighlight.clientHeight * index, 150);
+    if (!this.menuHighlight) return;
+    if (this.nmLayoutType === "column") {
+      this.render.setStyle(this.menuHighlight, "width", `${this.activeMenu.clientWidth}px`);
+      this.render.setStyle(this.menuHighlight, "left", `${this.activeMenu.offsetLeft}px`);
+    } else {
+      this.render.setStyle(this.menuHighlight, "top", `${this.activeMenu.offsetTop}px`);
+    }
   }
 
-  topTo(element: HTMLElement, to: number, duration: number): void {
+  animation(type: "left" | "top", element: HTMLElement, to: number, duration: number) {
     if (duration <= 0) {
-      this.render.setStyle(element, "top", `${to}px`);
+      this.render.setStyle(element, type, `${to}px`);
       return;
     }
-    const difference = to - element.offsetTop;
+    const value = this.getTypeValue(type, element);
+    const difference = to - value;
     const perTick = (difference / duration) * 10;
-
     reqAnimFrame(() => {
-      this.render.setStyle(element, "top", `${element.offsetTop + perTick}px`);
-      if (element.offsetTop === to) {
+      this.render.setStyle(element, type, `${value + perTick}px`);
+      if (value === to) {
         return;
       }
-      this.topTo(element, to, duration - 10);
+      this.animation(type, element, to, duration - 10);
     });
+  }
+
+  getTypeValue(type: "left" | "top" | "width", element: HTMLElement) {
+    if (type === "left") return element.offsetLeft;
+    else if (type === "top") return element.offsetTop;
+    else if (type === "width") return element.clientHeight;
   }
 }

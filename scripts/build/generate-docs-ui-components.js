@@ -2,11 +2,34 @@ const fs = require("fs-extra");
 const path = require("path");
 const mdToHtml = require("./utils/md-to-html");
 const parseDocMd = require("./utils/parse-doc-md");
+const getFileName = require("./utils/get-file-name");
 const firstLetterCapital = require("./utils/first-letter-capital");
 
 const componentsPath = path.resolve(__dirname, "../../libraries/ng-moon/src/components");
+const iconsPath = path.resolve(__dirname, "../../src/assets/icons");
 const docsComponentsPath = path.resolve(__dirname, "../../src/main/docs/ui-bak");
 const docsTemplatesPath = path.resolve(__dirname, "./templates/docs-ui-component");
+
+const iconSource = {
+  AntDesign: "ant-design",
+  Eva: "eva",
+  Feather: "feather",
+  FontAwesome: "font-awesome",
+  MaterialDesign: "material-design"
+};
+
+const iconSouceUrl = {
+  adf: `${iconSource.AntDesign}/fill`,
+  ado: `${iconSource.AntDesign}/outline`,
+  adt: `${iconSource.AntDesign}/twotone`,
+  eaf: `${iconSource.Eva}/fill`,
+  eao: `${iconSource.Eva}/outline`,
+  fto: `${iconSource.Feather}`,
+  fab: `${iconSource.FontAwesome}/brands`,
+  far: `${iconSource.FontAwesome}/regular`,
+  fas: `${iconSource.FontAwesome}/solid`,
+  md: `${iconSource.MaterialDesign}`
+};
 
 // clean dir
 fs.emptyDirSync(docsComponentsPath);
@@ -17,6 +40,9 @@ componentsFolder.forEach(dirName => {
   const readmePath = `${componentsPath}/${dirName}/readme.md`;
   let html = mdToHtml(readmePath);
   if (html) {
+    if (dirName === "icon") {
+      html += iconsTemplate(dirName).content;
+    }
     docComponentHtml(html, `${docsComponentsPath}/components/${dirName}`, dirName);
   }
 });
@@ -57,6 +83,40 @@ function docComponentHtml(doc, filePath, dirName) {
   fs.writeFileSync(path.join(filePath, `${dirName}.module.ts`), moduleTemplate, "utf8");
 }
 
+// icons
+function iconsTemplate(dirName) {
+  let template = fs.readFileSync(`${docsTemplatesPath}/icon-component.template.html`, "utf8");
+  const examplesPath = `${componentsPath}/${dirName}/examples`;
+  let examplesFolder = fs.readdirSync(examplesPath);
+  let menus = "";
+  let contents = "";
+  examplesFolder.sort().forEach((dirName, index) => {
+    let names = dirName.split(".");
+    if (names.length > 1) {
+      let name = names[1];
+      const examPath = `${examplesPath}/${dirName}`;
+      const mdPath = `${examPath}/${name}.md`;
+      if (fs.existsSync(mdPath)) {
+        let content = fs.readFileSync(mdPath, "utf8");
+        if (content) {
+          let parse = parseDocMd(content);
+          const rowCom = iconRowTemplate(name);
+          menus += `<li>${parse.meta.title}</li>`;
+          // codes = [...codes, { key: `ex${index}Code${index}`, value: rowCom.code }];
+          contents += `<div class="row">${rowCom.content}</div>`;
+        }
+      }
+    }
+  });
+  if (menus.length > 0) menus = `<ul class="menus">${menus}</ul>`;
+  if (contents.length > 0) contents = `<div class="contents">${contents}</div>`;
+
+  return {
+    content: template.replace(/{{ menus }}/g, menus).replace(/{{ contents }}/g, contents)
+  };
+}
+
+// param codes
 function paramCodes(codes) {
   let params = "";
   if (codes && codes.length > 0) {
@@ -120,6 +180,52 @@ function exConRowComTemplate(name, examPath, index) {
   };
 }
 
+// icon-row
+function iconRowTemplate(dirName) {
+  const path = `${iconsPath}/${dirName}`;
+  let folder = fs.readdirSync(path);
+  let template = "";
+  let isDirectory = false;
+  folder.forEach((name, index) => {
+    if (fs.lstatSync(`${path}/${name}`).isDirectory()) {
+      isDirectory = true;
+      let childrenFolder = fs.readdirSync(`${path}/${name}`);
+      let cate = `<span>${name}</span>`;
+      let cateTemp = "";
+      childrenFolder.forEach((cname, cindex) => {
+        cateTemp += iconLi(`${dirName}/${name}`, cname);
+      });
+      if (cateTemp.length > 0) cateTemp = `<ul class="icons">${cateTemp}</ul>`;
+      template += cate + cateTemp;
+    } else {
+      template += iconLi(dirName, name);
+    }
+  });
+  if (template.length > 0 && !isDirectory) template = `<ul class="icons">${template}</ul>`;
+
+  return {
+    content: template
+  };
+}
+
+function iconLi(dirName, name) {
+  let fileName = getFileName(name);
+  return `
+  <li>
+    <nm-icon [nmType]="'${getPrefix(dirName)}-${fileName}'"></nm-icon>
+    <span>${fileName}</span>
+  </li>`;
+}
+
+// icon prefix
+function getPrefix(dirName) {
+  for (let key in iconSouceUrl) {
+    if (iconSouceUrl[key] === dirName) {
+      return key;
+    }
+  }
+}
+
 // api
 function apiTemplate(dirName) {
   let template = fs.readFileSync(`${docsTemplatesPath}/api-component.template.html`, "utf8");
@@ -138,7 +244,7 @@ function styleParamTemplate(dirName) {
     `${docsTemplatesPath}/style-param-component.template.html`,
     "utf8"
   );
-  let typeFile = fs.readFileSync(`${componentsPath}/${dirName}/style/param.scss`, "utf8");
+  let typeFile = fs.readFileSync(`${componentsPath}/${dirName}/style/_param.scss`, "utf8");
   let index = 1;
   let codes = [{ key: `style1Code1`, value: typeFile }];
   return {

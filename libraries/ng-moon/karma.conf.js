@@ -13,10 +13,10 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: true // leave Jasmine Spec Runner output visible in browser
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/ng-moon'),
+      dir: require('path').join(__dirname, '../../coverage/ng-moon'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },

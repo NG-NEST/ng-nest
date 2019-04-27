@@ -48,10 +48,6 @@ ns-docs {
       list-style-type: circle;
       margin-left: 1.25rem;
       line-height: 1.75rem;
-      > code {
-        padding: 0.125rem 0.25rem;
-        border-radius: 0.25rem;
-      }
     }
   }
 
@@ -59,5 +55,20 @@ ns-docs {
   p > code {
     background-color: rgba($docs-span-red, 0.1);
     color: $docs-span-red;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid $docs-component-border-color;
+    tr > th,
+    tr > td {
+      border-right: 2px solid $docs-component-border-color;
+      border-bottom: 2px solid $docs-component-border-color;
+      text-align: left;
+      padding: 0.25rem;
+    }
   }
 }
