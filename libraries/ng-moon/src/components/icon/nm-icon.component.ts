@@ -10,11 +10,24 @@ import {
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { IconPrefix, NmIconOption, NmSouceUrl } from "./nm-icon.type";
-import { fillDefault } from "../../core/util/option";
+import { IconPrefix, NmIconOption, NmIconSourceEnum } from "./nm-icon.type";
 import { NmIconService } from "./nm-icon.service";
 import { map } from "rxjs/operators";
-import { Log } from "../../core/util/log";
+import { warnIconTypeNotFound, fillDefault } from "../../core/util";
+
+// 来源路径对应
+export const NmSouceUrl = {
+  adf: `${NmIconSourceEnum.AntDesign}/fill/`,
+  ado: `${NmIconSourceEnum.AntDesign}/outline/`,
+  adt: `${NmIconSourceEnum.AntDesign}/twotone/`,
+  eaf: `${NmIconSourceEnum.Eva}/fill/`,
+  eao: `${NmIconSourceEnum.Eva}/outline/`,
+  fto: `${NmIconSourceEnum.Feather}/`,
+  fab: `${NmIconSourceEnum.FontAwesome}/brands/`,
+  far: `${NmIconSourceEnum.FontAwesome}/regular/`,
+  fas: `${NmIconSourceEnum.FontAwesome}/solid/`,
+  md: `${NmIconSourceEnum.MaterialDesign}/`
+};
 
 @Component({
   selector: "nm-icon",
@@ -27,6 +40,7 @@ export class NmIconComponent implements OnInit, OnChanges {
   @Input() nmType?: string;
   @Input() nmColor?: string | string[];
   @Input() nmRotate?: number;
+  private svgElement: SVGElement;
   private default: NmIconOption = {};
 
   @HostBinding(`class.${IconPrefix}`) className() {
@@ -64,7 +78,12 @@ export class NmIconComponent implements OnInit, OnChanges {
         })
       )
       .subscribe(x => {
-        this.renderer.appendChild(this.elementRef.nativeElement, x);
+        if (this.svgElement) {
+          this.renderer.removeChild(this.elementRef.nativeElement, this.svgElement);
+        } else {
+          this.svgElement = x;
+        }
+        this.renderer.appendChild(this.elementRef.nativeElement, this.svgElement);
       });
   }
 
@@ -74,7 +93,7 @@ export class NmIconComponent implements OnInit, OnChanges {
     const souceUrl = NmSouceUrl[split.shift()];
     const fileName = split.join("-");
     if (!souceUrl || !fileName) {
-      throw Log.IconTypeNotFoundWarn();
+      throw warnIconTypeNotFound();
     }
     return `${souceUrl}${fileName}`;
   }

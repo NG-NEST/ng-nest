@@ -23,17 +23,3 @@ export enum NmIconSourceEnum {
   // Material Design
   MaterialDesign = "material-design"
 }
-
-// 来源路径对应
-export const NmSouceUrl = {
-  adf: `${NmIconSourceEnum.AntDesign}/fill/`,
-  ado: `${NmIconSourceEnum.AntDesign}/outline/`,
-  adt: `${NmIconSourceEnum.AntDesign}/twotone/`,
-  eaf: `${NmIconSourceEnum.Eva}/fill/`,
-  eao: `${NmIconSourceEnum.Eva}/outline/`,
-  fto: `${NmIconSourceEnum.Feather}/`,
-  fab: `${NmIconSourceEnum.FontAwesome}/brands/`,
-  far: `${NmIconSourceEnum.FontAwesome}/regular/`,
-  fas: `${NmIconSourceEnum.FontAwesome}/solid/`,
-  md: `${NmIconSourceEnum.MaterialDesign}/`
-};

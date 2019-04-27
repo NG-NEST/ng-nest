@@ -29,12 +29,13 @@
         left: 0;
         right: 0;
         top: 0;
-        background: rgba(33, 33, 33, 0.05);
+        background: rgba($primary-text-color, 0.05);
         z-index: 1;
         height: 2rem;
         border-right: 2px solid $primary-color;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+        transition: width $transition-duration, left $transition-duration, top $transition-duration;
       }
     }
   }
@@ -45,8 +46,11 @@
     > div.row {
       padding: 1.5rem;
       display: none;
-      &.active {
-        display: block;
+      ul {
+        margin: 0;
+        > li {
+          list-style-type: square;
+        }
       }
       > div.component {
         background-color: white;
@@ -60,6 +64,9 @@
           border-bottom-right-radius: 0;
           border-bottom: 0;
           margin: 0;
+          .nm-icon {
+            font-size: 1.5rem;
+          }
         }
         > div.code {
           position: relative;
@@ -119,12 +126,75 @@
           border-top-left-radius: 0;
           border-top-right-radius: 0;
           border-top: 0;
-          padding: 1.125rem 2rem;
+          padding: 2rem;
+          > p {
+            margin-top: 0;
+          }
+          > table {
+            margin-top: 1rem;
+          }
         }
       }
-      ul {
+      > ul.icons {
+        overflow: hidden;
         > li {
-          list-style-type: square;
+          float: left;
+          list-style: none;
+          width: 16.66%;
+          margin: 0.125rem 0;
+          padding-bottom: 0.25rem;
+          cursor: pointer;
+          transition: color $transition-duration ease-in-out,
+            background-color $transition-duration ease-in-out;
+          overflow: hidden;
+          border-radius: 0.125rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          > .nm-icon {
+            display: block;
+            font-size: 1.5rem;
+            margin: 1rem 0 0.25rem 0;
+            transition: transform $transition-duration ease-in-out;
+            transition-delay: 0.1s;
+          }
+          > span {
+            font-size: 0.75rem;
+            cursor: pointer;
+          }
+          &:hover {
+            color: $primary-color;
+            background-color: rgba($primary-text-color, 0.05);
+            > .nm-icon {
+              transform: scale(1.4);
+            }
+          }
+        }
+      }
+      &.active {
+        display: block;
+      }
+    }
+  }
+  &-column {
+    flex-direction: column;
+    > ul.menus {
+      display: flex;
+      overflow: hidden;
+      margin: 1.5rem 1.5rem 0;
+      > li {
+        border-right: 0;
+        margin: 0;
+        white-space: nowrap;
+        border-bottom: 2px solid $border-color;
+        min-width: 5rem;
+        text-align: center;
+        &.menu-highlight {
+          border-right: 0;
+          border-bottom: 2px solid $primary-color;
+          border-top-right-radius: 0.125rem;
+          border-bottom-left-radius: 0;
         }
       }
     }

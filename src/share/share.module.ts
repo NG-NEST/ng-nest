@@ -11,14 +11,16 @@ import { NmAnchorComponent } from "./anchor/anchor.component";
 import { NmExampleComponent } from "./example/example.component";
 import { NmCodeComponent } from "./code/code.component";
 import { HighlightModule } from "ngx-highlightjs";
-import { NmApiComponent } from "./api/api.component";
+import { NmPanelComponent } from './panel/panel.component';
+import { NmIconsComponent } from './icons/icons.component';
 
 const components = [
   DevelopingComponent,
   NmAnchorComponent,
   NmExampleComponent,
   NmCodeComponent,
-  NmApiComponent
+  NmPanelComponent,
+  NmIconsComponent
 ];
 
 const entryComponents = [];

@@ -11,14 +11,14 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "nm-api",
-  templateUrl: "./api.component.html",
-  styleUrls: ["./api.component.scss"],
+  selector: "nm-panel",
+  templateUrl: "./panel.component.html",
+  styleUrls: ["./panel.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmApiComponent implements OnInit, AfterViewInit, OnDestroy {
-  @HostBinding("class.nm-api") className() {
+export class NmPanelComponent implements OnInit, AfterViewInit, OnDestroy {
+  @HostBinding("class.nm-panel") className() {
     return true;
   }
 
