@@ -1,43 +1,47 @@
 @import "src/styles/index";
 
+@mixin menusMixin() {
+  min-width: 7rem;
+  margin: 1.5rem 0;
+  position: relative;
+  height: fit-content;
+  > li {
+    list-style-type: none;
+    // margin: 0 0.5rem;
+    padding: 0.125rem 0.875rem;
+    cursor: pointer;
+    border-radius: 0.125rem;
+    height: 2rem;
+    border-right: 2px solid $border-color;
+    &.active {
+      // background-color: rgba($primary-text-color, 0.05);
+      color: $primary-color;
+    }
+    &:hover {
+      color: $primary-color;
+    }
+    &.menu-highlight {
+      position: absolute;
+      display: block;
+      left: 0;
+      right: 0;
+      top: 0;
+      background: rgba($primary-text-color, 0.05);
+      z-index: 1;
+      height: 2rem;
+      border-right: 2px solid $primary-color;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      transition: width $transition-duration, left $transition-duration, top $transition-duration;
+    }
+  }
+}
+
 .nm-example {
   display: flex;
   box-shadow: $docs-box-shadow;
-  > ul.menus {
-    min-width: 7rem;
-    margin: 1.5rem 0;
-    position: relative;
-    height: fit-content;
-    > li {
-      list-style-type: none;
-      // margin: 0 0.5rem;
-      padding: 0.125rem 0.875rem;
-      cursor: pointer;
-      border-radius: 0.125rem;
-      height: 2rem;
-      border-right: 2px solid $border-color;
-      &.active {
-        // background-color: rgba($primary-text-color, 0.05);
-        color: $primary-color;
-      }
-      &:hover {
-        color: $primary-color;
-      }
-      &.menu-highlight {
-        position: absolute;
-        display: block;
-        left: 0;
-        right: 0;
-        top: 0;
-        background: rgba($primary-text-color, 0.05);
-        z-index: 1;
-        height: 2rem;
-        border-right: 2px solid $primary-color;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        transition: width $transition-duration, left $transition-duration, top $transition-duration;
-      }
-    }
+  ul.menus {
+    @include menusMixin();
   }
   > div.contents {
     flex: 1;
@@ -46,6 +50,7 @@
     > div.row {
       padding: 1.5rem;
       display: none;
+      position: relative;
       ul {
         margin: 0;
         > li {
@@ -137,6 +142,7 @@
       }
       > ul.icons {
         overflow: hidden;
+        display: none;
         > li {
           float: left;
           list-style: none;
@@ -171,15 +177,66 @@
             }
           }
         }
+        &.show {
+          display: inherit;
+        }
+      }
+      > ul.child-menus {
+        @include menusMixin();
+        margin: 0 0 1rem 0;
+        display: none;
+        > li {
+          list-style: none;
+          border-right: 0;
+          &.active {
+            // background-color: rgba($primary-text-color, 0.05);
+            border-color: $primary-color;
+            background: rgba($primary-text-color, 0.05);
+            border-bottom-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+      &.has-child-menus {
+        padding-top: 1rem;
+        > ul.child-menus {
+          display: flex;
+        }
       }
       &.active {
         display: block;
       }
+      // > ul.child-menus {
+      //   margin-bottom: 1rem;
+      //   display: none;
+      //   > li {
+      //     list-style: none;
+      //     cursor: pointer;
+      //     margin: 0.125rem 0;
+      //     padding: 0.125rem 0.875rem;
+      //     border-radius: 0.125rem;
+      //     border-bottom: 2px solid $border-color;
+      //     &.active {
+      //       color: $primary-color;
+      //       background: rgba($primary-text-color, 0.05);
+      //     }
+      //     &.hover {
+      //       color: $primary-color;
+      //     }
+      //   }
+      // }
+      // &.has-child-menus {
+      //   padding-top: 1rem;
+      //   > ul.child-menus {
+      //     display: flex;
+      //   }
+      // }
     }
   }
   &-column {
     flex-direction: column;
-    > ul.menus {
+    ul.menus,
+    ul.child-menus {
       display: flex;
       overflow: hidden;
       margin: 1.5rem 1.5rem 0;

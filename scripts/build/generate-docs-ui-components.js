@@ -39,16 +39,19 @@ const componentsFolder = fs.readdirSync(componentsPath);
 componentsFolder.forEach(dirName => {
   const readmePath = `${componentsPath}/${dirName}/readme.md`;
   let html = mdToHtml(readmePath);
+  let iconsTemplate = "";
   if (html) {
     if (dirName === "icon") {
-      html += iconsTemplate(dirName).content;
+      // html += iconsTemplate(dirName).content;
+      iconTemplate = iconsTemplateRe(dirName);
+      html += iconTemplate.content;
     }
-    docComponentHtml(html, `${docsComponentsPath}/components/${dirName}`, dirName);
+    docComponentHtml(html, `${docsComponentsPath}/components/${dirName}`, dirName, iconTemplate);
   }
 });
 
 // component doc
-function docComponentHtml(doc, filePath, dirName) {
+function docComponentHtml(doc, filePath, dirName, iconTemplate) {
   fs.ensureDirSync(filePath);
 
   // component html
@@ -71,7 +74,10 @@ function docComponentHtml(doc, filePath, dirName) {
     .replace(/{{ componentName }}/g, firstLetterCapital(dirName))
     .replace(
       /{{ param }}/g,
-      paramCodes(examples.codes) + paramCodes(api.codes) + paramCodes(styleParam.codes)
+      paramCodes(examples.codes) +
+        paramCodes(api.codes) +
+        paramCodes(styleParam.codes) +
+        (iconTemplate ? paramCodes(iconTemplate.codes) : "")
     );
   fs.writeFileSync(path.join(filePath, `${dirName}.component.ts`), tsTemplate, "utf8");
 
@@ -81,6 +87,44 @@ function docComponentHtml(doc, filePath, dirName) {
     .replace(/{{ component }}/g, dirName)
     .replace(/{{ componentName }}/g, firstLetterCapital(dirName));
   fs.writeFileSync(path.join(filePath, `${dirName}.module.ts`), moduleTemplate, "utf8");
+}
+
+// icons
+function iconsTemplateRe(dirName) {
+  let template = fs.readFileSync(`${docsTemplatesPath}/icon-component.template.html`, "utf8");
+  const iconsFolder = fs.readdirSync(`${iconsPath}`);
+  let list = [];
+  iconsFolder.forEach(folder => {
+    let item = { category: "", themes: [] };
+    item.category = folder;
+    const themesFolder = fs.readdirSync(`${iconsPath}/${folder}`);
+    let themeObj = { cate: "", prefix: "", icons: [] };
+    themesFolder.forEach(theme => {
+      const themeFolder = `${iconsPath}/${folder}/${theme}`;
+      if (fs.lstatSync(themeFolder).isDirectory()) {
+        themeObj = { cate: "", prefix: "", icons: [] };
+        themeObj.cate = theme;
+        themeObj.prefix = getPrefix(`${folder}/${theme}`);
+        const iconsFd = fs.readdirSync(`${themeFolder}`);
+        iconsFd.forEach(fd => {
+          themeObj.icons.push(getFileName(fd));
+        });
+        item.themes.push(themeObj);
+      } else {
+        themeObj.icons.push(getFileName(theme));
+      }
+    });
+    if (themeObj.cate === "") {
+      themeObj.prefix = getPrefix(`${folder}`);
+      item.themes.push(themeObj);
+    }
+    list.push(item);
+  });
+
+  return {
+    codes: [{ key: "allIcons", value: JSON.stringify(list), object: true }],
+    content: template
+  };
 }
 
 // icons
@@ -121,7 +165,7 @@ function paramCodes(codes) {
   let params = "";
   if (codes && codes.length > 0) {
     codes.forEach(x => {
-      params += `${x.key} = \`${x.value}\`;\n`;
+      params += x.object ? `${x.key} = ${x.value};\n` : `${x.key} = \`${x.value}\`;\n`;
     });
   }
   return params;
