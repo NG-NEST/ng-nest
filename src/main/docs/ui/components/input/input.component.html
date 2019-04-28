@@ -13,90 +13,34 @@
   <h2>图标列表</h2>
   <nm-example [nmLayoutType]="'column'">
     <ul class="menus">
-      <li>Ant-Design</li>
-      <li>Eva</li>
-      <li>Feather</li>
-      <li>Font-Awesome</li>
-      <li>Material-Design</li>
+      <li *ngFor="let item of allIcons; index as i" (click)="activeIcons = i; activeIconsCate = 0">
+        {{ item.category }}
+      </li>
     </ul>
     <div class="contents">
-      <div class="row">
-        <ul class="icons">
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
-          </li>
-          <li>
-            <nm-icon [nmType]="'adf-shopping'"></nm-icon>
-            <span>shopping</span>
+      <div
+        class="row"
+        *ngFor="let item of allIcons"
+        [ngClass]="{ 'has-child-menus': item.themes.length > 1 }"
+      >
+        <ul class="child-menus">
+          <li
+            *ngFor="let theme of item.themes; index as j"
+            [ngClass]="{ active: activeIconsCate == j }"
+            (click)="activeIconsCate = j"
+          >
+            {{ theme.cate }}
           </li>
         </ul>
+        <ng-container *ngFor="let theme of item.themes; index as j">
+          <ul class="icons" [ngClass]="{ show: activeIconsCate == j }">
+            <li *ngFor="let icon of theme.icons">
+              <nm-icon [nmType]="'adf-shopping'"></nm-icon>
+              <span>{{ icon }}</span>
+            </li>
+          </ul>
+        </ng-container>
       </div>
-      <div class="row">2</div>
-      <div class="row">3</div>
-      <div class="row">4</div>
-      <div class="row">5</div>
     </div>
   </nm-example>
   <h2>示例代码</h2>

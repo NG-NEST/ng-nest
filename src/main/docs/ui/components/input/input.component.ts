@@ -55,6 +55,68 @@ export interface NmInputOption {
     Right = "right"
   }`;
 
+  activeIcons = 0;
+  activeIconsCate = 0;
+  allIcons = [
+    {
+      category: "ant-design",
+      themes: [
+        {
+          cate: "fill",
+          icons: ["shopping", "shopping", "shopping", "shopping", "shopping"]
+        },
+        {
+          cate: "outline",
+          icons: ["unlock", "shopping", "shopping", "shopping", "shopping"]
+        },
+        {
+          cate: "twotone",
+          icons: ["book", "shopping", "shopping", "shopping", "shopping"]
+        }
+      ]
+    },
+    {
+      category: "eva",
+      themes: [
+        {
+          cate: "fill",
+          icons: ["calendar", "shopping", "shopping", "shopping", "shopping"]
+        },
+        {
+          cate: "outline",
+          icons: ["cloud", "shopping", "shopping", "shopping", "shopping"]
+        }
+      ]
+    },
+    {
+      category: "feather",
+      themes: [
+        {
+          cate: "fill",
+          icons: ["code", "shopping", "shopping", "shopping", "shopping"]
+        }
+      ]
+    },
+    {
+      category: "font-awesome",
+      themes: [
+        {
+          cate: "fill",
+          icons: ["delete", "shopping", "shopping", "shopping", "shopping"]
+        }
+      ]
+    },
+    {
+      category: "material-design",
+      themes: [
+        {
+          cate: "fill",
+          icons: ["mail", "shopping", "shopping", "shopping", "shopping"]
+        }
+      ]
+    }
+  ];
+
   constructor(private renderer: Renderer2) {}
 
   ngOnInit() {}
