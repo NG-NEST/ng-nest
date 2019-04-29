@@ -73,6 +73,18 @@ describe(InputPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
     });
+    it("should icon left.", () => {
+      testComponent.icon = "ado-search";
+      testComponent.iconLayout = NmInputIconLayoutEnum.Left;
+      fixture.detectChanges();
+      // expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
+    });
+    it("should icon right.", () => {
+      testComponent.icon = "ado-search";
+      testComponent.iconLayout = NmInputIconLayoutEnum.Right;
+      fixture.detectChanges();
+      // expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
+    });
   });
 });
 

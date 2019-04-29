@@ -6,26 +6,33 @@
 
 @mixin input {
   display: flex;
-  > input {
-    padding: $input-padding;
+  > .#{$prefix}-row {
     flex: 1;
-    height: $input-font-size + 1rem;
-    font-size: $input-font-size;
-    background-color: $input-background-color;
-    background-image: none;
-    border: $input-border;
-    border-radius: $input-border-radius;
-    transition: border-color $animation-duration-slow, box-shadow $animation-duration-slow;
-    @include placeholder();
-    &:hover {
-      @include hover();
-    }
-    &:focus {
-      @include focus();
-      outline: 0;
-    }
-    &[disabled] {
-      color: $input-disabled-color;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > input {
+      padding: $input-padding;
+      flex: 1;
+      height: $input-font-size + 1rem;
+      font-size: $input-font-size;
+      background-color: $input-background-color;
+      background-image: none;
+      border: $input-border;
+      border-radius: $input-border-radius;
+      transition: border-color $animation-duration-slow,
+        box-shadow $animation-duration-slow;
+      @include placeholder();
+      &:hover {
+        @include hover();
+      }
+      &:focus {
+        @include focus();
+        outline: 0;
+      }
+      &[disabled] {
+        color: $input-disabled-color;
+      }
     }
   }
 }
