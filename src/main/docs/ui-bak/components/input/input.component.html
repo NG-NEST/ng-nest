@@ -15,7 +15,7 @@
 
   <h2>示例代码</h2>
   <nm-example>
-  <ul class="menus"><li>默认</li><li>类型</li><li>状态</li><li>布局</li></ul>
+  <ul class="menus"><li>默认</li><li>类型</li><li>状态</li><li>布局</li><li>图标</li></ul>
   <div class="contents"><div class="row"><div class="component">
   <div class="show">
     <nm-input [nmPlaceholder]="'默认'"></nm-input>
@@ -83,9 +83,17 @@
   <div class="show">
     <nm-input [nmLabel]="'默认'" [nmPlaceholder]="'默认'"></nm-input>
 <br />
-<nm-input [nmLabel]="'水平'" [nmLayout]="'horizontal'" [nmPlaceholder]="'水平'"></nm-input>
+<nm-input
+  [nmLabel]="'水平'"
+  [nmLayout]="'horizontal'"
+  [nmPlaceholder]="'水平'"
+></nm-input>
 <br />
-<nm-input [nmLabel]="'垂直'" [nmLayout]="'vertical'" [nmPlaceholder]="'垂直'"></nm-input>
+<nm-input
+  [nmLabel]="'垂直'"
+  [nmLayout]="'vertical'"
+  [nmPlaceholder]="'垂直'"
+></nm-input>
 
   </div>
   <div class="code toggle" #ex3>
@@ -94,6 +102,33 @@
     </div>
     <div class="code-list">
       <nm-code [nmCode]="ex3Code3"></nm-code>
+    </div>
+  </div>
+  <div class="explain">
+    
+  </div>
+</div>
+</div><div class="row"><div class="component">
+  <div class="show">
+    <nm-input
+  [nmIcon]="'ado-search'"
+  [nmIconLayout]="'left'"
+  [nmPlaceholder]="'靠左'"
+></nm-input>
+<br />
+<nm-input
+  [nmIcon]="'ado-search'"
+  [nmIconLayout]="'right'"
+  [nmPlaceholder]="'靠右'"
+></nm-input>
+
+  </div>
+  <div class="code toggle" #ex4>
+    <div class="tools">
+      <a (click)="toggle(ex4)"><i class="icon icon-code"></i></a>
+    </div>
+    <div class="code-list">
+      <nm-code [nmCode]="ex4Code4"></nm-code>
     </div>
   </div>
   <div class="explain">

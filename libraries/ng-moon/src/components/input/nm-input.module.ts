@@ -2,10 +2,11 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NmInputComponent } from "./nm-input.component";
+import { NmIconModule } from './../icon/nm-icon.module';
 
 @NgModule({
   declarations: [NmInputComponent],
   exports: [NmInputComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, NmIconModule, FormsModule, ReactiveFormsModule]
 })
 export class NmInputModule {}

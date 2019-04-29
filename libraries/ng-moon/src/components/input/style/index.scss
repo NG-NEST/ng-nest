@@ -22,22 +22,55 @@
 }
 
 :host(.#{$prefix}-disabled) {
-  > input {
+  > .#{$prefix}-row > input {
     background-color: rgba(0, 0, 0, 0.045);
   }
 }
 
 :host(.#{$prefix}-horizontal) {
   align-items: center;
-  label {
+  > label {
     margin-right: 0.375rem;
   }
 }
 
 :host(.#{$prefix}-vertical) {
   flex-direction: column;
-  label {
+  > label {
     display: inline-block;
     margin-bottom: 0.125rem;
   }
 }
+
+:host(.#{$prefix}-icon) {
+  > .#{$prefix}-row {
+    > #{$nm-prefix}-icon {
+      position: absolute;
+      font-size: $input-icon-font-size;
+      padding: $input-icon-padding;
+    }
+  }
+}
+
+:host(.#{$prefix}-icon-left) {
+  > .#{$prefix}-row {
+    > input {
+      padding-left: $input-icon-font-size + $input-icon-padding * 2;
+    }
+    > #{$nm-prefix}-icon {
+      left: 0;
+    }
+  }
+}
+
+:host(.#{$prefix}-icon-right) {
+  > .#{$prefix}-row {
+    > input {
+      padding-right: $input-icon-font-size + $input-icon-padding * 2;
+    }
+    > #{$nm-prefix}-icon {
+      right: 0;
+    }
+  }
+}
+

@@ -19,7 +19,7 @@ import {
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { noop } from "rxjs";
-import { fillDefault } from "../../core/util/option";
+import { fillDefault, isEmpty } from "../../core/util";
 
 @Component({
   selector: "nm-input",
@@ -64,12 +64,32 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     return this.nmRequired;
   }
 
-  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Horizontal}`) get getLayoutHorizontal() {
+  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Horizontal}`)
+  get getLayoutHorizontal() {
     return this.nmLayout === NmInputLayoutEnum.Horizontal;
   }
 
-  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Vertical}`) get getLayoutVertical() {
+  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Vertical}`)
+  get getLayoutVertical() {
     return this.nmLayout === NmInputLayoutEnum.Vertical;
+  }
+
+  @HostBinding(`class.${InputPrefix}-icon`) get getIcon() {
+    return !isEmpty(this.nmIcon);
+  }
+
+  @HostBinding(`class.${InputPrefix}-icon-${NmInputIconLayoutEnum.Left}`)
+  get getIconLayoutLeft() {
+    return (
+      !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Left
+    );
+  }
+
+  @HostBinding(`class.${InputPrefix}-icon-${NmInputIconLayoutEnum.Right}`)
+  get getIconLayoutRight() {
+    return (
+      !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Right
+    );
   }
 
   value: string | number;

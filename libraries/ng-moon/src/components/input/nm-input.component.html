@@ -1,13 +1,15 @@
 <label *ngIf="nmLabel">{{ nmLabel }}</label>
 <ng-container *ngTemplateOutlet="inputTemp"></ng-container>
-<i *ngIf="nmIcon" class="{{ nmIcon }}"></i>
 
 <ng-template #inputTemp>
-  <input
-    [type]="nmType"
-    [placeholder]="nmPlaceholder"
-    [required]="nmRequired"
-    [disabled]="nmDisabled"
-    [(ngModel)]="value"
-  />
+  <div class="nm-input-row">
+    <input
+      [type]="nmType"
+      [placeholder]="nmPlaceholder"
+      [required]="nmRequired"
+      [disabled]="nmDisabled"
+      [(ngModel)]="value"
+    />
+    <nm-icon *ngIf="nmIcon" [nmType]="nmIcon"></nm-icon>
+  </div>
 </ng-template>
