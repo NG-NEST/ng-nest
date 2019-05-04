@@ -9,11 +9,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",
-    "sourceMap": true,
     "allowJs": true,
-    "outDir": "dist-ts",
+    "outDir": "./dist-ts/",
+    "rootDir": "./main",
     "lib": ["es7"]
   },
-  "include": ["main/**/*"],
+  "include": ["./main/**/*"],
   "exclude": ["../node_modules", "**/*.spec.ts"]
 }
