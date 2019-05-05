@@ -6,7 +6,41 @@
 
 @mixin slider {
   display: inline-block;
-  line-height: 0;
-  text-align: center;
-  color: $primary-text-color;
+  color: $slider-color;
+  font-size: $slider-font-size;
+  > ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    > li {
+      padding: 0.25rem 0.875rem;
+      cursor: pointer;
+      border-style: solid;
+      border-color: $slider-border-color;
+      border-width: 0;
+      height: $slider-font-size * 2;
+      box-sizing: border-box;
+      &:hover,
+      &.#{$prefix}-active {
+        color: $slider-active-color;
+      }
+      &.#{$prefix}-highlight {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        width: 0;
+        height: $slider-font-size * 2;
+        background-color: $slider-active-background-color;
+        border-color: $slider-active-border-color;
+        transition: width $animation-duration-slow,
+          height $animation-duration-slow, left $animation-duration-slow,
+          top $animation-duration-slow;
+      }
+    }
+  }
 }
