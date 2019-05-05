@@ -30,7 +30,7 @@ $padding-xs: 0.4rem;
 $padding-ss: 0.275rem;
 
 // Border
-$border-color: rgba(0, 0, 0, 0.45);
+$border-color: $divider-color;
 $border-style: solid;
 $border-width: 1px;
 $border-radius: 2px;

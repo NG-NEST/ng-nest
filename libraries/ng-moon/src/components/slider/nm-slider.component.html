@@ -1,1 +1,10 @@
-
+<ul #sliders>
+  <li
+    *ngFor="let item of _data; index as i"
+    [ngClass]="{ 'nm-slider-active': i == _activeIndex }"
+    (click)="action('click', i)"
+  >
+    {{ item.nmLabel }}
+  </li>
+  <li class="nm-slider-highlight" #highlight></li>
+</ul>
