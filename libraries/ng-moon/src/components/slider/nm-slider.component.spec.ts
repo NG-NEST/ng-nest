@@ -9,7 +9,8 @@ import {
   SliderPrefix,
   NmSliderData,
   NmSliderLayoutEnum,
-  NmSliderBorderPositionEnum
+  NmSliderBorderPositionEnum,
+  NmActivatedSlider
 } from "./nm-slider.type";
 import { NmData } from "../../interfaces/data.type";
 
@@ -17,7 +18,11 @@ describe(SliderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NmSliderModule],
-      declarations: [TestNmSliderComponent]
+      declarations: [
+        TestNmSliderComponent,
+        TestEventNmSliderComponent,
+        TestDataNmSliderComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -89,23 +94,74 @@ describe(SliderPrefix, () => {
         `${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Left}`
       );
     });
-    // it("should data type is Subject.", () => {
-    //   testComponent.data = new Subject<NmSliderData[]>();
-    //   fixture.detectChanges();
-    //   expect(element.classList).toContain(SliderPrefix);
-    // });
-    // it("should data type is BehaviorSubject.", () => {
-    //   testComponent.data = new BehaviorSubject<NmSliderData[]>([]);
-    //   fixture.detectChanges();
-    //   expect(element.classList).toContain(SliderPrefix);
-    // });
-    // it("should data type is Observable.", () => {
-    //   testComponent.data = new Observable<NmSliderData[]>();
-    //   fixture.detectChanges();
-    //   expect(element.classList).toContain(SliderPrefix);
-    // });
+  });
+  describe(`event.`, () => {
+    let fixture: ComponentFixture<TestEventNmSliderComponent>;
+    let testComponent: TestEventNmSliderComponent;
+    let debugElement: DebugElement;
+    let element: Element;
+    let shadowRoot: DocumentFragment;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestEventNmSliderComponent);
+      testComponent = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(
+        By.directive(NmSliderComponent)
+      );
+      element = debugElement.nativeElement;
+      shadowRoot = element.shadowRoot;
+    });
+    it("should activated slider change.", () => {
+      let index = 1;
+      let indexSlider: NmActivatedSlider = {
+        nmActivatedIndex: index,
+        nmActivatedSlider: testComponent.data[index]
+      };
+      let activatedSilder: NmActivatedSlider;
+      (debugElement.componentInstance as NmSliderComponent).nmActivatedChange.subscribe(
+        (x: NmActivatedSlider) => (activatedSilder = x)
+      );
+      let liEle = fixture.debugElement.query(
+        By.css(`ul li:nth-child(${index + 1})`)
+      );
+      liEle.triggerEventHandler("click", null);
+      expect(activatedSilder).toEqual(indexSlider);
+    });
+  });
+  describe(`data.`, () => {
+    let fixture: ComponentFixture<TestDataNmSliderComponent>;
+    let testComponent: TestDataNmSliderComponent;
+    let debugElement: DebugElement;
+    let element: Element;
+    let shadowRoot: DocumentFragment;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestDataNmSliderComponent);
+      testComponent = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(
+        By.directive(NmSliderComponent)
+      );
+      element = debugElement.nativeElement;
+      shadowRoot = element.shadowRoot;
+    });
+    it("should data type is BehaviorSubject.", () => {
+      if (testComponent.data instanceof BehaviorSubject) {
+        testComponent.data.next(testNmSliderData);
+        testComponent.data.complete();
+        expect(
+          (debugElement.componentInstance as NmSliderComponent)._data
+        ).toEqual(testNmSliderData);
+      }
+    });
   });
 });
+
+const testNmSliderData: NmSliderData[] = [
+  { nmKey: 1, nmLabel: "Home" },
+  { nmKey: 2, nmLabel: "Docs" },
+  { nmKey: 3, nmLabel: "Examples" },
+  { nmKey: 4, nmLabel: "Api" }
+];
 
 @Component({
   selector: "test-nm-slider",
@@ -118,12 +174,31 @@ describe(SliderPrefix, () => {
   `
 })
 class TestNmSliderComponent {
-  data: NmData<NmSliderData[]> = [
-    { nmKey: 1, nmLabel: "Home" },
-    { nmKey: 2, nmLabel: "Docs" },
-    { nmKey: 3, nmLabel: "Examples" },
-    { nmKey: 4, nmLabel: "Api" }
-  ];
+  data: NmData<NmSliderData[]> = testNmSliderData;
   layout: NmSliderLayoutEnum;
   position: NmSliderBorderPositionEnum;
+}
+
+@Component({
+  selector: "test-event-nm-slider",
+  template: `
+    <nm-slider
+      [nmData]="data"
+      (nmActivatedChange)="activatedChange($event)"
+    ></nm-slider>
+  `
+})
+class TestEventNmSliderComponent {
+  data: NmData<NmSliderData[]> = testNmSliderData;
+  activatedChange($event: any) {}
+}
+
+@Component({
+  selector: "test-data-nm-slider",
+  template: `
+    <nm-slider [nmData]="data"></nm-slider>
+  `
+})
+class TestDataNmSliderComponent {
+  data: NmData<NmSliderData[]> = new BehaviorSubject([]);
 }

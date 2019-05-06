@@ -49,16 +49,6 @@ describe(IconPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(testComponent.type);
     });
-    it("should eva fill icon.", () => {
-      testComponent.type = "eaf-shopping-bag";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
-    it("should eva outline icon.", () => {
-      testComponent.type = "eao-shopping-bag";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
   });
 });
 
