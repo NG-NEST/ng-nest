@@ -1,12 +1,11 @@
 import { NmIdentity } from "../../interfaces/identify.type";
 import { NmData } from "../../interfaces/data.type";
-import { NmPosition } from "../../interfaces/position.type";
 
 export const SliderPrefix = "nm-slider";
 
 // Slider 参数对象
 export interface NmSliderOption {
-  // 数据
+  // Data 数据
   nmData?: NmData<NmSliderData[]>;
   // 布局方式
   nmLayout?: NmSliderLayoutEnum;
@@ -16,6 +15,12 @@ export interface NmSliderOption {
 
 // Slider 数据对象
 export interface NmSliderData extends NmIdentity {}
+
+// ActivatedSlider 激活的slider
+export interface NmActivatedSlider {
+  nmActivatedIndex?: number;
+  nmActivatedSlider?: NmSliderData;
+}
 
 // 布局方式
 export enum NmSliderLayoutEnum {

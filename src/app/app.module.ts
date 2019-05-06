@@ -14,6 +14,7 @@ import { HighlightModule } from "ngx-highlightjs";
 import xml from "highlight.js/lib/languages/xml";
 import scss from "highlight.js/lib/languages/scss";
 import typescript from "highlight.js/lib/languages/typescript";
+import { TestComponent } from './test/test.component';
 
 export function hljsLanguages() {
   return [
@@ -24,7 +25,7 @@ export function hljsLanguages() {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TestComponent],
   imports: [
     BrowserModule,
     FormsModule,

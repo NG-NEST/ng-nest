@@ -10,24 +10,27 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import {
   SliderPrefix,
   NmSliderOption,
   NmSliderData,
   NmSliderLayoutEnum,
-  NmSliderBorderPositionEnum
+  NmSliderBorderPositionEnum,
+  NmActivatedSlider
 } from "./nm-slider.type";
 import { fillDefault } from "../../core/util";
 import { NmData } from "../../interfaces/data.type";
-import { Subject, BehaviorSubject, Observable } from "rxjs";
+import { Subject, BehaviorSubject, Observable, Subscription } from "rxjs";
 
 @Component({
   selector: "nm-slider",
   templateUrl: "./nm-slider.component.html",
   styleUrls: ["./style/index.scss"],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  // encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmSliderComponent implements OnInit, OnChanges {
@@ -35,11 +38,21 @@ export class NmSliderComponent implements OnInit, OnChanges {
   @Input() nmLayout?: NmSliderLayoutEnum;
   @Input() nmBorderPosition?: NmSliderBorderPositionEnum;
 
+  @Output() nmActivatedChange?: EventEmitter<
+    NmActivatedSlider
+  > = new EventEmitter<NmActivatedSlider>();
+
   private default: NmSliderOption = {
     nmData: [],
     nmLayout: NmSliderLayoutEnum.Row,
     nmBorderPosition: NmSliderBorderPositionEnum.Bottom
   };
+
+  @ViewChild("sliders") slidersRef: ElementRef;
+  @ViewChild("highlight") highlightRef: ElementRef;
+  _data: NmSliderData[] = [];
+  _activatedIndex: number = 0;
+  private data$: Subscription | null = null;
 
   @HostBinding(`class.${SliderPrefix}`) className() {
     return true;
@@ -105,11 +118,6 @@ export class NmSliderComponent implements OnInit, OnChanges {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Left;
   }
 
-  @ViewChild("sliders") slidersRef: ElementRef;
-  @ViewChild("highlight") highlightRef: ElementRef;
-  _data: NmSliderData[] = [];
-  _activeIndex: number = 0;
-
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -132,16 +140,18 @@ export class NmSliderComponent implements OnInit, OnChanges {
       nmDataChange.currentValue !== nmDataChange.previousValue
     ) {
       this.setData();
-      setTimeout(() => this.setHighlight());
-      this.cdr.detectChanges();
     }
   }
 
-  action(type: string, option?: any) {
+  action(type: string, option?: any, index?: any) {
     switch (type) {
       case "click":
-        this._activeIndex = option;
+        this._activatedIndex = index;
         this.setHighlight();
+        this.nmActivatedChange.emit({
+          nmActivatedIndex: index,
+          nmActivatedSlider: option
+        });
         this.cdr.detectChanges();
         break;
     }
@@ -150,21 +160,29 @@ export class NmSliderComponent implements OnInit, OnChanges {
   setData() {
     if (typeof this.nmData === "undefined") return;
     if (this.nmData instanceof Array) {
-      console.log("Array");
-      this._data = this.nmData;
+      this.setDataChange(this.nmData);
     } else if (this.nmData instanceof BehaviorSubject) {
-      console.log("BehaviorSubject");
-    } else if (this.nmData instanceof Subject) {
-      console.log("Subject");
+      if (this.data$) this.data$.unsubscribe();
+      this.data$ = this.nmData.subscribe(x => {
+        this.setDataChange(x);
+      });
     } else if (this.nmData instanceof Observable) {
-      console.log("Observable");
+      if (this.data$) this.data$.unsubscribe();
+      this.data$ = this.nmData.subscribe(x => {
+        this.setDataChange(x);
+      });
     }
   }
 
+  setDataChange(value: NmSliderData[]) {
+    this._data = value;
+    setTimeout(() => this.setHighlight());
+    this.cdr.detectChanges();
+  }
+
   setHighlight() {
-    // debugger;
     const activeEle = this.slidersRef.nativeElement.querySelector(
-      `li:nth-child(${this._activeIndex + 1})`
+      `li:nth-child(${this._activatedIndex + 1})`
     );
     if (activeEle) {
       this.renderer.setStyle(

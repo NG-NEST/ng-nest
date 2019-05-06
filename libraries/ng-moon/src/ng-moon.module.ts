@@ -1,15 +1,17 @@
-import { NmSliderModule } from "./components/slider/nm-slider.module";
 import { NgModule, ModuleWithProviders } from "@angular/core";
+import { NmAnchorModule } from "./components/anchor/nm-anchor.module";
+import { NmSliderModule } from "./components/slider/nm-slider.module";
 import { NmInputModule } from "./components/input/nm-input.module";
 import { NmIconModule } from "./components/icon/nm-icon.module";
 
 export * from "./components/input";
 export * from "./components/icon";
 export * from "./components/slider";
+export * from "./components/anchor";
 export * from "./core/util";
 
 @NgModule({
-  exports: [NmIconModule, NmInputModule, NmSliderModule]
+  exports: [NmIconModule, NmInputModule, NmSliderModule, NmAnchorModule]
 })
 export class NgMoonModule {
   /**

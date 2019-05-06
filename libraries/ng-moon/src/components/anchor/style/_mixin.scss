@@ -1,12 +1,9 @@
-// Icon
+// Anchor
 
 @import "../../../style/themes/default";
 @import "../../../style/mixins/index.scss";
 @import "./param";
 
-@mixin icon {
+@mixin anchor {
   display: inline-block;
-  line-height: 0;
-  text-align: center;
-  color: $primary-text-color;
 }
