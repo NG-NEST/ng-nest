@@ -43,7 +43,7 @@ describe(AnchorPrefix, () => {
   selector: "test-nm-anchor",
   template: `
     <div nm-anchor>
-      主题1
+      <h1>主题1</h1>
       <h2>分支</h2>
       <h2>分支</h2>
       <h2>分支</h2>

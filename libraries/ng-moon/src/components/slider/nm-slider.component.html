@@ -4,7 +4,12 @@
     [ngClass]="{ 'nm-slider-activated': i == _activatedIndex }"
     (click)="action('click', item, i)"
   >
-    {{ item.nmLabel }}
+    <ng-container *ngIf="!nmNodeTemplate">{{ item.nmLabel }}</ng-container>
+    <ng-container *ngIf="nmNodeTemplate">
+      <ng-container
+        *ngTemplateOutlet="nmNodeTemplate; context: { node$: item }"
+      ></ng-container>
+    </ng-container>
   </li>
   <li class="nm-slider-highlight" #highlight></li>
 </ul>

@@ -1,25 +1,28 @@
 import { NmIdentity } from "../../interfaces/identify.type";
 import { NmData } from "../../interfaces/data.type";
+import { TemplateRef } from "@angular/core";
 
 export const SliderPrefix = "nm-slider";
 
 // Slider 参数对象
 export interface NmSliderOption {
   // Data 数据
-  nmData?: NmData<NmSliderData[]>;
+  nmData?: NmData<NmSliderNode[]>;
   // 布局方式
   nmLayout?: NmSliderLayoutEnum;
   // 边框方位
   nmBorderPosition?: NmSliderBorderPositionEnum;
+  // Slider 模板
+  nmNodeTemplate?: TemplateRef<any>;
 }
 
 // Slider 数据对象
-export interface NmSliderData extends NmIdentity {}
+export interface NmSliderNode extends NmIdentity {}
 
 // ActivatedSlider 激活的slider
 export interface NmActivatedSlider {
   nmActivatedIndex?: number;
-  nmActivatedSlider?: NmSliderData;
+  nmActivatedSlider?: NmSliderNode;
 }
 
 // 布局方式
