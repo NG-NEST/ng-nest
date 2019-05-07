@@ -7,7 +7,7 @@ import { By } from "@angular/platform-browser";
 import { NmSliderModule } from "./nm-slider.module";
 import {
   SliderPrefix,
-  NmSliderData,
+  NmSliderNode,
   NmSliderLayoutEnum,
   NmSliderBorderPositionEnum,
   NmActivatedSlider
@@ -146,17 +146,17 @@ describe(SliderPrefix, () => {
     });
     it("should data type is BehaviorSubject.", () => {
       if (testComponent.data instanceof BehaviorSubject) {
-        testComponent.data.next(testNmSliderData);
+        testComponent.data.next(testNmSliderNode);
         testComponent.data.complete();
         expect(
           (debugElement.componentInstance as NmSliderComponent)._data
-        ).toEqual(testNmSliderData);
+        ).toEqual(testNmSliderNode);
       }
     });
   });
 });
 
-const testNmSliderData: NmSliderData[] = [
+const testNmSliderNode: NmSliderNode[] = [
   { nmKey: 1, nmLabel: "Home" },
   { nmKey: 2, nmLabel: "Docs" },
   { nmKey: 3, nmLabel: "Examples" },
@@ -174,7 +174,7 @@ const testNmSliderData: NmSliderData[] = [
   `
 })
 class TestNmSliderComponent {
-  data: NmData<NmSliderData[]> = testNmSliderData;
+  data: NmData<NmSliderNode[]> = testNmSliderNode;
   layout: NmSliderLayoutEnum;
   position: NmSliderBorderPositionEnum;
 }
@@ -189,7 +189,7 @@ class TestNmSliderComponent {
   `
 })
 class TestEventNmSliderComponent {
-  data: NmData<NmSliderData[]> = testNmSliderData;
+  data: NmData<NmSliderNode[]> = testNmSliderNode;
   activatedChange($event: any) {}
 }
 
@@ -200,5 +200,5 @@ class TestEventNmSliderComponent {
   `
 })
 class TestDataNmSliderComponent {
-  data: NmData<NmSliderData[]> = new BehaviorSubject([]);
+  data: NmData<NmSliderNode[]> = new BehaviorSubject([]);
 }

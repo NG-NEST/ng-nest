@@ -1,1 +1,17 @@
 <ng-content></ng-content>
+<div class="nm-anchor-list">
+  <nm-slider
+    [nmData]="_data"
+    [nmLayout]="'column'"
+    [nmBorderPosition]="'left'"
+    [nmNodeTemplate]="sliderNodeTpl"
+    (nmActivatedChange)="activatedChange($event)"
+  ></nm-slider>
+</div>
+
+<ng-template #sliderNodeTpl let-node="node$">
+  <!-- Todo: 模板样式无法通过 class 传入 -->
+  <a [ngStyle]="{ 'padding-left.rem': node.nmLeft - 1 }">
+    <span>{{ node.nmLabel }}</span>
+  </a>
+</ng-template>

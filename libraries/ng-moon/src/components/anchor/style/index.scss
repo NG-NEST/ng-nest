@@ -8,3 +8,27 @@
   @include reset-component();
   @include anchor();
 }
+
+:host(.#{$prefix}-open) {
+  max-width: 100%;
+  padding-right: 18%;
+  height: auto !important;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  > .#{$prefix}-list {
+    width: 18%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    > nm-slider {
+      width: 100%;
+    }
+  }
+}

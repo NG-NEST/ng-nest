@@ -12,15 +12,16 @@ import {
   Renderer2,
   ChangeDetectorRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  TemplateRef
 } from "@angular/core";
 import {
   SliderPrefix,
   NmSliderOption,
-  NmSliderData,
   NmSliderLayoutEnum,
   NmSliderBorderPositionEnum,
-  NmActivatedSlider
+  NmActivatedSlider,
+  NmSliderNode
 } from "./nm-slider.type";
 import { fillDefault } from "../../core/util";
 import { NmData } from "../../interfaces/data.type";
@@ -30,13 +31,14 @@ import { Subject, BehaviorSubject, Observable, Subscription } from "rxjs";
   selector: "nm-slider",
   templateUrl: "./nm-slider.component.html",
   styleUrls: ["./style/index.scss"],
-  // encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmSliderComponent implements OnInit, OnChanges {
-  @Input() nmData?: NmData<NmSliderData[]>;
+  @Input() nmData?: NmData<NmSliderNode[]>;
   @Input() nmLayout?: NmSliderLayoutEnum;
   @Input() nmBorderPosition?: NmSliderBorderPositionEnum;
+  @Input() nmNodeTemplate?: TemplateRef<any>;
 
   @Output() nmActivatedChange?: EventEmitter<
     NmActivatedSlider
@@ -50,7 +52,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   @ViewChild("sliders") slidersRef: ElementRef;
   @ViewChild("highlight") highlightRef: ElementRef;
-  _data: NmSliderData[] = [];
+  _data: NmSliderNode[] = [];
   _activatedIndex: number = 0;
   private data$: Subscription | null = null;
 
@@ -174,7 +176,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
     }
   }
 
-  setDataChange(value: NmSliderData[]) {
+  setDataChange(value: NmSliderNode[]) {
     this._data = value;
     setTimeout(() => this.setHighlight());
     this.cdr.detectChanges();
