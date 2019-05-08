@@ -12,6 +12,8 @@ export interface NmSliderOption {
   nmLayout?: NmSliderLayoutEnum;
   // 边框方位
   nmBorderPosition?: NmSliderBorderPositionEnum;
+  // 激活的序号
+  nmActivatedIndex: number;
   // Slider 模板
   nmNodeTemplate?: TemplateRef<any>;
 }

@@ -40,6 +40,17 @@ export class NmSliderComponent implements OnInit, OnChanges {
   @Input() nmBorderPosition?: NmSliderBorderPositionEnum;
   @Input() nmNodeTemplate?: TemplateRef<any>;
 
+  private _nmActivatedIndex: number;
+  public get nmActivatedIndex(): number {
+    return this._nmActivatedIndex;
+  }
+  @Input()
+  public set nmActivatedIndex(value: number) {
+    this._nmActivatedIndex = value;
+    this.setHighlight();
+    this.cdr.detectChanges();
+  }
+
   @Output() nmActivatedChange?: EventEmitter<
     NmActivatedSlider
   > = new EventEmitter<NmActivatedSlider>();
@@ -47,13 +58,14 @@ export class NmSliderComponent implements OnInit, OnChanges {
   private default: NmSliderOption = {
     nmData: [],
     nmLayout: NmSliderLayoutEnum.Row,
-    nmBorderPosition: NmSliderBorderPositionEnum.Bottom
+    nmBorderPosition: NmSliderBorderPositionEnum.Bottom,
+    nmActivatedIndex: 0
   };
 
   @ViewChild("sliders") slidersRef: ElementRef;
   @ViewChild("highlight") highlightRef: ElementRef;
   _data: NmSliderNode[] = [];
-  _activatedIndex: number = 0;
+
   private data$: Subscription | null = null;
 
   @HostBinding(`class.${SliderPrefix}`) className() {
@@ -148,7 +160,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
   action(type: string, option?: any, index?: any) {
     switch (type) {
       case "click":
-        this._activatedIndex = index;
+        this.nmActivatedIndex = index;
         this.setHighlight();
         this.nmActivatedChange.emit({
           nmActivatedIndex: index,
@@ -184,14 +196,14 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   setHighlight() {
     const activeEle = this.slidersRef.nativeElement.querySelector(
-      `li:nth-child(${this._activatedIndex + 1})`
+      `li:nth-child(${this.nmActivatedIndex + 1})`
     );
     if (activeEle) {
-      this.renderer.setStyle(
-        this.highlightRef.nativeElement,
-        "width",
-        `${activeEle.offsetWidth}px`
-      );
+      const width =
+        this.nmLayout == NmSliderLayoutEnum.Column
+          ? "100%"
+          : `${activeEle.offsetWidth}px`;
+      this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
       this.renderer.setStyle(
         this.highlightRef.nativeElement,
         "height",

@@ -1,16 +1,24 @@
-<ng-content></ng-content>
-<div class="nm-anchor-list">
+<div #content class="nm-anchor-content">
+  <ng-content></ng-content>
+</div>
+<div
+  #list
+  class="nm-anchor-list"
+  [ngClass]="{ 'nm-anchor-list-fixed': listFixed }"
+>
   <nm-slider
-    [nmData]="_data"
+    #slider
+    [nmData]="data"
     [nmLayout]="'column'"
     [nmBorderPosition]="'left'"
     [nmNodeTemplate]="sliderNodeTpl"
+    [nmActivatedIndex]="activatedIndex"
     (nmActivatedChange)="activatedChange($event)"
   ></nm-slider>
 </div>
 
 <ng-template #sliderNodeTpl let-node="node$">
-  <!-- Todo: 模板样式无法通过 class 传入 -->
+  <!-- Todo: 组件使用 ShadowDom 模式，传入的模板样式无法通过 class 指定-->
   <a [ngStyle]="{ 'padding-left.rem': node.nmLeft - 1 }">
     <span>{{ node.nmLabel }}</span>
   </a>
