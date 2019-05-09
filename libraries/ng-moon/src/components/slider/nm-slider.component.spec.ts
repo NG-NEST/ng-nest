@@ -149,7 +149,7 @@ describe(SliderPrefix, () => {
         testComponent.data.next(testNmSliderNode);
         testComponent.data.complete();
         expect(
-          (debugElement.componentInstance as NmSliderComponent)._data
+          (debugElement.componentInstance as NmSliderComponent).data
         ).toEqual(testNmSliderNode);
       }
     });
