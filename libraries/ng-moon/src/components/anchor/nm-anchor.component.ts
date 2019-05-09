@@ -8,11 +8,24 @@ import {
   Renderer2,
   ViewChild,
   Inject,
-  OnDestroy
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core";
-import { AnchorPrefix, NmAnchorOption, NmAnchorNode } from "./nm-anchor.type";
+import {
+  AnchorPrefix,
+  NmAnchorOption,
+  NmAnchorNode,
+  NmAnchorLayoutEnum
+} from "./nm-anchor.type";
 import { fillDefault, reqAnimFrame, computedStyle } from "../../core/util";
-import { NmSliderNode, NmActivatedSlider, NmSliderComponent } from "../slider";
+import {
+  NmSliderNode,
+  NmActivatedSlider,
+  NmSliderComponent,
+  NmSliderBorderPositionEnum
+} from "../slider";
 import { BehaviorSubject, Subscription, fromEvent } from "rxjs";
 import { DOCUMENT } from "@angular/platform-browser";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
@@ -26,10 +39,26 @@ import { throttleTime, distinctUntilChanged } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmAnchorComponent implements OnInit, OnDestroy {
+  private _nmLayout: NmAnchorLayoutEnum;
+  public get nmLayout(): NmAnchorLayoutEnum {
+    return this._nmLayout;
+  }
+  @Input()
+  public set nmLayout(value: NmAnchorLayoutEnum) {
+    this._nmLayout = value;
+    this.borderPosition =
+      this._nmLayout === NmAnchorLayoutEnum.Left
+        ? NmSliderBorderPositionEnum.Right
+        : NmSliderBorderPositionEnum.Left;
+  }
+
   data = new BehaviorSubject<NmSliderNode[]>([]);
   activatedIndex: number = 0;
+  borderPosition: NmSliderBorderPositionEnum = NmSliderBorderPositionEnum.Left;
   listFixed: boolean = false;
-  private _default: NmAnchorOption = {};
+  private _default: NmAnchorOption = {
+    nmLayout: NmAnchorLayoutEnum.Right
+  };
   private _destroyed: boolean = false;
   private _scroll$: Subscription | null = null;
   private _windowSize$: Subscription | null = null;
@@ -42,6 +71,14 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
 
   @HostBinding(`class.${AnchorPrefix}`) className() {
     return true;
+  }
+  @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`)
+  get getLayoutLeft() {
+    return this.nmLayout === NmAnchorLayoutEnum.Left;
+  }
+  @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`)
+  get getLayoutRight() {
+    return this.nmLayout === NmAnchorLayoutEnum.Right;
   }
 
   constructor(
@@ -69,7 +106,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     if (this._windowSize$) this._windowSize$.unsubscribe();
   }
 
-  private activatedChange(activated: NmActivatedSlider) {
+  activatedChange(activated: NmActivatedSlider) {
     this._isAnimation = true;
     const activatedEle = this._hElements[activated.nmActivatedIndex];
     const marginTop = computedStyle(activatedEle, "marginTop") as number;
@@ -168,7 +205,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private getAnchorLeft() {
-    return this.content.nativeElement.clientWidth;
+    return this.nmLayout === NmAnchorLayoutEnum.Right
+      ? this.content.nativeElement.clientWidth
+      : 0;
   }
 
   private setListFixed() {
