@@ -1,0 +1,21 @@
+<div #list class="nm-tabs-list">
+  <nm-slider
+    #slider
+    [nmData]="sliderOption.nmData"
+    [nmLayout]="sliderOption.nmLayout"
+    [nmBorderPosition]="sliderOption.nmBorderPosition"
+    [nmNodeTemplate]="sliderNodeTpl"
+    [nmActivatedIndex]="sliderOption.nmActivatedIndex"
+    (nmActivatedChange)="activatedChange($event)"
+  ></nm-slider>
+</div>
+<div #content class="nm-tabs-content">
+  <ng-content></ng-content>
+</div>
+
+<ng-template #sliderNodeTpl let-node="node$">
+  <!-- Todo: 组件使用 ShadowDom 模式，传入的模板样式无法通过 class 指定-->
+  <a>
+    <span>{{ node.nmLabel }}</span>
+  </a>
+</ng-template>

@@ -25,7 +25,7 @@ import {
 } from "./nm-slider.type";
 import { fillDefault } from "../../core/util";
 import { NmData } from "../../interfaces/data.type";
-import { Subject, BehaviorSubject, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
 @Component({
   selector: "nm-slider",
@@ -55,7 +55,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
     NmActivatedSlider
   > = new EventEmitter<NmActivatedSlider>();
 
-  private default: NmSliderOption = {
+  private _default: NmSliderOption = {
     nmData: [],
     nmLayout: NmSliderLayoutEnum.Row,
     nmBorderPosition: NmSliderBorderPositionEnum.Bottom,
@@ -64,9 +64,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   @ViewChild("sliders") slidersRef: ElementRef;
   @ViewChild("highlight") highlightRef: ElementRef;
-  _data: NmSliderNode[] = [];
+  data: NmSliderNode[] = [];
 
-  private data$: Subscription | null = null;
+  private _data$: Subscription | null = null;
 
   @HostBinding(`class.${SliderPrefix}`) className() {
     return true;
@@ -139,7 +139,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    fillDefault(this, this.default);
+    fillDefault(this, this._default);
     this.setData();
   }
 
@@ -157,6 +157,14 @@ export class NmSliderComponent implements OnInit, OnChanges {
     }
   }
 
+  ngOnDestroy(): void {
+    this.removeListen();
+  }
+
+  private removeListen() {
+    if (this._data$) this._data$.unsubscribe();
+  }
+
   action(type: string, option?: any, index?: any) {
     switch (type) {
       case "click":
@@ -171,30 +179,30 @@ export class NmSliderComponent implements OnInit, OnChanges {
     }
   }
 
-  setData() {
+  private setData() {
     if (typeof this.nmData === "undefined") return;
     if (this.nmData instanceof Array) {
       this.setDataChange(this.nmData);
     } else if (this.nmData instanceof BehaviorSubject) {
-      if (this.data$) this.data$.unsubscribe();
-      this.data$ = this.nmData.subscribe(x => {
+      if (this._data$) this._data$.unsubscribe();
+      this._data$ = this.nmData.subscribe(x => {
         this.setDataChange(x);
       });
     } else if (this.nmData instanceof Observable) {
-      if (this.data$) this.data$.unsubscribe();
-      this.data$ = this.nmData.subscribe(x => {
+      if (this._data$) this._data$.unsubscribe();
+      this._data$ = this.nmData.subscribe(x => {
         this.setDataChange(x);
       });
     }
   }
 
-  setDataChange(value: NmSliderNode[]) {
-    this._data = value;
+  private setDataChange(value: NmSliderNode[]) {
+    this.data = value;
     setTimeout(() => this.setHighlight());
     this.cdr.detectChanges();
   }
 
-  setHighlight() {
+  private setHighlight() {
     const activeEle = this.slidersRef.nativeElement.querySelector(
       `li:nth-child(${this.nmActivatedIndex + 1})`
     );

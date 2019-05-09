@@ -1,0 +1,26 @@
+// Tabs
+
+@import "../../../style/themes/default";
+@import "../../../style/mixins/index";
+@import "./mixin";
+
+:host {
+  @include reset-component();
+  @include tabs();
+}
+
+:host(.#{$prefix}-top) {
+  flex-direction: column;
+}
+
+:host(.#{$prefix}-right) {
+  flex-direction: row-reverse;
+}
+
+:host(.#{$prefix}-bottom) {
+  flex-direction: column-reverse;
+}
+
+:host(.#{$prefix}-left) {
+  flex-direction: row;
+}

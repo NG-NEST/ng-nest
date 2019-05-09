@@ -1,6 +1,6 @@
 <ul #sliders>
   <li
-    *ngFor="let item of _data; index as i"
+    *ngFor="let item of data; index as i"
     [ngClass]="{ 'nm-slider-activated': i == nmActivatedIndex }"
     (click)="action('click', item, i)"
   >

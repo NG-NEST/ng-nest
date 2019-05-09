@@ -1,0 +1,12 @@
+// Tabs
+
+@import "../../../style/themes/default";
+@import "../../../style/mixins/index.scss";
+@import "./param";
+
+@mixin tabs {
+  display: flex;
+  > .#{$prefix}-content {
+    flex: 1;
+  }
+}
