@@ -60,11 +60,6 @@ export class NmIconComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmTypeChange = changes.nmType;
-    console.log(
-      this.nmType,
-      nmTypeChange.currentValue,
-      nmTypeChange.previousValue
-    );
     if (nmTypeChange.currentValue !== nmTypeChange.previousValue) {
       this.setSvgElement();
       this.renderer.addClass(this.elementRef.nativeElement, `${this.nmType}`);

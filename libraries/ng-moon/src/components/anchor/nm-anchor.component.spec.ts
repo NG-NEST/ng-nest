@@ -4,7 +4,7 @@ import { NmAnchorComponent } from "./nm-anchor.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmAnchorModule } from "./nm-anchor.module";
-import { AnchorPrefix } from "./nm-anchor.type";
+import { AnchorPrefix, NmAnchorLayoutEnum } from "./nm-anchor.type";
 
 describe(AnchorPrefix, () => {
   beforeEach(async(() => {
@@ -36,299 +36,173 @@ describe(AnchorPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(AnchorPrefix);
     });
+    it("should layout left.", () => {
+      testComponent.layout = NmAnchorLayoutEnum.Left;
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`
+      );
+    });
+    it("should layout right.", () => {
+      testComponent.layout = NmAnchorLayoutEnum.Right;
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`
+      );
+    });
   });
 });
 
 @Component({
   selector: "test-nm-anchor",
   template: `
-    <div nm-anchor style="padding-bottom:300px;">
-      <h1>1 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>2 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>3 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>4 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>5 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>6 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>7 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>8 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>9 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>10 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>11 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>12 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>14 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>16 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h1>18 Theme</h1>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <p>
-        This is the topic-one information.
-      </p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <h2>Branching</h2>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-    </div>
+    <nm-anchor [nmLayout]="layout" style="padding-bottom:300px;">
+      <div style="padding: 1rem">
+        <h1>1 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>2 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>3 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>4 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>5 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>6 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h1>7 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <h2>Branching</h2>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+      </div>
+    </nm-anchor>
   `
 })
-class TestNmAnchorComponent {}
+class TestNmAnchorComponent {
+  layout: NmAnchorLayoutEnum;
+}
