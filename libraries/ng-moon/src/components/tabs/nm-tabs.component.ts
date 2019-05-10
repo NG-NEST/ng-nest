@@ -9,7 +9,9 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  TemplateRef
+  TemplateRef,
+  ContentChildren,
+  QueryList
 } from "@angular/core";
 import {
   TabsPrefix,
@@ -28,6 +30,7 @@ import {
   NmActivatedSlider,
   NmSliderOption
 } from "../slider";
+import { NmTabComponent } from "./nm-tab.component";
 
 @Component({
   selector: "nm-tabs",
@@ -68,6 +71,17 @@ export class NmTabsComponent implements OnInit, OnChanges {
         nmBorderPosition: NmSliderBorderPositionEnum.Right
       });
     }
+    this.cdr.detectChanges();
+  }
+
+  private _nmActivatedIndex: number;
+  public get nmActivatedIndex(): number {
+    return this._nmActivatedIndex;
+  }
+  @Input()
+  public set nmActivatedIndex(value: number) {
+    this._nmActivatedIndex = value;
+    this.cdr.detectChanges();
   }
 
   @Input() nmNodeTemplate?: TemplateRef<any>;
@@ -83,10 +97,13 @@ export class NmTabsComponent implements OnInit, OnChanges {
     NmActivatedTabs
   > = new EventEmitter<NmActivatedTabs>();
   private _default: NmTabsOption = {
-    nmLayout: NmTabsLayoutEnum.Top
+    nmLayout: NmTabsLayoutEnum.Top,
+    nmActivatedIndex: 0
   };
 
   private _data$: Subscription | null = null;
+
+  @ContentChildren(NmTabComponent) listTabs: QueryList<NmTabComponent>;
 
   @HostBinding(`class.${TabsPrefix}`) className() {
     return true;
@@ -136,7 +153,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
     if (this._data$) this._data$.unsubscribe();
   }
 
-  activatedChange(activated: NmActivatedSlider) {}
+  activatedChange(activated: NmActivatedSlider) {
+    this.nmActivatedIndex = activated.nmActivatedIndex;
+  }
 
   private setData() {
     if (typeof this.nmData === "undefined") return;

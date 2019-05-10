@@ -18,3 +18,9 @@ export interface NmAnchorNode extends NmIdentity {
   nmIcon?: string;
   nmLink?: string;
 }
+
+// ActivatedAnchor 激活的anchor
+export interface NmActivatedAnchor {
+  nmActivatedIndex?: number;
+  nmActivatedAnchor?: NmAnchorNode;
+}

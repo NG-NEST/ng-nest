@@ -34,9 +34,7 @@ describe(TabsPrefix, () => {
       fixture = TestBed.createComponent(TestNmTabsComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(NmTabsComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(NmTabsComponent));
       element = debugElement.nativeElement;
       shadowRoot = element.shadowRoot;
     });
@@ -88,10 +86,56 @@ const testNmTabsNode: NmTabsNode[] = [
 @Component({
   selector: "test-nm-tabs",
   template: `
-    <nm-tabs
-      [nmData]="data"
-      [nmLayout]="layout"
-    >123456</nm-tabs>
+    <nm-tabs [nmData]="data" [nmLayout]="layout">
+      <nm-tab
+        ><h1>1 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p></nm-tab
+      >
+      <nm-tab
+        ><h1>2 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p></nm-tab
+      >
+      <nm-tab
+        ><h1>3 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p></nm-tab
+      >
+      <nm-tab
+        ><h1>4 Theme</h1>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p>
+        <p>
+          This is the topic-one information.
+        </p></nm-tab
+      >
+    </nm-tabs>
   `
 })
 class TestNmTabsComponent {

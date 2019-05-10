@@ -9,8 +9,21 @@
     (nmActivatedChange)="activatedChange($event)"
   ></nm-slider>
 </div>
-<div #content class="nm-tabs-content">
-  <ng-content></ng-content>
+<div
+  #content
+  class="nm-tabs-content"
+  [class.nm-tabs-content-animated]="nmLayout === 'top' || nmLayout === 'bottom'"
+  [style.margin-left.%]="
+    (nmLayout === 'top' || nmLayout === 'bottom') &&
+    -(nmActivatedIndex || 0) * 100
+  "
+>
+  <nm-tab-content
+    *ngFor="let tab of listTabs; index as i"
+    [nmActive]="nmActivatedIndex == i"
+    [nmContent]="tab.content"
+    [class.nm-tab-content-unactivated]="nmActivatedIndex != i"
+  ></nm-tab-content>
 </div>
 
 <ng-template #sliderNodeTpl let-node="node$">

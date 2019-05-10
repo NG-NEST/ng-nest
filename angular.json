@@ -23,7 +23,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/highlight.js/styles/github.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/highlight.js/styles/github.css",
+              "src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -207,13 +210,17 @@
           "options": {
             "main": "libraries/ng-moon/src/test.ts",
             "tsConfig": "libraries/ng-moon/tsconfig.spec.json",
-            "karmaConfig": "libraries/ng-moon/karma.conf.js"
+            "karmaConfig": "libraries/ng-moon/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libraries/ng-moon/tsconfig.lib.json", "libraries/ng-moon/tsconfig.spec.json"],
+            "tsConfig": [
+              "libraries/ng-moon/tsconfig.lib.json",
+              "libraries/ng-moon/tsconfig.spec.json"
+            ],
             "exclude": ["**/node_modules/**"]
           }
         }
