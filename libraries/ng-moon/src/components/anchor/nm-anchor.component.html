@@ -8,11 +8,11 @@
 >
   <nm-slider
     #slider
-    [nmData]="data"
+    [nmData]="sliderOption.nmData"
     [nmLayout]="'column'"
-    [nmBorderPosition]="borderPosition"
+    [nmBorderPosition]="sliderOption.nmBorderPosition"
     [nmNodeTemplate]="sliderNodeTpl"
-    [nmActivatedIndex]="activatedIndex"
+    [nmActivatedIndex]="sliderOption.nmActivatedIndex"
     (nmActivatedChange)="activatedChange($event)"
   ></nm-slider>
 </div>

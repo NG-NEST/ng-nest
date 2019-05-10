@@ -11,20 +11,24 @@ import {
   OnDestroy,
   Input,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import {
   AnchorPrefix,
   NmAnchorOption,
   NmAnchorNode,
-  NmAnchorLayoutEnum
+  NmAnchorLayoutEnum,
+  NmActivatedAnchor
 } from "./nm-anchor.type";
 import { fillDefault, reqAnimFrame, computedStyle } from "../../core/util";
 import {
   NmSliderNode,
   NmActivatedSlider,
   NmSliderComponent,
-  NmSliderBorderPositionEnum
+  NmSliderBorderPositionEnum,
+  NmSliderOption
 } from "../slider";
 import { BehaviorSubject, Subscription, fromEvent } from "rxjs";
 import { DOCUMENT } from "@angular/platform-browser";
@@ -46,32 +50,38 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   @Input()
   public set nmLayout(value: NmAnchorLayoutEnum) {
     this._nmLayout = value;
-    this.borderPosition =
+    this.sliderOption.nmBorderPosition =
       this._nmLayout === NmAnchorLayoutEnum.Left
         ? NmSliderBorderPositionEnum.Right
         : NmSliderBorderPositionEnum.Left;
   }
+  @Input() nmScrollElement: HTMLElement | Window;
 
-  data = new BehaviorSubject<NmSliderNode[]>([]);
-  activatedIndex: number = 0;
-  borderPosition: NmSliderBorderPositionEnum = NmSliderBorderPositionEnum.Left;
+  @Output() nmActivatedChange?: EventEmitter<
+    NmActivatedAnchor
+  > = new EventEmitter<NmActivatedAnchor>();
+
   listFixed: boolean = false;
+
+  sliderOption: NmSliderOption = {
+    nmData: new BehaviorSubject<NmSliderNode[]>([]),
+    nmActivatedIndex: 0,
+    nmBorderPosition: NmSliderBorderPositionEnum.Left
+  };
+
   private _default: NmAnchorOption = {
     nmLayout: NmAnchorLayoutEnum.Right
   };
   private _destroyed: boolean = false;
+  private _windowScroll: boolean = false;
   private _scroll$: Subscription | null = null;
   private _windowSize$: Subscription | null = null;
   private _hElements: HTMLElement[];
-  private _scrollElement: HTMLElement | Window;
   private _isAnimation: boolean = false;
   @ViewChild("slider") slider: NmSliderComponent;
   @ViewChild("list") list: ElementRef;
   @ViewChild("content") content: ElementRef;
 
-  @HostBinding(`class.${AnchorPrefix}`) className() {
-    return true;
-  }
   @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`)
   get getLayoutLeft() {
     return this.nmLayout === NmAnchorLayoutEnum.Left;
@@ -86,7 +96,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) private doc: Document
-  ) {}
+  ) {
+    this.renderer.addClass(this.elementRef.nativeElement, AnchorPrefix);
+  }
 
   ngOnInit() {
     fillDefault(this, this._default);
@@ -115,12 +127,12 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       this.elementRef.nativeElement.offsetTop -
       marginTop +
       1;
-    let scrollEle =
-      this._scrollElement instanceof Window
-        ? this.doc.documentElement
-        : this._scrollElement;
+    let scrollEle = this._windowScroll
+      ? this.doc.documentElement
+      : (this.nmScrollElement as HTMLElement);
     let scrollH = scrollEle.scrollHeight - scrollEle.clientHeight;
     this.scrollTo(scrollEle, top <= scrollH ? top : scrollH, 150);
+    this.nmActivatedChange.emit(activated);
     setTimeout(() => {
       this._isAnimation = false;
     }, 300);
@@ -158,24 +170,34 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
           }
         ];
       });
-      this.data.next(list);
-      this.data.complete();
+      if (this.sliderOption.nmData instanceof BehaviorSubject) {
+        this.sliderOption.nmData.next(list);
+        this.sliderOption.nmData.complete();
+      }
+    }
+  }
+
+  private getScrollTop() {
+    if (this._windowScroll) {
+      return document.documentElement.scrollTop || document.body.scrollTop;
+    } else {
+      return (this.nmScrollElement as HTMLElement).scrollTop;
     }
   }
 
   private setScrollElement() {
-    let scrollElement = this.elementRef.nativeElement.offsetParent;
-    this._scrollElement =
-      scrollElement.tagName == "BODY" ? window : scrollElement;
-    if (this._scroll$) this._scroll$.unsubscribe();
-    this._scroll$ = fromEvent(this._scrollElement, "scroll")
+    if (typeof this.nmScrollElement === "undefined") {
+      this.nmScrollElement = window;
+      this._windowScroll = true;
+    }
+    this._scroll$ = fromEvent(this.nmScrollElement, "scroll")
       .pipe(
         throttleTime(30),
         distinctUntilChanged()
       )
       .subscribe(() => {
-        let scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop;
+        let scrollTop = this.getScrollTop();
+        console.log(scrollTop);
         this.listFixed = scrollTop >= this.elementRef.nativeElement.offsetTop;
         this.setListFixed();
         if (!this._isAnimation) {
@@ -189,14 +211,13 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
               return;
             }
           });
-          this.activatedIndex = now;
+          this.sliderOption.nmActivatedIndex = now;
         }
         this.cdr.detectChanges();
       });
   }
 
   private windowSizeChange() {
-    if (this._windowSize$) this._windowSize$.unsubscribe();
     this._windowSize$ = fromEvent(window, "resize")
       .pipe(distinctUntilChanged())
       .subscribe(() => {
