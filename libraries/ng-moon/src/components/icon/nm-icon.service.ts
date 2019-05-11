@@ -3,8 +3,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { errorUrlNotSafe, warnSVGTagNotFound } from '../../core/util';
-import { DOCUMENT } from '@angular/common';
+import { warnSVGTagNotFound } from "../../core/util";
+import { DOCUMENT } from "@angular/common";
 
 // @dynamic
 @Injectable({ providedIn: "root" })
@@ -20,14 +20,13 @@ export class NmIconService {
   getSvgElement(icon: string): Observable<SVGElement> {
     const url = `${this.rootUrl}${icon}.svg`;
     const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
-    if (!safeUrl) errorUrlNotSafe(safeUrl);
     return this.http.get(safeUrl, { responseType: "text" }).pipe(
       map(x => {
         const div = this.document.createElement("div");
         div.innerHTML = x.replace(/(<[svg\s\/>]+)\b[^>]*>/gi, "$1>");
         const svg: SVGElement = div.querySelector("svg");
         if (!svg) {
-          throw warnSVGTagNotFound();
+          warnSVGTagNotFound();
         }
         return svg;
       })

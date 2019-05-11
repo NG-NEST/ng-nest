@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   OnInit,
   TemplateRef,
   ViewChild
@@ -16,7 +15,7 @@ import {
 })
 export class NmTabComponent implements OnInit {
   @ViewChild(TemplateRef) content: TemplateRef<void>;
-  constructor(public elementRef: ElementRef) {}
+  constructor() {}
 
   ngOnInit() {}
 }

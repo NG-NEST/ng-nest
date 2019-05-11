@@ -10,8 +10,6 @@ import {
   Inject,
   OnDestroy,
   Input,
-  OnChanges,
-  SimpleChanges,
   Output,
   EventEmitter
 } from "@angular/core";
@@ -35,11 +33,11 @@ import { DOCUMENT } from "@angular/platform-browser";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "nm-anchor, [nm-anchor]",
+  selector: "nm-anchor",
   templateUrl: "./nm-anchor.component.html",
-  styleUrls: ["./style/index.scss"],
   // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
   // encapsulation: ViewEncapsulation.ShadowDom,
+  styleUrls: ["./style/index.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmAnchorComponent implements OnInit, OnDestroy {
@@ -74,7 +72,6 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   private _default: NmAnchorOption = {
     nmLayout: NmAnchorLayoutEnum.Right
   };
-  private _destroyed: boolean = false;
   private _windowScroll: boolean = false;
   private _scroll$: Subscription | null = null;
   private _windowScroll$: Subscription | null = null;
@@ -98,7 +95,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: any
   ) {
     this.renderer.addClass(this.elementRef.nativeElement, AnchorPrefix);
   }
@@ -112,7 +109,6 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._destroyed = true;
     this.removeListen();
   }
 
@@ -140,7 +136,6 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     let scrollEle = this._windowScroll
       ? this.doc.documentElement
       : (this.nmScrollElement as HTMLElement);
-    let scrollH = scrollEle.scrollHeight - scrollEle.clientHeight;
     if (!this._windowScroll) {
       top -= scrollEle.offsetTop;
     }

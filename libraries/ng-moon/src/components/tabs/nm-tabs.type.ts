@@ -1,6 +1,6 @@
 import { NmIdentity } from "../../interfaces/identify.type";
 import { NmData } from "../../interfaces/data.type";
-import { TemplateRef } from "@angular/core";
+// import { TemplateRef } from "@angular/core";
 
 export const TabsPrefix = "nm-tabs";
 
@@ -13,7 +13,7 @@ export interface NmTabsOption {
   // 激活的序号
   nmActivatedIndex?: number;
   // 节点模板
-  nmNodeTemplate?: TemplateRef<any>;
+  // nmNodeTemplate?: TemplateRef<any>;
 }
 
 // Tabs 数据对象

@@ -49,6 +49,14 @@ describe(IconPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(testComponent.type);
     });
+    it("warn icon type not found.", () => {
+      testComponent.type = "not-found";
+      fixture.detectChanges();
+    });
+    it("warn SVG tag not Found.", () => {
+      testComponent.type = "adt-not-found";
+      fixture.detectChanges();
+    });
   });
 });
 

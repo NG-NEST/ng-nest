@@ -50,7 +50,7 @@ export class NmIconComponent implements OnInit, OnChanges {
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private nmIconService: NmIconService
+    public nmIconService: NmIconService
   ) {}
 
   ngOnInit() {
@@ -78,18 +78,20 @@ export class NmIconComponent implements OnInit, OnChanges {
         })
       )
       .subscribe(x => {
-        if (this.svgElement) {
-          this.renderer.removeChild(
+        if (x) {
+          if (this.svgElement) {
+            this.renderer.removeChild(
+              this.elementRef.nativeElement,
+              this.svgElement
+            );
+          } else {
+            this.svgElement = x;
+          }
+          this.renderer.appendChild(
             this.elementRef.nativeElement,
             this.svgElement
           );
-        } else {
-          this.svgElement = x;
         }
-        this.renderer.appendChild(
-          this.elementRef.nativeElement,
-          this.svgElement
-        );
       });
   }
 
@@ -99,15 +101,17 @@ export class NmIconComponent implements OnInit, OnChanges {
     const souceUrl = NmSouceUrl[split.shift()];
     const fileName = split.join("-");
     if (!souceUrl || !fileName) {
-      throw warnIconTypeNotFound();
+      warnIconTypeNotFound();
     }
     return `${souceUrl}${fileName}`;
   }
 
   setAttributes(svgEle: SVGElement) {
-    this.renderer.setAttribute(svgEle, "viewBox", "0 0 1024 1024");
-    this.renderer.setAttribute(svgEle, "fill", "currentColor");
-    this.renderer.setAttribute(svgEle, "width", "1em");
-    this.renderer.setAttribute(svgEle, "height", "1em");
+    if (svgEle) {
+      this.renderer.setAttribute(svgEle, "viewBox", "0 0 1024 1024");
+      this.renderer.setAttribute(svgEle, "fill", "currentColor");
+      this.renderer.setAttribute(svgEle, "width", "1em");
+      this.renderer.setAttribute(svgEle, "height", "1em");
+    }
   }
 }
