@@ -1,18 +1,20 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import { mdToHtml } from "../../../utils/md-to-html";
+import { mdToHtml } from "../../../utils";
+import { NcUiPage } from ".";
 
-export class Components {
-  private componentsPath;
-  init(folder) {
+export class NcComponents {
+  private componentsPath: string;
+  init(folder: string) {
     this.componentsPath = path.resolve(__dirname, folder);
     const componentsFolder = fs.readdirSync(this.componentsPath);
     componentsFolder.forEach(dirName => {
-      const readmePath = `${this.componentsPath}/${dirName}/readme.md`;
+      const readmePath = this.getReadmePath(dirName);
       let html = mdToHtml(readmePath);
-      let iconsTemplate = "";
+      let page = new NcUiPage(dirName);
+
       if (html) {
-        console.log(html);
+        // console.log(html);
         // if (dirName === "icon") {
         //   // html += iconsTemplate(dirName).content;
         //   iconTemplate = iconsTemplateRe(dirName);
@@ -26,5 +28,8 @@ export class Components {
         // );
       }
     });
+  }
+  getReadmePath(dirName: string) {
+    return path.resolve(this.componentsPath, dirName, "readme.md");
   }
 }

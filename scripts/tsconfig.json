@@ -15,5 +15,5 @@
     "lib": ["es7"]
   },
   "include": ["./main/**/*"],
-  "exclude": ["../node_modules", "**/*.spec.ts"]
+  "exclude": ["../node_modules", "**/*.spec.ts", "**/*.template.ts"]
 }

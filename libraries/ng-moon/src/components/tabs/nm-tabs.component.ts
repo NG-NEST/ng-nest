@@ -9,9 +9,10 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  TemplateRef,
   ContentChildren,
-  QueryList
+  QueryList,
+  ElementRef,
+  Renderer2
 } from "@angular/core";
 import {
   TabsPrefix,
@@ -84,7 +85,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  @Input() nmNodeTemplate?: TemplateRef<any>;
+  // @Input() nmNodeTemplate?: TemplateRef<any>;
 
   sliderOption: NmSliderOption = {
     nmData: new BehaviorSubject<NmSliderNode[]>([]),
@@ -105,10 +106,6 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   @ContentChildren(NmTabComponent) listTabs: QueryList<NmTabComponent>;
 
-  @HostBinding(`class.${TabsPrefix}`) className() {
-    return true;
-  }
-
   @HostBinding(`class.${TabsPrefix}-${NmTabsLayoutEnum.Top}`)
   get getLayoutTop() {
     return this.nmLayout == NmTabsLayoutEnum.Top;
@@ -126,14 +123,22 @@ export class NmTabsComponent implements OnInit, OnChanges {
     return this.nmLayout == NmTabsLayoutEnum.Left;
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.renderer.addClass(this.elementRef.nativeElement, TabsPrefix);
+  }
 
   ngOnInit() {
     fillDefault(this, this._default);
     this.setData();
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    // console.log(this.listTabs);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
@@ -150,7 +155,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
   }
 
   private removeListen() {
-    if (this._data$) this._data$.unsubscribe();
+    if (this._data$) {
+      this._data$.unsubscribe();
+    }
   }
 
   activatedChange(activated: NmActivatedSlider) {
@@ -158,7 +165,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.nmData === "undefined") return;
+    if (typeof this.nmData === "undefined") {
+      return;
+    }
     if (this.nmData instanceof Array) {
       this.setDataChange(this.nmData);
     } else if (this.nmData instanceof BehaviorSubject) {
@@ -176,8 +185,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   private setDataChange(value: NmSliderNode[]) {
     this.data = value;
-    if (this.sliderOption.nmData instanceof BehaviorSubject)
+    if (this.sliderOption.nmData instanceof BehaviorSubject) {
       this.sliderOption.nmData.next(this.data);
+    }
     this.cdr.detectChanges();
   }
 
