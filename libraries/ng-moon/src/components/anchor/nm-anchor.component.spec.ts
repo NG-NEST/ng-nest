@@ -85,6 +85,23 @@ describe(AnchorPrefix, () => {
         `${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`
       );
     });
+    it("should activated anchor change.", () => {
+      let index = 1;
+      let activatedAnchor: NmActivatedAnchor;
+      (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
+        (x: NmActivatedAnchor) => (activatedAnchor = x)
+      );
+      let liEle = fixture.debugElement.query(
+        By.css(`ul li:nth-child(${index + 1})`)
+      );
+      liEle.triggerEventHandler("click", null);
+      expect(element.classList).toContain(AnchorPrefix);
+    });
+    it("should scroll change.", () => {
+      (debugElement.componentInstance as NmAnchorComponent).setActiveatedIndex();
+      fixture.detectChanges();
+      expect(element.classList).toContain(AnchorPrefix);
+    });
   });
   describe(`event.`, () => {
     let fixture: ComponentFixture<TestNmAnchorComponent>;
@@ -103,6 +120,18 @@ describe(AnchorPrefix, () => {
       shadowRoot = element.shadowRoot;
     });
     it("should activated anchor change.", () => {
+      let index = 1;
+      let activatedAnchor: NmActivatedAnchor;
+      (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
+        (x: NmActivatedAnchor) => (activatedAnchor = x)
+      );
+      let liEle = fixture.debugElement.query(
+        By.css(`ul li:nth-child(${index + 1})`)
+      );
+      liEle.triggerEventHandler("click", null);
+      expect(activatedAnchor.nmActivatedIndex).toBe(index);
+    });
+    it("should scroll change.", () => {
       let index = 1;
       let activatedAnchor: NmActivatedAnchor;
       (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
@@ -276,7 +305,7 @@ class TestNmAnchorComponent {
 @Component({
   selector: "test-nm-anchor",
   template: `
-    <div #scroll style="height: 600px; overflow: auto">
+    <div class="scroll" #scroll style="height: 600px; overflow: auto">
       <div>
         <p>This is a branch and a description.</p>
         <p>This is a branch and a description.</p>

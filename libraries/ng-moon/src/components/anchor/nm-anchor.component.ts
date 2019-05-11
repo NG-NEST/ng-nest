@@ -30,7 +30,7 @@ import {
   NmSliderBorderPositionEnum,
   NmSliderOption
 } from "../slider";
-import { BehaviorSubject, Subscription, fromEvent } from "rxjs";
+import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
 import { DOCUMENT } from "@angular/platform-browser";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
 
@@ -68,6 +68,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     nmActivatedIndex: 0,
     nmBorderPosition: NmSliderBorderPositionEnum.Left
   };
+
+  scrollObservable: Observable<any>;
 
   private _default: NmAnchorOption = {
     nmLayout: NmAnchorLayoutEnum.Right
@@ -115,9 +117,15 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private removeListen() {
-    if (this._scroll$) this._scroll$.unsubscribe();
-    if (this._windowSize$) this._windowSize$.unsubscribe();
-    if (this._windowScroll$) this._windowScroll$.unsubscribe();
+    if (this._scroll$) {
+      this._scroll$.unsubscribe();
+    }
+    if (this._windowSize$) {
+      this._windowSize$.unsubscribe();
+    }
+    if (this._windowScroll$) {
+      this._windowScroll$.unsubscribe();
+    }
   }
 
   activatedChange(activated: NmActivatedSlider) {
@@ -133,8 +141,11 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       ? this.doc.documentElement
       : (this.nmScrollElement as HTMLElement);
     let scrollH = scrollEle.scrollHeight - scrollEle.clientHeight;
-    if (!this._windowScroll) top -= scrollEle.offsetTop;
-    this.scrollTo(scrollEle, top <= scrollH ? top : scrollH, 150);
+    if (!this._windowScroll) {
+      top -= scrollEle.offsetTop;
+    }
+    // this.scrollTo(scrollEle, top <= scrollH ? top : scrollH, 150);
+    this.scrollTo(scrollEle, top, 150);
     this.nmActivatedChange.emit(activated);
     setTimeout(() => {
       this._isAnimation = false;
@@ -200,33 +211,36 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       );
       this.setWindowScroll();
     }
-    this._scroll$ = fromEvent(this.nmScrollElement, "scroll")
-      .pipe(
-        throttleTime(10),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        let scrollTop = this.getScrollTop();
-        this.listFixed = this.setFixed(scrollTop);
-        this.setListFixed();
-        if (!this._isAnimation) {
-          let now = 0;
-          this._hElements.forEach((item, index) => {
-            let distance = scrollTop - this.elementRef.nativeElement.offsetTop;
-            if (!this._windowScroll)
-              distance += (this.nmScrollElement as HTMLElement).offsetTop;
-            if (
-              distance >=
-              item.offsetTop - (computedStyle(item, "marginTop") as number)
-            ) {
-              now = index;
-              return;
-            }
-          });
-          this.sliderOption.nmActivatedIndex = now;
+    this.scrollObservable = fromEvent(this.nmScrollElement, "scroll").pipe(
+      throttleTime(10),
+      distinctUntilChanged()
+    );
+    this._scroll$ = this.scrollObservable.subscribe(() =>
+      this.setActiveatedIndex()
+    );
+  }
+
+  setActiveatedIndex() {
+    let scrollTop = this.getScrollTop();
+    this.listFixed = this.setFixed(scrollTop);
+    this.setListFixed();
+    if (!this._isAnimation) {
+      let now = 0;
+      this._hElements.forEach((item, index) => {
+        let distance = scrollTop - this.elementRef.nativeElement.offsetTop;
+        if (!this._windowScroll)
+          distance += (this.nmScrollElement as HTMLElement).offsetTop;
+        if (
+          distance >=
+          item.offsetTop - (computedStyle(item, "marginTop") as number)
+        ) {
+          now = index;
+          return;
         }
-        this.cdr.detectChanges();
       });
+      this.sliderOption.nmActivatedIndex = now;
+    }
+    this.cdr.detectChanges();
   }
 
   private setWindowScroll() {
