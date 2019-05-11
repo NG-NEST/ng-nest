@@ -71,8 +71,19 @@ describe(AnchorPrefix, () => {
       element = debugElement.nativeElement;
       shadowRoot = element.shadowRoot;
     });
-    it("should create.", () => {
-      expect(debugElement).toBeDefined();
+    it("should layout left.", () => {
+      testComponent.layout = NmAnchorLayoutEnum.Left;
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`
+      );
+    });
+    it("should layout right.", () => {
+      testComponent.layout = NmAnchorLayoutEnum.Right;
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`
+      );
     });
   });
   describe(`event.`, () => {
