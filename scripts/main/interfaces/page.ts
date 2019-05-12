@@ -9,10 +9,6 @@ export class NcPage {
   fileName?: string;
   comName?: string;
   capName?: string;
-  // html?: NcComponent = {};
-  // component?: NcComponent = {};
-  // module?: NcModule = { imports: "", custom: "" };
-  // routes?: NcRoutes = { imports: "", children: "" };
   templates?: NcTemplate[] = [];
   outlet?: boolean;
   constructor(param: NcPage) {

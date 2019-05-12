@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { {{ __capName }}Component } from "./{{ __fileName }}.component";
+import { NsWorkflowDesignComponent } from "./workflow-design.component";
 {{ __imports }}
 const routes: Routes = [
   {
     path: "",
-    component: {{ __capName }}Component,
+    component: NsWorkflowDesignComponent,
     children: [{{ __children }}]
   }
 ];
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class {{ __capName }}RoutesModule {}
+export class NsWorkflowDesignRoutesModule {}

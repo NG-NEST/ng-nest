@@ -6,6 +6,12 @@ export class NcTemplate {
   genPath?: string;
   genName?: string;
   content?: string;
+  syswords? = {
+    imports: "",
+    custom: "",
+    children: ""
+  };
+  keywords?: { [prop: string]: string } = {};
   constructor(param: NcTemplate) {
     Object.assign(this, param);
     if (!param.extension) {

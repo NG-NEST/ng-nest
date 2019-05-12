@@ -20,8 +20,6 @@ class NcUi {
     }
     init() {
         this.components.init(componentsFolder);
-        console.log(__1.docsPrefix);
-        console.log(global["NcDocs"].page.templates);
     }
 }
 exports.NcUi = NcUi;

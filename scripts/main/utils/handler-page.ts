@@ -3,23 +3,16 @@ import * as path from "path";
 import { isObject, isString } from "util";
 import { NcTplName, NcTemplate } from "../interfaces/template";
 import { NcPage } from "../interfaces/page";
+import { checkMkdir } from "./check-mkdir";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
 export function handlerPage(page: NcPage, dir: string) {
-  // let componentTpl = fs.readFileSync(`${tplDir}/component.template.ts`, "utf8");
-  // let moduleTpl = fs.readFileSync(`${tplDir}/module.template.ts`, "utf8");
-  // let routesTpl = fs.readFileSync(`${tplDir}/routes.template.ts`, "utf8");
   let templates: NcTplName[] = ["component", "module", "routes-module"];
   if (page.outlet) {
     templates.unshift({ name: "component", extension: "html" });
   }
   handleTemplates(page, tplDir, dir, ...templates);
-  // fs.writeFileSync(
-  //   path.join(dir, `${page.fileName}.component.html`),
-  //   page.html.template,
-  //   "utf8"
-  // );
 }
 
 export function handleTemplates(
@@ -39,30 +32,57 @@ export function handleTemplates(
     }
     tpl.tplPath = path.join(fromDir, `${tpl.name}.template.${tpl.extension}`);
     tpl.genPath = path.join(toDir, `${tpl.genName}`);
-    // tpl.content = replaceKey(
+    // tpl.content = replaceKeyByPage(
     //   page,
-    //   fs.readFileSync(
-    //     path.join(fromDir, `${tpl.name}.template.${tpl.extension}`),
-    //     "utf8"
-    //   )
+    //   "__",
+    //   fs.readFileSync(tpl.tplPath, "utf8")
     // )[0];
-    // fs.writeFileSync(path.join(toDir, `${tpl.genName}`), tpl.content, "utf8");
+    // tpl.content = replaceKeyByObject(tpl.content, tpl.syswords, "__");
+    // checkMkdir(toDir);
+    // fs.writeFileSync(tpl.genPath, tpl.content, "utf8");
     tpls.push(tpl);
   });
   page.templates = [...page.templates, ...tpls];
   return tpls;
 }
 
-export function replaceKey(
+export function replaceKeyByPage(
   page: NcPage | any,
+  prefix: string,
   ...templates: string[]
 ): string[] {
   for (let key in page) {
     templates = templates.map(x => {
-      x = x.replace(new RegExp(`{{ ${key} }}`, "g"), page[key]);
-      if (isObject(page[key])) x = replaceKey(page[key], x)[0];
+      x = replaceKey(x, `${prefix}${key}`, page[key]);
       return x;
     });
   }
   return templates;
+}
+
+export function replaceKeyByObject(
+  content: string,
+  object: any,
+  prefix: string = ""
+) {
+  if (!isObject(object)) {
+    return content;
+  }
+  for (let key in object) {
+    content = replaceKey(content, `${prefix}${key}`, object[key]);
+  }
+  return content;
+}
+
+export function replaceKey(content: string, key: string, value: string) {
+  return content.replace(new RegExp(`{{ ${key} }}`, "g"), value);
+}
+
+export function createRouterOutlet(name: string) {
+  return new NcPage({
+    prefix: name,
+    name: name,
+    fileName: name,
+    outlet: true
+  });
 }
