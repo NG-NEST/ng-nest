@@ -4,10 +4,14 @@ const path = require("path");
 const util_1 = require("util");
 const template_1 = require("../interfaces/template");
 const tplDir = path.resolve(__dirname, "../../main/templates");
-function generatePage(page, dir) {
-    handleTemplates(page, tplDir, dir, "component", "module", "routes-module");
+function handlerPage(page, dir) {
+    let templates = ["component", "module", "routes-module"];
+    if (page.outlet) {
+        templates.unshift({ name: "component", extension: "html" });
+    }
+    handleTemplates(page, tplDir, dir, ...templates);
 }
-exports.generatePage = generatePage;
+exports.handlerPage = handlerPage;
 function handleTemplates(page, fromDir, toDir, ...name) {
     let tpls = [];
     name.forEach(x => {
