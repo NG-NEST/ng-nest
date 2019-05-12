@@ -1,20 +1,7 @@
 import { firstLetterCapital } from "../utils";
+import { NcTemplate } from "./template";
 
 export const ncPrefix = "ns";
-
-export interface NcComponent {
-  htmlTpl?: string;
-}
-
-export interface NcModule {
-  imports?: string;
-  custom?: string;
-}
-
-export interface NcRoutes {
-  imports?: string;
-  children?: string;
-}
 
 export class NcPage {
   prefix: string;
@@ -22,21 +9,45 @@ export class NcPage {
   fileName?: string;
   comName?: string;
   capName?: string;
-  component?: NcComponent = {};
-  module?: NcModule = { imports: "", custom: "" };
-  routes?: NcRoutes = { imports: "", children: "" };
+  // html?: NcComponent = {};
+  // component?: NcComponent = {};
+  // module?: NcModule = { imports: "", custom: "" };
+  // routes?: NcRoutes = { imports: "", children: "" };
+  templates?: NcTemplate[] = [];
   outlet?: boolean;
   constructor(param: NcPage) {
     Object.assign(this, param);
-    if (!this.fileName) this.fileName = `${this.prefix}-${this.name}`;
-    if (!this.comName) this.comName = `${ncPrefix}-${this.fileName}`;
-    if (!this.capName)
+    if (!this.fileName) {
+      this.fileName = !this.fileName && `${this.prefix}-${this.name}`;
+    }
+    if (!this.comName) {
+      this.comName = `${ncPrefix}-${this.fileName}`;
+    }
+    if (!this.capName) {
       this.capName = this.comName
         .split("-")
         .map(x => firstLetterCapital(x))
         .join("");
-    if (this.outlet) {
-      this.component.htmlTpl = "<router-outlet></router-outlet>";
     }
   }
+}
+
+export interface NcTpl {
+  template?: string;
+}
+
+export interface NcImports {
+  imports?: string;
+}
+
+export interface NcHtml extends NcTpl {}
+
+export interface NcComponent extends NcTpl {}
+
+export interface NcModule extends NcTpl, NcImports {
+  custom?: string;
+}
+
+export interface NcRoutes extends NcTpl, NcImports {
+  children?: string;
 }

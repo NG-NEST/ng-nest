@@ -1,27 +1,35 @@
+import { menus } from "./../../../../src/environments/routes";
 import { NcUi } from "./ui";
-import { NcPage } from "../../interfaces";
-import { generatePage } from "../../utils";
+import { NcPage } from "../../interfaces/page";
+import { handlerPage } from "../../utils";
 import * as path from "path";
 
-const genDir = path.resolve(__dirname, "../../../../src/main/docs-gen");
+export const genDir = path.resolve(__dirname, "../../../../src/main/docs-gen");
 
 export const docsPrefix = "docs";
 
+export const ncMenus = menus;
+
+export const ncRootMenus = menus.filter(x => x.parentId == null);
+
 export class NcDocs {
   ui = new NcUi();
+  page: NcPage;
   constructor() {
     this.genComponent();
+  }
+  init() {
     this.ui.init();
   }
   genComponent() {
-    let page = new NcPage({
+    this.page = new NcPage({
       prefix: docsPrefix,
       name: "docs",
       fileName: "docs",
       outlet: true
     });
-    generatePage(page, genDir);
+    handlerPage(this.page, genDir);
   }
 }
-
-export const docs = new NcDocs();
+global["NcDocs"] = new NcDocs();
+global["NcDocs"].init();

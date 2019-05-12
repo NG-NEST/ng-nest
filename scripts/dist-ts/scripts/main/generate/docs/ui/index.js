@@ -21,6 +21,7 @@ class NcUi {
     init() {
         this.components.init(componentsFolder);
         console.log(__1.docsPrefix);
+        console.log(__1.ncMenus);
         console.log(global["NcDocs"].page.templates);
     }
 }
