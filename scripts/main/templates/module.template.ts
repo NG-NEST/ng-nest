@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { {{ capName }}Component } from "./{{ fileName }}.component";
-import { {{ capName }}RoutesModule } from "./{{ fileName }}-routes.module";
-{{ imports }}
+import { {{ __capName }}Component } from "./{{ __fileName }}.component";
+import { {{ __capName }}RoutesModule } from "./{{ __fileName }}-routes.module";
+{{ __imports }}
 @NgModule({
-  imports: [CommonModule, {{ capName }}RoutesModule{{ custom }}],
-  declarations: [{{ capName }}Component],
-  exports: [{{ capName }}Component]
+  imports: [CommonModule, {{ __capName }}RoutesModule{{ __custom }}],
+  declarations: [{{ __capName }}Component],
+  exports: [{{ __capName }}Component]
 })
-export class {{ capName }}Module {}
+export class {{ __capName }}Module {}

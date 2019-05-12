@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class NcTemplate {
     constructor(param) {
+        this.syswords = {
+            imports: "",
+            custom: "",
+            children: ""
+        };
+        this.keywords = {};
         Object.assign(this, param);
         if (!param.extension) {
             this.extension = "ts";

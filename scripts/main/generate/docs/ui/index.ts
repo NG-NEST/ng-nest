@@ -18,8 +18,5 @@ export class NcUi {
   private components = new NcComponents();
   init() {
     this.components.init(componentsFolder);
-    console.log(docsPrefix);
-    console.log(ncMenus);
-    console.log((global["NcDocs"] as NcDocs).page.templates);
   }
 }
