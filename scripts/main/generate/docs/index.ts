@@ -1,6 +1,6 @@
 import { NcUi } from "./ui";
 import { NcPage } from "../../interfaces/page";
-import { handlerPage, createRouterOutlet } from "../../utils";
+import { handlerPage, createRouterOutlet, pageAddChildren, generatePage } from "../../utils";
 import * as path from "path";
 import { menus } from "./menus";
 
@@ -25,15 +25,16 @@ export class NcDocs {
   genComponent() {
     this.page = createRouterOutlet(docsPrefix);
     handlerPage(this.page, genDir);
-    this.genChildren();
+    this.addChildren();
+    generatePage(this.page);
   }
-  genChildren() {
+  addChildren() {
     ncRootMenus.forEach(x => {
       let page = createRouterOutlet(x.name);
       handlerPage(page, path.join(genDir, x.name));
       this.children = [...this.children, page];
-      console.log(page.templates);
     });
+    pageAddChildren(this.page, this.children);
   }
 }
 global["NcDocs"] = new NcDocs();

@@ -1,41 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
+const fs = require("fs-extra");
+const check_mkdir_1 = require("./check-mkdir");
 const util_1 = require("util");
-const template_1 = require("../interfaces/template");
-const tplDir = path.resolve(__dirname, "../../main/templates");
-function generatePage(page, dir) {
-    handleTemplates(page, tplDir, dir, "component", "module", "routes-module");
+function generatePage(page) {
+    page.templates.forEach(x => {
+        x.content = replaceKeyByPage(page, "__", fs.readFileSync(x.tplPath, "utf8"));
+        x.content = replaceKeyByObject(x.content, x.syswords, "__");
+        x.content = replaceKeyByObject(x.content, x.keywords);
+        check_mkdir_1.checkMkdir(x.genPath);
+        fs.writeFileSync(x.genPath, x.content, "utf8");
+    });
 }
 exports.generatePage = generatePage;
-function handleTemplates(page, fromDir, toDir, ...name) {
-    let tpls = [];
-    name.forEach(x => {
-        let tpl;
-        if (util_1.isString(x)) {
-            tpl = new template_1.NcTemplate({ fileName: page.fileName, name: x });
-        }
-        else {
-            x.fileName = page.fileName;
-            tpl = new template_1.NcTemplate(x);
-        }
-        tpl.tplPath = path.join(fromDir, `${tpl.name}.template.${tpl.extension}`);
-        tpl.genPath = path.join(toDir, `${tpl.genName}`);
-        tpls.push(tpl);
-    });
-    page.templates = [...page.templates, ...tpls];
-    return tpls;
-}
-exports.handleTemplates = handleTemplates;
-function replaceKey(page, ...templates) {
+function replaceKeyByPage(page, prefix, template) {
     for (let key in page) {
-        templates = templates.map(x => {
-            x = x.replace(new RegExp(`{{ ${key} }}`, "g"), page[key]);
-            if (util_1.isObject(page[key]))
-                x = replaceKey(page[key], x)[0];
-            return x;
-        });
+        template = replaceKey(template, `${prefix}${key}`, page[key]);
     }
-    return templates;
+    return template;
+}
+exports.replaceKeyByPage = replaceKeyByPage;
+function replaceKeyByObject(content, object, prefix = "") {
+    if (!util_1.isObject(object)) {
+        return content;
+    }
+    for (let key in object) {
+        content = replaceKey(content, `${prefix}${key}`, object[key]);
+    }
+    return content;
+}
+exports.replaceKeyByObject = replaceKeyByObject;
+function replaceKey(content, key, value) {
+    return content.replace(new RegExp(`{{ ${key} }}`, "g"), value);
 }
 exports.replaceKey = replaceKey;
