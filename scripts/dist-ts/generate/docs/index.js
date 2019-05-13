@@ -20,15 +20,16 @@ class NcDocs {
     genComponent() {
         this.page = utils_1.createRouterOutlet(exports.docsPrefix);
         utils_1.handlerPage(this.page, exports.genDir);
-        this.genChildren();
+        this.addChildren();
+        utils_1.generatePage(this.page);
     }
-    genChildren() {
+    addChildren() {
         exports.ncRootMenus.forEach(x => {
             let page = utils_1.createRouterOutlet(x.name);
             utils_1.handlerPage(page, path.join(exports.genDir, x.name));
             this.children = [...this.children, page];
-            console.log(page.templates);
         });
+        utils_1.pageAddChildren(this.page, this.children);
     }
 }
 exports.NcDocs = NcDocs;

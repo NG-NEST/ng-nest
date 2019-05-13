@@ -3,7 +3,6 @@ import * as path from "path";
 import { isObject, isString } from "util";
 import { NcTplName, NcTemplate } from "../interfaces/template";
 import { NcPage } from "../interfaces/page";
-import { checkMkdir } from "./check-mkdir";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
@@ -32,50 +31,10 @@ export function handleTemplates(
     }
     tpl.tplPath = path.join(fromDir, `${tpl.name}.template.${tpl.extension}`);
     tpl.genPath = path.join(toDir, `${tpl.genName}`);
-    // tpl.content = replaceKeyByPage(
-    //   page,
-    //   "__",
-    //   fs.readFileSync(tpl.tplPath, "utf8")
-    // )[0];
-    // tpl.content = replaceKeyByObject(tpl.content, tpl.syswords, "__");
-    // checkMkdir(toDir);
-    // fs.writeFileSync(tpl.genPath, tpl.content, "utf8");
     tpls.push(tpl);
   });
   page.templates = [...page.templates, ...tpls];
   return tpls;
-}
-
-export function replaceKeyByPage(
-  page: NcPage | any,
-  prefix: string,
-  ...templates: string[]
-): string[] {
-  for (let key in page) {
-    templates = templates.map(x => {
-      x = replaceKey(x, `${prefix}${key}`, page[key]);
-      return x;
-    });
-  }
-  return templates;
-}
-
-export function replaceKeyByObject(
-  content: string,
-  object: any,
-  prefix: string = ""
-) {
-  if (!isObject(object)) {
-    return content;
-  }
-  for (let key in object) {
-    content = replaceKey(content, `${prefix}${key}`, object[key]);
-  }
-  return content;
-}
-
-export function replaceKey(content: string, key: string, value: string) {
-  return content.replace(new RegExp(`{{ ${key} }}`, "g"), value);
 }
 
 export function createRouterOutlet(name: string) {
@@ -85,4 +44,22 @@ export function createRouterOutlet(name: string) {
     fileName: name,
     outlet: true
   });
+}
+
+export function pageAddChildren(page: NcPage, children: NcPage[]) {
+  if (page && children) {
+    let routes = page.templates.find(x => x.name === "routes-module");
+    if (routes) {
+      children.forEach((x, index) => {
+        let route = {
+          path: x.name,
+          loadChildren: `./${x.name}/${x.fileName}.module#${x.capName}Module`
+        };
+        routes.syswords.children += `\n${JSON.stringify(route, null, 4)}${
+          index !== children.length - 1 ? "," : ""
+        }`;
+      });
+    }
+    console.log(page.templates);
+  }
 }
