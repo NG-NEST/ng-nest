@@ -17,9 +17,13 @@ exports.NcUiPage = NcUiPage;
 class NcUi {
     constructor() {
         this.components = new components_1.NcComponents();
+        this.children = [];
     }
     init() {
+        this.genComponent();
         this.components.init(componentsFolder);
+    }
+    genComponent() {
     }
 }
 exports.NcUi = NcUi;

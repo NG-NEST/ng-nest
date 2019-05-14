@@ -11,6 +11,7 @@ export class NcPage {
   capName?: string;
   templates?: NcTemplate[] = [];
   outlet?: boolean;
+  children?: NcPage[] = [];
   constructor(param: NcPage) {
     Object.assign(this, param);
     if (!this.fileName) {

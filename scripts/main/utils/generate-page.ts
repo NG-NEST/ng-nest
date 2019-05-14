@@ -13,7 +13,7 @@ export function generatePage(page: NcPage) {
     );
     x.content = replaceKeyByObject(x.content, x.syswords, "__");
     x.content = replaceKeyByObject(x.content, x.keywords);
-    checkMkdir(x.genPath);
+    checkMkdir(x.genPath.replace(x.genName, ""));
     fs.writeFileSync(x.genPath, x.content, "utf8");
   });
 }

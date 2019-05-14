@@ -9,7 +9,7 @@ export class NcTemplate {
   syswords? = {
     imports: "",
     custom: "",
-    children: ""
+    loadChildren: ""
   };
   keywords?: { [prop: string]: string } = {};
   constructor(param: NcTemplate) {

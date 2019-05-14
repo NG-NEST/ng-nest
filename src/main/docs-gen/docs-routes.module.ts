@@ -21,13 +21,11 @@ const routes: Routes = [
       },
       {
         path: "workflow-design",
-        loadChildren:
-          "./workflow-design/workflow-design.module#NsWorkflowDesignModule"
+        loadChildren: "./workflow-design/workflow-design.module#NsWorkflowDesignModule"
       },
       {
         path: "code-generator",
-        loadChildren:
-          "./code-generator/code-generator.module#NsCodeGeneratorModule"
+        loadChildren: "./code-generator/code-generator.module#NsCodeGeneratorModule"
       }
     ]
   }
