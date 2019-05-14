@@ -1,7 +1,9 @@
 import { NcPage } from "./../../../interfaces/page";
 import { NcComponents } from "./components";
+import * as path from "path";
 import { isString } from "util";
-import { docsPrefix, NcDocs, ncMenus } from "..";
+import { docsPrefix, genDir, NcDocs } from "..";
+import { createRouterOutlet, handlerPage } from "../../../utils";
 
 const componentsFolder = "../../../../../libraries/ng-moon/src/components";
 
@@ -15,8 +17,20 @@ export class NcUiPage extends NcPage {
 }
 
 export class NcUi {
-  private components = new NcComponents();
+  components = new NcComponents();
+  page: NcPage;
+  children: NcPage[] = [];
   init() {
+    this.genComponent();
     this.components.init(componentsFolder);
+  }
+  genComponent() {
+    // global["NcDocs"] as NcDocs
+    // this.page = createRouterOutlet(docsPrefix);
+
+    // handlerPage(this.page, path.join(genDir, this.page.name));
+    // this.addChildren();
+    // generatePage(this.page);
+    // console.log(this.page)
   }
 }

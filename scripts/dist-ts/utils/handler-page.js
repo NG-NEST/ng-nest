@@ -46,14 +46,13 @@ function pageAddChildren(page, children) {
         let routes = page.templates.find(x => x.name === "routes-module");
         if (routes) {
             children.forEach((x, index) => {
-                let route = {
-                    path: x.name,
-                    loadChildren: `./${x.name}/${x.fileName}.module#${x.capName}Module`
-                };
-                routes.syswords.children += `\n${JSON.stringify(route, null, 4)}${index !== children.length - 1 ? "," : ""}`;
+                let route = `      {
+        path: "${x.name}",
+        loadChildren: "./${x.name}/${x.fileName}.module#${x.capName}Module"
+      }`;
+                routes.syswords.loadChildren += `\n${route}${index !== children.length - 1 ? "," : "\n    "}`;
             });
         }
-        console.log(page.templates);
     }
 }
 exports.pageAddChildren = pageAddChildren;

@@ -8,7 +8,7 @@ function generatePage(page) {
         x.content = replaceKeyByPage(page, "__", fs.readFileSync(x.tplPath, "utf8"));
         x.content = replaceKeyByObject(x.content, x.syswords, "__");
         x.content = replaceKeyByObject(x.content, x.keywords);
-        check_mkdir_1.checkMkdir(x.genPath);
+        check_mkdir_1.checkMkdir(x.genPath.replace(x.genName, ""));
         fs.writeFileSync(x.genPath, x.content, "utf8");
     });
 }

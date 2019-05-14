@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: "",
     component: {{ __capName }}Component,
-    children: [{{ __children }}]
+    children: [{{ __loadChildren }}]
   }
 ];
 

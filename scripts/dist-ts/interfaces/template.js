@@ -5,7 +5,7 @@ class NcTemplate {
         this.syswords = {
             imports: "",
             custom: "",
-            children: ""
+            loadChildren: ""
         };
         this.keywords = {};
         Object.assign(this, param);
