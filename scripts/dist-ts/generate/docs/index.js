@@ -19,7 +19,6 @@ class NcDocs {
         utils_1.handlerPage(this.page, exports.genDir);
         this.addChildren(this.page, exports.genDir);
         utils_1.generatePage(this.page);
-        console.log(JSON.stringify(this.page, null, 4));
     }
     addChildren(page, dir, parentId = null) {
         let children = menus_1.menus.filter(x => x.parentId === parentId);
@@ -35,6 +34,8 @@ class NcDocs {
             utils_1.generatePage(child);
         });
         utils_1.pageAddChildren(page, page.children);
+    }
+    createPage() {
     }
 }
 exports.NcDocs = NcDocs;

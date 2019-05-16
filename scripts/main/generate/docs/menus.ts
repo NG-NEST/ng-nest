@@ -31,7 +31,7 @@ export const menus: NcMenu[] = [
     name: "icon",
     label: "图标",
     enLabel: "Icon",
-    router: "./docs/ui/components/icon"
+    router: "./docs/ui/basecom/icon"
   },
   {
     id: "1-2-1",
@@ -39,7 +39,7 @@ export const menus: NcMenu[] = [
     name: "input",
     label: "输入框",
     enLabel: "Input",
-    router: "./docs/ui/components/input"
+    router: "./docs/ui/basecom/input"
   },
   {
     id: "1-2-2",
@@ -47,7 +47,7 @@ export const menus: NcMenu[] = [
     name: "button",
     label: "按钮",
     enLabel: "Button",
-    router: "./docs/ui/components/button"
+    router: "./docs/ui/basecom/button"
   },
   {
     id: "1-2-3",
@@ -55,7 +55,7 @@ export const menus: NcMenu[] = [
     name: "radio",
     label: "单选框",
     enLabel: "Radio",
-    router: "./docs/ui/components/radio"
+    router: "./docs/ui/basecom/radio"
   },
   {
     id: "1-2-4",
@@ -63,7 +63,7 @@ export const menus: NcMenu[] = [
     name: "checkbox",
     label: "多选框",
     enLabel: "CheckBox",
-    router: "./docs/ui/components/checkbox"
+    router: "./docs/ui/basecom/checkbox"
   },
   {
     id: "1-2-5",
@@ -71,7 +71,7 @@ export const menus: NcMenu[] = [
     name: "select",
     label: "下拉选择框",
     enLabel: "Select",
-    router: "./docs/ui/components/select"
+    router: "./docs/ui/basecom/select"
   },
   {
     id: "1-2-6",
@@ -79,7 +79,7 @@ export const menus: NcMenu[] = [
     name: "datetime",
     label: "日期选择框",
     enLabel: "DateTime",
-    router: "./docs/ui/components/datetime"
+    router: "./docs/ui/basecom/datetime"
   },
   { id: "1-3", parentId: "1", name: "popup", label: "弹出层" },
   {
@@ -88,7 +88,7 @@ export const menus: NcMenu[] = [
     name: "alert",
     label: "警告提示",
     enLabel: "Alert",
-    router: "./docs/ui/components/alert"
+    router: "./docs/ui/popup/alert"
   },
   {
     id: "1-3-2",
@@ -96,7 +96,7 @@ export const menus: NcMenu[] = [
     name: "message",
     label: "全局提示",
     enLabel: "Message",
-    router: "./docs/ui/components/message"
+    router: "./docs/ui/popup/message"
   },
   {
     id: "1-3-3",
@@ -104,7 +104,7 @@ export const menus: NcMenu[] = [
     name: "modal",
     label: "模态框",
     enLabel: "Modal",
-    router: "./docs/ui/components/modal"
+    router: "./docs/ui/popup/modal"
   },
   {
     id: "1-3-4",
@@ -112,7 +112,7 @@ export const menus: NcMenu[] = [
     name: "notification",
     label: "通知提醒框",
     enLabel: "Notification",
-    router: "./docs/ui/components/notification"
+    router: "./docs/ui/popup/notification"
   },
   {
     id: "1-3-5",
@@ -120,7 +120,7 @@ export const menus: NcMenu[] = [
     name: "loading",
     label: "加载中",
     enLabel: "Loading",
-    router: "./docs/ui/components/loading"
+    router: "./docs/ui/popup/loading"
   },
   {
     id: "1-3-6",
@@ -128,7 +128,7 @@ export const menus: NcMenu[] = [
     name: "popconfirm",
     label: "气泡确认框",
     enLabel: "PopConfirm",
-    router: "./docs/ui/components/popconfirm"
+    router: "./docs/ui/popup/popconfirm"
   },
   {
     id: "1-4",
@@ -136,7 +136,7 @@ export const menus: NcMenu[] = [
     name: "table",
     label: "表格",
     enLabel: "Table",
-    router: "./docs/ui/components/table"
+    router: "./docs/ui/table"
   },
   {
     id: "1-6",
@@ -144,7 +144,7 @@ export const menus: NcMenu[] = [
     name: "tree",
     label: "树",
     enLabel: "Tree",
-    router: "./docs/ui/components/tree"
+    router: "./docs/ui/tree"
   },
   {
     id: "1-5",
@@ -152,7 +152,7 @@ export const menus: NcMenu[] = [
     name: "form",
     label: "表单",
     enLabel: "Form",
-    router: "./docs/ui/components/form"
+    router: "./docs/ui/form"
   },
   {
     id: "2",

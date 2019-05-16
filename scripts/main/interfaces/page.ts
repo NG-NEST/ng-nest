@@ -1,5 +1,5 @@
 import { firstLetterCapital } from "../utils";
-import { NcTemplate } from "./template";
+import { NcTemplate, NcTemplateType } from "./template";
 
 export const ncPrefix = "ns";
 
@@ -10,7 +10,7 @@ export class NcPage {
   comName?: string;
   capName?: string;
   templates?: NcTemplate[] = [];
-  outlet?: boolean;
+  type?: NcTemplateType = "default";
   children?: NcPage[] = [];
   constructor(param: NcPage) {
     Object.assign(this, param);

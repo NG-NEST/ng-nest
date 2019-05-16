@@ -1,15 +1,32 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { DocsComponent } from "./docs.component";
+import { NsDocsComponent } from "./docs.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: DocsComponent,
+    component: NsDocsComponent,
     children: [
-      { path: "", redirectTo: "index", pathMatch: "full" },
-      { path: "index", loadChildren: "./index/index.module#IndexModule" },
-      { path: "ui", loadChildren: "./ui/ui.module#UiModule" }
+      {
+        path: "ui",
+        loadChildren: "./ui/ui.module#NsUiModule"
+      },
+      {
+        path: "user-lib",
+        loadChildren: "./user-lib/user-lib.module#NsUserLibModule"
+      },
+      {
+        path: "form-design",
+        loadChildren: "./form-design/form-design.module#NsFormDesignModule"
+      },
+      {
+        path: "workflow-design",
+        loadChildren: "./workflow-design/workflow-design.module#NsWorkflowDesignModule"
+      },
+      {
+        path: "code-generator",
+        loadChildren: "./code-generator/code-generator.module#NsCodeGeneratorModule"
+      }
     ]
   }
 ];
@@ -18,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DocsRoutesModule {}
+export class NsDocsRoutesModule {}

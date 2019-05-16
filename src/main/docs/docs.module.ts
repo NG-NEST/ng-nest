@@ -1,12 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DocsComponent } from "./docs.component";
-import { DocsRoutesModule } from "./docs-routes.module";
-import { ShareModule } from "src/share/share.module";
+import { NsDocsComponent } from "./docs.component";
+import { NsDocsRoutesModule } from "./docs-routes.module";
 
 @NgModule({
-  imports: [CommonModule, DocsRoutesModule, ShareModule],
-  declarations: [DocsComponent],
-  exports: [DocsComponent]
+  imports: [CommonModule, NsDocsRoutesModule],
+  declarations: [NsDocsComponent],
+  exports: [NsDocsComponent]
 })
-export class DocsModule {}
+export class NsDocsModule {}

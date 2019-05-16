@@ -1,16 +1,40 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { UiComponent } from "./ui.component";
+import { NsUiComponent } from "./ui.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: UiComponent,
+    component: NsUiComponent,
     children: [
-      { path: "", redirectTo: "introduction", pathMatch: "full" },
-      { path: "introduction", loadChildren: "./introduction/introduction.module#IntroductionModule" },
-      { path: "course", loadChildren: "./course/course.module#CourseModule" },
-      { path: "components", loadChildren: "./components/components.module#ComponentsModule" },
+      {
+        path: "introduction",
+        loadChildren: "./introduction/docs-introduction.module#NsDocsIntroductionModule"
+      },
+      {
+        path: "course",
+        loadChildren: "./course/course.module#NsCourseModule"
+      },
+      {
+        path: "basecom",
+        loadChildren: "./basecom/basecom.module#NsBasecomModule"
+      },
+      {
+        path: "popup",
+        loadChildren: "./popup/popup.module#NsPopupModule"
+      },
+      {
+        path: "table",
+        loadChildren: "./table/docs-table.module#NsDocsTableModule"
+      },
+      {
+        path: "tree",
+        loadChildren: "./tree/docs-tree.module#NsDocsTreeModule"
+      },
+      {
+        path: "form",
+        loadChildren: "./form/docs-form.module#NsDocsFormModule"
+      }
     ]
   }
 ];
@@ -19,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UiRoutesModule {}
+export class NsUiRoutesModule {}

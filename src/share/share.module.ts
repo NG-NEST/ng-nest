@@ -7,7 +7,7 @@ import { PortalModule } from "@angular/cdk/portal";
 import { LayoutModule } from "@angular/cdk/layout";
 import { RouterModule } from "@angular/router";
 import { DevelopingComponent } from "./developing/developing.component";
-import { NmAnchorComponent } from "./anchor/anchor.component";
+import { NsAnchorComponent } from "./anchor/anchor.component";
 import { NmExampleComponent } from "./example/example.component";
 import { NmCodeComponent } from "./code/code.component";
 import { HighlightModule } from "ngx-highlightjs";
@@ -16,7 +16,7 @@ import { NmIconsComponent } from './icons/icons.component';
 
 const components = [
   DevelopingComponent,
-  NmAnchorComponent,
+  NsAnchorComponent,
   NmExampleComponent,
   NmCodeComponent,
   NmPanelComponent,

@@ -5,6 +5,7 @@ exports.ncPrefix = "ns";
 class NcPage {
     constructor(param) {
         this.templates = [];
+        this.type = "default";
         this.children = [];
         Object.assign(this, param);
         if (!this.fileName) {
