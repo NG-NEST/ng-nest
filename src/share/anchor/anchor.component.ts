@@ -30,7 +30,7 @@ export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   @ViewChild("highlight") highlight: ElementRef;
   hList: HTMLElement[];
-  list: NmAnchorNode[];
+  list: NsAnchorNode[];
   active: number = 0;
   scrollSub: Subscription;
   isAnimation: boolean = false;
@@ -85,7 +85,7 @@ export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.hList = this.ele.nativeElement.querySelectorAll("h1, h2, h3, h4, h5");
     if (this.hList.length > 0) {
       this.render.addClass(this.ele.nativeElement, "nm-anchor-open");
-      let _list: NmAnchorNode[] = [];
+      let _list: NsAnchorNode[] = [];
       this.hList.forEach((x: HTMLElement, i: number) => {
         const link = `link-${i}`;
         const left = this.setLeft(x);
@@ -113,7 +113,7 @@ export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
     return index + 1;
   }
 
-  nav(item: NmAnchorNode, index: number) {
+  nav(item: NsAnchorNode, index: number) {
     this.isAnimation = true;
     this.active = index;
     this.router.navigate([item.router], { fragment: item.link });
@@ -171,7 +171,7 @@ export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 }
 
-export interface NmAnchorNode {
+export interface NsAnchorNode {
   id?: number | string;
   router?: string;
   link?: string;
