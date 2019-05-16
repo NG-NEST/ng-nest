@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NmInputComponent } from "./nm-input.component";
-import { NmIconModule } from './../icon/nm-icon.module';
+import { NmIconModule } from '../icon/nm-icon.module';
 
 @NgModule({
   declarations: [NmInputComponent],

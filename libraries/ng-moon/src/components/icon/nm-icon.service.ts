@@ -14,7 +14,7 @@ export class NmIconService {
   constructor(
     private sanitizer: DomSanitizer,
     private http: HttpClient,
-    @Optional() @Inject(DOCUMENT) private document: Document
+    @Optional() @Inject(DOCUMENT) private document: any
   ) {}
 
   getSvgElement(icon: string): Observable<SVGElement> {
