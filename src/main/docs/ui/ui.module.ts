@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { UiComponent } from "./ui.component";
-import { UiRoutesModule } from "./ui-routes.module";
+import { NsUiComponent } from "./ui.component";
+import { NsUiRoutesModule } from "./ui-routes.module";
 
 @NgModule({
-  imports: [CommonModule, UiRoutesModule],
-  declarations: [UiComponent],
-  exports: [UiComponent]
+  imports: [CommonModule, NsUiRoutesModule],
+  declarations: [NsUiComponent],
+  exports: [NsUiComponent]
 })
-export class UiModule {}
+export class NsUiModule {}

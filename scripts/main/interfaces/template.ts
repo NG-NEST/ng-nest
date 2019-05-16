@@ -6,10 +6,12 @@ export class NcTemplate {
   genPath?: string;
   genName?: string;
   content?: string;
+  type?: NcTemplateType = "default";
   syswords? = {
     imports: "",
     custom: "",
-    loadChildren: ""
+    loadChildren: "",
+    constant: ""
   };
   keywords?: { [prop: string]: string } = {};
   constructor(param: NcTemplate) {
@@ -25,6 +27,9 @@ export class NcTemplate {
     if (slt.length > 1) {
       custom += `-${slt.slice(0, slt.length - 1).join("-")}`;
     }
+    if (this.type == "router") {
+      custom = custom.replace(/(.*)-router/, "$1");
+    }
     this.genName = `${custom}.${type}.${this.extension}`;
   }
 }
@@ -32,3 +37,5 @@ export class NcTemplate {
 export type NcTplName = string | NcTemplate;
 
 export type NcExtension = "ts" | "html" | "scss";
+
+export type NcTemplateType = "default" | "router" | "custom";

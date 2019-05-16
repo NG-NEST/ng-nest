@@ -44,5 +44,8 @@ export class NcDocs {
     });
     pageAddChildren(page, page.children);
   }
+  createPage() {
+
+  }
 }
 global["NcDocs"] = new NcDocs();

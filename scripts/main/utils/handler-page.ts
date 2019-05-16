@@ -1,6 +1,5 @@
-import * as fs from "fs-extra";
 import * as path from "path";
-import { isObject, isString } from "util";
+import { isString } from "util";
 import { NcTplName, NcTemplate } from "../interfaces/template";
 import { NcPage } from "../interfaces/page";
 
@@ -8,8 +7,17 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
 
 export function handlerPage(page: NcPage, dir: string) {
   let templates: NcTplName[] = ["component", "module", "routes-module"];
-  if (page.outlet) {
-    templates.unshift({ name: "component", extension: "html" });
+  if (page.type == "router") {
+    templates.unshift({
+      name: "router-component",
+      extension: "html",
+      type: "router"
+    });
+  } else if (page.type == "default") {
+    templates.unshift({
+      name: "component",
+      extension: "html"
+    });
   }
   handleTemplates(page, tplDir, dir, ...templates);
 }
@@ -42,7 +50,7 @@ export function createRouterOutlet(name: string) {
     prefix: name,
     name: name,
     fileName: name,
-    outlet: true
+    type: "router"
   });
 }
 

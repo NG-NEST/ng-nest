@@ -29,8 +29,8 @@ import {
   NmSliderOption
 } from "../slider";
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
-import { DOCUMENT } from "@angular/platform-browser";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: "nm-anchor",

@@ -1,14 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CourseComponent } from "./course.component";
+import { NsCourseComponent } from "./course.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: CourseComponent,
+    component: NsCourseComponent,
     children: [
-      { path: "", redirectTo: "guide", pathMatch: "full" },
-      { path: "guide", loadChildren: "./guide/guide.module#GuideModule" },
+      {
+        path: "guide",
+        loadChildren: "./guide/docs-guide.module#NsDocsGuideModule"
+      }
     ]
   }
 ];
@@ -17,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CourseRoutesModule {}
+export class NsCourseRoutesModule {}

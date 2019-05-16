@@ -18,14 +18,14 @@ import { Subscription } from "rxjs";
 import { reqAnimFrame } from "../core/animation";
 
 @Component({
-  selector: "[nm-anchor]",
+  selector: "[ns-anchor]",
   templateUrl: "./anchor.component.html",
   styleUrls: ["./anchor.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
-  @HostBinding("class.nm-anchor") className() {
+export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
+  @HostBinding("class.ns-anchor") className() {
     return true;
   }
   @ViewChild("highlight") highlight: ElementRef;

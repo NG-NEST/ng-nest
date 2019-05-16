@@ -5,4 +5,6 @@ import { Component, ViewEncapsulation } from "@angular/core";
   templateUrl: "./course.component.html",
   encapsulation: ViewEncapsulation.None
 })
-export class CourseComponent {}
+export class NsCourseComponent {
+  
+}

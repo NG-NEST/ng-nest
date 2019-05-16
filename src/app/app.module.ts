@@ -5,7 +5,6 @@ import { AppComponent } from "./app.component";
 
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgMoonModule } from "ng-moon";
 import { ShareModule } from "src/share/share.module";
 import { MainRoutesModule } from "src/main/routes.module";
 
@@ -15,6 +14,7 @@ import xml from "highlight.js/lib/languages/xml";
 import scss from "highlight.js/lib/languages/scss";
 import typescript from "highlight.js/lib/languages/typescript";
 import { TestComponent } from './test/test.component';
+import { NgMoonModule } from 'ng-moon';
 
 export function hljsLanguages() {
   return [
@@ -32,6 +32,7 @@ export function hljsLanguages() {
     ReactiveFormsModule,
     HttpClientModule,
     ShareModule,
+    NgMoonModule,
     MainRoutesModule,
     HighlightModule.forRoot({
       languages: hljsLanguages
