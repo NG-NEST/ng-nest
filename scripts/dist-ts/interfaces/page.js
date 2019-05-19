@@ -4,6 +4,7 @@ const utils_1 = require("../utils");
 exports.ncPrefix = "ns";
 class NcPage {
     constructor(param) {
+        this.custom = "";
         this.templates = [];
         this.type = "default";
         this.children = [];

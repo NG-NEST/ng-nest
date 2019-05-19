@@ -68,10 +68,6 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   private _data$: Subscription | null = null;
 
-  @HostBinding(`class.${SliderPrefix}`) className() {
-    return true;
-  }
-
   @HostBinding(`class.${SliderPrefix}-${NmSliderLayoutEnum.Row}`)
   get getLayoutRow() {
     if (this.nmLayout === NmSliderLayoutEnum.Row) {
@@ -136,7 +132,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    this.renderer.addClass(this.elementRef.nativeElement, SliderPrefix);
+  }
 
   ngOnInit() {
     fillDefault(this, this._default);

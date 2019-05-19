@@ -43,15 +43,13 @@ export class NmIconComponent implements OnInit, OnChanges {
   private svgElement: SVGElement;
   private default: NmIconOption = {};
 
-  @HostBinding(`class.${IconPrefix}`) className() {
-    return true;
-  }
-
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     public nmIconService: NmIconService
-  ) {}
+  ) {
+    this.renderer.addClass(this.elementRef.nativeElement, IconPrefix);
+  }
 
   ngOnInit() {
     fillDefault(this, this.default);

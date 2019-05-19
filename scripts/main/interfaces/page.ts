@@ -5,10 +5,12 @@ export const ncPrefix = "ns";
 
 export class NcPage {
   prefix: string;
+  label?: string;
   name: string;
   fileName?: string;
   comName?: string;
   capName?: string;
+  custom?: string = "";
   templates?: NcTemplate[] = [];
   type?: NcTemplateType = "default";
   children?: NcPage[] = [];

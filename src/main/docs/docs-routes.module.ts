@@ -8,6 +8,14 @@ const routes: Routes = [
     component: NsDocsComponent,
     children: [
       {
+        path: "code-generator",
+        loadChildren: "./code-generator/code-generator.module#NsCodeGeneratorModule"
+      },
+      {
+        path: "form-design",
+        loadChildren: "./form-design/form-design.module#NsFormDesignModule"
+      },
+      {
         path: "ui",
         loadChildren: "./ui/ui.module#NsUiModule"
       },
@@ -16,16 +24,8 @@ const routes: Routes = [
         loadChildren: "./user-lib/user-lib.module#NsUserLibModule"
       },
       {
-        path: "form-design",
-        loadChildren: "./form-design/form-design.module#NsFormDesignModule"
-      },
-      {
         path: "workflow-design",
         loadChildren: "./workflow-design/workflow-design.module#NsWorkflowDesignModule"
-      },
-      {
-        path: "code-generator",
-        loadChildren: "./code-generator/code-generator.module#NsCodeGeneratorModule"
       }
     ]
   }

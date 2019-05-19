@@ -4,7 +4,8 @@ import { filter } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Subject } from "rxjs";
 import { CdkScrollable } from "@angular/cdk/overlay";
-import { Menu, menus } from "src/environments/routes";
+import { Menu } from "src/environments/routes";
+import { menus } from 'src/environments/menus';
 
 @Injectable({ providedIn: "root" })
 export class LayoutService {

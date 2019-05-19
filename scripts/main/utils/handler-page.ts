@@ -7,18 +7,11 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
 
 export function handlerPage(page: NcPage, dir: string) {
   let templates: NcTplName[] = ["component", "module", "routes-module"];
-  if (page.type == "router") {
-    templates.unshift({
-      name: "router-component",
-      extension: "html",
-      type: "router"
-    });
-  } else if (page.type == "default") {
-    templates.unshift({
-      name: "component",
-      extension: "html"
-    });
-  }
+  templates.unshift({
+    name: `${page.type}-component`,
+    extension: "html",
+    type: page.type
+  });
   handleTemplates(page, tplDir, dir, ...templates);
 }
 
