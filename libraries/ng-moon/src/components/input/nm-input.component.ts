@@ -52,10 +52,6 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     nmIconLayout: NmInputIconLayoutEnum.Right
   };
 
-  @HostBinding(`class.${InputPrefix}`) className() {
-    return true;
-  }
-
   @HostBinding(`class.${InputPrefix}-disabled`) get getDisabled() {
     return this.nmDisabled;
   }
@@ -109,7 +105,13 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     this.onTouchedFn = fn;
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.renderer.addClass(this.elementRef.nativeElement, InputPrefix);
+  }
 
   ngOnInit() {
     fillDefault(this, this.default);

@@ -40,6 +40,7 @@ export interface Menu {
   enLabel?: string;
   router?: string;
   icon?: string;
+  type?: string;
 }
 
 export const menus: Menu[] = [

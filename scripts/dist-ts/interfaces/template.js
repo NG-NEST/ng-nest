@@ -5,26 +5,25 @@ class NcTemplate {
         this.type = "default";
         this.syswords = {
             imports: "",
-            custom: "",
+            modules: "",
             loadChildren: "",
-            constant: ""
+            constant: "",
+            custom: ""
         };
         this.keywords = {};
         Object.assign(this, param);
         if (!param.extension) {
             this.extension = "ts";
         }
-        let custom = "", type = "";
+        let name = "", type = "";
         let slt = this.name.split("-");
         type = slt[slt.length - 1];
-        custom = this.fileName;
+        name = this.fileName;
         if (slt.length > 1) {
-            custom += `-${slt.slice(0, slt.length - 1).join("-")}`;
+            name += `-${slt.slice(0, slt.length - 1).join("-")}`;
         }
-        if (this.type == "router") {
-            custom = custom.replace(/(.*)-router/, "$1");
-        }
-        this.genName = `${custom}.${type}.${this.extension}`;
+        name = name.replace(new RegExp(`(.*)-${this.type}`, "g"), "$1");
+        this.genName = `${name}.${type}.${this.extension}`;
     }
 }
 exports.NcTemplate = NcTemplate;

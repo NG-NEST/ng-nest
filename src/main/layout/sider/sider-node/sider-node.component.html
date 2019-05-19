@@ -1,5 +1,5 @@
 <a
-  *ngIf="option.router && option.router != '$'"
+  *ngIf="option.type !== 'router'"
   (click)="sider(option)"
   [routerLink]="[option.router]"
   [routerLinkActive]="'active'"
@@ -11,7 +11,7 @@
   ></ng-container>
 </a>
 <a
-  *ngIf="!option.router || option.router == '$'"
+  *ngIf="option.type === 'router'"
   (click)="toggle($event, option)"
   [title]="option.title"
   [ngStyle]="{ 'padding-left.rem': 0.75 * level }"
@@ -33,7 +33,7 @@
 </ul>
 
 <ng-template #itemTemp let-opt="option">
-  <i class="icon {{ opt.icon }} menu"></i>
+  <nm-icon [nmType]="opt.icon"></nm-icon>
   <p>
     {{ opt.label }} <span *ngIf="opt.enLabel">{{ opt.enLabel }}</span>
   </p>

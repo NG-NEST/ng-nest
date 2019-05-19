@@ -11,8 +11,9 @@ import { NsAnchorComponent } from "./anchor/anchor.component";
 import { NmExampleComponent } from "./example/example.component";
 import { NmCodeComponent } from "./code/code.component";
 import { HighlightModule } from "ngx-highlightjs";
-import { NmPanelComponent } from './panel/panel.component';
-import { NmIconsComponent } from './icons/icons.component';
+import { NmPanelComponent } from "./panel/panel.component";
+import { NmIconsComponent } from "./icons/icons.component";
+import { NgMoonModule } from "ng-moon";
 
 const components = [
   DevelopingComponent,
@@ -34,7 +35,8 @@ const modules = [
   PortalModule,
   DragDropModule,
   LayoutModule,
-  HighlightModule
+  HighlightModule,
+  NgMoonModule
 ];
 
 const providers = [];

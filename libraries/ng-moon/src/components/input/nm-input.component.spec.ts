@@ -5,7 +5,12 @@ import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { InputPrefix, NmInputLayoutEnum, NmInputTypeEnum, NmInputIconLayoutEnum } from "./nm-input.type";
+import {
+  InputPrefix,
+  NmInputLayoutEnum,
+  NmInputTypeEnum,
+  NmInputIconLayoutEnum
+} from "./nm-input.type";
 
 describe(InputPrefix, () => {
   beforeEach(async(() => {
@@ -65,25 +70,33 @@ describe(InputPrefix, () => {
       testComponent.layout = NmInputLayoutEnum.Horizontal;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Horizontal}`);
+      expect(element.classList).toContain(
+        `${InputPrefix}-${NmInputLayoutEnum.Horizontal}`
+      );
     });
     it("should layout vertical.", () => {
       testComponent.layout = NmInputLayoutEnum.Vertical;
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
+      expect(element.classList).toContain(
+        `${InputPrefix}-${NmInputLayoutEnum.Vertical}`
+      );
     });
     it("should icon left.", () => {
       testComponent.icon = "ado-search";
       testComponent.iconLayout = NmInputIconLayoutEnum.Left;
       fixture.detectChanges();
-      // expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
+      expect(element.classList).toContain(
+        `${InputPrefix}-icon-${NmInputIconLayoutEnum.Left}`
+      );
     });
     it("should icon right.", () => {
       testComponent.icon = "ado-search";
       testComponent.iconLayout = NmInputIconLayoutEnum.Right;
       fixture.detectChanges();
-      // expect(element.classList).toContain(`${InputPrefix}-${NmInputLayoutEnum.Vertical}`);
+      expect(element.classList).toContain(
+        `${InputPrefix}-icon-${NmInputIconLayoutEnum.Right}`
+      );
     });
   });
 });

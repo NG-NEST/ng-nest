@@ -7,19 +7,11 @@ const page_1 = require("../interfaces/page");
 const tplDir = path.resolve(__dirname, "../../main/templates");
 function handlerPage(page, dir) {
     let templates = ["component", "module", "routes-module"];
-    if (page.type == "router") {
-        templates.unshift({
-            name: "router-component",
-            extension: "html",
-            type: "router"
-        });
-    }
-    else if (page.type == "default") {
-        templates.unshift({
-            name: "component",
-            extension: "html"
-        });
-    }
+    templates.unshift({
+        name: `${page.type}-component`,
+        extension: "html",
+        type: page.type
+    });
     handleTemplates(page, tplDir, dir, ...templates);
 }
 exports.handlerPage = handlerPage;
