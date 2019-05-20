@@ -5,48 +5,48 @@
 @import "./param";
 
 @mixin doc {
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 2rem;
   display: block;
   font-size: 0.875rem;
   line-height: 1.5rem;
 
-  h1 {
+  >h1 {
     font-size: 1.5rem;
     font-weight: 500;
     margin: 0.5rem 0;
   }
 
-  h2 {
+  >h2 {
     font-size: 1.375rem;
     font-weight: 500;
     margin: 2.25rem 0 1rem;
     clear: both;
   }
 
-  h3 {
+  >h3 {
     font-size: 1.125rem;
     font-weight: 500;
     margin: 1.5rem 0 1rem;
     clear: both;
   }
 
-  h4 {
+  >h4 {
     font-size: 1rem;
     font-weight: 500;
     margin: 1.125rem 0 0.875rem;
     clear: both;
   }
 
-  p {
+  >p {
     font-weight: 400;
     margin: 0.875rem 0 0;
   }
 
-  blockquote {
+  >blockquote {
     margin: 0;
   }
 
-  ul {
+  >ul {
     margin: 0.875rem 0;
     > li {
       list-style-type: circle;

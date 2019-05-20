@@ -41,6 +41,7 @@ export interface Menu {
   router?: string;
   icon?: string;
   type?: string;
+  order?: number;
 }
 
 export const menus: Menu[] = [
