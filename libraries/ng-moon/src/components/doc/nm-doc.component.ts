@@ -16,7 +16,8 @@ import { fillDefault } from "../../core/util";
   selector: "nm-doc",
   templateUrl: "./nm-doc.component.html",
   styleUrls: ["./style/index.scss"],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  // Todo: 默认模式，ng-content中的内容中的样式无法生效
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmDocComponent implements OnInit, OnChanges {
@@ -25,7 +26,8 @@ export class NmDocComponent implements OnInit, OnChanges {
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef
+  ) {
     this.renderer.addClass(this.elementRef.nativeElement, DocPrefix);
   }
 
@@ -35,7 +37,7 @@ export class NmDocComponent implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
-    console.log(this.elementRef.nativeElement.shadowRoot)
+    console.log(this.elementRef.nativeElement.shadowRoot);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

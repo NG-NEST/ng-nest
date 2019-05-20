@@ -6,4 +6,5 @@ export interface NcMenu {
   enLabel?: string;
   router?: string;
   icon?: string;
+  order?: number;
 }

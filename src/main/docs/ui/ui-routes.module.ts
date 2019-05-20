@@ -8,12 +8,16 @@ const routes: Routes = [
     component: NsUiComponent,
     children: [
       {
+        path: "introduction",
+        loadChildren: "./introduction/docs-introduction.module#NsDocsIntroductionModule"
+      },
+      {
         path: "course",
         loadChildren: "./course/course.module#NsCourseModule"
       },
       {
-        path: "introduction",
-        loadChildren: "./introduction/docs-introduction.module#NsDocsIntroductionModule"
+        path: "components",
+        loadChildren: "./components/components.module#NsComponentsModule"
       }
     ]
   }

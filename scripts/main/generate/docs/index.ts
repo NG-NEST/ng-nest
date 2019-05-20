@@ -10,6 +10,7 @@ import {
 } from "../../utils";
 import * as path from "path";
 import * as fs from "fs-extra";
+import * as _ from "lodash";
 
 export const docsDir = path.resolve(__dirname, "../../../../docs");
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
@@ -23,16 +24,20 @@ export class NcDocs {
   page: NcPage;
   genDir: string = genDir;
   menus: NcMenu[] = [];
+
   constructor() {
     this.genPages();
   }
+
   genPages() {
     this.page = createRouterOutlet(docsPrefix);
     handlerPage(this.page, genDir);
     this.addChildren(this.page, genDir, docsDir, `./${docsPrefix}`);
     generatePage(this.page);
+    this.menus = _.sortBy(this.menus, ["parentId", "order"]);
     generateMenu(genMenusDir, this.menus);
   }
+
   addChildren(
     page: NcPage,
     genDir: string,
@@ -46,38 +51,58 @@ export class NcDocs {
       const stat = fs.statSync(dir);
       if (stat.isDirectory()) {
         const read = parseMdDoc(path.join(dir, "readme.md"));
-        let child: NcPage;
-        child =
-          read.meta.type == "router"
-            ? createRouterOutlet(x)
-            : new NcPage({
-                name: x,
-                prefix: docsPrefix,
-                type: "custom",
-                custom: read.content
-              });
         const folder = path.join(genDir, x);
-        handlerPage(child, folder);
+        const child = this.createChild(read, x, folder);
         page.children = [...page.children, child];
-        const id = index == null ? `${i}` : `${index}-${i}`;
-        const parentId = index == null ? null : `${index}`;
-        this.menus = [
-          ...this.menus,
-          Object.assign(
-            {
-              id: id,
-              parentId: parentId,
-              name: x,
-              router: `${router}/${x}`
-            },
-            read.meta
-          )
-        ];
-        this.addChildren(child, folder, dir, `${router}/${x}`, id);
+        const thisRouter = `${router}/${x}`;
+        const menu = this.createMenu(read, x, index, i, thisRouter);
+        this.addChildren(child, folder, dir, menu.router, menu.id);
         generatePage(child);
       }
     });
+    page.children = _.sortBy(page.children, x => x.order);
     pageAddChildren(page, page.children);
+  }
+
+  createChild(
+    read: { meta: any; content: any },
+    dirName: string,
+    folder: string
+  ) {
+    let child =
+      read.meta.type == "router"
+        ? createRouterOutlet(dirName)
+        : new NcPage({
+            name: dirName,
+            prefix: docsPrefix,
+            type: "custom",
+            custom: read.content
+          });
+    child.order = read.meta.order;
+    handlerPage(child, folder);
+    return child;
+  }
+
+  createMenu(
+    read: { meta: any; content?: string },
+    dirName: string,
+    index: string,
+    i: number,
+    router: string
+  ): NcMenu {
+    const id = index == null ? `${i}` : `${index}-${i}`;
+    const parentId = index == null ? null : `${index}`;
+    const menu: NcMenu = Object.assign(
+      {
+        id: id,
+        parentId: parentId,
+        name: dirName,
+        router: router
+      },
+      read.meta
+    );
+    this.menus = [...this.menus, menu];
+    return menu;
   }
 }
 global["NcDocs"] = new NcDocs();
