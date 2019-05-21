@@ -1,23 +1,14 @@
 import { NcPage } from "../../interfaces/page";
 import { NcMenu } from "../../interfaces/menu";
-import {
-  handlerPage,
-  createRouterOutlet,
-  pageAddChildren,
-  generatePage,
-  parseMdDoc,
-  generateMenu
-} from "../../utils";
+import { handlerPage, createRouterOutlet, pageAddChildren, generatePage, parseMdDoc, generateMenu } from "../../utils";
 import * as path from "path";
 import * as fs from "fs-extra";
 import * as _ from "lodash";
 
 export const docsDir = path.resolve(__dirname, "../../../../docs");
+export const componentsDir = path.resolve(__dirname, "../../../../libraries/ng-moon/src/components");
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
-export const genMenusDir = path.resolve(
-  __dirname,
-  "../../../../src/environments"
-);
+export const genMenusDir = path.resolve(__dirname, "../../../../src/environments");
 export const docsPrefix = "docs";
 
 export class NcDocs {
@@ -38,14 +29,9 @@ export class NcDocs {
     generateMenu(genMenusDir, this.menus);
   }
 
-  addChildren(
-    page: NcPage,
-    genDir: string,
-    docDir: string,
-    router: string,
-    index?: string
-  ) {
+  addChildren(page: NcPage, genDir: string, docDir: string, router: string, index?: string, level?: number) {
     let children = fs.readdirSync(docDir);
+    if (typeof level !== "undefined") level--;
     children.forEach((x, i) => {
       const dir = path.join(docDir, x);
       const stat = fs.statSync(dir);
@@ -56,7 +42,11 @@ export class NcDocs {
         page.children = [...page.children, child];
         const thisRouter = `${router}/${x}`;
         const menu = this.createMenu(read, x, index, i, thisRouter);
-        this.addChildren(child, folder, dir, menu.router, menu.id);
+        if (x === "components") {
+          this.addChildren(child, folder, componentsDir, menu.router, menu.id, 2);
+        } else if (level !== 0) {
+          this.addChildren(child, folder, dir, menu.router, menu.id, level);
+        }
         generatePage(child);
       }
     });
@@ -64,11 +54,7 @@ export class NcDocs {
     pageAddChildren(page, page.children);
   }
 
-  createChild(
-    read: { meta: any; content: any },
-    dirName: string,
-    folder: string
-  ) {
+  createChild(read: { meta: any; content: any }, dirName: string, folder: string) {
     let child =
       read.meta.type == "router"
         ? createRouterOutlet(dirName)
@@ -83,24 +69,19 @@ export class NcDocs {
     return child;
   }
 
-  createMenu(
-    read: { meta: any; content?: string },
-    dirName: string,
-    index: string,
-    i: number,
-    router: string
-  ): NcMenu {
+  createMenu(read: { meta: any; content?: string }, dirName: string, index: string, i: number, router: string): NcMenu {
     const id = index == null ? `${i}` : `${index}-${i}`;
     const parentId = index == null ? null : `${index}`;
-    const menu: NcMenu = Object.assign(
-      {
-        id: id,
-        parentId: parentId,
-        name: dirName,
-        router: router
-      },
-      read.meta
-    );
+    const menu: NcMenu = {
+      id: id,
+      parentId: parentId,
+      name: dirName,
+      router: router,
+      icon: read.meta.icon,
+      type: read.meta.type,
+      order: read.meta.order,
+      label: read.meta.label
+    };
     this.menus = [...this.menus, menu];
     return menu;
   }

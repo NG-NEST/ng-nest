@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const _ = require("lodash");
 exports.docsDir = path.resolve(__dirname, "../../../../docs");
+exports.componentsDir = path.resolve(__dirname, "../../../../libraries/ng-moon/src/components");
 exports.genDir = path.resolve(__dirname, "../../../../src/main/docs");
 exports.genMenusDir = path.resolve(__dirname, "../../../../src/environments");
 exports.docsPrefix = "docs";
@@ -23,8 +24,10 @@ class NcDocs {
         this.menus = _.sortBy(this.menus, ["parentId", "order"]);
         utils_1.generateMenu(exports.genMenusDir, this.menus);
     }
-    addChildren(page, genDir, docDir, router, index) {
+    addChildren(page, genDir, docDir, router, index, level) {
         let children = fs.readdirSync(docDir);
+        if (typeof level !== "undefined")
+            level--;
         children.forEach((x, i) => {
             const dir = path.join(docDir, x);
             const stat = fs.statSync(dir);
@@ -35,7 +38,12 @@ class NcDocs {
                 page.children = [...page.children, child];
                 const thisRouter = `${router}/${x}`;
                 const menu = this.createMenu(read, x, index, i, thisRouter);
-                this.addChildren(child, folder, dir, menu.router, menu.id);
+                if (x === "components") {
+                    this.addChildren(child, folder, exports.componentsDir, menu.router, menu.id, 2);
+                }
+                else if (level !== 0) {
+                    this.addChildren(child, folder, dir, menu.router, menu.id, level);
+                }
                 utils_1.generatePage(child);
             }
         });
@@ -58,12 +66,15 @@ class NcDocs {
     createMenu(read, dirName, index, i, router) {
         const id = index == null ? `${i}` : `${index}-${i}`;
         const parentId = index == null ? null : `${index}`;
-        const menu = Object.assign({
+        const menu = {
             id: id,
             parentId: parentId,
             name: dirName,
-            router: router
-        }, read.meta);
+            router: router,
+            type: read.meta.type,
+            order: read.meta.order,
+            label: read.meta.label
+        };
         this.menus = [...this.menus, menu];
         return menu;
     }
