@@ -13,18 +13,87 @@ export const menus: Menu[] = [
     "parentId": "2",
     "name": "course",
     "router": "./docs/ui/course",
+    "type": "router",
     "order": 2,
-    "label": "教程",
-    "type": "router"
+    "label": "教程"
   },
   {
     "id": "2-0",
     "parentId": "2",
     "name": "components",
     "router": "./docs/ui/components",
+    "type": "router",
     "order": 3,
-    "label": "组件",
-    "type": "router"
+    "label": "组件"
+  },
+  {
+    "id": "2-0-0",
+    "parentId": "2-0",
+    "name": "basic",
+    "router": "./docs/ui/components/basic",
+    "type": "router",
+    "order": 1,
+    "label": "基本"
+  },
+  {
+    "id": "2-0-1",
+    "parentId": "2-0",
+    "name": "combination",
+    "router": "./docs/ui/components/combination",
+    "type": "router",
+    "order": 2,
+    "label": "组合"
+  },
+  {
+    "id": "2-0-2",
+    "parentId": "2-0",
+    "name": "senior",
+    "router": "./docs/ui/components/senior",
+    "type": "router",
+    "order": 3,
+    "label": "高级"
+  },
+  {
+    "id": "2-0-0-0",
+    "parentId": "2-0-0",
+    "name": "icon",
+    "router": "./docs/ui/components/basic/icon",
+    "label": "图标"
+  },
+  {
+    "id": "2-0-0-2",
+    "parentId": "2-0-0",
+    "name": "slider",
+    "router": "./docs/ui/components/basic/slider",
+    "label": "滑块"
+  },
+  {
+    "id": "2-0-1-0",
+    "parentId": "2-0-1",
+    "name": "anchor",
+    "router": "./docs/ui/components/combination/anchor",
+    "label": "锚点"
+  },
+  {
+    "id": "2-0-1-1",
+    "parentId": "2-0-1",
+    "name": "input",
+    "router": "./docs/ui/components/combination/input",
+    "label": "输入框"
+  },
+  {
+    "id": "2-0-1-3",
+    "parentId": "2-0-1",
+    "name": "tabs",
+    "router": "./docs/ui/components/combination/tabs",
+    "label": "标签页"
+  },
+  {
+    "id": "2-0-2-0",
+    "parentId": "2-0-2",
+    "name": "doc",
+    "router": "./docs/ui/components/senior/doc",
+    "label": "文档"
   },
   {
     "id": "2-1-0",
@@ -39,49 +108,44 @@ export const menus: Menu[] = [
     "parentId": null,
     "name": "ui",
     "router": "./docs/ui",
+    "type": "router",
     "order": 1,
-    "label": "UI库",
-    "icon": "adt-fire",
-    "type": "router"
+    "label": "UI库"
   },
   {
     "id": "1",
     "parentId": null,
     "name": "form-design",
     "router": "./docs/form-design",
+    "type": "router",
     "order": 2,
-    "label": "表单设计器",
-    "icon": "adt-fire",
-    "type": "router"
+    "label": "表单设计器"
   },
   {
     "id": "4",
     "parentId": null,
     "name": "workflow-design",
     "router": "./docs/workflow-design",
+    "type": "router",
     "order": 3,
-    "label": "工作流设计",
-    "icon": "adt-fire",
-    "type": "router"
+    "label": "工作流设计"
   },
   {
     "id": "0",
     "parentId": null,
     "name": "code-generator",
     "router": "./docs/code-generator",
+    "type": "router",
     "order": 4,
-    "label": "代码生成",
-    "icon": "adt-fire",
-    "type": "router"
+    "label": "代码生成"
   },
   {
     "id": "3",
     "parentId": null,
     "name": "user-lib",
     "router": "./docs/user-lib",
+    "type": "router",
     "order": 5,
-    "label": "用户模块",
-    "icon": "adt-fire",
-    "type": "router"
+    "label": "用户模块"
   }
 ]

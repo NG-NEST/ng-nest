@@ -1,3 +1,5 @@
+import { NcTemplateType } from "./template";
+
 export interface NcMenu {
   id?: string;
   parentId?: string;
@@ -7,4 +9,5 @@ export interface NcMenu {
   router?: string;
   icon?: string;
   order?: number;
+  type?: NcTemplateType;
 }
