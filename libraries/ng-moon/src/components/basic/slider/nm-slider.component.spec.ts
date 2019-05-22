@@ -12,7 +12,7 @@ import {
   NmSliderBorderPositionEnum,
   NmActivatedSlider
 } from "./nm-slider.type";
-import { NmData } from "../../interfaces/data.type";
+import { NmData } from "../../../interfaces/data.type";
 
 describe(SliderPrefix, () => {
   beforeEach(async(() => {
