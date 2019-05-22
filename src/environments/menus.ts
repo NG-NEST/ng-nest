@@ -13,45 +13,45 @@ export const menus: Menu[] = [
     "parentId": "2",
     "name": "course",
     "router": "./docs/ui/course",
-    "type": "router",
     "order": 2,
-    "label": "教程"
+    "label": "教程",
+    "type": "router"
   },
   {
     "id": "2-0",
     "parentId": "2",
     "name": "components",
     "router": "./docs/ui/components",
-    "type": "router",
     "order": 3,
-    "label": "组件"
+    "label": "组件",
+    "type": "router"
   },
   {
     "id": "2-0-0",
     "parentId": "2-0",
     "name": "basic",
     "router": "./docs/ui/components/basic",
-    "type": "router",
     "order": 1,
-    "label": "基本"
+    "label": "基本",
+    "type": "router"
   },
   {
     "id": "2-0-1",
     "parentId": "2-0",
     "name": "combination",
     "router": "./docs/ui/components/combination",
-    "type": "router",
     "order": 2,
-    "label": "组合"
+    "label": "组合",
+    "type": "router"
   },
   {
     "id": "2-0-2",
     "parentId": "2-0",
     "name": "senior",
     "router": "./docs/ui/components/senior",
-    "type": "router",
     "order": 3,
-    "label": "高级"
+    "label": "高级",
+    "type": "router"
   },
   {
     "id": "2-0-0-0",
@@ -108,44 +108,49 @@ export const menus: Menu[] = [
     "parentId": null,
     "name": "ui",
     "router": "./docs/ui",
-    "type": "router",
     "order": 1,
-    "label": "UI库"
+    "label": "UI库",
+    "icon": "adt-fire",
+    "type": "router"
   },
   {
     "id": "1",
     "parentId": null,
     "name": "form-design",
     "router": "./docs/form-design",
-    "type": "router",
     "order": 2,
-    "label": "表单设计器"
+    "label": "表单设计器",
+    "icon": "adt-fire",
+    "type": "router"
   },
   {
     "id": "4",
     "parentId": null,
     "name": "workflow-design",
     "router": "./docs/workflow-design",
-    "type": "router",
     "order": 3,
-    "label": "工作流设计"
+    "label": "工作流设计",
+    "icon": "adt-fire",
+    "type": "router"
   },
   {
     "id": "0",
     "parentId": null,
     "name": "code-generator",
     "router": "./docs/code-generator",
-    "type": "router",
     "order": 4,
-    "label": "代码生成"
+    "label": "代码生成",
+    "icon": "adt-fire",
+    "type": "router"
   },
   {
     "id": "3",
     "parentId": null,
     "name": "user-lib",
     "router": "./docs/user-lib",
-    "type": "router",
     "order": 5,
-    "label": "用户模块"
+    "label": "用户模块",
+    "icon": "adt-fire",
+    "type": "router"
   }
 ]
