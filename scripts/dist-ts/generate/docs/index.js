@@ -44,6 +44,9 @@ class NcDocs {
                 else if (level !== 0) {
                     this.addChildren(child, folder, dir, menu.router, menu.id, level);
                 }
+                if (dir.indexOf(exports.componentsDir) === 0 && typeof read.meta.type === "undefined") {
+                    console.log(child, dir, read);
+                }
                 utils_1.generatePage(child);
             }
         });
@@ -66,15 +69,7 @@ class NcDocs {
     createMenu(read, dirName, index, i, router) {
         const id = index == null ? `${i}` : `${index}-${i}`;
         const parentId = index == null ? null : `${index}`;
-        const menu = {
-            id: id,
-            parentId: parentId,
-            name: dirName,
-            router: router,
-            type: read.meta.type,
-            order: read.meta.order,
-            label: read.meta.label
-        };
+        const menu = Object.assign({ id: id, parentId: parentId, name: dirName, router: router }, read.meta);
         this.menus = [...this.menus, menu];
         return menu;
     }

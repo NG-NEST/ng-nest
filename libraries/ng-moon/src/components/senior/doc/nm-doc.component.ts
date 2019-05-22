@@ -37,7 +37,6 @@ export class NmDocComponent implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
-    console.log(this.elementRef.nativeElement.shadowRoot);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

@@ -42,6 +42,7 @@ export interface Menu {
   icon?: string;
   type?: string;
   order?: number;
+  [prop: string]: any;
 }
 
 export const menus: Menu[] = [
