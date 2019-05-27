@@ -305,10 +305,6 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private scrollTo(element: HTMLElement, to: number, duration: number): void {
-    if (duration <= 0) {
-      element.scrollTop = to;
-      return;
-    }
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
     reqAnimFrame(() => {

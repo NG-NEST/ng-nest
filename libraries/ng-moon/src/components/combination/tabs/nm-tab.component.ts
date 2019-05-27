@@ -3,7 +3,8 @@ import {
   Component,
   OnInit,
   TemplateRef,
-  ViewChild
+  ViewChild,
+  Input
 } from "@angular/core";
 
 @Component({
@@ -14,6 +15,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmTabComponent implements OnInit {
+  @Input() nmLabel: string;
   @ViewChild(TemplateRef) content: TemplateRef<void>;
   constructor() {}
 

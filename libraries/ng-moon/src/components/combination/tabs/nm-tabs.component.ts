@@ -94,9 +94,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
     nmBorderPosition: NmSliderBorderPositionEnum.Bottom
   };
   data: NmTabsNode[] = [];
-  @Output() nmActivatedChange?: EventEmitter<
-    NmActivatedTabs
-  > = new EventEmitter<NmActivatedTabs>();
+  @Output() nmActivatedChange?: EventEmitter<NmActivatedTabs> = new EventEmitter<NmActivatedTabs>();
   private _default: NmTabsOption = {
     nmLayout: NmTabsLayoutEnum.Top,
     nmActivatedIndex: 0
@@ -138,14 +136,12 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     // console.log(this.listTabs);
+    this.setData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
-    if (
-      nmDataChange &&
-      nmDataChange.currentValue !== nmDataChange.previousValue
-    ) {
+    if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
       this.setData();
     }
   }
@@ -166,7 +162,17 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   private setData() {
     if (typeof this.nmData === "undefined") {
-      return;
+      if (this.listTabs && this.listTabs.length > 0) {
+        this.nmData = [];
+        this.listTabs.forEach((x, index) => {
+          this.nmData = [
+            ...(this.nmData as NmTabsNode[]),
+            { nmKey: index + 1, nmLabel: x.nmLabel }
+          ];
+        });
+      } else {
+        return;
+      }
     }
     if (this.nmData instanceof Array) {
       this.setDataChange(this.nmData);

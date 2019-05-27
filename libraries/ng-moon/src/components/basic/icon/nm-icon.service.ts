@@ -9,7 +9,7 @@ import { DOCUMENT } from "@angular/common";
 // @dynamic
 @Injectable({ providedIn: "root" })
 export class NmIconService {
-  rootUrl = `http://www.ng-nest.com/assets/icons/`;
+  rootUrl = `http://127.0.0.1/assets/icons/`;
 
   constructor(
     private sanitizer: DomSanitizer,

@@ -51,9 +51,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  @Output() nmActivatedChange?: EventEmitter<
+  @Output() nmActivatedChange?: EventEmitter<NmActivatedSlider> = new EventEmitter<
     NmActivatedSlider
-  > = new EventEmitter<NmActivatedSlider>();
+  >();
 
   private _default: NmSliderOption = {
     nmData: [],
@@ -72,10 +72,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
   get getLayoutRow() {
     if (this.nmLayout === NmSliderLayoutEnum.Row) {
       if (
-        [
-          NmSliderBorderPositionEnum.Left,
-          NmSliderBorderPositionEnum.Right
-        ].indexOf(this.nmBorderPosition) > -1
+        [NmSliderBorderPositionEnum.Left, NmSliderBorderPositionEnum.Right].indexOf(
+          this.nmBorderPosition
+        ) > -1
       ) {
         this.nmBorderPosition = NmSliderBorderPositionEnum.Bottom;
       }
@@ -88,10 +87,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
   get getLayoutColumn() {
     if (this.nmLayout === NmSliderLayoutEnum.Column) {
       if (
-        [
-          NmSliderBorderPositionEnum.Top,
-          NmSliderBorderPositionEnum.Bottom
-        ].indexOf(this.nmBorderPosition) > -1
+        [NmSliderBorderPositionEnum.Top, NmSliderBorderPositionEnum.Bottom].indexOf(
+          this.nmBorderPosition
+        ) > -1
       ) {
         this.nmBorderPosition = NmSliderBorderPositionEnum.Left;
       }
@@ -100,30 +98,22 @@ export class NmSliderComponent implements OnInit, OnChanges {
     return false;
   }
 
-  @HostBinding(
-    `class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Top}`
-  )
+  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Top}`)
   get getBorderPositionTop() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Top;
   }
 
-  @HostBinding(
-    `class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Right}`
-  )
+  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Right}`)
   get getBorderPositionRight() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Right;
   }
 
-  @HostBinding(
-    `class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Bottom}`
-  )
+  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Bottom}`)
   get getBorderPositionBottom() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Bottom;
   }
 
-  @HostBinding(
-    `class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Left}`
-  )
+  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Left}`)
   get getBorderPositionLeft() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Left;
   }
@@ -147,10 +137,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
-    if (
-      nmDataChange &&
-      nmDataChange.currentValue !== nmDataChange.previousValue
-    ) {
+    if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
       this.setData();
     }
   }
@@ -178,15 +165,12 @@ export class NmSliderComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.nmData === "undefined") return;
+    if (typeof this.nmData === "undefined") {
+      return;
+    }
     if (this.nmData instanceof Array) {
       this.setDataChange(this.nmData);
     } else if (this.nmData instanceof BehaviorSubject) {
-      if (this._data$) this._data$.unsubscribe();
-      this._data$ = this.nmData.subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else if (this.nmData instanceof Observable) {
       if (this._data$) this._data$.unsubscribe();
       this._data$ = this.nmData.subscribe(x => {
         this.setDataChange(x);
@@ -206,25 +190,15 @@ export class NmSliderComponent implements OnInit, OnChanges {
     );
     if (activeEle) {
       const width =
-        this.nmLayout == NmSliderLayoutEnum.Column
-          ? "100%"
-          : `${activeEle.offsetWidth}px`;
+        this.nmLayout == NmSliderLayoutEnum.Column ? "100%" : `${activeEle.offsetWidth}px`;
       this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
       this.renderer.setStyle(
         this.highlightRef.nativeElement,
         "height",
         `${activeEle.offsetHeight}px`
       );
-      this.renderer.setStyle(
-        this.highlightRef.nativeElement,
-        "left",
-        `${activeEle.offsetLeft}px`
-      );
-      this.renderer.setStyle(
-        this.highlightRef.nativeElement,
-        "top",
-        `${activeEle.offsetTop}px`
-      );
+      this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
+      this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
     }
   }
 }
