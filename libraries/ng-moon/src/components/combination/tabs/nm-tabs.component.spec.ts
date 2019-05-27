@@ -86,8 +86,8 @@ const testNmTabsNode: NmTabsNode[] = [
 @Component({
   selector: "test-nm-tabs",
   template: `
-    <nm-tabs [nmData]="data" [nmLayout]="layout">
-      <nm-tab
+    <nm-tabs [nmLayout]="layout">
+      <nm-tab [nmLabel]="'Home'"
         ><h1>1 Theme</h1>
         <p>
           This is the topic-one information.
@@ -99,7 +99,7 @@ const testNmTabsNode: NmTabsNode[] = [
           This is the topic-one information.
         </p></nm-tab
       >
-      <nm-tab
+      <nm-tab [nmLabel]="'Docs'"
         ><h1>2 Theme</h1>
         <p>
           This is the topic-one information.
@@ -111,7 +111,7 @@ const testNmTabsNode: NmTabsNode[] = [
           This is the topic-one information.
         </p></nm-tab
       >
-      <nm-tab
+      <nm-tab [nmLabel]="'Examples'"
         ><h1>3 Theme</h1>
         <p>
           This is the topic-one information.
@@ -123,7 +123,7 @@ const testNmTabsNode: NmTabsNode[] = [
           This is the topic-one information.
         </p></nm-tab
       >
-      <nm-tab
+      <nm-tab [nmLabel]="'Api'"
         ><h1>4 Theme</h1>
         <p>
           This is the topic-one information.

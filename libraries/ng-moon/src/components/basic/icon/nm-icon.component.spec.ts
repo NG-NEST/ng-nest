@@ -55,7 +55,7 @@ describe(IconPrefix, () => {
       expect(element.classList).toContain(testComponent.type);
     });
     it("warn SVG tag not Found.", () => {
-      testComponent.type = "adt-not-found";
+      testComponent.type = "adt-werdf";
       fixture.detectChanges();
       expect(element.classList).toContain(testComponent.type);
     });
