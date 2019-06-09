@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NmDocComponent } from "./nm-doc.component";
+import { NmExamplesComponent } from "./nm-examples.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { NmDocModule } from "./nm-doc.module";
-import { DocPrefix } from "./nm-doc.type";
+import { NmExamplesModule } from "./nm-examples.module";
+import { ExamplesPrefix } from "./nm-examples.type";
 
-describe(DocPrefix, () => {
+describe(ExamplesPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NmDocModule],
-      declarations: [TestNmDocComponent]
+      imports: [NmExamplesModule],
+      declarations: [TestNmExamplesComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
-    let fixture: ComponentFixture<TestNmDocComponent>;
+    let fixture: ComponentFixture<TestNmExamplesComponent>;
     let debugElement: DebugElement;
     let element: Element;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestNmDocComponent);
+      fixture = TestBed.createComponent(TestNmExamplesComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(NmDocComponent));
+      debugElement = fixture.debugElement.query(By.directive(NmExamplesComponent));
       element = debugElement.nativeElement;
     });
     it("should create.", () => {
@@ -28,15 +28,15 @@ describe(DocPrefix, () => {
     });
     it("should className.", () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(DocPrefix);
+      expect(element.classList).toContain(ExamplesPrefix);
     });
   });
 });
 
 @Component({
-  selector: "test-nm-doc",
+  selector: "test-nm-examples",
   template: `
-    <nm-doc>nm-doc</nm-doc>
+    <nm-examples>nm-examples</nm-examples>
   `
 })
-class TestNmDocComponent {}
+class TestNmExamplesComponent {}
