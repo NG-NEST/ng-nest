@@ -8,6 +8,7 @@ import { NmAnchorModule } from "./components/combination/anchor/nm-anchor.module
 import { NmTabsModule } from "./components/combination/tabs/nm-tabs.module";
 
 import { NmDocModule } from "./components/senior/doc/nm-doc.module";
+import { NmExamplesModule } from './components/senior/exmaples/nm-examples.module';
 
 export * from "./components/basic/icon";
 export * from "./components/basic/slider";
@@ -15,6 +16,7 @@ export * from "./components/combination/anchor";
 export * from "./components/combination/input";
 export * from "./components/combination/tabs";
 export * from "./components/senior/doc";
+export * from "./components/senior/exmaples";
 export * from "./core/util";
 
 @NgModule({
@@ -24,7 +26,8 @@ export * from "./core/util";
     NmInputModule,
     NmAnchorModule,
     NmTabsModule,
-    NmDocModule
+    NmDocModule,
+    NmExamplesModule
   ]
 })
 export class NgMoonModule {

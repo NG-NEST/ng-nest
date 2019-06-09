@@ -139,7 +139,6 @@ const testNmTabsNode: NmTabsNode[] = [
   `
 })
 class TestNmTabsComponent {
-  data: NmData<NmTabsNode[]> = testNmTabsNode;
   layout: NmTabsLayoutEnum;
   position: NmTabsLayoutEnum;
 }
