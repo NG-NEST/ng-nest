@@ -96,6 +96,13 @@ export const menus: Menu[] = [
     "label": "文档"
   },
   {
+    "id": "2-0-2-1",
+    "parentId": "2-0-2",
+    "name": "exmaples",
+    "router": "./docs/ui/components/senior/exmaples",
+    "label": "示例"
+  },
+  {
     "id": "2-1-0",
     "parentId": "2-1",
     "name": "guide",

@@ -45,7 +45,7 @@ class NcDocs {
                     this.addChildren(child, folder, dir, menu.router, menu.id, level);
                 }
                 if (dir.indexOf(exports.componentsDir) === 0 && typeof read.meta.type === "undefined") {
-                    console.log(child, dir, read);
+                    utils_1.handlerComponent(child);
                 }
                 utils_1.generatePage(child);
             }
