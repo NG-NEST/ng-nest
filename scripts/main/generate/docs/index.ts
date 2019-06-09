@@ -6,7 +6,8 @@ import {
   pageAddChildren,
   generatePage,
   parseMdDoc,
-  generateMenu
+  generateMenu,
+  handlerComponent
 } from "../../utils";
 import * as path from "path";
 import * as fs from "fs-extra";
@@ -65,7 +66,7 @@ export class NcDocs {
           this.addChildren(child, folder, dir, menu.router, menu.id, level);
         }
         if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
-          console.log(child, dir, read);
+          handlerComponent(child);
         }
         generatePage(child);
       }
