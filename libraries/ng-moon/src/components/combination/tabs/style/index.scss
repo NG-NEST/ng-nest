@@ -11,16 +11,26 @@
 
 :host(.#{$prefix}-top) {
   flex-direction: column;
+  padding-top: 1rem;
 }
 
 :host(.#{$prefix}-right) {
   flex-direction: row-reverse;
+  > .#{$prefix}-content {
+    padding-right: 1rem;
+  }
 }
 
 :host(.#{$prefix}-bottom) {
   flex-direction: column-reverse;
+  > .#{$prefix}-content {
+    padding-bottom: 1rem;
+  }
 }
 
 :host(.#{$prefix}-left) {
   flex-direction: row;
+  > .#{$prefix}-content {
+    padding-left: 1rem;
+  }
 }

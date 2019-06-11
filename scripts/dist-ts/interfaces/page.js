@@ -8,6 +8,7 @@ class NcPage {
         this.templates = [];
         this.type = "default";
         this.children = [];
+        this.path = "";
         Object.assign(this, param);
         if (!this.fileName) {
             this.fileName = !this.fileName && `${this.prefix}-${this.name}`;
