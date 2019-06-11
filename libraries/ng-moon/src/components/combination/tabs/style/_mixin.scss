@@ -21,8 +21,7 @@
       }
     }
     &-animated {
-      transition: margin-left $animation-duration-slow
-        cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: margin-left $animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1);
       will-change: margin-left;
       > nm-tab-content {
         &.nm-tab-content-unactivated {

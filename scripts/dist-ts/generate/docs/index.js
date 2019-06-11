@@ -35,10 +35,12 @@ class NcDocs {
                 const read = utils_1.parseMdDoc(path.join(dir, "readme.md"));
                 const folder = path.join(genDir, x);
                 const child = this.createChild(read, x, folder);
+                child.path = dir;
                 page.children = [...page.children, child];
                 const thisRouter = `${router}/${x}`;
                 const menu = this.createMenu(read, x, index, i, thisRouter);
                 if (x === "components") {
+                    child.path = exports.componentsDir;
                     this.addChildren(child, folder, exports.componentsDir, menu.router, menu.id, 2);
                 }
                 else if (level !== 0) {

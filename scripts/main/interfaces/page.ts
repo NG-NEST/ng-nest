@@ -14,6 +14,7 @@ export class NcPage {
   templates?: NcTemplate[] = [];
   type?: NcTemplateType = "default";
   children?: NcPage[] = [];
+  path?: string = "";
   order?: number;
   constructor(param: NcPage) {
     Object.assign(this, param);
