@@ -16,7 +16,7 @@ import {
 })
 export class NmTabComponent implements OnInit {
   @Input() nmLabel: string;
-  @ViewChild(TemplateRef) content: TemplateRef<void>;
+  @ViewChild(TemplateRef, { static: false }) content: TemplateRef<void>;
   constructor() {}
 
   ngOnInit() {}

@@ -30,7 +30,7 @@ import {
 } from "../../basic/slider";
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: "nm-anchor",
@@ -55,9 +55,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
   @Input() nmScrollElement: HTMLElement | Window;
 
-  @Output() nmActivatedChange?: EventEmitter<
+  @Output() nmActivatedChange?: EventEmitter<NmActivatedAnchor> = new EventEmitter<
     NmActivatedAnchor
-  > = new EventEmitter<NmActivatedAnchor>();
+  >();
 
   listFixed: boolean = false;
 
@@ -78,9 +78,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   private _windowSize$: Subscription | null = null;
   private _hElements: HTMLElement[];
   private _isAnimation: boolean = false;
-  @ViewChild("slider") slider: NmSliderComponent;
-  @ViewChild("list") list: ElementRef;
-  @ViewChild("content") content: ElementRef;
+  @ViewChild("slider", { static: false }) slider: NmSliderComponent;
+  @ViewChild("list", { static: false }) list: ElementRef;
+  @ViewChild("content", { static: false }) content: ElementRef;
 
   @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`)
   get getLayoutLeft() {
@@ -128,11 +128,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     this._isAnimation = true;
     const activatedEle = this._hElements[activated.nmActivatedIndex];
     const marginTop = computedStyle(activatedEle, "marginTop") as number;
-    let top =
-      activatedEle.offsetTop +
-      this.elementRef.nativeElement.offsetTop -
-      marginTop +
-      1;
+    let top = activatedEle.offsetTop + this.elementRef.nativeElement.offsetTop - marginTop + 1;
     let scrollEle = this._windowScroll
       ? this.doc.documentElement
       : (this.nmScrollElement as HTMLElement);
@@ -154,14 +150,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setHElements() {
-    this._hElements = this.elementRef.nativeElement.querySelectorAll(
-      "h1, h2, h3, h4, h5"
-    );
+    this._hElements = this.elementRef.nativeElement.querySelectorAll("h1, h2, h3, h4, h5");
     if (this._hElements.length > 0) {
-      this.renderer.addClass(
-        this.elementRef.nativeElement,
-        `${AnchorPrefix}-open`
-      );
+      this.renderer.addClass(this.elementRef.nativeElement, `${AnchorPrefix}-open`);
       let list: NmAnchorNode[] = [];
       this._hElements.forEach((x: HTMLElement, i: number) => {
         const link = `nm-anchor-${i}`;
@@ -210,9 +201,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       throttleTime(10),
       distinctUntilChanged()
     );
-    this._scroll$ = this.scrollObservable.subscribe(() =>
-      this.setActiveatedIndex()
-    );
+    this._scroll$ = this.scrollObservable.subscribe(() => this.setActiveatedIndex());
   }
 
   setActiveatedIndex() {
@@ -223,12 +212,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       let now = 0;
       this._hElements.forEach((item, index) => {
         let distance = scrollTop - this.elementRef.nativeElement.offsetTop;
-        if (!this._windowScroll)
-          distance += (this.nmScrollElement as HTMLElement).offsetTop;
-        if (
-          distance >=
-          item.offsetTop - (computedStyle(item, "marginTop") as number)
-        ) {
+        if (!this._windowScroll) distance += (this.nmScrollElement as HTMLElement).offsetTop;
+        if (distance >= item.offsetTop - (computedStyle(item, "marginTop") as number)) {
           now = index;
           return;
         }
@@ -265,8 +250,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setFixedTop() {
-    let windowScrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
+    let windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     this.renderer.setStyle(
       this.list.nativeElement,
       "top",
@@ -283,9 +267,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private getAnchorLeft() {
-    return this.nmLayout === NmAnchorLayoutEnum.Right
-      ? this.content.nativeElement.clientWidth
-      : 0;
+    return this.nmLayout === NmAnchorLayoutEnum.Right ? this.content.nativeElement.clientWidth : 0;
   }
 
   private setListFixed() {

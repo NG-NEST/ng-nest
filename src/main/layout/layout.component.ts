@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  HostBinding,
-  ViewChild
-} from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from "@angular/core";
 import { MediaMatcher, Breakpoints } from "@angular/cdk/layout";
 import { LayoutService } from "./layout.service";
 import { ScrollDispatcher, CdkScrollable } from "@angular/cdk/overlay";
@@ -20,7 +14,7 @@ export class LayoutComponent implements OnInit {
   @HostBinding("class.shrink") get shrink() {
     return this.layoutService.shrink;
   }
-  @ViewChild("content") content: ContentComponent;
+  @ViewChild("content", { static: false }) content: ContentComponent;
 
   constructor(
     private mediaMatcher: MediaMatcher,
