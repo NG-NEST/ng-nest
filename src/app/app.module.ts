@@ -8,21 +8,21 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ShareModule } from "src/share/share.module";
 import { MainRoutesModule } from "src/main/routes.module";
 
-import { HighlightModule } from "ngx-highlightjs";
+// import { HighlightModule } from "ngx-highlightjs";
 
-import xml from "highlight.js/lib/languages/xml";
-import scss from "highlight.js/lib/languages/scss";
-import typescript from "highlight.js/lib/languages/typescript";
+// import xml from "highlight.js/lib/languages/xml";
+// import scss from "highlight.js/lib/languages/scss";
+// import typescript from "highlight.js/lib/languages/typescript";
 import { TestComponent } from './test/test.component';
-import { NgMoonModule } from 'ng-moon';
+// import { NgMoonModule } from 'ng-moon';
 
-export function hljsLanguages() {
-  return [
-    { name: "typescript", func: typescript },
-    { name: "scss", func: scss },
-    { name: "xml", func: xml }
-  ];
-}
+// export function hljsLanguages() {
+//   return [
+//     { name: "typescript", func: typescript },
+//     { name: "scss", func: scss },
+//     { name: "xml", func: xml }
+//   ];
+// }
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
@@ -32,11 +32,11 @@ export function hljsLanguages() {
     ReactiveFormsModule,
     HttpClientModule,
     ShareModule,
-    NgMoonModule,
+    // NgMoonModule,
     MainRoutesModule,
-    HighlightModule.forRoot({
-      languages: hljsLanguages
-    })
+    // HighlightModule.forRoot({
+    //   languages: hljsLanguages
+    // })
   ],
   bootstrap: [AppComponent]
 })

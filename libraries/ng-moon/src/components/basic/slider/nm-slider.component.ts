@@ -62,8 +62,8 @@ export class NmSliderComponent implements OnInit, OnChanges {
     nmActivatedIndex: 0
   };
 
-  @ViewChild("sliders") slidersRef: ElementRef;
-  @ViewChild("highlight") highlightRef: ElementRef;
+  @ViewChild("sliders", { static: false }) slidersRef: ElementRef;
+  @ViewChild("highlight", { static: false }) highlightRef: ElementRef;
   data: NmSliderNode[] = [];
 
   private _data$: Subscription | null = null;

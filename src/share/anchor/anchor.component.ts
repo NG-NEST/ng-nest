@@ -28,7 +28,7 @@ export class NsAnchorComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostBinding("class.ns-anchor") className() {
     return true;
   }
-  @ViewChild("highlight") highlight: ElementRef;
+  @ViewChild("highlight", { static: false }) highlight: ElementRef;
   hList: HTMLElement[];
   list: NsAnchorNode[];
   active: number = 0;
