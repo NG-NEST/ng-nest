@@ -14,7 +14,7 @@ export class LayoutComponent implements OnInit {
   @HostBinding("class.shrink") get shrink() {
     return this.layoutService.shrink;
   }
-  @ViewChild("content", { static: false }) content: ContentComponent;
+  @ViewChild("content", { static: true }) content: ContentComponent;
 
   constructor(
     private mediaMatcher: MediaMatcher,

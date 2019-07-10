@@ -52,36 +52,36 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
     nmIconLayout: NmInputIconLayoutEnum.Right
   };
 
-  @HostBinding(`class.${InputPrefix}-disabled`) get getDisabled() {
+  @HostBinding(`class.nm-input-disabled`) get getDisabled() {
     return this.nmDisabled;
   }
 
-  @HostBinding(`class.${InputPrefix}-required`) get getRequired() {
+  @HostBinding(`class.nm-input-required`) get getRequired() {
     return this.nmRequired;
   }
 
-  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Horizontal}`)
+  @HostBinding(`class.nm-input-horizontal`)
   get getLayoutHorizontal() {
     return this.nmLayout === NmInputLayoutEnum.Horizontal;
   }
 
-  @HostBinding(`class.${InputPrefix}-${NmInputLayoutEnum.Vertical}`)
+  @HostBinding(`class.nm-input-vertical`)
   get getLayoutVertical() {
     return this.nmLayout === NmInputLayoutEnum.Vertical;
   }
 
-  @HostBinding(`class.${InputPrefix}-icon`) get getIcon() {
+  @HostBinding(`class.nm-input-icon`) get getIcon() {
     return !isEmpty(this.nmIcon);
   }
 
-  @HostBinding(`class.${InputPrefix}-icon-${NmInputIconLayoutEnum.Left}`)
+  @HostBinding(`class.nm-input-icon-left`)
   get getIconLayoutLeft() {
     return (
       !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Left
     );
   }
 
-  @HostBinding(`class.${InputPrefix}-icon-${NmInputIconLayoutEnum.Right}`)
+  @HostBinding(`class.nm-input-icon-right`)
   get getIconLayoutRight() {
     return (
       !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Right

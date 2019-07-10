@@ -14,13 +14,11 @@ export class SiderNodeComponent implements OnInit {
 
   child = [];
 
-  constructor(private layoutService: LayoutService) {}
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {
     this.level = this.level + 1;
-    this.child = this.layoutService.menus.filter(
-      x => x.parentId === this.option.id
-    );
+    this.child = this.layoutService.menus.filter(x => x.parentId === this.option.id);
   }
 
   toggle(event: Event, option) {
@@ -28,5 +26,5 @@ export class SiderNodeComponent implements OnInit {
     if (this.child.length > 0) option.childrenShow = !option.childrenShow;
   }
 
-  sider() {}
+  sider(option) {}
 }
