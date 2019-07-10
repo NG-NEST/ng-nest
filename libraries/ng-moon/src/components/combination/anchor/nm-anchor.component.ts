@@ -82,11 +82,11 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   @ViewChild("list", { static: false }) list: ElementRef;
   @ViewChild("content", { static: false }) content: ElementRef;
 
-  @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`)
+  @HostBinding(`class.nm-anchor-left`)
   get getLayoutLeft() {
     return this.nmLayout === NmAnchorLayoutEnum.Left;
   }
-  @HostBinding(`class.${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`)
+  @HostBinding(`class.nm-anchor-right`)
   get getLayoutRight() {
     return this.nmLayout === NmAnchorLayoutEnum.Right;
   }

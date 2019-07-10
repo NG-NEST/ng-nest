@@ -62,13 +62,13 @@ export class NmSliderComponent implements OnInit, OnChanges {
     nmActivatedIndex: 0
   };
 
-  @ViewChild("sliders", { static: false }) slidersRef: ElementRef;
-  @ViewChild("highlight", { static: false }) highlightRef: ElementRef;
+  @ViewChild("sliders", { static: true }) slidersRef: ElementRef;
+  @ViewChild("highlight", { static: true }) highlightRef: ElementRef;
   data: NmSliderNode[] = [];
 
   private _data$: Subscription | null = null;
 
-  @HostBinding(`class.${SliderPrefix}-${NmSliderLayoutEnum.Row}`)
+  @HostBinding(`class.nm-slider-row`)
   get getLayoutRow() {
     if (this.nmLayout === NmSliderLayoutEnum.Row) {
       if (
@@ -83,7 +83,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
     return false;
   }
 
-  @HostBinding(`class.${SliderPrefix}-${NmSliderLayoutEnum.Column}`)
+  @HostBinding(`class.nm-slider-column`)
   get getLayoutColumn() {
     if (this.nmLayout === NmSliderLayoutEnum.Column) {
       if (
@@ -98,22 +98,22 @@ export class NmSliderComponent implements OnInit, OnChanges {
     return false;
   }
 
-  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Top}`)
+  @HostBinding(`class.nm-slider-border-position-top`)
   get getBorderPositionTop() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Top;
   }
 
-  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Right}`)
+  @HostBinding(`class.nm-slider-border-position-right`)
   get getBorderPositionRight() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Right;
   }
 
-  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Bottom}`)
+  @HostBinding(`class.nm-slider-border-position-bottom`)
   get getBorderPositionBottom() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Bottom;
   }
 
-  @HostBinding(`class.${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Left}`)
+  @HostBinding(`class.nm-slider-border-position-left`)
   get getBorderPositionLeft() {
     return this.nmBorderPosition == NmSliderBorderPositionEnum.Left;
   }

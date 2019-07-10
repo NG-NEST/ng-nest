@@ -44,12 +44,12 @@ import { NmTabComponent } from "./nm-tab.component";
 export class NmTabsComponent implements OnInit, OnChanges {
   @Input() nmData?: NmData<NmTabsNode[]>;
 
-  private _nmLayout?: NmTabsLayoutEnum;
-  public get nmLayout(): NmTabsLayoutEnum {
+  private _nmLayout?: any;
+  public get nmLayout(): any {
     return this._nmLayout;
   }
   @Input()
-  public set nmLayout(value: NmTabsLayoutEnum) {
+  public set nmLayout(value: any) {
     this._nmLayout = value;
     if (this._nmLayout === NmTabsLayoutEnum.Top) {
       this.setSliderOption({
@@ -104,21 +104,21 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   @ContentChildren(NmTabComponent) listTabs: QueryList<NmTabComponent>;
 
-  @HostBinding(`class.${TabsPrefix}-${NmTabsLayoutEnum.Top}`)
+  @HostBinding(`class.nm-tabs-top`)
   get getLayoutTop() {
-    return this.nmLayout == NmTabsLayoutEnum.Top;
+    return this.nmLayout === NmTabsLayoutEnum.Top;
   }
-  @HostBinding(`class.${TabsPrefix}-${NmTabsLayoutEnum.Right}`)
+  @HostBinding(`class.nm-tabs-right`)
   get getLayoutRight() {
-    return this.nmLayout == NmTabsLayoutEnum.Right;
+    return this.nmLayout === NmTabsLayoutEnum.Right;
   }
-  @HostBinding(`class.${TabsPrefix}-${NmTabsLayoutEnum.Bottom}`)
+  @HostBinding(`class.nm-tabs-bottom`)
   get getLayoutBottom() {
-    return this.nmLayout == NmTabsLayoutEnum.Bottom;
+    return this.nmLayout === NmTabsLayoutEnum.Bottom;
   }
-  @HostBinding(`class.${TabsPrefix}-${NmTabsLayoutEnum.Left}`)
+  @HostBinding(`class.nm-tabs-left`)
   get getLayoutLeft() {
-    return this.nmLayout == NmTabsLayoutEnum.Left;
+    return this.nmLayout === NmTabsLayoutEnum.Left;
   }
 
   constructor(

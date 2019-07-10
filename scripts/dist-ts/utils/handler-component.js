@@ -11,14 +11,18 @@ function handlerComponent(page) {
 }
 exports.handlerComponent = handlerComponent;
 function createExamples(page) {
+    let examples = {};
     let temp = fs.readFileSync(path.join(tplDir, "examples-component.template.html"), "utf8");
-    let dir = path.join(page.path, "examples");
-    let examples = fs.readdirSync(dir, "utf8");
-    createTabs(page, examples.map(x => path.join(dir, x)));
+    examples.path = path.join(page.path, "examples");
+    createTabs(examples);
     page.custom = generate_page_1.replaceKey(page.custom, "__examples", temp);
 }
 exports.createExamples = createExamples;
-function createTabs(page, exampleDirs) {
-    console.log(exampleDirs);
+function createTabs(examples) {
+    let cates = fs.readdirSync(examples.path, "utf8");
+    cates.forEach(x => {
+        let cate = {};
+        cate.path = path.join(examples.path, x);
+    });
 }
 exports.createTabs = createTabs;

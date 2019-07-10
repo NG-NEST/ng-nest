@@ -13,7 +13,7 @@ import { NmCodeComponent } from "./code/code.component";
 // import { HighlightModule } from "ngx-highlightjs";
 import { NmPanelComponent } from "./panel/panel.component";
 import { NmIconsComponent } from "./icons/icons.component";
-// import { NgMoonModule } from "ng-moon";
+import { NgMoonModule } from "ng-moon";
 
 const components = [
   DevelopingComponent,
@@ -36,7 +36,7 @@ const modules = [
   DragDropModule,
   LayoutModule,
   // HighlightModule,
-  // NgMoonModule
+  NgMoonModule
 ];
 
 const providers = [];
