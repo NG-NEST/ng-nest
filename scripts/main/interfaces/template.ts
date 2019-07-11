@@ -37,4 +37,10 @@ export type NcTplName = string | NcTemplate;
 
 export type NcExtension = "ts" | "html" | "scss";
 
+/**
+ * 模板类型
+ * default 默认，组件页面
+ * router 路由节点页面
+ * custome 自定义内容页面
+ */
 export type NcTemplateType = "default" | "router" | "custom";

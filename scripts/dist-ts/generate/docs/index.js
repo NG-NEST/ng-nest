@@ -49,6 +49,7 @@ class NcDocs {
                 if (dir.indexOf(exports.componentsDir) === 0 && typeof read.meta.type === "undefined") {
                     utils_1.handlerComponent(child);
                 }
+                console.log(child);
                 utils_1.generatePage(child);
             }
         });

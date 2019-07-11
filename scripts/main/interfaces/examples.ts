@@ -1,6 +1,6 @@
 /**
  * 示例对象
- * 组件文档中的示例代码根据此对象生成对应的代码
+ * 文档中的示例代码根据此对象生成对应的代码
  *
  * @export
  * @interface NcExamples
@@ -46,6 +46,13 @@ export interface NcCate {
    */
   label?: string;
   /**
+   * 文件夹名称
+   *
+   * @type {string}
+   * @memberof NcCate
+   */
+  name?: string;
+  /**
    * 分类路径
    *
    * @type {number}
@@ -69,5 +76,25 @@ export interface NcCate {
  * @interface NcCodeBox
  */
 export interface NcCodeBox {
-
+  /**
+   * 示例
+   *
+   * @type {string}
+   * @memberof NcCodeBox
+   */
+  demo?: string;
+  /**
+   * 代码
+   *
+   * @type {string}
+   * @memberof NcCodeBox
+   */
+  code?: string;
+  /**
+   * 说明
+   *
+   * @type {string}
+   * @memberof NcCodeBox
+   */
+  description?: string;
 }
