@@ -13,13 +13,22 @@ export interface NcExamples {
    * @memberof NcExamples
    */
   path?: string;
+}
+
+/**
+ * 示例的分类
+ *
+ * @export
+ * @interface NcCates
+ */
+export interface NcCates {
   /**
-   * 示例分类对象
+   * 分类路径
    *
-   * @type {NcCate[]}
-   * @memberof NcExamples
+   * @type {string}
+   * @memberof NcCates
    */
-  cates?: NcCate[];
+  folderPath?: string;
 }
 
 /**

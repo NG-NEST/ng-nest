@@ -70,7 +70,6 @@ export class NcDocs {
         if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
           handlerComponent(child);
         }
-        console.log(child);
         generatePage(child);
       }
     });

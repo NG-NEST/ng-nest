@@ -1,21 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const tabs_1 = require("./../interfaces/tabs");
 const path = require("path");
-const fs = require("fs-extra");
-const generate_page_1 = require("./generate-page");
 const handler_tabs_1 = require("./handler-tabs");
+const handler_cates_1 = require("./handler-cates");
 const tplDir = path.resolve(__dirname, "../../main/templates");
 function handlerComponent(page) {
     if (page.custom.indexOf("__examples") > -1) {
-        createExamples(page);
+        handlerExamples(page);
     }
 }
 exports.handlerComponent = handlerComponent;
-function createExamples(page) {
+function handlerExamples(page) {
     let examples = {};
-    let temp = fs.readFileSync(path.join(tplDir, "examples-component.template.html"), "utf8");
     examples.path = path.join(page.path, "examples");
-    handler_tabs_1.createTabs(examples);
-    page.custom = generate_page_1.replaceKey(page.custom, "__examples", temp);
+    let tabs = handler_tabs_1.handlerTabs({ layout: tabs_1.NcTabsLayoutEnum.Left, folderPath: examples.path });
+    tabs.tabs.forEach(x => {
+        let cates = handler_cates_1.hanlderCates({ folderPath: path.join(tabs.folderPath, x.name) });
+    });
 }
-exports.createExamples = createExamples;
+exports.handlerExamples = handlerExamples;

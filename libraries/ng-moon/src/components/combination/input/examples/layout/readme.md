@@ -1,4 +1,4 @@
 ---
 order: 4
-title: "布局"
+label: "布局"
 ---
