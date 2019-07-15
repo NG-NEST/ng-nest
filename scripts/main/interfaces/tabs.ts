@@ -20,9 +20,30 @@ export interface NcTabs {
    * @memberof NcTabs
    */
   tabs?: NcTab[];
+  /**
+   * 模板路径
+   *
+   * @type {string}
+   * @memberof NcTabs
+   */
+  tplPath?: string;
+  /**
+   * 文件夹路径
+   *
+   * @type {string}
+   * @memberof NcTabs
+   */
+  folderPath?: string;
 }
 
 export interface NcTab {
+  /**
+   * 文件夹名字
+   *
+   * @type {string}
+   * @memberof NcTab
+   */
+  name?: string;
   /**
    * 标签页名称
    *
@@ -30,6 +51,20 @@ export interface NcTab {
    * @memberof NcTab
    */
   label?: string;
+  /**
+   * 排序号
+   *
+   * @type {number}
+   * @memberof NcTab
+   */
+  order?: number;
+  /**
+   * 内容
+   *
+   * @type {string}
+   * @memberof NcTab
+   */
+  content?: string;
 }
 
 /**

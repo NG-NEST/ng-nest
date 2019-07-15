@@ -2,30 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const fs = require("fs-extra");
-const parse_md_doc_1 = require("./parse-md-doc");
+const _1 = require(".");
+const _ = require("lodash");
 const tplDir = path.resolve(__dirname, "../../main/templates");
-function createTabs(examples) {
-    let cates = fs.readdirSync(examples.path, "utf8");
-    cates.forEach(x => {
-        let cate = {
+function handlerTabs(tabs) {
+    tabs.tplPath = path.join(tplDir, "tabs-component.template.html");
+    let folder = fs.readdirSync(tabs.folderPath, "utf8");
+    tabs.tabs = [];
+    folder.forEach(x => {
+        let readme = _1.parseMdDoc(path.join(tabs.folderPath, x, "readme.md"));
+        let tab = {
             name: x,
-            path: path.join(examples.path, x),
-            codeBoxes: []
+            label: readme.meta.label,
+            order: readme.meta.order,
+            content: readme.content
         };
-        createCodeBoxes(cate);
+        tabs.tabs.push(tab);
     });
+    tabs.tabs = _.sortBy(tabs.tabs, "order");
+    return tabs;
 }
-exports.createTabs = createTabs;
-function createCodeBoxes(cate) {
-    let html = fs.readFileSync(path.join(cate.path, `${cate.name}.html`), "utf-8");
-    let readme = parse_md_doc_1.parseMdDoc(path.join(cate.path, "readme.md"));
-    let box = {
-        demo: html,
-        code: html,
-        description: readme.content
-    };
-    cate.order = readme.meta.order;
-    cate.label = readme.meta.label;
-    cate.codeBoxes.push(box);
-}
-exports.createCodeBoxes = createCodeBoxes;
+exports.handlerTabs = handlerTabs;

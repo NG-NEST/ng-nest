@@ -1,22 +1,38 @@
+import { NcTabsLayoutEnum } from "./../interfaces/tabs";
 import * as path from "path";
 import * as fs from "fs-extra";
 import { NcPage } from "../interfaces/page";
-import { replaceKey } from "./generate-page";
 import { NcExamples } from "../interfaces/examples";
-import { createTabs } from "./handler-tabs";
+import { handlerTabs } from "./handler-tabs";
+import { hanlderCates } from "./handler-cates";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
+/**
+ * 组件处理
+ *
+ * @export
+ * @param {NcPage} page
+ */
 export function handlerComponent(page: NcPage) {
   if (page.custom.indexOf("__examples") > -1) {
-    createExamples(page);
+    handlerExamples(page);
   }
 }
 
-export function createExamples(page: NcPage) {
+/**
+ * 示例内容处理
+ *
+ * @export
+ * @param {NcPage} page
+ */
+export function handlerExamples(page: NcPage) {
   let examples: NcExamples = {};
-  let temp = fs.readFileSync(path.join(tplDir, "examples-component.template.html"), "utf8");
   examples.path = path.join(page.path, "examples");
-  createTabs(examples);
-  page.custom = replaceKey(page.custom, "__examples", temp);
+  let tabs = handlerTabs({ layout: NcTabsLayoutEnum.Left, folderPath: examples.path });
+  // console.log(tabs);
+  tabs.tabs.forEach(x => {
+    let cates = hanlderCates({ folderPath: path.join(tabs.folderPath, x.name) });
+  });
+  // page.custom = replaceKey(page.custom, "__examples", replaceKey(temp, "__tabs", tabs));
 }
