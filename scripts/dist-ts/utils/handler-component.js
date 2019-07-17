@@ -16,7 +16,9 @@ function handlerExamples(page) {
     examples.path = path.join(page.path, "examples");
     let tabs = handler_tabs_1.handlerTabs({ layout: tabs_1.NcTabsLayoutEnum.Left, folderPath: examples.path });
     tabs.tabs.forEach(x => {
-        let cates = handler_cates_1.hanlderCates({ folderPath: path.join(tabs.folderPath, x.name) });
+        let cates = { folderPath: path.join(tabs.folderPath, x.name) };
+        handler_cates_1.hanlderCates(cates);
+        console.log(cates);
     });
 }
 exports.handlerExamples = handlerExamples;

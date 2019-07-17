@@ -29,6 +29,13 @@ export interface NcCates {
    * @memberof NcCates
    */
   folderPath?: string;
+  /**
+   * 分类列表
+   *
+   * @type {NcCate[]}
+   * @memberof NcCates
+   */
+  list?: NcCate[];
 }
 
 /**
@@ -71,10 +78,10 @@ export interface NcCate {
   /**
    * 代码块
    *
-   * @type {NcCodeBox[]}
+   * @type {NcCodeBox}
    * @memberof NcCate
    */
-  codeBoxes?: NcCodeBox[];
+  codeBoxes?: NcCodeBox;
 }
 
 /**
@@ -98,7 +105,7 @@ export interface NcCodeBox {
    * @type {string}
    * @memberof NcCodeBox
    */
-  code?: string;
+  codes?: NcCode[];
   /**
    * 说明
    *
@@ -106,4 +113,40 @@ export interface NcCodeBox {
    * @memberof NcCodeBox
    */
   description?: string;
+}
+
+/**
+ * 单个代码块的代码
+ * 一个或多个 HTML SCSS TS， 入口文件取对应的文件夹名字
+ *
+ * @export
+ * @interface NcCode
+ */
+export interface NcCode {
+  /**
+   * 文件类型
+   *
+   * @type {NcCodeType}
+   * @memberof NcCode
+   */
+  type?: NcCodeType;
+  /**
+   * 文件内容
+   *
+   * @type {string}
+   * @memberof NcCode
+   */
+  content?: string;
+}
+
+/**
+ * 文件类型
+ *
+ * @export
+ * @enum {number}
+ */
+export enum NcCodeType {
+  HTML = "html",
+  SCSS = "scss",
+  TS = "ts"
 }
