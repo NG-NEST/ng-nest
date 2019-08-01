@@ -9,6 +9,7 @@
 
 # generate files
 /src/main/docs
+/scripts/build
 
 # dependencies
 /node_modules
