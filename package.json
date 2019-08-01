@@ -11,7 +11,7 @@
     "build:zh": "ng build --prod --configuration=production-zh",
     "build:ng-moon": "ng build ng-moon",
     "build:old-docs": "node ./scripts/build/generate-docs-ui-components.js",
-    "build:docs": "npm run build:scripts && node ./scripts/dist-ts/generate/docs",
+    "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
     "test": "ng test ng-moon",
     "lint": "ng lint",

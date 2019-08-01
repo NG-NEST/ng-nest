@@ -26,7 +26,7 @@ export function hanlderCates(cates: NcCates) {
         path: catePath
       };
       handlerCodeBoxes(cate, readme)
-      cates.list.push();
+      cates.list.push(cate);
       cates.list = _.sortBy(cates.list, "order");
     }
   });
@@ -35,7 +35,7 @@ export function hanlderCates(cates: NcCates) {
 }
 
 export function handlerCodeBoxes(cate: NcCate, readme) {
-  let html = fs.readFileSync(path.join(cate.path, `${cate.name}.html`), "utf-8");
+  let html = fs.readFileSync(path.join(cate.path, `${cate.name}.component.html`), "utf-8");
   let box: NcCodeBox = {
     demo: html,
     codes: [],

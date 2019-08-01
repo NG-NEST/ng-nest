@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "target": "es6",
     "allowJs": true,
-    "outDir": "./dist-ts/",
+    "outDir": "./build/",
     "rootDir": "./main",
     "lib": ["es7"]
   },
