@@ -5,6 +5,7 @@ import { NcPage } from "../interfaces/page";
 import { NcExamples, NcCates } from "../interfaces/examples";
 import { handlerTabs } from "./handler-tabs";
 import { hanlderCates } from "./handler-cates";
+import { replaceKey } from ".";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
@@ -33,8 +34,9 @@ export function handlerExamples(page: NcPage) {
   tabs.tabs.forEach(x => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
     hanlderCates(cates);
-    console.log(cates);
+    // console.log(cates);
   });
+  console.log(page.custom)
   // console.log(page);
   // page.custom = replaceKey(page.custom, "__examples", replaceKey(temp, "__tabs", tabs));
 }
