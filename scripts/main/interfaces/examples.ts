@@ -93,13 +93,6 @@ export interface NcCate {
  */
 export interface NcCodeBox {
   /**
-   * 示例
-   *
-   * @type {string}
-   * @memberof NcCodeBox
-   */
-  demo?: string;
-  /**
    * 代码
    *
    * @type {string}
@@ -124,12 +117,19 @@ export interface NcCodeBox {
  */
 export interface NcCode {
   /**
+   * 文件名
+   *
+   * @type {string}
+   * @memberof NcCode
+   */
+  name?: string;
+  /**
    * 文件类型
    *
    * @type {NcCodeType}
    * @memberof NcCode
    */
-  type?: NcCodeType;
+  type?: string;
   /**
    * 文件内容
    *
@@ -137,16 +137,4 @@ export interface NcCode {
    * @memberof NcCode
    */
   content?: string;
-}
-
-/**
- * 文件类型
- *
- * @export
- * @enum {number}
- */
-export enum NcCodeType {
-  HTML = "html",
-  SCSS = "scss",
-  TS = "ts"
 }

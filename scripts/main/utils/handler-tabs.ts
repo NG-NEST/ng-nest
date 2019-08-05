@@ -20,14 +20,17 @@ export function handlerTabs(tabs: NcTabs) {
   let folder = fs.readdirSync(tabs.folderPath, "utf8");
   tabs.tabs = [];
   folder.forEach(x => {
-    let readme = parseMdDoc(path.join(tabs.folderPath, x, "readme.md"));
-    let tab: NcTab = {
-      name: x,
-      label: readme.meta.label,
-      order: readme.meta.order,
-      content: readme.content
-    };
-    tabs.tabs.push(tab);
+    let folder = path.join(tabs.folderPath, x);
+    if (fs.lstatSync(folder).isDirectory()) {
+      let readme = parseMdDoc(path.join(folder, "readme.md"));
+      let tab: NcTab = {
+        name: x,
+        label: readme.meta.label,
+        order: readme.meta.order,
+        content: readme.content
+      };
+      tabs.tabs.push(tab);
+    }
   });
   tabs.tabs = _.sortBy(tabs.tabs, "order");
 

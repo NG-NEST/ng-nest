@@ -34,6 +34,13 @@ export interface NcTabs {
    * @memberof NcTabs
    */
   folderPath?: string;
+  /**
+   * 内容
+   *
+   * @type {string}
+   * @memberof NcTabs
+   */
+  content?: string;
 }
 
 export interface NcTab {

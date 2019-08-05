@@ -5,9 +5,7 @@ import { NcPage } from "../interfaces/page";
 import { NcExamples, NcCates } from "../interfaces/examples";
 import { handlerTabs } from "./handler-tabs";
 import { hanlderCates } from "./handler-cates";
-import { replaceKey } from ".";
-
-const tplDir = path.resolve(__dirname, "../../main/templates");
+import { generateCates } from "./generate-cates";
 
 /**
  * 组件处理
@@ -32,11 +30,14 @@ export function handlerExamples(page: NcPage) {
   examples.path = path.join(page.path, "examples");
   let tabs = handlerTabs({ layout: NcTabsLayoutEnum.Left, folderPath: examples.path });
   tabs.tabs.forEach(x => {
+    // console.log(x);
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
     hanlderCates(cates);
-    // console.log(cates);
+    x.content = generateCates(cates)
   });
-  console.log(page.custom)
+  // console.log(tabs);
+  // console.log(tabs);
+  // console.log(page.custom)
   // console.log(page);
   // page.custom = replaceKey(page.custom, "__examples", replaceKey(temp, "__tabs", tabs));
 }

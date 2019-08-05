@@ -1,10 +1,8 @@
 import * as path from "path";
 import * as fs from "fs-extra";
-import { NcCate, NcCates, NcCodeType, NcCode, NcCodeBox } from "../interfaces/examples";
+import { NcCate, NcCates, NcCode, NcCodeBox } from "../interfaces/examples";
 import { parseMdDoc } from ".";
-import _ = require("lodash");
-
-const tplDir = path.resolve(__dirname, "../../main/templates");
+import * as _ from "lodash";
 
 /**
  * 示例分类处理
@@ -25,20 +23,35 @@ export function hanlderCates(cates: NcCates) {
         label: readme.meta.label,
         path: catePath
       };
-      handlerCodeBoxes(cate, readme)
+      handlerCodeBoxes(cate, readme);
       cates.list.push(cate);
       cates.list = _.sortBy(cates.list, "order");
     }
   });
-
-  // console.log(cates);
 }
 
+/**
+ * 分类中的代码处理
+ *
+ * @export
+ * @param {NcCate} cate
+ * @param {*} readme
+ */
 export function handlerCodeBoxes(cate: NcCate, readme) {
-  let html = fs.readFileSync(path.join(cate.path, `${cate.name}.component.html`), "utf-8");
+  let folder = fs.readdirSync(cate.path, "utf8");
   let box: NcCodeBox = {
-    demo: html,
     codes: [],
     description: readme.content
   };
+  folder.forEach(x => {
+    if (x !== "readme.md") {
+      let code: NcCode = {
+        name: x,
+        type: x.slice(x.lastIndexOf(".") + 1, x.length),
+        content: fs.readFileSync(path.join(cate.path, x), "utf8")
+      };
+      box.codes.push(code);
+    }
+  });
+  cate.codeBoxes = box;
 }
