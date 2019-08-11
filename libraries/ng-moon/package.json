@@ -6,6 +6,8 @@
     "@angular/cdk": "~8.0.2",
     "@angular/common": "~8.1.0",
     "@angular/core": "~8.1.0",
-    "@angular/forms": "~8.1.0"
+    "@angular/forms": "~8.1.0",
+    "highlight.js": "^9.15.9",
+    "@types/highlight.js": "^9.12.3"
   }
 }

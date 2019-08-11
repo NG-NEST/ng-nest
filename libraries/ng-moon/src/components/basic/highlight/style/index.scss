@@ -1,0 +1,11 @@
+// Highlight
+
+@import "../../../../style/themes/default";
+@import "../../../../style/mixins/index";
+@import "./mixin";
+
+:host {
+  @include reset-component();
+  @include highlight();
+  @include github();
+}

@@ -13,6 +13,13 @@ export interface NcExamples {
    * @memberof NcExamples
    */
   path?: string;
+  /**
+   * 模板路径
+   *
+   * @type {string}
+   * @memberof NcExamples
+   */
+  tplPath?: string;
 }
 
 /**
@@ -36,6 +43,13 @@ export interface NcCates {
    * @memberof NcCates
    */
   list?: NcCate[];
+  /**
+   * 内容
+   *
+   * @type {string}
+   * @memberof NcCates
+   */
+  content?: string;
 }
 
 /**

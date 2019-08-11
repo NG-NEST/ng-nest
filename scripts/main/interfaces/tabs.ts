@@ -64,7 +64,7 @@ export interface NcTab {
    * @type {number}
    * @memberof NcTab
    */
-  order?: number;
+  order?: string;
   /**
    * 内容
    *

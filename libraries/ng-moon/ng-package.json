@@ -2,6 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ng-moon",
   "lib": {
-    "entryFile": "src/ng-moon.module.ts"
+    "entryFile": "src/ng-moon.module.ts",
+    "umdModuleIds": {
+      "highlight.js": "hljs",
+      "lodash": "_"
+    }
   }
 }

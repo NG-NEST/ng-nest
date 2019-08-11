@@ -56,12 +56,19 @@ export const menus: Menu[] = [
   {
     "id": "2-0-0-0",
     "parentId": "2-0-0",
+    "name": "highlight",
+    "router": "./docs/ui/components/basic/highlight",
+    "label": "代码高亮"
+  },
+  {
+    "id": "2-0-0-1",
+    "parentId": "2-0-0",
     "name": "icon",
     "router": "./docs/ui/components/basic/icon",
     "label": "图标"
   },
   {
-    "id": "2-0-0-2",
+    "id": "2-0-0-3",
     "parentId": "2-0-0",
     "name": "slider",
     "router": "./docs/ui/components/basic/slider",

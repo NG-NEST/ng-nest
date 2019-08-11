@@ -10,7 +10,6 @@ import {
   Output,
   EventEmitter,
   ContentChildren,
-  QueryList,
   ElementRef,
   Renderer2
 } from "@angular/core";
@@ -102,7 +101,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   private _data$: Subscription | null = null;
 
-  @ContentChildren(NmTabComponent) listTabs: QueryList<NmTabComponent>;
+  @ContentChildren(NmTabComponent) listTabs: Array<NmTabComponent>;
 
   @HostBinding(`class.nm-tabs-top`)
   get getLayoutTop() {

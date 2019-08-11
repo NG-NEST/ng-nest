@@ -1,6 +1,13 @@
 import { NcMenu } from "../interfaces/menu";
 import * as fs from "fs-extra";
 
+/**
+ * 生成菜单
+ *
+ * @export
+ * @param {string} genDir
+ * @param {NcMenu[]} menus
+ */
 export function generateMenu(genDir: string, menus: NcMenu[]) {
   fs.writeFileSync(
     `${genDir}/menus.ts`,

@@ -16,12 +16,14 @@
     position: relative;
     height: fit-content;
     > li {
-      padding: 0.25rem 0.875rem;
+      padding: 0 0.875rem;
       cursor: pointer;
       border-style: solid;
       border-color: $slider-border-color;
       border-width: 0;
+      white-space: nowrap;
       height: $slider-font-size * 2;
+      line-height: $slider-font-size * 2;
       box-sizing: border-box;
       &:hover,
       &.#{$prefix}-activated {
@@ -36,9 +38,8 @@
         height: $slider-font-size * 2;
         background-color: $slider-activated-background-color;
         border-color: $slider-activated-border-color;
-        transition: width $animation-duration-slow,
-          height $animation-duration-slow, left $animation-duration-slow,
-          top $animation-duration-slow;
+        transition: width $animation-duration-slow, height $animation-duration-slow,
+          left $animation-duration-slow, top $animation-duration-slow;
       }
     }
   }

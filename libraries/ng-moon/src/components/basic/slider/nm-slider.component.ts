@@ -31,7 +31,7 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
   selector: "nm-slider",
   templateUrl: "./nm-slider.component.html",
   styleUrls: ["./style/index.scss"],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  // encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmSliderComponent implements OnInit, OnChanges {
@@ -127,15 +127,18 @@ export class NmSliderComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log("ngOnInit");
     fillDefault(this, this._default);
     this.setData();
   }
 
   ngAfterViewInit() {
+    console.log("viewInit");
     this.setHighlight();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes");
     const nmDataChange = changes.nmData;
     if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
       this.setData();
