@@ -11,7 +11,8 @@ import {
   EventEmitter,
   ContentChildren,
   ElementRef,
-  Renderer2
+  Renderer2,
+  AfterContentChecked
 } from "@angular/core";
 import {
   TabsPrefix,
