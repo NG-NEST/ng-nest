@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  TemplateRef,
-  ChangeDetectorRef,
-  AfterContentChecked
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from "@angular/core";
 
 @Component({
   selector: "nm-tab-content",
@@ -16,5 +9,5 @@ import {
 export class NmTabContentComponent {
   @Input() nmContent: TemplateRef<void>;
   @Input() nmActive: boolean = false;
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 }

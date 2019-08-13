@@ -3,11 +3,16 @@ import * as path from "path";
 import * as fs from "fs-extra";
 import { NcPage } from "../interfaces/page";
 import { NcExamples, NcCates } from "../interfaces/examples";
-import { handlerTabs } from "./handler-tabs";
-import { hanlderCates } from "./handler-cates";
-import { generateCates } from "./generate-cates";
-import { replaceKey } from ".";
-import { generateTabs } from "./generate-tabs";
+import {
+  replaceKey,
+  randomString,
+  generateTabs,
+  handlerTabs,
+  hanlderCates,
+  generateCates,
+  generateTabsActivatedChange
+} from ".";
+import * as _ from "lodash";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
@@ -31,13 +36,21 @@ export function handlerComponent(page: NcPage) {
  */
 export function handlerExamples(page: NcPage) {
   let examples: NcExamples = {};
+  let comTpl = _.find(page.templates, x => x.name == "component");
   examples.path = path.join(page.path, "examples");
   examples.tplPath = path.join(tplDir, "examples-component.template.html");
-  let tabs = handlerTabs({ layout: NcTabsLayoutEnum.Left, folderPath: examples.path });
+  let func = "";
+  while (func == "" || _.hasIn(comTpl.syswords.constant, func)) func = randomString();
+  comTpl.syswords.constant += `${generateTabsActivatedChange(func)}\n`;
+  let tabs = handlerTabs({
+    layout: NcTabsLayoutEnum.Left,
+    folderPath: examples.path,
+    activatedChange: `(nmActivatedChange)="${func}Change($event)"`
+  });
   tabs.tabs.forEach(x => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
     hanlderCates(cates);
-    generateCates(cates, page);
+    generateCates(cates, comTpl, func);
     if (cates.content) {
       x.content = cates.content;
     }

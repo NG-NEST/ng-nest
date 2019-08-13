@@ -13,10 +13,7 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  TemplateRef,
-  AfterViewInit,
-  AfterViewChecked,
-  AfterContentChecked
+  TemplateRef
 } from "@angular/core";
 import {
   SliderPrefix,
@@ -28,7 +25,7 @@ import {
 } from "./nm-slider.type";
 import { fillDefault } from "../../../core/util";
 import { NmData } from "../../../interfaces/data.type";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
 @Component({
   selector: "nm-slider",
@@ -50,6 +47,8 @@ export class NmSliderComponent implements OnInit, OnChanges {
   @Input()
   public set nmActivatedIndex(value: number) {
     this._nmActivatedIndex = value;
+    this.setHighlight();
+    this.cdr.detectChanges();
   }
 
   @Output() nmActivatedChange?: EventEmitter<NmActivatedSlider> = new EventEmitter<
@@ -132,6 +131,10 @@ export class NmSliderComponent implements OnInit, OnChanges {
     this.setData();
   }
 
+  ngAfterViewInit() {
+    this.setHighlight();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
     if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
@@ -143,14 +146,11 @@ export class NmSliderComponent implements OnInit, OnChanges {
     this.removeListen();
   }
 
-  private removeListen() {
-    if (this._data$) this._data$.unsubscribe();
-  }
-
   action(type: string, option?: any, index?: any) {
     switch (type) {
       case "click":
         this.nmActivatedIndex = index;
+        this.setHighlight();
         this.nmActivatedChange.emit({
           nmActivatedIndex: index,
           nmActivatedSlider: option
@@ -160,11 +160,26 @@ export class NmSliderComponent implements OnInit, OnChanges {
     }
   }
 
-  isActivatied(i: number) {
-    if (i == this.nmActivatedIndex) {
-      setTimeout(() => this.setHighlight());
+  setHighlight() {
+    const activeEle = this.slidersRef.nativeElement.querySelector(
+      `li:nth-child(${this.nmActivatedIndex + 1})`
+    );
+    if (activeEle) {
+      const width =
+        this.nmLayout == NmSliderLayoutEnum.Column ? "100%" : `${activeEle.offsetWidth}px`;
+      this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
+      this.renderer.setStyle(
+        this.highlightRef.nativeElement,
+        "height",
+        `${activeEle.offsetHeight}px`
+      );
+      this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
+      this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
     }
-    return i == this.nmActivatedIndex;
+  }
+
+  private removeListen() {
+    if (this._data$) this._data$.unsubscribe();
   }
 
   private setData() {
@@ -183,36 +198,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   private setDataChange(value: NmSliderNode[]) {
     this.data = value;
+    setTimeout(() => this.setHighlight());
     this.cdr.detectChanges();
-  }
-
-  private setHighlight() {
-    const activeEle = this.slidersRef.nativeElement.querySelector(
-      `li:nth-child(${this.nmActivatedIndex + 1})`
-    );
-    if (activeEle) {
-      let eleWidth = activeEle.offsetWidth;
-      let eleHeight = activeEle.offsetHeight;
-      // if (eleWidth == 0) {
-      //   console.log(this.getEleDisplay(activeEle));
-      // }
-      const width = this.nmLayout == NmSliderLayoutEnum.Column ? "100%" : `${eleWidth}px`;
-      this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
-      this.renderer.setStyle(this.highlightRef.nativeElement, "height", `${eleHeight}px`);
-      this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
-      this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
-    }
-  }
-
-  private getEleDisplay(ele: HTMLElement) {
-    this.renderer.setStyle(ele, "display", "");
-    this.renderer.setStyle(ele, "position", "absolute");
-    this.renderer.setStyle(ele, "visibility", "hidden");
-
-    console.log(ele.offsetWidth, ele.offsetHeight, ele.offsetLeft, ele.offsetTop);
-
-    this.renderer.setStyle(ele, "display", "none");
-    this.renderer.setStyle(ele, "position", "");
-    this.renderer.setStyle(ele, "visibility", "");
   }
 }

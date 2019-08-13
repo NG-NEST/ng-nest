@@ -19,12 +19,12 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, '../../coverage/ng-moon'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true,
-      thresholds: {
-        statements: 70,
-        lines: 70,
-        branches: 70,
-        functions: 70
-      }
+      // thresholds: {
+      //   statements: 70,
+      //   lines: 70,
+      //   branches: 70,
+      //   functions: 70
+      // }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

@@ -14,6 +14,19 @@ export interface NcTabs {
    */
   layout?: NcTabsLayoutEnum;
   /**
+   * 编码
+   *
+   * @type {NcTabsLayoutEnum}
+   * @memberof NcTabs
+   */
+  id?: string;
+  /**
+   * 改变事件
+   *
+   * @memberof NcTabs
+   */
+  activatedChange?: string;
+  /**
    * 标签页对象集合
    *
    * @type {NcTab[]}

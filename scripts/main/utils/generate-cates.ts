@@ -1,12 +1,12 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import { NcCates } from "../interfaces/examples";
-import { handlerTabs, handlerTabsByFiles, randomString } from ".";
+import { handlerTabs, handlerTabsByFiles, randomString, generateTabsActivatedChange } from ".";
 import { NcTabsLayoutEnum, NcTab } from "../interfaces/tabs";
 import { generateTabs } from ".";
-import { NcPage } from "../interfaces/page";
 import * as _ from "lodash";
 import { replaceKey } from "./replace-key";
+import { NcTemplate } from "../interfaces/template";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
@@ -17,11 +17,19 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
  * @param {NcCates} cates
  * @returns
  */
-export function generateCates(cates: NcCates, page: NcPage): NcCates {
+export function generateCates(cates: NcCates, comTpl: NcTemplate, func: string): NcCates {
   if (cates.list.length > 0) {
-    let catesTabs = handlerTabs({ layout: NcTabsLayoutEnum.Top, folderPath: cates.folderPath });
+    let subFunc = "";
+    while (subFunc == "" || _.hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
+    comTpl.syswords.constant += `${generateTabsActivatedChange(subFunc)}\n`;
+    let catesTabs = handlerTabs({
+      layout: NcTabsLayoutEnum.Top,
+      folderPath: cates.folderPath,
+      activatedChange: `(nmActivatedChange)="${subFunc}Change($event)"`,
+      id: func
+    });
     catesTabs.tabs.forEach(x => {
-      generateFiles(x, page, path.join(cates.folderPath, x.name));
+      generateFiles(x, comTpl, path.join(cates.folderPath, x.name), subFunc);
     });
     cates.content = generateTabs(catesTabs).content;
   }
@@ -34,8 +42,7 @@ export function generateCates(cates: NcCates, page: NcPage): NcCates {
  * @export
  * @param {NcTab} tab
  */
-export function generateFiles(tab: NcTab, page: NcPage, folderPath: string) {
-  let comTpl = _.find(page.templates, x => x.name == "component");
+export function generateFiles(tab: NcTab, comTpl: NcTemplate, folderPath: string, func: string) {
   let highlightTpl = fs.readFileSync(
     path.join(tplDir, "highlight-component.template.html"),
     "utf8"
@@ -43,7 +50,8 @@ export function generateFiles(tab: NcTab, page: NcPage, folderPath: string) {
   if (!comTpl) return;
   let childTabs = handlerTabsByFiles({
     layout: NcTabsLayoutEnum.Top,
-    folderPath: folderPath
+    folderPath: folderPath,
+    id: func
   });
   let html = "";
   childTabs.tabs.forEach((x, index) => {
@@ -66,8 +74,8 @@ export function generateFiles(tab: NcTab, page: NcPage, folderPath: string) {
   });
   tab.content = `
   <div class="nm-examples-html">${html}</div>\n
-  <div class="nm-examples-code">${generateTabs(childTabs).content}</div>\n
   <div class="nm-examples-info">${tab.content}</div>\n
+  <div class="nm-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 
   return tab;

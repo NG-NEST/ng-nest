@@ -2,10 +2,10 @@ import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NmTabsComponent } from "./nm-tabs.component";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, ContentChildren, ViewChildren } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmTabsModule } from "./nm-tabs.module";
-import { TabsPrefix, NmTabsNode, NmTabsLayoutEnum, NmActivatedTabs } from "./nm-tabs.type";
+import { TabsPrefix, NmTabsNode, NmTabsLayoutEnum, NmActivatedTab } from "./nm-tabs.type";
 import { NmData } from "../../../interfaces/data.type";
 
 describe(TabsPrefix, () => {
@@ -69,31 +69,50 @@ const testNmTabsNode: NmTabsNode[] = [
 @Component({
   selector: "test-nm-tabs",
   template: `
-    <nm-tabs [nmLayout]="layout">
+    <nm-tabs [nmLayout]="layout" (nmActivatedChange)="activatedChange($event)">
       <nm-tab [nmLabel]="'Home'">
-        <nm-tabs [nmLayout]="'top'">
-          <nm-tab [nmLabel]="'Home'"><h1>1 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Docs'"><h1>2 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Examples'"><h1>3 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Api'"><h1>4 Theme</h1></nm-tab>
+        <nm-tabs #subTabs [nmLayout]="'top'">
+          <nm-tab [nmLabel]="'Home1'"><h1>1 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Docs1'"><h1>2 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Examples1'"><h1>3 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Api1'"><h1>4 Theme</h1></nm-tab>
         </nm-tabs>
       </nm-tab>
       <nm-tab [nmLabel]="'Docs'">
-        <nm-tabs [nmLayout]="'top'">
-          <nm-tab [nmLabel]="'Home'"><h1>1 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Docs'"><h1>2 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Examples'"><h1>3 Theme</h1></nm-tab>
-          <nm-tab [nmLabel]="'Api'"><h1>4 Theme</h1></nm-tab>
+        <nm-tabs #subTabs [nmLayout]="'top'">
+          <nm-tab [nmLabel]="'Home2'"><h1>1 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Docs2'"><h1>2 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Examples2'"><h1>3 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Api2'"><h1>4 Theme</h1></nm-tab>
         </nm-tabs>
       </nm-tab>
-      <nm-tab [nmLabel]="'Examples'"><h1>3 Theme</h1></nm-tab>
-      <nm-tab [nmLabel]="'Api'"><h1>4 Theme</h1></nm-tab>
+      <nm-tab [nmLabel]="'Examples'">
+        <h1>3 Theme</h1>
+      </nm-tab>
+      <nm-tab [nmLabel]="'Api'">
+        <h1>4 Theme</h1>
+      </nm-tab>
     </nm-tabs>
   `
 })
 class TestNmTabsComponent {
+  @ViewChildren("subTabs")
+  private _listTabs: Array<NmTabsComponent>;
+  get listTabs(): Array<NmTabsComponent> {
+    return this._listTabs;
+  }
+  set listTabs(value: Array<NmTabsComponent>) {
+    this._listTabs = value;
+  }
   layout: NmTabsLayoutEnum;
   position: NmTabsLayoutEnum;
+  activatedIndex: number = 0;
+  activatedChange($event: NmActivatedTab) {
+    let subTabs = this.listTabs.find((x, i) => i == $event.nmActivatedIndex);
+    if (subTabs) {
+      subTabs.slider.setHighlight();
+    }
+  }
 }
 
 @Component({

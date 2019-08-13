@@ -1,7 +1,7 @@
 <ul #sliders>
   <li
     *ngFor="let item of data; index as i"
-    [ngClass]="{ 'nm-slider-activated': isActivatied(i) }"
+    [ngClass]="{ 'nm-slider-activated': i == nmActivatedIndex }"
     (click)="action('click', item, i)"
   >
     <ng-container *ngIf="!nmNodeTemplate">{{ item.nmLabel }}</ng-container>

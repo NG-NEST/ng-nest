@@ -30,4 +30,11 @@
       }
     }
   }
+  > .#{$prefix}-list {
+    > nm-slider {
+      > ul > li > a {
+        color: $primary-text-color;
+      }
+    }
+  }
 }

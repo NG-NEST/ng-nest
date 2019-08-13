@@ -12,14 +12,15 @@ import {
   ContentChildren,
   ElementRef,
   Renderer2,
-  AfterContentChecked
+  AfterContentChecked,
+  ViewChild
 } from "@angular/core";
 import {
   TabsPrefix,
   NmTabsOption,
   NmTabsLayoutEnum,
-  NmActivatedTabs,
-  NmTabsNode
+  NmTabsNode,
+  NmActivatedTab
 } from "./nm-tabs.type";
 import { fillDefault } from "../../../core/util";
 import { NmData } from "../../../interfaces/data.type";
@@ -29,7 +30,8 @@ import {
   NmSliderBorderPositionEnum,
   NmSliderLayoutEnum,
   NmActivatedSlider,
-  NmSliderOption
+  NmSliderOption,
+  NmSliderComponent
 } from "../../basic/slider";
 import { NmTabComponent } from "./nm-tab.component";
 
@@ -85,6 +87,18 @@ export class NmTabsComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
+  private _nmResetTabs: boolean;
+  public get nmResetTabs(): boolean {
+    return this._nmResetTabs;
+  }
+  @Input()
+  public set nmResetTabs(value: boolean) {
+    this._nmResetTabs = value;
+    console.log(value);
+    if (value && this.slider) {
+    }
+  }
+
   // @Input() nmNodeTemplate?: TemplateRef<any>;
 
   sliderOption: NmSliderOption = {
@@ -94,7 +108,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
     nmBorderPosition: NmSliderBorderPositionEnum.Bottom
   };
   data: NmTabsNode[] = [];
-  @Output() nmActivatedChange?: EventEmitter<NmActivatedTabs> = new EventEmitter<NmActivatedTabs>();
+  @Output() nmActivatedChange?: EventEmitter<NmActivatedTab> = new EventEmitter<NmActivatedTab>();
   private _default: NmTabsOption = {
     nmLayout: NmTabsLayoutEnum.Top,
     nmActivatedIndex: 0
@@ -103,6 +117,8 @@ export class NmTabsComponent implements OnInit, OnChanges {
   private _data$: Subscription | null = null;
 
   @ContentChildren(NmTabComponent) listTabs: Array<NmTabComponent>;
+
+  @ViewChild(NmSliderComponent, { static: false }) slider: NmSliderComponent;
 
   @HostBinding(`class.nm-tabs-top`)
   get getLayoutTop() {
@@ -158,6 +174,10 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   activatedChange(activated: NmActivatedSlider) {
     this.nmActivatedIndex = activated.nmActivatedIndex;
+    this.nmActivatedChange.emit({
+      nmActivatedIndex: activated.nmActivatedIndex,
+      nmActivatedTab: activated.nmActivatedSlider
+    });
   }
 
   private setData() {

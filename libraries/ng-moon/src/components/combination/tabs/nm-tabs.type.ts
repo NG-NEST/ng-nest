@@ -14,13 +14,15 @@ export interface NmTabsOption {
   nmActivatedIndex?: number;
   // 节点模板
   // nmNodeTemplate?: TemplateRef<any>;
+  // 重置标签页
+  nmResetTabs?: boolean;
 }
 
 // Tabs 数据对象
 export interface NmTabsNode extends NmIdentity {}
 
 // ActivatedTabs 激活的tabs
-export interface NmActivatedTabs {
+export interface NmActivatedTab {
   nmActivatedIndex?: number;
   nmActivatedTab?: NmTabsNode;
 }
