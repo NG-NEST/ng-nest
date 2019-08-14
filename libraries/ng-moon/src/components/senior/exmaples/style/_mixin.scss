@@ -45,13 +45,12 @@
       }
     }
     > .nm-tabs-content {
-      background-color: #fff;
       padding-left: 0;
       > .nm-tab-content {
         > .nm-tabs {
           padding-top: 0;
           > .nm-tabs-list {
-            padding: 1rem 1rem 0 1rem;
+            padding: 1rem 0 0 0;
             > .nm-slider {
               &.nm-slider-border-position-bottom > ul > li {
                 height: 2rem;
@@ -59,9 +58,11 @@
               }
             }
           }
-          > .nm-tabs-content > .nm-tab-content {
-            border-radius: 0.25rem;
-            background-color: #fff;
+          > .nm-tabs-content {
+            > .nm-tab-content {
+              border-radius: 0.25rem;
+              background-color: #fff;
+            }
           }
         }
       }

@@ -5,9 +5,9 @@ export const InputPrefix = "nm-input";
 /** Input 参数对象 */
 export interface NmInputOption extends NmIdentity {
   /** 布局方式，默认 Vertical */
-  nmLayout?: NmInputLayoutEnum;
+  nmLayout?: NmInputLayoutEnum | string;
   /** Input 输入类型 */
-  nmType?: NmInputTypeEnum;
+  nmType?: NmInputTypeEnum | string;
   /** 提示描述 */
   nmPlaceholder?: string;
   /** 必填 */
@@ -17,7 +17,7 @@ export interface NmInputOption extends NmIdentity {
   /** 图标 */
   nmIcon?: string;
   /** 图标布局方式，默认 Right */
-  nmIconLayout?: NmInputIconLayoutEnum;
+  nmIconLayout?: NmInputIconLayoutEnum | string;
 }
 
 /** 布局方式，此处指文本跟输入框的位置 */

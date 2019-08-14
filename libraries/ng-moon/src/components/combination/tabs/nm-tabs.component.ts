@@ -108,8 +108,11 @@ export class NmTabsComponent implements OnInit, OnChanges {
     nmActivatedIndex: 0,
     nmBorderPosition: NmSliderBorderPositionEnum.Bottom
   };
+  sliderHidden: boolean = false;
   data: NmTabsNode[] = [];
-  @Output() nmActivatedChange?: EventEmitter<NmActivatedTab> = new EventEmitter<NmActivatedTab>();
+  @Output() nmActivatedChange?: EventEmitter<NmActivatedTab> = new EventEmitter<
+    NmActivatedTab
+  >();
   private _default: NmTabsOption = {
     nmLayout: NmTabsLayoutEnum.Top,
     nmActivatedIndex: 0
@@ -158,7 +161,10 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
-    if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
+    if (
+      nmDataChange &&
+      nmDataChange.currentValue !== nmDataChange.previousValue
+    ) {
       this.setData();
     }
   }
@@ -213,6 +219,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
   private setDataChange(value: NmSliderNode[]) {
     this.data = value;
     if (this.sliderOption.nmData instanceof BehaviorSubject) {
+      this.sliderHidden = this.data.length <= 1;
       this.sliderOption.nmData.next(this.data);
     }
     this.cdr.detectChanges();

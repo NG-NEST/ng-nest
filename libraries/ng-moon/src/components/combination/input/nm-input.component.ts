@@ -36,14 +36,14 @@ import { fillDefault, isEmpty } from "../../../core/util";
   ]
 })
 export class NmInputComponent implements OnInit, ControlValueAccessor {
-  @Input() nmLayout?: NmInputLayoutEnum;
+  @Input() nmLayout?: NmInputLayoutEnum | string;
   @Input() nmLabel?: string;
-  @Input() nmType?: NmInputTypeEnum;
+  @Input() nmType?: NmInputTypeEnum | string;
   @Input() nmPlaceholder?: string;
   @Input() nmRequired?: boolean;
   @Input() nmDisabled?: boolean;
   @Input() nmIcon?: string;
-  @Input() nmIconLayout?: NmInputIconLayoutEnum;
+  @Input() nmIconLayout?: NmInputIconLayoutEnum | string;
 
   private default: NmInputOption = {
     nmLayout: NmInputLayoutEnum.Vertical,

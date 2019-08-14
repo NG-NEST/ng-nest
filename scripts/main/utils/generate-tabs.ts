@@ -38,7 +38,15 @@ export function generateTabsActivatedChange(func: string) {
   ${func}Change($event: any) {
     let subTabs = this.list${func}Tabs.find((x, i) => i == $event.nmActivatedIndex);
     if (subTabs) {
-      subTabs.slider.setHighlight();
+      subTabs.slider.action(
+        "click",
+        {
+          nmActivatedIndex: subTabs.slider.nmActivatedIndex,
+          nmActivatedSlider:
+            subTabs.slider.data[subTabs.slider.nmActivatedIndex]
+        },
+        subTabs.slider.nmActivatedIndex
+      );
     }
   }`;
 }
