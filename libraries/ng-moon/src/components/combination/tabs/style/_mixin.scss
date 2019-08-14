@@ -32,8 +32,16 @@
   }
   > .#{$prefix}-list {
     > nm-slider {
-      > ul > li > a {
-        color: $primary-text-color;
+      > ul > li {
+        > a {
+          color: $tabs-color;
+        }
+        &:hover,
+        &.nm-slider-activated {
+          > a {
+            color: $tabs-activated-color;
+          }
+        }
       }
     }
   }

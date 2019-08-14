@@ -25,13 +25,13 @@ import {
 } from "./nm-slider.type";
 import { fillDefault } from "../../../core/util";
 import { NmData } from "../../../interfaces/data.type";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
   selector: "nm-slider",
   templateUrl: "./nm-slider.component.html",
   styleUrls: ["./style/index.scss"],
-  // encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmSliderComponent implements OnInit, OnChanges {

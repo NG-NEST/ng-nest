@@ -13,7 +13,8 @@ import {
   ElementRef,
   Renderer2,
   AfterContentChecked,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from "@angular/core";
 import {
   TabsPrefix,
@@ -40,7 +41,7 @@ import { NmTabComponent } from "./nm-tab.component";
   templateUrl: "./nm-tabs.component.html",
   styleUrls: ["./style/index.scss"],
   // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
-  // encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmTabsComponent implements OnInit, OnChanges {

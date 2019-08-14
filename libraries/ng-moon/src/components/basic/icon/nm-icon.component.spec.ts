@@ -18,14 +18,12 @@ describe(IconPrefix, () => {
     let testComponent: TestNmIconComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmIconComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(NmIconComponent));
       element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();

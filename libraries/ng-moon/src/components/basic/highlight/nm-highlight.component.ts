@@ -21,7 +21,7 @@ import * as _ from "lodash";
   selector: "nm-highlight",
   templateUrl: "./nm-highlight.component.html",
   styleUrls: ["./style/index.scss"],
-  // encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmHighlightComponent implements OnInit, OnChanges, AfterViewInit {

@@ -24,14 +24,12 @@ describe(InputPrefix, () => {
     let testComponent: TestNmInputComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmInputComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(NmInputComponent));
       element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -56,14 +54,14 @@ describe(InputPrefix, () => {
       const placeholder = "Please input";
       testComponent.placeholder = placeholder;
       fixture.detectChanges();
-      let input = shadowRoot.querySelector("input");
+      let input = element.querySelector("input");
       expect(input.placeholder).toContain(placeholder);
     });
     it("should label.", () => {
       const name = "name";
       testComponent.label = name;
       fixture.detectChanges();
-      let label = shadowRoot.querySelector("label");
+      let label = element.querySelector("label");
       expect(label.innerText).toContain(name);
     });
     it("should layout horizontal.", () => {

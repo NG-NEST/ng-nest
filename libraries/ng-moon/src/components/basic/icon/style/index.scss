@@ -4,7 +4,7 @@
 @import "../../../../style/mixins/index";
 @import "./mixin";
 
-:host {
+.#{$prefix} {
   @include reset-component();
   @include icon();
 }

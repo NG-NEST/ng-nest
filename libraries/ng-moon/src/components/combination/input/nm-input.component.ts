@@ -25,7 +25,7 @@ import { fillDefault, isEmpty } from "../../../core/util";
   selector: "nm-input",
   templateUrl: "./nm-input.component.html",
   styleUrls: ["./style/index.scss"],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {

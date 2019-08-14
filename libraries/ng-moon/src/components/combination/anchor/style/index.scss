@@ -4,45 +4,45 @@
 @import "../../../../style/mixins/index";
 @import "./mixin";
 
-:host {
+.#{$prefix} {
   @include reset-component();
   @include anchor();
-}
 
-:host(.#{$prefix}-left) {
-  > .#{$prefix}-content {
-    margin-left: 18%;
-  }
-  > .#{$prefix}-list {
-    position: absolute;
-  }
-}
-
-:host(.#{$prefix}-open) {
-  height: auto !important;
-  margin: 0;
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
-  display: flex;
-  overflow: hidden;
-  > .#{$prefix}-content {
-    width: 82%;
-  }
-  > .#{$prefix}-list {
-    width: 18%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: fit-content;
-    box-sizing: border-box;
-    &-fixed {
-      width: calc(18% - 2px);
-      position: fixed;
-      top: 0;
-      max-height: 100%;
+  &-left {
+    > .#{$prefix}-content {
+      margin-left: 18%;
     }
-    > nm-slider {
-      width: 100%;
+    > .#{$prefix}-list {
+      position: absolute;
+    }
+  }
+
+  &-open {
+    height: auto !important;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    > .#{$prefix}-content {
+      width: 82%;
+    }
+    > .#{$prefix}-list {
+      width: 18%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: fit-content;
+      box-sizing: border-box;
+      &-fixed {
+        width: calc(18% - 2px);
+        position: fixed;
+        top: 0;
+        max-height: 100%;
+      }
+      > .nm-slider {
+        width: 100%;
+      }
     }
   }
 }

@@ -4,37 +4,37 @@
 @import "../../../../style/mixins/index";
 @import "./mixin";
 
-:host {
+.#{$prefix} {
   @include reset-component();
   @include slider();
-}
 
-:host(.#{$prefix}-column) {
-  > ul {
-    flex-direction: column;
+  &-column {
+    > ul {
+      flex-direction: column;
+    }
   }
-}
 
-:host(.#{$prefix}-border-position-top) {
-  > ul > li {
-    border-top-width: 2px;
+  &-border-position-top {
+    > ul > li {
+      border-top-width: 2px;
+    }
   }
-}
 
-:host(.#{$prefix}-border-position-right) {
-  > ul > li {
-    border-right-width: 2px;
+  &-border-position-right {
+    > ul > li {
+      border-right-width: 2px;
+    }
   }
-}
 
-:host(.#{$prefix}-border-position-bottom) {
-  > ul > li {
-    border-bottom-width: 2px;
+  &-border-position-bottom {
+    > ul > li {
+      border-bottom-width: 2px;
+    }
   }
-}
 
-:host(.#{$prefix}-border-position-left) {
-  > ul > li {
-    border-left-width: 2px;
+  &-border-position-left {
+    > ul > li {
+      border-left-width: 2px;
+    }
   }
 }

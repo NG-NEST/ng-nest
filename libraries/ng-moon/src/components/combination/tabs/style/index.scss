@@ -4,33 +4,32 @@
 @import "../../../../style/mixins/index";
 @import "./mixin";
 
-:host {
+.#{$prefix} {
   @include reset-component();
   @include tabs();
-}
-
-:host(.#{$prefix}-top) {
-  flex-direction: column;
-  padding-top: 1rem;
-}
-
-:host(.#{$prefix}-right) {
-  flex-direction: row-reverse;
-  > .#{$prefix}-content {
-    padding-right: 1rem;
+  &-top {
+    flex-direction: column;
+    padding-top: 1rem;
   }
-}
 
-:host(.#{$prefix}-bottom) {
-  flex-direction: column-reverse;
-  > .#{$prefix}-content {
-    padding-bottom: 1rem;
+  &-right {
+    flex-direction: row-reverse;
+    > .#{$prefix}-content {
+      padding-right: 1rem;
+    }
   }
-}
 
-:host(.#{$prefix}-left) {
-  flex-direction: row;
-  > .#{$prefix}-content {
-    padding-left: 1rem;
+  &-bottom {
+    flex-direction: column-reverse;
+    > .#{$prefix}-content {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &-left {
+    flex-direction: row;
+    > .#{$prefix}-content {
+      padding-left: 1rem;
+    }
   }
 }

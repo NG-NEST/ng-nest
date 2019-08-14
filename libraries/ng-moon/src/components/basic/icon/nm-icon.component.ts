@@ -33,7 +33,7 @@ export const NmSouceUrl = {
   selector: "nm-icon",
   templateUrl: "./nm-icon.component.html",
   styleUrls: ["./style/index.scss"],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmIconComponent implements OnInit, OnChanges {
