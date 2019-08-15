@@ -98,15 +98,29 @@ export const menus: Menu[] = [
   {
     "id": "2-0-2-0",
     "parentId": "2-0-2",
+    "name": "api",
+    "router": "./docs/ui/components/senior/api",
+    "label": "示例"
+  },
+  {
+    "id": "2-0-2-1",
+    "parentId": "2-0-2",
     "name": "doc",
     "router": "./docs/ui/components/senior/doc",
     "label": "文档"
   },
   {
-    "id": "2-0-2-1",
+    "id": "2-0-2-2",
     "parentId": "2-0-2",
     "name": "exmaples",
     "router": "./docs/ui/components/senior/exmaples",
+    "label": "示例"
+  },
+  {
+    "id": "2-0-2-4",
+    "parentId": "2-0-2",
+    "name": "style",
+    "router": "./docs/ui/components/senior/style",
     "label": "示例"
   },
   {

@@ -1,0 +1,10 @@
+// Api
+
+@import "../../../../style/themes/default";
+@import "../../../../style/mixins/index";
+@import "./param";
+
+@mixin api {
+  display: flex;
+  border: 1px solid #e8e8e8;
+}
