@@ -1,22 +1,72 @@
 import { NmIdentity } from "../../../interfaces/identify.type";
 
+/**
+ * Input 组件名
+ */
 export const InputPrefix = "nm-input";
 
-/** Input 参数对象 */
+/**
+ * Input 参数对象
+ *
+ * @export
+ * @interface NmInputOption
+ * @extends {NmIdentity}
+ */
 export interface NmInputOption extends NmIdentity {
-  /** 布局方式，默认 Vertical */
+  /**
+   * 布局方式
+   *
+   * @default Horizontal
+   * @type {(NmInputLayoutEnum | string)}
+   * @memberof NmInputOption
+   */
   nmLayout?: NmInputLayoutEnum | string;
-  /** Input 输入类型 */
+  /**
+   * 输入类型
+   *
+   * @default Text
+   * @type {(NmInputTypeEnum | string)}
+   * @memberof NmInputOption
+   */
   nmType?: NmInputTypeEnum | string;
-  /** 提示描述 */
+  /**
+   * 输入提示
+   *
+   * @type {string}
+   * @memberof NmInputOption
+   */
   nmPlaceholder?: string;
-  /** 必填 */
+  /**
+   * 必填
+   *
+   * @default false
+   * @type {boolean}
+   * @memberof NmInputOption
+   */
   nmRequired?: boolean;
-  /** 禁用 */
+  /**
+   * 禁用
+   *
+   * @default false
+   * @type {boolean}
+   * @memberof NmInputOption
+   */
   nmDisabled?: boolean;
   /** 图标 */
+  /**
+   * 图标
+   *
+   * @type {string}
+   * @memberof NmInputOption
+   */
   nmIcon?: string;
-  /** 图标布局方式，默认 Right */
+  /**
+   * 图标布局方式
+   *
+   * @default Right
+   * @type {(NmInputIconLayoutEnum | string)}
+   * @memberof NmInputOption
+   */
   nmIconLayout?: NmInputIconLayoutEnum | string;
 }
 

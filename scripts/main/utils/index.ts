@@ -6,6 +6,7 @@ export * from "./handler-page";
 export * from "./handler-component";
 export * from "./handler-tabs";
 export * from "./handler-cates";
+export * from "./handler-type";
 export * from "./generate-cates";
 export * from "./generate-page";
 export * from "./generate-menu";

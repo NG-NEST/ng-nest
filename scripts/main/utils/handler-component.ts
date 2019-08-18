@@ -10,7 +10,8 @@ import {
   handlerTabs,
   hanlderCates,
   generateCates,
-  generateTabsActivatedChange
+  generateTabsActivatedChange,
+  hanlderType
 } from ".";
 import * as _ from "lodash";
 
@@ -68,6 +69,7 @@ export function handlerExamples(page: NcPage) {
 
 export function handlerApi(page: NcPage) {
   if (page.custom.indexOf("__api") <= -1) return;
+  hanlderType(path.join(page.path, `nm-${page.name}.type.ts`));
   let comTpl = _.find(page.templates, x => x.name == "component");
   let api = "";
   while (api == "" || _.hasIn(comTpl.syswords.constant, api))
