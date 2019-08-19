@@ -20,6 +20,13 @@ export interface NcType {
    */
   label?: string;
   /**
+   * 描述
+   *
+   * @type {string}
+   * @memberof NcType
+   */
+  description?: string;
+  /**
    * 对象类型
    *
    * @type {NcObjectType}

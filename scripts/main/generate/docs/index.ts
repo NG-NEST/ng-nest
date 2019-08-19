@@ -50,7 +50,7 @@ export class NcDocs {
   ) {
     let children = fs.readdirSync(docDir);
     if (typeof level !== "undefined") level--;
-    children.forEach((x, i) => {
+    children.forEach(async (x, i) => {
       const dir = path.join(docDir, x);
       const stat = fs.statSync(dir);
       if (stat.isDirectory()) {
@@ -68,7 +68,7 @@ export class NcDocs {
           this.addChildren(child, folder, dir, menu.router, menu.id, level);
         }
         if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
-          handlerComponent(child);
+          await handlerComponent(child);
         }
         generatePage(child);
       }

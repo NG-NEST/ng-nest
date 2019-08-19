@@ -12,5 +12,6 @@ export * from "./generate-page";
 export * from "./generate-menu";
 export * from "./generate-cates";
 export * from "./generate-tabs";
+export * from "./generate-type";
 export * from "./check-mkdir";
 export * from "./parse-md-doc";

@@ -11,7 +11,8 @@ import {
   hanlderCates,
   generateCates,
   generateTabsActivatedChange,
-  hanlderType
+  hanlderType,
+  generateTypes
 } from ".";
 import * as _ from "lodash";
 
@@ -23,9 +24,9 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
  * @export
  * @param {NcPage} page
  */
-export function handlerComponent(page: NcPage) {
+export async function handlerComponent(page: NcPage) {
   handlerExamples(page);
-  handlerApi(page);
+  await handlerApi(page);
   handlerStyle(page);
 }
 
@@ -67,28 +68,31 @@ export function handlerExamples(page: NcPage) {
   );
 }
 
-export function handlerApi(page: NcPage) {
+export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf("__api") <= -1) return;
-  hanlderType(path.join(page.path, `nm-${page.name}.type.ts`));
-  let comTpl = _.find(page.templates, x => x.name == "component");
-  let api = "";
-  while (api == "" || _.hasIn(comTpl.syswords.constant, api))
-    api = randomString();
-  let typeFile = fs.readFileSync(
-    path.join(page.path, `nm-${page.name}.type.ts`),
-    "utf8"
+  let types = await hanlderType(
+    path.join(page.path, `nm-${page.name}.type.ts`)
   );
-  comTpl.syswords.constant += `${api}=\`${typeFile}\`;\n`;
-  let highlightTpl = fs.readFileSync(
-    path.join(tplDir, "highlight-component.template.html"),
-    "utf8"
-  );
-  highlightTpl = replaceKey(highlightTpl, "__type", "typescript");
-  highlightTpl = replaceKey(highlightTpl, "__data", api);
+  // generateTypes(...types);
+  // let comTpl = _.find(page.templates, x => x.name == "component");
+  // let api = "";
+  // while (api == "" || _.hasIn(comTpl.syswords.constant, api))
+  //   api = randomString();
+  // let typeFile = fs.readFileSync(
+  //   path.join(page.path, `nm-${page.name}.type.ts`),
+  //   "utf8"
+  // );
+  // comTpl.syswords.constant += `${api}=\`${typeFile}\`;\n`;
+  // let highlightTpl = fs.readFileSync(
+  //   path.join(tplDir, "highlight-component.template.html"),
+  //   "utf8"
+  // );
+  // highlightTpl = replaceKey(highlightTpl, "__type", "typescript");
+  // highlightTpl = replaceKey(highlightTpl, "__data", api);
   page.custom = replaceKey(
     page.custom,
     "__api",
-    `<nm-api>${highlightTpl}</nm-api>`
+    `<nm-api>${generateTypes(...types)}</nm-api>`
   );
 }
 

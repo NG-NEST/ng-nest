@@ -5,6 +5,5 @@
 @import "./param";
 
 @mixin api {
-  display: flex;
-  border: 1px solid #e8e8e8;
+  display: block;
 }
