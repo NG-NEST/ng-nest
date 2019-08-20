@@ -7,6 +7,7 @@
 @mixin examples {
   display: flex;
   border: 1px solid #e8e8e8;
+  background-color: #fff;
   .#{$prefix}-html,
   .#{$prefix}-code {
     padding: 1.4rem 1rem;
@@ -35,6 +36,7 @@
     width: 100%;
     > .nm-tabs-list {
       padding: 1rem;
+      border-right: 1px solid #e8e8e8;
       > .nm-slider {
         min-width: 6rem;
         &.nm-slider-border-position-right > ul > li {
@@ -50,7 +52,7 @@
         > .nm-tabs {
           padding-top: 0;
           > .nm-tabs-list {
-            padding: 1rem 0 0 0;
+            padding: 1rem 1rem 0 1rem;
             > .nm-slider {
               &.nm-slider-border-position-bottom > ul > li {
                 height: 2rem;
@@ -61,7 +63,6 @@
           > .nm-tabs-content {
             > .nm-tab-content {
               border-radius: 0.25rem;
-              background-color: #fff;
             }
           }
         }

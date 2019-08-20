@@ -10,27 +10,27 @@
   font-size: 0.875rem;
   line-height: 1.5rem;
 
-  > h1 {
+  h1 {
     font-size: 1.5rem;
     font-weight: 500;
     margin: 0.5rem 0;
   }
 
-  > h2 {
+  h2 {
     font-size: 1.375rem;
     font-weight: 500;
     margin: 2.25rem 0 1rem;
     clear: both;
   }
 
-  > h3 {
+  h3 {
     font-size: 1.125rem;
     font-weight: 500;
     margin: 1.5rem 0 1rem;
     clear: both;
   }
 
-  > h4 {
+  h4 {
     font-size: 1rem;
     font-weight: 500;
     margin: 1.125rem 0 0.875rem;
@@ -65,14 +65,14 @@
 
   table {
     width: 100%;
+    background: white;
     border-collapse: collapse;
     border: 1px solid #e8e8e8;
     tr > th,
     tr > td {
-      border-right: 1px solid #e8e8e8;
       border-bottom: 1px solid #e8e8e8;
       text-align: left;
-      padding: 0.4rem;
+      padding: 0.5rem 1rem;
     }
   }
 }

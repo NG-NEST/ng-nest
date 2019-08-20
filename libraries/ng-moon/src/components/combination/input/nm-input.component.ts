@@ -11,11 +11,11 @@ import {
   HostBinding
 } from "@angular/core";
 import {
-  NmInputLayoutEnum,
-  NmInputTypeEnum,
-  NmInputIconLayoutEnum,
   InputPrefix,
-  NmInputOption
+  NmInputOption,
+  NmInputLayoutType,
+  NmInputType,
+  NmInputIconLayoutType
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { noop } from "rxjs";
@@ -36,20 +36,20 @@ import { fillDefault, isEmpty } from "../../../core/util";
   ]
 })
 export class NmInputComponent implements OnInit, ControlValueAccessor {
-  @Input() nmLayout?: NmInputLayoutEnum | string;
+  @Input() nmLayout?: NmInputLayoutType;
   @Input() nmLabel?: string;
-  @Input() nmType?: NmInputTypeEnum | string;
+  @Input() nmType?: NmInputType;
   @Input() nmPlaceholder?: string;
   @Input() nmRequired?: boolean;
   @Input() nmDisabled?: boolean;
   @Input() nmIcon?: string;
-  @Input() nmIconLayout?: NmInputIconLayoutEnum | string;
+  @Input() nmIconLayout?: NmInputIconLayoutType;
 
   private default: NmInputOption = {
-    nmLayout: NmInputLayoutEnum.Vertical,
+    nmLayout: "vertical",
     nmPlaceholder: "",
-    nmType: NmInputTypeEnum.Text,
-    nmIconLayout: NmInputIconLayoutEnum.Right
+    nmType: "text",
+    nmIconLayout: "right"
   };
 
   @HostBinding(`class.nm-input-disabled`) get getDisabled() {
@@ -62,12 +62,12 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding(`class.nm-input-horizontal`)
   get getLayoutHorizontal() {
-    return this.nmLayout === NmInputLayoutEnum.Horizontal;
+    return this.nmLayout === "horizontal";
   }
 
   @HostBinding(`class.nm-input-vertical`)
   get getLayoutVertical() {
-    return this.nmLayout === NmInputLayoutEnum.Vertical;
+    return this.nmLayout === "vertical";
   }
 
   @HostBinding(`class.nm-input-icon`) get getIcon() {
@@ -76,16 +76,12 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding(`class.nm-input-icon-left`)
   get getIconLayoutLeft() {
-    return (
-      !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Left
-    );
+    return !isEmpty(this.nmIcon) && this.nmIconLayout === "left";
   }
 
   @HostBinding(`class.nm-input-icon-right`)
   get getIconLayoutRight() {
-    return (
-      !isEmpty(this.nmIcon) && this.nmIconLayout === NmInputIconLayoutEnum.Right
-    );
+    return !isEmpty(this.nmIcon) && this.nmIconLayout === "right";
   }
 
   value: string | number;

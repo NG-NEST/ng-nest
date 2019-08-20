@@ -2,6 +2,7 @@ import * as path from "path";
 import * as fs from "fs-extra";
 import * as readline from "readline";
 import { NcType, NcObjectType, NcProperty } from "../interfaces/type";
+import * as _ from "lodash";
 
 /**
  * 类型文件处理
@@ -20,6 +21,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
     let index = 1;
     let doc = [];
     let isReadDoc = false;
+    let isReadProp = false;
     let isReadType = false;
     let docItem: any = {};
 
@@ -49,12 +51,32 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
           let name = object.replace(type.object, "").trim();
           type.name = name.slice(0, name.indexOf(" "));
           type.label = docItem[docItem.start + 1];
-          type.description = getDoc(docItem, "description");
+          type.description = getDoc(docItem, "description") as string;
           type.properties = [];
-          if (type.object !== NcObjectType.Const) isReadType = true;
+          if (type.object === NcObjectType.Interface) isReadProp = true;
+          if (type.object === NcObjectType.Type) {
+            isReadType = true;
+            let val = "";
+            let objs = _.map(
+              getDoc(docItem, "value", true) as Array<string>,
+              x => {
+                let spt = x.split(" ");
+                val += `${val === "" ? "" : " | "}${spt[0]}`;
+                return {
+                  name: spt[0],
+                  label: spt.length > 1 ? spt[1] : ""
+                };
+              }
+            );
+            type.properties = objs;
+            type.value = val;
+            console.log(type);
+            exports.push(type);
+            type = {};
+          }
         }
       } else if (line.startsWith("}")) {
-        isReadType = false;
+        isReadProp = false;
         if (JSON.stringify(type) != "{}") {
           exports.push(type);
           type = {};
@@ -62,7 +84,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
       }
       if (
         !isReadDoc &&
-        isReadType &&
+        isReadProp &&
         line != "" &&
         !line.startsWith("export")
       ) {
@@ -74,8 +96,8 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
             name: spt[0].replace("?", "").trim(),
             type: spt[1].replace(";", "").trim(),
             label: docItem[docItem.start + 1],
-            defalut: getDoc(docItem, "default"),
-            description: getDoc(docItem, "description")
+            defalut: getDoc(docItem, "default") as string,
+            description: getDoc(docItem, "description") as string
           };
           type.properties.push(property);
         }
@@ -94,15 +116,23 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
  * @export
  * @param {object} doc
  * @param {string} prop
+ * @param {boolean} all
  * @returns
  */
-export function getDoc(doc: object, prop: string) {
+export function getDoc(doc: object, prop: string, all: boolean = false) {
   let result = "";
+  let results = [];
   for (const key in doc) {
     if (doc[key].toString().startsWith(`@${prop}`)) {
-      result = doc[key].replace(`@${prop}`, "").trim();
-      break;
+      let value = doc[key].replace(`@${prop}`, "").trim();
+      if (all) {
+        console.log(value);
+        results.push(value);
+      } else {
+        result = value;
+        break;
+      }
     }
   }
-  return result;
+  return all ? results : result;
 }

@@ -7,91 +7,61 @@ export const InputPrefix = "nm-input";
 
 /**
  * Input 参数对象
- *
- * @export
- * @interface NmInputOption
- * @extends {NmIdentity}
  */
 export interface NmInputOption extends NmIdentity {
   /**
    * 布局方式
-   *
-   * @default Horizontal
-   * @type {(NmInputLayoutEnum | string)}
-   * @memberof NmInputOption
+   * @default "horizontal"
    */
-  nmLayout?: NmInputLayoutEnum | string;
+  nmLayout?: NmInputLayoutType;
   /**
    * 输入类型
-   *
-   * @default Text
-   * @type {(NmInputTypeEnum | string)}
-   * @memberof NmInputOption
+   * @default "text"
    */
-  nmType?: NmInputTypeEnum | string;
+  nmType?: NmInputType;
   /**
    * 输入提示
-   *
-   * @type {string}
-   * @memberof NmInputOption
    */
   nmPlaceholder?: string;
   /**
    * 必填
-   *
    * @default false
-   * @type {boolean}
-   * @memberof NmInputOption
    */
   nmRequired?: boolean;
   /**
    * 禁用
-   *
    * @default false
-   * @type {boolean}
-   * @memberof NmInputOption
    */
   nmDisabled?: boolean;
-  /** 图标 */
   /**
    * 图标
-   *
-   * @type {string}
-   * @memberof NmInputOption
    */
   nmIcon?: string;
   /**
    * 图标布局方式
-   *
-   * @default Right
-   * @type {(NmInputIconLayoutEnum | string)}
-   * @memberof NmInputOption
+   * @default "right"
    */
-  nmIconLayout?: NmInputIconLayoutEnum | string;
+  nmIconLayout?: NmInputIconLayoutType;
 }
 
-/** 布局方式，此处指文本跟输入框的位置 */
-export enum NmInputLayoutEnum {
-  /** 水平 */
-  Horizontal = "horizontal",
-  /** 垂直 */
-  Vertical = "vertical"
-}
+/**
+ * 布局方式，此处指文本跟输入框的位置
+ * @value "horizontal" 水平
+ * @value "vertical" 垂直
+ */
+export type NmInputLayoutType = "horizontal" | "vertical";
 
-/** 输入框类型 */
-export enum NmInputTypeEnum {
-  /** 文本 */
-  Text = "text",
-  /** 密码 */
-  Password = "password",
-  /** 数字 */
-  Number = "number"
-}
+/**
+ * 输入框类型
+ * @value "text" 文本
+ * @value "password" 密码
+ * @value "number" 数字
+ */
+export type NmInputType = "text" | "password" | "number";
 
-/** 图标布局方式，指在输入框中的位置 */
-export enum NmInputIconLayoutEnum {
-  /** 靠左 */
-  Left = "left",
-  /** 靠右 */
-  Right = "right"
-}
+/**
+ * 图标布局方式，指在输入框中的位置
+ * @value "left" 靠左
+ * @value "right" 靠右
+ */
+export type NmInputIconLayoutType = "left" | "right";

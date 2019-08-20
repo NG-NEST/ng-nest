@@ -226,6 +226,6 @@ export class NmTabsComponent implements OnInit, OnChanges {
   }
 
   private setSliderOption(value: NmSliderOption) {
-    this.sliderOption = Object.assign(this.sliderOption, value);
+    Object.assign(this.sliderOption, value);
   }
 }
