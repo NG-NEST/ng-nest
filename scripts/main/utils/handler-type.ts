@@ -23,6 +23,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
     let isReadDoc = false;
     let isReadProp = false;
     let isReadType = false;
+    let isReadConst = false;
     let docItem: any = {};
 
     lines.on("line", (line: string) => {
@@ -53,26 +54,38 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
           type.label = docItem[docItem.start + 1];
           type.description = getDoc(docItem, "description") as string;
           type.properties = [];
-          if (type.object === NcObjectType.Interface) isReadProp = true;
-          if (type.object === NcObjectType.Type) {
-            isReadType = true;
-            let val = "";
-            let objs = _.map(
-              getDoc(docItem, "value", true) as Array<string>,
-              x => {
-                let spt = x.split(" ");
-                val += `${val === "" ? "" : " | "}${spt[0]}`;
-                return {
-                  name: spt[0],
-                  label: spt.length > 1 ? spt[1] : ""
-                };
+          switch (type.object) {
+            case NcObjectType.Const:
+              isReadConst = true;
+              if (type.name.endsWith("Prefix")) {
+                type.selector = getDoc(docItem, "selector") as string;
+                type.decorator = getDoc(docItem, "decorator") as string;
               }
-            );
-            type.properties = objs;
-            type.value = val;
-            console.log(type);
-            exports.push(type);
-            type = {};
+              exports.push(type);
+              type = {};
+              break;
+            case NcObjectType.Interface:
+              isReadProp = true;
+              break;
+            case NcObjectType.Type:
+              isReadType = true;
+              let val = "";
+              let objs = _.map(
+                getDoc(docItem, "value", true) as Array<string>,
+                x => {
+                  let spt = x.split(" ");
+                  val += `${val === "" ? "" : " | "}${spt[0]}`;
+                  return {
+                    name: spt[0],
+                    label: spt.length > 1 ? spt[1] : ""
+                  };
+                }
+              );
+              type.properties = objs;
+              type.value = val;
+              exports.push(type);
+              type = {};
+              break;
           }
         }
       } else if (line.startsWith("}")) {
@@ -126,7 +139,6 @@ export function getDoc(doc: object, prop: string, all: boolean = false) {
     if (doc[key].toString().startsWith(`@${prop}`)) {
       let value = doc[key].replace(`@${prop}`, "").trim();
       if (all) {
-        console.log(value);
         results.push(value);
       } else {
         result = value;

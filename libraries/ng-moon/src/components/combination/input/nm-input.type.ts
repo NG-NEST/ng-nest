@@ -2,6 +2,8 @@ import { NmIdentity } from "../../../interfaces/identify.type";
 
 /**
  * Input 组件名
+ * @selector nm-input
+ * @decorator component
  */
 export const InputPrefix = "nm-input";
 

@@ -48,12 +48,26 @@ export interface NcType {
    */
   properties?: NcProperty[];
   /**
-   * 值 object等于Const
+   * 值 object等于Type
    *
    * @type {string}
    * @memberof NcType
    */
   value?: string;
+  /**
+   * 组件名/指令名
+   *
+   * @type {string}
+   * @memberof NcType
+   */
+  selector?: string;
+  /**
+   * 装饰器
+   *
+   * @type {string}
+   * @memberof NcType
+   */
+  decorator?: string;
 }
 
 export interface NcProperty {
