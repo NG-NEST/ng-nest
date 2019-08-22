@@ -12,7 +12,9 @@ import {
   generateCates,
   generateTabsActivatedChange,
   hanlderType,
-  generateTypes
+  generateTypes,
+  hanlderStyle,
+  generateStyles
 } from ".";
 import * as _ from "lodash";
 
@@ -27,7 +29,7 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
 export async function handlerComponent(page: NcPage) {
   handlerExamples(page);
   await handlerApi(page);
-  handlerStyle(page);
+  await handlerStyle(page);
 }
 
 /**
@@ -73,22 +75,6 @@ export async function handlerApi(page: NcPage) {
   let types = await hanlderType(
     path.join(page.path, `nm-${page.name}.type.ts`)
   );
-  // generateTypes(...types);
-  // let comTpl = _.find(page.templates, x => x.name == "component");
-  // let api = "";
-  // while (api == "" || _.hasIn(comTpl.syswords.constant, api))
-  //   api = randomString();
-  // let typeFile = fs.readFileSync(
-  //   path.join(page.path, `nm-${page.name}.type.ts`),
-  //   "utf8"
-  // );
-  // comTpl.syswords.constant += `${api}=\`${typeFile}\`;\n`;
-  // let highlightTpl = fs.readFileSync(
-  //   path.join(tplDir, "highlight-component.template.html"),
-  //   "utf8"
-  // );
-  // highlightTpl = replaceKey(highlightTpl, "__type", "typescript");
-  // highlightTpl = replaceKey(highlightTpl, "__data", api);
   page.custom = replaceKey(
     page.custom,
     "__api",
@@ -96,26 +82,12 @@ export async function handlerApi(page: NcPage) {
   );
 }
 
-export function handlerStyle(page: NcPage) {
+export async function handlerStyle(page: NcPage) {
   if (page.custom.indexOf("__style") <= -1) return;
-  let comTpl = _.find(page.templates, x => x.name == "component");
-  let style = "";
-  while (style == "" || _.hasIn(comTpl.syswords.constant, style))
-    style = randomString();
-  let styleFile = fs.readFileSync(
-    path.join(page.path, "style", `_param.scss`),
-    "utf8"
-  );
-  comTpl.syswords.constant += `${style}=\`${styleFile}\`;\n`;
-  let highlightTpl = fs.readFileSync(
-    path.join(tplDir, "highlight-component.template.html"),
-    "utf8"
-  );
-  highlightTpl = replaceKey(highlightTpl, "__type", "scss");
-  highlightTpl = replaceKey(highlightTpl, "__data", style);
+  let styles = await hanlderStyle(path.join(page.path, "style", `_param.scss`));
   page.custom = replaceKey(
     page.custom,
     "__style",
-    `<nm-style>${highlightTpl}</nm-style>`
+    `<nm-style>${generateStyles(...styles)}</nm-style>`
   );
 }

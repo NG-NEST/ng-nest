@@ -26,15 +26,18 @@
       > td {
         &:nth-child(1) {
           color: navy;
+          width: 25%;
           > span {
             color: teal;
           }
         }
         &:nth-child(3) {
           color: navy;
+          width: 25%;
         }
         &:nth-child(4) {
           color: #d14;
+          width: 25%;
         }
       }
     }
@@ -44,6 +47,7 @@
       > td {
         &:nth-child(1) {
           color: navy;
+          width: 25%;
         }
         &:nth-child(3) {
           color: #d14;

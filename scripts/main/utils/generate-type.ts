@@ -27,17 +27,17 @@ export function generateTypes(...types: NcType[]) {
           let table = "";
           x.properties.forEach(y => {
             table += `<tr>
-                <td>[<span>${y.name}</span>]</td>
+                <td>[<span><code>${y.name}</code></span>]</td>
                 <td>${y.label}<span>${y.description}</span></td>
-                <td>${y.type}</td>
-                <td>${y.defalut}</td>
+                <td><code>${y.type}</code></td>
+                <td><code>${y.defalut}</code></td>
               </tr>`;
           });
           table = `<h3>${x.name}</h3>
             <p>${x.description}</p>
             <table class="nm-api-interface">
               <tr>
-                <th>属性名</th>
+                <th>参数</th>
                 <th>说明</th>
                 <th>类型</th>
                 <th>默认值</th>
@@ -48,9 +48,9 @@ export function generateTypes(...types: NcType[]) {
           break;
         case NcObjectType.Type:
           typeTable += `<tr>
-            <td>${x.name}</td>
+            <td><code>${x.name}</code></td>
             <td>${x.label}</td>
-            <td>${x.value}</td>
+            <td><code>${x.value}</code></td>
           </tr>`;
           break;
       }

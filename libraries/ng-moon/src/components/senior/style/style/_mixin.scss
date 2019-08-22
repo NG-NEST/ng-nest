@@ -5,6 +5,18 @@
 @import "./param";
 
 @mixin style {
-  display: flex;
-  border: 1px solid #e8e8e8;
+  display: block;
+  > table {
+    > tr {
+      > td {
+        &:nth-child(1) {
+          color: navy;
+          width: 25%;
+        }
+        &:nth-child(3) {
+          color: #d14;
+        }
+      }
+    }
+  }
 }
