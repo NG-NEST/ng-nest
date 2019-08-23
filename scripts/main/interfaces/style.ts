@@ -33,4 +33,11 @@ export interface NcStyle {
    * @memberof NcStyle
    */
   value?: string;
+  /**
+   * 继承实际值
+   *
+   * @type {string}
+   * @memberof NcStyle
+   */
+  inherit?: {};
 }

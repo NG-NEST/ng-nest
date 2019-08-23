@@ -3,6 +3,7 @@ import * as fs from "fs-extra";
 import * as readline from "readline";
 import * as _ from "lodash";
 import { NcStyle } from "../interfaces/style";
+import { getThemes } from "./themes";
 
 /**
  * 样式文件处理
@@ -11,16 +12,16 @@ import { NcStyle } from "../interfaces/style";
  * @param {string} fsPath
  */
 export function hanlderStyle(fsPath: string): Promise<NcStyle[]> {
-  return new Promise((res, rej) => {
+  return new Promise(async (res, rej) => {
     let lines = readline.createInterface({
       input: fs.createReadStream(fsPath)
     });
 
-    let exports: NcStyle[] = [];
+    let styles: NcStyle[] = [];
     let index = 1;
     let docItem: any = {};
 
-    lines.on("line", (line: string) => {
+    lines.on("line", async (line: string) => {
       line = line.trim();
       if (line.startsWith("/*") && line.endsWith("*/")) {
         docItem[index] = line.match(/(?<=\/\*).*?(?=\*\/)/)[0].trim();
@@ -29,12 +30,37 @@ export function hanlderStyle(fsPath: string): Promise<NcStyle[]> {
         let name = spt[0].trim();
         let value = spt.length > 1 ? spt[1].trim().replace(";", "") : "";
         let doc = docItem[index - 1];
-        exports.push({ name: name, value: value, label: doc ? doc : "" });
+        let style = {
+          name: name,
+          value: value,
+          label: doc ? doc : ""
+        };
+        paramReplace(style);
+        styles.push(style);
       }
       index++;
     });
     lines.on("close", () => {
-      res(exports);
+      res(styles);
     });
   });
+}
+
+export function paramReplace(style: NcStyle) {
+  if (style.value.indexOf("$") < 0) {
+    return;
+  }
+  let themes = global["NcThemes"];
+  let spt = style.value.split(" ");
+
+  let newSpt = _.map(spt, (x: string) => {
+    if (x.startsWith("$")) {
+      let param = _.find(themes, y => y.name === x);
+      return param ? paramReplace(param.value) : "";
+    } else {
+      return x;
+    }
+  });
+
+  return _.join(newSpt, " ");
 }

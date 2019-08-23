@@ -7,7 +7,8 @@ import {
   generatePage,
   parseMdDoc,
   generateMenu,
-  handlerComponent
+  handlerComponent,
+  getThemes
 } from "../../utils";
 import * as path from "path";
 import * as fs from "fs-extra";
@@ -19,7 +20,10 @@ export const componentsDir = path.resolve(
   "../../../../libraries/ng-moon/src/components"
 );
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
-export const genMenusDir = path.resolve(__dirname, "../../../../src/environments");
+export const genMenusDir = path.resolve(
+  __dirname,
+  "../../../../src/environments"
+);
 export const docsPrefix = "docs";
 
 export class NcDocs {
@@ -31,7 +35,8 @@ export class NcDocs {
     this.genPages();
   }
 
-  genPages() {
+  async genPages() {
+    await getThemes();
     this.page = createRouterOutlet(docsPrefix);
     handlerPage(this.page, genDir);
     this.addChildren(this.page, genDir, docsDir, `./${docsPrefix}`);
@@ -63,11 +68,21 @@ export class NcDocs {
         const menu = this.createMenu(read, x, index, i, thisRouter);
         if (x === "components") {
           child.path = componentsDir;
-          this.addChildren(child, folder, componentsDir, menu.router, menu.id, 2);
+          this.addChildren(
+            child,
+            folder,
+            componentsDir,
+            menu.router,
+            menu.id,
+            2
+          );
         } else if (level !== 0) {
           this.addChildren(child, folder, dir, menu.router, menu.id, level);
         }
-        if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
+        if (
+          dir.indexOf(componentsDir) === 0 &&
+          typeof read.meta.type === "undefined"
+        ) {
           await handlerComponent(child);
         }
         generatePage(child);
@@ -77,7 +92,11 @@ export class NcDocs {
     pageAddChildren(page, page.children);
   }
 
-  createChild(read: { meta: any; content: any }, dirName: string, folder: string) {
+  createChild(
+    read: { meta: any; content: any },
+    dirName: string,
+    folder: string
+  ) {
     let child =
       read.meta.type == "router"
         ? createRouterOutlet(dirName)

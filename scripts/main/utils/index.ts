@@ -1,6 +1,9 @@
 export * from "./first-letter-capital";
 export * from "./md-to-html";
 export * from "./replace-key";
+export * from "./check-mkdir";
+export * from "./parse-md-doc";
+export * from "./themes";
 export * from "./random-string";
 export * from "./handler-page";
 export * from "./handler-component";
@@ -15,5 +18,3 @@ export * from "./generate-cates";
 export * from "./generate-tabs";
 export * from "./generate-type";
 export * from "./generate-style";
-export * from "./check-mkdir";
-export * from "./parse-md-doc";
