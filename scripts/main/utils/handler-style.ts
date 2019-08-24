@@ -3,7 +3,6 @@ import * as fs from "fs-extra";
 import * as readline from "readline";
 import * as _ from "lodash";
 import { NcStyle } from "../interfaces/style";
-import { getThemes } from "./themes";
 
 /**
  * 样式文件处理
@@ -30,10 +29,11 @@ export function hanlderStyle(fsPath: string): Promise<NcStyle[]> {
         let name = spt[0].trim();
         let value = spt.length > 1 ? spt[1].trim().replace(";", "") : "";
         let doc = docItem[index - 1];
-        let style = {
+        let style: NcStyle = {
           name: name,
           value: value,
-          label: doc ? doc : ""
+          label: doc ? doc : "",
+          children: []
         };
         paramReplace(style);
         styles.push(style);
@@ -47,20 +47,26 @@ export function hanlderStyle(fsPath: string): Promise<NcStyle[]> {
 }
 
 export function paramReplace(style: NcStyle) {
-  if (style.value.indexOf("$") < 0) {
-    return;
-  }
-  let themes = global["NcThemes"];
   let spt = style.value.split(" ");
-
   let newSpt = _.map(spt, (x: string) => {
     if (x.startsWith("$")) {
-      let param = _.find(themes, y => y.name === x);
-      return param ? paramReplace(param.value) : "";
+      return getParam(x);
     } else {
       return x;
     }
   });
 
+  style.inherit = _.join(newSpt, " ");
+}
+
+export function getParam(value) {
+  let themes = global["NcThemes"];
+  let spt = value.split(" ");
+  let newSpt = _.map(spt, (x: string) => {
+    if (!x.startsWith("$")) return x;
+    let param = _.find(themes, y => y.name === x);
+    if (!param) return x;
+    return getParam(param.value);
+  });
   return _.join(newSpt, " ");
 }

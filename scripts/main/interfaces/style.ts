@@ -34,10 +34,17 @@ export interface NcStyle {
    */
   value?: string;
   /**
-   * 继承实际值
+   * 实际值
    *
    * @type {string}
    * @memberof NcStyle
    */
-  inherit?: {};
+  inherit?: string;
+  /**
+   * 继承样式参数对象
+   *
+   * @type {string}
+   * @memberof NcStyle
+   */
+  children?: NcStyle[];
 }

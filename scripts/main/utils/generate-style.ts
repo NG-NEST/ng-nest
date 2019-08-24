@@ -16,7 +16,7 @@ export function generateStyles(...styles: NcStyle[]) {
       stylesTable += `<tr>
             <td><code>${x.name}</code></td>
             <td>${x.label}</td>
-            <td><code>${x.value}</code></td>
+            <td><code>${x.value == x.inherit ? "" : x.value}</code></td>
             <td><code>${x.inherit}</code></td>
           </tr>`;
     });
@@ -26,8 +26,8 @@ export function generateStyles(...styles: NcStyle[]) {
         <tr>
           <th>参数</th>
           <th>说明</th>
-          <th>值</th>
           <th>继承</th>
+          <th>值</th>
         </tr>
         ${stylesTable}
       </table>`;
