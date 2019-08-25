@@ -2,12 +2,11 @@
   "name": "ng-moon",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/animations": "~8.1.0",
-    "@angular/cdk": "~8.0.2",
-    "@angular/common": "~8.1.0",
-    "@angular/core": "~8.1.0",
-    "@angular/forms": "~8.1.0",
-    "highlight.js": "^9.15.9",
-    "@types/highlight.js": "^9.12.3"
+    "@angular/animations": "~8.2.3",
+    "@angular/cdk": "~8.3.0",
+    "@angular/common": "~8.2.3",
+    "@angular/core": "~8.2.3",
+    "@angular/forms": "~8.2.3",
+    "highlight.js": "^9.15.9"
   }
 }

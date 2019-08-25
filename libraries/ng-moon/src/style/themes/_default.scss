@@ -1,14 +1,14 @@
 $nm-prefix: nm;
 
 // Color
-$primary-color-dark: #303f9f;
-$primary-color: #3f51b5;
-$primary-color-light: #c5cae9;
-$primary-color-text: #ffffff;
-$accent-color: #ff5722;
-$primary-text-color: #212121;
-$secondary-text-color: #757575;
-$divider-color: #bdbdbd;
+$primary-color-dark: var(--nm-primary-color-dark, #303f9f);
+$primary-color: var(--nm-primary-color, #3f51b5);
+$primary-color-light: var(--nm-primary-color-light, #c5cae9);
+$primary-color-text: var(--nm-primary-color-text, #ffffff);
+$accent-color: var(--nm-accent-color, #ff5722);
+$primary-text-color: var(--nm-primary-text-color, #212121);
+$secondary-text-color: var(--nm-secondary-text-color, #757575);
+$divider-color: var(--nm-divider-color, #bdbdbd);
 
 // Font
 $font-size: 0.875rem;

@@ -9,8 +9,7 @@ import {
   AfterViewInit,
   OnChanges,
   SimpleChanges,
-  ViewChild,
-  ChangeDetectorRef
+  ViewChild
 } from "@angular/core";
 import { HighlightPrefix, NmHighlightOption } from "./nm-highlight.type";
 import { fillDefault } from "../../../core/util";
@@ -32,10 +31,7 @@ export class NmHighlightComponent implements OnInit, OnChanges, AfterViewInit {
 
   private default: NmHighlightOption = {};
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2
-  ) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(this.elementRef.nativeElement, HighlightPrefix);
   }
 
@@ -46,6 +42,7 @@ export class NmHighlightComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
     if (
+      typeof nmDataChange != "undefined" &&
       !_.isEmpty(nmDataChange.currentValue) &&
       nmDataChange.currentValue !== nmDataChange.previousValue
     ) {

@@ -2,11 +2,24 @@
 label: "代码高亮"
 ---
 
-# 图标 Icon
+# 代码高亮 Highlight
 
-SVG 矢量图标，整合 `github` 上面开源流行的图标库，统一用法。
+Web 代码突出显示，封装 `highlight.js` 为 `angular` 组件。
 
 ## 使用场景
 
--   `nm-input` 输入框组件中左右图标说明。
--   `nm-button` 图标按钮。
+文章中需要显示代码，并用颜色来区分代码。
+
+-   `nm-examples` 示例组件中展示代码。
+
+## 示例代码
+
+{{ __examples }}
+
+## API
+
+{{ __api }}
+
+## 样式参数
+
+{{ __style }}

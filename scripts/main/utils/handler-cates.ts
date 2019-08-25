@@ -50,6 +50,9 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
         type: x.slice(x.lastIndexOf(".") + 1, x.length),
         content: fs.readFileSync(path.join(cate.path, x), "utf8")
       };
+      if (code.type === "ts") {
+        code.content = code.content.replace(/\`/g, "\\`");
+      }
       box.codes.push(code);
     }
   });

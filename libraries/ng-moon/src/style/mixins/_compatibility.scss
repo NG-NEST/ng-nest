@@ -3,29 +3,29 @@
 @import "../themes/default";
 
 // Placeholder text
-@mixin placeholder($color: $input-placeholder-color) {
+@mixin placeholder() {
   // Firefox
   &::-moz-placeholder {
-    color: $color;
+    color: $input-placeholder-color;
     opacity: 1;
   }
   // Internet Explorer 10+
   &:-ms-input-placeholder {
-    color: $color;
+    color: $input-placeholder-color;
   }
   // Safari and Chrome
   &::-webkit-input-placeholder {
-    color: $color;
+    color: $input-placeholder-color;
   }
 }
 
 // Element hover
-@mixin hover($color: $primary-color) {
-  border-color: $color;
+@mixin hover() {
+  border-color: $primary-color;
 }
 
 // Element focus
-@mixin focus($color: $primary-color) {
-  border-color: $color;
-  box-shadow: 0 0 4px 2px rgba(lighten($color, 40%), 0.75);
+@mixin focus() {
+  border-color: $primary-color;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
 }

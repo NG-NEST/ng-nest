@@ -7,21 +7,10 @@ import { PortalModule } from "@angular/cdk/portal";
 import { LayoutModule } from "@angular/cdk/layout";
 import { RouterModule } from "@angular/router";
 import { DevelopingComponent } from "./developing/developing.component";
-import { NsAnchorComponent } from "./anchor/anchor.component";
-import { NmExampleComponent } from "./example/example.component";
-import { NmCodeComponent } from "./code/code.component";
-// import { HighlightModule } from "ngx-highlightjs";
-import { NmPanelComponent } from "./panel/panel.component";
-import { NmIconsComponent } from "./icons/icons.component";
 import { NgMoonModule } from "ng-moon";
 
 const components = [
-  DevelopingComponent,
-  NsAnchorComponent,
-  NmExampleComponent,
-  NmCodeComponent,
-  NmPanelComponent,
-  NmIconsComponent
+  DevelopingComponent
 ];
 
 const entryComponents = [];
@@ -35,7 +24,6 @@ const modules = [
   PortalModule,
   DragDropModule,
   LayoutModule,
-  // HighlightModule,
   NgMoonModule
 ];
 

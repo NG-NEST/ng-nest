@@ -1,14 +1,14 @@
 $prefix: ns;
 
 // Color
-$primary-color-dark: #303f9f;
-$primary-color: #3f51b5;
-$primary-color-light: #c5cae9;
-$primary-color-text: #ffffff;
-$accent-color: #ff5722;
-$primary-text-color: #212121;
-$secondary-text-color: #757575;
-$divider-color: #bdbdbd;
+$primary-color-dark: var(--nm-primary-color-dark);
+$primary-color: var(--nm-primary-color);
+$primary-color-light: var(--nm-primary-color-light);
+$primary-color-text: var(--nm-primary-color-text);
+$accent-color: var(--nm-accent-color);
+$primary-text-color: var(--nm-primary-text-color);
+$secondary-text-color: var(--nm-secondary-text-color);
+$divider-color: var(--nm-divider-color);
 
 // ----  1rem = 16px  -----
 // |  px  |     rem       |

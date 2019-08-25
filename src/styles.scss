@@ -3,6 +3,7 @@
 @import "src/styles/index";
 @import "~@angular/cdk/overlay-prebuilt.css";
 
+
 @font-face {
   font-family: "titillium";
   src: url("assets/fonts/titillium.eot?#") format("eot"),
@@ -185,4 +186,15 @@ a,
 p,
 span {
   letter-spacing: 0.03rem;
+}
+
+:root {
+  --nm-primary-color-dark: #303f9f;
+  --nm-primary-color: #3f51b5;
+  --nm-primary-color-light: #c5cae9;
+  --nm-primary-color-text: #ffffff;
+  --nm-accent-color: #ff5722;
+  --nm-primary-text-color: #212121;
+  --nm-secondary-text-color: #757575;
+  --nm-divider-color: #bdbdbd;
 }
