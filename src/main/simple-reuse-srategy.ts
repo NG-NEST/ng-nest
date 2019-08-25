@@ -92,8 +92,9 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     future: ActivatedRouteSnapshot,
     curr: ActivatedRouteSnapshot
   ): boolean {
+    // console.log("shouldReuseRoute", future.routeConfig, curr.routeConfig);
     return (
-      future["_routerState"].url === curr["_routerState"].url &&
+      future.routeConfig === curr.routeConfig &&
       JSON.stringify(future.params) == JSON.stringify(curr.params)
     );
   }
