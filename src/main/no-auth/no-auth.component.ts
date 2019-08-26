@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { SimpleReuseStrategy } from '../simple-reuse-srategy';
 
 @Component({
     selector: 'no-auth',

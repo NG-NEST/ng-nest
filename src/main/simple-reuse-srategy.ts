@@ -75,6 +75,14 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     if (!route.routeConfig) {
       return null;
     }
+    // if (SimpleReuseStrategy.handlers[this.getRouteUrl(route)]) {
+    //   console.log(
+    //     this.getRouteUrl(route),
+    //     SimpleReuseStrategy.handlers[this.getRouteUrl(route)]["componentRef"][
+    //       "componentType"
+    //     ]["name"]
+    //   );
+    // }
 
     return SimpleReuseStrategy.handlers[this.getRouteUrl(route)];
   }
