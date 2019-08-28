@@ -20,7 +20,7 @@ import { SimpleReuseStrategy } from './simple-reuse-srategy';
   ],
   providers: [
     SelectivePreloadingStrategy,
-    { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
+    // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
   ]
 })
 export class MainRoutesModule { }

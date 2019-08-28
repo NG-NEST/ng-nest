@@ -1,4 +1,4 @@
-import { NmIdentity } from "../../../interfaces/identify.type";
+import { NmIdentityOption } from "../../../interfaces/identify.type";
 import { NmData } from "../../../interfaces/data.type";
 // import { TemplateRef } from "@angular/core";
 
@@ -19,7 +19,7 @@ export interface NmTabsOption {
 }
 
 // Tabs 数据对象
-export interface NmTabsNode extends NmIdentity {}
+export interface NmTabsNode extends NmIdentityOption {}
 
 // ActivatedTabs 激活的tabs
 export interface NmActivatedTab {

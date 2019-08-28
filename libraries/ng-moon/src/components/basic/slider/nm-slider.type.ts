@@ -1,4 +1,4 @@
-import { NmIdentity } from "../../../interfaces/identify.type";
+import { NmIdentityOption } from "../../../interfaces/identify.type";
 import { NmData } from "../../../interfaces/data.type";
 import { TemplateRef } from "@angular/core";
 
@@ -19,7 +19,7 @@ export interface NmSliderOption {
 }
 
 // Slider 数据对象
-export interface NmSliderNode extends NmIdentity {}
+export interface NmSliderNode extends NmIdentityOption {}
 
 // ActivatedSlider 激活的slider
 export interface NmActivatedSlider {

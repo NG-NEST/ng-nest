@@ -1,4 +1,4 @@
-import { NmIdentity } from "../../../interfaces/identify.type";
+import { NmIdentityOption } from "../../../interfaces/identify.type";
 
 export const AnchorPrefix = "nm-anchor";
 
@@ -13,7 +13,7 @@ export enum NmAnchorLayoutEnum {
 }
 
 /** Anchor 数据对象 */
-export interface NmAnchorNode extends NmIdentity {
+export interface NmAnchorNode extends NmIdentityOption {
   nmLeft?: number;
   nmIcon?: string;
   nmLink?: string;

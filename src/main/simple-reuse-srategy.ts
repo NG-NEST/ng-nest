@@ -41,6 +41,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     route: ActivatedRouteSnapshot,
     handle: DetachedRouteHandle
   ): void {
+    console.log("store", route);
     if (handle == null) return;
     if (
       SimpleReuseStrategy.waitDelete &&
@@ -61,6 +62,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @memberof SimpleReuseStrategy
    */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
+    console.log("shouldAttach", route);
     return !!SimpleReuseStrategy.handlers[this.getRouteUrl(route)];
   }
 
@@ -72,17 +74,20 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @memberof SimpleReuseStrategy
    */
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
+    console.log("retrieve", route);
     if (!route.routeConfig) {
       return null;
     }
-    // if (SimpleReuseStrategy.handlers[this.getRouteUrl(route)]) {
-    //   console.log(
-    //     this.getRouteUrl(route),
-    //     SimpleReuseStrategy.handlers[this.getRouteUrl(route)]["componentRef"][
-    //       "componentType"
-    //     ]["name"]
-    //   );
-    // }
+    if (SimpleReuseStrategy.handlers[this.getRouteUrl(route)]) {
+      let a = _.filter(SimpleReuseStrategy.handlers, x => x);
+      // console.log(
+      //   SimpleReuseStrategy.handlers,
+      //   this.getRouteUrl(route),
+      //   SimpleReuseStrategy.handlers[this.getRouteUrl(route)]["componentRef"][
+      //     "componentType"
+      //   ]["name"]
+      // );
+    }
 
     return SimpleReuseStrategy.handlers[this.getRouteUrl(route)];
   }
@@ -100,7 +105,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     future: ActivatedRouteSnapshot,
     curr: ActivatedRouteSnapshot
   ): boolean {
-    // console.log("shouldReuseRoute", future.routeConfig, curr.routeConfig);
+    console.log("shouldReuseRoute");
     return (
       future.routeConfig === curr.routeConfig &&
       JSON.stringify(future.params) == JSON.stringify(curr.params)

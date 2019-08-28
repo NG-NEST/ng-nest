@@ -1,4 +1,4 @@
-import { NmIdentity } from "../../../interfaces/identify.type";
+import { NmIdentityOption } from "../../../interfaces/identify.type";
 
 /**
  * Input 组件名
@@ -10,7 +10,7 @@ export const InputPrefix = "nm-input";
 /**
  * Input 参数对象
  */
-export interface NmInputOption extends NmIdentity {
+export interface NmInputOption extends NmIdentityOption {
   /**
    * 布局方式
    * @default "horizontal"

@@ -1,0 +1,10 @@
+// Form
+
+@import "../../../style/themes/default";
+@import "../../../style/mixins/index";
+@import "./style/mixin";
+
+.#{$prefix} {
+  @include reset-component();
+  @include form();
+}

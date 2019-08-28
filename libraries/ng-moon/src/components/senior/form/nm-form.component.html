@@ -1,0 +1,54 @@
+<form (ngSubmit)="submit()" [formGroup]="formGroup">
+  <nm-grid>
+    <ng-container [ngSwitch]="controlsType">
+      <ng-container *ngSwitchCase="'controls'">
+        <nm-row>
+          <ng-container
+            *ngTemplateOutlet="controlsTemp; context: { controls: nmControls }"
+          >
+          </ng-container>
+        </nm-row>
+      </ng-container>
+      <ng-container *ngSwitchCase="'rows'">
+        <ng-container
+          *ngTemplateOutlet="rowsTemp; context: { rows: nmControls }"
+        ></ng-container>
+      </ng-container>
+    </ng-container>
+  </nm-grid>
+</form>
+
+<ng-template #rowsTemp let-rows="rows">
+  <ng-container *ngFor="let row of rows">
+    <nm-row *ngIf="!row.nmHidden" [ngClass]="{ 'nm-hidden': row.title }">
+      <ng-container
+        *ngTemplateOutlet="titleTemp; context: { row: row }"
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="controlsTemp; context: { controls: row.controls }"
+      ></ng-container>
+    </nm-row>
+  </ng-container>
+</ng-template>
+
+<ng-template #controlsTemp let-controls="controls">
+  <nm-control
+    *ngFor="let control of controls"
+    [nmControlType]="control.nmControlType"
+    [nmKey]="control.nmKey"
+    [nmDisabled]="control.nmDisabled"
+    [nmReadonly]="control.nmReadonly"
+    [nmRequired]="control.nmRequired"
+    [nmHidden]="control.nmHidden"
+    [(ngModel)]="control.nmValue"
+  ></nm-control>
+</ng-template>
+
+<ng-template #titleTemp let-row="row">
+  <div class="title">
+    <label>
+      <span *ngIf="row.icon" class="{{ row.icon }}"></span>
+      <span>{{ row.title }}</span>
+    </label>
+  </div>
+</ng-template>

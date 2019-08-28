@@ -1,0 +1,10 @@
+// Grid
+
+@import "../../../../style/themes/default";
+@import "../../../../style/mixins/index";
+@import "./mixin";
+
+.#{$prefix} {
+  @include reset-component();
+  @include grid();
+}

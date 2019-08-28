@@ -6,10 +6,7 @@ import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
-  InputPrefix,
-  NmInputLayoutEnum,
-  NmInputTypeEnum,
-  NmInputIconLayoutEnum
+  InputPrefix, NmInputLayoutType, NmInputType, NmInputIconLayoutType
 } from "./nm-input.type";
 
 describe(InputPrefix, () => {
@@ -65,35 +62,35 @@ describe(InputPrefix, () => {
       expect(label.innerText).toContain(name);
     });
     it("should layout horizontal.", () => {
-      testComponent.layout = NmInputLayoutEnum.Horizontal;
+      testComponent.layout = 'horizontal';
       testComponent.label = "name";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${InputPrefix}-${NmInputLayoutEnum.Horizontal}`
+        `${InputPrefix}-horizontal`
       );
     });
     it("should layout vertical.", () => {
-      testComponent.layout = NmInputLayoutEnum.Vertical;
+      testComponent.layout = 'vertical';
       testComponent.label = "name";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${InputPrefix}-${NmInputLayoutEnum.Vertical}`
+        `${InputPrefix}-vertical`
       );
     });
     it("should icon left.", () => {
       testComponent.icon = "ado-search";
-      testComponent.iconLayout = NmInputIconLayoutEnum.Left;
+      testComponent.iconLayout = 'left';
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${InputPrefix}-icon-${NmInputIconLayoutEnum.Left}`
+        `${InputPrefix}-icon-left`
       );
     });
     it("should icon right.", () => {
       testComponent.icon = "ado-search";
-      testComponent.iconLayout = NmInputIconLayoutEnum.Right;
+      testComponent.iconLayout = "right";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${InputPrefix}-icon-${NmInputIconLayoutEnum.Right}`
+        `${InputPrefix}-icon-right`
       );
     });
   });
@@ -116,13 +113,13 @@ describe(InputPrefix, () => {
   `
 })
 class TestNmInputComponent {
-  layout?: NmInputLayoutEnum;
+  layout?: NmInputLayoutType;
   label?: string;
-  type?: NmInputTypeEnum;
+  type?: NmInputType;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   icon?: string;
-  iconLayout?: NmInputIconLayoutEnum;
+  iconLayout?: NmInputIconLayoutType;
   value?: string | number;
 }
