@@ -54,7 +54,7 @@ export function pageAddChildren(page: NcPage, children: NcPage[]) {
       children.forEach((x, index) => {
         let route = `      {
         path: "${x.name}",
-        loadChildren: "./${x.name}/${x.fileName}.module#${x.capName}Module"
+        loadChildren: () => import("./${x.name}/${x.fileName}.module").then(x => x.${x.capName}Module)
       }`;
         routes.syswords.loadChildren += `\n${route}${
           index !== children.length - 1 ? "," : "\n    "

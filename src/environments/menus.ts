@@ -56,19 +56,26 @@ export const menus: Menu[] = [
   {
     "id": "2-0-0-0",
     "parentId": "2-0-0",
+    "name": "grid",
+    "router": "./docs/ui/components/basic/grid",
+    "label": "示例"
+  },
+  {
+    "id": "2-0-0-1",
+    "parentId": "2-0-0",
     "name": "highlight",
     "router": "./docs/ui/components/basic/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "2-0-0-1",
+    "id": "2-0-0-2",
     "parentId": "2-0-0",
     "name": "icon",
     "router": "./docs/ui/components/basic/icon",
     "label": "图标"
   },
   {
-    "id": "2-0-0-3",
+    "id": "2-0-0-4",
     "parentId": "2-0-0",
     "name": "slider",
     "router": "./docs/ui/components/basic/slider",
@@ -117,7 +124,14 @@ export const menus: Menu[] = [
     "label": "示例"
   },
   {
-    "id": "2-0-2-4",
+    "id": "2-0-2-3",
+    "parentId": "2-0-2",
+    "name": "form",
+    "router": "./docs/ui/components/senior/form",
+    "label": "示例"
+  },
+  {
+    "id": "2-0-2-5",
     "parentId": "2-0-2",
     "name": "style",
     "router": "./docs/ui/components/senior/style",
