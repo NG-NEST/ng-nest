@@ -32,16 +32,9 @@
 </ng-template>
 
 <ng-template #controlsTemp let-controls="controls">
-  <nm-control
-    *ngFor="let control of controls"
-    [nmControlType]="control.nmControlType"
-    [nmKey]="control.nmKey"
-    [nmDisabled]="control.nmDisabled"
-    [nmReadonly]="control.nmReadonly"
-    [nmRequired]="control.nmRequired"
-    [nmHidden]="control.nmHidden"
-    [(ngModel)]="control.nmValue"
-  ></nm-control>
+  <nm-col *ngFor="let control of controls" [nmCol]="control.nmCol">
+    <nm-control [nmOption]="control"></nm-control>
+  </nm-col>
 </ng-template>
 
 <ng-template #titleTemp let-row="row">

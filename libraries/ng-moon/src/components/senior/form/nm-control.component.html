@@ -1,7 +1,15 @@
-<ng-container [ngSwitch]="nmControlType">
+<ng-container [ngSwitch]="nmOption.nmControlType">
   <ng-container *ngSwitchCase="'input'">
     <nm-input
-
+      [(ngModel)]="nmOption.nmValue"
+      [nmLayout]="nmOption.nmLayout"
+      [nmLabel]="nmOption.nmLabel"
+      [nmType]="nmOption.nmType"
+      [nmPlaceholder]="nmOption.nmPlaceholder"
+      [nmRequired]="nmOption.nmRequired"
+      [nmDisabled]="nmOption.nmDisabled"
+      [nmIcon]="nmOption.nmIcon"
+      [nmIconLayout]="nmOption.nmIconLayout"
     ></nm-input>
   </ng-container>
 </ng-container>

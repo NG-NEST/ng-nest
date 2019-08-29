@@ -54,6 +54,10 @@ export interface NmControlOption<T> extends NmIdentityOption {
    * 隐藏
    */
   nmHidden?: boolean;
+  /**
+   * 列宽
+   */
+  nmCol?: number;
 }
 
 /**
@@ -85,6 +89,10 @@ export class NmControl<T> extends NmIdentity {
    * 隐藏
    */
   nmHidden?: boolean;
+  /**
+   * 列宽
+   */
+  nmCol?: number;
   constructor(option: NmControlOption<T> = {}) {
     super();
     Object.assign(this, option);

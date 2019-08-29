@@ -20,43 +20,44 @@
       float: left;
       display: block;
       overflow: auto;
-      &.col-12 {
+      box-sizing: border-box;
+      &-12 {
         width: 100%;
       }
-      &.col-11 {
+      &-11 {
         width: 91.66666667%;
       }
-      &.col-10 {
+      &-10 {
         width: 83.33333333%;
       }
-      &.col-9 {
+      &-9 {
         width: 75%;
       }
-      &.col-8 {
+      &-8 {
         width: 66.66666667%;
       }
-      &.col-7 {
+      &-7 {
         width: 58.33333333%;
       }
-      &.col-6 {
+      &-6 {
         width: 50%;
       }
-      &.col-5 {
+      &-5 {
         width: 41.66666667%;
       }
-      &.col-4 {
+      &-4 {
         width: 33.33333333%;
       }
-      &.col-3 {
+      &-3 {
         width: 25%;
       }
-      &.col-2 {
+      &-2 {
         width: 16.66666667%;
       }
-      &.col-1 {
+      &-1 {
         width: 8.33333333%;
       }
-      &.col-0 {
+      &-0 {
         width: inherit;
       }
     }

@@ -41,6 +41,9 @@ describe(FormPrefix, () => {
 })
 class TestNmFormComponent {
   controls: NmControl<any>[] = [
-    new NmInputControl({ nmKey: "id", nmLabel: "编码" })
+    new NmInputControl({ nmKey: "id", nmLabel: "编码", nmCol: 3 }),
+    new NmInputControl({ nmKey: "name", nmLabel: "姓名", nmCol: 3 }),
+    new NmInputControl({ nmKey: "account", nmLabel: "账号", nmCol: 3 }),
+    new NmInputControl({ nmKey: "password", nmLabel: "密码", nmCol: 3 })
   ];
 }
