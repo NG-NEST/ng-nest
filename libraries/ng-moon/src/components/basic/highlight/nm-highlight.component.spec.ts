@@ -18,14 +18,14 @@ describe(HighlightPrefix, () => {
     let testComponent: TestNmHighlightComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmHighlightComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(NmHighlightComponent));
+      debugElement = fixture.debugElement.query(
+        By.directive(NmHighlightComponent)
+      );
       element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -36,7 +36,12 @@ describe(HighlightPrefix, () => {
     });
     it("should html code.", () => {
       testComponent.type = "html";
-      testComponent.data = `<div class="menu"></div>`;
+      testComponent.data = `<div class="code"></div>`;
+      fixture.detectChanges();
+      expect(element.classList).toContain(HighlightPrefix);
+    });
+    it("should data change 'undefined'.", () => {
+      testComponent.dataNull = undefined;
       fixture.detectChanges();
       expect(element.classList).toContain(HighlightPrefix);
     });
@@ -47,9 +52,11 @@ describe(HighlightPrefix, () => {
   selector: "test-nm-highlight",
   template: `
     <nm-highlight [nmType]="type" [nmData]="data"></nm-highlight>
+    <nm-highlight [nmData]="dataNull"></nm-highlight>
   `
 })
 class TestNmHighlightComponent {
-  type: string;
-  data: string;
+  type: string = `html`;
+  data: string = `<div class="html"></div>`;
+  dataNull: string;
 }

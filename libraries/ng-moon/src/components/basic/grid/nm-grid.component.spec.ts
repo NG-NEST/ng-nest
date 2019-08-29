@@ -36,7 +36,12 @@ describe(GridPrefix, () => {
 @Component({
   selector: "test-nm-grid",
   template: `
-    <nm-grid>nm-grid</nm-grid>
+    <nm-grid>
+      <nm-row>
+        <nm-col></nm-col>
+        <nm-col [nmCol]="3"></nm-col>
+      </nm-row>
+    </nm-grid>
   `
 })
 class TestNmGridComponent {}

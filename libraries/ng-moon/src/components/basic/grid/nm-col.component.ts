@@ -3,11 +3,8 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
   Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   Input
 } from "@angular/core";
 import { NmColOption, ColPrefix } from "./nm-grid.type";
@@ -21,37 +18,21 @@ import { fillDefault } from "../../../core/util";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmColComponent implements OnInit, OnChanges {
+export class NmColComponent implements OnInit {
   @Input() nmCol: number;
   private _default: NmColOption = {};
 
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, ColPrefix);
   }
 
   ngOnInit() {
     fillDefault(this, this._default);
-    if (this.nmCol > -1) {
+    if (typeof this.nmCol !== "undefined") {
       this.renderer.addClass(
         this.elementRef.nativeElement,
         `${ColPrefix}-${this.nmCol}`
       );
     }
   }
-
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {}
-
-  ngOnDestroy(): void {
-    this.removeListen();
-  }
-
-  private removeListen() {}
 }
