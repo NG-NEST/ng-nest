@@ -28,8 +28,8 @@ import { NmData } from "../../../interfaces/data.type";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import {
   NmSliderNode,
-  NmSliderBorderPositionEnum,
-  NmSliderLayoutEnum,
+  NmSliderBorderPositionType,
+  NmSliderLayoutType,
   NmActivatedSlider,
   NmSliderOption,
   NmSliderComponent
@@ -56,23 +56,23 @@ export class NmTabsComponent implements OnInit, OnChanges {
     this._nmLayout = value;
     if (this._nmLayout === NmTabsLayoutEnum.Top) {
       this.setSliderOption({
-        nmLayout: NmSliderLayoutEnum.Row,
-        nmBorderPosition: NmSliderBorderPositionEnum.Bottom
+        nmLayout: "row",
+        nmBorderPosition: "bottom"
       });
     } else if (this._nmLayout === NmTabsLayoutEnum.Right) {
       this.setSliderOption({
-        nmLayout: NmSliderLayoutEnum.Column,
-        nmBorderPosition: NmSliderBorderPositionEnum.Left
+        nmLayout: "column",
+        nmBorderPosition: "left"
       });
     } else if (this._nmLayout === NmTabsLayoutEnum.Bottom) {
       this.setSliderOption({
-        nmLayout: NmSliderLayoutEnum.Row,
-        nmBorderPosition: NmSliderBorderPositionEnum.Top
+        nmLayout: "row",
+        nmBorderPosition: "top"
       });
     } else if (this._nmLayout === NmTabsLayoutEnum.Left) {
       this.setSliderOption({
-        nmLayout: NmSliderLayoutEnum.Column,
-        nmBorderPosition: NmSliderBorderPositionEnum.Right
+        nmLayout: "column",
+        nmBorderPosition: "right"
       });
     }
     this.cdr.detectChanges();
@@ -104,9 +104,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   sliderOption: NmSliderOption = {
     nmData: new BehaviorSubject<NmSliderNode[]>([]),
-    nmLayout: NmSliderLayoutEnum.Row,
+    nmLayout: "row",
     nmActivatedIndex: 0,
-    nmBorderPosition: NmSliderBorderPositionEnum.Bottom
+    nmBorderPosition: "bottom"
   };
   sliderHidden: boolean = false;
   data: NmTabsNode[] = [];

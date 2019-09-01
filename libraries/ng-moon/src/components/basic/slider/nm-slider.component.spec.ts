@@ -1,4 +1,4 @@
-import { Observable, Subject, BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NmSliderComponent } from "./nm-slider.component";
@@ -8,8 +8,8 @@ import { NmSliderModule } from "./nm-slider.module";
 import {
   SliderPrefix,
   NmSliderNode,
-  NmSliderLayoutEnum,
-  NmSliderBorderPositionEnum,
+  NmSliderLayoutType,
+  NmSliderBorderPositionType,
   NmActivatedSlider
 } from "./nm-slider.type";
 import { NmData } from "../../../interfaces/data.type";
@@ -21,7 +21,8 @@ describe(SliderPrefix, () => {
       declarations: [
         TestNmSliderComponent,
         TestEventNmSliderComponent,
-        TestDataNmSliderComponent
+        TestDataNmSliderComponent,
+        TestDataUndefinedNmSliderComponent
       ]
     }).compileComponents();
   }));
@@ -30,7 +31,6 @@ describe(SliderPrefix, () => {
     let testComponent: TestNmSliderComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
@@ -39,7 +39,6 @@ describe(SliderPrefix, () => {
         By.directive(NmSliderComponent)
       );
       element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -49,49 +48,61 @@ describe(SliderPrefix, () => {
       expect(element.classList).toContain(SliderPrefix);
     });
     it("should layout row.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Row;
+      testComponent.layout = "row";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-${NmSliderLayoutEnum.Row}`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-row`);
     });
     it("should layout column.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Column;
+      testComponent.layout = "column";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-${NmSliderLayoutEnum.Column}`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-column`);
     });
     it("should border position top.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Row;
-      testComponent.position = NmSliderBorderPositionEnum.Top;
+      testComponent.layout = "row";
+      testComponent.position = "top";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Top}`
+        `${SliderPrefix}-border-position-top`
       );
     });
     it("should border position right.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Column;
-      testComponent.position = NmSliderBorderPositionEnum.Right;
+      testComponent.layout = "column";
+      testComponent.position = "right";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Right}`
+        `${SliderPrefix}-border-position-right`
       );
     });
     it("should border position bottom.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Row;
-      testComponent.position = NmSliderBorderPositionEnum.Bottom;
+      testComponent.layout = "row";
+      testComponent.position = "bottom";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Bottom}`
+        `${SliderPrefix}-border-position-bottom`
       );
     });
     it("should border position left.", () => {
-      testComponent.layout = NmSliderLayoutEnum.Column;
-      testComponent.position = NmSliderBorderPositionEnum.Left;
+      testComponent.layout = "column";
+      testComponent.position = "left";
       fixture.detectChanges();
       expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-${NmSliderBorderPositionEnum.Left}`
+        `${SliderPrefix}-border-position-left`
+      );
+    });
+    it("should layout row. border position left.", () => {
+      testComponent.layout = "row";
+      testComponent.position = "left";
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${SliderPrefix}-border-position-bottom`
+      );
+    });
+    it("should layout column. border position top.", () => {
+      testComponent.layout = "column";
+      testComponent.position = "top";
+      fixture.detectChanges();
+      expect(element.classList).toContain(
+        `${SliderPrefix}-border-position-left`
       );
     });
   });
@@ -99,8 +110,6 @@ describe(SliderPrefix, () => {
     let fixture: ComponentFixture<TestEventNmSliderComponent>;
     let testComponent: TestEventNmSliderComponent;
     let debugElement: DebugElement;
-    let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestEventNmSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
@@ -108,8 +117,6 @@ describe(SliderPrefix, () => {
       debugElement = fixture.debugElement.query(
         By.directive(NmSliderComponent)
       );
-      element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should activated slider change.", () => {
       let index = 1;
@@ -132,8 +139,6 @@ describe(SliderPrefix, () => {
     let fixture: ComponentFixture<TestDataNmSliderComponent>;
     let testComponent: TestDataNmSliderComponent;
     let debugElement: DebugElement;
-    let element: Element;
-    let shadowRoot: DocumentFragment;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestDataNmSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
@@ -141,8 +146,6 @@ describe(SliderPrefix, () => {
       debugElement = fixture.debugElement.query(
         By.directive(NmSliderComponent)
       );
-      element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
     });
     it("should data type is BehaviorSubject.", () => {
       if (testComponent.data instanceof BehaviorSubject) {
@@ -152,6 +155,20 @@ describe(SliderPrefix, () => {
           (debugElement.componentInstance as NmSliderComponent).data
         ).toEqual(testNmSliderNode);
       }
+    });
+  });
+  describe(`data undefined.`, () => {
+    let fixture: ComponentFixture<TestDataUndefinedNmSliderComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestDataUndefinedNmSliderComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(
+        By.directive(NmSliderComponent)
+      );
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
     });
   });
 });
@@ -175,8 +192,8 @@ const testNmSliderNode: NmSliderNode[] = [
 })
 class TestNmSliderComponent {
   data: NmData<NmSliderNode[]> = testNmSliderNode;
-  layout: NmSliderLayoutEnum;
-  position: NmSliderBorderPositionEnum;
+  layout: NmSliderLayoutType;
+  position: NmSliderBorderPositionType;
 }
 
 @Component({
@@ -190,7 +207,7 @@ class TestNmSliderComponent {
 })
 class TestEventNmSliderComponent {
   data: NmData<NmSliderNode[]> = testNmSliderNode;
-  activatedChange($event: any) {}
+  activatedChange() {}
 }
 
 @Component({
@@ -201,4 +218,14 @@ class TestEventNmSliderComponent {
 })
 class TestDataNmSliderComponent {
   data: NmData<NmSliderNode[]> = new BehaviorSubject([]);
+}
+
+@Component({
+  selector: "test-data-undefined-nm-slider",
+  template: `
+    <nm-slider [nmData]="data"></nm-slider>
+  `
+})
+class TestDataUndefinedNmSliderComponent {
+  data: NmData<NmSliderNode[]>;
 }

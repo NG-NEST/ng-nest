@@ -26,7 +26,6 @@ import {
   NmSliderNode,
   NmActivatedSlider,
   NmSliderComponent,
-  NmSliderBorderPositionEnum,
   NmSliderOption
 } from "../../basic/slider";
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
@@ -50,22 +49,20 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   public set nmLayout(value: NmAnchorLayoutEnum) {
     this._nmLayout = value;
     this.sliderOption.nmBorderPosition =
-      this._nmLayout === NmAnchorLayoutEnum.Left
-        ? NmSliderBorderPositionEnum.Right
-        : NmSliderBorderPositionEnum.Left;
+      this._nmLayout === NmAnchorLayoutEnum.Left ? "right" : "left";
   }
   @Input() nmScrollElement: HTMLElement | Window;
 
-  @Output() nmActivatedChange?: EventEmitter<NmActivatedAnchor> = new EventEmitter<
+  @Output() nmActivatedChange?: EventEmitter<
     NmActivatedAnchor
-  >();
+  > = new EventEmitter<NmActivatedAnchor>();
 
   listFixed: boolean = false;
 
   sliderOption: NmSliderOption = {
     nmData: new BehaviorSubject<NmSliderNode[]>([]),
     nmActivatedIndex: 0,
-    nmBorderPosition: NmSliderBorderPositionEnum.Left
+    nmBorderPosition: "left"
   };
 
   scrollObservable: Observable<any>;
@@ -114,12 +111,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private removeListen() {
-    if (this._scroll$) {
-      this._scroll$.unsubscribe();
-    }
-    if (this._windowSize$) {
-      this._windowSize$.unsubscribe();
-    }
+    this._scroll$.unsubscribe();
+    this._windowSize$.unsubscribe();
     if (this._windowScroll$) {
       this._windowScroll$.unsubscribe();
     }
@@ -129,7 +122,11 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     this._isAnimation = true;
     const activatedEle = this._hElements[activated.nmActivatedIndex];
     const marginTop = computedStyle(activatedEle, "marginTop") as number;
-    let top = activatedEle.offsetTop + this.elementRef.nativeElement.offsetTop - marginTop + 1;
+    let top =
+      activatedEle.offsetTop +
+      this.elementRef.nativeElement.offsetTop -
+      marginTop +
+      1;
     let scrollEle = this._windowScroll
       ? this.doc.documentElement
       : (this.nmScrollElement as HTMLElement);
@@ -151,9 +148,14 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setHElements() {
-    this._hElements = this.elementRef.nativeElement.querySelectorAll("h1, h2, h3, h4, h5");
+    this._hElements = this.elementRef.nativeElement.querySelectorAll(
+      "h1, h2, h3, h4, h5"
+    );
     if (this._hElements.length > 0) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${AnchorPrefix}-open`);
+      this.renderer.addClass(
+        this.elementRef.nativeElement,
+        `${AnchorPrefix}-open`
+      );
       let list: NmAnchorNode[] = [];
       this._hElements.forEach((x: HTMLElement, i: number) => {
         const link = `nm-anchor-${i}`;
@@ -171,10 +173,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
           }
         ];
       });
-      if (this.sliderOption.nmData instanceof BehaviorSubject) {
-        this.sliderOption.nmData.next(list);
-        this.sliderOption.nmData.complete();
-      }
+      (this.sliderOption.nmData as BehaviorSubject<NmSliderNode[]>).next(list);
+      (this.sliderOption.nmData as BehaviorSubject<NmSliderNode[]>).complete();
     }
   }
 
@@ -202,7 +202,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       throttleTime(10),
       distinctUntilChanged()
     );
-    this._scroll$ = this.scrollObservable.subscribe(() => this.setActiveatedIndex());
+    this._scroll$ = this.scrollObservable.subscribe(() =>
+      this.setActiveatedIndex()
+    );
   }
 
   setActiveatedIndex() {
@@ -213,8 +215,12 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       let now = 0;
       this._hElements.forEach((item, index) => {
         let distance = scrollTop - this.elementRef.nativeElement.offsetTop;
-        if (!this._windowScroll) distance += (this.nmScrollElement as HTMLElement).offsetTop;
-        if (distance >= item.offsetTop - (computedStyle(item, "marginTop") as number)) {
+        if (!this._windowScroll)
+          distance += (this.nmScrollElement as HTMLElement).offsetTop;
+        if (
+          distance >=
+          item.offsetTop - (computedStyle(item, "marginTop") as number)
+        ) {
           now = index;
           return;
         }
@@ -251,7 +257,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setFixedTop() {
-    let windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let windowScrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
     this.renderer.setStyle(
       this.list.nativeElement,
       "top",
@@ -268,7 +275,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private getAnchorLeft() {
-    return this.nmLayout === NmAnchorLayoutEnum.Right ? this.content.nativeElement.clientWidth : 0;
+    return this.nmLayout === NmAnchorLayoutEnum.Right
+      ? this.content.nativeElement.clientWidth
+      : 0;
   }
 
   private setListFixed() {

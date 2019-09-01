@@ -32,4 +32,9 @@ export interface NmRowOption {}
 /**
  * Col 参数对象
  */
-export interface NmColOption {}
+export interface NmColOption {
+  /**
+   * 12栅格布局，列占的宽度
+   */
+  nmCol?: number;
+}

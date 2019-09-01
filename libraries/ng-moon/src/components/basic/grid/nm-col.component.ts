@@ -7,8 +7,7 @@ import {
   ElementRef,
   Input
 } from "@angular/core";
-import { NmColOption, ColPrefix } from "./nm-grid.type";
-import { fillDefault } from "../../../core/util";
+import { ColPrefix } from "./nm-grid.type";
 
 @Component({
   selector: "nm-col",
@@ -19,15 +18,13 @@ import { fillDefault } from "../../../core/util";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmColComponent implements OnInit {
-  @Input() nmCol: number;
-  private _default: NmColOption = {};
+  @Input() nmCol?: number;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, ColPrefix);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     if (typeof this.nmCol !== "undefined") {
       this.renderer.addClass(
         this.elementRef.nativeElement,

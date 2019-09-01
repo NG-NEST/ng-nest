@@ -14,7 +14,11 @@ describe(AnchorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NmAnchorModule],
-      declarations: [TestNmAnchorComponent, TestScrollNmAnchorComponent]
+      declarations: [
+        TestNmAnchorComponent,
+        TestScrollNmAnchorComponent,
+        TestUndefinedNmAnchorComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -142,6 +146,20 @@ describe(AnchorPrefix, () => {
       );
       liEle.triggerEventHandler("click", null);
       expect(activatedAnchor.nmActivatedIndex).toBe(index);
+    });
+  });
+  describe(`option undefined.`, () => {
+    let fixture: ComponentFixture<TestUndefinedNmAnchorComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestUndefinedNmAnchorComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(
+        By.directive(NmAnchorComponent)
+      );
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
     });
   });
 });
@@ -330,3 +348,11 @@ class TestNmAnchorComponent {
 class TestScrollNmAnchorComponent {
   layout: NmAnchorLayoutEnum;
 }
+
+@Component({
+  selector: "test-undefined-nm-anchor",
+  template: `
+    <nm-anchor></nm-anchor>
+  `
+})
+class TestUndefinedNmAnchorComponent {}

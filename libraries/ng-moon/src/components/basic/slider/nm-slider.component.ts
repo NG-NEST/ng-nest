@@ -18,10 +18,10 @@ import {
 import {
   SliderPrefix,
   NmSliderOption,
-  NmSliderLayoutEnum,
-  NmSliderBorderPositionEnum,
   NmActivatedSlider,
-  NmSliderNode
+  NmSliderNode,
+  NmSliderLayoutType,
+  NmSliderBorderPositionType
 } from "./nm-slider.type";
 import { fillDefault } from "../../../core/util";
 import { NmData } from "../../../interfaces/data.type";
@@ -36,8 +36,8 @@ import { BehaviorSubject, Subscription } from "rxjs";
 })
 export class NmSliderComponent implements OnInit, OnChanges {
   @Input() nmData?: NmData<NmSliderNode[]>;
-  @Input() nmLayout?: NmSliderLayoutEnum;
-  @Input() nmBorderPosition?: NmSliderBorderPositionEnum;
+  @Input() nmLayout?: NmSliderLayoutType;
+  @Input() nmBorderPosition?: NmSliderBorderPositionType;
   @Input() nmNodeTemplate?: TemplateRef<any>;
 
   private _nmActivatedIndex: number;
@@ -51,14 +51,14 @@ export class NmSliderComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  @Output() nmActivatedChange?: EventEmitter<NmActivatedSlider> = new EventEmitter<
+  @Output() nmActivatedChange?: EventEmitter<
     NmActivatedSlider
-  >();
+  > = new EventEmitter<NmActivatedSlider>();
 
   private _default: NmSliderOption = {
     nmData: [],
-    nmLayout: NmSliderLayoutEnum.Row,
-    nmBorderPosition: NmSliderBorderPositionEnum.Bottom,
+    nmLayout: "row",
+    nmBorderPosition: "bottom",
     nmActivatedIndex: 0
   };
 
@@ -70,13 +70,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.nm-slider-row`)
   get getLayoutRow() {
-    if (this.nmLayout === NmSliderLayoutEnum.Row) {
-      if (
-        [NmSliderBorderPositionEnum.Left, NmSliderBorderPositionEnum.Right].indexOf(
-          this.nmBorderPosition
-        ) > -1
-      ) {
-        this.nmBorderPosition = NmSliderBorderPositionEnum.Bottom;
+    if (this.nmLayout === "row") {
+      if (["left", "right"].indexOf(this.nmBorderPosition) > -1) {
+        this.nmBorderPosition = "bottom";
       }
       return true;
     }
@@ -85,13 +81,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.nm-slider-column`)
   get getLayoutColumn() {
-    if (this.nmLayout === NmSliderLayoutEnum.Column) {
-      if (
-        [NmSliderBorderPositionEnum.Top, NmSliderBorderPositionEnum.Bottom].indexOf(
-          this.nmBorderPosition
-        ) > -1
-      ) {
-        this.nmBorderPosition = NmSliderBorderPositionEnum.Left;
+    if (this.nmLayout === "column") {
+      if (["top", "bottom"].indexOf(this.nmBorderPosition) > -1) {
+        this.nmBorderPosition = "left";
       }
       return true;
     }
@@ -100,22 +92,22 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.nm-slider-border-position-top`)
   get getBorderPositionTop() {
-    return this.nmBorderPosition == NmSliderBorderPositionEnum.Top;
+    return this.nmBorderPosition === "top";
   }
 
   @HostBinding(`class.nm-slider-border-position-right`)
   get getBorderPositionRight() {
-    return this.nmBorderPosition == NmSliderBorderPositionEnum.Right;
+    return this.nmBorderPosition === "right";
   }
 
   @HostBinding(`class.nm-slider-border-position-bottom`)
   get getBorderPositionBottom() {
-    return this.nmBorderPosition == NmSliderBorderPositionEnum.Bottom;
+    return this.nmBorderPosition === "bottom";
   }
 
   @HostBinding(`class.nm-slider-border-position-left`)
   get getBorderPositionLeft() {
-    return this.nmBorderPosition == NmSliderBorderPositionEnum.Left;
+    return this.nmBorderPosition === "left";
   }
 
   constructor(
@@ -137,7 +129,10 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const nmDataChange = changes.nmData;
-    if (nmDataChange && nmDataChange.currentValue !== nmDataChange.previousValue) {
+    if (
+      nmDataChange &&
+      nmDataChange.currentValue !== nmDataChange.previousValue
+    ) {
       this.setData();
     }
   }
@@ -164,18 +159,24 @@ export class NmSliderComponent implements OnInit, OnChanges {
     const activeEle = this.slidersRef.nativeElement.querySelector(
       `li:nth-child(${this.nmActivatedIndex + 1})`
     );
-    if (activeEle) {
-      const width =
-        this.nmLayout == NmSliderLayoutEnum.Column ? "100%" : `${activeEle.offsetWidth}px`;
-      this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
-      this.renderer.setStyle(
-        this.highlightRef.nativeElement,
-        "height",
-        `${activeEle.offsetHeight}px`
-      );
-      this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
-      this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
-    }
+    const width =
+      this.nmLayout == "column" ? "100%" : `${activeEle.offsetWidth}px`;
+    this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
+    this.renderer.setStyle(
+      this.highlightRef.nativeElement,
+      "height",
+      `${activeEle.offsetHeight}px`
+    );
+    this.renderer.setStyle(
+      this.highlightRef.nativeElement,
+      "left",
+      `${activeEle.offsetLeft}px`
+    );
+    this.renderer.setStyle(
+      this.highlightRef.nativeElement,
+      "top",
+      `${activeEle.offsetTop}px`
+    );
   }
 
   private removeListen() {
@@ -183,12 +184,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.nmData === "undefined") {
-      return;
-    }
     if (this.nmData instanceof Array) {
       this.setDataChange(this.nmData);
-    } else if (this.nmData instanceof BehaviorSubject) {
+    } else {
       if (this._data$) this._data$.unsubscribe();
       this._data$ = this.nmData.subscribe(x => {
         this.setDataChange(x);
