@@ -121,7 +121,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   activatedChange(activated: NmActivatedSlider) {
     this._isAnimation = true;
     const activatedEle = this._hElements[activated.nmActivatedIndex];
-    const marginTop = computedStyle(activatedEle, "marginTop") as number;
+    const marginTop = parseFloat(computedStyle(activatedEle, "marginTop"));
     let top =
       activatedEle.offsetTop +
       this.elementRef.nativeElement.offsetTop -
@@ -180,7 +180,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
 
   private getScrollTop() {
     if (this._windowScroll) {
-      return document.documentElement.scrollTop || document.body.scrollTop;
+      return document.documentElement.scrollTop;
     } else {
       return (this.nmScrollElement as HTMLElement).scrollTop;
     }
@@ -219,7 +219,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
           distance += (this.nmScrollElement as HTMLElement).offsetTop;
         if (
           distance >=
-          item.offsetTop - (computedStyle(item, "marginTop") as number)
+          item.offsetTop - parseFloat(computedStyle(item, "marginTop"))
         ) {
           now = index;
           return;

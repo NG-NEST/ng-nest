@@ -1,1 +1,1 @@
-export * from './public-grid';
+export * from './public-api';
