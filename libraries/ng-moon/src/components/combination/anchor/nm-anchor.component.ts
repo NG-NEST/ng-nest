@@ -31,6 +31,7 @@ import {
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
 import { DOCUMENT } from "@angular/common";
+import * as _ from "lodash";
 
 @Component({
   selector: "nm-anchor",
@@ -133,8 +134,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     if (!this._windowScroll) {
       top -= scrollEle.offsetTop;
     }
-    // this.scrollTo(scrollEle, top <= scrollH ? top : scrollH, 150);
-    this.scrollTo(scrollEle, top, 150);
+    console.log(111111);
+    this.scrollTo(scrollEle, _.ceil(top), 150);
     this.nmActivatedChange.emit(activated);
     setTimeout(() => {
       this._isAnimation = false;
@@ -202,9 +203,9 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       throttleTime(10),
       distinctUntilChanged()
     );
-    this._scroll$ = this.scrollObservable.subscribe(() =>
-      this.setActiveatedIndex()
-    );
+    this._scroll$ = this.scrollObservable.subscribe(() => {
+      this.setActiveatedIndex();
+    });
   }
 
   setActiveatedIndex() {
@@ -301,10 +302,12 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     const perTick = (difference / duration) * 10;
     reqAnimFrame(() => {
       element.scrollTop = element.scrollTop + perTick;
+      console.log(element.scrollTop, to);
       if (element.scrollTop === to) {
         return;
+      } else {
+        this.scrollTo(element, to, duration - 10);
       }
-      this.scrollTo(element, to, duration - 10);
     });
   }
 }
