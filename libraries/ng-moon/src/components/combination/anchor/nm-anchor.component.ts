@@ -134,7 +134,6 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     if (!this._windowScroll) {
       top -= scrollEle.offsetTop;
     }
-    console.log(111111);
     this.scrollTo(scrollEle, _.ceil(top), 150);
     this.nmActivatedChange.emit(activated);
     setTimeout(() => {
@@ -258,8 +257,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setFixedTop() {
-    let windowScrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
+    let windowScrollTop = document.documentElement.scrollTop;
     this.renderer.setStyle(
       this.list.nativeElement,
       "top",
@@ -302,8 +300,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     const perTick = (difference / duration) * 10;
     reqAnimFrame(() => {
       element.scrollTop = element.scrollTop + perTick;
-      console.log(element.scrollTop, to);
-      if (element.scrollTop === to) {
+      if (element.scrollTop === to || duration <= 0) {
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

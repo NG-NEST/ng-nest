@@ -93,21 +93,21 @@ describe(AnchorPrefix, () => {
       );
     });
     it("should activated anchor change.", () => {
-      // let index = 1;
-      // let activatedAnchor: NmActivatedAnchor;
-      // anchorComponent.nmActivatedChange.subscribe(
-      //   (x: NmActivatedAnchor) => (activatedAnchor = x)
-      // );
-      // let liEle = fixture.debugElement.query(
-      //   By.css(`ul li:nth-child(${index + 1})`)
-      // );
-      // liEle.triggerEventHandler("click", null);
-      expect(element.classList).toContain(AnchorPrefix);
+      let index = 1;
+      let activatedAnchor: NmActivatedAnchor;
+      (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
+        (x: NmActivatedAnchor) => (activatedAnchor = x)
+      );
+      let liEle = fixture.debugElement.query(
+        By.css(`ul li:nth-child(${index + 1})`)
+      );
+      liEle.triggerEventHandler("click", null);
+      expect(activatedAnchor.nmActivatedIndex).toBe(index);
     });
     it("should scroll change.", () => {
       anchorComponent.setActiveatedIndex();
-      testComponent.doc.documentElement.scrollTop = 100;
       (anchorComponent.nmScrollElement as HTMLElement).scrollTop = 400;
+      testComponent.doc.documentElement.scrollTop = 300;
       fixture.detectChanges();
       expect(element.classList).toContain(AnchorPrefix);
     });
@@ -118,6 +118,7 @@ describe(AnchorPrefix, () => {
     let debugElement: DebugElement;
     let element: Element;
     let shadowRoot: DocumentFragment;
+    let anchorComponent: NmAnchorComponent;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNmAnchorComponent);
       testComponent = fixture.debugElement.componentInstance;
@@ -127,11 +128,12 @@ describe(AnchorPrefix, () => {
       );
       element = debugElement.nativeElement;
       shadowRoot = element.shadowRoot;
+      anchorComponent = debugElement.componentInstance as NmAnchorComponent;
     });
     it("should activated anchor change.", () => {
       let index = 1;
       let activatedAnchor: NmActivatedAnchor;
-      (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
+      anchorComponent.nmActivatedChange.subscribe(
         (x: NmActivatedAnchor) => (activatedAnchor = x)
       );
       let liEle = fixture.debugElement.query(
@@ -143,7 +145,7 @@ describe(AnchorPrefix, () => {
     it("should scroll change.", () => {
       let index = 1;
       let activatedAnchor: NmActivatedAnchor;
-      (debugElement.componentInstance as NmAnchorComponent).nmActivatedChange.subscribe(
+      anchorComponent.nmActivatedChange.subscribe(
         (x: NmActivatedAnchor) => (activatedAnchor = x)
       );
       let liEle = fixture.debugElement.query(
@@ -152,6 +154,13 @@ describe(AnchorPrefix, () => {
       liEle.triggerEventHandler("click", null);
       expect(activatedAnchor.nmActivatedIndex).toBe(index);
     });
+    // it("should window size change.", () => {
+    //   let doc = fixture.elementRef.nativeElement.ownerDocument;
+    //   let resize = doc.createEvent("resize");
+    //   doc.dispatchEvent(resize);
+    //   // fixture.debugElement.triggerEventHandler("resize", null);
+    //   expect(element.classList).toContain(AnchorPrefix);
+    // });
   });
   describe(`option undefined.`, () => {
     let fixture: ComponentFixture<TestUndefinedNmAnchorComponent>;

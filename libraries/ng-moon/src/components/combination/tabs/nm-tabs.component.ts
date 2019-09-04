@@ -88,18 +88,6 @@ export class NmTabsComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  private _nmResetTabs: boolean;
-  public get nmResetTabs(): boolean {
-    return this._nmResetTabs;
-  }
-  @Input()
-  public set nmResetTabs(value: boolean) {
-    this._nmResetTabs = value;
-    console.log(value);
-    if (value && this.slider) {
-    }
-  }
-
   // @Input() nmNodeTemplate?: TemplateRef<any>;
 
   sliderOption: NmSliderOption = {

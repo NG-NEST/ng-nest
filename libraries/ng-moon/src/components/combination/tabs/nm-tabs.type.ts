@@ -14,8 +14,6 @@ export interface NmTabsOption {
   nmActivatedIndex?: number;
   // 节点模板
   // nmNodeTemplate?: TemplateRef<any>;
-  // 重置标签页
-  nmResetTabs?: boolean;
 }
 
 // Tabs 数据对象
