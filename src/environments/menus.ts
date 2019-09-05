@@ -58,7 +58,7 @@ export const menus: Menu[] = [
     "parentId": "2-0-0",
     "name": "grid",
     "router": "./docs/ui/components/basic/grid",
-    "label": "示例"
+    "label": "栅格"
   },
   {
     "id": "2-0-0-1",

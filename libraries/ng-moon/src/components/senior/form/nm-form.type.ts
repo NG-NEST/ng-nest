@@ -57,7 +57,7 @@ export interface NmControlOption<T> extends NmIdentityOption {
   /**
    * 列宽
    */
-  nmCol?: number;
+  nmSpan?: number;
 }
 
 /**
@@ -92,7 +92,7 @@ export class NmControl<T> extends NmIdentity {
   /**
    * 列宽
    */
-  nmCol?: number;
+  nmSpan?: number;
   constructor(option: NmControlOption<T> = {}) {
     super();
     Object.assign(this, option);

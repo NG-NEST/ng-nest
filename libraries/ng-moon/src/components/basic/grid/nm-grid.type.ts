@@ -34,7 +34,7 @@ export interface NmRowOption {}
  */
 export interface NmColOption {
   /**
-   * 12栅格布局，列占的宽度
+   * 24栅格布局，列占的宽度
    */
-  nmCol?: number;
+  nmSpan?: number;
 }

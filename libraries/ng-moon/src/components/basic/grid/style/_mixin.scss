@@ -5,61 +5,30 @@
 @import "./param";
 
 @mixin grid {
-  width: 100%;
+}
+
+@mixin row {
   display: block;
-  .nm-row {
-    display: block;
-    &:before,
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
+  position: relative;
+  height: auto;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin col {
+  position: relative;
+  float: left;
+  display: block;
+  box-sizing: border-box;
+  $col-fence-initial: $col-fence;
+  @while $col-fence-initial>0 {
+    &-#{$col-fence-initial} {
+      width: 100% * $col-fence-initial / $col-fence;
     }
-    .nm-col {
-      position: relative;
-      float: left;
-      display: block;
-      overflow: auto;
-      box-sizing: border-box;
-      &-12 {
-        width: 100%;
-      }
-      &-11 {
-        width: 91.66666667%;
-      }
-      &-10 {
-        width: 83.33333333%;
-      }
-      &-9 {
-        width: 75%;
-      }
-      &-8 {
-        width: 66.66666667%;
-      }
-      &-7 {
-        width: 58.33333333%;
-      }
-      &-6 {
-        width: 50%;
-      }
-      &-5 {
-        width: 41.66666667%;
-      }
-      &-4 {
-        width: 33.33333333%;
-      }
-      &-3 {
-        width: 25%;
-      }
-      &-2 {
-        width: 16.66666667%;
-      }
-      &-1 {
-        width: 8.33333333%;
-      }
-      &-0 {
-        width: inherit;
-      }
-    }
+    $col-fence-initial: $col-fence-initial - 1;
   }
 }
