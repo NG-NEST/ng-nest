@@ -1,0 +1,16 @@
+:host {
+  nm-row {
+    margin: 1rem 0;
+    > nm-col {
+      color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      &:nth-child(odd) {
+        background-color: #3f51b5e0;
+      }
+      &:nth-child(even) {
+        background-color: #3f51b5;
+      }
+    }
+  }
+}
