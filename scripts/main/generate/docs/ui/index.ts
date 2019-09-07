@@ -1,9 +1,7 @@
 import { NcPage } from "./../../../interfaces/page";
 import { NcComponents } from "./components";
-import * as path from "path";
 import { isString } from "util";
-import { docsPrefix, genDir, NcDocs } from "..";
-import { createRouterOutlet, handlerPage } from "../../../utils";
+import { docsPrefix } from "..";
 
 const componentsFolder = "../../../../../libraries/ng-moon/src/components";
 

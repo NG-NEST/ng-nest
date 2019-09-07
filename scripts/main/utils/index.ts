@@ -2,6 +2,7 @@ export * from "./first-letter-capital";
 export * from "./md-to-html";
 export * from "./replace-key";
 export * from "./check-mkdir";
+export * from "./copy-dir";
 export * from "./parse-md-doc";
 export * from "./themes";
 export * from "./random-string";

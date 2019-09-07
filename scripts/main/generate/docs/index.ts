@@ -38,8 +38,9 @@ export class NcDocs {
   async genPages() {
     await getThemes();
     this.page = createRouterOutlet(docsPrefix);
-    handlerPage(this.page, genDir);
-    this.addChildren(this.page, genDir, docsDir, `./${docsPrefix}`);
+    this.page.genDir = genDir;
+    handlerPage(this.page);
+    this.addChildren(this.page, docsDir, `./${docsPrefix}`);
     generatePage(this.page);
     this.menus = _.sortBy(this.menus, ["parentId", "order"]);
     generateMenu(genMenusDir, this.menus);
@@ -47,7 +48,6 @@ export class NcDocs {
 
   addChildren(
     page: NcPage,
-    genDir: string,
     docDir: string,
     router: string,
     index?: string,
@@ -60,24 +60,18 @@ export class NcDocs {
       const stat = fs.statSync(dir);
       if (stat.isDirectory()) {
         const read = parseMdDoc(path.join(dir, "readme.md"));
-        const folder = path.join(genDir, x);
+        const folder = path.join(page.genDir, x);
         const child = this.createChild(read, x, folder);
+        child.genDir = folder;
         child.path = dir;
         page.children = [...page.children, child];
         const thisRouter = `${router}/${x}`;
         const menu = this.createMenu(read, x, index, i, thisRouter);
         if (x === "components") {
           child.path = componentsDir;
-          this.addChildren(
-            child,
-            folder,
-            componentsDir,
-            menu.router,
-            menu.id,
-            2
-          );
+          this.addChildren(child, componentsDir, menu.router, menu.id, 2);
         } else if (level !== 0) {
-          this.addChildren(child, folder, dir, menu.router, menu.id, level);
+          this.addChildren(child, dir, menu.router, menu.id, level);
         }
         if (
           dir.indexOf(componentsDir) === 0 &&
@@ -107,7 +101,8 @@ export class NcDocs {
             custom: read.content
           });
     child.order = read.meta.order;
-    handlerPage(child, folder);
+    child.genDir = folder;
+    handlerPage(child);
     return child;
   }
 

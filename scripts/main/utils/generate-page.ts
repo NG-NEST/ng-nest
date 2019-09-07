@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import { NcPage } from "../interfaces/page";
 import { checkMkdir } from "./check-mkdir";
-import { replaceKeyByPage, replaceKeyByObject } from ".";
+import { replaceKeyByPage, replaceKeyByObject, copyDir } from ".";
 
 /**
  * 生成页面代码
@@ -20,5 +20,8 @@ export function generatePage(page: NcPage) {
     x.content = replaceKeyByObject(x.content, x.keywords);
     checkMkdir(x.genPath.replace(x.genName, ""));
     fs.writeFileSync(x.genPath, x.content, "utf8");
+  });
+  page.copyDir.forEach(x => {
+    copyDir(x.from, x.to, x.exclude);
   });
 }

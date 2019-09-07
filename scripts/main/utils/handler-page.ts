@@ -5,14 +5,14 @@ import { NcPage } from "../interfaces/page";
 
 const tplDir = path.resolve(__dirname, "../../main/templates");
 
-export function handlerPage(page: NcPage, dir: string) {
+export function handlerPage(page: NcPage) {
   let templates: NcTplName[] = ["component", "module", "routes-module"];
   templates.unshift({
     name: `${page.type}-component`,
     extension: "html",
     type: page.type
   });
-  handleTemplates(page, tplDir, dir, ...templates);
+  handleTemplates(page, tplDir, page.genDir, ...templates);
 }
 
 export function handleTemplates(

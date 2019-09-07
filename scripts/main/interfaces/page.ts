@@ -11,8 +11,10 @@ export class NcPage {
   comName?: string;
   capName?: string;
   custom?: string = "";
+  genDir?: string = "";
   templates?: NcTemplate[] = [];
   type?: NcTemplateType = "default";
+  copyDir?: NcCopyDir[] = [];
   children?: NcPage[] = [];
   path?: string = "";
   order?: number;
@@ -51,4 +53,10 @@ export interface NcModule extends NcTpl, NcImports {
 
 export interface NcRoutes extends NcTpl, NcImports {
   children?: string;
+}
+
+export interface NcCopyDir {
+  from?: string;
+  to?: string;
+  exclude?: string[];
 }

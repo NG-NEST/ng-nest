@@ -42,6 +42,7 @@ export function handlerExamples(page: NcPage) {
   if (page.custom.indexOf("__examples") <= -1) return;
   let examples: NcExamples = {};
   let comTpl = _.find(page.templates, x => x.name == "component");
+
   examples.path = path.join(page.path, "examples");
   examples.tplPath = path.join(tplDir, "examples-component.template.html");
   let func = "";
@@ -68,6 +69,11 @@ export function handlerExamples(page: NcPage) {
     "__examples",
     replaceKey(examplesTpl, "__tabs", tabs.content)
   );
+  page.copyDir.push({
+    from: examples.path,
+    to: path.join(page.genDir, "examples"),
+    exclude: [".md"]
+  });
 }
 
 export async function handlerApi(page: NcPage) {
