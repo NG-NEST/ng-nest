@@ -15,7 +15,12 @@ export const ColPrefix = "nm-col";
 /**
  * Row 参数对象
  */
-export interface NmRowOption {}
+export interface NmRowOption {
+  /**
+   * 列间隔，单位rem
+   */
+  nmSpace?: number;
+}
 
 /**
  * Col 参数对象

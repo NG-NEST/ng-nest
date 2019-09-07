@@ -5,9 +5,12 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input
+  Input,
+  Optional,
+  Host
 } from "@angular/core";
 import { ColPrefix } from "./nm-grid.type";
+import { NmRowComponent } from "./nm-row.component";
 
 @Component({
   selector: "nm-col",
@@ -20,7 +23,11 @@ import { ColPrefix } from "./nm-grid.type";
 export class NmColComponent implements OnInit {
   @Input() nmSpan?: number;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(
+    @Optional() @Host() public nmRowComponent: NmRowComponent,
+    private renderer: Renderer2,
+    private elementRef: ElementRef
+  ) {
     this.renderer.addClass(this.elementRef.nativeElement, ColPrefix);
   }
 
@@ -29,6 +36,18 @@ export class NmColComponent implements OnInit {
       this.renderer.addClass(
         this.elementRef.nativeElement,
         `${ColPrefix}-${this.nmSpan}`
+      );
+    }
+    if (this.nmRowComponent.nmSpace) {
+      this.renderer.setStyle(
+        this.elementRef.nativeElement,
+        "padding-left",
+        `${this.nmRowComponent.nmSpace / 2}rem`
+      );
+      this.renderer.setStyle(
+        this.elementRef.nativeElement,
+        "padding-right",
+        `${this.nmRowComponent.nmSpace / 2}rem`
       );
     }
   }

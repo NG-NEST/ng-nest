@@ -1,0 +1,19 @@
+:host {
+  nm-row {
+    margin: 1rem 0;
+    > nm-col {
+      div.box {
+        color: #ffffff;
+        padding: 1rem;
+        text-align: center;
+        background-color: var(--nm-primary-color);
+      }
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
