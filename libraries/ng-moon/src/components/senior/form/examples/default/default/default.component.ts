@@ -6,4 +6,4 @@ import { Component } from "@angular/core";
     <nm-form></nm-form>
   `
 })
-class ExFormComponent {}
+export class ExFormComponent {}

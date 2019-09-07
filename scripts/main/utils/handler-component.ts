@@ -56,7 +56,7 @@ export function handlerExamples(page: NcPage) {
   });
   tabs.tabs.forEach(x => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
-    hanlderCates(cates);
+    hanlderCates(cates, page);
     generateCates(cates, comTpl, func);
     if (cates.content) {
       x.content = cates.content;

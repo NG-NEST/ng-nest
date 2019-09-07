@@ -7,7 +7,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ShareModule } from "src/share/share.module";
 import { MainRoutesModule } from "src/main/routes.module";
-import { NgMoonModule } from "ng-moon";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,6 @@ import { NgMoonModule } from "ng-moon";
     ReactiveFormsModule,
     HttpClientModule,
     ShareModule,
-    NgMoonModule,
     MainRoutesModule
   ],
   bootstrap: [AppComponent]

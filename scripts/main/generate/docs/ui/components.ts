@@ -12,21 +12,6 @@ export class NcComponents {
       const readmePath = this.getReadmePath(dirName);
       let html = mdToHtml(readmePath);
       let page = new NcUiPage(dirName);
-
-      if (html) {
-        // console.log(html);
-        // if (dirName === "icon") {
-        //   // html += iconsTemplate(dirName).content;
-        //   iconTemplate = iconsTemplateRe(dirName);
-        //   html += iconTemplate.content;
-        // }
-        // docComponentHtml(
-        //   html,
-        //   `${docsComponentsPath}/components/${dirName}`,
-        //   dirName,
-        //   iconTemplate
-        // );
-      }
     });
   }
   getReadmePath(dirName: string) {

@@ -4,9 +4,6 @@
 @import "../../../../style/mixins/index";
 @import "./param";
 
-@mixin grid {
-}
-
 @mixin row {
   display: block;
   position: relative;

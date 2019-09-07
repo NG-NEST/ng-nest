@@ -6,7 +6,7 @@ import { {{ __capName }}RoutesModule } from "./{{ __fileName }}-routes.module";
 {{ __imports }}
 @NgModule({
   imports: [CommonModule, ShareModule, {{ __capName }}RoutesModule{{ __modules }}],
-  declarations: [{{ __capName }}Component],
+  declarations: [{{ __capName }}Component{{ __declarations }}],
   exports: [{{ __capName }}Component]
 })
 export class {{ __capName }}Module {}

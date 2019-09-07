@@ -16,7 +16,6 @@ export const styleDir = path.resolve(
 export function getThemes(): Promise<NcStyle[]> {
   return new Promise((res, rej) => {
     if (global["NcThemes"] != null) {
-      console.log(1);
       res(global["NcThemes"]);
     } else {
       let lines = readline.createInterface({

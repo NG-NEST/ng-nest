@@ -12,7 +12,8 @@ export class NcTemplate {
     modules: "",
     loadChildren: "",
     constant: "",
-    custom: ""
+    custom: "",
+    declarations: ""
   };
   keywords?: { [prop: string]: string } = {};
   constructor(param: NcTemplate) {

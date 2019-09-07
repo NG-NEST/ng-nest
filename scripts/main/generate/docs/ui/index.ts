@@ -23,12 +23,5 @@ export class NcUi {
     this.components.init(componentsFolder);
   }
   genComponent() {
-    // global["NcDocs"] as NcDocs
-    // this.page = createRouterOutlet(docsPrefix);
-
-    // handlerPage(this.page, path.join(genDir, this.page.name));
-    // this.addChildren();
-    // generatePage(this.page);
-    // console.log(this.page)
   }
 }

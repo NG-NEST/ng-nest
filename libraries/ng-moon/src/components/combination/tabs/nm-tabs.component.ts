@@ -143,7 +143,6 @@ export class NmTabsComponent implements OnInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    // console.log(this.listTabs);
     this.setData();
   }
 

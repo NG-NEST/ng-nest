@@ -3,6 +3,7 @@ import * as fs from "fs-extra";
 import { NcCate, NcCates, NcCode, NcCodeBox } from "../interfaces/examples";
 import { parseMdDoc } from ".";
 import * as _ from "lodash";
+import { NcPage } from "../interfaces/page";
 
 /**
  * 示例分类处理
@@ -10,8 +11,9 @@ import * as _ from "lodash";
  * @export
  * @param {NcCates} cates
  */
-export function hanlderCates(cates: NcCates) {
+export function hanlderCates(cates: NcCates, page: NcPage) {
   let folder = fs.readdirSync(cates.folderPath, "utf8");
+  let mod = page.templates.find(x => x.type == "default" && x.name == "module");
   cates.list = [];
   folder.forEach(x => {
     let catePath = path.join(cates.folderPath, x);
@@ -24,6 +26,10 @@ export function hanlderCates(cates: NcCates) {
         path: catePath
       };
       handlerCodeBoxes(cate, readme);
+      if (cate.className) {
+        mod.syswords.declarations += `, ${cate.className}`;
+        mod.syswords.imports += `import { ${cate.className} } from "${cate.rootPath}";\n`;
+      }
       cates.list.push(cate);
       cates.list = _.sortBy(cates.list, "order");
     }
@@ -52,6 +58,11 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
       };
       if (code.type === "ts") {
         code.content = code.content.replace(/\`/g, "\\`");
+        cate.selector = code.content.match(/selector: \"(\S*)\",/)[1];
+        cate.className = code.content.match(/export class (\S*) /)[1];
+        cate.rootPath = `./${cate.path
+          .slice(cate.path.lastIndexOf("examples"), cate.path.length)
+          .replace(/\\/g, "/")}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
       }
       box.codes.push(code);
     }

@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import { NcCates } from "../interfaces/examples";
+import { NcCates, NcCate } from "../interfaces/examples";
 import {
   handlerTabs,
   handlerTabsByFiles,
@@ -39,7 +39,13 @@ export function generateCates(
       id: func
     });
     catesTabs.tabs.forEach(x => {
-      generateFiles(x, comTpl, path.join(cates.folderPath, x.name), subFunc);
+      generateFiles(
+        x,
+        cates.list.find(y => y.name == x.name),
+        comTpl,
+        path.join(cates.folderPath, x.name),
+        subFunc
+      );
     });
     cates.content = generateTabs(catesTabs).content;
   }
@@ -54,6 +60,7 @@ export function generateCates(
  */
 export function generateFiles(
   tab: NcTab,
+  cate: NcCate,
   comTpl: NcTemplate,
   folderPath: string,
   func: string
@@ -83,14 +90,12 @@ export function generateFiles(
     tpl = replaceKey(tpl, "__type", type);
     tpl = replaceKey(tpl, "__data", param);
     if (type == extToType.ts) {
-      let consts = getConstByContent(content);
-      for (let key in consts) {
-        comTpl.syswords.constant += `${key}=\`${consts[key]}\`;\n  `;
-      }
       content = handlerContent(content);
     }
     comTpl.syswords.constant += `${param}=\`${content}\`;\n  `;
-    if (x.name == `${tab.name}.component.html`) html = content;
+    if (x.name == `${tab.name}.component.ts`) {
+      html = `<${cate.selector}></${cate.selector}>`;
+    }
     x.content = tpl;
   });
   tab.content = `
@@ -113,45 +118,6 @@ export function handlerContent(content: string) {
     }
   });
   return content;
-}
-
-export function getConstByContent(content: string) {
-  let conSpt = content.split("\n");
-  let consts = {};
-  let prop = "";
-  let val = "";
-  let startVal = "";
-  let isReadClass = false;
-  let isReadConst = false;
-  let isReadProp = false;
-  conSpt.forEach((x: string) => {
-    if (x.trim().startsWith("export") && !isReadClass) {
-      isReadClass = true;
-    }
-    if (isReadClass && !isReadProp && !isReadConst && x.indexOf("=") > -1) {
-      isReadConst = true;
-      isReadProp = true;
-      let lineSpt = x.split("=");
-      prop = lineSpt[0].trim();
-      val = lineSpt.length > 1 ? lineSpt[1].trim() : "";
-      startVal = val.length > 0 ? val.slice(0, 1) : "";
-      consts[prop] = val;
-    }
-    if (!isReadProp && isReadClass && isReadConst) {
-      let value = x;
-      val += `\n${value}`;
-      consts[prop] = val;
-      if (x.endsWith(`${startVal};`)) {
-        isReadConst = false;
-        consts[prop] = consts[prop].slice(1, consts[prop].length - 2);
-        prop = val = startVal = "";
-      }
-    } else {
-      isReadProp = false;
-    }
-  });
-
-  return consts;
 }
 
 /**

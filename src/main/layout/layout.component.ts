@@ -38,6 +38,5 @@ export class LayoutComponent implements OnInit {
   }
 
   toXSmallListener(event: MediaQueryListEvent) {
-    console.log(event.matches ? "match" : "no match");
   }
 }

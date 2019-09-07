@@ -3,5 +3,5 @@ order: 1
 label: "默认"
 ---
 
--   `width` 根据父元素宽度自动撑开到 100%
--   包含三种显示样式 `default` 、`hover` 、`focus`
+-   `nm-row` 行宽度 `width` 根据父元素宽度自动撑开到 100%。
+-   `nm-col` 必须包含在 `nm-row` 里面。

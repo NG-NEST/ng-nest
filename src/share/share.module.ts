@@ -7,7 +7,7 @@ import { PortalModule } from "@angular/cdk/portal";
 import { LayoutModule } from "@angular/cdk/layout";
 import { RouterModule } from "@angular/router";
 import { DevelopingComponent } from "./developing/developing.component";
-import { NgMoonModule } from "ng-moon";
+import { NgMoonModule } from 'ng-moon';
 
 const components = [
   DevelopingComponent

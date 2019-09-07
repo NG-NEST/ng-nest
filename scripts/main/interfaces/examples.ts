@@ -90,6 +90,26 @@ export interface NcCate {
    */
   path?: string;
   /**
+   * 分类组件类名
+   *
+   * @type {number}
+   * @memberof NcCate
+   */
+  className?: string;
+  /**
+   * 分类组件
+   *
+   * @type {number}
+   * @memberof NcCate
+   */
+  selector?: string;
+  /**
+   * 对应ts文件路径
+   *
+   * @memberof NcCate
+   */
+  rootPath?: string;
+  /**
    * 代码块
    *
    * @type {NcCodeBox}
