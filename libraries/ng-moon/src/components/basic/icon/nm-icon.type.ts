@@ -1,25 +1,50 @@
+/**
+ * Icon 组件名
+ * @selector nm-icon
+ * @decorator component
+ */
 export const IconPrefix = "nm-icon";
 
-/** Icon 参数对象 */
+/**
+ * Icon 参数对象
+ */
 export interface NmIconOption {
-  /** 图标类型 */
+  /**
+   * 图标类型
+   */
   nmType?: string;
-  /** 图标颜色 */
+  /**
+   * 图标颜色
+   */
   nmColor?: string | string[];
-  /** 图标旋转角度 */
+  /**
+   * 图标旋转角度
+   */
   nmRotate?: number;
 }
 
-/** 图标来源 */
+/**
+ * 图标来源
+ */
 export enum NmIconSourceEnum {
-  /** Ant Design */
+  /**
+   * Ant Design
+   */
   AntDesign = "ant-design",
-  /** Eva */
+  /**
+   * Eva
+   */
   Eva = "eva",
-  /** Feather */
+  /**
+   * Feather
+   */
   Feather = "feather",
-  /** Font Awesome */
+  /**
+   * Font Awesome
+   */
   FontAwesome = "font-awesome",
-  /** Material Design */
+  /**
+   * Material Design
+   */
   MaterialDesign = "material-design"
 }

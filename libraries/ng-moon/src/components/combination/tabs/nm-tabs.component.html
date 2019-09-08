@@ -11,10 +11,11 @@
 </div>
 <div
   #content
-  class="nm-tabs-content"
-  [class.nm-tabs-content-animated]="nmLayout === 'top' || nmLayout === 'bottom'"
+  class="nm-tabs-contents"
+  [class.nm-tabs-contents-animated]="nmLayout === 'top' || nmLayout === 'bottom'"
   [style.margin-left.%]="
-    (nmLayout === 'top' || nmLayout === 'bottom') && -(nmActivatedIndex || 0) * 100
+    (nmLayout === 'top' || nmLayout === 'bottom') &&
+    -(nmActivatedIndex || 0) * 100
   "
 >
   <nm-tab-content

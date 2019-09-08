@@ -10,13 +10,13 @@
   background-color: #fff;
   .#{$prefix}-html,
   .#{$prefix}-code {
-    padding: 1.4rem 1rem;
+    padding: 1rem;
   }
   .#{$prefix}-code {
     > .nm-tabs {
       padding-top: 0;
       background-color: #eff0f1;
-      > .nm-tabs-content > .nm-tab-content > .nm-highlight {
+      > .nm-tabs-contents > .nm-tab-content > .nm-highlight {
         background-color: transparent;
       }
     }
@@ -46,7 +46,7 @@
         }
       }
     }
-    > .nm-tabs-content {
+    > .nm-tabs-contents {
       padding-left: 0;
       > .nm-tab-content {
         > .nm-tabs {
@@ -60,7 +60,7 @@
               }
             }
           }
-          > .nm-tabs-content {
+          > .nm-tabs-contents {
             > .nm-tab-content {
               border-radius: 0.25rem;
             }

@@ -9,26 +9,25 @@
   @include tabs();
   &-top {
     flex-direction: column;
-    padding-top: 1rem;
   }
 
   &-right {
     flex-direction: row-reverse;
-    > .#{$prefix}-content {
+    > .#{$prefix}-contents {
       padding-right: 1rem;
     }
   }
 
   &-bottom {
     flex-direction: column-reverse;
-    > .#{$prefix}-content {
+    > .#{$prefix}-contents {
       padding-bottom: 1rem;
     }
   }
 
   &-left {
     flex-direction: row;
-    > .#{$prefix}-content {
+    > .#{$prefix}-contents {
       padding-left: 1rem;
     }
   }
