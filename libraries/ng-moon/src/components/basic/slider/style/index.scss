@@ -14,27 +14,29 @@
     }
   }
 
-  &-border-position-top {
-    > ul > li {
-      border-top-width: 2px;
+  &-border-show {
+    &.#{$prefix}-border-position-top {
+      > ul > li {
+        border-top-width: 2px;
+      }
     }
-  }
 
-  &-border-position-right {
-    > ul > li {
-      border-right-width: 2px;
+    &.#{$prefix}-border-position-right {
+      > ul > li {
+        border-right-width: 2px;
+      }
     }
-  }
 
-  &-border-position-bottom {
-    > ul > li {
-      border-bottom-width: 2px;
+    &.#{$prefix}-border-position-bottom {
+      > ul > li {
+        border-bottom-width: 2px;
+      }
     }
-  }
 
-  &-border-position-left {
-    > ul > li {
-      border-left-width: 2px;
+    &.#{$prefix}-border-position-left {
+      > ul > li {
+        border-left-width: 2px;
+      }
     }
   }
 }

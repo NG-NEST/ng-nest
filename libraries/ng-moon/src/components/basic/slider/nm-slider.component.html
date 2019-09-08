@@ -3,6 +3,7 @@
     *ngFor="let item of data; index as i"
     [ngClass]="{ 'nm-slider-activated': i == nmActivatedIndex }"
     (click)="action('click', item, i)"
+    [title]="nmNodeTemplate ? item.nmLabel : ''"
   >
     <ng-container *ngIf="!nmNodeTemplate">{{ item.nmLabel }}</ng-container>
     <ng-container *ngIf="nmNodeTemplate">
@@ -11,5 +12,10 @@
       ></ng-container>
     </ng-container>
   </li>
-  <li class="nm-slider-highlight" #highlight></li>
+  <li
+    class="nm-slider-highlight"
+    [hidden]="nmHighlightHidden"
+    #highlight
+    [title]="nmNodeTemplate ? nmActivatedSlider?.nmLabel : ''"
+  ></li>
 </ul>

@@ -1,0 +1,22 @@
+:host {
+  .nm-row {
+    > .nm-col {
+      margin-bottom: 1rem;
+      > span {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .slider {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        > .nm-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

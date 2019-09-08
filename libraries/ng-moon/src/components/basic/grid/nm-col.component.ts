@@ -38,7 +38,7 @@ export class NmColComponent implements OnInit {
         `${ColPrefix}-${this.nmSpan}`
       );
     }
-    if (this.nmRowComponent.nmSpace) {
+    if (this.nmRowComponent && this.nmRowComponent.nmSpace) {
       this.renderer.setStyle(
         this.elementRef.nativeElement,
         "padding-left",

@@ -40,6 +40,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
   @Input() nmBorderPosition?: NmSliderBorderPositionType;
   @Input() nmNodeTemplate?: TemplateRef<any>;
 
+  nmActivatedSlider: NmSliderNode;
+  nmHighlightHidden: boolean;
+
   private _nmActivatedIndex: number;
   public get nmActivatedIndex(): number {
     return this._nmActivatedIndex;
@@ -47,6 +50,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
   @Input()
   public set nmActivatedIndex(value: number) {
     this._nmActivatedIndex = value;
+    if (this.data.length > 0) {
+      this.nmActivatedSlider = this.data[value];
+    }
     this.setHighlight();
     this.cdr.detectChanges();
   }
@@ -58,7 +64,6 @@ export class NmSliderComponent implements OnInit, OnChanges {
   private _default: NmSliderOption = {
     nmData: [],
     nmLayout: "row",
-    nmBorderPosition: "bottom",
     nmActivatedIndex: 0
   };
 
@@ -110,6 +115,11 @@ export class NmSliderComponent implements OnInit, OnChanges {
     return this.nmBorderPosition === "left";
   }
 
+  @HostBinding(`class.nm-slider-border-show`)
+  get getBorderHidden() {
+    return typeof this.nmBorderPosition !== "undefined";
+  }
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -145,10 +155,11 @@ export class NmSliderComponent implements OnInit, OnChanges {
     switch (type) {
       case "click":
         this.nmActivatedIndex = index;
+        this.nmActivatedSlider = option;
         this.setHighlight();
         this.nmActivatedChange.emit({
-          nmActivatedIndex: index,
-          nmActivatedSlider: option
+          nmActivatedIndex: this.nmActivatedIndex,
+          nmActivatedSlider: this.nmActivatedSlider
         });
         this.cdr.detectChanges();
         break;
@@ -159,6 +170,7 @@ export class NmSliderComponent implements OnInit, OnChanges {
     const activeEle = this.slidersRef.nativeElement.querySelector(
       `li:nth-child(${this.nmActivatedIndex + 1})`
     );
+    if (!activeEle) return;
     const width =
       this.nmLayout == "column" ? "100%" : `${activeEle.offsetWidth}px`;
     this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
@@ -177,6 +189,8 @@ export class NmSliderComponent implements OnInit, OnChanges {
       "top",
       `${activeEle.offsetTop}px`
     );
+    this.nmHighlightHidden =
+      activeEle.offsetWidth === 0 && activeEle.offsetHeight === 0;
   }
 
   private removeListen() {
@@ -196,6 +210,9 @@ export class NmSliderComponent implements OnInit, OnChanges {
 
   private setDataChange(value: NmSliderNode[]) {
     this.data = value;
+    if (this.data.length > 0) {
+      this.nmActivatedSlider = this.data[this.nmActivatedIndex];
+    }
     setTimeout(() => this.setHighlight());
     this.cdr.detectChanges();
   }

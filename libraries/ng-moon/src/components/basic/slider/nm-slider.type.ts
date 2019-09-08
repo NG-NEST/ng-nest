@@ -29,7 +29,7 @@ export interface NmSliderOption {
    */
   nmBorderPosition?: NmSliderBorderPositionType;
   /**
-   * 选中的序号
+   * 激活的序列号
    * @default 0
    */
   nmActivatedIndex?: number;
@@ -42,7 +42,12 @@ export interface NmSliderOption {
 /**
  * Slider 数据对象
  */
-export interface NmSliderNode extends NmIdentityOption {}
+export interface NmSliderNode extends NmIdentityOption {
+  /**
+   * 自定义数据属性
+   */
+  [property: string]: any;
+}
 
 /**
  * 选中的 Slider

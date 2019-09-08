@@ -1,0 +1,26 @@
+<nm-row [nmSpace]="2">
+  <nm-col [nmSpan]="24">
+    <span>边框在上面：</span>
+    <nm-slider [nmData]="data" [nmBorderPosition]="'top'"></nm-slider>
+  </nm-col>
+  <nm-col [nmSpan]="24">
+    <span>边框在下面：</span>
+    <nm-slider [nmData]="data" [nmBorderPosition]="'bottom'"></nm-slider>
+  </nm-col>
+  <nm-col [nmSpan]="24">
+    <span>边框在左边：</span>
+    <nm-slider
+      [nmData]="data"
+      [nmLayout]="'column'"
+      [nmBorderPosition]="'left'"
+    ></nm-slider>
+  </nm-col>
+  <nm-col [nmSpan]="24">
+    <span>边框在右边：</span>
+    <nm-slider
+      [nmData]="data"
+      [nmLayout]="'column'"
+      [nmBorderPosition]="'right'"
+    ></nm-slider>
+  </nm-col>
+</nm-row>

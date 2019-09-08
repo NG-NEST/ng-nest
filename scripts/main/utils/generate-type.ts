@@ -16,9 +16,7 @@ export function generateTypes(...types: NcType[]) {
       switch (x.object) {
         case NcObjectType.Const:
           if (x.name.endsWith("Prefix")) {
-            let selector = `<h3 class="nm-api-selector"><span>${
-              x.selector
-            }</span> <span>${x.decorator}</span></h3>
+            let selector = `<h3 class="nm-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
             <p>${x.description}</p>`;
             result += selector;
           }
@@ -29,7 +27,7 @@ export function generateTypes(...types: NcType[]) {
             table += `<tr>
                 <td>[<span><code>${y.name}</code></span>]</td>
                 <td>${y.label}<span>${y.description}</span></td>
-                <td><code>${y.type}</code></td>
+                <td><code [innerHtml]="'${y.type}'"></code></td>
                 <td><code>${y.defalut}</code></td>
               </tr>`;
           });

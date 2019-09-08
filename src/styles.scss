@@ -3,7 +3,6 @@
 @import "src/styles/index";
 @import "~@angular/cdk/overlay-prebuilt.css";
 
-
 @font-face {
   font-family: "titillium";
   src: url("assets/fonts/titillium.eot?#") format("eot"),
@@ -134,7 +133,7 @@ h2,
 h3,
 h4,
 h5 {
-  cursor: default;
+  cursor: inherit;
 }
 
 h1,
