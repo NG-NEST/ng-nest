@@ -18,8 +18,8 @@ import {
   AnchorPrefix,
   NmAnchorOption,
   NmAnchorNode,
-  NmAnchorLayoutEnum,
-  NmActivatedAnchor
+  NmActivatedAnchor,
+  NmAnchorLayoutType
 } from "./nm-anchor.type";
 import { fillDefault, reqAnimFrame, computedStyle } from "../../../core/util";
 import {
@@ -42,15 +42,15 @@ import * as _ from "lodash";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NmAnchorComponent implements OnInit, OnDestroy {
-  private _nmLayout: NmAnchorLayoutEnum;
-  public get nmLayout(): NmAnchorLayoutEnum {
+  private _nmLayout: NmAnchorLayoutType;
+  public get nmLayout(): NmAnchorLayoutType {
     return this._nmLayout;
   }
   @Input()
-  public set nmLayout(value: NmAnchorLayoutEnum) {
+  public set nmLayout(value: NmAnchorLayoutType) {
     this._nmLayout = value;
     this.sliderOption.nmBorderPosition =
-      this._nmLayout === NmAnchorLayoutEnum.Left ? "right" : "left";
+      this._nmLayout === "left" ? "right" : "left";
   }
   @Input() nmScrollElement: HTMLElement | Window;
 
@@ -69,7 +69,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   scrollObservable: Observable<any>;
 
   private _default: NmAnchorOption = {
-    nmLayout: NmAnchorLayoutEnum.Right
+    nmLayout: "right"
   };
   private _windowScroll: boolean = false;
   private _scroll$: Subscription | null = null;
@@ -83,11 +83,11 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
 
   @HostBinding(`class.nm-anchor-left`)
   get getLayoutLeft() {
-    return this.nmLayout === NmAnchorLayoutEnum.Left;
+    return this.nmLayout === "left";
   }
   @HostBinding(`class.nm-anchor-right`)
   get getLayoutRight() {
-    return this.nmLayout === NmAnchorLayoutEnum.Right;
+    return this.nmLayout === "right";
   }
 
   constructor(
@@ -274,7 +274,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   }
 
   private getAnchorLeft() {
-    return this.nmLayout === NmAnchorLayoutEnum.Right
+    return this.nmLayout === "right"
       ? this.content.nativeElement.clientWidth
       : 0;
   }

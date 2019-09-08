@@ -50,15 +50,15 @@ export interface NmSliderNode extends NmIdentityOption {
 }
 
 /**
- * 选中的 Slider
+ * 激活的 Slider
  */
 export interface NmActivatedSlider {
   /**
-   * 选中的序号
+   * 激活的序号
    */
   nmActivatedIndex?: number;
   /**
-   * 选中的slider对象
+   * 激活的slider对象
    */
   nmActivatedSlider?: NmSliderNode;
 }

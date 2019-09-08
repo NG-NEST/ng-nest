@@ -1,26 +1,58 @@
 import { NmIdentityOption } from "../../../interfaces/identify.type";
 
+/**
+ * Anchor 组件名
+ * @selector nm-input
+ * @decorator component
+ */
 export const AnchorPrefix = "nm-anchor";
 
-/** Anchor 参数对象 */
+/**
+ * Anchor 参数对象
+ */
 export interface NmAnchorOption {
-  nmLayout?: NmAnchorLayoutEnum;
+  /**
+   * 布局方式
+   * @default "right"
+   */
+  nmLayout?: NmAnchorLayoutType;
 }
 
-export enum NmAnchorLayoutEnum {
-  Left = "left",
-  Right = "right"
-}
-
-/** Anchor 数据对象 */
+/**
+ * Anchor 数据对象
+ */
 export interface NmAnchorNode extends NmIdentityOption {
+  /**
+   * 左内边距，用来显示层级
+   */
   nmLeft?: number;
+  /**
+   * 图标
+   */
   nmIcon?: string;
+  /**
+   * 锚点的链接
+   */
   nmLink?: string;
 }
 
-// ActivatedAnchor 激活的anchor
+/**
+ * 激活的 Anchor
+ */
 export interface NmActivatedAnchor {
+  /**
+   * 激活的序号
+   */
   nmActivatedIndex?: number;
+  /**
+   * 激活的anchor对象
+   */
   nmActivatedAnchor?: NmAnchorNode;
 }
+
+/**
+ * 布局方式，相对内容的位置
+ * @value "left"
+ * @value "right"
+ */
+export type NmAnchorLayoutType = "left" | "right";

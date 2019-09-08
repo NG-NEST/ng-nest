@@ -6,8 +6,8 @@ import { By } from "@angular/platform-browser";
 import { NmAnchorModule } from "./nm-anchor.module";
 import {
   AnchorPrefix,
-  NmAnchorLayoutEnum,
-  NmActivatedAnchor
+  NmActivatedAnchor,
+  NmAnchorLayoutType
 } from "./nm-anchor.type";
 import { DOCUMENT } from "@angular/common";
 
@@ -46,18 +46,14 @@ describe(AnchorPrefix, () => {
       expect(element.classList).toContain(AnchorPrefix);
     });
     it("should layout left.", () => {
-      testComponent.layout = NmAnchorLayoutEnum.Left;
+      testComponent.layout = "left";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`
-      );
+      expect(element.classList).toContain(`${AnchorPrefix}-left`);
     });
     it("should layout right.", () => {
-      testComponent.layout = NmAnchorLayoutEnum.Right;
+      testComponent.layout = "right";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`
-      );
+      expect(element.classList).toContain(`${AnchorPrefix}-right`);
     });
   });
   describe(`element scroll.`, () => {
@@ -79,18 +75,14 @@ describe(AnchorPrefix, () => {
       anchorComponent = debugElement.componentInstance as NmAnchorComponent;
     });
     it("should layout left.", () => {
-      testComponent.layout = NmAnchorLayoutEnum.Left;
+      testComponent.layout = "left";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${AnchorPrefix}-${NmAnchorLayoutEnum.Left}`
-      );
+      expect(element.classList).toContain(`${AnchorPrefix}-${"left"}`);
     });
     it("should layout right.", () => {
-      testComponent.layout = NmAnchorLayoutEnum.Right;
+      testComponent.layout = "right";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${AnchorPrefix}-${NmAnchorLayoutEnum.Right}`
-      );
+      expect(element.classList).toContain(`${AnchorPrefix}-${"right"}`);
     });
     it("should activated anchor change.", () => {
       let index = 1;
@@ -331,7 +323,7 @@ const htmlTemplate = `
   `
 })
 class TestNmAnchorComponent {
-  layout: NmAnchorLayoutEnum;
+  layout: NmAnchorLayoutType;
   constructor(@Inject(DOCUMENT) public doc: any) {}
 }
 
@@ -390,7 +382,7 @@ class TestNmAnchorComponent {
   `
 })
 class TestScrollNmAnchorComponent {
-  layout: NmAnchorLayoutEnum;
+  layout: NmAnchorLayoutType;
   constructor(@Inject(DOCUMENT) public doc: any) {}
 }
 
