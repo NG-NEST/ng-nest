@@ -18,6 +18,7 @@ describe(AnchorPrefix, () => {
       declarations: [
         TestNmAnchorComponent,
         TestScrollNmAnchorComponent,
+        TestScrollFixedNmAnchorComponent,
         TestUndefinedNmAnchorComponent
       ]
     }).compileComponents();
@@ -153,6 +154,20 @@ describe(AnchorPrefix, () => {
     //   // fixture.debugElement.triggerEventHandler("resize", null);
     //   expect(element.classList).toContain(AnchorPrefix);
     // });
+  });
+  describe(`scroll-fixed.`, () => {
+    let fixture: ComponentFixture<TestScrollFixedNmAnchorComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestScrollFixedNmAnchorComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(
+        By.directive(NmAnchorComponent)
+      );
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
   });
   describe(`option undefined.`, () => {
     let fixture: ComponentFixture<TestUndefinedNmAnchorComponent>;
@@ -336,11 +351,6 @@ class TestNmAnchorComponent {
         <p>This is a branch and a description.</p>
         <p>This is a branch and a description.</p>
         <p>This is a branch and a description.</p>
-        <p>This is a branch and a description.</p>
-        <p>This is a branch and a description.</p>
-        <p>This is a branch and a description.</p>
-        <p>This is a branch and a description.</p>
-        <p>This is a branch and a description.</p>
       </div>
       <nm-anchor
         [nmScrollElement]="scroll"
@@ -356,32 +366,57 @@ class TestNmAnchorComponent {
       <p>This is a branch and a description.</p>
       <p>This is a branch and a description.</p>
       <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>
     </div>
   `
 })
 class TestScrollNmAnchorComponent {
+  layout: NmAnchorLayoutType;
+  constructor(@Inject(DOCUMENT) public doc: any) {}
+}
+
+@Component({
+  selector: "test-scroll-fixed-nm-anchor",
+  template: `
+    <div class="scroll-fixed">
+      <div class="scroll" #scroll style="height: 600px; overflow: auto">
+        <div>
+          <p>This is a branch and a description.</p>
+          <p>This is a branch and a description.</p>
+          <p>This is a branch and a description.</p>
+          <p>This is a branch and a description.</p>
+        </div>
+        <nm-anchor
+          [nmScrollElement]="scroll"
+          [nmLayout]="layout"
+          style="padding-bottom:300px;"
+        >
+          ${htmlTemplate}
+        </nm-anchor>
+      </div>
+      <div>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+        <p>This is a branch and a description.</p>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      .scroll-fixed {
+        top: 3.75rem;
+        left: 0;
+        height: calc(100% - 3.75rem);
+        position: fixed;
+        overflow: auto;
+        width: 100%;
+        display: block;
+      }
+    `
+  ]
+})
+class TestScrollFixedNmAnchorComponent {
   layout: NmAnchorLayoutType;
   constructor(@Inject(DOCUMENT) public doc: any) {}
 }

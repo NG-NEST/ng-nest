@@ -77,6 +77,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
   private _windowSize$: Subscription | null = null;
   private _hElements: HTMLElement[];
   private _isAnimation: boolean = false;
+  private _offsetParent: any;
   @ViewChild("slider", { static: false }) slider: NmSliderComponent;
   @ViewChild("list", { static: false }) list: ElementRef;
   @ViewChild("content", { static: false }) content: ElementRef;
@@ -191,11 +192,24 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       this.nmScrollElement = window;
       this._windowScroll = true;
     } else {
+      let scroll = new ElementRef(this.nmScrollElement);
+      console.log(scroll, (scroll.nativeElement as HTMLElement).clientHeight);
+      this._offsetParent = (this.nmScrollElement as HTMLElement).offsetParent;
       this.renderer.setStyle(
         this.list.nativeElement,
         "max-height",
         `${(this.nmScrollElement as HTMLElement).clientHeight}px`
       );
+      console.log(new ElementRef(this._offsetParent));
+      if (this._offsetParent) {
+        fromEvent(this._offsetParent, "scroll")
+          .pipe(distinctUntilChanged())
+          .subscribe(() => {
+            if (this.listFixed) {
+              this.setFixedTop();
+            }
+          });
+      }
       this.setWindowScroll();
     }
     this.scrollObservable = fromEvent(this.nmScrollElement, "scroll").pipe(
@@ -258,10 +272,15 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
 
   private setFixedTop() {
     let windowScrollTop = document.documentElement.scrollTop;
+    let offsetTop = (this.nmScrollElement as HTMLElement).offsetTop;
+    let offsetParent = (this.nmScrollElement as HTMLElement)
+      .offsetParent as HTMLElement;
+    if (offsetParent)
+      offsetTop = offsetTop + offsetParent.offsetTop - offsetParent.scrollTop;
     this.renderer.setStyle(
       this.list.nativeElement,
       "top",
-      `${(this.nmScrollElement as HTMLElement).offsetTop - windowScrollTop}px`
+      `${offsetTop - windowScrollTop}px`
     );
   }
 
