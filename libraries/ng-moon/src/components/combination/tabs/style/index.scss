@@ -13,22 +13,13 @@
 
   &-right {
     flex-direction: row-reverse;
-    > .#{$prefix}-contents {
-      padding-right: 1rem;
-    }
   }
 
   &-bottom {
     flex-direction: column-reverse;
-    > .#{$prefix}-contents {
-      padding-bottom: 1rem;
-    }
   }
 
   &-left {
     flex-direction: row;
-    > .#{$prefix}-contents {
-      padding-left: 1rem;
-    }
   }
 }

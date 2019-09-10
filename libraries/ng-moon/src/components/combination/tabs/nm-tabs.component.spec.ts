@@ -2,17 +2,31 @@ import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NmTabsComponent } from "./nm-tabs.component";
-import { Component, DebugElement, ContentChildren, ViewChildren } from "@angular/core";
+import {
+  Component,
+  DebugElement,
+  ContentChildren,
+  ViewChildren
+} from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmTabsModule } from "./nm-tabs.module";
-import { TabsPrefix, NmTabsNode, NmTabsLayoutEnum, NmActivatedTab } from "./nm-tabs.type";
+import {
+  TabsPrefix,
+  NmTabsNode,
+  NmTabsLayoutEnum,
+  NmActivatedTab
+} from "./nm-tabs.type";
 import { NmData } from "../../../interfaces/data.type";
 
 describe(TabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NmTabsModule],
-      declarations: [TestNmTabsComponent, TestEventNmTabsComponent, TestDataNmTabsComponent]
+      declarations: [
+        TestNmTabsComponent,
+        TestEventNmTabsComponent,
+        TestDataNmTabsComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -39,22 +53,30 @@ describe(TabsPrefix, () => {
     it("should layout top.", () => {
       testComponent.layout = NmTabsLayoutEnum.Top;
       fixture.detectChanges();
-      expect(element.classList).toContain(`${TabsPrefix}-${NmTabsLayoutEnum.Top}`);
+      expect(element.classList).toContain(
+        `${TabsPrefix}-${NmTabsLayoutEnum.Top}`
+      );
     });
     it("should layout right.", () => {
       testComponent.layout = NmTabsLayoutEnum.Right;
       fixture.detectChanges();
-      expect(element.classList).toContain(`${TabsPrefix}-${NmTabsLayoutEnum.Right}`);
+      expect(element.classList).toContain(
+        `${TabsPrefix}-${NmTabsLayoutEnum.Right}`
+      );
     });
     it("should layout bottom.", () => {
       testComponent.layout = NmTabsLayoutEnum.Bottom;
       fixture.detectChanges();
-      expect(element.classList).toContain(`${TabsPrefix}-${NmTabsLayoutEnum.Bottom}`);
+      expect(element.classList).toContain(
+        `${TabsPrefix}-${NmTabsLayoutEnum.Bottom}`
+      );
     });
     it("should layout left.", () => {
       testComponent.layout = NmTabsLayoutEnum.Left;
       fixture.detectChanges();
-      expect(element.classList).toContain(`${TabsPrefix}-${NmTabsLayoutEnum.Left}`);
+      expect(element.classList).toContain(
+        `${TabsPrefix}-${NmTabsLayoutEnum.Left}`
+      );
     });
   });
 });
@@ -69,9 +91,9 @@ const testNmTabsNode: NmTabsNode[] = [
 @Component({
   selector: "test-nm-tabs",
   template: `
-    <nm-tabs [nmLayout]="layout" (nmActivatedChange)="activatedChange($event)">
+    <nm-tabs [nmLayout]="layout">
       <nm-tab [nmLabel]="'Home'">
-        <nm-tabs #subTabs [nmLayout]="'top'">
+        <nm-tabs [nmLayout]="'top'">
           <nm-tab [nmLabel]="'Home1'"><h1>1 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Docs1'"><h1>2 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Examples1'"><h1>3 Theme</h1></nm-tab>
@@ -79,7 +101,7 @@ const testNmTabsNode: NmTabsNode[] = [
         </nm-tabs>
       </nm-tab>
       <nm-tab [nmLabel]="'Docs'">
-        <nm-tabs #subTabs [nmLayout]="'top'">
+        <nm-tabs [nmLayout]="'top'">
           <nm-tab [nmLabel]="'Home2'"><h1>1 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Docs2'"><h1>2 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Examples2'"><h1>3 Theme</h1></nm-tab>
@@ -96,29 +118,67 @@ const testNmTabsNode: NmTabsNode[] = [
   `
 })
 class TestNmTabsComponent {
-  @ViewChildren("subTabs")
-  private _listTabs: Array<NmTabsComponent>;
-  get listTabs(): Array<NmTabsComponent> {
-    return this._listTabs;
-  }
-  set listTabs(value: Array<NmTabsComponent>) {
-    this._listTabs = value;
-  }
   layout: NmTabsLayoutEnum;
   position: NmTabsLayoutEnum;
   activatedIndex: number = 0;
-  activatedChange($event: NmActivatedTab) {
-    let subTabs = this.listTabs.find((x, i) => i == $event.nmActivatedIndex);
-    if (subTabs) {
-      subTabs.slider.setHighlight();
-    }
-  }
 }
+
+// @Component({
+//   selector: "test-nm-tabs",
+//   template: `
+//     <nm-tabs [nmLayout]="layout" (nmActivatedChange)="activatedChange($event)">
+//       <nm-tab [nmLabel]="'Home'">
+//         <nm-tabs #subTabs [nmLayout]="'top'">
+//           <nm-tab [nmLabel]="'Home1'"><h1>1 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Docs1'"><h1>2 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Examples1'"><h1>3 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Api1'"><h1>4 Theme</h1></nm-tab>
+//         </nm-tabs>
+//       </nm-tab>
+//       <nm-tab [nmLabel]="'Docs'">
+//         <nm-tabs #subTabs [nmLayout]="'top'">
+//           <nm-tab [nmLabel]="'Home2'"><h1>1 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Docs2'"><h1>2 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Examples2'"><h1>3 Theme</h1></nm-tab>
+//           <nm-tab [nmLabel]="'Api2'"><h1>4 Theme</h1></nm-tab>
+//         </nm-tabs>
+//       </nm-tab>
+//       <nm-tab [nmLabel]="'Examples'">
+//         <h1>3 Theme</h1>
+//       </nm-tab>
+//       <nm-tab [nmLabel]="'Api'">
+//         <h1>4 Theme</h1>
+//       </nm-tab>
+//     </nm-tabs>
+//   `
+// })
+// class TestNmTabsComponent {
+//   @ViewChildren("subTabs")
+//   private _listTabs: Array<NmTabsComponent>;
+//   get listTabs(): Array<NmTabsComponent> {
+//     return this._listTabs;
+//   }
+//   set listTabs(value: Array<NmTabsComponent>) {
+//     this._listTabs = value;
+//   }
+//   layout: NmTabsLayoutEnum;
+//   position: NmTabsLayoutEnum;
+//   activatedIndex: number = 0;
+//   activatedChange($event: NmActivatedTab) {
+//     let subTabs = this.listTabs.find((x, i) => i == $event.nmActivatedIndex);
+//     if (subTabs) {
+//       subTabs.slider.setHighlight();
+//     }
+//   }
+// }
 
 @Component({
   selector: "test-event-nm-tabs",
   template: `
-    <nm-tabs [nmData]="data" (nmActivatedChange)="activatedChange($event)"></nm-tabs>
+    <nm-tabs
+      [nmData]="data"
+      (nmActivatedChange)="activatedChange($event)"
+    ></nm-tabs>
   `
 })
 class TestEventNmTabsComponent {

@@ -8,22 +8,21 @@
   display: flex;
   overflow: hidden;
   > .#{$prefix}-contents {
-    width: 100%;
+    flex: 1;
     display: flex;
+    overflow: hidden;
     flex-direction: row;
     > .nm-tab-content {
       flex-shrink: 0;
       width: 100%;
       opacity: 1;
-      transition: opacity $animation-duration-slow;
+      transition: transform $animation-duration-slow
+        cubic-bezier(0.645, 0.045, 0.355, 1);
       &.nm-tab-content-unactivated {
-        display: none;
+        // display: none;
       }
     }
     &-animated {
-      transition: margin-left $animation-duration-slow
-        cubic-bezier(0.645, 0.045, 0.355, 1);
-      will-change: margin-left;
       > .nm-tab-content {
         &.nm-tab-content-unactivated {
           display: inherit;

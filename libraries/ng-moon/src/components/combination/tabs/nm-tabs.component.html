@@ -12,10 +12,8 @@
 <div
   #content
   class="nm-tabs-contents"
-  [class.nm-tabs-contents-animated]="nmLayout === 'top' || nmLayout === 'bottom'"
-  [style.margin-left.%]="
-    (nmLayout === 'top' || nmLayout === 'bottom') &&
-    -(nmActivatedIndex || 0) * 100
+  [class.nm-tabs-contents-animated]="
+    nmLayout === 'top' || nmLayout === 'bottom'
   "
 >
   <nm-tab-content
@@ -23,6 +21,9 @@
     [nmActive]="nmActivatedIndex == i"
     [nmContent]="tab.content"
     [class.nm-tab-content-unactivated]="nmActivatedIndex != i"
+    [style.transform]="
+      'translate(' + (-nmActivatedIndex || 0) * 100 + '%, 0px)'
+    "
   >
   </nm-tab-content>
 </div>
