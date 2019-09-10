@@ -16,10 +16,13 @@
       flex-shrink: 0;
       width: 100%;
       opacity: 1;
+      height: fit-content;
       transition: transform $animation-duration-slow
-        cubic-bezier(0.645, 0.045, 0.355, 1);
+          cubic-bezier(0.645, 0.045, 0.355, 1),
+        height 0s $animation-duration-slow;
       &.nm-tab-content-unactivated {
-        // display: none;
+        transition: height 0s;
+        height: 0;
       }
     }
     &-animated {

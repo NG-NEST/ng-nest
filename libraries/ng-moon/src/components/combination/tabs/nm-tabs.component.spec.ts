@@ -94,7 +94,11 @@ const testNmTabsNode: NmTabsNode[] = [
     <nm-tabs [nmLayout]="layout">
       <nm-tab [nmLabel]="'Home'">
         <nm-tabs [nmLayout]="'top'">
-          <nm-tab [nmLabel]="'Home1'"><h1>1 Theme</h1></nm-tab>
+          <nm-tab [nmLabel]="'Home1'"
+            ><h1>1 Theme</h1>
+            <h1>1 Theme</h1>
+            <h1>1 Theme</h1></nm-tab
+          >
           <nm-tab [nmLabel]="'Docs1'"><h1>2 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Examples1'"><h1>3 Theme</h1></nm-tab>
           <nm-tab [nmLabel]="'Api1'"><h1>4 Theme</h1></nm-tab>
