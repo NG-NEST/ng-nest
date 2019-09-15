@@ -132,6 +132,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
     let scrollEle = this._windowScroll
       ? this.doc.documentElement
       : (this.nmScrollElement as HTMLElement);
+    let scrollHeight = scrollEle.scrollHeight - scrollEle.clientHeight;
+    top = top > scrollHeight ? scrollHeight : top;
     if (!this._windowScroll) {
       top -= scrollEle.offsetTop;
     }
@@ -192,8 +194,8 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
       this.nmScrollElement = window;
       this._windowScroll = true;
     } else {
-      let scroll = new ElementRef(this.nmScrollElement);
-      console.log(scroll, (scroll.nativeElement as HTMLElement).clientHeight);
+      // let scroll = new ElementRef(this.nmScrollElement);
+      // console.log(scroll, (scroll.nativeElement as HTMLElement).clientHeight);
       this._offsetParent = (this.nmScrollElement as HTMLElement).offsetParent;
       // ToDo: 当文档在tab中时获取不到高度
       setTimeout(() =>
@@ -203,7 +205,7 @@ export class NmAnchorComponent implements OnInit, OnDestroy {
           `${(this.nmScrollElement as HTMLElement).clientHeight}px`
         )
       );
-      console.log(new ElementRef(this._offsetParent));
+      // console.log(new ElementRef(this._offsetParent));
       if (this._offsetParent) {
         fromEvent(this._offsetParent, "scroll")
           .pipe(distinctUntilChanged())

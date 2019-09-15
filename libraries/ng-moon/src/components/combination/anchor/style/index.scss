@@ -42,6 +42,9 @@
       }
       > .nm-slider {
         width: 100%;
+        > ul > li > a {
+          color: inherit;
+        }
       }
     }
   }
