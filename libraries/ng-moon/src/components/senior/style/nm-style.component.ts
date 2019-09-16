@@ -3,14 +3,10 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
   Renderer2,
-  ElementRef,
-  ChangeDetectorRef
+  ElementRef
 } from "@angular/core";
-import { NmStyleOption, StylePrefix } from "./nm-style.type";
-import { fillDefault } from "../../../core/util";
+import { StylePrefix } from "./nm-style.type";
 
 @Component({
   selector: "nm-style",
@@ -20,30 +16,10 @@ import { fillDefault } from "../../../core/util";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmStyleComponent implements OnInit, OnChanges {
-  private _default: NmStyleOption = {};
-
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+export class NmStyleComponent implements OnInit {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, StylePrefix);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-  }
-
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {}
-
-  ngOnDestroy(): void {
-    this.removeListen();
-  }
-
-  private removeListen() {}
+  ngOnInit() {}
 }

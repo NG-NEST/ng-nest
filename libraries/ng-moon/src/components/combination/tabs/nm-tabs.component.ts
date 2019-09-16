@@ -19,7 +19,7 @@ import {
 import {
   TabsPrefix,
   NmTabsOption,
-  NmTabsLayoutEnum,
+  NmTabsLayoutType,
   NmTabsNode,
   NmActivatedTab
 } from "./nm-tabs.type";
@@ -28,8 +28,6 @@ import { NmData } from "../../../interfaces/data.type";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import {
   NmSliderNode,
-  NmSliderBorderPositionType,
-  NmSliderLayoutType,
   NmActivatedSlider,
   NmSliderOption,
   NmSliderComponent
@@ -54,22 +52,22 @@ export class NmTabsComponent implements OnInit, OnChanges {
   @Input()
   public set nmLayout(value: any) {
     this._nmLayout = value;
-    if (this._nmLayout === NmTabsLayoutEnum.Top) {
+    if (this._nmLayout === "top") {
       this.setSliderOption({
         nmLayout: "row",
         nmBorderPosition: "bottom"
       });
-    } else if (this._nmLayout === NmTabsLayoutEnum.Right) {
+    } else if (this._nmLayout === "right") {
       this.setSliderOption({
         nmLayout: "column",
         nmBorderPosition: "left"
       });
-    } else if (this._nmLayout === NmTabsLayoutEnum.Bottom) {
+    } else if (this._nmLayout === "bottom") {
       this.setSliderOption({
         nmLayout: "row",
         nmBorderPosition: "top"
       });
-    } else if (this._nmLayout === NmTabsLayoutEnum.Left) {
+    } else if (this._nmLayout === "left") {
       this.setSliderOption({
         nmLayout: "column",
         nmBorderPosition: "right"
@@ -85,10 +83,9 @@ export class NmTabsComponent implements OnInit, OnChanges {
   @Input()
   public set nmActivatedIndex(value: number) {
     this._nmActivatedIndex = value;
+    this.sliderOption.nmActivatedIndex = value;
     this.cdr.detectChanges();
   }
-
-  // @Input() nmNodeTemplate?: TemplateRef<any>;
 
   sliderOption: NmSliderOption = {
     nmData: new BehaviorSubject<NmSliderNode[]>([]),
@@ -102,7 +99,7 @@ export class NmTabsComponent implements OnInit, OnChanges {
     NmActivatedTab
   >();
   private _default: NmTabsOption = {
-    nmLayout: NmTabsLayoutEnum.Top,
+    nmLayout: "top",
     nmActivatedIndex: 0
   };
 
@@ -114,19 +111,19 @@ export class NmTabsComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.nm-tabs-top`)
   get getLayoutTop() {
-    return this.nmLayout === NmTabsLayoutEnum.Top;
+    return this.nmLayout === "top";
   }
   @HostBinding(`class.nm-tabs-right`)
   get getLayoutRight() {
-    return this.nmLayout === NmTabsLayoutEnum.Right;
+    return this.nmLayout === "right";
   }
   @HostBinding(`class.nm-tabs-bottom`)
   get getLayoutBottom() {
-    return this.nmLayout === NmTabsLayoutEnum.Bottom;
+    return this.nmLayout === "bottom";
   }
   @HostBinding(`class.nm-tabs-left`)
   get getLayoutLeft() {
-    return this.nmLayout === NmTabsLayoutEnum.Left;
+    return this.nmLayout === "left";
   }
 
   constructor(

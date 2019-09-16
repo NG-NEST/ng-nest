@@ -22,9 +22,9 @@
     }
   }
   .#{$prefix}-info {
-    border-top: 1px dashed #e6e6e6;
-    border-bottom: 1px dashed #e6e6e6;
-    padding: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #eff0f1;
+    border-top: 2px solid $primary-color;
     margin: 0 1rem;
     > ul > li {
       list-style-type: square;

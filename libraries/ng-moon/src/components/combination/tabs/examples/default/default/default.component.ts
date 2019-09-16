@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "ex-default",
@@ -6,8 +6,6 @@ import { Component, OnInit, ElementRef } from "@angular/core";
   styleUrls: ["./default.component.scss"]
 })
 export class ExDefaultComponent implements OnInit {
-  content = `xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx`;
-
   constructor() {}
 
   ngOnInit() {}

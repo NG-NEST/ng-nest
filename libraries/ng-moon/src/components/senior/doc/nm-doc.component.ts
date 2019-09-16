@@ -3,14 +3,9 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
   Renderer2,
-  ElementRef,
-  ChangeDetectorRef
-} from "@angular/core";
-import { NmDocOption, DocPrefix } from "./nm-doc.type";
-import { fillDefault } from "../../../core/util";
+  ElementRef} from "@angular/core";
+import { DocPrefix } from "./nm-doc.type";
 
 @Component({
   selector: "nm-doc",
@@ -20,30 +15,10 @@ import { fillDefault } from "../../../core/util";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmDocComponent implements OnInit, OnChanges {
-  private _default: NmDocOption = {};
-
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+export class NmDocComponent implements OnInit {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, DocPrefix);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-  }
-
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {}
-
-  ngOnDestroy(): void {
-    this.removeListen();
-  }
-
-  private removeListen() {}
+  ngOnInit() {}
 }

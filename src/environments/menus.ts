@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "parentId": "2-0-2",
     "name": "api",
     "router": "./docs/ui/components/senior/api",
-    "label": "示例"
+    "label": "API 参数"
   },
   {
     "id": "2-0-2-1",
@@ -119,8 +119,8 @@ export const menus: Menu[] = [
   {
     "id": "2-0-2-2",
     "parentId": "2-0-2",
-    "name": "exmaples",
-    "router": "./docs/ui/components/senior/exmaples",
+    "name": "examples",
+    "router": "./docs/ui/components/senior/examples",
     "label": "示例"
   },
   {
@@ -128,14 +128,14 @@ export const menus: Menu[] = [
     "parentId": "2-0-2",
     "name": "form",
     "router": "./docs/ui/components/senior/form",
-    "label": "示例"
+    "label": "表单"
   },
   {
     "id": "2-0-2-5",
     "parentId": "2-0-2",
     "name": "style",
     "router": "./docs/ui/components/senior/style",
-    "label": "示例"
+    "label": "样式参数"
   },
   {
     "id": "2-1-0",
