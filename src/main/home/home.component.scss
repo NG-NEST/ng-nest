@@ -1,22 +1,90 @@
 @import "src/styles/index";
 
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-}
-
 ns-home {
+  @mixin flex-center {
+    display: flex;
+    align-items: center;
+  }
+
+  @keyframes move-clouds-back {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 10000px 0;
+    }
+  }
+  @keyframes move-twink-back {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -10000px 5000px;
+    }
+  }
   @include flex-center();
   position: relative;
   justify-content: center;
   flex-direction: column;
+  > section.starry-sky {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .stars,
+    > .twinkling,
+    > .clouds,
+    > .logo {
+      position: fixed;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -5;
+    }
+    > .stars {
+      z-index: -4;
+      background: #000 url(/assets/img/stars.png) repeat top center;
+    }
+    > .twinkling {
+      z-index: -3;
+      background: transparent url(/assets/img/twinkling.png) repeat top center;
+      animation: move-twink-back 160s linear infinite;
+    }
+    > .clouds {
+      z-index: -1;
+      background: transparent url(/assets/img/clouds.png) repeat top center;
+      animation: move-clouds-back 200s linear infinite;
+      opacity: 0.3;
+    }
+    > .logo {
+      z-index: -2;
+      background: transparent url(/assets/img/logo-hollow.png) no-repeat top
+        center;
+      opacity: 0.15;
+      width: 700px;
+      height: 700px;
+      filter: blur(8px);
+      position: relative;
+      align-self: start;
+    }
+  }
   > section.plugins {
     @include flex-center();
-    // background-color: #292929;
-    height: 18rem;
+    height: 40rem;
     justify-content: center;
     position: relative;
     width: 100%;
+    color: white;
     > .main {
       @include flex-center();
       flex-direction: column;
@@ -30,17 +98,49 @@ ns-home {
       > h1 {
         font-size: 4rem;
         line-height: 4rem;
-        margin: 0;
-        &:hover {
-          // color: #fff;
-          // text-shadow: 0 0 0.4rem rgba(255, 255, 255, 0.3);
-          transition: all 0.3s;
-        }
+        margin: 2rem;
       }
       > p {
-        font-size: 1.125rem;
         line-height: 1.5rem;
-        margin: 1.125rem 0;
+        margin: 1rem 0;
+        &.open-source,
+        &.web-application,
+        &.angular-nest {
+          font-size: 1.4rem;
+          margin: 0.625rem 0;
+          color: rgba(255, 255, 255, 0.3);
+        }
+        &.description {
+          color: rgba(255, 255, 255, 0.6);
+          width: 32rem;
+          text-align: center;
+          margin: 2rem 0;
+        }
+        &.code-start {
+          margin-bottom: 4rem;
+          > a {
+            padding: 0.625rem 1.4rem;
+            background: white;
+            user-select: none;
+            box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
+            &:first-child {
+              border-top-left-radius: 2rem;
+              border-bottom-left-radius: 2rem;
+            }
+            &:last-child {
+              border-top-right-radius: 2rem;
+              border-bottom-right-radius: 2rem;
+              background-color: $primary-color;
+              color: white;
+            }
+            &:hover {
+              opacity: 0.8;
+            }
+            &:active {
+              opacity: 0.6;
+            }
+          }
+        }
       }
     }
     > .data {
@@ -48,14 +148,53 @@ ns-home {
       right: 0;
       top: 0;
       width: 100%;
-      height: 100%;
-      // background-image: linear-gradient(to right, #000, transparent, #000);
+      height: calc(100% + 3.75rem);
+      margin-top: -3.75rem;
+      background: linear-gradient(
+        to right,
+        rgba(0, 21, 134, 0.49) 0%,
+        rgba(63, 81, 181, 0.5) 100%
+      );
+    }
+  }
+  > section.nav {
+    background: #fff;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 2px;
+    width: 80%;
+    top: 38.5rem;
+    font-weight: 600;
+    z-index: 132123123;
+    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13),
+      1px 1px 0 rgba(85, 85, 135, 0.05);
+    > ul {
+      display: flex;
+      > li {
+        flex: 1;
+        display: flex;
+        > a {
+          padding: 1rem 0;
+          flex: 1;
+          text-align: center;
+          color: $primary-text-color;
+          &:hover {
+            opacity: 0.9;
+            color: white;
+            background-color: $primary-color;
+          }
+          &:active {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
   > section.content {
     @include flex-center();
     flex-direction: column;
     width: 100%;
+    background-color: #fafafa;
     > .panel {
       width: 100%;
       padding: 0 1rem;

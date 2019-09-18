@@ -12,11 +12,8 @@
 
 ns-layout {
   > ns-header {
-    background-color: $primary-color;
-    box-shadow: $box-shadow;
     height: $header-height;
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
@@ -25,7 +22,7 @@ ns-layout {
     justify-content: space-between;
     padding: 0 1rem;
     box-sizing: border-box;
-    opacity: 0.95;
+    position: relative;
     > ul {
       display: flex;
       align-items: center;
@@ -134,14 +131,9 @@ ns-layout {
   }
 
   > ns-content {
-    top: $header-height;
-    left: 0;
-    height: calc(100% - #{$header-height});
-    position: fixed;
-    overflow: auto;
     width: 100%;
     display: block;
-    transition: padding $transition-duration-slow;
+    transition: padding-left $transition-duration-slow;
     > ns-footer {
       width: 100%;
       display: block;
@@ -167,6 +159,10 @@ ns-layout {
   }
 
   &.shrink {
+    > ns-header {
+      position: fixed;
+      background-color: $primary-color;
+    }
     > ns-sider {
       width: $sider-width;
       padding-left: 0.5rem;
@@ -190,6 +186,7 @@ ns-layout {
     }
     > ns-content {
       padding-left: $sider-width;
+      padding-top: $header-height;
       > ns-footer {
         display: none;
       }
