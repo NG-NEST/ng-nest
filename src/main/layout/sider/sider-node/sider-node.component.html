@@ -3,7 +3,7 @@
   (click)="sider(option)"
   [routerLink]="[option.router]"
   [routerLinkActive]="'active'"
-  [title]="option.title"
+  [title]="option.label"
   [ngStyle]="{ 'padding-left.rem': 0.875 * level }"
 >
   <ng-container
@@ -13,7 +13,7 @@
 <a
   *ngIf="option.type === 'router'"
   (click)="toggle($event, option)"
-  [title]="option.title"
+  [title]="option.label"
   [ngStyle]="{ 'padding-left.rem': 0.875 * level }"
 >
   <ng-container

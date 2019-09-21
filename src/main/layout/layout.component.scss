@@ -1,13 +1,13 @@
 @import "src/styles/index";
 
 @mixin hover {
-  background-color: rgba($primary-text-color, 0.1);
-  border-radius: 0.25rem;
-  color: $primary-color;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 @mixin activated {
   color: $primary-color;
+  box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 ns-layout {
@@ -50,7 +50,7 @@ ns-layout {
   }
 
   > ns-sider {
-    background-color: white;
+    background-color: #f0f0f0;
     height: calc(100% - #{$header-height});
     width: 0;
     overflow: hidden;
@@ -58,7 +58,7 @@ ns-layout {
     top: $header-height;
     left: 0;
     z-index: 9;
-    box-shadow: $box-shadow;
+    // box-shadow: $box-shadow;
     transition: width $transition-duration-slow,
       padding $transition-duration-slow;
     padding-top: 1rem;
@@ -66,12 +66,14 @@ ns-layout {
     li {
       a {
         padding: 0;
-        transition: background-color $transition-duration;
+        transition: color $transition-duration, box-shadow $transition-duration,
+          background-color $transition-duration;
         display: flex;
         align-items: center;
         height: 2.25rem;
         font-size: 0.875rem;
         color: $primary-text-color;
+        border-radius: 0.125rem;
         p {
           overflow: hidden;
           text-overflow: ellipsis;
@@ -161,8 +163,8 @@ ns-layout {
     }
     > ns-sider {
       width: $sider-width;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
       overflow-y: auto;
       li {
         a {

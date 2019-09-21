@@ -5,6 +5,7 @@
   #list
   class="nm-anchor-list"
   [ngClass]="{ 'nm-anchor-list-fixed': listFixed }"
+  [style.top.rem]="listFixed ? nmTop : 0"
 >
   <nm-slider
     #slider

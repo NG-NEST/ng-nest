@@ -16,6 +16,19 @@ export interface NmAnchorOption {
    * @default "right"
    */
   nmLayout?: NmAnchorLayoutType;
+  /**
+   * 滚动的对象
+   */
+  nmScrollElement?: HTMLElement | Window;
+  /**
+   * 导航是否固定
+   */
+  nmSliderFixed?: boolean;
+  /**
+   * 距离顶部距离，单位rem，自动转换
+   * @default 0
+   */
+  nmTop?: number;
 }
 
 /**

@@ -5,7 +5,7 @@
 @import "./param";
 
 @mixin doc {
-  padding: 1.5rem 2rem;
+  padding: 1.5rem;
   display: block;
   font-size: 0.875rem;
   line-height: 1.5rem;
@@ -13,7 +13,7 @@
   h1 {
     font-size: 1.5rem;
     font-weight: 500;
-    margin: 0.5rem 0;
+    margin: 2.25rem 0 1rem;
   }
 
   h2 {
@@ -37,21 +37,26 @@
     clear: both;
   }
 
-  > p {
-    font-weight: 400;
-    margin: 0.875rem 0 0;
-  }
+  > .nm-anchor {
+    > .nm-anchor-content {
+      padding-right: 1.5rem;
+      > p {
+        font-weight: 400;
+        margin: 0.875rem 0 0;
+      }
 
-  > blockquote {
-    margin: 0;
-  }
+      > blockquote {
+        margin: 0;
+      }
 
-  > ul {
-    margin: 0.875rem 0;
-    > li {
-      list-style-type: circle;
-      margin-left: 1.25rem;
-      line-height: 1.75rem;
+      > ul {
+        margin: 0.875rem 0;
+        > li {
+          list-style-type: circle;
+          margin-left: 1.25rem;
+          line-height: 1.75rem;
+        }
+      }
     }
   }
 

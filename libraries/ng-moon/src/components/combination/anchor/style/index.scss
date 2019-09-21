@@ -10,7 +10,10 @@
 
   &-left {
     > .#{$prefix}-content {
-      margin-left: 18%;
+      margin-left: $anchor-list-width;
+      > h1:nth-of-type(1) {
+        margin-top: 0;
+      }
     }
     > .#{$prefix}-list {
       position: absolute;
@@ -26,16 +29,19 @@
     display: flex;
     overflow: hidden;
     > .#{$prefix}-content {
-      width: 82%;
+      width: calc(100% - #{$anchor-list-width});
+      > h1:nth-of-type(1) {
+        margin-top: 0;
+      }
     }
     > .#{$prefix}-list {
-      width: 18%;
+      width: $anchor-list-width;
       overflow-y: auto;
       overflow-x: hidden;
       height: fit-content;
       box-sizing: border-box;
       &-fixed {
-        width: calc(18% - 2px);
+        width: $anchor-list-width;
         position: fixed;
         top: 0;
         max-height: 100%;

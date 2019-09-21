@@ -186,7 +186,6 @@ describe(AnchorPrefix, () => {
 });
 
 const htmlTemplate = `
-<div style="padding: 1rem">
   <h1>1 Theme</h1>
   <p>
     This is the topic-one information.
@@ -268,7 +267,9 @@ const htmlTemplate = `
   </p>
   <p>
     This is the topic-one information.
+
   </p>
+  <div><h5>Branching</h5></div>
   <h2>Branching</h2>
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>
@@ -327,12 +328,11 @@ const htmlTemplate = `
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-</div>`;
+  <p>This is a branch and a description.</p>`;
 @Component({
   selector: "test-nm-anchor",
   template: `
-    <nm-anchor [nmLayout]="layout" style="padding-bottom:600px;">
+    <nm-anchor [nmLayout]="layout" [nmTop]="8" [nmSliderFixed]="true">
       ${htmlTemplate}
     </nm-anchor>
   `
