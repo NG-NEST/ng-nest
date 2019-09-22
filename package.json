@@ -30,6 +30,7 @@
     "@angular/router": "~8.2.3",
     "core-js": "^3.2.1",
     "marked": "^0.7.0",
+    "ng-moon": "file:libraries/ng-moon",
     "remark": "~10.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

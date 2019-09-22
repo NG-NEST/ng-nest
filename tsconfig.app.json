@@ -2,7 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "module": "esnext",
+    "paths": {
+      "ng-moon": ["./libraries/ng-moon/src/ng-moon.module.ts"],
+      "ng-moon/*": ["./libraries/ng-moon/src/*"]
+    }
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["src/**/*.ts"],

@@ -1,0 +1,12 @@
+// Icon
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin icon {
+  display: inline-block;
+  line-height: 0;
+  text-align: center;
+  font-size: 1rem;
+}

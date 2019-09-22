@@ -23,13 +23,15 @@ export function handlerTabs(tabs: NcTabs) {
     let folder = path.join(tabs.folderPath, x);
     if (fs.lstatSync(folder).isDirectory()) {
       let readme = parseMdDoc(path.join(folder, "readme.md"));
-      let tab: NcTab = {
-        name: x,
-        label: readme.meta.label,
-        order: readme.meta.order,
-        content: readme.content
-      };
-      tabs.tabs.push(tab);
+      if (readme) {
+        let tab: NcTab = {
+          name: x,
+          label: readme.meta.label,
+          order: readme.meta.order,
+          content: readme.content
+        };
+        tabs.tabs.push(tab);
+      }
     }
   });
   tabs.tabs = _.sortBy(tabs.tabs, "order");

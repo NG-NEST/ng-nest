@@ -13,8 +13,8 @@ import {
   generateTabsActivatedChange,
   hanlderType,
   generateTypes,
-  hanlderStyle,
-  generateStyles
+  hanlderPattern,
+  generatePatterns
 } from ".";
 import * as _ from "lodash";
 
@@ -29,7 +29,7 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
 export async function handlerComponent(page: NcPage) {
   handlerExamples(page);
   await handlerApi(page);
-  await handlerStyle(page);
+  await handlerPattern(page);
 }
 
 /**
@@ -88,12 +88,12 @@ export async function handlerApi(page: NcPage) {
   );
 }
 
-export async function handlerStyle(page: NcPage) {
-  if (page.custom.indexOf("__style") <= -1) return;
-  let styles = await hanlderStyle(path.join(page.path, "style", `_param.scss`));
+export async function handlerPattern(page: NcPage) {
+  if (page.custom.indexOf("__pattern") <= -1) return;
+  let patterns = await hanlderPattern(path.join(page.path, "style", `param.scss`));
   page.custom = replaceKey(
     page.custom,
-    "__style",
-    `<nm-style>${generateStyles(...styles)}</nm-style>`
+    "__pattern",
+    `<nm-pattern>${generatePatterns(...patterns)}</nm-pattern>`
   );
 }

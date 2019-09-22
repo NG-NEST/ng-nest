@@ -1,0 +1,83 @@
+// Doc
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin doc {
+  padding: 1.5rem;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2.25rem 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 500;
+    margin: 2.25rem 0 1rem;
+    clear: both;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin: 1.5rem 0 1rem;
+    clear: both;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1.125rem 0 0.875rem;
+    clear: both;
+  }
+
+  > .nm-anchor {
+    > .nm-anchor-content {
+      padding-right: 1.5rem;
+      > p {
+        font-weight: 400;
+        margin: 0.875rem 0 0;
+      }
+
+      > blockquote {
+        margin: 0;
+      }
+
+      > ul {
+        margin: 0.875rem 0;
+        > li {
+          list-style-type: circle;
+          margin-left: 1.25rem;
+          line-height: 1.75rem;
+        }
+      }
+    }
+  }
+
+  li > code,
+  p > code {
+    background-color: rgba($doc-span-red, 0.1);
+    color: $doc-span-red;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border: 1px solid #e8e8e8;
+    tr > th,
+    tr > td {
+      border-bottom: 1px solid #e8e8e8;
+      text-align: left;
+      padding: 0.5rem 1rem;
+    }
+  }
+}

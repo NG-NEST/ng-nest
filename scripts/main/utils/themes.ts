@@ -1,11 +1,11 @@
-import { NcStyle } from "../interfaces/style";
+import { NcPattern } from "../interfaces/pattern";
 import * as readline from "readline";
 import * as fs from "fs-extra";
 import * as path from "path";
 
-export const styleDir = path.resolve(
+export const patternDir = path.resolve(
   __dirname,
-  "../../../libraries/ng-moon/src/style"
+  "../../../libraries/ng-moon/style"
 );
 
 /**
@@ -13,18 +13,18 @@ export const styleDir = path.resolve(
  *
  * @export
  */
-export function getThemes(): Promise<NcStyle[]> {
+export function getThemes(): Promise<NcPattern[]> {
   return new Promise((res, rej) => {
     if (global["NcThemes"] != null) {
       res(global["NcThemes"]);
     } else {
       let lines = readline.createInterface({
         input: fs.createReadStream(
-          path.join(styleDir, "themes", "_default.scss")
+          path.join(patternDir, "themes", "default.scss")
         )
       });
 
-      let styles: NcStyle[] = [];
+      let patterns: NcPattern[] = [];
       let index = 1;
       let docItem: any = {};
 
@@ -37,13 +37,13 @@ export function getThemes(): Promise<NcStyle[]> {
           let name = spt[0].trim();
           let value = spt.length > 1 ? spt[1].trim().replace(";", "") : "";
           let doc = docItem[index - 1];
-          styles.push({ name: name, value: value, label: doc ? doc : "" });
+          patterns.push({ name: name, value: value, label: doc ? doc : "" });
         }
         index++;
       });
       lines.on("close", () => {
-        global["NcThemes"] = styles;
-        res(styles);
+        global["NcThemes"] = patterns;
+        res(patterns);
       });
     }
   });

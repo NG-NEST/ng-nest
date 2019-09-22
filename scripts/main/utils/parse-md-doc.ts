@@ -3,6 +3,8 @@ import * as yfm from "yaml-front-matter";
 import * as fs from "fs-extra";
 
 export function parseMdDoc(path: string) {
+  let lstat = fs.existsSync(path);
+  if (!lstat) return false;
   const file = fs.readFileSync(path, "utf8");
   const meta = yfm.loadFront(file);
   const content = meta.__content;

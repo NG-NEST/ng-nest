@@ -19,19 +19,21 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
     let catePath = path.join(cates.folderPath, x);
     if (fs.lstatSync(catePath).isDirectory()) {
       let readme = parseMdDoc(path.join(catePath, "readme.md"));
-      let cate: NcCate = {
-        name: x,
-        order: readme.meta.order,
-        label: readme.meta.label,
-        path: catePath
-      };
-      handlerCodeBoxes(cate, readme);
-      if (cate.className) {
-        mod.syswords.declarations += `, ${cate.className}`;
-        mod.syswords.imports += `import { ${cate.className} } from "${cate.rootPath}";\n`;
+      if (readme) {
+        let cate: NcCate = {
+          name: x,
+          order: readme.meta.order,
+          label: readme.meta.label,
+          path: catePath
+        };
+        handlerCodeBoxes(cate, readme);
+        if (cate.className) {
+          mod.syswords.declarations += `, ${cate.className}`;
+          mod.syswords.imports += `import { ${cate.className} } from "${cate.rootPath}";\n`;
+        }
+        cates.list.push(cate);
+        cates.list = _.sortBy(cates.list, "order");
       }
-      cates.list.push(cate);
-      cates.list = _.sortBy(cates.list, "order");
     }
   });
 }

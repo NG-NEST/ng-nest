@@ -17,7 +17,7 @@ import * as _ from "lodash";
 export const docsDir = path.resolve(__dirname, "../../../../docs");
 export const componentsDir = path.resolve(
   __dirname,
-  "../../../../libraries/ng-moon/src/components"
+  "../../../../libraries/ng-moon"
 );
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
 export const genMenusDir = path.resolve(
@@ -60,26 +60,28 @@ export class NcDocs {
       const stat = fs.statSync(dir);
       if (stat.isDirectory()) {
         const read = parseMdDoc(path.join(dir, "readme.md"));
-        const folder = path.join(page.genDir, x);
-        const child = this.createChild(read, x, folder);
-        child.genDir = folder;
-        child.path = dir;
-        page.children = [...page.children, child];
-        const thisRouter = `${router}/${x}`;
-        const menu = this.createMenu(read, x, index, i, thisRouter);
-        if (x === "components") {
-          child.path = componentsDir;
-          this.addChildren(child, componentsDir, menu.router, menu.id, 2);
-        } else if (level !== 0) {
-          this.addChildren(child, dir, menu.router, menu.id, level);
+        if (read) {
+          const folder = path.join(page.genDir, x);
+          const child = this.createChild(read, x, folder);
+          child.genDir = folder;
+          child.path = dir;
+          page.children = [...page.children, child];
+          const thisRouter = `${router}/${x}`;
+          const menu = this.createMenu(read, x, index, i, thisRouter);
+          if (x === "components") {
+            child.path = componentsDir;
+            this.addChildren(child, componentsDir, menu.router, menu.id, 1);
+          } else if (level !== 0) {
+            this.addChildren(child, dir, menu.router, menu.id, level);
+          }
+          if (
+            dir.indexOf(componentsDir) === 0 &&
+            typeof read.meta.type === "undefined"
+          ) {
+            await handlerComponent(child);
+          }
+          generatePage(child);
         }
-        if (
-          dir.indexOf(componentsDir) === 0 &&
-          typeof read.meta.type === "undefined"
-        ) {
-          await handlerComponent(child);
-        }
-        generatePage(child);
       }
     });
     page.children = _.sortBy(page.children, x => x.order);

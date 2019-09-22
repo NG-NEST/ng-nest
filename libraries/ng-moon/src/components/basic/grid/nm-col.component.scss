@@ -1,9 +1,0 @@
-// Col
-
-@import "../../../style/themes/default";
-@import "../../../style/mixins/index";
-@import "./style/mixin";
-
-.#{$prefixCol} {
-  @include col();
-}

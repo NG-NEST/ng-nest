@@ -29,113 +29,86 @@ export const menus: Menu[] = [
   {
     "id": "2-0-0",
     "parentId": "2-0",
-    "name": "basic",
-    "router": "./docs/ui/components/basic",
-    "order": 1,
-    "label": "基本",
-    "type": "router"
+    "name": "anchor",
+    "router": "./docs/ui/components/anchor",
+    "label": "锚点"
   },
   {
     "id": "2-0-1",
     "parentId": "2-0",
-    "name": "combination",
-    "router": "./docs/ui/components/combination",
-    "order": 2,
-    "label": "组合",
-    "type": "router"
-  },
-  {
-    "id": "2-0-2",
-    "parentId": "2-0",
-    "name": "senior",
-    "router": "./docs/ui/components/senior",
-    "order": 3,
-    "label": "高级",
-    "type": "router"
-  },
-  {
-    "id": "2-0-0-0",
-    "parentId": "2-0-0",
-    "name": "grid",
-    "router": "./docs/ui/components/basic/grid",
-    "label": "栅格"
-  },
-  {
-    "id": "2-0-0-1",
-    "parentId": "2-0-0",
-    "name": "highlight",
-    "router": "./docs/ui/components/basic/highlight",
-    "label": "代码高亮"
-  },
-  {
-    "id": "2-0-0-2",
-    "parentId": "2-0-0",
-    "name": "icon",
-    "router": "./docs/ui/components/basic/icon",
-    "label": "图标"
-  },
-  {
-    "id": "2-0-0-4",
-    "parentId": "2-0-0",
-    "name": "slider",
-    "router": "./docs/ui/components/basic/slider",
-    "label": "滑块"
-  },
-  {
-    "id": "2-0-1-0",
-    "parentId": "2-0-1",
-    "name": "anchor",
-    "router": "./docs/ui/components/combination/anchor",
-    "label": "锚点"
-  },
-  {
-    "id": "2-0-1-1",
-    "parentId": "2-0-1",
-    "name": "input",
-    "router": "./docs/ui/components/combination/input",
-    "label": "输入框"
-  },
-  {
-    "id": "2-0-1-3",
-    "parentId": "2-0-1",
-    "name": "tabs",
-    "router": "./docs/ui/components/combination/tabs",
-    "label": "标签页"
-  },
-  {
-    "id": "2-0-2-0",
-    "parentId": "2-0-2",
     "name": "api",
-    "router": "./docs/ui/components/senior/api",
+    "router": "./docs/ui/components/api",
     "label": "API 参数"
   },
   {
-    "id": "2-0-2-1",
-    "parentId": "2-0-2",
+    "id": "2-0-3",
+    "parentId": "2-0",
     "name": "doc",
-    "router": "./docs/ui/components/senior/doc",
+    "router": "./docs/ui/components/doc",
     "label": "文档"
   },
   {
-    "id": "2-0-2-2",
-    "parentId": "2-0-2",
+    "id": "2-0-4",
+    "parentId": "2-0",
     "name": "examples",
-    "router": "./docs/ui/components/senior/examples",
+    "router": "./docs/ui/components/examples",
     "label": "示例"
   },
   {
-    "id": "2-0-2-3",
-    "parentId": "2-0-2",
+    "id": "2-0-5",
+    "parentId": "2-0",
     "name": "form",
-    "router": "./docs/ui/components/senior/form",
+    "router": "./docs/ui/components/form",
     "label": "表单"
   },
   {
-    "id": "2-0-2-5",
-    "parentId": "2-0-2",
-    "name": "style",
-    "router": "./docs/ui/components/senior/style",
+    "id": "2-0-6",
+    "parentId": "2-0",
+    "name": "grid",
+    "router": "./docs/ui/components/grid",
+    "label": "栅格"
+  },
+  {
+    "id": "2-0-7",
+    "parentId": "2-0",
+    "name": "highlight",
+    "router": "./docs/ui/components/highlight",
+    "label": "代码高亮"
+  },
+  {
+    "id": "2-0-8",
+    "parentId": "2-0",
+    "name": "icon",
+    "router": "./docs/ui/components/icon",
+    "label": "图标"
+  },
+  {
+    "id": "2-0-9",
+    "parentId": "2-0",
+    "name": "input",
+    "router": "./docs/ui/components/input",
+    "label": "输入框"
+  },
+  {
+    "id": "2-0-14",
+    "parentId": "2-0",
+    "name": "pattern",
+    "router": "./docs/ui/components/pattern",
     "label": "样式参数"
+  },
+  {
+    "id": "2-0-16",
+    "parentId": "2-0",
+    "name": "slider",
+    "router": "./docs/ui/components/slider",
+    "label": "滑块"
+  },
+  {
+    "id": "2-0-18",
+    "parentId": "2-0",
+    "name": "tabs",
+    "router": "./docs/ui/components/tabs",
+    "label": "标签页"
   },
   {
     "id": "2-1-0",

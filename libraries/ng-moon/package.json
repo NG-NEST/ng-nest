@@ -1,13 +1,18 @@
 {
   "name": "ng-moon",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "homepage": "http://www.ng-nest.com",
+  "ng-update": {
+    "packageGroup": [
+      "ng-zorro-antd"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/NG-NEST/ng-moon"
   },
   "dependencies": {
-    "@angular/cdk": "~8.3.0",
+    "@angular/cdk": "~8.2.0",
     "highlight.js": "^9.15.9"
   },
   "peerDependencies": {
