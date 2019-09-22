@@ -7,5 +7,6 @@
       "highlight.js": "hljs",
       "lodash": "_"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": ["tslib", "angular", "highlight.js"]
 }
