@@ -1,12 +1,7 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import { NcCates, NcCate } from "../interfaces/examples";
-import {
-  handlerTabs,
-  handlerTabsByFiles,
-  randomString,
-  generateTabsActivatedChange
-} from ".";
+import { handlerTabs, handlerTabsByFiles, randomString } from ".";
 import { NcTabsLayoutEnum, NcTab } from "../interfaces/tabs";
 import { generateTabs } from ".";
 import * as _ from "lodash";
@@ -24,19 +19,15 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
  */
 export function generateCates(
   cates: NcCates,
-  comTpl: NcTemplate,
-  func: string
+  comTpl: NcTemplate
 ): NcCates {
   if (cates.list.length > 0) {
     let subFunc = "";
     while (subFunc == "" || _.hasIn(comTpl.syswords.constant, subFunc))
       subFunc = randomString();
-    comTpl.syswords.constant += `${generateTabsActivatedChange(subFunc)}\n`;
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
-      folderPath: cates.folderPath,
-      activatedChange: `(nmActivatedChange)="${subFunc}Change($event)"`,
-      id: func
+      folderPath: cates.folderPath
     });
     catesTabs.tabs.forEach(x => {
       generateFiles(

@@ -1,6 +1,5 @@
 import * as path from "path";
 import * as fs from "fs-extra";
-import { NcCate } from "../interfaces/examples";
 import { NcTabs, NcTab } from "../interfaces/tabs";
 import { parseMdDoc } from ".";
 import * as _ from "lodash";

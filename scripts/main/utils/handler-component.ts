@@ -10,7 +10,6 @@ import {
   handlerTabs,
   hanlderCates,
   generateCates,
-  generateTabsActivatedChange,
   hanlderType,
   generateTypes,
   hanlderPattern,
@@ -48,16 +47,14 @@ export function handlerExamples(page: NcPage) {
   let func = "";
   while (func == "" || _.hasIn(comTpl.syswords.constant, func))
     func = randomString();
-  comTpl.syswords.constant += `${generateTabsActivatedChange(func)}\n`;
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
     folderPath: examples.path,
-    activatedChange: `(nmActivatedChange)="${func}Change($event)"`
   });
   tabs.tabs.forEach(x => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
     hanlderCates(cates, page);
-    generateCates(cates, comTpl, func);
+    generateCates(cates, comTpl);
     if (cates.content) {
       x.content = cates.content;
     }

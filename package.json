@@ -9,7 +9,7 @@
     "build": "ng build --prod && npm run build:en && npm run build:zh",
     "build:en": "ng build --prod --configuration=production-en",
     "build:zh": "ng build --prod --configuration=production-zh",
-    "build:ng-moon": "ng build ng-moon",
+    "build:ng-moon": "npm unlink ng-moon && npm install libraries/ng-moon && ng build ng-moon",
     "build:old-docs": "node ./scripts/build/generate-docs-ui-components.js",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",

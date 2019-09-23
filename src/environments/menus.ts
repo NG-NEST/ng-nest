@@ -1,16 +1,16 @@
 import { Menu } from "./routes";
 export const menus: Menu[] = [
   {
-    "id": "2-2",
-    "parentId": "2",
+    "id": "3-2",
+    "parentId": "3",
     "name": "introduction",
     "router": "./docs/ui/introduction",
     "order": 1,
     "label": "简介"
   },
   {
-    "id": "2-1",
-    "parentId": "2",
+    "id": "3-1",
+    "parentId": "3",
     "name": "course",
     "router": "./docs/ui/course",
     "order": 2,
@@ -18,8 +18,8 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "2-0",
-    "parentId": "2",
+    "id": "3-0",
+    "parentId": "3",
     "name": "components",
     "router": "./docs/ui/components",
     "order": 3,
@@ -27,92 +27,92 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "2-0-0",
-    "parentId": "2-0",
+    "id": "3-0-0",
+    "parentId": "3-0",
     "name": "anchor",
     "router": "./docs/ui/components/anchor",
     "label": "锚点"
   },
   {
-    "id": "2-0-1",
-    "parentId": "2-0",
+    "id": "3-0-1",
+    "parentId": "3-0",
     "name": "api",
     "router": "./docs/ui/components/api",
     "label": "API 参数"
   },
   {
-    "id": "2-0-3",
-    "parentId": "2-0",
+    "id": "3-0-3",
+    "parentId": "3-0",
     "name": "doc",
     "router": "./docs/ui/components/doc",
     "label": "文档"
   },
   {
-    "id": "2-0-4",
-    "parentId": "2-0",
+    "id": "3-0-4",
+    "parentId": "3-0",
     "name": "examples",
     "router": "./docs/ui/components/examples",
     "label": "示例"
   },
   {
-    "id": "2-0-5",
-    "parentId": "2-0",
+    "id": "3-0-5",
+    "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
     "label": "表单"
   },
   {
-    "id": "2-0-6",
-    "parentId": "2-0",
+    "id": "3-0-6",
+    "parentId": "3-0",
     "name": "grid",
     "router": "./docs/ui/components/grid",
     "label": "栅格"
   },
   {
-    "id": "2-0-7",
-    "parentId": "2-0",
+    "id": "3-0-7",
+    "parentId": "3-0",
     "name": "highlight",
     "router": "./docs/ui/components/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "2-0-8",
-    "parentId": "2-0",
+    "id": "3-0-8",
+    "parentId": "3-0",
     "name": "icon",
     "router": "./docs/ui/components/icon",
     "label": "图标"
   },
   {
-    "id": "2-0-9",
-    "parentId": "2-0",
+    "id": "3-0-9",
+    "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
     "label": "输入框"
   },
   {
-    "id": "2-0-14",
-    "parentId": "2-0",
+    "id": "3-0-14",
+    "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "2-0-16",
-    "parentId": "2-0",
+    "id": "3-0-16",
+    "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",
     "label": "滑块"
   },
   {
-    "id": "2-0-18",
-    "parentId": "2-0",
+    "id": "3-0-18",
+    "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",
     "label": "标签页"
   },
   {
-    "id": "2-1-0",
-    "parentId": "2-1",
+    "id": "3-1-0",
+    "parentId": "3-1",
     "name": "guide",
     "router": "./docs/ui/course/guide",
     "order": 1,
@@ -120,6 +120,14 @@ export const menus: Menu[] = [
   },
   {
     "id": "2",
+    "parentId": null,
+    "name": "ng-nest",
+    "router": "./docs/ng-nest",
+    "order": 0,
+    "label": "NG-NEST"
+  },
+  {
+    "id": "3",
     "parentId": null,
     "name": "ui",
     "router": "./docs/ui",
@@ -139,7 +147,7 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "4",
+    "id": "5",
     "parentId": null,
     "name": "workflow-design",
     "router": "./docs/workflow-design",
@@ -159,7 +167,7 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "3",
+    "id": "4",
     "parentId": null,
     "name": "user-lib",
     "router": "./docs/user-lib",
