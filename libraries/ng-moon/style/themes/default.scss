@@ -32,12 +32,12 @@ $padding-ss: 0.275rem;
 $border-color: $divider-color;
 $border-style: solid;
 $border-width: 1px;
-$border-radius: 2px;
+$border-radius: 0.125rem;
 
 // Animation
-$animation-duration-slow: 0.3s;
-$animation-duration-base: 0.2s;
-$animation-duration-fast: 0.1s;
+$animation-duration-slow: 0.6s;
+$animation-duration-base: 0.4s;
+$animation-duration-fast: 0.2s;
 
 // Controls
 $control-padding-horizontal: $padding-xs;

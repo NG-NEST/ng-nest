@@ -6,6 +6,7 @@ import { NmHighlightModule } from "ng-moon/highlight";
 import { NmGridModule } from "ng-moon/grid";
 
 import { NmInputModule } from "ng-moon/input";
+import { NmButtonModule } from "ng-moon/button";
 import { NmAnchorModule } from "ng-moon/anchor";
 import { NmTabsModule } from "ng-moon/tabs";
 
@@ -23,6 +24,7 @@ export * from "ng-moon/highlight";
 
 export * from "ng-moon/anchor";
 export * from "ng-moon/input";
+export * from "ng-moon/button";
 export * from "ng-moon/tabs";
 
 export * from "ng-moon/doc";
@@ -38,6 +40,7 @@ export * from "ng-moon/form";
     NmHighlightModule,
     NmGridModule,
     NmInputModule,
+    NmButtonModule,
     NmAnchorModule,
     NmTabsModule,
     NmDocModule,

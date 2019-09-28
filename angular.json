@@ -196,7 +196,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libraries/ng-moon/src/test.ts",
+            "main": "libraries/ng-moon/test.ts",
             "tsConfig": "libraries/ng-moon/tsconfig.spec.json",
             "karmaConfig": "libraries/ng-moon/karma.conf.js",
             "codeCoverage": true

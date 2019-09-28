@@ -8,7 +8,8 @@
       [placeholder]="nmPlaceholder"
       [required]="nmRequired"
       [disabled]="nmDisabled"
-      [(ngModel)]="value"
+      [ngModel]="value"
+      (ngModelChange)="onChange($event)"
     />
     <nm-icon *ngIf="nmIcon" [nmType]="nmIcon"></nm-icon>
   </div>

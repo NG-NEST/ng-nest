@@ -30,7 +30,7 @@ import { fillDefault, isEmpty } from "ng-moon/core";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NmInputComponent),
+      useExisting:  NmInputComponent,
       multi: true
     }
   ]
@@ -85,20 +85,20 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   }
 
   value: string | number;
-  onChangeFn: (val: string | number) => void = noop;
-  onTouchedFn: () => void = noop;
+  onChange: (_: any) => void;
+  onTouched: () => void;
 
   writeValue(val: string | number): void {
-    this.value = val ? val : null;
+    this.value = val;
     this.cdr.detectChanges();
   }
 
   registerOnChange(fn: any): void {
-    this.onChangeFn = fn;
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedFn = fn;
+    this.onTouched = fn;
   }
 
   constructor(

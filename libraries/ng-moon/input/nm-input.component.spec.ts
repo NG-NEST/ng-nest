@@ -4,9 +4,12 @@ import { NmInputComponent } from "./nm-input.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmInputModule } from "./nm-input.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule, FormControl } from "@angular/forms";
 import {
-  InputPrefix, NmInputLayoutType, NmInputType, NmInputIconLayoutType
+  InputPrefix,
+  NmInputLayoutType,
+  NmInputType,
+  NmInputIconLayoutType
 } from "./nm-input.type";
 
 describe(InputPrefix, () => {
@@ -62,36 +65,28 @@ describe(InputPrefix, () => {
       expect(label.innerText).toContain(name);
     });
     it("should layout horizontal.", () => {
-      testComponent.layout = 'horizontal';
+      testComponent.layout = "horizontal";
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${InputPrefix}-horizontal`
-      );
+      expect(element.classList).toContain(`${InputPrefix}-horizontal`);
     });
     it("should layout vertical.", () => {
-      testComponent.layout = 'vertical';
+      testComponent.layout = "vertical";
       testComponent.label = "name";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${InputPrefix}-vertical`
-      );
+      expect(element.classList).toContain(`${InputPrefix}-vertical`);
     });
     it("should icon left.", () => {
       testComponent.icon = "ado-search";
-      testComponent.iconLayout = 'left';
+      testComponent.iconLayout = "left";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${InputPrefix}-icon-left`
-      );
+      expect(element.classList).toContain(`${InputPrefix}-icon-left`);
     });
     it("should icon right.", () => {
       testComponent.icon = "ado-search";
       testComponent.iconLayout = "right";
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${InputPrefix}-icon-right`
-      );
+      expect(element.classList).toContain(`${InputPrefix}-icon-right`);
     });
   });
 });
@@ -108,8 +103,9 @@ describe(InputPrefix, () => {
       [nmDisabled]="disabled"
       [nmIcon]="icon"
       [nmIconLayout]="iconLayout"
-      [(ngModel)]="value"
+      [formControl]="ctr"
     ></nm-input>
+    <button (click)="getCtr()">获取</button>
   `
 })
 class TestNmInputComponent {
@@ -122,4 +118,13 @@ class TestNmInputComponent {
   icon?: string;
   iconLayout?: NmInputIconLayoutType;
   value?: string | number;
+  ctr = new FormControl("123");
+
+  getCtr() {
+    console.log(this.ctr);
+    setTimeout(
+      () => this.ctr.setValue("23123"),
+      2000
+    );
+  }
 }
