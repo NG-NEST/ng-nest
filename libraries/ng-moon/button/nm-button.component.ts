@@ -13,7 +13,7 @@ import { fillDefault } from "ng-moon/core";
 @Component({
   selector: "nm-button",
   templateUrl: "./nm-button.component.html",
-  styleUrls: ["./style/index.scss"],
+  styleUrls: ["./nm-button.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

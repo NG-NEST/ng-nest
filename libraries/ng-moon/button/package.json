@@ -1,7 +1,7 @@
 {
   "ngPackage": {
     "lib":{
-      "entryFile": "./public-button.ts"
+      "entryFile": "./public-api.ts"
     }
   }
 }

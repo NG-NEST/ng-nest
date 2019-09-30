@@ -38,7 +38,20 @@ describe(ButtonPrefix, () => {
 @Component({
   selector: "test-nm-button",
   template: `
-    <nm-button [nmLabel]="'按钮'"></nm-button>
+    <nm-button [nmLabel]="'关注'"></nm-button>
+    <br /><br />
+    <nm-button [nmLabel]="'关注'" [nmIcon]="'ado-heart'"></nm-button>
+    <br /><br />
+    <nm-buttons>
+      <nm-button [nmIcon]="'ado-align-left'"></nm-button>
+      <nm-button [nmIcon]="'ado-align-center'"></nm-button>
+      <nm-button [nmIcon]="'ado-align-right'"></nm-button>
+    </nm-buttons>
+    <br /><br />
+    <nm-buttons [nmSpace]="1">
+      <nm-button [nmLabel]="'保存'" [nmIcon]="'ado-save'"></nm-button>
+      <nm-button [nmLabel]="'取消'"></nm-button>
+    </nm-buttons>
   `
 })
 class TestNmButtonComponent {}

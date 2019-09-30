@@ -10,6 +10,21 @@ $primary-text-color: var(--nm-primary-text-color, #212121);
 $secondary-text-color: var(--nm-secondary-text-color, #757575);
 $divider-color: var(--nm-divider-color, #bdbdbd);
 
+$primary-color-50: var(--nm-primary-color-50, #e8eaf6);
+$primary-color-100: var(--nm-primary-color-100, #c5cae9);
+$primary-color-200: var(--nm-primary-color-200, #9fa8da);
+$primary-color-300: var(--nm-primary-color-300, #7986cb);
+$primary-color-400: var(--nm-primary-color-400, #5c6bc0);
+$primary-color-500: var(--nm-primary-color-500, #3f51b5);
+$primary-color-600: var(--nm-primary-color-600, #3949ab);
+$primary-color-700: var(--nm-primary-color-700, #303f9f);
+$primary-color-800: var(--nm-primary-color-800, #283595);
+$primary-color-900: var(--nm-primary-color-900, #1a237e);
+$primary-color-a100: var(--nm-primary-color-a100, #8c9eff);
+$primary-color-a200: var(--nm-primary-color-a200, #536dfe);
+$primary-color-a400: var(--nm-primary-color-a400, #3d5afe);
+$primary-color-a700: var(--nm-primary-color-a700, #304ffe);
+
 // Font
 $font-size: 0.875rem;
 $font-variant: tabular-nums;

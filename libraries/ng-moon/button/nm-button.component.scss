@@ -1,0 +1,10 @@
+// Button
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$prefixButton} {
+  @include reset-component();
+  @include button();
+}

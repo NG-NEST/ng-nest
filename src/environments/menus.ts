@@ -41,70 +41,77 @@ export const menus: Menu[] = [
     "label": "API 参数"
   },
   {
-    "id": "3-0-3",
+    "id": "3-0-2",
+    "parentId": "3-0",
+    "name": "button",
+    "router": "./docs/ui/components/button",
+    "label": "API 参数"
+  },
+  {
+    "id": "3-0-4",
     "parentId": "3-0",
     "name": "doc",
     "router": "./docs/ui/components/doc",
     "label": "文档"
   },
   {
-    "id": "3-0-4",
+    "id": "3-0-5",
     "parentId": "3-0",
     "name": "examples",
     "router": "./docs/ui/components/examples",
     "label": "示例"
   },
   {
-    "id": "3-0-5",
+    "id": "3-0-6",
     "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
     "label": "表单"
   },
   {
-    "id": "3-0-6",
+    "id": "3-0-7",
     "parentId": "3-0",
     "name": "grid",
     "router": "./docs/ui/components/grid",
     "label": "栅格"
   },
   {
-    "id": "3-0-7",
+    "id": "3-0-8",
     "parentId": "3-0",
     "name": "highlight",
     "router": "./docs/ui/components/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "3-0-8",
+    "id": "3-0-9",
     "parentId": "3-0",
     "name": "icon",
     "router": "./docs/ui/components/icon",
     "label": "图标"
   },
   {
-    "id": "3-0-9",
+    "id": "3-0-10",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
     "label": "输入框"
   },
   {
-    "id": "3-0-14",
+    "id": "3-0-15",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-16",
+    "id": "3-0-17",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",
     "label": "滑块"
   },
   {
-    "id": "3-0-18",
+    "id": "3-0-19",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",
@@ -133,7 +140,6 @@ export const menus: Menu[] = [
     "router": "./docs/ui",
     "order": 1,
     "label": "UI库",
-    "icon": "adt-fire",
     "type": "router"
   },
   {
@@ -153,7 +159,6 @@ export const menus: Menu[] = [
     "router": "./docs/workflow-design",
     "order": 3,
     "label": "工作流设计",
-    "icon": "adt-fire",
     "type": "router"
   },
   {
@@ -163,7 +168,6 @@ export const menus: Menu[] = [
     "router": "./docs/code-generator",
     "order": 4,
     "label": "代码生成",
-    "icon": "adt-fire",
     "type": "router"
   },
   {
@@ -173,7 +177,6 @@ export const menus: Menu[] = [
     "router": "./docs/user-lib",
     "order": 5,
     "label": "用户模块",
-    "icon": "adt-fire",
     "type": "router"
   }
 ]
