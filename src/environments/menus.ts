@@ -45,73 +45,80 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "button",
     "router": "./docs/ui/components/button",
-    "label": "API 参数"
+    "label": "按钮"
   },
   {
     "id": "3-0-4",
+    "parentId": "3-0",
+    "name": "crumb",
+    "router": "./docs/ui/components/crumb",
+    "label": "面包屑"
+  },
+  {
+    "id": "3-0-5",
     "parentId": "3-0",
     "name": "doc",
     "router": "./docs/ui/components/doc",
     "label": "文档"
   },
   {
-    "id": "3-0-5",
+    "id": "3-0-6",
     "parentId": "3-0",
     "name": "examples",
     "router": "./docs/ui/components/examples",
     "label": "示例"
   },
   {
-    "id": "3-0-6",
+    "id": "3-0-7",
     "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
     "label": "表单"
   },
   {
-    "id": "3-0-7",
+    "id": "3-0-8",
     "parentId": "3-0",
     "name": "grid",
     "router": "./docs/ui/components/grid",
     "label": "栅格"
   },
   {
-    "id": "3-0-8",
+    "id": "3-0-9",
     "parentId": "3-0",
     "name": "highlight",
     "router": "./docs/ui/components/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "3-0-9",
+    "id": "3-0-10",
     "parentId": "3-0",
     "name": "icon",
     "router": "./docs/ui/components/icon",
     "label": "图标"
   },
   {
-    "id": "3-0-10",
+    "id": "3-0-11",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
     "label": "输入框"
   },
   {
-    "id": "3-0-15",
+    "id": "3-0-16",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-17",
+    "id": "3-0-18",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",
     "label": "滑块"
   },
   {
-    "id": "3-0-19",
+    "id": "3-0-20",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",

@@ -1,0 +1,44 @@
+// Crumb
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin crumb {
+  display: inline-block;
+  color: $crumb-color;
+  font-size: $crumb-font-size;
+  > ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    height: fit-content;
+    > li {
+      padding: 0;
+      border-style: solid;
+      border-color: $crumb-border-color;
+      border-width: 0;
+      white-space: nowrap;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      .#{$prefix}-link {
+        cursor: pointer;
+        &:hover {
+          color: $crumb-activated-color;
+        }
+      }
+      .#{$prefix}-separator {
+        margin: 0 0.5rem;
+      }
+      &:not(:last-child) {
+        color: $secondary-text-color;
+      }
+      &:last-child {
+        pointer-events: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  .nm-row {
+    > .nm-col {
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "name": "ng-moon",
-  "version": "0.0.12",
+  "version": "0.0.16",
   "homepage": "http://www.ng-nest.com",
   "ng-update": {
     "packageGroup": [
-      "ng-zorro-antd"
+      "ng-moon"
     ]
   },
   "repository": {
