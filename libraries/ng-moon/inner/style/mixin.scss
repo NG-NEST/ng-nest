@@ -1,0 +1,11 @@
+// Inner
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
