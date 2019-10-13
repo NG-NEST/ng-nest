@@ -1,4 +1,3 @@
-
 import { NgModule, ModuleWithProviders } from "@angular/core";
 
 import { NmIconModule } from "ng-moon/icon";
@@ -7,6 +6,7 @@ import { NmHighlightModule } from "ng-moon/highlight";
 import { NmGridModule } from "ng-moon/grid";
 import { NmCrumbModule } from "ng-moon/crumb";
 import { NmInnerModule } from "ng-moon/inner";
+import { NmPortalModule } from "ng-moon/portal";
 
 import { NmInputModule } from "ng-moon/input";
 import { NmButtonModule } from "ng-moon/button";
@@ -26,6 +26,7 @@ export * from "ng-moon/slider";
 export * from "ng-moon/highlight";
 export * from "ng-moon/crumb";
 export * from "ng-moon/inner";
+export * from "ng-moon/portal";
 
 export * from "ng-moon/anchor";
 export * from "ng-moon/input";
@@ -46,6 +47,7 @@ export * from "ng-moon/form";
     NmGridModule,
     NmCrumbModule,
     NmInnerModule,
+    NmPortalModule,
     NmInputModule,
     NmButtonModule,
     NmAnchorModule,

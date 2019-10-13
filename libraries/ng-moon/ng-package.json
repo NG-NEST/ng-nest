@@ -6,7 +6,8 @@
     "entryFile": "./ng-moon.module.ts",
     "umdModuleIds": {
       "highlight.js": "hljs"
-    }
+    },
+    "styleIncludePaths": ["./style"]
   },
   "whitelistedNonPeerDependencies": ["tslib", "angular", "hljs", "highlight.js"]
 }

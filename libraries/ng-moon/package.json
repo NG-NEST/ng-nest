@@ -2,6 +2,7 @@
   "name": "ng-moon",
   "version": "0.0.17",
   "homepage": "http://www.ng-nest.com",
+  "author": "ng-nest",
   "ng-update": {
     "packageGroup": [
       "ng-moon"
