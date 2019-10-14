@@ -1,0 +1,64 @@
+// Table
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin table {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: $font-size;
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &-header,
+  &-body {
+    > ul {
+      display: flex;
+      > li {
+        flex: 1;
+        height: $font-size * 3;
+        line-height: $font-size * 3;
+        &:not(:last-child) {
+          padding-right: 1rem;
+        }
+      }
+    }
+  }
+
+  &-tool {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e8e8e89c;
+  }
+
+  &-header {
+    color: $secondary-text-color;
+    border-bottom: 1px solid #e8e8e89c;
+  }
+
+  &-body {
+    > ul {
+      &:hover {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+      &:not(:last-child) {
+        > li {
+          border-bottom: 1px solid #e8e8e89c;
+        }
+      }
+    }
+  }
+
+  &-footer {
+  }
+}

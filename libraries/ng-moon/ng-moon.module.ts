@@ -12,6 +12,7 @@ import { NmInputModule } from "ng-moon/input";
 import { NmButtonModule } from "ng-moon/button";
 import { NmAnchorModule } from "ng-moon/anchor";
 import { NmTabsModule } from "ng-moon/tabs";
+import { NmTableModule } from "ng-moon/table";
 
 import { NmDocModule } from "ng-moon/doc";
 import { NmExamplesModule } from "ng-moon/examples";
@@ -32,6 +33,7 @@ export * from "ng-moon/anchor";
 export * from "ng-moon/input";
 export * from "ng-moon/button";
 export * from "ng-moon/tabs";
+export * from "ng-moon/table";
 
 export * from "ng-moon/doc";
 export * from "ng-moon/examples";
@@ -52,6 +54,7 @@ export * from "ng-moon/form";
     NmButtonModule,
     NmAnchorModule,
     NmTabsModule,
+    NmTableModule,
     NmDocModule,
     NmExamplesModule,
     NmApiModule,

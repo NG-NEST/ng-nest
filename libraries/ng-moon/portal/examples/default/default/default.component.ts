@@ -1,13 +1,19 @@
-import { Component, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
-import { NmPortalService } from 'ng-moon/portal/nm-portal.service';
-import { Overlay } from '@angular/cdk/overlay';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+  ViewChild
+} from "@angular/core";
+import { NmPortalService } from "ng-moon/portal";
+import { Overlay } from "@angular/cdk/overlay";
 
 @Component({
   selector: "ex-default",
   templateUrl: "./default.component.html",
   styleUrls: ["./default.component.scss"]
 })
-export class ExDefaultComponent implements OnInit {
+export class ExDefaultComponent {
   @ViewChild("temp", { static: false }) temp: TemplateRef<any>;
   constructor(
     private portal: NmPortalService,
