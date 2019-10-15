@@ -28,14 +28,14 @@ export class NmHighlightComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild("code", { static: false }) codeRef: ElementRef;
 
-  private default: NmHighlightOption = {};
+  private _default: NmHighlightOption = {};
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(this.elementRef.nativeElement, HighlightPrefix);
   }
 
   ngOnInit() {
-    fillDefault(this, this.default);
+    fillDefault(this, this._default);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

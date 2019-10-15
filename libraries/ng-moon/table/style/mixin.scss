@@ -21,6 +21,7 @@
   &-body {
     > ul {
       display: flex;
+      cursor: default;
       > li {
         flex: 1;
         height: $font-size * 3;
@@ -33,6 +34,8 @@
   }
 
   &-tool {
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 1rem;
     border-bottom: 1px solid #e8e8e89c;
   }
@@ -44,6 +47,11 @@
 
   &-body {
     > ul {
+      > li {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
       &:hover {
         margin-left: -1rem;
         margin-right: -1rem;

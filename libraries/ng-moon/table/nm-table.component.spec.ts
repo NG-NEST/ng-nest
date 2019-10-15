@@ -4,7 +4,7 @@ import { NmTableComponent } from "./nm-table.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmTableModule } from "./nm-table.module";
-import { TablePrefix } from "./nm-table.type";
+import { TablePrefix, NmTableColumn, NmTableAction } from "./nm-table.type";
 
 describe(TablePrefix, () => {
   beforeEach(async(() => {
@@ -32,11 +32,6 @@ describe(TablePrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(TablePrefix);
     });
-    it("change padding.", () => {
-      testComponent.padding = "1rem 0";
-      fixture.detectChanges();
-      expect(element.classList).toContain(TablePrefix);
-    });
   });
 });
 
@@ -44,10 +39,60 @@ describe(TablePrefix, () => {
   selector: "test-nm-table",
   template: `
     <div style="padding: 1rem 2rem; background: #fafafa;">
-      <nm-table></nm-table>
+      <nm-table
+        [nmData]="data"
+        [nmColumns]="columns"
+        [nmActions]="actions"
+      ></nm-table>
     </div>
   `
 })
 class TestNmTableComponent {
-  padding: string = "1rem";
+  actions: NmTableAction[] = [
+    { nmLabel: "播放全部", nmIcon: "ado-caret-right" },
+    { nmLabel: "下载", nmIcon: "ado-download" },
+    { nmLabel: "批量操作", nmIcon: "ado-bars" },
+    {
+      nmLabel: "列表视图",
+      nmIcon: "ado-menu",
+      nmActionLayoutType: "top-right"
+    },
+    {
+      nmLabel: "歌手视图",
+      nmIcon: "ado-team",
+      nmActionLayoutType: "top-right"
+    },
+    {
+      nmLabel: "专辑视图",
+      nmIcon: "ado-inbox",
+      nmActionLayoutType: "top-right"
+    }
+  ];
+  columns: NmTableColumn[] = [
+    { nmKey: "song", nmLabel: "歌曲", nmFlex: 2 },
+    { nmKey: "auth", nmLabel: "作者", nmFlex: 1 },
+    { nmKey: "album", nmLabel: "专辑", nmFlex: 1 }
+  ];
+  data = [
+    {
+      song: "Free Loop 福特轿车广告曲",
+      auth: "Daniel Powter",
+      album: "Daniel Powter"
+    },
+    {
+      song: "Be What You Wanna Be",
+      auth: "Darin",
+      album: "Darin"
+    },
+    {
+      song: "The Show",
+      auth: "Lenka",
+      album: "The Show"
+    },
+    {
+      song: "Intro 《魔兽之亡灵曲》游戏插曲",
+      auth: "Dreamtale",
+      album: "Beyond Reality"
+    }
+  ];
 }

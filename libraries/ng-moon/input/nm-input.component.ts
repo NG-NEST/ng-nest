@@ -45,7 +45,7 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   @Input() nmIcon?: string;
   @Input() nmIconLayout?: NmInputIconLayoutType;
 
-  private default: NmInputOption = {
+  private _default: NmInputOption = {
     nmLayout: "vertical",
     nmPlaceholder: "",
     nmType: "text",
@@ -110,6 +110,6 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    fillDefault(this, this.default);
+    fillDefault(this, this._default);
   }
 }

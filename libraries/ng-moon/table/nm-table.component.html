@@ -1,37 +1,41 @@
 <div class="nm-table-tool">
-  <nm-buttons [nmSpace]="1">
-    <nm-button [nmLabel]="'新增'" [nmIcon]="'ado-plus'"></nm-button>
-    <nm-button [nmLabel]="'下载'" [nmIcon]="'ado-download'"></nm-button>
-    <nm-button [nmLabel]="'批量操作'" [nmIcon]="'ado-bars'"></nm-button>
-  </nm-buttons>
+  <div class="nm-table-tool-left">
+    <nm-buttons [nmSpace]="1">
+      <nm-button
+        *ngFor="let button of topLeftActions"
+        [nmLabel]="button.nmLabel"
+        [nmIcon]="button.nmIcon"
+      ></nm-button>
+    </nm-buttons>
+  </div>
+  <div class="nm-table-tool-right">
+    <nm-buttons>
+      <nm-button
+        *ngFor="let button of topRightActions"
+        [nmIcon]="button.nmIcon"
+      ></nm-button>
+    </nm-buttons>
+  </div>
 </div>
 <div class="nm-table-header">
   <ul>
-    <li>歌曲</li>
-    <li>歌手</li>
-    <li>专辑</li>
+    <ng-container *ngFor="let column of nmColumns">
+      <li [style.width.rem]="column.nmWidth" [style.flex]="column.nmFlex">
+        {{ column.nmLabel }}
+      </li>
+    </ng-container>
   </ul>
 </div>
 <div class="nm-table-body">
-  <ul>
-    <li>Free Loop <span>福特轿车广告曲</span></li>
-    <li>Daniel Powter</li>
-    <li>Daniel Powter</li>
-  </ul>
-  <ul>
-    <li>Free Loop <span>福特轿车广告曲</span></li>
-    <li>Daniel Powter</li>
-    <li>Daniel Powter</li>
-  </ul>
-  <ul>
-    <li>Free Loop <span>福特轿车广告曲</span></li>
-    <li>Daniel Powter</li>
-    <li>Daniel Powter</li>
-  </ul>
-  <ul>
-    <li>Free Loop <span>福特轿车广告曲</span></li>
-    <li>Daniel Powter</li>
-    <li>Daniel Powter</li>
+  <ul *ngFor="let item of data">
+    <ng-container *ngFor="let column of nmColumns">
+      <li
+        [style.width.rem]="column.nmWidth"
+        [style.flex]="column.nmFlex"
+        [title]="item[column.nmKey]"
+        [innerHTML]="item[column.nmKey]"
+      ></li>
+    </ng-container>
   </ul>
 </div>
 <div class="nm-table-footer"></div>

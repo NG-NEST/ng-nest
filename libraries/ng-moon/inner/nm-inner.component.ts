@@ -22,7 +22,7 @@ import { fillDefault } from "ng-moon/core";
 })
 export class NmInnerComponent implements OnInit, OnChanges {
   @Input() nmPadding: string;
-  private default: NmInnerOption = {
+  private _default: NmInnerOption = {
     nmPadding: "1rem"
   };
   private _ele: HTMLElement;
@@ -32,7 +32,7 @@ export class NmInnerComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    fillDefault(this, this.default);
+    fillDefault(this, this._default);
     this.setStyle();
   }
 

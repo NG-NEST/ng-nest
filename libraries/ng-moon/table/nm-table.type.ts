@@ -1,3 +1,6 @@
+import { NmIdentityOption, NmData } from "ng-moon/core";
+import { NmButtonOption } from "ng-moon/button";
+
 /**
  * Table 组件名
  * @selector nm-table
@@ -9,6 +12,10 @@ export const TablePrefix = "nm-table";
  * Table 参数对象
  */
 export interface NmTableOption {
+  /**
+   * 数据
+   */
+  nmData?: NmData<any[]>;
   /**
    * 列集合
    */
@@ -22,21 +29,31 @@ export interface NmTableOption {
 /**
  * 列参数
  */
-export interface NmTableColumn {}
+export interface NmTableColumn extends NmIdentityOption {
+  /**
+   * 宽度
+   */
+  nmWidth?: number;
+  /**
+   * flex 布局宽度
+   */
+  nmFlex?: number;
+}
 
 /**
  * 操作参数
  */
-export interface NmTableAction {
+export interface NmTableAction extends NmButtonOption {
   /**
-   * 类型
+   * 操作按钮位置
    */
-  nmType?: NmTableActionType;
+  nmActionLayoutType?: NmTableActionLayoutType;
 }
 
 /**
- * 操作方式
- * @value "top" 顶部操作
+ * 操作按钮位置
+ * @value "top-left" 顶部靠左（默认）
+ * @value "top-right" 顶部靠右
  * @value "row" 行操作
  */
-export type NmTableActionType = "top" | "row";
+export type NmTableActionLayoutType = "top-left" | "top-right" | "row";

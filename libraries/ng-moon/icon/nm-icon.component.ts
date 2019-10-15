@@ -40,7 +40,7 @@ export class NmIconComponent implements OnInit, OnChanges {
   @Input() nmColor?: string | string[];
   @Input() nmRotate?: number;
   private svgElement: SVGElement;
-  private default: NmIconOption = {};
+  private _default: NmIconOption = {};
 
   constructor(
     private elementRef: ElementRef,
@@ -51,7 +51,7 @@ export class NmIconComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    fillDefault(this, this.default);
+    fillDefault(this, this._default);
     this.setSvgElement();
   }
 
