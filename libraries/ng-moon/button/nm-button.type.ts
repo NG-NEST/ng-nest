@@ -27,6 +27,11 @@ export interface NmButtonOption extends NmIdentityOption {
    * 图标
    */
   nmIcon?: string;
+
+  /**
+   * 提示信息
+   */
+  nmTitle?: string;
 }
 
 /**
@@ -38,6 +43,10 @@ export interface NmButtonsOption {
    * @default 0
    */
   nmSpace?: number;
+  /**
+   * 不显示边框
+   */
+  nmNotBorder?: boolean;
 }
 
 export type NmButtonType = "submit" | "button";

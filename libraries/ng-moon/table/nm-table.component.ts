@@ -35,7 +35,8 @@ export class NmTableComponent implements OnInit, OnChanges {
   data: any[] = [];
   topLeftActions: NmTableAction[] = [];
   topRightActions: NmTableAction[] = [];
-  rowActions: NmTableAction[] = [];
+  topRightIconActions: NmTableAction[] = [];
+  rowIconActions: NmTableAction[] = [];
   private _data$: Subscription | null = null;
   private _default: NmTableOption = {};
   constructor(
@@ -76,9 +77,13 @@ export class NmTableComponent implements OnInit, OnChanges {
       this.nmActions,
       x => x.nmActionLayoutType === "top-right"
     );
-    this.rowActions = _.filter(
+    this.topRightIconActions = _.filter(
       this.nmActions,
-      x => x.nmActionLayoutType === "row"
+      x => x.nmActionLayoutType === "top-right-icon"
+    );
+    this.rowIconActions = _.filter(
+      this.nmActions,
+      x => x.nmActionLayoutType === "row-icon"
     );
   }
 

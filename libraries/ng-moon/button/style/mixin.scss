@@ -28,6 +28,15 @@
       margin-right: 0.125rem;
     }
   }
+  &-icon {
+    padding: 0 0.4rem;
+    > .nm-button-inner {
+      > .nm-icon {
+        font-size: 1rem;
+        margin-right: 0;
+      }
+    }
+  }
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
@@ -40,8 +49,7 @@
 }
 
 @mixin buttons {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   &:not(.nm-buttons-space) {
     > .nm-button {
       border-left-width: 0;
@@ -62,10 +70,29 @@
       }
     }
   }
-  &.nm-buttons-space {
+  &-space {
     > .nm-button {
       &:not(:first-child) {
         margin-left: 0.625rem;
+      }
+    }
+  }
+  &-not-border {
+    > .nm-button {
+      border: 0;
+      padding: 0 0.4rem;
+      background-color: transparent;
+      &-icon {
+        padding: 0 0.2rem;
+        > .nm-button-inner {
+          > .nm-icon {
+            font-size: 1.2rem;
+          }
+        }
+        &:hover {
+          color: $primary-color;
+          background-color: transparent;
+        }
       }
     }
   }

@@ -9,7 +9,7 @@ import { DOCUMENT } from "@angular/common";
 // @dynamic
 @Injectable({ providedIn: "root" })
 export class NmIconService {
-  rootUrl = `http://www.ng-nest.com/assets/icons/`;
+  rootUrl = `http://localhost/assets/icons/`;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -23,8 +23,9 @@ export class NmIconService {
     return this.http.get(safeUrl, { responseType: "text" }).pipe(
       map(x => {
         const div = this.document.createElement("div");
-        div.innerHTML = x.replace(/(<[svg\s\/>]+)\b[^>]*>/gi, "$1>");
-        const svg: SVGElement = div.querySelector("svg");
+        const svg = this.document.createElement("svg");
+        div.innerHTML = x;
+        svg.innerHTML = div.querySelector("svg").innerHTML;
         if (!svg) {
           warnSVGTagNotFound();
         }

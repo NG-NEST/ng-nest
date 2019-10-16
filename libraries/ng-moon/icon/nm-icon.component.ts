@@ -105,7 +105,7 @@ export class NmIconComponent implements OnInit, OnChanges {
 
   setAttributes(svgEle: SVGElement) {
     if (svgEle) {
-      this.renderer.setAttribute(svgEle, "viewBox", "0 0 1024 1024");
+      this.renderer.setAttribute(svgEle, "viewBox", "64 64 896 896");
       this.renderer.setAttribute(svgEle, "fill", "currentColor");
       this.renderer.setAttribute(svgEle, "width", "1em");
       this.renderer.setAttribute(svgEle, "height", "1em");

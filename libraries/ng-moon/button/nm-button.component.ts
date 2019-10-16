@@ -2,6 +2,7 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
+  HostBinding,
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
@@ -21,6 +22,13 @@ export class NmButtonComponent implements OnInit {
   @Input() nmType?: NmButtonType;
   @Input() nmLabel?: string;
   @Input() nmIcon?: string;
+  @Input() nmTitle?: string;
+  @HostBinding("class.nm-button-label") get getLabel() {
+    return !this.nmIcon && this.nmLabel;
+  }
+  @HostBinding("class.nm-button-icon") get getIcon() {
+    return !this.nmLabel && this.nmIcon;
+  }
   private _default: NmButtonOption = {
     nmType: "button",
     nmLabel: ""
@@ -31,5 +39,11 @@ export class NmButtonComponent implements OnInit {
 
   ngOnInit() {
     fillDefault(this, this._default);
+    if (this.nmTitle)
+      this.renderer.setAttribute(
+        this.elementRef.nativeElement,
+        "title",
+        this.nmTitle
+      );
   }
 }

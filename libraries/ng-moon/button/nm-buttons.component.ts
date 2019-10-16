@@ -6,7 +6,8 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding} from "@angular/core";
+  HostBinding
+} from "@angular/core";
 import { NmButtonsOption, ButtonsPrefix } from "./nm-button.type";
 import { fillDefault } from "ng-moon/core";
 
@@ -19,8 +20,12 @@ import { fillDefault } from "ng-moon/core";
 })
 export class NmButtonsComponent implements OnInit {
   @Input() nmSpace?: number;
+  @Input() nmNotBorder?: boolean;
   @HostBinding("class.nm-buttons-space") get getSpace() {
     return this.nmSpace;
+  }
+  @HostBinding("class.nm-buttons-not-border") get getNotBorder() {
+    return this.nmNotBorder;
   }
 
   private _default: NmButtonsOption = {

@@ -38,7 +38,7 @@ describe(IconPrefix, () => {
       expect(element.classList).toContain(testComponent.type);
     });
     it("should ant-design outline icon.", () => {
-      testComponent.type = "ado-shopping";
+      testComponent.type = "ado-plus";
       fixture.detectChanges();
       expect(element.classList).toContain(testComponent.type);
     });

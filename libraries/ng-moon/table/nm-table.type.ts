@@ -56,4 +56,8 @@ export interface NmTableAction extends NmButtonOption {
  * @value "top-right" 顶部靠右
  * @value "row" 行操作
  */
-export type NmTableActionLayoutType = "top-left" | "top-right" | "row";
+export type NmTableActionLayoutType =
+  | "top-left"
+  | "top-right"
+  | "top-right-icon"
+  | "row-icon";

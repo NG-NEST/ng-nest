@@ -53,19 +53,39 @@ class TestNmTableComponent {
     { nmLabel: "下载", nmIcon: "ado-download" },
     { nmLabel: "批量操作", nmIcon: "ado-bars" },
     {
-      nmLabel: "列表视图",
       nmIcon: "ado-menu",
-      nmActionLayoutType: "top-right"
+      nmTitle: "列表视图",
+      nmActionLayoutType: "top-right-icon"
     },
     {
-      nmLabel: "歌手视图",
       nmIcon: "ado-team",
-      nmActionLayoutType: "top-right"
+      nmTitle: "歌手视图",
+      nmActionLayoutType: "top-right-icon"
     },
     {
-      nmLabel: "专辑视图",
       nmIcon: "ado-inbox",
-      nmActionLayoutType: "top-right"
+      nmTitle: "专辑视图",
+      nmActionLayoutType: "top-right-icon"
+    },
+    {
+      nmIcon: "ado-caret-right",
+      nmTitle: "播放",
+      nmActionLayoutType: "row-icon"
+    },
+    {
+      nmIcon: "ado-plus-square",
+      nmTitle: "添加到",
+      nmActionLayoutType: "row-icon"
+    },
+    {
+      nmIcon: "ado-download",
+      nmTitle: "下载",
+      nmActionLayoutType: "row-icon"
+    },
+    {
+      nmIcon: "ado-download",
+      nmTitle: "更多操作",
+      nmActionLayoutType: "row-icon"
     }
   ];
   columns: NmTableColumn[] = [

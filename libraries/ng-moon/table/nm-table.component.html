@@ -1,41 +1,65 @@
 <div class="nm-table-tool">
   <div class="nm-table-tool-left">
-    <nm-buttons [nmSpace]="1">
-      <nm-button
-        *ngFor="let button of topLeftActions"
-        [nmLabel]="button.nmLabel"
-        [nmIcon]="button.nmIcon"
-      ></nm-button>
-    </nm-buttons>
+    <ng-container
+      *ngTemplateOutlet="
+        nmButtonsTpl;
+        context: { space: 1, actions: topLeftActions }
+      "
+    ></ng-container>
   </div>
   <div class="nm-table-tool-right">
-    <nm-buttons>
-      <nm-button
-        *ngFor="let button of topRightActions"
-        [nmIcon]="button.nmIcon"
-      ></nm-button>
-    </nm-buttons>
+    <ng-container
+      *ngTemplateOutlet="
+        nmButtonsTpl;
+        context: { actions: topRightIconActions }
+      "
+    ></ng-container>
   </div>
 </div>
 <div class="nm-table-header">
   <ul>
     <ng-container *ngFor="let column of nmColumns">
       <li [style.width.rem]="column.nmWidth" [style.flex]="column.nmFlex">
-        {{ column.nmLabel }}
+        <span>{{ column.nmLabel }}</span>
       </li>
     </ng-container>
   </ul>
 </div>
 <div class="nm-table-body">
   <ul *ngFor="let item of data">
-    <ng-container *ngFor="let column of nmColumns">
+    <ng-container *ngFor="let column of nmColumns; index as i">
       <li
         [style.width.rem]="column.nmWidth"
         [style.flex]="column.nmFlex"
         [title]="item[column.nmKey]"
-        [innerHTML]="item[column.nmKey]"
-      ></li>
+      >
+        <div [innerHTML]="item[column.nmKey]"></div>
+        <ng-container *ngIf="!i">
+          <ng-container
+            *ngTemplateOutlet="
+              nmButtonsTpl;
+              context: { actions: rowIconActions, notBorder: true }
+            "
+          ></ng-container>
+        </ng-container>
+      </li>
     </ng-container>
   </ul>
 </div>
 <div class="nm-table-footer"></div>
+
+<ng-template
+  #nmButtonsTpl
+  let-space="space"
+  let-notBorder="notBorder"
+  let-actions="actions"
+>
+  <nm-buttons [nmSpace]="space" [nmNotBorder]="notBorder">
+    <nm-button
+      *ngFor="let button of actions"
+      [nmLabel]="button.nmLabel"
+      [nmIcon]="button.nmIcon"
+      [nmTitle]="button.nmTitle"
+    ></nm-button>
+  </nm-buttons>
+</ng-template>
