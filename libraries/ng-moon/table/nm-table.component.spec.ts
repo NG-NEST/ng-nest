@@ -49,41 +49,41 @@ describe(TablePrefix, () => {
 })
 class TestNmTableComponent {
   actions: NmTableAction[] = [
-    { nmLabel: "播放全部", nmIcon: "ado-caret-right" },
-    { nmLabel: "下载", nmIcon: "ado-download" },
-    { nmLabel: "批量操作", nmIcon: "ado-bars" },
+    { nmLabel: "播放全部", nmIcon: "fto-play" },
+    { nmLabel: "下载", nmIcon: "fto-download" },
+    { nmLabel: "批量操作", nmIcon: "fto-list" },
     {
-      nmIcon: "ado-menu",
+      nmIcon: "fto-menu",
       nmTitle: "列表视图",
       nmActionLayoutType: "top-right-icon"
     },
     {
-      nmIcon: "ado-team",
+      nmIcon: "fto-user",
       nmTitle: "歌手视图",
       nmActionLayoutType: "top-right-icon"
     },
     {
-      nmIcon: "ado-inbox",
+      nmIcon: "fto-disc",
       nmTitle: "专辑视图",
       nmActionLayoutType: "top-right-icon"
     },
     {
-      nmIcon: "ado-caret-right",
+      nmIcon: "fto-play",
       nmTitle: "播放",
       nmActionLayoutType: "row-icon"
     },
     {
-      nmIcon: "ado-plus-square",
+      nmIcon: "fto-plus-square",
       nmTitle: "添加到",
       nmActionLayoutType: "row-icon"
     },
     {
-      nmIcon: "ado-download",
+      nmIcon: "fto-download",
       nmTitle: "下载",
       nmActionLayoutType: "row-icon"
     },
     {
-      nmIcon: "ado-download",
+      nmIcon: "fto-more-vertical",
       nmTitle: "更多操作",
       nmActionLayoutType: "row-icon"
     }

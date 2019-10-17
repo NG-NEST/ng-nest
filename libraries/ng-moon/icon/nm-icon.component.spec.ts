@@ -32,38 +32,24 @@ describe(IconPrefix, () => {
       fixture.detectChanges();
       expect(element.classList).toContain(IconPrefix);
     });
-    it("should ant-design fill icon.", () => {
-      testComponent.type = "adf-shopping";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
-    it("should ant-design outline icon.", () => {
-      testComponent.type = "ado-plus";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
-    it("should ant-design twotone icon.", () => {
-      testComponent.type = "adt-shopping";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
-    it("warn icon type not found.", () => {
-      testComponent.type = "not-found";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
-    it("warn SVG tag not Found.", () => {
-      testComponent.type = "adt-werdf";
-      fixture.detectChanges();
-      expect(element.classList).toContain(testComponent.type);
-    });
   });
 });
 
 @Component({
   selector: "test-nm-icon",
   template: `
-    <nm-icon [nmType]="type"></nm-icon>
+    <nm-icon [nmType]="'adf-account-book'"></nm-icon>
+    <nm-icon [nmType]="'ado-account-book'"></nm-icon>
+    <nm-icon [nmType]="'adt-account-book'"></nm-icon>
+    <br />
+    <nm-icon [nmType]="'eaf-activity'"></nm-icon>
+    <nm-icon [nmType]="'eao-activity'"></nm-icon>
+    <br />
+    <nm-icon [nmType]="'fto-activity'"></nm-icon>
+    <br />
+    <nm-icon [nmType]="'fab-accessible-icon'"></nm-icon>
+    <nm-icon [nmType]="'far-address-book'"></nm-icon>
+    <nm-icon [nmType]="'fas-address-book'"></nm-icon>
   `
 })
 class TestNmIconComponent {

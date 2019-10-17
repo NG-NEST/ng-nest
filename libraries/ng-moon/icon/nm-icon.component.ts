@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
+  ChangeDetectorRef,
   Input,
   OnChanges,
   SimpleChanges
@@ -28,6 +29,12 @@ export const NmSouceUrl = {
   md: `${NmIconSourceEnum.MaterialDesign}/`
 };
 
+export const NmViewBox = [
+  // { souces: ["adf", "ado", "adt"], value: "0 0 1024 1024" },
+  // { souces: ["eaf", "eao"], value: "0 0 24 24" },
+  // { souces: ["fto"], value: "0 0 24 24" }
+];
+
 @Component({
   selector: "nm-icon",
   templateUrl: "./nm-icon.component.html",
@@ -41,11 +48,13 @@ export class NmIconComponent implements OnInit, OnChanges {
   @Input() nmRotate?: number;
   private svgElement: SVGElement;
   private _default: NmIconOption = {};
+  private _viewBox: string;
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    public nmIconService: NmIconService
+    public nmIconService: NmIconService,
+    private cdr: ChangeDetectorRef
   ) {
     this.renderer.addClass(this.elementRef.nativeElement, IconPrefix);
   }
@@ -88,6 +97,7 @@ export class NmIconComponent implements OnInit, OnChanges {
             this.elementRef.nativeElement,
             this.svgElement
           );
+          this.cdr.markForCheck();
         }
       });
   }
@@ -95,7 +105,8 @@ export class NmIconComponent implements OnInit, OnChanges {
   setSourceUrl(type: string) {
     if (typeof type === "undefined") return;
     const split = type.split("-");
-    const souceUrl = NmSouceUrl[split.shift()];
+    const souce = split.shift();
+    const souceUrl = NmSouceUrl[souce];
     const fileName = split.join("-");
     if (!souceUrl || !fileName) {
       warnIconTypeNotFound();
@@ -105,8 +116,6 @@ export class NmIconComponent implements OnInit, OnChanges {
 
   setAttributes(svgEle: SVGElement) {
     if (svgEle) {
-      this.renderer.setAttribute(svgEle, "viewBox", "64 64 896 896");
-      this.renderer.setAttribute(svgEle, "fill", "currentColor");
       this.renderer.setAttribute(svgEle, "width", "1em");
       this.renderer.setAttribute(svgEle, "height", "1em");
     }
