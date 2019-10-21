@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": " serve",
     "start:en": "ng serve --configuration=en",
     "start:zh": "ng serve --configuration=zh",
     "build": "npm link ng-moon && ng build --prod && npm run build:en && npm run build:zh",

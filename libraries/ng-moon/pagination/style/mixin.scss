@@ -1,0 +1,13 @@
+// Pagination
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin pagination {
+  display: inline-flex;
+  > .nm-buttons > .nm-button {
+    min-width: 2rem;
+    padding: 0.5rem;
+  }
+}

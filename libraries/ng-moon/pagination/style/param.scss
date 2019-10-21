@@ -1,0 +1,11 @@
+// Pagination style paramters
+
+$prefix: $nm-prefix + "-pagination";
+
+$pagination-font-size: $font-size;
+$pagination-color: $primary-text-color;
+$pagination-border-color: $divider-color;
+
+$pagination-activated-color: $primary-color;
+$pagination-activated-border-color: $primary-color;
+$pagination-activated-background-color: rgba(0, 0, 0, 0.05);

@@ -13,7 +13,7 @@
     "url": "https://github.com/NG-NEST/ng-moon"
   },
   "dependencies": {
-    "@angular/cdk": "~8.2.0",
+    "@angular/cdk": "^8.2.3",
     "highlight.js": "^9.15.9"
   },
   "peerDependencies": {

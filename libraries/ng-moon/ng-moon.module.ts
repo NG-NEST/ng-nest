@@ -13,6 +13,7 @@ import { NmButtonModule } from "ng-moon/button";
 import { NmAnchorModule } from "ng-moon/anchor";
 import { NmTabsModule } from "ng-moon/tabs";
 import { NmTableModule } from "ng-moon/table";
+import { NmPaginationModule } from "ng-moon/pagination";
 
 import { NmDocModule } from "ng-moon/doc";
 import { NmExamplesModule } from "ng-moon/examples";
@@ -34,6 +35,7 @@ export * from "ng-moon/input";
 export * from "ng-moon/button";
 export * from "ng-moon/tabs";
 export * from "ng-moon/table";
+export * from "ng-moon/pagination";
 
 export * from "ng-moon/doc";
 export * from "ng-moon/examples";
@@ -55,6 +57,7 @@ export * from "ng-moon/form";
     NmAnchorModule,
     NmTabsModule,
     NmTableModule,
+    NmPaginationModule,
     NmDocModule,
     NmExamplesModule,
     NmApiModule,

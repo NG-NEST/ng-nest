@@ -32,10 +32,6 @@ export class NmIconService {
         let eles = svgEle.querySelectorAll(
           "path, polyline, polygon, circle, line, rect"
         );
-        console.log(eles);
-        if (eles.length == 0) {
-          debugger;
-        }
         eles.forEach(x => {
           svg.appendChild(x);
         });

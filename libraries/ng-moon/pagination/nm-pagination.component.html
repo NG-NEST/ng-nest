@@ -1,0 +1,40 @@
+<nm-buttons
+  ><nm-button
+    [nmIcon]="'fto-chevron-left'"
+    [nmTitle]="'上一页'"
+    (click)="previous()"
+    [class.nm-button-disabled]="nmIndex === 1"
+  ></nm-button>
+  <nm-button
+    [nmLabel]="1"
+    (click)="jump(1)"
+    [class.nm-button-selected]="nmIndex === 1"
+  ></nm-button>
+  <nm-button
+    *ngIf="indexFirst !== 2"
+    [nmIcon]="'fto-more-horizontal'"
+    (click)="jump(indexFirst - 5)"
+  ></nm-button>
+  <nm-button
+    *ngFor="let item of indexes"
+    [nmLabel]="item"
+    (click)="jump(item)"
+    [class.nm-button-selected]="nmIndex === item"
+  ></nm-button>
+  <nm-button
+    *ngIf="indexLast !== lastIndex - 1"
+    [nmIcon]="'fto-more-horizontal'"
+    (click)="jump(indexLast + 5)"
+  ></nm-button>
+  <nm-button
+    [nmLabel]="lastIndex"
+    (click)="jump(lastIndex)"
+    [class.nm-button-selected]="nmIndex === lastIndex"
+  ></nm-button>
+  <nm-button
+    [nmIcon]="'fto-chevron-right'"
+    [nmTitle]="'下一页'"
+    (click)="next()"
+    [class.nm-button-disabled]="nmIndex === lastIndex"
+  ></nm-button>
+</nm-buttons>
