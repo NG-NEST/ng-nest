@@ -99,26 +99,54 @@ export const menus: Menu[] = [
   {
     "id": "3-0-11",
     "parentId": "3-0",
+    "name": "inner",
+    "router": "./docs/ui/components/inner",
+    "label": "内部"
+  },
+  {
+    "id": "3-0-12",
+    "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
     "label": "输入框"
   },
   {
-    "id": "3-0-16",
+    "id": "3-0-17",
+    "parentId": "3-0",
+    "name": "pagination",
+    "router": "./docs/ui/components/pagination",
+    "label": "分页"
+  },
+  {
+    "id": "3-0-18",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-18",
+    "id": "3-0-19",
+    "parentId": "3-0",
+    "name": "portal",
+    "router": "./docs/ui/components/portal",
+    "label": "动态组件"
+  },
+  {
+    "id": "3-0-21",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",
     "label": "滑块"
   },
   {
-    "id": "3-0-20",
+    "id": "3-0-23",
+    "parentId": "3-0",
+    "name": "table",
+    "router": "./docs/ui/components/table",
+    "label": "表格"
+  },
+  {
+    "id": "3-0-24",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",

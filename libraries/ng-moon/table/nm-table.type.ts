@@ -1,5 +1,6 @@
 import { NmIdentityOption, NmData } from "ng-moon/core";
 import { NmButtonOption } from "ng-moon/button";
+import { NmPaginationOption } from "ng-moon/pagination";
 
 /**
  * Table 组件名
@@ -11,7 +12,7 @@ export const TablePrefix = "nm-table";
 /**
  * Table 参数对象
  */
-export interface NmTableOption {
+export interface NmTableOption extends NmPaginationOption {
   /**
    * 数据
    */

@@ -1,1 +1,6 @@
-<nm-pagination></nm-pagination>
+<nm-pagination
+  [nmIndex]="index"
+  [nmSize]="size"
+  [nmTotal]="total"
+  (nmIndexChange)="change($event)"
+></nm-pagination>

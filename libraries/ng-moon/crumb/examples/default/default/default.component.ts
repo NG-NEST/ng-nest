@@ -19,6 +19,6 @@ export class ExDefaultComponent implements OnInit {
   ngOnInit() {}
 
   nodeClick(node: NmCrumbNodeClick) {
-    console.log(node);
+
   }
 }

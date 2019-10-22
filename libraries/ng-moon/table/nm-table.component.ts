@@ -8,7 +8,9 @@ import {
   Input,
   OnChanges,
   ChangeDetectorRef,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import {
   TablePrefix,
@@ -32,6 +34,10 @@ export class NmTableComponent implements OnInit, OnChanges {
   @Input() nmData: NmData<any[]>;
   @Input() nmColumns: NmTableColumn[];
   @Input() nmActions: NmTableAction[];
+  @Input() nmIndex?: number;
+  @Input() nmSize?: number;
+  @Input() nmTotal?: number;
+  @Output() nmIndexChange = new EventEmitter<number>();
   data: any[] = [];
   topLeftActions: NmTableAction[] = [];
   topRightActions: NmTableAction[] = [];
@@ -50,13 +56,20 @@ export class NmTableComponent implements OnInit, OnChanges {
   ngOnInit() {
     fillDefault(this, this._default);
     this.setActions();
-    this.setData();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.nmData) {
+      this.setData();
+    }
+  }
 
   ngOnDestroy(): void {
     this.removeListen();
+  }
+
+  change(index) {
+    this.nmIndexChange.emit(index);
   }
 
   private removeListen() {
@@ -85,6 +98,7 @@ export class NmTableComponent implements OnInit, OnChanges {
       this.nmActions,
       x => x.nmActionLayoutType === "row-icon"
     );
+    this.cdr.markForCheck();
   }
 
   private setData() {

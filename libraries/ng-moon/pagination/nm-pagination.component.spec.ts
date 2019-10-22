@@ -42,11 +42,15 @@ describe(PaginationPrefix, () => {
       [nmIndex]="index"
       [nmSize]="size"
       [nmTotal]="total"
+      (nmIndexChange)="change($event)"
     ></nm-pagination>
   `
 })
 class TestNmPaginationComponent {
-  index = 10;
+  index = 5;
   size = 15;
-  total = 225;
+  total = 80;
+  change(index: number) {
+    console.log(index);
+  }
 }

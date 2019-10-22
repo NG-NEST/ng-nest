@@ -121,7 +121,6 @@ class TestNmInputComponent {
   ctr = new FormControl("123");
 
   getCtr() {
-    console.log(this.ctr);
     setTimeout(
       () => this.ctr.setValue("23123"),
       2000

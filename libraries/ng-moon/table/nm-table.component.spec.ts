@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NmTableComponent } from "./nm-table.component";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmTableModule } from "./nm-table.module";
 import { TablePrefix, NmTableColumn, NmTableAction } from "./nm-table.type";
+import * as _ from "lodash";
 
 describe(TablePrefix, () => {
   beforeEach(async(() => {
@@ -40,14 +41,19 @@ describe(TablePrefix, () => {
   template: `
     <div style="padding: 1rem 2rem; background: #fafafa;">
       <nm-table
-        [nmData]="data"
         [nmColumns]="columns"
         [nmActions]="actions"
+        [nmData]="data"
+        [nmIndex]="index"
+        [nmSize]="size"
+        [nmTotal]="total"
+        (nmIndexChange)="indexChange($event)"
       ></nm-table>
     </div>
   `
 })
 class TestNmTableComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
   actions: NmTableAction[] = [
     { nmLabel: "播放全部", nmIcon: "fto-play" },
     { nmLabel: "下载", nmIcon: "fto-download" },
@@ -93,26 +99,23 @@ class TestNmTableComponent {
     { nmKey: "auth", nmLabel: "作者", nmFlex: 1 },
     { nmKey: "album", nmLabel: "专辑", nmFlex: 1 }
   ];
-  data = [
-    {
-      song: "Free Loop 福特轿车广告曲",
+  list = Array.from({ length: 115 }).map((x, i) => {
+    return {
+      song: `${i + 1} Free Loop 福特轿车广告曲`,
       auth: "Daniel Powter",
       album: "Daniel Powter"
-    },
-    {
-      song: "Be What You Wanna Be",
-      auth: "Darin",
-      album: "Darin"
-    },
-    {
-      song: "The Show",
-      auth: "Lenka",
-      album: "The Show"
-    },
-    {
-      song: "Intro 《魔兽之亡灵曲》游戏插曲",
-      auth: "Dreamtale",
-      album: "Beyond Reality"
+    };
+  });
+  chunks = _.chunk(this.list, 10);
+  data = this.chunks[0];
+  index = 1;
+  size = 10;
+  total = this.list.length;
+  indexChange(index: number) {
+    if (index <= this.chunks.length) {
+      this.index = index;
+      this.data = [...this.chunks[index - 1]];
+      this.cdr.detectChanges();
     }
-  ];
+  }
 }

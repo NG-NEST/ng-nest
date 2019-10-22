@@ -53,6 +53,6 @@ const testNmCrumbNode: NmCrumbNode[] = [
 class TestNmCrumbComponent {
   data: NmData<NmCrumbNode[]> = testNmCrumbNode;
   nodeClick(option) {
-    console.log(option);
+
   }
 }

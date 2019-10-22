@@ -8,7 +8,9 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { PaginationPrefix, NmPaginationOption } from "./nm-pagination.type";
 import { fillDefault } from "ng-moon/core";
@@ -24,6 +26,7 @@ export class NmPaginationComponent implements OnInit, OnChanges {
   @Input() nmIndex?: number;
   @Input() nmSize?: number;
   @Input() nmTotal?: number;
+  @Output() nmIndexChange = new EventEmitter<number>();
   private _default: NmPaginationOption = {
     nmIndex: 1,
     nmSize: 10,
@@ -87,16 +90,19 @@ export class NmPaginationComponent implements OnInit, OnChanges {
   previous() {
     if (this.nmIndex > 1) this.nmIndex--;
     this.setIndexes();
+    this.nmIndexChange.emit(this.nmIndex);
   }
 
   next() {
     if (this.nmIndex < this.lastIndex) this.nmIndex++;
     this.setIndexes();
+    this.nmIndexChange.emit(this.nmIndex);
   }
 
   jump(index: number) {
     this.nmIndex = this.validateIndex(index);
     this.setIndexes();
+    this.nmIndexChange.emit(this.nmIndex);
   }
 
   validateIndex(value: number): number {

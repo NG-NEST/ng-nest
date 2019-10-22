@@ -46,7 +46,14 @@
     </ng-container>
   </ul>
 </div>
-<div class="nm-table-footer"></div>
+<div class="nm-table-footer">
+  <nm-pagination
+    [nmIndex]="nmIndex"
+    [nmSize]="nmSize"
+    [nmTotal]="nmTotal"
+    (nmIndexChange)="change($event)"
+  ></nm-pagination>
+</div>
 
 <ng-template
   #nmButtonsTpl

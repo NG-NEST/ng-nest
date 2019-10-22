@@ -17,10 +17,7 @@ const tplDir = path.resolve(__dirname, "../../main/templates");
  * @param {NcCates} cates
  * @returns
  */
-export function generateCates(
-  cates: NcCates,
-  comTpl: NcTemplate
-): NcCates {
+export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
   if (cates.list.length > 0) {
     let subFunc = "";
     while (subFunc == "" || _.hasIn(comTpl.syswords.constant, subFunc))
@@ -102,7 +99,7 @@ export function generateFiles(
  * ts文件中特殊字符处理
  */
 export function handlerContent(content: string) {
-  let special = ["`"];
+  let special = ["`", "$"];
   special.forEach(x => {
     if (content.indexOf(x) > -1) {
       content = content.replace(new RegExp(x, "g"), `\\${x}`);
