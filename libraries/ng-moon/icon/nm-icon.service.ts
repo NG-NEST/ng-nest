@@ -1,65 +1,92 @@
-import { Injectable, SecurityContext, Optional, Inject } from "@angular/core";
+import { Injectable, SecurityContext } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { warnSVGTagNotFound } from "ng-moon/core";
-import { DOCUMENT } from "@angular/common";
+import { Observable, Subscriber } from "rxjs";
+import * as _ from "lodash";
+
+type Task<T> = {
+  name?: string;
+  observable?: Observable<T>;
+  callback?: Function;
+};
 
 // @dynamic
 @Injectable({ providedIn: "root" })
 export class NmIconService {
   rootUrl = `http://localhost/assets/icons/`;
+  caches: { [property: string]: any } = {};
+  queue: Task<any>[] = [];
+  activeTaskNum: number = 0;
+  isRunningTask = false;
+  limit: number = 10;
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private http: HttpClient,
-    @Optional() @Inject(DOCUMENT) private document: any
-  ) {}
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
 
-  getSvgElement(icon: string): Observable<SVGElement> {
-    const url = `${this.rootUrl}${icon}.svg`;
-    const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
-    return this.http.get(safeUrl, { responseType: "text" }).pipe(
-      map(x => {
-        const svg = this.document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "svg"
-        ) as SVGAElement;
-        const div = this.document.createElement("div");
-        div.innerHTML = x;
-        let svgEle = div.querySelector("svg") as SVGElement;
-        let eles = svgEle.querySelectorAll(
-          "path, polyline, polygon, circle, line, rect"
-        );
-        eles.forEach(x => {
-          svg.appendChild(x);
-        });
-        this.setAttribute(svg, svgEle, "viewBox");
-        this.setAttribute(svg, svgEle, "fill", "currentColor");
-        this.setAttribute(svg, svgEle, "stroke");
-        this.setAttribute(svg, svgEle, "stroke-width");
-        this.setAttribute(svg, svgEle, "stroke-linecap");
-        this.setAttribute(svg, svgEle, "stroke-linejoin");
-        if (!svg) {
-          warnSVGTagNotFound();
-        }
-        return svg;
-      })
+  public addTask<T>(task: Task<T>) {
+    this.queue.push(task);
+    this.runTask();
+  }
+
+  private execute<T>(task: Task<T>) {
+    this.isRunningTask = true;
+    if (_.hasIn(this.caches, task.name)) {
+      task.callback(this.caches[task.name]);
+      this.activeTaskNum--;
+      this.isRunningTask = false;
+      this.runTask();
+      return;
+    }
+    return task.observable.subscribe(
+      result => {
+        this.caches[task.name] = result;
+        task.callback(result);
+        return result;
+      },
+      error => {
+        throw error;
+      },
+      () => {
+        this.activeTaskNum--;
+        this.isRunningTask = false;
+        this.runTask();
+      }
     );
   }
 
-  setAttribute(
-    svg: SVGElement,
-    svgEle: SVGElement,
-    attribute: string,
-    def?: string
-  ) {
-    let attr = svgEle.getAttribute(attribute);
-    if (attr) {
-      svg.setAttribute(attribute, attr);
-    } else if (def) {
-      svg.setAttribute(attribute, def);
+  private runTask() {
+    if (
+      !this.isRunningTask &&
+      this.activeTaskNum < this.limit &&
+      this.queue.length > 0
+    ) {
+      const task = this.queue.shift();
+      this.activeTaskNum++;
+      this.execute(task!);
     }
+  }
+
+  getSvgs(...icons: string[]): Observable<string[]> {
+    return Observable.create((subscriber: Subscriber<string[]>) => {
+      let result: string[] = [];
+      icons.forEach((icon, index) =>
+        this.addTask({
+          name: icon,
+          observable: this.getSvgElement(icon),
+          callback: (svg: string) => {
+            result.push(svg);
+            if (index === icons.length - 1) {
+              subscriber.next(result);
+              subscriber.complete();
+            }
+          }
+        })
+      );
+    });
+  }
+
+  getSvgElement(icon: string): Observable<string> {
+    const url = `${this.rootUrl}${icon}.svg`;
+    const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
+    return this.http.get(safeUrl, { responseType: "text" });
   }
 }

@@ -28,10 +28,6 @@ describe(IconPrefix, () => {
     it("should create.", () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(IconPrefix);
-    });
   });
 });
 
@@ -50,6 +46,11 @@ describe(IconPrefix, () => {
     <nm-icon [nmType]="'fab-accessible-icon'"></nm-icon>
     <nm-icon [nmType]="'far-address-book'"></nm-icon>
     <nm-icon [nmType]="'fas-address-book'"></nm-icon>
+    <br />
+    <nm-icon [nmType]="'ado-loading'" [nmSpin]="true"></nm-icon>
+    <nm-icon [nmType]="'ado-loading-3-quarters'" [nmSpin]="true"></nm-icon>
+    <br />
+    <nm-icon [nmType]="'ado-plus'" [nmTo]="'ado-pause'"></nm-icon>
   `
 })
 class TestNmIconComponent {
