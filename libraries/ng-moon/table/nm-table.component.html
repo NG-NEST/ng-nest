@@ -63,10 +63,11 @@
 >
   <nm-buttons [nmSpace]="space" [nmNotBorder]="notBorder">
     <nm-button
-      *ngFor="let button of actions"
-      [nmLabel]="button.nmLabel"
-      [nmIcon]="button.nmIcon"
-      [nmTitle]="button.nmTitle"
+      *ngFor="let action of actions"
+      [nmLabel]="action.nmLabel"
+      [nmIcon]="action.nmIcon"
+      [nmTitle]="action.nmTitle"
+      (click)="actionClick(action, $event)"
     ></nm-button>
   </nm-buttons>
 </ng-template>

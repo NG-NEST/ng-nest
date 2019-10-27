@@ -48,6 +48,7 @@ describe(TablePrefix, () => {
         [nmSize]="size"
         [nmTotal]="total"
         (nmIndexChange)="indexChange($event)"
+        (nmActionClick)="actionClick($event)"
       ></nm-table>
     </div>
   `
@@ -99,7 +100,7 @@ class TestNmTableComponent {
     { nmKey: "auth", nmLabel: "作者", nmFlex: 1 },
     { nmKey: "album", nmLabel: "专辑", nmFlex: 1 }
   ];
-  list = Array.from({ length: 115 }).map((x, i) => {
+  list = Array.from({ length: 200 }).map((x, i) => {
     return {
       song: `${i + 1} Free Loop 福特轿车广告曲`,
       auth: "Daniel Powter",
@@ -117,5 +118,8 @@ class TestNmTableComponent {
       this.data = [...this.chunks[index - 1]];
       this.cdr.detectChanges();
     }
+  }
+  actionClick(action: NmTableAction) {
+    console.log(action);
   }
 }

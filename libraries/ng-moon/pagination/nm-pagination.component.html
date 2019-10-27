@@ -2,7 +2,7 @@
   ><nm-button
     [nmIcon]="'fto-chevron-left'"
     [nmTitle]="'上一页'"
-    (click)="previous()"
+    (click)="jump(-1, true)"
     [class.nm-button-disabled]="nmIndex === 1"
   ></nm-button>
   <nm-button
@@ -11,9 +11,9 @@
     [class.nm-button-selected]="nmIndex === 1"
   ></nm-button>
   <nm-button
-    *ngIf="indexFirst !== 2"
+    *ngIf="indexLast > 9 && nmIndex - 3 > indexFirst"
     [nmIcon]="'fto-more-horizontal'"
-    (click)="jump(indexFirst - 5)"
+    (click)="jump(-5, true)"
   ></nm-button>
   <nm-button
     *ngFor="let item of indexes"
@@ -22,19 +22,20 @@
     [class.nm-button-selected]="nmIndex === item"
   ></nm-button>
   <nm-button
-    *ngIf="indexLast !== lastIndex - 1"
+    *ngIf="indexLast > 9 && nmIndex + 3 < indexLast"
     [nmIcon]="'fto-more-horizontal'"
-    (click)="jump(indexLast + 5)"
+    (click)="jump(5, true)"
   ></nm-button>
   <nm-button
     [nmLabel]="lastIndex"
     (click)="jump(lastIndex)"
+    *ngIf="indexLast > 0 && indexLast !== indexFirst"
     [class.nm-button-selected]="nmIndex === lastIndex"
   ></nm-button>
   <nm-button
     [nmIcon]="'fto-chevron-right'"
     [nmTitle]="'下一页'"
-    (click)="next()"
+    (click)="jump(1, true)"
     [class.nm-button-disabled]="nmIndex === lastIndex"
   ></nm-button>
 </nm-buttons>

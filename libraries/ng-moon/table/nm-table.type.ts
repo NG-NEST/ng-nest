@@ -49,6 +49,11 @@ export interface NmTableAction extends NmButtonOption {
    * 操作按钮位置
    */
   nmActionLayoutType?: NmTableActionLayoutType;
+  /**
+   * 事件
+   * 触发的时候自动赋值返回
+   */
+  nmEvent?: Event;
 }
 
 /**

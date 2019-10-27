@@ -21,7 +21,6 @@ import {
   fillDefault
 } from "ng-moon/core";
 import * as _ from "lodash";
-import { defaultCipherList } from "constants";
 
 // 来源路径对应
 export const NmSouceUrl = {

@@ -81,26 +81,14 @@ export class NmPaginationComponent implements OnInit, OnChanges {
     }
     this.indexes = indexes;
     if (this.indexes.length > 0) {
-      this.indexFirst = this.indexes[0];
-      this.indexLast = this.indexes[this.indexes.length - 1];
+      this.indexFirst = 1;
+      this.indexLast = this.lastIndex;
     }
     this.cdr.detectChanges();
   }
 
-  previous() {
-    if (this.nmIndex > 1) this.nmIndex--;
-    this.setIndexes();
-    this.nmIndexChange.emit(this.nmIndex);
-  }
-
-  next() {
-    if (this.nmIndex < this.lastIndex) this.nmIndex++;
-    this.setIndexes();
-    this.nmIndexChange.emit(this.nmIndex);
-  }
-
-  jump(index: number) {
-    this.nmIndex = this.validateIndex(index);
+  jump(index: number, isDiff = false) {
+    this.nmIndex = this.validateIndex(isDiff ? this.nmIndex + index : index);
     this.setIndexes();
     this.nmIndexChange.emit(this.nmIndex);
   }

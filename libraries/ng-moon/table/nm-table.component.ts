@@ -38,6 +38,7 @@ export class NmTableComponent implements OnInit, OnChanges {
   @Input() nmSize?: number;
   @Input() nmTotal?: number;
   @Output() nmIndexChange = new EventEmitter<number>();
+  @Output() nmActionClick = new EventEmitter<NmTableAction>();
   data: any[] = [];
   topLeftActions: NmTableAction[] = [];
   topRightActions: NmTableAction[] = [];
@@ -70,6 +71,11 @@ export class NmTableComponent implements OnInit, OnChanges {
 
   change(index) {
     this.nmIndexChange.emit(index);
+  }
+
+  actionClick(action: NmTableAction, event: Event) {
+    action.nmEvent = event;
+    this.nmActionClick.emit(action);
   }
 
   private removeListen() {
