@@ -47,9 +47,9 @@ describe(PaginationPrefix, () => {
   `
 })
 class TestNmPaginationComponent {
-  index = 5;
-  size = 15;
-  total = 80;
+  index = 1;
+  size = 10;
+  total = 25;
   change(index: number) {
     console.log(index);
   }

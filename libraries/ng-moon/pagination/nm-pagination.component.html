@@ -29,7 +29,7 @@
   <nm-button
     [nmLabel]="lastIndex"
     (click)="jump(lastIndex)"
-    *ngIf="indexLast > 0 && indexLast !== indexFirst"
+    *ngIf="lastIndex > indexFirst"
     [class.nm-button-selected]="nmIndex === lastIndex"
   ></nm-button>
   <nm-button
