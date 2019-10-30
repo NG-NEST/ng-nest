@@ -18,8 +18,13 @@ import {
   NmTableColumn,
   NmTableAction
 } from "./nm-table.type";
-import { fillDefault, NmData } from "ng-moon/core";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import {
+  fillDefault,
+  NmData,
+  NmQuery,
+  NmRepositoryAbstract
+} from "ng-moon/core";
+import { Subscription } from "rxjs";
 import * as _ from "lodash";
 
 @Component({
@@ -37,6 +42,8 @@ export class NmTableComponent implements OnInit, OnChanges {
   @Input() nmIndex?: number;
   @Input() nmSize?: number;
   @Input() nmTotal?: number;
+  @Input() nmService?: NmRepositoryAbstract;
+  @Input() nmQuery?: NmQuery;
   @Output() nmIndexChange = new EventEmitter<number>();
   @Output() nmActionClick = new EventEmitter<NmTableAction>();
   data: any[] = [];
@@ -45,7 +52,10 @@ export class NmTableComponent implements OnInit, OnChanges {
   topRightIconActions: NmTableAction[] = [];
   rowIconActions: NmTableAction[] = [];
   private _data$: Subscription | null = null;
-  private _default: NmTableOption = {};
+  private _default: NmTableOption = {
+    nmIndex: 1,
+    nmSize: 10
+  };
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
@@ -60,7 +70,7 @@ export class NmTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.nmData) {
+    if (changes.nmService) {
       this.setData();
     }
   }
@@ -70,12 +80,15 @@ export class NmTableComponent implements OnInit, OnChanges {
   }
 
   change(index) {
+    this.nmIndex = index;
     this.nmIndexChange.emit(index);
+    this.setData();
   }
 
   actionClick(action: NmTableAction, event: Event) {
     action.nmEvent = event;
     this.nmActionClick.emit(action);
+
   }
 
   private removeListen() {
@@ -108,18 +121,13 @@ export class NmTableComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (this.nmData instanceof Array) {
-      this.setDataChange(this.nmData);
-    } else if (this.nmData instanceof BehaviorSubject) {
-      if (this._data$) this._data$.unsubscribe();
-      this._data$ = this.nmData.subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else if (this.nmData instanceof Observable) {
-      if (this._data$) this._data$.unsubscribe();
-      this._data$ = this.nmData.subscribe(x => {
-        this.setDataChange(x);
-      });
+    if (this.nmService) {
+      this.nmService
+        .getList(this.nmIndex, this.nmSize, this.nmQuery)
+        .subscribe(x => {
+          this.nmTotal = x.total;
+          this.setDataChange(x.list);
+        });
     }
   }
 

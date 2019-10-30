@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NmTableComponent } from "./nm-table.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
+import { Component, DebugElement, Injectable } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NmTableModule } from "./nm-table.module";
 import { TablePrefix, NmTableColumn, NmTableAction } from "./nm-table.type";
+import { NmId, NmRepositoryService, NmHttpService } from "ng-moon/core";
 import * as _ from "lodash";
 
 describe(TablePrefix, () => {
@@ -36,6 +37,21 @@ describe(TablePrefix, () => {
   });
 });
 
+@Injectable()
+class UsersService extends NmRepositoryService<User> {
+  constructor(public http: NmHttpService) {
+    super(http, { controller: { name: "http://localhost:3000/users" } });
+  }
+}
+
+interface User extends NmId {
+  name: string;
+  account: string;
+  password: string;
+  email: string;
+  phone: string;
+}
+
 @Component({
   selector: "test-nm-table",
   template: `
@@ -43,21 +59,17 @@ describe(TablePrefix, () => {
       <nm-table
         [nmColumns]="columns"
         [nmActions]="actions"
-        [nmData]="data"
-        [nmIndex]="index"
-        [nmSize]="size"
-        [nmTotal]="total"
-        (nmIndexChange)="indexChange($event)"
-        (nmActionClick)="actionClick($event)"
+        [nmService]="usersService"
       ></nm-table>
     </div>
-  `
+  `,
+  providers: [UsersService]
 })
 class TestNmTableComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(public usersService: UsersService) {}
   actions: NmTableAction[] = [
-    { nmLabel: "播放全部", nmIcon: "fto-play" },
-    { nmLabel: "下载", nmIcon: "fto-download" },
+    { nmLabel: "新增", nmIcon: "fto-plus" },
+    { nmLabel: "导出", nmIcon: "fto-download" },
     { nmLabel: "批量操作", nmIcon: "fto-list" },
     {
       nmIcon: "fto-menu",
@@ -65,13 +77,13 @@ class TestNmTableComponent {
       nmActionLayoutType: "top-right-icon"
     },
     {
-      nmIcon: "fto-user",
-      nmTitle: "歌手视图",
+      nmIcon: "fto-disc",
+      nmTitle: "组织视图",
       nmActionLayoutType: "top-right-icon"
     },
     {
-      nmIcon: "fto-disc",
-      nmTitle: "专辑视图",
+      nmIcon: "fto-user",
+      nmTitle: "角色视图",
       nmActionLayoutType: "top-right-icon"
     },
     {
@@ -96,30 +108,9 @@ class TestNmTableComponent {
     }
   ];
   columns: NmTableColumn[] = [
-    { nmKey: "song", nmLabel: "歌曲", nmFlex: 2 },
-    { nmKey: "auth", nmLabel: "作者", nmFlex: 1 },
-    { nmKey: "album", nmLabel: "专辑", nmFlex: 1 }
+    { nmKey: "name", nmLabel: "用户", nmFlex: 1.5 },
+    { nmKey: "account", nmLabel: "账号", nmFlex: 0.5 },
+    { nmKey: "email", nmLabel: "邮箱", nmFlex: 1 },
+    { nmKey: "phone", nmLabel: "电话", nmFlex: 1 }
   ];
-  list = Array.from({ length: 200 }).map((x, i) => {
-    return {
-      song: `${i + 1} Free Loop 福特轿车广告曲`,
-      auth: "Daniel Powter",
-      album: "Daniel Powter"
-    };
-  });
-  chunks = _.chunk(this.list, 10);
-  data = this.chunks[0];
-  index = 1;
-  size = 10;
-  total = this.list.length;
-  indexChange(index: number) {
-    if (index <= this.chunks.length) {
-      this.index = index;
-      this.data = [...this.chunks[index - 1]];
-      this.cdr.detectChanges();
-    }
-  }
-  actionClick(action: NmTableAction) {
-    console.log(action);
-  }
 }

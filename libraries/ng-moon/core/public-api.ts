@@ -8,3 +8,4 @@
 
 export * from "./util/public-api";
 export * from "./interfaces/public-api";
+export * from "./services/public-api";
