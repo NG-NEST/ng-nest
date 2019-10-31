@@ -74,12 +74,14 @@ class TestNmTableComponent {
     {
       nmIcon: "fto-menu",
       nmTitle: "列表视图",
+      nmActivated: true,
       nmActionLayoutType: "top-right-icon"
     },
     {
       nmIcon: "fto-disc",
       nmTitle: "组织视图",
-      nmActionLayoutType: "top-right-icon"
+      nmActionLayoutType: "top-right-icon",
+      nmGroup: "organization"
     },
     {
       nmIcon: "fto-user",

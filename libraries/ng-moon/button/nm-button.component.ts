@@ -23,11 +23,19 @@ export class NmButtonComponent implements OnInit {
   @Input() nmLabel?: string;
   @Input() nmIcon?: string;
   @Input() nmTitle?: string;
+  @Input() nmActivated?: boolean;
+  @Input() nmDisabled?: boolean;
   @HostBinding("class.nm-button-label") get getLabel() {
     return !this.nmIcon && this.nmLabel;
   }
   @HostBinding("class.nm-button-icon") get getIcon() {
     return !this.nmLabel && this.nmIcon;
+  }
+  @HostBinding("class.nm-button-activated") get getActivated() {
+    return this.nmActivated;
+  }
+  @HostBinding("class.nm-button-disabled") get getDisabled() {
+    return this.nmDisabled;
   }
   private _default: NmButtonOption = {
     nmType: "button",

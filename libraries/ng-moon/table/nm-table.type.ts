@@ -1,4 +1,4 @@
-import { NmIdentityOption, NmData } from "ng-moon/core";
+import { NmIdentityOption, NmData, NmQuery } from "ng-moon/core";
 import { NmButtonOption } from "ng-moon/button";
 import { NmPaginationOption } from "ng-moon/pagination";
 
@@ -25,6 +25,10 @@ export interface NmTableOption extends NmPaginationOption {
    * 操作集合
    */
   nmActions?: NmTableAction[];
+  /**
+   * 查询条件
+   */
+  nmQuery?: NmQuery;
 }
 
 /**
@@ -54,6 +58,14 @@ export interface NmTableAction extends NmButtonOption {
    * 触发的时候自动赋值返回
    */
   nmEvent?: Event;
+  /**
+   * 触发分组的功能
+   */
+  nmGroup?: string;
+  /**
+   * 激活的
+   */
+  nmActivated?: boolean;
 }
 
 /**

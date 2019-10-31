@@ -38,9 +38,8 @@
       }
     }
   }
-  &-selected {
+  &-activated {
     background-color: rgba(0, 0, 0, 0.07);
-    color: $primary-color;
   }
   &-disabled {
     color: $secondary-text-color;

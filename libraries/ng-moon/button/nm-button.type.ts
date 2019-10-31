@@ -32,6 +32,16 @@ export interface NmButtonOption extends NmIdentityOption {
    * 提示信息
    */
   nmTitle?: string;
+
+  /**
+   * 激活
+   */
+  nmActivated?: boolean;
+
+  /**
+   * 禁用
+   */
+  nmDisabled?: boolean;
 }
 
 /**

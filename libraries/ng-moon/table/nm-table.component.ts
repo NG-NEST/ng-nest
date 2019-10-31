@@ -51,10 +51,12 @@ export class NmTableComponent implements OnInit, OnChanges {
   topRightActions: NmTableAction[] = [];
   topRightIconActions: NmTableAction[] = [];
   rowIconActions: NmTableAction[] = [];
+  activatedAction: NmTableAction;
   private _data$: Subscription | null = null;
   private _default: NmTableOption = {
     nmIndex: 1,
-    nmSize: 10
+    nmSize: 10,
+    nmQuery: {}
   };
   constructor(
     private renderer: Renderer2,
@@ -88,7 +90,14 @@ export class NmTableComponent implements OnInit, OnChanges {
   actionClick(action: NmTableAction, event: Event) {
     action.nmEvent = event;
     this.nmActionClick.emit(action);
-
+    if (action.nmGroup) {
+      this.nmIndex = 1;
+      this.activatedAction.nmActivated = false;
+      this.nmQuery.group = action.nmGroup;
+      action.nmActivated = true;
+      this.activatedAction = action;
+      this.setData();
+    }
   }
 
   private removeListen() {
@@ -117,6 +126,7 @@ export class NmTableComponent implements OnInit, OnChanges {
       this.nmActions,
       x => x.nmActionLayoutType === "row-icon"
     );
+    this.activatedAction = _.find(this.nmActions, x => x.nmActivated);
     this.cdr.markForCheck();
   }
 

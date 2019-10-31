@@ -51,12 +51,13 @@ export class NmHttpService {
     url = `${this.api}${url}`;
     method = method.toUpperCase();
     if (["POST", "PUT", "DELETE"].indexOf(method) > -1 || isBody) {
-      option = { body: params };
+      option = { body: params, observe: "body", responseType: "json" };
     } else if (["GET"].indexOf(method) > -1) {
       option = { params: params };
     }
     this.addHeader(option);
     return Observable.create(x => {
+      debugger;
       this.http.request(method, url, option).subscribe(
         (y: any) => {
           x.next(y);

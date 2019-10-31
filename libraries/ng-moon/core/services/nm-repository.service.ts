@@ -37,10 +37,9 @@ export class NmRepositoryService<
   ): Observable<NmResultList<Entity>> {
     index = index ? index : 1;
     size = size ? size : 10;
-    return this.http.get(
+    return this.http.post(
       `${this.option.controller.name}/${size}/${index}`,
-      query,
-      true
+      query
     );
   }
 

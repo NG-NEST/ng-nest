@@ -18,7 +18,6 @@ import {
   NmInputIconLayoutType
 } from "./nm-input.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { noop } from "rxjs";
 import { fillDefault, isEmpty } from "ng-moon/core";
 
 @Component({
@@ -30,7 +29,7 @@ import { fillDefault, isEmpty } from "ng-moon/core";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting:  NmInputComponent,
+      useExisting: NmInputComponent,
       multi: true
     }
   ]
@@ -100,6 +99,8 @@ export class NmInputComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
+  setDisabledState(disabled: boolean) {}
 
   constructor(
     private renderer: Renderer2,
