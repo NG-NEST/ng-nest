@@ -29,6 +29,22 @@ export interface NmTableOption extends NmPaginationOption {
    * 查询条件
    */
   nmQuery?: NmQuery;
+  /**
+   * 隐藏表格列头
+   */
+  nmTableHeaderHidden?: boolean;
+  /**
+   * 隐藏表格分页
+   */
+  nmTableFooterHidden?: boolean;
+  /**
+   * 允许行点击选中
+   */
+  nmAllowSelectRow?: boolean;
+  /**
+   * 行主键
+   */
+  nmRowPrimary?: string;
 }
 
 /**

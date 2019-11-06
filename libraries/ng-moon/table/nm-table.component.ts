@@ -6,11 +6,10 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  OnChanges,
   ChangeDetectorRef,
-  SimpleChanges,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostBinding
 } from "@angular/core";
 import {
   TablePrefix,
@@ -35,7 +34,7 @@ import * as _ from "lodash";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NmTableComponent implements OnInit, OnChanges {
+export class NmTableComponent implements OnInit {
   @Input() nmData: NmData<any[]>;
   @Input() nmColumns: NmTableColumn[];
   @Input() nmActions: NmTableAction[];
@@ -44,19 +43,36 @@ export class NmTableComponent implements OnInit, OnChanges {
   @Input() nmTotal?: number;
   @Input() nmService?: NmRepositoryAbstract;
   @Input() nmQuery?: NmQuery;
+  @Input() nmTableHeaderHidden?: boolean;
+  @Input() nmTableFooterHidden?: boolean;
+  @Input() nmAllowSelectRow?: boolean;
+  @Input() nmRowPrimary?: string;
+  @Input() nmActivatedRow?: any;
   @Output() nmIndexChange = new EventEmitter<number>();
   @Output() nmActionClick = new EventEmitter<NmTableAction>();
+  @Output() nmRowClick = new EventEmitter<any>();
+  @HostBinding(`class.nm-table-has-group`) get getGroup() {
+    return typeof this.nmGroupQuery.group !== "undefined";
+  }
   data: any[] = [];
+  groupData: any[] = [];
   topLeftActions: NmTableAction[] = [];
   topRightActions: NmTableAction[] = [];
   topRightIconActions: NmTableAction[] = [];
   rowIconActions: NmTableAction[] = [];
   activatedAction: NmTableAction;
+  nmGroupIndex: number = 1;
+  nmGroupSize: number = 10;
+  nmGroupTotal: number = 0;
+  nmGroupQuery: NmQuery = {};
+  nmGroupColumns: NmTableColumn[] = [];
+  nmGroupActivatedRow: any;
   private _data$: Subscription | null = null;
   private _default: NmTableOption = {
     nmIndex: 1,
     nmSize: 10,
-    nmQuery: {}
+    nmQuery: {},
+    nmRowPrimary: "id"
   };
   constructor(
     private renderer: Renderer2,
@@ -69,12 +85,7 @@ export class NmTableComponent implements OnInit, OnChanges {
   ngOnInit() {
     fillDefault(this, this._default);
     this.setActions();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.nmService) {
-      this.setData();
-    }
+    this.setData();
   }
 
   ngOnDestroy(): void {
@@ -91,13 +102,35 @@ export class NmTableComponent implements OnInit, OnChanges {
     action.nmEvent = event;
     this.nmActionClick.emit(action);
     if (action.nmGroup) {
-      this.nmIndex = 1;
       this.activatedAction.nmActivated = false;
-      this.nmQuery.group = action.nmGroup;
       action.nmActivated = true;
       this.activatedAction = action;
-      this.setData();
+      this.nmGroupIndex = 1;
+      this.nmGroupQuery.group = action.nmGroup;
+      this.nmGroupQuery.sort = [`count desc`];
+      let groupColumn = _.cloneDeep(
+        this.nmColumns.find(x => x.nmKey === action.nmGroup)
+      );
+      groupColumn.nmFlex = 4;
+      this.nmGroupColumns = [groupColumn, { nmKey: "count", nmFlex: 1 }];
+      this.setGroupData();
     }
+  }
+
+  rowClick(row: any, event: Event) {
+    row.nmEvent = event;
+    this.nmActivatedRow = row;
+    this.nmRowClick.emit(row);
+    this.cdr.detectChanges();
+  }
+
+  groupRowClick(row: any) {
+    let groupFilter = this.nmQuery.filter.find(
+      x => x.field === this.nmGroupQuery.group
+    );
+    groupFilter.value = row[this.nmGroupQuery.group];
+    this.nmIndex = 1;
+    this.setData();
   }
 
   private removeListen() {
@@ -139,6 +172,37 @@ export class NmTableComponent implements OnInit, OnChanges {
           this.setDataChange(x.list);
         });
     }
+  }
+
+  private setGroupData() {
+    if (this.nmService) {
+      this.nmService
+        .getList(this.nmGroupIndex, this.nmGroupSize, this.nmGroupQuery)
+        .subscribe(x => {
+          this.nmGroupTotal = x.total;
+          if (x.total > 0) {
+            this.nmIndex = 1;
+            this.nmGroupActivatedRow = _.first(x.list);
+            this.nmQuery.filter = _.unionBy(
+              [
+                {
+                  field: this.nmGroupQuery.group,
+                  value: this.nmGroupActivatedRow[this.nmGroupQuery.group]
+                }
+              ],
+              this.nmQuery.filter,
+              y => y.field
+            );
+            this.setData();
+          }
+          this.setGroupDataChange(x.list);
+        });
+    }
+  }
+
+  private setGroupDataChange(value: any[]) {
+    this.groupData = value;
+    this.cdr.detectChanges();
   }
 
   private setDataChange(value: any[]) {

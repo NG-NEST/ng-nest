@@ -50,6 +50,7 @@ interface User extends NmId {
   password: string;
   email: string;
   phone: string;
+  organization: string;
 }
 
 @Component({
@@ -60,6 +61,7 @@ interface User extends NmId {
         [nmColumns]="columns"
         [nmActions]="actions"
         [nmService]="usersService"
+        [nmAllowSelectRow]="true"
       ></nm-table>
     </div>
   `,
@@ -113,6 +115,7 @@ class TestNmTableComponent {
     { nmKey: "name", nmLabel: "用户", nmFlex: 1.5 },
     { nmKey: "account", nmLabel: "账号", nmFlex: 0.5 },
     { nmKey: "email", nmLabel: "邮箱", nmFlex: 1 },
-    { nmKey: "phone", nmLabel: "电话", nmFlex: 1 }
+    { nmKey: "phone", nmLabel: "电话", nmFlex: 1 },
+    { nmKey: "organization", nmLabel: "组织机构", nmFlex: 1 }
   ];
 }

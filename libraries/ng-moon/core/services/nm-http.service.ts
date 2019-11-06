@@ -57,7 +57,6 @@ export class NmHttpService {
     }
     this.addHeader(option);
     return Observable.create(x => {
-      debugger;
       this.http.request(method, url, option).subscribe(
         (y: any) => {
           x.next(y);
