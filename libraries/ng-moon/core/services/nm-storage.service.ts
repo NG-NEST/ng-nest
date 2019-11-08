@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 
-/**
- * 存储服务
- */
+// @dynamic
 @Injectable({ providedIn: "root" })
 export class NmStorageService {
   constructor() {}

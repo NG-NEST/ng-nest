@@ -2,9 +2,7 @@ import { Injectable } from "@angular/core";
 import { PreloadingStrategy, Route } from "@angular/router";
 import { Observable, of } from "rxjs";
 
-/**
- * 预加载策略
- */
+// @dynamic
 @Injectable()
 export class NmPreloadingStrategyService implements PreloadingStrategy {
   // 需要预加载的模块

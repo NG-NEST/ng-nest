@@ -1,4 +1,4 @@
-<div class="nm-table-inner">
+<div class="nm-table-inner" [class.nm-table-has-group]="nmGroupQuery.group">
   <div class="nm-table-group" *ngIf="nmGroupQuery.group">
     <nm-table
       [nmColumns]="nmGroupColumns"
@@ -9,29 +9,28 @@
       [nmAllowSelectRow]="true"
       [nmRowPrimary]="nmGroupQuery.group"
       [nmActivatedRow]="nmGroupActivatedRow"
+      [nmSearchPlaceholder]="nmGroupSearchPlaceholder"
       (nmRowClick)="groupRowClick($event)"
     ></nm-table>
   </div>
   <div class="nm-table-struct">
-    <div
-      class="nm-table-tool"
-      *ngIf="topLeftActions.length > 0 || topRightIconActions.length > 0"
-    >
-      <div class="nm-table-tool-left">
+    <div class="nm-table-tool">
+      <div class="nm-table-tool-left" *ngIf="topLeftActions.length > 0">
         <ng-container
-          *ngTemplateOutlet="
-            nmButtonsTpl;
-            context: { space: 1, actions: topLeftActions }
-          "
+          *ngTemplateOutlet="nmButtonsTpl; context: { space: 1, actions: topLeftActions }"
         ></ng-container>
       </div>
       <div class="nm-table-tool-right">
-        <ng-container
-          *ngTemplateOutlet="
-            nmButtonsTpl;
-            context: { actions: topRightIconActions }
-          "
-        ></ng-container>
+        <nm-input
+          [nmIcon]="'fto-search'"
+          [nmPlaceholder]="nmSearchPlaceholder"
+          [nmIconLayout]="'left'"
+        ></nm-input>
+        <ng-container *ngIf="topRightIconActions.length > 0">
+          <ng-container
+            *ngTemplateOutlet="nmButtonsTpl; context: { actions: topRightIconActions }"
+          ></ng-container>
+        </ng-container>
       </div>
     </div>
     <div class="nm-table-header" *ngIf="!nmTableHeaderHidden">
@@ -47,9 +46,7 @@
       <ul
         *ngFor="let item of data"
         [class.nm-table-row-activated]="
-          nmAllowSelectRow &&
-          nmActivatedRow &&
-          nmActivatedRow[nmRowPrimary] === item[nmRowPrimary]
+          nmAllowSelectRow && nmActivatedRow && nmActivatedRow[nmRowPrimary] === item[nmRowPrimary]
         "
         (click)="rowClick(item, $event)"
       >
@@ -83,12 +80,7 @@
   </div>
 </div>
 
-<ng-template
-  #nmButtonsTpl
-  let-space="space"
-  let-notBorder="notBorder"
-  let-actions="actions"
->
+<ng-template #nmButtonsTpl let-space="space" let-notBorder="notBorder" let-actions="actions">
   <nm-buttons [nmSpace]="space" [nmNotBorder]="notBorder">
     <nm-button
       *ngFor="let action of actions"

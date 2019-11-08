@@ -17,7 +17,7 @@
     "stripInternal": true,
     "target": "es2015",
     "paths": {
-      "ng-moon": ["./ng-moon.module.ts"],
+      "ng-moon": ["./"],
       "ng-moon/*": ["./*"]
     }
   },

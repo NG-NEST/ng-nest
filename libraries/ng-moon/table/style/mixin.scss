@@ -26,6 +26,12 @@
     padding-right: 1rem;
     margin-right: 1rem;
     border-right: 1px solid #e8e8e89c;
+    .#{$prefix}-tool {
+      > .#{$prefix}-tool-right {
+        flex: 1;
+        display: inline-block;
+      }
+    }
   }
 
   &-struct {
@@ -52,6 +58,18 @@
     justify-content: space-between;
     height: 2.625rem;
     border-bottom: 1px solid #e8e8e89c;
+    > .#{$prefix}-tool-right {
+      display: flex;
+      > .nm-input {
+        height: 1.675rem;
+        > .nm-input-row > input {
+          height: -webkit-fill-available;
+        }
+      }
+      > .nm-buttons {
+        margin-left: 0.625rem;
+      }
+    }
   }
 
   &-header {
@@ -111,5 +129,14 @@
     justify-content: space-between;
     padding-top: 1rem;
     border-top: 1px solid #e8e8e89c;
+  }
+
+  &-has-group {
+    .#{$prefix}-tool {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }

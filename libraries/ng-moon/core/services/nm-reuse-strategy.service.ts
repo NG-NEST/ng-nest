@@ -10,9 +10,7 @@ export interface NmRouteReuseStorage {
   handle: DetachedRouteHandle;
 }
 
-/**
- * 路由复用策略
- */
+// @dynamic
 export class NmReuseStrategyService implements RouteReuseStrategy {
   // 存储的复用路由
   public static storages: NmRouteReuseStorage[] = [];

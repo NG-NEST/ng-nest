@@ -11,18 +11,8 @@ import {
   EventEmitter,
   HostBinding
 } from "@angular/core";
-import {
-  TablePrefix,
-  NmTableOption,
-  NmTableColumn,
-  NmTableAction
-} from "./nm-table.type";
-import {
-  fillDefault,
-  NmData,
-  NmQuery,
-  NmRepositoryAbstract
-} from "ng-moon/core";
+import { TablePrefix, NmTableOption, NmTableColumn, NmTableAction } from "./nm-table.type";
+import { fillDefault, NmData, NmQuery, NmRepositoryAbstract } from "ng-moon/core";
 import { Subscription } from "rxjs";
 import * as _ from "lodash";
 
@@ -48,12 +38,10 @@ export class NmTableComponent implements OnInit {
   @Input() nmAllowSelectRow?: boolean;
   @Input() nmRowPrimary?: string;
   @Input() nmActivatedRow?: any;
+  @Input() nmSearchPlaceholder?: string;
   @Output() nmIndexChange = new EventEmitter<number>();
   @Output() nmActionClick = new EventEmitter<NmTableAction>();
   @Output() nmRowClick = new EventEmitter<any>();
-  @HostBinding(`class.nm-table-has-group`) get getGroup() {
-    return typeof this.nmGroupQuery.group !== "undefined";
-  }
   data: any[] = [];
   groupData: any[] = [];
   topLeftActions: NmTableAction[] = [];
@@ -67,6 +55,7 @@ export class NmTableComponent implements OnInit {
   nmGroupQuery: NmQuery = {};
   nmGroupColumns: NmTableColumn[] = [];
   nmGroupActivatedRow: any;
+  nmGroupSearchPlaceholder: string;
   private _data$: Subscription | null = null;
   private _default: NmTableOption = {
     nmIndex: 1,
@@ -100,7 +89,6 @@ export class NmTableComponent implements OnInit {
 
   actionClick(action: NmTableAction, event: Event) {
     action.nmEvent = event;
-    this.nmActionClick.emit(action);
     if (action.nmGroup) {
       this.activatedAction.nmActivated = false;
       action.nmActivated = true;
@@ -108,13 +96,13 @@ export class NmTableComponent implements OnInit {
       this.nmGroupIndex = 1;
       this.nmGroupQuery.group = action.nmGroup;
       this.nmGroupQuery.sort = [`count desc`];
-      let groupColumn = _.cloneDeep(
-        this.nmColumns.find(x => x.nmKey === action.nmGroup)
-      );
+      let groupColumn = _.cloneDeep(this.nmColumns.find(x => x.nmKey === action.nmGroup));
       groupColumn.nmFlex = 4;
+      this.nmGroupSearchPlaceholder = `搜索${groupColumn.nmLabel}`;
       this.nmGroupColumns = [groupColumn, { nmKey: "count", nmFlex: 1 }];
       this.setGroupData();
     }
+    this.nmActionClick.emit(action);
   }
 
   rowClick(row: any, event: Event) {
@@ -125,9 +113,7 @@ export class NmTableComponent implements OnInit {
   }
 
   groupRowClick(row: any) {
-    let groupFilter = this.nmQuery.filter.find(
-      x => x.field === this.nmGroupQuery.group
-    );
+    let groupFilter = this.nmQuery.filter.find(x => x.field === this.nmGroupQuery.group);
     groupFilter.value = row[this.nmGroupQuery.group];
     this.nmIndex = 1;
     this.setData();
@@ -143,34 +129,24 @@ export class NmTableComponent implements OnInit {
     if (typeof this.nmActions === "undefined") return;
     this.topLeftActions = _.filter(
       this.nmActions,
-      x =>
-        typeof x.nmActionLayoutType === "undefined" ||
-        x.nmActionLayoutType === "top-left"
+      x => typeof x.nmActionLayoutType === "undefined" || x.nmActionLayoutType === "top-left"
     );
-    this.topRightActions = _.filter(
-      this.nmActions,
-      x => x.nmActionLayoutType === "top-right"
-    );
+    this.topRightActions = _.filter(this.nmActions, x => x.nmActionLayoutType === "top-right");
     this.topRightIconActions = _.filter(
       this.nmActions,
       x => x.nmActionLayoutType === "top-right-icon"
     );
-    this.rowIconActions = _.filter(
-      this.nmActions,
-      x => x.nmActionLayoutType === "row-icon"
-    );
+    this.rowIconActions = _.filter(this.nmActions, x => x.nmActionLayoutType === "row-icon");
     this.activatedAction = _.find(this.nmActions, x => x.nmActivated);
     this.cdr.markForCheck();
   }
 
   private setData() {
     if (this.nmService) {
-      this.nmService
-        .getList(this.nmIndex, this.nmSize, this.nmQuery)
-        .subscribe(x => {
-          this.nmTotal = x.total;
-          this.setDataChange(x.list);
-        });
+      this.nmService.getList(this.nmIndex, this.nmSize, this.nmQuery).subscribe(x => {
+        this.nmTotal = x.total;
+        this.setDataChange(x.list);
+      });
     }
   }
 

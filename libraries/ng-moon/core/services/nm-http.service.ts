@@ -2,9 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 
-/**
- * http请求
- */
+// @dynamic
 @Injectable({ providedIn: "root" })
 export class NmHttpService {
   api: string = "";
@@ -41,12 +39,7 @@ export class NmHttpService {
   /**
    * request通用请求
    */
-  request(
-    method: string,
-    url: string,
-    params?,
-    isBody = false
-  ): Observable<any> {
+  request(method: string, url: string, params?, isBody = false): Observable<any> {
     let option = {};
     url = `${this.api}${url}`;
     method = method.toUpperCase();
