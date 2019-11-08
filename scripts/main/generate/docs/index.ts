@@ -17,7 +17,7 @@ import * as _ from "lodash";
 export const docsDir = path.resolve(__dirname, "../../../../docs");
 export const componentsDir = path.resolve(
   __dirname,
-  "../../../../libraries/ng-moon"
+  "../../../../lib/ng-nest/ui"
 );
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
 export const genMenusDir = path.resolve(

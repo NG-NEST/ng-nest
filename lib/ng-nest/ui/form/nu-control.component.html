@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]="nuOption.nuControlType">
+  <ng-container *ngSwitchCase="'input'">
+    <nu-input
+      [(ngModel)]="nuOption.nuValue"
+      [nuLayout]="nuOption.nuLayout"
+      [nuLabel]="nuOption.nuLabel"
+      [nuType]="nuOption.nuType"
+      [nuPlaceholder]="nuOption.nuPlaceholder"
+      [nuRequired]="nuOption.nuRequired"
+      [nuDisabled]="nuOption.nuDisabled"
+      [nuIcon]="nuOption.nuIcon"
+      [nuIconLayout]="nuOption.nuIconLayout"
+    ></nu-input>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,72 @@
+// Examples
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin examples {
+  display: flex;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  .#{$prefix}-html,
+  .#{$prefix}-code {
+    padding: 1rem;
+  }
+  .#{$prefix}-code {
+    > .nu-tabs {
+      padding-top: 0;
+      background-color: #eff0f1;
+      > .nu-tabs-contents > .nu-tab-content > .nu-highlight {
+        background-color: transparent;
+      }
+    }
+  }
+  .#{$prefix}-info {
+    padding: 1rem;
+    border: 1px solid #eff0f1;
+    border-top: 2px solid $primary-color;
+    margin: 0 1rem;
+    > ul > li {
+      list-style-type: square;
+      margin-left: 1.25rem;
+      line-height: 1.75rem;
+    }
+  }
+  > .nu-tabs {
+    width: 100%;
+    > .nu-tabs-list {
+      padding: 1rem;
+      border-right: 1px solid #e8e8e8;
+      > .nu-slider {
+        min-width: 6rem;
+        &.nu-slider-border-position-right > ul > li {
+          border-right-width: 0;
+          height: 2rem;
+          line-height: 2rem;
+        }
+      }
+    }
+    > .nu-tabs-contents {
+      padding-left: 0;
+      > .nu-tab-content {
+        > .nu-tabs {
+          padding-top: 0;
+          > .nu-tabs-list {
+            padding: 1rem 1rem 0 1rem;
+            > .nu-slider {
+              &.nu-slider-border-position-bottom > ul > li {
+                height: 2rem;
+                line-height: 2rem;
+              }
+            }
+          }
+          > .nu-tabs-contents {
+            > .nu-tab-content {
+              border-radius: 0.25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

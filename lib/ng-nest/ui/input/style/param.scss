@@ -1,0 +1,33 @@
+// Input style paramters
+
+$prefix: "nu-input";
+
+/* 字体大小 */
+$input-font-size: $font-size;
+
+/* 内边距 */
+$input-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$input-color: $primary-text-color;
+
+/* 提示文字颜色 */
+$input-placeholder-color: $divider-color;
+
+/* 背景颜色 */
+$input-background-color: #ffffff;
+
+/* 边框样式 */
+$input-border: $border-width $border-style $border-color;
+
+/* 边框圆角 */
+$input-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$input-disabled-color: $secondary-text-color;
+
+/* 输入框中的图标大小 */
+$input-icon-font-size: $font-size-md;
+
+/* 输入框中图标的内边距 */
+$input-icon-padding: $control-padding-horizontal;

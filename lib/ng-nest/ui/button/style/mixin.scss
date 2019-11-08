@@ -1,0 +1,107 @@
+// Button
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin button {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.125rem;
+  display: inline-block;
+  padding: 0 0.65rem;
+  font-size: 0.75rem;
+  height: 1.675rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  background-clip: border-box;
+  color: $primary-text-color;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color $animation-duration-fast;
+  &-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    transition: transform $animation-duration-fast;
+    > .nu-icon {
+      font-size: 0.925rem;
+      margin-right: 0.125rem;
+    }
+  }
+  &-icon {
+    padding: 0 0.4rem;
+    > .nu-button-inner {
+      > .nu-icon {
+        font-size: 1rem;
+        margin-right: 0;
+      }
+    }
+  }
+  &-activated {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  &-disabled {
+    color: $secondary-text-color;
+    pointer-events: none;
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.07);
+    .nu-button-inner {
+      transform: translate(1px, 1px);
+    }
+  }
+}
+
+@mixin buttons {
+  display: inline-flex;
+  &:not(.nu-buttons-space) {
+    > .nu-button {
+      border-left-width: 0;
+      border-right-width: 0;
+      border-radius: 0;
+      &:first-child {
+        border-left-width: 1px;
+        border-top-left-radius: 0.125rem;
+        border-bottom-left-radius: 0.125rem;
+      }
+      &:last-child {
+        border-right-width: 1px;
+        border-top-right-radius: 0.125rem;
+        border-bottom-right-radius: 0.125rem;
+      }
+      &:not(:first-child) {
+        border-left-width: 1px;
+      }
+    }
+  }
+  &-space {
+    > .nu-button {
+      &:not(:first-child) {
+        margin-left: 0.625rem;
+      }
+    }
+  }
+  &-not-border {
+    > .nu-button {
+      border: 0;
+      padding: 0 0.4rem;
+      background-color: transparent;
+      &-icon {
+        padding: 0 0.2rem;
+        > .nu-button-inner {
+          > .nu-icon {
+            font-size: 1.2rem;
+          }
+        }
+        &:hover {
+          color: $primary-color;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/ng-nest/ui",
+  "deleteDestPath": true,
+  "lib": {
+    "entryFile": "./ng-nest-ui.module.ts",
+    "umdModuleIds": {
+      "highlight.js": "hljs"
+    },
+    "styleIncludePaths": ["./style"]
+  },
+  "whitelistedNonPeerDependencies": ["tslib", "angular", "hljs", "highlight.js"]
+}

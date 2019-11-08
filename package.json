@@ -1,5 +1,5 @@
 {
-  "name": "ng-nest-site",
+  "name": "ng-nest",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,7 +14,7 @@
     "build:scripts": "tsc -p scripts",
     "build:styles": "scss-bundle",
     "test": "ng test ng-moon",
-    "test:ng-moon": "npm unlink ng-moon && npm install libraries/ng-moon && ng test ng-moon",
+    "test:ng-moon": "npm unlink ng-moon && npm install lib/ng-moon && ng test ng-moon",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "extract": "ng xi18n --output-path=locale"
@@ -31,7 +31,6 @@
     "@angular/router": "~8.2.3",
     "core-js": "^3.2.1",
     "marked": "^0.7.0",
-    "ng-moon": "file:libraries/ng-moon",
     "remark": "~10.0.1",
     "rxjs": "~6.4.0",
     "scss-bundle": "^3.0.1",

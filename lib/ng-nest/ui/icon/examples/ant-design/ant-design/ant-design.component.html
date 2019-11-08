@@ -1,0 +1,12 @@
+<nu-tabs [nuLayout]="'top'">
+  <nu-tab *ngFor="let tab of tabs" [nuLabel]="tab.name">
+    <nu-row>
+      <nu-col *ngFor="let icon of tab.icons" [nuSpan]="4">
+        <div class="box">
+          <nu-icon [nuType]="tab.type + '-' + icon"></nu-icon>
+          <span>{{ icon }}</span>
+        </div>
+      </nu-col>
+    </nu-row>
+  </nu-tab>
+</nu-tabs>

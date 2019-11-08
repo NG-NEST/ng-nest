@@ -14,8 +14,8 @@
     "typeRoots": ["node_modules/@types/!(node)"],
     "lib": ["es2018", "dom"],
     "paths": {
-      "ng-moon": ["./dist/ng-moon/ng-moon.module.ts"],
-      "ng-moon/*": ["./dist/ng-moon/*"]
+      "@ng-nest/ui": ["lib/ng-nest/ui"],
+      "@ng-nest/ui/*": ["lib/ng-nest/ui/*"]
     }
   },
   "angularCompilerOptions": {

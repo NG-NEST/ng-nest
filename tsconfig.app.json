@@ -3,7 +3,11 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
-    "module": "esnext"
+    "module": "esnext",
+    "paths": {
+      "@ng-nest/ui": ["dist/ng-nest/ui"],
+      "@ng-nest/ui/*": ["dist/ng-nest/ui/*"]
+    }
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["src/**/*.ts"],

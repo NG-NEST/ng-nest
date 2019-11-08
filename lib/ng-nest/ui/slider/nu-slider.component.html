@@ -1,0 +1,21 @@
+<ul #sliders>
+  <li
+    *ngFor="let item of data; index as i"
+    [ngClass]="{ 'nu-slider-activated': i == nuActivatedIndex }"
+    (click)="action('click', item, i)"
+    [title]="nuNodeTemplate ? item.nuLabel : ''"
+  >
+    <ng-container *ngIf="!nuNodeTemplate">{{ item.nuLabel }}</ng-container>
+    <ng-container *ngIf="nuNodeTemplate">
+      <ng-container
+        *ngTemplateOutlet="nuNodeTemplate; context: { node$: item }"
+      ></ng-container>
+    </ng-container>
+  </li>
+  <li
+    class="nu-slider-highlight"
+    [hidden]="nuHighlightHidden"
+    #highlight
+    [title]="nuNodeTemplate ? nuActivatedSlider?.nuLabel : ''"
+  ></li>
+</ul>

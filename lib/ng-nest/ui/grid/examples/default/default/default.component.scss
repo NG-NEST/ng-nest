@@ -1,0 +1,23 @@
+:host {
+  nu-row {
+    margin: 1rem 0;
+    > nu-col {
+      color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      &:nth-child(odd) {
+        background-color: var(--nu-primary-color);
+        opacity: 0.8;
+      }
+      &:nth-child(even) {
+        background-color: var(--nu-primary-color);
+      }
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

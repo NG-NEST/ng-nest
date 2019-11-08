@@ -1,0 +1,16 @@
+<label *ngIf="nuLabel">{{ nuLabel }}</label>
+<ng-container *ngTemplateOutlet="inputTemp"></ng-container>
+
+<ng-template #inputTemp>
+  <div class="nu-input-row">
+    <input
+      [type]="nuType"
+      [placeholder]="nuPlaceholder"
+      [required]="nuRequired"
+      [disabled]="nuDisabled"
+      [ngModel]="value"
+      (ngModelChange)="onChange($event)"
+    />
+    <nu-icon *ngIf="nuIcon" [nuType]="nuIcon"></nu-icon>
+  </div>
+</ng-template>

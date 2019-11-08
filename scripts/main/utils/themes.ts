@@ -5,7 +5,7 @@ import * as path from "path";
 
 export const patternDir = path.resolve(
   __dirname,
-  "../../../libraries/ng-moon/style"
+  "../../../lib/ng-nest/ui/style"
 );
 
 /**

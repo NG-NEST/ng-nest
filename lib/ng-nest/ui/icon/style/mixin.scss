@@ -1,0 +1,20 @@
+// Icon
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@keyframes nu-icon-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin icon {
+  display: inline-block;
+  line-height: 0;
+  text-align: center;
+  &-spin {
+    animation: 1s linear infinite nu-icon-spin;
+  }
+}

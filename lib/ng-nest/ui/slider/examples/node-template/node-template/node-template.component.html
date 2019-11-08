@@ -1,0 +1,15 @@
+<nu-row [nuSpace]="1">
+  <nu-col [nuSpan]="24">
+    <nu-slider
+      [nuData]="data"
+      [nuLayout]="'row'"
+      [nuNodeTemplate]="nodeTpl"
+    ></nu-slider>
+  </nu-col>
+</nu-row>
+
+<ng-template #nodeTpl let-node="node$">
+  <div class="slider">
+    <nu-icon [nuType]="node.icon"></nu-icon>
+  </div>
+</ng-template>

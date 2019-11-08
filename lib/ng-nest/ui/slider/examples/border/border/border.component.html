@@ -1,0 +1,26 @@
+<nu-row [nuSpace]="2">
+  <nu-col [nuSpan]="24">
+    <span>边框在上面：</span>
+    <nu-slider [nuData]="data" [nuBorderPosition]="'top'"></nu-slider>
+  </nu-col>
+  <nu-col [nuSpan]="24">
+    <span>边框在下面：</span>
+    <nu-slider [nuData]="data" [nuBorderPosition]="'bottom'"></nu-slider>
+  </nu-col>
+  <nu-col [nuSpan]="24">
+    <span>边框在左边：</span>
+    <nu-slider
+      [nuData]="data"
+      [nuLayout]="'column'"
+      [nuBorderPosition]="'left'"
+    ></nu-slider>
+  </nu-col>
+  <nu-col [nuSpan]="24">
+    <span>边框在右边：</span>
+    <nu-slider
+      [nuData]="data"
+      [nuLayout]="'column'"
+      [nuBorderPosition]="'right'"
+    ></nu-slider>
+  </nu-col>
+</nu-row>

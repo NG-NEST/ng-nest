@@ -84,9 +84,9 @@ export function generateFiles(
     x.content = tpl;
   });
   tab.content = `
-  <div class="nm-examples-html">${html}</div>\n
-  <div class="nm-examples-info">${tab.content}</div>\n
-  <div class="nm-examples-code">${generateTabs(childTabs).content}</div>\n
+  <div class="nu-examples-html">${html}</div>\n
+  <div class="nu-examples-info">${tab.content}</div>\n
+  <div class="nu-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 
   return tab;
@@ -96,13 +96,17 @@ export function generateFiles(
  * ts文件中特殊字符处理
  */
 export function handlerContent(content: string) {
-  let special = ["`", "$"];
+  let special = [`\``, `\$\{`];
   special.forEach(x => {
     if (content.indexOf(x) > -1) {
-      if (x === "$") {
+      let rep = `\\${x}`;
+      if (x === `\$\{`) {
+        rep = "\\$\\{";
+      }
+      content = content.replace(new RegExp(x, "g"), `${rep}`);
+      if (x === `\$\{`) {
         console.log(content);
       }
-      content = content.replace(new RegExp(x, "g"), `\\${x}`);
     }
   });
   return content;

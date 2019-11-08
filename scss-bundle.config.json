@@ -1,8 +1,8 @@
 {
   "bundlerOptions": {
-    "entryFile": "./libraries/ng-moon/style/core/index.scss",
+    "entryFile": "./lib/ng-nest/ui/style/core/index.scss",
     "rootDir": "./",
-    "outFile": "./dist/ng-moon/ng-moon.scss",
+    "outFile": "./dist/ng-nest/ui/ng-nest-ui.scss",
     "ignoreImports": ["~@angular/.*"],
     "logLevel": "silent"
   }

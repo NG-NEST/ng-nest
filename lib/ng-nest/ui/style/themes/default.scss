@@ -1,0 +1,59 @@
+$nu-prefix: nu;
+
+// Color
+$primary-color-dark: var(--nu-primary-color-dark, #303f9f);
+$primary-color: var(--nu-primary-color, #3f51b5);
+$primary-color-light: var(--nu-primary-color-light, #c5cae9);
+$primary-color-text: var(--nu-primary-color-text, #ffffff);
+$accent-color: var(--nu-accent-color, #ff5722);
+$primary-text-color: var(--nu-primary-text-color, #212121);
+$secondary-text-color: var(--nu-secondary-text-color, #757575);
+$divider-color: var(--nu-divider-color, #bdbdbd);
+
+$primary-color-50: var(--nu-primary-color-50, #e8eaf6);
+$primary-color-100: var(--nu-primary-color-100, #c5cae9);
+$primary-color-200: var(--nu-primary-color-200, #9fa8da);
+$primary-color-300: var(--nu-primary-color-300, #7986cb);
+$primary-color-400: var(--nu-primary-color-400, #5c6bc0);
+$primary-color-500: var(--nu-primary-color-500, #3f51b5);
+$primary-color-600: var(--nu-primary-color-600, #3949ab);
+$primary-color-700: var(--nu-primary-color-700, #303f9f);
+$primary-color-800: var(--nu-primary-color-800, #283595);
+$primary-color-900: var(--nu-primary-color-900, #1a237e);
+$primary-color-a100: var(--nu-primary-color-a100, #8c9eff);
+$primary-color-a200: var(--nu-primary-color-a200, #536dfe);
+$primary-color-a400: var(--nu-primary-color-a400, #3d5afe);
+$primary-color-a700: var(--nu-primary-color-a700, #304ffe);
+
+// Font
+$font-size: 0.875rem;
+$font-variant: tabular-nums;
+$font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
+$font-size-sm: $font-size - 0.125rem;
+$font-size-md: $font-size + 0.125rem;
+$font-size-lg: $font-size-md + 0.125rem;
+$font-size-bg: $font-size-lg + 0.125rem;
+$line-height: 1.5;
+
+// Paddings
+$padding-bg: 1rem;
+$padding-lg: 0.875rem;
+$padding-md: 0.75rem;
+$padding-sm: 0.525rem;
+$padding-xs: 0.4rem;
+$padding-ss: 0.275rem;
+
+// Border
+$border-color: $divider-color;
+$border-style: solid;
+$border-width: 1px;
+$border-radius: 0.125rem;
+
+// Animation
+$animation-duration-slow: 0.6s;
+$animation-duration-base: 0.4s;
+$animation-duration-fast: 0.2s;
+
+// Controls
+$control-padding-horizontal: $padding-xs;
+$control-padding-vertical: $padding-xs;

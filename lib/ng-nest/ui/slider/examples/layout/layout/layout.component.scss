@@ -1,0 +1,14 @@
+:host {
+  .nu-row {
+    > .nu-col {
+      margin-bottom: 1rem;
+      > span {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { ConfigService } from "src/services/config.service";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = "ng-nest-site";
+  title = "ng-nest";
   constructor(private config: ConfigService) {
     this.config.init();
   }

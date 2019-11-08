@@ -1,0 +1,94 @@
+<div class="nu-table-inner" [class.nu-table-has-group]="nuGroupQuery.group">
+  <div class="nu-table-group" *ngIf="nuGroupQuery.group">
+    <nu-table
+      [nuColumns]="nuGroupColumns"
+      [nuQuery]="nuGroupQuery"
+      [nuService]="nuService"
+      [nuTableHeaderHidden]="true"
+      [nuTableFooterHidden]="true"
+      [nuAllowSelectRow]="true"
+      [nuRowPrimary]="nuGroupQuery.group"
+      [nuActivatedRow]="nuGroupActivatedRow"
+      [nuSearchPlaceholder]="nuGroupSearchPlaceholder"
+      (nuRowClick)="groupRowClick($event)"
+    ></nu-table>
+  </div>
+  <div class="nu-table-struct">
+    <div class="nu-table-tool">
+      <div class="nu-table-tool-left" *ngIf="topLeftActions.length > 0">
+        <ng-container
+          *ngTemplateOutlet="nuButtonsTpl; context: { space: 1, actions: topLeftActions }"
+        ></ng-container>
+      </div>
+      <div class="nu-table-tool-right">
+        <nu-input
+          [nuIcon]="'fto-search'"
+          [nuPlaceholder]="nuSearchPlaceholder"
+          [nuIconLayout]="'left'"
+        ></nu-input>
+        <ng-container *ngIf="topRightIconActions.length > 0">
+          <ng-container
+            *ngTemplateOutlet="nuButtonsTpl; context: { actions: topRightIconActions }"
+          ></ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="nu-table-header" *ngIf="!nuTableHeaderHidden">
+      <ul>
+        <ng-container *ngFor="let column of nuColumns">
+          <li [style.width.rem]="column.nuWidth" [style.flex]="column.nuFlex">
+            <span>{{ column.nuLabel }}</span>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="nu-table-body">
+      <ul
+        *ngFor="let item of data"
+        [class.nu-table-row-activated]="
+          nuAllowSelectRow && nuActivatedRow && nuActivatedRow[nuRowPrimary] === item[nuRowPrimary]
+        "
+        (click)="rowClick(item, $event)"
+      >
+        <ng-container *ngFor="let column of nuColumns; index as i">
+          <li
+            [style.width.rem]="column.nuWidth"
+            [style.flex]="column.nuFlex"
+            [title]="item[column.nuKey]"
+          >
+            <div [innerHTML]="item[column.nuKey]"></div>
+            <ng-container *ngIf="!i && rowIconActions.length > 0">
+              <ng-container
+                *ngTemplateOutlet="
+                  nuButtonsTpl;
+                  context: { actions: rowIconActions, notBorder: true }
+                "
+              ></ng-container>
+            </ng-container>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="nu-table-footer" *ngIf="!nuTableFooterHidden">
+      <nu-pagination
+        [nuIndex]="nuIndex"
+        [nuSize]="nuSize"
+        [nuTotal]="nuTotal"
+        (nuIndexChange)="change($event)"
+      ></nu-pagination>
+    </div>
+  </div>
+</div>
+
+<ng-template #nuButtonsTpl let-space="space" let-notBorder="notBorder" let-actions="actions">
+  <nu-buttons [nuSpace]="space" [nuNotBorder]="notBorder">
+    <nu-button
+      *ngFor="let action of actions"
+      [nuLabel]="action.nuLabel"
+      [nuIcon]="action.nuIcon"
+      [nuTitle]="action.nuTitle"
+      [nuActivated]="action.nuActivated"
+      (click)="actionClick(action, $event)"
+    ></nu-button>
+  </nu-buttons>
+</ng-template>
