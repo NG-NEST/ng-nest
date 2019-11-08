@@ -1,5 +1,5 @@
 {
-  "extends": "../../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "../../../out-tsc/lib",
@@ -15,11 +15,7 @@
     "sourceMap": true,
     "strictFunctionTypes": true,
     "stripInternal": true,
-    "target": "es2015",
-    "paths": {
-      "@ng-nest/ui": ["./"],
-      "@ng-nest/ui/*": ["./*"]
-    }
+    "target": "es2015"
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

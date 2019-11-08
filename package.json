@@ -9,7 +9,7 @@
     "build": "npm link ng-moon && ng build --prod && npm run build:en && npm run build:zh",
     "build:en": "ng build --prod --configuration=production-en",
     "build:zh": "ng build --prod --configuration=production-zh",
-    "build:ng-moon": "ng build ng-moon && npm run build:styles",
+    "build:ng-nest-ui": "ng build ng-nest-ui && npm run build:styles",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
     "build:styles": "scss-bundle",

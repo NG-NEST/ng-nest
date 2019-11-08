@@ -1,0 +1,16 @@
+// Configuration for IDEs only.
+
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@ng-nest/ui": ["./ng-nest-ui.module"],
+      "@ng-nest/ui/*": ["./*"]
+    }
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

@@ -12,11 +12,7 @@
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": ["node_modules/@types/!(node)"],
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "@ng-nest/ui": ["lib/ng-nest/ui"],
-      "@ng-nest/ui/*": ["lib/ng-nest/ui/*"]
-    }
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
