@@ -1,8 +1,10 @@
 ---
-label: "分页"
+label: "Pagination 分页"
+category: "Data"
+order: 2
 ---
 
-# 分页 Pagination
+# Pagination 分页
 
 分页组件，通常用来做表格或列表数据的分页读取。
 

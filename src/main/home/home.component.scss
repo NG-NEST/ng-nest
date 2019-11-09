@@ -76,8 +76,7 @@ ns-home {
     }
     > .logo {
       z-index: -2;
-      background: transparent url(/assets/img/logo-hollow.png) no-repeat top
-        center;
+      background: transparent url(/assets/img/logo-hollow.png) no-repeat top center;
       opacity: 0.15;
       width: 700px;
       height: 700px;
@@ -170,11 +169,7 @@ ns-home {
       width: 100%;
       height: calc(100% + 3.75rem);
       margin-top: -3.75rem;
-      background: linear-gradient(
-        to right,
-        rgba(0, 21, 134, 0.49) 0%,
-        rgba(63, 81, 181, 0.5) 100%
-      );
+      background: linear-gradient(to right, rgba(0, 21, 134, 0.49) 0%, rgba(63, 81, 181, 0.5) 100%);
     }
   }
   > section.nav {
@@ -186,8 +181,7 @@ ns-home {
     top: 38.5rem;
     font-weight: 600;
     z-index: 132123123;
-    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13),
-      1px 1px 0 rgba(85, 85, 135, 0.05);
+    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13), 1px 1px 0 rgba(85, 85, 135, 0.05);
     > ul {
       display: flex;
       > li {
@@ -217,8 +211,6 @@ ns-home {
     background-color: #fafafa;
     > .panel {
       width: 100%;
-      padding: 0 1rem;
-      height: 28rem;
       &:nth-child(even) {
         background-color: #f8f9fa;
       }
@@ -231,9 +223,11 @@ ns-home {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 80%;
+        margin: auto;
         > img {
-          width: 7.5rem;
-          height: 7.5rem;
+          width: 8rem;
+          height: 8rem;
         }
         > h1 {
           color: $primary-color;
@@ -241,6 +235,30 @@ ns-home {
           margin: 0.625rem 0;
           > span {
             color: $primary-text-color;
+          }
+        }
+      }
+      > .slides {
+        width: 80%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: auto;
+        padding-bottom: 5rem;
+        > .slide {
+          width: 30%;
+          > .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.6rem;
+            > img {
+              width: 4rem;
+              height: 4rem;
+            }
+            > h3 {
+              color: $primary-color;
+            }
           }
         }
       }

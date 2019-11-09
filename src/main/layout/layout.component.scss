@@ -6,8 +6,15 @@
 
 @mixin activated {
   color: $primary-color;
-  box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.02);
+}
+
+@mixin no-hover {
+  background-color: transparent;
+}
+
+@mixin no-activated {
+  background-color: transparent;
 }
 
 ns-layout {
@@ -59,8 +66,7 @@ ns-layout {
     left: 0;
     z-index: 9;
     // box-shadow: $box-shadow;
-    transition: width $transition-duration-slow,
-      padding $transition-duration-slow;
+    transition: width $transition-duration-slow, padding $transition-duration-slow;
     padding-top: 1rem;
     padding-bottom: 1rem;
     li {
@@ -79,12 +85,11 @@ ns-layout {
           text-overflow: ellipsis;
           white-space: nowrap;
           margin: 0 0.25rem;
-          transition: visibility $transition-duration,
-            opacity $transition-duration;
+          transition: visibility $transition-duration, opacity $transition-duration;
           flex: 1;
           visibility: hidden;
           opacity: 0;
-          cursor: pointer;
+          cursor: inherit;
           > span {
             margin-left: 0.25rem;
           }
@@ -92,8 +97,7 @@ ns-layout {
         i {
           font-size: 1rem;
           visibility: hidden;
-          transition: visibility $transition-duration,
-            opacity $transition-duration;
+          transition: visibility $transition-duration, opacity $transition-duration;
           opacity: 0;
           &.menu {
             font-size: 1.25rem;
@@ -110,6 +114,19 @@ ns-layout {
           @include activated;
           &:hover {
             @include activated;
+          }
+        }
+        &.category {
+          cursor: default;
+          color: rgba(0, 0, 0, 0.35);
+          &:hover {
+            @include no-hover;
+          }
+          &.active {
+            @include no-activated;
+            &:hover {
+              @include no-activated;
+            }
           }
         }
       }

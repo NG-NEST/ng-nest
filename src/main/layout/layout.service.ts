@@ -12,6 +12,7 @@ export class LayoutService {
   contentRef: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
   shrink = false;
+  category;
 
   menus: Menu[] = menus;
 

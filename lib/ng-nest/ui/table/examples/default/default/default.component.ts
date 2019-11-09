@@ -55,7 +55,7 @@ export class ExDefaultComponent {
   ];
   list = Array.from({ length: 115 }).map((x, i) => {
     return {
-      song: `${i + 1} Free Loop 福特轿车广告曲`,
+      song: i + 1 + `Free Loop 福特轿车广告曲`,
       auth: "Daniel Powter",
       album: "Daniel Powter"
     };

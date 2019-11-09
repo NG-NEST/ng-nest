@@ -15,15 +15,9 @@ import * as fs from "fs-extra";
 import * as _ from "lodash";
 
 export const docsDir = path.resolve(__dirname, "../../../../docs");
-export const componentsDir = path.resolve(
-  __dirname,
-  "../../../../lib/ng-nest/ui"
-);
+export const componentsDir = path.resolve(__dirname, "../../../../lib/ng-nest/ui");
 export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
-export const genMenusDir = path.resolve(
-  __dirname,
-  "../../../../src/environments"
-);
+export const genMenusDir = path.resolve(__dirname, "../../../../src/environments");
 export const docsPrefix = "docs";
 
 export class NcDocs {
@@ -42,17 +36,11 @@ export class NcDocs {
     handlerPage(this.page);
     this.addChildren(this.page, docsDir, `./${docsPrefix}`);
     generatePage(this.page);
-    this.menus = _.sortBy(this.menus, ["parentId", "order"]);
+    this.menus = _.sortBy(this.menus, ["parentId", "category", "order"]);
     generateMenu(genMenusDir, this.menus);
   }
 
-  addChildren(
-    page: NcPage,
-    docDir: string,
-    router: string,
-    index?: string,
-    level?: number
-  ) {
+  addChildren(page: NcPage, docDir: string, router: string, index?: string, level?: number) {
     let children = fs.readdirSync(docDir);
     if (typeof level !== "undefined") level--;
     children.forEach(async (x, i) => {
@@ -74,10 +62,7 @@ export class NcDocs {
           } else if (level !== 0) {
             this.addChildren(child, dir, menu.router, menu.id, level);
           }
-          if (
-            dir.indexOf(componentsDir) === 0 &&
-            typeof read.meta.type === "undefined"
-          ) {
+          if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
             await handlerComponent(child);
           }
           generatePage(child);
@@ -88,11 +73,7 @@ export class NcDocs {
     pageAddChildren(page, page.children);
   }
 
-  createChild(
-    read: { meta: any; content: any },
-    dirName: string,
-    folder: string
-  ) {
+  createChild(read: { meta: any; content: any }, dirName: string, folder: string) {
     let child =
       read.meta.type == "router"
         ? createRouterOutlet(dirName)

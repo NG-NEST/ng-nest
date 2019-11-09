@@ -1,8 +1,10 @@
 ---
-label: "按钮"
+label: "Button 按钮"
+category: "Basic"
+order: 3
 ---
 
-# 按钮 Button
+# Button 按钮
 
 定义按钮和按钮组的样式。
 

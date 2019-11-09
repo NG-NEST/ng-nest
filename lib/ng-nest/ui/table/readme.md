@@ -1,8 +1,10 @@
 ---
-label: "表格"
+label: "Table 表格"
+category: "Data"
+order: 1
 ---
 
-# 表格 Table
+# Table 表格
 
 用于展示多条结构类似的数据，可对数据排序、查询、分页、分组等操作。
 

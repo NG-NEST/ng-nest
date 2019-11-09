@@ -71,4 +71,11 @@ export interface NcMenu {
    * @memberof NcMenu
    */
   type?: NcTemplateType;
+  /**
+   * 分类
+   *
+   * @type {string}
+   * @memberof NcMenu
+   */
+  category?: string;
 }

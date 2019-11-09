@@ -27,11 +27,94 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
+    "id": "3-0-8",
+    "parentId": "3-0",
+    "name": "grid",
+    "router": "./docs/ui/components/grid",
+    "label": "Grid 布局",
+    "category": "Basic",
+    "order": 1
+  },
+  {
+    "id": "3-0-10",
+    "parentId": "3-0",
+    "name": "icon",
+    "router": "./docs/ui/components/icon",
+    "label": "Icon 图标",
+    "category": "Basic",
+    "order": 2
+  },
+  {
+    "id": "3-0-2",
+    "parentId": "3-0",
+    "name": "button",
+    "router": "./docs/ui/components/button",
+    "label": "Button 按钮",
+    "category": "Basic",
+    "order": 3
+  },
+  {
+    "id": "3-0-23",
+    "parentId": "3-0",
+    "name": "table",
+    "router": "./docs/ui/components/table",
+    "label": "Table 表格",
+    "category": "Data",
+    "order": 1
+  },
+  {
+    "id": "3-0-17",
+    "parentId": "3-0",
+    "name": "pagination",
+    "router": "./docs/ui/components/pagination",
+    "label": "Pagination 分页",
+    "category": "Data",
+    "order": 2
+  },
+  {
+    "id": "3-0-12",
+    "parentId": "3-0",
+    "name": "input",
+    "router": "./docs/ui/components/input",
+    "label": "Input 输入框",
+    "category": "Form",
+    "order": 1
+  },
+  {
+    "id": "3-0-7",
+    "parentId": "3-0",
+    "name": "form",
+    "router": "./docs/ui/components/form",
+    "label": "Form 表单",
+    "category": "Form",
+    "order": 2
+  },
+  {
+    "id": "3-0-4",
+    "parentId": "3-0",
+    "name": "crumb",
+    "router": "./docs/ui/components/crumb",
+    "label": "Crumb 面包屑",
+    "category": "Navigation",
+    "order": 1
+  },
+  {
+    "id": "3-0-24",
+    "parentId": "3-0",
+    "name": "tabs",
+    "router": "./docs/ui/components/tabs",
+    "label": "Tabs 标签页",
+    "category": "Navigation",
+    "order": 2
+  },
+  {
     "id": "3-0-0",
     "parentId": "3-0",
     "name": "anchor",
     "router": "./docs/ui/components/anchor",
-    "label": "锚点"
+    "label": "Anchor 锚点",
+    "category": "Navigation",
+    "order": 3
   },
   {
     "id": "3-0-1",
@@ -39,20 +122,6 @@ export const menus: Menu[] = [
     "name": "api",
     "router": "./docs/ui/components/api",
     "label": "API 参数"
-  },
-  {
-    "id": "3-0-2",
-    "parentId": "3-0",
-    "name": "button",
-    "router": "./docs/ui/components/button",
-    "label": "按钮"
-  },
-  {
-    "id": "3-0-4",
-    "parentId": "3-0",
-    "name": "crumb",
-    "router": "./docs/ui/components/crumb",
-    "label": "面包屑"
   },
   {
     "id": "3-0-5",
@@ -69,20 +138,6 @@ export const menus: Menu[] = [
     "label": "示例"
   },
   {
-    "id": "3-0-7",
-    "parentId": "3-0",
-    "name": "form",
-    "router": "./docs/ui/components/form",
-    "label": "表单"
-  },
-  {
-    "id": "3-0-8",
-    "parentId": "3-0",
-    "name": "grid",
-    "router": "./docs/ui/components/grid",
-    "label": "栅格"
-  },
-  {
     "id": "3-0-9",
     "parentId": "3-0",
     "name": "highlight",
@@ -90,32 +145,11 @@ export const menus: Menu[] = [
     "label": "代码高亮"
   },
   {
-    "id": "3-0-10",
-    "parentId": "3-0",
-    "name": "icon",
-    "router": "./docs/ui/components/icon",
-    "label": "图标"
-  },
-  {
     "id": "3-0-11",
     "parentId": "3-0",
     "name": "inner",
     "router": "./docs/ui/components/inner",
     "label": "内部"
-  },
-  {
-    "id": "3-0-12",
-    "parentId": "3-0",
-    "name": "input",
-    "router": "./docs/ui/components/input",
-    "label": "输入框"
-  },
-  {
-    "id": "3-0-17",
-    "parentId": "3-0",
-    "name": "pagination",
-    "router": "./docs/ui/components/pagination",
-    "label": "分页"
   },
   {
     "id": "3-0-18",
@@ -137,20 +171,6 @@ export const menus: Menu[] = [
     "name": "slider",
     "router": "./docs/ui/components/slider",
     "label": "滑块"
-  },
-  {
-    "id": "3-0-23",
-    "parentId": "3-0",
-    "name": "table",
-    "router": "./docs/ui/components/table",
-    "label": "表格"
-  },
-  {
-    "id": "3-0-24",
-    "parentId": "3-0",
-    "name": "tabs",
-    "router": "./docs/ui/components/tabs",
-    "label": "标签页"
   },
   {
     "id": "3-1-0",

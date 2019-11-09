@@ -13,7 +13,7 @@ type Task<T> = {
 // @dynamic
 @Injectable({ providedIn: "root" })
 export class NuIconService {
-  rootUrl = `http://localhost/assets/icons/`;
+  rootUrl = `http://icons.ng-nest.com/assets/icons/`;
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskNum: number = 0;
@@ -54,11 +54,7 @@ export class NuIconService {
   }
 
   private runTask() {
-    if (
-      !this.isRunningTask &&
-      this.activeTaskNum < this.limit &&
-      this.queue.length > 0
-    ) {
+    if (!this.isRunningTask && this.activeTaskNum < this.limit && this.queue.length > 0) {
       const task = this.queue.shift();
       this.activeTaskNum++;
       this.execute(task!);

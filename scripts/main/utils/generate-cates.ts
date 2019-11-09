@@ -96,17 +96,11 @@ export function generateFiles(
  * ts文件中特殊字符处理
  */
 export function handlerContent(content: string) {
-  let special = [`\``, `\$\{`];
+  let special = [`\``];
   special.forEach(x => {
     if (content.indexOf(x) > -1) {
       let rep = `\\${x}`;
-      if (x === `\$\{`) {
-        rep = "\\$\\{";
-      }
       content = content.replace(new RegExp(x, "g"), `${rep}`);
-      if (x === `\$\{`) {
-        console.log(content);
-      }
     }
   });
   return content;

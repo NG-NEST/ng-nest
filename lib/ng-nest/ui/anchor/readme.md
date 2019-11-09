@@ -1,5 +1,7 @@
 ---
-label: "锚点"
+label: "Anchor 锚点"
+category: "Navigation"
+order: 3
 ---
 
 # 锚点 Anchor

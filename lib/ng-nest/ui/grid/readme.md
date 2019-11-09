@@ -1,10 +1,12 @@
 ---
-label: "栅格"
+label: "Grid 布局"
+category: "Basic"
+order: 1
 ---
 
-# 栅格 Grid
+# Grid 布局
 
-24 等份的栅格布局系统。
+通过基础的 24 分栏，迅速简便地创建布局。
 
 ## 概述
 

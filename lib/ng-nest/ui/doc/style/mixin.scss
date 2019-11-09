@@ -79,5 +79,8 @@
       text-align: left;
       padding: 0.5rem 1rem;
     }
+    tr > th {
+      white-space: nowrap;
+    }
   }
 }

@@ -1,8 +1,10 @@
 ---
-label: "输入框"
+label: "Input 输入框"
+category: "Form"
+order: 1
 ---
 
-# 输入框 Input
+# Input 输入框
 
 通过键盘输入内容，是最基础的表单交互元素。
 

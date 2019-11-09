@@ -1,8 +1,10 @@
 ---
-label: "面包屑"
+label: "Crumb 面包屑"
+category: "Navigation"
+order: 1
 ---
 
-# 面包屑 Crumb
+# Crumb 面包屑
 
 面包屑导航，显示当前页面在系统层级结构中的位置。
 

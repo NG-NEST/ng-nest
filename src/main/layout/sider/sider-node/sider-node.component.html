@@ -1,3 +1,6 @@
+<a class="category" *ngIf="showCategory && option.category" [ngStyle]="{ 'padding-left.rem': 0.875 * (level - 1) }">
+  <p>{{ option.category }}</p>
+</a>
 <a
   *ngIf="option.type !== 'router'"
   (click)="sider(option)"
@@ -6,9 +9,7 @@
   [title]="option.label"
   [ngStyle]="{ 'padding-left.rem': 0.875 * level }"
 >
-  <ng-container
-    *ngTemplateOutlet="itemTemp; context: { option: option }"
-  ></ng-container>
+  <ng-container *ngTemplateOutlet="itemTemp; context: { option: option }"></ng-container>
 </a>
 <a
   *ngIf="option.type === 'router'"
@@ -16,20 +17,13 @@
   [title]="option.label"
   [ngStyle]="{ 'padding-left.rem': 0.875 * level }"
 >
-  <ng-container
-    *ngTemplateOutlet="itemTemp; context: { option: option }"
-  ></ng-container>
+  <ng-container *ngTemplateOutlet="itemTemp; context: { option: option }"></ng-container>
 </a>
 <ul
   *ngIf="(child.length > 0 ? true : false) && option.childrenShow"
   [ngClass]="{ 'first-node': level == 1 && layoutService.shrink }"
 >
-  <li
-    ns-sider-node
-    *ngFor="let item of child"
-    [option]="item"
-    [level]="level"
-  ></li>
+  <li ns-sider-node *ngFor="let item of child" [option]="item" [level]="level"></li>
 </ul>
 
 <ng-template #itemTemp let-opt="option">
@@ -39,8 +33,6 @@
   </p>
   <i
     [ngStyle]="{ display: !(child.length > 0 ? true : false) ? 'none' : '' }"
-    class="icon icon-{{
-      opt.childrenShow ? 'arrow-down' : 'arrow-right'
-    }} arrow"
+    class="icon icon-{{ opt.childrenShow ? 'arrow-down' : 'arrow-right' }} arrow"
   ></i>
 </ng-template>

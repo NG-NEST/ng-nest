@@ -1,8 +1,10 @@
 ---
-label: "标签页"
+label: "Tabs 标签页"
+category: "Navigation"
+order: 2
 ---
 
-# 标签页 Tabs
+# Tabs 标签页
 
 选项卡切换组件。将内容分类切换显示，保持界面整洁。
 

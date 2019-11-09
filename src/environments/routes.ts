@@ -42,6 +42,7 @@ export interface Menu {
   icon?: string;
   type?: string;
   order?: number;
+  category?: string;
   [prop: string]: any;
 }
 
