@@ -5,8 +5,9 @@ import { Component, DebugElement, Injectable } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NuTableModule } from "./nu-table.module";
 import { TablePrefix, NuTableColumn, NuTableAction } from "./nu-table.type";
-import { NuId, NuRepositoryService, NuHttpService } from "@ng-nest/ui/core";
+import { NuId, NuRepositoryService, NuHttpService, NuQuery, NuResultList } from "@ng-nest/ui/core";
 import * as _ from "lodash";
+import { Observable } from "rxjs";
 
 describe(TablePrefix, () => {
   beforeEach(async(() => {
