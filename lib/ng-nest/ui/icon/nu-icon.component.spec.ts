@@ -34,23 +34,28 @@ describe(IconPrefix, () => {
 @Component({
   selector: "test-nu-icon",
   template: `
-    <nu-icon [nuType]="'adf-account-book'"></nu-icon>
-    <nu-icon [nuType]="'ado-account-book'"></nu-icon>
-    <nu-icon [nuType]="'adt-account-book'"></nu-icon>
-    <br />
-    <nu-icon [nuType]="'eaf-activity'"></nu-icon>
-    <nu-icon [nuType]="'eao-activity'"></nu-icon>
-    <br />
-    <nu-icon [nuType]="'fto-activity'"></nu-icon>
-    <br />
-    <nu-icon [nuType]="'fab-accessible-icon'"></nu-icon>
-    <nu-icon [nuType]="'far-address-book'"></nu-icon>
-    <nu-icon [nuType]="'fas-address-book'"></nu-icon>
-    <br />
-    <nu-icon [nuType]="'ado-loading'" [nuSpin]="true"></nu-icon>
-    <nu-icon [nuType]="'ado-loading-3-quarters'" [nuSpin]="true"></nu-icon>
-    <br />
-    <nu-icon [nuType]="'ado-plus'" [nuTo]="'ado-pause'"></nu-icon>
+    <div style="height: 2000px">
+      <nu-icon [nuType]="'adf-account-book'"></nu-icon>
+      <nu-icon [nuType]="'ado-account-book'"></nu-icon>
+      <nu-icon [nuType]="'adt-account-book'"></nu-icon>
+      <br />
+      <nu-icon [nuType]="'eaf-activity'"></nu-icon>
+      <nu-icon [nuType]="'eao-activity'"></nu-icon>
+      <br />
+      <nu-icon [nuType]="'fto-activity'"></nu-icon>
+      <br />
+      <nu-icon [nuType]="'fab-accessible-icon'"></nu-icon>
+      <nu-icon [nuType]="'far-address-book'"></nu-icon>
+      <nu-icon [nuType]="'fas-address-book'"></nu-icon>
+      <br />
+      <nu-icon [nuType]="'ado-loading'" [nuSpin]="true"></nu-icon>
+      <nu-icon [nuType]="'ado-loading-3-quarters'" [nuSpin]="true"></nu-icon>
+      <br />
+      <nu-icon [nuType]="'ado-plus'" [nuTo]="'ado-pause'"></nu-icon>
+      <div style="margin-top: 1000px">
+        <nu-icon [nuType]="'adf-alert'"></nu-icon>
+      </div>
+    </div>
   `
 })
 class TestNuIconComponent {

@@ -3,4 +3,9 @@ order: 1
 label: "Eva"
 ---
 
-暂无
+-   官方提供了两种主题风格，对应到 `nu-icon` 写法如下：
+
+| 主题     | 对应关键字 | 写法         |
+| -------- | ---------- | ------------ |
+| Outlined | eao        | eao-activity |
+| Filled   | eaf        | eaf-activity |

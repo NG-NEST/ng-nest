@@ -15,11 +15,7 @@ import {
 import { DOCUMENT } from "@angular/common";
 import { IconPrefix, NuIconOption, NuIconSourceEnum } from "./nu-icon.type";
 import { NuIconService } from "./nu-icon.service";
-import {
-  warnIconTypeNotFound,
-  warnSVGTagNotFound,
-  fillDefault
-} from "@ng-nest/ui/core";
+import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault } from "@ng-nest/ui/core";
 import * as _ from "lodash";
 
 // 来源路径对应
@@ -55,8 +51,9 @@ export class NuIconComponent implements OnInit, OnChanges {
   @Input() nuRotate?: number;
   @Input() nuSpin?: boolean;
   @Input() nuTo?: string;
-  private svgElement: SVGElement;
+  private _svgElement: SVGElement;
   private _default: NuIconOption = {};
+  private _loaded: boolean = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -77,6 +74,26 @@ export class NuIconComponent implements OnInit, OnChanges {
     if (nuTypeChange.currentValue !== nuTypeChange.previousValue) {
       this.setSvgElement();
       this.renderer.addClass(this.elementRef.nativeElement, `${this.nuType}`);
+      // this._loaded = false;
+      // this.getSvg();
+    }
+  }
+
+  ngAfterViewInit() {
+    // this.renderer.listen(window, "scroll", x => {
+    // this.getSvg();
+    // });
+  }
+
+  getSvg() {
+    if (this._loaded) return;
+    let height = this.document.documentElement.clientHeight;
+    let width = this.document.documentElement.clientWidth;
+    let box = this.elementRef.nativeElement.getBoundingClientRect();
+    if (box.top <= height && box.left <= width) {
+      this.setSvgElement();
+      this.renderer.addClass(this.elementRef.nativeElement, `${this.nuType}`);
+      this._loaded = true;
     }
   }
 
@@ -93,17 +110,14 @@ export class NuIconComponent implements OnInit, OnChanges {
 
   setSvgs(svgs: string[]) {
     if (svgs && svgs.length > 0) {
-      if (this.svgElement) {
-        this.renderer.removeChild(
-          this.elementRef.nativeElement,
-          this.svgElement
-        );
+      if (this._svgElement) {
+        this.renderer.removeChild(this.elementRef.nativeElement, this._svgElement);
       } else {
-        this.svgElement = this.buildSvg(svgs.shift());
+        this._svgElement = this.buildSvg(svgs.shift());
         // this.setAnimates(svgs);
-        this.setAttributes(this.svgElement);
+        this.setAttributes(this._svgElement);
       }
-      this.renderer.appendChild(this.elementRef.nativeElement, this.svgElement);
+      this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
       this.cdr.markForCheck();
     }
   }
@@ -134,6 +148,7 @@ export class NuIconComponent implements OnInit, OnChanges {
       "svg"
     ) as SVGAElement;
     const svg = this.createSvg(svgStr);
+    if (!svg) return;
     svg.children.forEach(x => {
       x.removeAttribute("class");
       if (x.tagName === "rect") {
@@ -158,20 +173,14 @@ export class NuIconComponent implements OnInit, OnChanges {
     const div = this.document.createElement("div");
     div.innerHTML = svgStr;
     let svgEle = div.querySelector("svg") as SVGElement;
+    if (!svgEle) return null;
     return {
       ele: svgEle,
-      children: svgEle.querySelectorAll(
-        "path, polyline, polygon, circle, line, rect"
-      )
+      children: svgEle.querySelectorAll("path, polyline, polygon, circle, line, rect")
     };
   }
 
-  setAttribute(
-    svg: SVGElement,
-    svgEle: SVGElement,
-    attribute: string,
-    def?: string
-  ) {
+  setAttribute(svg: SVGElement, svgEle: SVGElement, attribute: string, def?: string) {
     let attr = svgEle.getAttribute(attribute);
     if (attr) {
       svg.setAttribute(attribute, attr);
@@ -185,15 +194,10 @@ export class NuIconComponent implements OnInit, OnChanges {
   setAnimates(svgs: string[]) {
     if (svgs && svgs.length > 0) {
       let svg = this.createSvg(svgs.shift());
-      for (let i = 0; i < this.svgElement.children.length; i++) {
-        let child = this.svgElement.children[i];
+      for (let i = 0; i < this._svgElement.children.length; i++) {
+        let child = this._svgElement.children[i];
         let toChild = svg.children[i];
-        if (
-          child &&
-          toChild &&
-          child.nodeName === "path" &&
-          toChild.nodeName === "path"
-        ) {
+        if (child && toChild && child.nodeName === "path" && toChild.nodeName === "path") {
           let toAnimate = document.createElement("animate");
           toAnimate.setAttribute("dur", "500ms");
           toAnimate.setAttribute("repeatCount", "1");

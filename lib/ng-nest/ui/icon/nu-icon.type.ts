@@ -21,6 +21,10 @@ export interface NuIconOption {
    * 图标旋转角度
    */
   nuRotate?: number;
+  /**
+   * loading效果（图标一直旋转）
+   */
+  nuSpin?: boolean;
 }
 
 /**

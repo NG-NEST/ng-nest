@@ -2,14 +2,16 @@
   nu-row {
     margin: 1rem 0;
     > nu-col {
-      color: #ffffff;
-      padding: 1rem;
-      text-align: center;
-      border-radius: 0.125rem;
-      &:nth-child(odd) {
+      .box {
+        color: #ffffff;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 0.125rem;
+      }
+      &:nth-child(odd) .box {
         background-color: var(--nu-primary-color-400);
       }
-      &:nth-child(even) {
+      &:nth-child(even) .box {
         background-color: var(--nu-primary-color);
       }
     }

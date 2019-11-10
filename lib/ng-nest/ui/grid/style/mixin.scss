@@ -14,6 +14,46 @@
     display: table;
     clear: both;
   }
+  &-flex {
+    display: flex;
+  }
+  &-justity-start {
+    justify-content: flex-start;
+  }
+  &-justity-center {
+    justify-content: center;
+  }
+  &-justity-end {
+    justify-content: flex-end;
+  }
+  &-justity-space-between {
+    justify-content: space-between;
+  }
+  &-justity-space-around {
+    justify-content: space-around;
+  }
+  &-align-top {
+    align-items: top;
+  }
+  &-align-middle {
+    align-items: middle;
+  }
+  &-align-bottom {
+    align-items: bottom;
+  }
+}
+
+@mixin media-screen($key, $value) {
+  $col-fence-initial: $col-fence;
+  @while $col-fence-initial>0 {
+    $col-percentage: 100% * $col-fence-initial / $col-fence;
+    @media only screen and #{inspect($value)} {
+      &-#{$key}-#{$col-fence-initial} {
+        width: $col-percentage;
+      }
+    }
+    $col-fence-initial: $col-fence-initial - 1;
+  }
 }
 
 @mixin col {
@@ -23,9 +63,23 @@
   box-sizing: border-box;
   $col-fence-initial: $col-fence;
   @while $col-fence-initial>0 {
+    $col-percentage: 100% * $col-fence-initial / $col-fence;
     &-#{$col-fence-initial} {
-      width: 100% * $col-fence-initial / $col-fence;
+      width: $col-percentage;
+    }
+    &-offset-#{$col-fence-initial} {
+      margin-left: $col-percentage;
     }
     $col-fence-initial: $col-fence-initial - 1;
+  }
+  @each $key, $value in $breakpoints {
+    @include media-screen($key, $value);
+  }
+  @each $key, $value in $breakpoints-spec {
+    &-hidden-#{$key} {
+      @media only screen and #{inspect($value)} {
+        display: none !important;
+      }
+    }
   }
 }
