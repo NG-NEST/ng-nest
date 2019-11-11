@@ -7,4 +7,14 @@
 .#{$prefixButton} {
   @include reset-component();
   @include button();
+  @include button-type("primary", $primary-color, $primary-color-400, $primary-color-500);
+  @include button-type("success", $success-color);
+  @include button-type("info", $info-color);
+  @include button-type("warning", $warning-color);
+  @include button-type("danger", $danger-color);
+  @include button-plain("primary", $primary-color, $primary-color-50, $primary-color-500);
+  @include button-plain("success", $success-color, $success-lighter-color);
+  @include button-plain("info", $info-color, $info-lighter-color);
+  @include button-plain("warning", $warning-color, $danger-lighter-color);
+  @include button-plain("danger", $danger-color, $info-lighter-color);
 }

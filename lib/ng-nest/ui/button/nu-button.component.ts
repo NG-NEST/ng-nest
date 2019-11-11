@@ -25,6 +25,8 @@ export class NuButtonComponent implements OnInit {
   @Input() nuTitle?: string;
   @Input() nuActivated?: boolean;
   @Input() nuDisabled?: boolean;
+  @Input() nuPlain?: boolean;
+  @Input() nuRound?: boolean;
   @HostBinding("class.nu-button-label") get getLabel() {
     return !this.nuIcon && this.nuLabel;
   }
@@ -37,8 +39,10 @@ export class NuButtonComponent implements OnInit {
   @HostBinding("class.nu-button-disabled") get getDisabled() {
     return this.nuDisabled;
   }
+  @HostBinding("class.nu-button-round") get getRound() {
+    return this.nuRound;
+  }
   private _default: NuButtonOption = {
-    nuType: "button",
     nuLabel: ""
   };
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
@@ -48,10 +52,14 @@ export class NuButtonComponent implements OnInit {
   ngOnInit() {
     fillDefault(this, this._default);
     if (this.nuTitle)
-      this.renderer.setAttribute(
-        this.elementRef.nativeElement,
-        "title",
-        this.nuTitle
-      );
+      this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.nuTitle);
+    if (this.nuType && !this.nuPlain) {
+      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.nuType}`);
+    }
+    if (this.nuType && this.nuPlain) {
+      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.nuType}-plain`);
+    } else if (this.nuPlain) {
+      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-plain`);
+    }
   }
 }

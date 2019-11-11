@@ -1,17 +1,24 @@
-<nu-button [nuLabel]="'关注'"></nu-button>
-<br />
-<br />
-<nu-button [nuLabel]="'关注'" [nuIcon]="'ado-heart'"></nu-button>
-<br />
-<br />
-<nu-buttons>
-  <nu-button [nuIcon]="'ado-align-left'"></nu-button>
-  <nu-button [nuIcon]="'ado-align-center'"></nu-button>
-  <nu-button [nuIcon]="'ado-align-right'"></nu-button>
-</nu-buttons>
-<br />
-<br />
-<nu-buttons [nuSpace]="1">
-  <nu-button [nuLabel]="'保存'" [nuIcon]="'ado-save'"></nu-button>
-  <nu-button [nuLabel]="'取消'"></nu-button>
-</nu-buttons>
+<div class="row">
+  <nu-button [nuLabel]="'默认按钮'"></nu-button>
+  <nu-button [nuLabel]="'主要按钮'" [nuType]="'primary'"></nu-button>
+  <nu-button [nuLabel]="'成功按钮'" [nuType]="'success'"></nu-button>
+  <nu-button [nuLabel]="'信息按钮'" [nuType]="'info'"></nu-button>
+  <nu-button [nuLabel]="'警告按钮'" [nuType]="'warning'"></nu-button>
+  <nu-button [nuLabel]="'危险按钮'" [nuType]="'danger'"></nu-button>
+</div>
+<div class="row">
+  <nu-button [nuLabel]="'朴素按钮'" [nuPlain]="true"></nu-button>
+  <nu-button [nuLabel]="'主要按钮'" [nuType]="'primary'" [nuPlain]="true"></nu-button>
+  <nu-button [nuLabel]="'成功按钮'" [nuType]="'success'" [nuPlain]="true"></nu-button>
+  <nu-button [nuLabel]="'信息按钮'" [nuType]="'info'" [nuPlain]="true"></nu-button>
+  <nu-button [nuLabel]="'警告按钮'" [nuType]="'warning'" [nuPlain]="true"></nu-button>
+  <nu-button [nuLabel]="'危险按钮'" [nuType]="'danger'" [nuPlain]="true"></nu-button>
+</div>
+<div class="row">
+  <nu-button [nuLabel]="'圆角按钮'" [nuRound]="true"></nu-button>
+  <nu-button [nuLabel]="'主要按钮'" [nuType]="'primary'" [nuRound]="true"></nu-button>
+  <nu-button [nuLabel]="'成功按钮'" [nuType]="'success'" [nuRound]="true"></nu-button>
+  <nu-button [nuLabel]="'信息按钮'" [nuType]="'info'" [nuRound]="true"></nu-button>
+  <nu-button [nuLabel]="'警告按钮'" [nuType]="'warning'" [nuRound]="true"></nu-button>
+  <nu-button [nuLabel]="'危险按钮'" [nuType]="'danger'" [nuRound]="true"></nu-button>
+</div>

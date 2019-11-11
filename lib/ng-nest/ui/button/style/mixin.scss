@@ -16,7 +16,8 @@
   color: $primary-text-color;
   cursor: pointer;
   user-select: none;
-  transition: background-color $animation-duration-fast;
+  transition: background-color $animation-duration-fast, color $animation-duration-fast,
+    border-color $animation-duration-fast;
   &-inner {
     display: flex;
     justify-content: center;
@@ -52,6 +53,75 @@
     background-color: rgba(0, 0, 0, 0.07);
     .nu-button-inner {
       transform: translate(1px, 1px);
+    }
+  }
+  &-text {
+    border-width: 0px;
+    color: $primary-color;
+  }
+  &-plain {
+    &:hover {
+      color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+  &-round {
+    border-radius: 5rem;
+  }
+}
+
+@mixin button-type($type, $bg-color, $hover-color: null, $active-color: null) {
+  &-#{$type} {
+    color: $white-color;
+    background-color: $bg-color;
+    &:hover {
+      @if not($hover-color) {
+        $hover-color: lighten($bg-color, 5%);
+      }
+      background-color: $hover-color;
+    }
+    &:active {
+      @if not($active-color) {
+        $active-color: darken($bg-color, 5%);
+      }
+      background-color: $active-color;
+    }
+  }
+}
+
+@mixin button-type($type, $bg-color, $hover-color: null, $active-color: null) {
+  &-#{$type} {
+    color: rgba($white-color, 0.85);
+    background-color: $bg-color;
+    &:hover {
+      @if not($hover-color) {
+        $hover-color: lighten($bg-color, 5%);
+      }
+      background-color: $hover-color;
+    }
+    &:active {
+      @if not($active-color) {
+        $active-color: darken($bg-color, 5%);
+      }
+      background-color: $active-color;
+    }
+  }
+}
+
+@mixin button-plain($type, $color, $bg-color, $active-color: null) {
+  &-#{$type}-plain {
+    color: $color;
+    background-color: $bg-color;
+    border-color: $color;
+    &:hover {
+      color: rgba($white-color, 0.85);
+      background-color: $color;
+    }
+    &:active {
+      @if not($active-color) {
+        $active-color: darken($color, 5%);
+      }
+      background-color: $active-color;
     }
   }
 }

@@ -25,6 +25,22 @@ $primary-color-a200: var(--nu-primary-color-a200, #536dfe);
 $primary-color-a400: var(--nu-primary-color-a400, #3d5afe);
 $primary-color-a700: var(--nu-primary-color-a700, #304ffe);
 
+$white-color: #ffffff !default;
+$success-color: #67c23a !default;
+$warning-color: #e6a23c !default;
+$danger-color: #f56c6c !default;
+$info-color: #909399 !default;
+
+$success-light-color: mix($white-color, $success-color, 80%) !default;
+$warning-light-color: mix($white-color, $warning-color, 80%) !default;
+$danger-light-color: mix($white-color, $danger-color, 80%) !default;
+$info-light-color: mix($white-color, $info-color, 80%) !default;
+
+$success-lighter-color: mix($white-color, $success-color, 90%) !default;
+$warning-lighter-color: mix($white-color, $warning-color, 90%) !default;
+$danger-lighter-color: mix($white-color, $danger-color, 90%) !default;
+$info-lighter-color: mix($white-color, $info-color, 90%) !default;
+
 // Font
 $font-size: 0.875rem;
 $font-variant: tabular-nums;

@@ -59,4 +59,13 @@ export interface NuButtonsOption {
   nuNotBorder?: boolean;
 }
 
-export type NuButtonType = "submit" | "button";
+/**
+ * flex 布局下的垂直排列方式
+ * @value "primary"
+ * @value "success"
+ * @value "info"
+ * @value "warning"
+ * @value "danger"
+ * @value "text"
+ */
+export type NuButtonType = "primary" | "success" | "info" | "warning" | "danger" | "text";
