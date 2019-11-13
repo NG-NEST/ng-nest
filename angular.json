@@ -200,7 +200,8 @@
             "main": "lib/ng-nest/ui/test.ts",
             "tsConfig": "lib/ng-nest/ui/tsconfig.spec.json",
             "karmaConfig": "lib/ng-nest/ui/karma.conf.js",
-            "codeCoverage": true
+            "codeCoverage": true,
+            "styles": ["lib/ng-nest/ui/style/core/var.scss"]
           }
         },
         "lint": {

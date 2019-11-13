@@ -1,66 +1,70 @@
 $nu-prefix: nu;
 
 // Color
-$primary-color-dark: var(--nu-primary-color-dark, #303f9f);
-$primary-color: var(--nu-primary-color, #3f51b5);
-$primary-color-light: var(--nu-primary-color-light, #c5cae9);
-$primary-color-text: var(--nu-primary-color-text, #ffffff);
-$accent-color: var(--nu-accent-color, #ff5722);
-$primary-text-color: var(--nu-primary-text-color, #212121);
-$secondary-text-color: var(--nu-secondary-text-color, #757575);
-$divider-color: var(--nu-divider-color, #bdbdbd);
+$-nu-primary-color-dark: var(--nu-primary-color-dark);
+$-nu-primary-color: var(--nu-primary-color);
+$-nu-primary-color-light: var(--nu-primary-color-light);
+$-nu-primary-color-text: var(--nu-primary-color-text);
+$-nu-accent-color: var(--nu-accent-color);
+$-nu-primary-text-color: var(--nu-primary-text-color);
+$-nu-secondary-text-color: var(--nu-secondary-text-color);
+$-nu-divider-color: var(--nu-divider-color);
 
-$primary-color-50: var(--nu-primary-color-50, #e8eaf6);
-$primary-color-100: var(--nu-primary-color-100, #c5cae9);
-$primary-color-200: var(--nu-primary-color-200, #9fa8da);
-$primary-color-300: var(--nu-primary-color-300, #7986cb);
-$primary-color-400: var(--nu-primary-color-400, #5c6bc0);
-$primary-color-500: var(--nu-primary-color-500, #3f51b5);
-$primary-color-600: var(--nu-primary-color-600, #3949ab);
-$primary-color-700: var(--nu-primary-color-700, #303f9f);
-$primary-color-800: var(--nu-primary-color-800, #283595);
-$primary-color-900: var(--nu-primary-color-900, #1a237e);
-$primary-color-a100: var(--nu-primary-color-a100, #8c9eff);
-$primary-color-a200: var(--nu-primary-color-a200, #536dfe);
-$primary-color-a400: var(--nu-primary-color-a400, #3d5afe);
-$primary-color-a700: var(--nu-primary-color-a700, #304ffe);
+$-nu-primary-color-plain-light: var(--nu-primary-color-plain-light);
+$-nu-primary-color-plain-dark: var(--nu-primary-color-plain-dark);
+$-nu-primary-color-plain-disabled: var(--nu-primary-color-plain-disabled);
 
-$white-color: #ffffff !default;
-$success-color: #67c23a !default;
-$warning-color: #e6a23c !default;
-$danger-color: #f56c6c !default;
-$info-color: #909399 !default;
+$-nu-white-color: var(--nu-white-color);
+$-nu-success-color: var(--nu-success-color);
+$-nu-warning-color: var(--nu-warning-color);
+$-nu-danger-color: var(--nu-danger-color);
 
-$success-light-color: mix($white-color, $success-color, 80%) !default;
-$warning-light-color: mix($white-color, $warning-color, 80%) !default;
-$danger-light-color: mix($white-color, $danger-color, 80%) !default;
-$info-light-color: mix($white-color, $info-color, 80%) !default;
+$-nu-success-color-light: var(--nu-success-color-light);
+$-nu-warning-color-light: var(--nu-warning-color-light);
+$-nu-danger-color-light: var(--nu-danger-color-light);
 
-$success-lighter-color: mix($white-color, $success-color, 90%) !default;
-$warning-lighter-color: mix($white-color, $warning-color, 90%) !default;
-$danger-lighter-color: mix($white-color, $danger-color, 90%) !default;
-$info-lighter-color: mix($white-color, $info-color, 90%) !default;
+$-nu-success-color-plain-light: var(--nu-success-color-plain-light);
+$-nu-warning-color-plain-light: var(--nu-warning-color-plain-light);
+$-nu-danger-color-plain-light: var(--nu-danger-color-plain-light);
+
+$-nu-success-color-plain-dark: var(--nu-success-color-plain-dark);
+$-nu-warning-color-plain-dark: var(--nu-warning-color-plain-dark);
+$-nu-danger-color-plain-dark: var(--nu-danger-color-plain-dark);
+
+$-nu-success-color-plain-disabled: var(--nu-success-color-plain-disabled);
+$-nu-warning-color-plain-disabled: var(--nu-warning-color-plain-disabled);
+$-nu-danger-color-plain-disabled: var(--nu-danger-color-plain-disabled);
+
+$-nu-success-color-dark: var(--nu-success-color-dark);
+$-nu-warning-color-dark: var(--nu-warning-color-dark);
+$-nu-danger-color-dark: var(--nu-danger-color-dark);
+
+$-nu-border-color-100: var(--nu-border-color-100);
+$-nu-border-color-200: var(--nu-border-color-200);
+$-nu-border-color-300: var(--nu-border-color-300);
+$-nu-border-color-400: var(--nu-border-color-400);
+$-nu-border-color: $-nu-border-color-400;
 
 // Font
-$font-size: 0.875rem;
-$font-variant: tabular-nums;
-$font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
-$font-size-sm: $font-size - 0.125rem;
-$font-size-md: $font-size + 0.125rem;
-$font-size-lg: $font-size-md + 0.125rem;
-$font-size-bg: $font-size-lg + 0.125rem;
-$line-height: 1.5;
+$-nu-font-size: 0.875rem;
+$-nu-font-variant: tabular-nums;
+$-nu-font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
+$-nu-font-size-sm: $-nu-font-size - 0.125rem;
+$-nu-font-size-md: $-nu-font-size + 0.125rem;
+$-nu-font-size-lg: $-nu-font-size-md + 0.125rem;
+$-nu-font-size-bg: $-nu-font-size-lg + 0.125rem;
+$-nu-line-height: 1.5;
 
 // Paddings
-$padding-bg: 1rem;
-$padding-lg: 0.875rem;
-$padding-md: 0.75rem;
-$padding-sm: 0.525rem;
-$padding-xs: 0.4rem;
-$padding-ss: 0.275rem;
+$-nu-padding-bg: 1rem;
+$-nu-padding-lg: 0.875rem;
+$-nu-padding-md: 0.75rem;
+$-nu-padding-sm: 0.525rem;
+$-nu-padding-xs: 0.4rem;
+$-nu-padding-ss: 0.275rem;
 
 // Border
-$border-color: $divider-color;
+$border-color: $-nu-divider-color;
 $border-style: solid;
 $border-width: 1px;
 $border-radius: 0.125rem;
@@ -71,5 +75,5 @@ $animation-duration-base: 0.4s;
 $animation-duration-fast: 0.2s;
 
 // Controls
-$control-padding-horizontal: $padding-xs;
-$control-padding-vertical: $padding-xs;
+$control-padding-horizontal: $-nu-padding-xs;
+$control-padding-vertical: $-nu-padding-xs;

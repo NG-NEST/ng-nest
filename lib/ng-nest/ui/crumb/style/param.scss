@@ -2,10 +2,10 @@
 
 $prefix: $nu-prefix + "-crumb";
 
-$crumb-font-size: $font-size;
-$crumb-color: $primary-text-color;
-$crumb-border-color: $divider-color;
+$crumb-font-size: $-nu-font-size;
+$crumb-color: $-nu-primary-text-color;
+$crumb-border-color: $-nu-divider-color;
 
-$crumb-activated-color: $primary-color;
-$crumb-activated-border-color: $primary-color;
+$crumb-activated-color: $-nu-primary-color;
+$crumb-activated-border-color: $-nu-primary-color;
 $crumb-activated-background-color: rgba(0, 0, 0, 0.05);

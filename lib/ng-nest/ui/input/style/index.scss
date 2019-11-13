@@ -12,9 +12,9 @@
     > label {
       &:after {
         content: "*";
-        font-size: $font-size + 0.375rem;
+        font-size: $-nu-font-size + 0.375rem;
         margin-left: 0.125rem;
-        color: $accent-color;
+        color: $-nu-accent-color;
         position: absolute;
       }
     }

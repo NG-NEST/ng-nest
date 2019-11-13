@@ -1,0 +1,28 @@
+// Color
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin color {
+  $color: #3f51b5;
+  .item {
+    width: 10rem;
+    height: 2rem;
+  }
+  @for $i from 0 to 10 {
+    .color-fade-out-#{$i} {
+      background-color: fade-out($color, $i / 20);
+    }
+  }
+  @for $i from 0 to 10 {
+    .color-lighten-#{$i} {
+      background-color: lighten($color, 5% * $i);
+    }
+  }
+  @for $i from 0 to 10 {
+    .color-darken-#{$i} {
+      background-color: darken($color, $i / 10);
+    }
+  }
+}

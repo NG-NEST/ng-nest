@@ -7,14 +7,76 @@
 .#{$prefixButton} {
   @include reset-component();
   @include button();
-  @include button-type("primary", $primary-color, $primary-color-400, $primary-color-500);
-  @include button-type("success", $success-color);
-  @include button-type("info", $info-color);
-  @include button-type("warning", $warning-color);
-  @include button-type("danger", $danger-color);
-  @include button-plain("primary", $primary-color, $primary-color-50, $primary-color-500);
-  @include button-plain("success", $success-color, $success-lighter-color);
-  @include button-plain("info", $info-color, $info-lighter-color);
-  @include button-plain("warning", $warning-color, $danger-lighter-color);
-  @include button-plain("danger", $danger-color, $info-lighter-color);
+  @include button-type(
+    "primary",
+    $-nu-white-color,
+    $-nu-primary-color,
+    $-nu-primary-color-light,
+    $-nu-primary-color-dark,
+    $-nu-primary-color-plain-dark
+  );
+  @include button-type(
+    "success",
+    $-nu-white-color,
+    $-nu-success-color,
+    $-nu-success-color-light,
+    $-nu-success-color-dark,
+    $-nu-success-color-plain-dark
+  );
+  @include button-type(
+    "warning",
+    $-nu-white-color,
+    $-nu-warning-color,
+    $-nu-warning-color-light,
+    $-nu-warning-color-dark,
+    $-nu-warning-color-plain-dark
+  );
+  @include button-type(
+    "danger",
+    $-nu-white-color,
+    $-nu-danger-color,
+    $-nu-danger-color-light,
+    $-nu-danger-color-dark,
+    $-nu-danger-color-plain-dark
+  );
+  @include button-plain(
+    "primary",
+    $-nu-primary-color,
+    $-nu-primary-color-plain-light,
+    $-nu-white-color,
+    $-nu-primary-color-dark,
+    $-nu-primary-color-plain-disabled,
+    $-nu-primary-color-plain-light,
+    $-nu-primary-color-plain-dark
+  );
+  @include button-plain(
+    "success",
+    $-nu-success-color,
+    $-nu-success-color-plain-light,
+    $-nu-white-color,
+    $-nu-success-color-dark,
+    $-nu-success-color-plain-disabled,
+    $-nu-success-color-plain-light,
+    $-nu-success-color-plain-dark
+  );
+  @include button-plain(
+    "warning",
+    $-nu-warning-color,
+    $-nu-warning-color-plain-light,
+    $-nu-white-color,
+    $-nu-warning-color-dark,
+    $-nu-warning-color-plain-disabled,
+    $-nu-warning-color-plain-light,
+    $-nu-warning-color-plain-dark
+  );
+  @include button-plain(
+    "danger",
+    $-nu-danger-color,
+    $-nu-danger-color-plain-light,
+    $-nu-white-color,
+    $-nu-danger-color-dark,
+    $-nu-danger-color-plain-disabled,
+    $-nu-danger-color-plain-light,
+    $-nu-danger-color-plain-dark
+  );
 }

@@ -116,12 +116,12 @@ ns-home {
           font-size: 1.4rem;
           margin: 0.625rem 0;
           text-align: center;
-          background: $primary-color -webkit-gradient(
+          background: $-nu-primary-color -webkit-gradient(
               linear,
               left top,
               right top,
-              from($primary-color),
-              to($primary-color),
+              from($-nu-primary-color),
+              to($-nu-primary-color),
               color-stop(0.5, #fff)
             ) 0 0 no-repeat;
           -webkit-background-clip: text;
@@ -149,7 +149,7 @@ ns-home {
             &:last-child {
               border-top-right-radius: 2rem;
               border-bottom-right-radius: 2rem;
-              background-color: $primary-color;
+              background-color: $-nu-primary-color;
               color: white;
             }
             &:hover {
@@ -191,11 +191,11 @@ ns-home {
           padding: 1rem 0;
           flex: 1;
           text-align: center;
-          color: $primary-text-color;
+          color: $-nu-primary-text-color;
           &:hover {
             opacity: 0.9;
             color: white;
-            background-color: $primary-color;
+            background-color: $-nu-primary-color;
           }
           &:active {
             opacity: 1;
@@ -230,11 +230,11 @@ ns-home {
           height: 8rem;
         }
         > h1 {
-          color: $primary-color;
+          color: $-nu-primary-color;
           text-align: center;
           margin: 0.625rem 0;
           > span {
-            color: $primary-text-color;
+            color: $-nu-primary-text-color;
           }
         }
       }
@@ -257,7 +257,7 @@ ns-home {
               height: 4rem;
             }
             > h3 {
-              color: $primary-color;
+              color: $-nu-primary-color;
             }
           }
         }

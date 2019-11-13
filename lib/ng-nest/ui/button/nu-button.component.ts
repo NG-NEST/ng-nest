@@ -27,6 +27,7 @@ export class NuButtonComponent implements OnInit {
   @Input() nuDisabled?: boolean;
   @Input() nuPlain?: boolean;
   @Input() nuRound?: boolean;
+  @Input() nuCircle?: boolean;
   @HostBinding("class.nu-button-label") get getLabel() {
     return !this.nuIcon && this.nuLabel;
   }
@@ -41,6 +42,9 @@ export class NuButtonComponent implements OnInit {
   }
   @HostBinding("class.nu-button-round") get getRound() {
     return this.nuRound;
+  }
+  @HostBinding("class.nu-button-circle") get getCircle() {
+    return this.nuCircle;
   }
   private _default: NuButtonOption = {
     nuLabel: ""

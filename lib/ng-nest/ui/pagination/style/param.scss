@@ -2,10 +2,10 @@
 
 $prefix: $nu-prefix + "-pagination";
 
-$pagination-font-size: $font-size;
-$pagination-color: $primary-text-color;
-$pagination-border-color: $divider-color;
+$pagination-font-size: $-nu-font-size;
+$pagination-color: $-nu-primary-text-color;
+$pagination-border-color: $-nu-divider-color;
 
-$pagination-activated-color: $primary-color;
-$pagination-activated-border-color: $primary-color;
+$pagination-activated-color: $-nu-primary-color;
+$pagination-activated-border-color: $-nu-primary-color;
 $pagination-activated-background-color: rgba(0, 0, 0, 0.05);

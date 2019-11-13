@@ -19,11 +19,11 @@
 
 // Element hover
 @mixin hover() {
-  border-color: $primary-color;
+  border-color: $-nu-primary-color;
 }
 
 // Element focus
 @mixin focus() {
-  border-color: $primary-color;
+  border-color: $-nu-primary-color;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
 }

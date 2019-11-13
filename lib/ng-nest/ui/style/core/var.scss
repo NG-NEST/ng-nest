@@ -1,0 +1,7 @@
+@import "../mixins";
+@import "./params.scss";
+
+:root {
+  @include var-colors($-nu-colors);
+  @include var-all-colors($-nu-all-colors);
+}

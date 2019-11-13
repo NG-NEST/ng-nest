@@ -118,7 +118,7 @@ html {
 
 body {
   font-size: 1rem;
-  color: $primary-text-color;
+  color: $-nu-primary-text-color;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: #fafafa;
@@ -157,13 +157,13 @@ ul {
 }
 
 a {
-  color: $primary-color;
+  color: $-nu-primary-color;
   text-decoration: none;
   transition: all 0.4s;
   cursor: pointer;
 
   &:hover {
-    color: $primary-color;
+    color: $-nu-primary-color;
   }
 }
 

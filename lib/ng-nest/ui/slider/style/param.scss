@@ -2,10 +2,10 @@
 
 $prefix: $nu-prefix + "-slider";
 
-$slider-font-size: $font-size;
-$slider-color: $primary-text-color;
-$slider-border-color: $divider-color;
+$slider-font-size: $-nu-font-size;
+$slider-color: $-nu-primary-text-color;
+$slider-border-color: $-nu-divider-color;
 
-$slider-activated-color: $primary-color;
-$slider-activated-border-color: $primary-color;
+$slider-activated-color: $-nu-primary-color;
+$slider-activated-border-color: $-nu-primary-color;
 $slider-activated-background-color: rgba(0, 0, 0, 0.05);

@@ -11,6 +11,9 @@
     display: flex;
     align-items: center;
     position: relative;
+    // color: var(--nu-blue-200);
+    // background-color: var(--nu-blue-50);
+    // border-color: var(--nu-blue-100);
     > input {
       padding: $input-padding;
       flex: 1;

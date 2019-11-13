@@ -8,7 +8,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  font-size: $font-size;
+  font-size: $-nu-font-size;
 
   ul,
   li {
@@ -45,7 +45,7 @@
       cursor: default;
       > li {
         flex: 1;
-        height: $font-size * 3;
+        height: $-nu-font-size * 3;
         &:not(:last-child) {
           padding-right: 1rem;
         }
@@ -73,7 +73,7 @@
   }
 
   &-header {
-    color: $secondary-text-color;
+    color: $-nu-secondary-text-color;
     border-bottom: 1px solid #e8e8e89c;
     > ul > li {
       display: flex;
@@ -98,9 +98,9 @@
           margin-left: 0.5rem;
           display: none;
           > .nu-button {
-            color: $secondary-text-color;
+            color: $-nu-secondary-text-color;
             &:hover {
-              color: $primary-color;
+              color: $-nu-primary-color;
             }
           }
         }
