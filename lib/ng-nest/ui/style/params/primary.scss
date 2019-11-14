@@ -1,0 +1,79 @@
+$-x-prefix: x;
+
+// Color
+$-x-primary-color-dark: var(--x-primary-color-dark);
+$-x-primary-color: var(--x-primary-color);
+$-x-primary-color-light: var(--x-primary-color-light);
+$-x-primary-color-text: var(--x-primary-color-text);
+$-x-accent-color: var(--x-accent-color);
+$-x-primary-text-color: var(--x-primary-text-color);
+$-x-secondary-text-color: var(--x-secondary-text-color);
+$-x-divider-color: var(--x-divider-color);
+
+$-x-primary-color-plain-light: var(--x-primary-color-plain-light);
+$-x-primary-color-plain-dark: var(--x-primary-color-plain-dark);
+$-x-primary-color-plain-disabled: var(--x-primary-color-plain-disabled);
+
+$-x-white-color: var(--x-white-color);
+$-x-success-color: var(--x-success-color);
+$-x-warning-color: var(--x-warning-color);
+$-x-danger-color: var(--x-danger-color);
+
+$-x-success-color-light: var(--x-success-color-light);
+$-x-warning-color-light: var(--x-warning-color-light);
+$-x-danger-color-light: var(--x-danger-color-light);
+
+$-x-success-color-plain-light: var(--x-success-color-plain-light);
+$-x-warning-color-plain-light: var(--x-warning-color-plain-light);
+$-x-danger-color-plain-light: var(--x-danger-color-plain-light);
+
+$-x-success-color-plain-dark: var(--x-success-color-plain-dark);
+$-x-warning-color-plain-dark: var(--x-warning-color-plain-dark);
+$-x-danger-color-plain-dark: var(--x-danger-color-plain-dark);
+
+$-x-success-color-plain-disabled: var(--x-success-color-plain-disabled);
+$-x-warning-color-plain-disabled: var(--x-warning-color-plain-disabled);
+$-x-danger-color-plain-disabled: var(--x-danger-color-plain-disabled);
+
+$-x-success-color-dark: var(--x-success-color-dark);
+$-x-warning-color-dark: var(--x-warning-color-dark);
+$-x-danger-color-dark: var(--x-danger-color-dark);
+
+$-x-border-color-100: var(--x-border-color-100);
+$-x-border-color-200: var(--x-border-color-200);
+$-x-border-color-300: var(--x-border-color-300);
+$-x-border-color-400: var(--x-border-color-400);
+$-x-border-color: $-x-border-color-400;
+
+// Font
+$-x-font-size: 0.875rem;
+$-x-font-variant: tabular-nums;
+$-x-font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
+$-x-font-size-sm: $-x-font-size - 0.125rem;
+$-x-font-size-md: $-x-font-size + 0.125rem;
+$-x-font-size-lg: $-x-font-size-md + 0.125rem;
+$-x-font-size-bg: $-x-font-size-lg + 0.125rem;
+$-x-line-height: 1.5;
+
+// Paddings
+$-x-padding-bg: 1rem;
+$-x-padding-lg: 0.875rem;
+$-x-padding-md: 0.75rem;
+$-x-padding-sm: 0.525rem;
+$-x-padding-xs: 0.4rem;
+$-x-padding-ss: 0.275rem;
+
+// Border
+$border-color: $-x-divider-color;
+$border-style: solid;
+$border-width: 1px;
+$border-radius: 0.125rem;
+
+// Animation
+$animation-duration-slow: 0.6s;
+$animation-duration-base: 0.4s;
+$animation-duration-fast: 0.2s;
+
+// Controls
+$control-padding-horizontal: $-x-padding-xs;
+$control-padding-vertical: $-x-padding-xs;

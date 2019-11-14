@@ -1,111 +1,111 @@
 /**
  * Row 组件名
- * @selector nu-row
+ * @selector x-row
  * @decorator component
  */
-export const RowPrefix = "nu-row";
+export const XRowPrefix = "x-row";
 
 /**
  * Col 组件名
- * @selector nu-col
+ * @selector x-col
  * @decorator component
  */
-export const ColPrefix = "nu-col";
+export const XColPrefix = "x-col";
 
 /**
  * Row 参数对象
  */
-export interface NuRowOption {
+export interface XRowOption {
   /**
    * 列间隔，单位rem
    */
-  nuSpace?: number;
+  space?: number;
   /**
    * flex 布局下的水平排列方式
    */
-  nuJustify?: NuJustify;
+  justify?: XJustify;
   /**
    * flex 布局下的垂直排列方式
    */
-  nuAlign?: NuAlign;
+  align?: XAlign;
 }
 
 /**
  * Col 参数对象
  */
-export interface NuColOption {
+export interface XColOption {
   /**
    * 24栅格布局，列占的宽度
    */
-  nuSpan?: number;
+  span?: number;
   /**
    * 栅格左侧的间隔格数
    */
-  nuOffset?: number;
+  offset?: number;
   /**
    * <768px
    */
-  nuXs?: number;
+  xs?: number;
   /**
    * ≥768px
    */
-  nuSm?: number;
+  sm?: number;
   /**
    * ≥992px
    */
-  nuMd?: number;
+  md?: number;
   /**
    * ≥1200px
    */
-  nuLg?: number;
+  lg?: number;
   /**
    * ≥1920px
    */
-  nuXl?: number;
+  xl?: number;
   /**
    * 当可视窗口在 xs 尺寸时隐藏
    */
-  nuHiddenXsOnly?: boolean;
+  hiddenXsOnly?: boolean;
   /**
    * 当可视窗口在 sm 尺寸时隐藏
    */
-  nuHiddenSmOnly?: boolean;
+  hiddenSmOnly?: boolean;
   /**
    * 当可视窗口在 sm 及以下尺寸时隐藏
    */
-  nuHiddenSmAndDown?: boolean;
+  hiddenSmAndDown?: boolean;
   /**
    * 当可视窗口在 sm 及以上尺寸时隐藏
    */
-  nuHiddenSmAndUp?: boolean;
+  hiddenSmAndUp?: boolean;
   /**
    * 当可视窗口在 md 尺寸时隐藏
    */
-  nuHiddenMdOnly?: boolean;
+  hiddenMdOnly?: boolean;
   /**
    * 当可视窗口在 md 及以下尺寸时隐藏
    */
-  nuHiddenMdAndDown?: boolean;
+  hiddenMdAndDown?: boolean;
   /**
    * 当可视窗口在 md 及以上尺寸时隐藏
    */
-  nuHiddenMdAndUp?: boolean;
+  hiddenMdAndUp?: boolean;
   /**
    * 当可视窗口在 lg 尺寸时隐藏
    */
-  nuHiddenLgOnly?: boolean;
+  hiddenLgOnly?: boolean;
   /**
    * 当可视窗口在 lg 及以下尺寸时隐藏
    */
-  nuHiddenLgAndDown?: boolean;
+  hiddenLgAndDown?: boolean;
   /**
    * 当可视窗口在 lg 及以上尺寸时隐藏
    */
-  nuHiddenLgAndUp?: boolean;
+  hiddenLgAndUp?: boolean;
   /**
    * 当可视窗口在 xl 尺寸时隐藏
    */
-  nuHiddenXlOnly?: boolean;
+  hiddenXlOnly?: boolean;
 }
 
 /**
@@ -116,7 +116,7 @@ export interface NuColOption {
  * @value "spaceAround"
  * @value "space-between"
  */
-export type NuJustify = "start" | "end" | "center" | "spaceAround" | "space-between";
+export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-between";
 
 /**
  * flex 布局下的垂直排列方式
@@ -124,4 +124,4 @@ export type NuJustify = "start" | "end" | "center" | "spaceAround" | "space-betw
  * @value "middle"
  * @value "bottom"
  */
-export type NuAlign = "top" | "middle" | "bottom";
+export type XAlign = "top" | "middle" | "bottom";

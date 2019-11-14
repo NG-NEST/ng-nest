@@ -10,7 +10,7 @@ describe(ButtonPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NuButtonModule],
-      declarations: [TestNuButtonComponent, TestNuButtonDiabledComponent]
+      declarations: [TestNuButtonComponent, TestNuButtonDiabledComponent, TestNuButtonTextComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -33,6 +33,20 @@ describe(ButtonPrefix, () => {
     let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestNuButtonDiabledComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(NuButtonComponent));
+      element = debugElement.nativeElement;
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`text.`, () => {
+    let fixture: ComponentFixture<TestNuButtonTextComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestNuButtonTextComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(NuButtonComponent));
       element = debugElement.nativeElement;
@@ -147,3 +161,24 @@ class TestNuButtonComponent {}
   ]
 })
 class TestNuButtonDiabledComponent {}
+
+@Component({
+  selector: "test-nu-text-button",
+  template: `
+    <div class="row">
+      <nu-button nuLabel="文字按钮" nuType="text"></nu-button>
+      <nu-button nuLabel="文字按钮" nuType="text" nuDisabled="true"></nu-button>
+    </div>
+  `,
+  styles: [
+    `
+      .row:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      .row > nu-button:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    `
+  ]
+})
+class TestNuButtonTextComponent {}

@@ -1,13 +1,13 @@
 :host {
-  nu-row {
+  x-row {
     margin: 1rem 0;
-    > nu-col {
-      .box {
+    > x-col {
+      > div {
         color: #ffffff;
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
-        background-color: var(--nu-primary-color);
+        background-color: var(--x-primary-color);
       }
     }
     &:first-child {

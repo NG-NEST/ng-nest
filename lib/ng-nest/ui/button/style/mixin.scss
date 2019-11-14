@@ -71,7 +71,7 @@
     width: 1.675rem;
   }
   &-disabled {
-    @include disabled($-nu-border-color-400, $-nu-white-color, $-nu-border-color-300);
+    @include disabled($-nu-border-color-400, transparent, $-nu-border-color-300);
   }
 }
 

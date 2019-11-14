@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders } from "@angular/core";
 import { NuIconModule } from "@ng-nest/ui/icon";
 import { NuSliderModule } from "@ng-nest/ui/slider";
 import { NuHighlightModule } from "@ng-nest/ui/highlight";
-import { NuGridModule } from "@ng-nest/ui/grid";
+import { XGridModule } from "@ng-nest/ui/grid";
 import { NuCrumbModule } from "@ng-nest/ui/crumb";
 import { NuInnerModule } from "@ng-nest/ui/inner";
 import { NuPortalModule } from "@ng-nest/ui/portal";
@@ -48,7 +48,7 @@ export * from "@ng-nest/ui/form";
     NuIconModule,
     NuSliderModule,
     NuHighlightModule,
-    NuGridModule,
+    XGridModule,
     NuCrumbModule,
     NuInnerModule,
     NuPortalModule,
