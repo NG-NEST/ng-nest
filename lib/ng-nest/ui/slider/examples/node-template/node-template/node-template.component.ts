@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { NuData } from "@ng-nest/ui/core";
-import { NuSliderNode } from "@ng-nest/ui/slider";
+import { XData } from "@ng-nest/ui/core";
+import { XSliderNode } from "@ng-nest/ui/slider";
 
 @Component({
   selector: "ex-node-template",
@@ -8,11 +8,11 @@ import { NuSliderNode } from "@ng-nest/ui/slider";
   styleUrls: ["./node-template.component.scss"]
 })
 export class ExNodeTemplateComponent implements OnInit {
-  data: NuData<NuSliderNode[]> = [
-    { nuKey: 1, nuLabel: "上", icon: "ado-up-square" },
-    { nuKey: 2, nuLabel: "下", icon: "ado-down-square" },
-    { nuKey: 3, nuLabel: "左", icon: "ado-left-square" },
-    { nuKey: 4, nuLabel: "右", icon: "ado-right-square" }
+  data: XData<XSliderNode[]> = [
+    { key: 1, label: "上", icon: "ado-up-square" },
+    { key: 2, label: "下", icon: "ado-down-square" },
+    { key: 3, label: "左", icon: "ado-left-square" },
+    { key: 4, label: "右", icon: "ado-right-square" }
   ];
   constructor() {}
 

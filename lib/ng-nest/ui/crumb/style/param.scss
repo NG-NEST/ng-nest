@@ -1,11 +1,11 @@
 // Crumb style paramters
 
-$prefix: $nu-prefix + "-crumb";
+$prefix: $-x-prefix + "-crumb";
 
-$crumb-font-size: $-nu-font-size;
-$crumb-color: $-nu-primary-text-color;
-$crumb-border-color: $-nu-divider-color;
+$crumb-font-size: $-x-font-size;
+$crumb-color: $-x-primary-text-color;
+$crumb-border-color: $-x-divider-color;
 
-$crumb-activated-color: $-nu-primary-color;
-$crumb-activated-border-color: $-nu-primary-color;
+$crumb-activated-color: $-x-primary-color;
+$crumb-activated-border-color: $-x-primary-color;
 $crumb-activated-background-color: rgba(0, 0, 0, 0.05);

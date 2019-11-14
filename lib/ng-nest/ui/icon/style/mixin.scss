@@ -4,7 +4,7 @@
 @import "../../style/mixins/index";
 @import "./param";
 
-@keyframes nu-icon-spin {
+@keyframes x-icon-spin {
   100% {
     transform: rotate(360deg);
   }
@@ -14,7 +14,7 @@
   display: inline-block;
   line-height: 0;
   text-align: center;
-  &-spin {
-    animation: 1s linear infinite nu-icon-spin;
+  &[spin] {
+    animation: 1s linear infinite x-icon-spin;
   }
 }

@@ -1,16 +1,16 @@
-<nu-row [nuSpace]="1">
-  <nu-col [nuSpan]="24">
+<x-row [space]="1">
+  <x-col [span]="24">
     <span>横向排列：</span>
-    <nu-slider
-      [nuData]="data"
-      [nuLayout]="'row'"
-    ></nu-slider>
-  </nu-col>
-  <nu-col [nuSpan]="24">
+    <x-slider
+      [data]="data"
+      [layout]="'row'"
+    ></x-slider>
+  </x-col>
+  <x-col [span]="24">
     <span>竖向排列：</span>
-    <nu-slider
-      [nuData]="data"
-      [nuLayout]="'column'"
-    ></nu-slider>
-  </nu-col>
-</nu-row>
+    <x-slider
+      [data]="data"
+      [layout]="'column'"
+    ></x-slider>
+  </x-col>
+</x-row>

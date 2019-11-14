@@ -118,7 +118,7 @@ html {
 
 body {
   font-size: 1rem;
-  color: $-nu-primary-text-color;
+  color: $-x-primary-text-color;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: #fafafa;
@@ -157,13 +157,13 @@ ul {
 }
 
 a {
-  color: $-nu-primary-color;
+  color: $-x-primary-color;
   text-decoration: none;
   transition: all 0.4s;
   cursor: pointer;
 
   &:hover {
-    color: $-nu-primary-color;
+    color: $-x-primary-color;
   }
 }
 
@@ -186,27 +186,27 @@ span {
 }
 
 :root {
-  --nu-primary-color-dark: #303f9f;
-  --nu-primary-color: #3f51b5;
-  --nu-primary-color-light: #c5cae9;
-  --nu-primary-color-text: #ffffff;
-  --nu-accent-color: #ff5722;
-  --nu-primary-text-color: #212121;
-  --nu-secondary-text-color: #757575;
-  --nu-divider-color: #bdbdbd;
+  --x-primary-color-dark: #303f9f;
+  --x-primary-color: #3f51b5;
+  --x-primary-color-light: #c5cae9;
+  --x-primary-color-text: #ffffff;
+  --x-accent-color: #ff5722;
+  --x-primary-text-color: #212121;
+  --x-secondary-text-color: #757575;
+  --x-divider-color: #bdbdbd;
 
-  --nu-primary-color-50: #e8eaf6;
-  --nu-primary-color-100: #c5cae9;
-  --nu-primary-color-200: #9fa8da;
-  --nu-primary-color-300: #7986cb;
-  --nu-primary-color-400: #5c6bc0;
-  --nu-primary-color-500: #3f51b5;
-  --nu-primary-color-600: #3949ab;
-  --nu-primary-color-700: #303f9f;
-  --nu-primary-color-800: #283595;
-  --nu-primary-color-900: #1a237e;
-  --nu-primary-color-a100: #8c9eff;
-  --nu-primary-color-a200: #536dfe;
-  --nu-primary-color-a400: #3d5afe;
-  --nu-primary-color-a700: #304ffe;
+  --x-primary-color-50: #e8eaf6;
+  --x-primary-color-100: #c5cae9;
+  --x-primary-color-200: #9fa8da;
+  --x-primary-color-300: #7986cb;
+  --x-primary-color-400: #5c6bc0;
+  --x-primary-color-500: #3f51b5;
+  --x-primary-color-600: #3949ab;
+  --x-primary-color-700: #303f9f;
+  --x-primary-color-800: #283595;
+  --x-primary-color-900: #1a237e;
+  --x-primary-color-a100: #8c9eff;
+  --x-primary-color-a200: #536dfe;
+  --x-primary-color-a400: #3d5afe;
+  --x-primary-color-a700: #304ffe;
 }

@@ -84,9 +84,9 @@ export function generateFiles(
     x.content = tpl;
   });
   tab.content = `
-  <div class="nu-examples-html">${html}</div>\n
-  <div class="nu-examples-info">${tab.content}</div>\n
-  <div class="nu-examples-code">${generateTabs(childTabs).content}</div>\n
+  <div class="x-examples-html">${html}</div>\n
+  <div class="x-examples-info">${tab.content}</div>\n
+  <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 
   return tab;

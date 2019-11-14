@@ -12,7 +12,7 @@
     display: flex;
     overflow: hidden;
     flex-direction: row;
-    > .nu-tab-content {
+    > .x-tab-content {
       flex-shrink: 0;
       width: 100%;
       opacity: 1;
@@ -20,27 +20,27 @@
       transition: transform $animation-duration-slow
           cubic-bezier(0.645, 0.045, 0.355, 1),
         height 0s $animation-duration-slow;
-      &.nu-tab-content-unactivated {
+      &.x-tab-content-unactivated {
         transition: height 0s;
         height: 0;
       }
     }
     &-animated {
-      > .nu-tab-content {
-        &.nu-tab-content-unactivated {
+      > .x-tab-content {
+        &.x-tab-content-unactivated {
           display: inherit;
         }
       }
     }
   }
   > .#{$prefix}-list {
-    > .nu-slider {
+    > .x-slider {
       > ul > li {
         > a {
           color: $tabs-color;
         }
         &:hover,
-        &.nu-slider-activated {
+        &.x-slider-activated {
           > a {
             color: $tabs-activated-color;
           }
@@ -48,7 +48,7 @@
       }
     }
   }
-  .nu-slider {
+  .x-slider {
     > ul > li > a > span {
       cursor: inherit;
       user-select: none;

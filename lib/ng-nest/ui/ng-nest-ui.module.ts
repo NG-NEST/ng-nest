@@ -1,25 +1,25 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 
-import { NuIconModule } from "@ng-nest/ui/icon";
-import { NuSliderModule } from "@ng-nest/ui/slider";
-import { NuHighlightModule } from "@ng-nest/ui/highlight";
+import { XIconModule } from "@ng-nest/ui/icon";
+import { XSliderModule } from "@ng-nest/ui/slider";
+import { XHighlightModule } from "@ng-nest/ui/highlight";
 import { XGridModule } from "@ng-nest/ui/grid";
-import { NuCrumbModule } from "@ng-nest/ui/crumb";
-import { NuInnerModule } from "@ng-nest/ui/inner";
-import { NuPortalModule } from "@ng-nest/ui/portal";
+import { XCrumbModule } from "@ng-nest/ui/crumb";
+import { XInnerModule } from "@ng-nest/ui/inner";
+import { XPortalModule } from "@ng-nest/ui/portal";
 
-import { NuInputModule } from "@ng-nest/ui/input";
-import { NuButtonModule } from "@ng-nest/ui/button";
-import { NuAnchorModule } from "@ng-nest/ui/anchor";
-import { NuTabsModule } from "@ng-nest/ui/tabs";
-import { NuTableModule } from "@ng-nest/ui/table";
-import { NuPaginationModule } from "@ng-nest/ui/pagination";
+import { XInputModule } from "@ng-nest/ui/input";
+import { XButtonModule } from "@ng-nest/ui/button";
+import { XAnchorModule } from "@ng-nest/ui/anchor";
+import { XTabsModule } from "@ng-nest/ui/tabs";
+import { XTableModule } from "@ng-nest/ui/table";
+import { XPaginationModule } from "@ng-nest/ui/pagination";
 
-import { NuDocModule } from "@ng-nest/ui/doc";
-import { NuExamplesModule } from "@ng-nest/ui/examples";
-import { NuApiModule } from "@ng-nest/ui/api";
-import { NuPatternModule } from "@ng-nest/ui/pattern";
-import { NuFormModule } from "@ng-nest/ui/form";
+import { XDocModule } from "@ng-nest/ui/doc";
+import { XExamplesModule } from "@ng-nest/ui/examples";
+import { XApiModule } from "@ng-nest/ui/api";
+import { XPatternModule } from "@ng-nest/ui/pattern";
+import { XFormModule } from "@ng-nest/ui/form";
 
 export * from "@ng-nest/ui/core";
 export * from "@ng-nest/ui/icon";
@@ -45,24 +45,24 @@ export * from "@ng-nest/ui/form";
 
 @NgModule({
   exports: [
-    NuIconModule,
-    NuSliderModule,
-    NuHighlightModule,
+    XIconModule,
+    XSliderModule,
+    XHighlightModule,
     XGridModule,
-    NuCrumbModule,
-    NuInnerModule,
-    NuPortalModule,
-    NuInputModule,
-    NuButtonModule,
-    NuAnchorModule,
-    NuTabsModule,
-    NuTableModule,
-    NuPaginationModule,
-    NuDocModule,
-    NuExamplesModule,
-    NuApiModule,
-    NuPatternModule,
-    NuFormModule
+    XCrumbModule,
+    XInnerModule,
+    XPortalModule,
+    XInputModule,
+    XButtonModule,
+    XAnchorModule,
+    XTabsModule,
+    XTableModule,
+    XPaginationModule,
+    XDocModule,
+    XExamplesModule,
+    XApiModule,
+    XPatternModule,
+    XFormModule
   ]
 })
 export class NgNestUiModule {

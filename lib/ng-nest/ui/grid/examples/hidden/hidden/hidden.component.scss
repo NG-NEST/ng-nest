@@ -1,7 +1,7 @@
 :host {
-  nu-row {
+  x-row {
     margin: 1rem 0;
-    > nu-col {
+    > x-col {
       .box {
         color: #ffffff;
         padding: 1rem;
@@ -9,10 +9,10 @@
         border-radius: 0.125rem;
       }
       &:nth-child(odd) .box {
-        background-color: var(--nu-primary-color-400);
+        background-color: var(--x-primary-color-400);
       }
       &:nth-child(even) .box {
-        background-color: var(--nu-primary-color);
+        background-color: var(--x-primary-color);
       }
     }
     &:first-child {

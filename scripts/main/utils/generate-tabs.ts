@@ -14,7 +14,7 @@ export function generateTabs(tabs: NcTabs): NcTabs {
   let tpl = fs.readFileSync(tabs.tplPath, "utf8");
   let content = "";
   tabs.tabs.forEach(x => {
-    content += `<nu-tab [nuLabel]="'${x.label}'">${x.content}</nu-tab>\n`;
+    content += `<x-tab [label]="'${x.label}'">${x.content}</x-tab>\n`;
   });
   tpl = replaceKey(tpl, "__layout", tabs.layout);
   tpl = replaceKey(tpl, "__content", content);

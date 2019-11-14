@@ -8,7 +8,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  font-size: $-nu-font-size;
+  font-size: $-x-font-size;
 
   ul,
   li {
@@ -45,7 +45,7 @@
       cursor: default;
       > li {
         flex: 1;
-        height: $-nu-font-size * 3;
+        height: $-x-font-size * 3;
         &:not(:last-child) {
           padding-right: 1rem;
         }
@@ -60,20 +60,20 @@
     border-bottom: 1px solid #e8e8e89c;
     > .#{$prefix}-tool-right {
       display: flex;
-      > .nu-input {
+      > .x-input {
         height: 1.675rem;
-        > .nu-input-row > input {
+        > .x-input-row > input {
           height: -webkit-fill-available;
         }
       }
-      > .nu-buttons {
+      > .x-buttons {
         margin-left: 0.625rem;
       }
     }
   }
 
   &-header {
-    color: $-nu-secondary-text-color;
+    color: $-x-secondary-text-color;
     border-bottom: 1px solid #e8e8e89c;
     > ul > li {
       display: flex;
@@ -94,25 +94,25 @@
           text-overflow: ellipsis;
           overflow: hidden;
         }
-        > .nu-buttons {
+        > .x-buttons {
           margin-left: 0.5rem;
           display: none;
-          > .nu-button {
-            color: $-nu-secondary-text-color;
+          > .x-button {
+            color: $-x-secondary-text-color;
             &:hover {
-              color: $-nu-primary-color;
+              color: $-x-primary-color;
             }
           }
         }
       }
       &:hover,
-      &.nu-table-row-activated {
+      &.x-table-row-activated {
         margin-left: -1rem;
         margin-right: -1rem;
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: rgba(0, 0, 0, 0.02);
-        > li > .nu-buttons {
+        > li > .x-buttons {
           display: inline-block;
         }
       }

@@ -1,3 +1,3 @@
-export * from "./nu-inner.component";
-export * from "./nu-inner.module";
-export * from "./nu-inner.type";
+export * from "./inner.component";
+export * from "./inner.module";
+export * from "./inner.type";

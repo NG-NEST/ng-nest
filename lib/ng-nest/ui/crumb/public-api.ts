@@ -1,3 +1,3 @@
-export * from "./nu-crumb.component";
-export * from "./nu-crumb.module";
-export * from "./nu-crumb.type";
+export * from "./crumb.component";
+export * from "./crumb.module";
+export * from "./crumb.type";

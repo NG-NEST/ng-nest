@@ -1,3 +1,3 @@
-export * from "./nu-examples.component";
-export * from "./nu-examples.module";
-export * from "./nu-examples.type";
+export * from "./examples.component";
+export * from "./examples.module";
+export * from "./examples.type";

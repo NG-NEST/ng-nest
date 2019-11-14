@@ -1,9 +1,9 @@
-<nu-table
-  [nuColumns]="columns"
-  [nuActions]="actions"
-  [nuData]="data"
-  [nuIndex]="index"
-  [nuSize]="size"
-  [nuTotal]="total"
-  (nuIndexChange)="indexChange($event)"
-></nu-table>
+<x-table
+  [columns]="columns"
+  [actions]="actions"
+  [data]="data"
+  [index]="index"
+  [size]="size"
+  [total]="total"
+  (indexChange)="indexChange($event)"
+></x-table>

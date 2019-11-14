@@ -1,3 +1,3 @@
-export * from "./nu-slider.component";
-export * from "./nu-slider.module";
-export * from "./nu-slider.type";
+export * from "./slider.component";
+export * from "./slider.module";
+export * from "./slider.type";

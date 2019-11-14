@@ -27,7 +27,7 @@
 </ul>
 
 <ng-template #itemTemp let-opt="option">
-  <nu-icon [nuType]="opt.icon"></nu-icon>
+  <x-icon [type]="opt.icon"></x-icon>
   <p>
     {{ opt.label }} <span *ngIf="opt.enLabel">{{ opt.enLabel }}</span>
   </p>

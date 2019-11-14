@@ -7,9 +7,9 @@
 @mixin form {
   display: block;
   > form {
-    > .nu-grid {
-      > .nu-row {
-        > .nu-col {
+    > .x-grid {
+      > .x-row {
+        > .x-col {
           padding: 4px;
         }
       }

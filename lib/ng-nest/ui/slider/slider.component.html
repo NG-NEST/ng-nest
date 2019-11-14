@@ -1,0 +1,21 @@
+<ul #sliders>
+  <li
+    *ngFor="let slider of sliders; index as i"
+    [ngClass]="{ 'x-slider-activated': i == activatedIndex }"
+    (click)="action('click', slider, i)"
+    [title]="nodeTemplate ? slider.label : ''"
+  >
+    <ng-container *ngIf="!nodeTemplate">{{ slider.label }}</ng-container>
+    <ng-container *ngIf="nodeTemplate">
+      <ng-container
+        *ngTemplateOutlet="nodeTemplate; context: { node$: slider }"
+      ></ng-container>
+    </ng-container>
+  </li>
+  <li
+    class="x-slider-highlight"
+    [hidden]="highlightHidden"
+    #highlight
+    [title]="nodeTemplate ? activatedSlider?.label : ''"
+  ></li>
+</ul>

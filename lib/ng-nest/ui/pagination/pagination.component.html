@@ -1,0 +1,42 @@
+<x-buttons
+  ><x-button
+    [icon]="'fto-chevron-left'"
+    [title]="'上一页'"
+    [disabled]="index === 1"
+    (click)="jump(-1, true)"
+  ></x-button>
+  <x-button
+    [label]="1"
+    [activated]="index === 1"
+    (click)="jump(1)"
+  ></x-button>
+  <x-button
+    *ngIf="indexLast > 9 && index - 3 > indexFirst"
+    [icon]="'fto-more-horizontal'"
+    (click)="jump(-5, true)"
+  ></x-button>
+  <x-button
+    *ngFor="let item of indexes"
+    [label]="item"
+    [activated]="index === item"
+    (click)="jump(item)"
+  ></x-button>
+  <x-button
+    *ngIf="indexLast > 9 && index + 3 < indexLast"
+    [icon]="'fto-more-horizontal'"
+    (click)="jump(5, true)"
+  ></x-button>
+  <x-button
+    *ngIf="lastIndex > indexFirst"
+    [label]="lastIndex"
+    [activated]="index === lastIndex"
+    (click)="jump(lastIndex)"
+  ></x-button>
+  <x-button
+    [icon]="'fto-chevron-right'"
+    [title]="'下一页'"
+    [disabled]="index === lastIndex"
+    (click)="jump(1, true)"
+  ></x-button>
+</x-buttons>
+<x-button [label]="'共 ' + total + ' 条'"></x-button>

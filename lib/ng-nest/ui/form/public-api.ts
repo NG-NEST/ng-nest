@@ -1,3 +1,3 @@
-export * from "./nu-form.component";
-export * from "./nu-form.module";
-export * from "./nu-form.type";
+export * from "./form.component";
+export * from "./form.module";
+export * from "./form.type";

@@ -1,3 +1,3 @@
-export * from "./nu-pattern.component";
-export * from "./nu-pattern.module";
-export * from "./nu-pattern.type";
+export * from "./pattern.component";
+export * from "./pattern.module";
+export * from "./pattern.type";

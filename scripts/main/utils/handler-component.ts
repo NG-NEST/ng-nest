@@ -76,12 +76,12 @@ export function handlerExamples(page: NcPage) {
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf("__api") <= -1) return;
   let types = await hanlderType(
-    path.join(page.path, `nu-${page.name}.type.ts`)
+    path.join(page.path, `x-${page.name}.type.ts`)
   );
   page.custom = replaceKey(
     page.custom,
     "__api",
-    `<nu-api>${generateTypes(...types)}</nu-api>`
+    `<x-api>${generateTypes(...types)}</x-api>`
   );
 }
 
@@ -91,6 +91,6 @@ export async function handlerPattern(page: NcPage) {
   page.custom = replaceKey(
     page.custom,
     "__pattern",
-    `<nu-pattern>${generatePatterns(...patterns)}</nu-pattern>`
+    `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`
   );
 }

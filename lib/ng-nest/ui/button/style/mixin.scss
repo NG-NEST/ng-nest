@@ -6,7 +6,7 @@
 
 @mixin button {
   border: 1px solid;
-  border-color: $-nu-border-color;
+  border-color: $-x-border-color;
   border-radius: 0.125rem;
   display: inline-block;
   padding: 0 0.65rem;
@@ -14,7 +14,7 @@
   height: 1.675rem;
   background-color: rgba(255, 255, 255, 0.04);
   background-clip: border-box;
-  color: $-nu-primary-text-color;
+  color: $-x-primary-text-color;
   cursor: pointer;
   user-select: none;
   transition: background-color $animation-duration-fast, color $animation-duration-fast,
@@ -26,15 +26,15 @@
     height: 100%;
     white-space: nowrap;
     transition: transform $animation-duration-fast;
-    > .nu-icon {
+    > .x-icon {
       font-size: 0.925rem;
       margin-right: 0.125rem;
     }
   }
   &-icon {
     padding: 0 0.4rem;
-    > .nu-button-inner {
-      > .nu-icon {
+    > .x-button-inner {
+      > .x-icon {
         font-size: 1rem;
         margin-right: 0;
       }
@@ -48,18 +48,18 @@
   }
   &:active {
     background-color: rgba(0, 0, 0, 0.07);
-    .nu-button-inner {
+    .x-button-inner {
       transform: translate(1px, 1px);
     }
   }
   &-text {
     border-width: 0px;
-    color: $-nu-primary-color;
+    color: $-x-primary-color;
   }
   &-plain {
     &:hover {
-      color: $-nu-primary-color;
-      border-color: $-nu-primary-color;
+      color: $-x-primary-color;
+      border-color: $-x-primary-color;
     }
   }
   &-round {
@@ -71,7 +71,7 @@
     width: 1.675rem;
   }
   &-disabled {
-    @include disabled($-nu-border-color-400, transparent, $-nu-border-color-300);
+    @include disabled($-x-border-color-400, transparent, $-x-border-color-300);
   }
 }
 
@@ -133,7 +133,7 @@
     border-color: $border-color;
   }
   &:active {
-    .nu-button-inner {
+    .x-button-inner {
       transform: none;
     }
   }
@@ -141,8 +141,8 @@
 
 @mixin buttons {
   display: inline-flex;
-  &:not(.nu-buttons-space) {
-    > .nu-button {
+  &:not(.x-buttons-space) {
+    > .x-button {
       border-left-width: 0;
       border-right-width: 0;
       border-radius: 0;
@@ -162,26 +162,26 @@
     }
   }
   &-space {
-    > .nu-button {
+    > .x-button {
       &:not(:first-child) {
         margin-left: 0.625rem;
       }
     }
   }
   &-not-border {
-    > .nu-button {
+    > .x-button {
       border: 0;
       padding: 0 0.4rem;
       background-color: transparent;
       &-icon {
         padding: 0 0.2rem;
-        > .nu-button-inner {
-          > .nu-icon {
+        > .x-button-inner {
+          > .x-icon {
             font-size: 1.2rem;
           }
         }
         &:hover {
-          color: $-nu-primary-color;
+          color: $-x-primary-color;
           background-color: transparent;
         }
       }

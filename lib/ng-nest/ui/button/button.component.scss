@@ -1,0 +1,82 @@
+// Button
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$prefixButton} {
+  @include reset-component();
+  @include button();
+  @include button-type(
+    "primary",
+    $-x-white-color,
+    $-x-primary-color,
+    $-x-primary-color-light,
+    $-x-primary-color-dark,
+    $-x-primary-color-plain-dark
+  );
+  @include button-type(
+    "success",
+    $-x-white-color,
+    $-x-success-color,
+    $-x-success-color-light,
+    $-x-success-color-dark,
+    $-x-success-color-plain-dark
+  );
+  @include button-type(
+    "warning",
+    $-x-white-color,
+    $-x-warning-color,
+    $-x-warning-color-light,
+    $-x-warning-color-dark,
+    $-x-warning-color-plain-dark
+  );
+  @include button-type(
+    "danger",
+    $-x-white-color,
+    $-x-danger-color,
+    $-x-danger-color-light,
+    $-x-danger-color-dark,
+    $-x-danger-color-plain-dark
+  );
+  @include button-plain(
+    "primary",
+    $-x-primary-color,
+    $-x-primary-color-plain-light,
+    $-x-white-color,
+    $-x-primary-color-dark,
+    $-x-primary-color-plain-disabled,
+    $-x-primary-color-plain-light,
+    $-x-primary-color-plain-dark
+  );
+  @include button-plain(
+    "success",
+    $-x-success-color,
+    $-x-success-color-plain-light,
+    $-x-white-color,
+    $-x-success-color-dark,
+    $-x-success-color-plain-disabled,
+    $-x-success-color-plain-light,
+    $-x-success-color-plain-dark
+  );
+  @include button-plain(
+    "warning",
+    $-x-warning-color,
+    $-x-warning-color-plain-light,
+    $-x-white-color,
+    $-x-warning-color-dark,
+    $-x-warning-color-plain-disabled,
+    $-x-warning-color-plain-light,
+    $-x-warning-color-plain-dark
+  );
+  @include button-plain(
+    "danger",
+    $-x-danger-color,
+    $-x-danger-color-plain-light,
+    $-x-white-color,
+    $-x-danger-color-dark,
+    $-x-danger-color-plain-disabled,
+    $-x-danger-color-plain-light,
+    $-x-danger-color-plain-dark
+  );
+}

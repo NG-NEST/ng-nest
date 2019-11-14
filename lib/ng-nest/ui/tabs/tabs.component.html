@@ -1,0 +1,36 @@
+<div #list class="x-tabs-list" [hidden]="sliderHidden">
+  <x-slider
+    #slider
+    [data]="sliderOption.data"
+    [layout]="sliderOption.layout"
+    [borderPosition]="sliderOption.borderPosition"
+    [nodeTemplate]="sliderNodeTpl"
+    [activatedIndex]="sliderOption.activatedIndex"
+    (indexChange)="activatedChange($event)"
+  ></x-slider>
+</div>
+<div
+  #content
+  class="x-tabs-contents"
+  [class.x-tabs-contents-animated]="
+    layout === 'top' || layout === 'bottom'
+  "
+>
+  <x-tab-content
+    *ngFor="let tab of listTabs; index as i"
+    [active]="activatedIndex == i"
+    [content]="tab.content"
+    [class.x-tab-content-unactivated]="activatedIndex != i"
+    [style.transform]="
+      'translate(' + (-activatedIndex || 0) * 100 + '%, 0px)'
+    "
+  >
+  </x-tab-content>
+</div>
+
+<ng-template #sliderNodeTpl let-node="node$">
+  <!-- Todo: 组件使用 ShadowDom 模式，传入的模板样式无法通过 class 指定-->
+  <a class="">
+    <span>{{ node.label }}</span>
+  </a>
+</ng-template>

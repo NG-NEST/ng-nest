@@ -16,7 +16,7 @@ export function generateTypes(...types: NcType[]) {
       switch (x.object) {
         case NcObjectType.Const:
           if (x.name.endsWith("Prefix")) {
-            let selector = `<h3 class="nu-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
+            let selector = `<h3 class="x-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
             <p>${x.description}</p>`;
             result += selector;
           }
@@ -33,7 +33,7 @@ export function generateTypes(...types: NcType[]) {
           });
           table = `<h3>${x.name}</h3>
             <p>${x.description}</p>
-            <table class="nu-api-interface">
+            <table class="x-api-interface">
               <tr>
                 <th>参数</th>
                 <th>说明</th>
@@ -55,7 +55,7 @@ export function generateTypes(...types: NcType[]) {
     });
     if (typeTable !== "") {
       typeTable = `<h3>Type</h3>
-      <table class="nu-api-type">
+      <table class="x-api-type">
         <tr>
           <th>类型</th>
           <th>说明</th>

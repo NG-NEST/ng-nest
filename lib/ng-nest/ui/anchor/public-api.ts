@@ -1,3 +1,3 @@
-export * from "./nu-anchor.component";
-export * from "./nu-anchor.module";
-export * from "./nu-anchor.type";
+export * from "./anchor.component";
+export * from "./anchor.module";
+export * from "./anchor.type";

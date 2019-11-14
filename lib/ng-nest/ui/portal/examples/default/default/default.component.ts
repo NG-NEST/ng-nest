@@ -5,7 +5,7 @@ import {
   ViewContainerRef,
   ViewChild
 } from "@angular/core";
-import { NuPortalService } from "@ng-nest/ui/portal";
+import { XPortalService } from "@ng-nest/ui/portal";
 import { Overlay } from "@angular/cdk/overlay";
 
 @Component({
@@ -16,16 +16,16 @@ import { Overlay } from "@angular/cdk/overlay";
 export class ExDefaultComponent {
   @ViewChild("temp", { static: false }) temp: TemplateRef<any>;
   constructor(
-    private portal: NuPortalService,
+    private portal: XPortalService,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef
   ) {}
   showPortal() {
     this.portal.create({
-      nuContent: this.temp,
-      nuViewContainerRef: this.viewContainerRef,
-      nuContext: { text: "名字" },
-      nuOverlayConfig: {
+      content: this.temp,
+      viewContainerRef: this.viewContainerRef,
+      context: { text: "名字" },
+      overlayConfig: {
         positionStrategy: this.overlay
           .position()
           .global()

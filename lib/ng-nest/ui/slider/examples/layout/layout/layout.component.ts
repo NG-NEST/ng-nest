@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { NuData } from "@ng-nest/ui/core";
-import { NuSliderNode } from "@ng-nest/ui/slider";
+import { XData } from "@ng-nest/ui/core";
+import { XSliderNode } from "@ng-nest/ui/slider";
 
 @Component({
   selector: "ex-layout",
@@ -8,11 +8,11 @@ import { NuSliderNode } from "@ng-nest/ui/slider";
   styleUrls: ["./layout.component.scss"]
 })
 export class ExLayoutComponent implements OnInit {
-  data: NuData<NuSliderNode[]> = [
-    { nuKey: 1, nuLabel: "栅格" },
-    { nuKey: 2, nuLabel: "代码高亮" },
-    { nuKey: 3, nuLabel: "SVG图标" },
-    { nuKey: 4, nuLabel: "滑块" }
+  data: XData<XSliderNode[]> = [
+    { key: 1, label: "栅格" },
+    { key: 2, label: "代码高亮" },
+    { key: 3, label: "SVG图标" },
+    { key: 4, label: "滑块" }
   ];
   constructor() {}
 

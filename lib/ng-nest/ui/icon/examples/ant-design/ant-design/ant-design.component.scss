@@ -1,7 +1,7 @@
 :host {
-  .nu-row {
+  .x-row {
     margin-top: 1rem;
-    > .nu-col {
+    > .x-col {
       > .box {
         display: flex;
         flex-direction: column;
@@ -11,7 +11,7 @@
         border-radius: 0.125rem;
         transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
         cursor: pointer;
-        > .nu-icon {
+        > .x-icon {
           font-size: 1.5rem;
           transition: transform 0.3s ease-in-out;
         }
@@ -26,9 +26,9 @@
           padding: 0 0.625rem;
         }
         &:hover {
-          background-color: var(--nu-primary-color);
+          background-color: var(--x-primary-color);
           color: white;
-          > .nu-icon {
+          > .x-icon {
             color: inherit;
             transform: scale(1.4);
           }

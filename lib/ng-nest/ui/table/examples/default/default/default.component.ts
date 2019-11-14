@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NuTableAction, NuTableColumn } from "@ng-nest/ui/table";
+import { XTableAction, XTableColumn } from "@ng-nest/ui/table";
 import * as _ from "lodash";
 
 @Component({
@@ -8,50 +8,50 @@ import * as _ from "lodash";
   styleUrls: ["./default.component.scss"]
 })
 export class ExDefaultComponent {
-  actions: NuTableAction[] = [
-    { nuLabel: "播放全部", nuIcon: "fto-play" },
-    { nuLabel: "下载", nuIcon: "fto-download" },
-    { nuLabel: "批量操作", nuIcon: "fto-list" },
+  actions: XTableAction[] = [
+    { label: "播放全部", icon: "fto-play" },
+    { label: "下载", icon: "fto-download" },
+    { label: "批量操作", icon: "fto-list" },
     {
-      nuIcon: "fto-menu",
-      nuTitle: "列表视图",
-      nuActionLayoutType: "top-right-icon"
+      icon: "fto-menu",
+      title: "列表视图",
+      actionLayoutType: "top-right-icon"
     },
     {
-      nuIcon: "fto-user",
-      nuTitle: "歌手视图",
-      nuActionLayoutType: "top-right-icon"
+      icon: "fto-user",
+      title: "歌手视图",
+      actionLayoutType: "top-right-icon"
     },
     {
-      nuIcon: "fto-disc",
-      nuTitle: "专辑视图",
-      nuActionLayoutType: "top-right-icon"
+      icon: "fto-disc",
+      title: "专辑视图",
+      actionLayoutType: "top-right-icon"
     },
     {
-      nuIcon: "fto-play",
-      nuTitle: "播放",
-      nuActionLayoutType: "row-icon"
+      icon: "fto-play",
+      title: "播放",
+      actionLayoutType: "row-icon"
     },
     {
-      nuIcon: "fto-plus-square",
-      nuTitle: "添加到",
-      nuActionLayoutType: "row-icon"
+      icon: "fto-plus-square",
+      title: "添加到",
+      actionLayoutType: "row-icon"
     },
     {
-      nuIcon: "fto-download",
-      nuTitle: "下载",
-      nuActionLayoutType: "row-icon"
+      icon: "fto-download",
+      title: "下载",
+      actionLayoutType: "row-icon"
     },
     {
-      nuIcon: "fto-more-vertical",
-      nuTitle: "更多操作",
-      nuActionLayoutType: "row-icon"
+      icon: "fto-more-vertical",
+      title: "更多操作",
+      actionLayoutType: "row-icon"
     }
   ];
-  columns: NuTableColumn[] = [
-    { nuKey: "song", nuLabel: "歌曲", nuFlex: 2 },
-    { nuKey: "auth", nuLabel: "作者", nuFlex: 1 },
-    { nuKey: "album", nuLabel: "专辑", nuFlex: 1 }
+  columns: XTableColumn[] = [
+    { key: "song", label: "歌曲", flex: 2 },
+    { key: "auth", label: "作者", flex: 1 },
+    { key: "album", label: "专辑", flex: 1 }
   ];
   list = Array.from({ length: 115 }).map((x, i) => {
     return {

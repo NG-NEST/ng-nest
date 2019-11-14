@@ -1,18 +1,18 @@
 // Input style paramters
 
-$prefix: "nu-input";
+$prefix: "x-input";
 
 /* 字体大小 */
-$input-font-size: $-nu-font-size;
+$input-font-size: $-x-font-size;
 
 /* 内边距 */
 $input-padding: 0 $control-padding-horizontal;
 
 /* 文字颜色 */
-$input-color: $-nu-primary-text-color;
+$input-color: $-x-primary-text-color;
 
 /* 提示文字颜色 */
-$input-placeholder-color: $-nu-divider-color;
+$input-placeholder-color: $-x-divider-color;
 
 /* 背景颜色 */
 $input-background-color: #ffffff;
@@ -24,10 +24,10 @@ $input-border: $border-width $border-style $border-color;
 $input-border-radius: $border-radius;
 
 /* 禁用颜色 */
-$input-disabled-color: $-nu-secondary-text-color;
+$input-disabled-color: $-x-secondary-text-color;
 
 /* 输入框中的图标大小 */
-$input-icon-font-size: $-nu-font-size-md;
+$input-icon-font-size: $-x-font-size-md;
 
 /* 输入框中图标的内边距 */
 $input-icon-padding: $control-padding-horizontal;

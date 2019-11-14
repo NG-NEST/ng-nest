@@ -1,3 +1,3 @@
-export * from "./nu-color.component";
-export * from "./nu-color.module";
-export * from "./nu-color.type";
+export * from "./color.component";
+export * from "./color.module";
+export * from "./color.type";

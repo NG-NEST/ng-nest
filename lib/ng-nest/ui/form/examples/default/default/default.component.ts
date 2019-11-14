@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
   selector: "ex-form",
   template: `
-    <nu-form></nu-form>
+    <x-form></x-form>
   `
 })
 export class ExFormComponent {}

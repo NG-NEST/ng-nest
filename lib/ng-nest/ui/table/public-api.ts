@@ -1,3 +1,3 @@
-export * from "./nu-table.component";
-export * from "./nu-table.module";
-export * from "./nu-table.type";
+export * from "./table.component";
+export * from "./table.module";
+export * from "./table.type";

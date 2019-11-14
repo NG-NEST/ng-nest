@@ -1,3 +1,3 @@
-export * from "./nu-api.component";
-export * from "./nu-api.module";
-export * from "./nu-api.type";
+export * from "./api.component";
+export * from "./api.module";
+export * from "./api.type";

@@ -1,3 +1,3 @@
-export * from "./nu-pagination.component";
-export * from "./nu-pagination.module";
-export * from "./nu-pagination.type";
+export * from "./pagination.component";
+export * from "./pagination.module";
+export * from "./pagination.type";

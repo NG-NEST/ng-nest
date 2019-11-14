@@ -1,11 +1,11 @@
 // Slider style paramters
 
-$prefix: $nu-prefix + "-slider";
+$prefix: $-x-prefix + "-slider";
 
-$slider-font-size: $-nu-font-size;
-$slider-color: $-nu-primary-text-color;
-$slider-border-color: $-nu-divider-color;
+$slider-font-size: $-x-font-size;
+$slider-color: $-x-primary-text-color;
+$slider-border-color: $-x-divider-color;
 
-$slider-activated-color: $-nu-primary-color;
-$slider-activated-border-color: $-nu-primary-color;
+$slider-activated-color: $-x-primary-color;
+$slider-activated-border-color: $-x-primary-color;
 $slider-activated-background-color: rgba(0, 0, 0, 0.05);

@@ -1,3 +1,3 @@
-export * from "./nu-input.component";
-export * from "./nu-input.module";
-export * from "./nu-input.type";
+export * from "./input.component";
+export * from "./input.module";
+export * from "./input.type";

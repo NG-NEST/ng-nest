@@ -1,0 +1,45 @@
+<form (ngSubmit)="submit()" [formGroup]="formGroup">
+  <ng-container [ngSwitch]="controlsType">
+    <ng-container *ngSwitchCase="'controls'">
+      <x-row>
+        <ng-container
+          *ngTemplateOutlet="controlsTemp; context: { controls: controls }"
+        >
+        </ng-container>
+      </x-row>
+    </ng-container>
+    <ng-container *ngSwitchCase="'rows'">
+      <ng-container
+        *ngTemplateOutlet="rowsTemp; context: { rows: controls }"
+      ></ng-container>
+    </ng-container>
+  </ng-container>
+</form>
+
+<ng-template #rowsTemp let-rows="rows">
+  <ng-container *ngFor="let row of rows">
+    <x-row *ngIf="!row.hidden" [ngClass]="{ 'x-hidden': row.title }">
+      <ng-container
+        *ngTemplateOutlet="titleTemp; context: { row: row }"
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="controlsTemp; context: { controls: row.controls }"
+      ></ng-container>
+    </x-row>
+  </ng-container>
+</ng-template>
+
+<ng-template #controlsTemp let-controls="controls">
+  <x-col *ngFor="let control of controls" [span]="control.span">
+    <x-control [option]="control"></x-control>
+  </x-col>
+</ng-template>
+
+<ng-template #titleTemp let-row="row">
+  <div class="title">
+    <label>
+      <span *ngIf="row.icon" class="{{ row.icon }}"></span>
+      <span>{{ row.title }}</span>
+    </label>
+  </div>
+</ng-template>

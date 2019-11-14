@@ -1,0 +1,25 @@
+<div #content class="x-anchor-content">
+  <ng-content></ng-content>
+</div>
+<div
+  #list
+  class="x-anchor-list"
+  [ngClass]="{ 'x-anchor-list-fixed': listFixed }"
+  [style.top.rem]="listFixed ? top : 0"
+>
+  <x-slider
+    [data]="sliderOption.data"
+    [layout]="'column'"
+    [borderPosition]="sliderOption.borderPosition"
+    [nodeTemplate]="sliderNodeTpl"
+    [activatedIndex]="sliderOption.activatedIndex"
+    (indexChange)="activatedChange($event)"
+  ></x-slider>
+</div>
+
+<ng-template #sliderNodeTpl let-node="node$">
+  <!-- Todo: 组件使用 ShadowDom 模式，传入的模板样式无法通过 class 指定-->
+  <a [ngStyle]="{ 'padding-left.rem': node.left - 1 }">
+    <span>{{ node.label }}</span>
+  </a>
+</ng-template>

@@ -1,0 +1,16 @@
+<label *ngIf="label">{{ label }}</label>
+<ng-container *ngTemplateOutlet="inputTemp"></ng-container>
+
+<ng-template #inputTemp>
+  <div class="x-input-row">
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [ngModel]="value"
+      (ngModelChange)="onChange($event)"
+    />
+    <x-icon *ngIf="icon" [type]="icon"></x-icon>
+  </div>
+</ng-template>

@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]="option.controlType">
+  <ng-container *ngSwitchCase="'input'">
+    <x-input
+      [(ngModel)]="option.value"
+      [layout]="option.layout"
+      [label]="option.label"
+      [type]="option.type"
+      [placeholder]="option.placeholder"
+      [required]="option.required"
+      [disabled]="option.disabled"
+      [icon]="option.icon"
+      [iconLayout]="option.iconLayout"
+    ></x-input>
+  </ng-container>
+</ng-container>
