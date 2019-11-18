@@ -8,7 +8,8 @@ import {
   OnInit,
   HostBinding
 } from "@angular/core";
-import { XRowPrefix, XJustify, XAlign } from "./grid.type";
+import { XJustify, XAlign } from "@ng-nest/ui/core";
+import { XRowPrefix } from "./grid.type";
 
 @Component({
   selector: "x-row",
@@ -33,7 +34,7 @@ export class XRowComponent implements OnInit {
 
   ngOnInit() {
     this.setSpace();
-    this.setX();
+    this.setJustify();
     this.setAlign();
   }
 
@@ -43,7 +44,7 @@ export class XRowComponent implements OnInit {
     this.renderer.setStyle(this.elementRef.nativeElement, "margin-right", `-${this.space / 2}rem`);
   }
 
-  setX() {
+  setJustify() {
     if (!this.justify) return;
     this.renderer.addClass(this.elementRef.nativeElement, `${XRowPrefix}-justity-${this.justify}`);
   }

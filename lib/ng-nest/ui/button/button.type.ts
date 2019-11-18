@@ -1,4 +1,4 @@
-import { XIdentityOption } from "@ng-nest/ui/core";
+import { XIdentityOption, XDirection } from "@ng-nest/ui/core";
 
 /**
  * Button 组件名
@@ -42,6 +42,11 @@ export interface XButtonOption extends XIdentityOption {
    * 禁用
    */
   disabled?: boolean;
+
+  /**
+   * flex 布局下的元素排列方式
+   */
+  direction?: XDirection;
 }
 
 /**
@@ -60,7 +65,7 @@ export interface XButtonsOption {
 }
 
 /**
- * flex 布局下的垂直排列方式
+ * 按钮类型
  * @value "primary"
  * @value "success"
  * @value "info"

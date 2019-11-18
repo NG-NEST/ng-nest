@@ -10,7 +10,13 @@ describe(ButtonPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XButtonModule],
-      declarations: [TestXButtonComponent, TestXButtonDiabledComponent, TestXButtonTextComponent]
+      declarations: [
+        TestXButtonComponent,
+        TestXButtonDiabledComponent,
+        TestXButtonTextComponent,
+        TestXButtonIconComponent,
+        TestXButtonGroupComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -55,22 +61,35 @@ describe(ButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
+  describe(`icon.`, () => {
+    let fixture: ComponentFixture<TestXButtonIconComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXButtonIconComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
+      element = debugElement.nativeElement;
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`group.`, () => {
+    let fixture: ComponentFixture<TestXButtonGroupComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXButtonGroupComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
+      element = debugElement.nativeElement;
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
 });
-
-// <x-button label="关注"></x-button>
-//     <br /><br />
-//     <x-button label="关注" icon="ado-heart"></x-button>
-//     <br /><br />
-//     <x-buttons>
-//       <x-button icon="ado-align-left"></x-button>
-//       <x-button icon="ado-align-center"></x-button>
-//       <x-button icon="ado-align-right"></x-button>
-//     </x-buttons>
-//     <br /><br />
-//     <x-buttons space="1">
-//       <x-button label="保存" icon="ado-save"></x-button>
-//       <x-button label="取消"></x-button>
-//     </x-buttons>
 
 @Component({
   selector: "test-x-button",
@@ -182,3 +201,52 @@ class TestXButtonDiabledComponent {}
   ]
 })
 class TestXButtonTextComponent {}
+
+@Component({
+  selector: "test-x-icon-button",
+  template: `
+    <div class="row">
+      <x-button icon="fto-edit-3" type="primary"></x-button>
+      <x-button icon="fto-share" type="primary"></x-button>
+      <x-button icon="fto-trash-2" type="primary"></x-button>
+      <x-button label="搜索" icon="fto-search" type="primary"></x-button>
+      <x-button label="上传" icon="fto-upload-cloud" type="primary"></x-button>
+    </div>
+  `,
+  styles: [
+    `
+      .row:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      .row > x-button:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXButtonIconComponent {}
+
+@Component({
+  selector: "test-x-group-button",
+  template: `
+    <div class="row">
+      <x-buttons>
+        <x-button label="上一页" icon="fto-chevron-left" type="primary"></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" type="primary"></x-button>
+      </x-buttons>
+      <x-button label="搜索" icon="fto-search" type="primary"></x-button>
+      <x-button label="上传" icon="fto-upload-cloud" type="primary"></x-button>
+    </div>
+  `,
+  styles: [
+    `
+      .row:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      .row > x-button:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXButtonGroupComponent {}

@@ -26,9 +26,16 @@
     height: 100%;
     white-space: nowrap;
     transition: transform $animation-duration-fast;
+    @include flex-direction();
     > .x-icon {
       font-size: 0.925rem;
       margin-right: 0.125rem;
+    }
+    &-direction-row-reverse {
+      > .x-icon {
+        margin-right: 0;
+        margin-left: 0.125rem;
+      }
     }
   }
   &-icon {

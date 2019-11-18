@@ -14,33 +14,7 @@
     display: table;
     clear: both;
   }
-  &-flex {
-    display: flex;
-  }
-  &-justity-start {
-    justify-content: flex-start;
-  }
-  &-justity-center {
-    justify-content: center;
-  }
-  &-justity-end {
-    justify-content: flex-end;
-  }
-  &-justity-space-between {
-    justify-content: space-between;
-  }
-  &-justity-space-around {
-    justify-content: space-around;
-  }
-  &-align-top {
-    align-items: top;
-  }
-  &-align-middle {
-    align-items: middle;
-  }
-  &-align-bottom {
-    align-items: bottom;
-  }
+  @include flex();
 }
 
 @mixin media-screen($key, $value) {

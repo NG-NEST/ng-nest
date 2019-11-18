@@ -1,3 +1,5 @@
+import { XJustify, XAlign } from "@ng-nest/ui/core";
+
 /**
  * Row 组件名
  * @selector x-row
@@ -107,21 +109,3 @@ export interface XColOption {
    */
   hiddenXlOnly?: boolean;
 }
-
-/**
- * flex 布局下的水平排列方式
- * @value "start"
- * @value "end"
- * @value "center"
- * @value "spaceAround"
- * @value "space-between"
- */
-export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-between";
-
-/**
- * flex 布局下的垂直排列方式
- * @value "top"
- * @value "middle"
- * @value "bottom"
- */
-export type XAlign = "top" | "middle" | "bottom";

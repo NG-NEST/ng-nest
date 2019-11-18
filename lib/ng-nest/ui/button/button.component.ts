@@ -6,10 +6,11 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input
+  Input,
+  ViewChild
 } from "@angular/core";
 import { ButtonPrefix, XButtonType, XButtonOption } from "./button.type";
-import { fillDefault } from "@ng-nest/ui/core";
+import { fillDefault, XJustify, XDirection } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-button",
@@ -28,6 +29,8 @@ export class XButtonComponent implements OnInit {
   @Input() plain?: boolean;
   @Input() round?: boolean;
   @Input() circle?: boolean;
+  @Input() direction?: XDirection;
+  @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
   @HostBinding("class.x-button-label") get getLabel() {
     return !this.icon && this.label;
   }
@@ -55,8 +58,7 @@ export class XButtonComponent implements OnInit {
 
   ngOnInit() {
     fillDefault(this, this._default);
-    if (this.title)
-      this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
+    if (this.title) this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
     if (this.type && !this.plain) {
       this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.type}`);
     }
@@ -64,6 +66,9 @@ export class XButtonComponent implements OnInit {
       this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.type}-plain`);
     } else if (this.plain) {
       this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-plain`);
+    }
+    if (this.direction) {
+      this.renderer.addClass(this.buttonInner.nativeElement, `${ButtonPrefix}-inner-direction-${this.direction}`);
     }
   }
 }
