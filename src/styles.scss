@@ -5,30 +5,24 @@
 
 @font-face {
   font-family: "titillium";
-  src: url("assets/fonts/titillium.eot?#") format("eot"),
-    url("assets/fonts/titillium.woff") format("woff"),
-    url("assets/fonts/titillium.ttf") format("truetype"),
-    url("assets/fonts/titillium.svg#titillium") format("svg");
+  src: url("assets/fonts/titillium.eot?#") format("eot"), url("assets/fonts/titillium.woff") format("woff"),
+    url("assets/fonts/titillium.ttf") format("truetype"), url("assets/fonts/titillium.svg#titillium") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "ubuntu";
-  src: url("assets/fonts/ubuntu.eot?#") format("eot"),
-    url("assets/fonts/ubuntu.ttf") format("truetype"),
-    url("assets/fonts/ubuntu.woff") format("woff"),
-    url("assets/fonts/ubuntu.svg#ubuntu") format("svg");
+  src: url("assets/fonts/ubuntu.eot?#") format("eot"), url("assets/fonts/ubuntu.ttf") format("truetype"),
+    url("assets/fonts/ubuntu.woff") format("woff"), url("assets/fonts/ubuntu.svg#ubuntu") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "iconfont";
-  src: url("assets/fonts/iconfont.eot?#") format("eot"),
-    url("assets/fonts/iconfont.woff") format("woff"),
-    url("assets/fonts/iconfont.ttf") format("truetype"),
-    url("assets/fonts/iconfont.svg#iconfont") format("svg");
+  src: url("assets/fonts/iconfont.eot?#") format("eot"), url("assets/fonts/iconfont.woff") format("woff"),
+    url("assets/fonts/iconfont.ttf") format("truetype"), url("assets/fonts/iconfont.svg#iconfont") format("svg");
 }
 
 .icon {
@@ -175,38 +169,12 @@ tt {
 
 body,
 input {
-  font-family: "ubuntu", -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+  font-family: "ubuntu", -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+    WenQuanYi Micro Hei, sans-serif;
 }
 
 a,
 p,
 span {
   letter-spacing: 0.03rem;
-}
-
-:root {
-  --x-primary-color-dark: #303f9f;
-  --x-primary-color: #3f51b5;
-  --x-primary-color-light: #c5cae9;
-  --x-primary-color-text: #ffffff;
-  --x-accent-color: #ff5722;
-  --x-primary-text-color: #212121;
-  --x-secondary-text-color: #757575;
-  --x-divider-color: #bdbdbd;
-
-  --x-primary-color-50: #e8eaf6;
-  --x-primary-color-100: #c5cae9;
-  --x-primary-color-200: #9fa8da;
-  --x-primary-color-300: #7986cb;
-  --x-primary-color-400: #5c6bc0;
-  --x-primary-color-500: #3f51b5;
-  --x-primary-color-600: #3949ab;
-  --x-primary-color-700: #303f9f;
-  --x-primary-color-800: #283595;
-  --x-primary-color-900: #1a237e;
-  --x-primary-color-a100: #8c9eff;
-  --x-primary-color-a200: #536dfe;
-  --x-primary-color-a400: #3d5afe;
-  --x-primary-color-a700: #304ffe;
 }

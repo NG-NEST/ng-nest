@@ -9,21 +9,13 @@
     (indexChange)="activatedChange($event)"
   ></x-slider>
 </div>
-<div
-  #content
-  class="x-tabs-contents"
-  [class.x-tabs-contents-animated]="
-    layout === 'top' || layout === 'bottom'
-  "
->
+<div #content class="x-tabs-contents" [class.x-tabs-contents-animated]="layout === 'top' || layout === 'bottom'">
   <x-tab-content
     *ngFor="let tab of listTabs; index as i"
     [active]="activatedIndex == i"
     [content]="tab.content"
     [class.x-tab-content-unactivated]="activatedIndex != i"
-    [style.transform]="
-      'translate(' + (-activatedIndex || 0) * 100 + '%, 0px)'
-    "
+    [style.transform]="'translate(' + (-activatedIndex || 0) * 100 + '%, 0px)'"
   >
   </x-tab-content>
 </div>

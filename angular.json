@@ -24,7 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/highlight.js/styles/github.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/highlight.js/styles/github.css",
+              "lib/ng-nest/ui/style/core/index.scss",
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -180,7 +184,7 @@
       "projectType": "library",
       "root": "lib/ng-nest/ui",
       "sourceRoot": "lib/ng-nest/ui",
-      "prefix": "nu",
+      "prefix": "x",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -201,7 +205,7 @@
             "tsConfig": "lib/ng-nest/ui/tsconfig.spec.json",
             "karmaConfig": "lib/ng-nest/ui/karma.conf.js",
             "codeCoverage": true,
-            "styles": ["lib/ng-nest/ui/style/core/var.scss"]
+            "styles": ["lib/ng-nest/ui/style/core/index.scss"]
           }
         },
         "lint": {

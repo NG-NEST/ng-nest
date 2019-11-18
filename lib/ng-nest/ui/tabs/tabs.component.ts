@@ -13,22 +13,13 @@ import {
   ElementRef,
   Renderer2,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  QueryList
 } from "@angular/core";
-import {
-  TabsPrefix,
-  XTabsOption,
-  XTabsNode,
-  XActivatedTab
-} from "./tabs.type";
+import { TabsPrefix, XTabsOption, XTabsNode, XActivatedTab } from "./tabs.type";
 import { fillDefault, XData } from "@ng-nest/ui/core";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
-import {
-  XSliderNode,
-  XActivatedSlider,
-  XSliderOption,
-  XSliderComponent
-} from "@ng-nest/ui/slider";
+import { XSliderNode, XActivatedSlider, XSliderOption, XSliderComponent } from "@ng-nest/ui/slider";
 import { XTabComponent } from "./tab.component";
 
 @Component({
@@ -92,9 +83,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   };
   sliderHidden: boolean = false;
   tabs: XTabsNode[] = [];
-  @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<
-    XActivatedTab
-  >();
+  @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<XActivatedTab>();
   private _default: XTabsOption = {
     layout: "top",
     activatedIndex: 0
@@ -123,17 +112,12 @@ export class XTabsComponent implements OnInit, OnChanges {
     return this.layout === "left";
   }
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, TabsPrefix);
   }
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setData();
   }
 
   ngAfterViewInit() {
@@ -142,10 +126,7 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const dataChange = changes.data;
-    if (
-      dataChange &&
-      dataChange.currentValue !== dataChange.previousValue
-    ) {
+    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
       this.setData();
     }
   }
@@ -171,13 +152,11 @@ export class XTabsComponent implements OnInit, OnChanges {
   private setData() {
     if (typeof this.data === "undefined") {
       if (this.listTabs && this.listTabs.length > 0) {
-        this.tabs = [];
+        let _data = [];
         this.listTabs.forEach((x, index) => {
-          this.tabs = [
-            ...(this.data as XTabsNode[]),
-            { key: index + 1, label: x.label }
-          ];
+          _data = [...(_data as XTabsNode[]), { key: index + 1, label: x.label }];
         });
+        this.data = _data;
       } else {
         return;
       }

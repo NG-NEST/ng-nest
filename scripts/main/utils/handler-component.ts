@@ -76,7 +76,7 @@ export function handlerExamples(page: NcPage) {
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf("__api") <= -1) return;
   let types = await hanlderType(
-    path.join(page.path, `x-${page.name}.type.ts`)
+    path.join(page.path, `${page.name}.type.ts`)
   );
   page.custom = replaceKey(
     page.custom,

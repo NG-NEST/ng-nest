@@ -26,10 +26,16 @@
     border: 1px solid #eff0f1;
     border-top: 2px solid $-x-primary-color;
     margin: 0 1rem;
-    > ul > li {
-      list-style-type: square;
-      margin-left: 1.25rem;
-      line-height: 1.75rem;
+    > p {
+      margin: 0.5rem 0 0;
+    }
+    > ul {
+      margin: 0.5rem 0;
+      > li {
+        list-style-type: square;
+        margin-left: 1.25rem;
+        line-height: 1.75rem;
+      }
     }
   }
   > .x-tabs {

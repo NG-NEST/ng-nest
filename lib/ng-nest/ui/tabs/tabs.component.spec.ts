@@ -2,27 +2,18 @@ import { BehaviorSubject } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XTabsComponent } from "./tabs.component";
-import {
-  Component,
-  DebugElement} from "@angular/core";
+import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XTabsModule } from "./tabs.module";
-import {
-  TabsPrefix,
-  XTabsNode,
-  XTabsLayoutType
-} from "./tabs.type";
+import { TabsPrefix, XTabsNode, XTabsLayoutType } from "./tabs.type";
 import { XData } from "@ng-nest/ui/core";
+import { XGridModule } from "@ng-nest/ui/grid";
 
 describe(TabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTabsModule],
-      declarations: [
-        TestXTabsComponent,
-        TestEventXTabsComponent,
-        TestDataXTabsComponent
-      ]
+      imports: [XTabsModule, XGridModule],
+      declarations: [TestXTabsComponent, TestEventXTabsComponent, TestDataXTabsComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -84,10 +75,38 @@ const testXTabsNode: XTabsNode[] = [
   template: `
     <x-tabs [layout]="layout" [activatedIndex]="activatedIndex">
       <x-tab [label]="'Home'">
-        <h1>1 Home</h1>
+        <x-row space="1">
+          <x-col span="12"><div>col-12</div></x-col>
+          <x-col span="6"><div>col-6</div></x-col>
+          <x-col span="6"><div>col-6</div></x-col>
+        </x-row>
+        <x-row space="1">
+          <x-col span="8"><div>col-8</div></x-col>
+          <x-col span="8"><div>col-8</div></x-col>
+          <x-col span="4"><div>col-4</div></x-col>
+          <x-col span="4"><div>col-4</div></x-col>
+        </x-row>
+        <x-row space="1">
+          <x-col span="4"><div>col-4</div></x-col>
+          <x-col span="20"><div>col-20</div></x-col>
+        </x-row>
       </x-tab>
       <x-tab [label]="'Docs'">
-        <h1>2 Docs</h1>
+        <x-row>
+          <x-col span="12">col-12</x-col>
+          <x-col span="12">col-12</x-col>
+        </x-row>
+        <x-row>
+          <x-col span="8">col-8</x-col>
+          <x-col span="8">col-8</x-col>
+          <x-col span="8">col-8</x-col>
+        </x-row>
+        <x-row>
+          <x-col span="6">col-6</x-col>
+          <x-col span="6">col-6</x-col>
+          <x-col span="6">col-6</x-col>
+          <x-col span="6">col-6</x-col>
+        </x-row>
       </x-tab>
       <x-tab [label]="'Examples'">
         <h1>3 Theme</h1>
@@ -107,10 +126,7 @@ class TestXTabsComponent {
 @Component({
   selector: "test-event-x-tabs",
   template: `
-    <x-tabs
-      [data]="data"
-      (indexChange)="activatedChange($event)"
-    ></x-tabs>
+    <x-tabs [data]="data" (indexChange)="activatedChange($event)"></x-tabs>
   `
 })
 class TestEventXTabsComponent {

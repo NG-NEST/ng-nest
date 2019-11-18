@@ -35,7 +35,7 @@
     "marked": "^0.7.0",
     "remark": "~10.0.1",
     "rxjs": "~6.4.0",
-    "scss-bundle": "^3.0.1",
+    "scss-bundle": "^3.0.2",
     "tslib": "^1.10.0",
     "yaml-front-matter": "^4.0.0",
     "zone.js": "~0.9.1"

@@ -1,6 +1,6 @@
 <ul #sliders>
   <li
-    *ngFor="let slider of sliders; index as i"
+    *ngFor="let slider of sliderNodes; index as i"
     [ngClass]="{ 'x-slider-activated': i == activatedIndex }"
     (click)="action('click', slider, i)"
     [title]="nodeTemplate ? slider.label : ''"

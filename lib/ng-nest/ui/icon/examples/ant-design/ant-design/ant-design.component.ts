@@ -222,8 +222,6 @@ export class ExAntDesignComponent implements OnInit {
         "medium-workmark",
         "medium",
         "meh",
-        "mex-fold",
-        "mex-unfold",
         "menu",
         "message",
         "minus-circle",

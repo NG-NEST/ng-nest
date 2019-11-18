@@ -152,7 +152,7 @@ describe(SliderPrefix, () => {
         testComponent.data.next(testXSliderNode);
         testComponent.data.complete();
         expect(
-          (debugElement.componentInstance as XSliderComponent).data
+          (debugElement.componentInstance as XSliderComponent).sliderNodes
         ).toEqual(testXSliderNode);
       }
     });

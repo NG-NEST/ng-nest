@@ -7,7 +7,7 @@
       text-align: center;
       border-radius: 0.125rem;
       &:nth-child(odd) {
-        background-color: var(--x-primary-color-400);
+        background-color: var(--x-primary-color-light);
       }
       &:nth-child(even) {
         background-color: var(--x-primary-color);

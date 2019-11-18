@@ -48,16 +48,14 @@ export class XSliderComponent implements OnInit, OnChanges {
   @Input()
   public set activatedIndex(value: number) {
     this._activatedIndex = value;
-    if (this.sliders.length > 0) {
-      this.activatedSlider = this.sliders[value];
+    if (this.sliderNodes.length > 0) {
+      this.activatedSlider = this.sliderNodes[value];
     }
     this.setHighlight();
     this.cdr.detectChanges();
   }
 
-  @Output() indexChange?: EventEmitter<
-    XActivatedSlider
-  > = new EventEmitter<XActivatedSlider>();
+  @Output() indexChange?: EventEmitter<XActivatedSlider> = new EventEmitter<XActivatedSlider>();
 
   private _default: XSliderOption = {
     data: [],
@@ -67,7 +65,7 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   @ViewChild("sliders", { static: true }) slidersRef: ElementRef;
   @ViewChild("highlight", { static: true }) highlightRef: ElementRef;
-  sliders: XSliderNode[] = [];
+  sliderNodes: XSliderNode[] = [];
 
   private _data$: Subscription | null = null;
 
@@ -118,11 +116,7 @@ export class XSliderComponent implements OnInit, OnChanges {
     return typeof this.borderPosition !== "undefined";
   }
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, SliderPrefix);
   }
 
@@ -137,10 +131,7 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const dataChange = changes.data;
-    if (
-      dataChange &&
-      dataChange.currentValue !== dataChange.previousValue
-    ) {
+    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
       this.setData();
     }
   }
@@ -165,30 +156,14 @@ export class XSliderComponent implements OnInit, OnChanges {
   }
 
   setHighlight() {
-    const activeEle = this.slidersRef.nativeElement.querySelector(
-      `li:nth-child(${this.activatedIndex + 1})`
-    );
+    const activeEle = this.slidersRef.nativeElement.querySelector(`li:nth-child(${this.activatedIndex + 1})`);
     if (!activeEle) return;
-    const width =
-      this.layout == "column" ? "100%" : `${activeEle.offsetWidth}px`;
+    const width = this.layout == "column" ? "100%" : `${activeEle.offsetWidth}px`;
     this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
-    this.renderer.setStyle(
-      this.highlightRef.nativeElement,
-      "height",
-      `${activeEle.offsetHeight}px`
-    );
-    this.renderer.setStyle(
-      this.highlightRef.nativeElement,
-      "left",
-      `${activeEle.offsetLeft}px`
-    );
-    this.renderer.setStyle(
-      this.highlightRef.nativeElement,
-      "top",
-      `${activeEle.offsetTop}px`
-    );
-    this.highlightHidden =
-      activeEle.offsetWidth === 0 && activeEle.offsetHeight === 0;
+    this.renderer.setStyle(this.highlightRef.nativeElement, "height", `${activeEle.offsetHeight}px`);
+    this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
+    this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
+    this.highlightHidden = activeEle.offsetWidth === 0 && activeEle.offsetHeight === 0;
   }
 
   private removeListen() {
@@ -207,9 +182,9 @@ export class XSliderComponent implements OnInit, OnChanges {
   }
 
   private setDataChange(value: XSliderNode[]) {
-    this.sliders = value;
-    if (this.sliders.length > 0) {
-      this.activatedSlider = this.sliders[this.activatedIndex];
+    this.sliderNodes = value;
+    if (this.sliderNodes.length > 0) {
+      this.activatedSlider = this.sliderNodes[this.activatedIndex];
     }
     setTimeout(() => this.setHighlight());
     this.cdr.detectChanges();
