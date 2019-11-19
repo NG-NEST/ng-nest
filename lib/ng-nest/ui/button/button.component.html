@@ -1,5 +1,5 @@
 <div class="x-button-inner" #buttonInner>
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
-  <x-icon *ngIf="loading" type="fto-loader" spin></x-icon>
+  <x-icon [style.display]="loading ? '' : 'none'" type="fto-loader" spin></x-icon>
   <span *ngIf="label">{{ label }}</span>
 </div>

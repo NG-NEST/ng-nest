@@ -132,25 +132,25 @@ describe(ButtonPrefix, () => {
       <x-button label="危险按钮" type="danger"></x-button>
     </div>
     <div class="row">
-      <x-button label="朴素按钮" plain="true"></x-button>
-      <x-button label="主要按钮" type="primary" plain="true"></x-button>
-      <x-button label="成功按钮" type="success" plain="true"></x-button>
-      <x-button label="警告按钮" type="warning" plain="true"></x-button>
-      <x-button label="危险按钮" type="danger" plain="true"></x-button>
+      <x-button label="朴素按钮" plain></x-button>
+      <x-button label="主要按钮" type="primary" plain></x-button>
+      <x-button label="成功按钮" type="success" plain></x-button>
+      <x-button label="警告按钮" type="warning" plain></x-button>
+      <x-button label="危险按钮" type="danger" plain></x-button>
     </div>
     <div class="row">
-      <x-button label="圆角按钮" round="true"></x-button>
-      <x-button label="主要按钮" type="primary" round="true"></x-button>
-      <x-button label="成功按钮" type="success" round="true"></x-button>
-      <x-button label="警告按钮" type="warning" round="true"></x-button>
-      <x-button label="危险按钮" type="danger" round="true"></x-button>
+      <x-button label="圆角按钮" round></x-button>
+      <x-button label="主要按钮" type="primary" round></x-button>
+      <x-button label="成功按钮" type="success" round></x-button>
+      <x-button label="警告按钮" type="warning" round></x-button>
+      <x-button label="危险按钮" type="danger" round></x-button>
     </div>
     <div class="row">
-      <x-button icon="fto-search" circle="true"></x-button>
-      <x-button icon="fto-edit-3" type="primary" circle="true"></x-button>
-      <x-button icon="fto-check" type="success" circle="true"></x-button>
-      <x-button icon="fto-star" type="warning" circle="true"></x-button>
-      <x-button icon="fto-trash-2" type="danger" circle="true"></x-button>
+      <x-button icon="fto-search" circle></x-button>
+      <x-button icon="fto-edit-3" type="primary" circle></x-button>
+      <x-button icon="fto-check" type="success" circle></x-button>
+      <x-button icon="fto-star" type="warning" circle></x-button>
+      <x-button icon="fto-trash-2" type="danger" circle></x-button>
     </div>
   `,
   styles: [
@@ -170,32 +170,32 @@ class TestXButtonComponent {}
   selector: "test-x-disabled-button",
   template: `
     <div class="row">
-      <x-button label="默认按钮" disabled="true"></x-button>
-      <x-button label="主要按钮" type="primary" disabled="true"></x-button>
-      <x-button label="成功按钮" type="success" disabled="true"></x-button>
-      <x-button label="警告按钮" type="warning" disabled="true"></x-button>
-      <x-button label="危险按钮" type="danger" disabled="true"></x-button>
+      <x-button label="默认按钮" disabled></x-button>
+      <x-button label="主要按钮" type="primary" disabled></x-button>
+      <x-button label="成功按钮" type="success" disabled></x-button>
+      <x-button label="警告按钮" type="warning" disabled></x-button>
+      <x-button label="危险按钮" type="danger" disabled></x-button>
     </div>
     <div class="row">
-      <x-button label="朴素按钮" plain="true" disabled="true"></x-button>
-      <x-button label="主要按钮" type="primary" plain="true" disabled="true"></x-button>
-      <x-button label="成功按钮" type="success" plain="true" disabled="true"></x-button>
-      <x-button label="警告按钮" type="warning" plain="true" disabled="true"></x-button>
-      <x-button label="危险按钮" type="danger" plain="true" disabled="true"></x-button>
+      <x-button label="朴素按钮" plain disabled></x-button>
+      <x-button label="主要按钮" type="primary" plain disabled></x-button>
+      <x-button label="成功按钮" type="success" plain disabled></x-button>
+      <x-button label="警告按钮" type="warning" plain disabled></x-button>
+      <x-button label="危险按钮" type="danger" plain disabled></x-button>
     </div>
     <div class="row">
-      <x-button label="圆角按钮" round="true" disabled="true"></x-button>
-      <x-button label="主要按钮" type="primary" round="true" disabled="true"></x-button>
-      <x-button label="成功按钮" type="success" round="true" disabled="true"></x-button>
-      <x-button label="警告按钮" type="warning" round="true" disabled="true"></x-button>
-      <x-button label="危险按钮" type="danger" round="true" disabled="true"></x-button>
+      <x-button label="圆角按钮" round disabled></x-button>
+      <x-button label="主要按钮" type="primary" round disabled></x-button>
+      <x-button label="成功按钮" type="success" round disabled></x-button>
+      <x-button label="警告按钮" type="warning" round disabled></x-button>
+      <x-button label="危险按钮" type="danger" round disabled></x-button>
     </div>
     <div class="row">
-      <x-button icon="fto-search" circle="true" disabled="true"></x-button>
-      <x-button icon="fto-edit-3" type="primary" circle="true" disabled="true"></x-button>
-      <x-button icon="fto-check" type="success" circle="true" disabled="true"></x-button>
-      <x-button icon="fto-star" type="warning" circle="true" disabled="true"></x-button>
-      <x-button icon="fto-trash-2" type="danger" circle="true" disabled="true"></x-button>
+      <x-button icon="fto-search" circle disabled></x-button>
+      <x-button icon="fto-edit-3" type="primary" circle disabled></x-button>
+      <x-button icon="fto-check" type="success" circle disabled></x-button>
+      <x-button icon="fto-star" type="warning" circle disabled></x-button>
+      <x-button icon="fto-trash-2" type="danger" circle disabled></x-button>
     </div>
   `,
   styles: [
@@ -216,7 +216,7 @@ class TestXButtonDiabledComponent {}
   template: `
     <div class="row">
       <x-button label="文字按钮" type="text"></x-button>
-      <x-button label="文字按钮" type="text" disabled="true"></x-button>
+      <x-button label="文字按钮" type="text" disabled></x-button>
     </div>
   `,
   styles: [
@@ -240,7 +240,7 @@ class TestXButtonTextComponent {}
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-trash-2" type="primary"></x-button>
       <x-button label="搜索" icon="fto-search" type="primary"></x-button>
-      <x-button label="上传" icon="fto-upload-cloud" type="primary"></x-button>
+      <x-button label="上传" icon="fto-upload-cloud" direction="row-reverse" type="primary"></x-button>
     </div>
   `,
   styles: [
@@ -295,82 +295,70 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" plain="true"></x-button>
-        <x-button label="B" plain="true"></x-button>
-        <x-button label="C" plain="true"></x-button>
-        <x-button label="D" plain="true"></x-button>
+        <x-button label="A" plain></x-button>
+        <x-button label="B" plain></x-button>
+        <x-button label="C" plain></x-button>
+        <x-button label="D" plain></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left" plain="true"></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" plain="true"></x-button>
+        <x-button label="上一页" icon="fto-chevron-left" plain></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" plain></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button icon="fto-edit-3" plain="true"></x-button>
-        <x-button icon="fto-share" plain="true"></x-button>
-        <x-button icon="fto-trash-2" plain="true"></x-button>
-      </x-buttons>
-    </div>
-    <div class="row">
-      <x-buttons>
-        <x-button label="A" type="primary" plain="true"></x-button>
-        <x-button label="B" type="primary" plain="true"></x-button>
-        <x-button label="C" type="primary" plain="true"></x-button>
-        <x-button label="D" type="primary" plain="true"></x-button>
-      </x-buttons>
-      <x-buttons>
-        <x-button label="上一页" type="primary" icon="fto-chevron-left" plain="true"></x-button>
-        <x-button
-          label="下一页"
-          type="primary"
-          icon="fto-chevron-right"
-          direction="row-reverse"
-          plain="true"
-        ></x-button>
-      </x-buttons>
-      <x-buttons>
-        <x-button icon="fto-edit-3" type="primary" plain="true"></x-button>
-        <x-button icon="fto-share" type="primary" plain="true"></x-button>
-        <x-button icon="fto-trash-2" type="primary" plain="true"></x-button>
+        <x-button icon="fto-edit-3" plain></x-button>
+        <x-button icon="fto-share" plain></x-button>
+        <x-button icon="fto-trash-2" plain></x-button>
       </x-buttons>
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" round="true"></x-button>
-        <x-button label="B" round="true"></x-button>
-        <x-button label="C" round="true"></x-button>
-        <x-button label="D" round="true"></x-button>
+        <x-button label="A" type="primary" plain></x-button>
+        <x-button label="B" type="primary" plain></x-button>
+        <x-button label="C" type="primary" plain></x-button>
+        <x-button label="D" type="primary" plain></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left" round="true"></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" round="true"></x-button>
+        <x-button label="上一页" type="primary" icon="fto-chevron-left" plain></x-button>
+        <x-button label="下一页" type="primary" icon="fto-chevron-right" direction="row-reverse" plain></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button icon="fto-edit-3" round="true"></x-button>
-        <x-button icon="fto-share" round="true"></x-button>
-        <x-button icon="fto-trash-2" round="true"></x-button>
+        <x-button icon="fto-edit-3" type="primary" plain></x-button>
+        <x-button icon="fto-share" type="primary" plain></x-button>
+        <x-button icon="fto-trash-2" type="primary" plain></x-button>
       </x-buttons>
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" type="primary" round="true"></x-button>
-        <x-button label="B" type="primary" round="true"></x-button>
-        <x-button label="C" type="primary" round="true"></x-button>
-        <x-button label="D" type="primary" round="true"></x-button>
+        <x-button label="A" round></x-button>
+        <x-button label="B" round></x-button>
+        <x-button label="C" round></x-button>
+        <x-button label="D" round></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" type="primary" icon="fto-chevron-left" round="true"></x-button>
-        <x-button
-          label="下一页"
-          type="primary"
-          icon="fto-chevron-right"
-          direction="row-reverse"
-          round="true"
-        ></x-button>
+        <x-button label="上一页" icon="fto-chevron-left" round></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" round></x-button>
       </x-buttons>
       <x-buttons>
-        <x-button icon="fto-edit-3" type="primary" round="true"></x-button>
-        <x-button icon="fto-share" type="primary" round="true"></x-button>
-        <x-button icon="fto-trash-2" type="primary" round="true"></x-button>
+        <x-button icon="fto-edit-3" round></x-button>
+        <x-button icon="fto-share" round></x-button>
+        <x-button icon="fto-trash-2" round></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" type="primary" round></x-button>
+        <x-button label="B" type="primary" round></x-button>
+        <x-button label="C" type="primary" round></x-button>
+        <x-button label="D" type="primary" round></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" type="primary" icon="fto-chevron-left" round></x-button>
+        <x-button label="下一页" type="primary" icon="fto-chevron-right" direction="row-reverse" round></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3" type="primary" round></x-button>
+        <x-button icon="fto-share" type="primary" round></x-button>
+        <x-button icon="fto-trash-2" type="primary" round></x-button>
       </x-buttons>
     </div>
   `,
@@ -378,7 +366,7 @@ class TestXButtonIconComponent {}
     `
       .row {
         display: flex;
-        item-algin: center;
+        align-items: center;
       }
       .row:not(:last-child) {
         margin-bottom: 0.5rem;
@@ -441,11 +429,11 @@ class TestXButtonLoadingComponent {
       <x-button label="迷你按钮" type="primary" size="mini"></x-button>
     </div>
     <div class="row">
-      <x-button label="大型按钮" type="primary" size="large" round="true"></x-button>
-      <x-button label="中等按钮" type="primary" size="medium" round="true"></x-button>
-      <x-button label="默认按钮" type="primary" round="true"></x-button>
-      <x-button label="小型按钮" type="primary" size="small" round="true"></x-button>
-      <x-button label="迷你按钮" type="primary" size="mini" round="true"></x-button>
+      <x-button label="大型按钮" type="primary" size="large" round></x-button>
+      <x-button label="中等按钮" type="primary" size="medium" round></x-button>
+      <x-button label="默认按钮" type="primary" round></x-button>
+      <x-button label="小型按钮" type="primary" size="small" round></x-button>
+      <x-button label="迷你按钮" type="primary" size="mini" round></x-button>
     </div>
     <div class="row">
       <x-button icon="fto-share" type="primary" size="large"></x-button>

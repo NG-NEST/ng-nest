@@ -1,0 +1,8 @@
+:host {
+  .row:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+  .row > x-button:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}

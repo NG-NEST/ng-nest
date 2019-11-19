@@ -26,13 +26,13 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() title?: string;
-  @Input() activated?: boolean;
-  @Input() disabled?: boolean;
-  @Input() plain?: boolean;
-  @Input() round?: boolean;
-  @Input() circle?: boolean;
+  @Input() activated?: boolean | string;
+  @Input() disabled?: boolean | string;
+  @Input() plain?: boolean | string;
+  @Input() round?: boolean | string;
+  @Input() circle?: boolean | string;
   @Input() direction?: XDirection;
-  @Input() loading?: boolean;
+  @Input() loading?: boolean | string;
   @Input() size?: XSize;
   @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
   @HostBinding("class.x-button-label") get getLabel() {
@@ -62,6 +62,7 @@ export class XButtonComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     fillDefault(this, this._default);
+    this.stringToBoolean();
     if (this.title) this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
     if (this.type && !this.plain) {
       this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.type}`);
@@ -84,5 +85,14 @@ export class XButtonComponent implements OnInit, OnChanges {
     if (loading && loading.currentValue != loading.previousValue) {
       this.disabled = this.loading;
     }
+  }
+
+  stringToBoolean() {
+    this.plain = this.plain || this.plain === "" ? true : false;
+    this.disabled = this.disabled || this.disabled === "" ? true : false;
+    this.activated = this.activated || this.activated === "" ? true : false;
+    this.circle = this.circle || this.circle === "" ? true : false;
+    this.round = this.round || this.round === "" ? true : false;
+    this.loading = this.loading || this.loading === "" ? true : false;
   }
 }

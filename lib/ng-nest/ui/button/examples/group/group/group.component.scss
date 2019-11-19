@@ -1,0 +1,12 @@
+:host {
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  .row:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+  .row > x-buttons:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}
