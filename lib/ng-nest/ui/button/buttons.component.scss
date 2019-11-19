@@ -7,4 +7,8 @@
 .#{$prefixButtons} {
   @include reset-component();
   @include buttons();
+  @include buttons-type("primary");
+  @include buttons-type("success");
+  @include buttons-type("warning");
+  @include buttons-type("danger");
 }

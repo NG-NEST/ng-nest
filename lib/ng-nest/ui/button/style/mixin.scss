@@ -80,6 +80,22 @@
   &-disabled {
     @include disabled($-x-border-color-400, transparent, $-x-border-color-300);
   }
+  &-large {
+    height: 2rem;
+    padding: 0 1rem;
+  }
+  &-medium {
+    height: 1.85rem;
+    padding: 0 0.8rem;
+  }
+  &-small {
+    height: 1.5rem;
+    padding: 0 0.3rem;
+  }
+  &-mini {
+    height: 1.375rem;
+    padding: 0 0.25rem;
+  }
 }
 
 @mixin button-type($type, $color, $bg-color, $hover-color, $active-color, $disabled-color) {
@@ -148,8 +164,9 @@
 
 @mixin buttons {
   display: inline-flex;
-  &:not(.x-buttons-space) {
-    > .x-button {
+  position: relative;
+  &:not(.#{$prefixButtons}-space) {
+    > .#{$prefixButton} {
       border-left-width: 0;
       border-right-width: 0;
       border-radius: 0;
@@ -165,6 +182,28 @@
       }
       &:not(:first-child) {
         border-left-width: 1px;
+      }
+    }
+    > .#{$prefixButton}-plain {
+      border-left-width: 1px;
+      border-right-width: 1px;
+      position: relative;
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+      &:hover {
+        z-index: 1;
+      }
+    }
+    > .#{$prefixButton}-round {
+      border-radius: 0;
+      &:first-child {
+        border-top-left-radius: 5rem;
+        border-bottom-left-radius: 5rem;
+      }
+      &:last-child {
+        border-top-right-radius: 5rem;
+        border-bottom-right-radius: 5rem;
       }
     }
   }
@@ -192,6 +231,14 @@
           background-color: transparent;
         }
       }
+    }
+  }
+}
+
+@mixin buttons-type($type) {
+  > .#{$prefixButton}-#{$type} {
+    &:not(:first-child) {
+      border-left-color: rgba(255, 255, 255, 0.2);
     }
   }
 }

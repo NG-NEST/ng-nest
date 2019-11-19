@@ -8,6 +8,15 @@
 export type XPosition = "top" | "right" | "bottom" | "left";
 
 /**
+ * 尺寸
+ * @value "large" 大型
+ * @value "medium" 中等
+ * @value "samll" 小型
+ * @value "mini" 迷你
+ */
+export type XSize = "large" | "medium" | "samll" | "mini";
+
+/**
  * flex 布局下的水平排列方式
  * @value "start"
  * @value "end"

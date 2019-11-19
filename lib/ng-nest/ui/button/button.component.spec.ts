@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XButtonComponent } from "./button.component";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XButtonModule } from "./button.module";
 import { ButtonPrefix } from "./button.type";
@@ -15,7 +15,9 @@ describe(ButtonPrefix, () => {
         TestXButtonDiabledComponent,
         TestXButtonTextComponent,
         TestXButtonIconComponent,
-        TestXButtonGroupComponent
+        TestXButtonGroupComponent,
+        TestXButtonLoadingComponent,
+        TestXButtonSizeComponent
       ]
     }).compileComponents();
   }));
@@ -81,6 +83,34 @@ describe(ButtonPrefix, () => {
     let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonGroupComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
+      element = debugElement.nativeElement;
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`loading.`, () => {
+    let fixture: ComponentFixture<TestXButtonLoadingComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXButtonLoadingComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
+      element = debugElement.nativeElement;
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`size.`, () => {
+    let fixture: ComponentFixture<TestXButtonSizeComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXButtonSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
@@ -231,11 +261,141 @@ class TestXButtonIconComponent {}
   template: `
     <div class="row">
       <x-buttons>
+        <x-button label="A"></x-button>
+        <x-button label="B"></x-button>
+        <x-button label="C"></x-button>
+        <x-button label="D"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" icon="fto-chevron-left"></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3"></x-button>
+        <x-button icon="fto-share"></x-button>
+        <x-button icon="fto-trash-2"></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" type="primary"></x-button>
+        <x-button label="B" type="primary"></x-button>
+        <x-button label="C" type="primary"></x-button>
+        <x-button label="D" type="primary"></x-button>
+      </x-buttons>
+      <x-buttons>
         <x-button label="上一页" icon="fto-chevron-left" type="primary"></x-button>
         <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" type="primary"></x-button>
       </x-buttons>
-      <x-button label="搜索" icon="fto-search" type="primary"></x-button>
-      <x-button label="上传" icon="fto-upload-cloud" type="primary"></x-button>
+      <x-buttons>
+        <x-button icon="fto-edit-3" type="primary"></x-button>
+        <x-button icon="fto-share" type="primary"></x-button>
+        <x-button icon="fto-trash-2" type="primary"></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" plain="true"></x-button>
+        <x-button label="B" plain="true"></x-button>
+        <x-button label="C" plain="true"></x-button>
+        <x-button label="D" plain="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" icon="fto-chevron-left" plain="true"></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" plain="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3" plain="true"></x-button>
+        <x-button icon="fto-share" plain="true"></x-button>
+        <x-button icon="fto-trash-2" plain="true"></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" type="primary" plain="true"></x-button>
+        <x-button label="B" type="primary" plain="true"></x-button>
+        <x-button label="C" type="primary" plain="true"></x-button>
+        <x-button label="D" type="primary" plain="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" type="primary" icon="fto-chevron-left" plain="true"></x-button>
+        <x-button
+          label="下一页"
+          type="primary"
+          icon="fto-chevron-right"
+          direction="row-reverse"
+          plain="true"
+        ></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3" type="primary" plain="true"></x-button>
+        <x-button icon="fto-share" type="primary" plain="true"></x-button>
+        <x-button icon="fto-trash-2" type="primary" plain="true"></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" round="true"></x-button>
+        <x-button label="B" round="true"></x-button>
+        <x-button label="C" round="true"></x-button>
+        <x-button label="D" round="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" icon="fto-chevron-left" round="true"></x-button>
+        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" round="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3" round="true"></x-button>
+        <x-button icon="fto-share" round="true"></x-button>
+        <x-button icon="fto-trash-2" round="true"></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons>
+        <x-button label="A" type="primary" round="true"></x-button>
+        <x-button label="B" type="primary" round="true"></x-button>
+        <x-button label="C" type="primary" round="true"></x-button>
+        <x-button label="D" type="primary" round="true"></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button label="上一页" type="primary" icon="fto-chevron-left" round="true"></x-button>
+        <x-button
+          label="下一页"
+          type="primary"
+          icon="fto-chevron-right"
+          direction="row-reverse"
+          round="true"
+        ></x-button>
+      </x-buttons>
+      <x-buttons>
+        <x-button icon="fto-edit-3" type="primary" round="true"></x-button>
+        <x-button icon="fto-share" type="primary" round="true"></x-button>
+        <x-button icon="fto-trash-2" type="primary" round="true"></x-button>
+      </x-buttons>
+    </div>
+  `,
+  styles: [
+    `
+      .row {
+        display: flex;
+        item-algin: center;
+      }
+      .row:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      .row > x-buttons:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXButtonGroupComponent {}
+
+@Component({
+  selector: "test-x-loading-button",
+  template: `
+    <div class="row">
+      <x-button label="保存" icon="fto-save" type="primary" [loading]="loading" (click)="save()"></x-button>
     </div>
   `,
   styles: [
@@ -249,4 +409,73 @@ class TestXButtonIconComponent {}
     `
   ]
 })
-class TestXButtonGroupComponent {}
+class TestXButtonLoadingComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
+  loading: boolean = false;
+  save() {
+    if (this.loading) return;
+    this.loading = true;
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.loading = false;
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+}
+
+@Component({
+  selector: "test-x-size-button",
+  template: `
+    <div class="row">
+      <x-button label="大型按钮" size="large"></x-button>
+      <x-button label="中等按钮" size="medium"></x-button>
+      <x-button label="默认按钮"></x-button>
+      <x-button label="小型按钮" size="small"></x-button>
+      <x-button label="迷你按钮" size="mini"></x-button>
+    </div>
+    <div class="row">
+      <x-button label="大型按钮" type="primary" size="large"></x-button>
+      <x-button label="中等按钮" type="primary" size="medium"></x-button>
+      <x-button label="默认按钮" type="primary"></x-button>
+      <x-button label="小型按钮" type="primary" size="small"></x-button>
+      <x-button label="迷你按钮" type="primary" size="mini"></x-button>
+    </div>
+    <div class="row">
+      <x-button label="大型按钮" type="primary" size="large" round="true"></x-button>
+      <x-button label="中等按钮" type="primary" size="medium" round="true"></x-button>
+      <x-button label="默认按钮" type="primary" round="true"></x-button>
+      <x-button label="小型按钮" type="primary" size="small" round="true"></x-button>
+      <x-button label="迷你按钮" type="primary" size="mini" round="true"></x-button>
+    </div>
+    <div class="row">
+      <x-button icon="fto-share" type="primary" size="large"></x-button>
+      <x-button icon="fto-share" type="primary" size="medium"></x-button>
+      <x-button icon="fto-share" type="primary"></x-button>
+      <x-button icon="fto-share" type="primary" size="small"></x-button>
+      <x-button icon="fto-share" type="primary" size="mini"></x-button>
+    </div>
+  `,
+  styles: [
+    `
+      .row:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      .row > x-button:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXButtonSizeComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
+  loading: boolean = false;
+  save() {
+    if (this.loading) return;
+    this.loading = true;
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.loading = false;
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+}

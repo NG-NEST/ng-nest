@@ -1,16 +1,18 @@
 import {
   Component,
   OnInit,
+  OnChanges,
   ViewEncapsulation,
   HostBinding,
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
   Input,
-  ViewChild
+  ViewChild,
+  SimpleChanges
 } from "@angular/core";
 import { ButtonPrefix, XButtonType, XButtonOption } from "./button.type";
-import { fillDefault, XJustify, XDirection } from "@ng-nest/ui/core";
+import { fillDefault, XDirection, XSize } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-button",
@@ -19,7 +21,7 @@ import { fillDefault, XJustify, XDirection } from "@ng-nest/ui/core";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent implements OnInit {
+export class XButtonComponent implements OnInit, OnChanges {
   @Input() type?: XButtonType;
   @Input() label?: string;
   @Input() icon?: string;
@@ -30,6 +32,8 @@ export class XButtonComponent implements OnInit {
   @Input() round?: boolean;
   @Input() circle?: boolean;
   @Input() direction?: XDirection;
+  @Input() loading?: boolean;
+  @Input() size?: XSize;
   @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
   @HostBinding("class.x-button-label") get getLabel() {
     return !this.icon && this.label;
@@ -69,6 +73,16 @@ export class XButtonComponent implements OnInit {
     }
     if (this.direction) {
       this.renderer.addClass(this.buttonInner.nativeElement, `${ButtonPrefix}-inner-direction-${this.direction}`);
+    }
+    if (this.size) {
+      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.size}`);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let loading = changes.loading;
+    if (loading && loading.currentValue != loading.previousValue) {
+      this.disabled = this.loading;
     }
   }
 }
