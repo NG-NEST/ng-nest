@@ -6,15 +6,15 @@
 
 @mixin button {
   border: 1px solid;
-  border-color: $-x-border-color;
+  border-color: $--x-button-border;
   border-radius: 0.125rem;
   display: inline-block;
   padding: 0 0.65rem;
   font-size: 0.75rem;
   height: 1.675rem;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: $--x-button-white;
   background-clip: border-box;
-  color: $-x-primary-text-color;
+  color: $--x-button-text;
   cursor: pointer;
   user-select: none;
   transition: background-color $animation-duration-fast, color $animation-duration-fast,
@@ -29,12 +29,12 @@
     @include flex-direction();
     > .x-icon {
       font-size: 0.925rem;
-      margin-right: 0.125rem;
+      margin-right: 0.25rem;
     }
     &-direction-row-reverse {
       > .x-icon {
         margin-right: 0;
-        margin-left: 0.125rem;
+        margin-left: 0.25rem;
       }
     }
   }
@@ -51,22 +51,29 @@
     background-color: rgba(0, 0, 0, 0.07);
   }
   &:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
   }
   &:active {
-    background-color: rgba(0, 0, 0, 0.07);
+    @include button-color($--x-button-active, $--x-button-active-background, $--x-button-active-border);
     .x-button-inner {
       transform: translate(1px, 1px);
     }
   }
   &-text {
     border-width: 0px;
-    color: $-x-primary-color;
+    color: $--x-button-primary;
+    background-color: transparent;
+    &:hover,
+    &:active {
+      background-color: transparent;
+    }
   }
   &-plain {
     &:hover {
-      color: $-x-primary-color;
-      border-color: $-x-primary-color;
+      @include button-color($--x-button-primary, $--x-button-white, $--x-button-primary);
+    }
+    &:active {
+      background-color: $--x-button-white;
     }
   }
   &-round {
@@ -78,7 +85,10 @@
     width: 1.675rem;
   }
   &-disabled {
-    @include disabled($-x-border-color-400, transparent, $-x-border-color-300);
+    @include disabled($--x-button-disabled, $--x-button-disabled-background, $--x-button-disabled-border);
+  }
+  &-text + &-disabled {
+    background-color: transparent;
   }
   &-large {
     height: 2rem;
@@ -98,46 +108,61 @@
   }
 }
 
-@mixin button-type($type, $color, $bg-color, $hover-color, $active-color, $disabled-color) {
-  &-#{$type} {
-    color: $color;
-    background-color: $bg-color;
-    border-color: $bg-color;
-    &:hover {
-      background-color: $hover-color;
-    }
-    &:active {
-      background-color: $active-color;
-    }
-    &.#{$prefixButton}-disabled {
-      @include disabled($color, $disabled-color, $disabled-color);
-    }
-  }
+@mixin button-color($color, $background, $border) {
+  color: #{$color};
+  background-color: #{$background};
+  border-color: #{$border};
 }
 
-@mixin button-plain(
+@mixin button-type(
   $type,
   $color,
-  $bg-color,
-  $hover-color,
-  $active-color,
-  $disabled-color,
-  $disabled-bg-color,
-  $disabled-border-color
+  $background,
+  $border,
+  $hover,
+  $hover-background,
+  $hover-border,
+  $active,
+  $active-background,
+  $active-border,
+  $disabled,
+  $disabled-background,
+  $disabled-border,
+  $plain-color,
+  $plain-background,
+  $plain-border,
+  $plain-hover,
+  $plain-hover-background,
+  $plain-hover-border,
+  $plain-active,
+  $plain-active-background,
+  $plain-active-border,
+  $plain-disabled,
+  $plain-disabled-background,
+  $plain-disabled-border
 ) {
-  &-#{$type}-plain {
-    color: $color;
-    background-color: $bg-color;
-    border-color: $color;
+  &-#{$type} {
+    @include button-color($color, $background, $border);
     &:hover {
-      color: $hover-color;
-      background-color: $color;
+      @include button-color($hover, $hover-background, $hover-border);
     }
     &:active {
-      background-color: $active-color;
+      @include button-color($active, $active-background, $active-border);
     }
-    &.#{$prefixButton}-disabled {
-      @include disabled($disabled-color, $disabled-bg-color, $disabled-border-color);
+    &.#{$--x-button}-disabled {
+      @include disabled($disabled, $disabled-background, $disabled-border);
+    }
+  }
+  &-#{$type}-plain {
+    @include button-color($plain-color, $plain-background, $plain-border);
+    &:hover {
+      @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
+    }
+    &:active {
+      @include button-color($plain-active, $plain-active-background, $plain-active-border);
+    }
+    &.#{$--x-button}-disabled {
+      @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
     }
   }
 }
@@ -165,37 +190,29 @@
 @mixin buttons {
   display: inline-flex;
   position: relative;
-  &:not(.#{$prefixButtons}-space) {
-    > .#{$prefixButton} {
-      border-left-width: 0;
-      border-right-width: 0;
+  &:not(.#{$--x-buttons}-space) {
+    > .#{$--x-button} {
+      border-left-width: 1px;
+      border-right-width: 1px;
       border-radius: 0;
+      position: relative;
       &:first-child {
-        border-left-width: 1px;
         border-top-left-radius: 0.125rem;
         border-bottom-left-radius: 0.125rem;
       }
       &:last-child {
-        border-right-width: 1px;
         border-top-right-radius: 0.125rem;
         border-bottom-right-radius: 0.125rem;
       }
       &:not(:first-child) {
-        border-left-width: 1px;
-      }
-    }
-    > .#{$prefixButton}-plain {
-      border-left-width: 1px;
-      border-right-width: 1px;
-      position: relative;
-      &:not(:first-child) {
         margin-left: -1px;
       }
-      &:hover {
+      &:hover,
+      &:active {
         z-index: 1;
       }
     }
-    > .#{$prefixButton}-round {
+    > .#{$--x-button}-round {
       border-radius: 0;
       &:first-child {
         border-top-left-radius: 5rem;
@@ -227,7 +244,7 @@
           }
         }
         &:hover {
-          color: $-x-primary-color;
+          color: $--x-button-primary;
           background-color: transparent;
         }
       }
@@ -236,7 +253,7 @@
 }
 
 @mixin buttons-type($type) {
-  > .#{$prefixButton}-#{$type} {
+  > .#{$--x-button}-#{$type} {
     &:not(:first-child) {
       border-left-color: rgba(255, 255, 255, 0.2);
     }

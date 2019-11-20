@@ -1,14 +1,13 @@
 $prefix: ns;
 
 // Color
-$-x-primary-color-dark: var(--x-primary-color-dark);
-$-x-primary-color: var(--x-primary-color);
-$-x-primary-color-light: var(--x-primary-color-light);
-$-x-primary-color-text: var(--x-primary-color-text);
-$-x-accent-color: var(--x-accent-color);
-$-x-primary-text-color: var(--x-primary-text-color);
-$-x-secondary-text-color: var(--x-secondary-text-color);
-$-x-divider-color: var(--x-divider-color);
+$--x-primary-active: var(--x-primary-a100);
+$--x-primary: var(--x-primary);
+$--x-primary-hover: var(--x-primary-600);
+$--x-text: var(--x-text);
+$--x-primary-text: var(--x-primary-100);
+$--x-text-disabled: var(--x-text-300);
+$--x-border: var(--x-border);
 
 // ----  1rem = 16px  -----
 // |  px  |     rem       |

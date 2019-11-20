@@ -5,7 +5,7 @@
 }
 
 @mixin activated {
-  color: $-x-primary-color;
+  color: $--x-primary;
   background-color: rgba(0, 0, 0, 0.02);
 }
 
@@ -37,10 +37,10 @@ ns-layout {
         > a {
           padding: 0.5rem 1rem;
           margin: 0 0.125rem;
-          color: $-x-primary-color-text;
+          color: $--x-text;
           &:hover,
           &.active {
-            color: $-x-primary-color-text;
+            color: $--x-text;
             opacity: 0.7;
           }
         }
@@ -78,7 +78,7 @@ ns-layout {
         align-items: center;
         height: 2.25rem;
         font-size: 0.875rem;
-        color: $-x-primary-text-color;
+        color: $--x-primary-text;
         border-radius: 0.125rem;
         p {
           overflow: hidden;
@@ -104,7 +104,7 @@ ns-layout {
           }
           &.arrow {
             opacity: 0;
-            color: $-x-primary-text-color;
+            color: $--x-primary-text;
           }
         }
         &:hover {
@@ -141,7 +141,7 @@ ns-layout {
         > li {
           ul li {
             > a {
-              color: $-x-secondary-text-color;
+              color: $--x-text-300;
             }
           }
         }
@@ -176,7 +176,7 @@ ns-layout {
   &.shrink {
     > ns-header {
       position: fixed;
-      background-color: $-x-primary-color;
+      background-color: $--x-primary;
     }
     > ns-sider {
       width: $sider-width;

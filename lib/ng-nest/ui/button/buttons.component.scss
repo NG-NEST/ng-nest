@@ -4,7 +4,7 @@
 @import "../style/mixins/index";
 @import "./style/mixin";
 
-.#{$prefixButtons} {
+.#{$--x-buttons} {
   @include reset-component();
   @include buttons();
   @include buttons-type("primary");

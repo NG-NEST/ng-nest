@@ -112,7 +112,7 @@ html {
 
 body {
   font-size: 1rem;
-  color: $-x-primary-text-color;
+  color: $--x-primary-text;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background-color: #fafafa;
@@ -151,13 +151,13 @@ ul {
 }
 
 a {
-  color: $-x-primary-color;
+  color: $--x-primary;
   text-decoration: none;
   transition: all 0.4s;
   cursor: pointer;
 
   &:hover {
-    color: $-x-primary-color;
+    color: $--x-primary;
   }
 }
 

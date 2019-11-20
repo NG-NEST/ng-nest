@@ -18,9 +18,9 @@
 }
 
 @mixin media-screen($key, $value) {
-  $col-fence-initial: $-x-col-fence;
+  $col-fence-initial: $--x-col-fence;
   @while $col-fence-initial>0 {
-    $col-percentage: 100% * $col-fence-initial / $-x-col-fence;
+    $col-percentage: 100% * $col-fence-initial / $--x-col-fence;
     @media only screen and #{inspect($value)} {
       &-#{$key}-#{$col-fence-initial} {
         width: $col-percentage;
@@ -35,9 +35,9 @@
   float: left;
   display: block;
   box-sizing: border-box;
-  $col-fence-initial: $-x-col-fence;
+  $col-fence-initial: $--x-col-fence;
   @while $col-fence-initial>0 {
-    $col-percentage: 100% * $col-fence-initial / $-x-col-fence;
+    $col-percentage: 100% * $col-fence-initial / $--x-col-fence;
     &-#{$col-fence-initial} {
       width: $col-percentage;
     }
@@ -46,7 +46,7 @@
     }
     $col-fence-initial: $col-fence-initial - 1;
   }
-  @each $key, $value in $-x-size-range {
+  @each $key, $value in $--x-size-range {
     @include media-screen($key, $value);
   }
 }

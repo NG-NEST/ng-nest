@@ -17,11 +17,11 @@
 
 // Element hover
 @mixin hover() {
-  border-color: $-x-primary-color;
+  border-color: $--x-primary;
 }
 
 // Element focus
 @mixin focus() {
-  border-color: $-x-primary-color;
+  border-color: $--x-primary;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
 }

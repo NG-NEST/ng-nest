@@ -130,6 +130,7 @@ describe(ButtonPrefix, () => {
       <x-button label="成功按钮" type="success"></x-button>
       <x-button label="警告按钮" type="warning"></x-button>
       <x-button label="危险按钮" type="danger"></x-button>
+      <x-button label="信息按钮" type="info"></x-button>
     </div>
     <div class="row">
       <x-button label="朴素按钮" plain></x-button>
@@ -137,6 +138,7 @@ describe(ButtonPrefix, () => {
       <x-button label="成功按钮" type="success" plain></x-button>
       <x-button label="警告按钮" type="warning" plain></x-button>
       <x-button label="危险按钮" type="danger" plain></x-button>
+      <x-button label="信息按钮" type="info" plain></x-button>
     </div>
     <div class="row">
       <x-button label="圆角按钮" round></x-button>
@@ -144,6 +146,7 @@ describe(ButtonPrefix, () => {
       <x-button label="成功按钮" type="success" round></x-button>
       <x-button label="警告按钮" type="warning" round></x-button>
       <x-button label="危险按钮" type="danger" round></x-button>
+      <x-button label="信息按钮" type="info" round></x-button>
     </div>
     <div class="row">
       <x-button icon="fto-search" circle></x-button>

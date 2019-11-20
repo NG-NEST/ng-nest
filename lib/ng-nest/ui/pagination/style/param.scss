@@ -1,11 +1,11 @@
 // Pagination style paramters
 
-$prefix: $-x-prefix + "-pagination";
+$prefix: $--x-prefix + "-pagination";
 
-$pagination-font-size: $-x-font-size;
-$pagination-color: $-x-primary-text-color;
-$pagination-border-color: $-x-divider-color;
+$pagination-font-size: $--x-font-size;
+$pagination-color: $--x-primary-100;
+$pagination-border-color: $--x-border;
 
-$pagination-activated-color: $-x-primary-color;
-$pagination-activated-border-color: $-x-primary-color;
+$pagination-activated-color: $--x-primary;
+$pagination-activated-border-color: $--x-primary;
 $pagination-activated-background-color: rgba(0, 0, 0, 0.05);

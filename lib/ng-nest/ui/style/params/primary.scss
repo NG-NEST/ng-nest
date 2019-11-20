@@ -1,70 +1,117 @@
-$-x-prefix: x;
+$--x-prefix: x;
 
-// Color
-$-x-primary-color-dark: var(--x-primary-color-dark);
-$-x-primary-color: var(--x-primary-color);
-$-x-primary-color-light: var(--x-primary-color-light);
-$-x-primary-color-text: var(--x-primary-color-text);
-$-x-accent-color: var(--x-accent-color);
-$-x-primary-text-color: var(--x-primary-text-color);
-$-x-secondary-text-color: var(--x-secondary-text-color);
-$-x-divider-color: var(--x-divider-color);
+// Colors
+$--x-primary: var(--x-primary);
+$--x-primary-a100: var(--x-primary-a100);
+$--x-primary-900: var(--x-primary-900);
+$--x-primary-800: var(--x-primary-800);
+$--x-primary-700: var(--x-primary-700);
+$--x-primary-600: var(--x-primary-600);
+$--x-primary-500: var(--x-primary-500);
+$--x-primary-400: var(--x-primary-400);
+$--x-primary-300: var(--x-primary-300);
+$--x-primary-200: var(--x-primary-200);
+$--x-primary-100: var(--x-primary-100);
+$--x-success: var(--x-success);
+$--x-success-a100: var(--x-success-a100);
+$--x-success-800: var(--x-success-800);
+$--x-success-700: var(--x-success-700);
+$--x-success-600: var(--x-success-600);
+$--x-success-400: var(--x-success-400);
+$--x-success-200: var(--x-success-200);
+$--x-success-100: var(--x-success-100);
+$--x-warning: var(--x-warning);
+$--x-warning-a100: var(--x-warning-a100);
+$--x-warning-800: var(--x-warning-800);
+$--x-warning-700: var(--x-warning-700);
+$--x-warning-600: var(--x-warning-600);
+$--x-warning-400: var(--x-warning-400);
+$--x-warning-200: var(--x-warning-200);
+$--x-warning-100: var(--x-warning-100);
+$--x-danger: var(--x-danger);
+$--x-danger-a100: var(--x-danger-a100);
+$--x-danger-800: var(--x-danger-800);
+$--x-danger-700: var(--x-danger-700);
+$--x-danger-600: var(--x-danger-600);
+$--x-danger-400: var(--x-danger-400);
+$--x-danger-200: var(--x-danger-200);
+$--x-danger-100: var(--x-danger-100);
+$--x-info: var(--x-info);
+$--x-info-a100: var(--x-info-a100);
+$--x-info-800: var(--x-info-800);
+$--x-info-700: var(--x-info-700);
+$--x-info-600: var(--x-info-600);
+$--x-info-400: var(--x-info-400);
+$--x-info-200: var(--x-info-200);
+$--x-info-100: var(--x-info-100);
+$--x-text: var(--x-text);
+$--x-text-500: var(--x-text-500);
+$--x-text-400: var(--x-text-400);
+$--x-text-300: var(--x-text-300);
+$--x-border: var(--x-border);
+$--x-border-300: var(--x-border-300);
+$--x-border-200: var(--x-border-200);
+$--x-border-100: var(--x-border-100);
+$--x-black: var(--x-black);
+$--x-white: var(--x-white);
 
-$-x-primary-color-plain-light: var(--x-primary-color-plain-light);
-$-x-primary-color-plain-dark: var(--x-primary-color-plain-dark);
-$-x-primary-color-plain-disabled: var(--x-primary-color-plain-disabled);
+// // Color
 
-$-x-white-color: var(--x-white-color);
-$-x-success-color: var(--x-success-color);
-$-x-warning-color: var(--x-warning-color);
-$-x-danger-color: var(--x-danger-color);
+// $--x-primary-plain-light: var(--x-primary-plain-light);
+// $--x-primary-plain-dark: var(--x-primary-plain-dark);
+// $--x-primary-plain-disabled: var(--x-primary-plain-disabled);
 
-$-x-success-color-light: var(--x-success-color-light);
-$-x-warning-color-light: var(--x-warning-color-light);
-$-x-danger-color-light: var(--x-danger-color-light);
+// $--x-white-color: var(--x-white-color);
+// $--x-success-color: var(--x-success-color);
+// $--x-warning-color: var(--x-warning-color);
+// $--x-danger-color: var(--x-danger-color);
 
-$-x-success-color-plain-light: var(--x-success-color-plain-light);
-$-x-warning-color-plain-light: var(--x-warning-color-plain-light);
-$-x-danger-color-plain-light: var(--x-danger-color-plain-light);
+// $--x-success-color-light: var(--x-success-color-light);
+// $--x-warning-color-light: var(--x-warning-color-light);
+// $--x-danger-color-light: var(--x-danger-color-light);
 
-$-x-success-color-plain-dark: var(--x-success-color-plain-dark);
-$-x-warning-color-plain-dark: var(--x-warning-color-plain-dark);
-$-x-danger-color-plain-dark: var(--x-danger-color-plain-dark);
+// $--x-success-color-plain-light: var(--x-success-color-plain-light);
+// $--x-warning-color-plain-light: var(--x-warning-color-plain-light);
+// $--x-danger-color-plain-light: var(--x-danger-color-plain-light);
 
-$-x-success-color-plain-disabled: var(--x-success-color-plain-disabled);
-$-x-warning-color-plain-disabled: var(--x-warning-color-plain-disabled);
-$-x-danger-color-plain-disabled: var(--x-danger-color-plain-disabled);
+// $--x-success-color-plain-dark: var(--x-success-color-plain-dark);
+// $--x-warning-color-plain-dark: var(--x-warning-color-plain-dark);
+// $--x-danger-color-plain-dark: var(--x-danger-color-plain-dark);
 
-$-x-success-color-dark: var(--x-success-color-dark);
-$-x-warning-color-dark: var(--x-warning-color-dark);
-$-x-danger-color-dark: var(--x-danger-color-dark);
+// $--x-success-color-plain-disabled: var(--x-success-color-plain-disabled);
+// $--x-warning-color-plain-disabled: var(--x-warning-color-plain-disabled);
+// $--x-danger-color-plain-disabled: var(--x-danger-color-plain-disabled);
 
-$-x-border-color-100: var(--x-border-color-100);
-$-x-border-color-200: var(--x-border-color-200);
-$-x-border-color-300: var(--x-border-color-300);
-$-x-border-color-400: var(--x-border-color-400);
-$-x-border-color: $-x-border-color-400;
+// $--x-success-color-dark: var(--x-success-color-dark);
+// $--x-warning-color-dark: var(--x-warning-color-dark);
+// $--x-danger-color-dark: var(--x-danger-color-dark);
+
+// $--x-border-color-100: var(--x-border-color-100);
+// $--x-border-color-200: var(--x-border-color-200);
+// $--x-border-color-300: var(--x-border-color-300);
+// $--x-border-color-400: var(--x-border-color-400);
+// $--x-border-color: $--x-border-color-400;
 
 // Font
-$-x-font-size: 0.875rem;
-$-x-font-variant: tabular-nums;
-$-x-font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
-$-x-font-size-sm: $-x-font-size - 0.125rem;
-$-x-font-size-md: $-x-font-size + 0.125rem;
-$-x-font-size-lg: $-x-font-size-md + 0.125rem;
-$-x-font-size-bg: $-x-font-size-lg + 0.125rem;
-$-x-line-height: 1.5;
+$--x-font-size: 0.875rem;
+$--x-font-variant: tabular-nums;
+$--x-font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
+$--x-font-size-sm: $--x-font-size - 0.125rem;
+$--x-font-size-md: $--x-font-size + 0.125rem;
+$--x-font-size-lg: $--x-font-size-md + 0.125rem;
+$--x-font-size-bg: $--x-font-size-lg + 0.125rem;
+$--x-line-height: 1.5;
 
 // Paddings
-$-x-padding-bg: 1rem;
-$-x-padding-lg: 0.875rem;
-$-x-padding-md: 0.75rem;
-$-x-padding-sm: 0.525rem;
-$-x-padding-xs: 0.4rem;
-$-x-padding-ss: 0.275rem;
+$--x-padding-bg: 1rem;
+$--x-padding-lg: 0.875rem;
+$--x-padding-md: 0.75rem;
+$--x-padding-sm: 0.525rem;
+$--x-padding-xs: 0.4rem;
+$--x-padding-ss: 0.275rem;
 
 // Border
-$border-color: $-x-divider-color;
+$border-color: $--x-border;
 $border-style: solid;
 $border-width: 1px;
 $border-radius: 0.125rem;
@@ -75,5 +122,5 @@ $animation-duration-base: 0.4s;
 $animation-duration-fast: 0.2s;
 
 // Controls
-$control-padding-horizontal: $-x-padding-xs;
-$control-padding-vertical: $-x-padding-xs;
+$control-padding-horizontal: $--x-padding-xs;
+$control-padding-vertical: $--x-padding-xs;

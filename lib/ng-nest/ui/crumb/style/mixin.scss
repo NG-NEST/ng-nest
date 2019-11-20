@@ -34,7 +34,7 @@
         margin: 0 0.5rem;
       }
       &:not(:last-child) {
-        color: $-x-secondary-text-color;
+        color: $--x-text-300;
       }
       &:last-child {
         pointer-events: none;

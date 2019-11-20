@@ -1,11 +1,11 @@
 // Slider style paramters
 
-$prefix: $-x-prefix + "-slider";
+$prefix: $--x-prefix + "-slider";
 
-$slider-font-size: $-x-font-size;
-$slider-color: $-x-primary-text-color;
-$slider-border-color: $-x-divider-color;
+$slider-font-size: $--x-font-size;
+$slider-color: $--x-primary-100;
+$slider-border-color: $--x-border;
 
-$slider-activated-color: $-x-primary-color;
-$slider-activated-border-color: $-x-primary-color;
+$slider-activated-color: $--x-primary;
+$slider-activated-border-color: $--x-primary;
 $slider-activated-background-color: rgba(0, 0, 0, 0.05);

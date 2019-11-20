@@ -7,10 +7,10 @@
       text-align: center;
       border-radius: 0.125rem;
       &:nth-child(odd) {
-        background-color: var(--x-primary-color-light);
+        background-color: var(--x-primary-light);
       }
       &:nth-child(even) {
-        background-color: var(--x-primary-color);
+        background-color: var(--x-primary);
       }
     }
     &:first-child {

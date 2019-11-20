@@ -2,8 +2,7 @@
 @import "../params/";
 
 :root {
-  @include var-colors($-x-colors);
-  @include var-all-colors($-x-all-colors);
+  @include var-colors($--x-colors);
 }
 
-@include var-size-hidden($-x-size-range-only);
+@include var-size-hidden($--x-size-range-only);

@@ -3,16 +3,16 @@
 $prefix: "x-input";
 
 /* 字体大小 */
-$input-font-size: $-x-font-size;
+$input-font-size: $--x-font-size;
 
 /* 内边距 */
 $input-padding: 0 $control-padding-horizontal;
 
 /* 文字颜色 */
-$input-color: $-x-primary-text-color;
+$input-color: $--x-primary-100;
 
 /* 提示文字颜色 */
-$input-placeholder-color: $-x-divider-color;
+$input-placeholder-color: $--x-border;
 
 /* 背景颜色 */
 $input-background-color: #ffffff;
@@ -24,10 +24,10 @@ $input-border: $border-width $border-style $border-color;
 $input-border-radius: $border-radius;
 
 /* 禁用颜色 */
-$input-disabled-color: $-x-secondary-text-color;
+$input-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$input-icon-font-size: $-x-font-size-md;
+$input-icon-font-size: $--x-font-size-md;
 
 /* 输入框中图标的内边距 */
 $input-icon-padding: $control-padding-horizontal;
