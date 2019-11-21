@@ -1,4 +1,4 @@
-import { XIdentityOption } from "@ng-nest/ui/core";
+import { XIdentityInput } from "@ng-nest/ui/core";
 
 /**
  * Input 组件名
@@ -8,9 +8,9 @@ import { XIdentityOption } from "@ng-nest/ui/core";
 export const InputPrefix = "x-input";
 
 /**
- * Input 参数对象
+ * Input @Input
  */
-export interface XInputOption extends XIdentityOption {
+export interface XInputInput extends XIdentityInput {
   /**
    * 布局方式
    * @default "horizontal"

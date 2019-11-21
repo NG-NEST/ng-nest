@@ -3,16 +3,15 @@
     margin: 1rem 0;
     > x-col {
       > div {
-        color: #ffffff;
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       &:nth-child(odd) > div {
-        background-color: var(--x-primary-light);
+        background-color: var(--x-info-400);
       }
       &:nth-child(even) > div {
-        background-color: var(--x-primary);
+        background-color: var(--x-info-200);
       }
     }
     &:first-child {

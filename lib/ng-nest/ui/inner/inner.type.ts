@@ -6,9 +6,9 @@
 export const InnerPrefix = "x-inner";
 
 /**
- * Inner 参数对象
+ * Inner @Input
  */
-export interface XInnerOption {
+export interface XInnerInput {
   /**
    * 内边距
    * @default "1rem"

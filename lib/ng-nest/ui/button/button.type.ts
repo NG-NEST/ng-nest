@@ -1,23 +1,16 @@
-import { XIdentityOption, XDirection, XSize } from "@ng-nest/ui/core";
+import { XIdentityInput, XDirection, XSize } from "@ng-nest/ui/core";
 
 /**
  * Button 组件名
  * @selector x-button
  * @decorator component
  */
-export const ButtonPrefix = "x-button";
+export const XButtonPrefix = "x-button";
 
 /**
- * Buttons 组件名
- * @selector x-buttons
- * @decorator component
+ * Button @Input
  */
-export const ButtonsPrefix = "x-buttons";
-
-/**
- * Button 参数对象
- */
-export interface XButtonOption extends XIdentityOption {
+export interface XButtonInput extends XIdentityInput {
   /**
    * 按钮类型
    */
@@ -60,9 +53,27 @@ export interface XButtonOption extends XIdentityOption {
 }
 
 /**
- * Buttons 参数对象
+ * 按钮类型
+ * @value "primary"
+ * @value "success"
+ * @value "info"
+ * @value "warning"
+ * @value "danger"
+ * @value "text"
  */
-export interface XButtonsOption {
+export type XButtonType = "primary" | "success" | "info" | "warning" | "danger" | "text";
+
+/**
+ * Buttons 组件名
+ * @selector x-buttons
+ * @decorator component
+ */
+export const XButtonsPrefix = "x-buttons";
+
+/**
+ * Buttons @Input
+ */
+export interface XButtonsInput {
   /**
    * 间距
    * @default 0
@@ -73,14 +84,3 @@ export interface XButtonsOption {
    */
   notBorder?: boolean;
 }
-
-/**
- * 按钮类型
- * @value "primary"
- * @value "success"
- * @value "info"
- * @value "warning"
- * @value "danger"
- * @value "text"
- */
-export type XButtonType = "primary" | "success" | "info" | "warning" | "danger" | "text";

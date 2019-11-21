@@ -6,7 +6,7 @@ import { XGridModule } from "./grid.module";
 import { XRowPrefix } from "./grid.type";
 import { XRowComponent } from "./row.component";
 
-describe("grid", () => {
+describe(`${XRowPrefix}`, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XGridModule],

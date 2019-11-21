@@ -4,6 +4,6 @@
 @import "../style/mixins/index";
 @import "./style/mixin";
 
-.#{$prefixCol} {
+.#{$--x-col-prefix} {
   @include col();
 }

@@ -1,4 +1,4 @@
-import { XIdentityOption } from "@ng-nest/ui/core";
+import { XIdentityInput } from "@ng-nest/ui/core";
 
 /**
  * Anchor 组件名
@@ -8,9 +8,9 @@ import { XIdentityOption } from "@ng-nest/ui/core";
 export const AnchorPrefix = "x-anchor";
 
 /**
- * Anchor 参数对象
+ * Anchor @Input
  */
-export interface XAnchorOption {
+export interface XAnchorInput {
   /**
    * 布局方式
    * @default "right"
@@ -34,7 +34,7 @@ export interface XAnchorOption {
 /**
  * Anchor 数据对象
  */
-export interface XAnchorNode extends XIdentityOption {
+export interface XAnchorNode extends XIdentityInput {
   /**
    * 左内边距，用来显示层级
    */

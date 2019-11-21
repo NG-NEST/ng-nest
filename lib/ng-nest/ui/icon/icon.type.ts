@@ -6,9 +6,9 @@
 export const XIconPrefix = "x-icon";
 
 /**
- * Icon 参数对象
+ * Icon @Input
  */
-export interface XIconOption {
+export interface XIconInput {
   /**
    * 图标类型
    */

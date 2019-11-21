@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 
 import { XIconModule } from "@ng-nest/ui/icon";
+import { XContainerModule } from "@ng-nest/ui/container";
 import { XSliderModule } from "@ng-nest/ui/slider";
 import { XHighlightModule } from "@ng-nest/ui/highlight";
 import { XGridModule } from "@ng-nest/ui/grid";
@@ -23,6 +24,7 @@ import { XFormModule } from "@ng-nest/ui/form";
 
 export * from "@ng-nest/ui/core";
 export * from "@ng-nest/ui/icon";
+export * from "@ng-nest/ui/container";
 export * from "@ng-nest/ui/grid";
 export * from "@ng-nest/ui/slider";
 export * from "@ng-nest/ui/highlight";
@@ -46,6 +48,7 @@ export * from "@ng-nest/ui/form";
 @NgModule({
   exports: [
     XIconModule,
+    XContainerModule,
     XSliderModule,
     XHighlightModule,
     XGridModule,

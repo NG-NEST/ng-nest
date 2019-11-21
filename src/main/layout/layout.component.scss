@@ -37,10 +37,10 @@ ns-layout {
         > a {
           padding: 0.5rem 1rem;
           margin: 0 0.125rem;
-          color: $--x-text;
+          color: $--x-white;
           &:hover,
           &.active {
-            color: $--x-text;
+            color: $--x-white;
             opacity: 0.7;
           }
         }
@@ -72,13 +72,12 @@ ns-layout {
     li {
       a {
         padding: 0;
-        transition: color $transition-duration, box-shadow $transition-duration,
-          background-color $transition-duration;
+        transition: color $transition-duration, box-shadow $transition-duration, background-color $transition-duration;
         display: flex;
         align-items: center;
         height: 2.25rem;
         font-size: 0.875rem;
-        color: $--x-primary-text;
+        color: $--x-text;
         border-radius: 0.125rem;
         p {
           overflow: hidden;
@@ -104,7 +103,7 @@ ns-layout {
           }
           &.arrow {
             opacity: 0;
-            color: $--x-primary-text;
+            color: $--x-text;
           }
         }
         &:hover {
@@ -141,7 +140,7 @@ ns-layout {
         > li {
           ul li {
             > a {
-              color: $--x-text-300;
+              color: $--x-text-500;
             }
           }
         }

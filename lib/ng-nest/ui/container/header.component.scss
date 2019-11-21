@@ -1,0 +1,10 @@
+// Header
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-header-prefix} {
+  @include reset-component();
+  @include header();
+}

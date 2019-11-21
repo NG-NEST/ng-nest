@@ -16,7 +16,7 @@ import {
 } from "@angular/core";
 import {
   SliderPrefix,
-  XSliderOption,
+  XSliderInput,
   XActivatedSlider,
   XSliderNode,
   XSliderLayoutType,
@@ -57,7 +57,7 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   @Output() indexChange?: EventEmitter<XActivatedSlider> = new EventEmitter<XActivatedSlider>();
 
-  private _default: XSliderOption = {
+  private _default: XSliderInput = {
     data: [],
     layout: "row",
     activatedIndex: 0

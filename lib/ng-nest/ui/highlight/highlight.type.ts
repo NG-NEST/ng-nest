@@ -1,14 +1,14 @@
 /**
- * Highlight 参数对象
+ * Highlight 对象
  * @selector x-highlight
  * @decorator component
  */
 export const HighlightPrefix = "x-highlight";
 
 /**
- * Highlight 参数对象
+ * Highlight 对象
  */
-export interface XHighlightOption {
+export interface XHighlightInput {
   /**
    * 代码类型
    */

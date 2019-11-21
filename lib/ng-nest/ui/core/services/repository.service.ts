@@ -1,9 +1,9 @@
-import { XRepositoryOption } from "./repository.service";
+import { XRepositoryInput } from "./repository.service";
 import { XId, XQuery, XResultList } from "../interfaces";
 import { XHttpService } from "./http.service";
 import { Observable } from "rxjs";
 
-export interface XRepositoryOption {
+export interface XRepositoryInput {
   controller: XController;
 }
 
@@ -20,29 +20,29 @@ export abstract class XRepositoryAbstract {
 }
 
 export class XRepositoryService<Entity extends XId> extends XRepositoryAbstract {
-  constructor(public http: XHttpService, public option: XRepositoryOption) {
+  constructor(public http: XHttpService, public input: XRepositoryInput) {
     super();
   }
 
   getList(index?: number, size?: number, query?: XQuery): Observable<XResultList<Entity>> {
     index = index ? index : 1;
     size = size ? size : 10;
-    return this.http.post(`${this.option.controller.name}/${size}/${index}`, query);
+    return this.http.post(`${this.input.controller.name}/${size}/${index}`, query);
   }
 
   get(id: number | string): Observable<Entity> {
-    return this.http.get(`${this.option.controller.name}/${id}`);
+    return this.http.get(`${this.input.controller.name}/${id}`);
   }
 
   post(entity: Entity): Observable<Entity> {
-    return this.http.post(`${this.option.controller.name}`, entity);
+    return this.http.post(`${this.input.controller.name}`, entity);
   }
 
   put(entity: Entity): Observable<Entity> {
-    return this.http.put(`${this.option.controller.name}`, entity);
+    return this.http.put(`${this.input.controller.name}`, entity);
   }
 
   delete(id: number | string): Observable<boolean> {
-    return this.http.delete(`${this.option.controller.name}/${id}`);
+    return this.http.delete(`${this.input.controller.name}/${id}`);
   }
 }

@@ -1,10 +1,10 @@
 ---
-label: "Grid 布局"
+label: "Grid 栅格分栏"
 category: "Basic"
 order: 1
 ---
 
-# Grid 布局
+# Grid 栅格分栏
 
 通过基础的 24 分栏，迅速简便地创建布局。布局的栅格系统是基于行 `x-row` 和列 `x-col` 来定义内容区域的框架。
 

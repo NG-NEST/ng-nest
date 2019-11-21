@@ -1,4 +1,4 @@
-import { XIdentityOption, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from "@ng-nest/ui/core";
 
 /**
  * Tabs 组件名
@@ -8,9 +8,9 @@ import { XIdentityOption, XData } from "@ng-nest/ui/core";
 export const TabsPrefix = "x-tabs";
 
 /**
- * Tabs 参数对象
+ * Tabs @Input
  */
-export interface XTabsOption {
+export interface XTabsInput {
   /**
    * Data 数据
    */
@@ -28,7 +28,7 @@ export interface XTabsOption {
 /**
  * Tabs 数据对象
  */
-export interface XTabsNode extends XIdentityOption {}
+export interface XTabsNode extends XIdentityInput {}
 
 /**
  * 激活的tab

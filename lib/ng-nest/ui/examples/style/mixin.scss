@@ -6,8 +6,8 @@
 
 @mixin examples {
   display: flex;
-  border: 1px solid #e8e8e8;
   background-color: #fff;
+  border-radius: 0.125rem;
   .#{$prefix}-html,
   .#{$prefix}-code {
     padding: 1rem;
@@ -15,7 +15,8 @@
   .#{$prefix}-code {
     > .x-tabs {
       padding-top: 0;
-      background-color: #eff0f1;
+      background-color: var(--x-info-100);
+      border-radius: 0.125rem;
       > .x-tabs-contents > .x-tab-content > .x-highlight {
         background-color: transparent;
       }
@@ -23,8 +24,8 @@
   }
   .#{$prefix}-info {
     padding: 1rem;
-    border: 1px solid #eff0f1;
-    border-top: 2px solid $--x-primary;
+    border: 1px solid var(--x-border-100);
+    border-radius: 0.125rem;
     margin: 0 1rem;
     > p {
       margin: 0.5rem 0 0;
@@ -42,7 +43,7 @@
     width: 100%;
     > .x-tabs-list {
       padding: 1rem;
-      border-right: 1px solid #e8e8e8;
+      border-right: 1px solid var(--x-border-100);
       > .x-slider {
         min-width: 6rem;
         &.x-slider-border-position-right > ul > li {

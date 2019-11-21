@@ -1,5 +1,5 @@
 /**
- * 组件中的样式参数对象
+ * 组件中的样式参数
  *
  * @export
  * @interface NcPattern
@@ -41,7 +41,7 @@ export interface NcPattern {
    */
   inherit?: string;
   /**
-   * 继承样式参数对象
+   * 继承样式参数
    *
    * @type {string}
    * @memberof NcPattern

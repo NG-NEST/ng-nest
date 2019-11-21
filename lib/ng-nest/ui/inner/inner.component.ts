@@ -9,7 +9,7 @@ import {
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { InnerPrefix, XInnerOption } from "./inner.type";
+import { InnerPrefix, XInnerInput } from "./inner.type";
 import { fillDefault } from "@ng-nest/ui/core";
 
 @Component({
@@ -22,7 +22,7 @@ import { fillDefault } from "@ng-nest/ui/core";
 })
 export class XInnerComponent implements OnInit, OnChanges {
   @Input() padding: string;
-  private _default: XInnerOption = {
+  private _default: XInnerInput = {
     padding: "1rem"
   };
   private _ele: HTMLElement;

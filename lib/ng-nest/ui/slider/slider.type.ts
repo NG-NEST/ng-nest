@@ -1,4 +1,4 @@
-import { XIdentityOption, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from "@ng-nest/ui/core";
 import { TemplateRef } from "@angular/core";
 
 /**
@@ -9,9 +9,9 @@ import { TemplateRef } from "@angular/core";
 export const SliderPrefix = "x-slider";
 
 /**
- * Slider 参数对象
+ * Slider @Input
  */
-export interface XSliderOption {
+export interface XSliderInput {
   /**
    * Data 数据
    * @default []
@@ -41,7 +41,7 @@ export interface XSliderOption {
 /**
  * Slider 数据对象
  */
-export interface XSliderNode extends XIdentityOption {
+export interface XSliderNode extends XIdentityInput {
   /**
    * 自定义数据属性
    */

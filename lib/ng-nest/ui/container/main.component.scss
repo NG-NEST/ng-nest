@@ -1,0 +1,10 @@
+// Main
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-main-prefix} {
+  @include reset-component();
+  @include main();
+}

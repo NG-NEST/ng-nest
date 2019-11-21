@@ -4,9 +4,9 @@ import { XButtonComponent } from "./button.component";
 import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XButtonModule } from "./button.module";
-import { ButtonPrefix } from "./button.type";
+import { XButtonPrefix } from "./button.type";
 
-describe(ButtonPrefix, () => {
+describe(XButtonPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XButtonModule],

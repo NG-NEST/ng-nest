@@ -12,7 +12,7 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { PaginationPrefix, XPaginationOption } from "./pagination.type";
+import { PaginationPrefix, XPaginationInput } from "./pagination.type";
 import { fillDefault } from "@ng-nest/ui/core";
 
 @Component({
@@ -27,7 +27,7 @@ export class XPaginationComponent implements OnInit, OnChanges {
   @Input() size?: number;
   @Input() total?: number;
   @Output() indexChange = new EventEmitter<number>();
-  private _default: XPaginationOption = {
+  private _default: XPaginationInput = {
     index: 1,
     size: 10,
     total: 0

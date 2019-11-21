@@ -72,15 +72,23 @@
     width: 100%;
     background: white;
     border-collapse: collapse;
-    border: 1px solid #e8e8e8;
     tr > th,
     tr > td {
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid var(--x-border-100);
       text-align: left;
       padding: 0.5rem 1rem;
     }
-    tr > th {
-      white-space: nowrap;
+    tr > {
+      &:last-child {
+        > th,
+        > td {
+          border-width: 0px;
+        }
+      }
+      th {
+        white-space: nowrap;
+        color: var(--x-text-500);
+      }
     }
   }
 }

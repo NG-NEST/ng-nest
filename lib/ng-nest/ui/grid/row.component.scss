@@ -4,6 +4,6 @@
 @import "../style/mixins/index";
 @import "./style/mixin";
 
-.#{$prefixRow} {
+.#{$--x-row-prefix} {
   @include row();
 }

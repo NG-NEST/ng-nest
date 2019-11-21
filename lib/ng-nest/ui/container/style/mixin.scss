@@ -1,0 +1,38 @@
+// Container
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+  @include flex-direction();
+}
+
+@mixin header {
+  flex-shrink: 0;
+  padding: 0 1rem;
+}
+
+@mixin aside {
+  overflow: auto;
+  flex-shrink: 0;
+}
+
+@mixin main {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  padding: 1rem;
+  overflow: auto;
+}
+
+@mixin footer {
+  flex-shrink: 0;
+  padding: 0 1rem;
+}

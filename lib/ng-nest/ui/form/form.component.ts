@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef,
   Input
 } from "@angular/core";
-import { XFormOption, FormPrefix, XControl, XFormRow } from "./form.type";
+import { XFormInput, FormPrefix, XControl, XFormRow } from "./form.type";
 import { fillDefault } from "@ng-nest/ui/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
@@ -30,7 +30,7 @@ export class XFormComponent implements OnInit, OnChanges {
 
   controlsType: "controls" | "rows";
 
-  private _default: XFormOption = {};
+  private _default: XFormInput = {};
 
   private _controls: XControl<any>[] = [];
 

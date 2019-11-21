@@ -8,16 +8,9 @@ import { XJustify, XAlign } from "@ng-nest/ui/core";
 export const XRowPrefix = "x-row";
 
 /**
- * Col 组件名
- * @selector x-col
- * @decorator component
+ * Row @Input
  */
-export const XColPrefix = "x-col";
-
-/**
- * Row 参数对象
- */
-export interface XRowOption {
+export interface XRowInput {
   /**
    * 列间隔，单位rem
    */
@@ -33,9 +26,16 @@ export interface XRowOption {
 }
 
 /**
- * Col 参数对象
+ * Col 组件名
+ * @selector x-col
+ * @decorator component
  */
-export interface XColOption {
+export const XColPrefix = "x-col";
+
+/**
+ * Col @Input
+ */
+export interface XColInput {
   /**
    * 24栅格布局，列占的宽度
    */
@@ -64,48 +64,4 @@ export interface XColOption {
    * ≥1920px
    */
   xl?: number;
-  /**
-   * 当可视窗口在 xs 尺寸时隐藏
-   */
-  hiddenXsOnly?: boolean;
-  /**
-   * 当可视窗口在 sm 尺寸时隐藏
-   */
-  hiddenSmOnly?: boolean;
-  /**
-   * 当可视窗口在 sm 及以下尺寸时隐藏
-   */
-  hiddenSmAndDown?: boolean;
-  /**
-   * 当可视窗口在 sm 及以上尺寸时隐藏
-   */
-  hiddenSmAndUp?: boolean;
-  /**
-   * 当可视窗口在 md 尺寸时隐藏
-   */
-  hiddenMdOnly?: boolean;
-  /**
-   * 当可视窗口在 md 及以下尺寸时隐藏
-   */
-  hiddenMdAndDown?: boolean;
-  /**
-   * 当可视窗口在 md 及以上尺寸时隐藏
-   */
-  hiddenMdAndUp?: boolean;
-  /**
-   * 当可视窗口在 lg 尺寸时隐藏
-   */
-  hiddenLgOnly?: boolean;
-  /**
-   * 当可视窗口在 lg 及以下尺寸时隐藏
-   */
-  hiddenLgAndDown?: boolean;
-  /**
-   * 当可视窗口在 lg 及以上尺寸时隐藏
-   */
-  hiddenLgAndUp?: boolean;
-  /**
-   * 当可视窗口在 xl 尺寸时隐藏
-   */
-  hiddenXlOnly?: boolean;
 }

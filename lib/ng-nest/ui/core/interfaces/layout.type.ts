@@ -17,7 +17,7 @@ export type XPosition = "top" | "right" | "bottom" | "left";
 export type XSize = "large" | "medium" | "samll" | "mini";
 
 /**
- * flex 布局下的水平排列方式
+ * flex 布局下的子元素水平排列方式
  * @value "start"
  * @value "end"
  * @value "center"
@@ -27,7 +27,7 @@ export type XSize = "large" | "medium" | "samll" | "mini";
 export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-between";
 
 /**
- * flex 布局下的垂直排列方式
+ * flex 布局下的子元素垂直排列方式
  * @value "top"
  * @value "middle"
  * @value "bottom"
@@ -35,7 +35,7 @@ export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-betwe
 export type XAlign = "top" | "middle" | "bottom";
 
 /**
- * flex 布局下的元素排列方式
+ * flex 布局下的子元素排列方向
  * @value "column"
  * @value "column-reverse"
  * @value "row"

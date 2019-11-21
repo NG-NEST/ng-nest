@@ -191,7 +191,7 @@ ns-home {
           padding: 1rem 0;
           flex: 1;
           text-align: center;
-          color: $--x-primary-100;
+          color: $--x-primary;
           &:hover {
             opacity: 0.9;
             color: white;
@@ -233,9 +233,6 @@ ns-home {
           color: $--x-primary;
           text-align: center;
           margin: 0.625rem 0;
-          > span {
-            color: $--x-primary-text;
-          }
         }
       }
       > .slides {

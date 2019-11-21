@@ -11,7 +11,7 @@ import {
   PortalInjector
 } from "@angular/cdk/portal";
 import { XPortalServiceModule } from "./portal.service.module";
-import { XPortalOption, XPortalOverlayRef } from "./portal.type";
+import { XPortalInput, XPortalOverlayRef } from "./portal.type";
 
 /**
  * 动态创建视图服务
@@ -22,7 +22,7 @@ import { XPortalOption, XPortalOverlayRef } from "./portal.type";
 export class XPortalService {
   constructor(private overlay: Overlay, private injector: Injector) {}
 
-  create(option?: XPortalOption): XPortalOverlayRef {
+  create(option?: XPortalInput): XPortalOverlayRef {
     let overlayRef = this.createOverlayRef(option);
     let templatePortal: TemplatePortal<any>;
     let componentPortal: ComponentPortal<any>;
@@ -56,7 +56,7 @@ export class XPortalService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  private createOverlayRef(option?: XPortalOption): OverlayRef {
+  private createOverlayRef(option?: XPortalInput): OverlayRef {
     return this.overlay.create(option.overlayConfig);
   }
 }

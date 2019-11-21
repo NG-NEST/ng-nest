@@ -1,4 +1,4 @@
-import { XIdentityOption, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from "@ng-nest/ui/core";
 import { TemplateRef } from "@angular/core";
 
 /**
@@ -9,9 +9,9 @@ import { TemplateRef } from "@angular/core";
 export const PaginationPrefix = "x-pagination";
 
 /**
- * Pagination 参数对象
+ * Pagination @Input
  */
-export interface XPaginationOption {
+export interface XPaginationInput {
   /**
    * 当前页码
    * @default 1
@@ -32,4 +32,4 @@ export interface XPaginationOption {
 /**
  * Pagination 数据对象
  */
-export interface XPaginationNode extends XIdentityOption {}
+export interface XPaginationNode extends XIdentityInput {}

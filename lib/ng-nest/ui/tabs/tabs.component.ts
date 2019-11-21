@@ -16,10 +16,10 @@ import {
   ViewEncapsulation,
   QueryList
 } from "@angular/core";
-import { TabsPrefix, XTabsOption, XTabsNode, XActivatedTab } from "./tabs.type";
+import { TabsPrefix, XTabsInput, XTabsNode, XActivatedTab } from "./tabs.type";
 import { fillDefault, XData } from "@ng-nest/ui/core";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
-import { XSliderNode, XActivatedSlider, XSliderOption, XSliderComponent } from "@ng-nest/ui/slider";
+import { XSliderNode, XActivatedSlider, XSliderInput, XSliderComponent } from "@ng-nest/ui/slider";
 import { XTabComponent } from "./tab.component";
 
 @Component({
@@ -75,7 +75,7 @@ export class XTabsComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  sliderOption: XSliderOption = {
+  sliderOption: XSliderInput = {
     data: new BehaviorSubject<XSliderNode[]>([]),
     layout: "row",
     activatedIndex: 0,
@@ -84,7 +84,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   sliderHidden: boolean = false;
   tabs: XTabsNode[] = [];
   @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<XActivatedTab>();
-  private _default: XTabsOption = {
+  private _default: XTabsInput = {
     layout: "top",
     activatedIndex: 0
   };
@@ -185,7 +185,7 @@ export class XTabsComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  private setSliderOption(value: XSliderOption) {
+  private setSliderOption(value: XSliderInput) {
     Object.assign(this.sliderOption, value);
   }
 }

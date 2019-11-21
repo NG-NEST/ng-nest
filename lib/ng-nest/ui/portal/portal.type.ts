@@ -18,9 +18,9 @@ import { OverlayRef, OverlayPositionBuilder, OverlayConfig } from "@angular/cdk/
 export const PortalPrefix = "x-portal";
 
 /**
- * Portal 参数对象
+ * Portal @Input
  */
-export interface XPortalOption {
+export interface XPortalInput {
   /**
    * 内容，模板/组件
    */

@@ -1,5 +1,5 @@
-import { XIdentityOption, XIdentity } from "@ng-nest/ui/core";
-import { XInputOption } from "@ng-nest/ui/input";
+import { XIdentityInput, XIdentity } from "@ng-nest/ui/core";
+import { XInputInput } from "@ng-nest/ui/input";
 
 /**
  * Form 组件名
@@ -9,9 +9,9 @@ import { XInputOption } from "@ng-nest/ui/input";
 export const FormPrefix = "x-form";
 
 /**
- * Form 参数对象
+ * Form @Input
  */
-export interface XFormOption {
+export interface XFormInput {
   /**
    * 表单名称
    */
@@ -25,7 +25,7 @@ export interface XFormOption {
 /**
  * 控件对象
  */
-export interface XControlOption<T> extends XIdentityOption {
+export interface XControlOption<T> extends XIdentityInput {
   /**
    * 值
    */
@@ -118,9 +118,7 @@ export interface XFormRow {
   hidden?: boolean;
 }
 
-export interface XInputControlOption
-  extends XControlOption<string | number>,
-    XInputOption {}
+export interface XInputControlOption extends XControlOption<string | number>, XInputInput {}
 
 export class XInputControl extends XControl<string | number> {
   controlType: XControlType = "input";

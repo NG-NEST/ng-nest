@@ -1,5 +1,5 @@
 // 标识对象
-export interface XIdentityOption {
+export interface XIdentityInput {
   // 编码
   key?: string | number;
   // 标题

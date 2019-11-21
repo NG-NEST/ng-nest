@@ -1,0 +1,10 @@
+// Aside
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-aside-prefix} {
+  @include reset-component();
+  @include aside();
+}

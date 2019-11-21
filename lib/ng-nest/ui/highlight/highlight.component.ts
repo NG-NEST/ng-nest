@@ -11,7 +11,7 @@ import {
   SimpleChanges,
   ViewChild
 } from "@angular/core";
-import { HighlightPrefix, XHighlightOption } from "./highlight.type";
+import { HighlightPrefix, XHighlightInput } from "./highlight.type";
 import { fillDefault } from "@ng-nest/ui/core";
 import * as hljs from "highlight.js";
 
@@ -28,7 +28,7 @@ export class XHighlightComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild("code", { static: false }) codeRef: ElementRef;
 
-  private _default: XHighlightOption = {};
+  private _default: XHighlightInput = {};
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(this.elementRef.nativeElement, HighlightPrefix);

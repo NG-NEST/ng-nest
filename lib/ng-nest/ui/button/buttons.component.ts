@@ -8,11 +8,11 @@ import {
   Input,
   HostBinding
 } from "@angular/core";
-import { XButtonsOption, ButtonsPrefix } from "./button.type";
+import { XButtonsInput, XButtonsPrefix } from "./button.type";
 import { fillDefault } from "@ng-nest/ui/core";
 
 @Component({
-  selector: "x-buttons",
+  selector: `${XButtonsPrefix}`,
   template: "<ng-content></ng-content>",
   styleUrls: ["./buttons.component.scss"],
   encapsulation: ViewEncapsulation.None,
@@ -28,11 +28,11 @@ export class XButtonsComponent implements OnInit {
     return this.notBorder;
   }
 
-  private _default: XButtonsOption = {
+  private _default: XButtonsInput = {
     space: 0
   };
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, ButtonsPrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XButtonsPrefix);
   }
 
   ngOnInit() {

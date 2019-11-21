@@ -12,7 +12,7 @@ import { XJustify, XAlign } from "@ng-nest/ui/core";
 import { XRowPrefix } from "./grid.type";
 
 @Component({
-  selector: "x-row",
+  selector: `${XRowPrefix}`,
   template: "<ng-content></ng-content>",
   styleUrls: ["./row.component.scss"],
   // Todo: 默认模式，ng-content中的内容中的样式无法生效

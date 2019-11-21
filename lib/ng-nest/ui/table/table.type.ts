@@ -1,6 +1,6 @@
-import { XIdentityOption, XData, XQuery } from "@ng-nest/ui/core";
-import { XButtonOption } from "@ng-nest/ui/button";
-import { XPaginationOption } from "@ng-nest/ui/pagination";
+import { XIdentityInput, XData, XQuery } from "@ng-nest/ui/core";
+import { XButtonInput } from "@ng-nest/ui/button";
+import { XPaginationInput } from "@ng-nest/ui/pagination";
 
 /**
  * Table 组件名
@@ -10,9 +10,9 @@ import { XPaginationOption } from "@ng-nest/ui/pagination";
 export const TablePrefix = "x-table";
 
 /**
- * Table 参数对象
+ * Table @Input
  */
-export interface XTableOption extends XPaginationOption {
+export interface XTableOption extends XPaginationInput {
   /**
    * 数据
    */
@@ -50,7 +50,7 @@ export interface XTableOption extends XPaginationOption {
 /**
  * 列参数
  */
-export interface XTableColumn extends XIdentityOption {
+export interface XTableColumn extends XIdentityInput {
   /**
    * 宽度
    */
@@ -64,7 +64,7 @@ export interface XTableColumn extends XIdentityOption {
 /**
  * 操作参数
  */
-export interface XTableAction extends XButtonOption {
+export interface XTableAction extends XButtonInput {
   /**
    * 操作按钮位置
    */

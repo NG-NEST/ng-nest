@@ -13,7 +13,7 @@ import {
   Optional
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { XIconPrefix, XIconOption, XIconSourceEnum } from "./icon.type";
+import { XIconPrefix, XIconInput, XIconSourceEnum } from "./icon.type";
 import { XIconService } from "./icon.service";
 import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault } from "@ng-nest/ui/core";
 import * as _ from "lodash";
@@ -39,7 +39,7 @@ export const XViewBox = [
 ];
 
 @Component({
-  selector: "x-icon",
+  selector: `${XIconPrefix}`,
   templateUrl: "./icon.component.html",
   styleUrls: ["./style/index.scss"],
   encapsulation: ViewEncapsulation.None,
@@ -51,7 +51,7 @@ export class XIconComponent implements OnInit, OnChanges {
   @Input() rotate?: number;
   @Input() to?: string;
   private _svgElement: SVGElement;
-  private _default: XIconOption = {};
+  private _default: XIconInput = {};
   private _loaded: boolean = false;
 
   constructor(
@@ -141,10 +141,7 @@ export class XIconComponent implements OnInit, OnChanges {
   }
 
   buildSvg(svgStr: string): SVGAElement {
-    const result = this.document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "svg"
-    ) as SVGAElement;
+    const result = this.document.createElementNS("http://www.w3.org/2000/svg", "svg") as SVGAElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
     svg.children.forEach(x => {

@@ -14,7 +14,7 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { CrumbPrefix, XCrumbOption, XCrumbNode, XCrumbNodeClick } from "./crumb.type";
+import { CrumbPrefix, XCrumbInput, XCrumbNode, XCrumbNodeClick } from "./crumb.type";
 import { fillDefault, XData } from "@ng-nest/ui/core";
 import { Subscription } from "rxjs";
 
@@ -30,7 +30,7 @@ export class XCrumbComponent implements OnInit, OnChanges {
   @Input() nodeTemplate?: any;
   @Output() nodeClick?: EventEmitter<XCrumbNodeClick> = new EventEmitter<XCrumbNodeClick>();
 
-  private _default: XCrumbOption = {
+  private _default: XCrumbInput = {
     data: []
   };
 

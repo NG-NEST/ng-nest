@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import {
   InputPrefix,
-  XInputOption,
+  XInputInput,
   XInputLayoutType,
   XInputType,
   XInputIconLayoutType
@@ -44,7 +44,7 @@ export class XInputComponent implements OnInit, ControlValueAccessor {
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType;
 
-  private _default: XInputOption = {
+  private _default: XInputInput = {
     layout: "vertical",
     placeholder: "",
     type: "text",

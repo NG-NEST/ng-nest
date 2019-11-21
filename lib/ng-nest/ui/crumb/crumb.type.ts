@@ -1,4 +1,4 @@
-import { XIdentityOption, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from "@ng-nest/ui/core";
 import { TemplateRef } from "@angular/core";
 
 /**
@@ -9,9 +9,9 @@ import { TemplateRef } from "@angular/core";
 export const CrumbPrefix = "x-crumb";
 
 /**
- * Crumb 参数对象
+ * Crumb @Input
  */
-export interface XCrumbOption {
+export interface XCrumbInput {
   /**
    * Data 数据
    * @default []
@@ -26,7 +26,7 @@ export interface XCrumbOption {
 /**
  * Crumb 数据对象
  */
-export interface XCrumbNode extends XIdentityOption {
+export interface XCrumbNode extends XIdentityInput {
   /**
    * 自定义数据属性
    */

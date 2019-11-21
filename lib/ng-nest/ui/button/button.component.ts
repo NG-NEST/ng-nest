@@ -11,11 +11,11 @@ import {
   ViewChild,
   SimpleChanges
 } from "@angular/core";
-import { ButtonPrefix, XButtonType, XButtonOption } from "./button.type";
+import { XButtonPrefix, XButtonType, XButtonInput } from "./button.type";
 import { fillDefault, XDirection, XSize } from "@ng-nest/ui/core";
 
 @Component({
-  selector: "x-button",
+  selector: `${XButtonPrefix}`,
   templateUrl: "./button.component.html",
   styleUrls: ["./button.component.scss"],
   encapsulation: ViewEncapsulation.None,
@@ -53,11 +53,11 @@ export class XButtonComponent implements OnInit, OnChanges {
   @HostBinding("class.x-button-circle") get getCircle() {
     return this.circle;
   }
-  private _default: XButtonOption = {
+  private _default: XButtonInput = {
     label: ""
   };
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, ButtonPrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XButtonPrefix);
   }
 
   ngOnInit() {
@@ -65,18 +65,18 @@ export class XButtonComponent implements OnInit, OnChanges {
     this.stringToBoolean();
     if (this.title) this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
     if (this.type && !this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.type}`);
+      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.type}`);
     }
     if (this.type && this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.type}-plain`);
+      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.type}-plain`);
     } else if (this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-plain`);
+      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-plain`);
     }
     if (this.direction) {
-      this.renderer.addClass(this.buttonInner.nativeElement, `${ButtonPrefix}-inner-direction-${this.direction}`);
+      this.renderer.addClass(this.buttonInner.nativeElement, `${XButtonPrefix}-inner-direction-${this.direction}`);
     }
     if (this.size) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${ButtonPrefix}-${this.size}`);
+      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.size}`);
     }
   }
 
