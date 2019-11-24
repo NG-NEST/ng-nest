@@ -3,4 +3,4 @@
  * @selector x-color
  * @decorator component
  */
-export const ColorPrefix = "x-color";
+export const XColorPrefix = "x-color";

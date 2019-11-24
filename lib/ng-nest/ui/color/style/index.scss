@@ -4,7 +4,7 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
-.#{$prefix} {
+.#{$--x-color-prefix} {
   @include reset-component();
   @include color();
 }

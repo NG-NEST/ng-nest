@@ -8,10 +8,10 @@
         border-radius: 0.125rem;
       }
       &:nth-child(odd) > div {
-        background-color: var(--x-info-400);
+        background-color: var(--x-info-600);
       }
       &:nth-child(even) > div {
-        background-color: var(--x-info-200);
+        background-color: var(--x-info-800);
       }
     }
     &:first-child {

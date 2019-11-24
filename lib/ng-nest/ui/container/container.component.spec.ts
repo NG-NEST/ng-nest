@@ -90,22 +90,22 @@ describe(XContainerPrefix, () => {
         border-radius: 0.125rem;
       }
       x-header {
-        background-color: var(--x-info-700);
+        background-color: var(--x-info-400);
       }
       x-footer {
-        background-color: var(--x-info-200);
+        background-color: var(--x-info-800);
       }
       x-main {
         line-height: 12rem;
         text-align: center;
         border-radius: 0.125rem;
-        background-color: var(--x-info-100);
+        background-color: var(--x-info-900);
       }
       x-aside {
         line-height: 14rem;
         text-align: center;
         border-radius: 0.125rem;
-        background-color: var(--x-info-400);
+        background-color: var(--x-info-600);
       }
     `
   ]

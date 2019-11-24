@@ -4,9 +4,9 @@ import { XColorComponent } from "./color.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XColorModule } from "./color.module";
-import { ColorPrefix } from "./color.type";
+import { XColorPrefix } from "./color.type";
 
-describe(ColorPrefix, () => {
+describe(XColorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XColorModule],
@@ -32,8 +32,11 @@ describe(ColorPrefix, () => {
 @Component({
   selector: "test-x-color",
   template: `
-    <x-color></x-color>
-
+    <x-color label="Primary"></x-color>
+    <x-color label="Success" hex="#67c23a"></x-color>
+    <x-color label="Warning" hex="#e6a23c"></x-color>
+    <x-color label="Danger" hex="#f56c6c"></x-color>
+    <x-color label="Info" hex="#909399"></x-color>
   `
 })
 class TestXColorComponent {}
