@@ -31,7 +31,7 @@ export class XColComponent implements OnInit {
   @Input() xl?: number;
 
   @HostBinding(`class.x-col-24`) get getFlex() {
-    return this.xs || this.sm || this.md || this.lg || this.xl;
+    return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24;
   }
 
   constructor(

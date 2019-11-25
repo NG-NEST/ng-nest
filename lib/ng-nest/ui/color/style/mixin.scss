@@ -5,26 +5,29 @@
 @import "./param";
 
 @mixin color {
-  &-box {
-    width: 18rem;
-    color: white;
-  }
+  display: block;
+  color: var(--x-white);
   &-primary {
     padding: 1rem;
     border-top-left-radius: 0.125rem;
     border-top-right-radius: 0.125rem;
   }
+  &-only {
+    border-bottom-left-radius: 0.125rem;
+    border-bottom-right-radius: 0.125rem;
+  }
   &-hex {
     margin-top: 0.25rem;
     display: block;
     font-size: 0.75rem;
+    opacity: 0.7;
   }
   &-gradual {
     display: flex;
   }
   &-item {
     flex: 1;
-    height: 2rem;
+    height: 2.5rem;
     &:first-child {
       border-bottom-left-radius: 0.125rem;
     }
@@ -32,26 +35,4 @@
       border-bottom-right-radius: 0.125rem;
     }
   }
-
-  // $color: #409eff;
-  // $white: #ffffff;
-  // .item {
-  //   width: 10rem;
-  //   height: 2rem;
-  // }
-  // @for $i from 0 to 10 {
-  //   .color-fade-out-#{$i} {
-  //     background-color: fade-out($color, $i / 20);
-  //   }
-  // }
-  // @for $i from 0 to 10 {
-  //   .color-lighten-#{$i} {
-  //     background-color: mix($white, $color, 10% * $i);
-  //   }
-  // }
-  // @for $i from 0 to 10 {
-  //   .color-darken-#{$i} {
-  //     background-color: darken($color, $i / 10);
-  //   }
-  // }
 }

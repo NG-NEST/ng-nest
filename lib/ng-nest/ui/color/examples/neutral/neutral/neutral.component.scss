@@ -1,0 +1,17 @@
+:host {
+  x-row {
+    margin: 1rem 0;
+  }
+  x-row:first-child {
+    margin-top: 0;
+  }
+  x-row:last-child {
+    margin-bottom: 0;
+  }
+  x-color.border {
+    border: 1px solid var(--x-border);
+  }
+  x-color.black {
+    color: var(--x-text);
+  }
+}

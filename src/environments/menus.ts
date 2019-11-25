@@ -45,6 +45,24 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
+    "id": "3-0-3",
+    "parentId": "3-0",
+    "name": "color",
+    "router": "./docs/ui/components/color",
+    "label": "Color 色彩",
+    "category": "Basic",
+    "order": 3
+  },
+  {
+    "id": "3-0-32",
+    "parentId": "3-0",
+    "name": "typography",
+    "router": "./docs/ui/components/typography",
+    "label": "Typography 字体",
+    "category": "Basic",
+    "order": 4
+  },
+  {
     "id": "3-0-12",
     "parentId": "3-0",
     "name": "icon",
@@ -131,13 +149,6 @@ export const menus: Menu[] = [
     "name": "api",
     "router": "./docs/ui/components/api",
     "label": "API 参数"
-  },
-  {
-    "id": "3-0-3",
-    "parentId": "3-0",
-    "name": "color",
-    "router": "./docs/ui/components/color",
-    "label": "文档"
   },
   {
     "id": "3-0-7",

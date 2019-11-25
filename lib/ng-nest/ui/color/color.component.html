@@ -1,5 +1,5 @@
 <div class="x-color-box">
-  <div class="x-color-primary" [style.background-color]="hex">
+  <div class="x-color-primary" [style.background-color]="hex" [class.x-color-only]="colors.length === 0">
     <span>{{ label }}</span>
     <span class="x-color-hex">{{ hex }}</span>
   </div>

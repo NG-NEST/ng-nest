@@ -8,6 +8,8 @@ import { XGridModule } from "@ng-nest/ui/grid";
 import { XCrumbModule } from "@ng-nest/ui/crumb";
 import { XInnerModule } from "@ng-nest/ui/inner";
 import { XPortalModule } from "@ng-nest/ui/portal";
+import { XColorModule } from "@ng-nest/ui/color";
+import { XTypographyModule } from "@ng-nest/ui/typography";
 
 import { XInputModule } from "@ng-nest/ui/input";
 import { XButtonModule } from "@ng-nest/ui/button";
@@ -31,6 +33,8 @@ export * from "@ng-nest/ui/highlight";
 export * from "@ng-nest/ui/crumb";
 export * from "@ng-nest/ui/inner";
 export * from "@ng-nest/ui/portal";
+export * from "@ng-nest/ui/color";
+export * from "@ng-nest/ui/typography";
 
 export * from "@ng-nest/ui/anchor";
 export * from "@ng-nest/ui/input";
@@ -55,6 +59,8 @@ export * from "@ng-nest/ui/form";
     XCrumbModule,
     XInnerModule,
     XPortalModule,
+    XColorModule,
+    XTypographyModule,
     XInputModule,
     XButtonModule,
     XAnchorModule,

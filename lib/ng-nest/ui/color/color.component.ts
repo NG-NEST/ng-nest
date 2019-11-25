@@ -22,10 +22,10 @@ import { DOCUMENT } from "@angular/common";
 export class XColorComponent implements OnInit {
   @Input() label?: string = "color";
   @Input() hex?: string;
-  @Input() merge?: string = "#FFFFFF";
+  @Input() merge?: string = "#ffffff";
   @Input() amounts?: number[] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
   colors: string[] = [];
-  constructor(@Inject(DOCUMENT) private doc: Document, private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(@Inject(DOCUMENT) private doc: any, private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
   }
 

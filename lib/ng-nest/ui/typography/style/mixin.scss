@@ -1,0 +1,51 @@
+// Typography
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin typography {
+  color: var(--x-text);
+  h4,
+  h1,
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  > h4 {
+    color: var(--x-text-500);
+    font-weight: 500;
+  }
+  &-list {
+    display: flex;
+    margin: 0.5rem 0;
+  }
+  &-item {
+    display: flex;
+    margin: 0.5rem 0 0 3rem;
+    &:first-child {
+      margin-left: 0;
+    }
+    > h1 {
+      color: var(--x-text);
+      font-size: 3.75rem;
+      font-weight: 600;
+    }
+    > p {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 0;
+      margin-left: 1.5rem;
+      > span {
+        margin-top: 0.25rem;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  &-blod {
+    font-weight: 600;
+  }
+}
