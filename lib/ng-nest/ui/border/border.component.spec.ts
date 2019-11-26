@@ -75,14 +75,14 @@ describe(XBorderPrefix, () => {
         <x-col span="6">
           <div class="box">
             <span>大圆角</span>
-            <span class="value">border-radius: 0</span>
+            <span class="value">border-radius: 0.25rem</span>
             <div [style.border-radius.rem]="0.25"></div>
           </div>
         </x-col>
         <x-col span="6">
           <div class="box">
             <span>圆形圆角</span>
-            <span class="value">border-radius: 0</span>
+            <span class="value">border-radius: 3rem</span>
             <div [style.border-radius.rem]="3"></div>
           </div>
         </x-col>

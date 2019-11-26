@@ -1,3 +1,21 @@
 <x-row space="1">
-  <x-col span="24"><x-border [text]="text"></x-border></x-col>
+  <x-col span="24">
+    <table>
+      <tr>
+        <th width="100">名称</th>
+        <th width="100">粗细</th>
+        <th>显示</th>
+      </tr>
+      <tr>
+        <td>实线</td>
+        <td>0.125rem</td>
+        <td><div class="solid"></div></td>
+      </tr>
+      <tr>
+        <td>虚线</td>
+        <td>0.125rem</td>
+        <td><div class="dashed"></div></td>
+      </tr>
+    </table>
+  </x-col>
 </x-row>

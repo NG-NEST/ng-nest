@@ -27,7 +27,7 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "3-0-10",
+    "id": "3-0-11",
     "parentId": "3-0",
     "name": "grid",
     "router": "./docs/ui/components/grid",
@@ -36,7 +36,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-4",
+    "id": "3-0-5",
     "parentId": "3-0",
     "name": "container",
     "router": "./docs/ui/components/container",
@@ -45,7 +45,7 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-3",
+    "id": "3-0-4",
     "parentId": "3-0",
     "name": "color",
     "router": "./docs/ui/components/color",
@@ -54,7 +54,7 @@ export const menus: Menu[] = [
     "order": 3
   },
   {
-    "id": "3-0-32",
+    "id": "3-0-33",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -63,7 +63,16 @@ export const menus: Menu[] = [
     "order": 4
   },
   {
-    "id": "3-0-12",
+    "id": "3-0-2",
+    "parentId": "3-0",
+    "name": "border",
+    "router": "./docs/ui/components/border",
+    "label": "Border 边框",
+    "category": "Basic",
+    "order": 5
+  },
+  {
+    "id": "3-0-13",
     "parentId": "3-0",
     "name": "icon",
     "router": "./docs/ui/components/icon",
@@ -72,7 +81,7 @@ export const menus: Menu[] = [
     "order": 6
   },
   {
-    "id": "3-0-2",
+    "id": "3-0-3",
     "parentId": "3-0",
     "name": "button",
     "router": "./docs/ui/components/button",
@@ -81,7 +90,7 @@ export const menus: Menu[] = [
     "order": 7
   },
   {
-    "id": "3-0-25",
+    "id": "3-0-26",
     "parentId": "3-0",
     "name": "table",
     "router": "./docs/ui/components/table",
@@ -90,7 +99,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-19",
+    "id": "3-0-20",
     "parentId": "3-0",
     "name": "pagination",
     "router": "./docs/ui/components/pagination",
@@ -99,7 +108,7 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-14",
+    "id": "3-0-15",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
@@ -108,7 +117,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-9",
+    "id": "3-0-10",
     "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
@@ -117,7 +126,7 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-6",
+    "id": "3-0-7",
     "parentId": "3-0",
     "name": "crumb",
     "router": "./docs/ui/components/crumb",
@@ -126,7 +135,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-26",
+    "id": "3-0-27",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",
@@ -151,49 +160,49 @@ export const menus: Menu[] = [
     "label": "API 参数"
   },
   {
-    "id": "3-0-7",
+    "id": "3-0-8",
     "parentId": "3-0",
     "name": "doc",
     "router": "./docs/ui/components/doc",
     "label": "文档"
   },
   {
-    "id": "3-0-8",
+    "id": "3-0-9",
     "parentId": "3-0",
     "name": "examples",
     "router": "./docs/ui/components/examples",
     "label": "示例"
   },
   {
-    "id": "3-0-11",
+    "id": "3-0-12",
     "parentId": "3-0",
     "name": "highlight",
     "router": "./docs/ui/components/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "3-0-13",
+    "id": "3-0-14",
     "parentId": "3-0",
     "name": "inner",
     "router": "./docs/ui/components/inner",
     "label": "内部"
   },
   {
-    "id": "3-0-20",
+    "id": "3-0-21",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-21",
+    "id": "3-0-22",
     "parentId": "3-0",
     "name": "portal",
     "router": "./docs/ui/components/portal",
     "label": "动态组件"
   },
   {
-    "id": "3-0-23",
+    "id": "3-0-24",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",

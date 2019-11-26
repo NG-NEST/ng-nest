@@ -1,0 +1,15 @@
+:host {
+  div.box span {
+    display: block;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  div.box span.value {
+    font-size: 0.825rem;
+  }
+  div.box > div {
+    radio: 1px solid var(--x-radio);
+    height: 3.25rem;
+    margin-top: 0.85rem;
+  }
+}

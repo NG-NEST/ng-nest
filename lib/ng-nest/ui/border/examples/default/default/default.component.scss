@@ -1,0 +1,12 @@
+:host {
+  table > tr > td > div {
+    width: 100%;
+    height: 0;
+  }
+  div.solid {
+    border-top: 1px solid var(--x-border);
+  }
+  div.dashed {
+    border-top: 1px dashed var(--x-border);
+  }
+}
