@@ -1,0 +1,10 @@
+// Radio
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-radio-prefix} {
+  @include reset-component();
+  @include radio();
+}

@@ -12,7 +12,6 @@ import { XMainPrefix } from "./container.type";
   selector: `${XMainPrefix}`,
   template: "<ng-content></ng-content>",
   styleUrls: ["./main.component.scss"],
-  // Todo: 默认模式，ng-content中的内容中的样式无法生效
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

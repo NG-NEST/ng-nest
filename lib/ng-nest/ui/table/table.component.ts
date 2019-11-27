@@ -20,7 +20,6 @@ import * as _ from "lodash";
   selector: "x-table",
   templateUrl: "./table.component.html",
   styleUrls: ["./style/index.scss"],
-  // Todo: 默认模式，ng-content中的内容中的样式无法生效
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

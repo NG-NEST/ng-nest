@@ -14,7 +14,6 @@ import { XAsidePrefix } from "./container.type";
   selector: `${XAsidePrefix}`,
   template: "<ng-content></ng-content>",
   styleUrls: ["./aside.component.scss"],
-  // Todo: 默认模式，ng-content中的内容中的样式无法生效
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

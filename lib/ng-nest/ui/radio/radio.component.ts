@@ -9,64 +9,71 @@ import {
   Input,
   HostListener,
   ChangeDetectorRef,
-  Output,
-  EventEmitter,
-  forwardRef
+  forwardRef,
+  Optional,
+  Host
 } from "@angular/core";
 import { XRadioPrefix } from "./radio.type";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-export function X_VALUE_ACCESSOR(component) {
-  return { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => component), multi: true };
-}
-
 @Component({
   selector: `${XRadioPrefix}`,
   templateUrl: "./radio.component.html",
-  styleUrls: ["./style/index.scss"],
-  // Todo: 默认模式，ng-content中的内容中的样式无法生效
+  styleUrls: ["./radio.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [X_VALUE_ACCESSOR(XRadioComponent)]
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => XRadioComponent), multi: true }],
+  host: {
+    "[class.x-checked]": "checked",
+    "[class.x-disabled]": "disabled"
+  }
 })
 export class XRadioComponent implements OnInit, ControlValueAccessor {
-  @Input() label: string;
-  @Input() value: string | number | boolean;
-  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
-  @HostBinding("class.x-checked") get getChecked() {
-    console.log(this.model === this.value);
-    return this.model === this.value;
+  @Input() label?: string;
+  @Input() value?: string | number | boolean;
+  @Input() disabled?: boolean | string;
+  @Input() checked?: boolean | string;
+  @HostListener("click", ["$event"]) onClick(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+    if (!this.disabled && !this.checked) {
+      this.checked = true;
+      if (this.onChange) this.onChange(true);
+    }
   }
 
-  model: string | number | boolean;
-  onValueChange: (_: any) => void;
-  onValueTouched: () => void;
+  onChange: (_: any) => void;
+  onTouched: () => void;
 
-  writeValue(val: string | number | boolean): void {
-    this.model = val;
-    this.cdr.detectChanges();
+  writeValue(value: boolean): void {
+    this.checked = value;
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: any): void {
-    this.onValueChange = fn;
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    this.onValueTouched = fn;
+    this.onTouched = fn;
   }
 
-  setDisabledState(disabled: boolean) {}
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
+    this.cdr.markForCheck();
+  }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (typeof this.value === "undefined") this.value = this.label;
+    this.stringToBoolean();
+  }
 
-  modelChange() {
-    this.model = this.value;
-    this.valueChange.emit(this.value);
-    this.onValueChange(this.value);
-    console.log(this.model);
+  stringToBoolean() {
+    this.checked = this.checked || this.checked === "" ? true : false;
+    this.disabled = this.disabled || this.disabled === "" ? true : false;
   }
 }

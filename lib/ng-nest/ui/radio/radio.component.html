@@ -1,12 +1,5 @@
 <span class="x-radio-input">
+  <input type="radio" [attr.disabled]="disabled" [attr.checked]="checked" />
   <span></span>
-  <input
-    type="radio"
-    aria-hidden="true"
-    tabindex="-1"
-    [value]="value"
-    [ngModel]="model"
-    (ngModelChange)="modelChange()"
-  />
 </span>
 <span class="x-radio-label">{{ label }}</span>
