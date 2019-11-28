@@ -6,81 +6,77 @@
 
 @mixin radio {
   color: var(--x-text);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  outline: none;
-  margin-right: 0.875rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  &-input {
-    display: flex;
+  &-item {
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    > span {
-      border: 1px solid var(--x-border);
-      border-radius: 100%;
-      width: 0.875rem;
-      height: 0.875rem;
-      background-color: #fff;
-      position: relative;
-      display: inline-block;
-      box-sizing: border-box;
-      transition: all 0.3s;
-      &:hover {
+    white-space: nowrap;
+    outline: none;
+    margin-right: 0.875rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }
+    &.x-checked {
+      .#{$--x-radio-prefix}-box {
         border-color: var(--x-primary);
-      }
-      &::after {
-        position: absolute;
-        top: 0.125rem;
-        left: 0.125rem;
-        display: inline-block;
-        width: 0.5rem;
-        height: 0.5rem;
-        background-color: var(--x-primary);
-        border-radius: 1rem;
-        transform: scale(0);
-        opacity: 0;
-        transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-        content: " ";
+        &::after {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
     }
-    > input {
-      opacity: 0;
-      outline: none;
+    &.x-disabled {
+      @include disabled();
+    }
+  }
+  &-box {
+    border: 1px solid var(--x-border);
+    border-radius: 100%;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: #fff;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    &:hover {
+      border-color: var(--x-primary);
+    }
+    &::after {
       position: absolute;
-      z-index: -1;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0;
+      top: 0.125rem;
+      left: 0.125rem;
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--x-primary);
+      border-radius: 1rem;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+      content: " ";
     }
   }
   &-label {
     margin-left: 0.325rem;
   }
-  &:last-child {
-    margin-right: 0;
-  }
-  &.x-checked {
-    .#{$--x-radio-prefix}-input > span {
-      border-color: var(--x-primary);
-      &::after {
-        transform: scale(1);
-        opacity: 1;
-      }
+  &.x-disabled {
+    .#{$--x-radio-prefix}-item {
+      @include disabled();
     }
   }
-  &.x-disabled {
-    color: var(--x-text-300);
-    cursor: not-allowed;
-    .#{$--x-radio-prefix}-input > span {
-      border-color: var(--x-border-300);
-      background-color: var(--x-border-100);
-      &::after {
-        background-color: var(--x-text-300);
-      }
+}
+
+@mixin disabled {
+  color: var(--x-text-300);
+  cursor: not-allowed;
+  .#{$--x-radio-prefix}-box {
+    border-color: var(--x-border-300);
+    background-color: var(--x-border-100);
+    &::after {
+      background-color: var(--x-text-300);
     }
   }
 }

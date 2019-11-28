@@ -1,5 +1,10 @@
-<span class="x-radio-input">
-  <input type="radio" [attr.disabled]="disabled" [attr.checked]="checked" />
-  <span></span>
-</span>
-<span class="x-radio-label">{{ label }}</span>
+<div
+  class="x-radio-item"
+  *ngFor="let item of radioNodes"
+  [class.x-checked]="activatedRadio?.key === item.key"
+  [class.x-disabled]="item.disabled"
+  (click)="radioClick($event, item)"
+>
+  <span class="x-radio-box"></span>
+  <span class="x-radio-label">{{ item.label }}</span>
+</div>

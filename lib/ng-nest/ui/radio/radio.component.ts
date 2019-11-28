@@ -5,16 +5,12 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  HostBinding,
   Input,
-  HostListener,
-  ChangeDetectorRef,
-  forwardRef,
-  Optional,
-  Host
+  ChangeDetectorRef
 } from "@angular/core";
-import { XRadioPrefix } from "./radio.type";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { XRadioPrefix, XRadioNode } from "./radio.type";
+import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -22,58 +18,72 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
   styleUrls: ["./radio.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => XRadioComponent), multi: true }],
-  host: {
-    "[class.x-checked]": "checked",
-    "[class.x-disabled]": "disabled"
-  }
+  providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent implements OnInit, ControlValueAccessor {
-  @Input() label?: string;
-  @Input() value?: string | number | boolean;
-  @Input() disabled?: boolean | string;
-  @Input() checked?: boolean | string;
-  @HostListener("click", ["$event"]) onClick(event: MouseEvent): void {
-    event.stopPropagation();
-    event.preventDefault();
-    if (!this.disabled && !this.checked) {
-      this.checked = true;
-      if (this.onChange) this.onChange(true);
-    }
-  }
-
-  onChange: (_: any) => void;
-  onTouched: () => void;
-
-  writeValue(value: boolean): void {
-    this.checked = value;
-    this.cdr.markForCheck();
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
-    this.cdr.markForCheck();
-  }
-
+export class XRadioComponent extends XControlValueAccessor implements OnInit {
+  @Input() data?: XData<XRadioNode[]>;
+  radioNodes: XRadioNode[] = [];
+  activatedRadio: XRadioNode;
+  private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+    this.setSubject();
     this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
   }
 
   ngOnInit() {
-    if (typeof this.value === "undefined") this.value = this.label;
-    this.stringToBoolean();
+    this.setInput();
+    this.setData();
   }
 
-  stringToBoolean() {
-    this.checked = this.checked || this.checked === "" ? true : false;
+  ngAfterViewInit() {}
+
+  setInput() {
     this.disabled = this.disabled || this.disabled === "" ? true : false;
+  }
+
+  radioClick(event: Event, node: XRadioNode) {
+    event.preventDefault();
+    if (this.disabled || node.disabled || node.key === this.value) return;
+    this.value = node.key;
+  }
+
+  ngOnDestroy(): void {
+    if (this.data$) this.data$.unsubscribe();
+    if (this.disabledChange$) this.disabledChange.unsubscribe();
+    if (this.valueChange$) this.valueChange.unsubscribe();
+  }
+
+  private setData() {
+    if (this.data instanceof Array) {
+      this.setDataChange(this.data);
+    } else {
+      if (this.data$) this.data$.unsubscribe();
+      this.data$ = this.data.subscribe(x => {
+        this.setDataChange(x);
+      });
+    }
+  }
+
+  private setDataChange(value: XRadioNode[]) {
+    this.radioNodes = value;
+    this.setActivated();
+    this.cdr.detectChanges();
+  }
+
+  private setActivated() {
+    if (typeof this.value !== "undefined" && this.radioNodes.length > 0) {
+      this.activatedRadio = this.radioNodes.find(x => x.key === this.value);
+    }
+  }
+
+  private setSubject() {
+    this.valueChange$ = this.valueChange.subscribe(x => {
+      this.setActivated();
+      this.cdr.detectChanges();
+    });
+    this.disabledChange$ = this.disabledChange.subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
 }

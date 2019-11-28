@@ -1,3 +1,5 @@
+import { XIdentityInput } from "@ng-nest/ui/core";
+
 /**
  * Radio 组件名
  * @selector x-radio
@@ -11,8 +13,11 @@ export const XRadioPrefix = "x-radio";
 export interface XRadioInput {}
 
 /**
- * Radios 组件名
- * @selector x-radios
- * @decorator component
+ * Radio 数据对象
  */
-export const XRadiosPrefix = "x-radios";
+export interface XRadioNode extends XIdentityInput {
+  /**
+   * 禁用
+   */
+  disabled?: boolean;
+}

@@ -7,14 +7,14 @@ import { XGridModule } from "@ng-nest/ui/grid";
 import { XRadioModule } from "./radio.module";
 import { FormsModule } from "@angular/forms";
 import { XDocModule } from "@ng-nest/ui/doc";
-import { XRadioPrefix } from "./radio.type";
-import { XRadiosComponent } from "./radios.component";
+import { XRadioPrefix, XRadioNode } from "./radio.type";
+import { XData } from "@ng-nest/ui/core";
 
 describe(XRadioPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, XRadioModule, XGridModule, XDocModule],
-      declarations: [TestXRadioComponent, TestXRadiosComponent]
+      declarations: [TestXRadioComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -33,44 +33,24 @@ describe(XRadioPrefix, () => {
       expect(radio).toBeDefined();
     });
   });
-  describe(`radios.`, () => {
-    let fixture: ComponentFixture<TestXRadiosComponent>;
-    let radio: DebugElement;
-    let testComponent: TestXRadiosComponent;
-    let element: HTMLElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadiosComponent);
-      fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
-      radio = fixture.debugElement.query(By.directive(XRadiosComponent));
-      element = radio.nativeElement;
-    });
-    it("should create.", () => {
-      expect(radio).toBeDefined();
-    });
-  });
 });
 
-@Component({
-  template: `
-    <x-radio label="苹果"></x-radio>
-    <x-radio label="梨子" checked></x-radio>
-    <x-radio label="香蕉" disabled></x-radio>
-    <x-radio label="柚子" disabled checked></x-radio>
-  `
-})
-class TestXRadioComponent {}
+const testXRadioNodes: XRadioNode[] = [
+  { key: 1, label: "苹果" },
+  { key: 2, label: "香蕉", disabled: true },
+  { key: 3, label: "梨子" },
+  { key: 4, label: "柚子" }
+];
 
 @Component({
   template: `
-    <x-radios [(ngModel)]="ngModel">
-      <x-radio label="苹果" value="001"></x-radio>
-      <x-radio label="梨子" value="002"></x-radio>
-      <x-radio label="香蕉" value="003"></x-radio>
-      <x-radio label="柚子" value="004"></x-radio>
-    </x-radios>
+    <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="modelChange($event)" disabled></x-radio>
   `
 })
-class TestXRadiosComponent {
-  ngModel = "002";
+class TestXRadioComponent {
+  data: XData<XRadioNode[]> = testXRadioNodes;
+  model = 2;
+  modelChange(value) {
+    console.log(value);
+  }
 }
