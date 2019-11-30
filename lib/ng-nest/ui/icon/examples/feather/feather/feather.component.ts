@@ -131,7 +131,7 @@ export class ExFeatherComponent implements OnInit {
         "github",
         "gitlab",
         "globe",
-        "grid",
+        "fence",
         "hard-drive",
         "hash",
         "headphones",

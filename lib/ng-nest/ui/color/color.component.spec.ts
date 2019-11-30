@@ -3,14 +3,14 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { XColorComponent } from "./color.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { XGridModule } from "@ng-nest/ui/grid";
+import { XFenceModule } from "@ng-nest/ui/fence";
 import { XColorModule } from "./color.module";
 import { XColorPrefix } from "./color.type";
 
 describe(XColorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XColorModule, XGridModule],
+      imports: [XColorModule, XFenceModule],
       declarations: [TestXColorComponent]
     }).compileComponents();
   }));

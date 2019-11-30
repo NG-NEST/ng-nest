@@ -15,10 +15,18 @@
     margin-right: 0.875rem;
     font-size: 0.875rem;
     cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: var(--x-primary);
+      .#{$--x-radio-prefix}-box {
+        border-color: var(--x-primary);
+      }
+    }
     &:last-child {
       margin-right: 0;
     }
     &.x-checked {
+      color: var(--x-primary);
       .#{$--x-radio-prefix}-box {
         border-color: var(--x-primary);
         &::after {

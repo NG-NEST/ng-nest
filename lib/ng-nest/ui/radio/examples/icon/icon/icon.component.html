@@ -1,0 +1,17 @@
+<x-row>
+  <x-col span="24">
+    <x-radio [data]="data" icon></x-radio>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="data" [(ngModel)]="model" icon></x-radio>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="data" icon disabled></x-radio>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="data" [(ngModel)]="model" icon disabled></x-radio>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="dataDisabled" icon></x-radio>
+  </x-col>
+</x-row>

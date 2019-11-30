@@ -1,8 +1,8 @@
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Subject, Subscription } from "rxjs";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { forwardRef, Input, HostBinding } from "@angular/core";
+import { Input, forwardRef } from "@angular/core";
 
-export abstract class XControlValueAccessor implements ControlValueAccessor {
+export abstract class XControlValueAccessor {
   valueChange: Subject<any> = new Subject();
   disabledChange: Subject<boolean | string> = new Subject();
   valueChange$: Subscription | null = null;
@@ -11,6 +11,7 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
   public get value(): any {
     return this._value;
   }
+  @Input()
   public set value(value: any) {
     if (value !== this._value) {
       this._value = value;
@@ -19,18 +20,15 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
     }
   }
   private _disabled: boolean | string;
-  @Input()
   public get disabled(): boolean | string {
-    return this._disabled;
+    return this._disabled || this._disabled === "";
   }
+  @Input()
   public set disabled(value: boolean | string) {
     if (value !== this._disabled) {
       this._disabled = value;
       this.disabledChange.next(value);
     }
-  }
-  @HostBinding("class.x-disabled") get getDisabled() {
-    return this.disabled;
   }
   onChange: (_: any) => void;
   onTouched: () => void;

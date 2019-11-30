@@ -1,10 +1,26 @@
-<div
-  class="x-radio-item"
-  *ngFor="let item of radioNodes"
-  [class.x-checked]="activatedRadio?.key === item.key"
-  [class.x-disabled]="item.disabled"
-  (click)="radioClick($event, item)"
->
-  <span class="x-radio-box"></span>
-  <span class="x-radio-label">{{ item.label }}</span>
-</div>
+<ng-container *ngIf="button || icon; else default">
+  <x-buttons>
+    <x-button
+      *ngFor="let item of radioNodes"
+      [label]="item.label"
+      [icon]="item.icon"
+      [title]="item.title"
+      [activated]="item.key === value"
+      [disabled]="disabled || item.disabled"
+      (click)="radioClick($event, item)"
+    ></x-button>
+  </x-buttons>
+</ng-container>
+
+<ng-template #default>
+  <div
+    class="x-radio-item"
+    *ngFor="let item of radioNodes"
+    [class.x-checked]="item.key === value"
+    [class.x-disabled]="item.disabled"
+    (click)="radioClick($event, item)"
+  >
+    <span class="x-radio-box"></span>
+    <span class="x-radio-label">{{ item.label }}</span>
+  </div>
+</ng-template>

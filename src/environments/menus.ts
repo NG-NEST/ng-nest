@@ -27,11 +27,11 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "3-0-11",
+    "id": "3-0-10",
     "parentId": "3-0",
-    "name": "grid",
-    "router": "./docs/ui/components/grid",
-    "label": "Grid 栅格分栏",
+    "name": "fence",
+    "router": "./docs/ui/components/fence",
+    "label": "Fence 栅格布局",
     "category": "Basic",
     "order": 1
   },
@@ -54,7 +54,7 @@ export const menus: Menu[] = [
     "order": 3
   },
   {
-    "id": "3-0-33",
+    "id": "3-0-34",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -90,7 +90,7 @@ export const menus: Menu[] = [
     "order": 7
   },
   {
-    "id": "3-0-26",
+    "id": "3-0-27",
     "parentId": "3-0",
     "name": "table",
     "router": "./docs/ui/components/table",
@@ -117,7 +117,16 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-10",
+    "id": "3-0-23",
+    "parentId": "3-0",
+    "name": "radio",
+    "router": "./docs/ui/components/radio",
+    "label": "Radio 单选框",
+    "category": "Form",
+    "order": 1
+  },
+  {
+    "id": "3-0-11",
     "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
@@ -135,7 +144,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-27",
+    "id": "3-0-28",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",
@@ -202,7 +211,7 @@ export const menus: Menu[] = [
     "label": "动态组件"
   },
   {
-    "id": "3-0-24",
+    "id": "3-0-25",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",

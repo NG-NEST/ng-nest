@@ -4,14 +4,14 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { XBorderComponent } from "./border.component";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { XGridModule } from "@ng-nest/ui/grid";
+import { XFenceModule } from "@ng-nest/ui/fence";
 import { XBorderModule } from "./border.module";
 import { XBorderPrefix } from "./border.type";
 
 describe(XBorderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XBorderModule, XGridModule, XDocModule],
+      imports: [XBorderModule, XFenceModule, XDocModule],
       declarations: [TestXBorderComponent]
     }).compileComponents();
   }));

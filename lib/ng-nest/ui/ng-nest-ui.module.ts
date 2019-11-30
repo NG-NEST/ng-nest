@@ -4,7 +4,7 @@ import { XIconModule } from "@ng-nest/ui/icon";
 import { XContainerModule } from "@ng-nest/ui/container";
 import { XSliderModule } from "@ng-nest/ui/slider";
 import { XHighlightModule } from "@ng-nest/ui/highlight";
-import { XGridModule } from "@ng-nest/ui/grid";
+import { XFenceModule } from "@ng-nest/ui/fence";
 import { XCrumbModule } from "@ng-nest/ui/crumb";
 import { XInnerModule } from "@ng-nest/ui/inner";
 import { XPortalModule } from "@ng-nest/ui/portal";
@@ -12,6 +12,7 @@ import { XColorModule } from "@ng-nest/ui/color";
 import { XTypographyModule } from "@ng-nest/ui/typography";
 import { XBorderModule } from "@ng-nest/ui/border";
 
+import { XRadioModule } from "@ng-nest/ui/radio";
 import { XInputModule } from "@ng-nest/ui/input";
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
@@ -28,7 +29,7 @@ import { XFormModule } from "@ng-nest/ui/form";
 export * from "@ng-nest/ui/core";
 export * from "@ng-nest/ui/icon";
 export * from "@ng-nest/ui/container";
-export * from "@ng-nest/ui/grid";
+export * from "@ng-nest/ui/fence";
 export * from "@ng-nest/ui/slider";
 export * from "@ng-nest/ui/highlight";
 export * from "@ng-nest/ui/crumb";
@@ -38,9 +39,10 @@ export * from "@ng-nest/ui/color";
 export * from "@ng-nest/ui/typography";
 export * from "@ng-nest/ui/border";
 
-export * from "@ng-nest/ui/anchor";
+export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/input";
 export * from "@ng-nest/ui/button";
+export * from "@ng-nest/ui/anchor";
 export * from "@ng-nest/ui/tabs";
 export * from "@ng-nest/ui/table";
 export * from "@ng-nest/ui/pagination";
@@ -57,13 +59,14 @@ export * from "@ng-nest/ui/form";
     XContainerModule,
     XSliderModule,
     XHighlightModule,
-    XGridModule,
+    XFenceModule,
     XCrumbModule,
     XInnerModule,
     XPortalModule,
     XColorModule,
     XTypographyModule,
     XBorderModule,
+    XRadioModule,
     XInputModule,
     XButtonModule,
     XAnchorModule,

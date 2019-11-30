@@ -7,12 +7,12 @@ import { By } from "@angular/platform-browser";
 import { XTabsModule } from "./tabs.module";
 import { TabsPrefix, XTabsNode, XTabsLayoutType } from "./tabs.type";
 import { XData } from "@ng-nest/ui/core";
-import { XGridModule } from "@ng-nest/ui/grid";
+import { XFenceModule } from "@ng-nest/ui/fence";
 
 describe(TabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTabsModule, XGridModule],
+      imports: [XTabsModule, XFenceModule],
       declarations: [TestXTabsComponent, TestEventXTabsComponent, TestDataXTabsComponent]
     }).compileComponents();
   }));

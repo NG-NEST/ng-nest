@@ -5,7 +5,7 @@
 @import "./param";
 
 @mixin button {
-  border: 1px solid;
+  border: $--x-border-width solid;
   border-color: $--x-button-border;
   border-radius: 0.125rem;
   display: inline-block;
@@ -48,7 +48,8 @@
     }
   }
   &-activated {
-    background-color: rgba(0, 0, 0, 0.07);
+    z-index: 1;
+    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
   }
   &:hover {
     @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
@@ -87,7 +88,10 @@
   &-disabled {
     @include disabled($--x-button-disabled, $--x-button-disabled-background, $--x-button-disabled-border);
   }
-  &-text + &-disabled {
+  &-disabled.#{$--x-button}-activated {
+    background-color: var(--x-info-900);
+  }
+  &-disabled.#{$--x-button}-text {
     background-color: transparent;
   }
   &-large {
@@ -192,8 +196,8 @@
   position: relative;
   &:not(.#{$--x-buttons}-space) {
     > .#{$--x-button} {
-      border-left-width: 1px;
-      border-right-width: 1px;
+      border-left-width: $--x-border-width;
+      border-right-width: $--x-border-width;
       border-radius: 0;
       position: relative;
       &:first-child {
