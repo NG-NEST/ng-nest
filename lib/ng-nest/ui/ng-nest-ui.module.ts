@@ -13,6 +13,7 @@ import { XTypographyModule } from "@ng-nest/ui/typography";
 import { XBorderModule } from "@ng-nest/ui/border";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
+import { XCheckboxModule } from "@ng-nest/ui/checkbox";
 import { XInputModule } from "@ng-nest/ui/input";
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
@@ -40,6 +41,7 @@ export * from "@ng-nest/ui/typography";
 export * from "@ng-nest/ui/border";
 
 export * from "@ng-nest/ui/radio";
+export * from "@ng-nest/ui/checkbox";
 export * from "@ng-nest/ui/input";
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
@@ -67,6 +69,7 @@ export * from "@ng-nest/ui/form";
     XTypographyModule,
     XBorderModule,
     XRadioModule,
+    XCheckboxModule,
     XInputModule,
     XButtonModule,
     XAnchorModule,

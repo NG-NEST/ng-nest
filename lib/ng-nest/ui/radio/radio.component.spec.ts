@@ -225,7 +225,7 @@ class TestXRadioButtonComponent {
         <x-radio [data]="data" icon></x-radio>
       </x-col>
       <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" icon></x-radio>
+        <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" icon></x-radio>
       </x-col>
       <x-col span="24">
         <x-radio [data]="data" icon disabled></x-radio>
@@ -247,6 +247,7 @@ class TestXRadioButtonComponent {
   ]
 })
 class TestXRadioIconComponent {
+  constructor(public cdr: ChangeDetectorRef) {}
   data: XRadioNode[] = iconData;
   dataDisabled: XData<XRadioNode[]> = iconData.map((x, i) => {
     let clone = Object.assign({}, x);
@@ -254,6 +255,9 @@ class TestXRadioIconComponent {
     return clone;
   });
   model = 2;
+  change($event) {
+    this.cdr.detectChanges();
+  }
 }
 
 @Component({

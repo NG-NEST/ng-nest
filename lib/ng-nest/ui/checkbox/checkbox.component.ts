@@ -11,22 +11,23 @@ import {
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { XRadioPrefix, XRadioNode } from "./radio.type";
+import { XCheckboxPrefix, XCheckboxNode } from "./checkbox.type";
 import { Subscription } from "rxjs";
 import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
 
 @Component({
-  selector: `${XRadioPrefix}`,
-  templateUrl: "./radio.component.html",
-  styleUrls: ["./radio.component.scss"],
+  selector: `${XCheckboxPrefix}`,
+  templateUrl: "./checkbox.component.html",
+  styleUrls: ["./checkbox.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XValueAccessor(XRadioComponent)]
+  providers: [XValueAccessor(XCheckboxComponent)]
 })
-export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() data?: XData<XRadioNode[]>;
+export class XCheckboxComponent extends XControlValueAccessor implements OnInit, OnChanges {
+  @Input() data?: XData<XCheckboxNode[]>;
   @Input() button?: boolean | string;
   @Input() icon?: boolean | string;
+  @Input() indeterminate?: boolean | string;
   @HostBinding("class.x-disabled") get getDisabled() {
     return this.disabled;
   }
@@ -50,11 +51,11 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
       this._disabled = value;
     }
   }
-  radioNodes: XRadioNode[] = [];
+  checkboxNodes: XCheckboxNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XCheckboxPrefix);
   }
 
   ngOnInit() {
@@ -71,13 +72,19 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   setInput() {
     this.button = this.button || this.button === "" ? true : false;
     this.icon = this.icon || this.icon === "" ? true : false;
+    this.indeterminate = this.indeterminate || this.indeterminate === "" ? true : false;
     this.cdr.markForCheck();
   }
 
-  radioClick(event: Event, node: XRadioNode) {
+  checkboxClick(event: Event, node: XCheckboxNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled || node.key === this.value) return;
-    this.value = node.key;
+    if (this.disabled || node.disabled) return;
+    if (typeof this.value === "undefined") this.value = [];
+    let index = this.value.indexOf(node.key);
+    if (index >= 0) {
+      this.value.splice(index, 1);
+      this.value = [...this.value];
+    } else this.value = [...this.value, node.key];
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -97,8 +104,8 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     }
   }
 
-  private setDataChange(value: XRadioNode[]) {
-    this.radioNodes = value;
+  private setDataChange(value: XCheckboxNode[]) {
+    this.checkboxNodes = value;
     this.cdr.detectChanges();
   }
 }

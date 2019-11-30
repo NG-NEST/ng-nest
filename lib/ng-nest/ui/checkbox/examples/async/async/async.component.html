@@ -1,0 +1,11 @@
+<x-row>
+  <x-col span="24">
+    <x-button label="请求" type="primary" [loading]="loading" (click)="getData()"></x-button>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="data"></x-checkbox>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="data" [(ngModel)]="model"></x-checkbox>
+  </x-col>
+</x-row>

@@ -211,9 +211,11 @@
       &:not(:first-child) {
         margin-left: -1px;
       }
-      &:hover,
-      &:active {
+      &:hover {
         z-index: 1;
+      }
+      &:active {
+        z-index: 2;
       }
     }
     > .#{$--x-button}-round {

@@ -1,0 +1,10 @@
+// Checkbox
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-checkbox-prefix} {
+  @include reset-component();
+  @include checkbox();
+}

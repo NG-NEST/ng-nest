@@ -1,12 +1,12 @@
 ---
-label: "Radio 单选框"
+label: "Checkbox 多选框"
 category: "Form"
-order: 1
+order: 2
 ---
 
-# Radio 单选框
+# Checkbox 多选框
 
-在一组可选项中进行单项选择。
+在一组可选项中进行多项选择。
 
 ## 示例
 

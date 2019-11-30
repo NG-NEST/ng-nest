@@ -1,7 +1,7 @@
 // 标识对象
 export interface XIdentityInput {
   // 编码
-  key?: string | number;
+  key?: any;
   // 标题
   label?: string;
 }
@@ -9,7 +9,7 @@ export interface XIdentityInput {
 // 标识对象
 export class XIdentity {
   // 编码
-  key?: string | number;
+  key?: any;
   // 标题
   label?: string;
 }
