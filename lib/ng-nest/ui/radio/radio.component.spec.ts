@@ -1,3 +1,4 @@
+import { XButtonModule } from "@ng-nest/ui/button";
 import { Observable } from "rxjs";
 import { async, ComponentFixture, TestBed, fakeAsync, flush } from "@angular/core/testing";
 
@@ -13,7 +14,7 @@ import { XData } from "@ng-nest/ui/core";
 describe(XRadioPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XRadioModule, XFenceModule],
+      imports: [FormsModule, XRadioModule, XButtonModule, XFenceModule],
       declarations: [
         TestXRadioComponent,
         TestXRadioDisabledComponent,
@@ -259,6 +260,9 @@ class TestXRadioIconComponent {
   template: `
     <x-row>
       <x-col span="24">
+        <x-button label="请求" type="primary" [loading]="loading" (click)="getData()"></x-button>
+      </x-col>
+      <x-col span="24">
         <x-radio [data]="data"></x-radio>
       </x-col>
       <x-col span="24">
@@ -276,13 +280,21 @@ class TestXRadioIconComponent {
 })
 class TestXRadioAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XRadioNode[]> = Observable.create(x => {
-    setTimeout(() => {
-      this.model = 3;
-      this.cdr.detectChanges();
-      x.next(data);
-      x.complete();
-    }, 2000);
-  });
+  data: XData<XRadioNode[]>;
   model = 2;
+  loading = false;
+  getData() {
+    this.loading = true;
+    this.data = Observable.create(x => {
+      // 替换成http请求，或者data直接定义成 Observable 对象
+      setTimeout(() => {
+        this.model = 3;
+        this.loading = false;
+        this.cdr.detectChanges();
+        x.next(data);
+        x.complete();
+      }, 2000);
+    });
+    this.cdr.detectChanges();
+  }
 }

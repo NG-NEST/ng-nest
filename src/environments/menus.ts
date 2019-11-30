@@ -108,15 +108,6 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-15",
-    "parentId": "3-0",
-    "name": "input",
-    "router": "./docs/ui/components/input",
-    "label": "Input 输入框",
-    "category": "Form",
-    "order": 1
-  },
-  {
     "id": "3-0-23",
     "parentId": "3-0",
     "name": "radio",
@@ -133,6 +124,15 @@ export const menus: Menu[] = [
     "label": "Form 表单",
     "category": "Form",
     "order": 2
+  },
+  {
+    "id": "3-0-15",
+    "parentId": "3-0",
+    "name": "input",
+    "router": "./docs/ui/components/input",
+    "label": "Input 输入框",
+    "category": "Form",
+    "order": 10
   },
   {
     "id": "3-0-7",

@@ -8,7 +8,9 @@ import {
   Input,
   ChangeDetectorRef,
   HostBinding,
-  forwardRef
+  forwardRef,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core";
 import { XRadioPrefix, XRadioNode } from "./radio.type";
 import { Subscription, Subject } from "rxjs";
@@ -23,7 +25,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => XRadioComponent), multi: true }]
 })
-export class XRadioComponent implements OnInit, ControlValueAccessor {
+export class XRadioComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() data?: XData<XRadioNode[]>;
   @Input() button?: boolean | string;
   @Input() icon?: boolean | string;
@@ -78,6 +80,13 @@ export class XRadioComponent implements OnInit, ControlValueAccessor {
     this.setData();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    let dataChange = changes.data;
+    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
+      this.setData();
+    }
+  }
+
   ngAfterViewInit() {}
 
   setInput() {
@@ -96,6 +105,7 @@ export class XRadioComponent implements OnInit, ControlValueAccessor {
   }
 
   private setData() {
+    if (typeof this.data === "undefined") return;
     if (this.data instanceof Array) {
       this.setDataChange(this.data);
     } else {

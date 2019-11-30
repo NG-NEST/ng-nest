@@ -1,7 +1,7 @@
 ---
 label: "Input 输入框"
 category: "Form"
-order: 1
+order: 10
 ---
 
 # Input 输入框
