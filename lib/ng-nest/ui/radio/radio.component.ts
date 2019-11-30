@@ -8,14 +8,12 @@ import {
   Input,
   ChangeDetectorRef,
   HostBinding,
-  forwardRef,
   OnChanges,
   SimpleChanges
 } from "@angular/core";
 import { XRadioPrefix, XRadioNode } from "./radio.type";
-import { Subscription, Subject } from "rxjs";
-import { XData } from "@ng-nest/ui/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Subscription } from "rxjs";
+import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -23,9 +21,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
   styleUrls: ["./radio.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => XRadioComponent), multi: true }]
+  providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent implements OnInit, OnChanges, ControlValueAccessor {
+export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() data?: XData<XRadioNode[]>;
   @Input() button?: boolean | string;
   @Input() icon?: boolean | string;
@@ -54,24 +52,11 @@ export class XRadioComponent implements OnInit, OnChanges, ControlValueAccessor 
       this._disabled = value;
     }
   }
-  onChange: (_: any) => void;
-  onTouched: () => void;
-  writeValue(value: any): void {
-    this.value = value;
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(disabled: boolean | string) {
-    this.disabled = disabled;
-  }
   radioNodes: XRadioNode[] = [];
   activatedRadio: XRadioNode;
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
   }
 
@@ -86,8 +71,6 @@ export class XRadioComponent implements OnInit, OnChanges, ControlValueAccessor 
       this.setData();
     }
   }
-
-  ngAfterViewInit() {}
 
   setInput() {
     this.button = this.button || this.button === "" ? true : false;

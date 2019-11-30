@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "node_modules/highlight.js/styles/github.css",
               "lib/ng-nest/ui/style/core/index.scss",
@@ -156,7 +156,7 @@
             "karmaConfig": "karma.conf.js",
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"]
           }
         },
         "lint": {

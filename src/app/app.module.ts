@@ -10,14 +10,7 @@ import { MainRoutesModule } from "src/main/routes.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ShareModule,
-    MainRoutesModule
-  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, ShareModule, MainRoutesModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

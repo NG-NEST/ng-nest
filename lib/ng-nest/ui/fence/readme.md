@@ -1,10 +1,10 @@
 ---
-label: "Fence 栅格布局"
+label: "Layout 栅格布局"
 category: "Basic"
 order: 1
 ---
 
-# Fence 栅格布局
+# Layout 栅格布局
 
 通过基础的 24 分栏，迅速简便地创建布局。布局的栅格系统是基于行 `x-row` 和列 `x-col` 来定义内容区域的框架。
 

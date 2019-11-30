@@ -31,7 +31,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "fence",
     "router": "./docs/ui/components/fence",
-    "label": "Fence 栅格布局",
+    "label": "Layout 栅格布局",
     "category": "Basic",
     "order": 1
   },
