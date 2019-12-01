@@ -24,7 +24,7 @@ export type XSize = "large" | "medium" | "samll" | "mini";
  * @value "spaceAround"
  * @value "space-between"
  */
-export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-between";
+export type XJustify = "start" | "end" | "center" | "space-around" | "space-between";
 
 /**
  * flex 布局下的子元素垂直排列方式
@@ -32,7 +32,7 @@ export type XJustify = "start" | "end" | "center" | "spaceAround" | "space-betwe
  * @value "middle"
  * @value "bottom"
  */
-export type XAlign = "top" | "middle" | "bottom";
+export type XAlign = "top" | "center" | "bottom";
 
 /**
  * flex 布局下的子元素排列方向

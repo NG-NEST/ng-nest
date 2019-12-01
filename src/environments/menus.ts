@@ -126,22 +126,22 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-12",
-    "parentId": "3-0",
-    "name": "form",
-    "router": "./docs/ui/components/form",
-    "label": "Form 表单",
-    "category": "Form",
-    "order": 2
-  },
-  {
     "id": "3-0-16",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
     "label": "Input 输入框",
     "category": "Form",
-    "order": 10
+    "order": 3
+  },
+  {
+    "id": "3-0-12",
+    "parentId": "3-0",
+    "name": "form",
+    "router": "./docs/ui/components/form",
+    "label": "Form 表单",
+    "category": "Form",
+    "order": 15
   },
   {
     "id": "3-0-8",

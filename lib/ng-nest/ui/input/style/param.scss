@@ -1,33 +1,36 @@
 // Input style paramters
 
-$prefix: "x-input";
+$--x-input-prefix: $--x-prefix + "-input";
 
 /* 字体大小 */
-$input-font-size: $--x-font-size;
+$--x-input-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-input-height: $--x-font-size + 1rem;
 
 /* 内边距 */
-$input-padding: 0 $control-padding-horizontal;
+$--x-input-padding: 0 $control-padding-horizontal;
 
 /* 文字颜色 */
-$input-color: $--x-primary-900;
+$--x-input-color: $--x-primary-900;
 
 /* 提示文字颜色 */
-$input-placeholder-color: $--x-border;
+$--x-input-placeholder-color: $--x-info-700;
 
 /* 背景颜色 */
-$input-background-color: #ffffff;
+$--x-input-background-color: #ffffff;
 
 /* 边框样式 */
-$input-border: $border-width $border-style $border-color;
+$--x-input-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$input-border-radius: $border-radius;
+$--x-input-border-radius: $border-radius;
 
 /* 禁用颜色 */
-$input-disabled-color: $--x-text-300;
+$--x-input-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$input-icon-font-size: $--x-font-size-md;
+$--x-input-icon-font-size: $--x-font-size-md;
 
 /* 输入框中图标的内边距 */
-$input-icon-padding: $control-padding-horizontal;
+$--x-input-icon-padding: $control-padding-horizontal;

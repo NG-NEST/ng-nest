@@ -7,6 +7,6 @@ import { XIconModule } from "@ng-nest/ui/icon";
 @NgModule({
   declarations: [XInputComponent],
   exports: [XInputComponent],
-  imports: [CommonModule, XIconModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconModule]
 })
 export class XInputModule {}

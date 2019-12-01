@@ -1,4 +1,4 @@
 ---
 order: 4
-label: "布局"
+label: "禁用"
 ---

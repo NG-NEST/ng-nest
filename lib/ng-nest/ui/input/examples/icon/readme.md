@@ -1,4 +1,4 @@
 ---
-order: 5
+order: 3
 label: "图标"
 ---

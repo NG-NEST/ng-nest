@@ -66,6 +66,10 @@ $--x-border-200: var(--x-border-200);
 $--x-border-100: var(--x-border-100);
 $--x-black: var(--x-black);
 $--x-white: var(--x-white);
+$--x-background: var(--x-background);
+$--x-background-300: var(--x-background-300);
+$--x-background-600: ​var(--x-background-600);
+$--x-background-900: var(--x-background-900);
 
 // // Color
 
@@ -124,7 +128,7 @@ $--x-padding-ss: 0.275rem;
 
 // Border
 $border-color: $--x-border;
-$border-style: solid;
+$--x-border-style: solid;
 $border-width: 1px;
 $border-radius: 0.125rem;
 $--x-border-width: 0.0625rem;

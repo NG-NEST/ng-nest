@@ -38,7 +38,7 @@ export interface XControlOption<T> extends XIdentityInput {
   /**
    * 禁用
    */
-  disabled?: boolean;
+  disabled?: boolean | string;
   /**
    * 只读
    */
@@ -46,7 +46,7 @@ export interface XControlOption<T> extends XIdentityInput {
   /**
    * 必填
    */
-  required?: boolean;
+  required?: boolean | string;
   /**
    * 隐藏
    */
@@ -73,7 +73,7 @@ export class XControl<T> extends XIdentity {
   /**
    * 禁用
    */
-  disabled?: boolean;
+  disabled?: boolean | string;
   /**
    * 只读
    */
@@ -81,7 +81,7 @@ export class XControl<T> extends XIdentity {
   /**
    * 必填
    */
-  required?: boolean;
+  required?: boolean | string;
   /**
    * 隐藏
    */

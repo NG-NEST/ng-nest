@@ -1,3 +1,4 @@
+import { XFormProperty } from "./../core/interfaces/form.type";
 import { XIdentityInput } from "@ng-nest/ui/core";
 
 /**
@@ -5,17 +6,12 @@ import { XIdentityInput } from "@ng-nest/ui/core";
  * @selector x-input
  * @decorator component
  */
-export const InputPrefix = "x-input";
+export const XInputPrefix = "x-input";
 
 /**
  * Input @Input
  */
-export interface XInputInput extends XIdentityInput {
-  /**
-   * 布局方式
-   * @default "horizontal"
-   */
-  layout?: XInputLayoutType;
+export interface XInputInput extends XIdentityInput, XFormProperty {
   /**
    * 输入类型
    * @default "text"
@@ -26,16 +22,6 @@ export interface XInputInput extends XIdentityInput {
    */
   placeholder?: string;
   /**
-   * 必填
-   * @default false
-   */
-  required?: boolean;
-  /**
-   * 禁用
-   * @default false
-   */
-  disabled?: boolean;
-  /**
    * 图标
    */
   icon?: string;
@@ -45,13 +31,6 @@ export interface XInputInput extends XIdentityInput {
    */
   iconLayout?: XInputIconLayoutType;
 }
-
-/**
- * 布局方式，此处指文本跟输入框的位置
- * @value "horizontal" 水平
- * @value "vertical" 垂直
- */
-export type XInputLayoutType = "horizontal" | "vertical";
 
 /**
  * 输入框类型

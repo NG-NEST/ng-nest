@@ -2,16 +2,16 @@
 @mixin placeholder() {
   // Firefox
   &::-moz-placeholder {
-    color: $input-placeholder-color;
+    color: $--x-input-placeholder-color;
     opacity: 1;
   }
   // Internet Explorer 10+
   &:-ms-input-placeholder {
-    color: $input-placeholder-color;
+    color: $--x-input-placeholder-color;
   }
   // Safari and Chrome
   &::-webkit-input-placeholder {
-    color: $input-placeholder-color;
+    color: $--x-input-placeholder-color;
   }
 }
 
@@ -23,5 +23,5 @@
 // Element focus
 @mixin focus() {
   border-color: $--x-primary;
-  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.25rem 0.125rem $--x-primary-800;
 }

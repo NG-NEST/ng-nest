@@ -4,13 +4,22 @@
 <ng-template #inputTemp>
   <div class="x-input-row">
     <input
+      #inputEleRef
       [type]="type"
-      [placeholder]="placeholder"
-      [required]="required"
-      [disabled]="disabled"
+      [attr.placeholder]="placeholder"
+      [attr.required]="required"
+      [attr.disabled]="disabled"
+      [attr.maxlength]="maxlength"
       [ngModel]="value"
-      (ngModelChange)="onChange($event)"
+      (ngModelChange)="change($event)"
+      [style.padding-right.rem]="
+        maxlength && iconLayout === 'left' ? (lengthTotal.length + 2) * 0.385 : icon && maxlength ? 1.8 : 0.4
+      "
+      [style.padding-left.rem]="
+        maxlength && iconLayout === 'right' ? (lengthTotal.length + 2) * 0.385 : icon && maxlength ? 1.8 : 0.4
+      "
     />
     <x-icon *ngIf="icon" [type]="icon"></x-icon>
+    <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
   </div>
 </ng-template>

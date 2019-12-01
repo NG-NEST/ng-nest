@@ -4,72 +4,7 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
-.#{$prefix} {
+.#{$--x-input-prefix} {
   @include reset-component();
   @include input();
-
-  &-required {
-    > label {
-      &:after {
-        content: "*";
-        font-size: $--x-font-size + 0.375rem;
-        margin-left: 0.125rem;
-        color: $--x-danger;
-        position: absolute;
-      }
-    }
-  }
-
-  &-disabled {
-    > .#{$prefix}-row > input {
-      background-color: rgba(0, 0, 0, 0.045);
-    }
-  }
-
-  &-horizontal {
-    align-items: center;
-    > label {
-      margin-right: 0.375rem;
-    }
-  }
-
-  &-vertical {
-    flex-direction: column;
-    > label {
-      display: inline-block;
-      margin-bottom: 0.125rem;
-    }
-  }
-
-  &-icon {
-    > .#{$prefix}-row {
-      > #{$--x-prefix}-icon {
-        position: absolute;
-        font-size: $input-icon-font-size;
-        padding: $input-icon-padding;
-      }
-    }
-  }
-
-  &-icon-left {
-    > .#{$prefix}-row {
-      > input {
-        padding-left: $input-icon-font-size + $input-icon-padding * 2;
-      }
-      > #{$--x-prefix}-icon {
-        left: 0;
-      }
-    }
-  }
-
-  &-icon-right {
-    > .#{$prefix}-row {
-      > input {
-        padding-right: $input-icon-font-size + $input-icon-padding * 2;
-      }
-      > #{$--x-prefix}-icon {
-        right: 0;
-      }
-    }
-  }
 }

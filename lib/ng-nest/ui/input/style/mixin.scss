@@ -5,27 +5,31 @@
 @import "./param";
 
 @mixin input {
-  display: flex;
-  > .#{$prefix}-row {
+  font-size: $--x-input-font-size;
+  color: $--x-text;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-input-height;
+    line-height: $--x-input-height;
+  }
+  > .#{$--x-input-prefix}-row {
     flex: 1;
     display: flex;
     align-items: center;
     position: relative;
-    // color: var(--x-blue-200);
-    // background-color: var(--x-blue-50);
-    // border-color: var(--x-blue-100);
     > input {
-      padding: $input-padding;
+      padding: $--x-input-padding;
       flex: 1;
-      height: $input-font-size + 1rem;
+      height: $--x-input-height;
+      line-height: $--x-input-height;
       width: 100%;
-      font-size: $input-font-size;
-      background-color: $input-background-color;
+      font-size: $--x-input-font-size;
+      background-color: $--x-input-background-color;
       background-image: none;
-      border: $input-border;
-      border-radius: $input-border-radius;
-      transition: border-color $animation-duration-slow,
-        box-shadow $animation-duration-slow;
+      border: $--x-input-border;
+      border-radius: $--x-input-border-radius;
+      transition: all $animation-duration-slow;
       @include placeholder();
       &:hover {
         @include hover();
@@ -35,7 +39,99 @@
         outline: 0;
       }
       &[disabled] {
-        color: $input-disabled-color;
+        color: $--x-input-disabled-color;
+      }
+    }
+  }
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+    > .#{$--x-input-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-danger;
+      }
+      &:before {
+        content: " ";
+        position: absolute;
+        height: $--x-input-height;
+        line-height: $--x-input-height;
+        border-top-left-radius: $--x-input-border-radius;
+        border-bottom-left-radius: $--x-input-border-radius;
+        width: 0.125rem;
+        background-color: $--x-danger;
+      }
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-input-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-text-300;
+      }
+      > input {
+        color: $--x-text-300;
+        cursor: not-allowed;
+        border-color: $--x-border-300;
+        background-color: $--x-background-300;
+      }
+    }
+  }
+  &-max-length {
+    position: absolute;
+    font-size: $--x-font-size-sm;
+    color: $--x-text-300;
+    padding: $--x-input-padding;
+    right: 0;
+  }
+  &-flex {
+    align-items: center;
+  }
+  &-direction-row {
+    > label {
+      margin: 0 0.5rem 0 0;
+    }
+  }
+  &-direction-row-reverse {
+    > label {
+      margin: 0 0 0 0.5rem;
+    }
+  }
+  &-direction-column {
+    align-items: inherit;
+  }
+  &-direction-column-reverse {
+    align-items: inherit;
+  }
+  &-icon {
+    > .#{$--x-input-prefix}-row {
+      > #{$--x-prefix}-icon {
+        position: absolute;
+        font-size: $--x-input-icon-font-size;
+        padding: $--x-input-icon-padding;
+      }
+    }
+  }
+  &-icon-left {
+    > .#{$--x-input-prefix}-row {
+      > input {
+        padding-left: $--x-input-icon-font-size + $--x-input-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        left: 0;
+      }
+    }
+  }
+  &-icon-right {
+    > .#{$--x-input-prefix}-row {
+      > input {
+        padding-right: $--x-input-icon-font-size + $--x-input-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        right: 0;
+      }
+      > .#{$--x-input-prefix}-max-length {
+        right: inherit;
+        left: 0;
       }
     }
   }
