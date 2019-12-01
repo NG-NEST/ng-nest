@@ -13,10 +13,20 @@
       [ngModel]="value"
       (ngModelChange)="change($event)"
       [style.padding-right.rem]="
-        maxlength && iconLayout === 'left' ? (lengthTotal.length + 2) * 0.385 : icon && maxlength ? 1.8 : 0.4
+        maxlength && icon && iconLayout === 'left'
+          ? (lengthTotal.length + 2) * 0.385
+          : icon && iconLayout === 'right'
+          ? 1.8
+          : maxlength && !icon
+          ? (lengthTotal.length + 2) * 0.385
+          : 0.4
       "
       [style.padding-left.rem]="
-        maxlength && iconLayout === 'right' ? (lengthTotal.length + 2) * 0.385 : icon && maxlength ? 1.8 : 0.4
+        maxlength && icon && iconLayout === 'right'
+          ? (lengthTotal.length + 2) * 0.385
+          : icon && iconLayout === 'left'
+          ? 1.8
+          : 0.4
       "
     />
     <x-icon *ngIf="icon" [type]="icon"></x-icon>
