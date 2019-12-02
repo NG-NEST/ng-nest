@@ -1,0 +1,10 @@
+// InputNumber
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+.#{$--x-input-number-prefix} {
+  @include reset-component();
+  @include input-number();
+}

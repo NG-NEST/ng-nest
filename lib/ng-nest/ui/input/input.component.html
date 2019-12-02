@@ -1,35 +1,31 @@
 <label *ngIf="label">{{ label }}</label>
-<ng-container *ngTemplateOutlet="inputTemp"></ng-container>
-
-<ng-template #inputTemp>
-  <div class="x-input-row">
-    <input
-      #inputEleRef
-      [type]="type"
-      [attr.placeholder]="placeholder"
-      [attr.required]="required"
-      [attr.disabled]="disabled"
-      [attr.maxlength]="maxlength"
-      [ngModel]="value"
-      (ngModelChange)="change($event)"
-      [style.padding-right.rem]="
-        maxlength && icon && iconLayout === 'left'
-          ? (lengthTotal.length + 2) * 0.385
-          : icon && iconLayout === 'right'
-          ? 1.8
-          : maxlength && !icon
-          ? (lengthTotal.length + 2) * 0.385
-          : 0.4
-      "
-      [style.padding-left.rem]="
-        maxlength && icon && iconLayout === 'right'
-          ? (lengthTotal.length + 2) * 0.385
-          : icon && iconLayout === 'left'
-          ? 1.8
-          : 0.4
-      "
-    />
-    <x-icon *ngIf="icon" [type]="icon"></x-icon>
-    <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
-  </div>
-</ng-template>
+<div class="x-input-row">
+  <input
+    #inputEleRef
+    [type]="type"
+    [attr.placeholder]="placeholder"
+    [attr.required]="required"
+    [attr.disabled]="disabled"
+    [attr.maxlength]="maxlength"
+    [ngModel]="value"
+    (ngModelChange)="change($event)"
+    [style.padding-right.rem]="
+      maxlength && icon && iconLayout === 'left'
+        ? (lengthTotal.length + 2) * 0.385
+        : icon && iconLayout === 'right'
+        ? 1.8
+        : maxlength && !icon
+        ? (lengthTotal.length + 2) * 0.385
+        : 0.4
+    "
+    [style.padding-left.rem]="
+      maxlength && icon && iconLayout === 'right'
+        ? (lengthTotal.length + 2) * 0.385
+        : icon && iconLayout === 'left'
+        ? 1.8
+        : 0.4
+    "
+  />
+  <x-icon *ngIf="icon" [type]="icon"></x-icon>
+  <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
+</div>

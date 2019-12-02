@@ -1,0 +1,36 @@
+// InputNumber style paramters
+
+$--x-input-number-prefix: $--x-prefix + "-input-number";
+
+/* 字体大小 */
+$--x-input-number-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-input-number-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-input-number-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-input-number-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-input-number-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-input-number-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-input-number-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-input-number-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-input-number-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-input-number-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-input-number-icon-padding: $control-padding-horizontal;

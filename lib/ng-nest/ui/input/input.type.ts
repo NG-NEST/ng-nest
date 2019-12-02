@@ -1,5 +1,4 @@
-import { XFormProperty } from "./../core/interfaces/form.type";
-import { XIdentityInput } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
 
 /**
  * Input 组件名

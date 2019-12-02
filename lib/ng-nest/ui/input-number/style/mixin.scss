@@ -1,0 +1,161 @@
+// InputNumber
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin input-number {
+  font-size: $--x-input-number-font-size;
+  color: $--x-text;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-input-number-height;
+    line-height: $--x-input-number-height;
+  }
+  > .#{$--x-input-number-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > input {
+      padding: $--x-input-number-padding;
+      margin: 0 2.675rem;
+      flex: 1;
+      height: $--x-input-number-height;
+      line-height: $--x-input-number-height;
+      width: 100%;
+      font-size: $--x-input-number-font-size;
+      background-color: $--x-input-number-background-color;
+      background-image: none;
+      border: $--x-input-number-border;
+      transition: all $animation-duration-slow;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+      }
+      @include placeholder();
+      &:hover {
+        z-index: 1;
+        @include hover();
+      }
+      &:focus {
+        z-index: 1;
+        @include focus();
+        outline: 0;
+      }
+      &[disabled] {
+        color: $--x-input-number-disabled-color;
+      }
+    }
+    > x-button {
+      position: absolute;
+      &.#{$--x-input-number-prefix}-plus {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        right: 0;
+      }
+      &.#{$--x-input-number-prefix}-reduce {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        left: 0;
+      }
+      &:hover,
+      &:focus {
+        z-index: 1;
+      }
+    }
+  }
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+    > .#{$--x-input-number-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-danger;
+      }
+      &:before {
+        content: " ";
+        position: absolute;
+        height: $--x-input-number-height;
+        line-height: $--x-input-number-height;
+        border-top-left-radius: $--x-input-number-border-radius;
+        border-bottom-left-radius: $--x-input-number-border-radius;
+        width: 0.125rem;
+        background-color: $--x-danger;
+      }
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-input-number-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-text-300;
+      }
+      > input {
+        color: $--x-text-300;
+        cursor: not-allowed;
+        border-color: $--x-border-300;
+        background-color: $--x-background-300;
+      }
+    }
+  }
+  &-max-length {
+    position: absolute;
+    font-size: $--x-font-size-sm;
+    color: $--x-text-300;
+    padding: $--x-input-number-padding;
+    right: 0;
+  }
+  &-flex {
+    align-items: center;
+  }
+  &-direction-row {
+    > label {
+      margin: 0 0.5rem 0 0;
+    }
+  }
+  &-direction-row-reverse {
+    > label {
+      margin: 0 0 0 0.5rem;
+    }
+  }
+  &-direction-column {
+    align-items: inherit;
+  }
+  &-direction-column-reverse {
+    align-items: inherit;
+  }
+  &-icon {
+    > .#{$--x-input-number-prefix}-row {
+      > #{$--x-prefix}-icon {
+        position: absolute;
+        font-size: $--x-input-number-icon-font-size;
+        padding: $--x-input-number-icon-padding;
+      }
+    }
+  }
+  &-icon-left {
+    > .#{$--x-input-number-prefix}-row {
+      > input {
+        padding-left: $--x-input-number-icon-font-size + $--x-input-number-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        left: 0;
+      }
+    }
+  }
+  &-icon-right {
+    > .#{$--x-input-number-prefix}-row {
+      > input {
+        padding-right: $--x-input-number-icon-font-size + $--x-input-number-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        right: 0;
+      }
+      > .#{$--x-input-number-prefix}-max-length {
+        right: inherit;
+        left: 0;
+      }
+    }
+  }
+}

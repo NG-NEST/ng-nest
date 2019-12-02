@@ -42,3 +42,13 @@ export type XAlign = "top" | "center" | "bottom";
  * @value "row-reverse"
  */
 export type XDirection = "column" | "column-reverse" | "row" | "row-reverse";
+
+// 表单对象共有的参数
+export interface XFormProperty {
+  justify?: XJustify;
+  align?: XAlign;
+  direction?: XDirection;
+  label?: string;
+  disabled?: boolean | string;
+  required?: boolean | string;
+}
