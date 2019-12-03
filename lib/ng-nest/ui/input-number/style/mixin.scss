@@ -23,6 +23,7 @@
       margin: 0 2.675rem;
       flex: 1;
       height: $--x-input-number-height;
+      text-align: center;
       line-height: $--x-input-number-height;
       width: 100%;
       font-size: $--x-input-number-font-size;
@@ -43,9 +44,6 @@
         z-index: 1;
         @include focus();
         outline: 0;
-      }
-      &[disabled] {
-        color: $--x-input-number-disabled-color;
       }
     }
     > x-button {
@@ -76,6 +74,7 @@
       }
       &:before {
         content: " ";
+        z-index: 2;
         position: absolute;
         height: $--x-input-number-height;
         line-height: $--x-input-number-height;

@@ -9,7 +9,8 @@ import {
   ElementRef,
   Input,
   ViewChild,
-  SimpleChanges
+  SimpleChanges,
+  ChangeDetectorRef
 } from "@angular/core";
 import { XButtonPrefix, XButtonType, XButtonInput } from "./button.type";
 import { fillDefault, XDirection, XSize } from "@ng-nest/ui/core";
@@ -56,7 +57,7 @@ export class XButtonComponent implements OnInit, OnChanges {
   private _default: XButtonInput = {
     label: ""
   };
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XButtonPrefix);
   }
 
@@ -84,6 +85,10 @@ export class XButtonComponent implements OnInit, OnChanges {
     let loading = changes.loading;
     if (loading && loading.currentValue != loading.previousValue) {
       this.disabled = this.loading;
+    }
+    let disabled = changes.disabled;
+    if (disabled && disabled.currentValue != disabled.previousValue) {
+      this.cdr.markForCheck();
     }
   }
 

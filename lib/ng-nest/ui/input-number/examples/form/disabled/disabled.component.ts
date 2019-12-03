@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./disabled.component.scss"]
 })
 export class ExDisabledComponent implements OnInit {
-  model = "输入框禁用";
+  model = 10;
   constructor() {}
 
   ngOnInit() {}

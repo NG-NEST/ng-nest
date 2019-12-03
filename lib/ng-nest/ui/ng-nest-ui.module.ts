@@ -15,6 +15,7 @@ import { XBorderModule } from "@ng-nest/ui/border";
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
 import { XInputModule } from "@ng-nest/ui/input";
+import { XInputNumberModule } from "@ng-nest/ui/input-number";
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
 import { XTabsModule } from "@ng-nest/ui/tabs";
@@ -43,6 +44,7 @@ export * from "@ng-nest/ui/border";
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
 export * from "@ng-nest/ui/input";
+export * from "@ng-nest/ui/input-number";
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
 export * from "@ng-nest/ui/tabs";
@@ -71,6 +73,7 @@ export * from "@ng-nest/ui/form";
     XRadioModule,
     XCheckboxModule,
     XInputModule,
+    XInputNumberModule,
     XButtonModule,
     XAnchorModule,
     XTabsModule,

@@ -16,10 +16,10 @@ describe(XInputNumberPrefix, () => {
       declarations: [
         TestXInputNumberComponent,
         TestXInputNumberLabelComponent,
-        TestXInputNumberIconComponent,
+        TestXInputNumberLimitComponent,
+        TestXInputNumberPrecisionComponent,
         TestXInputNumberDisabledComponent,
-        TestXInputNumberRequiredComponent,
-        TestXInputNumberLengthComponent
+        TestXInputNumberRequiredComponent
       ]
     }).compileComponents();
   }));
@@ -47,13 +47,25 @@ describe(XInputNumberPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`icon.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberIconComponent>;
+  describe(`limit.`, () => {
+    let fixture: ComponentFixture<TestXInputNumberLimitComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberIconComponent);
+      fixture = TestBed.createComponent(TestXInputNumberLimitComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberIconComponent));
+      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLimitComponent));
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`precision.`, () => {
+    let fixture: ComponentFixture<TestXInputNumberPrecisionComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputNumberPrecisionComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberPrecisionComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -83,68 +95,55 @@ describe(XInputNumberPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`length.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberLengthComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberLengthComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLengthComponent));
-    });
-    it("should create.", () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
 });
 
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
+      <x-col>
         <x-input-number></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number placeholder="请输入内容"></x-input-number>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+      x-row > x-col {
+        width: 10rem;
       }
     `
   ]
 })
-class TestXInputNumberComponent {
-  constructor(private cdr: ChangeDetectorRef) {
-    // interval(1000).subscribe(x => {
-    //   console.log(x);
-    //   this.cdr.detectChanges();
-    // });
-  }
-}
+class TestXInputNumberComponent {}
 
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-input-number label="用户名"></x-input-number>
+      <x-col>
+        <x-input-number label="数量"></x-input-number>
       </x-col>
-      <x-col span="24">
-        <x-input-number label="用户名" direction="column-reverse"></x-input-number>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-input-number label="数量" direction="column-reverse"></x-input-number>
       </x-col>
-      <x-col span="24">
-        <x-input-number label="用户名" direction="row"></x-input-number>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-input-number label="数量" direction="row"></x-input-number>
       </x-col>
-      <x-col span="24">
-        <x-input-number label="用户名" direction="row-reverse"></x-input-number>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-input-number label="数量" direction="row-reverse"></x-input-number>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col:not(:first-child) {
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
@@ -155,40 +154,71 @@ class TestXInputNumberLabelComponent {}
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-input-number icon="ado-user"></x-input-number>
+      <x-col>
+        <x-input-number [max]="10"></x-input-number>
       </x-col>
-      <x-col span="24">
-        <x-input-number icon="ado-user" iconLayout="right"></x-input-number>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-input-number [min]="1"></x-input-number>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-input-number [min]="1" [max]="10"></x-input-number>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col:not(:first-child) {
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
   ]
 })
-class TestXInputNumberIconComponent {}
+class TestXInputNumberLimitComponent {}
 
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-input-number disabled></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number disabled [(ngModel)]="model"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number icon="ado-user" disabled></x-input-number>
+      <x-col>
+        <x-input-number [precision]="2" [step]="0.1"></x-input-number>
       </x-col>
     </x-row>
   `,
   styles: [
     `
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXInputNumberPrecisionComponent {}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col>
+        <x-input-number disabled></x-input-number>
+      </x-col>
+      <x-col>
+        <x-input-number disabled [(ngModel)]="model"></x-input-number>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row > x-col {
+        width: 10rem;
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 0.5rem;
       }
@@ -197,97 +227,28 @@ class TestXInputNumberIconComponent {}
 })
 class TestXInputNumberDisabledComponent {
   model = 10;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(1000).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
 }
 
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-input-number required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input-number>
+      <x-col>
+        <x-input-number required></x-input-number>
       </x-col>
-      <x-col span="24">
-        <x-input-number label="用户名" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input-number>
+      <x-col>
+        <x-input-number label="数量" required></x-input-number>
       </x-col>
     </x-row>
   `,
   styles: [
     `
+      x-row > x-col {
+        width: 10rem;
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
   ]
 })
-class TestXInputNumberRequiredComponent {
-  value: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-input-number [(ngModel)]="value" (ngModelChange)="change($event)" maxlength="50"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          label="用户名"
-          maxlength="50"
-        ></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          label="用户名"
-          direction="row"
-          maxlength="50"
-        ></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          icon="ado-user"
-          maxlength="50"
-        ></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          icon="ado-user"
-          iconLayout="right"
-          maxlength="50"
-        ></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberLengthComponent {
-  value: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
-  }
-}
+class TestXInputNumberRequiredComponent {}

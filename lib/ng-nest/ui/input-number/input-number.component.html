@@ -1,28 +1,30 @@
 <label *ngIf="label">{{ label }}</label>
 <div class="x-input-number-row">
   <x-button
-    class="x-input-number-plus"
-    icon="fto-plus"
-    size="medium"
-    (mousedown)="down($event, step)"
-    (mouseup)="up()"
-  ></x-button>
-  <x-button
     class="x-input-number-reduce"
     icon="fto-minus"
     size="medium"
-    (mousedown)="down($event, -step)"
-    (mouseup)="up()"
+    [disabled]="minDisabled"
+    (click)="!minDisabled && plus($event, -step)"
+    (mousedown)="!minDisabled && down($event, -step)"
+    (mouseup)="up($event)"
+  ></x-button>
+  <x-button
+    class="x-input-number-plus"
+    icon="fto-plus"
+    size="medium"
+    [disabled]="maxDisabled"
+    (click)="!maxDisabled && plus($event, step)"
+    (mousedown)="!maxDisabled && down($event, step)"
+    (mouseup)="up($event)"
   ></x-button>
   <input
     #inputEleRef
-    type="number"
-    [attr.placeholder]="placeholder"
-    [attr.required]="required"
-    [attr.disabled]="disabled"
-    [attr.min]="min"
-    [attr.max]="max"
-    [ngModel]="value"
+    type="text"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="disabled"
+    [ngModel]="displayValue"
     (ngModelChange)="change($event)"
   />
 </div>

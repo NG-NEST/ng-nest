@@ -9,7 +9,8 @@ import {
   ElementRef,
   Input,
   HostBinding,
-  ViewChild
+  ViewChild,
+  HostListener
 } from "@angular/core";
 import {
   XInputNumberPrefix,
@@ -45,19 +46,30 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() min: number = Number.MIN_SAFE_INTEGER;
   @Input() max: number = Number.MAX_SAFE_INTEGER;
   @Input() step: number = 1;
-  @Input() debounce: number = 100;
+  @Input() debounce: number = 40;
+  @Input() precision: number = 0;
 
   private _default: XInputNumberInputNumber = {};
   private _required: boolean = false;
 
-  value: any = "";
+  private _value: any = "";
+  public get value(): any {
+    return this._value;
+  }
+  public set value(value: any) {
+    this._value = value;
+    if (typeof value !== "undefined" && value !== null) this.displayValue = Number(this.value).toFixed(this.precision);
+    this.cdr.detectChanges();
+  }
+
+  displayValue: any = "";
   minDisabled: boolean = false;
   maxDisabled: boolean = false;
-  mousedown: boolean = false;
   mousedown$: Subscription;
+  timer: any;
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
-    return this.disabled || this.disabled === "";
+    return this.disabled;
   }
 
   @HostBinding(`class.x-required`) get getRequired() {
@@ -68,6 +80,10 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
     return this.justify || this.align || this.direction;
   }
 
+  @HostListener("document:mouseup", ["$event"]) onMouseup(event) {
+    this.up(event);
+  }
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XInputNumberPrefix);
@@ -75,6 +91,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
 
   ngOnInit() {
     fillDefault(this, this._default);
+    this.setDisabled();
     this.setRequired();
     this.setJustify();
     this.setAlign();
@@ -82,52 +99,59 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   }
 
   change(value) {
+    this.verify(value);
+    if (this.onChange) this.onChange(this.value);
+  }
+
+  down(event: Event, limit: number): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.timer = setTimeout(() => {
+      this.mousedown$ = interval(this.debounce).subscribe(() => {
+        this.plus(event, limit);
+      });
+    }, 150);
+  }
+
+  up(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.mousedown$) this.mousedown$.unsubscribe();
+  }
+
+  plus(event: Event, limit: number) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.timer) clearTimeout(this.timer);
+    if (Number.isNaN(+this.value)) this.value = 0;
+    let value = Number(this.value) + limit;
+    this.verify(value);
+    if (this.onChange) this.onChange(this.value);
+  }
+
+  verify(value) {
     const oldValue: number = this.value;
     this.value = value;
-    if (this.value === null) {
+    if (Number.isNaN(+this.value)) {
       this.value = oldValue;
       return;
     }
     if (this._required) {
       this.required = isEmpty(value);
     }
-    // this.maxDisabled = value > this.max;
-    // this.minDisabled = value < this.min;
-    // if (this.maxDisabled) return this.dispatch(this.max);
-    // if (this.minDisabled) return this.dispatch(this.min);
-    if (this.onChange) this.onChange(value);
+    this.maxDisabled = value >= this.max;
+    this.minDisabled = value <= this.min;
+    this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
   }
-
-  down(event: Event, limit: number): void {
-    event.stopPropagation();
-    event.preventDefault();
-    this.mousedown$ = interval(this.debounce).subscribe(() => {
-      this.value = Number(this.value) + limit;
-      if (this.onChange) this.onChange(this.value);
-      this.cdr.detectChanges();
-    });
-  }
-
-  up() {
-    if (this.mousedown$) this.mousedown$.unsubscribe();
-  }
-
-  // decrease(calc: boolean) {
-  //   if (this.disabled) return;
-  //   const step: number = calc ? this.step : 0 - this.step;
-  //   const val: number = Number(this.value) + step;
-  //   if (Number.isNaN(val)) return;
-  //   this.maxDisabled = val > this.max;
-  //   this.minDisabled = val < this.min;
-  //   if (!this.maxDisabled && !this.minDisabled) {
-  //     this.value = val;
-  //     if (this.onChange) this.onChange(this.value);
-  //     this.cdr.detectChanges();
-  //   }
-  // }
 
   setRequired() {
     this._required = this.required || this.required === "" ? true : false;
+  }
+
+  setDisabled() {
+    this.disabled = this.disabled || this.disabled === "" ? true : false;
+    this.minDisabled = this.disabled ? true : false;
+    this.maxDisabled = this.disabled ? true : false;
   }
 
   setJustify() {
