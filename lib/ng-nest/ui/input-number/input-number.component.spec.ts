@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XInputNumberComponent } from "./input-number.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
+import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XInputNumberModule } from "./input-number.module";
-import { FormsModule, ReactiveFormsModule, FormControl } from "@angular/forms";
-import { XInputNumberPrefix, XInputNumberType, XInputNumberIconLayoutType } from "./input-number.type";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { XInputNumberPrefix } from "./input-number.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
-import { interval } from "rxjs";
 
 describe(XInputNumberPrefix, () => {
   beforeEach(async(() => {

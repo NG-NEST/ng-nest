@@ -10,24 +10,25 @@ export const XInputNumberPrefix = "x-input-number";
 /**
  * InputNumber @InputNumber
  */
-export interface XInputNumberInputNumber extends XIdentityInput, XFormProperty {
+export interface XInputNumberInput extends XIdentityInput, XFormProperty {
   /**
-   * 输入提示
+   * 最小值
    */
-  placeholder?: string;
+  min?: number;
+  /**
+   * 最大值
+   */
+  max?: number;
+  /**
+   * 步数
+   */
+  step?: number;
+  /**
+   * 按住后步进速度
+   */
+  debounce?: number;
+  /**
+   * 精度
+   */
+  precision?: number;
 }
-
-/**
- * 输入框类型
- * @value "text" 文本
- * @value "password" 密码
- * @value "number" 数字
- */
-export type XInputNumberType = "text" | "password" | "number";
-
-/**
- * 图标布局方式，指在输入框中的位置
- * @value "left" 靠左
- * @value "right" 靠右
- */
-export type XInputNumberIconLayoutType = "left" | "right";

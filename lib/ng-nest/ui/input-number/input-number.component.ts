@@ -9,15 +9,11 @@ import {
   ElementRef,
   Input,
   HostBinding,
-  ViewChild,
   HostListener
 } from "@angular/core";
 import {
   XInputNumberPrefix,
-  XInputNumberInputNumber,
-  XInputNumberType,
-  XInputNumberIconLayoutType
-} from "./input-number.type";
+  XInputNumberInput } from "./input-number.type";
 import {
   fillDefault,
   isEmpty,
@@ -49,7 +45,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() debounce: number = 40;
   @Input() precision: number = 0;
 
-  private _default: XInputNumberInputNumber = {};
+  private _default: XInputNumberInput = {};
   private _required: boolean = false;
 
   private _value: any = "";

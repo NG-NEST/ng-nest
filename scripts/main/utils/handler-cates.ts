@@ -53,7 +53,6 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
   };
   folder.forEach(x => {
     if (x !== "readme.md") {
-      console.log(path.join(cate.path, x));
       let code: NcCode = {
         name: x,
         type: x.slice(x.lastIndexOf(".") + 1, x.length),

@@ -17,10 +17,6 @@ export interface XInputInput extends XIdentityInput, XFormProperty {
    */
   type?: XInputType;
   /**
-   * 输入提示
-   */
-  placeholder?: string;
-  /**
    * 图标
    */
   icon?: string;

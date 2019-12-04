@@ -1,4 +1,4 @@
 ---
-order: 2
-label: "限制"
+order: 3
+label: "精度"
 ---

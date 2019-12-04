@@ -2,7 +2,7 @@
   x-row > x-col {
     width: 10rem;
   }
-  x-row > x-col:not(:first-child) {
+  x-row:not(:first-child) {
     margin-top: 0.5rem;
   }
 }
