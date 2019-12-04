@@ -116,7 +116,13 @@ describe(XInputPrefix, () => {
     `
   ]
 })
-class TestXInputComponent {}
+class TestXInputComponent {
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(1000).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
 
 @Component({
   template: `

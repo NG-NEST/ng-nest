@@ -94,7 +94,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
     return !isEmpty(this.icon) && this.iconLayout === "right";
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(private renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XInputPrefix);
   }

@@ -1,0 +1,14 @@
+// Select
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+.#{$--x-select-prefix} {
+  @include reset-component();
+  @include select();
+}
+
+.#{$--x-select-prefix}-portal {
+  @include portal();
+}

@@ -1,0 +1,36 @@
+// Select style paramters
+
+$--x-select-prefix: $--x-prefix + "-select";
+
+/* 字体大小 */
+$--x-select-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-select-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-select-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-select-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-select-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-select-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-select-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-select-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-select-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-select-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-select-icon-padding: $control-padding-horizontal;
