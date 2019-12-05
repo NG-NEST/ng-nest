@@ -1,5 +1,10 @@
 <x-row>
   <x-col>
-    <x-select></x-select>
+    <x-select [data]="data"></x-select>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col>
+    <x-select [data]="data" [(ngModel)]="model"></x-select>
   </x-col>
 </x-row>

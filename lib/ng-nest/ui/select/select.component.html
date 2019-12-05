@@ -1,5 +1,5 @@
 <label *ngIf="label">{{ label }}</label>
-<div class="x-select-row" (click)="portal()">
+<div class="x-select-row" (click)="showPortal()">
   <x-input
     #inputCom
     type="text"
@@ -8,14 +8,15 @@
     [placeholder]="placeholder"
     [required]="required"
     [disabled]="disabled"
+    [readonly]="readonly"
     [ngModel]="displayValue"
     (ngModelChange)="change($event)"
   ></x-input>
 </div>
 
-<ng-template #portalTpl let-nodes="nodes">
+<ng-template #portalTpl let-nodes="nodes" let-value="value">
   <ul>
-    <li *ngFor="let node of nodes">
+    <li *ngFor="let node of nodes" [class.x-selected]="node.key === value" (click)="nodeClick($event, node)">
       {{ node.label }}
     </li>
   </ul>

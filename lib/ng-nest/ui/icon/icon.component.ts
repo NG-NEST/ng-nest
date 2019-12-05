@@ -55,7 +55,7 @@ export class XIconComponent implements OnInit, OnChanges {
   private _loaded: boolean = false;
 
   constructor(
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
     private renderer: Renderer2,
     public iconService: XIconService,
     private cdr: ChangeDetectorRef,

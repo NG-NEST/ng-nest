@@ -37,6 +37,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
   @Input() type?: XInputType = "text";
   @Input() placeholder?: string = "";
   @Input() required?: boolean | string;
+  @Input() readonly?: boolean;
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType = "left";
   @Input() maxlength?: number;

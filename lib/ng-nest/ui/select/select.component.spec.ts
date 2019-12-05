@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XSelectComponent } from "./select.component";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XSelectModule } from "./select.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -84,39 +84,14 @@ const data: XSelectNode[] = [
         <x-select [data]="data"></x-select>
       </x-col>
     </x-row>
-  `,
-  styles: [
-    `
-      x-row > x-col {
-        width: 10rem;
-      }
-    `
-  ]
-})
-class TestXSelectComponent {
-  data = data;
-}
-
-@Component({
-  template: `
     <x-row>
       <x-col>
-        <x-select label="数量"></x-select>
+        <x-select [data]="data" [(ngModel)]="model"></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select label="数量" direction="column-reverse"></x-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-select label="数量" direction="row"></x-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-select label="数量" direction="row-reverse"></x-select>
+        <x-select [data]="data2" [(ngModel)]="model"></x-select>
       </x-col>
     </x-row>
   `,
@@ -131,42 +106,61 @@ class TestXSelectComponent {
     `
   ]
 })
-class TestXSelectLabelComponent {}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col>
-        <x-select disabled></x-select>
-      </x-col>
-      <x-col>
-        <x-select disabled [(ngModel)]="model"></x-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
-      }
-    `
-  ]
-})
-class TestXSelectDisabledComponent {
-  model = 10;
+class TestXSelectComponent {
+  data = data;
+  data2 = [
+    { key: 1, label: "AA" },
+    { key: 2, label: "BB" },
+    { key: 3, label: "CC" },
+    { key: 4, label: "DD" },
+    { key: 5, label: "EE" },
+    { key: 6, label: "FF" },
+    { key: 7, label: "GG" },
+    { key: 8, label: "HH" },
+    { key: 9, label: "II" },
+    { key: 10, label: "JJ" }
+  ];
+  model = 2;
 }
 
 @Component({
   template: `
     <x-row>
       <x-col>
-        <x-select required></x-select>
+        <x-select label="方式" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)"></x-select>
       </x-col>
+    </x-row>
+    <x-row>
       <x-col>
-        <x-select label="数量" required></x-select>
+        <x-select
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="change($event)"
+          direction="column-reverse"
+        ></x-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-select
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="change($event)"
+          direction="row"
+        ></x-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-select
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="change($event)"
+          direction="row-reverse"
+        ></x-select>
       </x-col>
     </x-row>
   `,
@@ -175,10 +169,79 @@ class TestXSelectDisabledComponent {
       x-row > x-col {
         width: 10rem;
       }
-      x-row > x-col:not(:first-child) {
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
   ]
 })
-class TestXSelectRequiredComponent {}
+class TestXSelectLabelComponent {
+  data = data;
+  model: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change(val) {
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col>
+        <x-select [data]="data" disabled></x-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-select [data]="data" [(ngModel)]="model" disabled></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXSelectDisabledComponent {
+  data = data;
+  model = 2;
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col>
+        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" required></x-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col>
+        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" label="选择" required></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXSelectRequiredComponent {
+  data = data;
+  model: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change(val) {
+    this.cdr.detectChanges();
+  }
+}

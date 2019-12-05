@@ -1,12 +1,12 @@
 ---
-label: "Select 计数器"
+label: "Select 选择器"
 category: "Form"
-order: 4
+order: 5
 ---
 
-# Select 计数器
+# Select 选择器
 
-允许输入标准的数字值，可定义范围。
+下拉选择器。
 
 ## 示例代码
 

@@ -1,4 +1,4 @@
-import { XPortalService } from "@ng-nest/ui/portal";
+import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
 import { Subscription } from "rxjs";
 import {
   Component,
@@ -24,10 +24,11 @@ import {
   XJustify,
   XAlign,
   XDirection,
-  XData
+  XData,
+  isEmpty
 } from "@ng-nest/ui/core";
-import { Overlay } from "@angular/cdk/overlay";
-import { XInputComponent } from "../input";
+import { Overlay, ConnectedPositionStrategy } from "@angular/cdk/overlay";
+import { XInputComponent } from "@ng-nest/ui/input";
 
 @Component({
   selector: "x-select",
@@ -47,7 +48,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   @Input() required?: boolean | string;
   @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
-  private _default: XSelectInput = {};
 
   private _value: any = "";
   public get value(): any {
@@ -55,11 +55,19 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
   public set value(value: any) {
     this._value = value;
+    this.setDisplayValue();
+    if (this._required) {
+      this.required = isEmpty(value);
+    }
     this.cdr.detectChanges();
   }
 
+  readonly: boolean = true;
   displayValue: any = "";
   selectNodes: XSelectNode[] = [];
+  portal: XPortalOverlayRef;
+  private _default: XSelectInput = {};
+  private _required: boolean = false;
   private data$: Subscription | null = null;
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
@@ -88,6 +96,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   ngOnInit() {
     fillDefault(this, this._default);
+    this.setRequired();
     this.setDisabled();
     this.setJustify();
     this.setAlign();
@@ -119,32 +128,56 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   private setDataChange(value: XSelectNode[]) {
     this.selectNodes = value;
+    this.setDisplayValue();
     this.cdr.detectChanges();
   }
 
-  change() {
-    if (this.onChange) this.onChange(this.value);
+  change(event: Event) {
+    // if (this.onChange) this.onChange(this.value);
   }
 
-  portal() {
-    let portal = this.portalService.create({
+  setDisplayValue() {
+    if (this.selectNodes.length > 0) {
+      let node = this.selectNodes.find(x => x.key === this.value);
+      this.displayValue = node ? node.label : "";
+    }
+  }
+
+  showPortal() {
+    if (this.disabled) return;
+    let box = this.elementRef.nativeElement.getBoundingClientRect();
+    let connected: ConnectedPositionStrategy = this.overlay
+      .position()
+      .connectedTo(
+        this.inputCom.elementRef,
+        { originX: "start", originY: "bottom" },
+        { overlayX: "start", overlayY: "top" }
+      );
+    this.portal = this.portalService.create({
       content: this.portalTpl,
       viewContainerRef: this.viewContainerRef,
-      context: { nodes: this.selectNodes },
+      context: { nodes: this.selectNodes, value: this.value },
       overlayConfig: {
         hasBackdrop: true,
         panelClass: "x-select-portal",
         backdropClass: "",
-        positionStrategy: this.overlay
-          .position()
-          .connectedTo(
-            this.inputCom.elementRef,
-            { originX: "start", originY: "bottom" },
-            { overlayX: "start", overlayY: "top" }
-          )
+        width: box.width,
+        positionStrategy: connected
       }
     });
-    portal.overlayRef.backdropClick().subscribe(() => portal.overlayRef.detach());
+    this.portal.overlayRef.backdropClick().subscribe(() => this.portal.overlayRef.detach());
+  }
+
+  nodeClick(event: Event, node: XSelectNode) {
+    event.preventDefault();
+    this.displayValue = node.label;
+    this.value = node.key;
+    if (this.onChange) this.onChange(this.value);
+    if (this.portal) this.portal.overlayRef.detach();
+  }
+
+  setRequired() {
+    this._required = this.required || this.required === "" ? true : false;
   }
 
   setDisabled() {

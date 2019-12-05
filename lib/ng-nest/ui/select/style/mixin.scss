@@ -29,22 +29,6 @@
     > label {
       color: $--x-danger;
     }
-    > .#{$--x-select-prefix}-row {
-      > #{$--x-prefix}-icon {
-        color: $--x-danger;
-      }
-      &:before {
-        content: " ";
-        z-index: 2;
-        position: absolute;
-        height: $--x-select-height;
-        line-height: $--x-select-height;
-        border-top-left-radius: $--x-select-border-radius;
-        border-bottom-left-radius: $--x-select-border-radius;
-        width: 0.125rem;
-        background-color: $--x-danger;
-      }
-    }
   }
   &.x-disabled {
     > .#{$--x-select-prefix}-row {
@@ -81,11 +65,29 @@
 }
 
 @mixin portal {
+  font-size: $--x-select-font-size;
+  color: $--x-text;
   border: $--x-select-border;
-  @include focus();
-  > ul > li {
-    padding: 0 0.4rem;
-    height: $--x-select-height;
-    line-height: $--x-select-height;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  background-color: $--x-white;
+  overflow-y: auto;
+  height: $--x-select-height * 6;
+  > ul {
+    flex: 1;
+    cursor: pointer;
+    > li {
+      padding: 0 0.4rem;
+      height: $--x-select-height;
+      line-height: $--x-select-height;
+      &:hover {
+        background-color: $--x-background;
+      }
+      &.x-selected {
+        color: $--x-primary;
+        background-color: $--x-primary-900;
+      }
+    }
   }
 }

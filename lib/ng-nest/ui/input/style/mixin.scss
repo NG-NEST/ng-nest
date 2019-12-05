@@ -42,6 +42,9 @@
         color: $--x-input-disabled-color;
       }
     }
+    > x-icon {
+      transition: all $animation-duration-slow;
+    }
   }
   &.x-required {
     > label {
