@@ -17,6 +17,7 @@ describe(XInputPrefix, () => {
         TestXInputComponent,
         TestXInputLabelComponent,
         TestXInputIconComponent,
+        TestXInputClearableComponent,
         TestXInputDisabledComponent,
         TestXInputRequiredComponent,
         TestXInputLengthComponent
@@ -54,6 +55,18 @@ describe(XInputPrefix, () => {
       fixture = TestBed.createComponent(TestXInputIconComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputIconComponent));
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`clearable.`, () => {
+    let fixture: ComponentFixture<TestXInputClearableComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputClearableComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputClearableComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -175,20 +188,60 @@ class TestXInputIconComponent {}
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
+      <x-col span="8">
+        <x-input clearable [(ngModel)]="model" (ngModelChange)="change($event)"></x-input>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="8">
+        <x-input clearable [(ngModel)]="modelValue" (ngModelChange)="change($event)"></x-input>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="8">
+        <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change($event)"></x-input>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXInputClearableComponent {
+  model: any;
+  modelValue = "显示清除按钮";
+  modelIcon: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change(val) {
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="8">
         <x-input disabled></x-input>
       </x-col>
-      <x-col span="24">
+    </x-row>
+    <x-row>
+      <x-col span="8">
         <x-input disabled [(ngModel)]="model"></x-input>
       </x-col>
-      <x-col span="24">
+    </x-row>
+    <x-row>
+      <x-col span="8">
         <x-input icon="ado-user" disabled></x-input>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col:not(:first-child) {
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
@@ -201,20 +254,24 @@ class TestXInputDisabledComponent {
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-input required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+      <x-col span="8">
+        <x-input required [(ngModel)]="value"></x-input>
       </x-col>
-      <x-col span="24">
-        <x-input label="用户名" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+    </x-row>
+    <x-row>
+      <x-col span="8">
+        <x-input label="用户名" required [(ngModel)]="value"></x-input>
       </x-col>
-      <x-col span="24">
-        <x-input icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+    </x-row>
+    <x-row>
+      <x-col span="8">
+        <x-input icon="ado-user" required [(ngModel)]="value"></x-input>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col:not(:first-child) {
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `

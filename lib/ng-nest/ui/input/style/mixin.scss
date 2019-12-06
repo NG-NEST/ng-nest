@@ -42,11 +42,11 @@
         color: $--x-input-disabled-color;
       }
     }
-    > x-icon {
-      transition: all $animation-duration-slow;
+    > #{$--x-prefix}-icon {
+      transition: all $animation-duration-fast;
     }
   }
-  &.x-required {
+  &.#{$--x-prefix}-required {
     > label {
       color: $--x-danger;
     }
@@ -66,7 +66,7 @@
       }
     }
   }
-  &.x-disabled {
+  &.#{$--x-prefix}-disabled {
     > .#{$--x-input-prefix}-row {
       > #{$--x-prefix}-icon {
         color: $--x-text-300;
@@ -76,6 +76,39 @@
         cursor: not-allowed;
         border-color: $--x-border-300;
         background-color: $--x-background-300;
+      }
+    }
+  }
+  &.#{$--x-prefix}-clearable {
+    > .#{$--x-input-prefix}-row {
+      > .#{$--x-input-prefix}-clear {
+        position: absolute;
+        color: $--x-text-400;
+        font-size: $--x-input-icon-font-size;
+        padding: $--x-input-icon-padding;
+        right: 0;
+        left: inherit;
+        opacity: 0;
+        cursor: pointer;
+        &:hover {
+          color: $--x-text;
+        }
+      }
+      > input {
+        &:hover + .#{$--x-input-prefix}-clear,
+        &:focus + .#{$--x-input-prefix}-clear {
+          opacity: 1;
+        }
+      }
+    }
+    &.x-clear-show {
+      > .#{$--x-input-prefix}-row {
+        > .#{$--x-input-prefix}-clear {
+          opacity: 1;
+        }
+        > input {
+          padding-right: $--x-input-icon-font-size + $--x-input-icon-padding * 2 !important;
+        }
       }
     }
   }

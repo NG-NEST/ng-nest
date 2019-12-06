@@ -8,7 +8,9 @@ import {
   ElementRef,
   Input,
   HostBinding,
-  ViewChild
+  ViewChild,
+  EventEmitter,
+  Output
 } from "@angular/core";
 import { XInputPrefix, XInputInput, XInputType, XInputIconLayoutType } from "./input.type";
 import {
@@ -18,7 +20,8 @@ import {
   XControlValueAccessor,
   XJustify,
   XAlign,
-  XDirection
+  XDirection,
+  InputBoolean
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -36,11 +39,13 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
   @Input() label?: string = "";
   @Input() type?: XInputType = "text";
   @Input() placeholder?: string = "";
-  @Input() required?: boolean | string;
+  @Input() @InputBoolean() required?: boolean;
+  @Input() @InputBoolean() clearable?: boolean;
   @Input() readonly?: boolean;
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType = "left";
   @Input() maxlength?: number;
+  @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
 
   private _value: any;
   public get value(): any {
@@ -68,13 +73,24 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
   private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = "";
+  focus: boolean = false;
+  hover: boolean = false;
+  clearShow: boolean = false;
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
     return this.disabled || this.disabled === "";
   }
 
   @HostBinding(`class.x-required`) get getRequired() {
-    return this.required || this.required === "";
+    return this.required;
+  }
+
+  @HostBinding(`class.x-clearable`) get getClearable() {
+    return this.clearable;
+  }
+
+  @HostBinding(`class.x-clear-show`) get getClearShow() {
+    return this.clearShow;
   }
 
   @HostBinding(`class.x-input-flex`) get getFlex() {
@@ -112,15 +128,25 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
     if (this._required) {
       this.required = isEmpty(value);
     }
+    if (this.clearable) {
+      this.clearShow = !isEmpty(value);
+    }
     if (this.maxlength) {
       this.valueLength = isEmpty(value) ? 0 : `${value}`.length;
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
+    this._value = value;
     if (this.onChange) this.onChange(value);
   }
 
+  clear() {
+    const clearValue = this.value;
+    this.value = "";
+    this.clearEmit.emit(clearValue);
+  }
+
   setRequired() {
-    this._required = this.required || this.required === "" ? true : false;
+    this._required = this.required ? true : false;
   }
 
   setJustify() {

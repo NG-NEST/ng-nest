@@ -27,6 +27,7 @@
         : 0.4
     "
   />
+  <x-icon class="x-input-clear" type="fto-x" (click)="clear()" *ngIf="clearShow"></x-icon>
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
   <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
 </div>
