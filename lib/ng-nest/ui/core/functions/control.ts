@@ -1,9 +1,10 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { forwardRef, Input } from "@angular/core";
+import { InputBoolean } from "./convert";
 
 export abstract class XControlValueAccessor implements ControlValueAccessor {
   value?: any;
-  @Input() disabled?: boolean | string;
+  @Input() @InputBoolean() disabled?: boolean;
   onChange: (_: any) => void;
   onTouched: () => void;
   writeValue(value: any): void {
@@ -15,7 +16,7 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-  setDisabledState(disabled: boolean | string) {
+  setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
 }

@@ -13,7 +13,7 @@ import {
 } from "@angular/core";
 import { XCheckboxPrefix, XCheckboxNode } from "./checkbox.type";
 import { Subscription } from "rxjs";
-import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
+import { XData, XValueAccessor, XControlValueAccessor, InputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XCheckboxPrefix}`,
@@ -25,9 +25,9 @@ import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
 })
 export class XCheckboxComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() data?: XData<XCheckboxNode[]>;
-  @Input() button?: boolean | string;
-  @Input() icon?: boolean | string;
-  @Input() indeterminate?: boolean | string;
+  @Input() @InputBoolean() button?: boolean;
+  @Input() @InputBoolean() icon?: boolean;
+  @Input() @InputBoolean() indeterminate?: boolean;
   @HostBinding("class.x-disabled") get getDisabled() {
     return this.disabled;
   }
@@ -41,12 +41,12 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
       this.cdr.detectChanges();
     }
   }
-  private _disabled: boolean | string;
-  public get disabled(): boolean | string {
-    return this._disabled || this._disabled === "";
+  private _disabled: boolean;
+  public get disabled(): boolean {
+    return this._disabled;
   }
   @Input()
-  public set disabled(value: boolean | string) {
+  public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
     }
@@ -70,9 +70,6 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   }
 
   setInput() {
-    this.button = this.button || this.button === "" ? true : false;
-    this.icon = this.icon || this.icon === "" ? true : false;
-    this.indeterminate = this.indeterminate || this.indeterminate === "" ? true : false;
     this.cdr.markForCheck();
   }
 

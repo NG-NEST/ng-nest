@@ -22,11 +22,11 @@ export interface XCheckboxInput {
   /**
    * 按钮样式
    */
-  button?: boolean | string;
+  button?: boolean;
   /**
    * 图标样式
    */
-  icon?: boolean | string;
+  icon?: boolean;
   /**
    * 不确定状态的样式
    */

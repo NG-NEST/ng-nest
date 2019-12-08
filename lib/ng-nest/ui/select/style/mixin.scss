@@ -73,7 +73,7 @@
   display: flex;
   background-color: $--x-white;
   overflow-y: auto;
-  height: $--x-select-height * 6;
+  max-height: $--x-select-height * 6;
   > ul {
     flex: 1;
     cursor: pointer;

@@ -22,11 +22,11 @@ export interface XRadioInput {
   /**
    * 按钮样式
    */
-  button?: boolean | string;
+  button?: boolean;
   /**
    * 图标样式
    */
-  icon?: boolean | string;
+  icon?: boolean;
 }
 
 /**

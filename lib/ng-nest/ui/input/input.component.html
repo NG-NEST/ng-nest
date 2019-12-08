@@ -10,24 +10,10 @@
     [maxlength]="maxlength"
     [ngModel]="value"
     (ngModelChange)="change($event)"
-    [style.padding-right.rem]="
-      maxlength && icon && iconLayout === 'left'
-        ? (lengthTotal.length + 2) * 0.385
-        : icon && iconLayout === 'right'
-        ? 1.8
-        : maxlength && !icon
-        ? (lengthTotal.length + 2) * 0.385
-        : 0.4
-    "
-    [style.padding-left.rem]="
-      maxlength && icon && iconLayout === 'right'
-        ? (lengthTotal.length + 2) * 0.385
-        : icon && iconLayout === 'left'
-        ? 1.8
-        : 0.4
-    "
+    [style.padding-left.rem]="paddingLeft"
+    [style.padding-right.rem]="paddingRight"
   />
-  <x-icon class="x-input-clear" type="fto-x" (click)="clear()" *ngIf="clearShow"></x-icon>
+  <x-icon class="x-input-clear" type="fto-x" (click)="clear($event)" *ngIf="clearShow"></x-icon>
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
   <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
 </div>

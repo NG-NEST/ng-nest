@@ -13,7 +13,7 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 import { XButtonPrefix, XButtonType, XButtonInput } from "./button.type";
-import { fillDefault, XDirection, XSize } from "@ng-nest/ui/core";
+import { fillDefault, XDirection, XSize, InputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XButtonPrefix}`,
@@ -27,13 +27,13 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() title?: string;
-  @Input() activated?: boolean | string;
-  @Input() disabled?: boolean | string;
-  @Input() plain?: boolean | string;
-  @Input() round?: boolean | string;
-  @Input() circle?: boolean | string;
+  @Input() @InputBoolean() activated?: boolean;
+  @Input() @InputBoolean() disabled?: boolean;
+  @Input() @InputBoolean() plain?: boolean;
+  @Input() @InputBoolean() round?: boolean;
+  @Input() @InputBoolean() circle?: boolean;
   @Input() direction?: XDirection;
-  @Input() loading?: boolean | string;
+  @Input() @InputBoolean() loading?: boolean;
   @Input() size?: XSize;
   @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
   @HostBinding("class.x-button-label") get getLabel() {
@@ -63,7 +63,6 @@ export class XButtonComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.stringToBoolean();
     if (this.title) this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
     if (this.type && !this.plain) {
       this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.type}`);
@@ -90,14 +89,5 @@ export class XButtonComponent implements OnInit, OnChanges {
     if (disabled && disabled.currentValue != disabled.previousValue) {
       this.cdr.markForCheck();
     }
-  }
-
-  stringToBoolean() {
-    this.plain = this.plain || this.plain === "" ? true : false;
-    this.disabled = this.disabled || this.disabled === "" ? true : false;
-    this.activated = this.activated || this.activated === "" ? true : false;
-    this.circle = this.circle || this.circle === "" ? true : false;
-    this.round = this.round || this.round === "" ? true : false;
-    this.loading = this.loading || this.loading === "" ? true : false;
   }
 }

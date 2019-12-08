@@ -25,7 +25,8 @@ import {
   XAlign,
   XDirection,
   XData,
-  isEmpty
+  isEmpty,
+  InputBoolean
 } from "@ng-nest/ui/core";
 import { Overlay, ConnectedPositionStrategy } from "@angular/cdk/overlay";
 import { XInputComponent } from "@ng-nest/ui/input";
@@ -45,7 +46,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
-  @Input() required?: boolean | string;
+  @Input() @InputBoolean() required?: boolean;
   @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
@@ -54,6 +55,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     return this._value;
   }
   public set value(value: any) {
+    console.log(value);
     this._value = value;
     this.setDisplayValue();
     if (this._required) {
@@ -63,9 +65,12 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   readonly: boolean = true;
+  clearable: boolean = false;
+  enter: boolean = false;
   displayValue: any = "";
   selectNodes: XSelectNode[] = [];
   portal: XPortalOverlayRef;
+  icon: string = "fto-chevron-down";
   private _default: XSelectInput = {};
   private _required: boolean = false;
   private data$: Subscription | null = null;
@@ -75,7 +80,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   @HostBinding(`class.x-required`) get getRequired() {
-    return this.required || this.required === "";
+    return this.required;
   }
 
   @HostBinding(`class.x-select-flex`) get getFlex() {
@@ -97,7 +102,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   ngOnInit() {
     fillDefault(this, this._default);
     this.setRequired();
-    this.setDisabled();
     this.setJustify();
     this.setAlign();
     this.setDirection();
@@ -134,6 +138,29 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   change(event: Event) {
     // if (this.onChange) this.onChange(this.value);
+  }
+
+  menter() {
+    this.enter = true;
+    if (!isEmpty(this.value)) {
+      this.icon = "";
+      this.clearable = true;
+      this.cdr.detectChanges();
+    }
+  }
+
+  mleave() {
+    this.enter = false;
+    if (this.clearable) {
+      this.icon = "fto-chevron-down";
+      this.clearable = false;
+      this.cdr.detectChanges();
+    }
+  }
+
+  clearEmit() {
+    this.value = "";
+    this.mleave();
   }
 
   setDisplayValue() {
@@ -177,11 +204,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   setRequired() {
-    this._required = this.required || this.required === "" ? true : false;
-  }
-
-  setDisabled() {
-    this.disabled = this.disabled || this.disabled === "" ? true : false;
+    this._required = this.required ? true : false;
   }
 
   setJustify() {

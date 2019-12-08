@@ -11,9 +11,7 @@ import {
   HostBinding,
   HostListener
 } from "@angular/core";
-import {
-  XInputNumberPrefix,
-  XInputNumberInput } from "./input-number.type";
+import { XInputNumberPrefix, XInputNumberInput } from "./input-number.type";
 import {
   fillDefault,
   isEmpty,
@@ -21,7 +19,8 @@ import {
   XControlValueAccessor,
   XJustify,
   XAlign,
-  XDirection
+  XDirection,
+  InputBoolean
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -38,7 +37,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
-  @Input() required?: boolean | string;
+  @Input() @InputBoolean() required?: boolean;
   @Input() min: number = Number.MIN_SAFE_INTEGER;
   @Input() max: number = Number.MAX_SAFE_INTEGER;
   @Input() step: number = 1;
@@ -69,7 +68,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   }
 
   @HostBinding(`class.x-required`) get getRequired() {
-    return this.required || this.required === "";
+    return this.required;
   }
 
   @HostBinding(`class.x-input-number-flex`) get getFlex() {
@@ -141,11 +140,10 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   }
 
   setRequired() {
-    this._required = this.required || this.required === "" ? true : false;
+    this._required = this.required ? true : false;
   }
 
   setDisabled() {
-    this.disabled = this.disabled || this.disabled === "" ? true : false;
     this.minDisabled = this.disabled ? true : false;
     this.maxDisabled = this.disabled ? true : false;
   }

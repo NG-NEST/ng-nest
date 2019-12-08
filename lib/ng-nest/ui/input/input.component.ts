@@ -10,7 +10,9 @@ import {
   HostBinding,
   ViewChild,
   EventEmitter,
-  Output
+  Output,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core";
 import { XInputPrefix, XInputInput, XInputType, XInputIconLayoutType } from "./input.type";
 import {
@@ -32,7 +34,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputComponent)]
 })
-export class XInputComponent extends XControlValueAccessor implements OnInit {
+export class XInputComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() justify?: XJustify;
   @Input() align?: XAlign;
   @Input() direction?: XDirection;
@@ -58,12 +60,12 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
       this.cdr.detectChanges();
     }
   }
-  private _disabled: boolean | string;
-  public get disabled(): boolean | string {
+  private _disabled: boolean;
+  public get disabled(): boolean {
     return this._disabled;
   }
   @Input()
-  public set disabled(value: boolean | string) {
+  public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
     }
@@ -73,12 +75,12 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
   private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = "";
-  focus: boolean = false;
-  hover: boolean = false;
+  paddingLeft: number = 0;
+  paddingRight: number = 0;
   clearShow: boolean = false;
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
-    return this.disabled || this.disabled === "";
+    return this.disabled;
   }
 
   @HostBinding(`class.x-required`) get getRequired() {
@@ -124,25 +126,58 @@ export class XInputComponent extends XControlValueAccessor implements OnInit {
     this.setDirection();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    let clearableChange = changes.clearable;
+    if (clearableChange && clearableChange.currentValue !== clearableChange.previousValue) {
+      this.setClearable();
+    }
+  }
+
   change(value) {
-    if (this._required) {
+    this._value = value;
+    if (this._required && !this.disabled) {
       this.required = isEmpty(value);
     }
-    if (this.clearable) {
-      this.clearShow = !isEmpty(value);
-    }
+    this.setClearable();
     if (this.maxlength) {
       this.valueLength = isEmpty(value) ? 0 : `${value}`.length;
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
-    this._value = value;
+    this.setPadding();
     if (this.onChange) this.onChange(value);
   }
 
-  clear() {
+  clear(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     const clearValue = this.value;
     this.value = "";
     this.clearEmit.emit(clearValue);
+  }
+
+  setClearable() {
+    if (this.clearable && !this.disabled) {
+      this.clearShow = !isEmpty(this.value);
+    } else {
+      this.clearShow = false;
+    }
+  }
+
+  setPadding() {
+    this.paddingLeft =
+      this.maxlength && this.icon && this.iconLayout === "right"
+        ? (this.lengthTotal.length + 2) * 0.385
+        : this.icon && this.iconLayout === "left"
+        ? 1.8
+        : 0.4;
+    this.paddingRight =
+      this.maxlength && this.icon && this.iconLayout === "left"
+        ? (this.lengthTotal.length + 2) * 0.385
+        : this.icon && this.iconLayout === "right"
+        ? 1.8
+        : this.maxlength && !this.icon
+        ? (this.lengthTotal.length + 2) * 0.385
+        : 0.4;
   }
 
   setRequired() {

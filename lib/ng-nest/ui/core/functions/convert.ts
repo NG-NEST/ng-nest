@@ -1,6 +1,6 @@
 import { coerceBooleanProperty, _isNumberValue } from "@angular/cdk/coercion";
 
-export function toBoolean(value: boolean | string): boolean {
+export function toBoolean(value: boolean): boolean {
   return coerceBooleanProperty(value);
 }
 

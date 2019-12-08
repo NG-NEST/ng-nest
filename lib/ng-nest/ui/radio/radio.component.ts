@@ -13,7 +13,7 @@ import {
 } from "@angular/core";
 import { XRadioPrefix, XRadioNode } from "./radio.type";
 import { Subscription } from "rxjs";
-import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
+import { XData, XValueAccessor, XControlValueAccessor, InputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -25,8 +25,8 @@ import { XData, XValueAccessor, XControlValueAccessor } from "@ng-nest/ui/core";
 })
 export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() data?: XData<XRadioNode[]>;
-  @Input() button?: boolean | string;
-  @Input() icon?: boolean | string;
+  @Input() @InputBoolean() button?: boolean;
+  @Input() @InputBoolean() icon?: boolean;
   @HostBinding("class.x-disabled") get getDisabled() {
     return this.disabled;
   }
@@ -40,12 +40,12 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
       this.cdr.detectChanges();
     }
   }
-  private _disabled: boolean | string;
-  public get disabled(): boolean | string {
-    return this._disabled || this._disabled === "";
+  private _disabled: boolean;
+  public get disabled(): boolean {
+    return this._disabled;
   }
   @Input()
-  public set disabled(value: boolean | string) {
+  public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
     }
@@ -69,8 +69,6 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   setInput() {
-    this.button = this.button || this.button === "" ? true : false;
-    this.icon = this.icon || this.icon === "" ? true : false;
     this.cdr.markForCheck();
   }
 

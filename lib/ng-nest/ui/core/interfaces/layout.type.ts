@@ -50,6 +50,6 @@ export interface XFormProperty {
   direction?: XDirection;
   placeholder?: string;
   label?: string;
-  disabled?: boolean | string;
-  required?: boolean | string;
+  disabled?: boolean;
+  required?: boolean;
 }

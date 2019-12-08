@@ -235,6 +235,11 @@ class TestXInputClearableComponent {
     </x-row>
     <x-row>
       <x-col span="8">
+        <x-input disabled clearable [(ngModel)]="modelClearable"></x-input>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="8">
         <x-input icon="ado-user" disabled></x-input>
       </x-col>
     </x-row>
@@ -249,23 +254,24 @@ class TestXInputClearableComponent {
 })
 class TestXInputDisabledComponent {
   model = "输入框禁用";
+  modelClearable = "禁用状态下，不显示清除按钮";
 }
 
 @Component({
   template: `
     <x-row>
       <x-col span="8">
-        <x-input required [(ngModel)]="value"></x-input>
+        <x-input required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input label="用户名" required [(ngModel)]="value"></x-input>
+        <x-input label="用户名" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input icon="ado-user" required [(ngModel)]="value"></x-input>
+        <x-input icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
       </x-col>
     </x-row>
   `,

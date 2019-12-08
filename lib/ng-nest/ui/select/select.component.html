@@ -1,16 +1,18 @@
 <label *ngIf="label">{{ label }}</label>
-<div class="x-select-row" (click)="showPortal()">
+<div class="x-select-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
   <x-input
     #inputCom
     type="text"
-    icon="fto-chevron-down"
     iconLayout="right"
+    [icon]="icon"
     [placeholder]="placeholder"
     [required]="required"
     [disabled]="disabled"
     [readonly]="readonly"
+    [clearable]="clearable"
     [ngModel]="displayValue"
     (ngModelChange)="change($event)"
+    (clearEmit)="clearEmit($event)"
   ></x-input>
 </div>
 

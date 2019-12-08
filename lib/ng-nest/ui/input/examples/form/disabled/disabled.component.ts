@@ -7,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ExDisabledComponent implements OnInit {
   model = "输入框禁用";
+  modelClearable = "禁用状态下，不显示清除按钮";
   constructor() {}
 
   ngOnInit() {}
