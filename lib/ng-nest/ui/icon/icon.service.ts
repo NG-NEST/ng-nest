@@ -13,7 +13,7 @@ type Task<T> = {
 // @dynamic
 @Injectable({ providedIn: "root" })
 export class XIconService {
-  rootUrl = `http://localhost/assets/icons/`;
+  rootUrl = `http://icons.ng-nest.com/assets/icons/`;
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskXm: number = 0;
@@ -43,7 +43,10 @@ export class XIconService {
         return result;
       },
       error => {
-        throw error;
+        console.error(error);
+        this.activeTaskXm--;
+        this.isRunningTask = false;
+        this.runTask();
       },
       () => {
         this.activeTaskXm--;

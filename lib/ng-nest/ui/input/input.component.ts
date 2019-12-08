@@ -43,9 +43,10 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() placeholder?: string = "";
   @Input() @InputBoolean() required?: boolean;
   @Input() @InputBoolean() clearable?: boolean;
-  @Input() readonly?: boolean;
+  @Input() @InputBoolean() readonly?: boolean;
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType = "left";
+  @Input() @InputBoolean() iconSpin?: boolean;
   @Input() maxlength?: number;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
 
@@ -65,6 +66,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     return this._disabled;
   }
   @Input()
+  @InputBoolean()
   public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
@@ -75,8 +77,8 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = "";
-  paddingLeft: number = 0;
-  paddingRight: number = 0;
+  paddingLeft: number = 0.4;
+  paddingRight: number = 0.4;
   clearShow: boolean = false;
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
@@ -121,6 +123,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   ngOnInit() {
     fillDefault(this, this._default);
     this.setRequired();
+    this.setPadding();
     this.setJustify();
     this.setAlign();
     this.setDirection();

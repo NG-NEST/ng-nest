@@ -14,7 +14,7 @@
   display: inline-block;
   line-height: 0;
   text-align: center;
-  &[spin] {
+  &-spin {
     animation: 1s linear infinite x-icon-spin;
   }
 }

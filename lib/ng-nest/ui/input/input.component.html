@@ -14,6 +14,6 @@
     [style.padding-right.rem]="paddingRight"
   />
   <x-icon class="x-input-clear" type="fto-x" (click)="clear($event)" *ngIf="clearShow"></x-icon>
-  <x-icon *ngIf="icon" [type]="icon"></x-icon>
+  <x-icon *ngIf="icon" [type]="icon" [spin]="iconSpin"></x-icon>
   <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
 </div>

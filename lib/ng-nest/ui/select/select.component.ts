@@ -29,7 +29,6 @@ import {
   isEmpty,
   InputBoolean
 } from "@ng-nest/ui/core";
-import { Overlay } from "@angular/cdk/overlay";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
 
@@ -48,6 +47,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
+  @Input() @InputBoolean() async?: boolean;
   @Input() @InputBoolean() required?: boolean;
   @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
@@ -72,10 +72,12 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   selectNodes: XSelectNode[] = [];
   portal: XPortalOverlayRef;
   icon: string = "fto-chevron-down";
+  iconSpin: boolean = false;
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
+  asyncLoading = false;
   scrollFunction: Function;
   resizeFunction: Function;
   private _default: XSelectInput = {};
@@ -100,7 +102,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: any
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XSelectPrefix);
@@ -149,7 +151,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (typeof this.data === "undefined") return;
     if (this.data instanceof Array) {
       this.setDataChange(this.data);
-    } else {
+    } else if (!this.async) {
       this.data$ && this.data$.unsubscribe();
       this.data$ = this.data.subscribe(x => {
         this.setDataChange(x);
@@ -169,6 +171,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   menter() {
+    if (this.disabled) return;
     this.enter = true;
     if (!isEmpty(this.value)) {
       this.icon = "";
@@ -178,6 +181,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   mleave() {
+    if (this.disabled) return;
     this.enter = false;
     if (this.clearable) {
       this.icon = "fto-chevron-down";
@@ -186,7 +190,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     }
   }
 
-  clearEmit() {
+  clearEmit(event: Event) {
     this.value = "";
     this.mleave();
   }
@@ -200,6 +204,25 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   showPortal() {
     if (this.disabled) return;
+    if (this.async && !(this.data instanceof Array) && this.selectNodes.length === 0) {
+      this.data$ && this.data$.unsubscribe();
+      this.icon = "fto-loader";
+      this.iconSpin = true;
+      this.cdr.detectChanges();
+      this.data$ = this.data.subscribe(x => {
+        this.setDataChange(x);
+        this.createPortal();
+        this.icon = "fto-chevron-down";
+        this.iconSpin = false;
+        this.cdr.detectChanges();
+      });
+    } else {
+      this.createPortal();
+    }
+  }
+
+  createPortal() {
+    this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.create({
       content: this.portalTpl,
       viewContainerRef: this.viewContainerRef,
@@ -221,6 +244,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   nodeClick(event: Event, node: XSelectNode) {
     event.preventDefault();
+    if (node.disabled) return;
     this.displayValue = node.label;
     this.value = node.key;
     if (this.onChange) this.onChange(this.value);

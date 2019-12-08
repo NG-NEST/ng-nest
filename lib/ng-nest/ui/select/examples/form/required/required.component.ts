@@ -14,7 +14,8 @@ export class ExRequiredComponent implements OnInit {
     { key: 3, label: "钉钉" },
     { key: 4, label: "微博" }
   ];
-  model: number;
+  model1: number;
+  model2: number;
   constructor() {}
 
   ngOnInit() {}

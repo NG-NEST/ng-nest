@@ -45,6 +45,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     return this._disabled;
   }
   @Input()
+  @InputBoolean()
   public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;

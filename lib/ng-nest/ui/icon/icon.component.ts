@@ -10,12 +10,13 @@ import {
   OnChanges,
   SimpleChanges,
   Inject,
-  Optional
+  Optional,
+  HostBinding
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { XIconPrefix, XIconInput, XIconSourceEnum } from "./icon.type";
 import { XIconService } from "./icon.service";
-import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault } from "@ng-nest/ui/core";
+import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, InputBoolean } from "@ng-nest/ui/core";
 import * as _ from "lodash";
 
 // 来源路径对应
@@ -50,9 +51,14 @@ export class XIconComponent implements OnInit, OnChanges {
   @Input() color?: string | string[];
   @Input() rotate?: number;
   @Input() to?: string;
+  @Input() @InputBoolean() spin?: boolean;
   private _svgElement: SVGElement;
   private _default: XIconInput = {};
   private _loaded: boolean = false;
+
+  @HostBinding("class.x-icon-spin") get getSpin() {
+    return this.spin;
+  }
 
   constructor(
     public elementRef: ElementRef,
@@ -70,11 +76,10 @@ export class XIconComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const typeChange = changes.type;
-    if (typeChange.currentValue !== typeChange.previousValue) {
+    if (typeChange && typeChange.currentValue !== typeChange.previousValue) {
       this.setSvgElement();
+      this.renderer.removeClass(this.elementRef.nativeElement, typeChange.previousValue);
       this.renderer.addClass(this.elementRef.nativeElement, `${this.type}`);
-      // this._loaded = false;
-      // this.getSvg();
     }
   }
 
@@ -109,13 +114,13 @@ export class XIconComponent implements OnInit, OnChanges {
 
   setSvgs(svgs: string[]) {
     if (svgs && svgs.length > 0) {
-      if (this._svgElement) {
-        this.renderer.removeChild(this.elementRef.nativeElement, this._svgElement);
-      } else {
-        this._svgElement = this.buildSvg(svgs.shift());
-        // this.setAnimates(svgs);
-        this.setAttributes(this._svgElement);
+      let firstChild = this.elementRef.nativeElement.firstChild;
+      if (firstChild) {
+        this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
       }
+      this._svgElement = this.buildSvg(svgs.shift());
+      // this.setAnimates(svgs);
+      this.setAttributes(this._svgElement);
       this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
       this.cdr.markForCheck();
     }

@@ -1,0 +1,32 @@
+<label *ngIf="label">{{ label }}</label>
+<div class="x-cascade-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+  <x-input
+    #inputCom
+    type="text"
+    iconLayout="right"
+    [icon]="icon"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [clearable]="clearable"
+    [ngModel]="inputDisplayValue"
+    (ngModelChange)="change($event)"
+    (clearEmit)="clearEmit($event)"
+  ></x-input>
+</div>
+
+<ng-template #portalTpl>
+  <ul *ngFor="let nodes of displayNodes; index as i">
+    <li
+      *ngFor="let node of nodes"
+      [class.x-selected]="node.selected"
+      [class.x-disabled]="node.disabled"
+      (click)="nodeClick($event, node, i)"
+    >
+      <span>{{ node.label }}</span>
+      <x-icon type="fto-chevron-right" *ngIf="node.hasChildren"></x-icon>
+      <x-icon type="fto-check" *ngIf="!node.hasChildren && node.selected"></x-icon>
+    </li>
+  </ul>
+</ng-template>

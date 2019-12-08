@@ -17,6 +17,7 @@ import { XCheckboxModule } from "@ng-nest/ui/checkbox";
 import { XInputModule } from "@ng-nest/ui/input";
 import { XInputNumberModule } from "@ng-nest/ui/input-number";
 import { XSelectModule } from "@ng-nest/ui/select";
+import { XCascadeModule } from "@ng-nest/ui/cascade";
 
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
@@ -48,6 +49,7 @@ export * from "@ng-nest/ui/checkbox";
 export * from "@ng-nest/ui/input";
 export * from "@ng-nest/ui/input-number";
 export * from "@ng-nest/ui/select";
+export * from "@ng-nest/ui/cascade";
 
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
@@ -79,6 +81,7 @@ export * from "@ng-nest/ui/form";
     XInputModule,
     XInputNumberModule,
     XSelectModule,
+    XCascadeModule,
 
     XButtonModule,
     XAnchorModule,

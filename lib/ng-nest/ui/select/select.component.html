@@ -5,6 +5,7 @@
     type="text"
     iconLayout="right"
     [icon]="icon"
+    [iconSpin]="iconSpin"
     [placeholder]="placeholder"
     [required]="required"
     [disabled]="disabled"
@@ -18,7 +19,12 @@
 
 <ng-template #portalTpl let-nodes="nodes" let-value="value">
   <ul>
-    <li *ngFor="let node of nodes" [class.x-selected]="node.key === value" (click)="nodeClick($event, node)">
+    <li
+      *ngFor="let node of nodes"
+      [class.x-selected]="node.key === value"
+      [class.x-disabled]="node.disabled"
+      (click)="nodeClick($event, node)"
+    >
       {{ node.label }}
     </li>
   </ul>

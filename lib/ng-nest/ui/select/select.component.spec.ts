@@ -7,6 +7,7 @@ import { XSelectModule } from "./select.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { XSelectPrefix, XSelectNode } from "./select.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
+import { Observable } from "rxjs";
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
@@ -14,6 +15,7 @@ describe(XSelectPrefix, () => {
       imports: [XSelectModule, FormsModule, ReactiveFormsModule, XFenceModule],
       declarations: [
         TestXSelectComponent,
+        TestXSelectAsyncComponent,
         TestXSelectLabelComponent,
         TestXSelectDisabledComponent,
         TestXSelectRequiredComponent
@@ -25,6 +27,18 @@ describe(XSelectPrefix, () => {
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`async.`, () => {
+    let fixture: ComponentFixture<TestXSelectAsyncComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectAsyncComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
@@ -220,12 +234,12 @@ class TestXSelectDisabledComponent {
   template: `
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" required></x-select>
+        <x-select [data]="data" [(ngModel)]="model1" (ngModelChange)="change($event)" required></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" label="选择" required></x-select>
+        <x-select [data]="data" [(ngModel)]="model2" (ngModelChange)="change($event)" label="选择" required></x-select>
       </x-col>
     </x-row>
   `,
@@ -242,7 +256,48 @@ class TestXSelectDisabledComponent {
 })
 class TestXSelectRequiredComponent {
   data = data;
+  model1: any;
+  model2: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change(val) {
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col>
+        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" async></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row > x-col {
+        width: 10rem;
+      }
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXSelectAsyncComponent {
   model: any;
+  data = Observable.create(x => {
+    // 替换成http请求，或者data直接定义成 Observable 对象
+    setTimeout(() => {
+      this.model = 3;
+      x.next([
+        { key: 1, label: "QQ" },
+        { key: 2, label: "微信" },
+        { key: 3, label: "钉钉" },
+        { key: 4, label: "微博" }
+      ]);
+      x.complete();
+    }, 2000);
+  });
   constructor(private cdr: ChangeDetectorRef) {}
   change(val) {
     this.cdr.detectChanges();

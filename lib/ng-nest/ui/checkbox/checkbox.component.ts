@@ -46,6 +46,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
     return this._disabled;
   }
   @Input()
+  @InputBoolean()
   public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;

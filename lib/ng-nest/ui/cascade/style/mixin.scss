@@ -1,0 +1,114 @@
+// Cascade
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin cascade {
+  font-size: $--x-cascade-font-size;
+  color: $--x-text;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-cascade-height;
+    line-height: $--x-cascade-height;
+  }
+  > .#{$--x-cascade-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > x-input {
+      input {
+        padding-right: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-cascade-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-text-300;
+      }
+      > input {
+        color: $--x-text-300;
+        cursor: not-allowed;
+        border-color: $--x-border-300;
+        background-color: $--x-background-300;
+      }
+    }
+  }
+  &-flex {
+    align-items: center;
+  }
+  &-direction-row {
+    > label {
+      margin: 0 0.5rem 0 0;
+    }
+  }
+  &-direction-row-reverse {
+    > label {
+      margin: 0 0 0 0.5rem;
+    }
+  }
+  &-direction-column {
+    align-items: inherit;
+  }
+  &-direction-column-reverse {
+    align-items: inherit;
+  }
+}
+
+@mixin portal {
+  font-size: $--x-cascade-font-size;
+  color: $--x-text;
+  border: $--x-cascade-border;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  background-color: $--x-white;
+  > ul {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-width: 10rem;
+    min-width: 7rem;
+    max-height: $--x-cascade-height * 6;
+    cursor: pointer;
+    > li {
+      padding: 0 0.4rem;
+      height: $--x-cascade-height;
+      line-height: $--x-cascade-height;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      > x-icon {
+        right: 0;
+        margin-left: 0.4rem;
+        color: $--x-text-400;
+      }
+      &:hover {
+        background-color: $--x-background;
+      }
+      &.x-selected {
+        color: $--x-primary;
+        background-color: $--x-primary-900;
+        > x-icon {
+          color: $--x-primary;
+        }
+      }
+    }
+    &:not(:first-child) {
+      border-left: $--x-cascade-border;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+// Cascade style paramters
+
+$--x-cascade-prefix: $--x-prefix + "-cascade";
+
+/* 字体大小 */
+$--x-cascade-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-cascade-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-cascade-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-cascade-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-cascade-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-cascade-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-cascade-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-cascade-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-cascade-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-cascade-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-cascade-icon-padding: $control-padding-horizontal;

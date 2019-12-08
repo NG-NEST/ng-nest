@@ -6,7 +6,7 @@ export class ConfigService {
   constructor() {}
 
   init() {
-    this.setLang();
+    // this.setLang();
   }
 
   setLang() {

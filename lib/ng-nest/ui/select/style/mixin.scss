@@ -88,6 +88,10 @@
         color: $--x-primary;
         background-color: $--x-primary-900;
       }
+      &.x-disabled {
+        color: $--x-text-300;
+        cursor: default;
+      }
     }
   }
 }
