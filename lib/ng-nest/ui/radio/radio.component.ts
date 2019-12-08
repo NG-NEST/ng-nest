@@ -80,7 +80,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnDestroy(): void {
-    if (this.data$) this.data$.unsubscribe();
+    this.data$ && this.data$.unsubscribe();
   }
 
   private setData() {
@@ -88,7 +88,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     if (this.data instanceof Array) {
       this.setDataChange(this.data);
     } else {
-      if (this.data$) this.data$.unsubscribe();
+      this.data$ && this.data$.unsubscribe();
       this.data$ = this.data.subscribe(x => {
         this.setDataChange(x);
       });

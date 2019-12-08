@@ -97,6 +97,9 @@ const data: XSelectNode[] = [
   `,
   styles: [
     `
+      :host {
+        height: 900px;
+      }
       x-row > x-col {
         width: 10rem;
       }

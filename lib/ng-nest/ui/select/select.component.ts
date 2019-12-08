@@ -14,7 +14,8 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  Inject
 } from "@angular/core";
 import { XSelectPrefix, XSelectInput, XSelectNode } from "./select.type";
 import {
@@ -28,8 +29,9 @@ import {
   isEmpty,
   InputBoolean
 } from "@ng-nest/ui/core";
-import { Overlay, ConnectedPositionStrategy } from "@angular/cdk/overlay";
+import { Overlay } from "@angular/cdk/overlay";
 import { XInputComponent } from "@ng-nest/ui/input";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: "x-select",
@@ -55,7 +57,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     return this._value;
   }
   public set value(value: any) {
-    console.log(value);
     this._value = value;
     this.setDisplayValue();
     if (this._required) {
@@ -71,6 +72,12 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   selectNodes: XSelectNode[] = [];
   portal: XPortalOverlayRef;
   icon: string = "fto-chevron-down";
+  box: DOMRect;
+  protalHeight: number;
+  maxNodes: number = 6;
+  protalTobottom: boolean = true;
+  scrollFunction: Function;
+  resizeFunction: Function;
   private _default: XSelectInput = {};
   private _required: boolean = false;
   private data$: Subscription | null = null;
@@ -92,8 +99,8 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    @Inject(DOCUMENT) private doc: Document
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XSelectPrefix);
@@ -107,6 +114,10 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.setDirection();
   }
 
+  ngAfterViewInit() {
+    this.setPortal();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     let dataChange = changes.data;
     if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
@@ -115,7 +126,23 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   ngOnDestroy(): void {
-    if (this.data$) this.data$.unsubscribe();
+    this.data$ && this.data$.unsubscribe();
+    this.removeListen();
+  }
+
+  addListen() {
+    this.scrollFunction = this.renderer.listen("window", "scroll", () => {
+      this.setPortal();
+    });
+    this.resizeFunction = this.renderer.listen("window", "resize", () => {
+      this.setPortal();
+    });
+  }
+
+  removeListen() {
+    this.scrollFunction && this.scrollFunction();
+    this.resizeFunction && this.resizeFunction();
+    this.cdr.markForCheck();
   }
 
   private setData() {
@@ -123,7 +150,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (this.data instanceof Array) {
       this.setDataChange(this.data);
     } else {
-      if (this.data$) this.data$.unsubscribe();
+      this.data$ && this.data$.unsubscribe();
       this.data$ = this.data.subscribe(x => {
         this.setDataChange(x);
       });
@@ -132,6 +159,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   private setDataChange(value: XSelectNode[]) {
     this.selectNodes = value;
+    this.setPortal();
     this.setDisplayValue();
     this.cdr.detectChanges();
   }
@@ -172,14 +200,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   showPortal() {
     if (this.disabled) return;
-    let box = this.elementRef.nativeElement.getBoundingClientRect();
-    let connected: ConnectedPositionStrategy = this.overlay
-      .position()
-      .connectedTo(
-        this.inputCom.elementRef,
-        { originX: "start", originY: "bottom" },
-        { overlayX: "start", overlayY: "top" }
-      );
     this.portal = this.portalService.create({
       content: this.portalTpl,
       viewContainerRef: this.viewContainerRef,
@@ -188,11 +208,15 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
         hasBackdrop: true,
         panelClass: "x-select-portal",
         backdropClass: "",
-        width: box.width,
-        positionStrategy: connected
+        width: this.box.width,
+        positionStrategy: this.setPositionStrategy()
       }
     });
-    this.portal.overlayRef.backdropClick().subscribe(() => this.portal.overlayRef.detach());
+    this.portal.overlayRef.backdropClick().subscribe(() => {
+      this.portal.overlayRef.detach();
+      this.removeListen();
+    });
+    this.addListen();
   }
 
   nodeClick(event: Event, node: XSelectNode) {
@@ -201,6 +225,24 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.value = node.key;
     if (this.onChange) this.onChange(this.value);
     if (this.portal) this.portal.overlayRef.detach();
+  }
+
+  setPositionStrategy() {
+    this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
+    this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
+    return this.portalService.setPositionStrategy(this.inputCom.elementRef, this.protalTobottom);
+  }
+
+  setPortal() {
+    if (!this.inputCom) return;
+    this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
+    if (this.box && this.selectNodes.length > 0) {
+      this.protalHeight =
+        this.box.height * (this.selectNodes.length > this.maxNodes ? this.maxNodes : this.selectNodes.length);
+    }
+    if (this.portal && this.portal.overlayRef.hasAttached) {
+      this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
+    }
   }
 
   setRequired() {

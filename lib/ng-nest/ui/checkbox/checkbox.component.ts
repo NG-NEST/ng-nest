@@ -86,7 +86,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   }
 
   ngOnDestroy(): void {
-    if (this.data$) this.data$.unsubscribe();
+    this.data$ && this.data$.unsubscribe();
   }
 
   private setData() {
@@ -94,7 +94,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
     if (this.data instanceof Array) {
       this.setDataChange(this.data);
     } else {
-      if (this.data$) this.data$.unsubscribe();
+      this.data$ && this.data$.unsubscribe();
       this.data$ = this.data.subscribe(x => {
         this.setDataChange(x);
       });

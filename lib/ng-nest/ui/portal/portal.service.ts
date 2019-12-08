@@ -1,15 +1,6 @@
-import {
-  Injectable,
-  TemplateRef,
-  Injector,
-  InjectionToken
-} from "@angular/core";
-import { Overlay, OverlayRef } from "@angular/cdk/overlay";
-import {
-  TemplatePortal,
-  ComponentPortal,
-  PortalInjector
-} from "@angular/cdk/portal";
+import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from "@angular/core";
+import { Overlay, OverlayRef, PositionStrategy } from "@angular/cdk/overlay";
+import { TemplatePortal, ComponentPortal, PortalInjector } from "@angular/cdk/portal";
 import { XPortalServiceModule } from "./portal.service.module";
 import { XPortalInput, XPortalOverlayRef } from "./portal.type";
 
@@ -27,11 +18,7 @@ export class XPortalService {
     let templatePortal: TemplatePortal<any>;
     let componentPortal: ComponentPortal<any>;
     if (option.content instanceof TemplateRef) {
-      templatePortal = new TemplatePortal(
-        option.content,
-        option.viewContainerRef,
-        option.context
-      );
+      templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
       overlayRef.attach(templatePortal);
     } else {
       componentPortal = new ComponentPortal(
@@ -54,6 +41,26 @@ export class XPortalService {
     const injectorTokens = new WeakMap();
     injectorTokens.set(token, data);
     return new PortalInjector(this.injector, injectorTokens);
+  }
+
+  setPositionStrategy(elementRef?: ElementRef, toBottom: boolean = true): PositionStrategy {
+    if (!elementRef) {
+      return this.overlay
+        .position()
+        .global()
+        .centerHorizontally()
+        .centerVertically();
+    } else {
+      if (toBottom) {
+        return this.overlay
+          .position()
+          .connectedTo(elementRef, { originX: "start", originY: "bottom" }, { overlayX: "start", overlayY: "top" });
+      } else {
+        return this.overlay
+          .position()
+          .connectedTo(elementRef, { originX: "start", originY: "top" }, { overlayX: "start", overlayY: "bottom" });
+      }
+    }
   }
 
   private createOverlayRef(option?: XPortalInput): OverlayRef {
