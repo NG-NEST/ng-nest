@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { XColPrefix } from "./fence.type";
 import { XRowComponent } from "./row.component";
+import { InputNumber } from "../core";
 
 @Component({
   selector: `${XColPrefix}`,
@@ -21,13 +22,13 @@ import { XRowComponent } from "./row.component";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XColComponent implements OnInit {
-  @Input() span?: number;
-  @Input() offset?: number;
-  @Input() xs?: number;
-  @Input() sm?: number;
-  @Input() md?: number;
-  @Input() lg?: number;
-  @Input() xl?: number;
+  @Input() @InputNumber() span?: number;
+  @Input() @InputNumber() offset?: number;
+  @Input() @InputNumber() xs?: number;
+  @Input() @InputNumber() sm?: number;
+  @Input() @InputNumber() md?: number;
+  @Input() @InputNumber() lg?: number;
+  @Input() @InputNumber() xl?: number;
 
   @HostBinding(`class.x-col-24`) get getFlex() {
     return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24;

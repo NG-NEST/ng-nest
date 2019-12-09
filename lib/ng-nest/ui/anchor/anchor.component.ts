@@ -15,7 +15,7 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from "./anchor.type";
-import { fillDefault, reqAnimFrame, computedStyle } from "@ng-nest/ui/core";
+import { fillDefault, reqAnimFrame, computedStyle, InputNumber, InputBoolean } from "@ng-nest/ui/core";
 import { XSliderNode, XActivatedSlider, XSliderInput } from "@ng-nest/ui/slider";
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
@@ -40,8 +40,8 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     this.sliderOption.borderPosition = this._layout === "left" ? "right" : "left";
   }
   @Input() scrollElement: HTMLElement | Window;
-  @Input() top: number;
-  @Input() sliderFixed: boolean;
+  @Input() @InputNumber() top: number;
+  @Input() @InputBoolean() sliderFixed: boolean;
 
   @Output() indexChange?: EventEmitter<XActivatedAnchor> = new EventEmitter<XActivatedAnchor>();
 

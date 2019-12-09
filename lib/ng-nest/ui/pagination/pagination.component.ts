@@ -13,7 +13,7 @@ import {
   EventEmitter
 } from "@angular/core";
 import { PaginationPrefix, XPaginationInput } from "./pagination.type";
-import { fillDefault } from "@ng-nest/ui/core";
+import { fillDefault, InputNumber } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-pagination",
@@ -23,9 +23,9 @@ import { fillDefault } from "@ng-nest/ui/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPaginationComponent implements OnInit, OnChanges {
-  @Input() index?: number;
-  @Input() size?: number;
-  @Input() total?: number;
+  @Input() @InputNumber() index?: number;
+  @Input() @InputNumber() size?: number;
+  @Input() @InputNumber() total?: number;
   @Output() indexChange = new EventEmitter<number>();
   private _default: XPaginationInput = {
     index: 1,
@@ -38,11 +38,7 @@ export class XPaginationComponent implements OnInit, OnChanges {
   indexFirst: number = 1;
   indexLast: number = 1;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, PaginationPrefix);
   }
 

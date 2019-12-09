@@ -17,7 +17,8 @@ import {
   TemplateRef,
   Inject,
   Output,
-  EventEmitter
+  EventEmitter,
+  NgZone
 } from "@angular/core";
 import { XCascadePrefix, XCascadeInput, XCascadeNode } from "./cascade.type";
 import {
@@ -50,7 +51,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   @Input() label: string = "";
   @Input() placeholder: string = "";
   @Input() @InputBoolean() required?: boolean;
-  @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
+  @ViewChild("portalTpl", { static: false }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<XCascadeNode> = new EventEmitter<XCascadeNode>();
 
@@ -100,6 +101,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   constructor(
     private renderer: Renderer2,
+    private ngZone: NgZone,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
@@ -166,7 +168,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     let nodes = this.nodes
       .filter(x => isEmpty(x.parentKey))
       .map(x => {
-        x.hasChildren = this.nodes.find(y => y.parentKey === x.key) !== null;
+        x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== null;
         return x;
       });
     this.displayNodes = [...this.displayNodes, nodes];
@@ -253,17 +255,18 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
         this.displayValues = [...this.displayValues, node];
       }
     };
-    if (node.hasChildren) {
+    if (node.hasChild) {
       let nodes = this.nodes
         .filter(x => x.parentKey === node.key)
         .map(x => {
-          x.hasChildren = this.nodes.find(y => y.parentKey === x.key) !== undefined;
+          x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== undefined;
           return x;
         });
       setDisplayNodes(nodes);
       setDisplayValues();
-      // this.portal.templatePortal.context = { list: this.displayNodes };
-      this.cdr.detectChanges();
+      this.ngZone.run(() => {
+        this.cdr.detectChanges();
+      });
     } else {
       setDisplayValues();
       this.setInputDisplayValue();
@@ -289,7 +292,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
           this.nodes
             .filter(x => x.parentKey === node.parentKey)
             .map(x => {
-              x.hasChildren = this.nodes.find(y => y.parentKey === x.key) !== undefined;
+              x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== undefined;
               return x;
             }),
           ...nodes

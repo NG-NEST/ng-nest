@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 })
 export class ExAsyncComponent implements OnInit {
   model: any;
-  data: XData<XSelectNode> = Observable.create(x => {
+  data: XData<XSelectNode[]> = Observable.create(x => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
       x.next([

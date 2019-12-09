@@ -12,7 +12,7 @@ import {
   HostBinding
 } from "@angular/core";
 import { TablePrefix, XTableOption, XTableColumn, XTableAction } from "./table.type";
-import { fillDefault, XData, XQuery, XRepositoryAbstract } from "@ng-nest/ui/core";
+import { fillDefault, XData, XQuery, XRepositoryAbstract, InputNumber, InputBoolean } from "@ng-nest/ui/core";
 import { Subscription } from "rxjs";
 import * as _ from "lodash";
 
@@ -27,14 +27,14 @@ export class XTableComponent implements OnInit {
   @Input() data: XData<any[]>;
   @Input() columns: XTableColumn[];
   @Input() actions: XTableAction[];
-  @Input() index?: number;
-  @Input() size?: number;
-  @Input() total?: number;
+  @Input() @InputNumber() index?: number;
+  @Input() @InputNumber() size?: number;
+  @Input() @InputNumber() total?: number;
   @Input() service?: XRepositoryAbstract;
   @Input() query?: XQuery;
-  @Input() tableHeaderHidden?: boolean;
-  @Input() tableFooterHidden?: boolean;
-  @Input() allowSelectRow?: boolean;
+  @Input() @InputBoolean() tableHeaderHidden?: boolean;
+  @Input() @InputBoolean() tableFooterHidden?: boolean;
+  @Input() @InputBoolean() allowSelectRow?: boolean;
   @Input() rowPrimary?: string;
   @Input() activatedRow?: any;
   @Input() searchPlaceholder?: string;
@@ -62,11 +62,7 @@ export class XTableComponent implements OnInit {
     query: {},
     rowPrimary: "id"
   };
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, TablePrefix);
   }
 
@@ -131,10 +127,7 @@ export class XTableComponent implements OnInit {
       x => typeof x.actionLayoutType === "undefined" || x.actionLayoutType === "top-left"
     );
     this.topRightActions = _.filter(this.actions, x => x.actionLayoutType === "top-right");
-    this.topRightIconActions = _.filter(
-      this.actions,
-      x => x.actionLayoutType === "top-right-icon"
-    );
+    this.topRightIconActions = _.filter(this.actions, x => x.actionLayoutType === "top-right-icon");
     this.rowIconActions = _.filter(this.actions, x => x.actionLayoutType === "row-icon");
     this.activatedAction = _.find(this.actions, x => x.activated);
     this.cdr.markForCheck();
@@ -151,27 +144,25 @@ export class XTableComponent implements OnInit {
 
   private setGroupData() {
     if (this.service) {
-      this.service
-        .getList(this.groupIndex, this.groupSize, this.groupQuery)
-        .subscribe(x => {
-          this.groupTotal = x.total;
-          if (x.total > 0) {
-            this.index = 1;
-            this.groupActivatedRow = _.first(x.list);
-            this.query.filter = _.unionBy(
-              [
-                {
-                  field: this.groupQuery.group,
-                  value: this.groupActivatedRow[this.groupQuery.group]
-                }
-              ],
-              this.query.filter,
-              y => y.field
-            );
-            this.setData();
-          }
-          this.setGroupDataChange(x.list);
-        });
+      this.service.getList(this.groupIndex, this.groupSize, this.groupQuery).subscribe(x => {
+        this.groupTotal = x.total;
+        if (x.total > 0) {
+          this.index = 1;
+          this.groupActivatedRow = _.first(x.list);
+          this.query.filter = _.unionBy(
+            [
+              {
+                field: this.groupQuery.group,
+                value: this.groupActivatedRow[this.groupQuery.group]
+              }
+            ],
+            this.query.filter,
+            y => y.field
+          );
+          this.setData();
+        }
+        this.setGroupDataChange(x.list);
+      });
     }
   }
 

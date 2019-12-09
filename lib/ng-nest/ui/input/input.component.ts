@@ -23,7 +23,8 @@ import {
   XJustify,
   XAlign,
   XDirection,
-  InputBoolean
+  InputBoolean,
+  InputNumber
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -47,7 +48,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType = "left";
   @Input() @InputBoolean() iconSpin?: boolean;
-  @Input() maxlength?: number;
+  @Input() @InputNumber() maxlength?: number;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
 
   private _value: any;

@@ -17,16 +17,16 @@
 </div>
 
 <ng-template #portalTpl>
-  <ul *ngFor="let nodes of displayNodes; index as i">
+  <ul *ngFor="let nodeList of displayNodes; index as i">
     <li
-      *ngFor="let node of nodes"
+      *ngFor="let node of nodeList"
       [class.x-selected]="node.selected"
       [class.x-disabled]="node.disabled"
       (click)="nodeClick($event, node, i)"
     >
       <span>{{ node.label }}</span>
-      <x-icon type="fto-chevron-right" *ngIf="node.hasChildren"></x-icon>
-      <x-icon type="fto-check" *ngIf="!node.hasChildren && node.selected"></x-icon>
+      <x-icon type="fto-chevron-right" *ngIf="node.hasChild"></x-icon>
+      <x-icon type="fto-check" *ngIf="!node.hasChild && node.selected"></x-icon>
     </li>
   </ul>
 </ng-template>

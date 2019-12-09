@@ -16,7 +16,7 @@ import {
 import { DOCUMENT } from "@angular/common";
 import { XIconPrefix, XIconInput, XIconSourceEnum } from "./icon.type";
 import { XIconService } from "./icon.service";
-import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, InputBoolean } from "@ng-nest/ui/core";
+import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, InputBoolean, InputNumber } from "@ng-nest/ui/core";
 import * as _ from "lodash";
 
 // 来源路径对应
@@ -49,7 +49,7 @@ export const XViewBox = [
 export class XIconComponent implements OnInit, OnChanges {
   @Input() type?: string;
   @Input() color?: string | string[];
-  @Input() rotate?: number;
+  @Input() @InputNumber() rotate?: number;
   @Input() to?: string;
   @Input() @InputBoolean() spin?: boolean;
   private _svgElement: SVGElement;

@@ -1,3 +1,4 @@
+import { interval } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XCascadeComponent } from "./cascade.component";
@@ -143,7 +144,11 @@ class TestXCascadeComponent {
   model1: any;
   model2 = 22;
   model3 = 10;
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    // interval(500).subscribe(x => {
+    //   this.cdr.detectChanges();
+    // });
+  }
   change(val) {
     // this.cdr.detectChanges();
   }

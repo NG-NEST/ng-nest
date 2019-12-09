@@ -11,7 +11,7 @@ export interface XParentIdentityInput extends XIdentityInput {
   // 编码
   parentKey?: any;
   // 有子节点
-  hasChildren?: boolean;
+  hasChild?: boolean;
   // 选中
   selected?: boolean;
   // 禁用

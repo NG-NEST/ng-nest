@@ -9,7 +9,7 @@ import {
   HostBinding
 } from "@angular/core";
 import { XButtonsInput, XButtonsPrefix } from "./button.type";
-import { fillDefault } from "@ng-nest/ui/core";
+import { fillDefault, InputNumber, InputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XButtonsPrefix}`,
@@ -19,8 +19,8 @@ import { fillDefault } from "@ng-nest/ui/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XButtonsComponent implements OnInit {
-  @Input() space?: number;
-  @Input() notBorder?: boolean;
+  @Input() @InputNumber() space?: number;
+  @Input() @InputBoolean() notBorder?: boolean;
   @HostBinding("class.x-buttons-space") get getSpace() {
     return this.space;
   }

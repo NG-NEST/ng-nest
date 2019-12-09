@@ -4,9 +4,9 @@
       [columns]="groupColumns"
       [query]="groupQuery"
       [service]="service"
-      [tableHeaderHidden]="true"
-      [tableFooterHidden]="true"
-      [allowSelectRow]="true"
+      tableHeaderHidden
+      tableFooterHidden
+      allowSelectRow
       [rowPrimary]="groupQuery.group"
       [activatedRow]="groupActivatedRow"
       [searchPlaceholder]="groupSearchPlaceholder"
@@ -16,20 +16,12 @@
   <div class="x-table-struct">
     <div class="x-table-tool">
       <div class="x-table-tool-left" *ngIf="topLeftActions.length > 0">
-        <ng-container
-          *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: topLeftActions }"
-        ></ng-container>
+        <ng-container *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: topLeftActions }"></ng-container>
       </div>
       <div class="x-table-tool-right">
-        <x-input
-          [icon]="'fto-search'"
-          [placeholder]="searchPlaceholder"
-          [iconLayout]="'left'"
-        ></x-input>
+        <x-input [icon]="'fto-search'" [placeholder]="searchPlaceholder" [iconLayout]="'left'"></x-input>
         <ng-container *ngIf="topRightIconActions.length > 0">
-          <ng-container
-            *ngTemplateOutlet="buttonsTpl; context: { actions: topRightIconActions }"
-          ></ng-container>
+          <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: topRightIconActions }"></ng-container>
         </ng-container>
       </div>
     </div>
@@ -45,24 +37,15 @@
     <div class="x-table-body">
       <ul
         *ngFor="let item of tableData"
-        [class.x-table-row-activated]="
-          allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]
-        "
+        [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
         (click)="rowEmit(item, $event)"
       >
         <ng-container *ngFor="let column of columns; index as i">
-          <li
-            [style.width.rem]="column.width"
-            [style.flex]="column.flex"
-            [title]="item[column.key]"
-          >
+          <li [style.width.rem]="column.width" [style.flex]="column.flex" [title]="item[column.key]">
             <div [innerHTML]="item[column.key]"></div>
             <ng-container *ngIf="!i && rowIconActions.length > 0">
               <ng-container
-                *ngTemplateOutlet="
-                  buttonsTpl;
-                  context: { actions: rowIconActions, notBorder: true }
-                "
+                *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, notBorder: true }"
               ></ng-container>
             </ng-container>
           </li>
@@ -70,12 +53,7 @@
       </ul>
     </div>
     <div class="x-table-footer" *ngIf="!tableFooterHidden">
-      <x-pagination
-        [index]="index"
-        [size]="size"
-        [total]="total"
-        (indexChange)="change($event)"
-      ></x-pagination>
+      <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
     </div>
   </div>
 </div>

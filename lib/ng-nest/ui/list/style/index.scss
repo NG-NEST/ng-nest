@@ -1,0 +1,10 @@
+// List
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+.#{$--x-list-prefix} {
+  @include reset-component();
+  @include list();
+}

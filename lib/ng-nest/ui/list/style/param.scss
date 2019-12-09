@@ -1,0 +1,36 @@
+// List style paramters
+
+$--x-list-prefix: $--x-prefix + "-list";
+
+/* 字体大小 */
+$--x-list-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-list-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-list-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-list-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-list-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-list-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-list-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-list-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-list-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-list-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-list-icon-padding: $control-padding-horizontal;

@@ -20,7 +20,8 @@ import {
   XJustify,
   XAlign,
   XDirection,
-  InputBoolean
+  InputBoolean,
+  InputNumber
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -38,11 +39,11 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() label: string = "";
   @Input() placeholder: string = "";
   @Input() @InputBoolean() required?: boolean;
-  @Input() min: number = Number.MIN_SAFE_INTEGER;
-  @Input() max: number = Number.MAX_SAFE_INTEGER;
-  @Input() step: number = 1;
-  @Input() debounce: number = 40;
-  @Input() precision: number = 0;
+  @Input() @InputNumber() min: number = Number.MIN_SAFE_INTEGER;
+  @Input() @InputNumber() max: number = Number.MAX_SAFE_INTEGER;
+  @Input() @InputNumber() step: number = 1;
+  @Input() @InputNumber() debounce: number = 40;
+  @Input() @InputNumber() precision: number = 0;
 
   private _default: XInputNumberInput = {};
   private _required: boolean = false;

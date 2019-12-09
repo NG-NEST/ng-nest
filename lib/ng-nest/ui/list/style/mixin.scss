@@ -1,0 +1,48 @@
+// List
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin list {
+  font-size: $--x-list-font-size;
+  color: $--x-text;
+  > ul {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-width: 7rem;
+    cursor: pointer;
+    > li {
+      padding: 0 0.4rem;
+      height: $--x-list-height;
+      line-height: $--x-list-height;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      > x-icon {
+        right: 0;
+        margin-left: 0.4rem;
+        color: $--x-text-400;
+      }
+      &:hover {
+        background-color: $--x-background;
+      }
+      &.x-selected {
+        color: $--x-primary;
+        background-color: $--x-primary-900;
+        > x-icon {
+          color: $--x-primary;
+        }
+      }
+      &:not(:first-child) {
+        margin-top: $--x-border-width;
+      }
+    }
+  }
+}

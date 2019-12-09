@@ -154,17 +154,17 @@ class TestXInputNumberLabelComponent {}
   template: `
     <x-row>
       <x-col>
-        <x-input-number [max]="10"></x-input-number>
+        <x-input-number max="10"></x-input-number>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-input-number [min]="1"></x-input-number>
+        <x-input-number min="1"></x-input-number>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-input-number [min]="1" [max]="10"></x-input-number>
+        <x-input-number min="1" max="10"></x-input-number>
       </x-col>
     </x-row>
   `,
@@ -185,7 +185,7 @@ class TestXInputNumberLimitComponent {}
   template: `
     <x-row>
       <x-col>
-        <x-input-number [precision]="2" [step]="0.1"></x-input-number>
+        <x-input-number precision="2" step="0.1"></x-input-number>
       </x-col>
     </x-row>
   `,
