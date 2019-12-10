@@ -7,7 +7,7 @@ import { XSelectModule } from "./select.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { XSelectPrefix, XSelectNode } from "./select.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
-import { Observable } from "rxjs";
+import { Observable, interval } from "rxjs";
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
@@ -85,27 +85,28 @@ describe(XSelectPrefix, () => {
 });
 
 const data: XSelectNode[] = [
-  { key: 1, label: "QQ" },
-  { key: 2, label: "微信" },
-  { key: 3, label: "钉钉" },
-  { key: 4, label: "微博" }
+  { key: 1, label: "AAAA" },
+  { key: 2, label: "BBBB" },
+  { key: 3, label: "CCCC" },
+  { key: 4, label: "DDDD" },
+  { key: 5, label: "EEEE" },
+  { key: 6, label: "FFFF" },
+  { key: 7, label: "GGGG" },
+  { key: 8, label: "HHHH" },
+  { key: 9, label: "IIII" },
+  { key: 10, label: "JJJJ" }
 ];
 
 @Component({
   template: `
     <x-row>
       <x-col>
-        <x-select [data]="data"></x-select>
+        <x-select [data]="data1" [(ngModel)]="model1"></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model"></x-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-select [data]="data2" [(ngModel)]="model"></x-select>
+        <x-select [data]="data2" [(ngModel)]="model2"></x-select>
       </x-col>
     </x-row>
   `,
@@ -124,20 +125,15 @@ const data: XSelectNode[] = [
   ]
 })
 class TestXSelectComponent {
-  data = data;
-  data2 = [
-    { key: 1, label: "AA" },
-    { key: 2, label: "BB" },
-    { key: 3, label: "CC" },
-    { key: 4, label: "DD" },
-    { key: 5, label: "EE" },
-    { key: 6, label: "FF" },
-    { key: 7, label: "GG" },
-    { key: 8, label: "HH" },
-    { key: 9, label: "II" },
-    { key: 10, label: "JJ" }
-  ];
-  model = 2;
+  data1 = data;
+  data2 = JSON.parse(JSON.stringify(data));
+  model1: any;
+  model2: any = 3;
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
 }
 
 @Component({
@@ -195,9 +191,10 @@ class TestXSelectComponent {
 class TestXSelectLabelComponent {
   data = data;
   model: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
 }
 
@@ -258,7 +255,11 @@ class TestXSelectRequiredComponent {
   data = data;
   model1: any;
   model2: any;
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
   change(val) {
     this.cdr.detectChanges();
   }
@@ -284,11 +285,10 @@ class TestXSelectRequiredComponent {
   ]
 })
 class TestXSelectAsyncComponent {
-  model: any;
+  model = 3;
   data = Observable.create(x => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      this.model = 3;
       x.next([
         { key: 1, label: "QQ" },
         { key: 2, label: "微信" },
@@ -298,7 +298,11 @@ class TestXSelectAsyncComponent {
       x.complete();
     }, 2000);
   });
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
   change(val) {
     this.cdr.detectChanges();
   }

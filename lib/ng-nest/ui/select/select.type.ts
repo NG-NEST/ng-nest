@@ -1,4 +1,5 @@
-import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
+import { InjectionToken } from "@angular/core";
 
 /**
  * Select 组件名
@@ -7,17 +8,26 @@ import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
  */
 export const XSelectPrefix = "x-select";
 
+export const XSelectPortal = new InjectionToken<{}>("x-select-portal");
+
 /**
- * Select @Select
+ * Select @Input
  */
 export interface XSelectInput extends XIdentityInput, XFormProperty {}
 
 /**
  * Select 数据对象
  */
-export interface XSelectNode extends XIdentityInput {
-  /**
-   * 禁用
-   */
-  disabled?: boolean;
-}
+export interface XSelectNode extends XParentIdentityInput {}
+
+/**
+ * Select-Portal 组件名
+ * @selector x-select-portal
+ * @decorator component
+ */
+export const XSelectPortalPrefix = "x-select-portal";
+
+/**
+ * Select-Portal @Input
+ */
+export interface XSelectPortalInput {}

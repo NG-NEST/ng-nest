@@ -12,9 +12,9 @@ export const XListPrefix = "x-list";
  */
 export interface XListInput extends XIdentityInput {
   /**
-   * 个数
+   * 多选个数
    */
-  number?: number;
+  multiple?: number;
 }
 
 /**

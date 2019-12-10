@@ -53,7 +53,44 @@ const data: XListNode[] = [
           [data]="data2"
           [(ngModel)]="model2"
           (ngModelChange)="change($event)"
-          number="2"
+          (nodeEmit)="nodeEmit($event)"
+        ></x-list>
+      </x-col>
+      <x-col span="6">
+        <x-list
+          [data]="data3"
+          [(ngModel)]="model3"
+          (ngModelChange)="change($event)"
+          multiple
+          (nodeEmit)="nodeEmit($event)"
+        ></x-list>
+      </x-col>
+      <x-col span="6">
+        <x-list
+          [data]="data4"
+          [(ngModel)]="model4"
+          multiple
+          (ngModelChange)="change($event)"
+          (nodeEmit)="nodeEmit($event)"
+        ></x-list>
+      </x-col>
+    </x-row>
+    <x-row space="1">
+      <x-col span="6">
+        <x-list
+          [data]="data5"
+          [(ngModel)]="model5"
+          multiple="2"
+          (ngModelChange)="change($event)"
+          (nodeEmit)="nodeEmit($event)"
+        ></x-list>
+      </x-col>
+      <x-col span="6">
+        <x-list
+          [data]="data6"
+          [(ngModel)]="model6"
+          multiple="2"
+          (ngModelChange)="change($event)"
           (nodeEmit)="nodeEmit($event)"
         ></x-list>
       </x-col>
@@ -70,13 +107,23 @@ const data: XListNode[] = [
 class TestXListComponent {
   data1 = data;
   data2 = JSON.parse(JSON.stringify(data));
+  data3 = JSON.parse(JSON.stringify(data));
+  data4 = JSON.parse(JSON.stringify(data));
+  data5 = JSON.parse(JSON.stringify(data));
+  data6 = JSON.parse(JSON.stringify(data));
+  model1: any;
+  model2 = 3;
+  model3: any;
+  model4 = [2, 3, 4];
+  model5: any;
+  model6 = [2, 3];
   constructor(private cdr: ChangeDetectorRef) {
     // interval(500).subscribe(x => {
     //   this.cdr.detectChanges();
     // });
   }
   change(val) {
-    console.log(val);
+    // console.log(val);
   }
   nodeEmit(val) {
     this.cdr.detectChanges();

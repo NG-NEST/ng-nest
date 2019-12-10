@@ -14,7 +14,7 @@ import {
   EventEmitter
 } from "@angular/core";
 import { XListPrefix, XListInput, XListNode } from "./list.type";
-import { fillDefault, XData, XValueAccessor, XControlValueAccessor, InputNumber } from "@ng-nest/ui/core";
+import { fillDefault, XData, XValueAccessor, XControlValueAccessor, InputNumber, isEmpty } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-list",
@@ -26,24 +26,20 @@ import { fillDefault, XData, XValueAccessor, XControlValueAccessor, InputNumber 
 })
 export class XListComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() data?: XData<XListNode[]>;
-  @Input() @InputNumber() number?: number;
+  @Input() @InputNumber() multiple?: number;
   @Output() nodeEmit?: EventEmitter<XListNode> = new EventEmitter<XListNode>();
-
-  private _value: any;
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    this._value = value;
-    this.change(value);
-    this.cdr.detectChanges();
-  }
 
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
 
+  writeValue(value: any): void {
+    this.value = value;
+    this.setSelected();
+    this.cdr.detectChanges();
+  }
+
   private _default: XListInput = {
-    number: 1
+    multiple: 1
   };
   private data$: Subscription | null = null;
 
@@ -67,10 +63,6 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     this.data$ && this.data$.unsubscribe();
   }
 
-  change(value) {
-    if (this.onChange && typeof value !== "undefined") this.onChange(value);
-  }
-
   private setData() {
     if (typeof this.data === "undefined") return;
     if (this.data instanceof Array) {
@@ -85,18 +77,36 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
 
   private setDataChange(value: XListNode[]) {
     this.nodes = value;
+    this.setSelected();
     this.cdr.detectChanges();
+  }
+
+  setSelected() {
+    if (!isEmpty(this.value) && this.nodes.length > 0) {
+      let valArry = [];
+      if (this.value instanceof Array) {
+        valArry = this.value;
+      } else {
+        valArry = [this.value];
+      }
+      this.selectedNodes = this.nodes
+        .filter(x => valArry.includes(x.key))
+        .map(x => {
+          x.selected = true;
+          return x;
+        });
+    }
   }
 
   nodeClick(event: Event, node: XListNode) {
     event.preventDefault();
-    if (node.disabled || (node.selected && this.number === 1)) return;
+    if (node.disabled || (node.selected && this.multiple === 1)) return;
     const selected = !node.selected;
     if (selected) {
-      if (this.selectedNodes.length < this.number) {
+      if (this.selectedNodes.length < this.multiple || this.multiple === 0) {
         node.selected = selected;
         this.selectedNodes = [...this.selectedNodes, node];
-      } else if (this.number === 1 && this.selectedNodes.length === 1) {
+      } else if (this.multiple === 1 && this.selectedNodes.length === 1) {
         node.selected = selected;
         this.selectedNodes[0].selected = false;
         this.selectedNodes[0] = node;
@@ -110,11 +120,12 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
         1
       );
     }
-    if (this.number === 1 && this.selectedNodes.length === 1) {
-      this.value = this.selectedNodes[0];
+    if (this.multiple === 1 && this.selectedNodes.length === 1) {
+      this.value = this.selectedNodes[0].key;
     } else {
-      this.value = this.selectedNodes;
+      this.value = this.selectedNodes.map(x => x.key);
     }
+    if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(node);
   }
 }

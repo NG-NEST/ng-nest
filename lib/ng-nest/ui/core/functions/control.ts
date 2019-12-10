@@ -5,7 +5,7 @@ import { InputBoolean } from "./convert";
 export abstract class XControlValueAccessor implements ControlValueAccessor {
   value?: any;
   @Input() @InputBoolean() disabled?: boolean;
-  onChange: (_: any) => void;
+  onChange: (value: any) => void;
   onTouched: () => void;
   writeValue(value: any): void {
     this.value = value;

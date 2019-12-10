@@ -1,4 +1,3 @@
-import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
 import { Subscription } from "rxjs";
 import {
   Component,
@@ -17,7 +16,7 @@ import {
   TemplateRef,
   Inject
 } from "@angular/core";
-import { XSelectPrefix, XSelectInput, XSelectNode } from "./select.type";
+import { XSelectPrefix, XSelectInput, XSelectNode, XSelectPortal } from "./select.type";
 import {
   fillDefault,
   XValueAccessor,
@@ -29,13 +28,16 @@ import {
   isEmpty,
   InputBoolean
 } from "@ng-nest/ui/core";
+import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
+// import { XListComponent } from "@ng-nest/ui/list";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
+import { XSelectPortalComponent } from "./select-portal.component";
 
 @Component({
   selector: "x-select",
   templateUrl: "./select.component.html",
-  styleUrls: ["./style/index.scss"],
+  styleUrls: ["./select.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSelectComponent)]
@@ -52,12 +54,8 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
-  private _value: any = "";
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    this._value = value;
+  writeValue(value: any) {
+    this.value = value;
     this.setDisplayValue();
     if (this._required) {
       this.required = isEmpty(value);
@@ -69,7 +67,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   clearable: boolean = false;
   enter: boolean = false;
   displayValue: any = "";
-  selectNodes: XSelectNode[] = [];
+  nodes: XSelectNode[] = [];
   portal: XPortalOverlayRef;
   icon: string = "fto-chevron-down";
   iconSpin: boolean = false;
@@ -160,7 +158,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   private setDataChange(value: XSelectNode[]) {
-    this.selectNodes = value;
+    this.nodes = value;
     this.setPortal();
     this.setDisplayValue();
     this.cdr.detectChanges();
@@ -173,7 +171,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   menter() {
     if (this.disabled) return;
     this.enter = true;
-    if (!isEmpty(this.value)) {
+    if (!isEmpty(this.displayValue)) {
       this.icon = "";
       this.clearable = true;
       this.cdr.detectChanges();
@@ -192,19 +190,20 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   clearEmit(event: Event) {
     this.value = "";
+    this.displayValue = "";
     this.mleave();
   }
 
   setDisplayValue() {
-    if (this.selectNodes.length > 0) {
-      let node = this.selectNodes.find(x => x.key === this.value);
+    if (this.nodes.length > 0) {
+      let node = this.nodes.find(x => x.key === this.value);
       this.displayValue = node ? node.label : "";
     }
   }
 
   showPortal() {
     if (this.disabled) return;
-    if (this.async && !(this.data instanceof Array) && this.selectNodes.length === 0) {
+    if (this.async && !(this.data instanceof Array) && this.nodes.length === 0) {
       this.data$ && this.data$.unsubscribe();
       this.icon = "fto-loader";
       this.iconSpin = true;
@@ -222,14 +221,18 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   createPortal() {
+    this.nodes.filter(x => x.selected).map(x => (x.selected = false));
+
     this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.create({
-      content: this.portalTpl,
+      content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      context: { nodes: this.selectNodes, value: this.value },
+      injector: this.portalService.createInjector(
+        { data: this.nodes, value: this.value, nodeEmit: node => this.nodeClick(node) },
+        XSelectPortal
+      ),
       overlayConfig: {
         hasBackdrop: true,
-        panelClass: "x-select-portal",
         backdropClass: "",
         width: this.box.width,
         positionStrategy: this.setPositionStrategy()
@@ -242,7 +245,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.addListen();
   }
 
-  nodeClick(event: Event, node: XSelectNode) {
+  nodeClick(node: XSelectNode) {
     event.preventDefault();
     if (node.disabled) return;
     this.displayValue = node.label;
@@ -260,9 +263,8 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   setPortal() {
     if (!this.inputCom) return;
     this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
-    if (this.box && this.selectNodes.length > 0) {
-      this.protalHeight =
-        this.box.height * (this.selectNodes.length > this.maxNodes ? this.maxNodes : this.selectNodes.length);
+    if (this.box && this.nodes.length > 0) {
+      this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     }
     if (this.portal && this.portal.overlayRef.hasAttached) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());

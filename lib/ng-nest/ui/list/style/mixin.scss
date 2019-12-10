@@ -7,8 +7,11 @@
 @mixin list {
   font-size: $--x-list-font-size;
   color: $--x-text;
+  display: flex;
+  flex: 1;
   > ul {
     display: flex;
+    flex: 1;
     flex-direction: column;
     overflow-y: auto;
     min-width: 7rem;
