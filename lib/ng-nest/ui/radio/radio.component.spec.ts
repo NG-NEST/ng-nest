@@ -106,18 +106,13 @@ describe(XRadioPrefix, () => {
   });
 });
 
-const data: XRadioNode[] = [
-  { key: 1, label: "QQ" },
-  { key: 2, label: "微信" },
-  { key: 3, label: "钉钉" },
-  { key: 4, label: "微博" }
-];
+const data: XData<XRadioNode[]> = ["QQ", "微信", "钉钉", "微博"];
 
-const iconData: XRadioNode[] = [
-  { key: 1, title: "QQ", icon: "ado-qq" },
-  { key: 2, title: "微信", icon: "ado-wechat" },
-  { key: 3, title: "钉钉", icon: "ado-dingding" },
-  { key: 4, title: "微博", icon: "ado-weibo" }
+const iconData: XData<XRadioNode[]> = [
+  { value: "QQ", icon: "ado-qq" },
+  { value: "微信", icon: "ado-wechat" },
+  { value: "钉钉", icon: "ado-dingding" },
+  { value: "微博", icon: "ado-weibo" }
 ];
 
 @Component({
@@ -141,7 +136,7 @@ const iconData: XRadioNode[] = [
 })
 class TestXRadioComponent {
   data: XData<XRadioNode[]> = data;
-  model = 2;
+  model = "QQ";
 }
 
 @Component({
@@ -168,12 +163,8 @@ class TestXRadioComponent {
 })
 class TestXRadioDisabledComponent {
   data: XData<XRadioNode[]> = data;
-  dataDisabled: XData<XRadioNode[]> = data.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = 2;
+  dataDisabled: XData<XRadioNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
+  model = "钉钉";
 }
 
 @Component({
@@ -206,13 +197,9 @@ class TestXRadioDisabledComponent {
 })
 class TestXRadioButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XRadioNode[] = data;
-  dataDisabled: XData<XRadioNode[]> = data.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = 2;
+  data: XData<XRadioNode[]> = data;
+  dataDisabled: XData<XRadioNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
+  model = "钉钉";
   change($event) {
     this.cdr.detectChanges();
   }
@@ -248,13 +235,14 @@ class TestXRadioButtonComponent {
 })
 class TestXRadioIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XRadioNode[] = iconData;
-  dataDisabled: XData<XRadioNode[]> = iconData.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = 2;
+  data: XData<XRadioNode[]> = iconData;
+  dataDisabled: XData<XRadioNode[]> = [
+    { value: "QQ", icon: "ado-qq" },
+    { value: "微信", icon: "ado-wechat" },
+    { value: "钉钉", disabled: true, icon: "ado-dingding" },
+    { value: "微博", icon: "ado-weibo" }
+  ];
+  model = "钉钉";
   change($event) {
     this.cdr.detectChanges();
   }

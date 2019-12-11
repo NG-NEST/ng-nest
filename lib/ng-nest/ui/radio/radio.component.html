@@ -5,7 +5,7 @@
       [label]="item.label"
       [icon]="item.icon"
       [title]="item.title"
-      [activated]="item.key === value"
+      [activated]="item.value === value"
       [disabled]="disabled || item.disabled"
       (click)="radioClick($event, item)"
     ></x-button>
@@ -16,7 +16,7 @@
   <div
     class="x-radio-item"
     *ngFor="let item of radioNodes"
-    [class.x-checked]="item.key === value"
+    [class.x-checked]="item.value === value"
     [class.x-disabled]="item.disabled"
     (click)="radioClick($event, item)"
   >

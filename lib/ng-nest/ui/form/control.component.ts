@@ -7,9 +7,9 @@ import {
   SimpleChanges,
   Renderer2,
   ElementRef,
-  Input} from "@angular/core";
-import {
-  XControlOption} from "./form.type";
+  Input
+} from "@angular/core";
+import { XControlOption } from "./form.type";
 import { fillDefault } from "@ng-nest/ui/core";
 
 @Component({
@@ -20,7 +20,7 @@ import { fillDefault } from "@ng-nest/ui/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XControlComponent implements OnInit, OnChanges {
-  @Input() option: any | XControlOption<any>;
+  @Input() option: any | XControlOption;
   // @Input() controlType: XControlType;
   // @Input() disabled: boolean;
   // @Input() readonly: boolean;
@@ -28,7 +28,7 @@ export class XControlComponent implements OnInit, OnChanges {
   // @Input() hidden: boolean;
   // @Input() key: boolean;
 
-  private _default: any | XControlOption<any> = {};
+  private _default: any | XControlOption = {};
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, "x-control");

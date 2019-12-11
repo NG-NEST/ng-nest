@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { XSelectPrefix, XSelectNode } from "./select.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
 import { Observable, interval } from "rxjs";
+import { XData } from "@ng-nest/ui/core";
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
@@ -84,18 +85,7 @@ describe(XSelectPrefix, () => {
   });
 });
 
-const data: XSelectNode[] = [
-  { key: 1, label: "AAAA" },
-  { key: 2, label: "BBBB" },
-  { key: 3, label: "CCCC" },
-  { key: 4, label: "DDDD" },
-  { key: 5, label: "EEEE" },
-  { key: 6, label: "FFFF" },
-  { key: 7, label: "GGGG" },
-  { key: 8, label: "HHHH" },
-  { key: 9, label: "IIII" },
-  { key: 10, label: "JJJJ" }
-];
+const data: XData<XSelectNode[]> = ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ"];
 
 @Component({
   template: `
@@ -224,7 +214,7 @@ class TestXSelectLabelComponent {
 })
 class TestXSelectDisabledComponent {
   data = data;
-  model = 2;
+  model = "DDDD";
 }
 
 @Component({
@@ -255,11 +245,7 @@ class TestXSelectRequiredComponent {
   data = data;
   model1: any;
   model2: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
   change(val) {
     this.cdr.detectChanges();
   }
@@ -285,16 +271,12 @@ class TestXSelectRequiredComponent {
   ]
 })
 class TestXSelectAsyncComponent {
-  model = 3;
+  model = "QQ";
   data = Observable.create(x => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      x.next([
-        { key: 1, label: "QQ" },
-        { key: 2, label: "微信" },
-        { key: 3, label: "钉钉" },
-        { key: 4, label: "微博" }
-      ]);
+      this.model = "钉钉";
+      x.next(["QQ", "微信", "钉钉", "微博"]);
       x.complete();
     }, 2000);
   });

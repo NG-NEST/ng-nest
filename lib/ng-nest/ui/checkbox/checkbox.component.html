@@ -5,7 +5,7 @@
       [label]="item.label"
       [icon]="item.icon"
       [title]="item.title"
-      [activated]="value && value?.indexOf(item.key) >= 0"
+      [activated]="value && value?.indexOf(item.value) >= 0"
       [disabled]="disabled || item.disabled"
       (click)="checkboxClick($event, item)"
     ></x-button>
@@ -16,7 +16,7 @@
   <div
     class="x-checkbox-item"
     *ngFor="let item of checkboxNodes"
-    [class.x-checked]="value && value?.indexOf(item.key) >= 0"
+    [class.x-checked]="value && value?.indexOf(item.value) >= 0"
     [class.x-disabled]="item.disabled"
     [class.x-indeterminate]="indeterminate"
     (click)="checkboxClick($event, item)"

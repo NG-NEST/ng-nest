@@ -1,3 +1,4 @@
+import { XIsObservable } from "./../core/interfaces/data.type";
 import {
   Component,
   OnInit,
@@ -12,8 +13,16 @@ import {
   SimpleChanges
 } from "@angular/core";
 import { XRadioPrefix, XRadioNode } from "./radio.type";
-import { Subscription } from "rxjs";
-import { XData, XValueAccessor, XControlValueAccessor, InputBoolean } from "@ng-nest/ui/core";
+import { Subscription, Observable } from "rxjs";
+import {
+  XData,
+  XValueAccessor,
+  XControlValueAccessor,
+  XInputBoolean,
+  XDataConvert,
+  XToDataConvert
+} from "@ng-nest/ui/core";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -24,9 +33,9 @@ import { XData, XValueAccessor, XControlValueAccessor, InputBoolean } from "@ng-
   providers: [XValueAccessor(XRadioComponent)]
 })
 export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() data?: XData<XRadioNode[]>;
-  @Input() @InputBoolean() button?: boolean;
-  @Input() @InputBoolean() icon?: boolean;
+  @Input() @XDataConvert() data?: XData<XRadioNode[]>;
+  @Input() @XInputBoolean() button?: boolean;
+  @Input() @XInputBoolean() icon?: boolean;
   @HostBinding("class.x-disabled") get getDisabled() {
     return this.disabled;
   }
@@ -45,7 +54,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     return this._disabled;
   }
   @Input()
-  @InputBoolean()
+  @XInputBoolean()
   public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
@@ -75,8 +84,8 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
 
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled || node.key === this.value) return;
-    this.value = node.key;
+    if (this.disabled || node.disabled || node.value === this.value) return;
+    this.value = node.value;
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -86,13 +95,13 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
 
   private setData() {
     if (typeof this.data === "undefined") return;
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
-    } else {
+    if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
-      this.data$ = this.data.subscribe(x => {
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
         this.setDataChange(x);
       });
+    } else {
+      this.setDataChange(this.data as XRadioNode[]);
     }
   }
 

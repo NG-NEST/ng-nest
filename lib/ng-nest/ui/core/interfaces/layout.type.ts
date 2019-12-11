@@ -49,7 +49,6 @@ export interface XFormProperty {
   align?: XAlign;
   direction?: XDirection;
   placeholder?: string;
-  label?: string;
   disabled?: boolean;
   required?: boolean;
 }

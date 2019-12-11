@@ -1,4 +1,4 @@
-import { interval } from "rxjs";
+import { interval, Observable } from "rxjs";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XListComponent } from "./list.component";
@@ -8,6 +8,7 @@ import { XListModule } from "./list.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { XListPrefix, XListNode } from "./list.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
+import { XData } from "@ng-nest/ui/core";
 
 describe(XListPrefix, () => {
   beforeEach(async(() => {
@@ -30,12 +31,7 @@ describe(XListPrefix, () => {
   });
 });
 
-const data: XListNode[] = [
-  { key: 1, label: "AAAA" },
-  { key: 2, label: "BBBB" },
-  { key: 3, label: "CCCC", hasChild: true },
-  { key: 4, label: "DDDD" }
-];
+const data: XData<XListNode[]> = ["AAAA", "BBBB", { label: "CCCC", hasChild: true }, "DDDD"];
 
 @Component({
   template: `
@@ -112,11 +108,11 @@ class TestXListComponent {
   data5 = JSON.parse(JSON.stringify(data));
   data6 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2 = 3;
+  model2 = "AAAA";
   model3: any;
-  model4 = [2, 3, 4];
+  model4 = ["AAAA", "BBBB"];
   model5: any;
-  model6 = [2, 3];
+  model6 = ["BBBB", "CCCC"];
   constructor(private cdr: ChangeDetectorRef) {
     // interval(500).subscribe(x => {
     //   this.cdr.detectChanges();

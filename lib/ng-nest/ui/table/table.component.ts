@@ -12,7 +12,7 @@ import {
   HostBinding
 } from "@angular/core";
 import { TablePrefix, XTableOption, XTableColumn, XTableAction } from "./table.type";
-import { fillDefault, XData, XQuery, XRepositoryAbstract, InputNumber, InputBoolean } from "@ng-nest/ui/core";
+import { fillDefault, XData, XQuery, XRepositoryAbstract, XInputNumber, XInputBoolean } from "@ng-nest/ui/core";
 import { Subscription } from "rxjs";
 import * as _ from "lodash";
 
@@ -27,14 +27,14 @@ export class XTableComponent implements OnInit {
   @Input() data: XData<any[]>;
   @Input() columns: XTableColumn[];
   @Input() actions: XTableAction[];
-  @Input() @InputNumber() index?: number;
-  @Input() @InputNumber() size?: number;
-  @Input() @InputNumber() total?: number;
+  @Input() @XInputNumber() index?: number;
+  @Input() @XInputNumber() size?: number;
+  @Input() @XInputNumber() total?: number;
   @Input() service?: XRepositoryAbstract;
   @Input() query?: XQuery;
-  @Input() @InputBoolean() tableHeaderHidden?: boolean;
-  @Input() @InputBoolean() tableFooterHidden?: boolean;
-  @Input() @InputBoolean() allowSelectRow?: boolean;
+  @Input() @XInputBoolean() tableHeaderHidden?: boolean;
+  @Input() @XInputBoolean() tableFooterHidden?: boolean;
+  @Input() @XInputBoolean() allowSelectRow?: boolean;
   @Input() rowPrimary?: string;
   @Input() activatedRow?: any;
   @Input() searchPlaceholder?: string;

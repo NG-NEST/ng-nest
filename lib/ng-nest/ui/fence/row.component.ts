@@ -8,7 +8,7 @@ import {
   OnInit,
   HostBinding
 } from "@angular/core";
-import { XJustify, XAlign, InputNumber } from "@ng-nest/ui/core";
+import { XJustify, XAlign, XInputNumber } from "@ng-nest/ui/core";
 import { XRowPrefix } from "./fence.type";
 
 @Component({
@@ -19,7 +19,7 @@ import { XRowPrefix } from "./fence.type";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XRowComponent implements OnInit {
-  @Input() @InputNumber() space?: number;
+  @Input() @XInputNumber() space?: number;
   @Input() justify?: XJustify;
   @Input() align?: XAlign;
 

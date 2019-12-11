@@ -7,9 +7,11 @@ import {
   ChangeDetectorRef,
   OnInit,
   ElementRef,
-  Renderer2
+  Renderer2,
+  OnDestroy
 } from "@angular/core";
 import { XSelectPortal, XSelectNode, XSelectPortalPrefix } from "./select.type";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "x-select-portal",
@@ -18,7 +20,9 @@ import { XSelectPortal, XSelectNode, XSelectPortalPrefix } from "./select.type";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XSelectPortalComponent {
+export class XSelectPortalComponent implements OnInit, OnDestroy {
+  valueChange$: Subscription | null = null;
+
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
@@ -26,6 +30,16 @@ export class XSelectPortalComponent {
     public cdr: ChangeDetectorRef
   ) {
     this.renderer.addClass(this.elementRef.nativeElement, XSelectPortalPrefix);
+  }
+
+  ngOnInit(): void {
+    this.valueChange$ = this.option.valueChange.subscribe(x => {
+      this.option.value = x;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.valueChange$ && this.valueChange$.unsubscribe();
   }
 
   nodeClick(node: XSelectNode) {

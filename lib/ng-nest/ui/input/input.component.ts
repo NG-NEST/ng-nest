@@ -17,14 +17,14 @@ import {
 import { XInputPrefix, XInputInput, XInputType, XInputIconLayoutType } from "./input.type";
 import {
   fillDefault,
-  isEmpty,
+  XIsEmpty,
   XValueAccessor,
   XControlValueAccessor,
   XJustify,
   XAlign,
   XDirection,
-  InputBoolean,
-  InputNumber
+  XInputBoolean,
+  XInputNumber
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -42,13 +42,13 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() label?: string = "";
   @Input() type?: XInputType = "text";
   @Input() placeholder?: string = "";
-  @Input() @InputBoolean() required?: boolean;
-  @Input() @InputBoolean() clearable?: boolean;
-  @Input() @InputBoolean() readonly?: boolean;
+  @Input() @XInputBoolean() required?: boolean;
+  @Input() @XInputBoolean() clearable?: boolean;
+  @Input() @XInputBoolean() readonly?: boolean;
   @Input() icon?: string;
   @Input() iconLayout?: XInputIconLayoutType = "left";
-  @Input() @InputBoolean() iconSpin?: boolean;
-  @Input() @InputNumber() maxlength?: number;
+  @Input() @XInputBoolean() iconSpin?: boolean;
+  @Input() @XInputNumber() maxlength?: number;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
 
   private _value: any;
@@ -67,7 +67,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     return this._disabled;
   }
   @Input()
-  @InputBoolean()
+  @XInputBoolean()
   public set disabled(value: boolean) {
     if (value !== this._disabled) {
       this._disabled = value;
@@ -103,17 +103,17 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   }
 
   @HostBinding(`class.x-input-icon`) get getIcon() {
-    return !isEmpty(this.icon);
+    return !XIsEmpty(this.icon);
   }
 
   @HostBinding(`class.x-input-icon-left`)
   get getIconLayoutLeft() {
-    return !isEmpty(this.icon) && this.iconLayout === "left";
+    return !XIsEmpty(this.icon) && this.iconLayout === "left";
   }
 
   @HostBinding(`class.x-input-icon-right`)
   get getIconLayoutRight() {
-    return !isEmpty(this.icon) && this.iconLayout === "right";
+    return !XIsEmpty(this.icon) && this.iconLayout === "right";
   }
 
   constructor(private renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
@@ -140,11 +140,11 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   change(value) {
     this._value = value;
     if (this._required && !this.disabled) {
-      this.required = isEmpty(value);
+      this.required = XIsEmpty(value);
     }
     this.setClearable();
     if (this.maxlength) {
-      this.valueLength = isEmpty(value) ? 0 : `${value}`.length;
+      this.valueLength = XIsEmpty(value) ? 0 : `${value}`.length;
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
     this.setPadding();
@@ -161,7 +161,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
 
   setClearable() {
     if (this.clearable && !this.disabled) {
-      this.clearShow = !isEmpty(this.value);
+      this.clearShow = !XIsEmpty(this.value);
     } else {
       this.clearShow = false;
     }

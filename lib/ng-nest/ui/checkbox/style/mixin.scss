@@ -42,7 +42,6 @@
       }
     }
     &.x-checked {
-      color: var(--x-primary);
       .#{$--x-checkbox-prefix}-box {
         border-color: var(--x-primary);
         background-color: var(--x-primary);

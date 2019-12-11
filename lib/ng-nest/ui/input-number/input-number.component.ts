@@ -14,14 +14,14 @@ import {
 import { XInputNumberPrefix, XInputNumberInput } from "./input-number.type";
 import {
   fillDefault,
-  isEmpty,
+  XIsEmpty,
   XValueAccessor,
   XControlValueAccessor,
   XJustify,
   XAlign,
   XDirection,
-  InputBoolean,
-  InputNumber
+  XInputBoolean,
+  XInputNumber
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -38,12 +38,12 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
-  @Input() @InputBoolean() required?: boolean;
-  @Input() @InputNumber() min: number = Number.MIN_SAFE_INTEGER;
-  @Input() @InputNumber() max: number = Number.MAX_SAFE_INTEGER;
-  @Input() @InputNumber() step: number = 1;
-  @Input() @InputNumber() debounce: number = 40;
-  @Input() @InputNumber() precision: number = 0;
+  @Input() @XInputBoolean() required?: boolean;
+  @Input() @XInputNumber() min: number = Number.MIN_SAFE_INTEGER;
+  @Input() @XInputNumber() max: number = Number.MAX_SAFE_INTEGER;
+  @Input() @XInputNumber() step: number = 1;
+  @Input() @XInputNumber() debounce: number = 40;
+  @Input() @XInputNumber() precision: number = 0;
 
   private _default: XInputNumberInput = {};
   private _required: boolean = false;
@@ -133,7 +133,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
       return;
     }
     if (this._required) {
-      this.required = isEmpty(value);
+      this.required = XIsEmpty(value);
     }
     this.maxDisabled = value >= this.max;
     this.minDisabled = value <= this.min;

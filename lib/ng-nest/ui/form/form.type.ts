@@ -19,17 +19,17 @@ export interface XFormInput {
   /**
    * 表单控件
    */
-  controls?: XControl<any>[] | XFormRow[];
+  controls?: XControl[] | XFormRow[];
 }
 
 /**
  * 控件对象
  */
-export interface XControlOption<T> extends XIdentityInput {
+export interface XControlOption extends XIdentityInput {
   /**
    * 值
    */
-  value?: T;
+  value?: any;
   /**
    * 控件类型
    * @default "input"
@@ -60,11 +60,11 @@ export interface XControlOption<T> extends XIdentityInput {
 /**
  * 控件对象
  */
-export class XControl<T> extends XIdentity {
+export class XControl extends XIdentity {
   /**
    * 值
    */
-  value?: T;
+  value?: any;
   /**
    * 控件类型
    * @default "input"
@@ -90,7 +90,7 @@ export class XControl<T> extends XIdentity {
    * 列宽
    */
   span?: number;
-  constructor(option: XControlOption<T> = {}) {
+  constructor(option: XControlOption = {}) {
     super();
     Object.assign(this, option);
   }
@@ -111,16 +111,16 @@ export interface XFormRow {
   /**
    * 行中的控件
    */
-  controls?: XControl<any>[];
+  controls?: XControl[];
   /**
    * 隐藏
    */
   hidden?: boolean;
 }
 
-export interface XInputControlOption extends XControlOption<string | number>, XInputInput {}
+export interface XInputControlOption extends XControlOption, XInputInput {}
 
-export class XInputControl extends XControl<string | number> {
+export class XInputControl extends XControl {
   controlType: XControlType = "input";
   constructor(option: XInputControlOption = {}) {
     super(option);

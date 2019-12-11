@@ -26,7 +26,6 @@
       margin-right: 0;
     }
     &.x-checked {
-      color: var(--x-primary);
       .#{$--x-radio-prefix}-box {
         border-color: var(--x-primary);
         &::after {

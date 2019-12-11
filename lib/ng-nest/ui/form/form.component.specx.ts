@@ -40,7 +40,7 @@ describe(FormPrefix, () => {
   `
 })
 class TestXFormComponent {
-  controls: XControl<any>[] = [
+  controls: XControl[] = [
     new XInputControl({ key: "id", label: "编码", span: 6 }),
     new XInputControl({ key: "name", label: "姓名", span: 6 }),
     new XInputControl({ key: "account", label: "账号", span: 6 }),

@@ -13,7 +13,7 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 import { XButtonPrefix, XButtonType, XButtonInput } from "./button.type";
-import { fillDefault, XDirection, XSize, InputBoolean } from "@ng-nest/ui/core";
+import { fillDefault, XDirection, XSize, XInputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XButtonPrefix}`,
@@ -27,13 +27,13 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() title?: string;
-  @Input() @InputBoolean() activated?: boolean;
-  @Input() @InputBoolean() disabled?: boolean;
-  @Input() @InputBoolean() plain?: boolean;
-  @Input() @InputBoolean() round?: boolean;
-  @Input() @InputBoolean() circle?: boolean;
+  @Input() @XInputBoolean() activated?: boolean;
+  @Input() @XInputBoolean() disabled?: boolean;
+  @Input() @XInputBoolean() plain?: boolean;
+  @Input() @XInputBoolean() round?: boolean;
+  @Input() @XInputBoolean() circle?: boolean;
   @Input() direction?: XDirection;
-  @Input() @InputBoolean() loading?: boolean;
+  @Input() @XInputBoolean() loading?: boolean;
   @Input() size?: XSize;
   @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
   @HostBinding("class.x-button-label") get getLabel() {

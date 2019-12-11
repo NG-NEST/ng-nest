@@ -21,7 +21,6 @@ export class XPortalService {
       templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
       overlayRef.attach(templatePortal);
     } else {
-      console.log(option.content instanceof ComponentPortal);
       componentPortal = new ComponentPortal(
         option.content,
         option.viewContainerRef,

@@ -1,13 +1,40 @@
 import { coerceBooleanProperty, _isNumberValue } from "@angular/cdk/coercion";
+import { XIdentityInput } from "../interfaces/identify.type";
+import {
+  XData,
+  XIsNull,
+  XIsValueArray,
+  XIsObjectArray,
+  XIsUndefined,
+  XIsObservable,
+  XIsArray,
+  XIsValue,
+  XIsObject
+} from "../interfaces/data.type";
 
-export function toBoolean(value: boolean): boolean {
+function toBoolean(value: boolean): boolean {
   return coerceBooleanProperty(value);
 }
 
-export function toNumber(value: number | string): number;
-export function toNumber<D>(value: number | string, fallback: D): number | D;
-export function toNumber(value: number | string, fallbackValue: number = 0): number {
+function toNumber(value: number | string): number;
+function toNumber<D>(value: number | string, fallback: D): number | D;
+function toNumber(value: number | string, fallbackValue: number = 0): number {
   return _isNumberValue(value) ? Number(value) : fallbackValue;
+}
+
+export function XToDataConvert(value: XData<XIdentityInput>): any {
+  if (XIsArray(value)) {
+    return (value as []).map((x: any) => {
+      if (XIsValue(x)) {
+        return { label: x, value: x };
+      } else if (XIsObject(x)) {
+        x.label = XIsUndefined(x.label) || XIsNull(x.label) ? x.value : x.label;
+        x.value = XIsUndefined(x.value) || XIsNull(x.value) ? x.label : x.value;
+        return x;
+      }
+    });
+  }
+  if (XIsObservable(value)) return value;
 }
 
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
@@ -41,10 +68,14 @@ function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (targe
   return propDecorator;
 }
 
-export function InputBoolean(): any {
+export function XInputBoolean(): any {
   return propDecoratorFactory("InputBoolean", toBoolean);
 }
 
-export function InputNumber(): any {
+export function XInputNumber(): any {
   return propDecoratorFactory("InputNumber", toNumber);
+}
+
+export function XDataConvert(): any {
+  return propDecoratorFactory("XDataConvert", XToDataConvert);
 }

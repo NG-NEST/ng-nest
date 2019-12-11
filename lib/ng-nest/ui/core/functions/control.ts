@@ -1,10 +1,10 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { forwardRef, Input } from "@angular/core";
-import { InputBoolean } from "./convert";
+import { XInputBoolean } from "./convert";
 
 export abstract class XControlValueAccessor implements ControlValueAccessor {
   value?: any;
-  @Input() @InputBoolean() disabled?: boolean;
+  @Input() @XInputBoolean() disabled?: boolean;
   onChange: (value: any) => void;
   onTouched: () => void;
   writeValue(value: any): void {

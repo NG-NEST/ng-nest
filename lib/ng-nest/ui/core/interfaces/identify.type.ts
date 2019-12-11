@@ -3,7 +3,9 @@ export interface XIdentityInput {
   // 编码
   key?: any;
   // 标题
-  label?: string;
+  label?: any;
+  // 值
+  value?: any;
 }
 
 // 父节点标识对象

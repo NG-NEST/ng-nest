@@ -29,8 +29,8 @@ import {
   XAlign,
   XDirection,
   XData,
-  isEmpty,
-  InputBoolean
+  XIsEmpty,
+  XInputBoolean
 } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
@@ -50,7 +50,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
-  @Input() @InputBoolean() required?: boolean;
+  @Input() @XInputBoolean() required?: boolean;
   @ViewChild("portalTpl", { static: false }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<XCascadeNode> = new EventEmitter<XCascadeNode>();
@@ -63,7 +63,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     this._value = value;
     this.setInputDisplayValue(true);
     if (this._required) {
-      this.required = isEmpty(value);
+      this.required = XIsEmpty(value);
     }
     this.cdr.detectChanges();
   }
@@ -166,7 +166,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   private setDataChange(value: XCascadeNode[]) {
     this.nodes = JSON.parse(JSON.stringify(value));
     let nodes = this.nodes
-      .filter(x => isEmpty(x.parentKey))
+      .filter(x => XIsEmpty(x.parentKey))
       .map(x => {
         x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== null;
         return x;
@@ -184,7 +184,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   menter() {
     if (this.disabled) return;
     this.enter = true;
-    if (!isEmpty(this.value)) {
+    if (!XIsEmpty(this.value)) {
       this.icon = "";
       this.clearable = true;
       this.cdr.detectChanges();
@@ -278,14 +278,14 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   setInputDisplayValue(needNodes = false) {
-    if (isEmpty(this.value)) return;
+    if (XIsEmpty(this.value)) return;
     if (needNodes) {
       let node = this.nodes.find(x => x.key === this.value);
-      if (isEmpty(node)) return;
+      if (XIsEmpty(node)) return;
       node.selected = true;
       this.displayValues = [node];
       let nodes = [];
-      while (!isEmpty(node.parentKey)) {
+      while (!XIsEmpty(node.parentKey)) {
         let parentNode = this.nodes.find(x => x.key === node.parentKey);
         parentNode.selected = true;
         nodes = [

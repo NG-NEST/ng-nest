@@ -1,4 +1,5 @@
-import { Subscription } from "rxjs";
+import { XIsObservable } from "./../core/interfaces/data.type";
+import { Subscription, Subject, Observable } from "rxjs";
 import {
   Component,
   OnInit,
@@ -25,14 +26,16 @@ import {
   XAlign,
   XDirection,
   XData,
-  isEmpty,
-  InputBoolean
+  XIsEmpty,
+  XInputBoolean,
+  XDataConvert,
+  XToDataConvert
 } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-// import { XListComponent } from "@ng-nest/ui/list";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
 import { XSelectPortalComponent } from "./select-portal.component";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "x-select",
@@ -43,14 +46,14 @@ import { XSelectPortalComponent } from "./select-portal.component";
   providers: [XValueAccessor(XSelectComponent)]
 })
 export class XSelectComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() data?: XData<XSelectNode[]>;
+  @Input() @XDataConvert() data?: XData<XSelectNode[]>;
   @Input() justify?: XJustify;
   @Input() align?: XAlign;
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
-  @Input() @InputBoolean() async?: boolean;
-  @Input() @InputBoolean() required?: boolean;
+  @Input() @XInputBoolean() async?: boolean;
+  @Input() @XInputBoolean() required?: boolean;
   @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
@@ -58,8 +61,9 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.value = value;
     this.setDisplayValue();
     if (this._required) {
-      this.required = isEmpty(value);
+      this.required = XIsEmpty(value);
     }
+    this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
 
@@ -81,6 +85,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   private _default: XSelectInput = {};
   private _required: boolean = false;
   private data$: Subscription | null = null;
+  valueChange: Subject<any> = new Subject();
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
     return this.disabled;
@@ -147,13 +152,15 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   private setData() {
     if (typeof this.data === "undefined") return;
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
-    } else if (!this.async) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = this.data.subscribe(x => {
-        this.setDataChange(x);
-      });
+    if (XIsObservable(this.data)) {
+      if (!this.async) {
+        this.data$ && this.data$.unsubscribe();
+        this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
+          this.setDataChange(x);
+        });
+      }
+    } else {
+      this.setDataChange(this.data as XSelectNode[]);
     }
   }
 
@@ -171,7 +178,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   menter() {
     if (this.disabled) return;
     this.enter = true;
-    if (!isEmpty(this.displayValue)) {
+    if (!XIsEmpty(this.displayValue)) {
       this.icon = "";
       this.clearable = true;
       this.cdr.detectChanges();
@@ -196,19 +203,19 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   setDisplayValue() {
     if (this.nodes.length > 0) {
-      let node = this.nodes.find(x => x.key === this.value);
+      let node = this.nodes.find(x => x.value === this.value);
       this.displayValue = node ? node.label : "";
     }
   }
 
   showPortal() {
     if (this.disabled) return;
-    if (this.async && !(this.data instanceof Array) && this.nodes.length === 0) {
+    if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
       this.data$ && this.data$.unsubscribe();
       this.icon = "fto-loader";
       this.iconSpin = true;
       this.cdr.detectChanges();
-      this.data$ = this.data.subscribe(x => {
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
         this.setDataChange(x);
         this.createPortal();
         this.icon = "fto-chevron-down";
@@ -228,7 +235,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
       content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
-        { data: this.nodes, value: this.value, nodeEmit: node => this.nodeClick(node) },
+        { data: this.nodes, value: this.value, valueChange: this.valueChange, nodeEmit: node => this.nodeClick(node) },
         XSelectPortal
       ),
       overlayConfig: {
@@ -249,7 +256,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     event.preventDefault();
     if (node.disabled) return;
     this.displayValue = node.label;
-    this.value = node.key;
+    this.value = node.value;
     if (this.onChange) this.onChange(this.value);
     if (this.portal) this.portal.overlayRef.detach();
   }

@@ -23,7 +23,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class XFormComponent implements OnInit, OnChanges {
   @Input() title: string;
-  @Input() controls?: XControl<any>[] | XFormRow[];
+  @Input() controls?: XControl[] | XFormRow[];
 
   formGroup: FormGroup;
 
@@ -31,13 +31,9 @@ export class XFormComponent implements OnInit, OnChanges {
 
   private _default: XFormInput = {};
 
-  private _controls: XControl<any>[] = [];
+  private _controls: XControl[] = [];
 
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, FormPrefix);
   }
 
@@ -55,10 +51,9 @@ export class XFormComponent implements OnInit, OnChanges {
 
   getControlsType() {
     if (this.controls && this.controls.length > 0) {
-      this.controlsType =
-        this.controls[0] instanceof XControl ? "controls" : "rows";
+      this.controlsType = this.controls[0] instanceof XControl ? "controls" : "rows";
       if (this.controlsType === "controls") {
-        this._controls = this.controls as XControl<any>[];
+        this._controls = this.controls as XControl[];
       } else if (this.controlsType === "rows") {
         for (let row of this.controls as XFormRow[]) {
           this._controls = [...this._controls, ...row.controls];

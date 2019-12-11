@@ -123,18 +123,13 @@ describe(XCheckboxPrefix, () => {
   });
 });
 
-const data: XCheckboxNode[] = [
-  { key: 1, label: "QQ" },
-  { key: 2, label: "微信" },
-  { key: 3, label: "钉钉" },
-  { key: 4, label: "微博" }
-];
+const data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
 
-const iconData: XCheckboxNode[] = [
-  { key: 1, title: "QQ", icon: "ado-qq" },
-  { key: 2, title: "微信", icon: "ado-wechat" },
-  { key: 3, title: "钉钉", icon: "ado-dingding" },
-  { key: 4, title: "微博", icon: "ado-weibo" }
+const iconData: XData<XCheckboxNode[]> = [
+  { value: "QQ", icon: "ado-qq" },
+  { value: "微信", icon: "ado-wechat" },
+  { value: "钉钉", icon: "ado-dingding" },
+  { value: "微博", icon: "ado-weibo" }
 ];
 
 @Component({
@@ -158,7 +153,7 @@ const iconData: XCheckboxNode[] = [
 })
 class TestXCheckboxComponent {
   data: XData<XCheckboxNode[]> = data;
-  model = [2];
+  model = ["钉钉"];
   change(value) {
     console.log(value);
   }
@@ -188,12 +183,8 @@ class TestXCheckboxComponent {
 })
 class TestXCheckboxDisabledComponent {
   data: XData<XCheckboxNode[]> = data;
-  dataDisabled: XData<XCheckboxNode[]> = data.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = [2];
+  dataDisabled: XData<XCheckboxNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
+  model = ["钉钉"];
 }
 
 @Component({
@@ -226,13 +217,9 @@ class TestXCheckboxDisabledComponent {
 })
 class TestXCheckboxButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XCheckboxNode[] = data;
-  dataDisabled: XData<XCheckboxNode[]> = data.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = [2];
+  data: XData<XCheckboxNode[]> = data;
+  dataDisabled: XData<XCheckboxNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
+  model = ["钉钉"];
   change($event) {
     this.cdr.detectChanges();
   }
@@ -268,13 +255,14 @@ class TestXCheckboxButtonComponent {
 })
 class TestXCheckboxIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XCheckboxNode[] = iconData;
-  dataDisabled: XData<XCheckboxNode[]> = iconData.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = [2];
+  data: XData<XCheckboxNode[]> = iconData;
+  dataDisabled: XData<XCheckboxNode[]> = [
+    { value: "QQ", icon: "ado-qq" },
+    { value: "微信", icon: "ado-wechat" },
+    { value: "钉钉", disabled: true, icon: "ado-dingding" },
+    { value: "微博", icon: "ado-weibo" }
+  ];
+  model = ["钉钉"];
   change($event) {
     this.cdr.detectChanges();
   }
@@ -305,14 +293,14 @@ class TestXCheckboxIconComponent {
 class TestXCheckboxAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XCheckboxNode[]>;
-  model = [2];
+  model = ["钉钉"];
   loading = false;
   getData() {
     this.loading = true;
     this.data = Observable.create(x => {
       // 替换成http请求，或者data直接定义成 Observable 对象
       setTimeout(() => {
-        this.model = [3];
+        this.model = ["微博"];
         this.loading = false;
         this.cdr.detectChanges();
         x.next(data);
@@ -349,19 +337,19 @@ class TestXCheckboxAsyncComponent {
 })
 class TestXCheckboxIndeterminateComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  checkAllData: XData<XCheckboxNode[]> = [{ key: true, label: "全选" }];
+  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: "全选" }];
   checkAll = [false];
   indeterminate = true;
-  data: XCheckboxNode[] = data;
-  model: any = [1, 2];
+  data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
+  model: any = ["QQ"];
   change(value) {
-    this.model = value.indexOf(true) >= 0 ? data.map(x => x.key) : [];
+    this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
     this.indeterminate = false;
     this.cdr.detectChanges();
   }
   itemChange(value) {
-    this.checkAll = [value.length === data.length];
-    this.indeterminate = value.length > 0 && value.length < data.length;
+    this.checkAll = [value.length === (this.data as Array<any>).length];
+    this.indeterminate = value.length > 0 && value.length < (this.data as Array<any>).length;
     this.cdr.detectChanges();
   }
 }

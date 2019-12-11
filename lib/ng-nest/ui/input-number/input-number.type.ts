@@ -8,7 +8,7 @@ import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
 export const XInputNumberPrefix = "x-input-number";
 
 /**
- * InputNumber @InputNumber
+ * InputNumber XInputNumber
  */
 export interface XInputNumberInput extends XIdentityInput, XFormProperty {
   /**
