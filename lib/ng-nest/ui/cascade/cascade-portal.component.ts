@@ -3,15 +3,13 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
-  Input,
   ChangeDetectorRef,
   OnInit,
   ElementRef,
-  Renderer2,
-  OnDestroy
+  Renderer2
 } from "@angular/core";
-import { Subscription } from "rxjs";
 import { XCascadeNode, XCascadePortalPrefix, XCascadePortal } from "./cascade.type";
+import { XIsEmpty } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-cascade-portal",
@@ -20,10 +18,10 @@ import { XCascadeNode, XCascadePortalPrefix, XCascadePortal } from "./cascade.ty
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCascadePortalComponent implements OnInit, OnDestroy {
-  valueChange$: Subscription | null = null;
-  dataChange$: Subscription | null = null;
-
+export class XCascadePortalComponent implements OnInit {
+  nodes: XCascadeNode[][] = [];
+  datas: XCascadeNode[] = [];
+  selecteds: XCascadeNode[] = [];
   values = [];
 
   constructor(
@@ -32,29 +30,54 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     @Inject(XCascadePortal) public option: any,
     public cdr: ChangeDetectorRef
   ) {
-    this.values = this.option.value.map(x => x.value);
+    this.datas = this.option.datas;
+    if (!XIsEmpty(this.option.value)) {
+      this.setDefault();
+    } else {
+      this.nodes = [this.option.nodes];
+    }
     this.renderer.addClass(this.elementRef.nativeElement, XCascadePortalPrefix);
   }
 
-  ngOnInit(): void {
-    this.dataChange$ = this.option.dataChange.subscribe(x => {
-      this.option.data = x;
-      this.cdr.detectChanges();
-    });
-    this.valueChange$ = this.option.valueChange.subscribe(x => {
-      this.option.value = x;
-      this.values = this.option.value.map(x => x.value);
-      this.cdr.detectChanges();
-    });
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.cdr.checkNoChanges();
   }
 
-  ngOnDestroy(): void {
-    this.dataChange$ && this.dataChange$.unsubscribe();
-    this.valueChange$ && this.valueChange$.unsubscribe();
+  setDefault() {
+    let node = this.datas.find(x => x.value === this.option.value);
+    this.selecteds = [node];
+    this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue)];
+    while (!XIsEmpty(node.parentValue)) {
+      node = this.datas.find(x => x.value === node.parentValue);
+      this.selecteds = [node, ...this.selecteds];
+      this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue), ...this.nodes];
+    }
+    this.values = this.selecteds.map(x => x.value);
   }
 
-  nodeClick(node: XCascadeNode, index: number) {
-    node.level = index;
-    this.option.nodeEmit(node);
+  nodeClick(node: XCascadeNode) {
+    if (node.hasChild) {
+      if (this.nodes.length === node.level) {
+        this.nodes = [...this.nodes, node.children];
+        this.selecteds = [...this.selecteds, node];
+      } else {
+        if (this.nodes.length > node.level + 1) {
+          this.nodes = this.nodes.splice(0, node.level + 1);
+          this.selecteds = this.selecteds.splice(0, node.level + 1);
+        }
+        this.nodes[node.level + 1] = node.children;
+        this.selecteds[node.level] = node;
+      }
+      this.values = this.selecteds.map(x => x.value);
+      this.cdr.detectChanges();
+    } else {
+      if (this.selecteds.length === node.level + 1) {
+        this.selecteds = this.selecteds.splice(0, node.level);
+      }
+      this.selecteds = [...this.selecteds, node];
+      this.option.nodeEmit({ node: node, label: this.selecteds.map(x => x.label).join(` / `) });
+    }
   }
 }

@@ -61,7 +61,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   writeValue(value: any) {
     this.value = value;
-    this.setInputDisplayValue(true);
+    this.setDisplayValue();
     if (this._required) {
       this.required = XIsEmpty(value);
     }
@@ -71,10 +71,9 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
-  inputDisplayValue: any = "";
+  displayValue: any = "";
+  datas: XCascadeNode[] = [];
   nodes: XCascadeNode[] = [];
-  displayNodes: XCascadeNode[][] = [];
-  displayValues: XCascadeNode[] = [];
   portal: XPortalOverlayRef;
   icon: string = "fto-chevron-down";
   box: DOMRect;
@@ -165,17 +164,16 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   private setDataChange(value: XCascadeNode[]) {
-    this.nodes = value;
-    let nodes = this.nodes
-      .filter(x => XIsEmpty(x.parentValue))
-      .map(x => {
-        x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== null;
-        return x;
-      });
-    this.displayNodes = [...this.displayNodes, nodes];
+    this.datas = value;
+    let getChildren = (node: XCascadeNode, level: number) => {
+      node.level = level;
+      node.children = value.filter(y => y.parentValue === node.value);
+      node.hasChild = node.children.length > 0;
+      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
+      return node;
+    };
+    this.nodes = value.filter(x => XIsEmpty(x.parentValue)).map(x => getChildren(x, 0));
     this.setPortal();
-    this.setInputDisplayValue(true);
-    this.cdr.detectChanges();
   }
 
   change(event: Event) {
@@ -204,15 +202,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   clearEmit(event: Event) {
     this.value = "";
-    this.displayValues = [];
-    this.nodes
-      .filter(x => x.selected)
-      .forEach(x => {
-        x.selected = false;
-      });
-    if (this.displayNodes.length > 0) {
-      this.displayNodes = [this.displayNodes[0]];
-    }
+    this.displayValue = "";
     this.mleave();
     if (this.onChange) this.onChange(this.value);
   }
@@ -224,10 +214,9 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
-          data: this.displayNodes,
-          dataChange: this.dataChange,
-          value: this.displayValues,
-          valueChange: this.valueChange,
+          datas: this.datas,
+          nodes: this.nodes,
+          value: this.value,
           nodeEmit: node => this.nodeClick(node)
         },
         XCascadePortal
@@ -245,90 +234,26 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     this.addListen();
   }
 
-  nodeClick(node: XCascadeNode) {
-    if (node.disabled) return;
-    let setDisplayNodes = (nodes: XCascadeNode[]) => {
-      if (this.displayNodes.length > node.level + 1) {
-        this.displayNodes[node.level + 1] = nodes;
-        this.displayNodes = this.displayNodes.slice(0, node.level + 2);
-      } else {
-        this.displayNodes = [...this.displayNodes, nodes];
-      }
-    };
-    let setDisplayValues = () => {
-      if (this.displayValues.length > node.level) {
-        this.displayValues[node.level].selected = false;
-        this.displayValues[node.level] = node;
-      } else {
-        this.displayValues = [...this.displayValues, node];
-      }
-    };
-    if (node.hasChild) {
-      let nodes = this.nodes
-        .filter(x => x.parentValue === node.value)
-        .map(x => {
-          x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== undefined;
-          return x;
-        });
-      setDisplayNodes(nodes);
-      setDisplayValues();
-      this.dataChange.next(this.displayNodes);
-      this.valueChange.next(this.displayValues);
-      // this.setInputDisplayValue();
-    } else {
-      setDisplayValues();
-      this.valueChange.next(this.displayValues);
-      this.setInputDisplayValue();
-      this.value = node.value;
-      console.log(this.inputDisplayValue);
-      if (this.onChange) this.onChange(this.value);
-      if (this.portal) this.portal.overlayRef.detach();
-    }
-    this.nodeEmit.emit(node);
+  nodeClick(selected: { node: XCascadeNode; label: string }) {
+    this.value = selected.node.value;
+    this.displayValue = selected.label;
+    if (this.portal) this.portal.overlayRef.detach();
+    if (this.onChange) this.onChange(this.value);
+    this.nodeEmit.emit(selected);
   }
 
-  setInputDisplayValue(needNodes = false) {
-    if (XIsEmpty(this.value)) {
-      this.inputDisplayValue = "";
-      this.displayValues = [];
-      let nodes = this.nodes
-        .filter(x => XIsEmpty(x.parentValue))
-        .map(x => {
-          x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== null;
-          return x;
-        });
-      this.displayNodes = [nodes];
-      this.dataChange.next(this.displayNodes);
-      this.valueChange.next(this.displayValues);
+  setDisplayValue() {
+    let node = this.datas.find(x => x.value === this.value);
+    if (!node) {
+      this.displayValue = "";
       return;
     }
-    if (needNodes) {
-      let node = this.nodes.find(x => x.value === this.value);
-      if (XIsEmpty(node)) return;
-      node.selected = true;
-      this.displayValues = [node];
-      let nodes = [];
-      while (!XIsEmpty(node.parentValue)) {
-        let parentNode = this.nodes.find(x => x.value === node.parentValue);
-        parentNode.selected = true;
-        nodes = [
-          this.nodes
-            .filter(x => x.parentValue === node.parentValue)
-            .map(x => {
-              x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== undefined;
-              return x;
-            }),
-          ...nodes
-        ];
-        this.displayValues = [parentNode, ...this.displayValues];
-        node = parentNode;
-      }
-      this.displayNodes = [this.displayNodes[0], ...nodes];
+    let selecteds = [node];
+    while (!XIsEmpty(node.parentValue)) {
+      node = this.datas.find(x => x.value === node.parentValue);
+      selecteds = [node, ...selecteds];
     }
-    this.inputDisplayValue = "";
-    this.displayValues.forEach((x, index) => {
-      this.inputDisplayValue += `${index > 0 ? " / " : ""}${x.label}`;
-    });
+    this.displayValue = selecteds.map(x => x.label).join(` / `);
   }
 
   setPositionStrategy() {

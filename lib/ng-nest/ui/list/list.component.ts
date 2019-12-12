@@ -20,7 +20,6 @@ import {
   XValueAccessor,
   XControlValueAccessor,
   XInputNumber,
-  XIsEmpty,
   XIsObservable,
   XDataConvert,
   XToDataConvert
@@ -93,7 +92,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   }
 
   setSelected() {
-    if (!XIsEmpty(this.value) && this.nodes.length > 0) {
+    if (this.nodes.length > 0) {
       let valArry = [];
       if (this.value instanceof Array) {
         valArry = this.value;
@@ -111,7 +110,6 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
           x.selected = true;
           return x;
         });
-      console.log(this.nodes);
     }
   }
 

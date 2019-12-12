@@ -16,6 +16,8 @@ export interface XParentIdentityInput extends XIdentityInput {
   level?: number;
   // 有子节点
   hasChild?: boolean;
+  // 子节点
+  children?: XParentIdentityInput[];
   // 选中
   selected?: boolean;
   // 禁用

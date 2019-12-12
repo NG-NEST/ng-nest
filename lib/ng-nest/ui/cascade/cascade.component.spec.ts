@@ -152,7 +152,7 @@ class TestXCascadeComponent {
     });
   }
   change(val) {
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 }
 

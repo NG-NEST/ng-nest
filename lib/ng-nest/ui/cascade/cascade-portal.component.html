@@ -1,6 +1,1 @@
-<x-list
-  *ngFor="let nodes of option.data; index as i"
-  [data]="nodes"
-  [(ngModel)]="values"
-  (nodeEmit)="nodeClick($event, i)"
-></x-list>
+<x-list *ngFor="let list of nodes" [data]="list" [(ngModel)]="values" (nodeEmit)="nodeClick($event)"></x-list>
