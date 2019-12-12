@@ -35,6 +35,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.valueChange$ = this.option.valueChange.subscribe(x => {
       this.option.value = x;
+      this.cdr.detectChanges();
     });
   }
 

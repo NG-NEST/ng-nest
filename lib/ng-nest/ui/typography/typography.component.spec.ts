@@ -42,7 +42,7 @@ describe(XTypographyPrefix, () => {
         <x-col span="24">
           <table>
             <tr>
-              <th width="100">层级</th>
+              <th width="120">层级</th>
               <th>字体大小</th>
             </tr>
             <tr [style.font-size.rem]="0.75">

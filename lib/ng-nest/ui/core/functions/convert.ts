@@ -1,16 +1,14 @@
 import { coerceBooleanProperty, _isNumberValue } from "@angular/cdk/coercion";
-import { XIdentityInput } from "../interfaces/identify.type";
 import {
+  XIdentityInput,
   XData,
   XIsNull,
-  XIsValueArray,
-  XIsObjectArray,
   XIsUndefined,
   XIsObservable,
   XIsArray,
   XIsValue,
   XIsObject
-} from "../interfaces/data.type";
+} from "../interfaces";
 
 function toBoolean(value: boolean): boolean {
   return coerceBooleanProperty(value);

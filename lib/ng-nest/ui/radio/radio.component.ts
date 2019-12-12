@@ -1,4 +1,3 @@
-import { XIsObservable } from "./../core/interfaces/data.type";
 import {
   Component,
   OnInit,
@@ -20,6 +19,7 @@ import {
   XControlValueAccessor,
   XInputBoolean,
   XDataConvert,
+  XIsObservable,
   XToDataConvert
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";

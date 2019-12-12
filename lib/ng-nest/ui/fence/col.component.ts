@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import { XColPrefix } from "./fence.type";
 import { XRowComponent } from "./row.component";
-import { XInputNumber } from "../core";
+import { XInputNumber } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XColPrefix}`,

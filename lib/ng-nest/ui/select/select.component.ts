@@ -1,4 +1,3 @@
-import { XIsObservable } from "./../core/interfaces/data.type";
 import { Subscription, Subject, Observable } from "rxjs";
 import {
   Component,
@@ -29,7 +28,8 @@ import {
   XIsEmpty,
   XInputBoolean,
   XDataConvert,
-  XToDataConvert
+  XToDataConvert,
+  XIsObservable
 } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
 import { XInputComponent } from "@ng-nest/ui/input";
@@ -54,7 +54,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   @Input() placeholder: string = "";
   @Input() @XInputBoolean() async?: boolean;
   @Input() @XInputBoolean() required?: boolean;
-  @ViewChild("portalTpl", { static: true }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
   writeValue(value: any) {
@@ -199,6 +198,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.value = "";
     this.displayValue = "";
     this.mleave();
+    if (this.onChange) this.onChange(this.value);
   }
 
   setDisplayValue() {

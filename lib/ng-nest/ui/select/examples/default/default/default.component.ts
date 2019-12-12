@@ -6,25 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./default.component.scss"]
 })
 export class ExDefaultComponent implements OnInit {
-  data = [
-    { key: 1, label: "QQ" },
-    { key: 2, label: "微信" },
-    { key: 3, label: "钉钉" },
-    { key: 4, label: "微博" }
-  ];
-  data2 = [
-    { key: 1, label: "AA" },
-    { key: 2, label: "BB" },
-    { key: 3, label: "CC" },
-    { key: 4, label: "DD" },
-    { key: 5, label: "EE" },
-    { key: 6, label: "FF" },
-    { key: 7, label: "GG" },
-    { key: 8, label: "HH" },
-    { key: 9, label: "II" },
-    { key: 10, label: "JJ" }
-  ];
-  model = 2;
+  data1 = ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ"];
+  data2 = JSON.parse(JSON.stringify(this.data1));
+  model1: any;
+  model2: any = "CCCC";
   constructor() {}
 
   ngOnInit() {}

@@ -1,7 +1,7 @@
 import { Observable, BehaviorSubject, isObservable } from "rxjs";
 
 // 数据类型
-export type XData<T> = T | BehaviorSubject<T> | Observable<T> | Array<any>;
+export type XData<T> = T | BehaviorSubject<T> | Observable<T> | any;
 
 // 类型判断
 export const XIsType = (type: string) => (object: any) => Object.prototype.toString.call(object) === `[object ${type}]`;

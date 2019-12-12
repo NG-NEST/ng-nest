@@ -106,7 +106,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
           x.selected = false;
         });
       this.selectedNodes = this.nodes
-        .filter(x => valArry.includes(x.value))
+        .filter(x => valArry.indexOf(x.value) > -1)
         .map(x => {
           x.selected = true;
           return x;

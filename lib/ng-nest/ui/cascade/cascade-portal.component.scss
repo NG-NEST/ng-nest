@@ -1,0 +1,10 @@
+// Cascade-Portal
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-cascade-portal-prefix} {
+  @include reset-component();
+  @include cascade-portal();
+}

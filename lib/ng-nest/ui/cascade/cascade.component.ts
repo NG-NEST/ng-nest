@@ -1,5 +1,6 @@
+import { XCascadePortalComponent } from "./cascade-portal.component";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, Subject } from "rxjs";
 import {
   Component,
   OnInit,
@@ -14,13 +15,12 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  TemplateRef,
   Inject,
   Output,
   EventEmitter,
   NgZone
 } from "@angular/core";
-import { XCascadePrefix, XCascadeInput, XCascadeNode } from "./cascade.type";
+import { XCascadePrefix, XCascadeInput, XCascadeNode, XCascadePortal } from "./cascade.type";
 import {
   fillDefault,
   XValueAccessor,
@@ -30,37 +30,37 @@ import {
   XDirection,
   XData,
   XIsEmpty,
-  XInputBoolean
+  XInputBoolean,
+  XDataConvert,
+  XIsObservable,
+  XToDataConvert
 } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "x-cascade",
   templateUrl: "./cascade.component.html",
-  styleUrls: ["./style/index.scss"],
+  styleUrls: ["./cascade.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCascadeComponent)]
 })
 export class XCascadeComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() data?: XData<XCascadeNode[]>;
+  @Input() @XDataConvert() data?: XData<XCascadeNode[]>;
   @Input() justify?: XJustify;
   @Input() align?: XAlign;
   @Input() direction?: XDirection;
   @Input() label: string = "";
   @Input() placeholder: string = "";
   @Input() @XInputBoolean() required?: boolean;
-  @ViewChild("portalTpl", { static: false }) portalTpl: TemplateRef<any>;
+  // @ViewChild("portalTpl", { static: false }) portalTpl: TemplateRef<any>;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<XCascadeNode> = new EventEmitter<XCascadeNode>();
 
-  private _value: any = "";
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    this._value = value;
+  writeValue(value: any) {
+    this.value = value;
     this.setInputDisplayValue(true);
     if (this._required) {
       this.required = XIsEmpty(value);
@@ -86,6 +86,8 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   private _default: XCascadeInput = {};
   private _required: boolean = false;
   private data$: Subscription | null = null;
+  valueChange: Subject<any> = new Subject();
+  dataChange: Subject<any> = new Subject();
 
   @HostBinding(`class.x-disabled`) get getDisabled() {
     return this.disabled;
@@ -101,7 +103,6 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   constructor(
     private renderer: Renderer2,
-    private ngZone: NgZone,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
@@ -153,22 +154,22 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   private setData() {
     if (typeof this.data === "undefined") return;
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
-    } else {
+    if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
-      this.data$ = this.data.subscribe(x => {
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
         this.setDataChange(x);
       });
+    } else {
+      this.setDataChange(this.data as XCascadeNode[]);
     }
   }
 
   private setDataChange(value: XCascadeNode[]) {
-    this.nodes = JSON.parse(JSON.stringify(value));
+    this.nodes = value;
     let nodes = this.nodes
-      .filter(x => XIsEmpty(x.parentKey))
+      .filter(x => XIsEmpty(x.parentValue))
       .map(x => {
-        x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== null;
+        x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== null;
         return x;
       });
     this.displayNodes = [...this.displayNodes, nodes];
@@ -213,17 +214,26 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
       this.displayNodes = [this.displayNodes[0]];
     }
     this.mleave();
+    if (this.onChange) this.onChange(this.value);
   }
 
   showPortal() {
     if (this.disabled) return;
     this.portal = this.portalService.create({
-      content: this.portalTpl,
+      content: XCascadePortalComponent,
       viewContainerRef: this.viewContainerRef,
-      context: { list: this.displayNodes },
+      injector: this.portalService.createInjector(
+        {
+          data: this.displayNodes,
+          dataChange: this.dataChange,
+          value: this.displayValues,
+          valueChange: this.valueChange,
+          nodeEmit: node => this.nodeClick(node)
+        },
+        XCascadePortal
+      ),
       overlayConfig: {
         hasBackdrop: true,
-        panelClass: "x-cascade-portal",
         backdropClass: "",
         positionStrategy: this.setPositionStrategy()
       }
@@ -235,42 +245,42 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     this.addListen();
   }
 
-  nodeClick(event: Event, node: XCascadeNode, index: number) {
-    event.preventDefault();
-    if (node.disabled || node.selected) return;
-    node.selected = true;
+  nodeClick(node: XCascadeNode) {
+    if (node.disabled) return;
     let setDisplayNodes = (nodes: XCascadeNode[]) => {
-      if (this.displayNodes.length > index + 1) {
-        this.displayNodes[index + 1] = nodes;
-        this.displayNodes = this.displayNodes.slice(0, index + 2);
+      if (this.displayNodes.length > node.level + 1) {
+        this.displayNodes[node.level + 1] = nodes;
+        this.displayNodes = this.displayNodes.slice(0, node.level + 2);
       } else {
         this.displayNodes = [...this.displayNodes, nodes];
       }
     };
     let setDisplayValues = () => {
-      if (this.displayValues.length > index) {
-        this.displayValues[index].selected = false;
-        this.displayValues[index] = node;
+      if (this.displayValues.length > node.level) {
+        this.displayValues[node.level].selected = false;
+        this.displayValues[node.level] = node;
       } else {
         this.displayValues = [...this.displayValues, node];
       }
     };
     if (node.hasChild) {
       let nodes = this.nodes
-        .filter(x => x.parentKey === node.key)
+        .filter(x => x.parentValue === node.value)
         .map(x => {
-          x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== undefined;
+          x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== undefined;
           return x;
         });
       setDisplayNodes(nodes);
       setDisplayValues();
-      this.ngZone.run(() => {
-        this.cdr.detectChanges();
-      });
+      this.dataChange.next(this.displayNodes);
+      this.valueChange.next(this.displayValues);
+      // this.setInputDisplayValue();
     } else {
       setDisplayValues();
+      this.valueChange.next(this.displayValues);
       this.setInputDisplayValue();
-      this.value = node.key;
+      this.value = node.value;
+      console.log(this.inputDisplayValue);
       if (this.onChange) this.onChange(this.value);
       if (this.portal) this.portal.overlayRef.detach();
     }
@@ -278,21 +288,34 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   setInputDisplayValue(needNodes = false) {
-    if (XIsEmpty(this.value)) return;
+    if (XIsEmpty(this.value)) {
+      this.inputDisplayValue = "";
+      this.displayValues = [];
+      let nodes = this.nodes
+        .filter(x => XIsEmpty(x.parentValue))
+        .map(x => {
+          x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== null;
+          return x;
+        });
+      this.displayNodes = [nodes];
+      this.dataChange.next(this.displayNodes);
+      this.valueChange.next(this.displayValues);
+      return;
+    }
     if (needNodes) {
-      let node = this.nodes.find(x => x.key === this.value);
+      let node = this.nodes.find(x => x.value === this.value);
       if (XIsEmpty(node)) return;
       node.selected = true;
       this.displayValues = [node];
       let nodes = [];
-      while (!XIsEmpty(node.parentKey)) {
-        let parentNode = this.nodes.find(x => x.key === node.parentKey);
+      while (!XIsEmpty(node.parentValue)) {
+        let parentNode = this.nodes.find(x => x.value === node.parentValue);
         parentNode.selected = true;
         nodes = [
           this.nodes
-            .filter(x => x.parentKey === node.parentKey)
+            .filter(x => x.parentValue === node.parentValue)
             .map(x => {
-              x.hasChild = this.nodes.find(y => y.parentKey === x.key) !== undefined;
+              x.hasChild = this.nodes.find(y => y.parentValue === x.value) !== undefined;
               return x;
             }),
           ...nodes
@@ -302,7 +325,6 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
       }
       this.displayNodes = [this.displayNodes[0], ...nodes];
     }
-
     this.inputDisplayValue = "";
     this.displayValues.forEach((x, index) => {
       this.inputDisplayValue += `${index > 0 ? " / " : ""}${x.label}`;

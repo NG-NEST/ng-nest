@@ -64,51 +64,12 @@
   }
 }
 
-@mixin portal {
+@mixin cascade-portal {
   font-size: $--x-cascade-font-size;
   color: $--x-text;
   border: $--x-cascade-border;
   border-radius: 0.125rem;
   box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   background-color: $--x-white;
-  > ul {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    max-width: 10rem;
-    min-width: 7rem;
-    max-height: $--x-cascade-height * 6;
-    cursor: pointer;
-    > li {
-      padding: 0 0.4rem;
-      height: $--x-cascade-height;
-      line-height: $--x-cascade-height;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      > span {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      > x-icon {
-        right: 0;
-        margin-left: 0.4rem;
-        color: $--x-text-400;
-      }
-      &:hover {
-        background-color: $--x-background;
-      }
-      &.x-selected {
-        color: $--x-primary;
-        background-color: $--x-primary-900;
-        > x-icon {
-          color: $--x-primary;
-        }
-      }
-    }
-    &:not(:first-child) {
-      border-left: $--x-cascade-border;
-    }
-  }
+  display: flex;
 }

@@ -8,8 +8,6 @@ import { InjectionToken } from "@angular/core";
  */
 export const XSelectPrefix = "x-select";
 
-export const XSelectPortal = new InjectionToken<{}>("x-select-portal");
-
 /**
  * Select @Input
  */
@@ -26,6 +24,8 @@ export interface XSelectNode extends XParentIdentityInput {}
  * @decorator component
  */
 export const XSelectPortalPrefix = "x-select-portal";
+
+export const XSelectPortal = new InjectionToken<{}>("x-select-portal");
 
 /**
  * Select-Portal @Input

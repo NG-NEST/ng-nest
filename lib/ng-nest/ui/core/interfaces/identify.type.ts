@@ -11,7 +11,9 @@ export interface XIdentityInput {
 // 父节点标识对象
 export interface XParentIdentityInput extends XIdentityInput {
   // 编码
-  parentKey?: any;
+  parentValue?: any;
+  // 层级
+  level?: number;
   // 有子节点
   hasChild?: boolean;
   // 选中

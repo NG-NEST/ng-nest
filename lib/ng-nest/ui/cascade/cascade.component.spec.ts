@@ -72,59 +72,59 @@ describe(XCascadePrefix, () => {
 });
 
 const data: XCascadeNode[] = [
-  { key: 1, label: "AAAA" },
-  { key: 2, label: "BBBB" },
-  { key: 3, label: "CCCC" },
-  { key: 4, label: "DDDD" },
-  { key: 5, label: "AAAA-1", parentKey: 1 },
-  { key: 6, label: "AAAA-2", parentKey: 1 },
-  { key: 7, label: "AAAA-3", parentKey: 1 },
-  { key: 8, label: "AAAA-4", parentKey: 1 },
-  { key: 9, label: "BBBB-1", parentKey: 2 },
-  { key: 10, label: "BBBB-2", parentKey: 2 },
-  { key: 11, label: "BBBB-3", parentKey: 2 },
-  { key: 12, label: "BBBB-4", parentKey: 2 },
-  { key: 13, label: "CCCC-1", parentKey: 3 },
-  { key: 14, label: "CCCC-2", parentKey: 3 },
-  { key: 15, label: "CCCC-3", parentKey: 3 },
-  { key: 16, label: "CCCC-4", parentKey: 3 },
-  { key: 17, label: "DDDD-1", parentKey: 4 },
-  { key: 18, label: "DDDD-2", parentKey: 4 },
-  { key: 19, label: "DDDD-3", parentKey: 4 },
-  { key: 20, label: "DDDD-4", parentKey: 4 },
-  { key: 21, label: "AAAA-1-1", parentKey: 5 },
-  { key: 22, label: "AAAA-1-2", parentKey: 5 },
-  { key: 23, label: "AAAA-1-3", parentKey: 5 },
-  { key: 24, label: "AAAA-1-4", parentKey: 5 },
-  { key: 25, label: "AAAA-2-1", parentKey: 6 },
-  { key: 26, label: "AAAA-2-2", parentKey: 6 },
-  { key: 27, label: "AAAA-2-3", parentKey: 6 },
-  { key: 28, label: "AAAA-2-4", parentKey: 6 },
-  { key: 29, label: "AAAA-3-1", parentKey: 7 },
-  { key: 30, label: "AAAA-3-2", parentKey: 7 },
-  { key: 31, label: "AAAA-3-3", parentKey: 7 },
-  { key: 32, label: "AAAA-3-4", parentKey: 7 },
-  { key: 33, label: "AAAA-4-1", parentKey: 8 },
-  { key: 34, label: "AAAA-4-2", parentKey: 8 },
-  { key: 35, label: "AAAA-4-3", parentKey: 8 },
-  { key: 36, label: "AAAA-4-4", parentKey: 8 }
+  { value: 1, label: "AAAA" },
+  { value: 2, label: "BBBB" },
+  { value: 3, label: "CCCC" },
+  { value: 4, label: "DDDD" },
+  { value: 5, label: "AAAA-1", parentValue: 1 },
+  { value: 6, label: "AAAA-2", parentValue: 1 },
+  { value: 7, label: "AAAA-3", parentValue: 1 },
+  { value: 8, label: "AAAA-4", parentValue: 1 },
+  { value: 9, label: "BBBB-1", parentValue: 2 },
+  { value: 10, label: "BBBB-2", parentValue: 2 },
+  { value: 11, label: "BBBB-3", parentValue: 2 },
+  { value: 12, label: "BBBB-4", parentValue: 2 },
+  { value: 13, label: "CCCC-1", parentValue: 3 },
+  { value: 14, label: "CCCC-2", parentValue: 3 },
+  { value: 15, label: "CCCC-3", parentValue: 3 },
+  { value: 16, label: "CCCC-4", parentValue: 3 },
+  { value: 17, label: "DDDD-1", parentValue: 4 },
+  { value: 18, label: "DDDD-2", parentValue: 4 },
+  { value: 19, label: "DDDD-3", parentValue: 4 },
+  { value: 20, label: "DDDD-4", parentValue: 4 },
+  { value: 21, label: "AAAA-1-1", parentValue: 5 },
+  { value: 22, label: "AAAA-1-2", parentValue: 5 },
+  { value: 23, label: "AAAA-1-3", parentValue: 5 },
+  { value: 24, label: "AAAA-1-4", parentValue: 5 },
+  { value: 25, label: "AAAA-2-1", parentValue: 6 },
+  { value: 26, label: "AAAA-2-2", parentValue: 6 },
+  { value: 27, label: "AAAA-2-3", parentValue: 6 },
+  { value: 28, label: "AAAA-2-4", parentValue: 6 },
+  { value: 29, label: "AAAA-3-1", parentValue: 7 },
+  { value: 30, label: "AAAA-3-2", parentValue: 7 },
+  { value: 31, label: "AAAA-3-3", parentValue: 7 },
+  { value: 32, label: "AAAA-3-4", parentValue: 7 },
+  { value: 33, label: "AAAA-4-1", parentValue: 8 },
+  { value: 34, label: "AAAA-4-2", parentValue: 8 },
+  { value: 35, label: "AAAA-4-3", parentValue: 8 },
+  { value: 36, label: "AAAA-4-4", parentValue: 8 }
 ];
 
 @Component({
   template: `
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model1" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data1" [(ngModel)]="model1" (nodeEmit)="change($event)"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model2" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data2" [(ngModel)]="model2" (nodeEmit)="change($event)"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model3" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data3" [(ngModel)]="model3" (nodeEmit)="change($event)"></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -140,17 +140,19 @@ const data: XCascadeNode[] = [
   ]
 })
 class TestXCascadeComponent {
-  data = data;
+  data1 = JSON.parse(JSON.stringify(data));
+  data2 = JSON.parse(JSON.stringify(data));
+  data3 = JSON.parse(JSON.stringify(data));
   model1: any;
   model2 = 22;
   model3 = 10;
   constructor(private cdr: ChangeDetectorRef) {
-    // interval(500).subscribe(x => {
-    //   this.cdr.detectChanges();
-    // });
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
   change(val) {
-    // this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
 }
 

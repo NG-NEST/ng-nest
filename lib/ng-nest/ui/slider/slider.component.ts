@@ -22,8 +22,9 @@ import {
   XSliderLayoutType,
   XSliderBorderPositionType
 } from "./slider.type";
-import { fillDefault, XData } from "@ng-nest/ui/core";
-import { Subscription } from "rxjs";
+import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert } from "@ng-nest/ui/core";
+import { Subscription, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "x-slider",
@@ -33,7 +34,7 @@ import { Subscription } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSliderComponent implements OnInit, OnChanges {
-  @Input() data?: XData<XSliderNode[]>;
+  @Input() @XDataConvert() data?: XData<XSliderNode[]>;
   @Input() layout?: XSliderLayoutType;
   @Input() borderPosition?: XSliderBorderPositionType;
   @Input() nodeTemplate?: any;
@@ -67,7 +68,7 @@ export class XSliderComponent implements OnInit, OnChanges {
   @ViewChild("highlight", { static: true }) highlightRef: ElementRef;
   sliderNodes: XSliderNode[] = [];
 
-  private _data$: Subscription | null = null;
+  private data$: Subscription | null = null;
 
   @HostBinding(`class.x-slider-row`)
   get getLayoutRow() {
@@ -167,17 +168,18 @@ export class XSliderComponent implements OnInit, OnChanges {
   }
 
   private removeListen() {
-    if (this._data$) this._data$.unsubscribe();
+    if (this.data$) this.data$.unsubscribe();
   }
 
   private setData() {
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
-    } else {
-      if (this._data$) this._data$.unsubscribe();
-      this._data$ = this.data.subscribe(x => {
+    if (typeof this.data === "undefined") return;
+    if (XIsObservable(this.data)) {
+      this.data$ && this.data$.unsubscribe();
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
         this.setDataChange(x);
       });
+    } else {
+      this.setDataChange(this.data as XSliderNode[]);
     }
   }
 
