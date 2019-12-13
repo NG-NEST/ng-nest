@@ -63,7 +63,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   radioNodes: XRadioNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super();
+    super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
   }
 

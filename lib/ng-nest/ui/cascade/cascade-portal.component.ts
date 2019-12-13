@@ -41,10 +41,6 @@ export class XCascadePortalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    this.cdr.checkNoChanges();
-  }
-
   setDefault() {
     let node = this.datas.find(x => x.value === this.option.value);
     this.selecteds = [node];

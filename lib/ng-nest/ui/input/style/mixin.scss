@@ -11,6 +11,7 @@
   @include flex();
   > label {
     display: inline-block;
+    white-space: nowrap;
     height: $--x-input-height;
     line-height: $--x-input-height;
   }
@@ -48,7 +49,7 @@
       transition: all $animation-duration-fast;
     }
   }
-  &.#{$--x-prefix}-required {
+  &.x-required {
     > label {
       color: $--x-danger;
     }
@@ -68,7 +69,7 @@
       }
     }
   }
-  &.#{$--x-prefix}-disabled {
+  &.x-disabled {
     > .#{$--x-input-prefix}-row {
       > #{$--x-prefix}-icon {
         color: $--x-text-300;
@@ -81,7 +82,7 @@
       }
     }
   }
-  &.#{$--x-prefix}-clearable {
+  &.x-clearable {
     > .#{$--x-input-prefix}-row {
       > .#{$--x-input-prefix}-clear {
         position: absolute;
@@ -121,24 +122,24 @@
     padding: $--x-input-padding;
     right: 0;
   }
-  &-flex {
+  &.x-flex {
     align-items: center;
-  }
-  &-direction-row {
-    > label {
-      margin: 0 0.5rem 0 0;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
     }
-  }
-  &-direction-row-reverse {
-    > label {
-      margin: 0 0 0 0.5rem;
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
     }
-  }
-  &-direction-column {
-    align-items: inherit;
-  }
-  &-direction-column-reverse {
-    align-items: inherit;
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
   }
   &-icon {
     > .#{$--x-input-prefix}-row {

@@ -101,14 +101,14 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   constructor(
-    private renderer: Renderer2,
+    public renderer: Renderer2,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private doc: any
   ) {
-    super();
+    super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XCascadePrefix);
   }
 

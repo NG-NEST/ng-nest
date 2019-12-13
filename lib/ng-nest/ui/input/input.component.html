@@ -1,19 +1,33 @@
-<label *ngIf="label">{{ label }}</label>
-<div class="x-input-row">
-  <input
-    #inputEleRef
-    [type]="type"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [maxlength]="maxlength"
-    [ngModel]="value"
-    (ngModelChange)="change($event)"
-    [style.padding-left.rem]="paddingLeft"
-    [style.padding-right.rem]="paddingRight"
-  />
-  <x-icon class="x-input-clear" type="fto-x" (click)="clear($event)" *ngIf="clearShow"></x-icon>
-  <x-icon *ngIf="icon" [type]="icon" [spin]="iconSpin"></x-icon>
-  <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
+<div
+  #input
+  class="x-input"
+  [class.x-flex]="justify || align || direction"
+  [class.x-checked]="value"
+  [class.x-disabled]="disabled"
+  [class.x-required]="required"
+  [class.x-clearable]="clearable"
+  [class.x-clear-show]="clearShow"
+  [class.x-input-icon]="getIcon"
+  [class.x-input-icon-left]="getIconLayoutLeft"
+  [class.x-input-icon-right]="getIconLayoutRight"
+>
+  <label *ngIf="label">{{ label }}</label>
+  <div class="x-input-row">
+    <input
+      #inputEleRef
+      [type]="type"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [maxlength]="maxlength"
+      [(ngModel)]="value"
+      (ngModelChange)="change($event)"
+      [style.padding-left.rem]="paddingLeft"
+      [style.padding-right.rem]="paddingRight"
+    />
+    <x-icon class="x-input-clear" type="fto-x" (click)="clear($event)" *ngIf="clearShow"></x-icon>
+    <x-icon *ngIf="icon" [type]="icon" [spin]="iconSpin"></x-icon>
+    <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
+  </div>
 </div>

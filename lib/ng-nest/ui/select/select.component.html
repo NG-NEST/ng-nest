@@ -1,18 +1,28 @@
-<label *ngIf="label">{{ label }}</label>
-<div class="x-select-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
-  <x-input
-    #inputCom
-    type="text"
-    iconLayout="right"
-    [icon]="icon"
-    [iconSpin]="iconSpin"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [clearable]="clearable"
-    [ngModel]="displayValue"
-    (ngModelChange)="change($event)"
-    (clearEmit)="clearEmit($event)"
-  ></x-input>
+<div
+  #select
+  class="x-select"
+  [class.x-flex]="justify || align || direction"
+  [class.x-checked]="value"
+  [class.x-disabled]="disabled"
+  [class.x-required]="required"
+  [class.x-required-show]="getRequired"
+>
+  <label *ngIf="label">{{ label }}</label>
+  <div class="x-select-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+    <x-input
+      #inputCom
+      type="text"
+      iconLayout="right"
+      [icon]="icon"
+      [iconSpin]="iconSpin"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [clearable]="clearable"
+      [(ngModel)]="displayValue"
+      (ngModelChange)="change($event)"
+      (clearEmit)="clearEmit($event)"
+    ></x-input>
+  </div>
 </div>

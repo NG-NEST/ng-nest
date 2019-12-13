@@ -1,0 +1,93 @@
+// Switch
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin switch {
+  font-size: $--x-switch-font-size;
+  color: $--x-text;
+  display: inline-flex;
+  @include flex();
+  > label {
+    display: inline-block;
+    white-space: nowrap;
+    height: $--x-switch-height;
+    line-height: $--x-switch-height;
+    margin-right: 0.5rem;
+  }
+  > .#{$--x-switch-prefix}-row {
+    position: relative;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    width: $--x-switch-height * 2;
+    height: $--x-switch-height;
+    border: $--x-border-width solid $--x-info;
+    border-radius: $--x-switch-height;
+    background-color: $--x-info;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    &::after {
+      position: absolute;
+      box-shadow: 0 $--x-border-width * 2 $--x-border-width * 4 0 rgba(0, 35, 11, 0.2);
+      width: $--x-switch-height - $--x-border-width * 4;
+      height: $--x-switch-height - $--x-border-width * 4;
+      margin: 0 $--x-border-width * 2;
+      background-color: #fff;
+      border-radius: $--x-switch-height - $--x-border-width * 4;
+      cursor: pointer;
+      left: 0;
+      transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+      content: " ";
+    }
+  }
+  &.x-checked {
+    > .#{$--x-switch-prefix}-row {
+      background-color: $--x-primary;
+      border-color: $--x-primary;
+      &::after {
+        left: ($--x-switch-height - $--x-border-width * 2);
+      }
+    }
+  }
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-switch-prefix}-row {
+      cursor: not-allowed;
+      background-color: $--x-info-500;
+      border-color: $--x-info-500;
+    }
+    &.x-checked {
+      > .#{$--x-switch-prefix}-row {
+        background-color: $--x-primary-500;
+        border-color: $--x-primary-500;
+      }
+    }
+  }
+  &.x-flex {
+    align-items: center;
+    display: inline-flex;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
+  }
+}

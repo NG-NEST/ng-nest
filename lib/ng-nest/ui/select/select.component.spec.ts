@@ -118,8 +118,8 @@ class TestXSelectComponent {
   data1 = data;
   data2 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2: any = 3;
-  constructor(private cdr: ChangeDetectorRef) {
+  model2: any = "BBBB";
+  constructor(public cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();
     });
@@ -130,40 +130,22 @@ class TestXSelectComponent {
   template: `
     <x-row>
       <x-col>
-        <x-select label="方式" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)"></x-select>
+        <x-select label="方式" [data]="data" [(ngModel)]="model"></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="change($event)"
-          direction="column-reverse"
-        ></x-select>
+        <x-select label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="change($event)"
-          direction="row"
-        ></x-select>
+        <x-select label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="change($event)"
-          direction="row-reverse"
-        ></x-select>
+        <x-select label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-select>
       </x-col>
     </x-row>
   `,
@@ -181,7 +163,7 @@ class TestXSelectComponent {
 class TestXSelectLabelComponent {
   data = data;
   model: any;
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(public cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();
     });
@@ -215,18 +197,23 @@ class TestXSelectLabelComponent {
 class TestXSelectDisabledComponent {
   data = data;
   model = "DDDD";
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
 }
 
 @Component({
   template: `
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model1" (ngModelChange)="change($event)" required></x-select>
+        <x-select [data]="data" [(ngModel)]="model1" required></x-select>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model2" (ngModelChange)="change($event)" label="选择" required></x-select>
+        <x-select [data]="data" [(ngModel)]="model2" label="选择" required></x-select>
       </x-col>
     </x-row>
   `,
@@ -245,9 +232,10 @@ class TestXSelectRequiredComponent {
   data = data;
   model1: any;
   model2: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
 }
 

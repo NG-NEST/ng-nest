@@ -1,5 +1,5 @@
 @mixin flex() {
-  &-flex {
+  &.x-flex {
     display: flex;
   }
   @include flex-justity();
@@ -8,46 +8,52 @@
 }
 
 @mixin flex-justity() {
-  &-justity-start {
-    justify-content: flex-start;
-  }
-  &-justity-center {
-    justify-content: center;
-  }
-  &-justity-end {
-    justify-content: flex-end;
-  }
-  &-justity-space-between {
-    justify-content: space-between;
-  }
-  &-justity-space-around {
-    justify-content: space-around;
+  &.x-flex {
+    &-justity-start {
+      justify-content: flex-start;
+    }
+    &-justity-center {
+      justify-content: center;
+    }
+    &-justity-end {
+      justify-content: flex-end;
+    }
+    &-justity-space-between {
+      justify-content: space-between;
+    }
+    &-justity-space-around {
+      justify-content: space-around;
+    }
   }
 }
 
 @mixin flex-align() {
-  &-align-top {
-    align-items: top;
-  }
-  &-align-center {
-    align-items: center;
-  }
-  &-align-bottom {
-    align-items: bottom;
+  &.x-flex {
+    &-align-top {
+      align-items: top;
+    }
+    &-align-center {
+      align-items: center;
+    }
+    &-align-bottom {
+      align-items: bottom;
+    }
   }
 }
 
 @mixin flex-direction() {
-  &-direction-column {
-    flex-direction: column;
-  }
-  &-direction-column-reverse {
-    flex-direction: column-reverse;
-  }
-  &-direction-row {
-    flex-direction: row;
-  }
-  &-direction-row-reverse {
-    flex-direction: row-reverse;
+  &.x-flex {
+    &-direction-column {
+      flex-direction: column;
+    }
+    &-direction-column-reverse {
+      flex-direction: column-reverse;
+    }
+    &-direction-row {
+      flex-direction: row;
+    }
+    &-direction-row-reverse {
+      flex-direction: row-reverse;
+    }
   }
 }

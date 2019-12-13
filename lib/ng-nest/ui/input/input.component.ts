@@ -7,7 +7,6 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding,
   ViewChild,
   EventEmitter,
   Output,
@@ -20,11 +19,9 @@ import {
   XIsEmpty,
   XValueAccessor,
   XControlValueAccessor,
-  XJustify,
-  XAlign,
-  XDirection,
   XInputBoolean,
-  XInputNumber
+  XInputNumber,
+  removeNgTag
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -36,13 +33,8 @@ import {
   providers: [XValueAccessor(XInputComponent)]
 })
 export class XInputComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() justify?: XJustify;
-  @Input() align?: XAlign;
-  @Input() direction?: XDirection;
-  @Input() label?: string = "";
   @Input() type?: XInputType = "text";
   @Input() placeholder?: string = "";
-  @Input() @XInputBoolean() required?: boolean;
   @Input() @XInputBoolean() clearable?: boolean;
   @Input() @XInputBoolean() readonly?: boolean;
   @Input() icon?: string;
@@ -50,28 +42,12 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XInputBoolean() iconSpin?: boolean;
   @Input() @XInputNumber() maxlength?: number;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild("input", { static: true }) input: ElementRef;
 
-  private _value: any;
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    if (value !== this._value) {
-      this._value = value;
-      this.change(value);
-      this.cdr.detectChanges();
-    }
-  }
-  private _disabled: boolean;
-  public get disabled(): boolean {
-    return this._disabled;
-  }
-  @Input()
-  @XInputBoolean()
-  public set disabled(value: boolean) {
-    if (value !== this._disabled) {
-      this._disabled = value;
-    }
+  writeValue(value: any) {
+    this.value = value;
+    this.change(value);
+    this.cdr.detectChanges();
   }
 
   private _default: XInputInput = {};
@@ -82,52 +58,28 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   paddingRight: number = 0.4;
   clearShow: boolean = false;
 
-  @HostBinding(`class.x-disabled`) get getDisabled() {
-    return this.disabled;
-  }
-
-  @HostBinding(`class.x-required`) get getRequired() {
-    return this.required;
-  }
-
-  @HostBinding(`class.x-clearable`) get getClearable() {
-    return this.clearable;
-  }
-
-  @HostBinding(`class.x-clear-show`) get getClearShow() {
-    return this.clearShow;
-  }
-
-  @HostBinding(`class.x-input-flex`) get getFlex() {
-    return this.justify || this.align || this.direction;
-  }
-
-  @HostBinding(`class.x-input-icon`) get getIcon() {
+  get getIcon() {
     return !XIsEmpty(this.icon);
   }
 
-  @HostBinding(`class.x-input-icon-left`)
   get getIconLayoutLeft() {
     return !XIsEmpty(this.icon) && this.iconLayout === "left";
   }
 
-  @HostBinding(`class.x-input-icon-right`)
   get getIconLayoutRight() {
     return !XIsEmpty(this.icon) && this.iconLayout === "right";
   }
 
-  constructor(private renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XInputPrefix);
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+    super(renderer);
   }
 
   ngOnInit() {
     fillDefault(this, this._default);
     this.setRequired();
     this.setPadding();
-    this.setJustify();
-    this.setAlign();
-    this.setDirection();
+    this.setFlex(this.input.nativeElement, this.justify, this.align, this.direction);
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -138,7 +90,6 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   }
 
   change(value) {
-    this._value = value;
     if (this._required && !this.disabled) {
       this.required = XIsEmpty(value);
     }
@@ -148,6 +99,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
     this.setPadding();
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(value);
   }
 
@@ -156,6 +108,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     event.stopPropagation();
     const clearValue = this.value;
     this.value = "";
+    this.change(this.value);
     this.clearEmit.emit(clearValue);
   }
 
@@ -186,20 +139,5 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
 
   setRequired() {
     this._required = this.required ? true : false;
-  }
-
-  setJustify() {
-    if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputPrefix}-justity-${this.justify}`);
-  }
-
-  setAlign() {
-    if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputPrefix}-align-${this.align}`);
-  }
-
-  setDirection() {
-    if (!this.direction) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputPrefix}-direction-${this.direction}`);
   }
 }

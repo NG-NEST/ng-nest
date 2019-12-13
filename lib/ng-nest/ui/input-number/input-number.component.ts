@@ -80,8 +80,8 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
     this.up(event);
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    super();
+  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+    super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XInputNumberPrefix);
   }
 

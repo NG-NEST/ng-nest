@@ -53,8 +53,8 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   };
   private data$: Subscription | null = null;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    super();
+  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+    super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XListPrefix);
   }
 

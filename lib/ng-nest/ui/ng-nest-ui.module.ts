@@ -19,6 +19,7 @@ import { XInputModule } from "@ng-nest/ui/input";
 import { XInputNumberModule } from "@ng-nest/ui/input-number";
 import { XSelectModule } from "@ng-nest/ui/select";
 import { XCascadeModule } from "@ng-nest/ui/cascade";
+import { XSwitchModule } from "@ng-nest/ui/switch";
 
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
@@ -52,6 +53,7 @@ export * from "@ng-nest/ui/input";
 export * from "@ng-nest/ui/input-number";
 export * from "@ng-nest/ui/select";
 export * from "@ng-nest/ui/cascade";
+export * from "@ng-nest/ui/switch";
 
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
@@ -85,6 +87,7 @@ export * from "@ng-nest/ui/form";
     XInputNumberModule,
     XSelectModule,
     XCascadeModule,
+    XSwitchModule,
 
     XButtonModule,
     XAnchorModule,

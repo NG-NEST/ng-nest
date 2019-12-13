@@ -9,7 +9,7 @@ import { InjectionToken } from "@angular/core";
 export const XCascadePrefix = "x-cascade";
 
 /**
- * Cascade @Cascade
+ * Cascade @Input
  */
 export interface XCascadeInput extends XIdentityInput, XFormProperty {}
 

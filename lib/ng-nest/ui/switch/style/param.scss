@@ -1,0 +1,38 @@
+// Switch style paramters
+
+$--x-switch-prefix: $--x-prefix + "-switch";
+
+/* 字体大小 */
+$--x-switch-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-switch-height: 1.2rem;
+
+/* 内边距 */
+$--x-switch-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-switch-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-switch-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-switch-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-switch-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-switch-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-switch-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-switch-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-switch-icon-padding: $control-padding-horizontal;
+
+$--x-switch-portal-prefix: $--x-prefix + "-switch-portal";

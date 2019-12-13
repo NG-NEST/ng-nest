@@ -64,7 +64,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   checkboxNodes: XCheckboxNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super();
+    super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XCheckboxPrefix);
   }
 
