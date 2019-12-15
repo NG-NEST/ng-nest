@@ -15,7 +15,7 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from "./anchor.type";
-import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber } from "@ng-nest/ui/core";
+import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber, removeNgTag } from "@ng-nest/ui/core";
 import { XSliderNode, XActivatedSlider, XSliderInput } from "@ng-nest/ui/slider";
 import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
 import { throttleTime, distinctUntilChanged } from "rxjs/operators";
@@ -45,6 +45,10 @@ export class XAnchorComponent implements OnInit, OnDestroy {
 
   @Output() indexChange?: EventEmitter<XActivatedAnchor> = new EventEmitter<XActivatedAnchor>();
 
+  @ViewChild("list", { static: false }) list: ElementRef;
+  @ViewChild("content", { static: false }) content: ElementRef;
+  @ViewChild("anchor", { static: true }) anchor: ElementRef;
+
   listFixed: boolean = false;
 
   sliderOption: XSliderInput = {
@@ -69,31 +73,18 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   private _offsetParent: any;
   private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, "font-size"));
   private _top: number = 0;
-  @ViewChild("list", { static: false }) list: ElementRef;
-  @ViewChild("content", { static: false }) content: ElementRef;
-
-  @HostBinding(`class.x-anchor-left`)
-  get getLayoutLeft() {
-    return this.layout === "left";
-  }
-  @HostBinding(`class.x-anchor-right`)
-  get getLayoutRight() {
-    return this.layout === "right";
-  }
 
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) private doc: any
-  ) {
-    this.renderer.addClass(this.elementRef.nativeElement, AnchorPrefix);
-  }
+  ) {}
 
   ngOnInit() {
     fillDefault(this, this._default);
     this._top = this._fontSize * this.top;
-    this.listFixed = this.sliderFixed;
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
@@ -107,12 +98,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   activatedChange(activated: XActivatedSlider) {
     this._isAnimation = true;
     const activatedEle = this._hElements[activated.activatedIndex];
-    // const marginTop = parseFloat(computedStyle(activatedEle, "marginTop"));
-    let top =
-      activatedEle.offsetTop +
-      this.elementRef.nativeElement.offsetTop -
-      // marginTop -
-      this._top;
+    let top = activatedEle.offsetTop + this.anchor.nativeElement.offsetTop - this._top;
     let scrollEle = this._windowScroll ? this.doc.documentElement : (this.scrollElement as HTMLElement);
     let scrollHeight = scrollEle.scrollHeight - scrollEle.clientHeight;
     top = top > scrollHeight ? scrollHeight : top;
@@ -138,6 +124,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     this.setHElements();
     this.setScrollElement();
     this.windowSizeChange();
+    debugger;
     if (this.listFixed) {
       this.setListFixed();
     }
@@ -148,7 +135,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       ":scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5"
     );
     if (this._hElements.length > 0) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${AnchorPrefix}-open`);
+      this.renderer.addClass(this.anchor.nativeElement, `${AnchorPrefix}-open`);
       let list: XAnchorNode[] = [];
       this._hElements.forEach((x: HTMLElement, i: number) => {
         const link = `x-anchor-${i}`;
@@ -218,7 +205,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     if (!this._isAnimation) {
       let now = 0;
       this._hElements.forEach((item, index) => {
-        let distance = scrollTop - this.elementRef.nativeElement.offsetTop;
+        let distance = scrollTop - this.anchor.nativeElement.offsetTop;
         if (!this._windowScroll) distance += (this.scrollElement as HTMLElement).offsetTop;
         if (distance >= item.offsetTop - this._top) {
           now = index;
@@ -241,7 +228,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setFixed(scrollTop) {
-    let eleTop = this.elementRef.nativeElement.offsetTop;
+    let eleTop = this.anchor.nativeElement.offsetTop;
     if (this._windowScroll) {
       return scrollTop >= eleTop;
     } else {
@@ -277,7 +264,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setListFixed() {
-    let fixedLeft = this.elementRef.nativeElement.offsetLeft;
+    let fixedLeft = this.anchor.nativeElement.offsetLeft;
     let anchorLeft = this.getAnchorLeft();
     this.renderer.setStyle(
       this.list.nativeElement,

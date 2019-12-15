@@ -4,11 +4,7 @@ import { XAnchorComponent } from "./anchor.component";
 import { Component, DebugElement, Inject } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XAnchorModule } from "./anchor.module";
-import {
-  AnchorPrefix,
-  XActivatedAnchor,
-  XAnchorLayoutType
-} from "./anchor.type";
+import { AnchorPrefix, XActivatedAnchor, XAnchorLayoutType } from "./anchor.type";
 import { DOCUMENT } from "@angular/common";
 
 describe(AnchorPrefix, () => {
@@ -28,23 +24,17 @@ describe(AnchorPrefix, () => {
     let testComponent: TestXAnchorComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
+    let com: XAnchorComponent;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXAnchorComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XAnchorComponent)
-      );
-      element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
+      debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
+      com = debugElement.componentInstance;
+      element = com.anchor.nativeElement;
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
-    });
-    it("should className.", () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(AnchorPrefix);
     });
     it("should layout left.", () => {
       testComponent.layout = "left";
@@ -58,22 +48,19 @@ describe(AnchorPrefix, () => {
     });
   });
   describe(`element scroll.`, () => {
-    let fixture: ComponentFixture<TestScrollXAnchorComponent>;
-    let testComponent: TestScrollXAnchorComponent;
+    let fixture: ComponentFixture<TestXAnchorComponent>;
+    let testComponent: TestXAnchorComponent;
     let debugElement: DebugElement;
     let element: Element;
-    let shadowRoot: DocumentFragment;
-    let anchorComponent: XAnchorComponent;
+    let com: XAnchorComponent;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestScrollXAnchorComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XAnchorComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
       element = debugElement.nativeElement;
-      shadowRoot = element.shadowRoot;
-      anchorComponent = debugElement.componentInstance as XAnchorComponent;
+      com = debugElement.componentInstance;
+      element = com.anchor.nativeElement;
     });
     it("should layout left.", () => {
       testComponent.layout = "left";
@@ -91,15 +78,13 @@ describe(AnchorPrefix, () => {
       (debugElement.componentInstance as XAnchorComponent).indexChange.subscribe(
         (x: XActivatedAnchor) => (activatedAnchor = x)
       );
-      let liEle = fixture.debugElement.query(
-        By.css(`ul li:nth-child(${index + 1})`)
-      );
+      let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
       liEle.triggerEventHandler("click", null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
     it("should scroll change.", () => {
-      anchorComponent.setActiveatedIndex();
-      (anchorComponent.scrollElement as HTMLElement).scrollTop = 400;
+      com.setActiveatedIndex();
+      (com.scrollElement as HTMLElement).scrollTop = 400;
       testComponent.doc.documentElement.scrollTop = 300;
       fixture.detectChanges();
       expect(element.classList).toContain(AnchorPrefix);
@@ -116,9 +101,7 @@ describe(AnchorPrefix, () => {
       fixture = TestBed.createComponent(TestXAnchorComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XAnchorComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
       element = debugElement.nativeElement;
       shadowRoot = element.shadowRoot;
       anchorComponent = debugElement.componentInstance as XAnchorComponent;
@@ -126,24 +109,16 @@ describe(AnchorPrefix, () => {
     it("should activated anchor change.", () => {
       let index = 1;
       let activatedAnchor: XActivatedAnchor;
-      anchorComponent.indexChange.subscribe(
-        (x: XActivatedAnchor) => (activatedAnchor = x)
-      );
-      let liEle = fixture.debugElement.query(
-        By.css(`ul li:nth-child(${index + 1})`)
-      );
+      anchorComponent.indexChange.subscribe((x: XActivatedAnchor) => (activatedAnchor = x));
+      let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
       liEle.triggerEventHandler("click", null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
     it("should scroll change.", () => {
       let index = 1;
       let activatedAnchor: XActivatedAnchor;
-      anchorComponent.indexChange.subscribe(
-        (x: XActivatedAnchor) => (activatedAnchor = x)
-      );
-      let liEle = fixture.debugElement.query(
-        By.css(`ul li:nth-child(${index + 1})`)
-      );
+      anchorComponent.indexChange.subscribe((x: XActivatedAnchor) => (activatedAnchor = x));
+      let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
       liEle.triggerEventHandler("click", null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
@@ -161,9 +136,7 @@ describe(AnchorPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestScrollFixedXAnchorComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XAnchorComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -175,9 +148,7 @@ describe(AnchorPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestUndefinedXAnchorComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XAnchorComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -352,11 +323,7 @@ class TestXAnchorComponent {
         <p>This is a branch and a description.</p>
         <p>This is a branch and a description.</p>
       </div>
-      <x-anchor
-        [scrollElement]="scroll"
-        [layout]="layout"
-        style="padding-bottom:300px;"
-      >
+      <x-anchor [scrollElement]="scroll" [layout]="layout" style="padding-bottom:300px;">
         ${htmlTemplate}
       </x-anchor>
     </div>
@@ -385,11 +352,7 @@ class TestScrollXAnchorComponent {
           <p>This is a branch and a description.</p>
           <p>This is a branch and a description.</p>
         </div>
-        <x-anchor
-          [scrollElement]="scroll"
-          [layout]="layout"
-          style="padding-bottom:300px;"
-        >
+        <x-anchor [scrollElement]="scroll" [layout]="layout" style="padding-bottom:300px;">
           ${htmlTemplate}
         </x-anchor>
       </div>
