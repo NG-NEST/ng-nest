@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { XRadioNode } from "@ng-nest/ui/radio";
+import { XData } from "@ng-nest/ui/core";
 
 @Component({
   selector: "ex-icon",
@@ -7,18 +8,19 @@ import { XRadioNode } from "@ng-nest/ui/radio";
   styleUrls: ["./icon.component.scss"]
 })
 export class ExIconComponent implements OnInit {
-  data: XRadioNode[] = [
-    { key: 1, title: "QQ", icon: "ado-qq" },
-    { key: 2, title: "微信", icon: "ado-wechat" },
-    { key: 3, title: "钉钉", icon: "ado-dingding" },
-    { key: 4, title: "微博", icon: "ado-weibo" }
+  data: XData<XRadioNode[]> = [
+    { value: "QQ", icon: "ado-qq" },
+    { value: "微信", icon: "ado-wechat" },
+    { value: "钉钉", icon: "ado-dingding" },
+    { value: "微博", icon: "ado-weibo" }
   ];
-  dataDisabled: XRadioNode[] = this.data.map((x, i) => {
-    let clone = Object.assign({}, x);
-    if (i === 1) clone.disabled = true;
-    return clone;
-  });
-  model = 2;
+  dataDisabled: XData<XRadioNode[]> = [
+    { value: "QQ", icon: "ado-qq" },
+    { value: "微信", icon: "ado-wechat" },
+    { value: "钉钉", disabled: true, icon: "ado-dingding" },
+    { value: "微博", icon: "ado-weibo" }
+  ];
+  model = "钉钉";
   constructor() {}
 
   ngOnInit() {}

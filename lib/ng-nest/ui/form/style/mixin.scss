@@ -6,13 +6,4 @@
 
 @mixin form {
   display: block;
-  > form {
-    > .x-fence {
-      > .x-row {
-        > .x-col {
-          padding: 4px;
-        }
-      }
-    }
-  }
 }

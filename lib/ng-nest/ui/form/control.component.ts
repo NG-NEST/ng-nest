@@ -10,7 +10,7 @@ import {
   Input
 } from "@angular/core";
 import { XControlOption } from "./form.type";
-import { fillDefault } from "@ng-nest/ui/core";
+import { fillDefault, removeNgTag } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-control",
@@ -21,21 +21,14 @@ import { fillDefault } from "@ng-nest/ui/core";
 })
 export class XControlComponent implements OnInit, OnChanges {
   @Input() option: any | XControlOption;
-  // @Input() controlType: XControlType;
-  // @Input() disabled: boolean;
-  // @Input() readonly: boolean;
-  // @Input() required: boolean;
-  // @Input() hidden: boolean;
-  // @Input() key: boolean;
 
   private _default: any | XControlOption = {};
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, "x-control");
-  }
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   ngOnInit() {
     fillDefault(this.option, this._default);
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

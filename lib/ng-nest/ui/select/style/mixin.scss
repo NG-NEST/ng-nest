@@ -20,9 +20,10 @@
     align-items: center;
     position: relative;
     > .x-input {
-      input {
-        padding-right: 1rem;
-        cursor: pointer;
+      > .x-input-row {
+        > input {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -35,14 +36,12 @@
   }
   &.x-disabled {
     > .#{$--x-select-prefix}-row {
-      > #{$--x-prefix}-icon {
-        color: $--x-text-300;
-      }
-      > input {
-        color: $--x-text-300;
-        cursor: not-allowed;
-        border-color: $--x-border-300;
-        background-color: $--x-background-300;
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: not-allowed;
+          }
+        }
       }
     }
   }

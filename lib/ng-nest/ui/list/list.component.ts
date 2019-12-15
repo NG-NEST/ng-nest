@@ -22,7 +22,8 @@ import {
   XInputNumber,
   XIsObservable,
   XDataConvert,
-  XToDataConvert
+  XToDataConvert,
+  removeNgTag
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";
 
@@ -55,11 +56,11 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
 
   constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super(renderer);
-    this.renderer.addClass(this.elementRef.nativeElement, XListPrefix);
   }
 
   ngOnInit() {
     fillDefault(this, this._default);
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

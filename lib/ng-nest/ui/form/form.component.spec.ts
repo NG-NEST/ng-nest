@@ -26,10 +26,6 @@ describe(FormPrefix, () => {
     it("should create.", () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(FormPrefix);
-    });
   });
 });
 

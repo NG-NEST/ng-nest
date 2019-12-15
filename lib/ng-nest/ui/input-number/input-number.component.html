@@ -13,7 +13,7 @@
       icon="fto-minus"
       size="medium"
       [disabled]="disabled || minDisabled"
-      (click)="!minDisabled && plus($event, -step)"
+      (click)="!disabled && !minDisabled && plus($event, -step)"
       (mousedown)="!minDisabled && down($event, -step)"
       (mouseup)="up($event)"
     ></x-button>
@@ -22,7 +22,7 @@
       icon="fto-plus"
       size="medium"
       [disabled]="disabled || maxDisabled"
-      (click)="!maxDisabled && plus($event, step)"
+      (click)="!disabled && !maxDisabled && plus($event, step)"
       (mousedown)="!maxDisabled && down($event, step)"
       (mouseup)="up($event)"
     ></x-button>

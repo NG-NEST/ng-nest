@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { XCheckboxNode } from "@ng-nest/ui/checkbox";
 import { XData } from "@ng-nest/ui/core";
 
@@ -8,27 +8,22 @@ import { XData } from "@ng-nest/ui/core";
   styleUrls: ["./check-all.component.scss"]
 })
 export class ExCheckAllComponent implements OnInit {
-  checkAllData: XData<XCheckboxNode[]> = [{ key: true, label: "全选" }];
+  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: "全选" }];
   checkAll = [false];
   indeterminate = true;
-  data: XCheckboxNode[] = [
-    { key: 1, label: "QQ" },
-    { key: 2, label: "微信" },
-    { key: 3, label: "钉钉" },
-    { key: 4, label: "微博" }
-  ];
-  model: any = [1, 2];
-
-  constructor() {}
-
-  ngOnInit() {}
-
-  checkAllChange(value) {
-    this.model = value.indexOf(true) >= 0 ? this.data.map(x => x.key) : [];
+  data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
+  model: any = ["QQ"];
+  change(value) {
+    this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
     this.indeterminate = false;
+    this.cdr.detectChanges();
   }
   itemChange(value) {
-    this.checkAll = [value.length === this.data.length];
-    this.indeterminate = value.length > 0 && value.length < this.data.length;
+    this.checkAll = [value.length === (this.data as Array<any>).length];
+    this.indeterminate = value.length > 0 && value.length < (this.data as Array<any>).length;
+    this.cdr.detectChanges();
   }
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {}
 }

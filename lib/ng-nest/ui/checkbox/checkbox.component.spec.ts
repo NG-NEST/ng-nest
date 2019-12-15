@@ -345,11 +345,9 @@ class TestXCheckboxIndeterminateComponent {
   change(value) {
     this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
     this.indeterminate = false;
-    this.cdr.detectChanges();
   }
   itemChange(value) {
     this.checkAll = [value.length === (this.data as Array<any>).length];
     this.indeterminate = value.length > 0 && value.length < (this.data as Array<any>).length;
-    this.cdr.detectChanges();
   }
 }

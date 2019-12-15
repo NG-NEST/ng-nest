@@ -54,7 +54,7 @@ export const menus: Menu[] = [
     "order": 3
   },
   {
-    "id": "3-0-39",
+    "id": "3-0-40",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -90,7 +90,7 @@ export const menus: Menu[] = [
     "order": 7
   },
   {
-    "id": "3-0-32",
+    "id": "3-0-33",
     "parentId": "3-0",
     "name": "table",
     "router": "./docs/ui/components/table",
@@ -162,13 +162,13 @@ export const menus: Menu[] = [
     "order": 6
   },
   {
-    "id": "3-0-20",
+    "id": "3-0-32",
     "parentId": "3-0",
-    "name": "list",
-    "router": "./docs/ui/components/list",
-    "label": "List 列表组件",
+    "name": "switch",
+    "router": "./docs/ui/components/switch",
+    "label": "Switch 开关",
     "category": "Form",
-    "order": 6
+    "order": 7
   },
   {
     "id": "3-0-13",
@@ -180,6 +180,15 @@ export const menus: Menu[] = [
     "order": 15
   },
   {
+    "id": "3-0-20",
+    "parentId": "3-0",
+    "name": "list",
+    "router": "./docs/ui/components/list",
+    "label": "List 列表组件",
+    "category": "Form",
+    "order": 20
+  },
+  {
     "id": "3-0-9",
     "parentId": "3-0",
     "name": "crumb",
@@ -189,7 +198,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-33",
+    "id": "3-0-34",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",

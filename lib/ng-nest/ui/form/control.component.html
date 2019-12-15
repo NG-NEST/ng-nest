@@ -1,14 +1,16 @@
-<ng-container [ngSwitch]="option.controlType">
-  <ng-container *ngSwitchCase="'input'">
-    <x-input
-      [(ngModel)]="option.value"
-      [label]="option.label"
-      [type]="option.type"
-      [placeholder]="option.placeholder"
-      [required]="option.required"
-      [disabled]="option.disabled"
-      [icon]="option.icon"
-      [iconLayout]="option.iconLayout"
-    ></x-input>
+<div class="x-control">
+  <ng-container [ngSwitch]="option.controlType">
+    <ng-container *ngSwitchCase="'input'">
+      <x-input
+        [(ngModel)]="option.value"
+        [label]="option.label"
+        [type]="option.type"
+        [placeholder]="option.placeholder"
+        [required]="option.required"
+        [disabled]="option.disabled"
+        [icon]="option.icon"
+        [iconLayout]="option.iconLayout"
+      ></x-input>
+    </ng-container>
   </ng-container>
-</ng-container>
+</div>

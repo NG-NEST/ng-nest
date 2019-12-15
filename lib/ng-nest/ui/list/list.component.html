@@ -1,12 +1,14 @@
-<ul>
-  <li
-    *ngFor="let node of nodes"
-    [class.x-selected]="node.selected"
-    [class.x-disabled]="node.disabled"
-    (click)="nodeClick($event, node)"
-  >
-    <span>{{ node.label }}</span>
-    <x-icon type="fto-chevron-right" *ngIf="node.hasChild"></x-icon>
-    <x-icon type="fto-check" *ngIf="!node.hasChild && node.selected"></x-icon>
-  </li>
-</ul>
+<div class="x-list">
+  <ul>
+    <li
+      *ngFor="let node of nodes"
+      [class.x-selected]="node.selected"
+      [class.x-disabled]="node.disabled"
+      (click)="nodeClick($event, node)"
+    >
+      <span>{{ node.label }}</span>
+      <x-icon type="fto-chevron-right" *ngIf="node.hasChild"></x-icon>
+      <x-icon type="fto-check" *ngIf="!node.hasChild && node.selected"></x-icon>
+    </li>
+  </ul>
+</div>

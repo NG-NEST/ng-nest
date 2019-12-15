@@ -10,8 +10,8 @@ import {
   ChangeDetectorRef,
   Input
 } from "@angular/core";
-import { XFormInput, FormPrefix, XControl, XFormRow } from "./form.type";
-import { fillDefault } from "@ng-nest/ui/core";
+import { XFormInput, XControl, XFormRow } from "./form.type";
+import { fillDefault, removeNgTag } from "@ng-nest/ui/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
@@ -33,14 +33,14 @@ export class XFormComponent implements OnInit, OnChanges {
 
   private _controls: XControl[] = [];
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, FormPrefix);
-  }
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     fillDefault(this, this._default);
     this.getControlsType();
     this.createFormGroup();
+
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

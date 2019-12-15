@@ -1,15 +1,22 @@
-<x-row>
-  <x-col span="12">
-    <x-list [data]="data" [(ngModel)]="model1"></x-list>
+<x-row space="1">
+  <x-col span="8">
+    <div><x-list [data]="data1" [(ngModel)]="model1"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data2" [(ngModel)]="model2"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data3" [(ngModel)]="model3" multiple></x-list></div>
   </x-col>
 </x-row>
-<x-row>
-  <x-col span="12">
-    <x-list [data]="data" [(ngModel)]="model2"></x-list>
+<x-row space="1">
+  <x-col span="8">
+    <div><x-list [data]="data4" [(ngModel)]="model4" multiple></x-list></div>
   </x-col>
-</x-row>
-<x-row>
-  <x-col span="12">
-    <x-list [data]="data" [(ngModel)]="model3"></x-list>
+  <x-col span="8">
+    <div><x-list [data]="data5" [(ngModel)]="model5" multiple="2"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data6" [(ngModel)]="model6" multiple="2"></x-list></div>
   </x-col>
 </x-row>
