@@ -50,22 +50,24 @@
     }
   }
   &.x-required {
-    > label {
-      color: $--x-danger;
-    }
-    > .#{$--x-input-prefix}-row {
-      > #{$--x-prefix}-icon {
+    &.x-required-show {
+      > label {
         color: $--x-danger;
       }
-      &:before {
-        content: " ";
-        position: absolute;
-        height: $--x-input-height;
-        line-height: $--x-input-height;
-        border-top-left-radius: $--x-input-border-radius;
-        border-bottom-left-radius: $--x-input-border-radius;
-        width: 0.125rem;
-        background-color: $--x-danger;
+      > .#{$--x-input-prefix}-row {
+        > #{$--x-prefix}-icon {
+          color: $--x-danger;
+        }
+        &:before {
+          content: " ";
+          position: absolute;
+          height: $--x-input-height;
+          line-height: $--x-input-height;
+          border-top-left-radius: $--x-input-border-radius;
+          border-bottom-left-radius: $--x-input-border-radius;
+          width: 0.125rem;
+          background-color: $--x-danger;
+        }
       }
     }
   }

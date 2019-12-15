@@ -1,16 +1,18 @@
-<ng-container *ngIf="button || icon; else default">
-  <x-buttons>
-    <x-button
-      *ngFor="let item of checkboxNodes"
-      [label]="item.label"
-      [icon]="item.icon"
-      [title]="item.title"
-      [activated]="value && value?.indexOf(item.value) >= 0"
-      [disabled]="disabled || item.disabled"
-      (click)="checkboxClick($event, item)"
-    ></x-button>
-  </x-buttons>
-</ng-container>
+<div #checkbox class="x-checkbox" [class.x-disabled]="disabled">
+  <ng-container *ngIf="button || icon; else default">
+    <x-buttons>
+      <x-button
+        *ngFor="let item of checkboxNodes"
+        [label]="item.label"
+        [icon]="item.icon"
+        [title]="item.title"
+        [activated]="value && value?.indexOf(item.value) >= 0"
+        [disabled]="disabled || item.disabled"
+        (click)="checkboxClick($event, item)"
+      ></x-button>
+    </x-buttons>
+  </ng-container>
+</div>
 
 <ng-template #default>
   <div

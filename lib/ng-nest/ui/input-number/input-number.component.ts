@@ -9,7 +9,10 @@ import {
   ElementRef,
   Input,
   HostBinding,
-  HostListener
+  HostListener,
+  ViewChild,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core";
 import { XInputNumberPrefix, XInputNumberInput } from "./input-number.type";
 import {
@@ -17,11 +20,8 @@ import {
   XIsEmpty,
   XValueAccessor,
   XControlValueAccessor,
-  XJustify,
-  XAlign,
-  XDirection,
-  XInputBoolean,
-  XInputNumber
+  XInputNumber,
+  removeNgTag
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -33,28 +33,22 @@ import {
   providers: [XValueAccessor(XInputNumberComponent)]
 })
 export class XInputNumberComponent extends XControlValueAccessor implements OnInit {
-  @Input() justify?: XJustify;
-  @Input() align?: XAlign;
-  @Input() direction?: XDirection;
-  @Input() label: string = "";
-  @Input() placeholder: string = "";
-  @Input() @XInputBoolean() required?: boolean;
   @Input() @XInputNumber() min: number = Number.MIN_SAFE_INTEGER;
   @Input() @XInputNumber() max: number = Number.MAX_SAFE_INTEGER;
   @Input() @XInputNumber() step: number = 1;
   @Input() @XInputNumber() debounce: number = 40;
   @Input() @XInputNumber() precision: number = 0;
+  @ViewChild("inputNumber", { static: true }) inputNumber: ElementRef;
+
+  get getRequired() {
+    return this.required && XIsEmpty(this.value);
+  }
 
   private _default: XInputNumberInput = {};
-  private _required: boolean = false;
 
-  private _value: any = "";
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    this._value = value;
-    if (typeof value !== "undefined" && value !== null) this.displayValue = Number(this.value).toFixed(this.precision);
+  writeValue(value: any) {
+    this.value = value;
+    this.setDisplayValue();
     this.cdr.detectChanges();
   }
 
@@ -64,34 +58,22 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   mousedown$: Subscription;
   timer: any;
 
-  @HostBinding(`class.x-disabled`) get getDisabled() {
-    return this.disabled;
-  }
-
-  @HostBinding(`class.x-required`) get getRequired() {
-    return this.required;
-  }
-
-  @HostBinding(`class.x-input-number-flex`) get getFlex() {
-    return this.justify || this.align || this.direction;
-  }
-
   @HostListener("document:mouseup", ["$event"]) onMouseup(event) {
     this.up(event);
   }
 
   constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super(renderer);
-    this.renderer.addClass(this.elementRef.nativeElement, XInputNumberPrefix);
   }
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setDisabled();
-    this.setRequired();
-    this.setJustify();
-    this.setAlign();
-    this.setDirection();
+    this.setFlex(this.inputNumber.nativeElement, this.justify, this.align, this.direction);
+    removeNgTag(this.elementRef.nativeElement);
+  }
+
+  setDisplayValue() {
+    if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(this.precision);
   }
 
   change(value) {
@@ -122,6 +104,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
     if (Number.isNaN(+this.value)) this.value = 0;
     let value = Number(this.value) + limit;
     this.verify(value);
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -132,35 +115,9 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
       this.value = oldValue;
       return;
     }
-    if (this._required) {
-      this.required = XIsEmpty(value);
-    }
     this.maxDisabled = value >= this.max;
     this.minDisabled = value <= this.min;
     this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
-  }
-
-  setRequired() {
-    this._required = this.required ? true : false;
-  }
-
-  setDisabled() {
-    this.minDisabled = this.disabled ? true : false;
-    this.maxDisabled = this.disabled ? true : false;
-  }
-
-  setJustify() {
-    if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputNumberPrefix}-justity-${this.justify}`);
-  }
-
-  setAlign() {
-    if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputNumberPrefix}-align-${this.align}`);
-  }
-
-  setDirection() {
-    if (!this.direction) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XInputNumberPrefix}-direction-${this.direction}`);
+    this.setDisplayValue();
   }
 }

@@ -1,1 +1,3 @@
-<x-list *ngFor="let list of nodes" [data]="list" [(ngModel)]="values" (nodeEmit)="nodeClick($event)"></x-list>
+<div class="x-cascade-portal">
+  <x-list *ngFor="let list of nodes" [data]="list" [(ngModel)]="values" (nodeEmit)="nodeClick($event)"></x-list>
+</div>

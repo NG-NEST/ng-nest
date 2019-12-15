@@ -49,7 +49,6 @@ import { map } from "rxjs/operators";
 })
 export class XSelectComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XSelectNode[]>;
-  @Input() placeholder: string = "";
   @Input() @XInputBoolean() async?: boolean;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @ViewChild("select", { static: true }) select: ElementRef;
@@ -61,9 +60,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
-    if (this._required) {
-      this.required = XIsEmpty(value);
-    }
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
@@ -84,7 +80,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   scrollFunction: Function;
   resizeFunction: Function;
   private _default: XSelectInput = {};
-  private _required: boolean = false;
   private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
 
@@ -102,7 +97,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setRequired();
     this.setFlex(this.select.nativeElement, this.justify, this.align, this.direction);
     removeNgTag(this.elementRef.nativeElement);
   }
@@ -272,9 +266,5 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (this.portal && this.portal.overlayRef.hasAttached) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
-  }
-
-  setRequired() {
-    this._required = this.required ? true : false;
   }
 }

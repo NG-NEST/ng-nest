@@ -10,6 +10,7 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
   @Input() align?: XAlign;
   @Input() direction?: XDirection;
   @Input() label?: string;
+  @Input() placeholder: string = "";
   @Input() @XInputBoolean() required?: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
   onChange: (value: any) => void;

@@ -65,23 +65,25 @@
     }
   }
   &.x-required {
-    > label {
-      color: $--x-danger;
-    }
-    > .#{$--x-input-number-prefix}-row {
-      > #{$--x-prefix}-icon {
+    &.x-required-show {
+      > label {
         color: $--x-danger;
       }
-      &:before {
-        content: " ";
-        z-index: 2;
-        position: absolute;
-        height: $--x-input-number-height;
-        line-height: $--x-input-number-height;
-        border-top-left-radius: $--x-input-number-border-radius;
-        border-bottom-left-radius: $--x-input-number-border-radius;
-        width: 0.125rem;
-        background-color: $--x-danger;
+      > .#{$--x-input-number-prefix}-row {
+        > #{$--x-prefix}-icon {
+          color: $--x-danger;
+        }
+        &:before {
+          content: " ";
+          z-index: 2;
+          position: absolute;
+          height: $--x-input-number-height;
+          line-height: $--x-input-number-height;
+          border-top-left-radius: $--x-input-number-border-radius;
+          border-bottom-left-radius: $--x-input-number-border-radius;
+          width: 0.125rem;
+          background-color: $--x-danger;
+        }
       }
     }
   }
@@ -98,31 +100,31 @@
       }
     }
   }
+  &.x-flex {
+    align-items: center;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
+  }
   &-max-length {
     position: absolute;
     font-size: $--x-font-size-sm;
     color: $--x-text-300;
     padding: $--x-input-number-padding;
     right: 0;
-  }
-  &-flex {
-    align-items: center;
-  }
-  &-direction-row {
-    > label {
-      margin: 0 0.5rem 0 0;
-    }
-  }
-  &-direction-row-reverse {
-    > label {
-      margin: 0 0 0 0.5rem;
-    }
-  }
-  &-direction-column {
-    align-items: inherit;
-  }
-  &-direction-column-reverse {
-    align-items: inherit;
   }
   &-icon {
     > .#{$--x-input-number-prefix}-row {

@@ -1,16 +1,18 @@
-<ng-container *ngIf="button || icon; else default">
-  <x-buttons>
-    <x-button
-      *ngFor="let item of radioNodes"
-      [label]="item.label"
-      [icon]="item.icon"
-      [title]="item.title"
-      [activated]="item.value === value"
-      [disabled]="disabled || item.disabled"
-      (click)="radioClick($event, item)"
-    ></x-button>
-  </x-buttons>
-</ng-container>
+<div #radio class="x-radio" [class.x-disabled]="disabled">
+  <ng-container *ngIf="button || icon; else default">
+    <x-buttons>
+      <x-button
+        *ngFor="let item of radioNodes"
+        [label]="item.label"
+        [icon]="item.icon"
+        [title]="item.title"
+        [activated]="item.value === value"
+        [disabled]="disabled || item.disabled"
+        (click)="radioClick($event, item)"
+      ></x-button>
+    </x-buttons>
+  </ng-container>
+</div>
 
 <ng-template #default>
   <div

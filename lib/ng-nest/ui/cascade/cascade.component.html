@@ -1,32 +1,26 @@
-<label *ngIf="label">{{ label }}</label>
-<div class="x-cascade-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
-  <x-input
-    #inputCom
-    type="text"
-    iconLayout="right"
-    [icon]="icon"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [clearable]="clearable"
-    [ngModel]="displayValue"
-    (ngModelChange)="change($event)"
-    (clearEmit)="clearEmit($event)"
-  ></x-input>
+<div
+  #cascade
+  class="x-cascade"
+  [class.x-flex]="justify || align || direction"
+  [class.x-disabled]="disabled"
+  [class.x-required]="required"
+  [class.x-required-show]="getRequired"
+>
+  <label *ngIf="label">{{ label }}</label>
+  <div class="x-cascade-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+    <x-input
+      #inputCom
+      type="text"
+      iconLayout="right"
+      [icon]="icon"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [clearable]="clearable"
+      [(ngModel)]="displayValue"
+      (ngModelChange)="change($event)"
+      (clearEmit)="clearEmit($event)"
+    ></x-input>
+  </div>
 </div>
-
-<!-- <ng-template #portalTpl>
-  <ul *ngFor="let nodeList of displayNodes; index as i">
-    <li
-      *ngFor="let node of nodeList"
-      [class.x-selected]="node.selected"
-      [class.x-disabled]="node.disabled"
-      (click)="nodeClick($event, node, i)"
-    >
-      <span>{{ node.label }}</span>
-      <x-icon type="fto-chevron-right" *ngIf="node.hasChild"></x-icon>
-      <x-icon type="fto-check" *ngIf="!node.hasChild && node.selected"></x-icon>
-    </li>
-  </ul>
-</ng-template> -->

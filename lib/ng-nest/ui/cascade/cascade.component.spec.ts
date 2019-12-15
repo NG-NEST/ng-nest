@@ -114,17 +114,17 @@ const data: XCascadeNode[] = [
   template: `
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data1" [(ngModel)]="model1" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data1" [(ngModel)]="model1"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data2" [(ngModel)]="model2" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data2" [(ngModel)]="model2"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data3" [(ngModel)]="model3" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade [data]="data3" [(ngModel)]="model3"></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -151,49 +151,28 @@ class TestXCascadeComponent {
       this.cdr.detectChanges();
     });
   }
-  change(val) {
-    // this.cdr.detectChanges();
-  }
 }
 
 @Component({
   template: `
     <x-row>
       <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model1" (nodeEmit)="change($event)"></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model2"
-          (nodeEmit)="change($event)"
-          direction="column-reverse"
-        ></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model3"
-          (nodeEmit)="change($event)"
-          direction="row"
-        ></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model4"
-          (nodeEmit)="change($event)"
-          direction="row-reverse"
-        ></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -207,13 +186,11 @@ class TestXCascadeComponent {
 })
 class TestXCascadeLabelComponent {
   data = data;
-  model1: any;
-  model2: any;
-  model3: any;
-  model4: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
+  model: any;
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
 }
 
@@ -247,12 +224,12 @@ class TestXCascadeDisabledComponent {
   template: `
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model1" (nodeEmit)="change($event)" required></x-cascade>
+        <x-cascade [data]="data" [(ngModel)]="model1" required></x-cascade>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model2" (nodeEmit)="change($event)" label="选择" required></x-cascade>
+        <x-cascade [data]="data" [(ngModel)]="model2" label="选择" required></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -268,8 +245,9 @@ class TestXCascadeRequiredComponent {
   data = data;
   model1: any;
   model2: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
-    this.cdr.detectChanges();
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
 }

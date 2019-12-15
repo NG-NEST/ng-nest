@@ -33,7 +33,8 @@ import {
   XInputBoolean,
   XDataConvert,
   XIsObservable,
-  XToDataConvert
+  XToDataConvert,
+  removeNgTag
 } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
@@ -49,22 +50,17 @@ import { map } from "rxjs/operators";
 })
 export class XCascadeComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XCascadeNode[]>;
-  @Input() justify?: XJustify;
-  @Input() align?: XAlign;
-  @Input() direction?: XDirection;
-  @Input() label: string = "";
-  @Input() placeholder: string = "";
-  @Input() @XInputBoolean() required?: boolean;
-  // @ViewChild("portalTpl", { static: false }) portalTpl: TemplateRef<any>;
+  @ViewChild("cascade", { static: true }) cascade: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<XCascadeNode> = new EventEmitter<XCascadeNode>();
+
+  get getRequired() {
+    return this.required && XIsEmpty(this.value);
+  }
 
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
-    if (this._required) {
-      this.required = XIsEmpty(value);
-    }
     this.cdr.detectChanges();
   }
 
@@ -83,22 +79,9 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   scrollFunction: Function;
   resizeFunction: Function;
   private _default: XCascadeInput = {};
-  private _required: boolean = false;
   private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
-
-  @HostBinding(`class.x-disabled`) get getDisabled() {
-    return this.disabled;
-  }
-
-  @HostBinding(`class.x-required`) get getRequired() {
-    return this.required;
-  }
-
-  @HostBinding(`class.x-cascade-flex`) get getFlex() {
-    return this.justify || this.align || this.direction;
-  }
 
   constructor(
     public renderer: Renderer2,
@@ -114,10 +97,8 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setRequired();
-    this.setJustify();
-    this.setAlign();
-    this.setDirection();
+    this.setFlex(this.cascade.nativeElement, this.justify, this.align, this.direction);
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
@@ -228,7 +209,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
       }
     });
     this.portal.overlayRef.backdropClick().subscribe(() => {
-      this.portal.overlayRef.detach();
+      this.portal.overlayRef.dispose();
       this.removeListen();
     });
     this.addListen();
@@ -237,7 +218,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   nodeClick(selected: { node: XCascadeNode; label: string }) {
     this.value = selected.node.value;
     this.displayValue = selected.label;
-    if (this.portal) this.portal.overlayRef.detach();
+    if (this.portal) this.portal.overlayRef.dispose();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(selected);
   }
@@ -257,38 +238,19 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   setPositionStrategy() {
-    this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(this.inputCom.elementRef, this.protalTobottom);
+    return this.portalService.setPositionStrategy(this.inputCom.input, this.protalTobottom);
   }
 
   setPortal() {
-    if (!this.inputCom) return;
-    this.box = this.inputCom.elementRef.nativeElement.getBoundingClientRect();
+    if (!this.inputCom.input) return;
+    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     if (this.box && this.nodes.length > 0) {
       this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     }
     if (this.portal && this.portal.overlayRef.hasAttached) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
-  }
-
-  setRequired() {
-    this._required = this.required ? true : false;
-  }
-
-  setJustify() {
-    if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XCascadePrefix}-justity-${this.justify}`);
-  }
-
-  setAlign() {
-    if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XCascadePrefix}-align-${this.align}`);
-  }
-
-  setDirection() {
-    if (!this.direction) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XCascadePrefix}-direction-${this.direction}`);
   }
 }

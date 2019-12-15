@@ -5,11 +5,9 @@ import {
   Inject,
   ChangeDetectorRef,
   OnInit,
-  ElementRef,
-  Renderer2
-} from "@angular/core";
-import { XCascadeNode, XCascadePortalPrefix, XCascadePortal } from "./cascade.type";
-import { XIsEmpty } from "@ng-nest/ui/core";
+  ElementRef} from "@angular/core";
+import { XCascadeNode, XCascadePortal } from "./cascade.type";
+import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
 
 @Component({
   selector: "x-cascade-portal",
@@ -25,7 +23,6 @@ export class XCascadePortalComponent implements OnInit {
   values = [];
 
   constructor(
-    private renderer: Renderer2,
     private elementRef: ElementRef,
     @Inject(XCascadePortal) public option: any,
     public cdr: ChangeDetectorRef
@@ -36,10 +33,11 @@ export class XCascadePortalComponent implements OnInit {
     } else {
       this.nodes = [this.option.nodes];
     }
-    this.renderer.addClass(this.elementRef.nativeElement, XCascadePortalPrefix);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    removeNgTag(this.elementRef.nativeElement);
+  }
 
   setDefault() {
     let node = this.datas.find(x => x.value === this.option.value);

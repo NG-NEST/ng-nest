@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    > x-input {
+    > .x-input {
       input {
         padding-right: 1rem;
         cursor: pointer;
@@ -26,8 +26,10 @@
     }
   }
   &.x-required {
-    > label {
-      color: $--x-danger;
+    &.x-required-show {
+      > label {
+        color: $--x-danger;
+      }
     }
   }
   &.x-disabled {
@@ -43,24 +45,24 @@
       }
     }
   }
-  &-flex {
+  &.x-flex {
     align-items: center;
-  }
-  &-direction-row {
-    > label {
-      margin: 0 0.5rem 0 0;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
     }
-  }
-  &-direction-row-reverse {
-    > label {
-      margin: 0 0 0 0.5rem;
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
     }
-  }
-  &-direction-column {
-    align-items: inherit;
-  }
-  &-direction-column-reverse {
-    align-items: inherit;
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
   }
 }
 
@@ -72,7 +74,7 @@
   box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   background-color: $--x-white;
   display: flex;
-  > x-list:not(:first-child) {
+  > .x-list:not(:first-child) {
     border-left: $--x-cascade-border;
   }
 }

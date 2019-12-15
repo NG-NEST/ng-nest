@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef,
   HostBinding,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from "@angular/core";
 import { XRadioPrefix, XRadioNode } from "./radio.type";
 import { Subscription, Observable } from "rxjs";
@@ -20,7 +21,8 @@ import {
   XInputBoolean,
   XDataConvert,
   XIsObservable,
-  XToDataConvert
+  XToDataConvert,
+  removeNgTag
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";
 
@@ -36,39 +38,21 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XDataConvert() data?: XData<XRadioNode[]>;
   @Input() @XInputBoolean() button?: boolean;
   @Input() @XInputBoolean() icon?: boolean;
-  @HostBinding("class.x-disabled") get getDisabled() {
-    return this.disabled;
+  @ViewChild("radio", { static: true }) radio: ElementRef;
+
+  writeValue(value: any) {
+    this.value = value;
+    this.cdr.detectChanges();
   }
-  private _value: any;
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    if (value !== this._value) {
-      this._value = value;
-      this.cdr.detectChanges();
-    }
-  }
-  private _disabled: boolean;
-  public get disabled(): boolean {
-    return this._disabled;
-  }
-  @Input()
-  @XInputBoolean()
-  public set disabled(value: boolean) {
-    if (value !== this._disabled) {
-      this._disabled = value;
-    }
-  }
+
   radioNodes: XRadioNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
-    this.renderer.addClass(this.elementRef.nativeElement, XRadioPrefix);
   }
 
   ngOnInit() {
-    this.setInput();
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,14 +62,15 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     }
   }
 
-  setInput() {
-    this.cdr.markForCheck();
-  }
+  // setInput() {
+  //   this.cdr.markForCheck();
+  // }
 
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
     if (this.disabled || node.disabled || node.value === this.value) return;
     this.value = node.value;
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
 

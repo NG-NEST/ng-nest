@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef,
   HostBinding,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from "@angular/core";
 import { XCheckboxPrefix, XCheckboxNode } from "./checkbox.type";
 import { Subscription, Observable } from "rxjs";
@@ -20,7 +21,8 @@ import {
   XInputBoolean,
   XDataConvert,
   XIsObservable,
-  XToDataConvert
+  XToDataConvert,
+  removeNgTag
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";
 
@@ -37,39 +39,21 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   @Input() @XInputBoolean() button?: boolean;
   @Input() @XInputBoolean() icon?: boolean;
   @Input() @XInputBoolean() indeterminate?: boolean;
-  @HostBinding("class.x-disabled") get getDisabled() {
-    return this.disabled;
+  @ViewChild("checkbox", { static: true }) checkbox: ElementRef;
+
+  writeValue(value: any) {
+    this.value = value;
+    this.cdr.detectChanges();
   }
-  private _value: any;
-  public get value(): any {
-    return this._value;
-  }
-  public set value(value: any) {
-    if (value !== this._value) {
-      this._value = value;
-      this.cdr.detectChanges();
-    }
-  }
-  private _disabled: boolean;
-  public get disabled(): boolean {
-    return this._disabled;
-  }
-  @Input()
-  @XInputBoolean()
-  public set disabled(value: boolean) {
-    if (value !== this._disabled) {
-      this._disabled = value;
-    }
-  }
+
   checkboxNodes: XCheckboxNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
-    this.renderer.addClass(this.elementRef.nativeElement, XCheckboxPrefix);
   }
 
   ngOnInit() {
-    this.setInput();
+    removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,10 +61,6 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
     if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
       this.setData();
     }
-  }
-
-  setInput() {
-    this.cdr.markForCheck();
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {
@@ -92,6 +72,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
       this.value.splice(index, 1);
       this.value = [...this.value];
     } else this.value = [...this.value, node.value];
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
 
