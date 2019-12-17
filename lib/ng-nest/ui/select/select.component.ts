@@ -254,7 +254,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   setPositionStrategy() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(this.inputCom.input, this.protalTobottom);
+    return this.portalService.setPositionStrategy(this.inputCom.input, this.protalTobottom ? "bottom" : "top");
   }
 
   setPortal() {

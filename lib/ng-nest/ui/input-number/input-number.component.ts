@@ -8,13 +8,10 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding,
   HostListener,
-  ViewChild,
-  OnChanges,
-  SimpleChanges
+  ViewChild
 } from "@angular/core";
-import { XInputNumberPrefix, XInputNumberInput } from "./input-number.type";
+import { XInputNumberInput } from "./input-number.type";
 import {
   fillDefault,
   XIsEmpty,

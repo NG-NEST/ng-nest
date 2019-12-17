@@ -1,8 +1,15 @@
 import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from "@angular/core";
-import { Overlay, OverlayRef, PositionStrategy } from "@angular/cdk/overlay";
+import {
+  Overlay,
+  OverlayRef,
+  PositionStrategy,
+  OriginConnectionPosition,
+  OverlayConnectionPosition
+} from "@angular/cdk/overlay";
 import { TemplatePortal, ComponentPortal, PortalInjector } from "@angular/cdk/portal";
 import { XPortalServiceModule } from "./portal.service.module";
 import { XPortalInput, XPortalOverlayRef } from "./portal.type";
+import { XPlacement } from "../core";
 
 /**
  * 动态创建视图服务
@@ -43,7 +50,7 @@ export class XPortalService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  setPositionStrategy(elementRef?: ElementRef, toBottom: boolean = true): PositionStrategy {
+  setPositionStrategy(elementRef?: ElementRef, placement?: XPlacement): PositionStrategy {
     if (!elementRef) {
       return this.overlay
         .position()
@@ -51,15 +58,59 @@ export class XPortalService {
         .centerHorizontally()
         .centerVertically();
     } else {
-      if (toBottom) {
-        return this.overlay
-          .position()
-          .connectedTo(elementRef, { originX: "start", originY: "bottom" }, { overlayX: "start", overlayY: "top" });
-      } else {
-        return this.overlay
-          .position()
-          .connectedTo(elementRef, { originX: "start", originY: "top" }, { overlayX: "start", overlayY: "bottom" });
+      let originPos: OriginConnectionPosition;
+      let overlayPos: OverlayConnectionPosition;
+      switch (placement) {
+        case "bottom":
+          originPos = { originX: "center", originY: "bottom" };
+          overlayPos = { overlayX: "center", overlayY: "top" };
+          break;
+        case "bottom-end":
+          originPos = { originX: "end", originY: "bottom" };
+          overlayPos = { overlayX: "end", overlayY: "top" };
+          break;
+        case "bottom-start":
+          originPos = { originX: "start", originY: "bottom" };
+          overlayPos = { overlayX: "start", overlayY: "top" };
+          break;
+        case "left":
+          originPos = { originX: "start", originY: "center" };
+          overlayPos = { overlayX: "end", overlayY: "center" };
+          break;
+        case "left-end":
+          originPos = { originX: "start", originY: "bottom" };
+          overlayPos = { overlayX: "end", overlayY: "bottom" };
+          break;
+        case "left-start":
+          originPos = { originX: "start", originY: "top" };
+          overlayPos = { overlayX: "end", overlayY: "top" };
+          break;
+        case "right":
+          originPos = { originX: "end", originY: "center" };
+          overlayPos = { overlayX: "start", overlayY: "center" };
+          break;
+        case "right-end":
+          originPos = { originX: "end", originY: "bottom" };
+          overlayPos = { overlayX: "start", overlayY: "bottom" };
+          break;
+        case "right-start":
+          originPos = { originX: "end", originY: "top" };
+          overlayPos = { overlayX: "start", overlayY: "top" };
+          break;
+        case "top":
+          originPos = { originX: "center", originY: "top" };
+          overlayPos = { overlayX: "center", overlayY: "bottom" };
+          break;
+        case "top-end":
+          originPos = { originX: "end", originY: "top" };
+          overlayPos = { overlayX: "end", overlayY: "bottom" };
+          break;
+        case "top-start":
+          originPos = { originX: "start", originY: "top" };
+          overlayPos = { overlayX: "start", overlayY: "bottom" };
+          break;
       }
+      return this.overlay.position().connectedTo(elementRef, originPos, overlayPos);
     }
   }
 

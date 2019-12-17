@@ -1,0 +1,68 @@
+// Tooltip
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin tooltip {
+  display: inline-block;
+}
+
+@mixin tooltip-portal {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  > .#{$--x-tooltip-portal-prefix}-inner {
+    font-size: $--x-font-size;
+    background-color: $--x-text;
+    color: $--x-info-600;
+    padding: 0.325rem 0.5rem;
+    border-radius: 0.125rem;
+    box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  }
+  > .#{$--x-tooltip-portal-prefix}-arrow {
+    position: absolute;
+    width: $--x-tooltip-arrow-size;
+    height: $--x-tooltip-arrow-size;
+    background: $--x-text;
+    box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+  }
+
+  &-top,
+  &-top-start,
+  &-top-end {
+    padding-bottom: $--x-tooltip-distance;
+    > .#{$--x-tooltip-portal-prefix}-arrow {
+      bottom: 0.35rem;
+    }
+  }
+
+  &-left,
+  &-left-start,
+  &-left-end {
+    padding-right: $--x-tooltip-distance;
+    > .#{$--x-tooltip-portal-prefix}-arrow {
+      right: 0.35rem;
+    }
+  }
+
+  &-right,
+  &-right-start,
+  &-right-end {
+    padding-left: $--x-tooltip-distance;
+    > .#{$--x-tooltip-portal-prefix}-arrow {
+      left: 0.35rem;
+    }
+  }
+
+  &-bottom,
+  &-bottom-start,
+  &-bottom-end {
+    padding-top: $--x-tooltip-distance;
+    > .#{$--x-tooltip-portal-prefix}-arrow {
+      top: 0.35rem;
+    }
+  }
+}

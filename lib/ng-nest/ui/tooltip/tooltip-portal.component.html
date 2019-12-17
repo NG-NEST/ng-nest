@@ -1,0 +1,6 @@
+<div #tooltipPortal class="x-tooltip-portal" [ngClass]="classMap">
+  <ng-container *ngIf="option.content">
+    <div class="x-tooltip-portal-inner">{{ option.content }}</div>
+    <div #tooltipArrow class="x-tooltip-portal-arrow"></div>
+  </ng-container>
+</div>

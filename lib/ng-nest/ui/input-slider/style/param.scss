@@ -1,0 +1,36 @@
+// InputSlider style paramters
+
+$--x-input-slider-prefix: $--x-prefix + "-input-slider";
+
+/* 字体大小 */
+$--x-input-slider-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-input-slider-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-input-slider-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-input-slider-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-input-slider-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-input-slider-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-input-slider-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-input-slider-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-input-slider-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-input-slider-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-input-slider-icon-padding: $control-padding-horizontal;
