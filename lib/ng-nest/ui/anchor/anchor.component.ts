@@ -124,7 +124,6 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     this.setHElements();
     this.setScrollElement();
     this.windowSizeChange();
-    debugger;
     if (this.listFixed) {
       this.setListFixed();
     }

@@ -9,7 +9,7 @@ import {
 import { TemplatePortal, ComponentPortal, PortalInjector } from "@angular/cdk/portal";
 import { XPortalServiceModule } from "./portal.service.module";
 import { XPortalInput, XPortalOverlayRef } from "./portal.type";
-import { XPlacement } from "../core";
+import { XPlacement } from "@ng-nest/ui/core";
 
 /**
  * 动态创建视图服务

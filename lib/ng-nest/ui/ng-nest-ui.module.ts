@@ -21,6 +21,8 @@ import { XSelectModule } from "@ng-nest/ui/select";
 import { XCascadeModule } from "@ng-nest/ui/cascade";
 import { XSwitchModule } from "@ng-nest/ui/switch";
 
+import { XTooltipModule } from "@ng-nest/ui/tooltip";
+
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
 import { XTabsModule } from "@ng-nest/ui/tabs";
@@ -55,6 +57,8 @@ export * from "@ng-nest/ui/select";
 export * from "@ng-nest/ui/cascade";
 export * from "@ng-nest/ui/switch";
 
+export * from "@ng-nest/ui/tooltip";
+
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
 export * from "@ng-nest/ui/tabs";
@@ -88,6 +92,8 @@ export * from "@ng-nest/ui/form";
     XSelectModule,
     XCascadeModule,
     XSwitchModule,
+
+    XTooltipModule,
 
     XButtonModule,
     XAnchorModule,

@@ -46,7 +46,7 @@ export class XTooltipComponent implements OnInit {
   }
 
   mleave(event: Event) {
-    // if (this.portal) this.portal.overlayRef.dispose();
+    if (this.portal) this.portal.overlayRef.dispose();
   }
 
   createPortal() {

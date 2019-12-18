@@ -49,10 +49,10 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.option.viewInit();
     this.box = this.tooltipPortal.nativeElement.getBoundingClientRect();
     this.arrowBox = this.tooltipArrow.nativeElement.getBoundingClientRect();
     this.setArrow();
-    this.option.viewInit();
     this.cdr.detectChanges();
   }
 

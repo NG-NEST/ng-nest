@@ -1,10 +1,16 @@
 ---
-label: "文档"
+label: "Tooltip 文字提示"
+category: "Others"
+order: 2
 ---
 
-# 文档 Tooltip
+# Tooltip 文字提示
 
-定义文档显示的样式，指定文档中标题、行、分类、表格等标签的样式。
+常用于展示鼠标 hover 时的提示信息。
+
+## 示例代码
+
+{{ __examples }}
 
 ## API
 

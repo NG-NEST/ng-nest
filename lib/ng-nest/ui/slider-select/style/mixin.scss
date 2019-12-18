@@ -1,0 +1,102 @@
+// SliderSelect
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin slider-select {
+  font-size: $--x-slider-select-font-size;
+  color: $--x-text;
+  display: flex;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-slider-select-height;
+    line-height: $--x-slider-select-height;
+  }
+  > .#{$--x-slider-select-prefix}-inner {
+    flex: 1;
+    position: relative;
+    height: $--x-slider-select-button-size;
+    padding: 0 $--x-slider-select-button-size/2;
+    display: flex;
+    align-items: center;
+    > .#{$--x-slider-select-prefix}-track {
+      height: $--x-slider-select-track-height;
+      background-color: $--x-border-300;
+      border-radius: $--x-slider-select-border-radius;
+      width: 100%;
+    }
+    > .#{$--x-slider-select-prefix}-button {
+      width: $--x-slider-select-button-size;
+      height: $--x-slider-select-button-size;
+      border-radius: $--x-slider-select-button-size;
+      position: absolute;
+      border: $--x-border-width * 2 solid $--x-primary;
+      background-color: $--x-white;
+      left: 0%;
+    }
+  }
+  &.x-required {
+    &.x-required-show {
+      > label {
+        color: $--x-danger;
+      }
+      > .#{$--x-slider-select-prefix}-row {
+        > #{$--x-prefix}-icon {
+          color: $--x-danger;
+        }
+        &:before {
+          content: " ";
+          z-index: 2;
+          position: absolute;
+          height: $--x-slider-select-height;
+          line-height: $--x-slider-select-height;
+          border-top-left-radius: $--x-slider-select-border-radius;
+          border-bottom-left-radius: $--x-slider-select-border-radius;
+          width: 0.125rem;
+          background-color: $--x-danger;
+        }
+      }
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-slider-select-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-text-300;
+      }
+      > input {
+        color: $--x-text-300;
+        cursor: not-allowed;
+        border-color: $--x-border-300;
+        background-color: $--x-background-300;
+      }
+    }
+  }
+  &.x-flex {
+    align-items: center;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
+  }
+  &-max-length {
+    position: absolute;
+    font-size: $--x-font-size-sm;
+    color: $--x-text-300;
+    padding: $--x-slider-select-padding;
+    right: 0;
+  }
+}
