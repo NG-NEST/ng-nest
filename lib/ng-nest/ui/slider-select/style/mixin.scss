@@ -7,7 +7,7 @@
 @mixin slider-select {
   font-size: $--x-slider-select-font-size;
   color: $--x-text;
-  display: flex;
+  padding: 0 $--x-slider-select-button-size/2;
   @include flex();
   > label {
     display: inline-block;
@@ -18,23 +18,37 @@
     flex: 1;
     position: relative;
     height: $--x-slider-select-button-size;
-    padding: 0 $--x-slider-select-button-size/2;
     display: flex;
     align-items: center;
-    > .#{$--x-slider-select-prefix}-track {
-      height: $--x-slider-select-track-height;
-      background-color: $--x-border-300;
-      border-radius: $--x-slider-select-border-radius;
-      width: 100%;
-    }
-    > .#{$--x-slider-select-prefix}-button {
-      width: $--x-slider-select-button-size;
-      height: $--x-slider-select-button-size;
-      border-radius: $--x-slider-select-button-size;
+    padding-right: $--x-slider-select-button-size;
+    > .#{$--x-slider-select-prefix}-rail {
       position: absolute;
-      border: $--x-border-width * 2 solid $--x-primary;
-      background-color: $--x-white;
-      left: 0%;
+      margin-left: $--x-slider-select-button-size/2;
+      width: calc(100% - #{$--x-slider-select-button-size});
+      background-color: $--x-border-300;
+      height: $--x-slider-select-track-height;
+      border-radius: $--x-slider-select-border-radius;
+    }
+    > .#{$--x-slider-select-prefix}-track {
+      width: 100%;
+      position: absolute;
+      // background-color: $--x-border-300;
+      // height: $--x-slider-select-track-height;
+      // border-radius: $--x-slider-select-border-radius;
+    }
+    > .#{$--x-slider-select-prefix}-buttons {
+      position: relative;
+      width: 100%;
+      height: $--x-slider-select-button-size;
+      > .#{$--x-slider-select-prefix}-button {
+        width: $--x-slider-select-button-size;
+        height: $--x-slider-select-button-size;
+        border-radius: $--x-slider-select-button-size;
+        position: absolute;
+        border: $--x-border-width * 2 solid $--x-primary;
+        background-color: $--x-white;
+        left: 0%;
+      }
     }
   }
   &.x-required {

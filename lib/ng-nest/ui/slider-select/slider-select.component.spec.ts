@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { XSliderSelectComponent } from "./slider-select.component";
-import { Component, DebugElement } from "@angular/core";
+import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XSliderSelectModule } from "./slider-select.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { XSliderSelectPrefix } from "./slider-select.type";
 import { XFenceModule } from "@ng-nest/ui/fence";
+import { interval } from "rxjs";
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
@@ -110,11 +111,18 @@ describe(XSliderSelectPrefix, () => {
         margin-top: 1rem;
       }
       x-row > x-col {
+        margin: 2rem;
       }
     `
   ]
 })
-class TestXSliderSelectComponent {}
+class TestXSliderSelectComponent {
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(10).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
 
 @Component({
   template: `

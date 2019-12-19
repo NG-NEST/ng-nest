@@ -20,7 +20,8 @@ import {
   XInputNumber,
   removeNgTag
 } from "@ng-nest/ui/core";
-import { CdkDrag } from "@angular/cdk/drag-drop";
+import { CdkDrag, CdkDragMove, CdkDragEnd, CdkDragStart } from "@angular/cdk/drag-drop";
+import { XTooltipDirective } from "../tooltip";
 
 @Component({
   selector: "x-slider-select",
@@ -36,9 +37,10 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   @Input() @XInputNumber() step: number = 1;
   @Input() @XInputNumber() debounce: number = 40;
   @Input() @XInputNumber() precision: number = 0;
-  @ViewChild("inputNumber", { static: true }) inputNumber: ElementRef;
+  @ViewChild("sliderSelect", { static: true }) sliderSelect: ElementRef;
   @ViewChild("dragRef", { static: true }) dragRef: ElementRef;
-  @ViewChild("trackRef", { static: true }) trackRef: ElementRef;
+  @ViewChild("railRef", { static: true }) railRef: ElementRef;
+  @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
 
   get getRequired() {
@@ -58,19 +60,35 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setFlex(this.inputNumber.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.sliderSelect.nativeElement, this.justify, this.align, this.direction);
     removeNgTag(this.elementRef.nativeElement);
   }
 
-  dragEnded(drag: { source: CdkDrag }) {
+  start: number;
+
+  dragStarted(drag: CdkDragStart) {
+    // let transform = drag.source._dragRef["_activeTransform"];
+    // let railBox = this.railRef.nativeElement.getBoundingClientRect();
+    const s = this.left;
+    this.start = s;
+    // console.log("1", transform);
+  }
+
+  dragMoved(drag: CdkDragMove) {
     let transform = drag.source._dragRef["_activeTransform"];
-    let trackBox = this.trackRef.nativeElement.getBoundingClientRect();
-    //this.left = (transform.x / trackBox.width) * 100;
-    console.log(transform);
-    this.renderer.setStyle(this.dragRef.nativeElement, "left", `${(transform.x / trackBox.width) * 100}%`);
+    let railBox = this.railRef.nativeElement.getBoundingClientRect();
+    let x = (this.start / 100) * railBox.width + transform.x;
+    this.left = Math.round((x / railBox.width) * 100);
+    this.tooltip.update();
+  }
+
+  dragEnded(drag: CdkDragEnd) {
+    // let transform = drag.source._dragRef["_activeTransform"];
+    // let railBox = this.railRef.nativeElement.getBoundingClientRect();
+    // let x = (this.left / 100) * railBox.width + transform.x;
+    // this.left = Math.round((x / railBox.width) * 100);
+    this.renderer.setStyle(this.dragRef.nativeElement, "left", `${this.left}%`);
     this.renderer.removeStyle(this.dragRef.nativeElement, "transform");
     drag.source.reset();
-    //console.log(this.left);
-    //
   }
 }

@@ -43,6 +43,8 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.contentChange$ = this.option.contentChange.subscribe(x => {
       this.option.content = x;
+      console.log(x);
+      this.cdr.detectChanges();
     });
 
     removeNgTag(this.elementRef.nativeElement);

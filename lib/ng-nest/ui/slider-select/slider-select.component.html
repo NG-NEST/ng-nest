@@ -1,5 +1,5 @@
 <div
-  #inputNumber
+  #sliderSelect
   class="x-slider-select"
   [class.x-flex]="justify || align || direction"
   [class.x-disabled]="disabled"
@@ -7,16 +7,24 @@
   [class.x-required-show]="getRequired"
 >
   <label *ngIf="label">{{ label }}</label>
+
   <div class="x-slider-select-inner" #innerRef>
-    <div class="x-slider-select-track" #trackRef></div>
-    <div
-      #dragRef
-      class="x-slider-select-button"
-      cdkDrag
-      cdkDragLockAxis="x"
-      [cdkDragBoundary]="innerRef"
-      (cdkDragEnded)="dragEnded($event)"
-    ></div>
-    <!-- <div class="x-slider-select-button"></div> -->
+    <div class="x-slider-select-rail" #railRef></div>
+    <div class="x-slider-select-track"></div>
+    <div class="x-slider-select-buttons">
+      <div
+        #dragRef
+        class="x-slider-select-button"
+        cdkDrag
+        cdkDragLockAxis="x"
+        x-tooltip
+        [content]="left"
+        placement="top"
+        [cdkDragBoundary]="innerRef"
+        (cdkDragStarted) = "dragStarted($event)"
+        (cdkDragEnded)="dragEnded($event)"
+        (cdkDragMoved)="dragMoved($event)"
+      ></div>
+    </div>
   </div>
 </div>

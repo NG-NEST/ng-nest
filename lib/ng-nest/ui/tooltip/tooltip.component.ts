@@ -1,31 +1,25 @@
 import {
-  Component,
   OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
   ElementRef,
   Input,
-  ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  Directive,
+  HostListener,
+  OnChanges,
+  SimpleChanges
 } from "@angular/core";
-import { removeNgTag, XPlacement } from "@ng-nest/ui/core";
+import { XPlacement } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
 import { XTooltipPortalComponent } from "./tooltip-portal.component";
 import { XTooltipPortal } from "./tooltip.type";
 import { Subject } from "rxjs";
 
-@Component({
-  selector: "x-tooltip",
-  templateUrl: "./tooltip.component.html",
-  styleUrls: ["./tooltip.component.scss"],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+@Directive({
+  selector: "[x-tooltip]"
 })
-export class XTooltipComponent implements OnInit {
+export class XTooltipDirective implements OnInit, OnChanges {
   @Input() content?: string;
   @Input() placement?: XPlacement = "bottom";
-  @ViewChild("tooltip", { static: true }) tooltip: ElementRef;
   portal: XPortalOverlayRef;
   box: DOMRect;
   contentChange: Subject<any> = new Subject();
@@ -35,22 +29,27 @@ export class XTooltipComponent implements OnInit {
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
+  @HostListener("mouseenter") mouseenter() {
+    this.createPortal();
+  }
+
+  @HostListener("mouseleave") mouseleave() {
+    if (this.portal) this.portal.overlayRef.dispose();
+  }
+
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let contentChange = changes.content;
+    if (contentChange.currentValue != contentChange.previousValue) {
+      this.contentChange.next(this.content);
+    }
   }
 
   ngOnDestroy(): void {}
 
-  menter(event: Event) {
-    this.createPortal();
-  }
-
-  mleave(event: Event) {
-    if (this.portal) this.portal.overlayRef.dispose();
-  }
-
   createPortal() {
-    this.box = this.tooltip.nativeElement.getBoundingClientRect();
+    this.box = this.elementRef.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.create({
       content: XTooltipPortalComponent,
       viewContainerRef: this.viewContainerRef,
@@ -66,8 +65,12 @@ export class XTooltipComponent implements OnInit {
       ),
       overlayConfig: {
         backdropClass: "",
-        positionStrategy: this.portalService.setPositionStrategy(this.tooltip, this.placement)
+        positionStrategy: this.portalService.setPositionStrategy(this.elementRef, this.placement)
       }
     });
+  }
+
+  update() {
+    if (this.portal) this.portal.overlayRef.updatePosition();
   }
 }

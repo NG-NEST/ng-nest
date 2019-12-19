@@ -6,6 +6,7 @@
 
 @mixin tooltip {
   display: inline-block;
+  position: relative;
 }
 
 @mixin tooltip-portal {
