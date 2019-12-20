@@ -1,4 +1,4 @@
-import { Subscription, interval } from "rxjs";
+import { XTooltipDirective } from "@ng-nest/ui/tooltip";
 import {
   Component,
   OnInit,
@@ -8,7 +8,6 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostListener,
   ViewChild
 } from "@angular/core";
 import { XSliderSelectInput } from "./slider-select.type";
@@ -21,7 +20,6 @@ import {
   removeNgTag
 } from "@ng-nest/ui/core";
 import { CdkDrag, CdkDragMove, CdkDragEnd, CdkDragStart } from "@angular/cdk/drag-drop";
-import { XTooltipDirective } from "../tooltip";
 
 @Component({
   selector: "x-slider-select",
@@ -32,22 +30,28 @@ import { XTooltipDirective } from "../tooltip";
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
 export class XSliderSelectComponent extends XControlValueAccessor implements OnInit {
-  @Input() @XInputNumber() min: number = Number.MIN_SAFE_INTEGER;
-  @Input() @XInputNumber() max: number = Number.MAX_SAFE_INTEGER;
+  @Input() @XInputNumber() min: number = 0;
+  @Input() @XInputNumber() max: number = 100;
   @Input() @XInputNumber() step: number = 1;
   @Input() @XInputNumber() debounce: number = 40;
   @Input() @XInputNumber() precision: number = 0;
   @ViewChild("sliderSelect", { static: true }) sliderSelect: ElementRef;
   @ViewChild("dragRef", { static: true }) dragRef: ElementRef;
   @ViewChild("railRef", { static: true }) railRef: ElementRef;
+  @ViewChild("trackRef", { static: true }) trackRef: ElementRef;
+  @ViewChild("processRef", { static: true }) processRef: ElementRef;
   @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
+  visible: boolean = false;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
   }
 
   private _default: XSliderSelectInput = {};
+
+  value = 0;
+  displayValue = "0";
 
   writeValue(value: any) {
     this.value = value;
@@ -66,12 +70,18 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
 
   start: number;
 
+  change() {
+    this.value = ((this.max - this.min) * this.left) / 100 + this.min;
+    this.displayValue = Number(this.value).toFixed(this.precision);
+    if (this.onChange) this.onChange(this.value);
+  }
+
   dragStarted(drag: CdkDragStart) {
-    // let transform = drag.source._dragRef["_activeTransform"];
-    // let railBox = this.railRef.nativeElement.getBoundingClientRect();
-    const s = this.left;
-    this.start = s;
-    // console.log("1", transform);
+    const start = this.left;
+    this.start = start;
+    this.visible = true;
+    this.tooltip.show();
+    this.cdr.detectChanges();
   }
 
   dragMoved(drag: CdkDragMove) {
@@ -79,16 +89,18 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     let railBox = this.railRef.nativeElement.getBoundingClientRect();
     let x = (this.start / 100) * railBox.width + transform.x;
     this.left = Math.round((x / railBox.width) * 100);
+    this.renderer.setStyle(this.dragRef.nativeElement, "left", `${this.left}%`);
+    this.renderer.setStyle(this.processRef.nativeElement, "width", `${this.left}%`);
+    this.renderer.removeStyle(this.dragRef.nativeElement, "transform");
+    drag.source.reset();
     this.tooltip.update();
+    this.change();
+    this.cdr.detectChanges();
   }
 
   dragEnded(drag: CdkDragEnd) {
-    // let transform = drag.source._dragRef["_activeTransform"];
-    // let railBox = this.railRef.nativeElement.getBoundingClientRect();
-    // let x = (this.left / 100) * railBox.width + transform.x;
-    // this.left = Math.round((x / railBox.width) * 100);
-    this.renderer.setStyle(this.dragRef.nativeElement, "left", `${this.left}%`);
-    this.renderer.removeStyle(this.dragRef.nativeElement, "transform");
-    drag.source.reset();
+    this.visible = false;
+    this.tooltip.hide();
+    this.cdr.detectChanges();
   }
 }

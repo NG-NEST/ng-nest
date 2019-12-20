@@ -10,21 +10,29 @@
 
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef></div>
-    <div class="x-slider-select-track"></div>
-    <div class="x-slider-select-buttons">
+    <div class="x-slider-select-track" #trackRef>
+      <div class="x-slider-select-process" #processRef></div>
+    </div>
+    <div class="x-slider-select-drags">
       <div
         #dragRef
-        class="x-slider-select-button"
+        class="x-slider-select-drag"
         cdkDrag
         cdkDragLockAxis="x"
-        x-tooltip
-        [content]="left"
-        placement="top"
         [cdkDragBoundary]="innerRef"
-        (cdkDragStarted) = "dragStarted($event)"
+        (cdkDragStarted)="dragStarted($event)"
         (cdkDragEnded)="dragEnded($event)"
         (cdkDragMoved)="dragMoved($event)"
-      ></div>
+      >
+        <div
+          #tooltip
+          x-tooltip
+          class="x-slider-select-button"
+          [content]="displayValue"
+          placement="top"
+          [visible]="visible"
+        ></div>
+      </div>
     </div>
   </div>
 </div>

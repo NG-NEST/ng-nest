@@ -118,7 +118,7 @@ describe(XSliderSelectPrefix, () => {
 })
 class TestXSliderSelectComponent {
   constructor(public cdr: ChangeDetectorRef) {
-    interval(10).subscribe(x => {
+    interval(1).subscribe(x => {
       this.cdr.detectChanges();
     });
   }
@@ -158,7 +158,13 @@ class TestXSliderSelectComponent {
     `
   ]
 })
-class TestXSliderSelectLabelComponent {}
+class TestXSliderSelectLabelComponent {
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(1).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
 
 @Component({
   template: `
@@ -174,7 +180,7 @@ class TestXSliderSelectLabelComponent {}
     </x-row>
     <x-row>
       <x-col>
-        <x-slider-select min="1" max="10"></x-slider-select>
+        <x-slider-select min="-10" max="10"></x-slider-select>
       </x-col>
     </x-row>
   `,
@@ -189,7 +195,13 @@ class TestXSliderSelectLabelComponent {}
     `
   ]
 })
-class TestXSliderSelectLimitComponent {}
+class TestXSliderSelectLimitComponent {
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(1).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
 
 @Component({
   template: `
@@ -210,7 +222,13 @@ class TestXSliderSelectLimitComponent {}
     `
   ]
 })
-class TestXSliderSelectPrecisionComponent {}
+class TestXSliderSelectPrecisionComponent {
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(1).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
 
 @Component({
   template: `

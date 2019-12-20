@@ -7,7 +7,6 @@
 @mixin slider-select {
   font-size: $--x-slider-select-font-size;
   color: $--x-text;
-  padding: 0 $--x-slider-select-button-size/2;
   @include flex();
   > label {
     display: inline-block;
@@ -30,24 +29,29 @@
       border-radius: $--x-slider-select-border-radius;
     }
     > .#{$--x-slider-select-prefix}-track {
-      width: 100%;
+      margin-left: $--x-slider-select-button-size/2;
+      width: calc(100% - #{$--x-slider-select-button-size});
       position: absolute;
-      // background-color: $--x-border-300;
-      // height: $--x-slider-select-track-height;
-      // border-radius: $--x-slider-select-border-radius;
+      > .#{$--x-slider-select-prefix}-process {
+        height: $--x-slider-select-track-height;
+        background-color: $--x-primary;
+        width: 0%;
+      }
     }
-    > .#{$--x-slider-select-prefix}-buttons {
+    > .#{$--x-slider-select-prefix}-drags {
       position: relative;
       width: 100%;
       height: $--x-slider-select-button-size;
-      > .#{$--x-slider-select-prefix}-button {
-        width: $--x-slider-select-button-size;
-        height: $--x-slider-select-button-size;
-        border-radius: $--x-slider-select-button-size;
+      > .#{$--x-slider-select-prefix}-drag {
         position: absolute;
-        border: $--x-border-width * 2 solid $--x-primary;
-        background-color: $--x-white;
         left: 0%;
+        > .#{$--x-slider-select-prefix}-button {
+          width: $--x-slider-select-button-size;
+          height: $--x-slider-select-button-size;
+          border-radius: $--x-slider-select-button-size;
+          border: $--x-border-width * 2 solid $--x-primary;
+          background-color: $--x-white;
+        }
       }
     }
   }
