@@ -35,6 +35,7 @@
       > .#{$--x-slider-select-prefix}-process {
         height: $--x-slider-select-track-height;
         background-color: $--x-primary;
+        border-radius: $--x-slider-select-border-radius;
         width: 0%;
       }
     }
@@ -79,15 +80,21 @@
     }
   }
   &.x-disabled {
-    > .#{$--x-slider-select-prefix}-row {
-      > #{$--x-prefix}-icon {
-        color: $--x-text-300;
+    > .#{$--x-slider-select-prefix}-inner {
+      > .#{$--x-slider-select-prefix}-rail {
+        background-color: $--x-border-100;
       }
-      > input {
-        color: $--x-text-300;
-        cursor: not-allowed;
-        border-color: $--x-border-300;
-        background-color: $--x-background-300;
+      > .#{$--x-slider-select-prefix}-track {
+        > .#{$--x-slider-select-prefix}-process {
+          background-color: $--x-primary-500;
+        }
+      }
+      > .#{$--x-slider-select-prefix}-drags {
+        > .#{$--x-slider-select-prefix}-drag {
+          > .#{$--x-slider-select-prefix}-button {
+            border-color: $--x-primary-500;
+          }
+        }
       }
     }
   }

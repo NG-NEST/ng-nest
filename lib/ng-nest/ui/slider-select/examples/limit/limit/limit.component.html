@@ -1,15 +1,15 @@
 <x-row>
-  <x-col>
-    <x-slider-select max="10"></x-slider-select>
+  <x-col span="12">
+    <x-slider-select max="10" [(ngModel)]="model1"></x-slider-select>
   </x-col>
 </x-row>
 <x-row>
-  <x-col>
-    <x-slider-select min="1"></x-slider-select>
+  <x-col span="12">
+    <x-slider-select min="-10" [(ngModel)]="model2"></x-slider-select>
   </x-col>
 </x-row>
 <x-row>
-  <x-col>
-    <x-slider-select min="1" max="10"></x-slider-select>
+  <x-col span="12">
+    <x-slider-select min="-10" max="10" [(ngModel)]="model3"></x-slider-select>
   </x-col>
 </x-row>

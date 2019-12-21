@@ -1,5 +1,10 @@
 <x-row>
-  <x-col>
-    <x-slider-select precision="2" step="0.1"></x-slider-select>
+  <x-col span="12">
+    <x-slider-select min="0" max="1" step="0.1" [(ngModel)]="model1"></x-slider-select>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col span="12">
+    <x-slider-select min="0" max="1" step="0.01" [(ngModel)]="model2"></x-slider-select>
   </x-col>
 </x-row>

@@ -99,7 +99,7 @@ export const menus: Menu[] = [
     "order": 1
   },
   {
-    "id": "3-0-25",
+    "id": "3-0-24",
     "parentId": "3-0",
     "name": "pagination",
     "router": "./docs/ui/components/pagination",
@@ -108,7 +108,7 @@ export const menus: Menu[] = [
     "order": 2
   },
   {
-    "id": "3-0-28",
+    "id": "3-0-27",
     "parentId": "3-0",
     "name": "radio",
     "router": "./docs/ui/components/radio",
@@ -144,16 +144,7 @@ export const menus: Menu[] = [
     "order": 4
   },
   {
-    "id": "3-0-19",
-    "parentId": "3-0",
-    "name": "input-slider",
-    "router": "./docs/ui/components/input-slider",
-    "label": "InputSlider 计数器",
-    "category": "Form",
-    "order": 4
-  },
-  {
-    "id": "3-0-30",
+    "id": "3-0-29",
     "parentId": "3-0",
     "name": "select",
     "router": "./docs/ui/components/select",
@@ -180,6 +171,15 @@ export const menus: Menu[] = [
     "order": 7
   },
   {
+    "id": "3-0-31",
+    "parentId": "3-0",
+    "name": "slider-select",
+    "router": "./docs/ui/components/slider-select",
+    "label": "SliderSelect 滑动选择",
+    "category": "Form",
+    "order": 8
+  },
+  {
     "id": "3-0-13",
     "parentId": "3-0",
     "name": "form",
@@ -189,7 +189,7 @@ export const menus: Menu[] = [
     "order": 15
   },
   {
-    "id": "3-0-21",
+    "id": "3-0-20",
     "parentId": "3-0",
     "name": "list",
     "router": "./docs/ui/components/list",
@@ -269,21 +269,21 @@ export const menus: Menu[] = [
     "label": "内部"
   },
   {
-    "id": "3-0-26",
+    "id": "3-0-25",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-27",
+    "id": "3-0-26",
     "parentId": "3-0",
     "name": "portal",
     "router": "./docs/ui/components/portal",
     "label": "动态组件"
   },
   {
-    "id": "3-0-31",
+    "id": "3-0-30",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",

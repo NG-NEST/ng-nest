@@ -15,11 +15,12 @@ import {
   fillDefault,
   XIsEmpty,
   XValueAccessor,
+  XIsUndefined,
   XControlValueAccessor,
   XInputNumber,
   removeNgTag
 } from "@ng-nest/ui/core";
-import { CdkDrag, CdkDragMove, CdkDragEnd, CdkDragStart } from "@angular/cdk/drag-drop";
+import { CdkDragMove } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "x-slider-select",
@@ -33,8 +34,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   @Input() @XInputNumber() min: number = 0;
   @Input() @XInputNumber() max: number = 100;
   @Input() @XInputNumber() step: number = 1;
-  @Input() @XInputNumber() debounce: number = 40;
-  @Input() @XInputNumber() precision: number = 0;
+  @Input() @XInputNumber() precision: number;
   @ViewChild("sliderSelect", { static: true }) sliderSelect: ElementRef;
   @ViewChild("dragRef", { static: true }) dragRef: ElementRef;
   @ViewChild("railRef", { static: true }) railRef: ElementRef;
@@ -43,6 +43,9 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
   visible: boolean = false;
+  start: number;
+  value = 0;
+  displayValue = "0";
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -50,11 +53,11 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
 
   private _default: XSliderSelectInput = {};
 
-  value = 0;
-  displayValue = "0";
-
   writeValue(value: any) {
+    if (value === null) value = 0;
     this.value = value;
+    this.setLeft();
+    this.setDisplayValue();
     this.cdr.detectChanges();
   }
 
@@ -65,18 +68,46 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.sliderSelect.nativeElement, this.justify, this.align, this.direction);
+    this.setPrecision();
     removeNgTag(this.elementRef.nativeElement);
   }
 
-  start: number;
+  ngAfterViewInit() {
+    this.setLeft();
+    this.setDisplayValue();
+  }
 
   change() {
     this.value = ((this.max - this.min) * this.left) / 100 + this.min;
-    this.displayValue = Number(this.value).toFixed(this.precision);
+    this.setDisplayValue();
     if (this.onChange) this.onChange(this.value);
   }
 
-  dragStarted(drag: CdkDragStart) {
+  setLeft() {
+    this.left = Math.round(((this.value - this.min) * 100) / (this.max - this.min));
+    const start = this.left;
+    this.start = start;
+    this.setDrag();
+    this.cdr.detectChanges();
+  }
+
+  setDisplayValue() {
+    this.displayValue = Number(this.value).toFixed(this.precision);
+  }
+
+  setPrecision() {
+    if (XIsUndefined(this.precision)) {
+      let stepStr = String(this.step);
+      let indexpoint = stepStr.indexOf(".");
+      if (indexpoint === -1) {
+        this.precision = 0;
+      } else {
+        this.precision = stepStr.length - (indexpoint + 1);
+      }
+    }
+  }
+
+  dragStarted() {
     const start = this.left;
     this.start = start;
     this.visible = true;
@@ -86,21 +117,34 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
 
   dragMoved(drag: CdkDragMove) {
     let transform = drag.source._dragRef["_activeTransform"];
+    this.setDrag(transform.x);
+    drag.source.reset();
+    this.tooltip.update();
+    this.change();
+  }
+
+  dragEnded() {
+    this.visible = false;
+    this.tooltip.hide();
+    this.cdr.detectChanges();
+  }
+
+  setDrag(distance: number = 0) {
     let railBox = this.railRef.nativeElement.getBoundingClientRect();
-    let x = (this.start / 100) * railBox.width + transform.x;
+    let stepWidth = railBox.width / ((this.max - this.min) / this.step);
+    let offset = Math.abs(distance % stepWidth);
+    let dis =
+      offset < stepWidth / 2
+        ? distance > 0
+          ? distance - offset
+          : distance + offset
+        : distance > 0
+        ? distance + stepWidth - offset
+        : distance - stepWidth + offset;
+    let x = (this.start / 100) * railBox.width + dis;
     this.left = Math.round((x / railBox.width) * 100);
     this.renderer.setStyle(this.dragRef.nativeElement, "left", `${this.left}%`);
     this.renderer.setStyle(this.processRef.nativeElement, "width", `${this.left}%`);
     this.renderer.removeStyle(this.dragRef.nativeElement, "transform");
-    drag.source.reset();
-    this.tooltip.update();
-    this.change();
-    this.cdr.detectChanges();
-  }
-
-  dragEnded(drag: CdkDragEnd) {
-    this.visible = false;
-    this.tooltip.hide();
-    this.cdr.detectChanges();
   }
 }

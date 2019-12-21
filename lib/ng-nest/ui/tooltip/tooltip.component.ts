@@ -12,7 +12,7 @@ import { XPlacement, XInputBoolean } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
 import { XTooltipPortalComponent } from "./tooltip-portal.component";
 import { XTooltipPortal } from "./tooltip.type";
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 
 @Directive({
   selector: "[x-tooltip]"
@@ -23,7 +23,7 @@ export class XTooltipDirective implements OnInit, OnChanges {
   @Input() @XInputBoolean() visible?: boolean = false;
   portal: XPortalOverlayRef;
   box: DOMRect;
-  contentChange: Subject<any> = new Subject();
+  contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(
     private elementRef: ElementRef,
     private portalService: XPortalService,

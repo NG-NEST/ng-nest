@@ -6,7 +6,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./disabled.component.scss"]
 })
 export class ExDisabledComponent implements OnInit {
-  model = 10;
+  model1 = 0;
+  model2 = 60;
   constructor() {}
 
   ngOnInit() {}

@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 1
 label: "禁用"
 ---
 

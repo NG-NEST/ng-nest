@@ -20,6 +20,7 @@ import { XInputNumberModule } from "@ng-nest/ui/input-number";
 import { XSelectModule } from "@ng-nest/ui/select";
 import { XCascadeModule } from "@ng-nest/ui/cascade";
 import { XSwitchModule } from "@ng-nest/ui/switch";
+import { XSliderSelectModule } from "@ng-nest/ui/slider-select";
 
 import { XTooltipModule } from "@ng-nest/ui/tooltip";
 
@@ -56,6 +57,7 @@ export * from "@ng-nest/ui/input-number";
 export * from "@ng-nest/ui/select";
 export * from "@ng-nest/ui/cascade";
 export * from "@ng-nest/ui/switch";
+export * from "@ng-nest/ui/slider-select";
 
 export * from "@ng-nest/ui/tooltip";
 
@@ -92,6 +94,7 @@ export * from "@ng-nest/ui/form";
     XSelectModule,
     XCascadeModule,
     XSwitchModule,
+    XSliderSelectModule,
 
     XTooltipModule,
 

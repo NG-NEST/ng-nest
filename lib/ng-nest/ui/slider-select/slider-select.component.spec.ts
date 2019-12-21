@@ -18,8 +18,7 @@ describe(XSliderSelectPrefix, () => {
         TestXSliderSelectLabelComponent,
         TestXSliderSelectLimitComponent,
         TestXSliderSelectPrecisionComponent,
-        TestXSliderSelectDisabledComponent,
-        TestXSliderSelectRequiredComponent
+        TestXSliderSelectDisabledComponent
       ]
     }).compileComponents();
   }));
@@ -83,18 +82,6 @@ describe(XSliderSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`required.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectRequiredComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectRequiredComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectRequiredComponent));
-    });
-    it("should create.", () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
 });
 
 @Component({
@@ -104,61 +91,22 @@ describe(XSliderSelectPrefix, () => {
         <x-slider-select></x-slider-select>
       </x-col>
     </x-row>
-  `,
-  styles: [
-    `
-      x-row {
-        margin-top: 1rem;
-      }
-      x-row > x-col {
-        margin: 2rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectComponent {
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
     <x-row>
-      <x-col>
-        <x-slider-select label="数量"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-slider-select label="数量" direction="column-reverse"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-slider-select label="数量" direction="row"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-slider-select label="数量" direction="row-reverse"></x-slider-select>
+      <x-col span="12">
+        <x-slider-select [(ngModel)]="model"></x-slider-select>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col {
-        width: 10rem;
-      }
       x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
   ]
 })
-class TestXSliderSelectLabelComponent {
+class TestXSliderSelectComponent {
+  model = 60;
   constructor(public cdr: ChangeDetectorRef) {
     interval(1).subscribe(x => {
       this.cdr.detectChanges();
@@ -169,26 +117,23 @@ class TestXSliderSelectLabelComponent {
 @Component({
   template: `
     <x-row>
-      <x-col>
-        <x-slider-select max="10"></x-slider-select>
+      <x-col span="12">
+        <x-slider-select max="10" [(ngModel)]="model1"></x-slider-select>
       </x-col>
     </x-row>
     <x-row>
-      <x-col>
-        <x-slider-select min="1"></x-slider-select>
+      <x-col span="12">
+        <x-slider-select min="-10" [(ngModel)]="model2"></x-slider-select>
       </x-col>
     </x-row>
     <x-row>
-      <x-col>
-        <x-slider-select min="-10" max="10"></x-slider-select>
+      <x-col span="12">
+        <x-slider-select min="-10" max="10" [(ngModel)]="model3"></x-slider-select>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col {
-        width: 10rem;
-      }
       x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
@@ -196,6 +141,9 @@ class TestXSliderSelectLabelComponent {
   ]
 })
 class TestXSliderSelectLimitComponent {
+  model1 = 0;
+  model2 = 0;
+  model3 = 0;
   constructor(public cdr: ChangeDetectorRef) {
     interval(1).subscribe(x => {
       this.cdr.detectChanges();
@@ -206,16 +154,18 @@ class TestXSliderSelectLimitComponent {
 @Component({
   template: `
     <x-row>
-      <x-col>
-        <x-slider-select precision="2" step="0.1"></x-slider-select>
+      <x-col span="12">
+        <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
+        <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col {
-        width: 10rem;
-      }
       x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
@@ -233,49 +183,64 @@ class TestXSliderSelectPrecisionComponent {
 @Component({
   template: `
     <x-row>
-      <x-col>
+      <x-col span="12">
+        <x-slider-select label="数量" [(ngModel)]="model"></x-slider-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
+        <x-slider-select label="数量" [(ngModel)]="model" direction="column-reverse"></x-slider-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
+        <x-slider-select label="数量" [(ngModel)]="model" direction="row"></x-slider-select>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
+        <x-slider-select label="数量" [(ngModel)]="model" direction="row-reverse"></x-slider-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXSliderSelectLabelComponent {
+  model: number = 0;
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(1).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="12">
         <x-slider-select disabled></x-slider-select>
       </x-col>
-      <x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
         <x-slider-select disabled [(ngModel)]="model"></x-slider-select>
       </x-col>
     </x-row>
   `,
   styles: [
     `
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row > x-col:not(:first-child) {
+      x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
     `
   ]
 })
 class TestXSliderSelectDisabledComponent {
-  model = 10;
+  model = 60;
 }
-
-@Component({
-  template: `
-    <x-row>
-      <x-col>
-        <x-slider-select required></x-slider-select>
-      </x-col>
-      <x-col>
-        <x-slider-select label="数量" required></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectRequiredComponent {}

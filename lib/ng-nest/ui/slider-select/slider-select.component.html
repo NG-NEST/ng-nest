@@ -19,9 +19,10 @@
         class="x-slider-select-drag"
         cdkDrag
         cdkDragLockAxis="x"
+        [cdkDragDisabled]="disabled"
         [cdkDragBoundary]="innerRef"
-        (cdkDragStarted)="dragStarted($event)"
-        (cdkDragEnded)="dragEnded($event)"
+        (cdkDragStarted)="dragStarted()"
+        (cdkDragEnded)="dragEnded()"
         (cdkDragMoved)="dragMoved($event)"
       >
         <div

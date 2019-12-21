@@ -6,6 +6,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./precision.component.scss"]
 })
 export class ExPrecisionComponent implements OnInit {
+  model1 = 0;
+  model2 = 0;
   constructor() {}
 
   ngOnInit() {}

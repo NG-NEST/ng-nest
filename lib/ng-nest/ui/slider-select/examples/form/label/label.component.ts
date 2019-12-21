@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./label.component.scss"]
 })
 export class ExLabelComponent implements OnInit {
+  model = 0;
   constructor() {}
 
   ngOnInit() {}

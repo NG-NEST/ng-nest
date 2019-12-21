@@ -4,9 +4,9 @@ category: "Form"
 order: 8
 ---
 
-# SliderSelect 计数器
+# SliderSelect 滑动选择
 
-允许输入标准的数字值，可定义范围。
+通过拖动滑块在一个固定区间内进行选择。
 
 ## 示例代码
 
