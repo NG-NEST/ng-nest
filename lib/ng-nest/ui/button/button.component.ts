@@ -27,6 +27,7 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() title?: string;
+  @Input() @XInputBoolean() onlyIcon?: boolean;
   @Input() @XInputBoolean() activated?: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
   @Input() @XInputBoolean() plain?: boolean;
@@ -41,6 +42,9 @@ export class XButtonComponent implements OnInit, OnChanges {
   }
   @HostBinding("class.x-button-icon") get getIcon() {
     return !this.label && this.icon;
+  }
+  @HostBinding("class.x-button-only-icon") get getOnlyIcon() {
+    return this.onlyIcon;
   }
   @HostBinding("class.x-button-activated") get getActivated() {
     return this.activated;

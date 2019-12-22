@@ -85,6 +85,15 @@
     padding: 0;
     width: 1.675rem;
   }
+  &-only-icon {
+    background-color: transparent;
+    border-color: transparent;
+    transition: background-color 0s, border-color 0s;
+    &:hover,
+    &:active {
+      @include button-color($--x-button-hover, transparent, transparent);
+    }
+  }
   &-disabled {
     @include disabled($--x-button-disabled, $--x-button-disabled-background, $--x-button-disabled-border);
   }

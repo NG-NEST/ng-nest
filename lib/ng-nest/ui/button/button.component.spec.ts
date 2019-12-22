@@ -239,6 +239,7 @@ class TestXButtonTextComponent {}
   selector: "test-x-icon-button",
   template: `
     <div class="row">
+      <x-button icon="fto-edit-3" onlyIcon></x-button>
       <x-button icon="fto-edit-3" type="primary"></x-button>
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-trash-2" type="primary"></x-button>

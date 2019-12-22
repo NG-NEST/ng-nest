@@ -18,10 +18,12 @@
     display: flex;
     align-items: center;
     position: relative;
-    > .x-input {
-      > .x-input-row {
-        > input {
-          cursor: pointer;
+    > x-input {
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -35,10 +37,12 @@
   }
   &.x-disabled {
     > .#{$--x-date-picker-prefix}-row {
-      > .x-input {
-        > .x-input-row {
-          > input {
-            cursor: not-allowed;
+      > x-input {
+        > .x-input {
+          > .x-input-row {
+            > input {
+              cursor: not-allowed;
+            }
           }
         }
       }
@@ -66,14 +70,61 @@
 }
 
 @mixin date-picker-portal {
+  $prefix: $--x-date-picker-portal-prefix;
   font-size: $--x-date-picker-font-size;
   color: $--x-text;
   border: $--x-date-picker-border;
   border-radius: 0.125rem;
   box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   background-color: $--x-white;
+  width: 16rem;
+  height: 18rem;
   display: flex;
-  > .x-list:not(:first-child) {
-    border-left: $--x-date-picker-border;
+  flex-direction: column;
+  font-size: $--x-font-size-sm;
+  x-button {
+    padding: 0 0.1rem;
+    color: $--x-text;
+    &:hover {
+      color: $--x-primary;
+    }
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem;
+    border-bottom: $--x-border-width solid $--x-border-200;
+  }
+  &-year-month {
+    flex: 1;
+    text-align: center;
+  }
+  &-body {
+    padding: 0.4rem;
+  }
+  &-table {
+    width: 100%;
+    border-collapse: collapse;
+    th {
+      font-weight: 400;
+      height: 1.875rem;
+    }
+    td {
+      height: 1.875rem;
+      padding: 0.125rem 0;
+      text-align: center;
+      .x-button {
+        width: 1.6rem;
+        margin: 0 auto;
+        &:hover {
+          background-color: $--x-primary-900;
+        }
+        &-activated {
+          color: $--x-white;
+          background-color: $--x-primary;
+        }
+      }
+    }
   }
 }

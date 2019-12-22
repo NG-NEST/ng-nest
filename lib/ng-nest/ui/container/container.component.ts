@@ -47,7 +47,7 @@ export class XContainerComponent implements OnInit {
 
   setDirection() {
     if (this.direction) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XContainerPrefix}-direction-${this.direction}`);
+      this.renderer.addClass(this.elementRef.nativeElement, `x-flex-direction-${this.direction}`);
     }
   }
 }

@@ -80,6 +80,6 @@
   background-color: $--x-white;
   display: flex;
   > x-list:not(:first-child) {
-    border-left: $--x-cascade-border;
+    border-left: $--x-border-width solid $--x-border-200;
   }
 }

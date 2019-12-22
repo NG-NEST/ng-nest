@@ -27,7 +27,8 @@ import {
   XIsEmpty,
   XDataConvert,
   XIsObservable,
-  XToDataConvert} from "@ng-nest/ui/core";
+  XToDataConvert
+} from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { map } from "rxjs/operators";
 import { DOCUMENT } from "@angular/common";
@@ -41,7 +42,6 @@ import { DOCUMENT } from "@angular/common";
   providers: [XValueAccessor(XDatePickerComponent)]
 })
 export class XDatePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XDatePickerNode[]>;
   @ViewChild("datePicker", { static: true }) datePicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<XDatePickerNode> = new EventEmitter<XDatePickerNode>();
@@ -60,10 +60,8 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   clearable: boolean = false;
   enter: boolean = false;
   displayValue: any = "";
-  datas: XDatePickerNode[] = [];
-  nodes: XDatePickerNode[] = [];
   portal: XPortalOverlayRef;
-  icon: string = "fto-chevron-down";
+  icon: string = "fto-calendar";
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
@@ -100,7 +98,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   ngOnChanges(changes: SimpleChanges): void {
     let dataChange = changes.data;
     if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
+      // this.setData();
     }
   }
 
@@ -124,31 +122,6 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     this.cdr.markForCheck();
   }
 
-  private setData() {
-    if (typeof this.data === "undefined") return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XDatePickerNode[]);
-    }
-  }
-
-  private setDataChange(value: XDatePickerNode[]) {
-    this.datas = value;
-    let getChildren = (node: XDatePickerNode, level: number) => {
-      node.level = level;
-      node.children = value.filter(y => y.parentValue === node.value);
-      node.hasChild = node.children.length > 0;
-      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
-      return node;
-    };
-    this.nodes = value.filter(x => XIsEmpty(x.parentValue)).map(x => getChildren(x, 0));
-    this.setPortal();
-  }
-
   change() {
     // if (this.onChange) this.onChange(this.value);
   }
@@ -167,7 +140,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = false;
     if (this.clearable) {
-      this.icon = "fto-chevron-down";
+      this.icon = "fto-calendar";
       this.clearable = false;
       this.cdr.detectChanges();
     }
@@ -187,8 +160,6 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
-          datas: this.datas,
-          nodes: this.nodes,
           value: this.value,
           nodeEmit: node => this.nodeClick(node)
         },
@@ -216,17 +187,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   setDisplayValue() {
-    let node = this.datas.find(x => x.value === this.value);
-    if (!node) {
-      this.displayValue = "";
-      return;
-    }
-    let selecteds = [node];
-    while (!XIsEmpty(node.parentValue)) {
-      node = this.datas.find(x => x.value === node.parentValue);
-      selecteds = [node, ...selecteds];
-    }
-    this.displayValue = selecteds.map(x => x.label).join(` / `);
+    // this.displayValue = selecteds.map(x => x.label).join(` / `);
   }
 
   setPositionStrategy() {
@@ -241,9 +202,10 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   setPortal() {
     if (!this.inputCom.input) return;
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    if (this.box && this.nodes.length > 0) {
-      this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
-    }
+    this.protalHeight = 300;
+    // if (this.box && this.nodes.length > 0) {
+    //   this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
+    // }
     if (this.portal && this.portal.overlayRef.hasAttached) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
