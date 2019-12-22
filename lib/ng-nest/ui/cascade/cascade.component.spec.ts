@@ -147,7 +147,7 @@ class TestXCascadeComponent {
   model2 = 22;
   model3 = 10;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(1).subscribe(x => {
       this.cdr.detectChanges();
     });
   }

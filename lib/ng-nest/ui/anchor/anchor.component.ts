@@ -84,7 +84,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     fillDefault(this, this._default);
     this._top = this._fontSize * this.top;
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {

@@ -28,7 +28,7 @@ export class XControlComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     fillDefault(this.option, this._default);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

@@ -7,6 +7,7 @@
 @mixin cascade {
   font-size: $--x-cascade-font-size;
   color: $--x-text;
+  width: 100%;
   @include flex();
   > label {
     display: inline-block;
@@ -18,10 +19,13 @@
     display: flex;
     align-items: center;
     position: relative;
-    > .x-input {
-      > .x-input-row {
-        > input {
-          cursor: pointer;
+    > x-input {
+      flex: 1;
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -35,10 +39,12 @@
   }
   &.x-disabled {
     > .#{$--x-cascade-prefix}-row {
-      > .x-input {
-        > .x-input-row {
-          > input {
-            cursor: not-allowed;
+      > x-input {
+        > .x-input {
+          > .x-input-row {
+            > input {
+              cursor: not-allowed;
+            }
           }
         }
       }
@@ -73,7 +79,7 @@
   box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   background-color: $--x-white;
   display: flex;
-  > .x-list:not(:first-child) {
+  > x-list:not(:first-child) {
     border-left: $--x-cascade-border;
   }
 }

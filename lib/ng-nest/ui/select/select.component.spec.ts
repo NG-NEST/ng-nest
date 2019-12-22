@@ -90,12 +90,12 @@ const data: XData<XSelectNode[]> = ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFF
 @Component({
   template: `
     <x-row>
-      <x-col>
+      <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1"></x-select>
       </x-col>
     </x-row>
     <x-row>
-      <x-col>
+      <x-col span="8">
         <x-select [data]="data2" [(ngModel)]="model2"></x-select>
       </x-col>
     </x-row>
@@ -104,9 +104,6 @@ const data: XData<XSelectNode[]> = ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFF
     `
       :host {
         height: 900px;
-      }
-      x-row > x-col {
-        width: 10rem;
       }
       x-row:not(:first-child) {
         margin-top: 0.5rem;

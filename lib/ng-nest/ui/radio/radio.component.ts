@@ -52,7 +52,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

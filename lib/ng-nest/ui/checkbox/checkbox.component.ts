@@ -53,7 +53,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   }
 
   ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

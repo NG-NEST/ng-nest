@@ -40,7 +40,7 @@ export class XFormComponent implements OnInit, OnChanges {
     this.getControlsType();
     this.createFormGroup();
 
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

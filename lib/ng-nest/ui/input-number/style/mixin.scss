@@ -7,6 +7,7 @@
 @mixin input-number {
   font-size: $--x-input-number-font-size;
   color: $--x-text;
+  width: 100%;
   @include flex();
   > label {
     display: inline-block;

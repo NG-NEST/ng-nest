@@ -46,7 +46,7 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
       this.cdr.detectChanges();
     });
 
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {

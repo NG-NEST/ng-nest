@@ -81,7 +81,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     fillDefault(this, this._default);
     this.setPadding();
     this.setFlex(this.input.nativeElement, this.justify, this.align, this.direction);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

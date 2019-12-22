@@ -98,7 +98,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.select.nativeElement, this.justify, this.align, this.direction);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
@@ -254,7 +254,10 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   setPositionStrategy() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(this.inputCom.input, this.protalTobottom ? "bottom" : "top");
+    return this.portalService.setPositionStrategy(
+      this.inputCom.input,
+      this.protalTobottom ? "bottom-start" : "top-start"
+    );
   }
 
   setPortal() {

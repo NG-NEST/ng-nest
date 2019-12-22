@@ -66,7 +66,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.inputNumber.nativeElement, this.justify, this.align, this.direction);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   setDisplayValue() {

@@ -36,7 +36,7 @@ export class XSwitchComponent extends XControlValueAccessor implements OnInit {
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.switch.nativeElement, this.justify, this.align, this.direction);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   switchClick() {

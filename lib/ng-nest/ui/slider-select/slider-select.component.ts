@@ -69,7 +69,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     fillDefault(this, this._default);
     this.setFlex(this.sliderSelect.nativeElement, this.justify, this.align, this.direction);
     this.setPrecision();
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {

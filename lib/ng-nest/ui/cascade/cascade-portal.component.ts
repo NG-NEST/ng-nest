@@ -5,7 +5,9 @@ import {
   Inject,
   ChangeDetectorRef,
   OnInit,
-  ElementRef} from "@angular/core";
+  ElementRef,
+  NgZone
+} from "@angular/core";
 import { XCascadeNode, XCascadePortal } from "./cascade.type";
 import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
 
@@ -25,6 +27,7 @@ export class XCascadePortalComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     @Inject(XCascadePortal) public option: any,
+    public ngZone: NgZone,
     public cdr: ChangeDetectorRef
   ) {
     this.datas = this.option.datas;
@@ -36,7 +39,7 @@ export class XCascadePortalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   setDefault() {
@@ -52,26 +55,28 @@ export class XCascadePortalComponent implements OnInit {
   }
 
   nodeClick(node: XCascadeNode) {
-    if (node.hasChild) {
-      if (this.nodes.length === node.level) {
-        this.nodes = [...this.nodes, node.children];
-        this.selecteds = [...this.selecteds, node];
-      } else {
-        if (this.nodes.length > node.level + 1) {
-          this.nodes = this.nodes.splice(0, node.level + 1);
-          this.selecteds = this.selecteds.splice(0, node.level + 1);
+    this.ngZone.run(() => {
+      if (node.hasChild) {
+        if (this.nodes.length === node.level) {
+          this.nodes = [...this.nodes, node.children];
+          this.selecteds = [...this.selecteds, node];
+        } else {
+          if (this.nodes.length > node.level + 1) {
+            this.nodes = this.nodes.splice(0, node.level + 1);
+            this.selecteds = this.selecteds.splice(0, node.level + 1);
+          }
+          this.nodes[node.level + 1] = node.children;
+          this.selecteds[node.level] = node;
         }
-        this.nodes[node.level + 1] = node.children;
-        this.selecteds[node.level] = node;
+        this.values = this.selecteds.map(x => x.value);
+        this.cdr.detectChanges();
+      } else {
+        if (this.selecteds.length === node.level + 1) {
+          this.selecteds = this.selecteds.splice(0, node.level);
+        }
+        this.selecteds = [...this.selecteds, node];
+        this.option.nodeEmit({ node: node, label: this.selecteds.map(x => x.label).join(` / `) });
       }
-      this.values = this.selecteds.map(x => x.value);
-      this.cdr.detectChanges();
-    } else {
-      if (this.selecteds.length === node.level + 1) {
-        this.selecteds = this.selecteds.splice(0, node.level);
-      }
-      this.selecteds = [...this.selecteds, node];
-      this.option.nodeEmit({ node: node, label: this.selecteds.map(x => x.label).join(` / `) });
-    }
+    });
   }
 }

@@ -4,7 +4,10 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
+#{$--x-input-prefix} {
+  width: 100%;
+}
 .#{$--x-input-prefix} {
-  @include reset-component();
   @include input();
+  @include reset-component();
 }

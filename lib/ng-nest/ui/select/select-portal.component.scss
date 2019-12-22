@@ -4,6 +4,9 @@
 @import "../style/mixins/index";
 @import "./style/mixin";
 
+#{$--x-select-portal-prefix} {
+  width: 100%;
+}
 .#{$--x-select-portal-prefix} {
   @include reset-component();
   @include select-portal();

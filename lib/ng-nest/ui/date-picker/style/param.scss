@@ -1,0 +1,38 @@
+// DatePicker style paramters
+
+$--x-date-picker-prefix: $--x-prefix + "-date-picker";
+
+/* 字体大小 */
+$--x-date-picker-font-size: $--x-font-size;
+
+/* 高度 */
+$--x-date-picker-height: $--x-font-size + 1rem;
+
+/* 内边距 */
+$--x-date-picker-padding: 0 $control-padding-horizontal;
+
+/* 文字颜色 */
+$--x-date-picker-color: $--x-primary-900;
+
+/* 提示文字颜色 */
+$--x-date-picker-placeholder-color: $--x-placeholder-color;
+
+/* 背景颜色 */
+$--x-date-picker-background-color: #ffffff;
+
+/* 边框样式 */
+$--x-date-picker-border: $--x-border-width $--x-border-style $--x-border;
+
+/* 边框圆角 */
+$--x-date-picker-border-radius: $border-radius;
+
+/* 禁用颜色 */
+$--x-date-picker-disabled-color: $--x-text-300;
+
+/* 输入框中的图标大小 */
+$--x-date-picker-icon-font-size: $--x-font-size-md;
+
+/* 输入框中图标的内边距 */
+$--x-date-picker-icon-padding: $control-padding-horizontal;
+
+$--x-date-picker-portal-prefix: $--x-prefix + "-date-picker-portal";

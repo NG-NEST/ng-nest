@@ -37,24 +37,26 @@
     clear: both;
   }
 
-  > .x-anchor {
-    > .x-anchor-content {
-      padding-right: 1.5rem;
-      > p {
-        font-weight: 400;
-        margin: 0.875rem 0 0;
-      }
+  > x-anchor {
+    > .x-anchor {
+      > .x-anchor-content {
+        padding-right: 1.5rem;
+        > p {
+          font-weight: 400;
+          margin: 0.875rem 0 0;
+        }
 
-      > blockquote {
-        margin: 0;
-      }
+        > blockquote {
+          margin: 0;
+        }
 
-      > ul {
-        margin: 0.875rem 0;
-        > li {
-          list-style-type: circle;
-          margin-left: 1.25rem;
-          line-height: 1.75rem;
+        > ul {
+          margin: 0.875rem 0;
+          > li {
+            list-style-type: circle;
+            margin-left: 1.25rem;
+            line-height: 1.75rem;
+          }
         }
       }
     }

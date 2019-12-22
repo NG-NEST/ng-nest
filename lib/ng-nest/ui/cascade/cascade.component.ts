@@ -10,27 +10,21 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding,
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
   ViewChild,
   Inject,
   Output,
-  EventEmitter,
-  NgZone
+  EventEmitter
 } from "@angular/core";
 import { XCascadePrefix, XCascadeInput, XCascadeNode, XCascadePortal } from "./cascade.type";
 import {
   fillDefault,
   XValueAccessor,
   XControlValueAccessor,
-  XJustify,
-  XAlign,
-  XDirection,
   XData,
   XIsEmpty,
-  XInputBoolean,
   XDataConvert,
   XIsObservable,
   XToDataConvert,
@@ -98,7 +92,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.cascade.nativeElement, this.justify, this.align, this.direction);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
@@ -157,7 +151,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     this.setPortal();
   }
 
-  change(event: Event) {
+  change() {
     // if (this.onChange) this.onChange(this.value);
   }
 
@@ -181,7 +175,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     }
   }
 
-  clearEmit(event: Event) {
+  clearEmit() {
     this.value = "";
     this.displayValue = "";
     this.mleave();
@@ -240,7 +234,10 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   setPositionStrategy() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(this.inputCom.input, this.protalTobottom ? "bottom" : "top");
+    return this.portalService.setPositionStrategy(
+      this.inputCom.input,
+      this.protalTobottom ? "bottom-start" : "top-start"
+    );
   }
 
   setPortal() {

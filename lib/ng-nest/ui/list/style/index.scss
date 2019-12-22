@@ -4,6 +4,9 @@
 @import "../../style/mixins/index";
 @import "./mixin";
 
+#{$--x-list-prefix} {
+  width: 100%;
+}
 .#{$--x-list-prefix} {
   @include reset-component();
   @include list();

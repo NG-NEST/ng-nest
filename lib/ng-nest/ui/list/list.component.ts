@@ -60,7 +60,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
 
   ngOnInit() {
     fillDefault(this, this._default);
-    removeNgTag(this.elementRef.nativeElement);
+    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
