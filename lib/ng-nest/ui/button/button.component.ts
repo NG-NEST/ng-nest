@@ -93,5 +93,10 @@ export class XButtonComponent implements OnInit, OnChanges {
     if (disabled && disabled.currentValue != disabled.previousValue) {
       this.cdr.markForCheck();
     }
+    let label = changes.label;
+    console.log(this.label);
+    if (label && label.currentValue != label.previousValue) {
+      this.cdr.markForCheck();
+    }
   }
 }
