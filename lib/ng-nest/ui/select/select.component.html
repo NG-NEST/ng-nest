@@ -8,7 +8,7 @@
   [class.x-required-show]="getRequired"
 >
   <label *ngIf="label">{{ label }}</label>
-  <div class="x-select-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+  <div class="x-select-row" (click)="showPortal($event)" (mouseenter)="menter()" (mouseleave)="mleave()">
     <x-input
       #inputCom
       type="text"

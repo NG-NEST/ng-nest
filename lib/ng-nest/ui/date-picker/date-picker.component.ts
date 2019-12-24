@@ -1,6 +1,6 @@
 import { XDatePickerPortalComponent } from "./date-picker-portal.component";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { Subscription, Observable, Subject } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import {
   Component,
   OnInit,
@@ -18,20 +18,10 @@ import {
   Inject,
   SimpleChanges
 } from "@angular/core";
-import { XDatePickerPrefix, XDatePickerNode, XDatePickerPortal, XDatePickerInput } from "./date-picker.type";
-import {
-  fillDefault,
-  XValueAccessor,
-  XControlValueAccessor,
-  XData,
-  XIsEmpty,
-  XDataConvert,
-  XIsObservable,
-  XToDataConvert
-} from "@ng-nest/ui/core";
+import { XDatePickerPrefix, XDatePickerPortal, XDatePickerInput } from "./date-picker.type";
+import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty, XIsDate, XIsNumber } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
-import { map } from "rxjs/operators";
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT, DatePipe } from "@angular/common";
 
 @Component({
   selector: "x-date-picker",
@@ -39,20 +29,24 @@ import { DOCUMENT } from "@angular/common";
   styleUrls: ["./date-picker.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XValueAccessor(XDatePickerComponent)]
+  providers: [XValueAccessor(XDatePickerComponent), DatePipe]
 })
 export class XDatePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
+  @Input() format?: string = "yyyy-MM-dd";
   @ViewChild("datePicker", { static: true }) datePicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
-  @Output() nodeEmit?: EventEmitter<XDatePickerNode> = new EventEmitter<XDatePickerNode>();
+  @Output() nodeEmit?: EventEmitter<number> = new EventEmitter<number>();
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
   }
 
   writeValue(value: any) {
-    this.value = value;
+    if (XIsDate(value)) this.value = value.getTime();
+    else if (XIsNumber(value)) this.value = value;
+    else if (XIsEmpty(value)) this.value = "";
     this.setDisplayValue();
+    this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
 
@@ -79,6 +73,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
+    private datePipe: DatePipe,
     @Inject(DOCUMENT) private doc: any
   ) {
     super(renderer);
@@ -150,44 +145,57 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     this.value = "";
     this.displayValue = "";
     this.mleave();
+    this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
   }
 
-  showPortal() {
+  portalAttached() {
+    return this.portal && this.portal.overlayRef.hasAttached();
+  }
+
+  closePortal() {
+    if (this.portalAttached()) {
+      this.portal.overlayRef.dispose();
+      this.removeListen();
+      return true;
+    }
+    return false;
+  }
+
+  showPortal(event: Event) {
+    event.stopPropagation();
     if (this.disabled) return;
+    if (this.closePortal()) return;
     this.portal = this.portalService.create({
       content: XDatePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
           value: this.value,
+          valueChange: this.valueChange,
+          closePortal: () => this.closePortal(),
           nodeEmit: node => this.nodeClick(node)
         },
         XDatePickerPortal
       ),
       overlayConfig: {
-        hasBackdrop: true,
         backdropClass: "",
         positionStrategy: this.setPositionStrategy()
       }
     });
-    this.portal.overlayRef.backdropClick().subscribe(() => {
-      this.portal.overlayRef.dispose();
-      this.removeListen();
-    });
     this.addListen();
   }
 
-  nodeClick(selected: { node: XDatePickerNode; label: string }) {
-    this.value = selected.node.value;
-    this.displayValue = selected.label;
-    if (this.portal) this.portal.overlayRef.dispose();
+  nodeClick(date: Date) {
+    this.value = date.getTime();
+    this.setDisplayValue();
+    this.closePortal();
     if (this.onChange) this.onChange(this.value);
-    this.nodeEmit.emit(selected);
+    this.nodeEmit.emit(this.value);
   }
 
   setDisplayValue() {
-    // this.displayValue = selecteds.map(x => x.label).join(` / `);
+    this.displayValue = this.datePipe.transform(this.value, this.format);
   }
 
   setPositionStrategy() {
@@ -206,7 +214,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     // if (this.box && this.nodes.length > 0) {
     //   this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     // }
-    if (this.portal && this.portal.overlayRef.hasAttached) {
+    if (this.portalAttached()) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
   }

@@ -181,6 +181,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.value = "";
     this.displayValue = "";
     this.mleave();
+    this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -191,8 +192,23 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     }
   }
 
-  showPortal() {
-    if (this.disabled) return;
+  portalAttached() {
+    return this.portal && this.portal.overlayRef.hasAttached();
+  }
+
+  closePortal() {
+    if (this.portalAttached()) {
+      this.portal.overlayRef.dispose();
+      this.removeListen();
+      return true;
+    }
+    return false;
+  }
+
+  showPortal(event: Event) {
+    event.stopPropagation();
+    if (this.disabled || this.iconSpin) return;
+    if (this.closePortal()) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
       this.data$ && this.data$.unsubscribe();
       this.icon = "fto-loader";
@@ -221,20 +237,16 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
           data: this.nodes,
           value: this.value,
           valueChange: this.valueChange,
+          closePortal: () => this.closePortal(),
           nodeEmit: node => this.nodeClick(node)
         },
         XSelectPortal
       ),
       overlayConfig: {
-        hasBackdrop: true,
         backdropClass: "",
         width: this.box.width,
         positionStrategy: this.setPositionStrategy()
       }
-    });
-    this.portal.overlayRef.backdropClick().subscribe(() => {
-      this.portal.overlayRef.dispose();
-      this.removeListen();
     });
     this.addListen();
   }
@@ -244,10 +256,8 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (node.disabled) return;
     this.displayValue = node.label;
     this.value = node.value;
+    this.closePortal();
     if (this.onChange) this.onChange(this.value);
-    if (this.portal) {
-      this.portal.overlayRef.dispose();
-    }
     this.cdr.detectChanges();
   }
 
@@ -266,7 +276,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (this.box && this.nodes.length > 0) {
       this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     }
-    if (this.portal && this.portal.overlayRef.hasAttached) {
+    if (this.portalAttached()) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
   }

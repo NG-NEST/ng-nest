@@ -1,4 +1,4 @@
-<div class="x-date-picker-portal">
+<div class="x-date-picker-portal" (click)="stopPropagation($event)">
   <div class="x-date-picker-portal-header">
     <x-button icon="fto-chevrons-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
     <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextMonth(-1)"></x-button>

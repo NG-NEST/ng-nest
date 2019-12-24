@@ -1,12 +1,12 @@
 ---
-label: "DatePicker 级联选择器"
+label: "DatePicker 日期选择器"
 category: "Form"
-order: 6
+order: 9
 ---
 
-# DatePicker 级联选择器
+# DatePicker 日期选择器
 
-当一个数据集合有清晰的层级结构时，可通过级联选择器逐级查看并选择。
+用于选择或输入日期。
 
 ## 示例代码
 

@@ -55,6 +55,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
+    this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
 
@@ -179,11 +180,27 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     this.value = "";
     this.displayValue = "";
     this.mleave();
+    this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
   }
 
-  showPortal() {
+  portalAttached() {
+    return this.portal && this.portal.overlayRef.hasAttached();
+  }
+
+  closePortal() {
+    if (this.portalAttached()) {
+      this.portal.overlayRef.dispose();
+      this.removeListen();
+      return true;
+    }
+    return false;
+  }
+
+  showPortal(event: Event) {
+    event.stopPropagation();
     if (this.disabled) return;
+    if (this.closePortal()) return;
     this.portal = this.portalService.create({
       content: XCascadePortalComponent,
       viewContainerRef: this.viewContainerRef,
@@ -192,19 +209,16 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
           datas: this.datas,
           nodes: this.nodes,
           value: this.value,
+          valueChange: this.valueChange,
+          closePortal: () => this.closePortal(),
           nodeEmit: node => this.nodeClick(node)
         },
         XCascadePortal
       ),
       overlayConfig: {
-        hasBackdrop: true,
         backdropClass: "",
         positionStrategy: this.setPositionStrategy()
       }
-    });
-    this.portal.overlayRef.backdropClick().subscribe(() => {
-      this.portal.overlayRef.dispose();
-      this.removeListen();
     });
     this.addListen();
   }
@@ -212,7 +226,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   nodeClick(selected: { node: XCascadeNode; label: string }) {
     this.value = selected.node.value;
     this.displayValue = selected.label;
-    if (this.portal) this.portal.overlayRef.dispose();
+    this.closePortal();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(selected);
   }
@@ -246,7 +260,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     if (this.box && this.nodes.length > 0) {
       this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     }
-    if (this.portal && this.portal.overlayRef.hasAttached) {
+    if (this.portalAttached()) {
       this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
     }
   }

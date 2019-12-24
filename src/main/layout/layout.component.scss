@@ -67,8 +67,8 @@ ns-layout {
     z-index: 9;
     // box-shadow: $box-shadow;
     transition: width $transition-duration-slow, padding $transition-duration-slow;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     li {
       a {
         padding: 0;
@@ -184,8 +184,6 @@ ns-layout {
     }
     > ns-sider {
       width: $sider-width;
-      padding-left: 1rem;
-      padding-right: 1rem;
       overflow-y: auto;
       li {
         a {

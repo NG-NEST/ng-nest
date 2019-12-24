@@ -94,9 +94,9 @@ describe(XDatePickerPrefix, () => {
 })
 class TestXDatePickerComponent {
   model1: any;
-  model2 = "2019-12-22";
+  model2 = new Date();
   constructor(private cdr: ChangeDetectorRef) {
-    interval(10).subscribe(x => {
+    interval(0).subscribe(x => {
       this.cdr.detectChanges();
     });
   }
@@ -164,19 +164,19 @@ class TestXDatePickerLabelComponent {
   ]
 })
 class TestXDatePickerDisabledComponent {
-  model = 22;
+  model = new Date();
 }
 
 @Component({
   template: `
     <x-row>
       <x-col span="12">
-        <x-date-picker [(ngModel)]="model1" required></x-date-picker>
+        <x-date-picker [(ngModel)]="model" required></x-date-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-date-picker [(ngModel)]="model2" label="选择" required></x-date-picker>
+        <x-date-picker [(ngModel)]="model" label="选择" required></x-date-picker>
       </x-col>
     </x-row>
   `,
@@ -189,8 +189,7 @@ class TestXDatePickerDisabledComponent {
   ]
 })
 class TestXDatePickerRequiredComponent {
-  model1: any;
-  model2: any;
+  model: any;
   constructor(private cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();

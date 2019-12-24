@@ -6,10 +6,13 @@ import {
   ChangeDetectorRef,
   OnInit,
   ElementRef,
-  NgZone
+  NgZone,
+  Renderer2,
+  OnDestroy
 } from "@angular/core";
 import { XCascadeNode, XCascadePortal } from "./cascade.type";
 import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "x-cascade-portal",
@@ -18,28 +21,52 @@ import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCascadePortalComponent implements OnInit {
+export class XCascadePortalComponent implements OnInit, OnDestroy {
   nodes: XCascadeNode[][] = [];
   datas: XCascadeNode[] = [];
   selecteds: XCascadeNode[] = [];
   values = [];
+  valueChange$: Subscription | null = null;
+  docClickFunction: Function;
 
   constructor(
     private elementRef: ElementRef,
+    private renderer: Renderer2,
     @Inject(XCascadePortal) public option: any,
     public ngZone: NgZone,
     public cdr: ChangeDetectorRef
   ) {
     this.datas = this.option.datas;
+    this.init();
+  }
+
+  ngOnInit(): void {
+    this.valueChange$ = this.option.valueChange.subscribe(x => {
+      this.option.value = x;
+      this.init();
+      this.cdr.markForCheck();
+    });
+    this.docClickFunction = this.renderer.listen("document", "click", () => {
+      this.option.closePortal();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.valueChange$ && this.valueChange$.unsubscribe();
+    this.docClickFunction && this.docClickFunction();
+  }
+
+  init() {
     if (!XIsEmpty(this.option.value)) {
       this.setDefault();
     } else {
       this.nodes = [this.option.nodes];
+      this.values = [];
     }
   }
 
-  ngOnInit(): void {
-    // removeNgTag(this.elementRef.nativeElement);
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
   }
 
   setDefault() {
