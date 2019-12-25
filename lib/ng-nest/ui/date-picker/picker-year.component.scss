@@ -1,0 +1,10 @@
+// PickerYear
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-picker-year-prefix} {
+  @include reset-component();
+  @include picker-year();
+}

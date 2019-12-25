@@ -42,6 +42,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XInputNumber() maxlength?: number;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild("input", { static: true }) input: ElementRef;
+  @ViewChild("inputRef", { static: true }) inputRef: ElementRef;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -106,12 +107,11 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   }
 
   clear(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
     const clearValue = this.value;
     this.value = "";
     this.change(this.value);
     this.clearEmit.emit(clearValue);
+    this.inputRef.nativeElement.focus();
   }
 
   setClearable() {

@@ -1,34 +1,51 @@
 <div class="x-date-picker-portal" (click)="stopPropagation($event)">
-  <div class="x-date-picker-portal-header">
-    <x-button icon="fto-chevrons-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
-    <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextMonth(-1)"></x-button>
-    <div class="x-date-picker-portal-year-month">
-      <x-button [label]="display | date: 'yyyy年'" type="text" size="mini"></x-button>
-      <x-button [label]="display | date: 'MM月'" type="text" size="mini"></x-button>
-    </div>
-    <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextMonth(1)"></x-button>
-    <x-button icon="fto-chevrons-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
+  <div class="x-date-picker-portal-header" [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'date'">
+      <x-button icon="fto-chevrons-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
+      <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextMonth(-1)"></x-button>
+      <div class="x-date-picker-portal-year-month">
+        <x-button [label]="display | date: 'yyyy年'" type="text" size="mini" (click)="type = 'year'"></x-button>
+        <x-button [label]="display | date: 'M月'" type="text" size="mini" (click)="type = 'month'"></x-button>
+      </div>
+      <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextMonth(1)"></x-button>
+      <x-button icon="fto-chevrons-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'month'">
+      <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
+      <div class="x-date-picker-portal-year-month">
+        <x-button [label]="display | date: 'yyyy年'" type="text" size="mini" (click)="type = 'year'"></x-button>
+      </div>
+      <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'year'">
+      <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextYears(-10)"></x-button>
+      <div class="x-date-picker-portal-year-month">
+        <x-button [label]="startYear" type="text" size="mini"></x-button> -
+        <x-button [label]="startYear + 9" type="text" size="mini"></x-button>
+      </div>
+      <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextYears(10)"></x-button>
+    </ng-container>
   </div>
-  <div class="x-date-picker-portal-body">
-    <table class="x-date-picker-portal-table" cellspacing="0" cellpadding="0">
-      <tr>
-        <th *ngFor="let week of weeks">{{ week }}</th>
-      </tr>
-      <tr *ngFor="let weeks of dates">
-        <td *ngFor="let week of weeks">
-          <x-button
-            [label]="week | date: 'd'"
-            type="text"
-            size="mini"
-            [title]="week | date: 'yyyy年MM月dd日'"
-            [class.x-button-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
-            [class.x-button-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-            [activated]="(week | date: 'yyyyMMdd') === (selected | date: 'yyyyMMdd')"
-            (click)="dateClick(week)"
-          ></x-button>
-        </td>
-      </tr>
-    </table>
+  <div class="x-date-picker-portal-body" [ngSwitch]="type">
+    <x-picker-date
+      *ngSwitchCase="'date'"
+      [display]="display"
+      [model]="model"
+      (modelChange)="dateChange($event)"
+    ></x-picker-date>
+    <x-picker-month
+      *ngSwitchCase="'month'"
+      [display]="display"
+      [model]="model"
+      (modelChange)="monthChange($event)"
+    ></x-picker-month>
+    <x-picker-year
+      *ngSwitchCase="'year'"
+      [display]="display"
+      [model]="model"
+      (modelChange)="yearChange($event)"
+      (startChange)="yearStartChange($event)"
+    ></x-picker-year>
   </div>
   <div class="x-date-picker-portal-footer"></div>
 </div>

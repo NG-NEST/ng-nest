@@ -198,7 +198,6 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   showPortal(event: Event) {
-    event.stopPropagation();
     if (this.disabled) return;
     if (this.closePortal()) return;
     this.portal = this.portalService.create({

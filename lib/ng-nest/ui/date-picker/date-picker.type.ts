@@ -19,6 +19,14 @@ export interface XDatePickerInput extends XIdentityInput, XFormProperty {}
 export interface XDatePickerNode extends XParentIdentityInput {}
 
 /**
+ * 日期选择类型
+ * @vlaue "date"
+ * @vlaue "month"
+ * @vlaue "year"
+ */
+export type XDatePickerType = "date" | "month" | "year";
+
+/**
  * DatePicker-Portal 组件名
  * @selector x-date-picker-portal
  * @decorator component

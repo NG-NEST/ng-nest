@@ -1,0 +1,17 @@
+<div class="x-picker-month">
+  <table class="x-picker-month-table" cellspacing="0" cellpadding="0">
+    <tr *ngFor="let months of dates">
+      <td *ngFor="let month of months">
+        <x-button
+          [label]="month | date: 'M月'"
+          type="text"
+          [title]="month | date: 'yyyy年MM月'"
+          [class.x-button-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
+          [class.x-button-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
+          [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
+          (click)="monthClick(month)"
+        ></x-button>
+      </td>
+    </tr>
+  </table>
+</div>

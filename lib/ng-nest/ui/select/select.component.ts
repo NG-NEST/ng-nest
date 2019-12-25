@@ -206,7 +206,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   showPortal(event: Event) {
-    event.stopPropagation();
     if (this.disabled || this.iconSpin) return;
     if (this.closePortal()) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {

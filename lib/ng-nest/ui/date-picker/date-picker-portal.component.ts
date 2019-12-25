@@ -8,8 +8,8 @@ import {
   Renderer2,
   OnDestroy
 } from "@angular/core";
-import { XDatePickerPortal } from "./date-picker.type";
-import { XIsEmpty, chunk } from "@ng-nest/ui/core";
+import { XDatePickerPortal, XDatePickerType } from "./date-picker.type";
+import { XIsEmpty } from "@ng-nest/ui/core";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -20,11 +20,10 @@ import { Subscription } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy {
-  weeks = ["一", "二", "三", "四", "五", "六", "日"];
-  now = new Date();
+  type: XDatePickerType = "date";
   display = new Date();
-  selected;
-  dates = [];
+  model;
+  startYear: number;
 
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
@@ -43,9 +42,12 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
       this.init();
       this.cdr.markForCheck();
     });
-    this.docClickFunction = this.renderer.listen("document", "click", () => {
-      this.option.closePortal();
-    });
+    setTimeout(
+      () =>
+        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+          this.option.closePortal();
+        }))
+    );
   }
 
   ngOnDestroy(): void {
@@ -57,10 +59,10 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
     if (!XIsEmpty(this.option.value)) {
       this.setDefault();
     } else {
-      this.selected = "";
+      this.model = "";
     }
+    this.type = this.option.type;
     this.setDisplay(this.display);
-    this.setDays(this.display);
   }
 
   stopPropagation(event: Event): void {
@@ -70,65 +72,41 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
   setDefault() {
     const date = new Date(this.option.value);
     this.setDisplay(date);
-    this.selected = date;
+    this.model = date;
   }
 
   setDisplay(date: Date) {
     this.display = new Date(date.getFullYear(), date.getMonth(), 1);
   }
 
-  setDays(date: Date) {
-    let dates = [];
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const first = new Date(year, month, 1);
-    const last = new Date(year, month + 1, 0);
-    const lastDate = last.getDate();
-    const firstDay = first.getDay();
-    const lastDay = last.getDay();
-
-    let day = firstDay;
-    let index = 1;
-    while (day !== 1) {
-      index--;
-      let date = new Date(year, month, index);
-      dates = [date, ...dates];
-      day = date.getDay();
-    }
-
-    index = 1;
-    do {
-      dates = [...dates, new Date(year, month, index)];
-      index++;
-    } while (index <= lastDate);
-
-    index = 0;
-    day = lastDay;
-    while (day !== 0 || dates.length !== 7 * 6) {
-      index++;
-      let date = new Date(year, month + 1, index);
-      dates = [...dates, date];
-      day = date.getDay();
-    }
-
-    this.dates = chunk(dates, 7);
-  }
-
-  dateClick(date: Date) {
-    if (date.getMonth() !== this.display.getMonth()) {
-      this.setDays(date);
-    }
+  dateChange(date: Date) {
     this.setDisplay(date);
-    this.selected = date;
+    this.model = date;
     this.option.nodeEmit(date);
     this.cdr.markForCheck();
+  }
+
+  monthChange(date: Date) {
+    this.setDisplay(date);
+    this.type = "date";
+    this.cdr.markForCheck();
+  }
+
+  yearChange(date: Date) {
+    this.setDisplay(date);
+    this.type = "month";
+    this.cdr.markForCheck();
+  }
+
+  yearStartChange(number: number) {
+    this.startYear = number;
+    this.cdr.detectChanges();
   }
 
   nextMonth(num: number) {
     let date = new Date(this.display);
     date.setMonth(date.getMonth() + num);
     this.setDisplay(date);
-    this.setDays(this.display);
     this.cdr.markForCheck();
   }
 
@@ -136,7 +114,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
     let date = new Date(this.display);
     date.setFullYear(date.getFullYear() + num);
     this.setDisplay(date);
-    this.setDays(this.display);
+    this.cdr.markForCheck();
+  }
+
+  nextYears(num: number) {
+    this.startYear += num;
+    let date = new Date(this.display);
+    date.setFullYear(this.startYear);
+    this.setDisplay(date);
     this.cdr.markForCheck();
   }
 }

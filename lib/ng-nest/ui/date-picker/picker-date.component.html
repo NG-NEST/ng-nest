@@ -1,0 +1,21 @@
+<div class="x-picker-date">
+  <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
+    <tr>
+      <th *ngFor="let week of weeks">{{ week }}</th>
+    </tr>
+    <tr *ngFor="let weeks of dates">
+      <td *ngFor="let week of weeks">
+        <x-button
+          [label]="week | date: 'd'"
+          type="text"
+          size="mini"
+          [title]="week | date: 'yyyy年MM月dd日'"
+          [class.x-button-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
+          [class.x-button-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
+          [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+          (click)="dateClick(week)"
+        ></x-button>
+      </td>
+    </tr>
+  </table>
+</div>

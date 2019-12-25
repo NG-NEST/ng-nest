@@ -31,9 +31,12 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
       this.option.value = x;
       this.cdr.markForCheck();
     });
-    this.docClickFunction = this.renderer.listen("document", "click", () => {
-      this.option.closePortal();
-    });
+    setTimeout(
+      () =>
+        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+          this.option.closePortal();
+        }))
+    );
   }
 
   ngAfterViewInit() {

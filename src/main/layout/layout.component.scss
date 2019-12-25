@@ -60,13 +60,14 @@ ns-layout {
     background-color: #f0f0f0;
     height: calc(100% - #{$header-height});
     width: 0;
+    opacity: 0;
     overflow: hidden;
     position: fixed;
     top: $header-height;
     left: 0;
     z-index: 9;
     // box-shadow: $box-shadow;
-    transition: width $transition-duration-slow, padding $transition-duration-slow;
+    transition: width $transition-duration-slow, padding $transition-duration-slow, opacity $transition-duration-slow;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     li {
@@ -185,6 +186,7 @@ ns-layout {
     > ns-sider {
       width: $sider-width;
       overflow-y: auto;
+      opacity: 1;
       li {
         a {
           padding: 0 0.75rem;

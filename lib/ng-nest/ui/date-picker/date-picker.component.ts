@@ -18,7 +18,7 @@ import {
   Inject,
   SimpleChanges
 } from "@angular/core";
-import { XDatePickerPrefix, XDatePickerPortal, XDatePickerInput } from "./date-picker.type";
+import { XDatePickerPrefix, XDatePickerPortal, XDatePickerInput, XDatePickerType } from "./date-picker.type";
 import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty, XIsDate, XIsNumber } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT, DatePipe } from "@angular/common";
@@ -32,7 +32,8 @@ import { DOCUMENT, DatePipe } from "@angular/common";
   providers: [XValueAccessor(XDatePickerComponent), DatePipe]
 })
 export class XDatePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() format?: string = "yyyy-MM-dd";
+  @Input() type: XDatePickerType = "date";
+  @Input() format: string = "yyyy-MM-dd";
   @ViewChild("datePicker", { static: true }) datePicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<number> = new EventEmitter<number>();
@@ -163,7 +164,6 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   showPortal(event: Event) {
-    event.stopPropagation();
     if (this.disabled) return;
     if (this.closePortal()) return;
     this.portal = this.portalService.create({
@@ -171,6 +171,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
+          type: this.type,
           value: this.value,
           valueChange: this.valueChange,
           closePortal: () => this.closePortal(),

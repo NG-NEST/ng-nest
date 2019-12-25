@@ -46,9 +46,12 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
       this.init();
       this.cdr.markForCheck();
     });
-    this.docClickFunction = this.renderer.listen("document", "click", () => {
-      this.option.closePortal();
-    });
+    setTimeout(
+      () =>
+        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+          this.option.closePortal();
+        }))
+    );
   }
 
   ngOnDestroy(): void {
