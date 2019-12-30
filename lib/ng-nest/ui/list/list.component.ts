@@ -13,7 +13,7 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { XListPrefix, XListInput, XListNode } from "./list.type";
+import { XListInput, XListNode } from "./list.type";
 import {
   fillDefault,
   XData,
@@ -23,7 +23,7 @@ import {
   XIsObservable,
   XDataConvert,
   XToDataConvert,
-  removeNgTag
+  XInputBoolean
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";
 
@@ -38,6 +38,7 @@ import { map } from "rxjs/operators";
 export class XListComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XListNode[]>;
   @Input() @XInputNumber() multiple?: number;
+  @Input() @XInputBoolean() checked?: boolean;
   @Output() nodeEmit?: EventEmitter<XListNode> = new EventEmitter<XListNode>();
 
   nodes: XListNode[] = [];
@@ -54,7 +55,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   };
   private data$: Subscription | null = null;
 
-  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
     super(renderer);
   }
 
@@ -142,6 +143,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
       this.value = this.selectedNodes.map(x => x.value);
     }
     if (this.onChange) this.onChange(this.value);
+    node.event = event;
     this.nodeEmit.emit(node);
   }
 }

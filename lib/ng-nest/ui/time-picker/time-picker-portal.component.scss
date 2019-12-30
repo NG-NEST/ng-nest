@@ -1,0 +1,10 @@
+// TimePicker-Portal
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-time-picker-portal-prefix} {
+  @include reset-component();
+  @include time-picker-portal();
+}

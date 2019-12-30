@@ -20,4 +20,6 @@ export interface XListInput extends XIdentityInput {
 /**
  * List 数据对象
  */
-export interface XListNode extends XParentIdentityInput {}
+export interface XListNode extends XParentIdentityInput {
+  event?: Event;
+}

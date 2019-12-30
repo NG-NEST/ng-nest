@@ -1,0 +1,112 @@
+// TimePicker
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin time-picker {
+  font-size: $--x-time-picker-font-size;
+  color: $--x-text;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-time-picker-height;
+    line-height: $--x-time-picker-height;
+  }
+  > .#{$--x-time-picker-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > x-input {
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  &.x-required {
+    &.x-required-show {
+      > label {
+        color: $--x-danger;
+      }
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-time-picker-prefix}-row {
+      > x-input {
+        > .x-input {
+          > .x-input-row {
+            > input {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.x-flex {
+    align-items: center;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
+  }
+}
+
+@mixin time-picker-portal {
+  $prefix: $--x-time-picker-portal-prefix;
+  font-size: $--x-time-picker-font-size;
+  color: $--x-text;
+  border: $--x-time-picker-border;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  background-color: $--x-white;
+  font-size: $--x-font-size-sm;
+  display: block;
+  height: 100%;
+  > div:not(:first-child) {
+    border-left: $--x-time-picker-border;
+  }
+  &-hour,
+  &-minute,
+  &-second {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    width: 3.625rem;
+    max-height: 11.25rem;
+    padding-bottom: 9.375rem;
+    &:hover {
+      overflow-y: auto;
+    }
+    > x-list {
+      > .x-list {
+        > ul {
+          min-width: 3.625rem;
+          > li {
+            padding-left: 0.6rem;
+            &:not(:first-child) {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
