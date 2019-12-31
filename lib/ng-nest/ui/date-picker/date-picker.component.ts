@@ -84,7 +84,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.datePicker.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
+    this.setFormat();
   }
 
   ngAfterViewInit() {
@@ -101,6 +101,16 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   ngOnDestroy(): void {
     this.data$ && this.data$.unsubscribe();
     this.removeListen();
+  }
+
+  setFormat() {
+    if (this.format === "yyyy-MM-dd") {
+      if (this.type === "year") {
+        this.format = "yyyy";
+      } else if (this.type === "month") {
+        this.format = "yyyy-MM";
+      }
+    }
   }
 
   addListen() {

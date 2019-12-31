@@ -2,10 +2,10 @@
   <div class="x-time-picker-portal-hour" #hourRef>
     <x-list [data]="hourDate" [(ngModel)]="hour" (nodeEmit)="hourClick($event)"></x-list>
   </div>
-  <div class="x-time-picker-portal-minute" #minuteRef>
+  <div class="x-time-picker-portal-minute" #minuteRef [hidden]="type === 'hour'">
     <x-list [data]="minuteDate" [(ngModel)]="minute" (nodeEmit)="minuteClick($event)"></x-list>
   </div>
-  <div class="x-time-picker-portal-second" #secondRef>
+  <div class="x-time-picker-portal-second" #secondRef [hidden]="type !== 'time'">
     <x-list [data]="secondDate" [(ngModel)]="second" (nodeEmit)="secondClick($event)"></x-list>
   </div>
 </div>

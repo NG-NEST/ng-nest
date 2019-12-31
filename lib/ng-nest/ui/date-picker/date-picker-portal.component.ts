@@ -25,6 +25,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
   model;
   startYear: number;
 
+  private _type: XDatePickerType;
+
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
@@ -62,6 +64,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
       this.model = "";
     }
     this.type = this.option.type;
+    this._type = this.option.type;
     this.setDisplay(this.display);
   }
 
@@ -88,13 +91,23 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
 
   monthChange(date: Date) {
     this.setDisplay(date);
-    this.type = "date";
+    if (this._type === "month") {
+      this.model = date;
+      this.option.nodeEmit(date);
+    } else {
+      this.type = "date";
+    }
     this.cdr.markForCheck();
   }
 
   yearChange(date: Date) {
     this.setDisplay(date);
-    this.type = "month";
+    if (this._type === "year") {
+      this.model = date;
+      this.option.nodeEmit(date);
+    } else {
+      this.type = "month";
+    }
     this.cdr.markForCheck();
   }
 

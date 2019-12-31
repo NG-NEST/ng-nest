@@ -20,9 +20,9 @@ export interface XDatePickerNode extends XParentIdentityInput {}
 
 /**
  * 日期选择类型
- * @vlaue "date"
- * @vlaue "month"
- * @vlaue "year"
+ * @value "date"
+ * @value "month"
+ * @value "year"
  */
 export type XDatePickerType = "date" | "month" | "year";
 

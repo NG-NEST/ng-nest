@@ -17,7 +17,8 @@ describe(XDatePickerPrefix, () => {
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,
         TestXDatePickerDisabledComponent,
-        TestXDatePickerRequiredComponent
+        TestXDatePickerRequiredComponent,
+        TestXDatePickerYearOrMonthComponent
       ]
     }).compileComponents();
   }));
@@ -64,6 +65,18 @@ describe(XDatePickerPrefix, () => {
       fixture = TestBed.createComponent(TestXDatePickerRequiredComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerRequiredComponent));
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`year or month.`, () => {
+    let fixture: ComponentFixture<TestXDatePickerYearOrMonthComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDatePickerYearOrMonthComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerYearOrMonthComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -190,6 +203,37 @@ class TestXDatePickerDisabledComponent {
 })
 class TestXDatePickerRequiredComponent {
   model: any;
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(50).subscribe(x => {
+      this.cdr.detectChanges();
+    });
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="12">
+        <x-date-picker [(ngModel)]="model1" label="年" type="year"></x-date-picker>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="12">
+        <x-date-picker [(ngModel)]="model2" label="月" type="month"></x-date-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXDatePickerYearOrMonthComponent {
+  model1: any;
+  model2: any;
   constructor(private cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();

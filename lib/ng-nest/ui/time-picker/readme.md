@@ -1,12 +1,12 @@
 ---
-label: "TimePicker 日期选择器"
+label: "TimePicker 时间选择器"
 category: "Form"
-order: 9
+order: 10
 ---
 
-# TimePicker 日期选择器
+# TimePicker 时间选择器
 
-用于选择或输入日期。
+用于选择或输入时间。
 
 ## 示例代码
 

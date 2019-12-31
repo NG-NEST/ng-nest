@@ -29,6 +29,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   now = new Date();
   type: XTimePickerType = "time";
   model: Date;
+  _type: XTimePickerType;
 
   hour: number = 0;
   minute: number = 0;

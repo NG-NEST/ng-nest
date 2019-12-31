@@ -56,7 +56,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   enter: boolean = false;
   displayValue: any = "";
   portal: XPortalOverlayRef;
-  icon: string = "fto-calendar";
+  icon: string = "fto-clock";
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
@@ -85,6 +85,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     fillDefault(this, this._default);
     this.setFlex(this.datePicker.nativeElement, this.justify, this.align, this.direction);
     // removeNgTag(this.elementRef.nativeElement);
+    this.setFormat();
   }
 
   ngAfterViewInit() {
@@ -101,6 +102,16 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   ngOnDestroy(): void {
     this.data$ && this.data$.unsubscribe();
     this.removeListen();
+  }
+
+  setFormat() {
+    if (this.format === "HH:mm:ss") {
+      if (this.type === "hour") {
+        this.format = "HH";
+      } else if (this.type === "minute") {
+        this.format = "HH:mm";
+      }
+    }
   }
 
   addListen() {
@@ -136,7 +147,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = false;
     if (this.clearable) {
-      this.icon = "fto-calendar";
+      this.icon = "fto-clock";
       this.clearable = false;
       this.cdr.detectChanges();
     }
@@ -211,7 +222,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   setPortal() {
     if (!this.inputCom.input) return;
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalHeight = 300;
+    this.protalHeight = 180;
     // if (this.box && this.nodes.length > 0) {
     //   this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     // }

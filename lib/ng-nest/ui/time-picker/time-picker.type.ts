@@ -20,11 +20,11 @@ export interface XTimePickerNode extends XParentIdentityInput {}
 
 /**
  * 时间选择
- * @vlaue "date"
- * @vlaue "month"
- * @vlaue "year"
+ * @value "time"
+ * @value "hour"
+ * @value "minute"
  */
-export type XTimePickerType = "time" | "h" | "m" | "s" | "h-m" | "m-s";
+export type XTimePickerType = "time" | "hour" | "minute";
 
 /**
  * TimePicker-Portal 组件名

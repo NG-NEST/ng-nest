@@ -54,7 +54,7 @@ export const menus: Menu[] = [
     "order": 3
   },
   {
-    "id": "3-0-43",
+    "id": "3-0-44",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -189,13 +189,13 @@ export const menus: Menu[] = [
     "order": 9
   },
   {
-    "id": "3-0-14",
+    "id": "3-0-38",
     "parentId": "3-0",
-    "name": "form",
-    "router": "./docs/ui/components/form",
-    "label": "Form 表单",
+    "name": "time-picker",
+    "router": "./docs/ui/components/time-picker",
+    "label": "TimePicker 时间选择器",
     "category": "Form",
-    "order": 15
+    "order": 10
   },
   {
     "id": "3-0-21",
@@ -204,7 +204,16 @@ export const menus: Menu[] = [
     "router": "./docs/ui/components/list",
     "label": "List 列表组件",
     "category": "Form",
-    "order": 20
+    "order": 29
+  },
+  {
+    "id": "3-0-14",
+    "parentId": "3-0",
+    "name": "form",
+    "router": "./docs/ui/components/form",
+    "label": "Form 表单",
+    "category": "Form",
+    "order": 30
   },
   {
     "id": "3-0-9",
@@ -234,7 +243,7 @@ export const menus: Menu[] = [
     "order": 3
   },
   {
-    "id": "3-0-38",
+    "id": "3-0-39",
     "parentId": "3-0",
     "name": "tooltip",
     "router": "./docs/ui/components/tooltip",
