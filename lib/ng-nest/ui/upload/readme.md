@@ -1,0 +1,21 @@
+---
+label: "Upload 上传"
+category: "Form"
+order: 11
+---
+
+# Upload 上传
+
+通过点击或者拖拽上传文件。
+
+## 示例
+
+{{ __examples }}
+
+## API
+
+{{ __api }}
+
+## 样式参数
+
+{{ __pattern }}

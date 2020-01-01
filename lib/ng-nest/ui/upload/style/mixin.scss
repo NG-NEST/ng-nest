@@ -1,0 +1,89 @@
+// Upload
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin upload {
+  color: var(--x-text);
+  &-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    outline: none;
+    margin-right: 0.875rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: var(--x-primary);
+      .#{$--x-upload-prefix}-box {
+        border-color: var(--x-primary);
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &.x-checked {
+      .#{$--x-upload-prefix}-box {
+        border-color: var(--x-primary);
+        &::after {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+    &.x-disabled {
+      @include disabled();
+    }
+  }
+  &-box {
+    border: 1px solid var(--x-border);
+    border-radius: 100%;
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: #fff;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    &:hover {
+      border-color: var(--x-primary);
+    }
+    &::after {
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--x-primary);
+      border-radius: 1rem;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+      content: " ";
+    }
+  }
+  &-label {
+    margin-left: 0.325rem;
+  }
+  &.x-disabled {
+    .#{$--x-upload-prefix}-item {
+      @include disabled();
+    }
+  }
+}
+
+@mixin disabled {
+  color: var(--x-text-300);
+  cursor: not-allowed;
+  .#{$--x-upload-prefix}-box {
+    border-color: var(--x-border-300);
+    background-color: var(--x-border-100);
+    &::after {
+      background-color: var(--x-text-300);
+    }
+  }
+}

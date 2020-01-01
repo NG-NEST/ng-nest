@@ -198,6 +198,15 @@ export const menus: Menu[] = [
     "order": 10
   },
   {
+    "id": "3-0-45",
+    "parentId": "3-0",
+    "name": "upload",
+    "router": "./docs/ui/components/upload",
+    "label": "Upload 上传",
+    "category": "Form",
+    "order": 11
+  },
+  {
     "id": "3-0-21",
     "parentId": "3-0",
     "name": "list",

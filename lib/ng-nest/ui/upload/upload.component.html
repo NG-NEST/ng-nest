@@ -1,0 +1,11 @@
+<div #upload class="x-upload" [class.x-disabled]="disabled">
+  <x-button icon="fto-upload" label="上传文件" (click)="uploadClick()"></x-button>
+  <input
+    type="file"
+    #file
+    (change)="change($event)"
+    [attr.accept]="accept"
+    [multiple]="multiple"
+    style="display: none;"
+  />
+</div>
