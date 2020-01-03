@@ -1,5 +1,5 @@
 import { XButtonModule } from "@ng-nest/ui/button";
-import { Observable } from "rxjs";
+import { Observable, interval } from "rxjs";
 import { async, ComponentFixture, TestBed, fakeAsync, flush } from "@angular/core/testing";
 
 import { XUploadComponent } from "./upload.component";
@@ -15,7 +15,7 @@ describe(XUploadPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, XUploadModule, XButtonModule, XFenceModule],
-      declarations: [TestXUploadComponent, TestXUploadDisabledComponent, TestXUploadButtonComponent]
+      declarations: [TestXUploadComponent, TestXUploadDisabledComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -50,32 +50,13 @@ describe(XUploadPrefix, () => {
       expect(upload).toBeDefined();
     });
   });
-  describe(`button.`, () => {
-    let fixture: ComponentFixture<TestXUploadButtonComponent>;
-    let upload: DebugElement;
-    let testComponent: TestXUploadButtonComponent;
-    let element: HTMLElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXUploadButtonComponent);
-      fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
-      upload = fixture.debugElement.query(By.directive(XUploadComponent));
-      element = upload.nativeElement;
-    });
-    it("should create.", () => {
-      expect(upload).toBeDefined();
-    });
-  });
 });
 
 @Component({
   template: `
     <x-row>
       <x-col span="24">
-        <x-upload></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload [(ngModel)]="model"></x-upload>
+        <x-upload action="http://localhost:3000/upload" multiple></x-upload>
       </x-col>
     </x-row>
   `,
@@ -83,6 +64,9 @@ describe(XUploadPrefix, () => {
     `
       x-row > x-col:not(:first-child) {
         margin-top: 0.5rem;
+      }
+      x-row > x-col {
+        width: 14rem;
       }
     `
   ]
@@ -97,12 +81,6 @@ class TestXUploadComponent {
       <x-col span="24">
         <x-upload disabled></x-upload>
       </x-col>
-      <x-col span="24">
-        <x-upload [(ngModel)]="model" disabled></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload></x-upload>
-      </x-col>
     </x-row>
   `,
   styles: [
@@ -114,42 +92,5 @@ class TestXUploadComponent {
   ]
 })
 class TestXUploadDisabledComponent {
-  model = "钉钉";
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-upload button></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload [(ngModel)]="model" (ngModelChange)="change($event)" button></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload button disabled></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload [(ngModel)]="model" button disabled></x-upload>
-      </x-col>
-      <x-col span="24">
-        <x-upload button></x-upload>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
-      }
-    `
-  ]
-})
-class TestXUploadButtonComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-
-  model = "钉钉";
-  change($event) {
-    this.cdr.detectChanges();
-  }
+  model;
 }

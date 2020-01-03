@@ -1,5 +1,13 @@
 <div #upload class="x-upload" [class.x-disabled]="disabled">
-  <x-button icon="fto-upload" label="上传文件" (click)="uploadClick()"></x-button>
+  <div class="x-upload-buttons">
+    <x-button
+      icon="fto-upload"
+      label="上传文件"
+      [disabled]="disabled"
+      (click)="uploadClick()"
+      type="primary"
+    ></x-button>
+  </div>
   <input
     type="file"
     #file
@@ -8,4 +16,19 @@
     [multiple]="multiple"
     style="display: none;"
   />
+  <ul class="x-upload-files">
+    <li *ngFor="let file of files; index as i">
+      <a [href]="file.url" target="_blank" [title]="file.name">
+        <x-icon type="fto-file-text"></x-icon>
+        <span class="x-upload-filename">{{ file.name }}</span>
+      </a>
+      <ng-container [ngSwitch]="file.state">
+        <x-icon class="x-upload-state" *ngSwitchCase="'ready'" type="fto-clock"></x-icon>
+        <span class="x-upload-percent" *ngSwitchCase="'uploading'">{{ file.percent }}%</span>
+        <x-icon class="x-upload-state success" *ngSwitchCase="'success'" type="fto-check"></x-icon>
+        <x-icon class="x-upload-state error" *ngSwitchCase="'error'" type="fto-info"></x-icon>
+      </ng-container>
+      <x-button icon="fto-x" onlyIcon (click)="remove(file, i)" *ngIf="file.state !== 'uploading'"></x-button>
+    </li>
+  </ul>
 </div>

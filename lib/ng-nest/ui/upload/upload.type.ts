@@ -32,17 +32,26 @@ export interface XUploadInput {
 /**
  * Upload 数据对象
  */
-export interface XUploadNode extends XIdentityInput {
+export interface XUploadNode extends File {
   /**
-   * 禁用
+   * 地址
    */
-  disabled?: boolean;
+  url?: string;
   /**
-   * 图标
+   * 状态
    */
-  icon?: string;
+  state?: XStateType;
   /**
-   * 图标的提示信息
+   * 上传进度
    */
-  title?: string;
+  percent?: number;
 }
+
+/**
+ * 文件状态
+ * @value "ready" 准备上传
+ * @value "uploading" 上传中
+ * @value "success" 上传成功
+ * @value "error" 上传失败
+ */
+export type XStateType = "ready" | "uploading" | "success" | "error";

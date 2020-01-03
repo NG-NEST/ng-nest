@@ -11,8 +11,8 @@ export class XHttpService {
   /**
    * get请求
    */
-  get(url: string, params?, isBody?) {
-    return this.request("GET", url, params, isBody);
+  get(url: string, params?) {
+    return this.request("GET", url, params);
   }
 
   /**
@@ -39,18 +39,20 @@ export class XHttpService {
   /**
    * request通用请求
    */
-  request(method: string, url: string, params?, isBody = false): Observable<any> {
-    let option = {};
+  request(method: string, url: string, params?, option?): Observable<any> {
+    if (!option) option = {};
+    let opt = {};
     url = `${this.api}${url}`;
     method = method.toUpperCase();
-    if (["POST", "PUT", "DELETE"].indexOf(method) > -1 || isBody) {
-      option = { body: params, observe: "body", responseType: "json" };
+    if (["POST", "PUT", "DELETE"].indexOf(method) > -1) {
+      opt = { body: params, observe: "body", responseType: "json" };
     } else if (["GET"].indexOf(method) > -1) {
-      option = { params: params };
+      opt = { params: params };
     }
-    this.addHeader(option);
+    Object.assign(opt, option);
+    this.addHeader(opt);
     return Observable.create(x => {
-      this.http.request(method, url, option).subscribe(
+      this.http.request(method, url, opt).subscribe(
         (y: any) => {
           x.next(y);
           x.complete();

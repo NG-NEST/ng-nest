@@ -5,74 +5,78 @@
 @import "./param";
 
 @mixin upload {
-  color: var(--x-text);
-  &-item {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    outline: none;
-    margin-right: 0.875rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      color: var(--x-primary);
-      .#{$--x-upload-prefix}-box {
-        border-color: var(--x-primary);
+  color: $--x-text;
+  font-size: $--x-font-size;
+  &-buttons {
+    > .x-button:not(:first-child) {
+      margin-left: 0.4rem;
+    }
+  }
+  &-files {
+    margin-top: 0.4rem;
+    > li {
+      padding: 0 0.2rem;
+      height: $--x-font-size + 0.6rem;
+      line-height: $--x-font-size + 0.6rem;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 0.125rem;
+      .x-icon {
+        color: $--x-text-400;
+        font-size: 1rem;
+        &.x-upload-state {
+          &.success {
+            color: $--x-success;
+          }
+          &.error {
+            color: $--x-danger;
+          }
+        }
       }
-    }
-    &:last-child {
-      margin-right: 0;
-    }
-    &.x-checked {
-      .#{$--x-upload-prefix}-box {
-        border-color: var(--x-primary);
-        &::after {
-          transform: scale(1);
-          opacity: 1;
+      a {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        height: $--x-font-size + 0.6rem;
+        line-height: $--x-font-size + 0.6rem;
+        color: inherit;
+        text-decoration: none;
+        overflow: hidden;
+      }
+      span {
+        &.x-upload-filename {
+          margin-left: 0.2rem;
+          flex: 1;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        &.x-upload-percent {
+          color: $--x-text-400;
+        }
+      }
+      > .x-button {
+        display: none;
+        padding: 0;
+      }
+      &:not(:first-child) {
+        margin-top: 0.2rem;
+      }
+      &:hover {
+        color: $--x-primary;
+        background-color: $--x-background;
+        > .x-button {
+          display: inline-block;
+        }
+        > .x-upload-state {
+          display: none;
         }
       }
     }
-    &.x-disabled {
-      @include disabled();
-    }
-  }
-  &-box {
-    border: 1px solid var(--x-border);
-    border-radius: 100%;
-    width: 0.875rem;
-    height: 0.875rem;
-    background-color: #fff;
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    transition: all 0.3s;
-    &:hover {
-      border-color: var(--x-primary);
-    }
-    &::after {
-      position: absolute;
-      top: 0.125rem;
-      left: 0.125rem;
-      display: inline-block;
-      width: 0.5rem;
-      height: 0.5rem;
-      background-color: var(--x-primary);
-      border-radius: 1rem;
-      transform: scale(0);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-      content: " ";
-    }
-  }
-  &-label {
-    margin-left: 0.325rem;
   }
   &.x-disabled {
-    .#{$--x-upload-prefix}-item {
-      @include disabled();
-    }
   }
 }
 

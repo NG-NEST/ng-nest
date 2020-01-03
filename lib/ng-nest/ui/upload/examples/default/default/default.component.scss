@@ -2,4 +2,7 @@
   x-row > x-col:not(:first-child) {
     margin-top: 0.5rem;
   }
+  x-row > x-col {
+    width: 14rem;
+  }
 }
