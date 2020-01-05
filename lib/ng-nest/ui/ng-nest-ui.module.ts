@@ -24,6 +24,7 @@ import { XSliderSelectModule } from "@ng-nest/ui/slider-select";
 import { XDatePickerModule } from "@ng-nest/ui/date-picker";
 import { XTimePickerModule } from "@ng-nest/ui/time-picker";
 import { XUploadModule } from "@ng-nest/ui/upload";
+import { XRateModule } from "@ng-nest/ui/rate";
 
 import { XTooltipModule } from "@ng-nest/ui/tooltip";
 
@@ -64,6 +65,7 @@ export * from "@ng-nest/ui/slider-select";
 export * from "@ng-nest/ui/date-picker";
 export * from "@ng-nest/ui/time-picker";
 export * from "@ng-nest/ui/upload";
+export * from "@ng-nest/ui/rate";
 
 export * from "@ng-nest/ui/tooltip";
 
@@ -104,6 +106,7 @@ export * from "@ng-nest/ui/form";
     XDatePickerModule,
     XTimePickerModule,
     XUploadModule,
+    XRateModule,
 
     XTooltipModule,
 

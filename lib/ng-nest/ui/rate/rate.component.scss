@@ -1,0 +1,10 @@
+// Rate
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-rate-prefix} {
+  @include reset-component();
+  @include rate();
+}

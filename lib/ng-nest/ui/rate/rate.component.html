@@ -1,0 +1,13 @@
+<div #rate class="x-rate" [class.x-disabled]="disabled">
+  <x-buttons (mouseleave)="leaveRates()">
+    <x-button
+      *ngFor="let rate of rates"
+      onlyIcon
+      [activated]="rate <= hoverActivated"
+      [disabled]="disabled"
+      icon="adf-star"
+      (mouseover)="hoverRate(rate)"
+      (click)="rateClick(rate)"
+    ></x-button>
+  </x-buttons>
+</div>

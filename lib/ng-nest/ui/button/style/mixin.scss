@@ -103,6 +103,14 @@
   &-disabled.#{$--x-button}-text {
     background-color: transparent;
   }
+  &-disabled.#{$--x-button}-only-icon {
+    background-color: transparent;
+    border-color: transparent;
+    &:hover,
+    &:active {
+      @include button-color($--x-button-disabled, transparent, transparent);
+    }
+  }
   &-large {
     height: 2.175rem;
     padding: 0 1rem;

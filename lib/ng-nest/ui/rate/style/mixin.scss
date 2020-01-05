@@ -1,0 +1,22 @@
+// Rate
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin rate {
+  color: $--x-text;
+  font-size: $--x-font-size;
+  > .x-buttons {
+    > .x-button {
+      padding: 0 0.2rem;
+      color: $--x-text-300;
+      .x-icon {
+        font-size: $--x-font-size-lg;
+      }
+      &.x-button-activated {
+        color: $--x-warning;
+      }
+    }
+  }
+}
