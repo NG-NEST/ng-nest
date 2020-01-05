@@ -1,0 +1,10 @@
+// ColorPicker
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-color-picker-prefix} {
+  @include reset-component();
+  @include color-picker();
+}

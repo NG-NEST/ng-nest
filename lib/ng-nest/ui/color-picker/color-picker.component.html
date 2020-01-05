@@ -1,0 +1,26 @@
+<div
+  #colorPicker
+  class="x-color-picker"
+  [class.x-flex]="justify || align || direction"
+  [class.x-disabled]="disabled"
+  [class.x-required]="required"
+  [class.x-required-show]="getRequired"
+>
+  <label *ngIf="label">{{ label }}</label>
+  <div class="x-color-picker-row" (click)="showPortal($event)" (mouseenter)="menter()" (mouseleave)="mleave()">
+    <x-input
+      #inputCom
+      type="text"
+      iconLayout="right"
+      [icon]="icon"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [clearable]="clearable"
+      [(ngModel)]="displayValue"
+      (ngModelChange)="change()"
+      (clearEmit)="clearEmit()"
+    ></x-input>
+  </div>
+</div>

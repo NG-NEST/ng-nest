@@ -1,0 +1,24 @@
+<div class="x-color-picker-portal" (click)="stopPropagation($event)">
+  <div class="x-color-picker-portal-plate">
+    <div class="x-color-picker-portal-white"></div>
+    <div class="x-color-picker-portal-black"></div>
+    <div class="x-color-picker-portal-cursor"></div>
+  </div>
+  <div class="x-color-picker-portal-tool">
+    <div class="x-color-picker-portal-operations">
+      <x-button icon="fto-edit-2" onlyIcon></x-button>
+      <div class="x-color-picker-portal-selected"></div>
+      <div class="x-color-picker-portal-area">
+        <div class="x-color-picker-portal-slider">
+          <x-slider-select [(ngModel)]="sliderColor"></x-slider-select>
+        </div>
+        <div class="x-color-picker-portal-transparent">
+          <x-slider-select [(ngModel)]="transparent" min="0" max="1" step="0.01"></x-slider-select>
+        </div>
+      </div>
+    </div>
+    <div class="x-color-picker-portal-type" [ngSwitch]="type">
+
+    </div>
+  </div>
+</div>

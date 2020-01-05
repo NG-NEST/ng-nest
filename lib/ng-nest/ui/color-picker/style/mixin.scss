@@ -1,0 +1,160 @@
+// ColorPicker
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin color-picker {
+  font-size: $--x-color-picker-font-size;
+  color: $--x-text;
+  width: 6rem;
+  @include flex();
+  > label {
+    display: inline-block;
+    height: $--x-color-picker-height;
+    line-height: $--x-color-picker-height;
+  }
+  > .#{$--x-color-picker-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > x-input {
+      flex: 1;
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  &.x-required {
+    &.x-required-show {
+      > label {
+        color: $--x-danger;
+      }
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-color-picker-prefix}-row {
+      > x-input {
+        > .x-input {
+          > .x-input-row {
+            > input {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.x-flex {
+    align-items: center;
+    &-direction-row {
+      > label {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    &-direction-row-reverse {
+      > label {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    &-direction-column {
+      align-items: inherit;
+    }
+    &-direction-column-reverse {
+      align-items: inherit;
+    }
+  }
+}
+
+@mixin color-picker-portal {
+  font-size: $--x-color-picker-font-size;
+  color: $--x-text;
+  border: $--x-color-picker-border;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  background-color: $--x-white;
+  &-plate {
+    width: 15rem;
+    height: 8rem;
+    display: flex;
+    border-radius: 0.125rem;
+    background-color: $--x-primary;
+    position: relative;
+  }
+  &-white,
+  &-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &-white {
+    background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
+  }
+  &-black {
+    background: linear-gradient(0deg, #000, transparent);
+  }
+  &-cursor {
+    position: absolute;
+  }
+  &-tool {
+    height: 6rem;
+    padding: 0.4rem;
+  }
+  &-operations {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0;
+  }
+  &-selected {
+    margin-left: 0.4rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: $--x-primary;
+  }
+  &-area {
+    margin-left: 0.4rem;
+    position: relative;
+    flex: 1;
+    .x-slider-select > .x-slider-select-inner {
+      > .x-slider-select-rail {
+        height: 0.75rem;
+      }
+      > .x-slider-select-track {
+        > .x-slider-select-process {
+          background-color: transparent;
+        }
+      }
+      > .x-slider-select-drags > .x-slider-select-drag > .x-slider-select-button {
+        border-color: $--x-border;
+        box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  &-slider {
+    position: relative;
+    width: 100%;
+    .x-slider-select > .x-slider-select-inner {
+      > .x-slider-select-rail {
+        background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+      }
+    }
+  }
+  &-transparent {
+    margin-top: 0.4rem;
+    position: relative;
+    width: 100%;
+    .x-slider-select > .x-slider-select-inner {
+      > .x-slider-select-rail {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+      }
+    }
+  }
+}
