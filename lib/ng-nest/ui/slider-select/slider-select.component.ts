@@ -78,7 +78,8 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   }
 
   change() {
-    this.value = ((this.max - this.min) * this.left) / 100 + this.min;
+    const val = Number(((this.max - this.min) * this.left) / 100 + this.min).toFixed(this.precision);
+    this.value = parseFloat(val);
     this.setDisplayValue();
     if (this.onChange) this.onChange(this.value);
   }

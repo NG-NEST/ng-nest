@@ -9,6 +9,8 @@ import { XPortalModule } from "@ng-nest/ui/portal";
 import { XIconModule } from "@ng-nest/ui/icon";
 import { XListModule } from "@ng-nest/ui/list";
 import { XSliderSelectModule } from "@ng-nest/ui/slider-select";
+import { XTabsModule } from "@ng-nest/ui/tabs";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [XColorPickerComponent, XColorPickerPortalComponent],
@@ -18,9 +20,11 @@ import { XSliderSelectModule } from "@ng-nest/ui/slider-select";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DragDropModule,
     XPortalModule,
     XButtonModule,
     XSliderSelectModule,
+    XTabsModule,
     XInputModule,
     XIconModule,
     XListModule

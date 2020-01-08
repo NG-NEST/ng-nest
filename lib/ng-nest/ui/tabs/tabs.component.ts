@@ -17,7 +17,7 @@ import {
   QueryList
 } from "@angular/core";
 import { TabsPrefix, XTabsInput, XTabsNode, XActivatedTab } from "./tabs.type";
-import { fillDefault, XData } from "@ng-nest/ui/core";
+import { fillDefault, XData, XInputBoolean } from "@ng-nest/ui/core";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { XSliderNode, XActivatedSlider, XSliderInput, XSliderComponent } from "@ng-nest/ui/slider";
 import { XTabComponent } from "./tab.component";
@@ -32,6 +32,7 @@ import { XTabComponent } from "./tab.component";
 })
 export class XTabsComponent implements OnInit, OnChanges {
   @Input() data?: XData<XTabsNode[]>;
+  @Input() @XInputBoolean() animated: boolean = true;
 
   private _layout?: any;
   public get layout(): any {

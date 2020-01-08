@@ -8,39 +8,49 @@ import {
   ElementRef,
   NgZone,
   Renderer2,
-  OnDestroy
+  OnDestroy,
+  ViewChild
 } from "@angular/core";
-import { XColorPickerNode, XColorPickerPortal } from "./color-picker.type";
-import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
+import { XColorPickerPortal } from "./color-picker.type";
+import { XIsEmpty } from "@ng-nest/ui/core";
 import { Subscription } from "rxjs";
+import { CdkDragMove } from "@angular/cdk/drag-drop";
+import { DOCUMENT, DecimalPipe } from "@angular/common";
 
 @Component({
   selector: "x-color-picker-portal",
   templateUrl: "./color-picker-portal.component.html",
   styleUrls: ["./color-picker-portal.component.scss"],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DecimalPipe]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
-  nodes: XColorPickerNode[][] = [];
-  datas: XColorPickerNode[] = [];
-  selecteds: XColorPickerNode[] = [];
-  values = [];
+  value;
+  @ViewChild("panelRef", { static: true }) panelRef: ElementRef;
+  @ViewChild("plateRef", { static: true }) plateRef: ElementRef;
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
-  sliderColor = 0;
+  sliderColorNum = 0;
   transparent = 1;
   type = "";
+  offset = 0;
+  panel: DOMRect;
+  plate: DOMRect;
+
+  rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
+  hsla: { h?: number; s?: number; l?: number; a?: number } = { h: 0, a: 1 };
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     @Inject(XColorPickerPortal) public option: any,
+    @Inject(DOCUMENT) private doc: Document,
     public ngZone: NgZone,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public decimal: DecimalPipe
   ) {
-    this.datas = this.option.datas;
     this.init();
   }
 
@@ -63,12 +73,18 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.docClickFunction && this.docClickFunction();
   }
 
+  ngAfterViewInit() {
+    this.panel = this.panelRef.nativeElement.getBoundingClientRect();
+    this.plate = this.plateRef.nativeElement.getBoundingClientRect();
+    this.offset = (this.panel.width - this.plate.width) / 2;
+    this.sliderChange();
+  }
+
   init() {
     if (!XIsEmpty(this.option.value)) {
       this.setDefault();
     } else {
-      this.nodes = [this.option.nodes];
-      this.values = [];
+      this.value = this.getPrimary();
     }
   }
 
@@ -76,41 +92,78 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  setDefault() {
-    let node = this.datas.find(x => x.value === this.option.value);
-    this.selecteds = [node];
-    this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue)];
-    while (!XIsEmpty(node.parentValue)) {
-      node = this.datas.find(x => x.value === node.parentValue);
-      this.selecteds = [node, ...this.selecteds];
-      this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue), ...this.nodes];
+  setDefault() {}
+
+  dragStarted() {}
+
+  dragMoved(drag: CdkDragMove) {
+    const transform = drag.source._dragRef["_activeTransform"];
+    let left = transform.x + this.offset;
+    let top = transform.y + this.offset;
+    let s = left / this.plate.width;
+    let v = 1 - top / this.plate.height;
+    let l = ((2 - s) * v) / 2;
+    if (l != 0) {
+      if (l === 1) {
+        s = 0;
+      } else if (l < 0.5) {
+        s = (s * v) / (l * 2);
+      } else {
+        s = (s * v) / (2 - l * 2);
+      }
     }
-    this.values = this.selecteds.map(x => x.value);
+    [this.hsla.s, this.hsla.l] = [
+      Number(this.decimal.transform(s, "1.2-2")),
+      Number(this.decimal.transform(l, "1.2-2"))
+    ];
+    this.setValue();
   }
 
-  nodeClick(node: XColorPickerNode) {
-    this.ngZone.run(() => {
-      if (node.hasChild) {
-        if (this.nodes.length === node.level) {
-          this.nodes = [...this.nodes, node.children];
-          this.selecteds = [...this.selecteds, node];
-        } else {
-          if (this.nodes.length > node.level + 1) {
-            this.nodes = this.nodes.splice(0, node.level + 1);
-            this.selecteds = this.selecteds.splice(0, node.level + 1);
-          }
-          this.nodes[node.level + 1] = node.children;
-          this.selecteds[node.level] = node;
-        }
-        this.values = this.selecteds.map(x => x.value);
-        this.cdr.detectChanges();
-      } else {
-        if (this.selecteds.length === node.level + 1) {
-          this.selecteds = this.selecteds.splice(0, node.level);
-        }
-        this.selecteds = [...this.selecteds, node];
-        this.option.nodeEmit({ node: node, label: this.selecteds.map(x => x.label).join(` / `) });
-      }
-    });
+  dragEnded() {}
+
+  getPrimary() {
+    return getComputedStyle(this.doc.documentElement)
+      .getPropertyValue("--x-primary")
+      .trim();
+  }
+
+  sliderChange() {
+    this.renderer.setStyle(this.plateRef.nativeElement, "background-color", `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.setValue();
+  }
+
+  transparentChange() {
+    this.hsla.a = this.transparent;
+    this.setValue();
+  }
+
+  setValue() {
+    this.value = `hsla(${this.hsla.h}, ${this.hsla.s * 100}%, ${this.hsla.l * 100}%, ${this.transparent})`;
+    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
+    this.cdr.markForCheck();
+  }
+
+  hslaToRgba(hsla: { h?: number; s?: number; l?: number; a?: number }) {
+    let r, g, b;
+    let [h, s, l] = [hsla.h, hsla.s, hsla.l];
+    if (s == 0) {
+      r = g = b = l;
+    } else {
+      let hue2rgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+
+      let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      let p = 2 * l - q;
+      r = hue2rgb(p, q, h / 360 + 1 / 3);
+      g = hue2rgb(p, q, h / 360);
+      b = hue2rgb(p, q, h / 360 - 1 / 3);
+    }
+    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255), a: hsla.a };
   }
 }
