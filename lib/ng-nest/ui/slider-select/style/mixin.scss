@@ -28,6 +28,10 @@
       background-color: $--x-border-300;
       height: $--x-slider-select-track-height;
       border-radius: $--x-slider-select-border-radius;
+      > div {
+        width: 100%;
+        height: 100%;
+      }
     }
     > .#{$--x-slider-select-prefix}-track {
       margin-left: $--x-slider-select-button-size/2;

@@ -22,7 +22,7 @@ import {
   XSliderLayoutType,
   XSliderBorderPositionType
 } from "./slider.type";
-import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert } from "@ng-nest/ui/core";
+import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert, XInputBoolean } from "@ng-nest/ui/core";
 import { Subscription, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -35,6 +35,7 @@ import { map } from "rxjs/operators";
 })
 export class XSliderComponent implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XSliderNode[]>;
+  @Input() @XInputBoolean() animated: boolean = true;
   @Input() layout?: XSliderLayoutType;
   @Input() borderPosition?: XSliderBorderPositionType;
   @Input() nodeTemplate?: any;

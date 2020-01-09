@@ -40,8 +40,9 @@
         height: $slider-font-size * 2;
         background-color: $slider-activated-background-color;
         border-color: $slider-activated-border-color;
-        transition: width $animation-duration-slow,
-          height $animation-duration-slow, left $animation-duration-slow,
+      }
+      &.#{$prefix}-highlight-animated {
+        transition: width $animation-duration-slow, height $animation-duration-slow, left $animation-duration-slow,
           top $animation-duration-slow;
       }
     }

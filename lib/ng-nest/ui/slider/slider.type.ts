@@ -36,6 +36,11 @@ export interface XSliderInput {
    * slider 模板
    */
   nodeTemplate?: TemplateRef<any>;
+  /**
+   * 动画
+   * @default true
+   */
+  animated?: boolean;
 }
 
 /**

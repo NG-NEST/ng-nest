@@ -61,7 +61,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
   }
 

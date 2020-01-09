@@ -46,7 +46,6 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   @Input() @XDataConvert() data?: XData<XColorPickerNode[]>;
   @ViewChild("colorPicker", { static: true }) colorPicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
-  @Output() nodeEmit?: EventEmitter<XColorPickerNode> = new EventEmitter<XColorPickerNode>();
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -54,7 +53,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
 
   writeValue(value: any) {
     this.value = value;
-    this.setDisplayValue();
+    this.displayValue = value;
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
@@ -222,26 +221,10 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     this.addListen();
   }
 
-  nodeClick(selected: { node: XColorPickerNode; label: string }) {
-    this.value = selected.node.value;
-    this.displayValue = selected.label;
-    this.closePortal();
+  nodeClick(color: string) {
+    this.value = color;
+    this.displayValue = color;
     if (this.onChange) this.onChange(this.value);
-    this.nodeEmit.emit(selected);
-  }
-
-  setDisplayValue() {
-    let node = this.datas.find(x => x.value === this.value);
-    if (!node) {
-      this.displayValue = "";
-      return;
-    }
-    let selecteds = [node];
-    while (!XIsEmpty(node.parentValue)) {
-      node = this.datas.find(x => x.value === node.parentValue);
-      selecteds = [node, ...selecteds];
-    }
-    this.displayValue = selecteds.map(x => x.label).join(` / `);
   }
 
   setPositionStrategy() {

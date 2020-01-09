@@ -23,6 +23,11 @@ export interface XTabsInput {
    * 激活的序号
    */
   activatedIndex?: number;
+  /**
+   * 动画
+   * @default true
+   */
+  animated?: boolean;
 }
 
 /**

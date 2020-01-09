@@ -7,15 +7,14 @@
   >
     <ng-container *ngIf="!nodeTemplate">{{ slider.label }}</ng-container>
     <ng-container *ngIf="nodeTemplate">
-      <ng-container
-        *ngTemplateOutlet="nodeTemplate; context: { node$: slider }"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="nodeTemplate; context: { node$: slider }"></ng-container>
     </ng-container>
   </li>
   <li
-    class="x-slider-highlight"
-    [hidden]="highlightHidden"
     #highlight
+    class="x-slider-highlight"
+    [class.x-slider-highlight-animate]="animated"
+    [hidden]="highlightHidden"
     [title]="nodeTemplate ? activatedSlider?.label : ''"
   ></li>
 </ul>

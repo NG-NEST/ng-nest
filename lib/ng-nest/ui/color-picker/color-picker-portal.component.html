@@ -15,7 +15,7 @@
   </div>
   <div class="x-color-picker-portal-tool">
     <div class="x-color-picker-portal-operations">
-      <x-button icon="fto-edit-2" onlyIcon></x-button>
+      <!-- <x-button icon="fto-edit-2" onlyIcon></x-button> -->
       <div class="x-color-picker-portal-selected">
         <div [style.background-color]="value"></div>
       </div>
@@ -26,37 +26,43 @@
             min="0"
             max="360"
             step="1"
-            (ngModelChange)="sliderChange()"
+            (ngModelChange)="hueChange()"
           ></x-slider-select>
         </div>
         <div class="x-color-picker-portal-transparent">
           <x-slider-select
-            [(ngModel)]="transparent"
+            #transparentCom
+            [(ngModel)]="hsla.a"
             min="0"
             max="1"
             step="0.01"
             (ngModelChange)="transparentChange()"
           ></x-slider-select>
+          <div class="x-color-picker-portal-alpha"></div>
         </div>
       </div>
     </div>
     <div class="x-color-picker-portal-type">
-      <x-tabs>
+      <x-tabs animated="false">
         <x-tab label="HEX">
           <div class="x-color-picker-portal-type-content">
-            <x-input></x-input>
+            <x-input [(ngModel)]="hex"></x-input>
           </div>
         </x-tab>
         <x-tab label="RGBA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="rgba.r"></x-input><x-input [(ngModel)]="rgba.g"></x-input
-            ><x-input [(ngModel)]="rgba.b"></x-input><x-input [(ngModel)]="rgba.a"></x-input>
+            <x-input [(ngModel)]="rgba.r"></x-input>
+            <x-input [(ngModel)]="rgba.g"></x-input>
+            <x-input [(ngModel)]="rgba.b"></x-input>
+            <x-input [(ngModel)]="rgba.a"></x-input>
           </div>
         </x-tab>
         <x-tab label="HSLA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="hsla.h"></x-input><x-input [(ngModel)]="hsla.s"></x-input
-            ><x-input [(ngModel)]="hsla.l"></x-input><x-input [(ngModel)]="hsla.a"></x-input>
+            <x-input [(ngModel)]="hsla.h"></x-input>
+            <x-input [(ngModel)]="hsla.sp"></x-input>
+            <x-input [(ngModel)]="hsla.lp"></x-input>
+            <x-input [(ngModel)]="hsla.a"></x-input>
           </div>
         </x-tab>
       </x-tabs>

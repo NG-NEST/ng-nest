@@ -21,7 +21,7 @@ export interface XColorPickerNode extends XParentIdentityInput {}
 /**
  * 颜色种类
  */
-export type XColotType = "hex" | "rgba" | "hsla";
+export type XColorType = "hex" | "rgba" | "hsla";
 
 /**
  * ColorPicker-Portal 组件名

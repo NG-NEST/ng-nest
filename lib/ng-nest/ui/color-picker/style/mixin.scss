@@ -30,6 +30,14 @@
       }
     }
   }
+  &-value {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    width: 4rem;
+    height: 1.075rem;
+    border-radius: 0.125rem;
+  }
   &.x-required {
     &.x-required-show {
       > label {
@@ -168,6 +176,11 @@
     .x-slider-select > .x-slider-select-inner {
       > .x-slider-select-rail {
         background: $--x-color-picker-transparent;
+        &:after {
+          content: "";
+          height: 100%;
+          display: block;
+        }
       }
     }
   }
