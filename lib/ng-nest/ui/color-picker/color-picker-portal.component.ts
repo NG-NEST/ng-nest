@@ -15,7 +15,7 @@ import { XColorPickerPortal } from "./color-picker.type";
 import { XIsEmpty } from "@ng-nest/ui/core";
 import { XSliderSelectComponent } from "@ng-nest/ui/slider-select";
 import { Subscription } from "rxjs";
-import { CdkDragMove } from "@angular/cdk/drag-drop";
+import { CdkDragMove, CdkDrag } from "@angular/cdk/drag-drop";
 import { DOCUMENT, DecimalPipe, PercentPipe } from "@angular/common";
 
 @Component({
@@ -40,16 +40,18 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   offset = 0;
   panel: DOMRect;
   plate: DOMRect;
+  transform = { x: 0, y: 0 };
+  initTransform = { x: 0, y: 0 };
 
   rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
   hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = { h: 0, a: 1 };
   hex: string;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
+    public elementRef: ElementRef,
+    public renderer: Renderer2,
     @Inject(XColorPickerPortal) public option: any,
-    @Inject(DOCUMENT) private doc: Document,
+    @Inject(DOCUMENT) public doc: Document,
     public ngZone: NgZone,
     public cdr: ChangeDetectorRef,
     public decimal: DecimalPipe,
@@ -82,7 +84,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.plate = this.plateRef.nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
     this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector(".x-slider-select-rail div");
-    this.hueChange();
+    this.setTransform();
+    this.setPlateBackground();
   }
 
   init() {
@@ -108,7 +111,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       this.setHslaPercent();
     } else if (/rgb/.test(this.value)) {
       this.rgbaConvert(this.value);
-      this.hex = this.rgbaToHex(this.value);
+      this.hex = this.rgbaToHex(this.rgba);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
     }
@@ -122,20 +125,33 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       .replace(/[\s+]/g, "")
       .split(",");
     if (rgba.length > 2) {
-      this.rgba = { r: rgba[0], g: rgba[1], b: rgba[2], a: rgba.length > 3 ? rgba[3] : 1 };
+      this.rgba = {
+        r: Number(rgba[0]),
+        g: Number(rgba[1]),
+        b: Number(rgba[2]),
+        a: Number(rgba.length > 3 ? rgba[3] : 1)
+      };
     }
+  }
+
+  setTransform() {
+    let hsv = this.hslToHsv(this.hsla.h, this.hsla.s, this.hsla.l);
+    this.transform.x = hsv.s * this.plate.width - this.offset;
+    this.transform.y = (1 - hsv.v) * this.plate.height - this.offset;
+    this.initTransform = { x: this.transform.x, y: this.transform.y };
   }
 
   dragStarted() {}
 
   dragMoved(drag: CdkDragMove) {
-    const transform = drag.source._dragRef["_activeTransform"];
-    let left = transform.x + this.offset;
-    let top = transform.y + this.offset;
+    const transform = drag.source.getFreeDragPosition();
+    this.transform = { x: transform.x + this.initTransform.x, y: transform.y + this.initTransform.y };
+    let left = this.transform.x + this.offset;
+    let top = this.transform.y + this.offset;
     let s = left / this.plate.width;
     let v = 1 - top / this.plate.height;
     let l = ((2 - s) * v) / 2;
-    if (l != 0) {
+    if (l !== 0) {
       if (l === 1) {
         s = 0;
       } else if (l < 0.5) {
@@ -157,8 +173,6 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.hsla.lp = this.hsla.l === 0 ? "0%" : this.percent.transform(this.hsla.l, "1.0-0");
   }
 
-  dragEnded() {}
-
   getPrimary() {
     return getComputedStyle(this.doc.documentElement)
       .getPropertyValue("--x-primary")
@@ -166,8 +180,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   hueChange() {
-    this.renderer.setStyle(this.plateRef.nativeElement, "background-color", `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.setPlateBackground();
     this.setValue();
+  }
+
+  setPlateBackground() {
+    this.renderer.setStyle(this.plateRef.nativeElement, "background-color", `hsl(${this.hsla.h}, 100%, 50%)`);
   }
 
   transparentChange() {
@@ -208,14 +226,20 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       g = hue2rgb(p, q, h / 360);
       b = hue2rgb(p, q, h / 360 - 1 / 3);
     }
-    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255), a: hsla.a };
+    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255), a: Number(hsla.a) };
   }
 
   rgbaToHex(rgba: { r?: number; g?: number; b?: number; a?: number }) {
-    let ha = Math.round(255 * rgba.a).toString(16);
-    if (ha === "ff") ha = "";
-    if (ha.length === 1) ha = `0${ha}`;
-    return `#${((1 << 24) + (rgba.r << 16) + (rgba.g << 8) + rgba.b).toString(16).slice(1)}${ha}`;
+    let hex = [rgba.r.toString(16), rgba.g.toString(16), rgba.b.toString(16), Math.round(255 * rgba.a).toString(16)];
+    hex.forEach((x, index) => {
+      if (index === 3 && x === "ff") {
+        hex[index] = "";
+      }
+      if (x.length === 1) {
+        hex[index] = "0" + x;
+      }
+    });
+    return `#${hex.join("")}`;
   }
 
   rgbaToHsla(rgba: { r?: number; g?: number; b?: number; a?: number }) {
@@ -244,7 +268,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       h /= 6;
     }
 
-    return { h: Math.round(h * 360), s: s, l: l, a: rgba.a };
+    return {
+      h: Math.round(h * 360),
+      s: Number(this.decimal.transform(s, "1.2-2")),
+      l: Number(this.decimal.transform(l, "1.2-2")),
+      a: Number(rgba.a)
+    };
   }
 
   hexToRgba(hex: string) {
@@ -256,6 +285,29 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     }
     let num = Number("0x" + (hexNum.length < 6 ? this.repeatLetter(hexNum, 2) : hexNum));
     return { r: num >> 16, g: (num >> 8) & 0xff, b: num & 0xff, a: a };
+  }
+
+  hslToHsv(h, s, l) {
+    let hHsv, sHsv, v;
+
+    hHsv = h;
+
+    if (l == 0) {
+      sHsv = 0;
+      v = 0;
+    } else if (l > 0 && l <= 0.5) {
+      sHsv = (2 * s) / (1 + s);
+      v = l * (1 + s);
+    } else {
+      sHsv = (2 * s - 2 * s * l) / (s - s * l + l);
+      v = s - s * l + l;
+    }
+
+    return {
+      h: hHsv,
+      s: Number(this.decimal.transform(sHsv, "1.2-2")),
+      v: Number(this.decimal.transform(v, "1.2-2"))
+    };
   }
 
   repeatWord(word, num) {

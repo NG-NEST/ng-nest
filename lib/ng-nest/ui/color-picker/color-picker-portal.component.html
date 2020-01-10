@@ -4,11 +4,11 @@
       <div class="x-color-picker-portal-white"></div>
       <div class="x-color-picker-portal-black"></div>
       <div
+        #dragCom
         class="x-color-picker-portal-cursor"
+        [style.transform]="'translate3d(' + this.transform.x + 'px, ' + this.transform.y + 'px, 0px)'"
         cdkDrag
         [cdkDragBoundary]="panelRef"
-        (cdkDragStarted)="dragStarted()"
-        (cdkDragEnded)="dragEnded()"
         (cdkDragMoved)="dragMoved($event)"
       ></div>
     </div>
