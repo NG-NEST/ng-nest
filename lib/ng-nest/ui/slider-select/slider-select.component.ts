@@ -8,7 +8,9 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  ViewChild
+  ViewChild,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { XSliderSelectInput } from "./slider-select.type";
 import {
@@ -18,9 +20,9 @@ import {
   XIsUndefined,
   XControlValueAccessor,
   XInputNumber,
-  removeNgTag
+  XInputBoolean
 } from "@ng-nest/ui/core";
-import { CdkDragMove } from "@angular/cdk/drag-drop";
+import { CdkDragMove, CdkDragStart, CdkDragEnd } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "x-slider-select",
@@ -35,6 +37,9 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   @Input() @XInputNumber() max: number = 100;
   @Input() @XInputNumber() step: number = 1;
   @Input() @XInputNumber() precision: number;
+  @Output() dragStarted = new EventEmitter();
+  @Output() dragMoved = new EventEmitter();
+  @Output() dragEnded = new EventEmitter();
   @ViewChild("sliderSelect", { static: true }) sliderSelect: ElementRef;
   @ViewChild("dragRef", { static: true }) dragRef: ElementRef;
   @ViewChild("railRef", { static: true }) railRef: ElementRef;
@@ -108,26 +113,29 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     }
   }
 
-  dragStarted() {
+  started(drag: CdkDragStart) {
     const start = this.left;
     this.start = start;
     this.visible = true;
     this.tooltip.show();
     this.cdr.detectChanges();
+    this.dragStarted.emit(drag);
   }
 
-  dragMoved(drag: CdkDragMove) {
-    let transform = drag.source._dragRef["_activeTransform"];
+  moved(drag: CdkDragMove) {
+    let transform = drag.source.getFreeDragPosition();
     this.setDrag(transform.x);
     drag.source.reset();
     this.tooltip.update();
     this.change();
+    this.dragMoved.emit(drag);
   }
 
-  dragEnded() {
+  ended(drag: CdkDragEnd) {
     this.visible = false;
     this.tooltip.hide();
     this.cdr.detectChanges();
+    this.dragEnded.emit(drag);
   }
 
   setDrag(distance: number = 0) {

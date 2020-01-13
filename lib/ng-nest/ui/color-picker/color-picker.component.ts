@@ -43,7 +43,6 @@ import { map } from "rxjs/operators";
   providers: [XValueAccessor(XColorPickerComponent)]
 })
 export class XColorPickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XColorPickerNode[]>;
   @ViewChild("colorPicker", { static: true }) colorPicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
@@ -102,7 +101,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   ngOnChanges(changes: SimpleChanges): void {
     let dataChange = changes.data;
     if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
+      // this.setData();
     }
   }
 
@@ -124,31 +123,6 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     this.scrollFunction && this.scrollFunction();
     this.resizeFunction && this.resizeFunction();
     this.cdr.markForCheck();
-  }
-
-  private setData() {
-    if (typeof this.data === "undefined") return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XColorPickerNode[]);
-    }
-  }
-
-  private setDataChange(value: XColorPickerNode[]) {
-    this.datas = value;
-    let getChildren = (node: XColorPickerNode, level: number) => {
-      node.level = level;
-      node.children = value.filter(y => y.parentValue === node.value);
-      node.hasChild = node.children.length > 0;
-      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
-      return node;
-    };
-    this.nodes = value.filter(x => XIsEmpty(x.parentValue)).map(x => getChildren(x, 0));
-    this.setPortal();
   }
 
   change() {

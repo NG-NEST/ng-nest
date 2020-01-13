@@ -1,15 +1,18 @@
 <div class="x-color-picker-portal" (click)="stopPropagation($event)">
   <div #panelRef class="x-color-picker-portal-panel">
-    <div #plateRef class="x-color-picker-portal-plate">
+    <div #plateRef class="x-color-picker-portal-plate" (click)="plateClick($event)">
       <div class="x-color-picker-portal-white"></div>
       <div class="x-color-picker-portal-black"></div>
       <div
         #dragCom
         class="x-color-picker-portal-cursor"
-        [style.transform]="'translate3d(' + this.transform.x + 'px, ' + this.transform.y + 'px, 0px)'"
+        [style.left.px]="transform.x"
+        [style.top.px]="transform.y"
         cdkDrag
         [cdkDragBoundary]="panelRef"
-        (cdkDragMoved)="dragMoved($event)"
+        (cdkDragStarted)="started()"
+        (cdkDragEnded)="ended($event)"
+        (cdkDragMoved)="moved($event)"
       ></div>
     </div>
   </div>
@@ -26,6 +29,8 @@
             min="0"
             max="360"
             step="1"
+            (dragStarted)="started()"
+            (dragEnded)="ended()"
             (ngModelChange)="hueChange()"
           ></x-slider-select>
         </div>
@@ -36,6 +41,8 @@
             min="0"
             max="1"
             step="0.01"
+            (dragStarted)="started()"
+            (dragEnded)="ended()"
             (ngModelChange)="transparentChange()"
           ></x-slider-select>
           <div class="x-color-picker-portal-alpha"></div>

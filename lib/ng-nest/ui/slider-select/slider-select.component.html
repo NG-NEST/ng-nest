@@ -23,16 +23,16 @@
         cdkDragLockAxis="x"
         [cdkDragDisabled]="disabled"
         [cdkDragBoundary]="innerRef"
-        (cdkDragStarted)="dragStarted()"
-        (cdkDragEnded)="dragEnded()"
-        (cdkDragMoved)="dragMoved($event)"
+        (cdkDragStarted)="started($event)"
+        (cdkDragEnded)="ended($event)"
+        (cdkDragMoved)="moved($event)"
       >
         <div
           #tooltip
           x-tooltip
           class="x-slider-select-button"
-          [content]="displayValue"
           placement="top"
+          [content]="displayValue"
           [visible]="visible"
         ></div>
       </div>

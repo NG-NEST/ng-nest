@@ -77,12 +77,12 @@ const data: XColorPickerNode[] = [];
   template: `
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data1" [(ngModel)]="model1"></x-color-picker>
+        <x-color-picker [(ngModel)]="model1"></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data2" [(ngModel)]="model2"></x-color-picker>
+        <x-color-picker [(ngModel)]="model2"></x-color-picker>
       </x-col>
     </x-row>
   `,
@@ -94,14 +94,15 @@ const data: XColorPickerNode[] = [];
       x-row:not(:first-child) {
         margin-top: 0.5rem;
       }
+      x-row x-col {
+        width: 10rem;
+      }
     `
   ]
 })
 class TestXColorPickerComponent {
-  data1 = JSON.parse(JSON.stringify(data));
-  data2 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2 = 22;
+  model2 = "#";
   constructor(private cdr: ChangeDetectorRef) {
     interval(1).subscribe(x => {
       this.cdr.detectChanges();
@@ -113,22 +114,22 @@ class TestXColorPickerComponent {
   template: `
     <x-row>
       <x-col span="12">
-        <x-color-picker label="方式" [data]="data" [(ngModel)]="model"></x-color-picker>
+        <x-color-picker label="方式" [(ngModel)]="model"></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-color-picker>
+        <x-color-picker label="方式" [(ngModel)]="model" direction="column-reverse"></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-color-picker>
+        <x-color-picker label="方式" [(ngModel)]="model" direction="row"></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-color-picker>
+        <x-color-picker label="方式" [(ngModel)]="model" direction="row-reverse"></x-color-picker>
       </x-col>
     </x-row>
   `,
@@ -154,12 +155,12 @@ class TestXColorPickerLabelComponent {
   template: `
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data" disabled></x-color-picker>
+        <x-color-picker isabled></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data" [(ngModel)]="model" disabled></x-color-picker>
+        <x-color-picker [(ngModel)]="model" disabled></x-color-picker>
       </x-col>
     </x-row>
   `,
@@ -180,12 +181,12 @@ class TestXColorPickerDisabledComponent {
   template: `
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data" [(ngModel)]="model1" required></x-color-picker>
+        <x-color-picker [(ngModel)]="model1" required></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker [data]="data" [(ngModel)]="model2" label="选择" required></x-color-picker>
+        <x-color-picker [(ngModel)]="model2" label="选择" required></x-color-picker>
       </x-col>
     </x-row>
   `,

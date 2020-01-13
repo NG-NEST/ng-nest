@@ -15,7 +15,7 @@ import { XColorPickerPortal } from "./color-picker.type";
 import { XIsEmpty } from "@ng-nest/ui/core";
 import { XSliderSelectComponent } from "@ng-nest/ui/slider-select";
 import { Subscription } from "rxjs";
-import { CdkDragMove, CdkDrag } from "@angular/cdk/drag-drop";
+import { CdkDragMove, CdkDragEnd } from "@angular/cdk/drag-drop";
 import { DOCUMENT, DecimalPipe, PercentPipe } from "@angular/common";
 
 @Component({
@@ -42,6 +42,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   plate: DOMRect;
   transform = { x: 0, y: 0 };
   initTransform = { x: 0, y: 0 };
+  drag = false;
 
   rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
   hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = { h: 0, a: 1 };
@@ -69,7 +70,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     setTimeout(
       () =>
         (this.docClickFunction = this.renderer.listen("document", "click", () => {
-          this.option.closePortal();
+          if (!this.drag) this.option.closePortal();
         }))
     );
   }
@@ -86,6 +87,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector(".x-slider-select-rail div");
     this.setTransform();
     this.setPlateBackground();
+    this.setRailBackground();
   }
 
   init() {
@@ -134,6 +136,16 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     }
   }
 
+  plateClick(event: MouseEvent) {
+    if (this.drag) return;
+    const rect = this.plateRef.nativeElement.getBoundingClientRect();
+    let left = event.clientX - rect.left;
+    let top = event.clientY - rect.top;
+    this.transform = { x: left - this.offset, y: top - this.offset };
+    this.initTransform = { x: this.transform.x, y: this.transform.y };
+    this.setLetfTop(left, top);
+  }
+
   setTransform() {
     let hsv = this.hslToHsv(this.hsla.h, this.hsla.s, this.hsla.l);
     this.transform.x = hsv.s * this.plate.width - this.offset;
@@ -141,13 +153,27 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.initTransform = { x: this.transform.x, y: this.transform.y };
   }
 
-  dragStarted() {}
+  started() {
+    this.drag = true;
+  }
 
-  dragMoved(drag: CdkDragMove) {
+  ended(drag?: CdkDragEnd) {
+    this.initTransform = { x: this.transform.x, y: this.transform.y };
+    setTimeout(() => {
+      this.drag = false;
+    });
+  }
+
+  moved(drag: CdkDragMove) {
     const transform = drag.source.getFreeDragPosition();
+    drag.source.reset();
     this.transform = { x: transform.x + this.initTransform.x, y: transform.y + this.initTransform.y };
     let left = this.transform.x + this.offset;
     let top = this.transform.y + this.offset;
+    this.setLetfTop(left, top);
+  }
+
+  setLetfTop(left: number, top: number) {
     let s = left / this.plate.width;
     let v = 1 - top / this.plate.height;
     let l = ((2 - s) * v) / 2;
@@ -188,6 +214,14 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.renderer.setStyle(this.plateRef.nativeElement, "background-color", `hsl(${this.hsla.h}, 100%, 50%)`);
   }
 
+  setRailBackground() {
+    this.renderer.setStyle(
+      this.transparentRail,
+      "background",
+      `linear-gradient(to right, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 0) 0%, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 1) 100%)`
+    );
+  }
+
   transparentChange() {
     this.setValue();
   }
@@ -196,11 +230,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     Object.assign(this.rgba, this.hslaToRgba(this.hsla));
     this.hex = this.rgbaToHex(this.rgba);
     this.value = `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`;
-    this.renderer.setStyle(
-      this.transparentRail,
-      "background",
-      `linear-gradient(to right, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 0) 0%, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 1) 100%)`
-    );
+    this.setRailBackground();
     this.option.nodeEmit(this.value);
     this.cdr.markForCheck();
   }
