@@ -18,12 +18,17 @@
     display: flex;
     align-items: center;
     position: relative;
+    background-color: $--x-white;
     > x-input {
       flex: 1;
+      position: relative;
       > .x-input {
+        color: transparent;
         > .x-input-row {
           > input {
             cursor: pointer;
+            background-color: transparent;
+            color: transparent;
           }
         }
       }
@@ -35,8 +40,13 @@
     left: 0.4rem;
     width: calc(100% - 2rem);
     height: 1.075rem;
-    border-radius: 0.125rem;
+    background-image: $--x-color-picker-transparent;
     cursor: pointer;
+    > div {
+      border-radius: 0.125rem;
+      width: 100%;
+      height: 100%;
+    }
   }
   &.x-required {
     &.x-required-show {
@@ -47,6 +57,7 @@
   }
   &.x-disabled {
     > .#{$--x-color-picker-prefix}-row {
+      background-color: $--x-background-300;
       > x-input {
         > .x-input {
           > .x-input-row {
@@ -55,6 +66,9 @@
             }
           }
         }
+      }
+      > .#{$--x-color-picker-prefix}-value {
+        cursor: not-allowed;
       }
     }
   }

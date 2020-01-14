@@ -8,6 +8,9 @@
 >
   <label *ngIf="label">{{ label }}</label>
   <div class="x-color-picker-row" (click)="showPortal($event)" (mouseenter)="menter()" (mouseleave)="mleave()">
+    <div class="x-color-picker-value" *ngIf="value">
+      <div [style.background-color]="value"></div>
+    </div>
     <x-input
       #inputCom
       type="text"
@@ -22,6 +25,5 @@
       (ngModelChange)="change()"
       (clearEmit)="clearEmit()"
     ></x-input>
-    <div class="x-color-picker-value" [style.background-color]="value"></div>
   </div>
 </div>

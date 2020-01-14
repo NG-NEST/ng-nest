@@ -11,7 +11,7 @@ import {
   OnDestroy,
   ViewChild
 } from "@angular/core";
-import { XColorPickerPortal } from "./color-picker.type";
+import { XColorPickerPortal, XColorType } from "./color-picker.type";
 import { XIsEmpty } from "@ng-nest/ui/core";
 import { XSliderSelectComponent } from "@ng-nest/ui/slider-select";
 import { Subscription } from "rxjs";
@@ -36,7 +36,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   docClickFunction: Function;
 
   sliderColorNum = 0;
-  type = "";
+  type: XColorType;
   offset = 0;
   panel: DOMRect;
   plate: DOMRect;
@@ -52,7 +52,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     public elementRef: ElementRef,
     public renderer: Renderer2,
     @Inject(XColorPickerPortal) public option: any,
-    @Inject(DOCUMENT) public doc: Document,
+    @Inject(DOCUMENT) public doc: any,
     public ngZone: NgZone,
     public cdr: ChangeDetectorRef,
     public decimal: DecimalPipe,
@@ -90,6 +90,17 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.setRailBackground();
   }
 
+  hexChange() {
+    this.rgba = this.hexToRgba(this.hex);
+    this.hsla = this.rgbaToHsla(this.rgba);
+    this.setHslaPercent();
+    this.setTransform();
+    this.setPlateBackground();
+    this.setValue();
+  }
+
+  rgbaChange() {}
+
   init() {
     if (!XIsEmpty(this.option.value)) {
       this.value = this.option.value;
@@ -108,14 +119,21 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   colorConvert() {
     if (/^#/.test(this.value)) {
       this.hex = this.value;
-      this.rgba = this.hexToRgba(this.value);
+      this.rgba = this.hexToRgba(this.hex);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
+      this.type = "hex";
     } else if (/rgb/.test(this.value)) {
       this.rgbaConvert(this.value);
       this.hex = this.rgbaToHex(this.rgba);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
+      this.type = "rgba";
+    } else if (/hsl/.test(this.value)) {
+      this.hslaConvert(this.value);
+      this.rgba = this.hslaToRgba(this.hsla);
+      this.hex = this.rgbaToHex(this.rgba);
+      this.type = "hsla";
     }
   }
 
@@ -133,6 +151,24 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
         b: Number(rgba[2]),
         a: Number(rgba.length > 3 ? rgba[3] : 1)
       };
+    }
+  }
+
+  hslaConvert(str) {
+    let hsla = str
+      .replace(/hsla?\(/, "")
+      .replace(/hsl?\(/, "")
+      .replace(/\)/, "")
+      .replace(/[\s+]/g, "")
+      .split(",");
+    if (hsla.length > 2) {
+      this.hsla = {
+        h: Number(hsla[0]),
+        s: Number(hsla[1].replace("%", "")) / 100,
+        l: Number(hsla[2].replace("%", "")) / 100,
+        a: Number(hsla.length > 3 ? hsla[3] : 1)
+      };
+      this.setHslaPercent();
     }
   }
 
@@ -191,6 +227,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       Number(this.decimal.transform(l, "1.2-2"))
     ];
     this.setHslaPercent();
+    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
+    this.hex = this.rgbaToHex(this.rgba);
     this.setValue();
   }
 
@@ -207,6 +245,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   hueChange() {
     this.setPlateBackground();
+    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
+    this.hex = this.rgbaToHex(this.rgba);
     this.setValue();
   }
 
@@ -223,16 +263,26 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   transparentChange() {
+    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
+    this.hex = this.rgbaToHex(this.rgba);
     this.setValue();
   }
 
   setValue() {
-    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
-    this.hex = this.rgbaToHex(this.rgba);
-    this.value = `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`;
+    this.setValueByType();
     this.setRailBackground();
     this.option.nodeEmit(this.value);
     this.cdr.markForCheck();
+  }
+
+  setValueByType() {
+    if (this.type === "hex") {
+      this.value = `${this.hex}`;
+    } else if (this.type === "rgba") {
+      this.value = `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`;
+    } else if (this.type === "hsla") {
+      this.value = `hsla(${this.hsla.h}, ${this.hsla.sp}, ${this.hsla.lp}, ${this.hsla.a})`;
+    }
   }
 
   hslaToRgba(hsla: { h?: number; s?: number; l?: number; a?: number }) {

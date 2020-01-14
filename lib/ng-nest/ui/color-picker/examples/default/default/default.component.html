@@ -1,15 +1,20 @@
 <x-row>
   <x-col span="12">
-    <x-color-picker [data]="data" [(ngModel)]="model1"></x-color-picker>
+    <x-color-picker [(ngModel)]="model1"></x-color-picker>
   </x-col>
 </x-row>
 <x-row>
   <x-col span="12">
-    <x-color-picker [data]="data" [(ngModel)]="model2"></x-color-picker>
+    <x-color-picker [label]="'HEX:' + model2" [(ngModel)]="model2"></x-color-picker>
   </x-col>
 </x-row>
 <x-row>
   <x-col span="12">
-    <x-color-picker [data]="data" [(ngModel)]="model3"></x-color-picker>
+    <x-color-picker [label]="'RGBA:' + model3" [(ngModel)]="model3"></x-color-picker>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col span="12">
+    <x-color-picker [label]="'HSLA:' + model4" [(ngModel)]="model4"></x-color-picker>
   </x-col>
 </x-row>
