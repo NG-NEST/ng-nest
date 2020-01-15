@@ -23,7 +23,7 @@ export class XRowComponent implements OnInit {
   @Input() justify?: XJustify;
   @Input() align?: XAlign;
 
-  @HostBinding(`class.x-row-flex`) get getFlex() {
+  @HostBinding(`class.x-flex`) get getFlex() {
     return this.justify || this.align;
   }
 
@@ -45,11 +45,11 @@ export class XRowComponent implements OnInit {
 
   setJustify() {
     if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XRowPrefix}-justity-${this.justify}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-flex-justity-${this.justify}`);
   }
 
   setAlign() {
     if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XRowPrefix}-align-${this.align}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-flex-align-${this.align}`);
   }
 }

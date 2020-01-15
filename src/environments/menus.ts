@@ -1,7 +1,7 @@
 import { Menu } from "./routes";
 export const menus: Menu[] = [
   {
-    "id": "3-2",
+    "id": "3-4",
     "parentId": "3",
     "name": "introduction",
     "router": "./docs/ui/introduction",
@@ -9,12 +9,36 @@ export const menus: Menu[] = [
     "label": "简介"
   },
   {
+    "id": "3-2",
+    "parentId": "3",
+    "name": "getting-started",
+    "router": "./docs/ui/getting-started",
+    "order": 2,
+    "label": "快速上手 [待]"
+  },
+  {
+    "id": "3-6",
+    "parentId": "3",
+    "name": "schematics",
+    "router": "./docs/ui/schematics",
+    "order": 3,
+    "label": "脚手架 [待]"
+  },
+  {
+    "id": "3-3",
+    "parentId": "3",
+    "name": "i18n",
+    "router": "./docs/ui/i18n",
+    "order": 4,
+    "label": "国际化 [待]"
+  },
+  {
     "id": "3-1",
     "parentId": "3",
     "name": "course",
     "router": "./docs/ui/course",
-    "order": 2,
-    "label": "教程",
+    "order": 9,
+    "label": "教程 [待]",
     "type": "router"
   },
   {
@@ -22,7 +46,7 @@ export const menus: Menu[] = [
     "parentId": "3",
     "name": "components",
     "router": "./docs/ui/components",
-    "order": 3,
+    "order": 10,
     "label": "组件",
     "type": "router"
   },
@@ -340,7 +364,7 @@ export const menus: Menu[] = [
     "name": "guide",
     "router": "./docs/ui/course/guide",
     "order": 1,
-    "label": "指南"
+    "label": "指南 [待]"
   },
   {
     "id": "2",

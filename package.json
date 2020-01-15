@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": " serve",
+    "start": "ng serve",
     "start:en": "ng serve --configuration=en",
     "start:zh": "ng serve --configuration=zh",
     "build": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --prod ",
@@ -17,7 +17,8 @@
     "test:ng-nest-ui": "ng test ng-nest-ui",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "extract": "ng xi18n --output-path=locale"
+    "extract": "ng xi18n --output-path=locale",
+    "link:ng-nest-ui": "npm link dist/ng-nest/ui"
   },
   "private": false,
   "dependencies": {
