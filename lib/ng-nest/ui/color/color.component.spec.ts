@@ -40,10 +40,10 @@ describe(XColorPrefix, () => {
       ></x-col>
     </x-row>
     <x-row space="1">
-      <x-col span="6"><x-color label="Success" hex="#67c23a" [amounts]="[0.8, 0.9]"></x-color></x-col>
-      <x-col span="6"><x-color label="Warning" hex="#e6a23c" [amounts]="[0.8, 0.9]"></x-color></x-col>
-      <x-col span="6"><x-color label="Danger" hex="#f56c6c" [amounts]="[0.8, 0.9]"></x-color></x-col>
-      <x-col span="6"><x-color label="Info" hex="#909399" [amounts]="[0.8, 0.9]"></x-color></x-col>
+      <x-col span="12"><x-color label="Success" hex="#67c23a"></x-color></x-col>
+      <x-col span="12"><x-color label="Warning" hex="#e6a23c"></x-color></x-col>
+      <x-col span="12"><x-color label="Danger" hex="#f56c6c"></x-color></x-col>
+      <x-col span="12"><x-color label="Info" hex="#909399"></x-color></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="6"><x-color label="主要文字" hex="#303133" amounts=""></x-color></x-col>

@@ -22,7 +22,7 @@ export class XColorComponent implements OnInit {
   @Input() label?: string = "color";
   @Input() hex?: string;
   @Input() merge?: string = "#ffffff";
-  @Input() amounts?: number[] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+  @Input() amounts?: number[] = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
   colors: string[] = [];
   constructor(@Inject(DOCUMENT) private doc: any, private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
@@ -44,6 +44,7 @@ export class XColorComponent implements OnInit {
   mixColors(color1, color2, weight) {
     let rgb1 = this.toRgb(color1);
     let rgb2 = this.toRgb(color2);
+    console.log(rgb1, rgb2);
     let weight1 = weight;
     let weight2 = 1 - weight;
     return {
