@@ -1,28 +1,29 @@
 :host {
   .box {
-    width: 20rem;
-    .top {
-      text-align: center;
-    }
-    .left {
-      float: left;
-      width: 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .right {
-      float: right;
-      width: 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .bottom {
-      clear: both;
-      text-align: center;
-    }
+    padding: 5rem 10rem;
+    width: 45rem;
+  }
+  .box .top {
+    text-align: center;
+  }
+  .box .left {
+    float: left;
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .box .right {
+    float: right;
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .box .bottom {
+    clear: both;
+    text-align: center;
   }
 }

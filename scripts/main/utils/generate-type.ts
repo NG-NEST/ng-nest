@@ -25,7 +25,7 @@ export function generateTypes(...types: NcType[]) {
           let table = "";
           x.properties.forEach(y => {
             table += `<tr>
-                <td>[<span><code>${y.name}</code></span>]</td>
+                <td><span><code>${y.name}</code></span></td>
                 <td>${y.label}<span>${y.description}</span></td>
                 <td><code [innerHtml]="'${y.type}'"></code></td>
                 <td><code>${y.defalut}</code></td>
