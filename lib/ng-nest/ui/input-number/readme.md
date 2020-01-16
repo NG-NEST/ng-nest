@@ -1,8 +1,8 @@
 ---
 label: "InputNumber 计数器"
 category: "Form"
-order: 4
 ---
+
 
 # InputNumber 计数器
 

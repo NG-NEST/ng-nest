@@ -1,8 +1,8 @@
 ---
 label: "Icon 图标"
 category: "Basic"
-order: 6
 ---
+
 
 # Icon 图标
 

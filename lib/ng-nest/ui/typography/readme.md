@@ -1,8 +1,8 @@
 ---
 label: "Typography 字体"
 category: "Basic"
-order: 4
 ---
+
 
 # Typography 字体
 

@@ -1,8 +1,8 @@
 ---
 label: "Select 选择器"
 category: "Form"
-order: 5
 ---
+
 
 # Select 选择器
 

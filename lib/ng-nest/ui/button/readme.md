@@ -1,8 +1,8 @@
 ---
 label: "Button 按钮"
 category: "Basic"
-order: 7
 ---
+
 
 # Button 按钮
 

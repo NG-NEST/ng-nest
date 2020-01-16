@@ -1,8 +1,8 @@
 ---
 label: "Tabs 标签页"
 category: "Navigation"
-order: 2
 ---
+
 
 # Tabs 标签页
 

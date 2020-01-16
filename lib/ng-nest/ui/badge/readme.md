@@ -1,8 +1,8 @@
 ---
 label: "Badge 标记 [待]"
 category: "Data"
-order: 6
 ---
+
 
 # Badge 标记
 

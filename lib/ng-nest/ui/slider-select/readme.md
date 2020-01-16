@@ -1,8 +1,8 @@
 ---
 label: "SliderSelect 滑动选择"
 category: "Form"
-order: 8
 ---
+
 
 # SliderSelect 滑动选择
 

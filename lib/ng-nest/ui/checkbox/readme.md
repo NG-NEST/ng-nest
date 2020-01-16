@@ -1,8 +1,8 @@
 ---
 label: "Checkbox 多选框"
 category: "Form"
-order: 2
 ---
+
 
 # Checkbox 多选框
 

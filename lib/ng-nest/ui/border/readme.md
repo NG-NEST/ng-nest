@@ -1,8 +1,8 @@
 ---
 label: "Border 边框"
 category: "Basic"
-order: 5
 ---
+
 
 # Border 边框
 

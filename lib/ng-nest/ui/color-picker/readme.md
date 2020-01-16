@@ -1,8 +1,8 @@
 ---
 label: "ColorPicker 颜色选择器"
 category: "Form"
-order: 13
 ---
+
 
 # ColorPicker 颜色选择器
 

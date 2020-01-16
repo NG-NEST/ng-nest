@@ -1,8 +1,8 @@
 ---
 label: "Avatar 头像 [待]"
 category: "Data"
-order: 7
 ---
+
 
 # Avatar 头像
 

@@ -1,8 +1,8 @@
 ---
 label: "List 列表组件"
 category: "Form"
-order: 29
 ---
+
 
 # List 列表组件
 

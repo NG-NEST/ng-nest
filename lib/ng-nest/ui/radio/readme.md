@@ -1,8 +1,8 @@
 ---
 label: "Radio 单选框"
 category: "Form"
-order: 1
 ---
+
 
 # Radio 单选框
 

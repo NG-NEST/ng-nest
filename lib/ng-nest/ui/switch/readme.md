@@ -1,8 +1,8 @@
 ---
 label: "Switch 开关"
 category: "Form"
-order: 7
 ---
+
 
 # Switch 开关
 

@@ -1,8 +1,8 @@
 ---
 label: "Input 输入框"
 category: "Form"
-order: 3
 ---
+
 
 # Input 输入框
 

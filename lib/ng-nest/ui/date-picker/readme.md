@@ -1,8 +1,8 @@
 ---
 label: "DatePicker 日期选择器"
 category: "Form"
-order: 9
 ---
+
 
 # DatePicker 日期选择器
 

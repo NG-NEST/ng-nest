@@ -1,8 +1,8 @@
 ---
 label: "Rate 评分"
 category: "Form"
-order: 12
 ---
+
 
 # Rate 评分
 

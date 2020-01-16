@@ -1,8 +1,8 @@
 ---
 label: "Color 色彩"
 category: "Basic"
-order: 3
 ---
+
 
 # Color 色彩
 

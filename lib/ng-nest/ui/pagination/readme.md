@@ -1,8 +1,8 @@
 ---
 label: "Pagination 分页"
 category: "Data"
-order: 2
 ---
+
 
 # Pagination 分页
 

@@ -1,8 +1,8 @@
 ---
 label: "Tooltip 文字提示"
 category: "Others"
-order: 2
 ---
+
 
 # Tooltip 文字提示
 

@@ -1,8 +1,8 @@
 ---
 label: "TimePicker 时间选择器"
 category: "Form"
-order: 10
 ---
+
 
 # TimePicker 时间选择器
 

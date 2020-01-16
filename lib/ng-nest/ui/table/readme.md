@@ -1,8 +1,8 @@
 ---
 label: "Table 表格"
 category: "Data"
-order: 1
 ---
+
 
 # Table 表格
 
