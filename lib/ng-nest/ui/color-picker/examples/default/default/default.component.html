@@ -5,16 +5,19 @@
 </x-row>
 <x-row>
   <x-col span="12">
-    <x-color-picker [label]="'HEX:' + model2" [(ngModel)]="model2"></x-color-picker>
+    <span>{{ "HEX:" + model2 }}</span>
+    <x-color-picker [(ngModel)]="model2"></x-color-picker>
   </x-col>
 </x-row>
 <x-row>
   <x-col span="12">
-    <x-color-picker [label]="'RGBA:' + model3" [(ngModel)]="model3"></x-color-picker>
+    <span>{{ "RGBA:" + model3 }}</span>
+    <x-color-picker [(ngModel)]="model3"></x-color-picker>
   </x-col>
 </x-row>
 <x-row>
   <x-col span="12">
-    <x-color-picker [label]="'HSLA:' + model4" [(ngModel)]="model4"></x-color-picker>
+    <span>{{ "HSLA:" + model4 }}</span>
+    <x-color-picker [(ngModel)]="model4"></x-color-picker>
   </x-col>
 </x-row>

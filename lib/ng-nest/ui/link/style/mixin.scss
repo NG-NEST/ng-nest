@@ -1,0 +1,58 @@
+// Link
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin link {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: $--x-font-size;
+  &:hover:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    bottom: 0;
+    border-bottom: 0.0625rem solid $--x-primary;
+  }
+  @include link-type("", $--x-text, $--x-primary, $--x-primary-a100, $--x-text-300);
+  @include link-type("primary", $--x-primary, $--x-primary-200, $--x-primary-200, $--x-primary-500);
+  @include link-type("success", $--x-success, $--x-success-200, $--x-success-200, $--x-success-500);
+  @include link-type("warning", $--x-warning, $--x-warning-200, $--x-warning-200, $--x-warning-500);
+  @include link-type("danger", $--x-danger, $--x-danger-200, $--x-danger-200, $--x-danger-500);
+  @include link-type("info", $--x-info, $--x-info-200, $--x-info-200, $--x-info-500);
+}
+
+@mixin link-type($type, $color, $hover-color, $active-color, $disabled-color) {
+  @if $type!= "" {
+    $type: "-" + $type;
+  }
+  &#{$type} {
+    color: $color;
+    &:hover {
+      color: $hover-color;
+      &:after {
+        border-color: $hover-color;
+      }
+    }
+    &:active {
+      color: $active-color;
+    }
+    &.#{$--x-link}-disabled {
+      color: $disabled-color;
+      cursor: not-allowed;
+      &:hover:after {
+        border-color: transparent;
+      }
+    }
+  }
+}

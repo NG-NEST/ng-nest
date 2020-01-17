@@ -1,0 +1,13 @@
+// Link
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+#{$--x-link} {
+  display: inline-flex;
+}
+.#{$--x-link} {
+  @include reset-component();
+  @include link();
+}
