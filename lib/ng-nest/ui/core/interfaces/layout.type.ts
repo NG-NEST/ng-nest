@@ -14,7 +14,7 @@ export type XPosition = "top" | "right" | "bottom" | "left";
  * @value "samll" 小型
  * @value "mini" 迷你
  */
-export type XSize = "large" | "medium" | "samll" | "mini";
+export type XSize = "large" | "medium" | "small" | "mini";
 
 /**
  * flex 布局下的子元素水平排列方式

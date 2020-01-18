@@ -1,0 +1,10 @@
+// Avatar
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-avatar} {
+  @include reset-component();
+  @include avatar();
+}

@@ -1,0 +1,5 @@
+:host {
+  x-row > x-col > x-avatar:not(:first-child) {
+    margin-left: 0.25rem;
+  }
+}

@@ -1,0 +1,41 @@
+// Avatar
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin avatar {
+  font-size: $--x-font-size;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  color: $--x-white;
+  background-color: $--x-text-300;
+  > img {
+    display: block;
+    height: 100%;
+  }
+  &-circle {
+    border-radius: 50%;
+  }
+  &-square {
+    border-radius: 0.125rem;
+  }
+  @include avatar-size("", $--x-avatar-size);
+  @include avatar-size("large", $--x-avatar-size-large);
+  @include avatar-size("medium", $--x-avatar-size-medium);
+  @include avatar-size("small", $--x-avatar-size-small);
+  @include avatar-size("mini", $--x-avatar-size-mini);
+}
+
+@mixin avatar-size($type, $size) {
+  @if $type!= "" {
+    $type: "-" + $type;
+  }
+  &#{$type} {
+    height: $size;
+    width: $size;
+    line-height: $size;
+  }
+}
