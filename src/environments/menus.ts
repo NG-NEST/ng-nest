@@ -103,7 +103,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "link",
     "router": "./docs/ui/components/link",
-    "label": "Link 文字链接 [待]",
+    "label": "Link 文字链接",
     "category": "Basic"
   },
   {

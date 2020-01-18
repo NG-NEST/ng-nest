@@ -6,7 +6,6 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./default.component.scss"]
 })
 export class ExDefaultComponent implements OnInit {
-  model = 3;
   constructor() {}
 
   ngOnInit() {}

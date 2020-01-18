@@ -2,9 +2,11 @@
   #link
   class="x-link"
   [class.x-link-disabled]="disabled"
-  [class.x-link-underline]="underline"
+  [class.x-link-underline]="underline && !disabled"
+  [class.x-link-icon-right]="iconRight"
   [attr.href]="href"
   [attr.target]="target"
 >
-  <ng-content></ng-content>
+  <x-icon *ngIf="icon" [type]="icon"></x-icon>
+  <span>{{ label }}</span>
 </a>

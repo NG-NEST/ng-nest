@@ -11,6 +11,7 @@ import { XPortalModule } from "@ng-nest/ui/portal";
 import { XColorModule } from "@ng-nest/ui/color";
 import { XTypographyModule } from "@ng-nest/ui/typography";
 import { XBorderModule } from "@ng-nest/ui/border";
+import { XLinkModule } from "@ng-nest/ui/link";
 import { XListModule } from "@ng-nest/ui/list";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
@@ -53,6 +54,8 @@ export * from "@ng-nest/ui/portal";
 export * from "@ng-nest/ui/color";
 export * from "@ng-nest/ui/typography";
 export * from "@ng-nest/ui/border";
+export * from "@ng-nest/ui/link";
+
 export * from "@ng-nest/ui/list";
 
 export * from "@ng-nest/ui/radio";
@@ -110,6 +113,7 @@ export * from "@ng-nest/ui/form";
     XUploadModule,
     XRateModule,
     XColorPickerModule,
+    XLinkModule,
 
     XTooltipModule,
 

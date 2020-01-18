@@ -8,7 +8,40 @@ export const XLinkPrefix = "x-link";
 /**
  * Link @Input
  */
-export interface XLinkInput {}
+export interface XLinkInput {
+  /**
+   * 标题
+   */
+  label?: string;
+  /**
+   * 链接
+   */
+  href?: string;
+  /**
+   * 图标
+   */
+  icon?: string;
+  /**
+   * 下划线
+   */
+  underline: boolean;
+  /**
+   * 禁用
+   */
+  disabled?: boolean;
+  /**
+   * 图标靠右对齐
+   */
+  iconRight?: boolean;
+  /**
+   * 链接类型
+   */
+  type?: XLinkType;
+  /**
+   * 打开方式
+   */
+  target?: string;
+}
 
 /**
  * 链接类型
@@ -17,6 +50,5 @@ export interface XLinkInput {}
  * @value "info"
  * @value "warning"
  * @value "danger"
- * @value "text"
  */
-export type XLinkType = "primary" | "success" | "info" | "warning" | "danger" | "text";
+export type XLinkType = "primary" | "success" | "info" | "warning" | "danger";

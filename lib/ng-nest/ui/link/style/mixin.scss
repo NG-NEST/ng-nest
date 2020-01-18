@@ -5,6 +5,7 @@
 @import "./param";
 
 @mixin link {
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -15,14 +16,22 @@
   cursor: pointer;
   padding: 0;
   font-size: $--x-font-size;
-  &:hover:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 0;
-    bottom: 0;
-    border-bottom: 0.0625rem solid $--x-primary;
+  > x-icon {
+    font-size: $--x-font-size + 0.125rem;
+  }
+  &-underline {
+    &:hover:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      bottom: 0;
+      border-bottom: 0.0625rem solid $--x-primary;
+    }
+  }
+  &-icon-right {
+    flex-direction: row-reverse;
   }
   @include link-type("", $--x-text, $--x-primary, $--x-primary-a100, $--x-text-300);
   @include link-type("primary", $--x-primary, $--x-primary-200, $--x-primary-200, $--x-primary-500);

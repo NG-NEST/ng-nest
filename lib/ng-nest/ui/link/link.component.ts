@@ -10,7 +10,7 @@ import {
   ViewChild
 } from "@angular/core";
 import { XLinkPrefix, XLinkType } from "./link.type";
-import { XInputBoolean } from "../core";
+import { XInputBoolean } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XLinkPrefix}`,
@@ -20,9 +20,12 @@ import { XInputBoolean } from "../core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XLinkComponent implements OnInit {
+  @Input() label?: string;
   @Input() href?: string;
-  @Input() @XInputBoolean() underline: boolean = true;
+  @Input() icon?: string;
+  @Input() @XInputBoolean() underline: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
+  @Input() @XInputBoolean() iconRight?: boolean;
   @Input() type?: XLinkType;
   @Input() target?: string;
   @ViewChild("link", { static: true }) link: ElementRef;

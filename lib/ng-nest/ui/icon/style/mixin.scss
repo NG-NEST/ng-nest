@@ -17,4 +17,10 @@
   &-spin {
     animation: 1s linear infinite x-icon-spin;
   }
+  &[left] {
+    margin-right: 0.25rem;
+  }
+  &[right] {
+    margin-left: 0.25rem;
+  }
 }
