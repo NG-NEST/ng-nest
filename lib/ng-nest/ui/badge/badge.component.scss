@@ -1,14 +1,14 @@
-// Avatar
+// Badge
 
 @import "../style/themes/default";
 @import "../style/mixins/index";
 @import "./style/mixin";
 
-#{$--x-avatar} {
-  display: flex;
+#{$--x-badge} {
+  display: inline-flex;
 }
 
-.#{$--x-avatar} {
+.#{$--x-badge} {
   @include reset-component();
-  @include avatar();
+  @include badge();
 }

@@ -6,7 +6,9 @@
 
 @mixin avatar {
   font-size: $--x-font-size;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
@@ -21,6 +23,11 @@
   }
   &-square {
     border-radius: 0.125rem;
+  }
+  &-error {
+    > img {
+      height: initial;
+    }
   }
   @include avatar-size("", $--x-avatar-size);
   @include avatar-size("large", $--x-avatar-size-large);
@@ -37,5 +44,6 @@
     height: $size;
     width: $size;
     line-height: $size;
+    font-size: $size * 0.6;
   }
 }

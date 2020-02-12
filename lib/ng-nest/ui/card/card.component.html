@@ -1,0 +1,8 @@
+<div #card class="x-card" [style.width]="width">
+  <div class="x-card-header" *ngIf="header">
+    <ng-container *ngTemplateOutlet="header"></ng-container>
+  </div>
+  <div class="x-card-body" [ngStyle]="bodyStyle">
+    <ng-content></ng-content>
+  </div>
+</div>

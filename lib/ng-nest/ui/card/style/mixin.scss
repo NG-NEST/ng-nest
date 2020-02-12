@@ -1,0 +1,37 @@
+// Card
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin card {
+  font-size: $--x-font-size;
+  box-sizing: border-box;
+  position: relative;
+  border: 0.0625rem solid $--x-border;
+  border-radius: 0.125rem;
+  background-color: $--x-white;
+  transition: box-shadow 0.3s;
+  &-always {
+    box-shadow: $--x-card-box-shadow;
+  }
+  &-hover {
+    &:hover {
+      box-shadow: $--x-card-box-shadow;
+    }
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.675rem;
+    border-bottom: 0.0625rem solid $--x-border;
+  }
+  &-body {
+    padding: 0.875rem;
+    width: 100%;
+    > ul li:not(:last-child) {
+      margin-bottom: 0.875rem;
+    }
+  }
+}

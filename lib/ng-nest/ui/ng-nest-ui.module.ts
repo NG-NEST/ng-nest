@@ -13,6 +13,9 @@ import { XTypographyModule } from "@ng-nest/ui/typography";
 import { XBorderModule } from "@ng-nest/ui/border";
 import { XLinkModule } from "@ng-nest/ui/link";
 import { XListModule } from "@ng-nest/ui/list";
+import { XAvatarModule } from "@ng-nest/ui/avatar";
+import { XBadgeModule } from "@ng-nest/ui/badge";
+import { XCardModule } from "@ng-nest/ui/card";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
@@ -55,8 +58,10 @@ export * from "@ng-nest/ui/color";
 export * from "@ng-nest/ui/typography";
 export * from "@ng-nest/ui/border";
 export * from "@ng-nest/ui/link";
-
 export * from "@ng-nest/ui/list";
+export * from "@ng-nest/ui/avatar";
+export * from "@ng-nest/ui/badge";
+export * from "@ng-nest/ui/card";
 
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
@@ -100,6 +105,10 @@ export * from "@ng-nest/ui/form";
     XTypographyModule,
     XBorderModule,
     XListModule,
+    XAvatarModule,
+    XBadgeModule,
+    XCardModule,
+
     XRadioModule,
     XCheckboxModule,
     XInputModule,

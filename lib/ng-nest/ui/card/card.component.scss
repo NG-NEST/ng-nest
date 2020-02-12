@@ -1,14 +1,10 @@
-// Avatar
+// Card
 
 @import "../style/themes/default";
 @import "../style/mixins/index";
 @import "./style/mixin";
 
-#{$--x-avatar} {
-  display: flex;
-}
-
-.#{$--x-avatar} {
+.#{$--x-card} {
   @include reset-component();
-  @include avatar();
+  @include card();
 }

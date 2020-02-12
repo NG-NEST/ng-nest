@@ -1,0 +1,9 @@
+// Badge style paramters
+
+$--x-badge: $--x-prefix + "-badge";
+
+$--x-badge-size: 2.5rem;
+$--x-badge-size-large: $--x-badge-size + 1rem;
+$--x-badge-size-medium: $--x-badge-size + 0.5rem;
+$--x-badge-size-small: $--x-badge-size - 0.5rem;
+$--x-badge-size-mini: $--x-badge-size - 1rem;
