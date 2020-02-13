@@ -1,9 +1,9 @@
 ---
-label: "Collapse 折叠面板 [待]"
+label: "Carousel 走马灯 [待]"
 category: "Data"
 ---
 
 
-# Collapse 折叠面板
+# Carousel 走马灯
 
-可以折叠/展开的内容区域。
+在有限空间内，循环播放同一类型的图片、文字等内容。

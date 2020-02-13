@@ -1,0 +1,55 @@
+// Collapse
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin collapse {
+  font-size: $--x-font-size;
+  box-sizing: border-box;
+  border-top: 0.0625rem solid $--x-border;
+  border-bottom: 0.0625rem solid $--x-border;
+  x-collapse-panel:last-child {
+    .x-collapse-panel {
+      margin-bottom: -0.0625rem;
+    }
+  }
+}
+
+@mixin collapse-panel {
+  box-sizing: border-box;
+  background-color: $--x-white;
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 0.0625rem solid $--x-border;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    > .x-icon {
+      margin-right: 0.125rem;
+      color: $--x-text-500;
+      transition: transform 0.3s;
+    }
+  }
+  &-body {
+    overflow: hidden;
+    border-bottom: 0.0625rem solid transparent;
+    transition: border-color 0.3s;
+  }
+  &-content {
+    padding-bottom: 0.625rem;
+  }
+  &.x-active {
+    .x-collapse-panel-header {
+      border-bottom-color: transparent;
+      > .x-icon {
+        transform: rotate(90deg);
+      }
+    }
+    .x-collapse-panel-body {
+      border-bottom-color: $--x-border;
+    }
+  }
+}

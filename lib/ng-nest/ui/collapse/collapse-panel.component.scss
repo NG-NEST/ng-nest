@@ -1,0 +1,10 @@
+// Collapse Panel
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-collapse-panel} {
+  @include reset-component();
+  @include collapse-panel();
+}
