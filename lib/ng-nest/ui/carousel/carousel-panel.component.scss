@@ -1,0 +1,10 @@
+// Carousel Panel
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-carousel-panel} {
+  @include reset-component();
+  @include carousel-panel();
+}

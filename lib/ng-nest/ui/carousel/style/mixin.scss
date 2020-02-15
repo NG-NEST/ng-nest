@@ -1,0 +1,173 @@
+// Carousel
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin carousel {
+  font-size: $--x-font-size;
+  box-sizing: border-box;
+  position: relative;
+  &-content {
+    position: relative;
+    > .x-button {
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      height: 2.25rem;
+      width: 2.25rem;
+      cursor: pointer;
+      transition: 0.3s ease-out;
+      border-radius: 50%;
+      background-color: rgba(31, 45, 61, 0.15);
+      color: $--x-white;
+      position: absolute;
+      top: 50%;
+      z-index: 10;
+      transform: translateY(-50%);
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      &.arrow-left {
+        left: 1rem;
+        transform: translate3D(-15px, -50%, 0);
+      }
+      &.arrow-right {
+        right: 1rem;
+        transform: translate3D(15px, -50%, 0);
+      }
+      &:hover {
+        color: $--x-white;
+        background-color: rgba(31, 45, 61, 0.25);
+      }
+    }
+    > x-carousel-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      overflow: hidden;
+      background-color: $--x-white;
+      z-index: 0;
+      &.x-carousel-animating {
+        transition: 0.4s ease-in-out;
+      }
+      &.x-carousel-card {
+        width: 50%;
+      }
+      &.x-carousel-in-stage {
+        cursor: pointer;
+        z-index: 1;
+        .x-carousel-mask {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: #fff;
+          opacity: 0.24;
+          transition: 0.2s;
+        }
+        &:hover {
+          .x-carousel-mask {
+            opacity: 0.12;
+          }
+        }
+      }
+      &.x-active {
+        z-index: 2;
+      }
+    }
+  }
+  &-indicator {
+    bottom: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    > li {
+      cursor: pointer;
+      background-color: transparent;
+      display: inline-flex;
+      padding: 0.75rem 0.25rem;
+      > .x-button {
+        padding: 0;
+        width: 1.875rem;
+        height: 0.125rem;
+        background-color: rgba(31, 45, 61, 0.15);
+        transition: 0.3s;
+      }
+      &:hover {
+        > .x-button {
+          background-color: rgba(31, 45, 61, 0.25);
+        }
+      }
+      &.x-active {
+        > .x-button {
+          background-color: rgba(255, 255, 255, 0.9);
+        }
+      }
+    }
+    &-outside {
+      position: static;
+      transform: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > li {
+        &.x-active {
+          > .x-button {
+            background-color: rgba(31, 45, 61, 0.35);
+          }
+        }
+      }
+    }
+  }
+  &:hover,
+  &-arrow-always {
+    .x-carousel-content {
+      > .x-button {
+        opacity: 1;
+        visibility: inherit;
+        &.arrow-left {
+          transform: translate3D(0, -50%, 0);
+        }
+        &.arrow-right {
+          transform: translate3D(0, -50%, 0);
+        }
+      }
+    }
+  }
+  &-horizontal {
+    overflow-x: hidden;
+  }
+  &-vertical {
+    overflow-y: hidden;
+    > .x-carousel-indicator {
+      right: 0;
+      top: 50%;
+      left: inherit;
+      bottom: inherit;
+      flex-direction: column;
+      transform: translateY(-50%);
+      > li {
+        padding: 0.25rem 0.75rem;
+        > .x-button {
+          width: 0.125rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@mixin carousel-panel {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}

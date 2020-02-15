@@ -1,0 +1,4 @@
+<div class="x-carousel-panel" (click)="panelClick()">
+  <div *ngIf="carousel?.card" [hidden]="active" class="x-carousel-mask"></div>
+  <ng-content></ng-content>
+</div>

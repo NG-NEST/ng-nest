@@ -1,0 +1,19 @@
+<div #carousel class="x-carousel" [class.x-carousel-arrow-always]="arrow === 'always'">
+  <div class="x-carousel-content" [style.height]="height">
+    <ng-container *ngIf="arrow !== 'never' && direction !== 'vertical'">
+      <x-button class="arrow-left" icon="fto-chevron-left" (click)="action(active - 1)"></x-button>
+      <x-button class="arrow-right" icon="fto-chevron-right" (click)="action(active + 1)"></x-button>
+    </ng-container>
+    <ng-content></ng-content>
+  </div>
+  <ul class="x-carousel-indicator" [class.x-carousel-indicator-outside]="outside || card">
+    <li
+      *ngFor="let panel of panelChanges; let i = index"
+      [class.x-active]="i === active"
+      (click)="action(i, 'click')"
+      (mouseenter)="action(i, 'hover')"
+    >
+      <x-button type="text"></x-button>
+    </li>
+  </ul>
+</div>
