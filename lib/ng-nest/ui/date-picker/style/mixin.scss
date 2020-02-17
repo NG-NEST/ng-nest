@@ -123,12 +123,7 @@
         &:hover {
           background-color: $--x-primary-900;
         }
-        &-date-last-or-next {
-          color: $--x-text-300;
-        }
-        &-date-now {
-          background-color: $--x-info-600;
-        }
+
         &-activated {
           color: $--x-white;
           background-color: $--x-primary;
@@ -137,6 +132,12 @@
             background-color: $--x-primary;
           }
         }
+      }
+      &.x-date-last-or-next .x-button {
+        color: $--x-text-300;
+      }
+      &.x-date-now .x-button {
+        background-color: $--x-info-600;
       }
     }
   }

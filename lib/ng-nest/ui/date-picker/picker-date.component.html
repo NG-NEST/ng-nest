@@ -1,21 +1,32 @@
-<div class="x-picker-date">
+<div class="x-picker-date" [class.x-date-picker-daytemp]="dayTemp">
   <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
-    <tr>
-      <th *ngFor="let week of weeks">{{ week }}</th>
-    </tr>
-    <tr *ngFor="let weeks of dates">
-      <td *ngFor="let week of weeks">
-        <x-button
-          [label]="week | date: 'd'"
-          type="text"
-          size="mini"
-          [title]="week | date: 'yyyy年MM月dd日'"
-          [class.x-button-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
-          [class.x-button-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-          [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
-          (click)="dateClick(week)"
-        ></x-button>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th *ngFor="let week of weeks">{{ week }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let weeks of dates">
+        <td
+          *ngFor="let week of weeks"
+          [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
+          [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
+          (click)="dayTemp && tdClick(week)"
+        >
+          <x-button
+            *ngIf="!dayTemp"
+            [label]="week | date: 'd'"
+            type="text"
+            size="mini"
+            [title]="week | date: 'yyyy年MM月dd日'"
+            [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+            (click)="dateClick(week)"
+          ></x-button>
+          <ng-container *ngIf="dayTemp">
+            <ng-container *ngTemplateOutlet="dayTemp; context: { date$: week }"></ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -1,0 +1,93 @@
+// Calendar
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin calendar {
+  font-size: $--x-font-size;
+  box-sizing: border-box;
+  &-header {
+    display: flex;
+    > x-date-picker {
+      display: inline-block;
+      width: 6rem;
+      margin: 0rem 0.25rem;
+    }
+  }
+  &-body {
+    margin-top: 0.25rem;
+    > x-picker-date {
+      .x-picker-date {
+        tr {
+          display: flex;
+          th {
+            height: 2.25rem;
+            flex: 1;
+            overflow: hidden;
+          }
+          td {
+            border-bottom: 0.0625rem solid $--x-border;
+            border-right: 0.0625rem solid $--x-border;
+            padding: 0;
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            height: 5.375rem;
+            .x-calendar-day {
+              > span {
+                display: block;
+                padding: 0.325rem;
+                text-align: right;
+              }
+              &-content {
+                padding-left: 0.325rem;
+                position: static;
+                width: auto;
+                height: calc(100% - 1.75rem);
+                overflow-y: auto;
+                > ul {
+                  li {
+                    line-height: 1.25rem;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    display: inline-block;
+                    position: relative;
+                    > span {
+                      width: 100%;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
+                  }
+                }
+              }
+            }
+            &.x-date-now,
+            &:hover {
+              background-color: $--x-primary-900;
+            }
+            &.x-date-last-or-next {
+              color: $--x-text-300;
+            }
+            &.x-date-now {
+              color: $--x-primary;
+            }
+            &:first-child {
+              border-left: 0.0625rem solid $--x-border;
+            }
+          }
+          &:first-child {
+            td {
+              border-top: 0.0625rem solid $--x-border;
+            }
+          }
+        }
+      }
+    }
+  }
+}

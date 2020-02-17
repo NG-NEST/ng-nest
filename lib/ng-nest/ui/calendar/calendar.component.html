@@ -1,0 +1,24 @@
+<div #calendar class="x-calendar">
+  <div class="x-calendar-header">
+    <x-button icon="fto-chevron-left" size="medium" (click)="action(-1)"></x-button>
+    <x-date-picker [(ngModel)]="datetime" type="month"></x-date-picker>
+    <x-button icon="fto-chevron-right" size="medium" (click)="action(1)"></x-button>
+  </div>
+  <div class="x-calendar-body">
+    <x-picker-date [display]="datetime" (modelChange)="dateChange($event)" [dayTemp]="dayTemp"></x-picker-date>
+  </div>
+</div>
+
+<ng-template #dayTemp let-date="date$">
+  <div class="x-calendar-day">
+    <span>{{ date | date: "d" }}</span>
+    <div class="x-calendar-day-content">
+      <ul>
+        <li><span>1、text11</span></li>
+        <li><span>1、text1</span></li>
+        <li><span>1、text1</span></li>
+        <li><span>1、text1</span></li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

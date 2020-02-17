@@ -6,7 +6,8 @@ import {
   ChangeDetectorRef,
   OnInit,
   Renderer2,
-  OnDestroy
+  OnDestroy,
+  AfterViewInit
 } from "@angular/core";
 import { XDatePickerPortal, XDatePickerType } from "./date-picker.type";
 import { XIsEmpty } from "@ng-nest/ui/core";
@@ -19,7 +20,7 @@ import { Subscription } from "rxjs";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDatePickerPortalComponent implements OnInit, OnDestroy {
+export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
   type: XDatePickerType = "date";
   display = new Date();
   model;
@@ -34,15 +35,12 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
     @Inject(XDatePickerPortal) public option: any,
     public renderer: Renderer2,
     public cdr: ChangeDetectorRef
-  ) {
-    this.init();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.valueChange$ = this.option.valueChange.subscribe(x => {
       this.option.value = x;
       this.init();
-      this.cdr.markForCheck();
     });
     setTimeout(
       () =>
@@ -50,6 +48,11 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
           this.option.closePortal();
         }))
     );
+  }
+
+  ngAfterViewInit() {
+    this.init();
+    console.log(this.option);
   }
 
   ngOnDestroy(): void {
@@ -61,11 +64,12 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
     if (!XIsEmpty(this.option.value)) {
       this.setDefault();
     } else {
-      this.model = "";
+      this.model = this.display;
     }
     this.type = this.option.type;
     this._type = this.option.type;
-    this.setDisplay(this.display);
+    this.setDisplay(this.model);
+    this.cdr.detectChanges();
   }
 
   stopPropagation(event: Event): void {
@@ -74,7 +78,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
 
   setDefault() {
     const date = new Date(this.option.value);
-    this.setDisplay(date);
     this.model = date;
   }
 
@@ -86,7 +89,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy {
     this.setDisplay(date);
     this.model = date;
     this.option.nodeEmit(date);
-    this.cdr.markForCheck();
+    // this.cdr.detectChanges();
   }
 
   monthChange(date: Date) {

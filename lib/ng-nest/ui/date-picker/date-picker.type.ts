@@ -27,6 +27,14 @@ export interface XDatePickerNode extends XParentIdentityInput {}
 export type XDatePickerType = "date" | "month" | "year";
 
 /**
+ * 日期数据类型
+ * @value "date"
+ * @value "number"
+ * @value "string"
+ */
+export type XDatePickerModelType = "date" | "number" | "string";
+
+/**
  * DatePicker-Portal 组件名
  * @selector x-date-picker-portal
  * @decorator component

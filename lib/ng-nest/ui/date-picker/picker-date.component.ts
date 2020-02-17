@@ -10,7 +10,8 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ElementRef
 } from "@angular/core";
 import { chunk } from "@ng-nest/ui/core";
 
@@ -26,6 +27,7 @@ export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
   now = new Date();
   @Input() display = new Date();
   @Input() model;
+  @Input() dayTemp: ElementRef;
   @Output() modelChange = new EventEmitter();
   dates = [];
 
@@ -84,6 +86,12 @@ export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   dateClick(date: Date) {
+    this.model = date;
+    this.modelChange.emit(date);
+    this.cdr.markForCheck();
+  }
+
+  tdClick(date: Date) {
     this.model = date;
     this.modelChange.emit(date);
     this.cdr.markForCheck();

@@ -17,7 +17,7 @@
       [required]="required"
       [disabled]="disabled"
       [readonly]="readonly"
-      [clearable]="clearable"
+      [clearable]="clearable && inputClearable"
       [(ngModel)]="displayValue"
       (ngModelChange)="change()"
       (clearEmit)="clearEmit()"

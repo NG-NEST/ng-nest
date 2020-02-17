@@ -16,6 +16,7 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
   onChange: (value: any) => void;
   onTouched: () => void;
   writeValue(value: any): void {
+    console.log(value);
     this.value = value;
   }
   registerOnChange(fn: any): void {
