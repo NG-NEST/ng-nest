@@ -23,6 +23,7 @@
           display: flex;
           th {
             height: 2.25rem;
+            line-height: 2.25rem;
             flex: 1;
             overflow: hidden;
           }
@@ -35,7 +36,7 @@
             position: relative;
             flex: 1;
             overflow: hidden;
-            height: 5.375rem;
+            height: 6.75rem;
             .x-calendar-day {
               > span {
                 display: block;
@@ -46,11 +47,11 @@
                 padding-left: 0.325rem;
                 position: static;
                 width: auto;
-                height: calc(100% - 1.75rem);
+                height: 5.0625rem;
                 overflow-y: auto;
                 > ul {
                   li {
-                    line-height: 1.25rem;
+                    line-height: 1.5rem;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
@@ -66,8 +67,10 @@
                   }
                 }
               }
+              &.x-activated {
+                background-color: $--x-primary-900;
+              }
             }
-            &.x-date-now,
             &:hover {
               background-color: $--x-primary-900;
             }
@@ -84,6 +87,22 @@
           &:first-child {
             td {
               border-top: 0.0625rem solid $--x-border;
+              &:first-child {
+                border-top-left-radius: 0.25rem;
+              }
+              &:last-child {
+                border-top-right-radius: 0.25rem;
+              }
+            }
+          }
+          &:last-child {
+            td {
+              &:first-child {
+                border-bottom-left-radius: 0.25rem;
+              }
+              &:last-child {
+                border-bottom-right-radius: 0.25rem;
+              }
             }
           }
         }

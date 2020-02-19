@@ -10,23 +10,35 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  TemplateRef
+  TemplateRef,
+  Output,
+  EventEmitter
 } from "@angular/core";
-import { XCalendarPrefix } from "./calendar.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber } from "@ng-nest/ui/core";
+import { XCalendarPrefix, XCalendarNode, XCalendarData } from "./calendar.type";
+import { XInputBoolean, XSize, XInputNumber, XIsNumber, XDataConvert, XData } from "@ng-nest/ui/core";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: `${XCalendarPrefix}`,
   templateUrl: "./calendar.component.html",
   styleUrls: ["./calendar.component.scss"],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe]
 })
 export class XCalendarComponent implements OnInit, OnChanges {
+  @Input() data?: XCalendarData;
+  @Output() dateChange = new EventEmitter();
   @ViewChild("calendar", { static: true }) calendar: ElementRef;
   now: Date = new Date();
   datetime: Date = new Date();
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  activatedDate: Date = new Date();
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public datePipe: DatePipe
+  ) {}
 
   ngOnInit() {}
 
@@ -39,7 +51,11 @@ export class XCalendarComponent implements OnInit, OnChanges {
     this.cdr.markForCheck();
   }
 
-  dateChange(date: Date) {
-    console.log(date);
+  dateOnChange(date: Date) {
+    if (this.datePipe.transform(date, "yyyyMMdd") !== this.datePipe.transform(this.activatedDate, "yyyyMMdd")) {
+      this.activatedDate = date;
+      this.dateChange.emit(this.activatedDate);
+      this.cdr.markForCheck();
+    }
   }
 }
