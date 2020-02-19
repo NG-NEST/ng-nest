@@ -143,7 +143,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "card",
     "router": "./docs/ui/components/card",
-    "label": "Card 卡片 [待]",
+    "label": "Card 卡片",
     "category": "Data"
   },
   {

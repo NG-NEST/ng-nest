@@ -1,0 +1,27 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  .row x-card:not(:first-child) {
+    margin-left: 2rem;
+  }
+  .row .card img {
+    width: 100%;
+    display: block;
+  }
+  .row .card .bottom {
+    padding: 0.625rem;
+  }
+  .row .card .bottom > p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .row .card .bottom > .time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .row .card .bottom > .time > span {
+    color: gray;
+  }
+}

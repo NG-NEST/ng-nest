@@ -28,7 +28,6 @@ export class XCardComponent implements OnInit, OnChanges {
   @Input() header?: TemplateRef<any>;
   @Input() shadow?: XCardShadow = "always";
   @ViewChild("card", { static: true }) card: ElementRef;
-  displayValue: string;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
