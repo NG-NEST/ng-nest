@@ -127,7 +127,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "badge",
     "router": "./docs/ui/components/badge",
-    "label": "Badge 标记 [待]",
+    "label": "Badge 标记",
     "category": "Data"
   },
   {

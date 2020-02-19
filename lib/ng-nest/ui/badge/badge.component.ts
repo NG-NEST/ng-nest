@@ -27,7 +27,6 @@ export class XBadgeComponent implements OnInit, OnChanges {
   @Input() value?: number | string;
   @Input() @XInputBoolean() dot?: boolean;
   @ViewChild("badge", { static: true }) badge: ElementRef;
-  displayValue: string;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {

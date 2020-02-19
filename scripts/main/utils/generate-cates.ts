@@ -45,17 +45,8 @@ export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
  * @export
  * @param {NcTab} tab
  */
-export function generateFiles(
-  tab: NcTab,
-  cate: NcCate,
-  comTpl: NcTemplate,
-  folderPath: string,
-  func: string
-) {
-  let highlightTpl = fs.readFileSync(
-    path.join(tplDir, "highlight-component.template.html"),
-    "utf8"
-  );
+export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, folderPath: string, func: string) {
+  let highlightTpl = fs.readFileSync(path.join(tplDir, "highlight-component.template.html"), "utf8");
   if (!comTpl) return;
   let childTabs = handlerTabsByFiles({
     layout: NcTabsLayoutEnum.Top,
@@ -68,16 +59,15 @@ export function generateFiles(
     while (param == "" || _.hasIn(comTpl.syswords.constant, param)) param = randomString();
     let tpl = highlightTpl;
     let content =
-      x.content.lastIndexOf("\n") == x.content.length - 1
-        ? x.content.slice(0, x.content.length - 1)
-        : x.content;
+      x.content.lastIndexOf("\n") == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
     let type = extToType[x.name.slice(x.name.lastIndexOf(".") + 1, x.name.length)];
     tpl = replaceKey(tpl, "__type", type);
     tpl = replaceKey(tpl, "__data", param);
     if (type == extToType.ts) {
       content = handlerContent(content);
     }
-    comTpl.syswords.constant += `${param}=\`${content}\`;\n  `;
+    comTpl.syswords.constant += `${param}=\`${content}\`;\n`;
+    if (childTabs.tabs.length - 1 !== index) comTpl.syswords.constant += `  `;
     if (x.name == `${tab.name}.component.ts`) {
       html = `<${cate.selector}></${cate.selector}>`;
     }

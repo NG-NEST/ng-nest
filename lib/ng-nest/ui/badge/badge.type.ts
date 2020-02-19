@@ -8,7 +8,24 @@ export const XBadgePrefix = "x-badge";
 /**
  * Badge @Input
  */
-export interface XBadgeInput {}
+export interface XBadgeInput {
+  /**
+   * 颜色
+   */
+  type?: XBadgeType;
+  /**
+   * 最大值
+   */
+  max?: number;
+  /**
+   * 显示值
+   */
+  value?: number | string;
+  /**
+   * 是否显示小红点
+   */
+  dot?: boolean;
+}
 
 /**
  * 标记类型
