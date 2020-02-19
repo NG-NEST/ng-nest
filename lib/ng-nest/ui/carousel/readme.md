@@ -1,8 +1,7 @@
 ---
-label: "Carousel 走马灯 [待]"
+label: "Carousel 走马灯"
 category: "Data"
 ---
-
 
 # Carousel 走马灯
 

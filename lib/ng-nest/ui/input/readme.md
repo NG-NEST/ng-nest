@@ -3,7 +3,6 @@ label: "Input 输入框"
 category: "Form"
 ---
 
-
 # Input 输入框
 
 通过键盘输入内容，是最基础的表单交互元素。

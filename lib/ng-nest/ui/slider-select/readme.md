@@ -3,7 +3,6 @@ label: "SliderSelect 滑动选择"
 category: "Form"
 ---
 
-
 # SliderSelect 滑动选择
 
 通过拖动滑块在一个固定区间内进行选择。

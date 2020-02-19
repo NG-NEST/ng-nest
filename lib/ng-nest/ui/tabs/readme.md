@@ -3,7 +3,6 @@ label: "Tabs 标签页"
 category: "Navigation"
 ---
 
-
 # Tabs 标签页
 
 选项卡切换组件。将内容分类切换显示，保持界面整洁。
