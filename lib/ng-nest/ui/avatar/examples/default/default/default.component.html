@@ -1,5 +1,14 @@
-<x-row>
-  <x-col span="24">
-    <x-avatar></x-avatar>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-avatar size="large" [src]="src"></x-avatar>
+  <x-avatar size="medium" [src]="src"></x-avatar>
+  <x-avatar [src]="src"></x-avatar>
+  <x-avatar size="small" [src]="src"></x-avatar>
+  <x-avatar size="mini" [src]="src"></x-avatar>
+</div>
+<div class="row">
+  <x-avatar size="large" shape="square" [src]="src"></x-avatar>
+  <x-avatar size="medium" shape="square" [src]="src"></x-avatar>
+  <x-avatar shape="square" [src]="src"></x-avatar>
+  <x-avatar size="small" shape="square" [src]="src"></x-avatar>
+  <x-avatar size="mini" shape="square" [src]="src"></x-avatar>
+</div>

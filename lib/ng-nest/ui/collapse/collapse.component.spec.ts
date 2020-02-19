@@ -10,11 +10,20 @@ import { FormsModule } from "@angular/forms";
 import { XCollapsePrefix } from "./collapse.type";
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XContainerModule } from "@ng-nest/ui/container";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe(XCollapsePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCollapseModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [
+        FormsModule,
+        BrowserAnimationsModule,
+        XCollapseModule,
+        XButtonModule,
+        XContainerModule,
+        XFenceModule,
+        XIconModule
+      ],
       declarations: [TestXCollapseComponent]
     }).compileComponents();
   }));

@@ -1,3 +1,5 @@
+import { XSize } from "@ng-nest/ui/core";
+
 /**
  * Avatar 组件名
  * @selector x-avatar
@@ -8,7 +10,34 @@ export const XAvatarPrefix = "x-avatar";
 /**
  * Avatar @Input
  */
-export interface XAvatarInput {}
+export interface XAvatarInput {
+  /**
+   * 显示字符
+   */
+  label?: string;
+  /**
+   * 尺寸
+   */
+  size?: XSize;
+  /**
+   * 显示图标
+   */
+  icon?: string;
+  /**
+   * 形状
+   * @default "circle"
+   */
+  shape?: XAvatarShape;
+  /**
+   * 图片地址
+   */
+  src?: string;
+  /**
+   * 图片适应方式
+   * @default "cover"
+   */
+  fit?: XAvatarFit;
+}
 
 /**
  * 头像形状
