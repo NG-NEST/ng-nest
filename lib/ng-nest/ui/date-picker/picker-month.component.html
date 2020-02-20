@@ -1,16 +1,23 @@
-<div class="x-picker-month">
+<div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
   <table class="x-picker-month-table" cellspacing="0" cellpadding="0">
     <tr *ngFor="let months of dates">
-      <td *ngFor="let month of months">
+      <td
+        *ngFor="let month of months"
+        [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
+        [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
+        (click)="monthTemp && monthClick(month)"
+      >
         <x-button
+          *ngIf="!monthTemp"
           [label]="month | date: 'M月'"
           type="text"
           [title]="month | date: 'yyyy年MM月'"
-          [class.x-button-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
-          [class.x-button-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
           [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
           (click)="monthClick(month)"
         ></x-button>
+        <ng-container *ngIf="monthTemp">
+          <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month }"></ng-container>
+        </ng-container>
       </td>
     </tr>
   </table>

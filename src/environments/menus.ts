@@ -135,7 +135,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "calendar",
     "router": "./docs/ui/components/calendar",
-    "label": "Calendar 日历 [待]",
+    "label": "Calendar 日历",
     "category": "Data"
   },
   {

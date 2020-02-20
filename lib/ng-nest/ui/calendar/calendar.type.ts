@@ -23,3 +23,10 @@ export interface XCalendarData {
  * Calendar 数据对象
  */
 export interface XCalendarNode extends XIdentityInput {}
+
+/**
+ * 显示模式
+ * @value "month"
+ * @value "year"
+ */
+export type XCalendarModel = "month" | "year";

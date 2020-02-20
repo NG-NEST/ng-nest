@@ -60,7 +60,6 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   writeValue(value: any) {
-    console.log("writeValue", value);
     if (XIsDate(value)) {
       this.modelType = "date";
       this.numberValue = value.getTime();
@@ -117,9 +116,10 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      // this.setData();
+    let typeChange = changes.type;
+    if (typeChange && typeChange.currentValue !== typeChange.previousValue) {
+      this.setFormat();
+      this.setDisplayValue();
     }
   }
 
@@ -129,12 +129,12 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   setFormat() {
-    if (this.format === "yyyy-MM-dd") {
-      if (this.type === "year") {
-        this.format = "yyyy";
-      } else if (this.type === "month") {
-        this.format = "yyyy-MM";
-      }
+    if (this.type === "date") {
+      this.format = "yyyy-MM-dd";
+    } else if (this.type === "year") {
+      this.format = "yyyy";
+    } else if ((this.type = "month")) {
+      this.format = "yyyy-MM";
     }
   }
 

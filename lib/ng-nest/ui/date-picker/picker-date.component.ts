@@ -11,7 +11,8 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ElementRef
+  ElementRef,
+  TemplateRef
 } from "@angular/core";
 import { chunk } from "@ng-nest/ui/core";
 
@@ -27,8 +28,9 @@ export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
   now = new Date();
   @Input() display = new Date();
   @Input() model;
-  @Input() dayTemp: ElementRef;
+  @Input() dateTemp: TemplateRef<any>;
   @Output() modelChange = new EventEmitter();
+  @Output() rangeChange = new EventEmitter();
   dates = [];
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
@@ -83,15 +85,13 @@ export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.dates = chunk(dates, 7);
+
+    if (this.dates.length > 0) {
+      this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
+    }
   }
 
   dateClick(date: Date) {
-    this.model = date;
-    this.modelChange.emit(date);
-    this.cdr.markForCheck();
-  }
-
-  tdClick(date: Date) {
     this.model = date;
     this.modelChange.emit(date);
     this.cdr.markForCheck();

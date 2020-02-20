@@ -22,7 +22,8 @@ import {
   XDataConvert,
   XIsObservable,
   XToDataConvert,
-  removeNgTag
+  removeNgTag,
+  XSize
 } from "@ng-nest/ui/core";
 import { map } from "rxjs/operators";
 
@@ -38,6 +39,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XDataConvert() data?: XData<XRadioNode[]>;
   @Input() @XInputBoolean() button?: boolean;
   @Input() @XInputBoolean() icon?: boolean;
+  @Input() size?: XSize;
   @ViewChild("radio", { static: true }) radio: ElementRef;
 
   writeValue(value: any) {
@@ -52,6 +54,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnInit() {
+    console.log(this.data);
     // removeNgTag(this.elementRef.nativeElement);
   }
 

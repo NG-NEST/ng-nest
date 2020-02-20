@@ -18,6 +18,7 @@ import { XBadgeModule } from "@ng-nest/ui/badge";
 import { XCardModule } from "@ng-nest/ui/card";
 import { XCarouselModule } from "@ng-nest/ui/carousel";
 import { XCollapseModule } from "@ng-nest/ui/collapse";
+import { XCalendarModule } from "@ng-nest/ui/calendar";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
@@ -66,6 +67,7 @@ export * from "@ng-nest/ui/badge";
 export * from "@ng-nest/ui/card";
 export * from "@ng-nest/ui/carousel";
 export * from "@ng-nest/ui/collapse";
+export * from "@ng-nest/ui/calendar";
 
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
@@ -114,6 +116,7 @@ export * from "@ng-nest/ui/form";
     XCardModule,
     XCarouselModule,
     XCollapseModule,
+    XCalendarModule,
 
     XRadioModule,
     XCheckboxModule,

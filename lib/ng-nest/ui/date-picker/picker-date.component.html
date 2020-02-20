@@ -1,4 +1,4 @@
-<div class="x-picker-date" [class.x-date-picker-daytemp]="dayTemp">
+<div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp">
   <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
@@ -11,10 +11,10 @@
           *ngFor="let week of weeks"
           [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
           [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-          (click)="dayTemp && tdClick(week)"
+          (click)="dateTemp && dateClick(week)"
         >
           <x-button
-            *ngIf="!dayTemp"
+            *ngIf="!dateTemp"
             [label]="week | date: 'd'"
             type="text"
             size="mini"
@@ -22,8 +22,8 @@
             [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
             (click)="dateClick(week)"
           ></x-button>
-          <ng-container *ngIf="dayTemp">
-            <ng-container *ngTemplateOutlet="dayTemp; context: { date$: week }"></ng-container>
+          <ng-container *ngIf="dateTemp">
+            <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
           </ng-container>
         </td>
       </tr>

@@ -6,6 +6,7 @@
         [label]="item.label"
         [icon]="item.icon"
         [title]="item.title"
+        [size]="size"
         [activated]="item.value === value"
         [disabled]="disabled || item.disabled"
         (click)="radioClick($event, item)"
