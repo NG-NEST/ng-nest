@@ -46,7 +46,6 @@ export class XCarouselPanelComponent implements OnInit {
     if (this.active !== isActive) {
       this.active = isActive;
       this.setClass("x-active", this.active);
-      this.cdr.detectChanges();
     }
   }
 
@@ -110,6 +109,7 @@ export class XCarouselPanelComponent implements OnInit {
   update() {
     this.setActive();
     this.setStyles();
+    this.cdr.detectChanges();
   }
 
   panelClick() {

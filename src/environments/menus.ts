@@ -151,7 +151,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "carousel",
     "router": "./docs/ui/components/carousel",
-    "label": "Carousel 走马灯 [待]",
+    "label": "Carousel 走马灯",
     "category": "Data"
   },
   {
@@ -159,7 +159,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "collapse",
     "router": "./docs/ui/components/collapse",
-    "label": "Collapse 折叠面板 [待]",
+    "label": "Collapse 折叠面板",
     "category": "Data"
   },
   {

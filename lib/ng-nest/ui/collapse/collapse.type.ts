@@ -8,7 +8,16 @@ export const XCollapsePrefix = "x-collapse";
 /**
  * Collapse @Input
  */
-export interface XCollapseInput {}
+export interface XCollapseInput {
+  /**
+   * 是否以手风琴的方式展示，只展开一个面板
+   */
+  accordion?: boolean;
+  /**
+   * 当前激活的面板
+   */
+  active: number | number[];
+}
 
 /**
  * Collapse Panel 组件名

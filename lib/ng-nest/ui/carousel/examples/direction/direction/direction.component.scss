@@ -1,0 +1,14 @@
+:host {
+  .row x-carousel-panel:nth-child(odd) {
+    background-color: var(--x-info-800);
+  }
+  .row x-carousel-panel:nth-child(even) {
+    background-color: var(--x-info-600);
+  }
+  .row x-carousel-panel h3 {
+    text-align: center;
+    line-height: 15rem;
+    margin: 0;
+    color: var(--x-text-500);
+  }
+}

@@ -1,0 +1,14 @@
+<div class="row">
+  <x-carousel height="15rem" arrow="always">
+    <x-carousel-panel *ngFor="let item of list">
+      <h3>{{ item }}</h3>
+    </x-carousel-panel>
+  </x-carousel>
+</div>
+<div class="row">
+  <x-carousel height="15rem" outside>
+    <x-carousel-panel *ngFor="let item of list">
+      <h3>{{ item }}</h3>
+    </x-carousel-panel>
+  </x-carousel>
+</div>

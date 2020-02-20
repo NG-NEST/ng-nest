@@ -8,7 +8,51 @@ export const XCarouselPrefix = "x-carousel";
 /**
  * Carousel @Input
  */
-export interface XCarouselInput {}
+export interface XCarouselInput {
+  /**
+   * 当前激活的幻灯片索引
+   * @default 0
+   */
+  active: number;
+  /**
+   * 幻灯片高度
+   * @default "15rem"
+   */
+  height?: string;
+  /**
+   * 切换器触发方式
+   * @default "hover"
+   */
+  trigger?: XCarouselTrigger;
+  /**
+   * 箭头显示影藏方式
+   * @default "hover"
+   */
+  arrow?: XCarouselArrow;
+  /**
+   * 幻灯片轮播方向
+   * @default "horizontal"
+   */
+  direction?: XCarouselDirection;
+  /**
+   * 自动切换
+   * @default true
+   */
+  autoplay: boolean;
+  /**
+   * 自动切换时间间隔
+   * @default 3000
+   */
+  interval: number;
+  /**
+   * 切换器否显示在外面
+   */
+  outside?: boolean;
+  /**
+   * 是否以卡片的方式显示幻灯片
+   */
+  card?: boolean;
+}
 
 /**
  * 指示器切换方式
