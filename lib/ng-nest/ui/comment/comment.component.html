@@ -1,0 +1,80 @@
+<div #comment class="x-comment">
+  <div class="x-comment-list">
+    <div class="x-comment-item" *ngFor="let node of nodes">
+      <div class="x-comment-avatar">
+        <x-avatar [src]="node.src"></x-avatar>
+      </div>
+      <div class="x-comment-content">
+        <div class="x-comment-author">
+          <x-link [label]="node.author"></x-link>
+          <span class="x-comment-time">{{ node.datetime | date: "yyyy-MM-dd HH:mm" }}</span>
+        </div>
+        <p>
+          {{ node.content }}
+          <x-link label="...展开" type="primary"></x-link>
+        </p>
+        <div class="x-comment-action">
+          <x-buttons>
+            <x-button
+              icon="fto-message-square"
+              [label]="'评论' + (node.count ? node.count : '')"
+              [activated]="node.commentShow"
+              (click)="commentOnClick(node)"
+              onlyIcon
+            ></x-button>
+            <x-button
+              icon="fto-thumbs-up"
+              [label]="'点赞' + (node.likes ? node.likes : '')"
+              (click)="likeOnClick(node)"
+              onlyIcon
+            ></x-button>
+          </x-buttons>
+        </div>
+        <x-comment-reply
+          *ngIf="node.commentShow"
+          [maxlength]="contentMax"
+          (sureClick)="sureOnClick($event, node)"
+        ></x-comment-reply>
+        <ul>
+          <li *ngFor="let child of node.children">
+            <div>
+              <p>
+                <x-link [label]="child.author"></x-link>
+                <ng-container *ngIf="child.replyAuthor">
+                  <span class="x-comment-reply">回复</span> <x-link [label]="child.replyAuthor"></x-link></ng-container
+                >：
+                <span>{{ child.content }}<x-link label="...展开" type="primary"></x-link></span>
+              </p>
+              <div class="x-comment-action">
+                <span class="x-comment-time">{{ child.datetime | date: "yyyy-MM-dd HH:mm" }}</span>
+                <x-buttons>
+                  <x-button
+                    icon="fto-message-square"
+                    label="回复"
+                    [activated]="child.commentShow"
+                    (click)="replyOnClick(child)"
+                    onlyIcon
+                  ></x-button>
+                  <x-button
+                    icon="fto-thumbs-up"
+                    [label]="'点赞' + (child.likes ? child.likes : '')"
+                    (click)="likeOnClick(child)"
+                    onlyIcon
+                  ></x-button>
+                </x-buttons>
+              </div>
+              <x-comment-reply
+                *ngIf="child.commentShow"
+                [maxlength]="contentMax"
+                (sureClick)="sureOnClick($event, child)"
+              ></x-comment-reply>
+            </div>
+          </li>
+          <li class="x-comment-more">
+            <x-link label="查看更多评论" icon="fto-chevron-right" type="primary" iconRight></x-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

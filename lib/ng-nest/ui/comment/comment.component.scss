@@ -1,0 +1,10 @@
+// Comment
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-comment} {
+  @include reset-component();
+  @include comment();
+}

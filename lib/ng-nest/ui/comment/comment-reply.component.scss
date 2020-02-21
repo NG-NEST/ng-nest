@@ -1,0 +1,10 @@
+// Comment Reply
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-comment-reply} {
+  @include reset-component();
+  @include comment-reply();
+}

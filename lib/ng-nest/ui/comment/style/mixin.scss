@@ -1,0 +1,114 @@
+// Comment
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin comment {
+  font-size: $--x-font-size;
+  box-sizing: border-box;
+  p {
+    line-height: 1.5;
+    margin: 0.375rem 0;
+  }
+  &-content {
+    margin-left: 1rem;
+    > ul {
+      margin-top: 0.375rem;
+      > li {
+        padding: 0 0.875rem;
+        background-color: $--x-background;
+        transition: 0.3s;
+        > div {
+          padding: 0.5rem 0;
+          > p {
+            > span {
+              color: $--x-text-500;
+            }
+          }
+          > .x-comment-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            > .x-comment-time {
+              margin-left: 0;
+            }
+          }
+        }
+        &:not(:last-child) > div {
+          border-bottom: 0.0625rem solid $--x-border-300;
+        }
+        &.x-comment-more {
+          padding: 0.875rem;
+        }
+        &:hover {
+          background-color: $--x-border-200;
+          border-color: transparent;
+        }
+      }
+    }
+    .x-comment-reply {
+      margin: 0.875rem 0 1rem;
+    }
+  }
+  &-author {
+    margin: 0.25rem 0;
+    display: inline-flex;
+    align-items: center;
+    color: $--x-text-500;
+    > .x-button {
+      padding: 0;
+    }
+  }
+  &-time {
+    margin-left: 0.5rem;
+    color: $--x-text-400;
+    font-size: 0.75rem;
+  }
+  &-action {
+    text-align: right;
+    > .x-buttons {
+      > .x-button {
+        padding: 0;
+      }
+      &:not(.x-buttons-space) > .x-button:not(:first-child) {
+        margin-left: 0.65rem;
+      }
+    }
+  }
+  &-list {
+  }
+  &-item {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 0.0625rem solid $--x-border-300;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  &-reply {
+    margin: 0 0.75rem;
+  }
+}
+
+@mixin comment-reply {
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.625rem;
+    .x-button-icon {
+      padding: 0;
+      > .x-button-inner > .x-icon {
+        font-size: 1.25rem;
+      }
+    }
+    .x-buttons:not(.x-buttons-space) > .x-button:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+  &-sure {
+    display: flex;
+    align-items: center;
+  }
+}

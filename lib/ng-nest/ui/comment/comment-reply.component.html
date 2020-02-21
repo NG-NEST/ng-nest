@@ -1,0 +1,10 @@
+<div #commentReply class="x-comment-reply">
+  <x-input placeholder="我来说两句" [maxlength]="maxlength" [(ngModel)]="inputValue"></x-input>
+  <div class="x-comment-reply-buttons">
+    <x-buttons>
+      <x-button icon="fto-smile" onlyIcon></x-button>
+      <x-button icon="fto-image" onlyIcon></x-button>
+    </x-buttons>
+    <x-button label="评论" type="primary" (click)="sureOnClick()"></x-button>
+  </div>
+</div>

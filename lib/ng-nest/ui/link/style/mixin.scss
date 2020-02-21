@@ -16,6 +16,7 @@
   cursor: pointer;
   padding: 0;
   font-size: $--x-font-size;
+  transition: 0.3s;
   > x-icon {
     font-size: $--x-font-size + 0.125rem;
   }
@@ -55,10 +56,14 @@
     }
     &:active {
       color: $active-color;
+      transform: translate(1px, 1px);
     }
     &.#{$--x-link}-disabled {
       color: $disabled-color;
       cursor: not-allowed;
+      &:active {
+        transform: none;
+      }
       &:hover:after {
         border-color: transparent;
       }
