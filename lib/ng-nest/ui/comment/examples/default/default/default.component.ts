@@ -1,60 +1,15 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { XCommentComponent } from "./comment.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCommentModule } from "./comment.module";
-import { FormsModule } from "@angular/forms";
-import { XCommentPrefix, XCommentNode } from "./comment.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
-import { XData, XAddMinutes, XAddHours } from "@ng-nest/ui/core";
+import { Component, ChangeDetectorRef } from "@angular/core";
+import { XCommentNode } from "@ng-nest/ui/comment";
 import { DatePipe } from "@angular/common";
-
-describe(XCommentPrefix, () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, XCommentModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
-      declarations: [TestXCommentComponent]
-    }).compileComponents();
-  }));
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCommentComponent>;
-    let comment: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCommentComponent);
-      fixture.detectChanges();
-      comment = fixture.debugElement.query(By.directive(XCommentComponent));
-    });
-    it("should create.", () => {
-      expect(comment).toBeDefined();
-    });
-  });
-});
+import { XAddHours, XAddMinutes } from "@ng-nest/ui/core";
 
 @Component({
-  template: `
-    <div class="row">
-      <x-comment
-        [data]="data"
-        (likeClick)="likeClick($event)"
-        (sureClick)="sureClick($event)"
-        (moreClick)="moreClick($event)"
-      ></x-comment>
-    </div>
-  `,
-  styles: [
-    `
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ],
+  selector: "ex-default",
+  templateUrl: "./default.component.html",
+  styleUrls: ["./default.component.scss"],
   providers: [DatePipe]
 })
-class TestXCommentComponent {
+export class ExDefaultComponent {
   now = new Date();
   src = "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
   content = `天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
@@ -149,9 +104,9 @@ class TestXCommentComponent {
 
   createNode(parentValue, content, index = 0) {
     return {
-      value: `${parentValue}-${Math.floor(Math.random() * 100)}`,
+      value: parentValue + "-" + Math.floor(Math.random() * 100),
       parentValue: parentValue,
-      author: `用户${index}`,
+      author: "用户" + index,
       datetime: XAddMinutes(new Date(), index),
       content: content,
       children: []

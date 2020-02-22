@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-81",
+    "id": "3-0-83",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -235,7 +235,23 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
+    "id": "3-0-71",
+    "parentId": "3-0",
+    "name": "text-retract",
+    "router": "./docs/ui/components/text-retract",
+    "label": "Text Retract 文字收起",
+    "category": "Data"
+  },
+  {
     "id": "3-0-72",
+    "parentId": "3-0",
+    "name": "time-ago",
+    "router": "./docs/ui/components/time-ago",
+    "label": "Time Ago 时间之前",
+    "category": "Data"
+  },
+  {
+    "id": "3-0-74",
     "parentId": "3-0",
     "name": "timeline",
     "router": "./docs/ui/components/timeline",
@@ -243,7 +259,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-75",
+    "id": "3-0-77",
     "parentId": "3-0",
     "name": "tree",
     "router": "./docs/ui/components/tree",
@@ -427,7 +443,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-71",
+    "id": "3-0-73",
     "parentId": "3-0",
     "name": "time-picker",
     "router": "./docs/ui/components/time-picker",
@@ -435,7 +451,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-74",
+    "id": "3-0-76",
     "parentId": "3-0",
     "name": "transfer",
     "router": "./docs/ui/components/transfer",
@@ -443,7 +459,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-76",
+    "id": "3-0-78",
     "parentId": "3-0",
     "name": "tree-select",
     "router": "./docs/ui/components/tree-select",
@@ -451,7 +467,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-82",
+    "id": "3-0-84",
     "parentId": "3-0",
     "name": "upload",
     "router": "./docs/ui/components/upload",
@@ -539,7 +555,7 @@ export const menus: Menu[] = [
     "category": "Others"
   },
   {
-    "id": "3-0-73",
+    "id": "3-0-75",
     "parentId": "3-0",
     "name": "tooltip",
     "router": "./docs/ui/components/tooltip",
