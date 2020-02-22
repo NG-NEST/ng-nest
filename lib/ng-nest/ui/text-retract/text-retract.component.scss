@@ -1,0 +1,10 @@
+// TextRetract
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-text-retract} {
+  @include reset-component();
+  @include text-retract();
+}

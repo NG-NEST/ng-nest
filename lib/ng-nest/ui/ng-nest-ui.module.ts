@@ -19,6 +19,9 @@ import { XCardModule } from "@ng-nest/ui/card";
 import { XCarouselModule } from "@ng-nest/ui/carousel";
 import { XCollapseModule } from "@ng-nest/ui/collapse";
 import { XCalendarModule } from "@ng-nest/ui/calendar";
+import { XCommentModule } from "@ng-nest/ui/comment";
+import { XTextRetractModule } from "@ng-nest/ui/text-retract";
+import { XTimeAgoModule } from "@ng-nest/ui/time-ago";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
@@ -68,6 +71,9 @@ export * from "@ng-nest/ui/card";
 export * from "@ng-nest/ui/carousel";
 export * from "@ng-nest/ui/collapse";
 export * from "@ng-nest/ui/calendar";
+export * from "@ng-nest/ui/comment";
+export * from "@ng-nest/ui/text-retract";
+export * from "@ng-nest/ui/time-ago";
 
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
@@ -117,6 +123,9 @@ export * from "@ng-nest/ui/form";
     XCarouselModule,
     XCollapseModule,
     XCalendarModule,
+    XCommentModule,
+    XTextRetractModule,
+    XTimeAgoModule,
 
     XRadioModule,
     XCheckboxModule,

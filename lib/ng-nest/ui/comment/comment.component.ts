@@ -38,11 +38,12 @@ import { map } from "rxjs/operators";
 })
 export class XCommentComponent implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XCommentNode[]>;
-  @Input() @XInputNumber() contentMax = 300;
+  @Input() @XInputNumber() contentMax = 512;
   @Output() likeClick = new EventEmitter();
   @Output() commentClick = new EventEmitter();
   @Output() replyClick = new EventEmitter();
   @Output() sureClick = new EventEmitter();
+  @Output() moreClick = new EventEmitter();
   @ViewChild("comment", { static: true }) comment: ElementRef;
   nodes: XCommentNode[] = [];
   private data$: Subscription | null = null;
@@ -78,6 +79,10 @@ export class XCommentComponent implements OnInit, OnChanges {
     this.sureClick.emit(node);
   }
 
+  moreOnClick(node: XCommentNode) {
+    this.moreClick.emit(node);
+  }
+
   private setData() {
     if (typeof this.data === "undefined") return;
     if (XIsObservable(this.data)) {
@@ -93,9 +98,7 @@ export class XCommentComponent implements OnInit, OnChanges {
   private setDataChange(value: XCommentNode[]) {
     let getChildren = (node: XCommentNode, level: number) => {
       node.level = level;
-      node.children = value.filter(y => y.parentValue === node.value);
       node.hasChild = node.children.length > 0;
-      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
       return node;
     };
     this.nodes = value.filter(x => XIsEmpty(x.parentValue)).map(x => getChildren(x, 0));

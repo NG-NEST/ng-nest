@@ -1,4 +1,4 @@
-import { XParentIdentityInput } from "@ng-nest/ui/core";
+import { XParentIdentityInput, XDate, XData } from "@ng-nest/ui/core";
 
 /**
  * Comment 组件名
@@ -10,7 +10,17 @@ export const XCommentPrefix = "x-comment";
 /**
  * Comment @Input
  */
-export interface XCommentInput {}
+export interface XCommentInput {
+  /**
+   * 评论数据
+   */
+  data?: XData<XCommentNode[]>;
+  /**
+   * 评论最大字数
+   * @default 512
+   */
+  contentMax;
+}
 
 /**
  * Comment 数据对象
@@ -27,7 +37,7 @@ export interface XCommentNode extends XParentIdentityInput {
   /**
    * 发布时间
    */
-  datetime?: string | Date;
+  datetime?: XDate;
   /**
    * 发布内容
    */

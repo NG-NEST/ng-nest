@@ -1,0 +1,7 @@
+<div #textRetract class="x-text-retract">
+  {{ displayValue }}
+  <ng-container *ngIf="retract">
+    <x-link label="...展开" type="primary" (click)="toggle()" *ngIf="unfold"></x-link>
+    <x-link label="收起" type="primary" (click)="toggle()" *ngIf="!unfold"></x-link>
+  </ng-container>
+</div>

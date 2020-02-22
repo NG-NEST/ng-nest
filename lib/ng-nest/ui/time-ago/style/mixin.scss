@@ -1,0 +1,10 @@
+// TimeAgo
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin time-ago {
+  font-size: $--x-font-size;
+  display: inline;
+}
