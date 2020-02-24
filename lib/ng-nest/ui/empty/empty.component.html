@@ -1,0 +1,20 @@
+<div #empty class="x-empty">
+  <ng-container *ngIf="img; else imgDefaultTemp">
+    <ng-container *xOutlet="img">
+      <img class="x-empty-img" [src]="img" />
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="content; else contentDefaultTemp">
+    <ng-container *xOutlet="content">
+      <span>{{ content }}</span>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #imgDefaultTemp>
+  <x-icon type="fto-inbox"></x-icon>
+</ng-template>
+
+<ng-template #contentDefaultTemp>
+  <span>暂无数据</span>
+</ng-template>

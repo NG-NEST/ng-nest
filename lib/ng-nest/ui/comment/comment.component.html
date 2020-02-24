@@ -7,7 +7,7 @@
       <div class="x-comment-content">
         <div class="x-comment-author">
           <x-link [label]="node.author"></x-link>
-          <span class="x-comment-time">{{ node.datetime | XTimeAgo }}</span>
+          <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
         </div>
         <p>
           <x-text-retract [label]="node.content"></x-text-retract>
@@ -47,7 +47,7 @@
                 </span>
               </p>
               <div class="x-comment-action">
-                <span class="x-comment-time">{{ child.datetime | XTimeAgo }}</span>
+                <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                 <x-buttons>
                   <x-button
                     icon="fto-message-square"

@@ -8,6 +8,8 @@ body,
 input {
   font-family: ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
     WenQuanYi Micro Hei, sans-serif;
+  font-size: $--x-font-size;
+  color: $--x-text;
 }
 
 ul,

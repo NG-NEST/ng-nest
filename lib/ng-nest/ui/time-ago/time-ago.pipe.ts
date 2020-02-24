@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { XToDate, XDate } from "@ng-nest/ui/core";
 import { DatePipe } from "@angular/common";
 
-@Pipe({ name: "XTimeAgo" })
+@Pipe({ name: "xTimeAgo" })
 export class XTimeAgoPipe implements PipeTransform {
   constructor(private datePipe: DatePipe) {}
   transform(input: XDate): string {

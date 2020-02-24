@@ -1,0 +1,21 @@
+<div class="row">
+  <x-empty
+    img="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+  ></x-empty>
+</div>
+<div class="row">
+  <x-empty content="没有数据了"></x-empty>
+</div>
+<div class="row">
+  <x-empty [img]="imgTemp">
+    <ng-template #imgTemp><x-icon type="fto-user"></x-icon></ng-template>
+  </x-empty>
+</div>
+<div class="row">
+  <x-empty [content]="contentTemp">
+    <ng-template #contentTemp>
+      <span>没有数据</span>
+      <x-button label="重新请求" type="primary"></x-button>
+    </ng-template>
+  </x-empty>
+</div>

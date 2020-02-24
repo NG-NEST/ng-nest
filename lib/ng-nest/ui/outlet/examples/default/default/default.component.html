@@ -1,0 +1,14 @@
+<div class="row">
+  <ng-container *xOutlet="temp1"></ng-container>
+  <ng-template #temp1>模板</ng-template>
+</div>
+<div class="row">
+  <ng-container *xOutlet="temp2; context: { text: '传递参数' }"></ng-container>
+  <ng-template #temp2 let-text="text">{{ text }}</ng-template>
+</div>
+<div class="row">
+  <ng-container *xOutlet="label">{{ label }}</ng-container>
+</div>
+<!-- 报错
+  <ng-container *ngTemplateOutlet="label">{{ label }}</ng-container> 
+-->

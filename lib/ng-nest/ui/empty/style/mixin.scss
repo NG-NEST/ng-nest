@@ -1,0 +1,21 @@
+// Empty
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: $--x-info;
+  > .x-icon {
+    font-size: $--x-font-size + 1.125rem;
+  }
+  > span {
+    line-height: $--x-font-size + 1rem;
+  }
+  &-img {
+    height: 5rem;
+  }
+}

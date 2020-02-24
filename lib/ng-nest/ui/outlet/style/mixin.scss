@@ -1,0 +1,10 @@
+// Outlet
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin outlet {
+  font-size: $--x-font-size;
+  display: inline;
+}

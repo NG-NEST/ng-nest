@@ -29,13 +29,13 @@ describe(XTimeAgoPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <p>{{ date | date: format }}：{{ date | XTimeAgo }}</p>
-      <p>{{ dateSecond | date: format }}：{{ dateSecond | XTimeAgo }}</p>
-      <p>{{ dateMinute | date: format }}：{{ dateMinute | XTimeAgo }}</p>
-      <p>{{ dateHours | date: format }}：{{ dateHours | XTimeAgo }}</p>
-      <p>{{ dateDays | date: format }}：{{ dateDays | XTimeAgo }}</p>
-      <p>{{ dateMonths | date: format }}：{{ dateMonths | XTimeAgo }}</p>
-      <p>{{ dateYears | date: format }}：{{ dateYears | XTimeAgo }}</p>
+      <p>{{ date | date: format }}：{{ date | xTimeAgo }}</p>
+      <p>{{ dateSecond | date: format }}：{{ dateSecond | xTimeAgo }}</p>
+      <p>{{ dateMinute | date: format }}：{{ dateMinute | xTimeAgo }}</p>
+      <p>{{ dateHours | date: format }}：{{ dateHours | xTimeAgo }}</p>
+      <p>{{ dateDays | date: format }}：{{ dateDays | xTimeAgo }}</p>
+      <p>{{ dateMonths | date: format }}：{{ dateMonths | xTimeAgo }}</p>
+      <p>{{ dateYears | date: format }}：{{ dateYears | xTimeAgo }}</p>
     </div>
   `
 })
