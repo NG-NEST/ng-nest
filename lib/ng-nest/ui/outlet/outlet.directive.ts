@@ -55,10 +55,8 @@ export class XOutletDirective implements OnChanges {
     };
     const recreateView = shouldRecreateView(changes);
     if (recreateView) {
-      /** recreate view when context shape or outlet change **/
       this.recreateView();
     } else {
-      /** update context **/
       this.updateContext();
     }
   }

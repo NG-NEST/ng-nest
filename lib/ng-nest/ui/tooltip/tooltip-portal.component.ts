@@ -8,11 +8,11 @@ import {
   ElementRef,
   OnDestroy,
   ViewChild,
-  Renderer2
+  Renderer2,
+  HostListener
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import { removeNgTag } from "@ng-nest/ui/core";
-import { XTooltipPortal, XTooltipPrefix, XTooltipPortalPrefix } from "./tooltip.type";
+import { XTooltipPortal, XTooltipPortalPrefix } from "./tooltip.type";
 
 @Component({
   selector: "x-tooltip-portal",
@@ -28,6 +28,14 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
   arrowBox: DOMRect;
   @ViewChild("tooltipPortal", { static: true }) tooltipPortal: ElementRef;
   @ViewChild("tooltipArrow", { static: false }) tooltipArrow: ElementRef;
+
+  @HostListener("mouseenter") mouseenter() {
+    this.option.portalHover(true);
+  }
+
+  @HostListener("mouseleave") mouseleave() {
+    this.option.portalHover(false);
+  }
 
   constructor(
     private renderer: Renderer2,

@@ -59,17 +59,17 @@ class TestXPortalComponent {
     private viewContainerRef: ViewContainerRef
   ) {}
   showPortal() {
-    this.portal.create({
-      content: this.temp,
-      viewContainerRef: this.viewContainerRef,
-      context: { text: "名字" },
-      overlayConfig: {
-        positionStrategy: this.overlay
-          .position()
-          .global()
-          .centerHorizontally()
-          .centerVertically()
-      }
-    });
+    // this.portal.create({
+    //   content: this.temp,
+    //   viewContainerRef: this.viewContainerRef,
+    //   context: { text: "名字" },
+    //   overlayConfig: {
+    //     positionStrategy: this.overlay
+    //       .position()
+    //       .global()
+    //       .centerHorizontally()
+    //       .centerVertically()
+    //   }
+    // });
   }
 }

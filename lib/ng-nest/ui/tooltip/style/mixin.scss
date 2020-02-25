@@ -23,13 +23,22 @@
     border-radius: 0.125rem;
     box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   }
-  > .#{$--x-tooltip-portal-prefix}-arrow {
+  .#{$--x-tooltip-portal-prefix}-arrow,
+  .#{$--x-tooltip-portal-prefix}-arrow:after {
     position: absolute;
-    width: $--x-tooltip-arrow-size;
-    height: $--x-tooltip-arrow-size;
-    background: $--x-text;
-    box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
-    transform: rotate(45deg);
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+  .#{$--x-tooltip-portal-prefix}-arrow {
+    border-width: 0.375rem;
+    filter: drop-shadow(0 0.125rem 0.75rem rgba(0, 0, 0, 0.03));
+  }
+  .#{$--x-tooltip-portal-prefix}-arrow:after {
+    content: " ";
+    border-width: 0.375rem;
   }
 
   &-top,
@@ -37,7 +46,15 @@
   &-top-end {
     padding-bottom: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      bottom: 0.35rem;
+      bottom: 0.2rem;
+      border-bottom-width: 0;
+      border-top-color: $--x-text;
+    }
+    .#{$--x-tooltip-portal-prefix}-arrow:after {
+      bottom: 0.1rem;
+      margin-left: -0.375rem;
+      border-bottom-width: 0;
+      border-top-color: $--x-text;
     }
   }
 
@@ -46,7 +63,15 @@
   &-left-end {
     padding-right: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      right: 0.35rem;
+      right: 0.2rem;
+      border-right-width: 0;
+      border-left-color: $--x-text;
+    }
+    .#{$--x-tooltip-portal-prefix}-arrow:after {
+      right: 0.1rem;
+      margin-top: -0.375rem;
+      border-right-width: 0;
+      border-left-color: $--x-text;
     }
   }
 
@@ -55,7 +80,15 @@
   &-right-end {
     padding-left: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      left: 0.35rem;
+      left: 0.2rem;
+      border-left-width: 0;
+      border-right-color: $--x-text;
+    }
+    .#{$--x-tooltip-portal-prefix}-arrow:after {
+      left: 0.1rem;
+      margin-top: -0.375rem;
+      border-left-width: 0;
+      border-right-color: $--x-text;
     }
   }
 
@@ -63,8 +96,16 @@
   &-bottom-start,
   &-bottom-end {
     padding-top: $--x-tooltip-distance;
-    > .#{$--x-tooltip-portal-prefix}-arrow {
-      top: 0.35rem;
+    .#{$--x-tooltip-portal-prefix}-arrow {
+      top: 0.2rem;
+      border-top-width: 0;
+      border-bottom-color: $--x-text;
+    }
+    .#{$--x-tooltip-portal-prefix}-arrow:after {
+      top: 0.1rem;
+      margin-left: -0.375rem;
+      border-top-width: 0;
+      border-bottom-color: $--x-text;
     }
   }
 }

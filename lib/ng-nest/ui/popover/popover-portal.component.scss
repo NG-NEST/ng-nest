@@ -1,0 +1,14 @@
+// Popover Portal
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+#{$--x-popover-prefix} {
+  @include popover();
+}
+
+.#{$--x-popover-portal-prefix} {
+  @include reset-component();
+  @include popover-portal();
+}

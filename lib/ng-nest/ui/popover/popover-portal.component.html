@@ -1,0 +1,15 @@
+<div #popoverPortal class="x-popover-portal" [ngClass]="classMap" (click)="stopPropagation($event)">
+  <div class="x-popover-portal-inner">
+    <div *ngIf="option?.title" class="x-popover-portal-title">
+      <ng-container *xOutlet="option?.title">
+        {{ option?.title }}
+      </ng-container>
+    </div>
+    <div *ngIf="option?.content" class="x-popover-portal-content">
+      <ng-container *xOutlet="option?.content">
+        {{ option?.content }}
+      </ng-container>
+    </div>
+  </div>
+  <div #popoverArrow class="x-popover-portal-arrow"></div>
+</div>
