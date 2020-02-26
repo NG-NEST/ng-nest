@@ -7,7 +7,7 @@ category: "Form"
 
 评分组件。
 
-## 示例
+## 示例代码
 
 {{ __examples }}
 

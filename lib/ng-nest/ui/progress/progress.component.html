@@ -1,0 +1,30 @@
+<div #progress class="x-progress" [ngClass]="classMap">
+  <div class="x-progress-track">
+    <div class="x-progress-rail">
+      <div
+        class="x-progress-bg"
+        [style.width.%]="percent"
+        [style.background-color]="currentColor"
+        [style.height]="height"
+        [style.line-height]="height"
+      >
+        <span *ngIf="inside">{{ percent }}%</span>
+      </div>
+    </div>
+  </div>
+  <span class="x-progress-text" *ngIf="info && !inside" [ngSwitch]="status">
+    <ng-container *ngSwitchCase="'success'">
+      <x-icon type="fto-check-circle"></x-icon>
+    </ng-container>
+    <ng-container *ngSwitchCase="'exception'">
+      <x-icon type="fto-x-circle"></x-icon>
+    </ng-container>
+    <ng-container *ngSwitchCase="'warning'">
+      <x-icon type="fto-help-circle"></x-icon>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngIf="format; else defaultTemp">{{ onFormat(percent) }}</ng-container>
+      <ng-template #defaultTemp>{{ percent }}%</ng-template>
+    </ng-container>
+  </span>
+</div>

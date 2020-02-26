@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-83",
+    "id": "3-0-84",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -167,7 +167,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "comment",
     "router": "./docs/ui/components/comment",
-    "label": "Comment 评论 [待]",
+    "label": "Comment 评论",
     "category": "Data"
   },
   {
@@ -183,11 +183,19 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "empty",
     "router": "./docs/ui/components/empty",
-    "label": "Empty 空状态 [待]",
+    "label": "Empty 空状态",
     "category": "Data"
   },
   {
-    "id": "3-0-48",
+    "id": "3-0-46",
+    "parentId": "3-0",
+    "name": "outlet",
+    "router": "./docs/ui/components/outlet",
+    "label": "Outlet 自定义模板",
+    "category": "Data"
+  },
+  {
+    "id": "3-0-49",
     "parentId": "3-0",
     "name": "pagination",
     "router": "./docs/ui/components/pagination",
@@ -195,23 +203,15 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-51",
-    "parentId": "3-0",
-    "name": "popover",
-    "router": "./docs/ui/components/popover",
-    "label": "Popover 气泡卡片 [待]",
-    "category": "Data"
-  },
-  {
-    "id": "3-0-53",
+    "id": "3-0-54",
     "parentId": "3-0",
     "name": "progress",
     "router": "./docs/ui/components/progress",
-    "label": "Progress 进度条 [待]",
+    "label": "Progress 进度条",
     "category": "Data"
   },
   {
-    "id": "3-0-63",
+    "id": "3-0-64",
     "parentId": "3-0",
     "name": "statistic",
     "router": "./docs/ui/components/statistic",
@@ -219,7 +219,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-67",
+    "id": "3-0-68",
     "parentId": "3-0",
     "name": "table",
     "router": "./docs/ui/components/table",
@@ -227,7 +227,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-69",
+    "id": "3-0-70",
     "parentId": "3-0",
     "name": "tag",
     "router": "./docs/ui/components/tag",
@@ -235,7 +235,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-71",
+    "id": "3-0-72",
     "parentId": "3-0",
     "name": "text-retract",
     "router": "./docs/ui/components/text-retract",
@@ -243,7 +243,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-72",
+    "id": "3-0-73",
     "parentId": "3-0",
     "name": "time-ago",
     "router": "./docs/ui/components/time-ago",
@@ -251,7 +251,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-74",
+    "id": "3-0-75",
     "parentId": "3-0",
     "name": "timeline",
     "router": "./docs/ui/components/timeline",
@@ -259,7 +259,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-77",
+    "id": "3-0-78",
     "parentId": "3-0",
     "name": "tree",
     "router": "./docs/ui/components/tree",
@@ -307,15 +307,23 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-50",
+    "id": "3-0-51",
     "parentId": "3-0",
     "name": "popconfirm",
     "router": "./docs/ui/components/popconfirm",
-    "label": "Popconfirm 气泡确认框 [待]",
+    "label": "Popconfirm 气泡确认框",
     "category": "Feedback"
   },
   {
-    "id": "3-0-57",
+    "id": "3-0-52",
+    "parentId": "3-0",
+    "name": "popover",
+    "router": "./docs/ui/components/popover",
+    "label": "Popover 气泡卡片",
+    "category": "Feedback"
+  },
+  {
+    "id": "3-0-58",
     "parentId": "3-0",
     "name": "result",
     "router": "./docs/ui/components/result",
@@ -323,7 +331,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-59",
+    "id": "3-0-60",
     "parentId": "3-0",
     "name": "skeleton",
     "router": "./docs/ui/components/skeleton",
@@ -331,7 +339,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-62",
+    "id": "3-0-63",
     "parentId": "3-0",
     "name": "spin",
     "router": "./docs/ui/components/spin",
@@ -403,7 +411,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-54",
+    "id": "3-0-55",
     "parentId": "3-0",
     "name": "radio",
     "router": "./docs/ui/components/radio",
@@ -411,7 +419,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-55",
+    "id": "3-0-56",
     "parentId": "3-0",
     "name": "rate",
     "router": "./docs/ui/components/rate",
@@ -419,7 +427,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-58",
+    "id": "3-0-59",
     "parentId": "3-0",
     "name": "select",
     "router": "./docs/ui/components/select",
@@ -427,7 +435,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-61",
+    "id": "3-0-62",
     "parentId": "3-0",
     "name": "slider-select",
     "router": "./docs/ui/components/slider-select",
@@ -435,7 +443,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-66",
+    "id": "3-0-67",
     "parentId": "3-0",
     "name": "switch",
     "router": "./docs/ui/components/switch",
@@ -443,7 +451,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-73",
+    "id": "3-0-74",
     "parentId": "3-0",
     "name": "time-picker",
     "router": "./docs/ui/components/time-picker",
@@ -451,7 +459,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-76",
+    "id": "3-0-77",
     "parentId": "3-0",
     "name": "transfer",
     "router": "./docs/ui/components/transfer",
@@ -459,7 +467,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-78",
+    "id": "3-0-79",
     "parentId": "3-0",
     "name": "tree-select",
     "router": "./docs/ui/components/tree-select",
@@ -467,7 +475,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-84",
+    "id": "3-0-85",
     "parentId": "3-0",
     "name": "upload",
     "router": "./docs/ui/components/upload",
@@ -523,7 +531,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "3-0-47",
+    "id": "3-0-48",
     "parentId": "3-0",
     "name": "page-header",
     "router": "./docs/ui/components/page-header",
@@ -531,7 +539,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "3-0-64",
+    "id": "3-0-65",
     "parentId": "3-0",
     "name": "steps",
     "router": "./docs/ui/components/steps",
@@ -539,7 +547,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "3-0-68",
+    "id": "3-0-69",
     "parentId": "3-0",
     "name": "tabs",
     "router": "./docs/ui/components/tabs",
@@ -555,7 +563,7 @@ export const menus: Menu[] = [
     "category": "Others"
   },
   {
-    "id": "3-0-75",
+    "id": "3-0-76",
     "parentId": "3-0",
     "name": "tooltip",
     "router": "./docs/ui/components/tooltip",
@@ -598,21 +606,21 @@ export const menus: Menu[] = [
     "label": "内部"
   },
   {
-    "id": "3-0-49",
+    "id": "3-0-50",
     "parentId": "3-0",
     "name": "pattern",
     "router": "./docs/ui/components/pattern",
     "label": "样式参数"
   },
   {
-    "id": "3-0-52",
+    "id": "3-0-53",
     "parentId": "3-0",
     "name": "portal",
     "router": "./docs/ui/components/portal",
     "label": "动态组件"
   },
   {
-    "id": "3-0-60",
+    "id": "3-0-61",
     "parentId": "3-0",
     "name": "slider",
     "router": "./docs/ui/components/slider",

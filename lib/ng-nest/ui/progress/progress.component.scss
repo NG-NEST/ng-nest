@@ -1,0 +1,15 @@
+// Progress
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+#{$--x-progress} {
+  display: flex;
+  align-items: center;
+}
+
+.#{$--x-progress} {
+  @include reset-component();
+  @include progress();
+}

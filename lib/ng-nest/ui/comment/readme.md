@@ -1,5 +1,5 @@
 ---
-label: "Comment 评论 [待]"
+label: "Comment 评论"
 category: "Data"
 ---
 

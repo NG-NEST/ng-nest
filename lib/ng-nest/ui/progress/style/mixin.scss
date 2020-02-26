@@ -1,0 +1,97 @@
+// Progress
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@keyframes x-progress-active {
+  0% {
+    width: 0;
+    opacity: 0.1;
+  }
+  20% {
+    width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@mixin progress {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  &-track {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+  }
+  &-rail {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: $--x-border-300;
+    border-radius: 0.125rem;
+  }
+  &-bg {
+    position: relative;
+    background-color: $--x-primary;
+    transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    border-radius: 0.125rem;
+    text-align: right;
+    color: white;
+    > span {
+      margin: 0 0.325rem;
+    }
+  }
+  &-text {
+    margin-left: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  &-active {
+    .#{$--x-progress}-bg::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: $--x-white;
+      border-radius: 0.125rem;
+      opacity: 0;
+      animation: x-progress-active 2s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+      content: "";
+    }
+  }
+  &-exception {
+    .#{$--x-progress}-text {
+      color: $--x-danger;
+    }
+    .#{$--x-progress}-bg {
+      background-color: $--x-danger;
+    }
+  }
+  &-success {
+    .#{$--x-progress}-text {
+      color: $--x-success;
+    }
+    .#{$--x-progress}-bg {
+      background-color: $--x-success;
+    }
+  }
+  &-warning {
+    .#{$--x-progress}-text {
+      color: $--x-warning;
+    }
+    .#{$--x-progress}-bg {
+      background-color: $--x-warning;
+    }
+  }
+  &-inside {
+  }
+}
