@@ -1,0 +1,26 @@
+// Popconfirm
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-popconfirm} {
+  @include reset-component();
+  @include popconfirm();
+}
+
+.#{$--x-popconfirm}-buttons {
+  display: flex;
+  justify-content: flex-end;
+  > .x-button:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}
+
+.#{$--x-popconfirm}-title {
+  display: flex;
+  align-items: center;
+  > .x-icon {
+    margin-right: 0.325rem;
+  }
+}

@@ -28,6 +28,9 @@
     display: flex;
     align-items: center;
   }
+  .#{$--x-popover-portal-prefix}-footer {
+    margin-top: $--x-font-size - 0.5rem;
+  }
   .#{$--x-popover-portal-prefix}-arrow,
   .#{$--x-popover-portal-prefix}-arrow:after {
     position: absolute;

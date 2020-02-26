@@ -1,0 +1,31 @@
+<div
+  #popconfirm
+  class="x-popconfirm"
+  x-popover
+  [title]="titleTemp"
+  [content]="content"
+  [footer]="footerTemp"
+  [placement]="placement"
+  [trigger]="trigger"
+  [width]="width"
+  [visible]="visible"
+  (visibleChange)="visible = $event"
+>
+  <ng-content></ng-content>
+</div>
+
+<ng-template #titleTemp>
+  <div class="x-popconfirm-title">
+    <ng-container *xOutlet="title">
+      <x-icon *ngIf="icon" [style.color]="iconColor" [type]="icon"></x-icon>
+      <span>{{ title }}</span>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #footerTemp>
+  <div class="x-popconfirm-buttons">
+    <x-button label="取消" (click)="onCancel()"></x-button>
+    <x-button label="确认" type="primary" (click)="onOk()"></x-button>
+  </div>
+</ng-template>

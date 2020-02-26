@@ -1,7 +1,7 @@
 import { XButtonModule } from "@ng-nest/ui/button";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { XTooltipDirective } from "./tooltip.component";
+import { XTooltipDirective } from "./tooltip.directive";
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XTooltipModule } from "./tooltip.module";

@@ -3,7 +3,7 @@ import { InjectionToken } from "@angular/core";
 /**
  * Tooltip 组件名
  * @selector x-tooltip
- * @decorator component
+ * @decorator directive
  */
 export const XTooltipPrefix = "x-tooltip";
 

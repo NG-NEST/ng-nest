@@ -1,5 +1,5 @@
 ---
-label: "Popconfirm 气泡确认框 [待]"
+label: "Popconfirm 气泡确认框"
 category: "Feedback"
 ---
 

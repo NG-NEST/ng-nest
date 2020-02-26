@@ -1,5 +1,5 @@
 ---
-label: "Popover 气泡卡片 [待]"
+label: "Popover 气泡卡片"
 category: "Data"
 ---
 

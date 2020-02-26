@@ -1,5 +1,5 @@
 <div #popoverPortal class="x-popover-portal" [ngClass]="classMap" (click)="stopPropagation($event)">
-  <div class="x-popover-portal-inner">
+  <div class="x-popover-portal-inner" [style.width]="option?.width">
     <div *ngIf="option?.title" class="x-popover-portal-title">
       <ng-container *xOutlet="option?.title">
         {{ option?.title }}
@@ -8,6 +8,11 @@
     <div *ngIf="option?.content" class="x-popover-portal-content">
       <ng-container *xOutlet="option?.content">
         {{ option?.content }}
+      </ng-container>
+    </div>
+    <div *ngIf="option?.footer" class="x-popover-portal-footer">
+      <ng-container *xOutlet="option?.footer">
+        {{ option?.footer }}
       </ng-container>
     </div>
   </div>

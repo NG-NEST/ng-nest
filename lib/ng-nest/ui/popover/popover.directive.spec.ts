@@ -1,7 +1,7 @@
 import { XButtonModule } from "@ng-nest/ui/button";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { XPopoverDirective } from "./popover.component";
+import { XPopoverDirective } from "./popover.directive";
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { XPopoverModule } from "./popover.module";

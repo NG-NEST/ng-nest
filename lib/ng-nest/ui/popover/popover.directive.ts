@@ -6,21 +6,29 @@ import {
   Directive,
   HostListener,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  TemplateRef,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { XPlacement, XInputBoolean } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { XTooltipPortalComponent } from "./tooltip-portal.component";
-import { XTooltipPortal } from "./tooltip.type";
+import { XPopoverPortalComponent } from "./popover-portal.component";
+import { XPopoverPortal, XPopoverTrigger } from "./popover.type";
 import { BehaviorSubject } from "rxjs";
 
 @Directive({
-  selector: "[x-tooltip]"
+  selector: "[x-popover], x-popover"
 })
-export class XTooltipDirective implements OnInit, OnChanges {
-  @Input() content?: string;
-  @Input() placement?: XPlacement = "bottom";
+export class XPopoverDirective implements OnInit, OnChanges {
+  @Input() title?: string | TemplateRef<void>;
+  @Input() content?: string | TemplateRef<void>;
+  @Input() footer?: string | TemplateRef<void>;
+  @Input() placement: XPlacement = "bottom";
+  @Input() trigger: XPopoverTrigger = "hover";
+  @Input() width: string = "10rem";
   @Input() @XInputBoolean() visible?: boolean = false;
+  @Output() visibleChange = new EventEmitter();
   portal: XPortalOverlayRef;
   box: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -31,12 +39,21 @@ export class XTooltipDirective implements OnInit, OnChanges {
     private viewContainerRef: ViewContainerRef
   ) {}
 
+  @HostListener("click") click() {
+    if (this.trigger === "click") {
+      this.visible = !this.visible;
+      if (this.visible) this.show();
+      else this.hide();
+      this.visibleChange.emit(this.visible);
+    }
+  }
+
   @HostListener("mouseenter") mouseenter() {
-    this.show();
+    if (this.trigger === "hover") this.show();
   }
 
   @HostListener("mouseleave") mouseleave() {
-    this.hide();
+    if (this.trigger === "hover") this.hide();
   }
 
   ngOnInit() {}
@@ -45,6 +62,11 @@ export class XTooltipDirective implements OnInit, OnChanges {
     let contentChange = changes.content;
     if (contentChange && contentChange.currentValue != contentChange.previousValue) {
       this.contentChange.next(this.content);
+    }
+    let visibleChange = changes.visible;
+    if (visibleChange && visibleChange.currentValue != visibleChange.previousValue) {
+      if (this.visible) this.show();
+      else this.hide();
     }
   }
 
@@ -57,6 +79,7 @@ export class XTooltipDirective implements OnInit, OnChanges {
     if (!this.portal || (this.portal && !this.portal.overlayRef.hasAttached())) {
       this.visible = true;
       this.createPortal();
+      this.visibleChange.emit(this.visible);
     }
   }
 
@@ -65,6 +88,7 @@ export class XTooltipDirective implements OnInit, OnChanges {
       this.timeoutHide = setTimeout(() => {
         this.visible = false;
         this.portal.overlayRef.dispose();
+        this.visibleChange.emit(this.visible);
       });
     }
   }
@@ -72,14 +96,18 @@ export class XTooltipDirective implements OnInit, OnChanges {
   createPortal() {
     this.box = this.elementRef.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.create({
-      content: XTooltipPortalComponent,
+      content: XPopoverPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
           box: this.box,
+          title: this.title,
           content: this.content,
+          footer: this.footer,
           contentChange: this.contentChange,
+          trigger: this.trigger,
           placement: this.placement,
+          width: this.width,
           portalHover: hover => {
             if (this.timeoutHide && hover) {
               clearTimeout(this.timeoutHide);
@@ -87,9 +115,10 @@ export class XTooltipDirective implements OnInit, OnChanges {
               this.hide();
             }
           },
+          closePortal: () => this.hide(),
           viewInit: () => this.portal.overlayRef.updatePosition()
         },
-        XTooltipPortal
+        XPopoverPortal
       ),
       overlayConfig: {
         backdropClass: "",

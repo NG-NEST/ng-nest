@@ -6,23 +6,20 @@ import {
   Directive,
   HostListener,
   OnChanges,
-  SimpleChanges,
-  TemplateRef
+  SimpleChanges
 } from "@angular/core";
 import { XPlacement, XInputBoolean } from "@ng-nest/ui/core";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { XPopoverPortalComponent } from "./popover-portal.component";
-import { XPopoverPortal, XPopoverTrigger } from "./popover.type";
+import { XTooltipPortalComponent } from "./tooltip-portal.component";
+import { XTooltipPortal } from "./tooltip.type";
 import { BehaviorSubject } from "rxjs";
 
 @Directive({
-  selector: "[x-popover], x-popover"
+  selector: "[x-tooltip], x-tooltip"
 })
-export class XPopoverDirective implements OnInit, OnChanges {
-  @Input() title?: string | TemplateRef<void>;
-  @Input() content?: string | TemplateRef<void>;
-  @Input() placement: XPlacement = "bottom";
-  @Input() trigger: XPopoverTrigger = "hover";
+export class XTooltipDirective implements OnInit, OnChanges {
+  @Input() content?: string;
+  @Input() placement?: XPlacement = "bottom";
   @Input() @XInputBoolean() visible?: boolean = false;
   portal: XPortalOverlayRef;
   box: DOMRect;
@@ -34,20 +31,12 @@ export class XPopoverDirective implements OnInit, OnChanges {
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  @HostListener("click") click() {
-    if (this.trigger === "click") {
-      this.visible = !this.visible;
-      if (this.visible) this.show();
-      else this.hide();
-    }
-  }
-
   @HostListener("mouseenter") mouseenter() {
-    if (this.trigger === "hover") this.show();
+    this.show();
   }
 
   @HostListener("mouseleave") mouseleave() {
-    if (this.trigger === "hover") this.hide();
+    this.hide();
   }
 
   ngOnInit() {}
@@ -83,15 +72,13 @@ export class XPopoverDirective implements OnInit, OnChanges {
   createPortal() {
     this.box = this.elementRef.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.create({
-      content: XPopoverPortalComponent,
+      content: XTooltipPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
         {
           box: this.box,
-          title: this.title,
           content: this.content,
           contentChange: this.contentChange,
-          trigger: this.trigger,
           placement: this.placement,
           portalHover: hover => {
             if (this.timeoutHide && hover) {
@@ -100,10 +87,9 @@ export class XPopoverDirective implements OnInit, OnChanges {
               this.hide();
             }
           },
-          closePortal: () => this.hide(),
           viewInit: () => this.portal.overlayRef.updatePosition()
         },
-        XPopoverPortal
+        XTooltipPortal
       ),
       overlayConfig: {
         backdropClass: "",
