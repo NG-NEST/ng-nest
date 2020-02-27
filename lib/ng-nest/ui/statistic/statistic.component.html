@@ -1,0 +1,17 @@
+<div #statistic class="x-statistic">
+  <div class="x-statistic-label">
+    <ng-container *xOutlet="label">{{ label }}</ng-container>
+  </div>
+  <div class="x-statistic-value" [ngStyle]="valueStyle">
+    <ng-container *xOutlet="value">
+      <span class="x-statistic-value-prefix" *ngIf="prefix">
+        <ng-container *xOutlet="prefix">{{ prefix }}</ng-container>
+      </span>
+      <span class="x-statistic-value-int" *ngIf="displayInt">{{ displayInt }}</span>
+      <span class="x-statistic-value-decimal" *ngIf="displayDecimal">{{ displayDecimal }}</span>
+      <span class="x-statistic-value-suffix" *ngIf="suffix">
+        <ng-container *xOutlet="suffix">{{ suffix }}</ng-container>
+      </span>
+    </ng-container>
+  </div>
+</div>

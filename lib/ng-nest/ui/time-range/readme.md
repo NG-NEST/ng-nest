@@ -1,11 +1,11 @@
 ---
-label: "Statistic 统计"
+label: "Time Range 时间间隔 "
 category: "Data"
 ---
 
-# Statistic 统计
+# Time Range 时间间隔
 
-展示统计数字。
+显示时间间隔。
 
 ## 示例代码
 

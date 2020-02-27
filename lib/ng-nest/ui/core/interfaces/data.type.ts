@@ -1,7 +1,11 @@
 import { Observable, BehaviorSubject, isObservable } from "rxjs";
+import { TemplateRef } from "@angular/core";
 
 // 数据类型
 export type XData<T> = T | BehaviorSubject<T> | Observable<T> | any;
+
+// 模板类型
+export type XTemplate = string | number | Date | TemplateRef<any>;
 
 // 类型判断
 export const XIsType = (type: string) => (object: any) => Object.prototype.toString.call(object) === `[object ${type}]`;

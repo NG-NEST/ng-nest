@@ -1,0 +1,9 @@
+<div #downcount class="x-countdown">
+  <x-statistic
+    [value]="diff | xTimeRange: format"
+    [valueStyle]="valueStyle"
+    [prefix]="prefix"
+    [suffix]="suffix"
+    [label]="label"
+  ></x-statistic>
+</div>

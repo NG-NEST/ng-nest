@@ -22,10 +22,13 @@ import { XCalendarModule } from "@ng-nest/ui/calendar";
 import { XCommentModule } from "@ng-nest/ui/comment";
 import { XTextRetractModule } from "@ng-nest/ui/text-retract";
 import { XTimeAgoModule } from "@ng-nest/ui/time-ago";
+import { XTimeRangeModule } from "@ng-nest/ui/time-range";
 import { XOutletModule } from "@ng-nest/ui/outlet";
+import { XEmptyModule } from "@ng-nest/ui/empty";
 import { XPopoverModule } from "@ng-nest/ui/popover";
 import { XPopconfirmModule } from "@ng-nest/ui/popconfirm";
 import { XProgressModule } from "@ng-nest/ui/progress";
+import { XStatisticModule } from "@ng-nest/ui/statistic";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
@@ -78,10 +81,13 @@ export * from "@ng-nest/ui/calendar";
 export * from "@ng-nest/ui/comment";
 export * from "@ng-nest/ui/text-retract";
 export * from "@ng-nest/ui/time-ago";
+export * from "@ng-nest/ui/time-range";
 export * from "@ng-nest/ui/outlet";
+export * from "@ng-nest/ui/empty";
 export * from "@ng-nest/ui/popover";
 export * from "@ng-nest/ui/popconfirm";
 export * from "@ng-nest/ui/progress";
+export * from "@ng-nest/ui/statistic";
 
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
@@ -134,10 +140,13 @@ export * from "@ng-nest/ui/form";
     XCommentModule,
     XTextRetractModule,
     XTimeAgoModule,
+    XTimeRangeModule,
     XOutletModule,
+    XEmptyModule,
     XPopoverModule,
     XPopconfirmModule,
     XProgressModule,
+    XStatisticModule,
 
     XRadioModule,
     XCheckboxModule,

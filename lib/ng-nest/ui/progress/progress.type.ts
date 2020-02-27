@@ -15,7 +15,7 @@ export interface XProgressInput {
    * 显示进度 0-100
    * @default 0
    */
-  percent?: number = 0;
+  percent?: number;
   /**
    * 进度条高度
    * @default "0.5rem"

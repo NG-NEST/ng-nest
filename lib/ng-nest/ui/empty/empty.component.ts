@@ -13,7 +13,7 @@ import {
   TemplateRef
 } from "@angular/core";
 import { XEmptyPrefix } from "./empty.type";
-import { XIsString } from "@ng-nest/ui/core";
+import { XTemplate } from "@ng-nest/ui/core";
 
 @Component({
   selector: `${XEmptyPrefix}`,
@@ -23,8 +23,8 @@ import { XIsString } from "@ng-nest/ui/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XEmptyComponent implements OnInit, OnChanges {
-  @Input() img?: string | TemplateRef<void>;
-  @Input() content?: string | TemplateRef<void>;
+  @Input() img?: XTemplate;
+  @Input() content?: XTemplate;
   @ViewChild("empty", { static: true }) empty: ElementRef;
   isImageTemp: boolean = false;
   isContentTemp: boolean = false;

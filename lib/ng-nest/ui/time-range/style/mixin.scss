@@ -1,0 +1,10 @@
+// TimeRange
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin time-range {
+  font-size: $--x-font-size;
+  display: inline;
+}

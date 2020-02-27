@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-84",
+    "id": "3-0-85",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -215,7 +215,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "statistic",
     "router": "./docs/ui/components/statistic",
-    "label": "Statistic 统计 [待]",
+    "label": "Statistic 统计",
     "category": "Data"
   },
   {
@@ -253,13 +253,21 @@ export const menus: Menu[] = [
   {
     "id": "3-0-75",
     "parentId": "3-0",
+    "name": "time-range",
+    "router": "./docs/ui/components/time-range",
+    "label": "Time Range 时间间隔 ",
+    "category": "Data"
+  },
+  {
+    "id": "3-0-76",
+    "parentId": "3-0",
     "name": "timeline",
     "router": "./docs/ui/components/timeline",
     "label": "Timeline 时间轴 [待]",
     "category": "Data"
   },
   {
-    "id": "3-0-78",
+    "id": "3-0-79",
     "parentId": "3-0",
     "name": "tree",
     "router": "./docs/ui/components/tree",
@@ -459,7 +467,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-77",
+    "id": "3-0-78",
     "parentId": "3-0",
     "name": "transfer",
     "router": "./docs/ui/components/transfer",
@@ -467,7 +475,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-79",
+    "id": "3-0-80",
     "parentId": "3-0",
     "name": "tree-select",
     "router": "./docs/ui/components/tree-select",
@@ -475,7 +483,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-85",
+    "id": "3-0-86",
     "parentId": "3-0",
     "name": "upload",
     "router": "./docs/ui/components/upload",
@@ -563,7 +571,7 @@ export const menus: Menu[] = [
     "category": "Others"
   },
   {
-    "id": "3-0-76",
+    "id": "3-0-77",
     "parentId": "3-0",
     "name": "tooltip",
     "router": "./docs/ui/components/tooltip",

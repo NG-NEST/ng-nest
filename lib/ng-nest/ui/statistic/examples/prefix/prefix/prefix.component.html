@@ -1,0 +1,28 @@
+<x-row space="1">
+  <x-col span="12">
+    <x-card>
+      <x-statistic
+        label="上升比例"
+        [value]="15.28 | number: '1.0-2'"
+        [prefix]="prefixTempOne"
+        suffix="%"
+        [valueStyle]="{ color: '#67c23a' }"
+      >
+      </x-statistic>
+      <ng-template #prefixTempOne><x-icon type="fto-chevrons-up"></x-icon></ng-template>
+    </x-card>
+  </x-col>
+  <x-col span="12">
+    <x-card>
+      <x-statistic
+        label="下降比例"
+        [value]="2.28 | number: '1.0-2'"
+        [prefix]="prefixTempTwo"
+        suffix="%"
+        [valueStyle]="{ color: '#f56c6c' }"
+      >
+      </x-statistic>
+      <ng-template #prefixTempTwo><x-icon type="fto-chevrons-down"></x-icon></ng-template>
+    </x-card>
+  </x-col>
+</x-row>

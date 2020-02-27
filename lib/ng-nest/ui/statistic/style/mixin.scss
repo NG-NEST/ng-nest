@@ -1,0 +1,25 @@
+// Statistic
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin statistic {
+  &-label {
+    margin-bottom: 0.25rem;
+    color: $--x-text-400;
+  }
+  &-value {
+    font-size: 1.5rem;
+    &-decimal,
+    &-suffix {
+      font-size: 1rem;
+    }
+    &-suffix {
+      margin-left: 0.25rem;
+    }
+    &-prefix {
+      margin-right: 0.25rem;
+    }
+  }
+}
