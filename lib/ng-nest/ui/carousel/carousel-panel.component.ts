@@ -14,6 +14,7 @@ import { XCarouselPanelPrefix } from "./carousel.type";
 import { XInputBoolean, dropAnimation } from "@ng-nest/ui/core";
 import { XCarouselComponent } from "./carousel.component";
 import { DomSanitizer } from "@angular/platform-browser";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
@@ -33,6 +34,8 @@ export class XCarouselPanelComponent implements OnInit {
   cardScale = 0.83;
   scale = 1;
   inStage = false;
+  updateSub = new BehaviorSubject(false);
+  updateSub$: Subscription;
   constructor(
     @Optional() @Host() public carousel: XCarouselComponent,
     public renderer: Renderer2,
@@ -52,13 +55,16 @@ export class XCarouselPanelComponent implements OnInit {
   setStyles() {
     this.width = this.elementRef.nativeElement.offsetWidth;
     this.height = this.elementRef.nativeElement.offsetHeight;
+
     let translate: number;
     let offset: number = this.carousel.active - this.index;
     let distance = this.width;
     let translateType = "translateX";
     if (this.carousel.card) {
       if (this.carousel.direction === "vertical") {
-        console.warn("[x-carousel] vertical direction is not supported in card mode");
+        console.warn(
+          "[x-carousel] vertical direction is not supported in card mode"
+        );
       }
       this.inStage = Math.round(Math.abs(offset)) <= 1;
       this.setClass("x-carousel-in-stage", this.inStage);
@@ -95,7 +101,8 @@ export class XCarouselPanelComponent implements OnInit {
   calcCardTranslate(index, activeIndex) {
     const parentWidth = this.carousel.carousel.nativeElement.offsetWidth;
     let offset: number = index - activeIndex;
-    let activeFirstOrLast = this.carousel.start > 1 && this.carousel.start === Math.abs(offset);
+    let activeFirstOrLast =
+      this.carousel.start > 1 && this.carousel.start === Math.abs(offset);
     if (this.inStage || activeFirstOrLast) {
       if (activeFirstOrLast) offset = offset < 0 ? 1 : -1;
       return (parentWidth * ((2 - this.cardScale) * offset + 1)) / 4;
@@ -127,8 +134,18 @@ export class XCarouselPanelComponent implements OnInit {
     this.carousel.start++;
     this.index = this.carousel.start;
     this.setClass("x-carousel-card", this.carousel.card);
-    this.carousel.panelChanges.push(() => this.update());
+    this.carousel.panelChanges.push(this.updateSub);
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.updateSub.subscribe(x => {
+        if (x) this.update();
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.updateSub$ && this.updateSub$.unsubscribe();
+  }
 }

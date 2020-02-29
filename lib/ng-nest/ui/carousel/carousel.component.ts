@@ -14,8 +14,21 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { XCarouselPrefix, XCarouselTrigger, XCarouselArrow, XCarouselDirection } from "./carousel.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XIsArray, XIsUndefined } from "@ng-nest/ui/core";
+import {
+  XCarouselPrefix,
+  XCarouselTrigger,
+  XCarouselArrow,
+  XCarouselDirection
+} from "./carousel.type";
+import {
+  XInputBoolean,
+  XSize,
+  XInputNumber,
+  XIsNumber,
+  XIsArray,
+  XIsUndefined
+} from "@ng-nest/ui/core";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: `${XCarouselPrefix}`,
@@ -39,31 +52,41 @@ export class XCarouselComponent implements OnInit, OnChanges {
   start: number = -1;
   before: number;
   timer: any;
-  panelChanges: Function[] = [];
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  panelChanges: BehaviorSubject<any>[] = [];
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.setDirection();
   }
 
   ngAfterViewInit() {
-    this.panelChanges.forEach(func => func());
+    this.panelChanges.forEach(sub => sub.next(true));
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterViewChecked(): void {
     const timer = setTimeout(() => {
       this.autoplay && this.resetInterval();
       clearTimeout(timer);
     }, 0);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes || !changes.active) return;
-    this.setActiveItem(this.active);
+  ngOnChanges(simples: SimpleChanges): void {
+    let activeChange = simples.active;
+    if (
+      activeChange &&
+      activeChange.currentValue !== activeChange.previousValue
+    ) {
+      this.setActiveItem(this.active);
+    }
   }
 
   ngOnDestroy(): void {
     this.timer && clearInterval(this.timer);
+    this.panelChanges.forEach(x => x.complete());
   }
 
   action(index: number, event?: string): void {
@@ -84,14 +107,17 @@ export class XCarouselComponent implements OnInit, OnChanges {
     this.before = this.active;
     const nextValue = index > this.start ? 0 : index < 0 ? this.start : index;
     this.active = nextValue;
-    this.panelChanges.forEach(func => func());
+    this.panelChanges.forEach(sub => sub.next(true));
     this.activeChange.emit(this.active);
     this.cdr.detectChanges();
   }
 
   setDirection() {
     if (this.direction) {
-      this.renderer.addClass(this.carousel.nativeElement, `x-carousel-${this.direction}`);
+      this.renderer.addClass(
+        this.carousel.nativeElement,
+        `x-carousel-${this.direction}`
+      );
     }
   }
 }

@@ -17,7 +17,7 @@ import {
 })
 export class XTabComponent implements OnInit {
   @Input() label: string;
-  @ViewChild(TemplateRef, { static: false }) content: TemplateRef<void>;
+  @ViewChild(TemplateRef, { static: true }) content: TemplateRef<void>;
   constructor() {}
 
   ngOnInit() {}

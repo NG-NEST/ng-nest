@@ -1,6 +1,12 @@
-import { XIdentityInput, XData, XQuery } from "@ng-nest/ui/core";
+import {
+  XIdentityInput,
+  XData,
+  XQuery,
+  XRepositoryAbstract
+} from "@ng-nest/ui/core";
 import { XButtonInput } from "@ng-nest/ui/button";
 import { XPaginationInput } from "@ng-nest/ui/pagination";
+import { TemplateRef } from "@angular/core";
 
 /**
  * Table 组件名
@@ -26,6 +32,22 @@ export interface XTableOption extends XPaginationInput {
    */
   actions?: XTableAction[];
   /**
+   * 当前页码
+   */
+  index?: number;
+  /**
+   * 每页显示条数
+   */
+  size?: number;
+  /**
+   * 总条数
+   */
+  total?: number;
+  /**
+   * 数据服务
+   */
+  service?: XRepositoryAbstract;
+  /**
    * 查询条件
    */
   query?: XQuery;
@@ -42,9 +64,34 @@ export interface XTableOption extends XPaginationInput {
    */
   allowSelectRow?: boolean;
   /**
+   * 选中第一行数据，触发选中回调
+   */
+  firstRowSelected?: boolean;
+  /**
    * 行主键
    */
   rowPrimary?: string;
+  /**
+   * 当前选中行数据
+   */
+  activatedRow?: any;
+  /**
+   * 查找框提示信息
+   * @default "查找"
+   */
+  searchPlaceholder?: string;
+  /**
+   * 隐藏序号列
+   */
+  serialNumberHidden?: boolean;
+  /**
+   * 列头自定义模板
+   */
+  headerColumnTpl?: XTableColumnTemplate;
+  /**
+   * 列内容自定义模板
+   */
+  bodyColumnTpl?: XTableColumnTemplate;
 }
 
 /**
@@ -96,6 +143,13 @@ export interface XTableAction extends XButtonInput {
  * 操作按钮位置
  * @value "top-left" 顶部靠左（默认）
  * @value "top-right" 顶部靠右
- * @value "row" 行操作
+ * @value "top-right-icon" 顶部靠右图标
+ * @value "row-icon" 行中的操作按钮
  */
-export type XTableActionLayoutType = "top-left" | "top-right" | "top-right-icon" | "row-icon";
+export type XTableActionLayoutType =
+  | "top-left"
+  | "top-right"
+  | "top-right-icon"
+  | "row-icon";
+
+export type XTableColumnTemplate = { [property: string]: TemplateRef<any> };

@@ -8,12 +8,17 @@ import { XTabsModule } from "./tabs.module";
 import { TabsPrefix, XTabsNode, XTabsLayoutType } from "./tabs.type";
 import { XData } from "@ng-nest/ui/core";
 import { XFenceModule } from "@ng-nest/ui/fence";
+import { XCarouselModule } from "@ng-nest/ui/carousel";
 
 describe(TabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTabsModule, XFenceModule],
-      declarations: [TestXTabsComponent, TestEventXTabsComponent, TestDataXTabsComponent]
+      imports: [XTabsModule, XFenceModule, XCarouselModule],
+      declarations: [
+        TestXTabsComponent,
+        TestEventXTabsComponent,
+        TestDataXTabsComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -75,49 +80,61 @@ const testXTabsNode: XTabsNode[] = [
   template: `
     <x-tabs [layout]="layout" [activatedIndex]="activatedIndex">
       <x-tab [label]="'Home'">
-        <x-row space="1">
-          <x-col span="12"><div>col-12</div></x-col>
-          <x-col span="6"><div>col-6</div></x-col>
-          <x-col span="6"><div>col-6</div></x-col>
-        </x-row>
-        <x-row space="1">
-          <x-col span="8"><div>col-8</div></x-col>
-          <x-col span="8"><div>col-8</div></x-col>
-          <x-col span="4"><div>col-4</div></x-col>
-          <x-col span="4"><div>col-4</div></x-col>
-        </x-row>
-        <x-row space="1">
-          <x-col span="4"><div>col-4</div></x-col>
-          <x-col span="20"><div>col-20</div></x-col>
-        </x-row>
+        <div class="row">
+          <x-carousel height="12rem">
+            <x-carousel-panel *ngFor="let item of list">
+              <h3>{{ item }}</h3>
+            </x-carousel-panel>
+          </x-carousel>
+        </div>
       </x-tab>
       <x-tab [label]="'Docs'">
-        <x-row>
-          <x-col span="12">col-12</x-col>
-          <x-col span="12">col-12</x-col>
-        </x-row>
-        <x-row>
-          <x-col span="8">col-8</x-col>
-          <x-col span="8">col-8</x-col>
-          <x-col span="8">col-8</x-col>
-        </x-row>
-        <x-row>
-          <x-col span="6">col-6</x-col>
-          <x-col span="6">col-6</x-col>
-          <x-col span="6">col-6</x-col>
-          <x-col span="6">col-6</x-col>
-        </x-row>
+        <x-tabs [layout]="'left'">
+          <x-tab [label]="'Home'">
+            <div class="row">
+              <x-carousel height="12rem">
+                <x-carousel-panel *ngFor="let item of list">
+                  <h3>{{ item }}</h3>
+                </x-carousel-panel>
+              </x-carousel>
+            </div>
+          </x-tab>
+          <x-tab [label]="'Docs'">doc </x-tab>
+          <x-tab [label]="'Examples'">examples </x-tab>
+          <x-tab [label]="'Api'">api </x-tab>
+        </x-tabs>
       </x-tab>
-      <x-tab [label]="'Examples'">
-        <h1>3 Theme</h1>
-      </x-tab>
-      <x-tab [label]="'Api'">
-        <h1>4 Theme</h1>
-      </x-tab>
+      <x-tab [label]="'Examples'">examples </x-tab>
+      <x-tab [label]="'Api'">api </x-tab>
     </x-tabs>
-  `
+  `,
+  styles: [
+    `
+      .row {
+        width: 24rem;
+        padding: 1.625rem 1rem;
+        background-color: white;
+      }
+      .row:not(:first-child) {
+        margin-top: 2rem;
+      }
+      .row x-carousel-panel:nth-child(odd) {
+        background-color: var(--x-info-800);
+      }
+      .row x-carousel-panel:nth-child(even) {
+        background-color: var(--x-info-600);
+      }
+      .row x-carousel-panel h3 {
+        text-align: center;
+        line-height: 12rem;
+        margin: 0;
+        color: var(--x-text-500);
+      }
+    `
+  ]
 })
 class TestXTabsComponent {
+  list = [1, 2, 3, 4, 5];
   layout: XTabsLayoutType;
   position: XTabsLayoutType;
   activatedIndex: number = 0;

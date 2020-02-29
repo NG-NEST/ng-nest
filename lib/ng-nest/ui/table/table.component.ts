@@ -15,7 +15,7 @@ import {
   SimpleChanges,
   ViewChild
 } from "@angular/core";
-import { TablePrefix, XTableOption, XTableColumn, XTableAction } from "./table.type";
+import { TablePrefix, XTableOption, XTableColumn, XTableAction, XTableColumnTemplate } from "./table.type";
 import {
   fillDefault,
   XData,
@@ -55,8 +55,8 @@ export class XTableComponent implements OnInit, OnChanges {
   @Input() activatedRow?: any;
   @Input() searchPlaceholder?: string = "查找";
   @Input() @XInputBoolean() serialNumberHidden?: boolean;
-  @Input() headerColumnTpl?: { [property: string]: TemplateRef<any> } = {};
-  @Input() bodyColumnTpl?: { [property: string]: TemplateRef<any> } = {};
+  @Input() headerColumnTpl?: XTableColumnTemplate = {};
+  @Input() bodyColumnTpl?: XTableColumnTemplate = {};
   @Output() indexChange = new EventEmitter<number>();
   @Output() actionClick = new EventEmitter<XTableAction>();
   @Output() rowClick = new EventEmitter<any>();
