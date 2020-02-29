@@ -11,7 +11,7 @@ export interface XResultList<Entity extends XId> {
 export interface XQuery {
   index?: number;
   size?: number;
-  sort?: string[];
+  sort?: XSort[];
   filter?: XFilter[];
   group?: string;
 }
@@ -19,4 +19,11 @@ export interface XQuery {
 export interface XFilter {
   field: string;
   value: string;
+}
+
+export interface XSort extends XFilter {}
+
+export interface XGroupItem extends XId {
+  [prototype: string]: any;
+  count?: number;
 }

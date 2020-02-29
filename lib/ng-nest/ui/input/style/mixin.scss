@@ -176,4 +176,20 @@
       }
     }
   }
+  @include size("large", 2.175rem, 0 1rem);
+  @include size("medium", 1.875rem, 0 0.8rem);
+  @include size("small", 1.5rem, 0 0.3rem);
+  @include size("mini", 1.375rem, 0 0.25rem);
+}
+
+@mixin size($size, $height, $padding) {
+  &-#{$size} {
+    > .#{$--x-input-prefix}-row {
+      > input {
+        height: $height;
+        line-height: $height;
+        padding: $padding;
+      }
+    }
+  }
 }

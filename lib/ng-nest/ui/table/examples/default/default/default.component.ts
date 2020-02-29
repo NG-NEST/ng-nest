@@ -1,74 +1,65 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { XTableAction, XTableColumn } from "@ng-nest/ui/table";
-import * as _ from "lodash";
+import { DefaultService } from "./default.service";
 
 @Component({
   selector: "ex-default",
   templateUrl: "./default.component.html",
-  styleUrls: ["./default.component.scss"]
+  styles: [
+    `
+      .header-name,
+      .body-name {
+        display: flex;
+        align-items: center;
+      }
+      .header-name > span,
+      .body-name > span {
+        margin-left: 0.25rem;
+      }
+    `
+  ],
+  providers: [DefaultService]
 })
 export class ExDefaultComponent {
+  constructor(public defaultService: DefaultService) {}
+  columns: XTableColumn[] = [
+    { key: "name", label: "用户", flex: 1.5, search: true, sort: true },
+    { key: "position", label: "职位", flex: 0.5, sort: true },
+    { key: "email", label: "邮箱", flex: 1 },
+    { key: "phone", label: "电话", flex: 1 },
+    { key: "organization", label: "组织机构", flex: 1, sort: true }
+  ];
   actions: XTableAction[] = [
-    { label: "播放全部", icon: "fto-play" },
-    { label: "下载", icon: "fto-download" },
+    { label: "新增", icon: "fto-plus", type: "primary" },
+    { label: "导出", icon: "fto-download" },
     { label: "批量操作", icon: "fto-list" },
     {
       icon: "fto-menu",
       title: "列表视图",
-      actionLayoutType: "top-right-icon"
-    },
-    {
-      icon: "fto-user",
-      title: "歌手视图",
+      activated: true,
       actionLayoutType: "top-right-icon"
     },
     {
       icon: "fto-disc",
-      title: "专辑视图",
-      actionLayoutType: "top-right-icon"
+      title: "组织视图",
+      actionLayoutType: "top-right-icon",
+      group: "organization"
     },
     {
-      icon: "fto-play",
-      title: "播放",
+      icon: "fto-briefcase",
+      title: "职位视图",
+      actionLayoutType: "top-right-icon",
+      group: "position"
+    },
+    {
+      icon: "fto-edit",
+      title: "编辑",
       actionLayoutType: "row-icon"
     },
     {
-      icon: "fto-plus-square",
-      title: "添加到",
-      actionLayoutType: "row-icon"
-    },
-    {
-      icon: "fto-download",
-      title: "下载",
-      actionLayoutType: "row-icon"
-    },
-    {
-      icon: "fto-more-vertical",
-      title: "更多操作",
+      icon: "fto-trash-2",
+      title: "删除",
       actionLayoutType: "row-icon"
     }
   ];
-  columns: XTableColumn[] = [
-    { key: "song", label: "歌曲", flex: 2 },
-    { key: "auth", label: "作者", flex: 1 },
-    { key: "album", label: "专辑", flex: 1 }
-  ];
-  list = Array.from({ length: 115 }).map((x, i) => {
-    return {
-      song: i + 1 + `Free Loop 福特轿车广告曲`,
-      auth: "Daniel Powter",
-      album: "Daniel Powter"
-    };
-  });
-  chunks = _.chunk(this.list, 10);
-  data = this.chunks[0];
-  index = 1;
-  size = 10;
-  total = this.list.length;
-  indexChange(index: number) {
-    if (index <= this.chunks.length) {
-      this.index = index;
-      this.data = [...this.chunks[index - 1]];
-    }
-  }
 }

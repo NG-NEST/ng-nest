@@ -21,7 +21,8 @@ import {
   XControlValueAccessor,
   XInputBoolean,
   XInputNumber,
-  removeNgTag
+  removeNgTag,
+  XSize
 } from "@ng-nest/ui/core";
 
 @Component({
@@ -40,6 +41,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() iconLayout?: XInputIconLayoutType = "left";
   @Input() @XInputBoolean() iconSpin?: boolean;
   @Input() @XInputNumber() maxlength?: number;
+  @Input() size: XSize;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild("input", { static: true }) input: ElementRef;
   @ViewChild("inputRef", { static: true }) inputRef: ElementRef;
@@ -82,6 +84,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     fillDefault(this, this._default);
     this.setPadding();
     this.setFlex(this.input.nativeElement, this.justify, this.align, this.direction);
+    this.setSize();
     // removeNgTag(this.elementRef.nativeElement);
   }
 
@@ -137,5 +140,11 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
         : this.maxlength && !this.icon
         ? (this.lengthTotal.length + 2) * 0.385
         : 0.4;
+  }
+
+  setSize() {
+    if (this.size) {
+      this.renderer.addClass(this.input.nativeElement, `${XInputPrefix}-${this.size}`);
+    }
   }
 }

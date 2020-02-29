@@ -20,7 +20,8 @@ describe(XInputPrefix, () => {
         TestXInputClearableComponent,
         TestXInputDisabledComponent,
         TestXInputRequiredComponent,
-        TestXInputLengthComponent
+        TestXInputLengthComponent,
+        TestXInputSizeComponent
       ]
     }).compileComponents();
   }));
@@ -103,6 +104,18 @@ describe(XInputPrefix, () => {
       fixture = TestBed.createComponent(TestXInputLengthComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputLengthComponent));
+    });
+    it("should create.", () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`size.`, () => {
+    let fixture: ComponentFixture<TestXInputSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputSizeComponent));
     });
     it("should create.", () => {
       expect(debugElement).toBeDefined();
@@ -332,6 +345,42 @@ class TestXInputRequiredComponent {
   ]
 })
 class TestXInputLengthComponent {
+  value: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change(val) {
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="large"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="medium"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="small"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="mini"></x-input>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      x-row > x-col:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    `
+  ]
+})
+class TestXInputSizeComponent {
   value: any;
   constructor(private cdr: ChangeDetectorRef) {}
   change(val) {

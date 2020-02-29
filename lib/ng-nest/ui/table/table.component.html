@@ -7,9 +7,11 @@
       tableHeaderHidden
       tableFooterHidden
       allowSelectRow
+      firstRowSelected
       [rowPrimary]="groupQuery.group"
       [activatedRow]="groupActivatedRow"
       [searchPlaceholder]="groupSearchPlaceholder"
+      [serialNumberHidden]="groupSearchSerialNumberHidden"
       (rowClick)="groupRowClick($event)"
     ></x-table>
   </div>
@@ -19,7 +21,14 @@
         <ng-container *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: topLeftActions }"></ng-container>
       </div>
       <div class="x-table-tool-right">
-        <x-input [icon]="'fto-search'" [placeholder]="searchPlaceholder" [iconLayout]="'left'"></x-input>
+        <x-input
+          icon="fto-search"
+          iconLayout="left"
+          [placeholder]="searchPlaceholder"
+          [(ngModel)]="searchInput"
+          (ngModelChange)="searchChange($event)"
+          clearable
+        ></x-input>
         <ng-container *ngIf="topRightIconActions.length > 0">
           <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: topRightIconActions }"></ng-container>
         </ng-container>
@@ -27,23 +36,47 @@
     </div>
     <div class="x-table-header" *ngIf="!tableHeaderHidden">
       <ul>
+        <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
+          <span>{{ serialNumberText }}</span>
+        </li>
         <ng-container *ngFor="let column of columns">
           <li [style.width.rem]="column.width" [style.flex]="column.flex">
-            <span>{{ column.label }}</span>
+            <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
+              <ng-container *xOutlet="headerColumnTpl[column.key]; context: { $column: column }">
+                {{ column.label }}
+              </ng-container>
+              <x-icon
+                class="x-table-header-sort-icon"
+                *ngIf="column.sort"
+                [class.x-table-icon-up]="sortStr === column.key + ' desc'"
+                [class.x-table-icon-down]="sortStr === column.key + ' asc'"
+                type="fto-bar-chart"
+              ></x-icon>
+            </a>
           </li>
         </ng-container>
       </ul>
     </div>
     <div class="x-table-body">
       <ul
-        *ngFor="let item of tableData"
+        *ngFor="let item of tableData; index as i"
         [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
         (click)="rowEmit(item, $event)"
       >
-        <ng-container *ngFor="let column of columns; index as i">
-          <li [style.width.rem]="column.width" [style.flex]="column.flex" [title]="item[column.key]">
-            <div [innerHTML]="item[column.key]"></div>
-            <ng-container *ngIf="!i && rowIconActions.length > 0">
+        <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
+          <div>{{ (index - 1) * size + i + 1 }}</div>
+        </li>
+        <ng-container *ngFor="let column of columns; index as j">
+          <li
+            [style.width.rem]="column.width"
+            [style.flex]="column.flex"
+            [title]="item[column.key]"
+            [class.x-table-no-flex]="column.width"
+          >
+            <ng-container *xOutlet="bodyColumnTpl[column.key]; context: { $column: column, $item: item }">
+              <div [innerHTML]="item[column.key]"></div>
+            </ng-container>
+            <ng-container *ngIf="!j && rowIconActions.length > 0">
               <ng-container
                 *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, notBorder: true }"
               ></ng-container>
@@ -64,6 +97,7 @@
       *ngFor="let action of actions"
       [label]="action.label"
       [icon]="action.icon"
+      [type]="action.type"
       [title]="action.title"
       [activated]="action.activated"
       (click)="actionEmit(action, $event)"

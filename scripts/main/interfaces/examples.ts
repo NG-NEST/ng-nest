@@ -165,6 +165,13 @@ export interface NcCode {
    */
   type?: string;
   /**
+   * 子类型
+   *
+   * @type {NcCodeType}
+   * @memberof NcCode
+   */
+  subType?: string;
+  /**
    * 文件内容
    *
    * @type {string}

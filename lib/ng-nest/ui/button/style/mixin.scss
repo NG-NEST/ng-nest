@@ -250,7 +250,7 @@
   &-space {
     > .x-button {
       &:not(:first-child) {
-        margin-left: 0.625rem;
+        margin-left: 0.5rem;
       }
     }
   }
@@ -263,7 +263,7 @@
         padding: 0 0.2rem;
         > .x-button-inner {
           > .x-icon {
-            font-size: 1.2rem;
+            font-size: 1.125rem;
           }
         }
         &:hover {

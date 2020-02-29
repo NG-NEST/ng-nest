@@ -76,7 +76,8 @@ ns-home {
     }
     > .logo {
       z-index: -2;
-      background: transparent url(/assets/img/logo-hollow.png) no-repeat top center;
+      background: transparent url(/assets/img/logo-hollow.png) no-repeat top
+        center;
       opacity: 0.15;
       width: 700px;
       height: 700px;
@@ -169,7 +170,11 @@ ns-home {
       width: 100%;
       height: calc(100% + 3.75rem);
       margin-top: -3.75rem;
-      background: linear-gradient(to right, rgba(0, 21, 134, 0.49) 0%, rgba(63, 81, 181, 0.5) 100%);
+      background: linear-gradient(
+        to right,
+        rgba(0, 21, 134, 0.49) 0%,
+        rgba(63, 81, 181, 0.5) 100%
+      );
     }
   }
   > section.nav {
@@ -181,7 +186,8 @@ ns-home {
     top: 38.5rem;
     font-weight: 600;
     z-index: 132123123;
-    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13), 1px 1px 0 rgba(85, 85, 135, 0.05);
+    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13),
+      1px 1px 0 rgba(85, 85, 135, 0.05);
     > ul {
       display: flex;
       > li {

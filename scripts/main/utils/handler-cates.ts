@@ -53,12 +53,14 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
   };
   folder.forEach(x => {
     if (x !== "readme.md") {
+      let subType = x.slice(0, x.lastIndexOf("."));
       let code: NcCode = {
         name: x,
         type: x.slice(x.lastIndexOf(".") + 1, x.length),
+        subType: subType.slice(subType.lastIndexOf(".") + 1, subType.length),
         content: fs.readFileSync(path.join(cate.path, x), "utf8")
       };
-      if (code.type === "ts") {
+      if (code.type === "ts" && code.subType === "component") {
         code.content = code.content.replace(/\`/g, "\\`");
         cate.selector = code.content.match(/selector: \"(\S*)\",/)[1];
         cate.className = code.content.match(/export class (\S*) /)[1];

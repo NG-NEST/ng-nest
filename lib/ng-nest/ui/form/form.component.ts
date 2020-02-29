@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import { XFormInput, XControl, XFormRow } from "./form.type";
 import { fillDefault, removeNgTag } from "@ng-nest/ui/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "x-form",
@@ -63,7 +63,7 @@ export class XFormComponent implements OnInit, OnChanges {
   }
 
   createFormGroup() {
-    let group: any = {};
+    let group: { [property: string]: FormControl } = {};
     this._controls.forEach(x => {
       group[x.key] = new FormControl(x.value);
     });

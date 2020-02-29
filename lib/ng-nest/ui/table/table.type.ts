@@ -59,6 +59,14 @@ export interface XTableColumn extends XIdentityInput {
    * flex 布局宽度
    */
   flex?: number;
+  /**
+   * 查询字段
+   */
+  search?: boolean;
+  /**
+   * 排序字段
+   */
+  sort?: boolean;
 }
 
 /**
@@ -90,8 +98,4 @@ export interface XTableAction extends XButtonInput {
  * @value "top-right" 顶部靠右
  * @value "row" 行操作
  */
-export type XTableActionLayoutType =
-  | "top-left"
-  | "top-right"
-  | "top-right-icon"
-  | "row-icon";
+export type XTableActionLayoutType = "top-left" | "top-right" | "top-right-icon" | "row-icon";

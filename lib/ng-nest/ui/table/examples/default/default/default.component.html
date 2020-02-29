@@ -1,9 +1,20 @@
 <x-table
   [columns]="columns"
   [actions]="actions"
-  [data]="data"
-  [index]="index"
-  [size]="size"
-  [total]="total"
-  (indexChange)="indexChange($event)"
+  [service]="defaultService"
+  [headerColumnTpl]="{ name: nameHeaderTemp }"
+  [bodyColumnTpl]="{ name: nameBodyTemp }"
+  allowSelectRow
 ></x-table>
+<ng-template #nameHeaderTemp let-column="$column">
+  <div class="header-name">
+    <x-icon type="fto-user"></x-icon>
+    <span>{{ column.label }}</span>
+  </div>
+</ng-template>
+<ng-template #nameBodyTemp let-column="$column" let-item="$item">
+  <div class="body-name">
+    <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+    <span>{{ item[column.key] }}</span>
+  </div>
+</ng-template>

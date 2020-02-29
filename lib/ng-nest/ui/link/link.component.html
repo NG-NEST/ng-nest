@@ -8,5 +8,7 @@
   [attr.target]="target"
 >
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
-  <span>{{ label }}</span>
+  <ng-container *xOutlet="label; context: { $label: label }">
+    <span>{{ label }}</span>
+  </ng-container>
 </a>
