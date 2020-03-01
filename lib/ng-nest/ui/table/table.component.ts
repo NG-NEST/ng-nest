@@ -15,7 +15,13 @@ import {
   SimpleChanges,
   ViewChild
 } from "@angular/core";
-import { TablePrefix, XTableOption, XTableColumn, XTableAction, XTableColumnTemplate } from "./table.type";
+import {
+  TablePrefix,
+  XTableOption,
+  XTableColumn,
+  XTableAction,
+  XTableColumnTemplate
+} from "./table.type";
 import {
   fillDefault,
   XData,
@@ -39,9 +45,9 @@ import { debounceTime, switchMap } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableComponent implements OnInit, OnChanges {
-  @Input() data: XData<any[]>;
-  @Input() columns: XTableColumn[];
-  @Input() actions: XTableAction[];
+  @Input() data?: XData<any[]>;
+  @Input() columns?: XTableColumn[];
+  @Input() actions?: XTableAction[];
   @Input() @XInputNumber() index?: number;
   @Input() @XInputNumber() size?: number;
   @Input() @XInputNumber() total?: number;
@@ -90,7 +96,11 @@ export class XTableComponent implements OnInit, OnChanges {
     rowPrimary: "id"
   };
   private _isFirst = true;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef
+  ) {
     this.renderer.addClass(this.elementRef.nativeElement, TablePrefix);
   }
 
@@ -107,7 +117,10 @@ export class XTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(simples: SimpleChanges) {
     let rowPrimaryChange = simples.rowPrimary;
-    if (rowPrimaryChange && rowPrimaryChange.currentValue !== rowPrimaryChange.previousValue) {
+    if (
+      rowPrimaryChange &&
+      rowPrimaryChange.currentValue !== rowPrimaryChange.previousValue
+    ) {
       this.setData(true);
     }
   }
@@ -138,14 +151,22 @@ export class XTableComponent implements OnInit, OnChanges {
       sort = { field: column.key, value: "desc" };
       this.query.sort = [sort];
     }
-    if (!XIsEmpty(this.query.sort)) this.sortStr = `${sort.field} ${sort.value}`;
+    if (!XIsEmpty(this.query.sort))
+      this.sortStr = `${sort.field} ${sort.value}`;
     this.setData();
   }
 
   groupRowClick(row: any) {
     if (XIsEmpty(this.query.filter)) this.query.filter = [];
-    let groupFilter = { field: this.groupQuery.group, value: row[this.groupQuery.group] };
-    this.query.filter = _.unionBy([groupFilter], this.query.filter, y => y.field);
+    let groupFilter = {
+      field: this.groupQuery.group,
+      value: row[this.groupQuery.group]
+    };
+    this.query.filter = _.unionBy(
+      [groupFilter],
+      this.query.filter,
+      y => y.field
+    );
     this.index = 1;
     this.setData();
   }
@@ -162,7 +183,9 @@ export class XTableComponent implements OnInit, OnChanges {
         this.groupIndex = 1;
         this.groupQuery.group = action.group;
         this.groupQuery.sort = [{ field: "count", value: "desc" }];
-        let groupColumn = _.cloneDeep(this.columns.find(x => x.key === action.group));
+        let groupColumn = _.cloneDeep(
+          this.columns.find(x => x.key === action.group)
+        );
         groupColumn.flex = 4;
         groupColumn.search = true;
         this.groupSearchPlaceholder = `查找${groupColumn.label}`;
@@ -195,11 +218,22 @@ export class XTableComponent implements OnInit, OnChanges {
     if (typeof this.actions === "undefined") return;
     this.topLeftActions = _.filter(
       this.actions,
-      x => typeof x.actionLayoutType === "undefined" || x.actionLayoutType === "top-left"
+      x =>
+        typeof x.actionLayoutType === "undefined" ||
+        x.actionLayoutType === "top-left"
     );
-    this.topRightActions = _.filter(this.actions, x => x.actionLayoutType === "top-right");
-    this.topRightIconActions = _.filter(this.actions, x => x.actionLayoutType === "top-right-icon");
-    this.rowIconActions = _.filter(this.actions, x => x.actionLayoutType === "row-icon");
+    this.topRightActions = _.filter(
+      this.actions,
+      x => x.actionLayoutType === "top-right"
+    );
+    this.topRightIconActions = _.filter(
+      this.actions,
+      x => x.actionLayoutType === "top-right-icon"
+    );
+    this.rowIconActions = _.filter(
+      this.actions,
+      x => x.actionLayoutType === "row-icon"
+    );
     this.activatedAction = _.find(this.actions, x => x.activated);
     this.cdr.markForCheck();
   }

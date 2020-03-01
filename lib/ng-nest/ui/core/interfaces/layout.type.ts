@@ -8,6 +8,28 @@
 export type XPosition = "top" | "right" | "bottom" | "left";
 
 /**
+ * 颜色类型
+ * @value "primary"
+ * @value "success"
+ * @value "info"
+ * @value "warning"
+ * @value "danger"
+ * @value "text"
+ */
+export type XType =
+  | "primary"
+  | "success"
+  | "info"
+  | "warning"
+  | "danger"
+  | "text";
+
+/**
+ * 样式映射类型
+ */
+export type XClassMap = { [property: string]: boolean };
+
+/**
  * 尺寸
  * @value "large" 大型
  * @value "medium" 中等
@@ -24,7 +46,12 @@ export type XSize = "large" | "medium" | "small" | "mini";
  * @value "spaceAround"
  * @value "space-between"
  */
-export type XJustify = "start" | "end" | "center" | "space-around" | "space-between";
+export type XJustify =
+  | "start"
+  | "end"
+  | "center"
+  | "space-around"
+  | "space-between";
 
 /**
  * flex 布局下的子元素垂直排列方式

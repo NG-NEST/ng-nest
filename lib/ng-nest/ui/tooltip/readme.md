@@ -1,6 +1,6 @@
 ---
 label: "Tooltip 文字提示"
-category: "Others"
+category: "Feedback"
 ---
 
 # Tooltip 文字提示

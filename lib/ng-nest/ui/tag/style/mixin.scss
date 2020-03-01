@@ -1,0 +1,77 @@
+// Tag
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: $--x-font-size-sm;
+  border-radius: 0.125rem;
+  height: 1.625rem;
+  line-height: 1.625rem;
+  padding: 0 0.65rem;
+  border: 0.0625rem solid $--x-border;
+  background-color: $--x-white;
+  > .x-icon {
+    position: relative;
+    right: -0.25rem;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.0625rem;
+    font-size: $--x-font-size-sm + 0.0625rem;
+    transition: 0.3s;
+    &:hover {
+      background-color: var(--x-text-300);
+      color: var(--x-white);
+    }
+  }
+  &-dark {
+    background-color: $--x-text;
+    color: $--x-white;
+    > .x-icon:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+  @include size("large", 2.175rem, 1rem);
+  @include size("medium", 1.875rem, 0.8rem);
+  @include size("small", 1.5rem, 0.3rem);
+  @include size("mini", 1.375rem, 0.25rem);
+
+  @include type("primary", $--x-primary, $--x-primary-600, $--x-primary-900);
+  @include type("success", $--x-success, $--x-success-600, $--x-success-900);
+  @include type("warning", $--x-warning, $--x-warning-600, $--x-warning-900);
+  @include type("danger", $--x-danger, $--x-danger-600, $--x-danger-900);
+  @include type("info", $--x-info, $--x-info-600, $--x-info-900);
+}
+
+@mixin type($type, $color, $border-color, $background-color) {
+  &-#{$type} {
+    border-color: $border-color;
+    color: $color;
+    background-color: $background-color;
+    > .x-icon:hover {
+      background-color: $color;
+    }
+    &.#{$--x-tag-prefix}-dark {
+      border-color: $color;
+      color: $--x-white;
+      background-color: $color;
+      > .x-icon:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+@mixin size($size, $height, $padding) {
+  &-#{$size} {
+    height: $height;
+    line-height: $height;
+    padding: 0 $padding;
+    > .x-icon {
+      right: -$padding/2;
+    }
+  }
+}
