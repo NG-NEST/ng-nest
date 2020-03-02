@@ -1,6 +1,6 @@
 import { XColorPickerPortalComponent } from "./color-picker-portal.component";
 import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { Subscription, Observable, Subject } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import {
   Component,
   OnInit,
@@ -9,30 +9,26 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  Inject,
-  Output,
-  EventEmitter
+  Inject
 } from "@angular/core";
-import { XColorPickerPrefix, XColorPickerInput, XColorPickerNode, XColorPickerPortal } from "./color-picker.type";
+import {
+  XColorPickerPrefix,
+  XColorPickerInput,
+  XColorPickerNode,
+  XColorPickerPortal
+} from "./color-picker.type";
 import {
   fillDefault,
   XValueAccessor,
   XControlValueAccessor,
-  XData,
-  XIsEmpty,
-  XDataConvert,
-  XIsObservable,
-  XToDataConvert,
-  removeNgTag
+  XIsEmpty
 } from "@ng-nest/ui/core";
 import { XInputComponent } from "@ng-nest/ui/input";
 import { DOCUMENT } from "@angular/common";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "x-color-picker",
@@ -42,7 +38,8 @@ import { map } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XColorPickerComponent)]
 })
-export class XColorPickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
+export class XColorPickerComponent extends XControlValueAccessor
+  implements OnInit, OnChanges {
   @ViewChild("colorPicker", { static: true }) colorPicker: ElementRef;
   @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
 
@@ -90,7 +87,12 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
 
   ngOnInit() {
     fillDefault(this, this._default);
-    this.setFlex(this.colorPicker.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.colorPicker.nativeElement,
+      this.justify,
+      this.align,
+      this.direction
+    );
     // removeNgTag(this.elementRef.nativeElement);
   }
 
@@ -170,7 +172,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     return false;
   }
 
-  showPortal(event: Event) {
+  showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
     this.portal = this.portalService.create({
@@ -203,7 +205,9 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
 
   setPositionStrategy() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
+    this.protalTobottom =
+      this.doc.documentElement.clientHeight - this.box.top - this.box.height >
+      this.protalHeight;
     return this.portalService.setPositionStrategy(
       this.inputCom.input,
       this.protalTobottom ? "bottom-start" : "top-start"
@@ -214,7 +218,9 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     if (!this.inputCom.input) return;
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     if (this.box && this.nodes.length > 0) {
-      this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
+      this.protalHeight =
+        this.box.height *
+        (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     }
     this.protalHeight = 300;
     if (this.portalAttached()) {

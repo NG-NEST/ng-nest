@@ -1,4 +1,4 @@
 ---
 order: 3
-label: "尺寸"
+label: "图标"
 ---

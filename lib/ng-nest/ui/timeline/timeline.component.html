@@ -1,0 +1,24 @@
+<div #timeline class="x-timeline" [ngClass]="classMap">
+  <ul>
+    <li *ngFor="let node of nodes">
+      <div class="x-timeline-tail"></div>
+      <div
+        class="x-timeline-icon {{
+          node.type ? 'x-timeline-' + node.type : ''
+        }} {{ node.size ? 'x-timeline-' + node.size : '' }}"
+        [style.background-color]="node.color"
+      >
+        <x-icon *ngIf="node.icon" [type]="node.icon"></x-icon>
+      </div>
+      <div class="x-timeline-wrapper">
+        <ng-container *xOutlet="wrapper; context: { $node: node }">
+          <div class="x-timeline-label">
+            <x-link *ngIf="node.label" [label]="node.label"></x-link>
+            <span class="x-timeline-time">{{ node.time | xTimeAgo }}</span>
+          </div>
+          <div class="x-timeline-content">{{ node.content }}</div>
+        </ng-container>
+      </div>
+    </li>
+  </ul>
+</div>

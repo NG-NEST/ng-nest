@@ -1,8 +1,20 @@
 ---
-label: "Timeline 时间轴 [待]"
+label: "Timeline 时间线"
 category: "Data"
 ---
 
-# Timeline 时间轴
+# Timeline 时间线
 
-垂直展示的时间流信息。
+可视化地呈现时间流信息。
+
+## 示例代码
+
+{{ __examples }}
+
+## API
+
+{{ __api }}
+
+## 样式参数
+
+{{ __pattern }}

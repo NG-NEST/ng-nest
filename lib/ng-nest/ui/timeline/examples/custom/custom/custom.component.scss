@@ -1,0 +1,13 @@
+:host {
+  .custom-wrapper > span {
+    color: var(--x-text-400);
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+  .custom-wrapper h4 {
+    margin: 0;
+  }
+  .custom-wrapper p {
+    margin: 0;
+  }
+}

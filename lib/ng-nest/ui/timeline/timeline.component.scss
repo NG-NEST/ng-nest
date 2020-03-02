@@ -1,0 +1,10 @@
+// Timeline
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-timeline-prefix} {
+  @include reset-component();
+  @include timeline();
+}

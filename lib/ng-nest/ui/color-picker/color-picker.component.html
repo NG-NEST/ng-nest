@@ -7,7 +7,7 @@
   [class.x-required-show]="getRequired"
 >
   <label *ngIf="label">{{ label }}</label>
-  <div class="x-color-picker-row" (click)="showPortal($event)" (mouseenter)="menter()" (mouseleave)="mleave()">
+  <div class="x-color-picker-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
     <div class="x-color-picker-value" *ngIf="value">
       <div [style.background-color]="value"></div>
     </div>

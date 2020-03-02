@@ -2,4 +2,7 @@
   .row:not(:first-child) {
     margin-top: 1rem;
   }
+  .row x-tag:not(:first-child) {
+    margin-left: 0.5rem;
+  }
 }

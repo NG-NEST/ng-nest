@@ -1,0 +1,83 @@
+// Timeline
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin timeline {
+  display: block;
+  > ul {
+    padding-left: $--x-timeline-icon-width/2 - $--x-timeline-line-width/2;
+    > li {
+      padding-bottom: 1rem;
+      position: relative;
+      &:last-child {
+        .#{$--x-timeline-prefix}-tail {
+          border-left-color: transparent;
+        }
+      }
+    }
+  }
+  &-tail {
+    position: absolute;
+    height: 100%;
+    border-left: $--x-timeline-line-width solid $--x-border;
+  }
+  &-icon {
+    position: absolute;
+    background-color: $--x-border;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $--x-white;
+    width: $--x-timeline-icon-width;
+    height: $--x-timeline-icon-width;
+    border: 0.0625rem solid $--x-white;
+    left: $--x-timeline-line-width/2 - $--x-timeline-icon-width/2;
+  }
+  &-wrapper {
+    position: relative;
+    padding-left: 1rem + $--x-timeline-icon-width/2 - $--x-timeline-line-width/2;
+  }
+  &-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.125rem;
+    > x-link {
+      margin-right: 0.325rem;
+    }
+  }
+  &-content {
+    color: $--x-text-500;
+  }
+  &-time {
+    font-size: 0.75rem;
+    color: $--x-text-400;
+  }
+  @include type("primary", $--x-primary);
+  @include type("success", $--x-success);
+  @include type("warning", $--x-warning);
+  @include type("danger", $--x-danger);
+  @include type("info", $--x-info);
+
+  @include size("large", 2.175rem);
+  @include size("medium", 1.875rem);
+  @include size("small", 1.5rem);
+  @include size("mini", 1.375rem);
+}
+
+@mixin type($type, $background-color) {
+  &-#{$type} {
+    background-color: $background-color;
+  }
+}
+
+@mixin size($size, $width) {
+  &-#{$size} {
+    width: $width;
+    height: $width;
+    left: $--x-timeline-line-width/2 - $width/2;
+    font-size: $width - 0.625rem;
+  }
+}

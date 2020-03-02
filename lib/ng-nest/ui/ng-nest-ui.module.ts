@@ -29,6 +29,9 @@ import { XPopoverModule } from "@ng-nest/ui/popover";
 import { XPopconfirmModule } from "@ng-nest/ui/popconfirm";
 import { XProgressModule } from "@ng-nest/ui/progress";
 import { XStatisticModule } from "@ng-nest/ui/statistic";
+import { XTableModule } from "@ng-nest/ui/table";
+import { XTagModule } from "@ng-nest/ui/tag";
+import { XTimelineModule } from "@ng-nest/ui/timeline";
 
 import { XRadioModule } from "@ng-nest/ui/radio";
 import { XCheckboxModule } from "@ng-nest/ui/checkbox";
@@ -49,7 +52,6 @@ import { XTooltipModule } from "@ng-nest/ui/tooltip";
 import { XButtonModule } from "@ng-nest/ui/button";
 import { XAnchorModule } from "@ng-nest/ui/anchor";
 import { XTabsModule } from "@ng-nest/ui/tabs";
-import { XTableModule } from "@ng-nest/ui/table";
 import { XPaginationModule } from "@ng-nest/ui/pagination";
 
 import { XDocModule } from "@ng-nest/ui/doc";
@@ -88,6 +90,9 @@ export * from "@ng-nest/ui/popover";
 export * from "@ng-nest/ui/popconfirm";
 export * from "@ng-nest/ui/progress";
 export * from "@ng-nest/ui/statistic";
+export * from "@ng-nest/ui/table";
+export * from "@ng-nest/ui/tag";
+export * from "@ng-nest/ui/timeline";
 
 export * from "@ng-nest/ui/radio";
 export * from "@ng-nest/ui/checkbox";
@@ -108,7 +113,6 @@ export * from "@ng-nest/ui/tooltip";
 export * from "@ng-nest/ui/button";
 export * from "@ng-nest/ui/anchor";
 export * from "@ng-nest/ui/tabs";
-export * from "@ng-nest/ui/table";
 export * from "@ng-nest/ui/pagination";
 
 export * from "@ng-nest/ui/doc";
@@ -147,6 +151,9 @@ export * from "@ng-nest/ui/form";
     XPopconfirmModule,
     XProgressModule,
     XStatisticModule,
+    XTableModule,
+    XTagModule,
+    XTimelineModule,
 
     XRadioModule,
     XCheckboxModule,
@@ -168,7 +175,6 @@ export * from "@ng-nest/ui/form";
     XButtonModule,
     XAnchorModule,
     XTabsModule,
-    XTableModule,
     XPaginationModule,
     XDocModule,
     XExamplesModule,

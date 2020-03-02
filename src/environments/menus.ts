@@ -231,7 +231,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "tag",
     "router": "./docs/ui/components/tag",
-    "label": "Tag 标签 [待]",
+    "label": "Tag 标签",
     "category": "Data"
   },
   {
@@ -263,7 +263,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "timeline",
     "router": "./docs/ui/components/timeline",
-    "label": "Timeline 时间轴 [待]",
+    "label": "Timeline 时间线",
     "category": "Data"
   },
   {
@@ -352,6 +352,14 @@ export const menus: Menu[] = [
     "name": "spin",
     "router": "./docs/ui/components/spin",
     "label": "Skeleton 骨架屏 [待]",
+    "category": "Feedback"
+  },
+  {
+    "id": "3-0-77",
+    "parentId": "3-0",
+    "name": "tooltip",
+    "router": "./docs/ui/components/tooltip",
+    "label": "Tooltip 文字提示",
     "category": "Feedback"
   },
   {
@@ -568,14 +576,6 @@ export const menus: Menu[] = [
     "name": "divider",
     "router": "./docs/ui/components/divider",
     "label": "Divider 分割线 [待]",
-    "category": "Others"
-  },
-  {
-    "id": "3-0-77",
-    "parentId": "3-0",
-    "name": "tooltip",
-    "router": "./docs/ui/components/tooltip",
-    "label": "Tooltip 文字提示",
     "category": "Others"
   },
   {

@@ -36,10 +36,10 @@
   }
   &-value {
     position: absolute;
-    top: 0.4rem;
-    left: 0.4rem;
+    top: 0.325rem;
+    left: 0.325rem;
     width: calc(100% - 2rem);
-    height: 1.075rem;
+    height: 0.975rem;
     background-image: $--x-color-picker-transparent;
     cursor: pointer;
     > div {
@@ -168,7 +168,9 @@
           background-color: transparent;
         }
       }
-      > .x-slider-select-drags > .x-slider-select-drag > .x-slider-select-button {
+      > .x-slider-select-drags
+        > .x-slider-select-drag
+        > .x-slider-select-button {
         border-color: $--x-border;
         box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
       }
@@ -179,7 +181,16 @@
     width: 100%;
     .x-slider-select > .x-slider-select-inner {
       > .x-slider-select-rail {
-        background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+        background: linear-gradient(
+          90deg,
+          red 0,
+          #ff0 17%,
+          #0f0 33%,
+          #0ff 50%,
+          #00f 67%,
+          #f0f 83%,
+          red
+        );
       }
     }
   }
