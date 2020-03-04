@@ -26,8 +26,8 @@
     }
     &-animated {
       > .x-tab-content {
-        transition: transform $animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1), height 0s,
-          opacity $animation-duration-slow;
+        transition: transform $--x-animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1), height 0s,
+          opacity $--x-animation-duration-slow;
         &.x-tab-content-unactivated {
           display: inherit;
         }

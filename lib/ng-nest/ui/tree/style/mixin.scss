@@ -1,0 +1,40 @@
+// Tree
+
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./param";
+
+@mixin tree {
+}
+
+@mixin tree-node {
+  &-content {
+    display: flex;
+    align-items: center;
+    height: 1.625rem;
+    cursor: pointer;
+    transition: $--x-animation-duration-fast;
+    x-icon {
+      padding: 0.125rem;
+      color: $--x-text-400;
+      font-size: 1rem;
+      transition: $--x-animation-duration-fast;
+      &.is-leaf {
+        visibility: hidden;
+      }
+      &.is-open {
+        transform: rotate(90deg);
+      }
+      &:hover {
+        color: $--x-text-500;
+      }
+    }
+    x-checkbox {
+      margin-right: 0.325rem;
+    }
+    &:hover,
+    &.x-activated {
+      background-color: $--x-background;
+    }
+  }
+}

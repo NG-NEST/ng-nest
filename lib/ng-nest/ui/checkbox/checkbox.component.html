@@ -24,6 +24,6 @@
     (click)="checkboxClick($event, item)"
   >
     <span class="x-checkbox-box"></span>
-    <span class="x-checkbox-label">{{ item.label }}</span>
+    <span class="x-checkbox-label" *ngIf="item.label">{{ item.label }}</span>
   </div>
 </ng-template>

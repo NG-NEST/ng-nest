@@ -24,7 +24,7 @@ $--x-color-picker-background-color: #ffffff;
 $--x-color-picker-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-color-picker-border-radius: $border-radius;
+$--x-color-picker-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-color-picker-disabled-color: $--x-text-300;

@@ -6,40 +6,36 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
   ViewChild,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  Input
 } from "@angular/core";
-import { XTimelinePrefix, XTimelineNode } from "./timeline.type";
+import { XTreePrefix, XTreeNode } from "./tree.type";
 import {
-  XSize,
   XDataConvert,
   XData,
   XIsObservable,
   XToDataConvert,
-  XType,
-  XClassMap,
-  XTemplate
+  XIsEmpty,
+  XInputBoolean
 } from "@ng-nest/ui/core";
 import { Subscription, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Component({
-  selector: `${XTimelinePrefix}`,
-  templateUrl: "./timeline.component.html",
-  styleUrls: ["./timeline.component.scss"],
+  selector: `${XTreePrefix}`,
+  templateUrl: "./tree.component.html",
+  styleUrls: ["./tree.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTimelineComponent implements OnInit, OnChanges {
-  @Input() @XDataConvert() data: XData<XTimelineNode>;
-  @Input() type?: XType;
-  @Input() size?: XSize;
-  @Input() wrapper?: XTemplate;
-  @ViewChild("timeline", { static: true }) timeline: ElementRef;
-  nodes: XTimelineNode[] = [];
-  classMap: XClassMap = {};
+export class XTreeComponent implements OnInit, OnChanges {
+  @Input() @XDataConvert() data?: XData<XTreeNode[]>;
+  @Input() @XInputBoolean() checkbox?: boolean;
+  @ViewChild("tree", { static: true }) tree: ElementRef;
+  nodes: XTreeNode[] = [];
+  activatedNode: XTreeNode;
   private data$: Subscription | null = null;
   constructor(
     public renderer: Renderer2,
@@ -70,12 +66,20 @@ export class XTimelineComponent implements OnInit, OnChanges {
           this.setDataChange(x);
         });
     } else {
-      this.setDataChange(this.data as XTimelineNode[]);
+      this.setDataChange(this.data as XTreeNode[]);
     }
   }
 
-  private setDataChange(value: XTimelineNode[]) {
-    this.nodes = value;
-    this.cdr.detectChanges();
+  private setDataChange(value: XTreeNode[]) {
+    let getChildren = (node: XTreeNode, level: number) => {
+      node.level = level;
+      node.children = value.filter(y => y.parentValue === node.value);
+      node.hasChild = node.children.length > 0;
+      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
+      return node;
+    };
+    this.nodes = value
+      .filter(x => XIsEmpty(x.parentValue))
+      .map(x => getChildren(x, 0));
   }
 }

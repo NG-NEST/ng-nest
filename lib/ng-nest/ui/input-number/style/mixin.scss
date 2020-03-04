@@ -31,7 +31,7 @@
       background-color: $--x-input-number-background-color;
       background-image: none;
       border: $--x-input-number-border;
-      transition: all $animation-duration-slow;
+      transition: all $--x-animation-duration-slow;
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         appearance: none;

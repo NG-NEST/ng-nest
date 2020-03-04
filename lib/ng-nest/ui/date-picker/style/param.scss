@@ -24,7 +24,7 @@ $--x-date-picker-background-color: #ffffff;
 $--x-date-picker-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-date-picker-border-radius: $border-radius;
+$--x-date-picker-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-date-picker-disabled-color: $--x-text-300;

@@ -30,7 +30,7 @@ $--x-slider-select-background-color: #ffffff;
 $--x-slider-select-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-slider-select-border-radius: $border-radius;
+$--x-slider-select-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-slider-select-disabled-color: $--x-text-300;

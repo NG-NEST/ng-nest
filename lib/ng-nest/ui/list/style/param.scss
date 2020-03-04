@@ -24,7 +24,7 @@ $--x-list-background-color: #ffffff;
 $--x-list-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-list-border-radius: $border-radius;
+$--x-list-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-list-disabled-color: $--x-text-300;

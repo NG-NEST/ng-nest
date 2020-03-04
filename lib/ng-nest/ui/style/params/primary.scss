@@ -128,16 +128,14 @@ $--x-padding-xs: 0.4rem;
 $--x-padding-ss: 0.275rem;
 
 // Border
-$border-color: $--x-border;
 $--x-border-style: solid;
-$border-width: 1px;
-$border-radius: 0.125rem;
+$--x-border-radius: 0.125rem;
 $--x-border-width: 0.0625rem;
 
 // Animation
-$animation-duration-slow: 0.6s;
-$animation-duration-base: 0.4s;
-$animation-duration-fast: 0.2s;
+$--x-animation-duration-slow: 0.6s;
+$--x-animation-duration-base: 0.4s;
+$--x-animation-duration-fast: 0.2s;
 
 // Controls
 $control-padding-horizontal: $--x-padding-xs;

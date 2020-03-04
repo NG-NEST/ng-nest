@@ -24,7 +24,7 @@ $--x-input-background-color: #ffffff;
 $--x-input-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-input-border-radius: $border-radius;
+$--x-input-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-input-disabled-color: $--x-text-300;

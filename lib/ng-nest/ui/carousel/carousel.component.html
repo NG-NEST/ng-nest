@@ -9,7 +9,7 @@
   <ul class="x-carousel-indicator" [class.x-carousel-indicator-outside]="outside || card">
     <li
       *ngFor="let panel of panelChanges; let i = index"
-      [class.x-active]="i === active"
+      [class.x-activated]="i === active"
       (click)="action(i, 'click')"
       (mouseenter)="action(i, 'hover')"
     >

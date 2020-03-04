@@ -24,7 +24,7 @@ $--x-time-picker-background-color: #ffffff;
 $--x-time-picker-border: $--x-border-width $--x-border-style $--x-border;
 
 /* 边框圆角 */
-$--x-time-picker-border-radius: $border-radius;
+$--x-time-picker-border-radius: $--x-border-radius;
 
 /* 禁用颜色 */
 $--x-time-picker-disabled-color: $--x-text-300;

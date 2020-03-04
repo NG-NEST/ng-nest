@@ -1,0 +1,32 @@
+<div
+  class="x-tree-node-content"
+  [class.x-activated]="tree.activatedNode?.value === node.value"
+  [style.padding-left.rem]="node.level * 0.875"
+  (click)="onActivate($event, node)"
+>
+  <x-icon
+    [class.is-leaf]="!node.hasChild"
+    [class.is-open]="node.open"
+    type="fto-chevron-right"
+    (click)="onToggle($event, node)"
+  ></x-icon>
+  <x-checkbox
+    *ngIf="tree.checkbox"
+    [data]="[{ label: '', value: node.value }]"
+    [(ngModel)]="node.checked"
+    (ngModelChange)="onCheckboxChange()"
+    [indeterminate]="node.indeterminate"
+  ></x-checkbox>
+  <span>{{ node.label }}</span>
+</div>
+<ul
+  *ngIf="node.childrenLoaded || (node.hasChild && node.open)"
+  [hidden]="!node.open"
+>
+  <li
+    x-tree-node
+    *ngFor="let child of node.children"
+    [node]="child"
+    [parent]="this"
+  ></li>
+</ul>

@@ -5,7 +5,8 @@
 @import "./param";
 
 @mixin checkbox {
-  color: var(--x-text);
+  display: inline-flex;
+  align-items: center;
   &-item {
     position: relative;
     display: inline-flex;
@@ -31,8 +32,8 @@
         &::after {
           top: 50%;
           left: 50%;
-          width: 0.45rem;
-          height: 0.45rem;
+          width: 0.5rem;
+          height: 0.5rem;
           background-color: var(--x-primary);
           border: 0;
           transform: translate(-50%, -50%) scale(1);
@@ -66,8 +67,8 @@
   }
   &-box {
     border: $--x-border-width solid var(--x-border);
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 0.0625rem;
     background-color: var(--x-white);
     position: relative;

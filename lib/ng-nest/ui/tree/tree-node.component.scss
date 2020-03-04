@@ -1,0 +1,10 @@
+// Tree
+
+@import "../style/themes/default";
+@import "../style/mixins/index";
+@import "./style/mixin";
+
+.#{$--x-tree-node-prefix} {
+  @include reset-component();
+  @include tree-node();
+}

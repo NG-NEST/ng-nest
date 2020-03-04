@@ -1,5 +1,5 @@
 ---
-label: "Tree 树形控件 [待]"
+label: "Tree 树形控件"
 category: "Data"
 ---
 

@@ -31,7 +31,7 @@
       background-image: none;
       border: $--x-input-border;
       border-radius: $--x-input-border-radius;
-      transition: all $animation-duration-slow;
+      transition: all $--x-animation-duration-slow;
       @include placeholder();
       &:hover {
         @include hover();
@@ -46,7 +46,7 @@
     }
     > #{$--x-prefix}-icon {
       color: $--x-text-400;
-      transition: all $animation-duration-fast;
+      transition: all $--x-animation-duration-fast;
     }
   }
   &.x-required {

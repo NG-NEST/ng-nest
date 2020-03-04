@@ -17,15 +17,15 @@
   color: $--x-button-text;
   cursor: pointer;
   user-select: none;
-  transition: background-color $animation-duration-fast, color $animation-duration-fast,
-    border-color $animation-duration-fast;
+  transition: background-color $--x-animation-duration-fast, color $--x-animation-duration-fast,
+    border-color $--x-animation-duration-fast;
   &-inner {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     white-space: nowrap;
-    transition: transform $animation-duration-fast;
+    transition: transform $--x-animation-duration-fast;
     @include flex-direction();
     > .x-icon {
       font-size: 0.925rem;

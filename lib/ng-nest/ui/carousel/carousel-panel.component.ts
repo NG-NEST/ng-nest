@@ -48,7 +48,7 @@ export class XCarouselPanelComponent implements OnInit {
     const isActive: boolean = this.carousel.active === this.index;
     if (this.active !== isActive) {
       this.active = isActive;
-      this.setClass("x-active", this.active);
+      this.setClass("x-activated", this.active);
     }
   }
 
