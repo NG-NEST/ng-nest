@@ -14,7 +14,7 @@ import { XCarouselPanelPrefix } from './carousel.type';
 import { XInputBoolean, dropAnimation } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
@@ -36,6 +36,7 @@ export class XCarouselPanelComponent implements OnInit {
   inStage = false;
   updateSub = new BehaviorSubject(false);
   updateSub$: Subscription;
+
   constructor(
     @Optional() @Host() public carousel: XCarouselComponent,
     public renderer: Renderer2,
@@ -43,6 +44,25 @@ export class XCarouselPanelComponent implements OnInit {
     public sanitizer: DomSanitizer,
     public cdr: ChangeDetectorRef
   ) {}
+
+  ngOnInit() {
+    this.carousel.start++;
+    this.index = this.carousel.start;
+    this.setClass('x-carousel-card', this.carousel.card);
+    this.carousel.panelChanges.push(this.updateSub);
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.updateSub.subscribe(x => {
+        if (x) this.update();
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.updateSub$ && this.updateSub$.unsubscribe();
+  }
 
   setActive() {
     const isActive: boolean = this.carousel.active === this.index;
@@ -125,24 +145,5 @@ export class XCarouselPanelComponent implements OnInit {
   setClass(cls: string, value: boolean) {
     if (value) this.renderer.addClass(this.elementRef.nativeElement, cls);
     else this.renderer.removeClass(this.elementRef.nativeElement, cls);
-  }
-
-  ngOnInit() {
-    this.carousel.start++;
-    this.index = this.carousel.start;
-    this.setClass('x-carousel-card', this.carousel.card);
-    this.carousel.panelChanges.push(this.updateSub);
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.updateSub.subscribe(x => {
-        if (x) this.update();
-      });
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.updateSub$ && this.updateSub$.unsubscribe();
   }
 }

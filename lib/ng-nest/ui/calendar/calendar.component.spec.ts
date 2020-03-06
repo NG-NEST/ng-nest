@@ -65,12 +65,12 @@ class TestXCalendarComponent {
     while (true) {
       let rd = Math.floor(Math.random() * (last - first + 1)) + first;
       dt[this.pipeDate.transform(rd, 'yyyy-MM-dd')] = [
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容1，处理内容1' },
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容2，处理内容2' },
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容3，处理内容3' },
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容4，处理内容4' },
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容5，处理内容5' },
-        { label: this.pipeDate.transform(rd, 'HH:mm '), value: '处理内容6，处理内容6' }
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容1，处理内容1' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容2，处理内容2' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容3，处理内容3' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容4，处理内容4' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容5，处理内容5' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容6，处理内容6' }
       ];
       i++;
       if (i === 10) break;

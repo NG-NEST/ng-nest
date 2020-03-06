@@ -83,12 +83,6 @@ export class XIconComponent implements OnInit, OnChanges {
     }
   }
 
-  ngAfterViewInit() {
-    // this.renderer.listen(window, "scroll", x => {
-    // this.getSvg();
-    // });
-  }
-
   getSvg() {
     if (this._loaded) return;
     let height = this.document.documentElement.clientHeight;

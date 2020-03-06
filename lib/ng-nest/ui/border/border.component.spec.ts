@@ -46,12 +46,12 @@ describe(XBorderPrefix, () => {
             </tr>
             <tr>
               <td>实线</td>
-              <td>0.125rem</td>
+              <td>0.0625rem</td>
               <td><div class="solid"></div></td>
             </tr>
             <tr>
               <td>虚线</td>
-              <td>0.125rem</td>
+              <td>0.0625rem</td>
               <td><div class="dashed"></div></td>
             </tr>
           </table>
@@ -112,10 +112,10 @@ describe(XBorderPrefix, () => {
         height: 0;
       }
       div.solid {
-        border-top: 1px solid var(--x-border);
+        border-top: 0.0625rem solid var(--x-border);
       }
       div.dashed {
-        border-top: 1px dashed var(--x-border);
+        border-top: 0.0625rem dashed var(--x-border);
       }
       div.box span {
         display: block;
@@ -126,7 +126,7 @@ describe(XBorderPrefix, () => {
         font-size: 0.825rem;
       }
       div.box > div {
-        border: 1px solid var(--x-border);
+        border: 0.0625rem solid var(--x-border);
         height: 3.25rem;
         margin-top: 1rem;
       }

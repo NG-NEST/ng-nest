@@ -10,10 +10,6 @@ export const XLinkPrefix = 'x-link';
  */
 export interface XLinkInput {
   /**
-   * 标题
-   */
-  label?: string;
-  /**
    * 链接
    */
   href?: string;

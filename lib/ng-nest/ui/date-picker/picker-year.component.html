@@ -1,11 +1,13 @@
 <div class="x-picker-year">
   <table class="x-picker-year-table" cellspacing="0" cellpadding="0">
     <tr *ngFor="let years of dates">
-      <td *ngFor="let year of years">
+      <td
+        *ngFor="let year of years"
+        [class.x-date-last-or-next]="(year | date: 'yyyy') < start + '' || (year | date: 'yyyy') > end + ''"
+        [class.x-date-now]="(year | date: 'yyyy') === (now | date: 'yyyy')"
+      >
         <x-button
           type="text"
-          [class.x-button-date-last-or-next]="(year | date: 'yyyy') < start + '' || (year | date: 'yyyy') > end + ''"
-          [class.x-button-date-now]="(year | date: 'yyyy') === (now | date: 'yyyy')"
           [activated]="(year | date: 'yyyy') === (model | date: 'yyyy')"
           (click)="yearClick(year)"
           >{{ year | date: 'yyyy' }}</x-button

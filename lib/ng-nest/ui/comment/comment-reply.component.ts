@@ -28,6 +28,7 @@ export class XCommentReplyComponent implements OnInit, OnChanges {
   @Output() sureClick = new EventEmitter();
   @ViewChild('commentReply', { static: true }) commentReply: ElementRef;
   inputValue: string;
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}

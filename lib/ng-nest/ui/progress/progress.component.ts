@@ -9,20 +9,17 @@ import {
   Input,
   ViewChild,
   SimpleChanges,
-  OnChanges,
-  TemplateRef
+  OnChanges
 } from '@angular/core';
 import { XProgressPrefix, XProgressStatus } from './progress.type';
 import {
   XInputBoolean,
-  XSize,
   XInputNumber,
-  XIsNumber,
   XIsFunction,
   XIsString,
-  XIsArray,
   XIsObjectArray,
-  XIsEmpty
+  XIsEmpty,
+  XIsChange
 } from '@ng-nest/ui/core';
 
 @Component({
@@ -41,22 +38,16 @@ export class XProgressComponent implements OnInit, OnChanges {
   @Input() format?: Function;
   @Input() color?: string | { color: string; percent: number }[] | Function;
   @ViewChild('progress', { static: true }) progress: ElementRef;
-  classMap = {};
   currentColor: string;
+  classMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
-  ngOnChanges(simple: SimpleChanges) {
-    let statusChange = simple.status;
-    if (statusChange && statusChange.previousValue !== statusChange.currentValue) {
-      this.setClassMap();
-      this.cdr.markForCheck();
-    }
-    let percentChange = simple.percent;
-    if (percentChange && percentChange.previousValue !== percentChange.currentValue) {
-      this.setColor();
-    }
+  ngOnChanges(simples: SimpleChanges) {
+    XIsChange(simples.status) && this.setClassMap();
+    XIsChange(simples.percent) && this.setColor();
   }
 
   setClassMap() {

@@ -13,7 +13,7 @@
       <div class="x-timeline-wrapper">
         <ng-container *xOutlet="wrapper; context: { $node: node }">
           <div class="x-timeline-label">
-            <x-link *ngIf="node.label" [label]="node.label"></x-link>
+            <x-link *ngIf="node.label">{{ node.label }}</x-link>
             <span class="x-timeline-time">{{ node.time | xTimeAgo }}</span>
           </div>
           <div class="x-timeline-content">{{ node.content }}</div>

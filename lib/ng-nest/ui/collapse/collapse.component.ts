@@ -10,12 +10,11 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  TemplateRef,
   Output,
   EventEmitter
 } from '@angular/core';
 import { XCollapsePrefix } from './collapse.type';
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XIsArray } from '@ng-nest/ui/core';
+import { XInputBoolean, XIsArray } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
@@ -31,6 +30,7 @@ export class XCollapseComponent implements OnInit, OnChanges {
   @Output() activeChange = new EventEmitter();
   start: number = 0;
   panelChanges: Function[] = [];
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -58,11 +58,5 @@ export class XCollapseComponent implements OnInit, OnChanges {
       return;
     }
     this.activeChange.emit(this.active);
-  }
-
-  setShadow() {
-    // if (this.shadow) {
-    //   this.renderer.addClass(this.collapse.nativeElement, `${XCollapsePrefix}-${this.shadow}`);
-    // }
   }
 }

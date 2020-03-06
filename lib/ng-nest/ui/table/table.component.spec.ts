@@ -160,7 +160,7 @@ interface User extends XId {
     <ng-template #nameBodyTemp let-column="$column" let-item="$item">
       <div class="body-username">
         <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
-        <span>{{ item[column.key] }}</span>
+        <span>{{ item[column.id] }}</span>
       </div>
     </ng-template>
   `,

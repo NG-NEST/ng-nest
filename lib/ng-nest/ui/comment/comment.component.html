@@ -6,7 +6,7 @@
       </div>
       <div class="x-comment-content">
         <div class="x-comment-author">
-          <x-link [label]="node.author"></x-link>
+          <x-link>{{ node.author }}</x-link>
           <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
         </div>
         <p>
@@ -35,9 +35,9 @@
           <li *ngFor="let child of node.children">
             <div>
               <p>
-                <x-link [label]="child.author"></x-link>
+                <x-link>{{ child.author }}</x-link>
                 <ng-container *ngIf="child.replyAuthor">
-                  <span class="x-comment-reply">回复</span> <x-link [label]="child.replyAuthor"></x-link></ng-container
+                  <span class="x-comment-reply">回复</span> <x-link>{{ child.replyAuthor }}</x-link></ng-container
                 >：
                 <span>
                   <x-text-retract [label]="child.content"></x-text-retract>
@@ -66,13 +66,7 @@
             </div>
           </li>
           <li class="x-comment-more" *ngIf="node.count > node.children?.length">
-            <x-link
-              label="查看更多评论"
-              icon="fto-chevron-right"
-              type="primary"
-              (click)="moreOnClick(node)"
-              iconRight
-            ></x-link>
+            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>查看更多评论</x-link>
           </li>
         </ul>
       </div>

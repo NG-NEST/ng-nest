@@ -12,7 +12,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XBadgePrefix, XBadgeType } from './badge.type';
-import { XInputBoolean, XSize, XInputNumber, XIsNumber } from '@ng-nest/ui/core';
+import { XInputBoolean, XInputNumber, XIsNumber, XIsChange, XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -28,27 +28,28 @@ export class XBadgeComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() dot?: boolean;
   @ViewChild('badge', { static: true }) badge: ElementRef;
   displayValue;
+  classMap: XClassMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.setType();
+    this.setClassMap();
   }
 
-  ngOnChanges(simple: SimpleChanges) {
-    let value = simple.value;
-    if (value && value.currentValue !== value.previousValue) {
-      let toNumber = Number(this.value);
-      if (XIsNumber(toNumber) && this.max && toNumber > this.max) {
-        this.displayValue = `${this.max}+`;
-      } else {
-        this.displayValue = `${this.value}`;
-      }
-    }
+  ngOnChanges(simples: SimpleChanges) {
+    XIsChange(simples.value) && this.setDisplayValue();
   }
 
-  setType() {
-    if (this.type) {
-      this.renderer.addClass(this.badge.nativeElement, `${XBadgePrefix}-${this.type}`);
+  setClassMap() {
+    this.classMap[`${XBadgePrefix}-${this.type}`] = this.type ? true : false;
+  }
+
+  setDisplayValue() {
+    let toNumber = Number(this.value);
+    if (XIsNumber(toNumber) && this.max && toNumber > this.max) {
+      this.displayValue = `${this.max}+`;
+    } else {
+      this.displayValue = `${this.value}`;
     }
   }
 }

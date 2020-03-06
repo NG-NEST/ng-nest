@@ -97,7 +97,7 @@
       *ngFor="let action of actions"
       [icon]="action.icon"
       [type]="action.type"
-      [title]="action.title"
+      [title]="action.title ? action.title : action.label ? action.label : ''"
       [activated]="action.activated"
       (click)="actionEmit(action, $event)"
       >{{ action.label }}</x-button

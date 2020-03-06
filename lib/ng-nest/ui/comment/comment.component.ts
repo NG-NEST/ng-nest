@@ -10,21 +10,18 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  TemplateRef,
   Output,
   EventEmitter
 } from '@angular/core';
 import { XCommentPrefix, XCommentNode } from './comment.type';
 import {
-  XInputBoolean,
-  XSize,
   XInputNumber,
-  XIsNumber,
   XDataConvert,
   XData,
   XIsObservable,
   XToDataConvert,
-  XIsEmpty
+  XIsEmpty,
+  XIsChange
 } from '@ng-nest/ui/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -47,15 +44,13 @@ export class XCommentComponent implements OnInit, OnChanges {
   @ViewChild('comment', { static: true }) comment: ElementRef;
   nodes: XCommentNode[] = [];
   private data$: Subscription | null = null;
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   likeOnClick(node: XCommentNode) {

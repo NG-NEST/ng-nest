@@ -1,4 +1,15 @@
-<div #button class="x-button" [ngClass]="classMap" [title]="title">
+<div
+  #button
+  class="x-button"
+  [ngClass]="classMap"
+  [class.x-button-only-icon]="onlyIcon"
+  [class.x-button-activated]="activated"
+  [class.x-button-disabled]="disabled"
+  [class.x-button-round]="round"
+  [class.x-button-circle]="circle"
+  [class.x-button-icon]="icon && !content.innerHTML.trim()"
+  [title]="title"
+>
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <span #content><ng-content></ng-content></span>

@@ -7,7 +7,6 @@ import {
   ElementRef,
   Input,
   ChangeDetectorRef,
-  HostBinding,
   OnChanges,
   SimpleChanges,
   ViewChild
@@ -21,8 +20,7 @@ import {
   XInputBoolean,
   XDataConvert,
   XIsObservable,
-  XToDataConvert,
-  removeNgTag
+  XToDataConvert
 } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 

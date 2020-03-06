@@ -34,28 +34,28 @@ describe(XLinkPrefix, () => {
   template: `
     <x-row>
       <x-col span="24">
-        <x-link href="http://www.ng-nest.com" target="_blank" label="默认链接"></x-link>
-        <x-link type="primary" label="主要链接"></x-link>
-        <x-link type="success" label="成功链接"></x-link>
-        <x-link type="warning" label="警告链接"></x-link>
-        <x-link type="danger" label="危险链接"></x-link>
-        <x-link type="info" label="信息链接"></x-link>
+        <x-link href="http://www.ng-nest.com" target="_blank">默认链接</x-link>
+        <x-link type="primary">主要链接</x-link>
+        <x-link type="success">成功链接</x-link>
+        <x-link type="warning">警告链接</x-link>
+        <x-link type="danger">危险链接</x-link>
+        <x-link type="info">信息链接</x-link>
       </x-col>
       <x-col span="24">
-        <x-link disabled label="默认链接"></x-link>
-        <x-link type="primary" label="主要链接" disabled></x-link>
-        <x-link type="success" label="成功链接" disabled></x-link>
-        <x-link type="warning" label="警告链接" disabled></x-link>
-        <x-link type="danger" label="危险链接" disabled></x-link>
-        <x-link type="info" label="信息链接" disabled></x-link>
+        <x-link href="http://www.ng-nest.com" target="_blank" disabled>默认链接</x-link>
+        <x-link type="primary" disabled>主要链接</x-link>
+        <x-link type="success" disabled>成功链接</x-link>
+        <x-link type="warning" disabled>警告链接</x-link>
+        <x-link type="danger" disabled>危险链接</x-link>
+        <x-link type="info" disabled>信息链接</x-link>
       </x-col>
       <x-col span="24">
-        <x-link underline label="有下划线"></x-link>
-        <x-link label="无下划线"></x-link>
+        <x-link underline>有下划线</x-link>
+        <x-link>无下划线</x-link>
       </x-col>
       <x-col span="24">
-        <x-link label="后退" icon="fto-chevron-left" underline></x-link>
-        <x-link label="前进" icon="fto-chevron-right" underline iconRight></x-link>
+        <x-link icon="fto-chevron-left" underline>后退</x-link>
+        <x-link icon="fto-chevron-right" underline iconRight>前进</x-link>
       </x-col>
     </x-row>
   `,

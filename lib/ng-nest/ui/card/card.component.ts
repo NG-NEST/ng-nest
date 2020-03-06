@@ -13,7 +13,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { XCardPrefix, XCardShadow } from './card.type';
-import { XInputBoolean, XSize, XInputNumber, XIsNumber } from '@ng-nest/ui/core';
+import { XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCardPrefix}`,
@@ -24,21 +24,21 @@ import { XInputBoolean, XSize, XInputNumber, XIsNumber } from '@ng-nest/ui/core'
 })
 export class XCardComponent implements OnInit, OnChanges {
   @Input() width?: string;
-  @Input() bodyStyle?: any;
+  @Input() bodyStyle?: any = {};
   @Input() header?: TemplateRef<any>;
   @Input() shadow?: XCardShadow = 'always';
   @ViewChild('card', { static: true }) card: ElementRef;
+  classMap: XClassMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.setShadow();
+    this.setClassMap();
   }
 
   ngOnChanges(simple: SimpleChanges) {}
 
-  setShadow() {
-    if (this.shadow) {
-      this.renderer.addClass(this.card.nativeElement, `${XCardPrefix}-${this.shadow}`);
-    }
+  setClassMap() {
+    this.classMap[`${XCardPrefix}-${this.shadow}`] = this.shadow ? true : false;
   }
 }

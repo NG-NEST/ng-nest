@@ -10,25 +10,30 @@
   position: relative;
   &-content {
     position: relative;
-    > .x-button {
-      border: none;
-      outline: none;
-      padding: 0;
-      margin: 0;
-      height: 2.25rem;
-      width: 2.25rem;
-      cursor: pointer;
-      transition: 0.3s ease-out;
-      border-radius: 50%;
-      background-color: rgba(31, 45, 61, 0.15);
-      color: $--x-white;
-      position: absolute;
+    > x-button {
+      opacity: 0;
+      visibility: hidden;
       top: 50%;
       z-index: 10;
       transform: translateY(-50%);
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
+      position: absolute;
+      transition: $--x-animation-duration-fast ease-out;
+      .x-button {
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        height: 2.25rem;
+        width: 2.25rem;
+        border-radius: 50%;
+        background-color: rgba(31, 45, 61, 0.15);
+        color: $--x-white;
+        text-align: center;
+        &:hover {
+          color: $--x-white;
+          background-color: rgba(31, 45, 61, 0.25);
+        }
+      }
       &.arrow-left {
         left: 1rem;
         transform: translate3D(-15px, -50%, 0);
@@ -36,10 +41,6 @@
       &.arrow-right {
         right: 1rem;
         transform: translate3D(15px, -50%, 0);
-      }
-      &:hover {
-        color: $--x-white;
-        background-color: rgba(31, 45, 61, 0.25);
       }
     }
     > x-carousel-panel {
@@ -94,7 +95,7 @@
       background-color: transparent;
       display: inline-flex;
       padding: 0.75rem 0.25rem;
-      > .x-button {
+      > x-button .x-button {
         padding: 0;
         width: 1.875rem;
         height: 0.125rem;
@@ -102,12 +103,12 @@
         transition: 0.3s;
       }
       &:hover {
-        > .x-button {
+        > x-button .x-button {
           background-color: rgba(31, 45, 61, 0.25);
         }
       }
       &.x-activated {
-        > .x-button {
+        > x-button .x-button {
           background-color: rgba(255, 255, 255, 0.9);
         }
       }
@@ -120,7 +121,7 @@
       justify-content: center;
       > li {
         &.x-activated {
-          > .x-button {
+          > x-button .x-button {
             background-color: rgba(31, 45, 61, 0.35);
           }
         }
@@ -130,7 +131,7 @@
   &:hover,
   &-arrow-always {
     .x-carousel-content {
-      > .x-button {
+      > x-button {
         opacity: 1;
         visibility: inherit;
         &.arrow-left {
@@ -156,7 +157,7 @@
       transform: translateY(-50%);
       > li {
         padding: 0.25rem 0.75rem;
-        > .x-button {
+        > x-button .x-button {
           width: 0.125rem;
           height: 1rem;
         }

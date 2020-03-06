@@ -31,13 +31,16 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
   @Output() readonly finish = new EventEmitter<void>();
   @ViewChild('countdown', { static: true }) countdown: ElementRef;
   diff: number;
-
+  period = 1000 / 30;
   private target: number;
   private updater_: Subscription | null;
-  period = 1000 / 30;
 
   constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, private platform: Platform) {
     super();
+  }
+
+  ngOnInit(): void {
+    this.syncTimer();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,10 +50,6 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
         this.syncTimer();
       }
     }
-  }
-
-  ngOnInit(): void {
-    this.syncTimer();
   }
 
   ngOnDestroy(): void {
@@ -82,10 +81,7 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
     }
   }
 
-  /**
-   * Update time that should be displayed on the screen.
-   */
-  protected updateValue(): void {
+  updateValue(): void {
     this.diff = Math.max(this.target - Date.now(), 0);
     if (this.diff === 0) {
       this.stopTimer();

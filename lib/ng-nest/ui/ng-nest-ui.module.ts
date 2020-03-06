@@ -32,6 +32,7 @@ import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { XTableModule } from '@ng-nest/ui/table';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { XTimelineModule } from '@ng-nest/ui/timeline';
+import { XTreeModule } from '@ng-nest/ui/tree';
 
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
@@ -93,6 +94,7 @@ export * from '@ng-nest/ui/statistic';
 export * from '@ng-nest/ui/table';
 export * from '@ng-nest/ui/tag';
 export * from '@ng-nest/ui/timeline';
+export * from '@ng-nest/ui/tree';
 
 export * from '@ng-nest/ui/radio';
 export * from '@ng-nest/ui/checkbox';
@@ -154,6 +156,7 @@ export * from '@ng-nest/ui/form';
     XTableModule,
     XTagModule,
     XTimelineModule,
+    XTreeModule,
 
     XRadioModule,
     XCheckboxModule,

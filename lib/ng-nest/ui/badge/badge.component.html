@@ -1,4 +1,4 @@
-<div #badge class="x-badge" [class.x-badge-dot]="dot">
+<div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot">
   <ng-content></ng-content>
   <sup>
     <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>

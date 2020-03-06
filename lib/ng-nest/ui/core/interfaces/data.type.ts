@@ -1,5 +1,5 @@
 import { Observable, BehaviorSubject, isObservable } from 'rxjs';
-import { TemplateRef, SimpleChange } from '@angular/core';
+import { TemplateRef, SimpleChange, SimpleChanges } from '@angular/core';
 
 // 数据类型
 export type XData<T> = T | BehaviorSubject<T> | Observable<T> | any;
@@ -11,8 +11,10 @@ export type XTemplate = string | number | Date | TemplateRef<any>;
 export const XIsType = (type: string) => (object: any) => Object.prototype.toString.call(object) === `[object ${type}]`;
 
 // 值改变判断
-export const XIsChange = (value: SimpleChange) => {
-  return value && value.currentValue !== value.previousValue;
+export const XIsChange = (...changes: SimpleChange[]) => {
+  for (let change of changes) {
+    if (change && change.currentValue !== change.previousValue) return true;
+  }
 };
 
 export const XIsString = XIsType('String');

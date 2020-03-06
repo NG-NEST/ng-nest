@@ -1,6 +1,7 @@
 <a
   #link
   class="x-link"
+  [ngClass]="mapClass"
   [class.x-link-disabled]="disabled"
   [class.x-link-underline]="underline && !disabled"
   [class.x-link-icon-right]="iconRight"
@@ -8,7 +9,5 @@
   [attr.target]="target"
 >
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
-  <ng-container *xOutlet="label; context: { $label: label }">
-    <span>{{ label }}</span>
-  </ng-container>
+  <span><ng-content></ng-content></span>
 </a>

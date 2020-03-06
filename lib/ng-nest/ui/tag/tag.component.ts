@@ -22,7 +22,6 @@ import { XTemplate, XType, XClassMap, XSize, XInputBoolean } from '@ng-nest/ui/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTagComponent implements OnInit {
-  @Input() label?: XTemplate;
   @Input() type?: XType;
   @Input() size?: XSize;
   @Input() @XInputBoolean() closeable?: boolean;
@@ -30,6 +29,7 @@ export class XTagComponent implements OnInit {
   @Output() close = new EventEmitter();
   @ViewChild('tag', { static: true }) tag: ElementRef;
   classMap: XClassMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -37,9 +37,9 @@ export class XTagComponent implements OnInit {
   }
 
   setClassMap() {
-    if (this.type) this.classMap[`${XTagPrefix}-${this.type}`] = true;
-    if (this.size) this.classMap[`${XTagPrefix}-${this.size}`] = true;
-    if (this.dark) this.classMap[`${XTagPrefix}-dark`] = true;
+    this.classMap[`${XTagPrefix}-${this.type}`] = this.type ? true : false;
+    this.classMap[`${XTagPrefix}-${this.size}`] = this.size ? true : false;
+    this.classMap[`${XTagPrefix}-dark`] = this.dark;
   }
 
   onClose() {

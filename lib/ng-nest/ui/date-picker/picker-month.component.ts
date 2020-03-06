@@ -14,7 +14,7 @@ import {
   ElementRef,
   TemplateRef
 } from '@angular/core';
-import { chunk } from '@ng-nest/ui/core';
+import { chunk, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-picker-month',
@@ -37,10 +37,7 @@ export class XPickerMonthComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {}
 
   ngOnChanges(simples: SimpleChanges) {
-    let displayChange = simples.display;
-    if (displayChange && displayChange.currentValue !== displayChange.previousValue) {
-      this.init();
-    }
+    XIsChange(simples.display) && this.init();
   }
 
   ngOnDestroy(): void {}
@@ -56,7 +53,6 @@ export class XPickerMonthComponent implements OnInit, OnChanges, OnDestroy {
       dates = [...dates, new Date(year, i, 1)];
     }
     this.dates = chunk(dates, 4);
-
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
     }

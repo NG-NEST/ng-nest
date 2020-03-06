@@ -1,4 +1,4 @@
-y---
+---
 label: 'Badge 标记'
 category: 'Data'
 ---

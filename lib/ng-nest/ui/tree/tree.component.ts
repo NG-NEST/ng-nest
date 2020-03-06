@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
@@ -11,7 +10,8 @@ import {
   OnChanges,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  TemplateRef
 } from '@angular/core';
 import { XTreePrefix, XTreeNode } from './tree.type';
 import {
@@ -23,8 +23,7 @@ import {
   XInputBoolean,
   XIsFunction,
   XIsUndefined,
-  XIsChange,
-  XIsNull
+  XIsChange
 } from '@ng-nest/ui/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -36,12 +35,13 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTreeComponent implements OnInit, OnChanges {
+export class XTreeComponent implements OnChanges {
   @Input() @XDataConvert() data?: XData<XTreeNode[]>;
   @Input() @XInputBoolean() checkbox?: boolean;
   @Input() expanded = [];
   @Input() checked = [];
   @Input() @XInputBoolean() expandedAll: boolean;
+  @Input() labelTemp?: TemplateRef<void>;
   @Output() activatedChange = new EventEmitter<XTreeNode>();
   @Output() selectedChange = new EventEmitter<XTreeNode[]>();
   @ViewChild('tree', { static: true }) tree: ElementRef;
@@ -51,11 +51,9 @@ export class XTreeComponent implements OnInit, OnChanges {
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {}
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.expandedAll)) this.setExpandedAll();
-    if (XIsChange(changes.data)) this.setData();
+    XIsChange(changes.expandedAll) && this.setExpandedAll();
+    XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -119,13 +117,7 @@ export class XTreeComponent implements OnInit, OnChanges {
     const setChildren = (nodes: XTreeNode[], clear = false) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach(x => {
-        // if (parentChencked) {
-        //   x.checked = [x.value];
-        // } else if (keys.indexOf(x.value) >= 0) {
-        //   x.checked = [x.value];
-        //   parentChencked = true;
-        // }
-        x.checked = keys.indexOf(x.id) >= 0 && !clear ? [x.id] : [];
+        x.checked = !clear && keys.indexOf(x.id) >= 0 ? [x.id] : [];
         x.change && x.change(true);
         setChildren(x.children, clear);
       });

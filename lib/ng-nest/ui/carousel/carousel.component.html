@@ -1,4 +1,4 @@
-<div #carousel class="x-carousel" [class.x-carousel-arrow-always]="arrow === 'always'">
+<div #carousel class="x-carousel" [ngClass]="classMap" [class.x-carousel-arrow-always]="arrow === 'always'">
   <div class="x-carousel-content" [style.height]="height">
     <ng-container *ngIf="arrow !== 'never' && direction !== 'vertical'">
       <x-button class="arrow-left" icon="fto-chevron-left" (click)="action(active - 1)"></x-button>

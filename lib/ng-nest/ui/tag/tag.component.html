@@ -1,4 +1,4 @@
 <div #tag class="x-tag" [ngClass]="classMap">
-  <ng-container *xOutlet="label">{{ label }}</ng-container>
+  <ng-content></ng-content>
   <x-icon type="fto-x" *ngIf="closeable" (click)="onClose()"></x-icon>
 </div>

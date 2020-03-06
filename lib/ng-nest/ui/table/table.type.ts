@@ -116,6 +116,10 @@ export interface XTableColumn extends XIdentityInput {
  */
 export interface XTableAction extends XButtonInput {
   /**
+   * 按钮名称
+   */
+  label?: string;
+  /**
    * 操作按钮位置
    */
   actionLayoutType?: XTableActionLayoutType;

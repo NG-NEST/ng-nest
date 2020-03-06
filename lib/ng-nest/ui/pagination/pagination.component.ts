@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnChanges,
@@ -12,8 +11,8 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { PaginationPrefix, XPaginationInput } from './pagination.type';
-import { fillDefault, XInputNumber } from '@ng-nest/ui/core';
+import { PaginationPrefix } from './pagination.type';
+import { XInputNumber, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-pagination',
@@ -22,17 +21,11 @@ import { fillDefault, XInputNumber } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPaginationComponent implements OnInit, OnChanges {
-  @Input() @XInputNumber() index?: number;
-  @Input() @XInputNumber() size?: number;
-  @Input() @XInputNumber() total?: number;
+export class XPaginationComponent implements OnChanges {
+  @Input() @XInputNumber() index?: number = 1;
+  @Input() @XInputNumber() size?: number = 10;
+  @Input() @XInputNumber() total?: number = 0;
   @Output() indexChange = new EventEmitter<number>();
-  private _default: XPaginationInput = {
-    index: 1,
-    size: 10,
-    total: 0
-  };
-
   lastIndex?: number;
   indexes: number[] = [];
   indexFirst: number = 1;
@@ -42,16 +35,8 @@ export class XPaginationComponent implements OnInit, OnChanges {
     this.renderer.addClass(this.elementRef.nativeElement, PaginationPrefix);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-  }
-
-  ngAfterViewInit() {}
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.total || changes.size || changes.index) {
-      this.setIndexes();
-    }
+    XIsChange(changes.total, changes.size, changes.index) && this.setIndexes();
   }
 
   setIndexes() {

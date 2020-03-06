@@ -10,12 +10,11 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  TemplateRef,
   Output,
   EventEmitter
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselTrigger, XCarouselArrow, XCarouselDirection } from './carousel.type';
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XIsArray, XIsUndefined } from '@ng-nest/ui/core';
+import { XInputBoolean, XInputNumber, XIsUndefined, XIsChange, XClassMap } from '@ng-nest/ui/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -41,10 +40,12 @@ export class XCarouselComponent implements OnInit, OnChanges {
   before: number;
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
+  classMap: XClassMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.setDirection();
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -59,10 +60,7 @@ export class XCarouselComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(simples: SimpleChanges): void {
-    let activeChange = simples.active;
-    if (activeChange && activeChange.currentValue !== activeChange.previousValue) {
-      this.setActiveItem(this.active);
-    }
+    XIsChange(simples.active) && this.setActiveItem(this.active);
   }
 
   ngOnDestroy(): void {
@@ -93,9 +91,7 @@ export class XCarouselComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  setDirection() {
-    if (this.direction) {
-      this.renderer.addClass(this.carousel.nativeElement, `x-carousel-${this.direction}`);
-    }
+  setClassMap() {
+    this.classMap[`${XCarouselPrefix}-${this.direction}`] = this.direction ? true : false;
   }
 }

@@ -52,7 +52,6 @@
   }
   &-text {
     border-width: 0px;
-    color: $--x-button-primary;
     background-color: transparent;
     &:hover,
     &:active {
@@ -246,12 +245,8 @@
     }
   }
   &-space {
-    > #{$--x-button} {
-      .#{$--x-button} {
-        &:not(:first-child) {
-          margin-left: 0.5rem;
-        }
-      }
+    > #{$--x-button}:not(:first-child) {
+      margin-left: 0.5rem;
     }
   }
   &-not-border {

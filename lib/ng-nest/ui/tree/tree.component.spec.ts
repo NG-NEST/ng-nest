@@ -8,17 +8,19 @@ import { XTreePrefix, XTreeNode } from './tree.type';
 import { XFenceModule } from '@ng-nest/ui/fence';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XLinkModule } from '@ng-nest/ui/link';
 import * as _ from 'lodash';
 
 describe(XTreePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTreeModule, XFenceModule, XButtonModule],
+      imports: [XTreeModule, XFenceModule, XButtonModule, XLinkModule],
       declarations: [
         TestXTreeComponent,
         TestXTreeLazyComponent,
         TestXTreeCheckedComponent,
         TestXTreeDiabledComponent,
+        TestXTreeCustomComponent,
         TestXTreeEventComponent
       ]
     }).compileComponents();
@@ -64,6 +66,18 @@ describe(XTreePrefix, () => {
     let tree: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTreeDiabledComponent);
+      fixture.detectChanges();
+      tree = fixture.debugElement.query(By.directive(XTreeComponent));
+    });
+    it('should create.', () => {
+      expect(tree).toBeDefined();
+    });
+  });
+  describe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXTreeCustomComponent>;
+    let tree: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTreeCustomComponent);
       fixture.detectChanges();
       tree = fixture.debugElement.query(By.directive(XTreeComponent));
     });
@@ -158,9 +172,6 @@ class TestXTreeComponent {
       <x-col span="8">
         <x-tree [data]="service.getTreeList" checkbox> </x-tree>
       </x-col>
-      <x-col span="8">
-        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
-      </x-col>
     </x-row>
   `,
   styles: [
@@ -221,14 +232,57 @@ class TestXTreeDiabledComponent {
 @Component({
   template: `
     <x-row space="1">
+      <x-col span="12">
+        <x-tree [data]="service.data" checkbox [labelTemp]="labelTpl"> </x-tree>
+        <ng-template #labelTpl let-node="$node">
+          <div class="custom-label">
+            <span>{{ node.label }}</span>
+            <span class="custom-links">
+              <x-link type="primary">新增</x-link>
+              <x-link type="primary">修改</x-link>
+              <x-link type="primary">删除</x-link>
+            </span>
+          </div>
+        </ng-template>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .custom-label {
+        display: flex;
+        align-items: center;
+      }
+      .custom-links {
+        margin-left: 1rem;
+      }
+      .custom-links x-link:not(:first-child) {
+        margin-left: 0.25rem;
+      }
+    `
+  ],
+  providers: [TreeServiceTest]
+})
+class TestXTreeCustomComponent {
+  constructor(private service: TreeServiceTest) {}
+}
+
+@Component({
+  template: `
+    <x-row space="1">
       <x-col span="8">
-        当前激活的节点：{{ activatedNode?.label }} <br />
-        <x-button (click)="getCheckedKeys()">获取选中的节点的 Key 值</x-button><br />
-        <x-button (click)="setCheckedKeys([9, 11, 21, 23])">通过 Key 值设置选中的节点</x-button><br />
-        <x-button (click)="setCheckedKeys()">清空</x-button><br />
-        <x-button (click)="setExpandedAll()">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button
-        ><br />
-        <div>{{ content | json }}</div>
+        <ul class="operations">
+          <li>当前激活的节点：{{ activatedNode?.label }}</li>
+          <li><x-button (click)="setCheckedKeys([9, 11, 21, 23])">通过 Key 值设置选中的节点</x-button></li>
+          <li><x-button (click)="getCheckedKeys()">获取选中的节点的 Key 值</x-button></li>
+          <li>
+            <x-button (click)="setExpandedAll()">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button>
+          </li>
+          <li>{{ content | json }}</li>
+        </ul>
       </x-col>
       <x-col span="8">
         <x-tree
@@ -246,6 +300,9 @@ class TestXTreeDiabledComponent {
     `
       .row:not(:first-child) {
         margin-top: 1rem;
+      }
+      .operations > li:not(:first-child) {
+        margin-top: 0.5rem;
       }
     `
   ],

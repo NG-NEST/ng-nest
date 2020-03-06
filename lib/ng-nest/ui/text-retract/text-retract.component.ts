@@ -7,10 +7,12 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   Input,
-  ViewChild
+  ViewChild,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { XTextRetractPrefix } from './text-retract.type';
-import { XInputNumber } from '@ng-nest/ui/core';
+import { XInputNumber, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
@@ -19,7 +21,7 @@ import { XInputNumber } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTextRetractComponent implements OnInit {
+export class XTextRetractComponent implements OnInit, OnChanges {
   @Input() label?: string;
   @Input() @XInputNumber() max: number = 256;
   @ViewChild('textRetract', { static: true }) textRetract: ElementRef;
@@ -30,6 +32,10 @@ export class XTextRetractComponent implements OnInit {
 
   ngOnInit() {
     this.setDisplayValue();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    XIsChange(changes.label) && this.setDisplayValue();
   }
 
   setDisplayValue() {

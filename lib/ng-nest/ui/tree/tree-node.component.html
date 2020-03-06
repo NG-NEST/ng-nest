@@ -2,7 +2,7 @@
   class="x-tree-node-content"
   [class.x-activated]="tree.activatedNode?.id === node.id"
   [style.padding-left.rem]="node.level * 0.875"
-  (click)="onActivate($event, node)"
+  (click)="onActivate(node)"
 >
   <x-icon
     *ngIf="!loading"
@@ -14,14 +14,17 @@
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <x-checkbox
     *ngIf="tree.checkbox"
-    [data]="[{ label: '', value: node.value }]"
+    [data]="[{ label: '', id: node.id }]"
     [(ngModel)]="node.checked"
     (ngModelChange)="onCheckboxChange()"
     [indeterminate]="node.indeterminate"
     [disabled]="node.disabled"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
-  <span>{{ node.label }}</span>
+  <span *ngIf="!tree.labelTemp; else labelTpl">{{ node.label }}</span>
+  <ng-template #labelTpl>
+    <ng-container *xOutlet="tree.labelTemp; context: { $node: node }"></ng-container>
+  </ng-template>
 </div>
 <ul *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
   <li

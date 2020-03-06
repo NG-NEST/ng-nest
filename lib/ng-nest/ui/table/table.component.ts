@@ -9,11 +9,8 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  HostBinding,
-  TemplateRef,
   OnChanges,
-  SimpleChanges,
-  ViewChild
+  SimpleChanges
 } from '@angular/core';
 import { TablePrefix, XTableOption, XTableColumn, XTableAction, XTableColumnTemplate } from './table.type';
 import {
@@ -25,11 +22,12 @@ import {
   XInputBoolean,
   XIsUndefined,
   XIsEmpty,
-  XResultList
+  XResultList,
+  XIsChange
 } from '@ng-nest/ui/core';
-import { Subscription, BehaviorSubject, Subject, Observable } from 'rxjs';
-import * as _ from 'lodash';
+import { Subscription, Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'x-table',
@@ -106,10 +104,7 @@ export class XTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    let rowPrimaryChange = simples.rowPrimary;
-    if (rowPrimaryChange && rowPrimaryChange.currentValue !== rowPrimaryChange.previousValue) {
-      this.setData(true);
-    }
+    XIsChange(simples.rowPrimary) && this.setData(true);
   }
 
   change(index) {

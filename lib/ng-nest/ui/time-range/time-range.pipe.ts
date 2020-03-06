@@ -31,7 +31,6 @@ export class XTimeRangePipe implements PipeTransform {
     if (toPad.length > length) {
       return toPad;
     }
-
     const joined = `${this.getRepeatedElement(length, element)}${toPad}`;
     return joined.slice(joined.length - length, joined.length);
   }

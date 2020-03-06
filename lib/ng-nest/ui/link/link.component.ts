@@ -10,7 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XLinkPrefix, XLinkType } from './link.type';
-import { XInputBoolean, XTemplate } from '@ng-nest/ui/core';
+import { XInputBoolean, XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XLinkPrefix}`,
@@ -20,7 +20,6 @@ import { XInputBoolean, XTemplate } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XLinkComponent implements OnInit {
-  @Input() label?: XTemplate;
   @Input() href?: string;
   @Input() icon?: string;
   @Input() @XInputBoolean() underline: boolean;
@@ -29,15 +28,15 @@ export class XLinkComponent implements OnInit {
   @Input() type?: XLinkType;
   @Input() target?: string;
   @ViewChild('link', { static: true }) link: ElementRef;
+  mapClass: XClassMap = {};
+
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.setType();
+    this.setMapClass();
   }
 
-  setType() {
-    if (this.type) {
-      this.renderer.addClass(this.link.nativeElement, `${XLinkPrefix}-${this.type}`);
-    }
+  setMapClass() {
+    this.mapClass[`${XLinkPrefix}-${this.type}`] = this.type ? true : false;
   }
 }

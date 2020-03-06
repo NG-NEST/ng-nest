@@ -35,54 +35,54 @@ describe(XTagPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-tag label="标签"></x-tag>
-      <x-tag label="标签" type="primary"></x-tag>
-      <x-tag label="标签" type="success"></x-tag>
-      <x-tag label="标签" type="warning"></x-tag>
-      <x-tag label="标签" type="danger"></x-tag>
-      <x-tag label="标签" type="info"></x-tag>
+      <x-tag>标签</x-tag>
+      <x-tag type="primary">标签</x-tag>
+      <x-tag type="success">标签</x-tag>
+      <x-tag type="warning">标签</x-tag>
+      <x-tag type="danger">标签</x-tag>
+      <x-tag type="info">标签</x-tag>
     </div>
     <div class="row">
-      <x-tag label="标签" dark></x-tag>
-      <x-tag label="标签" type="primary" dark></x-tag>
-      <x-tag label="标签" type="success" dark></x-tag>
-      <x-tag label="标签" type="warning" dark></x-tag>
-      <x-tag label="标签" type="danger" dark></x-tag>
-      <x-tag label="标签" type="info" dark></x-tag>
+      <x-tag dark>标签</x-tag>
+      <x-tag type="primary" dark>标签</x-tag>
+      <x-tag type="success" dark>标签</x-tag>
+      <x-tag type="warning" dark>标签</x-tag>
+      <x-tag type="danger" dark>标签</x-tag>
+      <x-tag type="info" dark>标签</x-tag>
     </div>
 
     <div class="row">
-      <x-tag label="标签" size="large"></x-tag>
-      <x-tag label="标签" size="medium"></x-tag>
-      <x-tag label="标签"></x-tag>
-      <x-tag label="标签" size="small"></x-tag>
-      <x-tag label="标签" size="mini"></x-tag>
+      <x-tag size="large">标签</x-tag>
+      <x-tag size="medium">标签</x-tag>
+      <x-tag>标签</x-tag>
+      <x-tag size="small">标签</x-tag>
+      <x-tag size="mini">标签</x-tag>
     </div>
     <div class="row">
-      <x-tag label="标签" closeable></x-tag>
-      <x-tag label="标签" type="primary" closeable></x-tag>
-      <x-tag label="标签" type="success" closeable></x-tag>
-      <x-tag label="标签" type="warning" closeable></x-tag>
-      <x-tag label="标签" type="danger" closeable></x-tag>
-      <x-tag label="标签" type="info" closeable></x-tag>
+      <x-tag closeable>标签</x-tag>
+      <x-tag type="primary" closeable>标签</x-tag>
+      <x-tag type="success" closeable>标签</x-tag>
+      <x-tag type="warning" closeable>标签</x-tag>
+      <x-tag type="danger" closeable>标签</x-tag>
+      <x-tag type="info" closeable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag label="标签" dark closeable></x-tag>
-      <x-tag label="标签" type="primary" dark closeable></x-tag>
-      <x-tag label="标签" type="success" dark closeable></x-tag>
-      <x-tag label="标签" type="warning" dark closeable></x-tag>
-      <x-tag label="标签" type="danger" dark closeable></x-tag>
-      <x-tag label="标签" type="info" dark closeable></x-tag>
+      <x-tag dark closeable>标签</x-tag>
+      <x-tag type="primary" dark closeable>标签</x-tag>
+      <x-tag type="success" dark closeable>标签</x-tag>
+      <x-tag type="warning" dark closeable>标签</x-tag>
+      <x-tag type="danger" dark closeable>标签</x-tag>
+      <x-tag type="info" dark closeable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag label="标签" size="large" closeable></x-tag>
-      <x-tag label="标签" size="medium" closeable></x-tag>
-      <x-tag label="标签" closeable></x-tag>
-      <x-tag label="标签" size="small" closeable></x-tag>
-      <x-tag label="标签" size="mini" closeable></x-tag>
+      <x-tag size="large" closeable>标签</x-tag>
+      <x-tag size="medium" closeable>标签</x-tag>
+      <x-tag closeable>标签</x-tag>
+      <x-tag size="small" closeable>标签</x-tag>
+      <x-tag size="mini" closeable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag *ngFor="let tag of tags" [label]="tag" type="primary" closeable (close)="close(tag)"></x-tag>
+      <x-tag *ngFor="let tag of tags" type="primary" closeable (close)="close(tag)">{{ tag }}</x-tag>
     </div>
   `,
   styles: [

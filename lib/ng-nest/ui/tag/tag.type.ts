@@ -12,10 +12,6 @@ export const XTagPrefix = 'x-tag';
  */
 export interface XTagInput {
   /**
-   * 标签内容
-   */
-  label?: XTemplate;
-  /**
    * 标签样式类型
    */
   type?: XType;

@@ -1,0 +1,15 @@
+<x-row>
+  <x-col span="12">
+    <x-tree [data]="data" checkbox [labelTemp]="labelTpl"> </x-tree>
+    <ng-template #labelTpl let-node="$node">
+      <div class="custom-label">
+        <span>{{ node.label }}</span>
+        <span class="custom-links">
+          <x-link type="primary">新增</x-link>
+          <x-link type="primary">修改</x-link>
+          <x-link type="primary">删除</x-link>
+        </span>
+      </div>
+    </ng-template>
+  </x-col>
+</x-row>

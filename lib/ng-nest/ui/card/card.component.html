@@ -1,4 +1,4 @@
-<div #card class="x-card" [style.width]="width">
+<div #card class="x-card" [ngClass]="classMap" [style.width]="width">
   <div class="x-card-header" *ngIf="header">
     <ng-container *ngTemplateOutlet="header"></ng-container>
   </div>

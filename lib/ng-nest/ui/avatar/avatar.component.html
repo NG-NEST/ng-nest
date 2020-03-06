@@ -1,12 +1,8 @@
-<span #avatar class="x-avatar" [class.x-avatar-error]="isImgError">
-  <img
-    *ngIf="src && !isImgError"
-    [src]="src"
-    [style.object-fit]="fit"
-    (error)="imgError($event)"
-    (load)="load($event)"
-  />
+<span #avatar class="x-avatar" [ngClass]="classMap" [class.x-avatar-error]="isImgError">
+  <img *ngIf="src && !isImgError" [src]="src" [style.object-fit]="fit" (error)="imgError($event)" />
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
   <x-icon *ngIf="isImgError" type="fto-image"></x-icon>
-  <span *ngIf="label">{{ label }}</span>
+  <span *xOutlet="label; context: { $label: label }">
+    {{ label }}
+  </span>
 </span>

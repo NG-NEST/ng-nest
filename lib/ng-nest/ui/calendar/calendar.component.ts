@@ -10,12 +10,11 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  TemplateRef,
   Output,
   EventEmitter
 } from '@angular/core';
-import { XCalendarPrefix, XCalendarNode, XCalendarData, XCalendarModel } from './calendar.type';
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XDataConvert, XData } from '@ng-nest/ui/core';
+import { XCalendarPrefix, XCalendarData, XCalendarModel } from './calendar.type';
+import { XIsChange } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -36,6 +35,7 @@ export class XCalendarComponent implements OnInit, OnChanges {
   datetime: Date = new Date();
   activatedDate: Date = new Date();
   monthData = {};
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -46,10 +46,7 @@ export class XCalendarComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setMonthData();
-    }
+    XIsChange(changes.data) && this.setMonthData();
   }
 
   action(next: number) {
@@ -69,9 +66,9 @@ export class XCalendarComponent implements OnInit, OnChanges {
       let month = this.datePipe.transform(key, 'yyyy-MM');
       let value = '';
       this.data[key].forEach(x => {
-        value += `${x.label} ${x.id}<br/>`;
+        value += `${x.id}${x.label} <br/>`;
       });
-      let item = { label: key, value: value };
+      let item = { id: key, label: value };
       if (dt[month]) {
         dt[month] = [...dt[month], item];
       } else {
@@ -90,7 +87,7 @@ export class XCalendarComponent implements OnInit, OnChanges {
     }
   }
 
-  modelOnChange(model: any) {
+  modelOnChange() {
     this.cdr.detectChanges();
   }
 

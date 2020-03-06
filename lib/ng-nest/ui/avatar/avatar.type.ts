@@ -1,4 +1,4 @@
-import { XSize } from '@ng-nest/ui/core';
+import { XSize, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Avatar 组件名
@@ -14,7 +14,7 @@ export interface XAvatarInput {
   /**
    * 显示字符
    */
-  label?: string;
+  label?: XTemplate;
   /**
    * 尺寸
    */

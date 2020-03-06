@@ -6,12 +6,9 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   Input,
   HostBinding,
-  Optional,
-  Output
+  Optional
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode } from './tree.type';
 import { XTreeComponent } from './tree.component';
@@ -26,7 +23,7 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTreeNodeComponent implements OnInit, OnChanges {
+export class XTreeNodeComponent implements OnInit {
   @Input() node: XTreeNode = {};
   @Input() parent: XTreeNodeComponent;
   @Input() level: number;
@@ -55,12 +52,6 @@ export class XTreeNodeComponent implements OnInit, OnChanges {
     };
     if (!XIsEmpty(this.node.checked)) this.onCheckboxChange();
     this.setIndeterminate(this.node);
-  }
-
-  ngOnChanges(simple: SimpleChanges) {
-    let nodeChange = simple.node;
-    if (nodeChange && nodeChange.currentValue !== nodeChange.previousValue) {
-    }
   }
 
   onToggle(event: Event, node: XTreeNode) {
@@ -92,7 +83,7 @@ export class XTreeNodeComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  onActivate(event: Event, node: XTreeNode) {
+  onActivate(node: XTreeNode) {
     let change: Function;
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id) return;
@@ -107,7 +98,7 @@ export class XTreeNodeComponent implements OnInit, OnChanges {
   onCheckboxChange() {
     this.node.indeterminate = !XIsEmpty(this.node.checked);
     this.node.children && this.setChildrenCheckbox(this.node.checked);
-    this.parent && this.parent.setParentCheckbox(this.node.checked);
+    this.parent && this.parent.setParentCheckbox();
   }
 
   setChildrenCheckbox(checked: any[]) {
@@ -124,13 +115,13 @@ export class XTreeNodeComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  setParentCheckbox(checked: any[]) {
+  setParentCheckbox() {
     if (XIsEmpty(this.node.children)) return;
     let checkedList = this.node.children.filter(x => !XIsEmpty(x.checked));
     let indeterminateList = this.node.children.filter(x => x.indeterminate);
     this.node.checked = checkedList.length === this.node.children.length ? [this.node.id] : [];
     this.node.indeterminate = checkedList.length > 0 || indeterminateList.length > 0;
-    this.parent && this.parent.setParentCheckbox(this.node.checked);
+    this.parent && this.parent.setParentCheckbox();
     this.cdr.detectChanges();
   }
 

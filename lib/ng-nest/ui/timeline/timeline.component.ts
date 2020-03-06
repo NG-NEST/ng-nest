@@ -20,7 +20,8 @@ import {
   XToDataConvert,
   XType,
   XClassMap,
-  XTemplate
+  XTemplate,
+  XIsChange
 } from '@ng-nest/ui/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -46,10 +47,7 @@ export class XTimelineComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,7 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewChild,
   SimpleChanges,
@@ -12,7 +9,7 @@ import {
   Input
 } from '@angular/core';
 import { XStatisticPrefix } from './statistic.type';
-import { XTemplate, XIsNumber } from '@ng-nest/ui/core';
+import { XTemplate, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XStatisticPrefix}`,
@@ -31,12 +28,8 @@ export class XStatisticComponent implements OnChanges {
   displayInt = '';
   displayDecimal = '';
 
-  ngOnChanges(simple: SimpleChanges) {
-    let valueChange = simple.value;
-    if (valueChange && valueChange.currentValue !== valueChange.previousValue) {
-      this.setDisplay();
-      console.log(this.value);
-    }
+  ngOnChanges(simples: SimpleChanges) {
+    XIsChange(simples.value) && this.setDisplay();
   }
 
   setDisplay() {

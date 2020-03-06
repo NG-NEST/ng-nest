@@ -6,9 +6,7 @@ import {
   SimpleChanges,
   EmbeddedViewRef,
   OnChanges,
-  SimpleChange,
-  ElementRef,
-  Renderer2
+  SimpleChange
 } from '@angular/core';
 
 @Directive({ selector: '[xOutlet]' })
@@ -16,12 +14,7 @@ export class XOutletDirective implements OnChanges {
   @Input() xOutletContext;
   @Input() xOutlet: any | TemplateRef<any>;
   private embeddedViewRef?: EmbeddedViewRef<any>;
-  constructor(
-    private viewContainer: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private elementRef: ElementRef,
-    private renderer: Renderer2
-  ) {}
+  constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<any>) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const shouldRecreateView = (ctxChanges: SimpleChanges): boolean => {

@@ -1,19 +1,19 @@
 <div class="row">
-  <x-tag *ngFor="let tag of tags" [label]="tag" type="primary" closeable (close)="close(tag)"></x-tag>
+  <x-tag *ngFor="let tag of tags" type="primary" closeable (close)="close(tag)">{{ tag }}</x-tag>
 </div>
 <div class="row">
-  <x-tag label="标签" closeable></x-tag>
-  <x-tag label="标签" type="primary" closeable></x-tag>
-  <x-tag label="标签" type="success" closeable></x-tag>
-  <x-tag label="标签" type="warning" closeable></x-tag>
-  <x-tag label="标签" type="danger" closeable></x-tag>
-  <x-tag label="标签" type="info" closeable></x-tag>
+  <x-tag closeable>标签</x-tag>
+  <x-tag type="primary" closeable>标签</x-tag>
+  <x-tag type="success" closeable>标签</x-tag>
+  <x-tag type="warning" closeable>标签</x-tag>
+  <x-tag type="danger" closeable>标签</x-tag>
+  <x-tag type="info" closeable>标签</x-tag>
 </div>
 <div class="row">
-  <x-tag label="标签" dark closeable></x-tag>
-  <x-tag label="标签" type="primary" dark closeable></x-tag>
-  <x-tag label="标签" type="success" dark closeable></x-tag>
-  <x-tag label="标签" type="warning" dark closeable></x-tag>
-  <x-tag label="标签" type="danger" dark closeable></x-tag>
-  <x-tag label="标签" type="info" dark closeable></x-tag>
+  <x-tag dark closeable>标签</x-tag>
+  <x-tag type="primary" dark closeable>标签</x-tag>
+  <x-tag type="success" dark closeable>标签</x-tag>
+  <x-tag type="warning" dark closeable>标签</x-tag>
+  <x-tag type="danger" dark closeable>标签</x-tag>
+  <x-tag type="info" dark closeable>标签</x-tag>
 </div>

@@ -126,7 +126,7 @@
         > .x-buttons {
           margin-left: 0.5rem;
           display: none;
-          > .x-button {
+          > x-button .x-button {
             color: $--x-text-300;
             &:hover {
               color: $--x-primary;

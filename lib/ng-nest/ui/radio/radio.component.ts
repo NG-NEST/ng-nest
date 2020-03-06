@@ -23,7 +23,8 @@ import {
   XIsObservable,
   XToDataConvert,
   removeNgTag,
-  XSize
+  XSize,
+  XIsChange
 } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 
@@ -41,33 +42,27 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XInputBoolean() icon?: boolean;
   @Input() size?: XSize;
   @ViewChild('radio', { static: true }) radio: ElementRef;
+  radioNodes: XRadioNode[] = [];
+  private data$: Subscription | null = null;
+
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super(renderer);
+  }
+
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    XIsChange(changes.data) && this.setData();
+  }
+
+  ngOnDestroy(): void {
+    this.data$ && this.data$.unsubscribe();
+  }
 
   writeValue(value: any) {
     this.value = value;
     this.cdr.detectChanges();
   }
-
-  radioNodes: XRadioNode[] = [];
-  private data$: Subscription | null = null;
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
-  }
-
-  ngOnInit() {
-    console.log(this.data);
-    // removeNgTag(this.elementRef.nativeElement);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
-  }
-
-  // setInput() {
-  //   this.cdr.markForCheck();
-  // }
 
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
@@ -75,10 +70,6 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
     this.value = node.id;
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
-  }
-
-  ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
   }
 
   private setData() {
