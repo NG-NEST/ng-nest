@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XSelectComponent } from "./select.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XSelectModule } from "./select.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XSelectPrefix, XSelectNode } from "./select.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { Observable, interval } from "rxjs";
-import { XData } from "@ng-nest/ui/core";
+import { XSelectComponent } from './select.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XSelectModule } from './select.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XSelectPrefix, XSelectNode } from './select.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { Observable, interval } from 'rxjs';
+import { XData } from '@ng-nest/ui/core';
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
@@ -31,7 +31,7 @@ describe(XSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -43,7 +43,7 @@ describe(XSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -55,7 +55,7 @@ describe(XSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSelectLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -67,7 +67,7 @@ describe(XSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSelectDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -79,13 +79,13 @@ describe(XSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSelectRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
-const data: XData<XSelectNode[]> = ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ"];
+const data: XData<XSelectNode[]> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
 @Component({
   template: `
@@ -115,7 +115,7 @@ class TestXSelectComponent {
   data1 = data;
   data2 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2: any = "BBBB";
+  model2: any = 'BBBB';
   constructor(public cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();
@@ -193,7 +193,7 @@ class TestXSelectLabelComponent {
 })
 class TestXSelectDisabledComponent {
   data = data;
-  model = "DDDD";
+  model = 'DDDD';
   constructor(public cdr: ChangeDetectorRef) {
     interval(50).subscribe(x => {
       this.cdr.detectChanges();
@@ -256,12 +256,12 @@ class TestXSelectRequiredComponent {
   ]
 })
 class TestXSelectAsyncComponent {
-  model = "QQ";
+  model = 'QQ';
   data = Observable.create(x => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      this.model = "钉钉";
-      x.next(["QQ", "微信", "钉钉", "微博"]);
+      this.model = '钉钉';
+      x.next(['QQ', '微信', '钉钉', '微博']);
       x.complete();
     }, 2000);
   });

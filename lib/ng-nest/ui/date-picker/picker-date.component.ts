@@ -13,18 +13,18 @@ import {
   SimpleChanges,
   ElementRef,
   TemplateRef
-} from "@angular/core";
-import { chunk } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { chunk } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-picker-date",
-  templateUrl: "./picker-date.component.html",
-  styleUrls: ["./picker-date.component.scss"],
+  selector: 'x-picker-date',
+  templateUrl: './picker-date.component.html',
+  styleUrls: ['./picker-date.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
-  weeks = ["一", "二", "三", "四", "五", "六", "日"];
+  weeks = ['一', '二', '三', '四', '五', '六', '日'];
   now = new Date();
   @Input() display = new Date();
   @Input() model;

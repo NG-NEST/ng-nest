@@ -1,8 +1,8 @@
-import { Injectable, SecurityContext } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { HttpClient } from "@angular/common/http";
-import { Observable, Subscriber } from "rxjs";
-import * as _ from "lodash";
+import { Injectable, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subscriber } from 'rxjs';
+import * as _ from 'lodash';
 
 type Task<T> = {
   name?: string;
@@ -11,7 +11,7 @@ type Task<T> = {
 };
 
 // @dynamic
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class XIconService {
   rootUrl = `http://icons.ng-nest.com/assets/icons/`;
   caches: { [property: string]: any } = {};
@@ -86,6 +86,6 @@ export class XIconService {
   getSvgElement(icon: string): Observable<string> {
     const url = `${this.rootUrl}${icon}.svg`;
     const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
-    return this.http.get(safeUrl, { responseType: "text" });
+    return this.http.get(safeUrl, { responseType: 'text' });
   }
 }

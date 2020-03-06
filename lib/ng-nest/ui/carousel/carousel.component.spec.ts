@@ -1,15 +1,15 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCarouselComponent } from "./carousel.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCarouselModule } from "./carousel.module";
-import { FormsModule } from "@angular/forms";
-import { XCarouselPrefix } from "./carousel.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
+import { XCarouselComponent } from './carousel.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XCarouselModule } from './carousel.module';
+import { FormsModule } from '@angular/forms';
+import { XCarouselPrefix } from './carousel.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XCarouselPrefix, () => {
   beforeEach(async(() => {
@@ -26,7 +26,7 @@ describe(XCarouselPrefix, () => {
       fixture.detectChanges();
       carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(carousel).toBeDefined();
     });
   });
@@ -38,7 +38,7 @@ describe(XCarouselPrefix, () => {
       fixture.detectChanges();
       carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(carousel).toBeDefined();
     });
   });
@@ -50,7 +50,7 @@ describe(XCarouselPrefix, () => {
       fixture.detectChanges();
       carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(carousel).toBeDefined();
     });
   });

@@ -1,6 +1,6 @@
 ---
-label: "Color 色彩"
-category: "Basic"
+label: 'Color 色彩'
+category: 'Basic'
 ---
 
 # Color 色彩

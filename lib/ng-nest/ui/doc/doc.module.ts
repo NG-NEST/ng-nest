@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XDocComponent } from "./doc.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XDocComponent } from './doc.component';
 
 @NgModule({
   declarations: [XDocComponent],

@@ -11,14 +11,14 @@ import {
   Input,
   Output,
   EventEmitter
-} from "@angular/core";
-import { PaginationPrefix, XPaginationInput } from "./pagination.type";
-import { fillDefault, XInputNumber } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { PaginationPrefix, XPaginationInput } from './pagination.type';
+import { fillDefault, XInputNumber } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-pagination",
-  templateUrl: "./pagination.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

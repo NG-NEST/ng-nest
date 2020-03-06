@@ -1,11 +1,11 @@
-import { XParentIdentityInput } from "@ng-nest/ui/core";
+import { XParentIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * Tree 组件名
  * @selector x-tree
  * @decorator component
  */
-export const XTreePrefix = "x-tree";
+export const XTreePrefix = 'x-tree';
 
 /**
  * Tree @Input
@@ -41,6 +41,10 @@ export interface XTreeNode extends XParentIdentityInput {
    */
   checked?: any[];
   /**
+   * 禁用checkbox
+   */
+  disabled?: boolean;
+  /**
    * checkbox 子节点是否有选中的状态
    */
   indeterminate?: boolean;
@@ -51,4 +55,4 @@ export interface XTreeNode extends XParentIdentityInput {
  * @selector x-tree-node
  * @decorator directive
  */
-export const XTreeNodePrefix = "x-tree-node";
+export const XTreeNodePrefix = 'x-tree-node';

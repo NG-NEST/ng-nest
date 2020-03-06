@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-scss",
-  templateUrl: "./scss.component.html"
+  selector: 'ex-scss',
+  templateUrl: './scss.component.html'
 })
 export class ExScssComponent implements OnInit {
   scss = `@mixin highlight {

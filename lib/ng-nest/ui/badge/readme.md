@@ -1,6 +1,6 @@
----
-label: "Badge 标记"
-category: "Data"
+y---
+label: 'Badge 标记'
+category: 'Data'
 ---
 
 # Badge 标记

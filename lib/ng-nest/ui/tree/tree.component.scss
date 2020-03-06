@@ -1,8 +1,8 @@
 // Tree
 
-@import "../style/themes/default";
-@import "../style/mixins/index";
-@import "./style/mixin";
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
 
 .#{$--x-tree-prefix} {
   @include reset-component();

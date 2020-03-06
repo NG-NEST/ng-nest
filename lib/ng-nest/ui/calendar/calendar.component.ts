@@ -13,25 +13,25 @@ import {
   TemplateRef,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XCalendarPrefix, XCalendarNode, XCalendarData, XCalendarModel } from "./calendar.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XDataConvert, XData } from "@ng-nest/ui/core";
-import { DatePipe } from "@angular/common";
+} from '@angular/core';
+import { XCalendarPrefix, XCalendarNode, XCalendarData, XCalendarModel } from './calendar.type';
+import { XInputBoolean, XSize, XInputNumber, XIsNumber, XDataConvert, XData } from '@ng-nest/ui/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: `${XCalendarPrefix}`,
-  templateUrl: "./calendar.component.html",
-  styleUrls: ["./calendar.component.scss"],
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DatePipe]
 })
 export class XCalendarComponent implements OnInit, OnChanges {
   @Input() data?: XCalendarData;
-  @Input() model?: XCalendarModel = "month";
+  @Input() model?: XCalendarModel = 'month';
   @Output() dateChange = new EventEmitter();
   @Output() rangeChange = new EventEmitter();
-  @ViewChild("calendar", { static: true }) calendar: ElementRef;
+  @ViewChild('calendar', { static: true }) calendar: ElementRef;
   now: Date = new Date();
   datetime: Date = new Date();
   activatedDate: Date = new Date();
@@ -54,9 +54,9 @@ export class XCalendarComponent implements OnInit, OnChanges {
 
   action(next: number) {
     let datetime = new Date(this.datetime.getTime());
-    if (this.model === "month") {
+    if (this.model === 'month') {
       datetime.setMonth(datetime.getMonth() + next);
-    } else if (this.model === "year") {
+    } else if (this.model === 'year') {
       datetime.setFullYear(datetime.getFullYear() + next);
     }
     this.datetime = datetime;
@@ -66,10 +66,10 @@ export class XCalendarComponent implements OnInit, OnChanges {
   setMonthData() {
     let dt = {};
     for (let key in this.data) {
-      let month = this.datePipe.transform(key, "yyyy-MM");
-      let value = "";
+      let month = this.datePipe.transform(key, 'yyyy-MM');
+      let value = '';
       this.data[key].forEach(x => {
-        value += `${x.label} ${x.value}<br/>`;
+        value += `${x.label} ${x.id}<br/>`;
       });
       let item = { label: key, value: value };
       if (dt[month]) {
@@ -83,7 +83,7 @@ export class XCalendarComponent implements OnInit, OnChanges {
   }
 
   dateOnChange(date: Date) {
-    if (this.datePipe.transform(date, "yyyy-MM-dd") !== this.datePipe.transform(this.activatedDate, "yyyy-MM-dd")) {
+    if (this.datePipe.transform(date, 'yyyy-MM-dd') !== this.datePipe.transform(this.activatedDate, 'yyyy-MM-dd')) {
       this.activatedDate = date;
       this.dateChange.emit(this.activatedDate);
       this.cdr.markForCheck();

@@ -9,15 +9,15 @@ import {
   NgZone,
   Renderer2,
   OnDestroy
-} from "@angular/core";
-import { XCascadeNode, XCascadePortal } from "./cascade.type";
-import { XIsEmpty, removeNgTag } from "@ng-nest/ui/core";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { XCascadeNode, XCascadePortal } from './cascade.type';
+import { XIsEmpty, removeNgTag } from '@ng-nest/ui/core';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "x-cascade-portal",
-  templateUrl: "./cascade-portal.component.html",
-  styleUrls: ["./cascade-portal.component.scss"],
+  selector: 'x-cascade-portal',
+  templateUrl: './cascade-portal.component.html',
+  styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -48,7 +48,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     });
     setTimeout(
       () =>
-        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
           this.option.closePortal();
         }))
     );
@@ -73,20 +73,20 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   }
 
   setDefault() {
-    let node = this.datas.find(x => x.value === this.option.value);
+    let node = this.datas.find(x => x.id === this.option.value);
     this.selecteds = [node];
-    this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue)];
-    while (!XIsEmpty(node.parentValue)) {
-      node = this.datas.find(x => x.value === node.parentValue);
+    this.nodes = [this.datas.filter(x => x.pid === node.pid)];
+    while (!XIsEmpty(node.pid)) {
+      node = this.datas.find(x => x.id === node.pid);
       this.selecteds = [node, ...this.selecteds];
-      this.nodes = [this.datas.filter(x => x.parentValue === node.parentValue), ...this.nodes];
+      this.nodes = [this.datas.filter(x => x.pid === node.pid), ...this.nodes];
     }
-    this.values = this.selecteds.map(x => x.value);
+    this.values = this.selecteds.map(x => x.id);
   }
 
   nodeClick(node: XCascadeNode) {
     this.ngZone.run(() => {
-      if (node.hasChild) {
+      if (node.leaf) {
         if (this.nodes.length === node.level) {
           this.nodes = [...this.nodes, node.children];
           this.selecteds = [...this.selecteds, node];
@@ -98,14 +98,17 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
           this.nodes[node.level + 1] = node.children;
           this.selecteds[node.level] = node;
         }
-        this.values = this.selecteds.map(x => x.value);
+        this.values = this.selecteds.map(x => x.id);
         this.cdr.detectChanges();
       } else {
         if (this.selecteds.length === node.level + 1) {
           this.selecteds = this.selecteds.splice(0, node.level);
         }
         this.selecteds = [...this.selecteds, node];
-        this.option.nodeEmit({ node: node, label: this.selecteds.map(x => x.label).join(` / `) });
+        this.option.nodeEmit({
+          node: node,
+          label: this.selecteds.map(x => x.label).join(` / `)
+        });
       }
     });
   }

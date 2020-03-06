@@ -1,15 +1,15 @@
-import { XButtonModule } from "@ng-nest/ui/button";
-import { Observable, interval } from "rxjs";
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from "@angular/core/testing";
+import { XButtonModule } from '@ng-nest/ui/button';
+import { Observable, interval } from 'rxjs';
+import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 
-import { XUploadComponent } from "./upload.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XUploadModule } from "./upload.module";
-import { FormsModule } from "@angular/forms";
-import { XUploadPrefix, XUploadNode } from "./upload.type";
-import { XData } from "@ng-nest/ui/core";
+import { XUploadComponent } from './upload.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XUploadModule } from './upload.module';
+import { FormsModule } from '@angular/forms';
+import { XUploadPrefix, XUploadNode } from './upload.type';
+import { XData } from '@ng-nest/ui/core';
 
 describe(XUploadPrefix, () => {
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe(XUploadPrefix, () => {
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
       element = upload.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(upload).toBeDefined();
     });
   });
@@ -46,7 +46,7 @@ describe(XUploadPrefix, () => {
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
       element = upload.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(upload).toBeDefined();
     });
   });

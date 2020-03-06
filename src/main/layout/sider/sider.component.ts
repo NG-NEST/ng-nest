@@ -1,16 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  EventEmitter,
-  ChangeDetectionStrategy
-} from "@angular/core";
-import { LayoutService } from "../layout.service";
-import * as _ from "lodash";
+import { Component, OnInit, ViewEncapsulation, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { LayoutService } from '../layout.service';
+import * as _ from 'lodash';
 
 @Component({
-  selector: "ns-sider",
-  templateUrl: "./sider.component.html",
+  selector: 'ns-sider',
+  templateUrl: './sider.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

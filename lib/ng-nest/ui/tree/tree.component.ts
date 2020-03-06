@@ -9,47 +9,53 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges,
-  Input
-} from "@angular/core";
-import { XTreePrefix, XTreeNode } from "./tree.type";
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import { XTreePrefix, XTreeNode } from './tree.type';
 import {
   XDataConvert,
   XData,
   XIsObservable,
   XToDataConvert,
   XIsEmpty,
-  XInputBoolean
-} from "@ng-nest/ui/core";
-import { Subscription, Observable } from "rxjs";
-import { map } from "rxjs/operators";
+  XInputBoolean,
+  XIsFunction,
+  XIsUndefined,
+  XIsChange,
+  XIsNull
+} from '@ng-nest/ui/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: `${XTreePrefix}`,
-  templateUrl: "./tree.component.html",
-  styleUrls: ["./tree.component.scss"],
+  templateUrl: './tree.component.html',
+  styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeComponent implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XTreeNode[]>;
   @Input() @XInputBoolean() checkbox?: boolean;
-  @ViewChild("tree", { static: true }) tree: ElementRef;
+  @Input() expanded = [];
+  @Input() checked = [];
+  @Input() @XInputBoolean() expandedAll: boolean;
+  @Output() activatedChange = new EventEmitter<XTreeNode>();
+  @Output() selectedChange = new EventEmitter<XTreeNode[]>();
+  @ViewChild('tree', { static: true }) tree: ElementRef;
   nodes: XTreeNode[] = [];
   activatedNode: XTreeNode;
+  lazy: boolean = false;
   private data$: Subscription | null = null;
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef
-  ) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    if (XIsChange(changes.expandedAll)) this.setExpandedAll();
+    if (XIsChange(changes.data)) this.setData();
   }
 
   ngOnDestroy(): void {
@@ -57,13 +63,21 @@ export class XTreeComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === "undefined") return;
+    if (typeof this.data === 'undefined') return;
     if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>)
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
+        this.setDataChange(x);
+        this.cdr.detectChanges();
+      });
+    } else if (XIsFunction(this.data)) {
+      this.lazy = true;
+      this.data$ && this.data$.unsubscribe();
+      this.data$ = (this.data as Function)()
         .pipe(map(x => XToDataConvert(x)))
         .subscribe(x => {
           this.setDataChange(x);
+          this.cdr.detectChanges();
         });
     } else {
       this.setDataChange(this.data as XTreeNode[]);
@@ -71,15 +85,63 @@ export class XTreeComponent implements OnInit, OnChanges {
   }
 
   private setDataChange(value: XTreeNode[]) {
-    let getChildren = (node: XTreeNode, level: number) => {
+    const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
-      node.children = value.filter(y => y.parentValue === node.value);
-      node.hasChild = node.children.length > 0;
-      if (node.hasChild) node.children.map(y => getChildren(y, level + 1));
+      node.open = this.expandedAll || this.expanded.indexOf(node.id) >= 0;
+      node.checked = this.checked.indexOf(node.id) >= 0 ? [node.id] : [];
+      node.childrenLoaded = node.open;
+      if (XIsUndefined(node.children)) node.children = value.filter(y => y.pid === node.id);
+      if (XIsUndefined(node.leaf)) node.leaf = node.children.length > 0;
+      if (node.leaf) node.children.map(y => getChildren(y, level + 1));
       return node;
     };
-    this.nodes = value
-      .filter(x => XIsEmpty(x.parentValue))
-      .map(x => getChildren(x, 0));
+    this.nodes = value.filter(x => XIsEmpty(x.pid)).map(x => getChildren(x, 0));
+  }
+
+  getCheckedNodes(): XTreeNode[] {
+    let result = [];
+    const getChildren = (nodes: XTreeNode[]) => {
+      if (XIsEmpty(nodes)) return;
+      nodes.forEach(x => {
+        if (!XIsEmpty(x.checked)) result = [...result, x];
+        getChildren(x.children);
+      });
+    };
+    getChildren(this.nodes);
+    return result;
+  }
+
+  getCheckedKeys() {
+    return this.getCheckedNodes().map(x => x.id);
+  }
+
+  setCheckedKeys(keys: any[] = []) {
+    const setChildren = (nodes: XTreeNode[], clear = false) => {
+      if (XIsEmpty(nodes)) return;
+      nodes.forEach(x => {
+        // if (parentChencked) {
+        //   x.checked = [x.value];
+        // } else if (keys.indexOf(x.value) >= 0) {
+        //   x.checked = [x.value];
+        //   parentChencked = true;
+        // }
+        x.checked = keys.indexOf(x.id) >= 0 && !clear ? [x.id] : [];
+        x.change && x.change(true);
+        setChildren(x.children, clear);
+      });
+    };
+    setChildren(this.nodes, keys.length === 0);
+  }
+
+  setExpandedAll() {
+    const setChildren = (nodes: XTreeNode[]) => {
+      if (XIsEmpty(nodes)) return;
+      nodes.forEach(x => {
+        x.open = this.expandedAll;
+        x.change && x.change();
+        setChildren(x.children);
+      });
+    };
+    setChildren(this.nodes);
   }
 }

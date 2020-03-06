@@ -3,7 +3,7 @@
  * @selector x-carousel
  * @decorator component
  */
-export const XCarouselPrefix = "x-carousel";
+export const XCarouselPrefix = 'x-carousel';
 
 /**
  * Carousel @Input
@@ -59,7 +59,7 @@ export interface XCarouselInput {
  * @value "hover"
  * @value "click"
  */
-export type XCarouselTrigger = "hover" | "click";
+export type XCarouselTrigger = 'hover' | 'click';
 
 /**
  * 切换箭头显示方式
@@ -67,18 +67,18 @@ export type XCarouselTrigger = "hover" | "click";
  * @value "hover"
  * @value "never"
  */
-export type XCarouselArrow = "always" | "hover" | "never";
+export type XCarouselArrow = 'always' | 'hover' | 'never';
 
 /**
  * 走马灯展示的方向
  * @value "horizontal"
  * @value "vertical"
  */
-export type XCarouselDirection = "horizontal" | "vertical";
+export type XCarouselDirection = 'horizontal' | 'vertical';
 
 /**
  * Carousel Panel 组件名
  * @selector x-carousel-panel
  * @decorator component
  */
-export const XCarouselPanelPrefix = "x-carousel-panel";
+export const XCarouselPanelPrefix = 'x-carousel-panel';

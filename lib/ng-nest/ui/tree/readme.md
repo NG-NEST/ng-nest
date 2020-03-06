@@ -1,6 +1,6 @@
 ---
-label: "Tree 树形控件"
-category: "Data"
+label: 'Tree 树形控件'
+category: 'Data'
 ---
 
 # Tree 树形控件

@@ -1,6 +1,6 @@
 ---
-label: "InputNumber 计数器"
-category: "Form"
+label: 'InputNumber 计数器'
+category: 'Form'
 ---
 
 # InputNumber 计数器

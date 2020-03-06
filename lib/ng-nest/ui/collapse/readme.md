@@ -1,6 +1,6 @@
 ---
-label: "Collapse 折叠面板"
-category: "Data"
+label: 'Collapse 折叠面板'
+category: 'Data'
 ---
 
 # Collapse 折叠面板

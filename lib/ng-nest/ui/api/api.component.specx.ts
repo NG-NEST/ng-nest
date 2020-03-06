@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XApiComponent } from "./api.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XApiModule } from "./api.module";
-import { ApiPrefix } from "./api.type";
+import { XApiComponent } from './api.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XApiModule } from './api.module';
+import { ApiPrefix } from './api.type';
 
 describe(ApiPrefix, () => {
   beforeEach(async(() => {
@@ -23,10 +23,10 @@ describe(ApiPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XApiComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(ApiPrefix);
     });
@@ -34,7 +34,7 @@ describe(ApiPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-api",
+  selector: 'test-x-api',
   template: `
     <x-api>x-api</x-api>
   `

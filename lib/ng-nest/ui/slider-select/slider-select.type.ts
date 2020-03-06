@@ -1,11 +1,11 @@
-import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty } from '@ng-nest/ui/core';
 
 /**
  * SliderSelect 组件名
  * @selector x-slider-select
  * @decorator component
  */
-export const XSliderSelectPrefix = "x-slider-select";
+export const XSliderSelectPrefix = 'x-slider-select';
 
 /**
  * SliderSelect XSliderSelect

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  layout: "index",
-  defaultPage: "home"
+  layout: 'index',
+  defaultPage: 'home'
 };
 
 /*

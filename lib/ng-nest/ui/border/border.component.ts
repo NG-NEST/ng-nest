@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from "@angular/core";
-import { XBorderPrefix } from "./border.type";
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { XBorderPrefix } from './border.type';
 
 @Component({
-  selector: "x-border",
-  templateUrl: "./border.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-border',
+  templateUrl: './border.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

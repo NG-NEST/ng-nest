@@ -1,39 +1,39 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 // @dynamic
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class XHttpService {
-  api: string = "";
+  api: string = '';
   constructor(public http: HttpClient) {}
 
   /**
    * get请求
    */
   get(url: string, params?) {
-    return this.request("GET", url, params);
+    return this.request('GET', url, params);
   }
 
   /**
    * get请求
    */
   post(url: string, params?): Observable<any> {
-    return this.request("POST", url, params);
+    return this.request('POST', url, params);
   }
 
   /**
    * put请求
    */
   put(url: string, params?): Observable<any> {
-    return this.request("PUT", url, params);
+    return this.request('PUT', url, params);
   }
 
   /**
    * delete请求
    */
   delete(url: string, params?): Observable<any> {
-    return this.request("DELETE", url, params);
+    return this.request('DELETE', url, params);
   }
 
   /**
@@ -44,9 +44,9 @@ export class XHttpService {
     let opt = {};
     url = `${this.api}${url}`;
     method = method.toUpperCase();
-    if (["POST", "PUT", "DELETE"].indexOf(method) > -1) {
-      opt = { body: params, observe: "body", responseType: "json" };
-    } else if (["GET"].indexOf(method) > -1) {
+    if (['POST', 'PUT', 'DELETE'].indexOf(method) > -1) {
+      opt = { body: params, observe: 'body', responseType: 'json' };
+    } else if (['GET'].indexOf(method) > -1) {
       opt = { params: params };
     }
     Object.assign(opt, option);

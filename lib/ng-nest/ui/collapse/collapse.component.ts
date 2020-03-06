@@ -13,21 +13,21 @@ import {
   TemplateRef,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XCollapsePrefix } from "./collapse.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber, XIsArray } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XCollapsePrefix } from './collapse.type';
+import { XInputBoolean, XSize, XInputNumber, XIsNumber, XIsArray } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
-  templateUrl: "./collapse.component.html",
-  styleUrls: ["./collapse.component.scss"],
+  templateUrl: './collapse.component.html',
+  styleUrls: ['./collapse.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCollapseComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() accordion?: boolean;
   @Input() active: number | number[] = [];
-  @ViewChild("collapse", { static: true }) collapse: ElementRef;
+  @ViewChild('collapse', { static: true }) collapse: ElementRef;
   @Output() activeChange = new EventEmitter();
   start: number = 0;
   panelChanges: Function[] = [];

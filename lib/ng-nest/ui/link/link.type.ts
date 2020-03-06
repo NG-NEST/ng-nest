@@ -3,7 +3,7 @@
  * @selector x-link
  * @decorator component
  */
-export const XLinkPrefix = "x-link";
+export const XLinkPrefix = 'x-link';
 
 /**
  * Link @Input
@@ -51,4 +51,4 @@ export interface XLinkInput {
  * @value "warning"
  * @value "danger"
  */
-export type XLinkType = "primary" | "success" | "info" | "warning" | "danger";
+export type XLinkType = 'primary' | 'success' | 'info' | 'warning' | 'danger';

@@ -1,10 +1,10 @@
-import { XDirection } from "@ng-nest/ui/core";
+import { XDirection } from '@ng-nest/ui/core';
 /**
  * Container 组件名
  * @selector x-container
  * @decorator component
  */
-export const XContainerPrefix = "x-container";
+export const XContainerPrefix = 'x-container';
 
 /**
  * Container @Input
@@ -22,7 +22,7 @@ export interface XContainerInput {
  * @selector x-header
  * @decorator component
  */
-export const XHeaderPrefix = "x-header";
+export const XHeaderPrefix = 'x-header';
 
 /**
  * Header @Input
@@ -39,7 +39,7 @@ export interface XHeaderInput {
  * @selector x-aside
  * @decorator component
  */
-export const XAsidePrefix = "x-aside";
+export const XAsidePrefix = 'x-aside';
 
 /**
  * Aside @Input
@@ -56,14 +56,14 @@ export interface XAsideInput {
  * @selector x-main
  * @decorator component
  */
-export const XMainPrefix = "x-main";
+export const XMainPrefix = 'x-main';
 
 /**
  * Footer 组件名
  * @selector x-footer
  * @decorator component
  */
-export const XFooterPrefix = "x-footer";
+export const XFooterPrefix = 'x-footer';
 
 /**
  * Footer @Input

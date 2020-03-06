@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XButtonComponent } from "./button.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XButtonModule } from "./button.module";
-import { XButtonPrefix } from "./button.type";
+import { XButtonComponent } from './button.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XButtonModule } from './button.module';
+import { XButtonPrefix } from './button.type';
 
 describe(XButtonPrefix, () => {
   beforeEach(async(() => {
@@ -31,7 +31,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -45,7 +45,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -59,7 +59,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -73,7 +73,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -87,7 +87,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -101,7 +101,7 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -115,38 +115,38 @@ describe(XButtonPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-button",
+  selector: 'test-x-button',
   template: `
     <div class="row">
-      <x-button label="默认按钮"></x-button>
-      <x-button label="主要按钮" type="primary"></x-button>
-      <x-button label="成功按钮" type="success"></x-button>
-      <x-button label="警告按钮" type="warning"></x-button>
-      <x-button label="危险按钮" type="danger"></x-button>
-      <x-button label="信息按钮" type="info"></x-button>
+      <x-button>默认按钮</x-button>
+      <x-button type="primary">主要按钮</x-button>
+      <x-button type="success">成功按钮</x-button>
+      <x-button type="warning">警告按钮</x-button>
+      <x-button type="danger">危险按钮</x-button>
+      <x-button type="info">信息按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="朴素按钮" plain></x-button>
-      <x-button label="主要按钮" type="primary" plain></x-button>
-      <x-button label="成功按钮" type="success" plain></x-button>
-      <x-button label="警告按钮" type="warning" plain></x-button>
-      <x-button label="危险按钮" type="danger" plain></x-button>
-      <x-button label="信息按钮" type="info" plain></x-button>
+      <x-button plain>朴素按钮</x-button>
+      <x-button type="primary" plain>主要按钮</x-button>
+      <x-button type="success" plain>成功按钮</x-button>
+      <x-button type="warning" plain>警告按钮</x-button>
+      <x-button type="danger" plain>危险按钮</x-button>
+      <x-button type="info" plain>信息按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="圆角按钮" round></x-button>
-      <x-button label="主要按钮" type="primary" round></x-button>
-      <x-button label="成功按钮" type="success" round></x-button>
-      <x-button label="警告按钮" type="warning" round></x-button>
-      <x-button label="危险按钮" type="danger" round></x-button>
-      <x-button label="信息按钮" type="info" round></x-button>
+      <x-button round>圆角按钮</x-button>
+      <x-button type="primary" round>主要按钮</x-button>
+      <x-button type="success" round>成功按钮</x-button>
+      <x-button type="warning" round>警告按钮</x-button>
+      <x-button type="danger" round>危险按钮</x-button>
+      <x-button type="info" round>信息按钮</x-button>
     </div>
     <div class="row">
       <x-button icon="fto-search" circle></x-button>
@@ -170,28 +170,31 @@ describe(XButtonPrefix, () => {
 class TestXButtonComponent {}
 
 @Component({
-  selector: "test-x-disabled-button",
+  selector: 'test-x-disabled-button',
   template: `
     <div class="row">
-      <x-button label="默认按钮" disabled></x-button>
-      <x-button label="主要按钮" type="primary" disabled></x-button>
-      <x-button label="成功按钮" type="success" disabled></x-button>
-      <x-button label="警告按钮" type="warning" disabled></x-button>
-      <x-button label="危险按钮" type="danger" disabled></x-button>
+      <x-button disabled>默认按钮</x-button>
+      <x-button type="primary" disabled>主要按钮</x-button>
+      <x-button type="success" disabled>成功按钮</x-button>
+      <x-button type="warning" disabled>警告按钮</x-button>
+      <x-button type="danger" disabled>危险按钮</x-button>
+      <x-button type="info" disabled>信息按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="朴素按钮" plain disabled></x-button>
-      <x-button label="主要按钮" type="primary" plain disabled></x-button>
-      <x-button label="成功按钮" type="success" plain disabled></x-button>
-      <x-button label="警告按钮" type="warning" plain disabled></x-button>
-      <x-button label="危险按钮" type="danger" plain disabled></x-button>
+      <x-button plain disabled>朴素按钮</x-button>
+      <x-button type="primary" plain disabled>主要按钮</x-button>
+      <x-button type="success" plain disabled>成功按钮</x-button>
+      <x-button type="warning" plain disabled>警告按钮</x-button>
+      <x-button type="danger" plain disabled>危险按钮</x-button>
+      <x-button type="info" plain disabled>信息按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="圆角按钮" round disabled></x-button>
-      <x-button label="主要按钮" type="primary" round disabled></x-button>
-      <x-button label="成功按钮" type="success" round disabled></x-button>
-      <x-button label="警告按钮" type="warning" round disabled></x-button>
-      <x-button label="危险按钮" type="danger" round disabled></x-button>
+      <x-button round disabled>圆角按钮</x-button>
+      <x-button type="primary" round disabled>主要按钮</x-button>
+      <x-button type="success" round disabled>成功按钮</x-button>
+      <x-button type="warning" round disabled>警告按钮</x-button>
+      <x-button type="danger" round disabled>危险按钮</x-button>
+      <x-button type="info" round disabled>信息按钮</x-button>
     </div>
     <div class="row">
       <x-button icon="fto-search" circle disabled></x-button>
@@ -215,11 +218,11 @@ class TestXButtonComponent {}
 class TestXButtonDiabledComponent {}
 
 @Component({
-  selector: "test-x-text-button",
+  selector: 'test-x-text-button',
   template: `
     <div class="row">
-      <x-button label="文字按钮" type="text"></x-button>
-      <x-button label="文字按钮" type="text" disabled></x-button>
+      <x-button type="text">文字按钮</x-button>
+      <x-button type="text" disabled>文字按钮</x-button>
     </div>
   `,
   styles: [
@@ -236,15 +239,15 @@ class TestXButtonDiabledComponent {}
 class TestXButtonTextComponent {}
 
 @Component({
-  selector: "test-x-icon-button",
+  selector: 'test-x-icon-button',
   template: `
     <div class="row">
       <x-button icon="fto-edit-3" onlyIcon></x-button>
       <x-button icon="fto-edit-3" type="primary"></x-button>
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-trash-2" type="primary"></x-button>
-      <x-button label="搜索" icon="fto-search" type="primary"></x-button>
-      <x-button label="上传" icon="fto-upload-cloud" direction="row-reverse" type="primary"></x-button>
+      <x-button icon="fto-search" type="primary">搜索</x-button>
+      <x-button icon="fto-upload-cloud" direction="row-reverse" type="primary">上传</x-button>
     </div>
   `,
   styles: [
@@ -261,18 +264,18 @@ class TestXButtonTextComponent {}
 class TestXButtonIconComponent {}
 
 @Component({
-  selector: "test-x-group-button",
+  selector: 'test-x-group-button',
   template: `
     <div class="row">
       <x-buttons>
-        <x-button label="A"></x-button>
-        <x-button label="B"></x-button>
-        <x-button label="C"></x-button>
-        <x-button label="D"></x-button>
+        <x-button>A</x-button>
+        <x-button>B</x-button>
+        <x-button>C</x-button>
+        <x-button>D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left"></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse"></x-button>
+        <x-button icon="fto-chevron-left">上一页</x-button>
+        <x-button icon="fto-chevron-right" direction="row-reverse">下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3"></x-button>
@@ -282,14 +285,14 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" type="primary"></x-button>
-        <x-button label="B" type="primary"></x-button>
-        <x-button label="C" type="primary"></x-button>
-        <x-button label="D" type="primary"></x-button>
+        <x-button type="primary">A</x-button>
+        <x-button type="primary">B</x-button>
+        <x-button type="primary">C</x-button>
+        <x-button type="primary">D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left" type="primary"></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" type="primary"></x-button>
+        <x-button icon="fto-chevron-left" type="primary">上一页</x-button>
+        <x-button icon="fto-chevron-right" direction="row-reverse" type="primary">下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary"></x-button>
@@ -299,14 +302,14 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" plain></x-button>
-        <x-button label="B" plain></x-button>
-        <x-button label="C" plain></x-button>
-        <x-button label="D" plain></x-button>
+        <x-button plain>A</x-button>
+        <x-button plain>B</x-button>
+        <x-button plain>C</x-button>
+        <x-button plain>D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left" plain></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" plain></x-button>
+        <x-button icon="fto-chevron-left" plain>上一页</x-button>
+        <x-button icon="fto-chevron-right" direction="row-reverse" plain>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" plain></x-button>
@@ -316,14 +319,14 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" type="primary" plain></x-button>
-        <x-button label="B" type="primary" plain></x-button>
-        <x-button label="C" type="primary" plain></x-button>
-        <x-button label="D" type="primary" plain></x-button>
+        <x-button type="primary" plain>A</x-button>
+        <x-button type="primary" plain>B</x-button>
+        <x-button type="primary" plain>C</x-button>
+        <x-button type="primary" plain>D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" type="primary" icon="fto-chevron-left" plain></x-button>
-        <x-button label="下一页" type="primary" icon="fto-chevron-right" direction="row-reverse" plain></x-button>
+        <x-button type="primary" icon="fto-chevron-left" plain>上一页</x-button>
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" plain></x-button>
@@ -333,14 +336,14 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" round></x-button>
-        <x-button label="B" round></x-button>
-        <x-button label="C" round></x-button>
-        <x-button label="D" round></x-button>
+        <x-button round>A</x-button>
+        <x-button round>B</x-button>
+        <x-button round>C</x-button>
+        <x-button round>D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" icon="fto-chevron-left" round></x-button>
-        <x-button label="下一页" icon="fto-chevron-right" direction="row-reverse" round></x-button>
+        <x-button icon="fto-chevron-left" round>上一页</x-button>
+        <x-button icon="fto-chevron-right" direction="row-reverse" round>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" round></x-button>
@@ -350,14 +353,14 @@ class TestXButtonIconComponent {}
     </div>
     <div class="row">
       <x-buttons>
-        <x-button label="A" type="primary" round></x-button>
-        <x-button label="B" type="primary" round></x-button>
-        <x-button label="C" type="primary" round></x-button>
-        <x-button label="D" type="primary" round></x-button>
+        <x-button type="primary" round>A</x-button>
+        <x-button type="primary" round>B</x-button>
+        <x-button type="primary" round>C</x-button>
+        <x-button type="primary" round>D</x-button>
       </x-buttons>
       <x-buttons>
-        <x-button label="上一页" type="primary" icon="fto-chevron-left" round></x-button>
-        <x-button label="下一页" type="primary" icon="fto-chevron-right" direction="row-reverse" round></x-button>
+        <x-button type="primary" icon="fto-chevron-left" round>上一页</x-button>
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" round></x-button>
@@ -384,10 +387,10 @@ class TestXButtonIconComponent {}
 class TestXButtonGroupComponent {}
 
 @Component({
-  selector: "test-x-loading-button",
+  selector: 'test-x-loading-button',
   template: `
     <div class="row">
-      <x-button label="保存" icon="fto-save" type="primary" [loading]="loading" (click)="save()"></x-button>
+      <x-button icon="fto-save" type="primary" [loading]="loading" (click)="save()">保存</x-button>
     </div>
   `,
   styles: [
@@ -416,28 +419,28 @@ class TestXButtonLoadingComponent {
 }
 
 @Component({
-  selector: "test-x-size-button",
+  selector: 'test-x-size-button',
   template: `
     <div class="row">
-      <x-button label="大型按钮" size="large"></x-button>
-      <x-button label="中等按钮" size="medium"></x-button>
-      <x-button label="默认按钮"></x-button>
-      <x-button label="小型按钮" size="small"></x-button>
-      <x-button label="迷你按钮" size="mini"></x-button>
+      <x-button size="large">大型按钮</x-button>
+      <x-button size="medium">中等按钮</x-button>
+      <x-button>默认按钮</x-button>
+      <x-button size="small">小型按钮</x-button>
+      <x-button size="mini">迷你按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="大型按钮" type="primary" size="large"></x-button>
-      <x-button label="中等按钮" type="primary" size="medium"></x-button>
-      <x-button label="默认按钮" type="primary"></x-button>
-      <x-button label="小型按钮" type="primary" size="small"></x-button>
-      <x-button label="迷你按钮" type="primary" size="mini"></x-button>
+      <x-button type="primary" size="large">大型按钮</x-button>
+      <x-button type="primary" size="medium">中等按钮</x-button>
+      <x-button type="primary">默认按钮</x-button>
+      <x-button type="primary" size="small">小型按钮</x-button>
+      <x-button type="primary" size="mini">迷你按钮</x-button>
     </div>
     <div class="row">
-      <x-button label="大型按钮" type="primary" size="large" round></x-button>
-      <x-button label="中等按钮" type="primary" size="medium" round></x-button>
-      <x-button label="默认按钮" type="primary" round></x-button>
-      <x-button label="小型按钮" type="primary" size="small" round></x-button>
-      <x-button label="迷你按钮" type="primary" size="mini" round></x-button>
+      <x-button type="primary" size="large" round>大型按钮</x-button>
+      <x-button type="primary" size="medium" round>中等按钮</x-button>
+      <x-button type="primary" round>默认按钮</x-button>
+      <x-button type="primary" size="small" round>小型按钮</x-button>
+      <x-button type="primary" size="mini" round>迷你按钮</x-button>
     </div>
     <div class="row">
       <x-button icon="fto-share" type="primary" size="large"></x-button>

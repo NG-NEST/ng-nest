@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XCrumbComponent } from "./crumb.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XCrumbComponent } from './crumb.component';
 
 @NgModule({
   declarations: [XCrumbComponent],

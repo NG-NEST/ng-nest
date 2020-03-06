@@ -1,6 +1,6 @@
 ---
-label: "Select 选择器"
-category: "Form"
+label: 'Select 选择器'
+category: 'Form'
 ---
 
 # Select 选择器

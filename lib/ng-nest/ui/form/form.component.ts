@@ -9,15 +9,15 @@ import {
   ElementRef,
   ChangeDetectorRef,
   Input
-} from "@angular/core";
-import { XFormInput, XControl, XFormRow } from "./form.type";
-import { fillDefault, removeNgTag } from "@ng-nest/ui/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+} from '@angular/core';
+import { XFormInput, XControl, XFormRow } from './form.type';
+import { fillDefault, removeNgTag } from '@ng-nest/ui/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: "x-form",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.scss"],
+  selector: 'x-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -27,7 +27,7 @@ export class XFormComponent implements OnInit, OnChanges {
 
   formGroup: FormGroup;
 
-  controlsType: "controls" | "rows";
+  controlsType: 'controls' | 'rows';
 
   private _default: XFormInput = {};
 
@@ -51,10 +51,10 @@ export class XFormComponent implements OnInit, OnChanges {
 
   getControlsType() {
     if (this.controls && this.controls.length > 0) {
-      this.controlsType = this.controls[0] instanceof XControl ? "controls" : "rows";
-      if (this.controlsType === "controls") {
+      this.controlsType = this.controls[0] instanceof XControl ? 'controls' : 'rows';
+      if (this.controlsType === 'controls') {
         this._controls = this.controls as XControl[];
-      } else if (this.controlsType === "rows") {
+      } else if (this.controlsType === 'rows') {
         for (let row of this.controls as XFormRow[]) {
           this._controls = [...this._controls, ...row.controls];
         }
@@ -65,7 +65,7 @@ export class XFormComponent implements OnInit, OnChanges {
   createFormGroup() {
     let group: { [property: string]: FormControl } = {};
     this._controls.forEach(x => {
-      group[x.key] = new FormControl(x.value);
+      group[x.id] = new FormControl(x.value);
     });
     this.formGroup = new FormGroup(group);
   }

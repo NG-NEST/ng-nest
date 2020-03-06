@@ -1,6 +1,6 @@
 ---
-label: "Layout 栅格布局"
-category: "Basic"
+label: 'Layout 栅格布局'
+category: 'Basic'
 ---
 
 # Layout 栅格布局
@@ -9,8 +9,8 @@ category: "Basic"
 
 ## 应用组件
 
--   `x-form` 表单控件布局。
--   `x-table` 表格行列布局。
+- `x-form` 表单控件布局。
+- `x-table` 表格行列布局。
 
 ## 示例代码
 

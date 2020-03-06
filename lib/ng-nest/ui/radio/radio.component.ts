@@ -11,9 +11,9 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild
-} from "@angular/core";
-import { XRadioPrefix, XRadioNode } from "./radio.type";
-import { Subscription, Observable } from "rxjs";
+} from '@angular/core';
+import { XRadioPrefix, XRadioNode } from './radio.type';
+import { Subscription, Observable } from 'rxjs';
 import {
   XData,
   XValueAccessor,
@@ -24,13 +24,13 @@ import {
   XToDataConvert,
   removeNgTag,
   XSize
-} from "@ng-nest/ui/core";
-import { map } from "rxjs/operators";
+} from '@ng-nest/ui/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: `${XRadioPrefix}`,
-  templateUrl: "./radio.component.html",
-  styleUrls: ["./radio.component.scss"],
+  templateUrl: './radio.component.html',
+  styleUrls: ['./radio.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRadioComponent)]
@@ -40,7 +40,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   @Input() @XInputBoolean() button?: boolean;
   @Input() @XInputBoolean() icon?: boolean;
   @Input() size?: XSize;
-  @ViewChild("radio", { static: true }) radio: ElementRef;
+  @ViewChild('radio', { static: true }) radio: ElementRef;
 
   writeValue(value: any) {
     this.value = value;
@@ -71,8 +71,8 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
 
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled || node.value === this.value) return;
-    this.value = node.value;
+    if (this.disabled || node.disabled || node.id === this.value) return;
+    this.value = node.id;
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
@@ -82,7 +82,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   private setData() {
-    if (typeof this.data === "undefined") return;
+    if (typeof this.data === 'undefined') return;
     if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
       this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {

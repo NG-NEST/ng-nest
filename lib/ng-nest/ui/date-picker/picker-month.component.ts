@@ -13,13 +13,13 @@ import {
   SimpleChanges,
   ElementRef,
   TemplateRef
-} from "@angular/core";
-import { chunk } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { chunk } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-picker-month",
-  templateUrl: "./picker-month.component.html",
-  styleUrls: ["./picker-month.component.scss"],
+  selector: 'x-picker-month',
+  templateUrl: './picker-month.component.html',
+  styleUrls: ['./picker-month.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

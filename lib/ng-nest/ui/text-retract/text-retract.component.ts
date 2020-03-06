@@ -8,21 +8,21 @@ import {
   ChangeDetectionStrategy,
   Input,
   ViewChild
-} from "@angular/core";
-import { XTextRetractPrefix } from "./text-retract.type";
-import { XInputNumber } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XTextRetractPrefix } from './text-retract.type';
+import { XInputNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
-  templateUrl: "./text-retract.component.html",
-  styleUrls: ["./text-retract.component.scss"],
+  templateUrl: './text-retract.component.html',
+  styleUrls: ['./text-retract.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTextRetractComponent implements OnInit {
   @Input() label?: string;
   @Input() @XInputNumber() max: number = 256;
-  @ViewChild("textRetract", { static: true }) textRetract: ElementRef;
+  @ViewChild('textRetract', { static: true }) textRetract: ElementRef;
   displayValue: string;
   retract: boolean = false;
   unfold: boolean = true;

@@ -1,6 +1,6 @@
 ---
-label: "Progress 进度条"
-category: "Data"
+label: 'Progress 进度条'
+category: 'Data'
 ---
 
 # Progress 进度条

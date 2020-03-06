@@ -1,2 +1,2 @@
-export * from "./fade";
-export * from "./drop";
+export * from './fade';
+export * from './drop';

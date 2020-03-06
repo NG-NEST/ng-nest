@@ -1,12 +1,12 @@
-import { XDocModule } from "@ng-nest/ui/doc";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XDocModule } from '@ng-nest/ui/doc';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XTypographyComponent } from "./typography.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XTypographyModule } from "./typography.module";
-import { XTypographyPrefix } from "./typography.type";
+import { XTypographyComponent } from './typography.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XTypographyModule } from './typography.module';
+import { XTypographyPrefix } from './typography.type';
 
 describe(XTypographyPrefix, () => {
   beforeEach(async(() => {
@@ -25,14 +25,14 @@ describe(XTypographyPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XTypographyComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-typography",
+  selector: 'test-x-typography',
   template: `
     <x-doc>
       <x-row space="1">
@@ -107,7 +107,7 @@ describe(XTypographyPrefix, () => {
   `
 })
 class TestXTypographyComponent {
-  text = "天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。";
+  text = '天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
   textLineHeight =
-    "天将降大任于斯人也，必先苦其心志，<br/>劳其筋骨，饿其体肤，空乏其身，<br/>行拂乱其所为也，所以动心忍性，增益其所不能。";
+    '天将降大任于斯人也，必先苦其心志，<br/>劳其筋骨，饿其体肤，空乏其身，<br/>行拂乱其所为也，所以动心忍性，增益其所不能。';
 }

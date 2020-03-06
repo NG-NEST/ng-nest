@@ -1,11 +1,11 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
 
 /**
  * Checkbox 组件名
  * @selector x-checkbox
  * @decorator component
  */
-export const XCheckboxPrefix = "x-checkbox";
+export const XCheckboxPrefix = 'x-checkbox';
 
 /**
  * Checkbox @Input

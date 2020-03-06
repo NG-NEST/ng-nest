@@ -1,14 +1,14 @@
-import { interval, Observable } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { interval, Observable } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XListComponent } from "./list.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XListModule } from "./list.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XListPrefix, XListNode } from "./list.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XData } from "@ng-nest/ui/core";
+import { XListComponent } from './list.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XListModule } from './list.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XListPrefix, XListNode } from './list.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XData } from '@ng-nest/ui/core';
 
 describe(XListPrefix, () => {
   beforeEach(async(() => {
@@ -25,13 +25,13 @@ describe(XListPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XListComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
-const data: XData<XListNode[]> = ["AAAA", "BBBB", { label: "CCCC", hasChild: true }, "DDDD"];
+const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD'];
 
 @Component({
   template: `
@@ -108,11 +108,11 @@ class TestXListComponent {
   data5 = JSON.parse(JSON.stringify(data));
   data6 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2 = "AAAA";
+  model2 = 'AAAA';
   model3: any;
-  model4 = ["AAAA", "BBBB"];
+  model4 = ['AAAA', 'BBBB'];
   model5: any;
-  model6 = ["BBBB", "CCCC"];
+  model6 = ['BBBB', 'CCCC'];
   constructor(private cdr: ChangeDetectorRef) {
     // interval(500).subscribe(x => {
     //   this.cdr.detectChanges();

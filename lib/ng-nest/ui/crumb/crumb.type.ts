@@ -1,12 +1,12 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
-import { TemplateRef } from "@angular/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Crumb 组件名
  * @selector x-crumb
  * @decorator component
  */
-export const CrumbPrefix = "x-crumb";
+export const CrumbPrefix = 'x-crumb';
 
 /**
  * Crumb @Input

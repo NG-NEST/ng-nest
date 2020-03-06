@@ -1,6 +1,6 @@
 ---
-label: "Text Retract 文字收起"
-category: "Data"
+label: 'Text Retract 文字收起'
+category: 'Data'
 ---
 
 # Text Retract 文字收起

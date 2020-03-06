@@ -1,13 +1,13 @@
-import { XButtonModule } from "@ng-nest/ui/button";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XButtonModule } from '@ng-nest/ui/button';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XRateComponent } from "./rate.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XRateModule } from "./rate.module";
-import { FormsModule } from "@angular/forms";
-import { XRatePrefix } from "./rate.type";
+import { XRateComponent } from './rate.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XRateModule } from './rate.module';
+import { FormsModule } from '@angular/forms';
+import { XRatePrefix } from './rate.type';
 
 describe(XRatePrefix, () => {
   beforeEach(async(() => {
@@ -24,7 +24,7 @@ describe(XRatePrefix, () => {
       fixture.detectChanges();
       rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(rate).toBeDefined();
     });
   });
@@ -36,7 +36,7 @@ describe(XRatePrefix, () => {
       fixture.detectChanges();
       rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(rate).toBeDefined();
     });
   });

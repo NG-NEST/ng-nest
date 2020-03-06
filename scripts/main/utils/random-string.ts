@@ -6,11 +6,11 @@
  * @returns
  */
 export function randomString(num: number = 6) {
-  if (num < 0) return "";
+  if (num < 0) return '';
   var result = [];
   for (var i = 0; i < num; i++) {
     var ranXm = Math.ceil(Math.random() * 25);
     result.push(String.fromCharCode(65 + ranXm));
   }
-  return result.join("");
+  return result.join('');
 }

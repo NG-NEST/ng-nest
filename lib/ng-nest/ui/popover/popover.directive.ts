@@ -10,23 +10,23 @@ import {
   TemplateRef,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XPlacement, XInputBoolean } from "@ng-nest/ui/core";
-import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { XPopoverPortalComponent } from "./popover-portal.component";
-import { XPopoverPortal, XPopoverTrigger } from "./popover.type";
-import { BehaviorSubject } from "rxjs";
+} from '@angular/core';
+import { XPlacement, XInputBoolean } from '@ng-nest/ui/core';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPopoverPortalComponent } from './popover-portal.component';
+import { XPopoverPortal, XPopoverTrigger } from './popover.type';
+import { BehaviorSubject } from 'rxjs';
 
 @Directive({
-  selector: "[x-popover], x-popover"
+  selector: '[x-popover], x-popover'
 })
 export class XPopoverDirective implements OnInit, OnChanges {
   @Input() title?: string | TemplateRef<void>;
   @Input() content?: string | TemplateRef<void>;
   @Input() footer?: string | TemplateRef<void>;
-  @Input() placement: XPlacement = "bottom";
-  @Input() trigger: XPopoverTrigger = "hover";
-  @Input() width: string = "10rem";
+  @Input() placement: XPlacement = 'bottom';
+  @Input() trigger: XPopoverTrigger = 'hover';
+  @Input() width: string = '10rem';
   @Input() @XInputBoolean() visible?: boolean = false;
   @Output() visibleChange = new EventEmitter();
   portal: XPortalOverlayRef;
@@ -39,8 +39,8 @@ export class XPopoverDirective implements OnInit, OnChanges {
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  @HostListener("click") click() {
-    if (this.trigger === "click") {
+  @HostListener('click') click() {
+    if (this.trigger === 'click') {
       this.visible = !this.visible;
       if (this.visible) this.show();
       else this.hide();
@@ -48,12 +48,12 @@ export class XPopoverDirective implements OnInit, OnChanges {
     }
   }
 
-  @HostListener("mouseenter") mouseenter() {
-    if (this.trigger === "hover") this.show();
+  @HostListener('mouseenter') mouseenter() {
+    if (this.trigger === 'hover') this.show();
   }
 
-  @HostListener("mouseleave") mouseleave() {
-    if (this.trigger === "hover") this.hide();
+  @HostListener('mouseleave') mouseleave() {
+    if (this.trigger === 'hover') this.hide();
   }
 
   ngOnInit() {}
@@ -121,7 +121,7 @@ export class XPopoverDirective implements OnInit, OnChanges {
         XPopoverPortal
       ),
       overlayConfig: {
-        backdropClass: "",
+        backdropClass: '',
         positionStrategy: this.portalService.setPositionStrategy(this.elementRef, this.placement)
       }
     });

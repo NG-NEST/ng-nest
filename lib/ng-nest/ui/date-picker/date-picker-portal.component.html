@@ -4,8 +4,8 @@
       <x-button icon="fto-chevrons-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
       <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextMonth(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button [label]="display | date: 'yyyy年'" type="text" size="mini" (click)="type = 'year'"></x-button>
-        <x-button [label]="display | date: 'M月'" type="text" size="mini" (click)="type = 'month'"></x-button>
+        <x-button type="text" size="mini" (click)="type = 'year'">{{ display | date: 'yyyy年' }}</x-button>
+        <x-button type="text" size="mini" (click)="type = 'month'">{{ display | date: 'M月' }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextMonth(1)"></x-button>
       <x-button icon="fto-chevrons-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
@@ -13,15 +13,15 @@
     <ng-container *ngSwitchCase="'month'">
       <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button [label]="display | date: 'yyyy年'" type="text" size="mini" (click)="type = 'year'"></x-button>
+        <x-button type="text" size="mini" (click)="type = 'year'">{{ display | date: 'yyyy年' }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
     </ng-container>
     <ng-container *ngSwitchCase="'year'">
       <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextYears(-10)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button [label]="startYear" type="text" size="mini"></x-button> -
-        <x-button [label]="startYear + 9" type="text" size="mini"></x-button>
+        <x-button type="text" size="mini">{{ startYear }}</x-button> -
+        <x-button type="text" size="mini">{{ startYear + 9 }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextYears(10)"></x-button>
     </ng-container>

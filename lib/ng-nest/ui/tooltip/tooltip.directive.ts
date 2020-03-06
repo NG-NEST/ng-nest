@@ -7,19 +7,19 @@ import {
   HostListener,
   OnChanges,
   SimpleChanges
-} from "@angular/core";
-import { XPlacement, XInputBoolean } from "@ng-nest/ui/core";
-import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { XTooltipPortalComponent } from "./tooltip-portal.component";
-import { XTooltipPortal } from "./tooltip.type";
-import { BehaviorSubject } from "rxjs";
+} from '@angular/core';
+import { XPlacement, XInputBoolean } from '@ng-nest/ui/core';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XTooltipPortalComponent } from './tooltip-portal.component';
+import { XTooltipPortal } from './tooltip.type';
+import { BehaviorSubject } from 'rxjs';
 
 @Directive({
-  selector: "[x-tooltip], x-tooltip"
+  selector: '[x-tooltip], x-tooltip'
 })
 export class XTooltipDirective implements OnInit, OnChanges {
   @Input() content?: string;
-  @Input() placement?: XPlacement = "bottom";
+  @Input() placement?: XPlacement = 'bottom';
   @Input() @XInputBoolean() visible?: boolean = false;
   portal: XPortalOverlayRef;
   box: DOMRect;
@@ -31,11 +31,11 @@ export class XTooltipDirective implements OnInit, OnChanges {
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  @HostListener("mouseenter") mouseenter() {
+  @HostListener('mouseenter') mouseenter() {
     this.show();
   }
 
-  @HostListener("mouseleave") mouseleave() {
+  @HostListener('mouseleave') mouseleave() {
     this.hide();
   }
 
@@ -92,7 +92,7 @@ export class XTooltipDirective implements OnInit, OnChanges {
         XTooltipPortal
       ),
       overlayConfig: {
-        backdropClass: "",
+        backdropClass: '',
         positionStrategy: this.portalService.setPositionStrategy(this.elementRef, this.placement)
       }
     });

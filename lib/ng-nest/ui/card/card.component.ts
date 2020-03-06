@@ -11,14 +11,14 @@ import {
   SimpleChanges,
   OnChanges,
   TemplateRef
-} from "@angular/core";
-import { XCardPrefix, XCardShadow } from "./card.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XCardPrefix, XCardShadow } from './card.type';
+import { XInputBoolean, XSize, XInputNumber, XIsNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCardPrefix}`,
-  templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.scss"],
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -26,8 +26,8 @@ export class XCardComponent implements OnInit, OnChanges {
   @Input() width?: string;
   @Input() bodyStyle?: any;
   @Input() header?: TemplateRef<any>;
-  @Input() shadow?: XCardShadow = "always";
-  @ViewChild("card", { static: true }) card: ElementRef;
+  @Input() shadow?: XCardShadow = 'always';
+  @ViewChild('card', { static: true }) card: ElementRef;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {

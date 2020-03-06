@@ -1,15 +1,19 @@
 // Button
 
-@import "../style/themes/default";
-@import "../style/mixins/index";
-@import "./style/mixin";
-@import "./style/param";
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+@import './style/param';
+
+#{$--x-button} {
+  display: inline-block;
+}
 
 .#{$--x-button} {
   @include reset-component();
   @include button();
   @include button-type(
-    "primary",
+    'primary',
     $--x-button-primary-color,
     $--x-button-primary-background,
     $--x-button-primary-border,
@@ -36,7 +40,7 @@
     $--x-button-primary-plain-disabled-border
   );
   @include button-type(
-    "success",
+    'success',
     $--x-button-success-color,
     $--x-button-success-background,
     $--x-button-success-border,
@@ -63,7 +67,7 @@
     $--x-button-success-plain-disabled-border
   );
   @include button-type(
-    "warning",
+    'warning',
     $--x-button-warning-color,
     $--x-button-warning-background,
     $--x-button-warning-border,
@@ -90,7 +94,7 @@
     $--x-button-warning-plain-disabled-border
   );
   @include button-type(
-    "danger",
+    'danger',
     $--x-button-danger-color,
     $--x-button-danger-background,
     $--x-button-danger-border,
@@ -117,7 +121,7 @@
     $--x-button-danger-plain-disabled-border
   );
   @include button-type(
-    "info",
+    'info',
     $--x-button-info-color,
     $--x-button-info-background,
     $--x-button-info-border,

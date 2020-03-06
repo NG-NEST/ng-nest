@@ -1,3 +1,3 @@
-export * from "./checkbox.component";
-export * from "./checkbox.module";
-export * from "./checkbox.type";
+export * from './checkbox.component';
+export * from './checkbox.module';
+export * from './checkbox.type';

@@ -3,4 +3,4 @@
  * @selector x-examples
  * @decorator component
  */
-export const ExamplesPrefix = "x-examples";
+export const ExamplesPrefix = 'x-examples';

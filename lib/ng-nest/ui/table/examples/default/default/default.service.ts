@@ -1,38 +1,25 @@
-import { Observable } from "rxjs";
-import { Injectable } from "@angular/core";
-import {
-  XId,
-  XGroupItem,
-  XSort,
-  XFilter,
-  XIsEmpty,
-  XQuery,
-  XResultList,
-  XRepositoryAbstract
-} from "@ng-nest/ui/core";
-import * as _ from "lodash";
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { XId, XGroupItem, XSort, XFilter, XIsEmpty, XQuery, XResultList, XRepositoryAbstract } from '@ng-nest/ui/core';
+import * as _ from 'lodash';
 
 @Injectable()
 export class DefaultService extends XRepositoryAbstract {
-  organizations = ["制造中心", "研发中心", "财务中心", "营销中心", "行政中心"];
-  positions = ["技术员", "销售", "经理", "总监", "生产员"];
+  organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
+  positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 1234 }).map((x, i) => {
     i++;
     return {
       id: i,
-      name: "姓名" + i,
+      name: '姓名' + i,
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
-      email: "邮箱" + i,
-      phone: "手机" + i,
+      email: '邮箱' + i,
+      phone: '手机' + i,
       organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 5]
     };
   });
 
-  getList(
-    index?: number,
-    size?: number,
-    query?: XQuery
-  ): Observable<XResultList<User | XGroupItem>> {
+  getList(index?: number, size?: number, query?: XQuery): Observable<XResultList<User | XGroupItem>> {
     return Observable.create(x => {
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query.filter);
@@ -82,14 +69,11 @@ export class DefaultService extends XRepositoryAbstract {
     });
   }
 
-  private setSort(
-    data: User[] | XGroupItem[],
-    sort: XSort[]
-  ): User[] | XGroupItem[] {
+  private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return _.orderBy(
       data,
       _.map(sort, x => x.field),
-      _.map(sort, x => x.value) as ("desc" | "asc")[]
+      _.map(sort, x => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

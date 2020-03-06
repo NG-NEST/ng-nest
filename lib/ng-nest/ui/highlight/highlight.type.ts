@@ -3,7 +3,7 @@
  * @selector x-highlight
  * @decorator component
  */
-export const HighlightPrefix = "x-highlight";
+export const HighlightPrefix = 'x-highlight';
 
 /**
  * Highlight 对象

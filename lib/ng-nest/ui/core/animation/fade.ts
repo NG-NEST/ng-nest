@@ -1,19 +1,19 @@
-import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from "@angular/animations";
+import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from '@angular/animations';
 
-export const fadeAnimation: AnimationTriggerMetadata = trigger("fadeAnimation", [
+export const fadeAnimation: AnimationTriggerMetadata = trigger('fadeAnimation', [
   state(
-    "true",
+    'true',
     style({
       opacity: 0,
-      display: "none"
+      display: 'none'
     })
   ),
   state(
-    "false",
+    'false',
     style({
       opacity: 1,
-      display: "block"
+      display: 'block'
     })
   ),
-  transition("* => *", animate(`250ms ease-in-out`))
+  transition('* => *', animate(`250ms ease-in-out`))
 ]);

@@ -1,6 +1,6 @@
 ---
-label: "Pagination 分页"
-category: "Data"
+label: 'Pagination 分页'
+category: 'Data'
 ---
 
 # Pagination 分页

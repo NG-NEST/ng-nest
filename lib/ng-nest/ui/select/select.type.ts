@@ -1,12 +1,12 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
-import { InjectionToken } from "@angular/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
+import { InjectionToken } from '@angular/core';
 
 /**
  * Select 组件名
  * @selector x-select
  * @decorator component
  */
-export const XSelectPrefix = "x-select";
+export const XSelectPrefix = 'x-select';
 
 /**
  * Select @Input
@@ -23,9 +23,9 @@ export interface XSelectNode extends XParentIdentityInput {}
  * @selector x-select-portal
  * @decorator component
  */
-export const XSelectPortalPrefix = "x-select-portal";
+export const XSelectPortalPrefix = 'x-select-portal';
 
-export const XSelectPortal = new InjectionToken<{}>("x-select-portal");
+export const XSelectPortal = new InjectionToken<{}>('x-select-portal');
 
 /**
  * Select-Portal @Input

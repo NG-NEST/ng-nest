@@ -3,14 +3,14 @@
     <x-buttons>
       <x-button
         *ngFor="let item of radioNodes"
-        [label]="item.label"
         [icon]="item.icon"
         [title]="item.title"
         [size]="size"
-        [activated]="item.value === value"
+        [activated]="item.id === value"
         [disabled]="disabled || item.disabled"
         (click)="radioClick($event, item)"
-      ></x-button>
+        >{{ item.label }}</x-button
+      >
     </x-buttons>
   </ng-container>
 </div>
@@ -19,7 +19,7 @@
   <div
     class="x-radio-item"
     *ngFor="let item of radioNodes"
-    [class.x-checked]="item.value === value"
+    [class.x-checked]="item.id === value"
     [class.x-disabled]="item.disabled"
     (click)="radioClick($event, item)"
   >

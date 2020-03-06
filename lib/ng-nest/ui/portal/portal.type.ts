@@ -1,21 +1,13 @@
-import {
-  TemplateRef,
-  ViewContainerRef,
-  ComponentFactoryResolver
-} from "@angular/core";
-import {
-  ComponentType,
-  TemplatePortal,
-  ComponentPortal
-} from "@angular/cdk/portal";
-import { OverlayRef, OverlayPositionBuilder, OverlayConfig } from "@angular/cdk/overlay";
+import { TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { ComponentType, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
+import { OverlayRef, OverlayPositionBuilder, OverlayConfig } from '@angular/cdk/overlay';
 
 /**
  * Portal 组件名
  * @selector x-portal
  * @decorator component
  */
-export const PortalPrefix = "x-portal";
+export const PortalPrefix = 'x-portal';
 
 /**
  * Portal @Input

@@ -1,5 +1,5 @@
-import { isObject } from "util";
-import { NcPage } from "../interfaces/page";
+import { isObject } from 'util';
+import { NcPage } from '../interfaces/page';
 
 /**
  * 替换关键字为指定内容
@@ -11,7 +11,7 @@ import { NcPage } from "../interfaces/page";
  * @returns
  */
 export function replaceKey(content: string, key: string, value: string) {
-  return content.replace(new RegExp(`{{ ${key} }}`, "g"), value);
+  return content.replace(new RegExp(`{{ ${key} }}`, 'g'), value);
 }
 
 /**
@@ -39,7 +39,7 @@ export function replaceKeyByPage(page: NcPage | any, prefix: string, template: s
  * @param {string} [prefix=""]
  * @returns
  */
-export function replaceKeyByObject(content: string, object: any, prefix: string = "") {
+export function replaceKeyByObject(content: string, object: any, prefix: string = '') {
   if (!isObject(object)) {
     return content;
   }

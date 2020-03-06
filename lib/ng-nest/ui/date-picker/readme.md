@@ -1,6 +1,6 @@
 ---
-label: "DatePicker 日期选择器"
-category: "Form"
+label: 'DatePicker 日期选择器'
+category: 'Form'
 ---
 
 # DatePicker 日期选择器

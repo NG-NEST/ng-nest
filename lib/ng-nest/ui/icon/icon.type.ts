@@ -3,7 +3,7 @@
  * @selector x-icon
  * @decorator component
  */
-export const XIconPrefix = "x-icon";
+export const XIconPrefix = 'x-icon';
 
 /**
  * Icon @Input
@@ -34,21 +34,21 @@ export enum XIconSourceEnum {
   /**
    * Ant Design
    */
-  AntDesign = "ant-design",
+  AntDesign = 'ant-design',
   /**
    * Eva
    */
-  Eva = "eva",
+  Eva = 'eva',
   /**
    * Feather
    */
-  Feather = "feather",
+  Feather = 'feather',
   /**
    * Font Awesome
    */
-  FontAwesome = "font-awesome",
+  FontAwesome = 'font-awesome',
   /**
    * Material Design
    */
-  MaterialDesign = "material-design"
+  MaterialDesign = 'material-design'
 }

@@ -2,8 +2,8 @@
   <div class="x-calendar-header">
     <x-date-picker [(ngModel)]="datetime" [type]="model"></x-date-picker>
     <x-buttons>
-      <x-button [label]="model === 'month' ? '上月' : '去年'" size="medium" (click)="action(-1)"></x-button>
-      <x-button [label]="model === 'month' ? '下月' : '明年'" size="medium" (click)="action(1)"></x-button>
+      <x-button size="medium" (click)="action(-1)">{{ model === 'month' ? '上月' : '去年' }}</x-button>
+      <x-button size="medium" (click)="action(1)">{{ model === 'month' ? '下月' : '明年' }}</x-button>
     </x-buttons>
     <x-radio
       size="medium"
@@ -36,11 +36,11 @@
 
 <ng-template #dateTemp let-date="date$">
   <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate | date: 'yyyyMMdd')">
-    <span [title]="date | date: 'yyyy年MM月dd日'">{{ date | date: "d" }}</span>
+    <span [title]="date | date: 'yyyy年MM月dd日'">{{ date | date: 'd' }}</span>
     <div class="x-calendar-date-content">
       <ul *ngIf="data && data[date | date: 'yyyy-MM-dd']">
         <li *ngFor="let item of data[date | date: 'yyyy-MM-dd']">
-          <span [title]="item.label + item.value">{{ item.label }}{{ item.value }}</span>
+          <span [title]="item.label + item.id">{{ item.label }}{{ item.id }}</span>
         </li>
       </ul>
     </div>
@@ -49,7 +49,7 @@
 
 <ng-template #monthTemp let-date="date$">
   <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate | date: 'yyyyMM')">
-    <span [title]="date | date: 'yyyy年MM月'">{{ date | date: "M月" }}</span>
+    <span [title]="date | date: 'yyyy年MM月'">{{ date | date: 'M月' }}</span>
     <div class="x-calendar-month-content">
       <ul *ngIf="monthData && monthData[date | date: 'yyyy-MM']">
         <li *ngFor="let item of monthData[date | date: 'yyyy-MM']">

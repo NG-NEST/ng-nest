@@ -1,13 +1,13 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XLinkComponent } from "./link.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XLinkModule } from "./link.module";
-import { FormsModule } from "@angular/forms";
-import { XLinkPrefix } from "./link.type";
+import { XLinkComponent } from './link.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLinkModule } from './link.module';
+import { FormsModule } from '@angular/forms';
+import { XLinkPrefix } from './link.type';
 
 describe(XLinkPrefix, () => {
   beforeEach(async(() => {
@@ -24,7 +24,7 @@ describe(XLinkPrefix, () => {
       fixture.detectChanges();
       link = fixture.debugElement.query(By.directive(XLinkComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(link).toBeDefined();
     });
   });

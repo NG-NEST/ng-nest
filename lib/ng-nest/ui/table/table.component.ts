@@ -14,14 +14,8 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild
-} from "@angular/core";
-import {
-  TablePrefix,
-  XTableOption,
-  XTableColumn,
-  XTableAction,
-  XTableColumnTemplate
-} from "./table.type";
+} from '@angular/core';
+import { TablePrefix, XTableOption, XTableColumn, XTableAction, XTableColumnTemplate } from './table.type';
 import {
   fillDefault,
   XData,
@@ -32,15 +26,15 @@ import {
   XIsUndefined,
   XIsEmpty,
   XResultList
-} from "@ng-nest/ui/core";
-import { Subscription, BehaviorSubject, Subject, Observable } from "rxjs";
-import * as _ from "lodash";
-import { debounceTime, switchMap } from "rxjs/operators";
+} from '@ng-nest/ui/core';
+import { Subscription, BehaviorSubject, Subject, Observable } from 'rxjs';
+import * as _ from 'lodash';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: "x-table",
-  templateUrl: "./table.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -59,7 +53,7 @@ export class XTableComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() firstRowSelected?: boolean;
   @Input() rowPrimary?: string;
   @Input() activatedRow?: any;
-  @Input() searchPlaceholder?: string = "查找";
+  @Input() searchPlaceholder?: string = '查找';
   @Input() @XInputBoolean() serialNumberHidden?: boolean;
   @Input() headerColumnTpl?: XTableColumnTemplate = {};
   @Input() bodyColumnTpl?: XTableColumnTemplate = {};
@@ -82,25 +76,21 @@ export class XTableComponent implements OnInit, OnChanges {
   groupActivatedRow: any;
   groupSearchPlaceholder: string;
   groupSearchSerialNumberHidden = true;
-  serialNumberText = "序号";
+  serialNumberText = '序号';
   serialNumberWidth = 5;
   searchInput: any;
   searchSub = new Subject();
-  sortStr = "";
+  sortStr = '';
   private _search$: Subscription | null = null;
   private _data$: Subscription | null = null;
   private _default: XTableOption = {
     index: 1,
     size: 10,
     query: {},
-    rowPrimary: "id"
+    rowPrimary: 'id'
   };
   private _isFirst = true;
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     this.renderer.addClass(this.elementRef.nativeElement, TablePrefix);
   }
 
@@ -117,10 +107,7 @@ export class XTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(simples: SimpleChanges) {
     let rowPrimaryChange = simples.rowPrimary;
-    if (
-      rowPrimaryChange &&
-      rowPrimaryChange.currentValue !== rowPrimaryChange.previousValue
-    ) {
+    if (rowPrimaryChange && rowPrimaryChange.currentValue !== rowPrimaryChange.previousValue) {
       this.setData(true);
     }
   }
@@ -139,20 +126,19 @@ export class XTableComponent implements OnInit, OnChanges {
   onSort(column: XTableColumn) {
     if (!column.sort) return;
     if (XIsEmpty(this.query.sort)) this.query.sort = [];
-    let sort = this.query.sort.find(y => y.field === column.key);
+    let sort = this.query.sort.find(y => y.field === column.id);
     if (sort) {
-      if (sort.value === "asc") {
+      if (sort.value === 'asc') {
         this.query.sort = [];
-        this.sortStr = "";
+        this.sortStr = '';
       } else {
-        sort.value = "asc";
+        sort.value = 'asc';
       }
     } else {
-      sort = { field: column.key, value: "desc" };
+      sort = { field: column.id, value: 'desc' };
       this.query.sort = [sort];
     }
-    if (!XIsEmpty(this.query.sort))
-      this.sortStr = `${sort.field} ${sort.value}`;
+    if (!XIsEmpty(this.query.sort)) this.sortStr = `${sort.field} ${sort.value}`;
     this.setData();
   }
 
@@ -162,18 +148,14 @@ export class XTableComponent implements OnInit, OnChanges {
       field: this.groupQuery.group,
       value: row[this.groupQuery.group]
     };
-    this.query.filter = _.unionBy(
-      [groupFilter],
-      this.query.filter,
-      y => y.field
-    );
+    this.query.filter = _.unionBy([groupFilter], this.query.filter, y => y.field);
     this.index = 1;
     this.setData();
   }
 
   actionEmit(action: XTableAction, event: Event) {
     action.event = event;
-    if (action.actionLayoutType === "top-right-icon") {
+    if (action.actionLayoutType === 'top-right-icon') {
       this.activatedAction.activated = false;
       action.activated = true;
       this.activatedAction = action;
@@ -182,14 +164,12 @@ export class XTableComponent implements OnInit, OnChanges {
         this.groupQuery.filter = [];
         this.groupIndex = 1;
         this.groupQuery.group = action.group;
-        this.groupQuery.sort = [{ field: "count", value: "desc" }];
-        let groupColumn = _.cloneDeep(
-          this.columns.find(x => x.key === action.group)
-        );
+        this.groupQuery.sort = [{ field: 'count', value: 'desc' }];
+        let groupColumn = _.cloneDeep(this.columns.find(x => x.id === action.group));
         groupColumn.flex = 4;
         groupColumn.search = true;
         this.groupSearchPlaceholder = `查找${groupColumn.label}`;
-        this.groupColumns = [groupColumn, { key: "count", flex: 1 }];
+        this.groupColumns = [groupColumn, { id: 'count', flex: 1 }];
         this.cdr.detectChanges();
       } else if (this.groupQuery.group) {
         _.remove(this.query.filter, x => x.field === this.groupQuery.group);
@@ -215,25 +195,14 @@ export class XTableComponent implements OnInit, OnChanges {
   }
 
   private setActions() {
-    if (typeof this.actions === "undefined") return;
+    if (typeof this.actions === 'undefined') return;
     this.topLeftActions = _.filter(
       this.actions,
-      x =>
-        typeof x.actionLayoutType === "undefined" ||
-        x.actionLayoutType === "top-left"
+      x => typeof x.actionLayoutType === 'undefined' || x.actionLayoutType === 'top-left'
     );
-    this.topRightActions = _.filter(
-      this.actions,
-      x => x.actionLayoutType === "top-right"
-    );
-    this.topRightIconActions = _.filter(
-      this.actions,
-      x => x.actionLayoutType === "top-right-icon"
-    );
-    this.rowIconActions = _.filter(
-      this.actions,
-      x => x.actionLayoutType === "row-icon"
-    );
+    this.topRightActions = _.filter(this.actions, x => x.actionLayoutType === 'top-right');
+    this.topRightIconActions = _.filter(this.actions, x => x.actionLayoutType === 'top-right-icon');
+    this.rowIconActions = _.filter(this.actions, x => x.actionLayoutType === 'row-icon');
     this.activatedAction = _.find(this.actions, x => x.activated);
     this.cdr.markForCheck();
   }
@@ -279,11 +248,11 @@ export class XTableComponent implements OnInit, OnChanges {
     let searchColumns = this.columns.filter(x => x.search);
     if (XIsEmpty(query.filter)) query.filter = [];
     searchColumns.forEach(x => {
-      let ft = query.filter.find(y => y.field === x.key);
+      let ft = query.filter.find(y => y.field === x.id);
       if (ft) {
         ft.value = value;
       } else {
-        query.filter = [...query.filter, { field: x.key, value: value }];
+        query.filter = [...query.filter, { field: x.id, value: value }];
       }
     });
   }

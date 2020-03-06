@@ -7,67 +7,67 @@ $--x-lg: 1200px !default;
 $--x-xl: 1920px !default;
 
 $--x-size-range: (
-  "xs": (
+  'xs': (
     max-width: $--x-sm - 1
   ),
-  "sm": (
+  'sm': (
     min-width: $--x-sm
   ),
-  "md": (
+  'md': (
     min-width: $--x-md
   ),
-  "lg": (
+  'lg': (
     min-width: $--x-lg
   ),
-  "xl": (
+  'xl': (
     min-width: $--x-xl
   )
 );
 
 $--x-size-range-only: (
-  "xs-only": (
+  'xs-only': (
     max-width: $--x-sm - 1
   ),
-  "sm-and-up": (
+  'sm-and-up': (
     min-width: $--x-sm
   ),
-  "sm-only": (
+  'sm-only': (
     min-width: $--x-sm
   )
   and
   (
     max-width: $--x-md - 1
   ),
-  "sm-and-down": (
+  'sm-and-down': (
     max-width: $--x-md - 1
   ),
-  "md-and-up": (
+  'md-and-up': (
     min-width: $--x-md
   ),
-  "md-only": (
+  'md-only': (
     min-width: $--x-md
   )
   and
   (
     max-width: $--x-lg - 1
   ),
-  "md-and-down": (
+  'md-and-down': (
     max-width: $--x-lg - 1
   ),
-  "lg-and-up": (
+  'lg-and-up': (
     min-width: $--x-lg
   ),
-  "lg-only": (
+  'lg-only': (
     min-width: $--x-lg
   )
   and
   (
     max-width: $--x-xl - 1
   ),
-  "lg-and-down": (
+  'lg-and-down': (
     max-width: $--x-xl - 1
   ),
-  "xl-only": (
+  'xl-only': (
     min-width: $--x-xl
   )
 );

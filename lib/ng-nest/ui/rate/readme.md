@@ -1,6 +1,6 @@
 ---
-label: "Rate 评分"
-category: "Form"
+label: 'Rate 评分'
+category: 'Form'
 ---
 
 # Rate 评分

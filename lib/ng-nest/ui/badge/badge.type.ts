@@ -3,7 +3,7 @@
  * @selector x-badge
  * @decorator component
  */
-export const XBadgePrefix = "x-badge";
+export const XBadgePrefix = 'x-badge';
 
 /**
  * Badge @Input
@@ -36,4 +36,4 @@ export interface XBadgeInput {
  * @value "danger"
  * @value "text"
  */
-export type XBadgeType = "primary" | "success" | "info" | "warning" | "danger" | "text";
+export type XBadgeType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';

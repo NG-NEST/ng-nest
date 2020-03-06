@@ -1,11 +1,11 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
 
 /**
  * Radio 组件名
  * @selector x-radio
  * @decorator component
  */
-export const XRadioPrefix = "x-radio";
+export const XRadioPrefix = 'x-radio';
 
 /**
  * Radio @Input

@@ -1,16 +1,16 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCollapseComponent } from "./collapse.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCollapseModule } from "./collapse.module";
-import { FormsModule } from "@angular/forms";
-import { XCollapsePrefix } from "./collapse.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { XCollapseComponent } from './collapse.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XCollapseModule } from './collapse.module';
+import { FormsModule } from '@angular/forms';
+import { XCollapsePrefix } from './collapse.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XCollapsePrefix, () => {
   beforeEach(async(() => {
@@ -35,7 +35,7 @@ describe(XCollapsePrefix, () => {
       fixture.detectChanges();
       collapse = fixture.debugElement.query(By.directive(XCollapseComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(collapse).toBeDefined();
     });
   });

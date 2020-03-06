@@ -1,15 +1,15 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCardComponent } from "./card.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCardModule } from "./card.module";
-import { FormsModule } from "@angular/forms";
-import { XCardPrefix } from "./card.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
+import { XCardComponent } from './card.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XCardModule } from './card.module';
+import { FormsModule } from '@angular/forms';
+import { XCardPrefix } from './card.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XCardPrefix, () => {
   beforeEach(async(() => {
@@ -26,7 +26,7 @@ describe(XCardPrefix, () => {
       fixture.detectChanges();
       card = fixture.debugElement.query(By.directive(XCardComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(card).toBeDefined();
     });
   });
@@ -37,7 +37,7 @@ describe(XCardPrefix, () => {
     <div class="row">
       <x-card width="20rem">
         <ul>
-          <li *ngFor="let item of list">{{ "列表内容 " + item }}</li>
+          <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
         </ul>
       </x-card>
     </div>
@@ -45,10 +45,10 @@ describe(XCardPrefix, () => {
       <x-card width="20rem" [header]="header">
         <ng-template #header>
           <span>卡片名称</span>
-          <x-button type="text" label="操作按钮"></x-button>
+          <x-button type="text">操作按钮</x-button>
         </ng-template>
         <ul>
-          <li *ngFor="let item of list">{{ "列表内容 " + item }}</li>
+          <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
         </ul>
       </x-card>
     </div>
@@ -59,7 +59,7 @@ describe(XCardPrefix, () => {
           <p>好吃的汉堡</p>
           <div class="time">
             <span>2019-10-11 22:10</span>
-            <x-button type="text" label="操作按钮"></x-button>
+            <x-button type="text">操作按钮</x-button>
           </div>
         </div>
       </x-card>

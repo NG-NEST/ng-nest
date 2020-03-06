@@ -9,15 +9,15 @@ import {
   Optional,
   Host,
   HostBinding
-} from "@angular/core";
-import { XColPrefix } from "./fence.type";
-import { XRowComponent } from "./row.component";
-import { XInputNumber } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XColPrefix } from './fence.type';
+import { XRowComponent } from './row.component';
+import { XInputNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XColPrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./col.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./col.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -61,8 +61,8 @@ export class XColComponent implements OnInit {
 
   setSpace() {
     if (!this.rowComponent || !this.rowComponent.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, "padding-left", `${this.rowComponent.space / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, "padding-right", `${this.rowComponent.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-left', `${this.rowComponent.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-right', `${this.rowComponent.space / 2}rem`);
   }
 
   setLayout() {

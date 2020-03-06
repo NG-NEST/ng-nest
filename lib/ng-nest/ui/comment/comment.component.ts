@@ -13,8 +13,8 @@ import {
   TemplateRef,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XCommentPrefix, XCommentNode } from "./comment.type";
+} from '@angular/core';
+import { XCommentPrefix, XCommentNode } from './comment.type';
 import {
   XInputBoolean,
   XSize,
@@ -25,14 +25,14 @@ import {
   XIsObservable,
   XToDataConvert,
   XIsEmpty
-} from "@ng-nest/ui/core";
-import { Subscription, Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@ng-nest/ui/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: `${XCommentPrefix}`,
-  templateUrl: "./comment.component.html",
-  styleUrls: ["./comment.component.scss"],
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -44,7 +44,7 @@ export class XCommentComponent implements OnInit, OnChanges {
   @Output() replyClick = new EventEmitter();
   @Output() sureClick = new EventEmitter();
   @Output() moreClick = new EventEmitter();
-  @ViewChild("comment", { static: true }) comment: ElementRef;
+  @ViewChild('comment', { static: true }) comment: ElementRef;
   nodes: XCommentNode[] = [];
   private data$: Subscription | null = null;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
@@ -84,7 +84,7 @@ export class XCommentComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === "undefined") return;
+    if (typeof this.data === 'undefined') return;
     if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
       this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
@@ -98,9 +98,9 @@ export class XCommentComponent implements OnInit, OnChanges {
   private setDataChange(value: XCommentNode[]) {
     let getChildren = (node: XCommentNode, level: number) => {
       node.level = level;
-      node.hasChild = node.children.length > 0;
+      node.leaf = node.children.length > 0;
       return node;
     };
-    this.nodes = value.filter(x => XIsEmpty(x.parentValue)).map(x => getChildren(x, 0));
+    this.nodes = value.filter(x => XIsEmpty(x.pid)).map(x => getChildren(x, 0));
   }
 }

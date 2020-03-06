@@ -1,5 +1,5 @@
 ---
-label: "API 参数"
+label: 'API 参数'
 ---
 
 # API 参数

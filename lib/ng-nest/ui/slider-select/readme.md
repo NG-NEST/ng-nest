@@ -1,6 +1,6 @@
 ---
-label: "SliderSelect 滑动选择"
-category: "Form"
+label: 'SliderSelect 滑动选择'
+category: 'Form'
 ---
 
 # SliderSelect 滑动选择

@@ -1,12 +1,12 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
-import { InjectionToken } from "@angular/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
+import { InjectionToken } from '@angular/core';
 
 /**
  * Cascade 组件名
  * @selector x-cascade
  * @decorator component
  */
-export const XCascadePrefix = "x-cascade";
+export const XCascadePrefix = 'x-cascade';
 
 /**
  * Cascade @Input
@@ -23,6 +23,6 @@ export interface XCascadeNode extends XParentIdentityInput {}
  * @selector x-cascade-portal
  * @decorator component
  */
-export const XCascadePortalPrefix = "x-cascade-portal";
+export const XCascadePortalPrefix = 'x-cascade-portal';
 
-export const XCascadePortal = new InjectionToken<{}>("x-cascade-portal");
+export const XCascadePortal = new InjectionToken<{}>('x-cascade-portal');

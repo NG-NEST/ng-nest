@@ -1,15 +1,15 @@
-import { XButtonModule } from "@ng-nest/ui/button";
-import { Observable } from "rxjs";
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from "@angular/core/testing";
+import { XButtonModule } from '@ng-nest/ui/button';
+import { Observable } from 'rxjs';
+import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 
-import { XRadioComponent } from "./radio.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XRadioModule } from "./radio.module";
-import { FormsModule } from "@angular/forms";
-import { XRadioPrefix, XRadioNode } from "./radio.type";
-import { XData } from "@ng-nest/ui/core";
+import { XRadioComponent } from './radio.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XRadioModule } from './radio.module';
+import { FormsModule } from '@angular/forms';
+import { XRadioPrefix, XRadioNode } from './radio.type';
+import { XData } from '@ng-nest/ui/core';
 
 describe(XRadioPrefix, () => {
   beforeEach(async(() => {
@@ -36,7 +36,7 @@ describe(XRadioPrefix, () => {
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
       element = radio.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(radio).toBeDefined();
     });
   });
@@ -52,7 +52,7 @@ describe(XRadioPrefix, () => {
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
       element = radio.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(radio).toBeDefined();
     });
   });
@@ -68,7 +68,7 @@ describe(XRadioPrefix, () => {
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
       element = radio.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(radio).toBeDefined();
     });
   });
@@ -84,7 +84,7 @@ describe(XRadioPrefix, () => {
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
       element = radio.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(radio).toBeDefined();
     });
   });
@@ -100,19 +100,19 @@ describe(XRadioPrefix, () => {
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
       element = radio.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(radio).toBeDefined();
     });
   });
 });
 
-const data: XData<XRadioNode[]> = ["QQ", "微信", "钉钉", "微博"];
+const data: XData<XRadioNode[]> = ['QQ', '微信', '钉钉', '微博'];
 
 const iconData: XData<XRadioNode[]> = [
-  { value: "QQ", icon: "ado-qq" },
-  { value: "微信", icon: "ado-wechat" },
-  { value: "钉钉", icon: "ado-dingding" },
-  { value: "微博", icon: "ado-weibo" }
+  { label: 'QQ', icon: 'ado-qq' },
+  { label: '微信', icon: 'ado-wechat' },
+  { label: '钉钉', icon: 'ado-dingding' },
+  { label: '微博', icon: 'ado-weibo' }
 ];
 
 @Component({
@@ -136,7 +136,7 @@ const iconData: XData<XRadioNode[]> = [
 })
 class TestXRadioComponent {
   data: XData<XRadioNode[]> = data;
-  model = "QQ";
+  model = 'QQ';
 }
 
 @Component({
@@ -163,8 +163,8 @@ class TestXRadioComponent {
 })
 class TestXRadioDisabledComponent {
   data: XData<XRadioNode[]> = data;
-  dataDisabled: XData<XRadioNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
-  model = "钉钉";
+  dataDisabled: XData<XRadioNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  model = '钉钉';
 }
 
 @Component({
@@ -198,8 +198,8 @@ class TestXRadioDisabledComponent {
 class TestXRadioButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XRadioNode[]> = data;
-  dataDisabled: XData<XRadioNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
-  model = "钉钉";
+  dataDisabled: XData<XRadioNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  model = '钉钉';
   change($event) {
     this.cdr.detectChanges();
   }
@@ -237,12 +237,12 @@ class TestXRadioIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XRadioNode[]> = iconData;
   dataDisabled: XData<XRadioNode[]> = [
-    { value: "QQ", icon: "ado-qq" },
-    { value: "微信", icon: "ado-wechat" },
-    { value: "钉钉", disabled: true, icon: "ado-dingding" },
-    { value: "微博", icon: "ado-weibo" }
+    { label: 'QQ', icon: 'ado-qq' },
+    { label: '微信', icon: 'ado-wechat' },
+    { label: '钉钉', disabled: true, icon: 'ado-dingding' },
+    { label: '微博', icon: 'ado-weibo' }
   ];
-  model = "钉钉";
+  model = '钉钉';
   change($event) {
     this.cdr.detectChanges();
   }
@@ -252,7 +252,7 @@ class TestXRadioIconComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-button label="请求" type="primary" [loading]="loading" (click)="getData()"></x-button>
+        <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
       </x-col>
       <x-col span="24">
         <x-radio [data]="data"></x-radio>

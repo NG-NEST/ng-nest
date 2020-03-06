@@ -1,11 +1,11 @@
-import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty } from '@ng-nest/ui/core';
 
 /**
  * Input 组件名
  * @selector x-input
  * @decorator component
  */
-export const XInputPrefix = "x-input";
+export const XInputPrefix = 'x-input';
 
 /**
  * Input @Input
@@ -33,11 +33,11 @@ export interface XInputInput extends XIdentityInput, XFormProperty {
  * @value "password" 密码
  * @value "number" 数字
  */
-export type XInputType = "text" | "password" | "number";
+export type XInputType = 'text' | 'password' | 'number';
 
 /**
  * 图标布局方式，指在输入框中的位置
  * @value "left" 靠左
  * @value "right" 靠右
  */
-export type XInputIconLayoutType = "left" | "right";
+export type XInputIconLayoutType = 'left' | 'right';

@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XColorComponent } from "./color.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XColorModule } from "./color.module";
-import { XColorPrefix } from "./color.type";
+import { XColorComponent } from './color.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XColorModule } from './color.module';
+import { XColorPrefix } from './color.type';
 
 describe(XColorPrefix, () => {
   beforeEach(async(() => {
@@ -24,14 +24,14 @@ describe(XColorPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XColorComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-color",
+  selector: 'test-x-color',
   template: `
     <x-row space="1">
       <x-col span="12"><x-color label="Primary"></x-color></x-col>

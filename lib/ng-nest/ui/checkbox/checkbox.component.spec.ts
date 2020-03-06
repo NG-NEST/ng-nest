@@ -1,15 +1,15 @@
-import { XButtonModule } from "@ng-nest/ui/button";
-import { Observable } from "rxjs";
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from "@angular/core/testing";
+import { XButtonModule } from '@ng-nest/ui/button';
+import { Observable } from 'rxjs';
+import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 
-import { XCheckboxComponent } from "./checkbox.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCheckboxModule } from "./checkbox.module";
-import { FormsModule } from "@angular/forms";
-import { XCheckboxPrefix, XCheckboxNode } from "./checkbox.type";
-import { XData } from "@ng-nest/ui/core";
+import { XCheckboxComponent } from './checkbox.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XCheckboxModule } from './checkbox.module';
+import { FormsModule } from '@angular/forms';
+import { XCheckboxPrefix, XCheckboxNode } from './checkbox.type';
+import { XData } from '@ng-nest/ui/core';
 
 describe(XCheckboxPrefix, () => {
   beforeEach(async(() => {
@@ -37,7 +37,7 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
@@ -53,7 +53,7 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
@@ -69,7 +69,7 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
@@ -85,7 +85,7 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
@@ -101,7 +101,7 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
@@ -117,19 +117,19 @@ describe(XCheckboxPrefix, () => {
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
       element = checkbox.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(checkbox).toBeDefined();
     });
   });
 });
 
-const data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
+const data: XData<XCheckboxNode[]> = ['QQ', '微信', '钉钉', '微博'];
 
 const iconData: XData<XCheckboxNode[]> = [
-  { value: "QQ", icon: "ado-qq" },
-  { value: "微信", icon: "ado-wechat" },
-  { value: "钉钉", icon: "ado-dingding" },
-  { value: "微博", icon: "ado-weibo" }
+  { value: 'QQ', icon: 'ado-qq' },
+  { value: '微信', icon: 'ado-wechat' },
+  { value: '钉钉', icon: 'ado-dingding' },
+  { value: '微博', icon: 'ado-weibo' }
 ];
 
 @Component({
@@ -153,7 +153,7 @@ const iconData: XData<XCheckboxNode[]> = [
 })
 class TestXCheckboxComponent {
   data: XData<XCheckboxNode[]> = data;
-  model = ["钉钉"];
+  model = ['钉钉'];
   change(value) {
     console.log(value);
   }
@@ -183,8 +183,8 @@ class TestXCheckboxComponent {
 })
 class TestXCheckboxDisabledComponent {
   data: XData<XCheckboxNode[]> = data;
-  dataDisabled: XData<XCheckboxNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
-  model = ["钉钉"];
+  dataDisabled: XData<XCheckboxNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  model = ['钉钉'];
 }
 
 @Component({
@@ -218,8 +218,8 @@ class TestXCheckboxDisabledComponent {
 class TestXCheckboxButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XCheckboxNode[]> = data;
-  dataDisabled: XData<XCheckboxNode[]> = ["QQ", "微信", { label: "钉钉", disabled: true }, "微博"];
-  model = ["钉钉"];
+  dataDisabled: XData<XCheckboxNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  model = ['钉钉'];
   change($event) {
     this.cdr.detectChanges();
   }
@@ -257,12 +257,12 @@ class TestXCheckboxIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XCheckboxNode[]> = iconData;
   dataDisabled: XData<XCheckboxNode[]> = [
-    { value: "QQ", icon: "ado-qq" },
-    { value: "微信", icon: "ado-wechat" },
-    { value: "钉钉", disabled: true, icon: "ado-dingding" },
-    { value: "微博", icon: "ado-weibo" }
+    { value: 'QQ', icon: 'ado-qq' },
+    { value: '微信', icon: 'ado-wechat' },
+    { value: '钉钉', disabled: true, icon: 'ado-dingding' },
+    { value: '微博', icon: 'ado-weibo' }
   ];
-  model = ["钉钉"];
+  model = ['钉钉'];
   change($event) {
     this.cdr.detectChanges();
   }
@@ -272,7 +272,7 @@ class TestXCheckboxIconComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-button label="请求" type="primary" [loading]="loading" (click)="getData()"></x-button>
+        <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data"></x-checkbox>
@@ -293,14 +293,14 @@ class TestXCheckboxIconComponent {
 class TestXCheckboxAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XCheckboxNode[]>;
-  model = ["钉钉"];
+  model = ['钉钉'];
   loading = false;
   getData() {
     this.loading = true;
     this.data = Observable.create(x => {
       // 替换成http请求，或者data直接定义成 Observable 对象
       setTimeout(() => {
-        this.model = ["微博"];
+        this.model = ['微博'];
         this.loading = false;
         this.cdr.detectChanges();
         x.next(data);
@@ -337,11 +337,11 @@ class TestXCheckboxAsyncComponent {
 })
 class TestXCheckboxIndeterminateComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: "全选" }];
+  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: '全选' }];
   checkAll = [false];
   indeterminate = true;
-  data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
-  model: any = ["QQ"];
+  data: XData<XCheckboxNode[]> = ['QQ', '微信', '钉钉', '微博'];
+  model: any = ['QQ'];
   change(value) {
     this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
     this.indeterminate = false;

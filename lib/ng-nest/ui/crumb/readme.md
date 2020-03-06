@@ -1,6 +1,6 @@
 ---
-label: "Crumb 面包屑"
-category: "Navigation"
+label: 'Crumb 面包屑'
+category: 'Navigation'
 ---
 
 # Crumb 面包屑

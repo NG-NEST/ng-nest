@@ -1,4 +1,4 @@
 ---
 order: 4
-label: "图标"
+label: '图标'
 ---

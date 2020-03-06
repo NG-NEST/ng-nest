@@ -3,7 +3,7 @@
  * @selector x-inner
  * @decorator component
  */
-export const InnerPrefix = "x-inner";
+export const InnerPrefix = 'x-inner';
 
 /**
  * Inner @Input

@@ -10,8 +10,8 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges
-} from "@angular/core";
-import { XTimelinePrefix, XTimelineNode } from "./timeline.type";
+} from '@angular/core';
+import { XTimelinePrefix, XTimelineNode } from './timeline.type';
 import {
   XSize,
   XDataConvert,
@@ -21,14 +21,14 @@ import {
   XType,
   XClassMap,
   XTemplate
-} from "@ng-nest/ui/core";
-import { Subscription, Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@ng-nest/ui/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: `${XTimelinePrefix}`,
-  templateUrl: "./timeline.component.html",
-  styleUrls: ["./timeline.component.scss"],
+  templateUrl: './timeline.component.html',
+  styleUrls: ['./timeline.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -37,15 +37,11 @@ export class XTimelineComponent implements OnInit, OnChanges {
   @Input() type?: XType;
   @Input() size?: XSize;
   @Input() wrapper?: XTemplate;
-  @ViewChild("timeline", { static: true }) timeline: ElementRef;
+  @ViewChild('timeline', { static: true }) timeline: ElementRef;
   nodes: XTimelineNode[] = [];
   classMap: XClassMap = {};
   private data$: Subscription | null = null;
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef
-  ) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
@@ -61,14 +57,12 @@ export class XTimelineComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === "undefined") return;
+    if (typeof this.data === 'undefined') return;
     if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>)
-        .pipe(map(x => XToDataConvert(x)))
-        .subscribe(x => {
-          this.setDataChange(x);
-        });
+      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
+        this.setDataChange(x);
+      });
     } else {
       this.setDataChange(this.data as XTimelineNode[]);
     }

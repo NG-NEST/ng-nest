@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-format",
-  templateUrl: "./format.component.html",
-  styleUrls: ["./format.component.scss"]
+  selector: 'ex-format',
+  templateUrl: './format.component.html',
+  styleUrls: ['./format.component.scss']
 })
 export class ExFormatComponent implements OnInit {
   constructor() {}
@@ -11,6 +11,6 @@ export class ExFormatComponent implements OnInit {
   ngOnInit() {}
 
   format(percent) {
-    return percent === 100 ? "已完成" : "加载中" + percent + "%";
+    return percent === 100 ? '已完成' : '加载中' + percent + '%';
   }
 }

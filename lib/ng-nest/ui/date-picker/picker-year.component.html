@@ -3,13 +3,13 @@
     <tr *ngFor="let years of dates">
       <td *ngFor="let year of years">
         <x-button
-          [label]="year | date: 'yyyy'"
           type="text"
           [class.x-button-date-last-or-next]="(year | date: 'yyyy') < start + '' || (year | date: 'yyyy') > end + ''"
           [class.x-button-date-now]="(year | date: 'yyyy') === (now | date: 'yyyy')"
           [activated]="(year | date: 'yyyy') === (model | date: 'yyyy')"
           (click)="yearClick(year)"
-        ></x-button>
+          >{{ year | date: 'yyyy' }}</x-button
+        >
       </td>
     </tr>
   </table>

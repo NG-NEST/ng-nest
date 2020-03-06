@@ -1,64 +1,54 @@
 // Button
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin button {
   border: $--x-border-width solid;
   border-color: $--x-button-border;
   border-radius: 0.125rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 0.65rem;
   font-size: 0.75rem;
   height: 1.675rem;
+  text-align: center;
   background-color: $--x-button-white;
   background-clip: border-box;
   color: $--x-button-text;
   cursor: pointer;
   user-select: none;
-  transition: background-color $--x-animation-duration-fast, color $--x-animation-duration-fast,
-    border-color $--x-animation-duration-fast;
-  &-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    white-space: nowrap;
-    transition: transform $--x-animation-duration-fast;
-    @include flex-direction();
-    > .x-icon {
-      font-size: 0.925rem;
-      margin-right: 0.25rem;
-    }
-    &-direction-row-reverse {
-      > .x-icon {
-        margin-right: 0;
-        margin-left: 0.25rem;
-      }
-    }
-  }
-  &-icon {
-    padding: 0 0.4rem;
-    > .x-button-inner {
-      > .x-icon {
-        font-size: 1rem;
-        margin-right: 0;
-      }
-    }
-  }
-  &-activated {
-    z-index: 1;
-    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
+  white-space: nowrap;
+  transition: all $--x-animation-duration-fast ease-in-out;
+  > .x-icon {
+    font-size: 1rem;
+    margin-right: 0.25rem;
   }
   &:hover {
     @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
   }
   &:active {
+    transform: translate(1px, 1px);
     @include button-color($--x-button-active, $--x-button-active-background, $--x-button-active-border);
-    .x-button-inner {
-      transform: translate(1px, 1px);
+  }
+  @include flex-direction();
+  &-icon {
+    padding: 0 0.4rem;
+    > .x-icon {
+      margin-right: 0;
     }
+  }
+  &.x-flex-direction-row-reverse {
+    > .x-icon {
+      margin-right: 0;
+      margin-left: 0.25rem;
+    }
+  }
+  &-activated {
+    z-index: 1;
+    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
   }
   &-text {
     border-width: 0px;
@@ -88,17 +78,19 @@
   &-only-icon {
     background-color: transparent;
     border-color: transparent;
-    transition: background-color 0s, border-color 0s;
     &:hover,
     &:active {
       @include button-color($--x-button-hover, transparent, transparent);
     }
   }
   &-disabled {
+    &:active {
+      transform: none;
+    }
     @include disabled($--x-button-disabled, $--x-button-disabled-background, $--x-button-disabled-border);
   }
   &-disabled.#{$--x-button}-activated {
-    background-color: var(--x-info-900);
+    background-color: $--x-info-900;
   }
   &-disabled.#{$--x-button}-text {
     background-color: transparent;
@@ -212,20 +204,17 @@
   display: inline-flex;
   position: relative;
   &:not(.#{$--x-buttons}-space) {
-    > .#{$--x-button} {
-      border-left-width: $--x-border-width;
-      border-right-width: $--x-border-width;
-      border-radius: 0;
-      position: relative;
-      &:first-child {
-        border-top-left-radius: 0.125rem;
-        border-bottom-left-radius: 0.125rem;
+    > #{$--x-button} {
+      .#{$--x-button} {
+        border-left-width: $--x-border-width;
+        border-right-width: $--x-border-width;
+        border-radius: 0;
+        position: relative;
+        &-round {
+          border-radius: 0;
+        }
       }
-      &:last-child {
-        border-top-right-radius: 0.125rem;
-        border-bottom-right-radius: 0.125rem;
-      }
-      &:not(:first-child) {
+      &:not(:first-child) .#{$--x-button} {
         margin-left: -1px;
       }
       &:hover {
@@ -234,41 +223,52 @@
       &:active {
         z-index: 2;
       }
-    }
-    > .#{$--x-button}-round {
-      border-radius: 0;
       &:first-child {
-        border-top-left-radius: 5rem;
-        border-bottom-left-radius: 5rem;
+        .#{$--x-button} {
+          border-top-left-radius: 0.125rem;
+          border-bottom-left-radius: 0.125rem;
+        }
+        .#{$--x-button}-round {
+          border-top-left-radius: 5rem;
+          border-bottom-left-radius: 5rem;
+        }
       }
       &:last-child {
-        border-top-right-radius: 5rem;
-        border-bottom-right-radius: 5rem;
+        .#{$--x-button} {
+          border-top-right-radius: 0.125rem;
+          border-bottom-right-radius: 0.125rem;
+        }
+        .#{$--x-button}-round {
+          border-top-right-radius: 5rem;
+          border-bottom-right-radius: 5rem;
+        }
       }
     }
   }
   &-space {
-    > .x-button {
-      &:not(:first-child) {
-        margin-left: 0.5rem;
+    > #{$--x-button} {
+      .#{$--x-button} {
+        &:not(:first-child) {
+          margin-left: 0.5rem;
+        }
       }
     }
   }
   &-not-border {
-    > .x-button {
-      border: 0;
-      padding: 0 0.4rem;
-      background-color: transparent;
-      &-icon {
-        padding: 0 0.2rem;
-        > .x-button-inner {
+    > #{$--x-button} {
+      .#{$--x-button} {
+        border: 0;
+        padding: 0 0.4rem;
+        background-color: transparent;
+        &-icon {
+          padding: 0 0.2rem;
           > .x-icon {
             font-size: 1.125rem;
           }
-        }
-        &:hover {
-          color: $--x-button-primary;
-          background-color: transparent;
+          &:hover {
+            color: $--x-button-primary;
+            background-color: transparent;
+          }
         }
       }
     }
@@ -276,9 +276,11 @@
 }
 
 @mixin buttons-type($type) {
-  > .#{$--x-button}-#{$type} {
+  > #{$--x-button} {
     &:not(:first-child) {
-      border-left-color: rgba(255, 255, 255, 0.2);
+      > .#{$--x-button}-#{$type} {
+        border-left-color: rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }

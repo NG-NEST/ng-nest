@@ -1,4 +1,4 @@
 ---
 order: 2
-label: "指定"
+label: '指定'
 ---

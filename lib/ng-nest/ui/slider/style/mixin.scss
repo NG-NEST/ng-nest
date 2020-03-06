@@ -1,8 +1,8 @@
 // Slider
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin slider {
   display: inline-block;
@@ -42,8 +42,8 @@
         border-color: $slider-activated-border-color;
       }
       &.#{$prefix}-highlight-animated {
-        transition: width $--x-animation-duration-slow, height $--x-animation-duration-slow, left $--x-animation-duration-slow,
-          top $--x-animation-duration-slow;
+        transition: width $--x-animation-duration-slow, height $--x-animation-duration-slow,
+          left $--x-animation-duration-slow, top $--x-animation-duration-slow;
       }
     }
   }

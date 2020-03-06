@@ -5,12 +5,8 @@ import { NewsRoutesModule } from './news-routes.module';
 import { ShareModule } from 'src/share/share.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NewsRoutesModule,
-    ShareModule
-  ],
+  imports: [CommonModule, NewsRoutesModule, ShareModule],
   declarations: [NewsComponent],
   exports: [NewsComponent]
 })
-export class NewsModule { }
+export class NewsModule {}

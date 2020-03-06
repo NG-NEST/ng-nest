@@ -1,12 +1,6 @@
 <div #upload class="x-upload" [class.x-disabled]="disabled">
   <div class="x-upload-buttons">
-    <x-button
-      icon="fto-upload"
-      label="上传文件"
-      [disabled]="disabled"
-      (click)="uploadClick()"
-      type="primary"
-    ></x-button>
+    <x-button icon="fto-upload" [disabled]="disabled" (click)="uploadClick()" type="primary">上传文件</x-button>
   </div>
   <input
     type="file"

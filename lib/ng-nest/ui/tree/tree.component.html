@@ -1,5 +1,5 @@
 <div #tree class="x-tree">
   <ul>
-    <li x-tree-node *ngFor="let node of nodes" [node]="node"></li>
+    <li x-tree-node *ngFor="let node of nodes" [node]="node" [lazy]="lazy" [lazyData]="data"></li>
   </ul>
 </div>

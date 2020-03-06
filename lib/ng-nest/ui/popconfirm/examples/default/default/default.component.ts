@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-default",
-  templateUrl: "./default.component.html",
-  styleUrls: ["./default.component.scss"]
+  selector: 'ex-default',
+  templateUrl: './default.component.html',
+  styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent implements OnInit {
   constructor() {}
@@ -11,9 +11,9 @@ export class ExDefaultComponent implements OnInit {
   ngOnInit() {}
 
   ok() {
-    console.log("ok");
+    console.log('ok');
   }
   cancel() {
-    console.log("cancel");
+    console.log('cancel');
   }
 }

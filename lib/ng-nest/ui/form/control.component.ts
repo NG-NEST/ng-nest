@@ -8,14 +8,14 @@ import {
   Renderer2,
   ElementRef,
   Input
-} from "@angular/core";
-import { XControlOption } from "./form.type";
-import { fillDefault, removeNgTag } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XControlOption } from './form.type';
+import { fillDefault, removeNgTag } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-control",
-  templateUrl: "./control.component.html",
-  styleUrls: ["./control.component.scss"],
+  selector: 'x-control',
+  templateUrl: './control.component.html',
+  styleUrls: ['./control.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

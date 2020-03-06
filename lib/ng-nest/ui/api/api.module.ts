@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XApiComponent } from "./api.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XApiComponent } from './api.component';
 
 @NgModule({
   declarations: [XApiComponent],

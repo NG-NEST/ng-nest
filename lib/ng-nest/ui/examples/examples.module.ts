@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XExamplesComponent } from "./examples.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XExamplesComponent } from './examples.component';
 
 @NgModule({
   declarations: [XExamplesComponent],

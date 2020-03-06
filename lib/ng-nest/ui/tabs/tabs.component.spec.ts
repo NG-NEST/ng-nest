@@ -1,24 +1,20 @@
-import { BehaviorSubject } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BehaviorSubject } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XTabsComponent } from "./tabs.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XTabsModule } from "./tabs.module";
-import { TabsPrefix, XTabsNode, XTabsLayoutType } from "./tabs.type";
-import { XData } from "@ng-nest/ui/core";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XCarouselModule } from "@ng-nest/ui/carousel";
+import { XTabsComponent } from './tabs.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XTabsModule } from './tabs.module';
+import { TabsPrefix, XTabsNode, XTabsLayoutType } from './tabs.type';
+import { XData } from '@ng-nest/ui/core';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XCarouselModule } from '@ng-nest/ui/carousel';
 
 describe(TabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XTabsModule, XFenceModule, XCarouselModule],
-      declarations: [
-        TestXTabsComponent,
-        TestEventXTabsComponent,
-        TestDataXTabsComponent
-      ]
+      declarations: [TestXTabsComponent, TestEventXTabsComponent, TestDataXTabsComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -33,34 +29,34 @@ describe(TabsPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XTabsComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(TabsPrefix);
     });
-    it("should layout top.", () => {
-      testComponent.layout = "top";
+    it('should layout top.', () => {
+      testComponent.layout = 'top';
       fixture.detectChanges();
       expect(element.classList).toContain(`${TabsPrefix}-top`);
     });
-    it("should layout right.", () => {
-      testComponent.layout = "right";
+    it('should layout right.', () => {
+      testComponent.layout = 'right';
       fixture.detectChanges();
       expect(element.classList).toContain(`${TabsPrefix}-right`);
     });
-    it("should layout bottom.", () => {
-      testComponent.layout = "bottom";
+    it('should layout bottom.', () => {
+      testComponent.layout = 'bottom';
       fixture.detectChanges();
       expect(element.classList).toContain(`${TabsPrefix}-bottom`);
     });
-    it("should layout left.", () => {
-      testComponent.layout = "left";
+    it('should layout left.', () => {
+      testComponent.layout = 'left';
       fixture.detectChanges();
       expect(element.classList).toContain(`${TabsPrefix}-left`);
     });
-    it("should activatedIndex 1.", () => {
+    it('should activatedIndex 1.', () => {
       testComponent.activatedIndex = 1;
       fixture.detectChanges();
       expect(element.classList).toContain(TabsPrefix);
@@ -69,14 +65,14 @@ describe(TabsPrefix, () => {
 });
 
 const testXTabsNode: XTabsNode[] = [
-  { key: 1, label: "Home" },
-  { key: 2, label: "Docs" },
-  { key: 3, label: "Examples" },
-  { key: 4, label: "Api" }
+  { id: 1, label: 'Home' },
+  { id: 2, label: 'Docs' },
+  { id: 3, label: 'Examples' },
+  { id: 4, label: 'Api' }
 ];
 
 @Component({
-  selector: "test-x-tabs",
+  selector: 'test-x-tabs',
   template: `
     <x-tabs [layout]="layout" [activatedIndex]="activatedIndex">
       <x-tab [label]="'Home'">
@@ -141,7 +137,7 @@ class TestXTabsComponent {
 }
 
 @Component({
-  selector: "test-event-x-tabs",
+  selector: 'test-event-x-tabs',
   template: `
     <x-tabs [data]="data" (indexChange)="activatedChange($event)"></x-tabs>
   `
@@ -152,7 +148,7 @@ class TestEventXTabsComponent {
 }
 
 @Component({
-  selector: "test-data-x-tabs",
+  selector: 'test-data-x-tabs',
   template: `
     <x-tabs [data]="data"></x-tabs>
   `

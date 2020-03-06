@@ -1,11 +1,11 @@
-import { XTemplate } from "@ng-nest/ui/core";
+import { XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Statistic 组件名
  * @selector x-statistic
  * @decorator component
  */
-export const XStatisticPrefix = "x-statistic";
+export const XStatisticPrefix = 'x-statistic';
 
 /**
  * Statistic @Input
@@ -38,7 +38,7 @@ export interface XStatisticInput {
  * @selector x-countdown
  * @decorator component
  */
-export const XCountdownPrefix = "x-countdown";
+export const XCountdownPrefix = 'x-countdown';
 
 /**
  * Countdown @Input

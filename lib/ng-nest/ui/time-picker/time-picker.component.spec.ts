@@ -1,13 +1,13 @@
-import { interval } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { interval } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XTimePickerComponent } from "./time-picker.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XTimePickerModule } from "./time-picker.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XTimePickerPrefix } from "./time-picker.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
+import { XTimePickerComponent } from './time-picker.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XTimePickerModule } from './time-picker.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XTimePickerPrefix } from './time-picker.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTimePickerComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -42,7 +42,7 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXTimePickerLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -54,7 +54,7 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXTimePickerDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -66,7 +66,7 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXTimePickerRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -78,7 +78,7 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXTimePickerHourOrMinuteComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });

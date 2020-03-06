@@ -6,21 +6,16 @@ import { SimpleReuseStrategy } from './simple-reuse-srategy';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      mainRoutes,
-      {
-        enableTracing: false,
-        anchorScrolling: 'enabled',
-        preloadingStrategy: SelectivePreloadingStrategy
-      }
-    )
+    RouterModule.forRoot(mainRoutes, {
+      enableTracing: false,
+      anchorScrolling: 'enabled',
+      preloadingStrategy: SelectivePreloadingStrategy
+    })
   ],
-  exports: [
-    RouterModule
-  ],
+  exports: [RouterModule],
   providers: [
-    SelectivePreloadingStrategy,
+    SelectivePreloadingStrategy
     // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
   ]
 })
-export class MainRoutesModule { }
+export class MainRoutesModule {}

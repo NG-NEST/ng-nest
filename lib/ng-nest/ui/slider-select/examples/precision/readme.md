@@ -1,4 +1,4 @@
 ---
 order: 3
-label: "精度"
+label: '精度'
 ---

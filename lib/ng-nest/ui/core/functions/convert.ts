@@ -1,4 +1,4 @@
-import { coerceBooleanProperty, _isNumberValue } from "@angular/cdk/coercion";
+import { coerceBooleanProperty, _isNumberValue } from '@angular/cdk/coercion';
 import {
   XIdentityInput,
   XData,
@@ -8,7 +8,7 @@ import {
   XIsArray,
   XIsValue,
   XIsObject
-} from "../interfaces";
+} from '../interfaces';
 
 function toBoolean(value: boolean): boolean {
   return coerceBooleanProperty(value);
@@ -24,15 +24,15 @@ export function XToDataConvert(value: XData<XIdentityInput>): any {
   if (XIsArray(value)) {
     return (value as []).map((x: any) => {
       if (XIsValue(x)) {
-        return { label: x, value: x };
+        return { label: x, id: x };
       } else if (XIsObject(x)) {
-        x.label = XIsUndefined(x.label) || XIsNull(x.label) ? x.value : x.label;
-        x.value = XIsUndefined(x.value) || XIsNull(x.value) ? x.label : x.value;
+        x.label = XIsUndefined(x.label) || XIsNull(x.label) ? x.id : x.label;
+        x.id = XIsUndefined(x.id) || XIsNull(x.id) ? x.label : x.id;
         return x;
       }
     });
   }
-  if (XIsObservable(value)) return value;
+  return value;
 }
 
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
@@ -67,13 +67,13 @@ function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (targe
 }
 
 export function XInputBoolean(): any {
-  return propDecoratorFactory("InputBoolean", toBoolean);
+  return propDecoratorFactory('InputBoolean', toBoolean);
 }
 
 export function XInputNumber(): any {
-  return propDecoratorFactory("InputNumber", toNumber);
+  return propDecoratorFactory('InputNumber', toNumber);
 }
 
 export function XDataConvert(): any {
-  return propDecoratorFactory("XDataConvert", XToDataConvert);
+  return propDecoratorFactory('XDataConvert', XToDataConvert);
 }

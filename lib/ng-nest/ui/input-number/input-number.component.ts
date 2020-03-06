@@ -1,4 +1,4 @@
-import { Subscription, interval } from "rxjs";
+import { Subscription, interval } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,8 +10,8 @@ import {
   Input,
   HostListener,
   ViewChild
-} from "@angular/core";
-import { XInputNumberInput } from "./input-number.type";
+} from '@angular/core';
+import { XInputNumberInput } from './input-number.type';
 import {
   fillDefault,
   XIsEmpty,
@@ -19,12 +19,12 @@ import {
   XControlValueAccessor,
   XInputNumber,
   removeNgTag
-} from "@ng-nest/ui/core";
+} from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-input-number",
-  templateUrl: "./input-number.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-input-number',
+  templateUrl: './input-number.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputNumberComponent)]
@@ -35,7 +35,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   @Input() @XInputNumber() step: number = 1;
   @Input() @XInputNumber() debounce: number = 40;
   @Input() @XInputNumber() precision: number = 0;
-  @ViewChild("inputNumber", { static: true }) inputNumber: ElementRef;
+  @ViewChild('inputNumber', { static: true }) inputNumber: ElementRef;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -49,13 +49,13 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
     this.cdr.detectChanges();
   }
 
-  displayValue: any = "";
+  displayValue: any = '';
   minDisabled: boolean = false;
   maxDisabled: boolean = false;
   mousedown$: Subscription;
   timer: any;
 
-  @HostListener("document:mouseup", ["$event"]) onMouseup(event) {
+  @HostListener('document:mouseup', ['$event']) onMouseup(event) {
     this.up(event);
   }
 

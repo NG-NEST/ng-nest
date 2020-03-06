@@ -1,13 +1,13 @@
-import { interval } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { interval } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XSwitchComponent } from "./switch.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XSwitchModule } from "./switch.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XSwitchPrefix } from "./switch.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
+import { XSwitchComponent } from './switch.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XSwitchModule } from './switch.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XSwitchPrefix } from './switch.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XSwitchPrefix, () => {
   beforeEach(async(() => {
@@ -24,7 +24,7 @@ describe(XSwitchPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSwitchComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -36,7 +36,7 @@ describe(XSwitchPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSwitchLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -48,7 +48,7 @@ describe(XSwitchPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSwitchDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });

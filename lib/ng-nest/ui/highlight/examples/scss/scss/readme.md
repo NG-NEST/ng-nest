@@ -1,6 +1,6 @@
 ---
 order: 1
-label: "SCSS"
+label: 'SCSS'
 ---
 
 SCSS 代码显示

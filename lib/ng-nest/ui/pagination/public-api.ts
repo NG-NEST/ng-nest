@@ -1,3 +1,3 @@
-export * from "./pagination.component";
-export * from "./pagination.module";
-export * from "./pagination.type";
+export * from './pagination.component';
+export * from './pagination.module';
+export * from './pagination.type';

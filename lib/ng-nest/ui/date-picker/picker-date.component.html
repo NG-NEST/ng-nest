@@ -15,13 +15,13 @@
         >
           <x-button
             *ngIf="!dateTemp"
-            [label]="week | date: 'd'"
             type="text"
             size="mini"
             [title]="week | date: 'yyyy年MM月dd日'"
             [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
             (click)="dateClick(week)"
-          ></x-button>
+            >{{ week | date: 'd' }}</x-button
+          >
           <ng-container *ngIf="dateTemp">
             <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
           </ng-container>

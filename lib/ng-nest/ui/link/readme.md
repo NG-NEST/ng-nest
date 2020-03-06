@@ -1,6 +1,6 @@
 ---
-label: "Link 文字链接"
-category: "Basic"
+label: 'Link 文字链接'
+category: 'Basic'
 ---
 
 # Link 文字链接

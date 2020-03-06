@@ -1,6 +1,6 @@
 ---
 order: 1
-label: "Font Awesome"
+label: 'Font Awesome'
 ---
 
 暂无

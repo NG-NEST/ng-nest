@@ -7,13 +7,13 @@ import {
   ElementRef,
   Input,
   HostBinding
-} from "@angular/core";
-import { XAsidePrefix } from "./container.type";
+} from '@angular/core';
+import { XAsidePrefix } from './container.type';
 
 @Component({
   selector: `${XAsidePrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./aside.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./aside.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

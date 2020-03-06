@@ -10,14 +10,14 @@ import {
   ViewChild,
   SimpleChanges,
   OnChanges
-} from "@angular/core";
-import { XBadgePrefix, XBadgeType } from "./badge.type";
-import { XInputBoolean, XSize, XInputNumber, XIsNumber } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XBadgePrefix, XBadgeType } from './badge.type';
+import { XInputBoolean, XSize, XInputNumber, XIsNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
-  templateUrl: "./badge.component.html",
-  styleUrls: ["./badge.component.scss"],
+  templateUrl: './badge.component.html',
+  styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -26,7 +26,7 @@ export class XBadgeComponent implements OnInit, OnChanges {
   @Input() @XInputNumber() max?: number;
   @Input() value?: number | string;
   @Input() @XInputBoolean() dot?: boolean;
-  @ViewChild("badge", { static: true }) badge: ElementRef;
+  @ViewChild('badge', { static: true }) badge: ElementRef;
   displayValue;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 

@@ -10,14 +10,14 @@ import {
   ViewChild,
   Renderer2,
   HostListener
-} from "@angular/core";
-import { Subscription } from "rxjs";
-import { XPopoverPortal, XPopoverPortalPrefix } from "./popover.type";
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { XPopoverPortal, XPopoverPortalPrefix } from './popover.type';
 
 @Component({
-  selector: "x-popover-portal",
-  templateUrl: "./popover-portal.component.html",
-  styleUrls: ["./popover-portal.component.scss"],
+  selector: 'x-popover-portal',
+  templateUrl: './popover-portal.component.html',
+  styleUrls: ['./popover-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -27,17 +27,17 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   box: DOMRect;
   arrowBox: DOMRect;
   docClickFunction: Function;
-  @ViewChild("popoverPortal", { static: true }) popoverPortal: ElementRef;
-  @ViewChild("popoverArrow", { static: false }) popoverArrow: ElementRef;
+  @ViewChild('popoverPortal', { static: true }) popoverPortal: ElementRef;
+  @ViewChild('popoverArrow', { static: false }) popoverArrow: ElementRef;
 
-  @HostListener("mouseenter") mouseenter() {
-    if (this.option.trigger === "hover") {
+  @HostListener('mouseenter') mouseenter() {
+    if (this.option.trigger === 'hover') {
       this.option.portalHover(true);
     }
   }
 
-  @HostListener("mouseleave") mouseleave() {
-    if (this.option.trigger === "hover") {
+  @HostListener('mouseleave') mouseleave() {
+    if (this.option.trigger === 'hover') {
       this.option.portalHover(false);
     }
   }
@@ -58,10 +58,10 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
       this.option.content = x;
       this.cdr.detectChanges();
     });
-    if (this.option.trigger === "click") {
+    if (this.option.trigger === 'click') {
       setTimeout(
         () =>
-          (this.docClickFunction = this.renderer.listen("document", "click", () => {
+          (this.docClickFunction = this.renderer.listen('document', 'click', () => {
             this.option.closePortal();
           }))
       );
@@ -90,17 +90,17 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   setArrow() {
     let offset = this.arrowBox.height / 2;
-    if (this.box.height > this.option.box.height && (this.includes("right-") || this.includes("left-"))) {
-      if (this.includes("-start")) {
-        this.renderer.setStyle(this.popoverArrow.nativeElement, "top", `${this.option.box.height / 2 - offset}px`);
-      } else if (this.includes("-end")) {
-        this.renderer.setStyle(this.popoverArrow.nativeElement, "bottom", `${this.option.box.height / 2 - offset}px`);
+    if (this.box.height > this.option.box.height && (this.includes('right-') || this.includes('left-'))) {
+      if (this.includes('-start')) {
+        this.renderer.setStyle(this.popoverArrow.nativeElement, 'top', `${this.option.box.height / 2 - offset}px`);
+      } else if (this.includes('-end')) {
+        this.renderer.setStyle(this.popoverArrow.nativeElement, 'bottom', `${this.option.box.height / 2 - offset}px`);
       }
-    } else if (this.box.width > this.option.box.width && (this.includes("top-") || this.includes("bottom-"))) {
-      if (this.includes("-start")) {
-        this.renderer.setStyle(this.popoverArrow.nativeElement, "left", `${this.option.box.width / 2 - offset}px`);
-      } else if (this.includes("-end")) {
-        this.renderer.setStyle(this.popoverArrow.nativeElement, "right", `${this.option.box.width / 2 - offset}px`);
+    } else if (this.box.width > this.option.box.width && (this.includes('top-') || this.includes('bottom-'))) {
+      if (this.includes('-start')) {
+        this.renderer.setStyle(this.popoverArrow.nativeElement, 'left', `${this.option.box.width / 2 - offset}px`);
+      } else if (this.includes('-end')) {
+        this.renderer.setStyle(this.popoverArrow.nativeElement, 'right', `${this.option.box.width / 2 - offset}px`);
       }
     }
   }

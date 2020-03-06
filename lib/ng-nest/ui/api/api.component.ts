@@ -1,16 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef} from "@angular/core";
-import { ApiPrefix } from "./api.type";
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { ApiPrefix } from './api.type';
 
 @Component({
-  selector: "x-api",
-  templateUrl: "./api.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-api',
+  templateUrl: './api.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

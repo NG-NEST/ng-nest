@@ -1,12 +1,12 @@
-import { XDocModule } from "@ng-nest/ui/doc";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XDocModule } from '@ng-nest/ui/doc';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XBorderComponent } from "./border.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XBorderModule } from "./border.module";
-import { XBorderPrefix } from "./border.type";
+import { XBorderComponent } from './border.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XBorderModule } from './border.module';
+import { XBorderPrefix } from './border.type';
 
 describe(XBorderPrefix, () => {
   beforeEach(async(() => {
@@ -25,14 +25,14 @@ describe(XBorderPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XBorderComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-border",
+  selector: 'test-x-border',
   template: `
     <x-border></x-border>
     <x-doc>

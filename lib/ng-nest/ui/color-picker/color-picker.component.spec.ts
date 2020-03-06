@@ -1,13 +1,13 @@
-import { interval } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { interval } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XColorPickerComponent } from "./color-picker.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XColorPickerModule } from "./color-picker.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XColorPickerPrefix, XColorPickerNode } from "./color-picker.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
+import { XColorPickerComponent } from './color-picker.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XColorPickerModule } from './color-picker.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XColorPickerPrefix, XColorPickerNode } from './color-picker.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XColorPickerPrefix, () => {
   beforeEach(async(() => {
@@ -29,7 +29,7 @@ describe(XColorPickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XColorPickerComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -41,7 +41,7 @@ describe(XColorPickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXColorPickerLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -53,7 +53,7 @@ describe(XColorPickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXColorPickerDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -65,7 +65,7 @@ describe(XColorPickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXColorPickerRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -109,9 +109,9 @@ const data: XColorPickerNode[] = [];
 })
 class TestXColorPickerComponent {
   model1: any;
-  model2 = "#409eff";
-  model3 = "rgb(64, 158, 255)";
-  model4 = "hsl(210, 100%, 63%)";
+  model2 = '#409eff';
+  model3 = 'rgb(64, 158, 255)';
+  model4 = 'hsl(210, 100%, 63%)';
   constructor(private cdr: ChangeDetectorRef) {
     interval(1).subscribe(x => {
       this.cdr.detectChanges();
@@ -187,7 +187,7 @@ class TestXColorPickerLabelComponent {
   ]
 })
 class TestXColorPickerDisabledComponent {
-  model = "#409eff";
+  model = '#409eff';
 }
 
 @Component({

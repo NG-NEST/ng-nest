@@ -1,6 +1,6 @@
 ---
-label: "Statistic 统计"
-category: "Data"
+label: 'Statistic 统计'
+category: 'Data'
 ---
 
 # Statistic 统计

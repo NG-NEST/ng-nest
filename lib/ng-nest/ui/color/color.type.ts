@@ -3,7 +3,7 @@
  * @selector x-color
  * @decorator component
  */
-export const XColorPrefix = "x-color";
+export const XColorPrefix = 'x-color';
 
 /**
  * Color @Input

@@ -7,21 +7,21 @@ import {
   ElementRef,
   Input,
   Inject
-} from "@angular/core";
-import { XColorPrefix } from "./color.type";
-import { DOCUMENT } from "@angular/common";
+} from '@angular/core';
+import { XColorPrefix } from './color.type';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: "x-color",
-  templateUrl: "./color.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-color',
+  templateUrl: './color.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XColorComponent implements OnInit {
-  @Input() label?: string = "color";
+  @Input() label?: string = 'color';
   @Input() hex?: string;
-  @Input() merge?: string = "#ffffff";
+  @Input() merge?: string = '#ffffff';
   @Input() amounts?: number[] = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
   colors: string[] = [];
   constructor(@Inject(DOCUMENT) private doc: any, private renderer: Renderer2, private elementRef: ElementRef) {
@@ -29,7 +29,7 @@ export class XColorComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.hex) this.hex = getComputedStyle(this.doc.documentElement).getPropertyValue("--x-primary");
+    if (!this.hex) this.hex = getComputedStyle(this.doc.documentElement).getPropertyValue('--x-primary');
     if (this.hex) this.setColors();
   }
 
@@ -55,11 +55,11 @@ export class XColorComponent implements OnInit {
   }
 
   toHex(rgb) {
-    return "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
+    return '#' + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
   }
 
   toRgb(hex) {
-    if (hex.indexOf("#") == 0) hex = hex.slice(1);
+    if (hex.indexOf('#') == 0) hex = hex.slice(1);
     let num = parseInt(hex, 16);
     let r = num >> 16;
     if (r > 255) r = 255;

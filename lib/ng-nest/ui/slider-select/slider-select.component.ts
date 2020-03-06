@@ -1,4 +1,4 @@
-import { XTooltipDirective } from "@ng-nest/ui/tooltip";
+import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import {
   Component,
   OnInit,
@@ -11,8 +11,8 @@ import {
   ViewChild,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XSliderSelectInput } from "./slider-select.type";
+} from '@angular/core';
+import { XSliderSelectInput } from './slider-select.type';
 import {
   fillDefault,
   XIsEmpty,
@@ -21,13 +21,13 @@ import {
   XControlValueAccessor,
   XInputNumber,
   XInputBoolean
-} from "@ng-nest/ui/core";
-import { CdkDragMove, CdkDragStart, CdkDragEnd } from "@angular/cdk/drag-drop";
+} from '@ng-nest/ui/core';
+import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: "x-slider-select",
-  templateUrl: "./slider-select.component.html",
-  styleUrls: ["./slider-select.component.scss"],
+  selector: 'x-slider-select',
+  templateUrl: './slider-select.component.html',
+  styleUrls: ['./slider-select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSliderSelectComponent)]
@@ -40,17 +40,17 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   @Output() dragStarted = new EventEmitter();
   @Output() dragMoved = new EventEmitter();
   @Output() dragEnded = new EventEmitter();
-  @ViewChild("sliderSelect", { static: true }) sliderSelect: ElementRef;
-  @ViewChild("dragRef", { static: true }) dragRef: ElementRef;
-  @ViewChild("railRef", { static: true }) railRef: ElementRef;
-  @ViewChild("trackRef", { static: true }) trackRef: ElementRef;
-  @ViewChild("processRef", { static: true }) processRef: ElementRef;
+  @ViewChild('sliderSelect', { static: true }) sliderSelect: ElementRef;
+  @ViewChild('dragRef', { static: true }) dragRef: ElementRef;
+  @ViewChild('railRef', { static: true }) railRef: ElementRef;
+  @ViewChild('trackRef', { static: true }) trackRef: ElementRef;
+  @ViewChild('processRef', { static: true }) processRef: ElementRef;
   @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
   visible: boolean = false;
   start: number;
   value = 0;
-  displayValue = "0";
+  displayValue = '0';
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -104,7 +104,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   setPrecision() {
     if (XIsUndefined(this.precision)) {
       let stepStr = String(this.step);
-      let indexpoint = stepStr.indexOf(".");
+      let indexpoint = stepStr.indexOf('.');
       if (indexpoint === -1) {
         this.precision = 0;
       } else {
@@ -152,8 +152,8 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
         : distance - stepWidth + offset;
     let x = (this.start / 100) * railBox.width + dis;
     this.left = Math.round((x / railBox.width) * 100);
-    this.renderer.setStyle(this.dragRef.nativeElement, "left", `${this.left}%`);
-    this.renderer.setStyle(this.processRef.nativeElement, "width", `${this.left}%`);
-    this.renderer.removeStyle(this.dragRef.nativeElement, "transform");
+    this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.left}%`);
+    this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.left}%`);
+    this.renderer.removeStyle(this.dragRef.nativeElement, 'transform');
   }
 }

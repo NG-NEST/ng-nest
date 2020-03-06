@@ -1,3 +1,3 @@
-export * from "./highlight.component";
-export * from "./highlight.module";
-export * from "./highlight.type";
+export * from './highlight.component';
+export * from './highlight.module';
+export * from './highlight.type';

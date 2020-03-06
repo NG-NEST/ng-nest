@@ -8,15 +8,15 @@ import {
   ElementRef,
   OnDestroy,
   Renderer2
-} from "@angular/core";
-import { XSelectPortal, XSelectNode } from "./select.type";
-import { Subscription } from "rxjs";
-import { removeNgTag } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XSelectPortal, XSelectNode } from './select.type';
+import { Subscription } from 'rxjs';
+import { removeNgTag } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-select-portal",
-  templateUrl: "./select-portal.component.html",
-  styleUrls: ["./select-portal.component.scss"],
+  selector: 'x-select-portal',
+  templateUrl: './select-portal.component.html',
+  styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -33,7 +33,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     });
     setTimeout(
       () =>
-        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
           this.option.closePortal();
         }))
     );

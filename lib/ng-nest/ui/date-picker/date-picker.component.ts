@@ -1,6 +1,6 @@
-import { XDatePickerPortalComponent } from "./date-picker-portal.component";
-import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { Subscription, Subject } from "rxjs";
+import { XDatePickerPortalComponent } from './date-picker-portal.component';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { Subscription, Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -17,14 +17,14 @@ import {
   Output,
   Inject,
   SimpleChanges
-} from "@angular/core";
+} from '@angular/core';
 import {
   XDatePickerPrefix,
   XDatePickerPortal,
   XDatePickerInput,
   XDatePickerType,
   XDatePickerModelType
-} from "./date-picker.type";
+} from './date-picker.type';
 import {
   fillDefault,
   XValueAccessor,
@@ -33,26 +33,26 @@ import {
   XIsDate,
   XIsNumber,
   XInputBoolean
-} from "@ng-nest/ui/core";
-import { XInputComponent } from "@ng-nest/ui/input";
-import { DOCUMENT, DatePipe } from "@angular/common";
+} from '@ng-nest/ui/core';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { DOCUMENT, DatePipe } from '@angular/common';
 
 @Component({
-  selector: "x-date-picker",
-  templateUrl: "./date-picker.component.html",
-  styleUrls: ["./date-picker.component.scss"],
+  selector: 'x-date-picker',
+  templateUrl: './date-picker.component.html',
+  styleUrls: ['./date-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XDatePickerComponent), DatePipe]
 })
 export class XDatePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() type: XDatePickerType = "date";
-  @Input() format: string = "yyyy-MM-dd";
+  @Input() type: XDatePickerType = 'date';
+  @Input() format: string = 'yyyy-MM-dd';
   @Input() @XInputBoolean() clearable: boolean = true;
-  @ViewChild("datePicker", { static: true }) datePicker: ElementRef;
-  @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
+  @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<number> = new EventEmitter<number>();
-  modelType: XDatePickerModelType = "date";
+  modelType: XDatePickerModelType = 'date';
   numberValue: number | string;
 
   get getRequired() {
@@ -61,13 +61,13 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
 
   writeValue(value: any) {
     if (XIsDate(value)) {
-      this.modelType = "date";
+      this.modelType = 'date';
       this.numberValue = value.getTime();
     } else if (XIsNumber(value)) {
-      this.modelType = "number";
+      this.modelType = 'number';
       this.numberValue = value;
     } else if (XIsEmpty(value)) {
-      this.numberValue = "";
+      this.numberValue = '';
     }
     this.value = value;
     this.setDisplayValue();
@@ -78,9 +78,9 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   readonly: boolean = true;
   enter: boolean = false;
   inputClearable: boolean = false;
-  displayValue: any = "";
+  displayValue: any = '';
   portal: XPortalOverlayRef;
-  icon: string = "fto-calendar";
+  icon: string = 'fto-calendar';
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
@@ -129,20 +129,20 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   setFormat() {
-    if (this.type === "date") {
-      this.format = "yyyy-MM-dd";
-    } else if (this.type === "year") {
-      this.format = "yyyy";
-    } else if ((this.type = "month")) {
-      this.format = "yyyy-MM";
+    if (this.type === 'date') {
+      this.format = 'yyyy-MM-dd';
+    } else if (this.type === 'year') {
+      this.format = 'yyyy';
+    } else if ((this.type = 'month')) {
+      this.format = 'yyyy-MM';
     }
   }
 
   addListen() {
-    this.scrollFunction = this.renderer.listen("window", "scroll", () => {
+    this.scrollFunction = this.renderer.listen('window', 'scroll', () => {
       this.setPortal();
     });
-    this.resizeFunction = this.renderer.listen("window", "resize", () => {
+    this.resizeFunction = this.renderer.listen('window', 'resize', () => {
       this.setPortal();
     });
   }
@@ -161,7 +161,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = true;
     if (!XIsEmpty(this.numberValue)) {
-      this.icon = "";
+      this.icon = '';
       this.inputClearable = true;
       this.cdr.detectChanges();
     }
@@ -171,16 +171,16 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = false;
     if (this.inputClearable) {
-      this.icon = "fto-calendar";
+      this.icon = 'fto-calendar';
       this.inputClearable = false;
       this.cdr.detectChanges();
     }
   }
 
   clearEmit() {
-    this.value = "";
-    this.numberValue = "";
-    this.displayValue = "";
+    this.value = '';
+    this.numberValue = '';
+    this.displayValue = '';
     this.mleave();
     this.valueChange.next(this.numberValue);
     this.modelChange();
@@ -193,9 +193,9 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   getValue() {
-    return this.modelType === "date"
+    return this.modelType === 'date'
       ? new Date(this.numberValue)
-      : this.modelType === "string"
+      : this.modelType === 'string'
       ? this.datePipe.transform(this.numberValue, this.format)
       : this.numberValue;
   }
@@ -230,7 +230,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
         XDatePickerPortal
       ),
       overlayConfig: {
-        backdropClass: "",
+        backdropClass: '',
         positionStrategy: this.setPositionStrategy()
       }
     });
@@ -255,7 +255,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
     return this.portalService.setPositionStrategy(
       this.inputCom.input,
-      this.protalTobottom ? "bottom-start" : "top-start"
+      this.protalTobottom ? 'bottom-start' : 'top-start'
     );
   }
 

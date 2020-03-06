@@ -1,3 +1,3 @@
-export * from "./calendar.component";
-export * from "./calendar.module";
-export * from "./calendar.type";
+export * from './calendar.component';
+export * from './calendar.module';
+export * from './calendar.type';

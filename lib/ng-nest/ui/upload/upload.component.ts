@@ -1,5 +1,5 @@
-import { state } from "@angular/animations";
-import { HttpClient, HttpEventType, HttpResponse, HttpRequest, HttpEvent } from "@angular/common/http";
+import { state } from '@angular/animations';
+import { HttpClient, HttpEventType, HttpResponse, HttpRequest, HttpEvent } from '@angular/common/http';
 import {
   Component,
   OnInit,
@@ -14,16 +14,16 @@ import {
   ViewChild,
   Output,
   EventEmitter
-} from "@angular/core";
-import { XUploadPrefix, XUploadNode } from "./upload.type";
-import { Subscription } from "rxjs";
-import { XData, XValueAccessor, XControlValueAccessor, XInputBoolean, XHttpService } from "@ng-nest/ui/core";
-import { filter, map } from "rxjs/operators";
+} from '@angular/core';
+import { XUploadPrefix, XUploadNode } from './upload.type';
+import { Subscription } from 'rxjs';
+import { XData, XValueAccessor, XControlValueAccessor, XInputBoolean, XHttpService } from '@ng-nest/ui/core';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: `${XUploadPrefix}`,
-  templateUrl: "./upload.component.html",
-  styleUrls: ["./upload.component.scss"],
+  templateUrl: './upload.component.html',
+  styleUrls: ['./upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XUploadComponent)]
@@ -33,8 +33,8 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
   @Input() accept?: string;
   @Input() @XInputBoolean() multiple?: boolean;
   @Output() removeEmit = new EventEmitter<{ file: XUploadNode; index: number }>();
-  @ViewChild("upload", { static: true }) upload: ElementRef;
-  @ViewChild("file", { static: true }) file: ElementRef;
+  @ViewChild('upload', { static: true }) upload: ElementRef;
+  @ViewChild('file', { static: true }) file: ElementRef;
   files: XUploadNode[] = [];
   showUpload = false;
 
@@ -68,7 +68,7 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
     let files: XUploadNode[] = [];
     for (let i = 0; i < input.files.length; i++) {
       let file: XUploadNode = input.files.item(i);
-      file.state = "ready";
+      file.state = 'ready';
       files = [...files, file];
     }
     if (files.length > 0) this.showUpload = true;
@@ -79,7 +79,7 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
 
   remove(file: XUploadNode, index: number) {
     this.files.splice(index, 1);
-    this.showUpload = this.files.find(x => x.state === "ready") != null;
+    this.showUpload = this.files.find(x => x.state === 'ready') != null;
     this.removeEmit.emit({ file: file, index: index });
     this.cdr.detectChanges();
   }
@@ -91,13 +91,13 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
 
   uploading() {
     if (!this.action) return;
-    let readyFiles = this.files.filter(x => x.state === "ready");
+    let readyFiles = this.files.filter(x => x.state === 'ready');
     readyFiles.forEach(x => {
       let formData = new FormData();
-      formData.append("file", x);
-      const req = new HttpRequest("POST", this.action, formData, {
+      formData.append('file', x);
+      const req = new HttpRequest('POST', this.action, formData, {
         reportProgress: true,
-        responseType: "arraybuffer"
+        responseType: 'arraybuffer'
       });
       this.http
         .request(req)
@@ -106,7 +106,7 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
             this.getEventMessage(event, x, body => {
               let blob = new Blob([body]);
               let reader = new FileReader();
-              reader.readAsText(blob, "utf-8");
+              reader.readAsText(blob, 'utf-8');
               reader.onload = () => {
                 x.url = JSON.parse(reader.result as string)[0];
                 this.cdr.detectChanges();
@@ -116,11 +116,11 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
         )
         .subscribe(
           y => {
-            this.showUpload = this.files.find(y => y.state === "ready") != null;
+            this.showUpload = this.files.find(y => y.state === 'ready') != null;
             this.cdr.detectChanges();
           },
           error => {
-            x.state = "error";
+            x.state = 'error';
             this.cdr.detectChanges();
           }
         );
@@ -130,14 +130,14 @@ export class XUploadComponent extends XControlValueAccessor implements OnInit, O
   getEventMessage(event: HttpEvent<any>, file: XUploadNode, fun: Function) {
     switch (event.type) {
       case HttpEventType.Sent:
-        file.state = "ready";
+        file.state = 'ready';
         return `开始上传文件`;
       case HttpEventType.UploadProgress:
-        file.state = "uploading";
+        file.state = 'uploading';
         file.percent = Math.round((100 * event.loaded) / event.total);
         return `上传中`;
       case HttpEventType.Response:
-        file.state = "success";
+        file.state = 'success';
         fun(event.body);
         return `文件上传完毕`;
     }

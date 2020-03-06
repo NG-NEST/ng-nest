@@ -1,6 +1,6 @@
 ---
-label: "Radio 单选框"
-category: "Form"
+label: 'Radio 单选框'
+category: 'Form'
 ---
 
 # Radio 单选框

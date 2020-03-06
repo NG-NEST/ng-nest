@@ -3,4 +3,4 @@
  * @selector x-doc
  * @decorator component
  */
-export const DocPrefix = "x-doc";
+export const DocPrefix = 'x-doc';

@@ -1,6 +1,6 @@
 ---
-label: "Tabs 标签页"
-category: "Navigation"
+label: 'Tabs 标签页'
+category: 'Navigation'
 ---
 
 # Tabs 标签页
@@ -9,7 +9,7 @@ category: "Navigation"
 
 ## 使用场景
 
--   `x-examples` 示例组件中的分类以及子类的展示。
+- `x-examples` 示例组件中的分类以及子类的展示。
 
 ## 示例代码
 

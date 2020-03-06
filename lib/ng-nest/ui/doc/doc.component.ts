@@ -1,16 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef} from "@angular/core";
-import { DocPrefix } from "./doc.type";
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { DocPrefix } from './doc.type';
 
 @Component({
-  selector: "x-doc",
-  templateUrl: "./doc.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-doc',
+  templateUrl: './doc.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

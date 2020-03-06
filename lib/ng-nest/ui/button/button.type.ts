@@ -1,16 +1,16 @@
-import { XIdentityInput, XDirection, XSize } from "@ng-nest/ui/core";
+import { XDirection, XSize } from '@ng-nest/ui/core';
 
 /**
  * Button 组件名
  * @selector x-button
  * @decorator component
  */
-export const XButtonPrefix = "x-button";
+export const XButtonPrefix = 'x-button';
 
 /**
  * Button @Input
  */
-export interface XButtonInput extends XIdentityInput {
+export interface XButtonInput {
   /**
    * 按钮类型
    */
@@ -61,14 +61,14 @@ export interface XButtonInput extends XIdentityInput {
  * @value "danger"
  * @value "text"
  */
-export type XButtonType = "primary" | "success" | "info" | "warning" | "danger" | "text";
+export type XButtonType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
  * Buttons 组件名
  * @selector x-buttons
  * @decorator component
  */
-export const XButtonsPrefix = "x-buttons";
+export const XButtonsPrefix = 'x-buttons';
 
 /**
  * Buttons @Input

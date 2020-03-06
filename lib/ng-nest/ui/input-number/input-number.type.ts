@@ -1,11 +1,11 @@
-import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty } from '@ng-nest/ui/core';
 
 /**
  * InputNumber 组件名
  * @selector x-input-number
  * @decorator component
  */
-export const XInputNumberPrefix = "x-input-number";
+export const XInputNumberPrefix = 'x-input-number';
 
 /**
  * InputNumber XInputNumber

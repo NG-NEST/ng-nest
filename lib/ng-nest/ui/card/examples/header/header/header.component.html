@@ -2,10 +2,10 @@
   <x-card width="20rem" [header]="header">
     <ng-template #header>
       <span>卡片名称</span>
-      <x-button type="text" label="操作按钮"></x-button>
+      <x-button type="text">操作按钮</x-button>
     </ng-template>
     <ul>
-      <li *ngFor="let item of list">{{ "列表内容 " + item }}</li>
+      <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
     </ul>
   </x-card>
 </div>

@@ -1,4 +1,4 @@
 ---
 order: 1
-label: "主色"
+label: '主色'
 ---

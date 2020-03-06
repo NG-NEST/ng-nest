@@ -109,9 +109,9 @@ export interface NcProperty {
 }
 
 export enum NcObjectType {
-  Interface = "interface",
-  Class = "class",
-  Const = "const",
-  Type = "type",
-  Enum = "enum"
+  Interface = 'interface',
+  Class = 'class',
+  Const = 'const',
+  Type = 'type',
+  Enum = 'enum'
 }

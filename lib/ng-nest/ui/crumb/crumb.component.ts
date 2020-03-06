@@ -13,15 +13,15 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter
-} from "@angular/core";
-import { CrumbPrefix, XCrumbInput, XCrumbNode, XCrumbNodeClick } from "./crumb.type";
-import { fillDefault, XData } from "@ng-nest/ui/core";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { CrumbPrefix, XCrumbInput, XCrumbNode, XCrumbNodeClick } from './crumb.type';
+import { fillDefault, XData } from '@ng-nest/ui/core';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "x-crumb",
-  templateUrl: "./crumb.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-crumb',
+  templateUrl: './crumb.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -34,7 +34,7 @@ export class XCrumbComponent implements OnInit, OnChanges {
     data: []
   };
 
-  @ViewChild("crumbs", { static: true }) crumbsRef: ElementRef;
+  @ViewChild('crumbs', { static: true }) crumbsRef: ElementRef;
   crumbs: XCrumbNode[] = [];
 
   private _data$: Subscription | null = null;
@@ -63,7 +63,7 @@ export class XCrumbComponent implements OnInit, OnChanges {
 
   action(type: string, option?: any, event?: Event) {
     switch (type) {
-      case "click":
+      case 'click':
         this.nodeClick.emit({
           event: event,
           node: option

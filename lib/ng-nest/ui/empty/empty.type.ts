@@ -3,7 +3,7 @@
  * @selector x-empty
  * @decorator component
  */
-export const XEmptyPrefix = "x-empty";
+export const XEmptyPrefix = 'x-empty';
 
 /**
  * Empty @Input

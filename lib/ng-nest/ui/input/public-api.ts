@@ -1,3 +1,3 @@
-export * from "./input.component";
-export * from "./input.module";
-export * from "./input.type";
+export * from './input.component';
+export * from './input.module';
+export * from './input.type';

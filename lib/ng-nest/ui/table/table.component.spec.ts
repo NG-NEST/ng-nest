@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XTableComponent } from "./table.component";
-import { Component, DebugElement, Injectable } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XTableModule } from "./table.module";
-import { TablePrefix, XTableColumn, XTableAction } from "./table.type";
+import { XTableComponent } from './table.component';
+import { Component, DebugElement, Injectable } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XTableModule } from './table.module';
+import { TablePrefix, XTableColumn, XTableAction } from './table.type';
 import {
   XId,
   XRepositoryService,
@@ -16,11 +16,11 @@ import {
   XGroupItem,
   XSort,
   XIsEmpty
-} from "@ng-nest/ui/core";
-import * as _ from "lodash";
-import { Observable } from "rxjs";
-import { XIconModule } from "@ng-nest/ui/icon";
-import { XAvatarModule } from "@ng-nest/ui/avatar";
+} from '@ng-nest/ui/core';
+import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XAvatarModule } from '@ng-nest/ui/avatar';
 
 describe(TablePrefix, () => {
   beforeEach(async(() => {
@@ -41,7 +41,7 @@ describe(TablePrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XTableComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -50,22 +50,22 @@ describe(TablePrefix, () => {
 @Injectable()
 class UsersService extends XRepositoryService<User> {
   constructor(public http: XHttpService) {
-    super(http, { controller: { name: "http://localhost:3000/users" } });
+    super(http, { controller: { name: 'http://localhost:3000/users' } });
   }
 }
 
 @Injectable()
 class UsersServiceTest extends XRepositoryAbstract {
-  organizations = ["制造中心", "研发中心", "财务中心", "营销中心", "行政中心"];
-  positions = ["技术员", "销售", "经理", "总监", "生产员"];
+  organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
+  positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 1234 }).map((x, i) => {
     i++;
     return {
       id: i,
-      name: "姓名" + i,
+      name: '姓名' + i,
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
-      email: "邮箱" + i,
-      phone: "手机" + i,
+      email: '邮箱' + i,
+      phone: '手机' + i,
       organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 5]
     };
   });
@@ -124,7 +124,7 @@ class UsersServiceTest extends XRepositoryAbstract {
     return _.orderBy(
       data,
       _.map(sort, x => x.field),
-      _.map(sort, x => x.value) as ("desc" | "asc")[]
+      _.map(sort, x => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }
@@ -139,7 +139,7 @@ interface User extends XId {
 }
 
 @Component({
-  selector: "test-x-table",
+  selector: 'test-x-table',
   template: `
     <div style="padding: 1rem 2rem; background: #fafafa;">
       <x-table
@@ -182,43 +182,43 @@ interface User extends XId {
 class TestXTableComponent {
   constructor(public usersServiceTest: UsersServiceTest) {}
   columns: XTableColumn[] = [
-    { key: "name", label: "用户", flex: 1.5, search: true, sort: true },
-    { key: "position", label: "职位", flex: 0.5, sort: true },
-    { key: "email", label: "邮箱", flex: 1 },
-    { key: "phone", label: "电话", flex: 1 },
-    { key: "organization", label: "组织机构", flex: 1, sort: true }
+    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true },
+    { id: 'position', label: '职位', flex: 0.5, sort: true },
+    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'phone', label: '电话', flex: 1 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
   actions: XTableAction[] = [
-    { label: "新增", icon: "fto-plus", type: "primary" },
-    { label: "导出", icon: "fto-download" },
-    { label: "批量操作", icon: "fto-list" },
+    { label: '新增', icon: 'fto-plus', type: 'primary' },
+    { label: '导出', icon: 'fto-download' },
+    { label: '批量操作', icon: 'fto-list' },
     {
-      icon: "fto-menu",
-      title: "列表视图",
+      icon: 'fto-menu',
+      title: '列表视图',
       activated: true,
-      actionLayoutType: "top-right-icon"
+      actionLayoutType: 'top-right-icon'
     },
     {
-      icon: "fto-disc",
-      title: "组织视图",
-      actionLayoutType: "top-right-icon",
-      group: "organization"
+      icon: 'fto-disc',
+      title: '组织视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'organization'
     },
     {
-      icon: "fto-briefcase",
-      title: "职位视图",
-      actionLayoutType: "top-right-icon",
-      group: "position"
+      icon: 'fto-briefcase',
+      title: '职位视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'position'
     },
     {
-      icon: "fto-edit",
-      title: "编辑",
-      actionLayoutType: "row-icon"
+      icon: 'fto-edit',
+      title: '编辑',
+      actionLayoutType: 'row-icon'
     },
     {
-      icon: "fto-trash-2",
-      title: "删除",
-      actionLayoutType: "row-icon"
+      icon: 'fto-trash-2',
+      title: '删除',
+      actionLayoutType: 'row-icon'
     }
   ];
 }

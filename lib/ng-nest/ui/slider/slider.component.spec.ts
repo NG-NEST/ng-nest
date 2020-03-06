@@ -1,18 +1,18 @@
-import { BehaviorSubject } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BehaviorSubject } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XSliderComponent } from "./slider.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XSliderModule } from "./slider.module";
+import { XSliderComponent } from './slider.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XSliderModule } from './slider.module';
 import {
   SliderPrefix,
   XSliderNode,
   XSliderLayoutType,
   XSliderBorderPositionType,
   XActivatedSlider
-} from "./slider.type";
-import { XData } from "@ng-nest/ui/core";
+} from './slider.type';
+import { XData } from '@ng-nest/ui/core';
 
 describe(SliderPrefix, () => {
   beforeEach(async(() => {
@@ -35,75 +35,61 @@ describe(SliderPrefix, () => {
       fixture = TestBed.createComponent(TestXSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XSliderComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XSliderComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(SliderPrefix);
     });
-    it("should layout row.", () => {
-      testComponent.layout = "row";
+    it('should layout row.', () => {
+      testComponent.layout = 'row';
       fixture.detectChanges();
       expect(element.classList).toContain(`${SliderPrefix}-row`);
     });
-    it("should layout column.", () => {
-      testComponent.layout = "column";
+    it('should layout column.', () => {
+      testComponent.layout = 'column';
       fixture.detectChanges();
       expect(element.classList).toContain(`${SliderPrefix}-column`);
     });
-    it("should border position top.", () => {
-      testComponent.layout = "row";
-      testComponent.position = "top";
+    it('should border position top.', () => {
+      testComponent.layout = 'row';
+      testComponent.position = 'top';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-top`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-top`);
     });
-    it("should border position right.", () => {
-      testComponent.layout = "column";
-      testComponent.position = "right";
+    it('should border position right.', () => {
+      testComponent.layout = 'column';
+      testComponent.position = 'right';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-right`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-right`);
     });
-    it("should border position bottom.", () => {
-      testComponent.layout = "row";
-      testComponent.position = "bottom";
+    it('should border position bottom.', () => {
+      testComponent.layout = 'row';
+      testComponent.position = 'bottom';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-bottom`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-bottom`);
     });
-    it("should border position left.", () => {
-      testComponent.layout = "column";
-      testComponent.position = "left";
+    it('should border position left.', () => {
+      testComponent.layout = 'column';
+      testComponent.position = 'left';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-left`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-left`);
     });
-    it("should layout row. border position left.", () => {
-      testComponent.layout = "row";
-      testComponent.position = "left";
+    it('should layout row. border position left.', () => {
+      testComponent.layout = 'row';
+      testComponent.position = 'left';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-bottom`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-bottom`);
     });
-    it("should layout column. border position top.", () => {
-      testComponent.layout = "column";
-      testComponent.position = "top";
+    it('should layout column. border position top.', () => {
+      testComponent.layout = 'column';
+      testComponent.position = 'top';
       fixture.detectChanges();
-      expect(element.classList).toContain(
-        `${SliderPrefix}-border-position-left`
-      );
+      expect(element.classList).toContain(`${SliderPrefix}-border-position-left`);
     });
   });
   describe(`event.`, () => {
@@ -114,11 +100,9 @@ describe(SliderPrefix, () => {
       fixture = TestBed.createComponent(TestEventXSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XSliderComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XSliderComponent));
     });
-    it("should activated slider change.", () => {
+    it('should activated slider change.', () => {
       let index = 1;
       let indexSlider: XActivatedSlider = {
         activatedIndex: index,
@@ -128,10 +112,8 @@ describe(SliderPrefix, () => {
       (debugElement.componentInstance as XSliderComponent).indexChange.subscribe(
         (x: XActivatedSlider) => (activatedSilder = x)
       );
-      let liEle = fixture.debugElement.query(
-        By.css(`ul li:nth-child(${index + 1})`)
-      );
-      liEle.triggerEventHandler("click", null);
+      let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
+      liEle.triggerEventHandler('click', null);
       expect(activatedSilder).toEqual(indexSlider);
     });
   });
@@ -143,17 +125,13 @@ describe(SliderPrefix, () => {
       fixture = TestBed.createComponent(TestDataXSliderComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XSliderComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XSliderComponent));
     });
-    it("should data type is BehaviorSubject.", () => {
+    it('should data type is BehaviorSubject.', () => {
       if (testComponent.data instanceof BehaviorSubject) {
         testComponent.data.next(testXSliderNode);
         testComponent.data.complete();
-        expect(
-          (debugElement.componentInstance as XSliderComponent).sliderNodes
-        ).toEqual(testXSliderNode);
+        expect((debugElement.componentInstance as XSliderComponent).sliderNodes).toEqual(testXSliderNode);
       }
     });
   });
@@ -163,31 +141,25 @@ describe(SliderPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestDataUndefinedXSliderComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XSliderComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XSliderComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 const testXSliderNode: XSliderNode[] = [
-  { key: 1, label: "Home" },
-  { key: 2, label: "Docs" },
-  { key: 3, label: "Examples" },
-  { key: 4, label: "Api" }
+  { id: 1, label: 'Home' },
+  { id: 2, label: 'Docs' },
+  { id: 3, label: 'Examples' },
+  { id: 4, label: 'Api' }
 ];
 
 @Component({
-  selector: "test-x-slider",
+  selector: 'test-x-slider',
   template: `
-    <x-slider
-      [data]="data"
-      [layout]="layout"
-      [borderPosition]="position"
-    ></x-slider>
+    <x-slider [data]="data" [layout]="layout" [borderPosition]="position"></x-slider>
   `
 })
 class TestXSliderComponent {
@@ -197,12 +169,9 @@ class TestXSliderComponent {
 }
 
 @Component({
-  selector: "test-event-x-slider",
+  selector: 'test-event-x-slider',
   template: `
-    <x-slider
-      [data]="data"
-      (indexChange)="activatedChange($event)"
-    ></x-slider>
+    <x-slider [data]="data" (indexChange)="activatedChange($event)"></x-slider>
   `
 })
 class TestEventXSliderComponent {
@@ -211,7 +180,7 @@ class TestEventXSliderComponent {
 }
 
 @Component({
-  selector: "test-data-x-slider",
+  selector: 'test-data-x-slider',
   template: `
     <x-slider [data]="data"></x-slider>
   `
@@ -221,7 +190,7 @@ class TestDataXSliderComponent {
 }
 
 @Component({
-  selector: "test-data-undefined-x-slider",
+  selector: 'test-data-undefined-x-slider',
   template: `
     <x-slider [data]="data"></x-slider>
   `

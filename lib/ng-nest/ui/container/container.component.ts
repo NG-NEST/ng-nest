@@ -7,14 +7,14 @@ import {
   ElementRef,
   Input,
   SimpleChanges
-} from "@angular/core";
-import { XContainerPrefix } from "./container.type";
-import { XDirection } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XContainerPrefix } from './container.type';
+import { XDirection } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./container.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

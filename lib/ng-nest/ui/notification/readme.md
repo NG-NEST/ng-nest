@@ -1,6 +1,6 @@
 ---
-label: "Notification 通知提醒框 [待]"
-category: "Feedback"
+label: 'Notification 通知提醒框 [待]'
+category: 'Feedback'
 ---
 
 # Notification 通知提醒框

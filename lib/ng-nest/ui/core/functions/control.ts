@@ -1,7 +1,7 @@
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { forwardRef, Input, Renderer2 } from "@angular/core";
-import { XInputBoolean } from "./convert";
-import { XJustify, XAlign, XDirection } from "../interfaces";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { forwardRef, Input, Renderer2 } from '@angular/core';
+import { XInputBoolean } from './convert';
+import { XJustify, XAlign, XDirection } from '../interfaces';
 
 export abstract class XControlValueAccessor implements ControlValueAccessor {
   constructor(public renderer: Renderer2) {}
@@ -10,7 +10,7 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
   @Input() align?: XAlign;
   @Input() direction?: XDirection;
   @Input() label?: string;
-  @Input() placeholder: string = "";
+  @Input() placeholder: string = '';
   @Input() @XInputBoolean() required?: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
   onChange: (value: any) => void;

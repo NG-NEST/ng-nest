@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XSliderSelectComponent } from "./slider-select.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XSliderSelectModule } from "./slider-select.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XSliderSelectPrefix } from "./slider-select.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { interval } from "rxjs";
+import { XSliderSelectComponent } from './slider-select.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XSliderSelectModule } from './slider-select.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XSliderSelectPrefix } from './slider-select.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { interval } from 'rxjs';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe(XSliderSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSliderSelectComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -42,7 +42,7 @@ describe(XSliderSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -54,7 +54,7 @@ describe(XSliderSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectLimitComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -66,7 +66,7 @@ describe(XSliderSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectPrecisionComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -78,7 +78,7 @@ describe(XSliderSelectPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });

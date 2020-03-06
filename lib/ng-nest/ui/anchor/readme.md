@@ -1,6 +1,6 @@
 ---
-label: "Anchor 锚点"
-category: "Navigation"
+label: 'Anchor 锚点'
+category: 'Navigation'
 ---
 
 # 锚点 Anchor

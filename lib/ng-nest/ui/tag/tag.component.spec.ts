@@ -1,27 +1,20 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XTagComponent } from "./tag.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XTagModule } from "./tag.module";
-import { FormsModule } from "@angular/forms";
-import { XTagPrefix } from "./tag.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
+import { XTagComponent } from './tag.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XTagModule } from './tag.module';
+import { FormsModule } from '@angular/forms';
+import { XTagPrefix } from './tag.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XTagPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        XTagModule,
-        XButtonModule,
-        XContainerModule,
-        XFenceModule,
-        XIconModule
-      ],
+      imports: [FormsModule, XTagModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
       declarations: [TestXTagComponent]
     }).compileComponents();
   }));
@@ -33,7 +26,7 @@ describe(XTagPrefix, () => {
       fixture.detectChanges();
       tag = fixture.debugElement.query(By.directive(XTagComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(tag).toBeDefined();
     });
   });
@@ -89,13 +82,7 @@ describe(XTagPrefix, () => {
       <x-tag label="标签" size="mini" closeable></x-tag>
     </div>
     <div class="row">
-      <x-tag
-        *ngFor="let tag of tags"
-        [label]="tag"
-        type="primary"
-        closeable
-        (close)="close(tag)"
-      ></x-tag>
+      <x-tag *ngFor="let tag of tags" [label]="tag" type="primary" closeable (close)="close(tag)"></x-tag>
     </div>
   `,
   styles: [
@@ -110,7 +97,7 @@ describe(XTagPrefix, () => {
   ]
 })
 class TestXTagComponent {
-  tags = ["标签一", "标签二", "标签三", "标签四", "标签五"];
+  tags = ['标签一', '标签二', '标签三', '标签四', '标签五'];
   constructor(private cdr: ChangeDetectorRef) {}
   close(tag) {
     this.tags.splice(this.tags.indexOf(tag), 1);

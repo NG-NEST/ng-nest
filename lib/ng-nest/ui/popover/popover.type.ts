@@ -1,14 +1,14 @@
-import { InjectionToken, TemplateRef } from "@angular/core";
-import { XPlacement } from "@ng-nest/ui/core";
+import { InjectionToken, TemplateRef } from '@angular/core';
+import { XPlacement } from '@ng-nest/ui/core';
 
 /**
  * Popover 组件名
  * @selector x-popover
  * @decorator directive
  */
-export const XPopoverPrefix = "x-popover";
+export const XPopoverPrefix = 'x-popover';
 
-export const XPopoverPortal = new InjectionToken<{}>("x-popover-portal");
+export const XPopoverPortal = new InjectionToken<{}>('x-popover-portal');
 
 /**
  * Popover @Input
@@ -52,11 +52,11 @@ export interface XPopoverInput {
  * @value "hover"
  * @value "click"
  */
-export type XPopoverTrigger = "hover" | "click";
+export type XPopoverTrigger = 'hover' | 'click';
 
 /**
  * Popover Portal 组件名
  * @selector x-popover-portal
  * @decorator component
  */
-export const XPopoverPortalPrefix = "x-popover-portal";
+export const XPopoverPortalPrefix = 'x-popover-portal';

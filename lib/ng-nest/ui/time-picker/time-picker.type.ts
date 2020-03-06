@@ -1,12 +1,12 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
-import { InjectionToken } from "@angular/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
+import { InjectionToken } from '@angular/core';
 
 /**
  * TimePicker 组件名
  * @selector x-time-picker
  * @decorator component
  */
-export const XTimePickerPrefix = "x-time-picker";
+export const XTimePickerPrefix = 'x-time-picker';
 
 /**
  * TimePicker @Input
@@ -24,13 +24,13 @@ export interface XTimePickerNode extends XParentIdentityInput {}
  * @value "hour"
  * @value "minute"
  */
-export type XTimePickerType = "time" | "hour" | "minute";
+export type XTimePickerType = 'time' | 'hour' | 'minute';
 
 /**
  * TimePicker-Portal 组件名
  * @selector x-time-picker-portal
  * @decorator component
  */
-export const XTimePickerPortalPrefix = "x-time-picker-portal";
+export const XTimePickerPortalPrefix = 'x-time-picker-portal';
 
-export const XTimePickerPortal = new InjectionToken<{}>("x-time-picker-portal");
+export const XTimePickerPortal = new InjectionToken<{}>('x-time-picker-portal');

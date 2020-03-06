@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAnchorComponent } from "./anchor.component";
-import { Component, DebugElement, Inject } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XAnchorModule } from "./anchor.module";
-import { AnchorPrefix, XActivatedAnchor, XAnchorLayoutType } from "./anchor.type";
-import { DOCUMENT } from "@angular/common";
+import { XAnchorComponent } from './anchor.component';
+import { Component, DebugElement, Inject } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XAnchorModule } from './anchor.module';
+import { AnchorPrefix, XActivatedAnchor, XAnchorLayoutType } from './anchor.type';
+import { DOCUMENT } from '@angular/common';
 
 describe(AnchorPrefix, () => {
   beforeEach(async(() => {
@@ -33,16 +33,16 @@ describe(AnchorPrefix, () => {
       com = debugElement.componentInstance;
       element = com.anchor.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should layout left.", () => {
-      testComponent.layout = "left";
+    it('should layout left.', () => {
+      testComponent.layout = 'left';
       fixture.detectChanges();
       expect(element.classList).toContain(`${AnchorPrefix}-left`);
     });
-    it("should layout right.", () => {
-      testComponent.layout = "right";
+    it('should layout right.', () => {
+      testComponent.layout = 'right';
       fixture.detectChanges();
       expect(element.classList).toContain(`${AnchorPrefix}-right`);
     });
@@ -62,27 +62,27 @@ describe(AnchorPrefix, () => {
       com = debugElement.componentInstance;
       element = com.anchor.nativeElement;
     });
-    it("should layout left.", () => {
-      testComponent.layout = "left";
+    it('should layout left.', () => {
+      testComponent.layout = 'left';
       fixture.detectChanges();
-      expect(element.classList).toContain(`${AnchorPrefix}-${"left"}`);
+      expect(element.classList).toContain(`${AnchorPrefix}-${'left'}`);
     });
-    it("should layout right.", () => {
-      testComponent.layout = "right";
+    it('should layout right.', () => {
+      testComponent.layout = 'right';
       fixture.detectChanges();
-      expect(element.classList).toContain(`${AnchorPrefix}-${"right"}`);
+      expect(element.classList).toContain(`${AnchorPrefix}-${'right'}`);
     });
-    it("should activated anchor change.", () => {
+    it('should activated anchor change.', () => {
       let index = 1;
       let activatedAnchor: XActivatedAnchor;
       (debugElement.componentInstance as XAnchorComponent).indexChange.subscribe(
         (x: XActivatedAnchor) => (activatedAnchor = x)
       );
       let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
-      liEle.triggerEventHandler("click", null);
+      liEle.triggerEventHandler('click', null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
-    it("should scroll change.", () => {
+    it('should scroll change.', () => {
       com.setActiveatedIndex();
       (com.scrollElement as HTMLElement).scrollTop = 400;
       testComponent.doc.documentElement.scrollTop = 300;
@@ -106,20 +106,20 @@ describe(AnchorPrefix, () => {
       shadowRoot = element.shadowRoot;
       anchorComponent = debugElement.componentInstance as XAnchorComponent;
     });
-    it("should activated anchor change.", () => {
+    it('should activated anchor change.', () => {
       let index = 1;
       let activatedAnchor: XActivatedAnchor;
       anchorComponent.indexChange.subscribe((x: XActivatedAnchor) => (activatedAnchor = x));
       let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
-      liEle.triggerEventHandler("click", null);
+      liEle.triggerEventHandler('click', null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
-    it("should scroll change.", () => {
+    it('should scroll change.', () => {
       let index = 1;
       let activatedAnchor: XActivatedAnchor;
       anchorComponent.indexChange.subscribe((x: XActivatedAnchor) => (activatedAnchor = x));
       let liEle = fixture.debugElement.query(By.css(`ul li:nth-child(${index + 1})`));
-      liEle.triggerEventHandler("click", null);
+      liEle.triggerEventHandler('click', null);
       expect(activatedAnchor.activatedIndex).toBe(index);
     });
     // it("should window size change.", () => {
@@ -138,7 +138,7 @@ describe(AnchorPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -150,7 +150,7 @@ describe(AnchorPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XAnchorComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -301,7 +301,7 @@ const htmlTemplate = `
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>`;
 @Component({
-  selector: "test-x-anchor",
+  selector: 'test-x-anchor',
   template: `
     <x-anchor [layout]="layout" [top]="8" [sliderFixed]="true">
       ${htmlTemplate}
@@ -314,7 +314,7 @@ class TestXAnchorComponent {
 }
 
 @Component({
-  selector: "test-x-anchor",
+  selector: 'test-x-anchor',
   template: `
     <div class="scroll" #scroll style="height: 600px; overflow: auto">
       <div>
@@ -342,7 +342,7 @@ class TestScrollXAnchorComponent {
 }
 
 @Component({
-  selector: "test-scroll-fixed-x-anchor",
+  selector: 'test-scroll-fixed-x-anchor',
   template: `
     <div class="scroll-fixed">
       <div class="scroll" #scroll style="height: 600px; overflow: auto">
@@ -385,7 +385,7 @@ class TestScrollFixedXAnchorComponent {
 }
 
 @Component({
-  selector: "test-undefined-x-anchor",
+  selector: 'test-undefined-x-anchor',
   template: `
     <x-anchor></x-anchor>
   `

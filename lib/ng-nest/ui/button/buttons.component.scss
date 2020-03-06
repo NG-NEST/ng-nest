@@ -1,14 +1,14 @@
 // Buttons
 
-@import "../style/themes/default";
-@import "../style/mixins/index";
-@import "./style/mixin";
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
 
 .#{$--x-buttons} {
   @include reset-component();
   @include buttons();
-  @include buttons-type("primary");
-  @include buttons-type("success");
-  @include buttons-type("warning");
-  @include buttons-type("danger");
+  @include buttons-type('primary');
+  @include buttons-type('success');
+  @include buttons-type('warning');
+  @include buttons-type('danger');
 }

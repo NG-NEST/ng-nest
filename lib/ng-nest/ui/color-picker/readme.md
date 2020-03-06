@@ -1,6 +1,6 @@
 ---
-label: "ColorPicker 颜色选择器"
-category: "Form"
+label: 'ColorPicker 颜色选择器'
+category: 'Form'
 ---
 
 # ColorPicker 颜色选择器

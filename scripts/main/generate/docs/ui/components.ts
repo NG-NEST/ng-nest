@@ -1,7 +1,7 @@
-import * as fs from "fs-extra";
-import * as path from "path";
-import { mdToHtml } from "../../../utils";
-import { NcUiPage } from ".";
+import * as fs from 'fs-extra';
+import * as path from 'path';
+import { mdToHtml } from '../../../utils';
+import { NcUiPage } from '.';
 
 export class NcComponents {
   private componentsPath: string;
@@ -15,6 +15,6 @@ export class NcComponents {
     });
   }
   getReadmePath(dirName: string) {
-    return path.resolve(this.componentsPath, dirName, "readme.md");
+    return path.resolve(this.componentsPath, dirName, 'readme.md');
   }
 }

@@ -1,6 +1,6 @@
 ---
-label: "Typography 字体"
-category: "Basic"
+label: 'Typography 字体'
+category: 'Basic'
 ---
 
 # Typography 字体

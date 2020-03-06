@@ -1,8 +1,8 @@
 // Popover
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin popover {
   display: inline-block;
@@ -45,7 +45,7 @@
     filter: drop-shadow(0 0.125rem 0.75rem rgba(0, 0, 0, 0.03));
   }
   .#{$--x-popover-portal-prefix}-arrow:after {
-    content: " ";
+    content: ' ';
     border-width: 0.375rem;
   }
 

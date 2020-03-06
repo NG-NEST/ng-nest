@@ -1,6 +1,6 @@
-import { XTimePickerPortalComponent } from "./time-picker-portal.component";
-import { XPortalService, XPortalOverlayRef } from "@ng-nest/ui/portal";
-import { Subscription, Subject } from "rxjs";
+import { XTimePickerPortalComponent } from './time-picker-portal.component';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { Subscription, Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -17,25 +17,25 @@ import {
   Output,
   Inject,
   SimpleChanges
-} from "@angular/core";
-import { XTimePickerPrefix, XTimePickerPortal, XTimePickerInput, XTimePickerType } from "./time-picker.type";
-import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty, XIsDate, XIsNumber } from "@ng-nest/ui/core";
-import { XInputComponent } from "@ng-nest/ui/input";
-import { DOCUMENT, DatePipe } from "@angular/common";
+} from '@angular/core';
+import { XTimePickerPrefix, XTimePickerPortal, XTimePickerInput, XTimePickerType } from './time-picker.type';
+import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty, XIsDate, XIsNumber } from '@ng-nest/ui/core';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { DOCUMENT, DatePipe } from '@angular/common';
 
 @Component({
-  selector: "x-time-picker",
-  templateUrl: "./time-picker.component.html",
-  styleUrls: ["./time-picker.component.scss"],
+  selector: 'x-time-picker',
+  templateUrl: './time-picker.component.html',
+  styleUrls: ['./time-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
 export class XTimePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() type: XTimePickerType = "time";
-  @Input() format: string = "HH:mm:ss";
-  @ViewChild("datePicker", { static: true }) datePicker: ElementRef;
-  @ViewChild("inputCom", { static: true }) inputCom: XInputComponent;
+  @Input() type: XTimePickerType = 'time';
+  @Input() format: string = 'HH:mm:ss';
+  @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
   @Output() nodeEmit?: EventEmitter<number> = new EventEmitter<number>();
 
   get getRequired() {
@@ -45,7 +45,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   writeValue(value: any) {
     if (XIsDate(value)) this.value = value.getTime();
     else if (XIsNumber(value)) this.value = value;
-    else if (XIsEmpty(value)) this.value = "";
+    else if (XIsEmpty(value)) this.value = '';
     this.setDisplayValue();
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
@@ -54,9 +54,9 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
-  displayValue: any = "";
+  displayValue: any = '';
   portal: XPortalOverlayRef;
-  icon: string = "fto-clock";
+  icon: string = 'fto-clock';
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
@@ -105,20 +105,20 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   setFormat() {
-    if (this.format === "HH:mm:ss") {
-      if (this.type === "hour") {
-        this.format = "HH";
-      } else if (this.type === "minute") {
-        this.format = "HH:mm";
+    if (this.format === 'HH:mm:ss') {
+      if (this.type === 'hour') {
+        this.format = 'HH';
+      } else if (this.type === 'minute') {
+        this.format = 'HH:mm';
       }
     }
   }
 
   addListen() {
-    this.scrollFunction = this.renderer.listen("window", "scroll", () => {
+    this.scrollFunction = this.renderer.listen('window', 'scroll', () => {
       this.setPortal();
     });
-    this.resizeFunction = this.renderer.listen("window", "resize", () => {
+    this.resizeFunction = this.renderer.listen('window', 'resize', () => {
       this.setPortal();
     });
   }
@@ -137,7 +137,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = true;
     if (!XIsEmpty(this.value)) {
-      this.icon = "";
+      this.icon = '';
       this.clearable = true;
       this.cdr.detectChanges();
     }
@@ -147,15 +147,15 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     if (this.disabled) return;
     this.enter = false;
     if (this.clearable) {
-      this.icon = "fto-clock";
+      this.icon = 'fto-clock';
       this.clearable = false;
       this.cdr.detectChanges();
     }
   }
 
   clearEmit() {
-    this.value = "";
-    this.displayValue = "";
+    this.value = '';
+    this.displayValue = '';
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -191,7 +191,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
         XTimePickerPortal
       ),
       overlayConfig: {
-        backdropClass: "",
+        backdropClass: '',
         positionStrategy: this.setPositionStrategy()
       }
     });
@@ -215,7 +215,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
     return this.portalService.setPositionStrategy(
       this.inputCom.input,
-      this.protalTobottom ? "bottom-start" : "top-start"
+      this.protalTobottom ? 'bottom-start' : 'top-start'
     );
   }
 

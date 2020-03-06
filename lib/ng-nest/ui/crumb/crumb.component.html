@@ -1,15 +1,9 @@
 <ul #crumbs>
   <li *ngFor="let crumb of crumbs; index as i">
-    <span
-      class="x-crumb-link"
-      [title]="nodeTemplate ? crumb.label : ''"
-      (click)="action('click', crumb, $event)"
-    >
+    <span class="x-crumb-link" [title]="nodeTemplate ? crumb.label : ''" (click)="action('click', crumb, $event)">
       <ng-container *ngIf="!nodeTemplate">{{ crumb.label }}</ng-container>
       <ng-container *ngIf="nodeTemplate">
-        <ng-container
-          *ngTemplateOutlet="nodeTemplate; context: { node$: crumb }"
-        ></ng-container>
+        <ng-container *ngTemplateOutlet="nodeTemplate; context: { node$: crumb }"></ng-container>
       </ng-container>
     </span>
     <span class="x-crumb-separator" *ngIf="i !== crumbs.length - 1">/</span>

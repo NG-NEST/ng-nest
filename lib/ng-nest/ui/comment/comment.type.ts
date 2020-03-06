@@ -1,11 +1,11 @@
-import { XParentIdentityInput, XDate, XData } from "@ng-nest/ui/core";
+import { XParentIdentityInput, XDate, XData } from '@ng-nest/ui/core';
 
 /**
  * Comment 组件名
  * @selector x-comment
  * @decorator component
  */
-export const XCommentPrefix = "x-comment";
+export const XCommentPrefix = 'x-comment';
 
 /**
  * Comment @Input
@@ -73,7 +73,7 @@ export interface XCommentNode extends XParentIdentityInput {
  * @selector x-comment-reply
  * @decorator component
  */
-export const XCommentReplyPrefix = "x-comment-reply";
+export const XCommentReplyPrefix = 'x-comment-reply';
 
 /**
  * Comment Reply @Input

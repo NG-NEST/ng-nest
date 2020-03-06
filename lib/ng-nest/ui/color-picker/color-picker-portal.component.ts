@@ -10,27 +10,27 @@ import {
   Renderer2,
   OnDestroy,
   ViewChild
-} from "@angular/core";
-import { XColorPickerPortal, XColorType } from "./color-picker.type";
-import { XIsEmpty } from "@ng-nest/ui/core";
-import { XSliderSelectComponent } from "@ng-nest/ui/slider-select";
-import { Subscription } from "rxjs";
-import { CdkDragMove, CdkDragEnd } from "@angular/cdk/drag-drop";
-import { DOCUMENT, DecimalPipe, PercentPipe } from "@angular/common";
+} from '@angular/core';
+import { XColorPickerPortal, XColorType } from './color-picker.type';
+import { XIsEmpty } from '@ng-nest/ui/core';
+import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
+import { Subscription } from 'rxjs';
+import { CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 
 @Component({
-  selector: "x-color-picker-portal",
-  templateUrl: "./color-picker-portal.component.html",
-  styleUrls: ["./color-picker-portal.component.scss"],
+  selector: 'x-color-picker-portal',
+  templateUrl: './color-picker-portal.component.html',
+  styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DecimalPipe, PercentPipe]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   value;
-  @ViewChild("panelRef", { static: true }) panelRef: ElementRef;
-  @ViewChild("plateRef", { static: true }) plateRef: ElementRef;
-  @ViewChild("transparentCom", { static: true }) transparentCom: XSliderSelectComponent;
+  @ViewChild('panelRef', { static: true }) panelRef: ElementRef;
+  @ViewChild('plateRef', { static: true }) plateRef: ElementRef;
+  @ViewChild('transparentCom', { static: true }) transparentCom: XSliderSelectComponent;
   transparentRail: HTMLElement;
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
@@ -69,7 +69,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     });
     setTimeout(
       () =>
-        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
           if (!this.drag) this.option.closePortal();
         }))
     );
@@ -84,7 +84,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.panel = this.panelRef.nativeElement.getBoundingClientRect();
     this.plate = this.plateRef.nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector(".x-slider-select-rail div");
+    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div');
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
@@ -122,28 +122,28 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       this.rgba = this.hexToRgba(this.hex);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
-      this.type = "hex";
+      this.type = 'hex';
     } else if (/rgb/.test(this.value)) {
       this.rgbaConvert(this.value);
       this.hex = this.rgbaToHex(this.rgba);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
-      this.type = "rgba";
+      this.type = 'rgba';
     } else if (/hsl/.test(this.value)) {
       this.hslaConvert(this.value);
       this.rgba = this.hslaToRgba(this.hsla);
       this.hex = this.rgbaToHex(this.rgba);
-      this.type = "hsla";
+      this.type = 'hsla';
     }
   }
 
   rgbaConvert(str) {
     let rgba = str
-      .replace(/rgba?\(/, "")
-      .replace(/rgb?\(/, "")
-      .replace(/\)/, "")
-      .replace(/[\s+]/g, "")
-      .split(",");
+      .replace(/rgba?\(/, '')
+      .replace(/rgb?\(/, '')
+      .replace(/\)/, '')
+      .replace(/[\s+]/g, '')
+      .split(',');
     if (rgba.length > 2) {
       this.rgba = {
         r: Number(rgba[0]),
@@ -156,16 +156,16 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   hslaConvert(str) {
     let hsla = str
-      .replace(/hsla?\(/, "")
-      .replace(/hsl?\(/, "")
-      .replace(/\)/, "")
-      .replace(/[\s+]/g, "")
-      .split(",");
+      .replace(/hsla?\(/, '')
+      .replace(/hsl?\(/, '')
+      .replace(/\)/, '')
+      .replace(/[\s+]/g, '')
+      .split(',');
     if (hsla.length > 2) {
       this.hsla = {
         h: Number(hsla[0]),
-        s: Number(hsla[1].replace("%", "")) / 100,
-        l: Number(hsla[2].replace("%", "")) / 100,
+        s: Number(hsla[1].replace('%', '')) / 100,
+        l: Number(hsla[2].replace('%', '')) / 100,
         a: Number(hsla.length > 3 ? hsla[3] : 1)
       };
       this.setHslaPercent();
@@ -223,8 +223,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       }
     }
     [this.hsla.s, this.hsla.l] = [
-      Number(this.decimal.transform(s, "1.2-2")),
-      Number(this.decimal.transform(l, "1.2-2"))
+      Number(this.decimal.transform(s, '1.2-2')),
+      Number(this.decimal.transform(l, '1.2-2'))
     ];
     this.setHslaPercent();
     Object.assign(this.rgba, this.hslaToRgba(this.hsla));
@@ -233,13 +233,13 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setHslaPercent() {
-    this.hsla.sp = this.hsla.s === 0 ? "0%" : this.percent.transform(this.hsla.s, "1.0-0");
-    this.hsla.lp = this.hsla.l === 0 ? "0%" : this.percent.transform(this.hsla.l, "1.0-0");
+    this.hsla.sp = this.hsla.s === 0 ? '0%' : this.percent.transform(this.hsla.s, '1.0-0');
+    this.hsla.lp = this.hsla.l === 0 ? '0%' : this.percent.transform(this.hsla.l, '1.0-0');
   }
 
   getPrimary() {
     return getComputedStyle(this.doc.documentElement)
-      .getPropertyValue("--x-primary")
+      .getPropertyValue('--x-primary')
       .trim();
   }
 
@@ -251,13 +251,13 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setPlateBackground() {
-    this.renderer.setStyle(this.plateRef.nativeElement, "background-color", `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.renderer.setStyle(this.plateRef.nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
   }
 
   setRailBackground() {
     this.renderer.setStyle(
       this.transparentRail,
-      "background",
+      'background',
       `linear-gradient(to right, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 0) 0%, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 1) 100%)`
     );
   }
@@ -276,11 +276,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setValueByType() {
-    if (this.type === "hex") {
+    if (this.type === 'hex') {
       this.value = `${this.hex}`;
-    } else if (this.type === "rgba") {
+    } else if (this.type === 'rgba') {
       this.value = `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`;
-    } else if (this.type === "hsla") {
+    } else if (this.type === 'hsla') {
       this.value = `hsla(${this.hsla.h}, ${this.hsla.sp}, ${this.hsla.lp}, ${this.hsla.a})`;
     }
   }
@@ -312,14 +312,14 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   rgbaToHex(rgba: { r?: number; g?: number; b?: number; a?: number }) {
     let hex = [rgba.r.toString(16), rgba.g.toString(16), rgba.b.toString(16), Math.round(255 * rgba.a).toString(16)];
     hex.forEach((x, index) => {
-      if (index === 3 && x === "ff") {
-        hex[index] = "";
+      if (index === 3 && x === 'ff') {
+        hex[index] = '';
       }
       if (x.length === 1) {
-        hex[index] = "0" + x;
+        hex[index] = '0' + x;
       }
     });
-    return `#${hex.join("")}`;
+    return `#${hex.join('')}`;
   }
 
   rgbaToHsla(rgba: { r?: number; g?: number; b?: number; a?: number }) {
@@ -350,8 +350,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
     return {
       h: Math.round(h * 360),
-      s: Number(this.decimal.transform(s, "1.2-2")),
-      l: Number(this.decimal.transform(l, "1.2-2")),
+      s: Number(this.decimal.transform(s, '1.2-2')),
+      l: Number(this.decimal.transform(l, '1.2-2')),
       a: Number(rgba.a)
     };
   }
@@ -360,10 +360,10 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     let hexNum = hex.substring(1);
     let a = 1;
     if (hexNum.length === 8) {
-      a = Number(this.decimal.transform(Number("0x" + hexNum.slice(-2)) / 255, "1.2-2"));
+      a = Number(this.decimal.transform(Number('0x' + hexNum.slice(-2)) / 255, '1.2-2'));
       hexNum = hexNum.substring(0, hexNum.length - 2);
     }
-    let num = Number("0x" + (hexNum.length < 6 ? this.repeatLetter(hexNum, 2) : hexNum));
+    let num = Number('0x' + (hexNum.length < 6 ? this.repeatLetter(hexNum, 2) : hexNum));
     return { r: num >> 16, g: (num >> 8) & 0xff, b: num & 0xff, a: a };
   }
 
@@ -385,13 +385,13 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
     return {
       h: hHsv,
-      s: Number(this.decimal.transform(sHsv, "1.2-2")),
-      v: Number(this.decimal.transform(v, "1.2-2"))
+      s: Number(this.decimal.transform(sHsv, '1.2-2')),
+      v: Number(this.decimal.transform(v, '1.2-2'))
     };
   }
 
   repeatWord(word, num) {
-    let result = "";
+    let result = '';
     for (let i = 0; i < num; i++) {
       result += word;
     }
@@ -399,7 +399,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   repeatLetter(word, num) {
-    let result = "";
+    let result = '';
     for (let letter of word) {
       result += this.repeatWord(letter, num);
     }

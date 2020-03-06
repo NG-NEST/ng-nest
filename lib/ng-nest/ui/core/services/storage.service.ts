@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 // @dynamic
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class XStorageService {
   constructor() {}
 
@@ -9,7 +9,7 @@ export class XStorageService {
    * 获取本地值
    */
   getLocal(key: string) {
-    return JSON.parse(localStorage.getItem(key) || "null") || null;
+    return JSON.parse(localStorage.getItem(key) || 'null') || null;
   }
 
   /**
@@ -23,7 +23,7 @@ export class XStorageService {
    * 获取当前会话的值
    */
   getSession(key: string) {
-    return JSON.parse(sessionStorage.getItem(key) || "null") || null;
+    return JSON.parse(sessionStorage.getItem(key) || 'null') || null;
   }
 
   /**
@@ -54,19 +54,6 @@ export class XStorageService {
     let S4 = () => {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
-    return (
-      S4() +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      "-" +
-      S4() +
-      S4() +
-      S4()
-    );
+    return S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4();
   }
 }

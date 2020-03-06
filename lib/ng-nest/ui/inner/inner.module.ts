@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XInnerComponent } from "./inner.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XInnerComponent } from './inner.component';
 
 @NgModule({
   declarations: [XInnerComponent],

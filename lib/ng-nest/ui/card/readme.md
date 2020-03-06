@@ -1,6 +1,6 @@
 ---
-label: "Card 卡片"
-category: "Data"
+label: 'Card 卡片'
+category: 'Data'
 ---
 
 # Card 卡片

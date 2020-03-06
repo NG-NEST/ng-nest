@@ -1,17 +1,17 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XStatisticComponent } from "./statistic.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XStatisticModule } from "./statistic.module";
-import { FormsModule } from "@angular/forms";
-import { XStatisticPrefix } from "./statistic.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
-import { XCardModule } from "@ng-nest/ui/card";
-import { XAddDays } from "@ng-nest/ui/core";
+import { XStatisticComponent } from './statistic.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XStatisticModule } from './statistic.module';
+import { FormsModule } from '@angular/forms';
+import { XStatisticPrefix } from './statistic.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
+import { XCardModule } from '@ng-nest/ui/card';
+import { XAddDays } from '@ng-nest/ui/core';
 
 describe(XStatisticPrefix, () => {
   beforeEach(async(() => {
@@ -28,7 +28,7 @@ describe(XStatisticPrefix, () => {
       fixture.detectChanges();
       statistic = fixture.debugElement.query(By.directive(XStatisticComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(statistic).toBeDefined();
     });
   });

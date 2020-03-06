@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "./fence.module";
-import { XRowPrefix } from "./fence.type";
-import { XRowComponent } from "./row.component";
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from './fence.module';
+import { XRowPrefix } from './fence.type';
+import { XRowComponent } from './row.component';
 
 describe(`${XRowPrefix}`, () => {
   beforeEach(async(() => {
@@ -31,7 +31,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -45,7 +45,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -59,7 +59,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -73,7 +73,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -87,7 +87,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -101,7 +101,7 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -115,14 +115,14 @@ describe(`${XRowPrefix}`, () => {
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-fence",
+  selector: 'test-x-fence',
   template: `
     <x-row>
       <x-col span="12">col-12</x-col>
@@ -163,7 +163,7 @@ describe(`${XRowPrefix}`, () => {
 class TestFenceComponent {}
 
 @Component({
-  selector: "test-space-x-fence",
+  selector: 'test-space-x-fence',
   template: `
     <x-row space="1">
       <x-col span="12"><div>col-12</div></x-col>
@@ -204,7 +204,7 @@ class TestFenceComponent {}
 class TestSpaceFenceComponent {}
 
 @Component({
-  selector: "test-blend-x-fence",
+  selector: 'test-blend-x-fence',
   template: `
     <x-row space="1">
       <x-col span="12"><div>col-12</div></x-col>
@@ -245,7 +245,7 @@ class TestSpaceFenceComponent {}
 class TestBlendFenceComponent {}
 
 @Component({
-  selector: "test-offset-x-fence",
+  selector: 'test-offset-x-fence',
   template: `
     <x-row space="1">
       <x-col span="6"><div>col-6</div></x-col>
@@ -282,7 +282,7 @@ class TestBlendFenceComponent {}
 class TestOffsetFenceComponent {}
 
 @Component({
-  selector: "test-flex-x-fence",
+  selector: 'test-flex-x-fence',
   template: `
     <x-row justify="start">
       <x-col span="6"><div>col-6</div></x-col>
@@ -333,7 +333,7 @@ class TestOffsetFenceComponent {}
 class TestFlexFenceComponent {}
 
 @Component({
-  selector: "test-layout-x-fence",
+  selector: 'test-layout-x-fence',
   template: `
     <x-row space="1">
       <x-col xs="8" sm="6" md="4" lg="3" xl="1">
@@ -373,7 +373,7 @@ class TestFlexFenceComponent {}
 class TestLayoutFenceComponent {}
 
 @Component({
-  selector: "test-hidden-x-fence",
+  selector: 'test-hidden-x-fence',
   template: `
     <x-row space="1">
       <x-col span="6" x-hidden-sm-only>

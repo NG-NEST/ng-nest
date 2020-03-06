@@ -1,5 +1,5 @@
 ---
 order: 9
-label: "教程 [待]"
-type: "router"
+label: '教程 [待]'
+type: 'router'
 ---

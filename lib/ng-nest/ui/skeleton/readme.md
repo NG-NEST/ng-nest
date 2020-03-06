@@ -1,6 +1,6 @@
 ---
-label: "Spin 加载中 [待]"
-category: "Feedback"
+label: 'Spin 加载中 [待]'
+category: 'Feedback'
 ---
 
 # Spin 加载中

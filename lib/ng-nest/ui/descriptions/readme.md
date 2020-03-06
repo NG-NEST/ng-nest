@@ -1,6 +1,6 @@
 ---
-label: "Descriptions 描述列表 [待]"
-category: "Data"
+label: 'Descriptions 描述列表 [待]'
+category: 'Data'
 ---
 
 # Descriptions 描述列表

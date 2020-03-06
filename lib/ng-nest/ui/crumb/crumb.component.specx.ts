@@ -1,12 +1,12 @@
-import { BehaviorSubject } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BehaviorSubject } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCrumbComponent } from "./crumb.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XCrumbModule } from "./crumb.module";
-import { CrumbPrefix, XCrumbNode } from "./crumb.type";
-import { XData } from "@ng-nest/ui/core";
+import { XCrumbComponent } from './crumb.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XCrumbModule } from './crumb.module';
+import { CrumbPrefix, XCrumbNode } from './crumb.type';
+import { XData } from '@ng-nest/ui/core';
 
 describe(CrumbPrefix, () => {
   beforeEach(async(() => {
@@ -27,10 +27,10 @@ describe(CrumbPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XCrumbComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(CrumbPrefix);
     });
@@ -38,21 +38,19 @@ describe(CrumbPrefix, () => {
 });
 
 const testXCrumbNode: XCrumbNode[] = [
-  { key: 1, label: "Home" },
-  { key: 2, label: "Docs" },
-  { key: 3, label: "Examples" },
-  { key: 4, label: "Api" }
+  { id: 1, label: 'Home' },
+  { id: 2, label: 'Docs' },
+  { id: 3, label: 'Examples' },
+  { id: 4, label: 'Api' }
 ];
 
 @Component({
-  selector: "test-x-crumb",
+  selector: 'test-x-crumb',
   template: `
     <x-crumb [data]="data" (nodeClick)="nodeClick($event)"></x-crumb>
   `
 })
 class TestXCrumbComponent {
   data: XData<XCrumbNode[]> = testXCrumbNode;
-  nodeClick(option) {
-
-  }
+  nodeClick(option) {}
 }

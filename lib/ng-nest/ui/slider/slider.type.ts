@@ -1,12 +1,12 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
-import { TemplateRef } from "@angular/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Slider 组件名
  * @selector x-slider
  * @decorator component
  */
-export const SliderPrefix = "x-slider";
+export const SliderPrefix = 'x-slider';
 
 /**
  * Slider @Input
@@ -72,7 +72,7 @@ export interface XActivatedSlider {
  * @value "row"
  * @value "column"
  */
-export type XSliderLayoutType = "row" | "column";
+export type XSliderLayoutType = 'row' | 'column';
 
 /**
  * 边框方位
@@ -81,4 +81,4 @@ export type XSliderLayoutType = "row" | "column";
  * @value "bottom"
  * @value "left"
  */
-export type XSliderBorderPositionType = "top" | "right" | "bottom" | "left";
+export type XSliderBorderPositionType = 'top' | 'right' | 'bottom' | 'left';

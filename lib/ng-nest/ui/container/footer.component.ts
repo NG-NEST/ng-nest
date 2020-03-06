@@ -9,14 +9,14 @@ import {
   Optional,
   Host,
   HostBinding
-} from "@angular/core";
-import { XFooterPrefix } from "./container.type";
-import { XContainerComponent } from "./container.component";
+} from '@angular/core';
+import { XFooterPrefix } from './container.type';
+import { XContainerComponent } from './container.component';
 
 @Component({
   selector: `${XFooterPrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./footer.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -39,6 +39,6 @@ export class XFooterComponent implements OnInit {
 
   setDirection() {
     if (!this.container || this.container.direction) return;
-    this.container.direction = "column";
+    this.container.direction = 'column';
   }
 }

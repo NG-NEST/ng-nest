@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XBorderComponent } from "./border.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XBorderComponent } from './border.component';
 
 @NgModule({
   declarations: [XBorderComponent],

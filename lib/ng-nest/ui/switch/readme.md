@@ -1,6 +1,6 @@
 ---
-label: "Switch 开关"
-category: "Form"
+label: 'Switch 开关'
+category: 'Form'
 ---
 
 # Switch 开关

@@ -3,7 +3,7 @@
  * @selector x-border
  * @decorator component
  */
-export const XBorderPrefix = "x-border";
+export const XBorderPrefix = 'x-border';
 
 /**
  * Border @Input

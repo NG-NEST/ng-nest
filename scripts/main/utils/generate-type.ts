@@ -1,6 +1,6 @@
-import * as fs from "fs-extra";
-import { checkMkdir } from "./check-mkdir";
-import { NcType, NcObjectType } from "../interfaces/type";
+import * as fs from 'fs-extra';
+import { checkMkdir } from './check-mkdir';
+import { NcType, NcObjectType } from '../interfaces/type';
 
 /**
  * 生成类型文件代码
@@ -9,20 +9,20 @@ import { NcType, NcObjectType } from "../interfaces/type";
  * @param {NcType[]} types
  */
 export function generateTypes(...types: NcType[]) {
-  let result = "";
-  let typeTable = "";
+  let result = '';
+  let typeTable = '';
   if (types && types.length > 0) {
     types.forEach(x => {
       switch (x.object) {
         case NcObjectType.Const:
-          if (x.name.endsWith("Prefix")) {
+          if (x.name.endsWith('Prefix')) {
             let selector = `<h3 class="x-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
             <p>${x.description}</p>`;
             result += selector;
           }
           break;
         case NcObjectType.Interface:
-          let table = "";
+          let table = '';
           x.properties.forEach(y => {
             table += `<tr>
                 <td><span><code>${y.name}</code></span></td>
@@ -53,7 +53,7 @@ export function generateTypes(...types: NcType[]) {
           break;
       }
     });
-    if (typeTable !== "") {
+    if (typeTable !== '') {
       typeTable = `<h3>Type</h3>
       <table class="x-api-type">
         <tr>

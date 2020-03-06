@@ -1,18 +1,12 @@
-import { TemplateRef } from "@angular/core";
-import {
-  XIdentityInput,
-  XType,
-  XSize,
-  XData,
-  XTemplate
-} from "@ng-nest/ui/core";
+import { TemplateRef } from '@angular/core';
+import { XIdentityInput, XType, XSize, XData, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Timeline 组件名
  * @selector x-timeline
  * @decorator component
  */
-export const XTimelinePrefix = "x-timeline";
+export const XTimelinePrefix = 'x-timeline';
 
 /**
  * Timeline @Input

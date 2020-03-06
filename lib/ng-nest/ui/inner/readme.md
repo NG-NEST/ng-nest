@@ -1,5 +1,5 @@
 ---
-label: "内部"
+label: '内部'
 ---
 
 # 内部 Inner

@@ -1,9 +1,5 @@
-import {
-  RouteReuseStrategy,
-  ActivatedRouteSnapshot,
-  DetachedRouteHandle
-} from "@angular/router";
-import * as _ from "lodash";
+import { RouteReuseStrategy, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
+import * as _ from 'lodash';
 
 /**
  * 路由复用
@@ -37,15 +33,9 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @returns {void}
    * @memberof SimpleReuseStrategy
    */
-  public store(
-    route: ActivatedRouteSnapshot,
-    handle: DetachedRouteHandle
-  ): void {
+  public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
     if (handle == null) return;
-    if (
-      SimpleReuseStrategy.waitDelete &&
-      this.getRouteUrl(route).indexOf(SimpleReuseStrategy.waitDelete) == 0
-    ) {
+    if (SimpleReuseStrategy.waitDelete && this.getRouteUrl(route).indexOf(SimpleReuseStrategy.waitDelete) == 0) {
       //如果待删除是当前路由则不存储快照
       SimpleReuseStrategy.waitDelete = null;
       return;
@@ -88,14 +78,8 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @returns {boolean}
    * @memberof SimpleReuseStrategy
    */
-  public shouldReuseRoute(
-    future: ActivatedRouteSnapshot,
-    curr: ActivatedRouteSnapshot
-  ): boolean {
-    return (
-      future.routeConfig === curr.routeConfig &&
-      JSON.stringify(future.params) == JSON.stringify(curr.params)
-    );
+  public shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+    return future.routeConfig === curr.routeConfig && JSON.stringify(future.params) == JSON.stringify(curr.params);
   }
 
   /**
@@ -107,7 +91,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @memberof SimpleReuseStrategy
    */
   private getRouteUrl(route: ActivatedRouteSnapshot) {
-    let url = route["_routerState"].url.replace(/\//g, "_");
+    let url = route['_routerState'].url.replace(/\//g, '_');
     // if (!route.routeConfig.loadChildren) {
     //     url += `${route.routeConfig.component.toString().split('(')[0].split(' ')[1]}`
     // }
@@ -124,7 +108,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    */
   public static deleteRouteSnapshot(name?: string): void {
     if (name) {
-      let handle = name.replace(/\//g, "_");
+      let handle = name.replace(/\//g, '_');
       _.findKey(SimpleReuseStrategy.handlers, (x, y) => {
         if (y.indexOf(handle) === 0) {
           delete SimpleReuseStrategy.handlers[y];

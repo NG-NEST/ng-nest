@@ -1,9 +1,9 @@
-import * as path from "path";
-import * as fs from "fs-extra";
-import { NcCate, NcCates, NcCode, NcCodeBox } from "../interfaces/examples";
-import { parseMdDoc } from ".";
-import * as _ from "lodash";
-import { NcPage } from "../interfaces/page";
+import * as path from 'path';
+import * as fs from 'fs-extra';
+import { NcCate, NcCates, NcCode, NcCodeBox } from '../interfaces/examples';
+import { parseMdDoc } from '.';
+import * as _ from 'lodash';
+import { NcPage } from '../interfaces/page';
 
 /**
  * 示例分类处理
@@ -12,13 +12,13 @@ import { NcPage } from "../interfaces/page";
  * @param {NcCates} cates
  */
 export function hanlderCates(cates: NcCates, page: NcPage) {
-  let folder = fs.readdirSync(cates.folderPath, "utf8");
-  let mod = page.templates.find(x => x.type == "default" && x.name == "module");
+  let folder = fs.readdirSync(cates.folderPath, 'utf8');
+  let mod = page.templates.find(x => x.type == 'default' && x.name == 'module');
   cates.list = [];
   folder.forEach(x => {
     let catePath = path.join(cates.folderPath, x);
     if (fs.lstatSync(catePath).isDirectory()) {
-      let readme = parseMdDoc(path.join(catePath, "readme.md"));
+      let readme = parseMdDoc(path.join(catePath, 'readme.md'));
       if (readme) {
         let cate: NcCate = {
           name: x,
@@ -32,7 +32,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           mod.syswords.imports += `import { ${cate.className} } from "${cate.rootPath}";\n`;
         }
         cates.list.push(cate);
-        cates.list = _.sortBy(cates.list, "order");
+        cates.list = _.sortBy(cates.list, 'order');
       }
     }
   });
@@ -46,27 +46,27 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
  * @param {*} readme
  */
 export function handlerCodeBoxes(cate: NcCate, readme) {
-  let folder = fs.readdirSync(cate.path, "utf8");
+  let folder = fs.readdirSync(cate.path, 'utf8');
   let box: NcCodeBox = {
     codes: [],
     description: readme.content
   };
   folder.forEach(x => {
-    if (x !== "readme.md") {
-      let subType = x.slice(0, x.lastIndexOf("."));
+    if (x !== 'readme.md') {
+      let subType = x.slice(0, x.lastIndexOf('.'));
       let code: NcCode = {
         name: x,
-        type: x.slice(x.lastIndexOf(".") + 1, x.length),
-        subType: subType.slice(subType.lastIndexOf(".") + 1, subType.length),
-        content: fs.readFileSync(path.join(cate.path, x), "utf8")
+        type: x.slice(x.lastIndexOf('.') + 1, x.length),
+        subType: subType.slice(subType.lastIndexOf('.') + 1, subType.length),
+        content: fs.readFileSync(path.join(cate.path, x), 'utf8')
       };
-      if (code.type === "ts" && code.subType === "component") {
-        code.content = code.content.replace(/\`/g, "\\`");
+      if (code.type === 'ts' && code.subType === 'component') {
+        code.content = code.content.replace(/\`/g, '\\`');
         cate.selector = code.content.match(/selector: \"(\S*)\",/)[1];
         cate.className = code.content.match(/export class (\S*) /)[1];
         cate.rootPath = `./${cate.path
-          .slice(cate.path.lastIndexOf("examples"), cate.path.length)
-          .replace(/\\/g, "/")}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
+          .slice(cate.path.lastIndexOf('examples'), cate.path.length)
+          .replace(/\\/g, '/')}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
       }
       box.codes.push(code);
     }

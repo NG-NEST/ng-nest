@@ -1,6 +1,6 @@
 ---
-label: "Tag 标签"
-category: "Data"
+label: 'Tag 标签'
+category: 'Data'
 ---
 
 # Tag 标签

@@ -1,6 +1,6 @@
 ---
-label: "Affix 固钉 [待]"
-category: "Navigation"
+label: 'Affix 固钉 [待]'
+category: 'Navigation'
 ---
 
 # Affix 固钉

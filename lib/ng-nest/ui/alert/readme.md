@@ -1,6 +1,6 @@
 ---
-label: "Alert 警告提示 [待]"
-category: "Feedback"
+label: 'Alert 警告提示 [待]'
+category: 'Feedback'
 ---
 
 # Alert 警告提示

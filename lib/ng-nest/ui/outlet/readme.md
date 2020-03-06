@@ -1,6 +1,6 @@
 ---
-label: "Outlet 自定义模板"
-category: "Data"
+label: 'Outlet 自定义模板'
+category: 'Data'
 ---
 
 # Outlet 自定义模板

@@ -1,11 +1,11 @@
-import { XIdentityInput } from "@ng-nest/ui/core";
+import { XIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * Calendar 组件名
  * @selector x-calendar
  * @decorator component
  */
-export const XCalendarPrefix = "x-calendar";
+export const XCalendarPrefix = 'x-calendar';
 
 /**
  * Calendar @Input
@@ -43,4 +43,4 @@ export interface XCalendarNode extends XIdentityInput {}
  * @value "month"
  * @value "year"
  */
-export type XCalendarModel = "month" | "year";
+export type XCalendarModel = 'month' | 'year';

@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XContainerComponent } from "./container.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XContainerModule } from "./container.module";
-import { XContainerPrefix } from "./container.type";
+import { XContainerComponent } from './container.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XContainerModule } from './container.module';
+import { XContainerPrefix } from './container.type';
 
 describe(XContainerPrefix, () => {
   beforeEach(async(() => {
@@ -23,14 +23,14 @@ describe(XContainerPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XContainerComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-container",
+  selector: 'test-x-container',
   template: `
     <x-container>
       <x-header>Header</x-header>

@@ -1,12 +1,12 @@
-import { XIdentityInput, XIdentity } from "@ng-nest/ui/core";
-import { XInputInput } from "@ng-nest/ui/input";
+import { XIdentityInput, XIdentity } from '@ng-nest/ui/core';
+import { XInputInput } from '@ng-nest/ui/input';
 
 /**
  * Form 组件名
  * @selector x-form
  * @decorator component
  */
-export const FormPrefix = "x-form";
+export const FormPrefix = 'x-form';
 
 /**
  * Form @Input
@@ -121,11 +121,11 @@ export interface XFormRow {
 export interface XInputControlOption extends XControlOption, XInputInput {}
 
 export class XInputControl extends XControl {
-  controlType: XControlType = "input";
+  controlType: XControlType = 'input';
   constructor(option: XInputControlOption = {}) {
     super(option);
-    if (typeof this.value == "undefined") this.value = "";
+    if (typeof this.value == 'undefined') this.value = '';
   }
 }
 
-export type XControlType = "input" | "select";
+export type XControlType = 'input' | 'select';

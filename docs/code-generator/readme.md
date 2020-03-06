@@ -1,5 +1,5 @@
 ---
 order: 4
-label: "代码生成"
-type: "router"
+label: '代码生成'
+type: 'router'
 ---

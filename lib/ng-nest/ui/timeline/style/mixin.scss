@@ -1,8 +1,8 @@
 // Timeline
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin timeline {
   display: block;
@@ -55,16 +55,16 @@
     font-size: 0.75rem;
     color: $--x-text-400;
   }
-  @include type("primary", $--x-primary);
-  @include type("success", $--x-success);
-  @include type("warning", $--x-warning);
-  @include type("danger", $--x-danger);
-  @include type("info", $--x-info);
+  @include type('primary', $--x-primary);
+  @include type('success', $--x-success);
+  @include type('warning', $--x-warning);
+  @include type('danger', $--x-danger);
+  @include type('info', $--x-info);
 
-  @include size("large", 2.175rem);
-  @include size("medium", 1.875rem);
-  @include size("small", 1.5rem);
-  @include size("mini", 1.375rem);
+  @include size('large', 2.175rem);
+  @include size('medium', 1.875rem);
+  @include size('small', 1.5rem);
+  @include size('mini', 1.375rem);
 }
 
 @mixin type($type, $background-color) {

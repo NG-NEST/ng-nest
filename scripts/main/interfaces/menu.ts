@@ -1,4 +1,4 @@
-import { NcTemplateType } from "./template";
+import { NcTemplateType } from './template';
 
 /**
  * 导航菜单

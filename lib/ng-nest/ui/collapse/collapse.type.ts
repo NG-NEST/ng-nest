@@ -3,7 +3,7 @@
  * @selector x-collapse
  * @decorator component
  */
-export const XCollapsePrefix = "x-collapse";
+export const XCollapsePrefix = 'x-collapse';
 
 /**
  * Collapse @Input
@@ -24,4 +24,4 @@ export interface XCollapseInput {
  * @selector x-collapse-panel
  * @decorator component
  */
-export const XCollapsePanelPrefix = "x-collapse-panel";
+export const XCollapsePanelPrefix = 'x-collapse-panel';

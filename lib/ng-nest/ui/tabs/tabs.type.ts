@@ -1,11 +1,11 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
 
 /**
  * Tabs 组件名
  * @selector x-tabs
  * @decorator component
  */
-export const TabsPrefix = "x-tabs";
+export const TabsPrefix = 'x-tabs';
 
 /**
  * Tabs @Input
@@ -50,4 +50,4 @@ export interface XActivatedTab {
  * @value "bottom"
  * @value "left"
  */
-export type XTabsLayoutType = "top" | "right" | "bottom" | "left";
+export type XTabsLayoutType = 'top' | 'right' | 'bottom' | 'left';

@@ -1,6 +1,6 @@
 ---
-label: "Upload 上传"
-category: "Form"
+label: 'Upload 上传'
+category: 'Form'
 ---
 
 # Upload 上传

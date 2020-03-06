@@ -1,6 +1,6 @@
 ---
-label: "Result 结果 [待]"
-category: "Feedback"
+label: 'Result 结果 [待]'
+category: 'Feedback'
 ---
 
 # Result 结果

@@ -3,13 +3,13 @@
     <x-buttons>
       <x-button
         *ngFor="let item of checkboxNodes"
-        [label]="item.label"
         [icon]="item.icon"
         [title]="item.title"
         [activated]="value && value?.indexOf(item.value) >= 0"
         [disabled]="disabled || item.disabled"
         (click)="checkboxClick($event, item)"
-      ></x-button>
+        >{{ item.label }}</x-button
+      >
     </x-buttons>
   </ng-container>
 </div>

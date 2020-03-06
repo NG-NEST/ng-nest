@@ -3,28 +3,25 @@ import {
   OnInit,
   OnChanges,
   ViewEncapsulation,
-  HostBinding,
   ChangeDetectionStrategy,
-  Renderer2,
   ElementRef,
   Input,
   ViewChild,
   SimpleChanges,
   ChangeDetectorRef
-} from "@angular/core";
-import { XButtonPrefix, XButtonType, XButtonInput } from "./button.type";
-import { fillDefault, XDirection, XSize, XInputBoolean } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XButtonPrefix, XButtonType } from './button.type';
+import { XDirection, XSize, XInputBoolean, XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XButtonPrefix}`,
-  templateUrl: "./button.component.html",
-  styleUrls: ["./button.component.scss"],
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XButtonComponent implements OnInit, OnChanges {
   @Input() type?: XButtonType;
-  @Input() label?: string;
   @Input() icon?: string;
   @Input() title?: string;
   @Input() @XInputBoolean() onlyIcon?: boolean;
@@ -36,52 +33,14 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() direction?: XDirection;
   @Input() @XInputBoolean() loading?: boolean;
   @Input() size?: XSize;
-  @ViewChild("buttonInner", { static: true }) buttonInner: ElementRef;
-  @HostBinding("class.x-button-label") get getLabel() {
-    return !this.icon && this.label;
-  }
-  @HostBinding("class.x-button-icon") get getIcon() {
-    return !this.label && this.icon;
-  }
-  @HostBinding("class.x-button-only-icon") get getOnlyIcon() {
-    return this.onlyIcon;
-  }
-  @HostBinding("class.x-button-activated") get getActivated() {
-    return this.activated;
-  }
-  @HostBinding("class.x-button-disabled") get getDisabled() {
-    return this.disabled;
-  }
-  @HostBinding("class.x-button-round") get getRound() {
-    return this.round;
-  }
-  @HostBinding("class.x-button-circle") get getCircle() {
-    return this.circle;
-  }
-  private _default: XButtonInput = {
-    label: ""
-  };
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, XButtonPrefix);
-  }
+  @ViewChild('button', { static: true }) button: ElementRef;
+  @ViewChild('content', { static: true }) content: ElementRef;
+  classMap: XClassMap = {};
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    fillDefault(this, this._default);
-    if (this.title) this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.title);
-    if (this.type && !this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.type}`);
-    }
-    if (this.type && this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.type}-plain`);
-    } else if (this.plain) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-plain`);
-    }
-    if (this.direction) {
-      this.renderer.addClass(this.buttonInner.nativeElement, `${XButtonPrefix}-inner-direction-${this.direction}`);
-    }
-    if (this.size) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XButtonPrefix}-${this.size}`);
-    }
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -93,9 +52,19 @@ export class XButtonComponent implements OnInit, OnChanges {
     if (disabled && disabled.currentValue != disabled.previousValue) {
       this.cdr.markForCheck();
     }
-    let label = changes.label;
-    if (label && label.currentValue != label.previousValue) {
-      this.cdr.markForCheck();
-    }
+  }
+
+  setClassMap() {
+    this.classMap[`${XButtonPrefix}-only-icon`] = this.onlyIcon;
+    this.classMap[`${XButtonPrefix}-activated`] = this.activated;
+    this.classMap[`${XButtonPrefix}-disabled`] = this.disabled;
+    this.classMap[`${XButtonPrefix}-round`] = this.round;
+    this.classMap[`${XButtonPrefix}-circle`] = this.circle;
+    this.classMap[`${XButtonPrefix}-icon`] = this.icon && !this.content.nativeElement.innerHTML.trim();
+    this.classMap[`${XButtonPrefix}-${this.type}`] = this.type && !this.plain;
+    this.classMap[`${XButtonPrefix}-${this.type}-plain`] = this.type && this.plain;
+    this.classMap[`${XButtonPrefix}-plain`] = !this.type && this.plain;
+    this.classMap[`${XButtonPrefix}-${this.size}`] = this.size ? true : false;
+    this.classMap[`x-flex-direction-${this.direction}`] = this.direction ? true : false;
   }
 }

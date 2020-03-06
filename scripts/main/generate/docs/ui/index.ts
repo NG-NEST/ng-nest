@@ -1,9 +1,9 @@
-import { NcPage } from "./../../../interfaces/page";
-import { NcComponents } from "./components";
-import { isString } from "util";
-import { docsPrefix } from "..";
+import { NcPage } from './../../../interfaces/page';
+import { NcComponents } from './components';
+import { isString } from 'util';
+import { docsPrefix } from '..';
 
-const componentsFolder = "../../../../../lib/ng-moon/src/components";
+const componentsFolder = '../../../../../lib/ng-moon/src/components';
 
 const uiPrefix = `${docsPrefix}-ui`;
 
@@ -22,6 +22,5 @@ export class NcUi {
     this.genComponent();
     this.components.init(componentsFolder);
   }
-  genComponent() {
-  }
+  genComponent() {}
 }

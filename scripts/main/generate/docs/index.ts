@@ -1,5 +1,5 @@
-import { NcPage } from "../../interfaces/page";
-import { NcMenu } from "../../interfaces/menu";
+import { NcPage } from '../../interfaces/page';
+import { NcMenu } from '../../interfaces/menu';
 import {
   handlerPage,
   createRouterOutlet,
@@ -9,16 +9,16 @@ import {
   generateMenu,
   handlerComponent,
   getThemes
-} from "../../utils";
-import * as path from "path";
-import * as fs from "fs-extra";
-import * as _ from "lodash";
+} from '../../utils';
+import * as path from 'path';
+import * as fs from 'fs-extra';
+import * as _ from 'lodash';
 
-export const docsDir = path.resolve(__dirname, "../../../../docs");
-export const componentsDir = path.resolve(__dirname, "../../../../lib/ng-nest/ui");
-export const genDir = path.resolve(__dirname, "../../../../src/main/docs");
-export const genMenusDir = path.resolve(__dirname, "../../../../src/environments");
-export const docsPrefix = "docs";
+export const docsDir = path.resolve(__dirname, '../../../../docs');
+export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui');
+export const genDir = path.resolve(__dirname, '../../../../src/main/docs');
+export const genMenusDir = path.resolve(__dirname, '../../../../src/environments');
+export const docsPrefix = 'docs';
 
 export class NcDocs {
   page: NcPage;
@@ -36,18 +36,18 @@ export class NcDocs {
     handlerPage(this.page);
     this.addChildren(this.page, docsDir, `./${docsPrefix}`);
     generatePage(this.page);
-    this.menus = _.sortBy(this.menus, ["parentId", "category", "order", "name"]);
+    this.menus = _.sortBy(this.menus, ['parentId', 'category', 'order', 'name']);
     generateMenu(genMenusDir, this.menus);
   }
 
   addChildren(page: NcPage, docDir: string, router: string, index?: string, level?: number) {
     let children = fs.readdirSync(docDir);
-    if (typeof level !== "undefined") level--;
+    if (typeof level !== 'undefined') level--;
     children.forEach(async (x, i) => {
       const dir = path.join(docDir, x);
       const stat = fs.statSync(dir);
       if (stat.isDirectory()) {
-        const read = parseMdDoc(path.join(dir, "readme.md"));
+        const read = parseMdDoc(path.join(dir, 'readme.md'));
         if (read) {
           const folder = path.join(page.genDir, x);
           const child = this.createChild(read, x, folder);
@@ -56,13 +56,13 @@ export class NcDocs {
           page.children = [...page.children, child];
           const thisRouter = `${router}/${x}`;
           const menu = this.createMenu(read, x, index, i, thisRouter);
-          if (x === "components") {
+          if (x === 'components') {
             child.path = componentsDir;
             this.addChildren(child, componentsDir, menu.router, menu.id, 1);
           } else if (level !== 0) {
             this.addChildren(child, dir, menu.router, menu.id, level);
           }
-          if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === "undefined") {
+          if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
             await handlerComponent(child);
           }
           generatePage(child);
@@ -75,12 +75,12 @@ export class NcDocs {
 
   createChild(read: { meta: any; content: any }, dirName: string, folder: string) {
     let child =
-      read.meta.type == "router"
+      read.meta.type == 'router'
         ? createRouterOutlet(dirName)
         : new NcPage({
             name: dirName,
             prefix: docsPrefix,
-            type: "custom",
+            type: 'custom',
             custom: read.content
           });
     child.order = read.meta.order;
@@ -97,4 +97,4 @@ export class NcDocs {
     return menu;
   }
 }
-global["NcDocs"] = new NcDocs();
+global['NcDocs'] = new NcDocs();

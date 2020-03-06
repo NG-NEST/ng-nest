@@ -10,21 +10,21 @@ import {
   SimpleChanges,
   ViewChild,
   Input
-} from "@angular/core";
-import { XRatePrefix } from "./rate.type";
-import { XValueAccessor, XControlValueAccessor, XInputNumber, XIsEmpty } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XRatePrefix } from './rate.type';
+import { XValueAccessor, XControlValueAccessor, XInputNumber, XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRatePrefix}`,
-  templateUrl: "./rate.component.html",
-  styleUrls: ["./rate.component.scss"],
+  templateUrl: './rate.component.html',
+  styleUrls: ['./rate.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRateComponent)]
 })
 export class XRateComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XInputNumber() count = 5;
-  @ViewChild("rate", { static: true }) rate: ElementRef;
+  @ViewChild('rate', { static: true }) rate: ElementRef;
   rates = Array(this.count)
     .fill(0)
     .map((_, i) => i + 1);

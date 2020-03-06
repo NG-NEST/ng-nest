@@ -1,5 +1,5 @@
-import { NcMenu } from "../interfaces/menu";
-import * as fs from "fs-extra";
+import { NcMenu } from '../interfaces/menu';
+import * as fs from 'fs-extra';
 
 /**
  * 生成菜单
@@ -13,6 +13,6 @@ export function generateMenu(genDir: string, menus: NcMenu[]) {
     `${genDir}/menus.ts`,
     `import { Menu } from "./routes";
 export const menus: Menu[] = ${JSON.stringify(menus, null, 2)}`,
-    "utf8"
+    'utf8'
   );
 }

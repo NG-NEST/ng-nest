@@ -1,13 +1,13 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAvatarComponent } from "./avatar.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XAvatarModule } from "./avatar.module";
-import { FormsModule } from "@angular/forms";
-import { XAvatarPrefix } from "./avatar.type";
+import { XAvatarComponent } from './avatar.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XAvatarModule } from './avatar.module';
+import { FormsModule } from '@angular/forms';
+import { XAvatarPrefix } from './avatar.type';
 
 describe(XAvatarPrefix, () => {
   beforeEach(async(() => {
@@ -24,7 +24,7 @@ describe(XAvatarPrefix, () => {
       fixture.detectChanges();
       avatar = fixture.debugElement.query(By.directive(XAvatarComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(avatar).toBeDefined();
     });
   });
@@ -87,8 +87,8 @@ describe(XAvatarPrefix, () => {
   ]
 })
 class TestXAvatarComponent {
-  src = "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
-  srcFit = "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-  icon = "fto-user";
-  label = "王";
+  src = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
+  srcFit = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
+  icon = 'fto-user';
+  label = '王';
 }

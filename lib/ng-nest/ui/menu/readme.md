@@ -1,6 +1,6 @@
 ---
-label: "Menu 导航菜单 [待]"
-category: "Navigation"
+label: 'Menu 导航菜单 [待]'
+category: 'Navigation'
 ---
 
 # Menu 导航菜单

@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-html",
-  templateUrl: "./html.component.html"
+  selector: 'ex-html',
+  templateUrl: './html.component.html'
 })
 export class ExHtmlComponent implements OnInit {
   html = `<!DOCTYPE html>

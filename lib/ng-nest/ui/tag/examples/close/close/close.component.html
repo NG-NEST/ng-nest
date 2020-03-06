@@ -1,11 +1,5 @@
 <div class="row">
-  <x-tag
-    *ngFor="let tag of tags"
-    [label]="tag"
-    type="primary"
-    closeable
-    (close)="close(tag)"
-  ></x-tag>
+  <x-tag *ngFor="let tag of tags" [label]="tag" type="primary" closeable (close)="close(tag)"></x-tag>
 </div>
 <div class="row">
   <x-tag label="标签" closeable></x-tag>

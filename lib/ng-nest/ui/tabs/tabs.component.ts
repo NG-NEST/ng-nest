@@ -15,17 +15,17 @@ import {
   ViewChild,
   ViewEncapsulation,
   QueryList
-} from "@angular/core";
-import { TabsPrefix, XTabsInput, XTabsNode, XActivatedTab } from "./tabs.type";
-import { fillDefault, XData, XInputBoolean } from "@ng-nest/ui/core";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
-import { XSliderNode, XActivatedSlider, XSliderInput, XSliderComponent } from "@ng-nest/ui/slider";
-import { XTabComponent } from "./tab.component";
+} from '@angular/core';
+import { TabsPrefix, XTabsInput, XTabsNode, XActivatedTab } from './tabs.type';
+import { fillDefault, XData, XInputBoolean } from '@ng-nest/ui/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { XSliderNode, XActivatedSlider, XSliderInput, XSliderComponent } from '@ng-nest/ui/slider';
+import { XTabComponent } from './tab.component';
 
 @Component({
-  selector: "x-tabs",
-  templateUrl: "./tabs.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-tabs',
+  templateUrl: './tabs.component.html',
+  styleUrls: ['./style/index.scss'],
   // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -41,25 +41,25 @@ export class XTabsComponent implements OnInit, OnChanges {
   @Input()
   public set layout(value: any) {
     this._layout = value;
-    if (this._layout === "top") {
+    if (this._layout === 'top') {
       this.setSliderOption({
-        layout: "row",
-        borderPosition: "bottom"
+        layout: 'row',
+        borderPosition: 'bottom'
       });
-    } else if (this._layout === "right") {
+    } else if (this._layout === 'right') {
       this.setSliderOption({
-        layout: "column",
-        borderPosition: "left"
+        layout: 'column',
+        borderPosition: 'left'
       });
-    } else if (this._layout === "bottom") {
+    } else if (this._layout === 'bottom') {
       this.setSliderOption({
-        layout: "row",
-        borderPosition: "top"
+        layout: 'row',
+        borderPosition: 'top'
       });
-    } else if (this._layout === "left") {
+    } else if (this._layout === 'left') {
       this.setSliderOption({
-        layout: "column",
-        borderPosition: "right"
+        layout: 'column',
+        borderPosition: 'right'
       });
     }
     this.cdr.detectChanges();
@@ -78,15 +78,15 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   sliderOption: XSliderInput = {
     data: new BehaviorSubject<XSliderNode[]>([]),
-    layout: "row",
+    layout: 'row',
     activatedIndex: 0,
-    borderPosition: "bottom"
+    borderPosition: 'bottom'
   };
   sliderHidden: boolean = false;
   tabs: XTabsNode[] = [];
   @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<XActivatedTab>();
   private _default: XTabsInput = {
-    layout: "top",
+    layout: 'top',
     activatedIndex: 0
   };
 
@@ -98,19 +98,19 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.x-tabs-top`)
   get getLayoutTop() {
-    return this.layout === "top";
+    return this.layout === 'top';
   }
   @HostBinding(`class.x-tabs-right`)
   get getLayoutRight() {
-    return this.layout === "right";
+    return this.layout === 'right';
   }
   @HostBinding(`class.x-tabs-bottom`)
   get getLayoutBottom() {
-    return this.layout === "bottom";
+    return this.layout === 'bottom';
   }
   @HostBinding(`class.x-tabs-left`)
   get getLayoutLeft() {
-    return this.layout === "left";
+    return this.layout === 'left';
   }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
@@ -151,11 +151,11 @@ export class XTabsComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === "undefined") {
+    if (typeof this.data === 'undefined') {
       if (this.listTabs && this.listTabs.length > 0) {
         let _data = [];
         this.listTabs.forEach((x, index) => {
-          _data = [...(_data as XTabsNode[]), { key: index + 1, label: x.label }];
+          _data = [...(_data as XTabsNode[]), { id: index + 1, label: x.label }];
         });
         this.data = _data;
       } else {

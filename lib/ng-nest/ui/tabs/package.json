@@ -1,6 +1,6 @@
 {
   "ngPackage": {
-    "lib":{
+    "lib": {
       "entryFile": "./public-api.ts"
     }
   }

@@ -1,6 +1,6 @@
 ---
-label: "Border 边框"
-category: "Basic"
+label: 'Border 边框'
+category: 'Basic'
 ---
 
 # Border 边框

@@ -12,12 +12,12 @@ import {
   Inject,
   Optional,
   HostBinding
-} from "@angular/core";
-import { DOCUMENT } from "@angular/common";
-import { XIconPrefix, XIconInput, XIconSourceEnum } from "./icon.type";
-import { XIconService } from "./icon.service";
-import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, XInputBoolean, XInputNumber } from "@ng-nest/ui/core";
-import * as _ from "lodash";
+} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { XIconPrefix, XIconInput, XIconSourceEnum } from './icon.type';
+import { XIconService } from './icon.service';
+import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, XInputBoolean, XInputNumber } from '@ng-nest/ui/core';
+import * as _ from 'lodash';
 
 // 来源路径对应
 export const XSouceUrl = {
@@ -41,8 +41,8 @@ export const XViewBox = [
 
 @Component({
   selector: `${XIconPrefix}`,
-  templateUrl: "./icon.component.html",
-  styleUrls: ["./style/index.scss"],
+  templateUrl: './icon.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -56,7 +56,7 @@ export class XIconComponent implements OnInit, OnChanges {
   private _default: XIconInput = {};
   private _loaded: boolean = false;
 
-  @HostBinding("class.x-icon-spin") get getSpin() {
+  @HostBinding('class.x-icon-spin') get getSpin() {
     return this.spin;
   }
 
@@ -105,8 +105,8 @@ export class XIconComponent implements OnInit, OnChanges {
     const typeIcon = this.setSourceUrl(this.type);
     const toIcon = this.setSourceUrl(this.to);
     let icons = [typeIcon];
-    if (typeof typeIcon === "undefined") return;
-    if (typeof toIcon !== "undefined") {
+    if (typeof typeIcon === 'undefined') return;
+    if (typeof toIcon !== 'undefined') {
       icons = [...icons, toIcon];
     }
     this.iconService.getSvgs(...icons).subscribe(x => this.setSvgs(x));
@@ -127,11 +127,11 @@ export class XIconComponent implements OnInit, OnChanges {
   }
 
   setSourceUrl(type: string) {
-    if (typeof type === "undefined") return;
-    const split = type.split("-");
+    if (typeof type === 'undefined') return;
+    const split = type.split('-');
     const souce = split.shift();
     const souceUrl = XSouceUrl[souce];
-    const fileName = split.join("-");
+    const fileName = split.join('-');
     if (!souceUrl || !fileName) {
       warnIconTypeNotFound();
     }
@@ -140,28 +140,28 @@ export class XIconComponent implements OnInit, OnChanges {
 
   setAttributes(svgEle: SVGElement) {
     if (svgEle) {
-      this.renderer.setAttribute(svgEle, "width", "1em");
-      this.renderer.setAttribute(svgEle, "height", "1em");
+      this.renderer.setAttribute(svgEle, 'width', '1em');
+      this.renderer.setAttribute(svgEle, 'height', '1em');
     }
   }
 
   buildSvg(svgStr: string): SVGAElement {
-    const result = this.document.createElementNS("http://www.w3.org/2000/svg", "svg") as SVGAElement;
+    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGAElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
     svg.children.forEach(x => {
-      x.removeAttribute("class");
-      if (x.tagName === "rect") {
-        x.setAttribute("fill", "none");
+      x.removeAttribute('class');
+      if (x.tagName === 'rect') {
+        x.setAttribute('fill', 'none');
       }
       result.appendChild(x);
     });
-    this.setAttribute(result, svg.ele, "viewBox");
-    this.setAttribute(result, svg.ele, "fill", "currentColor");
-    this.setAttribute(result, svg.ele, "stroke");
-    this.setAttribute(result, svg.ele, "stroke-width");
-    this.setAttribute(result, svg.ele, "stroke-linecap");
-    this.setAttribute(result, svg.ele, "stroke-linejoin");
+    this.setAttribute(result, svg.ele, 'viewBox');
+    this.setAttribute(result, svg.ele, 'fill', 'currentColor');
+    this.setAttribute(result, svg.ele, 'stroke');
+    this.setAttribute(result, svg.ele, 'stroke-width');
+    this.setAttribute(result, svg.ele, 'stroke-linecap');
+    this.setAttribute(result, svg.ele, 'stroke-linejoin');
     if (!result) {
       warnSVGTagNotFound();
     }
@@ -170,13 +170,13 @@ export class XIconComponent implements OnInit, OnChanges {
   }
 
   createSvg(svgStr: string) {
-    const div = this.document.createElement("div");
+    const div = this.document.createElement('div');
     div.innerHTML = svgStr;
-    let svgEle = div.querySelector("svg") as SVGElement;
+    let svgEle = div.querySelector('svg') as SVGElement;
     if (!svgEle) return null;
     return {
       ele: svgEle,
-      children: svgEle.querySelectorAll("path, polyline, polygon, circle, line, rect")
+      children: svgEle.querySelectorAll('path, polyline, polygon, circle, line, rect')
     };
   }
 
@@ -197,14 +197,14 @@ export class XIconComponent implements OnInit, OnChanges {
       for (let i = 0; i < this._svgElement.children.length; i++) {
         let child = this._svgElement.children[i];
         let toChild = svg.children[i];
-        if (child && toChild && child.nodeName === "path" && toChild.nodeName === "path") {
-          let toAnimate = document.createElement("animate");
-          toAnimate.setAttribute("dur", "500ms");
-          toAnimate.setAttribute("repeatCount", "1");
-          toAnimate.setAttribute("attributeName", "d");
-          toAnimate.setAttribute("fill", "freeze");
-          toAnimate.setAttribute("from", child.getAttribute("d"));
-          toAnimate.setAttribute("to", toChild.getAttribute("d"));
+        if (child && toChild && child.nodeName === 'path' && toChild.nodeName === 'path') {
+          let toAnimate = document.createElement('animate');
+          toAnimate.setAttribute('dur', '500ms');
+          toAnimate.setAttribute('repeatCount', '1');
+          toAnimate.setAttribute('attributeName', 'd');
+          toAnimate.setAttribute('fill', 'freeze');
+          toAnimate.setAttribute('from', child.getAttribute('d'));
+          toAnimate.setAttribute('to', toChild.getAttribute('d'));
           this.renderer.appendChild(child, toAnimate);
         }
       }

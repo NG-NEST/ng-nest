@@ -7,20 +7,20 @@ import {
   Renderer2,
   ElementRef,
   ViewChild
-} from "@angular/core";
-import { XSwitchInput } from "./switch.type";
-import { fillDefault, XValueAccessor, XControlValueAccessor, removeNgTag } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { XSwitchInput } from './switch.type';
+import { fillDefault, XValueAccessor, XControlValueAccessor, removeNgTag } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-switch",
-  templateUrl: "./switch.component.html",
-  styleUrls: ["./switch.component.scss"],
+  selector: 'x-switch',
+  templateUrl: './switch.component.html',
+  styleUrls: ['./switch.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSwitchComponent)]
 })
 export class XSwitchComponent extends XControlValueAccessor implements OnInit {
-  @ViewChild("switch", { static: true }) switch: ElementRef;
+  @ViewChild('switch', { static: true }) switch: ElementRef;
 
   writeValue(value: any) {
     this.value = value;

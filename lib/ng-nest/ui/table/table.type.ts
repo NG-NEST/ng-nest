@@ -1,19 +1,14 @@
-import {
-  XIdentityInput,
-  XData,
-  XQuery,
-  XRepositoryAbstract
-} from "@ng-nest/ui/core";
-import { XButtonInput } from "@ng-nest/ui/button";
-import { XPaginationInput } from "@ng-nest/ui/pagination";
-import { TemplateRef } from "@angular/core";
+import { XIdentityInput, XData, XQuery, XRepositoryAbstract } from '@ng-nest/ui/core';
+import { XButtonInput } from '@ng-nest/ui/button';
+import { XPaginationInput } from '@ng-nest/ui/pagination';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Table 组件名
  * @selector x-table
  * @decorator component
  */
-export const TablePrefix = "x-table";
+export const TablePrefix = 'x-table';
 
 /**
  * Table @Input
@@ -146,10 +141,6 @@ export interface XTableAction extends XButtonInput {
  * @value "top-right-icon" 顶部靠右图标
  * @value "row-icon" 行中的操作按钮
  */
-export type XTableActionLayoutType =
-  | "top-left"
-  | "top-right"
-  | "top-right-icon"
-  | "row-icon";
+export type XTableActionLayoutType = 'top-left' | 'top-right' | 'top-right-icon' | 'row-icon';
 
 export type XTableColumnTemplate = { [property: string]: TemplateRef<any> };

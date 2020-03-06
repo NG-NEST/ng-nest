@@ -1,12 +1,12 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
-import { InjectionToken } from "@angular/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
+import { InjectionToken } from '@angular/core';
 
 /**
  * DatePicker 组件名
  * @selector x-date-picker
  * @decorator component
  */
-export const XDatePickerPrefix = "x-date-picker";
+export const XDatePickerPrefix = 'x-date-picker';
 
 /**
  * DatePicker @Input
@@ -24,7 +24,7 @@ export interface XDatePickerNode extends XParentIdentityInput {}
  * @value "month"
  * @value "year"
  */
-export type XDatePickerType = "date" | "month" | "year";
+export type XDatePickerType = 'date' | 'month' | 'year';
 
 /**
  * 日期数据类型
@@ -32,13 +32,13 @@ export type XDatePickerType = "date" | "month" | "year";
  * @value "number"
  * @value "string"
  */
-export type XDatePickerModelType = "date" | "number" | "string";
+export type XDatePickerModelType = 'date' | 'number' | 'string';
 
 /**
  * DatePicker-Portal 组件名
  * @selector x-date-picker-portal
  * @decorator component
  */
-export const XDatePickerPortalPrefix = "x-date-picker-portal";
+export const XDatePickerPortalPrefix = 'x-date-picker-portal';
 
-export const XDatePickerPortal = new InjectionToken<{}>("x-date-picker-portal");
+export const XDatePickerPortal = new InjectionToken<{}>('x-date-picker-portal');

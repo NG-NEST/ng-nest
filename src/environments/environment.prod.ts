@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  layout: "index",
-  defaultPage: "home"
+  layout: 'index',
+  defaultPage: 'home'
 };

@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XInputComponent } from "./input.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XInputModule } from "./input.module";
-import { FormsModule, ReactiveFormsModule, FormControl } from "@angular/forms";
-import { XInputPrefix, XInputType, XInputIconLayoutType } from "./input.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { interval } from "rxjs";
+import { XInputComponent } from './input.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XInputModule } from './input.module';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { XInputPrefix, XInputType, XInputIconLayoutType } from './input.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { interval } from 'rxjs';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
@@ -33,7 +33,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XInputComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -45,7 +45,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -57,7 +57,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputIconComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -69,7 +69,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputClearableComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -81,7 +81,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -93,7 +93,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -105,7 +105,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputLengthComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -117,7 +117,7 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputSizeComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -226,7 +226,7 @@ class TestXInputIconComponent {}
 })
 class TestXInputClearableComponent {
   model: any;
-  modelValue = "显示清除按钮";
+  modelValue = '显示清除按钮';
   modelIcon: any;
   constructor(private cdr: ChangeDetectorRef) {}
   change(val) {
@@ -266,8 +266,8 @@ class TestXInputClearableComponent {
   ]
 })
 class TestXInputDisabledComponent {
-  model = "输入框禁用";
-  modelClearable = "禁用状态下，不显示清除按钮";
+  model = '输入框禁用';
+  modelClearable = '禁用状态下，不显示清除按钮';
 }
 
 @Component({

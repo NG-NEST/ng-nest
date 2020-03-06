@@ -3,7 +3,7 @@
  * @selector x-rate
  * @decorator component
  */
-export const XRatePrefix = "x-rate";
+export const XRatePrefix = 'x-rate';
 
 /**
  * Rate @Input

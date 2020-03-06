@@ -1,5 +1,5 @@
 ---
-label: "示例"
+label: '示例'
 ---
 
 # 文档示例 Examples
@@ -8,8 +8,8 @@ label: "示例"
 
 ## 用到的组件
 
--   `x-tabs` 选项卡组件用来坐分类和子类。
--   `x-highlight` 代码高亮组件。
+- `x-tabs` 选项卡组件用来坐分类和子类。
+- `x-highlight` 代码高亮组件。
 
 ## API
 

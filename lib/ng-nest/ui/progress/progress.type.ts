@@ -1,11 +1,11 @@
-import { TemplateRef } from "@angular/core";
+import { TemplateRef } from '@angular/core';
 
 /**
  * Progress 组件名
  * @selector x-progress
  * @decorator component
  */
-export const XProgressPrefix = "x-progress";
+export const XProgressPrefix = 'x-progress';
 
 /**
  * Progress @Input
@@ -51,7 +51,7 @@ export interface XProgressInput {
  * @value "circle"
  * @value "dashboard"
  */
-export type XProgressType = "line" | "circle" | "dashboard";
+export type XProgressType = 'line' | 'circle' | 'dashboard';
 
 /**
  * 状态
@@ -61,4 +61,4 @@ export type XProgressType = "line" | "circle" | "dashboard";
  * @value "exception"
  * @value "warning"
  */
-export type XProgressStatus = "normal" | "active" | "success" | "exception" | "warning";
+export type XProgressStatus = 'normal' | 'active' | 'success' | 'exception' | 'warning';

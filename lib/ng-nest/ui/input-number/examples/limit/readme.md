@@ -1,4 +1,4 @@
 ---
 order: 2
-label: "限制"
+label: '限制'
 ---

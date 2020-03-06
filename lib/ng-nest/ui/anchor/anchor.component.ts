@@ -13,20 +13,20 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation
-} from "@angular/core";
-import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from "./anchor.type";
-import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber, removeNgTag } from "@ng-nest/ui/core";
-import { XSliderNode, XActivatedSlider, XSliderInput } from "@ng-nest/ui/slider";
-import { BehaviorSubject, Subscription, fromEvent, Observable } from "rxjs";
-import { throttleTime, distinctUntilChanged } from "rxjs/operators";
-import { DOCUMENT } from "@angular/common";
+} from '@angular/core';
+import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from './anchor.type';
+import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber, removeNgTag } from '@ng-nest/ui/core';
+import { XSliderNode, XActivatedSlider, XSliderInput } from '@ng-nest/ui/slider';
+import { BehaviorSubject, Subscription, fromEvent, Observable } from 'rxjs';
+import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: "x-anchor",
-  templateUrl: "./anchor.component.html",
+  selector: 'x-anchor',
+  templateUrl: './anchor.component.html',
   // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ["./style/index.scss"],
+  styleUrls: ['./style/index.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAnchorComponent implements OnInit, OnDestroy {
@@ -37,7 +37,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   @Input()
   public set layout(value: XAnchorLayoutType) {
     this._layout = value;
-    this.sliderOption.borderPosition = this._layout === "left" ? "right" : "left";
+    this.sliderOption.borderPosition = this._layout === 'left' ? 'right' : 'left';
   }
   @Input() scrollElement: HTMLElement | Window;
   @Input() @XInputNumber() top: number;
@@ -45,22 +45,22 @@ export class XAnchorComponent implements OnInit, OnDestroy {
 
   @Output() indexChange?: EventEmitter<XActivatedAnchor> = new EventEmitter<XActivatedAnchor>();
 
-  @ViewChild("list", { static: false }) list: ElementRef;
-  @ViewChild("content", { static: false }) content: ElementRef;
-  @ViewChild("anchor", { static: true }) anchor: ElementRef;
+  @ViewChild('list', { static: false }) list: ElementRef;
+  @ViewChild('content', { static: false }) content: ElementRef;
+  @ViewChild('anchor', { static: true }) anchor: ElementRef;
 
   listFixed: boolean = false;
 
   sliderOption: XSliderInput = {
     data: new BehaviorSubject<XSliderNode[]>([]),
     activatedIndex: 0,
-    borderPosition: "left"
+    borderPosition: 'left'
   };
 
   scrollObservable: Observable<any>;
 
   private _default: XAnchorInput = {
-    layout: "right",
+    layout: 'right',
     top: 0,
     sliderFixed: false
   };
@@ -71,7 +71,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   private _hElements: HTMLElement[];
   private _isAnimation: boolean = false;
   private _offsetParent: any;
-  private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, "font-size"));
+  private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
   private _top: number = 0;
 
   constructor(
@@ -131,7 +131,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
 
   private setHElements() {
     this._hElements = this.content.nativeElement.querySelectorAll(
-      ":scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5"
+      ':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5'
     );
     if (this._hElements.length > 0) {
       this.renderer.addClass(this.anchor.nativeElement, `${AnchorPrefix}-open`);
@@ -139,11 +139,11 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       this._hElements.forEach((x: HTMLElement, i: number) => {
         const link = `x-anchor-${i}`;
         const left = this.setLeft(x);
-        this.renderer.setAttribute(x, "id", link);
+        this.renderer.setAttribute(x, 'id', link);
         list = [
           ...list,
           {
-            key: i,
+            id: i,
             label: x.innerText,
             left: left,
             // icon: left > 1 ? "adf-forward" : "adf-forward",
@@ -166,22 +166,22 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setScrollElement() {
-    if (typeof this.scrollElement === "undefined") {
+    if (typeof this.scrollElement === 'undefined') {
       this.scrollElement = window;
       this._windowScroll = true;
-      setTimeout(() => this.renderer.setStyle(this.list.nativeElement, "max-height", `calc(100% - ${this._top}px)`));
+      setTimeout(() => this.renderer.setStyle(this.list.nativeElement, 'max-height', `calc(100% - ${this._top}px)`));
     } else {
       this._offsetParent = (this.scrollElement as HTMLElement).offsetParent;
       // ToDo: 当文档在tab中时获取不到高度
       setTimeout(() =>
         this.renderer.setStyle(
           this.list.nativeElement,
-          "max-height",
+          'max-height',
           `${(this.scrollElement as HTMLElement).clientHeight - this._top}px`
         )
       );
       if (this._offsetParent) {
-        fromEvent(this._offsetParent, "scroll")
+        fromEvent(this._offsetParent, 'scroll')
           .pipe(distinctUntilChanged())
           .subscribe(() => {
             if (this.listFixed) {
@@ -191,7 +191,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       }
       this.setWindowScroll();
     }
-    this.scrollObservable = fromEvent(this.scrollElement, "scroll").pipe(throttleTime(10), distinctUntilChanged());
+    this.scrollObservable = fromEvent(this.scrollElement, 'scroll').pipe(throttleTime(10), distinctUntilChanged());
     this._scroll$ = this.scrollObservable.subscribe(() => {
       this.setActiveatedIndex();
     });
@@ -217,7 +217,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setWindowScroll() {
-    this._windowScroll$ = fromEvent(window, "scroll")
+    this._windowScroll$ = fromEvent(window, 'scroll')
       .pipe(distinctUntilChanged())
       .subscribe(() => {
         if (this.listFixed) {
@@ -236,7 +236,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       if (fixed) {
         this.setFixedTop();
       } else {
-        this.renderer.setStyle(this.list.nativeElement, "top", `${this._top}`);
+        this.renderer.setStyle(this.list.nativeElement, 'top', `${this._top}`);
       }
       return fixed;
     }
@@ -247,11 +247,11 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     let offsetTop = (this.scrollElement as HTMLElement).offsetTop;
     let offsetParent = (this.scrollElement as HTMLElement).offsetParent as HTMLElement;
     if (offsetParent) offsetTop = offsetTop + offsetParent.offsetTop - offsetParent.scrollTop;
-    this.renderer.setStyle(this.list.nativeElement, "top", `${offsetTop - windowScrollTop + this._top}px`);
+    this.renderer.setStyle(this.list.nativeElement, 'top', `${offsetTop - windowScrollTop + this._top}px`);
   }
 
   private windowSizeChange() {
-    this._windowSize$ = fromEvent(window, "resize")
+    this._windowSize$ = fromEvent(window, 'resize')
       .pipe(distinctUntilChanged())
       .subscribe(() => {
         this.setListFixed();
@@ -259,7 +259,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private getAnchorLeft() {
-    return this.layout === "right" ? this.content.nativeElement.clientWidth : 0;
+    return this.layout === 'right' ? this.content.nativeElement.clientWidth : 0;
   }
 
   private setListFixed() {
@@ -267,13 +267,13 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     let anchorLeft = this.getAnchorLeft();
     this.renderer.setStyle(
       this.list.nativeElement,
-      "left",
+      'left',
       `${this.listFixed ? fixedLeft + anchorLeft : anchorLeft}px`
     );
   }
 
   private setLeft(element: HTMLElement): number {
-    const eles = ["H1", "H2", "H3", "H4", "H5"];
+    const eles = ['H1', 'H2', 'H3', 'H4', 'H5'];
     const index = eles.indexOf(element.tagName);
     return index + 1;
   }

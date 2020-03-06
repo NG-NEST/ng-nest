@@ -1,6 +1,6 @@
 ---
-label: "Button 按钮"
-category: "Basic"
+label: 'Button 按钮'
+category: 'Basic'
 ---
 
 # Button 按钮

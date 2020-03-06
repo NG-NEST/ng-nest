@@ -1,6 +1,6 @@
 ---
-label: "Checkbox 多选框"
-category: "Form"
+label: 'Checkbox 多选框'
+category: 'Form'
 ---
 
 # Checkbox 多选框

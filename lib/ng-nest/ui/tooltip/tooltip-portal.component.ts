@@ -10,14 +10,14 @@ import {
   ViewChild,
   Renderer2,
   HostListener
-} from "@angular/core";
-import { Subscription } from "rxjs";
-import { XTooltipPortal, XTooltipPortalPrefix } from "./tooltip.type";
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { XTooltipPortal, XTooltipPortalPrefix } from './tooltip.type';
 
 @Component({
-  selector: "x-tooltip-portal",
-  templateUrl: "./tooltip-portal.component.html",
-  styleUrls: ["./tooltip-portal.component.scss"],
+  selector: 'x-tooltip-portal',
+  templateUrl: './tooltip-portal.component.html',
+  styleUrls: ['./tooltip-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -26,14 +26,14 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
   classMap = {};
   box: DOMRect;
   arrowBox: DOMRect;
-  @ViewChild("tooltipPortal", { static: true }) tooltipPortal: ElementRef;
-  @ViewChild("tooltipArrow", { static: false }) tooltipArrow: ElementRef;
+  @ViewChild('tooltipPortal', { static: true }) tooltipPortal: ElementRef;
+  @ViewChild('tooltipArrow', { static: false }) tooltipArrow: ElementRef;
 
-  @HostListener("mouseenter") mouseenter() {
+  @HostListener('mouseenter') mouseenter() {
     this.option.portalHover(true);
   }
 
-  @HostListener("mouseleave") mouseleave() {
+  @HostListener('mouseleave') mouseleave() {
     this.option.portalHover(false);
   }
 
@@ -73,17 +73,17 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy {
 
   setArrow() {
     let offset = this.arrowBox.height / 2;
-    if (this.box.height > this.option.box.height && (this.includes("right-") || this.includes("left-"))) {
-      if (this.includes("-start")) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, "top", `${this.option.box.height / 2 - offset}px`);
-      } else if (this.includes("-end")) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, "bottom", `${this.option.box.height / 2 - offset}px`);
+    if (this.box.height > this.option.box.height && (this.includes('right-') || this.includes('left-'))) {
+      if (this.includes('-start')) {
+        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'top', `${this.option.box.height / 2 - offset}px`);
+      } else if (this.includes('-end')) {
+        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'bottom', `${this.option.box.height / 2 - offset}px`);
       }
-    } else if (this.box.width > this.option.box.width && (this.includes("top-") || this.includes("bottom-"))) {
-      if (this.includes("-start")) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, "left", `${this.option.box.width / 2 - offset}px`);
-      } else if (this.includes("-end")) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, "right", `${this.option.box.width / 2 - offset}px`);
+    } else if (this.box.width > this.option.box.width && (this.includes('top-') || this.includes('bottom-'))) {
+      if (this.includes('-start')) {
+        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'left', `${this.option.box.width / 2 - offset}px`);
+      } else if (this.includes('-end')) {
+        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'right', `${this.option.box.width / 2 - offset}px`);
       }
     }
   }

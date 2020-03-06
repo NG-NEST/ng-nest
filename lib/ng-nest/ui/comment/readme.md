@@ -1,6 +1,6 @@
 ---
-label: "Comment 评论"
-category: "Data"
+label: 'Comment 评论'
+category: 'Data'
 ---
 
 # Comment 评论

@@ -1,11 +1,11 @@
-import { TemplateRef } from "@angular/core";
+import { TemplateRef } from '@angular/core';
 
 /**
  * Card 组件名
  * @selector x-card
  * @decorator component
  */
-export const XCardPrefix = "x-card";
+export const XCardPrefix = 'x-card';
 
 /**
  * Card @Input
@@ -36,4 +36,4 @@ export interface XCardInput {
  * @value "hover"
  * @value "never"
  */
-export type XCardShadow = "always" | "hover" | "never";
+export type XCardShadow = 'always' | 'hover' | 'never';

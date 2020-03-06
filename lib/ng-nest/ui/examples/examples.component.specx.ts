@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XExamplesComponent } from "./examples.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XExamplesModule } from "./examples.module";
-import { ExamplesPrefix } from "./examples.type";
+import { XExamplesComponent } from './examples.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XExamplesModule } from './examples.module';
+import { ExamplesPrefix } from './examples.type';
 
 describe(ExamplesPrefix, () => {
   beforeEach(async(() => {
@@ -23,10 +23,10 @@ describe(ExamplesPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XExamplesComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(ExamplesPrefix);
     });
@@ -34,7 +34,7 @@ describe(ExamplesPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-examples",
+  selector: 'test-x-examples',
   template: `
     <x-examples>x-examples</x-examples>
   `

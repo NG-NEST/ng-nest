@@ -1,6 +1,6 @@
-import * as fs from "fs-extra";
-import { checkMkdir } from "./check-mkdir";
-import { NcPattern } from "../interfaces/pattern";
+import * as fs from 'fs-extra';
+import { checkMkdir } from './check-mkdir';
+import { NcPattern } from '../interfaces/pattern';
 
 /**
  * 生成样式文件代码
@@ -9,18 +9,18 @@ import { NcPattern } from "../interfaces/pattern";
  * @param {NcPattern[]} patterns
  */
 export function generatePatterns(...patterns: NcPattern[]) {
-  let result = "";
-  let patternsTable = "";
+  let result = '';
+  let patternsTable = '';
   if (patterns && patterns.length > 0) {
     patterns.forEach(x => {
       patternsTable += `<tr>
             <td><code>${x.name}</code></td>
             <td>${x.label}</td>
-            <td><code>${x.value == x.inherit ? "" : x.value}</code></td>
+            <td><code>${x.value == x.inherit ? '' : x.value}</code></td>
             <td><code>${x.inherit}</code></td>
           </tr>`;
     });
-    if (patternsTable !== "") {
+    if (patternsTable !== '') {
       patternsTable = `
       <table>
         <tr>

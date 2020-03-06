@@ -1,18 +1,18 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { XCheckboxNode } from "@ng-nest/ui/checkbox";
-import { XData } from "@ng-nest/ui/core";
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { XCheckboxNode } from '@ng-nest/ui/checkbox';
+import { XData } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "ex-check-all",
-  templateUrl: "./check-all.component.html",
-  styleUrls: ["./check-all.component.scss"]
+  selector: 'ex-check-all',
+  templateUrl: './check-all.component.html',
+  styleUrls: ['./check-all.component.scss']
 })
 export class ExCheckAllComponent implements OnInit {
-  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: "全选" }];
+  checkAllData: XData<XCheckboxNode[]> = [{ value: true, label: '全选' }];
   checkAll = [false];
   indeterminate = true;
-  data: XData<XCheckboxNode[]> = ["QQ", "微信", "钉钉", "微博"];
-  model: any = ["QQ"];
+  data: XData<XCheckboxNode[]> = ['QQ', '微信', '钉钉', '微博'];
+  model: any = ['QQ'];
   change(value) {
     this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
     this.indeterminate = false;

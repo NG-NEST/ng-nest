@@ -1,5 +1,5 @@
-@import "../mixins/";
-@import "../params/";
+@import '../mixins/';
+@import '../params/';
 
 :root {
   @include var-colors($--x-colors);

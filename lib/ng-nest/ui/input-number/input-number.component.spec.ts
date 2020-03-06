@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XInputNumberComponent } from "./input-number.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XInputNumberModule } from "./input-number.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XInputNumberPrefix } from "./input-number.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
+import { XInputNumberComponent } from './input-number.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XInputNumberModule } from './input-number.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XInputNumberPrefix } from './input-number.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XInputNumberPrefix, () => {
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XInputNumberComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -42,7 +42,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -54,7 +54,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLimitComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -66,7 +66,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberPrecisionComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -78,7 +78,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -90,7 +90,7 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });

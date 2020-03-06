@@ -7,14 +7,14 @@ import {
   Input,
   OnInit,
   HostBinding
-} from "@angular/core";
-import { XJustify, XAlign, XInputNumber } from "@ng-nest/ui/core";
-import { XRowPrefix } from "./fence.type";
+} from '@angular/core';
+import { XJustify, XAlign, XInputNumber } from '@ng-nest/ui/core';
+import { XRowPrefix } from './fence.type';
 
 @Component({
   selector: `${XRowPrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./row.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./row.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -39,8 +39,8 @@ export class XRowComponent implements OnInit {
 
   setSpace() {
     if (!this.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, "margin-left", `-${this.space / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, "margin-right", `-${this.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${this.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${this.space / 2}rem`);
   }
 
   setJustify() {

@@ -1,8 +1,8 @@
 // Calendar
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin calendar {
   font-size: $--x-font-size;

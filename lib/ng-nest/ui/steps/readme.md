@@ -1,6 +1,6 @@
 ---
-label: "Steps 步骤条 [待]"
-category: "Navigation"
+label: 'Steps 步骤条 [待]'
+category: 'Navigation'
 ---
 
 # Steps 步骤条

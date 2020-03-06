@@ -3,4 +3,4 @@
  * @selector x-api
  * @decorator component
  */
-export const ApiPrefix = "x-api";
+export const ApiPrefix = 'x-api';

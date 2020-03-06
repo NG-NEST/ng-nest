@@ -1,8 +1,8 @@
-import { NcTabsLayoutEnum } from "./../interfaces/tabs";
-import * as path from "path";
-import * as fs from "fs-extra";
-import { NcPage } from "../interfaces/page";
-import { NcExamples, NcCates } from "../interfaces/examples";
+import { NcTabsLayoutEnum } from './../interfaces/tabs';
+import * as path from 'path';
+import * as fs from 'fs-extra';
+import { NcPage } from '../interfaces/page';
+import { NcExamples, NcCates } from '../interfaces/examples';
 import {
   replaceKey,
   randomString,
@@ -14,10 +14,10 @@ import {
   generateTypes,
   hanlderPattern,
   generatePatterns
-} from ".";
-import * as _ from "lodash";
+} from '.';
+import * as _ from 'lodash';
 
-const tplDir = path.resolve(__dirname, "../../main/templates");
+const tplDir = path.resolve(__dirname, '../../main/templates');
 
 /**
  * 组件处理
@@ -38,18 +38,17 @@ export async function handlerComponent(page: NcPage) {
  * @param {NcPage} page
  */
 export function handlerExamples(page: NcPage) {
-  if (page.custom.indexOf("__examples") <= -1) return;
+  if (page.custom.indexOf('__examples') <= -1) return;
   let examples: NcExamples = {};
-  let comTpl = _.find(page.templates, x => x.name == "component");
+  let comTpl = _.find(page.templates, x => x.name == 'component');
 
-  examples.path = path.join(page.path, "examples");
-  examples.tplPath = path.join(tplDir, "examples-component.template.html");
-  let func = "";
-  while (func == "" || _.hasIn(comTpl.syswords.constant, func))
-    func = randomString();
+  examples.path = path.join(page.path, 'examples');
+  examples.tplPath = path.join(tplDir, 'examples-component.template.html');
+  let func = '';
+  while (func == '' || _.hasIn(comTpl.syswords.constant, func)) func = randomString();
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
-    folderPath: examples.path,
+    folderPath: examples.path
   });
   tabs.tabs.forEach(x => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
@@ -60,37 +59,23 @@ export function handlerExamples(page: NcPage) {
     }
   });
   generateTabs(tabs);
-  let examplesTpl = fs.readFileSync(examples.tplPath, "utf8");
-  page.custom = replaceKey(
-    page.custom,
-    "__examples",
-    replaceKey(examplesTpl, "__tabs", tabs.content)
-  );
+  let examplesTpl = fs.readFileSync(examples.tplPath, 'utf8');
+  page.custom = replaceKey(page.custom, '__examples', replaceKey(examplesTpl, '__tabs', tabs.content));
   page.copyDir.push({
     from: examples.path,
-    to: path.join(page.genDir, "examples"),
-    exclude: [".md"]
+    to: path.join(page.genDir, 'examples'),
+    exclude: ['.md']
   });
 }
 
 export async function handlerApi(page: NcPage) {
-  if (page.custom.indexOf("__api") <= -1) return;
-  let types = await hanlderType(
-    path.join(page.path, `${page.name}.type.ts`)
-  );
-  page.custom = replaceKey(
-    page.custom,
-    "__api",
-    `<x-api>${generateTypes(...types)}</x-api>`
-  );
+  if (page.custom.indexOf('__api') <= -1) return;
+  let types = await hanlderType(path.join(page.path, `${page.name}.type.ts`));
+  page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
 }
 
 export async function handlerPattern(page: NcPage) {
-  if (page.custom.indexOf("__pattern") <= -1) return;
-  let patterns = await hanlderPattern(path.join(page.path, "style", `param.scss`));
-  page.custom = replaceKey(
-    page.custom,
-    "__pattern",
-    `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`
-  );
+  if (page.custom.indexOf('__pattern') <= -1) return;
+  let patterns = await hanlderPattern(path.join(page.path, 'style', `param.scss`));
+  page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
 }

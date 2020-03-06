@@ -1,11 +1,11 @@
-import { XIdentityInput, XFormProperty } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty } from '@ng-nest/ui/core';
 
 /**
  * Switch 组件名
  * @selector x-switch
  * @decorator component
  */
-export const XSwitchPrefix = "x-switch";
+export const XSwitchPrefix = 'x-switch';
 
 /**
  * Switch @Input

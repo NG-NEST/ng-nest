@@ -1,6 +1,6 @@
 ---
-label: "Skeleton 骨架屏 [待]"
-category: "Feedback"
+label: 'Skeleton 骨架屏 [待]'
+category: 'Feedback'
 ---
 
 # Skeleton 骨架屏

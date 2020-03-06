@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-loading",
-  templateUrl: "./loading.component.html",
-  styleUrls: ["./loading.component.scss"]
+  selector: 'ex-loading',
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.scss']
 })
 export class ExLoadingComponent implements OnInit {
   loading: boolean = false;

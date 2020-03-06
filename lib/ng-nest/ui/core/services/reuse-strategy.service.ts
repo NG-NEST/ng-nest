@@ -1,12 +1,8 @@
-import {
-  RouteReuseStrategy,
-  ActivatedRouteSnapshot,
-  DetachedRouteHandle
-} from "@angular/router";
-import * as _ from "lodash";
+import { RouteReuseStrategy, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
+import * as _ from 'lodash';
 
 export interface XRouteReuseStorage {
-  key: string;
+  id: string;
   handle: DetachedRouteHandle;
 }
 
@@ -27,15 +23,9 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   /**
    * 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象
    */
-  public store(
-    route: ActivatedRouteSnapshot,
-    handle: DetachedRouteHandle
-  ): void {
+  public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
     if (handle == null) return;
-    if (
-      XReuseStrategyService.waitDelete &&
-      this.getRouteUrl(route).indexOf(XReuseStrategyService.waitDelete) == 0
-    ) {
+    if (XReuseStrategyService.waitDelete && this.getRouteUrl(route).indexOf(XReuseStrategyService.waitDelete) == 0) {
       //如果待删除是当前路由则不存储快照
       XReuseStrategyService.waitDelete = null;
       return;
@@ -47,10 +37,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    * 若 path 在缓存中有的都认为允许还原路由
    */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return !!_.find(
-      XReuseStrategyService.storages,
-      x => x.key == this.getRouteUrl(route)
-    );
+    return !!_.find(XReuseStrategyService.storages, x => x.id == this.getRouteUrl(route));
   }
 
   /**
@@ -60,10 +47,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
     if (!route.routeConfig) {
       return null;
     }
-    let stroage = _.find(
-      XReuseStrategyService.storages,
-      x => x.key == this.getRouteUrl(route)
-    );
+    let stroage = _.find(XReuseStrategyService.storages, x => x.id == this.getRouteUrl(route));
     return stroage ? stroage.handle : null;
   }
 
@@ -71,21 +55,15 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    * 进入路由触发，判断是否同一路由
    * 解决不同的参数也会认为是同一个路由，导致会将之前的路由拿出来复用
    */
-  public shouldReuseRoute(
-    future: ActivatedRouteSnapshot,
-    curr: ActivatedRouteSnapshot
-  ): boolean {
-    return (
-      future.routeConfig === curr.routeConfig &&
-      JSON.stringify(future.params) == JSON.stringify(curr.params)
-    );
+  public shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+    return future.routeConfig === curr.routeConfig && JSON.stringify(future.params) == JSON.stringify(curr.params);
   }
 
   /**
    * 解决不同的主路由会存在相同名称的子路由
    */
   private getRouteUrl(route: ActivatedRouteSnapshot) {
-    let url = route["_routerState"].url.replace(/\//g, "_");
+    let url = route['_routerState'].url.replace(/\//g, '_');
     return url;
   }
 
@@ -94,19 +72,16 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    */
   public static deleteRouteSnapshot(name?: string): void {
     if (name) {
-      let key = name.replace(/\//g, "_");
-      _.remove(XReuseStrategyService.storages, x => x.key.indexOf(key) === 0);
-      XReuseStrategyService.waitDelete = key;
+      let id = name.replace(/\//g, '_');
+      _.remove(XReuseStrategyService.storages, x => x.id.indexOf(id) === 0);
+      XReuseStrategyService.waitDelete = id;
     } else {
       XReuseStrategyService.storages = [];
     }
   }
 
-  private add(key: string, handle: DetachedRouteHandle) {
-    _.remove(XReuseStrategyService.storages, x => x.key == key);
-    XReuseStrategyService.storages = [
-      ...XReuseStrategyService.storages,
-      { key: key, handle: handle }
-    ];
+  private add(id: string, handle: DetachedRouteHandle) {
+    _.remove(XReuseStrategyService.storages, x => x.id == id);
+    XReuseStrategyService.storages = [...XReuseStrategyService.storages, { id: id, handle: handle }];
   }
 }

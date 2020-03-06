@@ -16,19 +16,11 @@ const components = [
   SiderNodeComponent,
   ContentComponent,
   FooterComponent
-]
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ShareModule,
-    LayoutRoutesModule
-  ],
-  declarations: [
-    ...components
-  ],
-  exports: [
-    ...components
-  ]
+  imports: [CommonModule, ShareModule, LayoutRoutesModule],
+  declarations: [...components],
+  exports: [...components]
 })
-export class LayoutModule { }
+export class LayoutModule {}

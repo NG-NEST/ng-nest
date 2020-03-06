@@ -1,6 +1,6 @@
 ---
-label: "Avatar 头像"
-category: "Data"
+label: 'Avatar 头像'
+category: 'Data'
 ---
 
 # Avatar 头像

@@ -9,14 +9,14 @@ import {
   Optional,
   Host,
   HostBinding
-} from "@angular/core";
-import { XHeaderPrefix } from "./container.type";
-import { XContainerComponent } from "./container.component";
+} from '@angular/core';
+import { XHeaderPrefix } from './container.type';
+import { XContainerComponent } from './container.component';
 
 @Component({
   selector: `${XHeaderPrefix}`,
-  template: "<ng-content></ng-content>",
-  styleUrls: ["./header.component.scss"],
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -39,6 +39,6 @@ export class XHeaderComponent implements OnInit {
 
   setDirection() {
     if (!this.container || this.container.direction) return;
-    this.container.direction = "column";
+    this.container.direction = 'column';
   }
 }

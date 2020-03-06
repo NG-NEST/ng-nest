@@ -1,13 +1,13 @@
-import { interval } from "rxjs";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { interval } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XDatePickerComponent } from "./date-picker.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XDatePickerModule } from "./date-picker.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { XDatePickerPrefix, XDatePickerNode } from "./date-picker.type";
-import { XFenceModule } from "@ng-nest/ui/fence";
+import { XDatePickerComponent } from './date-picker.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XDatePickerModule } from './date-picker.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XDatePickerPrefix, XDatePickerNode } from './date-picker.type';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe(XDatePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDatePickerComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -42,7 +42,7 @@ describe(XDatePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerLabelComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -54,7 +54,7 @@ describe(XDatePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerDisabledComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -66,7 +66,7 @@ describe(XDatePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerRequiredComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
@@ -78,7 +78,7 @@ describe(XDatePickerPrefix, () => {
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerYearOrMonthComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });

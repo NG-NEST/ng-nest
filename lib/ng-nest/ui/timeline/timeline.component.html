@@ -3,9 +3,9 @@
     <li *ngFor="let node of nodes">
       <div class="x-timeline-tail"></div>
       <div
-        class="x-timeline-icon {{
-          node.type ? 'x-timeline-' + node.type : ''
-        }} {{ node.size ? 'x-timeline-' + node.size : '' }}"
+        class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }} {{
+          node.size ? 'x-timeline-' + node.size : ''
+        }}"
         [style.background-color]="node.color"
       >
         <x-icon *ngIf="node.icon" [type]="node.icon"></x-icon>

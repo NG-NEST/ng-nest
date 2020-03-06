@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XOutletDirective } from "./outlet.directive";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XOutletDirective } from './outlet.directive';
 
 @NgModule({
   declarations: [XOutletDirective],

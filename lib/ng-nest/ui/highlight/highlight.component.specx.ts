@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XHighlightComponent } from "./highlight.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XHighlightModule } from "./highlight.module";
-import { HighlightPrefix } from "./highlight.type";
+import { XHighlightComponent } from './highlight.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XHighlightModule } from './highlight.module';
+import { HighlightPrefix } from './highlight.type';
 
 describe(HighlightPrefix, () => {
   beforeEach(async(() => {
@@ -22,20 +22,18 @@ describe(HighlightPrefix, () => {
       fixture = TestBed.createComponent(TestXHighlightComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XHighlightComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XHighlightComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(HighlightPrefix);
     });
-    it("should html code.", () => {
-      testComponent.type = "html";
+    it('should html code.', () => {
+      testComponent.type = 'html';
       testComponent.data = `<div class="code"></div>`;
       fixture.detectChanges();
       expect(element.classList).toContain(HighlightPrefix);
@@ -49,7 +47,7 @@ describe(HighlightPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-highlight",
+  selector: 'test-x-highlight',
   template: `
     <x-highlight [type]="type" [data]="data"></x-highlight>
     <x-highlight [data]="dataXll"></x-highlight>

@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XPaginationComponent } from "./pagination.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XPaginationModule } from "./pagination.module";
-import { PaginationPrefix } from "./pagination.type";
+import { XPaginationComponent } from './pagination.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XPaginationModule } from './pagination.module';
+import { PaginationPrefix } from './pagination.type';
 
 describe(PaginationPrefix, () => {
   beforeEach(async(() => {
@@ -20,15 +20,13 @@ describe(PaginationPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPaginationComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(XPaginationComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(PaginationPrefix);
     });
@@ -36,14 +34,9 @@ describe(PaginationPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-pagination",
+  selector: 'test-x-pagination',
   template: `
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="total"
-      (indexChange)="change($event)"
-    ></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
   `
 })
 class TestXPaginationComponent {

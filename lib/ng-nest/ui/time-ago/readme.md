@@ -1,6 +1,6 @@
 ---
-label: "Time Ago 时间之前"
-category: "Data"
+label: 'Time Ago 时间之前'
+category: 'Data'
 ---
 
 # Time Ago 时间之前

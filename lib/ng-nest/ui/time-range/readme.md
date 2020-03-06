@@ -1,6 +1,6 @@
 ---
-label: "Time Range 时间间隔 "
-category: "Data"
+label: 'Time Range 时间间隔 '
+category: 'Data'
 ---
 
 # Time Range 时间间隔

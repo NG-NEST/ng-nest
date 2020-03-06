@@ -3,7 +3,7 @@
  * @selector x-typography
  * @decorator component
  */
-export const XTypographyPrefix = "x-typography";
+export const XTypographyPrefix = 'x-typography';
 
 /**
  * Typography @Input

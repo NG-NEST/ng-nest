@@ -1,8 +1,8 @@
 // Avatar
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin avatar {
   font-size: $--x-font-size;
@@ -29,16 +29,16 @@
       height: initial;
     }
   }
-  @include avatar-size("", $--x-avatar-size);
-  @include avatar-size("large", $--x-avatar-size-large);
-  @include avatar-size("medium", $--x-avatar-size-medium);
-  @include avatar-size("small", $--x-avatar-size-small);
-  @include avatar-size("mini", $--x-avatar-size-mini);
+  @include avatar-size('', $--x-avatar-size);
+  @include avatar-size('large', $--x-avatar-size-large);
+  @include avatar-size('medium', $--x-avatar-size-medium);
+  @include avatar-size('small', $--x-avatar-size-small);
+  @include avatar-size('mini', $--x-avatar-size-mini);
 }
 
 @mixin avatar-size($type, $size) {
-  @if $type!= "" {
-    $type: "-" + $type;
+  @if $type!= '' {
+    $type: '-' + $type;
   }
   &#{$type} {
     height: $size;

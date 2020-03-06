@@ -1,15 +1,15 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XProgressComponent } from "./progress.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XProgressModule } from "./progress.module";
-import { FormsModule } from "@angular/forms";
-import { XProgressPrefix } from "./progress.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
+import { XProgressComponent } from './progress.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XProgressModule } from './progress.module';
+import { FormsModule } from '@angular/forms';
+import { XProgressPrefix } from './progress.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XProgressPrefix, () => {
   beforeEach(async(() => {
@@ -26,7 +26,7 @@ describe(XProgressPrefix, () => {
       fixture.detectChanges();
       progress = fixture.debugElement.query(By.directive(XProgressComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(progress).toBeDefined();
     });
   });
@@ -80,24 +80,24 @@ describe(XProgressPrefix, () => {
 class TestXProgressComponent {
   constructor(private cdr: ChangeDetectorRef) {}
   format(percent) {
-    return percent === 100 ? "已完成" : `加载中${percent}%`;
+    return percent === 100 ? '已完成' : `加载中${percent}%`;
   }
   percent = 10;
-  color: "#3f51b5";
+  color: '#3f51b5';
   colors = [
-    { color: "#f56c6c", percent: 20 },
-    { color: "#e6a23c", percent: 40 },
-    { color: "#5cb87a", percent: 60 },
-    { color: "#1989fa", percent: 80 },
-    { color: "#6f7ad3", percent: 100 }
+    { color: '#f56c6c', percent: 20 },
+    { color: '#e6a23c', percent: 40 },
+    { color: '#5cb87a', percent: 60 },
+    { color: '#1989fa', percent: 80 },
+    { color: '#6f7ad3', percent: 100 }
   ];
   colorFunc(percent) {
     if (percent < 30) {
-      return "#909399";
+      return '#909399';
     } else if (percent < 70) {
-      return "#e6a23c";
+      return '#e6a23c';
     } else {
-      return "#67c23a";
+      return '#67c23a';
     }
   }
   plus(num) {

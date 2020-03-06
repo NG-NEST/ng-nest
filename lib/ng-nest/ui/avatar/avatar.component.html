@@ -1,5 +1,11 @@
 <span #avatar class="x-avatar" [class.x-avatar-error]="isImgError">
-  <img *ngIf="src && !isImgError" [src]="src" [style.object-fit]="fit" (error)="imgError($event)"/>
+  <img
+    *ngIf="src && !isImgError"
+    [src]="src"
+    [style.object-fit]="fit"
+    (error)="imgError($event)"
+    (load)="load($event)"
+  />
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
   <x-icon *ngIf="isImgError" type="fto-image"></x-icon>
   <span *ngIf="label">{{ label }}</span>

@@ -1,6 +1,6 @@
 ---
-label: "Table 表格"
-category: "Data"
+label: 'Table 表格'
+category: 'Data'
 ---
 
 # Table 表格

@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XDocComponent } from "./doc.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XDocModule } from "./doc.module";
-import { DocPrefix } from "./doc.type";
+import { XDocComponent } from './doc.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XDocModule } from './doc.module';
+import { DocPrefix } from './doc.type';
 
 describe(DocPrefix, () => {
   beforeEach(async(() => {
@@ -23,10 +23,10 @@ describe(DocPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XDocComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(DocPrefix);
     });
@@ -34,7 +34,7 @@ describe(DocPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-doc",
+  selector: 'test-x-doc',
   template: `
     <x-doc>x-doc</x-doc>
   `

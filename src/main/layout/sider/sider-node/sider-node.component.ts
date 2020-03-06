@@ -1,12 +1,12 @@
-import { Menu } from "./../../../../environments/routes";
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core";
-import { LayoutService } from "../../layout.service";
-import * as _ from "lodash";
+import { Menu } from './../../../../environments/routes';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { LayoutService } from '../../layout.service';
+import * as _ from 'lodash';
 
 @Component({
-  selector: "[ns-sider-node]",
-  templateUrl: "./sider-node.component.html",
-  inputs: ["option", "level"],
+  selector: '[ns-sider-node]',
+  templateUrl: './sider-node.component.html',
+  inputs: ['option', 'level'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

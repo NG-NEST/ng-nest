@@ -1,10 +1,10 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XTimeAgoModule } from "./time-ago.module";
-import { XTimeAgoPrefix } from "./time-ago.type";
-import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from "@ng-nest/ui/core";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XTimeAgoModule } from './time-ago.module';
+import { XTimeAgoPrefix } from './time-ago.type';
+import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 
 describe(XTimeAgoPrefix, () => {
   beforeEach(async(() => {
@@ -20,7 +20,7 @@ describe(XTimeAgoPrefix, () => {
       fixture = TestBed.createComponent(TestXTimeAgoComponent);
       fixture.detectChanges();
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(true).toBe(true);
     });
   });
@@ -40,7 +40,7 @@ describe(XTimeAgoPrefix, () => {
   `
 })
 class TestXTimeAgoComponent {
-  format = "yyyy-MM-dd HH:mm:ss";
+  format = 'yyyy-MM-dd HH:mm:ss';
   date = new Date();
   dateSecond = XAddSeconds(this.date, -5);
   dateMinute = XAddMinutes(this.date, -5);

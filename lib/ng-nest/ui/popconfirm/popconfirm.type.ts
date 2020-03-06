@@ -1,13 +1,13 @@
-import { XPlacement } from "@ng-nest/ui/core";
-import { TemplateRef } from "@angular/core";
-import { XPopoverTrigger } from "@ng-nest/ui/popover";
+import { XPlacement } from '@ng-nest/ui/core';
+import { TemplateRef } from '@angular/core';
+import { XPopoverTrigger } from '@ng-nest/ui/popover';
 
 /**
  * Popconfirm 组件名
  * @selector x-popconfirm
  * @decorator component
  */
-export const XPopconfirmPrefix = "x-popconfirm";
+export const XPopconfirmPrefix = 'x-popconfirm';
 
 /**
  * Popconfirm @Input

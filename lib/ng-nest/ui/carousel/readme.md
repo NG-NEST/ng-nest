@@ -1,6 +1,6 @@
 ---
-label: "Carousel 走马灯"
-category: "Data"
+label: 'Carousel 走马灯'
+category: 'Data'
 ---
 
 # Carousel 走马灯

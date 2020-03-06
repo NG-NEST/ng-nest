@@ -8,20 +8,20 @@ import {
   Renderer2,
   OnDestroy,
   AfterViewInit
-} from "@angular/core";
-import { XDatePickerPortal, XDatePickerType } from "./date-picker.type";
-import { XIsEmpty } from "@ng-nest/ui/core";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { XDatePickerPortal, XDatePickerType } from './date-picker.type';
+import { XIsEmpty } from '@ng-nest/ui/core';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "x-date-picker-portal",
-  templateUrl: "./date-picker-portal.component.html",
-  styleUrls: ["./date-picker-portal.component.scss"],
+  selector: 'x-date-picker-portal',
+  templateUrl: './date-picker-portal.component.html',
+  styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
-  type: XDatePickerType = "date";
+  type: XDatePickerType = 'date';
   display = new Date();
   model;
   startYear: number;
@@ -44,7 +44,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     });
     setTimeout(
       () =>
-        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
           this.option.closePortal();
         }))
     );
@@ -52,7 +52,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   ngAfterViewInit() {
     this.init();
-    console.log(this.option);
   }
 
   ngOnDestroy(): void {
@@ -94,22 +93,22 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   monthChange(date: Date) {
     this.setDisplay(date);
-    if (this._type === "month") {
+    if (this._type === 'month') {
       this.model = date;
       this.option.nodeEmit(date);
     } else {
-      this.type = "date";
+      this.type = 'date';
     }
     this.cdr.markForCheck();
   }
 
   yearChange(date: Date) {
     this.setDisplay(date);
-    if (this._type === "year") {
+    if (this._type === 'year') {
       this.model = date;
       this.option.nodeEmit(date);
     } else {
-      this.type = "month";
+      this.type = 'month';
     }
     this.cdr.markForCheck();
   }

@@ -1,6 +1,6 @@
 ---
-label: "List 列表组件"
-category: "Form"
+label: 'List 列表组件'
+category: 'Form'
 ---
 
 # List 列表组件

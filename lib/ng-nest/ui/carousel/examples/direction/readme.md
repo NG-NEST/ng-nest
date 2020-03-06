@@ -1,4 +1,4 @@
 ---
 order: 5
-label: "方向"
+label: '方向'
 ---

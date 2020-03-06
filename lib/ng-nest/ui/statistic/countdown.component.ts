@@ -13,23 +13,23 @@ import {
   Output,
   EventEmitter,
   NgZone
-} from "@angular/core";
-import { XCountdownPrefix } from "./statistic.type";
-import { XStatisticComponent } from "./statistic.component";
-import { interval, Subscription } from "rxjs";
-import { Platform } from "@angular/cdk/platform";
+} from '@angular/core';
+import { XCountdownPrefix } from './statistic.type';
+import { XStatisticComponent } from './statistic.component';
+import { interval, Subscription } from 'rxjs';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: `${XCountdownPrefix}`,
-  templateUrl: "./countdown.component.html",
-  styleUrls: ["./countdown.component.scss"],
+  templateUrl: './countdown.component.html',
+  styleUrls: ['./countdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCountdownComponent extends XStatisticComponent implements OnInit, OnChanges {
-  @Input() format: string = "HH:mm:ss";
+  @Input() format: string = 'HH:mm:ss';
   @Output() readonly finish = new EventEmitter<void>();
-  @ViewChild("countdown", { static: true }) countdown: ElementRef;
+  @ViewChild('countdown', { static: true }) countdown: ElementRef;
   diff: number;
 
   private target: number;

@@ -1,15 +1,15 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XEmptyComponent } from "./empty.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XFenceModule } from "@ng-nest/ui/fence";
-import { XEmptyModule } from "./empty.module";
-import { FormsModule } from "@angular/forms";
-import { XEmptyPrefix } from "./empty.type";
-import { XButtonModule } from "@ng-nest/ui/button";
-import { XContainerModule } from "@ng-nest/ui/container";
+import { XEmptyComponent } from './empty.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XEmptyModule } from './empty.module';
+import { FormsModule } from '@angular/forms';
+import { XEmptyPrefix } from './empty.type';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XEmptyPrefix, () => {
   beforeEach(async(() => {
@@ -26,7 +26,7 @@ describe(XEmptyPrefix, () => {
       fixture.detectChanges();
       empty = fixture.debugElement.query(By.directive(XEmptyComponent));
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(empty).toBeDefined();
     });
   });
@@ -54,7 +54,7 @@ describe(XEmptyPrefix, () => {
       <x-empty [content]="contentTemp">
         <ng-template #contentTemp>
           <span>没有数据</span>
-          <x-button label="重新请求" type="primary"></x-button>
+          <x-button type="primary">重新请求</x-button>
         </ng-template>
       </x-empty>
     </div>

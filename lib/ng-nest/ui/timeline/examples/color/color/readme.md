@@ -1,4 +1,4 @@
 ---
 order: 1
-label: "颜色"
+label: '颜色'
 ---

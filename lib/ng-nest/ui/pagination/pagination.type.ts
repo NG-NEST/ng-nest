@@ -1,12 +1,12 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
-import { TemplateRef } from "@angular/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Pagination 组件名
  * @selector x-pagination
  * @decorator component
  */
-export const PaginationPrefix = "x-pagination";
+export const PaginationPrefix = 'x-pagination';
 
 /**
  * Pagination @Input

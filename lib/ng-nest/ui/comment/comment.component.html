@@ -16,17 +16,14 @@
           <x-buttons>
             <x-button
               icon="fto-message-square"
-              [label]="'评论' + (node.count ? node.count : '')"
               [activated]="node.commentShow"
               (click)="commentOnClick(node)"
               onlyIcon
-            ></x-button>
-            <x-button
-              icon="fto-thumbs-up"
-              [label]="'点赞' + (node.likes ? node.likes : '')"
-              (click)="likeOnClick(node)"
-              onlyIcon
-            ></x-button>
+              >{{ '评论' + (node.count ? node.count : '') }}</x-button
+            >
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>{{
+              '点赞' + (node.likes ? node.likes : '')
+            }}</x-button>
           </x-buttons>
         </div>
         <x-comment-reply
@@ -51,17 +48,14 @@
                 <x-buttons>
                   <x-button
                     icon="fto-message-square"
-                    label="回复"
                     [activated]="child.commentShow"
                     (click)="replyOnClick(child)"
                     onlyIcon
-                  ></x-button>
-                  <x-button
-                    icon="fto-thumbs-up"
-                    [label]="'点赞' + (child.likes ? child.likes : '')"
-                    (click)="likeOnClick(child)"
-                    onlyIcon
-                  ></x-button>
+                    >回复</x-button
+                  >
+                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>{{
+                    '点赞' + (child.likes ? child.likes : '')
+                  }}</x-button>
                 </x-buttons>
               </div>
               <x-comment-reply

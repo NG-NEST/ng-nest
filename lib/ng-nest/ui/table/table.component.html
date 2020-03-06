@@ -42,14 +42,14 @@
         <ng-container *ngFor="let column of columns">
           <li [style.width.rem]="column.width" [style.flex]="column.flex">
             <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
-              <ng-container *xOutlet="headerColumnTpl[column.key]; context: { $column: column }">
+              <ng-container *xOutlet="headerColumnTpl[column.id]; context: { $column: column }">
                 {{ column.label }}
               </ng-container>
               <x-icon
                 class="x-table-header-sort-icon"
                 *ngIf="column.sort"
-                [class.x-table-icon-up]="sortStr === column.key + ' desc'"
-                [class.x-table-icon-down]="sortStr === column.key + ' asc'"
+                [class.x-table-icon-up]="sortStr === column.id + ' desc'"
+                [class.x-table-icon-down]="sortStr === column.id + ' asc'"
                 type="fto-bar-chart"
               ></x-icon>
             </a>
@@ -70,11 +70,11 @@
           <li
             [style.width.rem]="column.width"
             [style.flex]="column.flex"
-            [title]="item[column.key]"
+            [title]="item[column.id]"
             [class.x-table-no-flex]="column.width"
           >
-            <ng-container *xOutlet="bodyColumnTpl[column.key]; context: { $column: column, $item: item }">
-              <div [innerHTML]="item[column.key]"></div>
+            <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
+              <div [innerHTML]="item[column.id]"></div>
             </ng-container>
             <ng-container *ngIf="!j && rowIconActions.length > 0">
               <ng-container
@@ -95,12 +95,12 @@
   <x-buttons [space]="space" [notBorder]="notBorder">
     <x-button
       *ngFor="let action of actions"
-      [label]="action.label"
       [icon]="action.icon"
       [type]="action.type"
       [title]="action.title"
       [activated]="action.activated"
       (click)="actionEmit(action, $event)"
-    ></x-button>
+      >{{ action.label }}</x-button
+    >
   </x-buttons>
 </ng-template>

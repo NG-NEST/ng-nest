@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { XTimeRangePipe } from "./time-range.pipe";
+import { NgModule } from '@angular/core';
+import { XTimeRangePipe } from './time-range.pipe';
 
 @NgModule({
   declarations: [XTimeRangePipe],

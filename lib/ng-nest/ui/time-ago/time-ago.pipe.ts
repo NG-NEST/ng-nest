@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { XToDate, XDate } from "@ng-nest/ui/core";
-import { DatePipe } from "@angular/common";
+import { Pipe, PipeTransform } from '@angular/core';
+import { XToDate, XDate } from '@ng-nest/ui/core';
+import { DatePipe } from '@angular/common';
 
-@Pipe({ name: "xTimeAgo" })
+@Pipe({ name: 'xTimeAgo' })
 export class XTimeAgoPipe implements PipeTransform {
   constructor(private datePipe: DatePipe) {}
   transform(input: XDate): string {
@@ -28,18 +28,18 @@ export class XTimeAgoPipe implements PipeTransform {
     const hourDiff = diffValue / hour;
     const minDiff = diffValue / minute;
     const secondDiff = diffValue / second;
-    let result = "";
+    let result = '';
     if (date.getFullYear() !== now.getFullYear()) {
-      result = this.datePipe.transform(time, "yyyy-MM-dd");
+      result = this.datePipe.transform(time, 'yyyy-MM-dd');
     } else if (dayDiff >= 1) {
-      result = this.datePipe.transform(time, "MM-dd HH:mm");
+      result = this.datePipe.transform(time, 'MM-dd HH:mm');
     } else if (hourDiff >= 1) {
       result = `${Math.floor(hourDiff)}小时前`;
     } else if (minDiff >= 1) {
       result = `${Math.floor(minDiff)}分钟前`;
     } else if (secondDiff >= 1) {
       result = `${Math.floor(secondDiff)}秒前`;
-    } else result = "刚刚";
+    } else result = '刚刚';
     return result;
   }
 }

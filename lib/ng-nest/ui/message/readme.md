@@ -1,6 +1,6 @@
 ---
-label: "Message 全局提示 [待]"
-category: "Feedback"
+label: 'Message 全局提示 [待]'
+category: 'Feedback'
 ---
 
 # Message 全局提示

@@ -1,11 +1,11 @@
-import { XIdentityInput } from "@ng-nest/ui/core";
+import { XIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * Anchor 组件名
  * @selector x-input
  * @decorator component
  */
-export const AnchorPrefix = "x-anchor";
+export const AnchorPrefix = 'x-anchor';
 
 /**
  * Anchor @Input
@@ -68,4 +68,4 @@ export interface XActivatedAnchor {
  * @value "left"
  * @value "right"
  */
-export type XAnchorLayoutType = "left" | "right";
+export type XAnchorLayoutType = 'left' | 'right';

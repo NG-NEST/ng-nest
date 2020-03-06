@@ -1,4 +1,4 @@
 ---
 order: 2
-label: "类型"
+label: '类型'
 ---

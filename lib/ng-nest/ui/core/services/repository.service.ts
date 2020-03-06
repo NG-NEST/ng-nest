@@ -1,6 +1,6 @@
-import { XId, XQuery, XResultList } from "../interfaces";
-import { XHttpService } from "./http.service";
-import { Observable } from "rxjs";
+import { XId, XQuery, XResultList } from '../interfaces';
+import { XHttpService } from './http.service';
+import { Observable } from 'rxjs';
 
 export interface XRepositoryInput {
   controller: XController;

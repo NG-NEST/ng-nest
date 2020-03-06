@@ -9,9 +9,9 @@ import {
   SimpleChange,
   ElementRef,
   Renderer2
-} from "@angular/core";
+} from '@angular/core';
 
-@Directive({ selector: "[xOutlet]" })
+@Directive({ selector: '[xOutlet]' })
 export class XOutletDirective implements OnChanges {
   @Input() xOutletContext;
   @Input() xOutlet: any | TemplateRef<any>;

@@ -11,13 +11,13 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges
-} from "@angular/core";
-import { chunk } from "@ng-nest/ui/core";
+} from '@angular/core';
+import { chunk } from '@ng-nest/ui/core';
 
 @Component({
-  selector: "x-picker-year",
-  templateUrl: "./picker-year.component.html",
-  styleUrls: ["./picker-year.component.scss"],
+  selector: 'x-picker-year',
+  templateUrl: './picker-year.component.html',
+  styleUrls: ['./picker-year.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

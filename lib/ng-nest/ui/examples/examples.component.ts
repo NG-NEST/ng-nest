@@ -1,16 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef} from "@angular/core";
-import { ExamplesPrefix } from "./examples.type";
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { ExamplesPrefix } from './examples.type';
 
 @Component({
-  selector: "x-examples",
-  templateUrl: "./examples.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-examples',
+  templateUrl: './examples.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,8 +1,8 @@
 // Tag
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin tag {
   display: inline-flex;
@@ -34,16 +34,16 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
-  @include size("large", 2.175rem, 1rem);
-  @include size("medium", 1.875rem, 0.8rem);
-  @include size("small", 1.5rem, 0.3rem);
-  @include size("mini", 1.375rem, 0.25rem);
+  @include size('large', 2.175rem, 1rem);
+  @include size('medium', 1.875rem, 0.8rem);
+  @include size('small', 1.5rem, 0.3rem);
+  @include size('mini', 1.375rem, 0.25rem);
 
-  @include type("primary", $--x-primary, $--x-primary-600, $--x-primary-900);
-  @include type("success", $--x-success, $--x-success-600, $--x-success-900);
-  @include type("warning", $--x-warning, $--x-warning-600, $--x-warning-900);
-  @include type("danger", $--x-danger, $--x-danger-600, $--x-danger-900);
-  @include type("info", $--x-info, $--x-info-600, $--x-info-900);
+  @include type('primary', $--x-primary, $--x-primary-600, $--x-primary-900);
+  @include type('success', $--x-success, $--x-success-600, $--x-success-900);
+  @include type('warning', $--x-warning, $--x-warning-600, $--x-warning-900);
+  @include type('danger', $--x-danger, $--x-danger-600, $--x-danger-900);
+  @include type('info', $--x-info, $--x-info-600, $--x-info-900);
 }
 
 @mixin type($type, $color, $border-color, $background-color) {

@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XSliderComponent } from "./slider.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XSliderComponent } from './slider.component';
 
 @NgModule({
   declarations: [XSliderComponent],

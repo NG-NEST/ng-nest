@@ -1,10 +1,10 @@
-import { XIconModule } from "@ng-nest/ui/icon";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XOutletModule } from "./outlet.module";
-import { XOutletPrefix } from "./outlet.type";
-import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from "@ng-nest/ui/core";
+import { XIconModule } from '@ng-nest/ui/icon';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XOutletModule } from './outlet.module';
+import { XOutletPrefix } from './outlet.type';
+import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 
 describe(XOutletPrefix, () => {
   beforeEach(async(() => {
@@ -20,7 +20,7 @@ describe(XOutletPrefix, () => {
       fixture = TestBed.createComponent(TestXOutletComponent);
       fixture.detectChanges();
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(true).toBe(true);
     });
   });
@@ -54,5 +54,5 @@ describe(XOutletPrefix, () => {
   ]
 })
 class TestXOutletComponent {
-  label = "字符串";
+  label = '字符串';
 }

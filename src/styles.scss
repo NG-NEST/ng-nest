@@ -1,99 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "src/styles/index";
-@import "~@angular/cdk/overlay-prebuilt.css";
+@import 'src/styles/index';
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 @font-face {
-  font-family: "titillium";
-  src: url("assets/fonts/titillium.eot?#") format("eot"), url("assets/fonts/titillium.woff") format("woff"),
-    url("assets/fonts/titillium.ttf") format("truetype"), url("assets/fonts/titillium.svg#titillium") format("svg");
+  font-family: 'titillium';
+  src: url('assets/fonts/titillium.eot?#') format('eot'), url('assets/fonts/titillium.woff') format('woff'),
+    url('assets/fonts/titillium.ttf') format('truetype'), url('assets/fonts/titillium.svg#titillium') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "ubuntu";
-  src: url("assets/fonts/ubuntu.eot?#") format("eot"), url("assets/fonts/ubuntu.ttf") format("truetype"),
-    url("assets/fonts/ubuntu.woff") format("woff"), url("assets/fonts/ubuntu.svg#ubuntu") format("svg");
+  font-family: 'ubuntu';
+  src: url('assets/fonts/ubuntu.eot?#') format('eot'), url('assets/fonts/ubuntu.ttf') format('truetype'),
+    url('assets/fonts/ubuntu.woff') format('woff'), url('assets/fonts/ubuntu.svg#ubuntu') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "iconfont";
-  src: url("assets/fonts/iconfont.eot?#") format("eot"), url("assets/fonts/iconfont.woff") format("woff"),
-    url("assets/fonts/iconfont.ttf") format("truetype"), url("assets/fonts/iconfont.svg#iconfont") format("svg");
+  font-family: 'iconfont';
+  src: url('assets/fonts/iconfont.eot?#') format('eot'), url('assets/fonts/iconfont.woff') format('woff'),
+    url('assets/fonts/iconfont.ttf') format('truetype'), url('assets/fonts/iconfont.svg#iconfont') format('svg');
 }
 
 .icon {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-angular:before {
-  content: "\f164";
+  content: '\f164';
 }
 
 .icon-nest:before {
-  content: "\e601";
+  content: '\e601';
 }
 
 .icon-check:before {
-  content: "\e600";
+  content: '\e600';
 }
 
 .icon-checkout:before {
-  content: "\e62c";
+  content: '\e62c';
 }
 
 .icon-wait:before {
-  content: "\e615";
+  content: '\e615';
 }
 
 .icon-github:before {
-  content: "\e64a";
+  content: '\e64a';
 }
 
 .icon-arrow-right:before {
-  content: "\f165";
+  content: '\f165';
 }
 
 .icon-arrow-down:before {
-  content: "\e602";
+  content: '\e602';
 }
 
 .icon-workflow:before {
-  content: "\e66a";
+  content: '\e66a';
 }
 
 .icon-ui:before {
-  content: "\e652";
+  content: '\e652';
 }
 
 .icon-code:before {
-  content: "\e61c";
+  content: '\e61c';
 }
 
 .icon-module:before {
-  content: "\e757";
+  content: '\e757';
 }
 
 .icon-form:before {
-  content: "\e603";
+  content: '\e603';
 }
 
 .icon-cicle:before {
-  content: "\e6a4";
+  content: '\e6a4';
 }
 
 .icon-corners:before {
-  content: "\e60a";
+  content: '\e60a';
 }
 
 .icon-code:before {
-  content: "\e8b9";
+  content: '\e8b9';
 }
 
 *,
@@ -169,7 +169,7 @@ tt {
 
 body,
 input {
-  font-family: "ubuntu", -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+  font-family: 'ubuntu', -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
     WenQuanYi Micro Hei, sans-serif;
 }
 

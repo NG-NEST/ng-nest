@@ -1,8 +1,8 @@
 // Checkbox
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin checkbox {
   display: inline-flex;
@@ -18,9 +18,9 @@
     cursor: pointer;
     transition: all 0.3s;
     &:hover {
-      color: var(--x-primary);
+      color: $--x-primary;
       .#{$--x-checkbox-prefix}-box {
-        border-color: var(--x-primary);
+        border-color: $--x-primary;
       }
     }
     &:last-child {
@@ -28,26 +28,26 @@
     }
     &.x-indeterminate {
       .#{$--x-checkbox-prefix}-box {
-        border-color: var(--x-primary);
+        border-color: $--x-primary;
         &::after {
           top: 50%;
           left: 50%;
           width: 0.5rem;
           height: 0.5rem;
-          background-color: var(--x-primary);
+          background-color: $--x-primary;
           border: 0;
           transform: translate(-50%, -50%) scale(1);
           opacity: 1;
-          content: " ";
+          content: ' ';
         }
       }
     }
     &.x-checked {
       .#{$--x-checkbox-prefix}-box {
-        border-color: var(--x-primary);
-        background-color: var(--x-primary);
+        border-color: $--x-primary;
+        background-color: $--x-primary;
         &::after {
-          border: 0.125rem solid var(--x-white);
+          border: 0.125rem solid $--x-white;
           border-top: 0;
           border-left: 0;
           top: 0.35rem;
@@ -56,8 +56,8 @@
           height: 0.6rem;
           transform: rotate(40deg) scale(1) translate(-50%, -50%);
           opacity: 1;
-          transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-          content: " ";
+          transition: all 0.2s;
+          content: ' ';
         }
       }
     }
@@ -66,17 +66,17 @@
     }
   }
   &-box {
-    border: $--x-border-width solid var(--x-border);
+    border: $--x-border-width solid $--x-border;
     width: 1rem;
     height: 1rem;
     border-radius: 0.0625rem;
-    background-color: var(--x-white);
+    background-color: $--x-white;
     position: relative;
     display: inline-block;
     box-sizing: border-box;
     transition: all 0.3s;
     &:hover {
-      border-color: var(--x-primary);
+      border-color: $--x-primary;
     }
     &::after {
       position: absolute;
@@ -85,13 +85,13 @@
       display: inline-block;
       width: 0.3rem;
       height: 0.6rem;
-      border: 0.125rem solid var(--x-white);
+      border: 0.125rem solid $--x-white;
       border-top: 0;
       border-left: 0;
       transform: rotate(40deg) scale(0) translate(-50%, -50%);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-      content: " ";
+      transition: all 0.3s;
+      content: ' ';
     }
   }
   &-label {
@@ -99,19 +99,30 @@
   }
   &.x-disabled {
     .#{$--x-checkbox-prefix}-item {
+      &.x-indeterminate {
+        .#{$--x-checkbox-prefix}-box::after {
+          background-color: $--x-text-300;
+        }
+      }
+      &.x-checked {
+        .#{$--x-checkbox-prefix}-box::after {
+          background-color: transparent;
+        }
+      }
       @include disabled();
     }
   }
 }
 
 @mixin disabled {
-  color: var(--x-text-300);
+  color: $--x-text-300;
   cursor: not-allowed;
   .#{$--x-checkbox-prefix}-box {
-    border-color: var(--x-border-300);
-    background-color: var(--x-border-100);
+    border-color: $--x-border-300;
+    background-color: $--x-border-100;
     &::after {
-      border-color: var(--x-text-300);
+      border-color: $--x-text-300;
+      background-color: transparent;
     }
   }
 }

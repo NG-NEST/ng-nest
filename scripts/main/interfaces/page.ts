@@ -1,7 +1,7 @@
-import { firstLetterCapital } from "../utils";
-import { NcTemplate, NcTemplateType } from "./template";
+import { firstLetterCapital } from '../utils';
+import { NcTemplate, NcTemplateType } from './template';
 
-export const ncPrefix = "ns";
+export const ncPrefix = 'ns';
 
 export class NcPage {
   prefix: string;
@@ -10,13 +10,13 @@ export class NcPage {
   fileName?: string;
   comName?: string;
   capName?: string;
-  custom?: string = "";
-  genDir?: string = "";
+  custom?: string = '';
+  genDir?: string = '';
   templates?: NcTemplate[] = [];
-  type?: NcTemplateType = "default";
+  type?: NcTemplateType = 'default';
   copyDir?: NcCopyDir[] = [];
   children?: NcPage[] = [];
-  path?: string = "";
+  path?: string = '';
   order?: number;
   constructor(param: NcPage) {
     Object.assign(this, param);
@@ -28,9 +28,9 @@ export class NcPage {
     }
     if (!this.capName) {
       this.capName = this.comName
-        .split("-")
+        .split('-')
         .map(x => firstLetterCapital(x))
-        .join("");
+        .join('');
     }
   }
 }

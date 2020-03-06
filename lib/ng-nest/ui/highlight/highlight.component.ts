@@ -10,15 +10,15 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild
-} from "@angular/core";
-import { HighlightPrefix, XHighlightInput } from "./highlight.type";
-import { fillDefault } from "@ng-nest/ui/core";
-import * as hljs from "highlight.js";
+} from '@angular/core';
+import { HighlightPrefix, XHighlightInput } from './highlight.type';
+import { fillDefault } from '@ng-nest/ui/core';
+import * as hljs from 'highlight.js';
 
 @Component({
-  selector: "x-highlight",
-  templateUrl: "./highlight.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-highlight',
+  templateUrl: './highlight.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -26,7 +26,7 @@ export class XHighlightComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() type?: string;
   @Input() data?: string;
 
-  @ViewChild("code", { static: false }) codeRef: ElementRef;
+  @ViewChild('code', { static: false }) codeRef: ElementRef;
 
   private _default: XHighlightInput = {};
 
@@ -41,10 +41,10 @@ export class XHighlightComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     const dataChange = changes.data;
     if (
-      typeof dataChange != "undefined" &&
-      typeof dataChange.currentValue != "undefined" &&
+      typeof dataChange != 'undefined' &&
+      typeof dataChange.currentValue != 'undefined' &&
       typeof dataChange.currentValue != null &&
-      dataChange.currentValue != "" &&
+      dataChange.currentValue != '' &&
       dataChange.currentValue !== dataChange.previousValue
     ) {
       setTimeout(() => hljs.highlightBlock(this.codeRef.nativeElement));
@@ -52,11 +52,7 @@ export class XHighlightComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (
-      typeof this.data != "undefined" &&
-      typeof this.data != null &&
-      this.data != ""
-    ) {
+    if (typeof this.data != 'undefined' && typeof this.data != null && this.data != '') {
       hljs.highlightBlock(this.codeRef.nativeElement);
     }
   }

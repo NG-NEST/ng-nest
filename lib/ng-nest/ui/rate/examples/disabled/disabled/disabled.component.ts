@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-disabled",
-  templateUrl: "./disabled.component.html",
-  styleUrls: ["./disabled.component.scss"]
+  selector: 'ex-disabled',
+  templateUrl: './disabled.component.html',
+  styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent implements OnInit {
   model = 3;

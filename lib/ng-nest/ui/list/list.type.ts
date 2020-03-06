@@ -1,11 +1,11 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from "@ng-nest/ui/core";
+import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * List 组件名
  * @selector x-list
  * @decorator component
  */
-export const XListPrefix = "x-list";
+export const XListPrefix = 'x-list';
 
 /**
  * List @List

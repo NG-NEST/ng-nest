@@ -1,4 +1,4 @@
-import { XListNode } from "@ng-nest/ui/list";
+import { XListNode } from '@ng-nest/ui/list';
 import {
   Component,
   ViewEncapsulation,
@@ -10,24 +10,24 @@ import {
   OnDestroy,
   ViewChild,
   ElementRef
-} from "@angular/core";
-import { XTimePickerPortal, XTimePickerType } from "./time-picker.type";
-import { XIsEmpty, reqAnimFrame } from "@ng-nest/ui/core";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { XTimePickerPortal, XTimePickerType } from './time-picker.type';
+import { XIsEmpty, reqAnimFrame } from '@ng-nest/ui/core';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "x-time-picker-portal",
-  templateUrl: "./time-picker-portal.component.html",
-  styleUrls: ["./time-picker-portal.component.scss"],
+  selector: 'x-time-picker-portal',
+  templateUrl: './time-picker-portal.component.html',
+  styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTimePickerPortalComponent implements OnInit, OnDestroy {
-  @ViewChild("hourRef", { static: true }) hourRef: ElementRef;
-  @ViewChild("minuteRef", { static: true }) minuteRef: ElementRef;
-  @ViewChild("secondRef", { static: true }) secondRef: ElementRef;
+  @ViewChild('hourRef', { static: true }) hourRef: ElementRef;
+  @ViewChild('minuteRef', { static: true }) minuteRef: ElementRef;
+  @ViewChild('secondRef', { static: true }) secondRef: ElementRef;
   now = new Date();
-  type: XTimePickerType = "time";
+  type: XTimePickerType = 'time';
   model: Date;
   _type: XTimePickerType;
 
@@ -72,7 +72,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     });
     setTimeout(
       () =>
-        (this.docClickFunction = this.renderer.listen("document", "click", () => {
+        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
           this.option.closePortal();
         }))
     );
@@ -88,7 +88,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   prefixZero(num: number, n: number) {
-    return (Array(n).join("0") + num).slice(-n);
+    return (Array(n).join('0') + num).slice(-n);
   }
 
   init() {
@@ -130,21 +130,21 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   hourClick(date: XListNode) {
-    this.hour = date.value;
+    this.hour = date.id;
     this.model.setHours(this.hour);
     this.option.nodeEmit(this.model);
     this.scrollTo(this.hourRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);
   }
 
   minuteClick(date: XListNode) {
-    this.minute = date.value;
+    this.minute = date.id;
     this.model.setMinutes(this.minute);
     this.option.nodeEmit(this.model);
     this.scrollTo(this.minuteRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);
   }
 
   secondClick(date: XListNode) {
-    this.second = date.value;
+    this.second = date.id;
     this.model.setSeconds(this.second);
     this.option.nodeEmit(this.model);
     this.scrollTo(this.secondRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);

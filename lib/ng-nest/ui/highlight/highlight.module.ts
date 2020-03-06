@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { XHighlightComponent } from "./highlight.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { XHighlightComponent } from './highlight.component';
 
 @NgModule({
   declarations: [XHighlightComponent],

@@ -11,8 +11,8 @@ import {
   SimpleChanges,
   OnChanges,
   TemplateRef
-} from "@angular/core";
-import { XProgressPrefix, XProgressStatus } from "./progress.type";
+} from '@angular/core';
+import { XProgressPrefix, XProgressStatus } from './progress.type';
 import {
   XInputBoolean,
   XSize,
@@ -23,24 +23,24 @@ import {
   XIsArray,
   XIsObjectArray,
   XIsEmpty
-} from "@ng-nest/ui/core";
+} from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XProgressPrefix}`,
-  templateUrl: "./progress.component.html",
-  styleUrls: ["./progress.component.scss"],
+  templateUrl: './progress.component.html',
+  styleUrls: ['./progress.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XProgressComponent implements OnInit, OnChanges {
   @Input() @XInputNumber() percent: number = 0;
-  @Input() height: string = "0.5rem";
-  @Input() status: XProgressStatus = "normal";
+  @Input() height: string = '0.5rem';
+  @Input() status: XProgressStatus = 'normal';
   @Input() @XInputBoolean() info: boolean = true;
   @Input() @XInputBoolean() inside: boolean = false;
   @Input() format?: Function;
   @Input() color?: string | { color: string; percent: number }[] | Function;
-  @ViewChild("progress", { static: true }) progress: ElementRef;
+  @ViewChild('progress', { static: true }) progress: ElementRef;
   classMap = {};
   currentColor: string;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}

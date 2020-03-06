@@ -1,11 +1,11 @@
-import { XJustify, XAlign } from "@ng-nest/ui/core";
+import { XJustify, XAlign } from '@ng-nest/ui/core';
 
 /**
  * Row 组件名
  * @selector x-row
  * @decorator component
  */
-export const XRowPrefix = "x-row";
+export const XRowPrefix = 'x-row';
 
 /**
  * Row @Input
@@ -30,7 +30,7 @@ export interface XRowInput {
  * @selector x-col
  * @decorator component
  */
-export const XColPrefix = "x-col";
+export const XColPrefix = 'x-col';
 
 /**
  * Col @Input

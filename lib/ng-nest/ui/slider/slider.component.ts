@@ -13,7 +13,7 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter
-} from "@angular/core";
+} from '@angular/core';
 import {
   SliderPrefix,
   XSliderInput,
@@ -21,15 +21,15 @@ import {
   XSliderNode,
   XSliderLayoutType,
   XSliderBorderPositionType
-} from "./slider.type";
-import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert, XInputBoolean } from "@ng-nest/ui/core";
-import { Subscription, Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from './slider.type';
+import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert, XInputBoolean } from '@ng-nest/ui/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: "x-slider",
-  templateUrl: "./slider.component.html",
-  styleUrls: ["./style/index.scss"],
+  selector: 'x-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -61,21 +61,21 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   private _default: XSliderInput = {
     data: [],
-    layout: "row",
+    layout: 'row',
     activatedIndex: 0
   };
 
-  @ViewChild("sliders", { static: true }) slidersRef: ElementRef;
-  @ViewChild("highlight", { static: true }) highlightRef: ElementRef;
+  @ViewChild('sliders', { static: true }) slidersRef: ElementRef;
+  @ViewChild('highlight', { static: true }) highlightRef: ElementRef;
   sliderNodes: XSliderNode[] = [];
 
   private data$: Subscription | null = null;
 
   @HostBinding(`class.x-slider-row`)
   get getLayoutRow() {
-    if (this.layout === "row") {
-      if (["left", "right"].indexOf(this.borderPosition) > -1) {
-        this.borderPosition = "bottom";
+    if (this.layout === 'row') {
+      if (['left', 'right'].indexOf(this.borderPosition) > -1) {
+        this.borderPosition = 'bottom';
       }
       return true;
     }
@@ -84,9 +84,9 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.x-slider-column`)
   get getLayoutColumn() {
-    if (this.layout === "column") {
-      if (["top", "bottom"].indexOf(this.borderPosition) > -1) {
-        this.borderPosition = "left";
+    if (this.layout === 'column') {
+      if (['top', 'bottom'].indexOf(this.borderPosition) > -1) {
+        this.borderPosition = 'left';
       }
       return true;
     }
@@ -95,27 +95,27 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   @HostBinding(`class.x-slider-border-position-top`)
   get getBorderPositionTop() {
-    return this.borderPosition === "top";
+    return this.borderPosition === 'top';
   }
 
   @HostBinding(`class.x-slider-border-position-right`)
   get getBorderPositionRight() {
-    return this.borderPosition === "right";
+    return this.borderPosition === 'right';
   }
 
   @HostBinding(`class.x-slider-border-position-bottom`)
   get getBorderPositionBottom() {
-    return this.borderPosition === "bottom";
+    return this.borderPosition === 'bottom';
   }
 
   @HostBinding(`class.x-slider-border-position-left`)
   get getBorderPositionLeft() {
-    return this.borderPosition === "left";
+    return this.borderPosition === 'left';
   }
 
   @HostBinding(`class.x-slider-border-show`)
   get getBorderHidden() {
-    return typeof this.borderPosition !== "undefined";
+    return typeof this.borderPosition !== 'undefined';
   }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
@@ -144,7 +144,7 @@ export class XSliderComponent implements OnInit, OnChanges {
 
   action(type: string, option?: any, index?: any) {
     switch (type) {
-      case "click":
+      case 'click':
         this.activatedIndex = index;
         this.activatedSlider = option;
         this.setHighlight();
@@ -160,11 +160,11 @@ export class XSliderComponent implements OnInit, OnChanges {
   setHighlight() {
     const activeEle = this.slidersRef.nativeElement.querySelector(`li:nth-child(${this.activatedIndex + 1})`);
     if (!activeEle) return;
-    const width = this.layout == "column" ? "100%" : `${activeEle.offsetWidth}px`;
-    this.renderer.setStyle(this.highlightRef.nativeElement, "width", width);
-    this.renderer.setStyle(this.highlightRef.nativeElement, "height", `${activeEle.offsetHeight}px`);
-    this.renderer.setStyle(this.highlightRef.nativeElement, "left", `${activeEle.offsetLeft}px`);
-    this.renderer.setStyle(this.highlightRef.nativeElement, "top", `${activeEle.offsetTop}px`);
+    const width = this.layout == 'column' ? '100%' : `${activeEle.offsetWidth}px`;
+    this.renderer.setStyle(this.highlightRef.nativeElement, 'width', width);
+    this.renderer.setStyle(this.highlightRef.nativeElement, 'height', `${activeEle.offsetHeight}px`);
+    this.renderer.setStyle(this.highlightRef.nativeElement, 'left', `${activeEle.offsetLeft}px`);
+    this.renderer.setStyle(this.highlightRef.nativeElement, 'top', `${activeEle.offsetTop}px`);
     this.highlightHidden = activeEle.offsetWidth === 0 && activeEle.offsetHeight === 0;
   }
 
@@ -173,7 +173,7 @@ export class XSliderComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === "undefined") return;
+    if (typeof this.data === 'undefined') return;
     if (XIsObservable(this.data)) {
       this.data$ && this.data$.unsubscribe();
       this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {

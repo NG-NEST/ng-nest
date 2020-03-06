@@ -1,5 +1,5 @@
 // tslint:disable:no-any typedef no-invalid-this
-const availablePrefixes = ["moz", "ms", "webkit"];
+const availablePrefixes = ['moz', 'ms', 'webkit'];
 
 // function requestAnimationFramePolyfill(): typeof requestAnimationFrame {
 //   let lastTime = 0;
@@ -28,7 +28,7 @@ function getRequestAnimationFrame(): typeof requestAnimationFrame {
 
   // return prefix
   //   ? (window as any)[`${prefix}RequestAnimationFrame`]
-    // : requestAnimationFramePolyfill();
+  // : requestAnimationFramePolyfill();
 }
 // export function cancelRequestAnimationFrame(id: number): any {
 //   if (typeof window === "undefined") {

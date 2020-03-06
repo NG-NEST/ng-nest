@@ -1,5 +1,5 @@
 ---
 order: 1
-label: "UI库"
-type: "router"
+label: 'UI库'
+type: 'router'
 ---

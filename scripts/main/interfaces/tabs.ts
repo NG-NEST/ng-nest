@@ -94,8 +94,8 @@ export interface NcTab {
  * @enum {number}
  */
 export enum NcTabsLayoutEnum {
-  Top = "top",
-  Right = "right",
-  Bottom = "bottom",
-  Left = "left"
+  Top = 'top',
+  Right = 'right',
+  Bottom = 'bottom',
+  Left = 'left'
 }

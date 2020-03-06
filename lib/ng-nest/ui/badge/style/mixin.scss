@@ -1,8 +1,8 @@
 // Badge
 
-@import "../../style/themes/default";
-@import "../../style/mixins/index";
-@import "./param";
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
 
 @mixin badge {
   font-size: $--x-font-size;
@@ -37,17 +37,17 @@
       border-radius: 50%;
     }
   }
-  @include badge-type("primary", $--x-primary);
-  @include badge-type("success", $--x-success);
-  @include badge-type("info", $--x-info);
-  @include badge-type("warning", $--x-warning);
-  @include badge-type("danger", $--x-danger);
-  @include badge-type("text", $--x-text);
+  @include badge-type('primary', $--x-primary);
+  @include badge-type('success', $--x-success);
+  @include badge-type('info', $--x-info);
+  @include badge-type('warning', $--x-warning);
+  @include badge-type('danger', $--x-danger);
+  @include badge-type('text', $--x-text);
 }
 
 @mixin badge-type($type, $color) {
-  @if $type!= "" {
-    $type: "-" + $type;
+  @if $type!= '' {
+    $type: '-' + $type;
   }
   &#{$type} {
     > sup {

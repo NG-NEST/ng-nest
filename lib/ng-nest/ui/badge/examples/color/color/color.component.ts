@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "ex-color",
-  templateUrl: "./color.component.html",
-  styleUrls: ["./color.component.scss"]
+  selector: 'ex-color',
+  templateUrl: './color.component.html',
+  styleUrls: ['./color.component.scss']
 })
 export class ExColorComponent implements OnInit {
   constructor() {}

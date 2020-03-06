@@ -1,11 +1,11 @@
-import { XTemplate, XType, XSize } from "@ng-nest/ui/core";
+import { XTemplate, XType, XSize } from '@ng-nest/ui/core';
 
 /**
  * Tag 组件名
  * @selector x-tag
  * @decorator component
  */
-export const XTagPrefix = "x-tag";
+export const XTagPrefix = 'x-tag';
 
 /**
  * Tag @Input

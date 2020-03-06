@@ -1,6 +1,6 @@
 ---
-label: "Empty 空状态"
-category: "Data"
+label: 'Empty 空状态'
+category: 'Data'
 ---
 
 # Empty 空状态

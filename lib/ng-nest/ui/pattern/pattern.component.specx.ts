@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XPatternComponent } from "./pattern.component";
-import { Component, DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XPatternModule } from "./pattern.module";
-import { PatternPrefix } from "./pattern.type";
+import { XPatternComponent } from './pattern.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XPatternModule } from './pattern.module';
+import { PatternPrefix } from './pattern.type';
 
 describe(PatternPrefix, () => {
   beforeEach(async(() => {
@@ -23,10 +23,10 @@ describe(PatternPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XPatternComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it("should className.", () => {
+    it('should className.', () => {
       fixture.detectChanges();
       expect(element.classList).toContain(PatternPrefix);
     });
@@ -34,7 +34,7 @@ describe(PatternPrefix, () => {
 });
 
 @Component({
-  selector: "test-x-Pattern",
+  selector: 'test-x-Pattern',
   template: `
     <x-pattern>x-pattern</x-pattern>
   `

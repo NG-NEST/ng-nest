@@ -1,11 +1,11 @@
-import { XIdentityInput, XData } from "@ng-nest/ui/core";
+import { XIdentityInput, XData } from '@ng-nest/ui/core';
 
 /**
  * Upload 组件名
  * @selector x-upload
  * @decorator component
  */
-export const XUploadPrefix = "x-upload";
+export const XUploadPrefix = 'x-upload';
 
 /**
  * Upload @Input
@@ -54,4 +54,4 @@ export interface XUploadNode extends File {
  * @value "success" 上传成功
  * @value "error" 上传失败
  */
-export type XStateType = "ready" | "uploading" | "success" | "error";
+export type XStateType = 'ready' | 'uploading' | 'success' | 'error';

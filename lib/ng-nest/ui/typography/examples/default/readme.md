@@ -1,4 +1,4 @@
 ---
 order: 1
-label: "字体"
+label: '字体'
 ---

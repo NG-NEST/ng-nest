@@ -1,4 +1,4 @@
-import { XIsDate, XIsString, XIsNumber } from "../interfaces";
+import { XIsDate, XIsString, XIsNumber } from '../interfaces';
 
 export type XDate = string | Date | number;
 

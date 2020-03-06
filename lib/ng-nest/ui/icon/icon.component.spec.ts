@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XIconComponent } from "./icon.component";
-import { Component, DebugElement, ChangeDetectorRef } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { XIconModule } from "./icon.module";
-import { XIconPrefix } from "./icon.type";
+import { XIconComponent } from './icon.component';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { XIconModule } from './icon.module';
+import { XIconPrefix } from './icon.type';
 
 describe(XIconPrefix, () => {
   beforeEach(async(() => {
@@ -25,14 +25,14 @@ describe(XIconPrefix, () => {
       debugElement = fixture.debugElement.query(By.directive(XIconComponent));
       element = debugElement.nativeElement;
     });
-    it("should create.", () => {
+    it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
 });
 
 @Component({
-  selector: "test-x-icon",
+  selector: 'test-x-icon',
   template: `
     <div style="height: 2000px">
       <x-icon type="ado-plus-123123" to="ado-pause"></x-icon>

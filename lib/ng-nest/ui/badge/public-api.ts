@@ -1,3 +1,3 @@
-export * from "./badge.component";
-export * from "./badge.module";
-export * from "./badge.type";
+export * from './badge.component';
+export * from './badge.module';
+export * from './badge.type';

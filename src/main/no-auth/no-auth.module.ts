@@ -4,11 +4,8 @@ import { NoAuthComponent } from './no-auth.component';
 import { NoAuthRoutesModule } from './no-auth-routes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NoAuthRoutesModule
-  ],
+  imports: [CommonModule, NoAuthRoutesModule],
   declarations: [NoAuthComponent],
   exports: [NoAuthComponent]
 })
-export class NoAuthModule { }
+export class NoAuthModule {}
