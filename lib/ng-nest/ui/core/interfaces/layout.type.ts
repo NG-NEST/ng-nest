@@ -24,6 +24,11 @@ export type XType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'tex
 export type XClassMap = { [property: string]: boolean };
 
 /**
+ * 样式主题
+ */
+export type XEffect = 'light' | 'dark';
+
+/**
  * 尺寸
  * @value "large" 大型
  * @value "medium" 中等

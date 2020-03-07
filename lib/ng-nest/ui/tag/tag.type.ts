@@ -22,7 +22,7 @@ export interface XTagInput {
   /**
    * 显示关闭按钮
    */
-  closeable?: boolean;
+  closable?: boolean;
   /**
    * 深色主题
    */

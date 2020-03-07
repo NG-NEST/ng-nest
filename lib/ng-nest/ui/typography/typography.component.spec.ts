@@ -76,29 +76,29 @@ describe(XTypographyPrefix, () => {
         <x-col span="24">
           <table>
             <tr>
-              <th width="60">行高</th>
-              <th width="120">值</th>
+              <th width="80">行高</th>
+              <th width="140">值</th>
               <th>显示</th>
             </tr>
             <tr>
               <td>无行高</td>
-              <td>line-height: 1</td>
-              <td [style.line-height]="1" [innerHtml]="textLineHeight"></td>
+              <td>line-height: 1rem</td>
+              <td [style.line-height.rem]="1" [innerHtml]="text"></td>
             </tr>
             <tr>
               <td>紧凑</td>
-              <td>line-height: 1.3</td>
-              <td [style.line-height]="1.3" [innerHtml]="textLineHeight"></td>
+              <td>line-height: 1.3rem</td>
+              <td [style.line-height.rem]="1.3" [innerHtml]="text"></td>
             </tr>
             <tr>
               <td>常规</td>
-              <td>line-height: 1.5</td>
-              <td [style.line-height]="1.5" [innerHtml]="textLineHeight"></td>
+              <td>line-height: 1.5rem</td>
+              <td [style.line-height.rem]="1.5" [innerHtml]="text"></td>
             </tr>
             <tr>
               <td>常规</td>
-              <td>line-height: 1.7</td>
-              <td [style.line-height]="1.7" [innerHtml]="textLineHeight"></td>
+              <td>line-height: 1.7rem</td>
+              <td [style.line-height.rem]="1.7" [innerHtml]="text"></td>
             </tr>
           </table>
         </x-col>

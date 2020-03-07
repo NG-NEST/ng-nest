@@ -12,14 +12,14 @@ import {
   Optional
 } from '@angular/core';
 import { XCollapsePanelPrefix } from './collapse.type';
-import { XInputBoolean, dropAnimation, XIsString } from '@ng-nest/ui/core';
+import { XInputBoolean, XDropAnimation, XIsString } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
   templateUrl: './collapse-panel.component.html',
   styleUrls: ['./collapse-panel.component.scss'],
-  animations: [dropAnimation],
+  animations: [XDropAnimation],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

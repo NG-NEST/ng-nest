@@ -119,7 +119,7 @@ describe(XBorderPrefix, () => {
       }
       div.box span {
         display: block;
-        line-height: 1.7;
+        line-height: 1.7rem;
         font-size: 1rem;
       }
       div.box span.value {

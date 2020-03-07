@@ -13,12 +13,12 @@
     align-items: center;
     height: 1.625rem;
     cursor: pointer;
-    transition: $--x-animation-duration-fast;
+    transition: $--x-animation-duration-base;
     x-icon {
       padding: 0.125rem;
       color: $--x-text-400;
       font-size: 1rem;
-      transition: $--x-animation-duration-fast;
+      transition: $--x-animation-duration-base;
       &.is-leaf {
         visibility: hidden;
       }

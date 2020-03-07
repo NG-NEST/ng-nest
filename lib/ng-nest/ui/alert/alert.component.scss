@@ -1,0 +1,14 @@
+// Alert
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-alert} {
+  display: block;
+}
+
+.#{$--x-alert} {
+  @include reset-component();
+  @include alert();
+}

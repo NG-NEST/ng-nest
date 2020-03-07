@@ -46,7 +46,7 @@
     }
     > #{$--x-prefix}-icon {
       color: $--x-text-400;
-      transition: all $--x-animation-duration-fast;
+      transition: all $--x-animation-duration-base;
     }
   }
   &.x-required {

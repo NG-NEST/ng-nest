@@ -1,6 +1,7 @@
 import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from '@angular/animations';
+import { XDuration } from './consts';
 
-export const fadeAnimation: AnimationTriggerMetadata = trigger('fadeAnimation', [
+export const XFadeAnimation: AnimationTriggerMetadata = trigger('XFadeAnimation', [
   state(
     'true',
     style({
@@ -11,9 +12,8 @@ export const fadeAnimation: AnimationTriggerMetadata = trigger('fadeAnimation', 
   state(
     'false',
     style({
-      opacity: 1,
-      display: 'block'
+      opacity: 1
     })
   ),
-  transition('* => *', animate(`250ms ease-in-out`))
+  transition('* => *', animate(`${XDuration.Base} ease-in-out`))
 ]);

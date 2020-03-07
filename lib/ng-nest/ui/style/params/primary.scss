@@ -116,7 +116,7 @@ $--x-font-size-sm: $--x-font-size - 0.125rem;
 $--x-font-size-md: $--x-font-size + 0.125rem;
 $--x-font-size-lg: $--x-font-size-md + 0.125rem;
 $--x-font-size-bg: $--x-font-size-lg + 0.125rem;
-$--x-line-height: 1.5;
+$--x-line-height: 1.5rem;
 $--x-placeholder-color: $--x-info-700;
 
 // Paddings
@@ -133,9 +133,9 @@ $--x-border-radius: 0.125rem;
 $--x-border-width: 0.0625rem;
 
 // Animation
-$--x-animation-duration-slow: 0.6s;
-$--x-animation-duration-base: 0.4s;
-$--x-animation-duration-fast: 0.2s;
+$--x-animation-duration-slow: 0.3s;
+$--x-animation-duration-base: 0.2s;
+$--x-animation-duration-fast: 0.1s;
 
 // Controls
 $control-padding-horizontal: $--x-padding-xs;

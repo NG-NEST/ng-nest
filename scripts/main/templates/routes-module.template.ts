@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { {{ __capName }}Component } from "./{{ __fileName }}.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { {{ __capName }}Component } from './{{ __fileName }}.component';
 {{ __imports }}
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: {{ __capName }}Component,
     children: [{{ __loadChildren }}]
   }

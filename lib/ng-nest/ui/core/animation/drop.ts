@@ -1,6 +1,7 @@
 import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from '@angular/animations';
+import { XDuration } from './consts';
 
-export const dropAnimation: AnimationTriggerMetadata = trigger('dropAnimation', [
+export const XDropAnimation: AnimationTriggerMetadata = trigger('XDropAnimation', [
   state(
     '*',
     style({
@@ -31,5 +32,5 @@ export const dropAnimation: AnimationTriggerMetadata = trigger('dropAnimation', 
       visibility: 'inherit'
     })
   ),
-  transition('* => *', animate(`300ms ease-out`))
+  transition('* => *', animate(`${XDuration.Base} ease-out`))
 ]);

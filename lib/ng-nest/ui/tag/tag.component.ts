@@ -24,7 +24,7 @@ import { XTemplate, XType, XClassMap, XSize, XInputBoolean } from '@ng-nest/ui/c
 export class XTagComponent implements OnInit {
   @Input() type?: XType;
   @Input() size?: XSize;
-  @Input() @XInputBoolean() closeable?: boolean;
+  @Input() @XInputBoolean() closable?: boolean;
   @Input() @XInputBoolean() dark?: boolean;
   @Output() close = new EventEmitter();
   @ViewChild('tag', { static: true }) tag: ElementRef;

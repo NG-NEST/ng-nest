@@ -21,7 +21,7 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: all $--x-animation-duration-fast ease-in-out;
+  transition: all $--x-animation-duration-base ease-in-out;
   > .x-icon {
     font-size: 1rem;
     margin-right: 0.25rem;

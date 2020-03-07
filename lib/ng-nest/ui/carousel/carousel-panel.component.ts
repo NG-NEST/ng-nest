@@ -11,7 +11,7 @@ import {
   Optional
 } from '@angular/core';
 import { XCarouselPanelPrefix } from './carousel.type';
-import { XInputBoolean, dropAnimation } from '@ng-nest/ui/core';
+import { XInputBoolean, XDropAnimation } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   selector: `${XCarouselPanelPrefix}`,
   templateUrl: './carousel-panel.component.html',
   styleUrls: ['./carousel-panel.component.scss'],
-  animations: [dropAnimation],
+  animations: [XDropAnimation],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

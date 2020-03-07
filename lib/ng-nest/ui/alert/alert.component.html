@@ -1,0 +1,29 @@
+<div #alert class="x-alert" [ngClass]="classMap" [@XFadeAnimation]="fade">
+  <ng-container *ngIf="showIcon">
+    <ng-container [ngSwitch]="type">
+      <x-icon *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
+      <x-icon *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
+      <x-icon *ngSwitchCase="'warning'" type="adf-exclamation-circle"></x-icon>
+      <x-icon *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
+    </ng-container>
+  </ng-container>
+  <div class="x-alert-content">
+    <span class="x-alert-label">
+      <ng-container *xOutlet="label">{{ label }}</ng-container>
+    </span>
+    <p class="x-alert-description" *ngIf="description">
+      <ng-container *xOutlet="description">{{ description }}</ng-container>
+    </p>
+    <x-button
+      *ngIf="!hideClose && !closeText"
+      class="x-alert-close"
+      size="small"
+      icon="fto-x"
+      (click)="onClose()"
+      onlyIcon
+    ></x-button>
+    <x-button *ngIf="closeText" class="x-alert-close" size="small" type="text" (click)="onClose()">{{
+      closeText
+    }}</x-button>
+  </div>
+</div>

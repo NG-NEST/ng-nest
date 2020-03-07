@@ -17,7 +17,7 @@
       z-index: 10;
       transform: translateY(-50%);
       position: absolute;
-      transition: $--x-animation-duration-fast ease-out;
+      transition: $--x-animation-duration-base ease-out;
       .x-button {
         border: none;
         outline: none;

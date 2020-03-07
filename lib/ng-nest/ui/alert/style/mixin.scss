@@ -1,0 +1,67 @@
+// Alert
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin alert {
+  background-color: $--x-white;
+  border: 0.0625rem solid $--x-border-100;
+  border-radius: 0.125rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &-close {
+    position: absolute;
+    top: 0.425rem;
+    right: 0.25rem;
+  }
+  > .x-icon {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+  }
+  &-content {
+    p {
+      font-size: 0.75rem;
+      line-height: 1.3rem;
+      margin: 0.25rem 0 0 0;
+    }
+  }
+  &-icon-medium {
+    > .x-icon {
+      font-size: 2rem;
+    }
+  }
+  @include type('success', $--x-success, $--x-success-800, $--x-success-700);
+  @include type('info', $--x-info, $--x-info-800, $--x-info-700);
+  @include type('warning', $--x-warning, $--x-warning-800, $--x-warning-700);
+  @include type('error', $--x-danger, $--x-danger-800, $--x-danger-700);
+}
+
+@mixin type($type, $color, $background, $border-color) {
+  &-#{$type} {
+    &.x-light {
+      color: $color;
+      background-color: $background;
+      border-color: $border-color;
+      .#{$--x-alert}-close .x-button {
+        color: $--x-text-400;
+        &:hover {
+          color: $--x-text-500;
+        }
+      }
+    }
+    &.x-dark {
+      color: $background;
+      background-color: $color;
+      border-color: $border-color;
+      .#{$--x-alert}-close .x-button {
+        color: $background;
+        &:hover {
+          color: $--x-white;
+        }
+      }
+    }
+  }
+}

@@ -59,30 +59,30 @@ describe(XTagPrefix, () => {
       <x-tag size="mini">标签</x-tag>
     </div>
     <div class="row">
-      <x-tag closeable>标签</x-tag>
-      <x-tag type="primary" closeable>标签</x-tag>
-      <x-tag type="success" closeable>标签</x-tag>
-      <x-tag type="warning" closeable>标签</x-tag>
-      <x-tag type="danger" closeable>标签</x-tag>
-      <x-tag type="info" closeable>标签</x-tag>
+      <x-tag closable>标签</x-tag>
+      <x-tag type="primary" closable>标签</x-tag>
+      <x-tag type="success" closable>标签</x-tag>
+      <x-tag type="warning" closable>标签</x-tag>
+      <x-tag type="danger" closable>标签</x-tag>
+      <x-tag type="info" closable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag dark closeable>标签</x-tag>
-      <x-tag type="primary" dark closeable>标签</x-tag>
-      <x-tag type="success" dark closeable>标签</x-tag>
-      <x-tag type="warning" dark closeable>标签</x-tag>
-      <x-tag type="danger" dark closeable>标签</x-tag>
-      <x-tag type="info" dark closeable>标签</x-tag>
+      <x-tag dark closable>标签</x-tag>
+      <x-tag type="primary" dark closable>标签</x-tag>
+      <x-tag type="success" dark closable>标签</x-tag>
+      <x-tag type="warning" dark closable>标签</x-tag>
+      <x-tag type="danger" dark closable>标签</x-tag>
+      <x-tag type="info" dark closable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag size="large" closeable>标签</x-tag>
-      <x-tag size="medium" closeable>标签</x-tag>
-      <x-tag closeable>标签</x-tag>
-      <x-tag size="small" closeable>标签</x-tag>
-      <x-tag size="mini" closeable>标签</x-tag>
+      <x-tag size="large" closable>标签</x-tag>
+      <x-tag size="medium" closable>标签</x-tag>
+      <x-tag closable>标签</x-tag>
+      <x-tag size="small" closable>标签</x-tag>
+      <x-tag size="mini" closable>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag *ngFor="let tag of tags" type="primary" closeable (close)="close(tag)">{{ tag }}</x-tag>
+      <x-tag *ngFor="let tag of tags" type="primary" closable (close)="close(tag)">{{ tag }}</x-tag>
     </div>
   `,
   styles: [

@@ -29,7 +29,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
         handlerCodeBoxes(cate, readme);
         if (cate.className) {
           mod.syswords.declarations += `, ${cate.className}`;
-          mod.syswords.imports += `import { ${cate.className} } from "${cate.rootPath}";\n`;
+          mod.syswords.imports += `import { ${cate.className} } from '${cate.rootPath}';\n`;
         }
         cates.list.push(cate);
         cates.list = _.sortBy(cates.list, 'order');
@@ -62,8 +62,10 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
       };
       if (code.type === 'ts' && code.subType === 'component') {
         code.content = code.content.replace(/\`/g, '\\`');
-        cate.selector = code.content.match(/selector: \"(\S*)\",/)[1];
-        cate.className = code.content.match(/export class (\S*) /)[1];
+        const matchSelector = code.content.match(/selector: \'(\S*)\',/);
+        const matchClassName = code.content.match(/export class (\S*) /);
+        if (matchSelector.length > 1) cate.selector = matchSelector[1];
+        if (matchClassName.length > 1) cate.className = matchClassName[1];
         cate.rootPath = `./${cate.path
           .slice(cate.path.lastIndexOf('examples'), cate.path.length)
           .replace(/\\/g, '/')}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
