@@ -9,7 +9,7 @@ import {
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { XPortalServiceModule } from './portal.service.module';
 import { XPortalInput, XPortalOverlayRef } from './portal.type';
-import { XPlacement } from '@ng-nest/ui/core';
+import { XPlacement, XPosition } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
@@ -50,7 +50,7 @@ export class XPortalService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  setPositionStrategy(elementRef?: ElementRef, placement?: XPlacement): PositionStrategy {
+  setPlacement(elementRef?: ElementRef, placement?: XPlacement): PositionStrategy {
     if (!elementRef) {
       return this.overlay
         .position()
@@ -111,6 +111,23 @@ export class XPortalService {
           break;
       }
       return this.overlay.position().connectedTo(elementRef, originPos, overlayPos);
+    }
+  }
+
+  setPosition(position?: XPosition, width?: string, height?: string): PositionStrategy {
+    let result = this.overlay
+      .position()
+      .global()
+      .width(width)
+      .height(height);
+    if (position === 'left') {
+      return result.left();
+    } else if (position === 'right') {
+      return result.right();
+    } else if (position === 'top') {
+      return result.top();
+    } else if (position === 'bottom') {
+      return result.bottom();
     }
   }
 

@@ -122,7 +122,7 @@ export class XPopoverDirective implements OnInit, OnChanges {
       ),
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.portalService.setPositionStrategy(this.elementRef, this.placement)
+        positionStrategy: this.portalService.setPlacement(this.elementRef, this.placement)
       }
     });
   }

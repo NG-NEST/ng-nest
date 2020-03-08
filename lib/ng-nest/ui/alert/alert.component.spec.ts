@@ -1,6 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { XAlertComponent } from './alert.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';

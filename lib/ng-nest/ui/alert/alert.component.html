@@ -15,15 +15,18 @@
       <ng-container *xOutlet="description">{{ description }}</ng-container>
     </p>
     <x-button
-      *ngIf="!hideClose && !closeText"
+      *ngIf="!hideClose"
       class="x-alert-close"
       size="small"
-      icon="fto-x"
+      [icon]="!closeText ? 'fto-x' : ''"
+      [onlyIcon]="!closeText"
+      [type]="closeText ? 'text' : ''"
       (click)="onClose()"
-      onlyIcon
-    ></x-button>
-    <x-button *ngIf="closeText" class="x-alert-close" size="small" type="text" (click)="onClose()">{{
+      closable
+      >{{ closeText }}</x-button
+    >
+    <!-- <x-button *ngIf="closeText" class="x-alert-close" size="small" type="text" (click)="onClose()" closable>{{
       closeText
-    }}</x-button>
+    }}</x-button> -->
   </div>
 </div>

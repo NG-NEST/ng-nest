@@ -76,7 +76,7 @@
   color: $--x-text;
   border: $--x-cascade-border;
   border-radius: 0.125rem;
-  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $--x-box-shadow-base;
   background-color: $--x-white;
   display: flex;
   > x-list:not(:first-child) {

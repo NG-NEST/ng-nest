@@ -82,6 +82,12 @@
       @include button-color($--x-button-hover, transparent, transparent);
     }
   }
+  &-closable {
+    color: $--x-text-400;
+    &:hover {
+      color: $--x-text-500;
+    }
+  }
   &-disabled {
     &:active {
       transform: none;

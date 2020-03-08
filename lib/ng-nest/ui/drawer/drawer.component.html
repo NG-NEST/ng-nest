@@ -1,0 +1,13 @@
+<ng-template #drawerTpl>
+  <div class="x-drawer" [ngClass]="classMap" [@XSlideAnimation]="position">
+    <div class="x-drawer-header" *ngIf="title">
+      <div class="x-drawer-title">
+        <ng-container *xOutlet="title">{{ title }}</ng-container>
+      </div>
+      <x-button class="x-drawer-close" icon="fto-x" (click)="closePortal()" onlyIcon closable></x-button>
+    </div>
+    <div class="x-drawer-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>

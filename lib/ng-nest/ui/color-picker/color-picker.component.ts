@@ -175,7 +175,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
       ),
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPositionStrategy()
+        positionStrategy: this.setPlacement()
       }
     });
     this.addListen();
@@ -187,10 +187,10 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     if (this.onChange) this.onChange(this.value);
   }
 
-  setPositionStrategy() {
+  setPlacement() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(
+    return this.portalService.setPlacement(
       this.inputCom.input,
       this.protalTobottom ? 'bottom-start' : 'top-start'
     );
@@ -204,7 +204,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     }
     this.protalHeight = 300;
     if (this.portalAttached()) {
-      this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
+      this.portal.overlayRef.updatePositionStrategy(this.setPlacement());
     }
   }
 }

@@ -1,0 +1,7 @@
+<div class="row">
+  <x-radio [data]="data" [(ngModel)]="value"></x-radio>
+  <x-button (click)="open()">打开</x-button>
+  <x-drawer title="标题" [visible]="visible" [position]="value" (close)="close()">
+    <span>内容区域</span>
+  </x-drawer>
+</div>

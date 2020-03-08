@@ -98,7 +98,7 @@
   color: $--x-text;
   border: $--x-color-picker-border;
   border-radius: 0.125rem;
-  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $--x-box-shadow-base;
   background-color: $--x-white;
   width: 15rem;
   overflow: hidden;
@@ -170,7 +170,7 @@
       }
       > .x-slider-select-drags > .x-slider-select-drag > .x-slider-select-button {
         border-color: $--x-border;
-        box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+        box-shadow: $--x-box-shadow-base;
       }
     }
   }

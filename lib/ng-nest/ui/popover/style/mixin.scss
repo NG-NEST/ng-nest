@@ -20,7 +20,7 @@
     padding: $--x-font-size;
     border: 0.0625rem solid $--x-border-200;
     border-radius: 0.125rem;
-    box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+    box-shadow: $--x-box-shadow-base;
   }
   .#{$--x-popover-portal-prefix}-title {
     margin-bottom: $--x-font-size - 0.5rem;

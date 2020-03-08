@@ -78,7 +78,7 @@
   border: $--x-select-border;
   width: 100%;
   border-radius: 0.125rem;
-  box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $--x-box-shadow-base;
   display: flex;
   background-color: $--x-white;
   overflow-y: auto;

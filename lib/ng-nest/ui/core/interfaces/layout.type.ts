@@ -68,16 +68,13 @@ export type XDirection = 'column' | 'column-reverse' | 'row' | 'row-reverse';
  * 相对与连接元素的位置
  */
 export type XPlacement =
-  | 'top'
+  | XPosition
   | 'top-start'
   | 'top-end'
-  | 'bottom'
   | 'bottom-start'
   | 'bottom-end'
-  | 'left'
   | 'left-start'
   | 'left-end'
-  | 'right'
   | 'right-start'
   | 'right-end';
 

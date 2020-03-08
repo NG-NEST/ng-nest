@@ -1,0 +1,15 @@
+<div class="row">
+  <x-button (click)="open()">嵌套多个</x-button>
+
+  <x-drawer title="第一个" size="50%" [visible]="visible" (close)="close()">
+    <x-button (click)="openOne()">再打开一个</x-button>
+  </x-drawer>
+
+  <x-drawer title="第二个" size="40%" [visible]="visibleOne" (close)="closeOne()">
+    <x-button (click)="openTwo()">再打开一个</x-button>
+  </x-drawer>
+
+  <x-drawer title="第三个" size="30%" [visible]="visibleTwo" (close)="closeTwo()">
+    <span>这是第三个</span>
+  </x-drawer>
+</div>

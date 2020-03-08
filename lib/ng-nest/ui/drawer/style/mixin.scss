@@ -1,0 +1,41 @@
+// Drawer
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin drawer {
+  height: 100%;
+  width: 100%;
+  background-color: $--x-white;
+  position: relative;
+  box-shadow: $--x-box-shadow-base;
+  &-header {
+    padding: 0.5rem 1rem;
+  }
+  &-title {
+    font-weight: 600;
+    color: $--x-text-400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-close {
+    position: absolute;
+    top: 0.425rem;
+    right: 0.25rem;
+  }
+  &-title {
+    padding: 0;
+  }
+  &-content {
+    padding: 0 1rem 0.5rem;
+    height: calc(100% - 2.5rem);
+    overflow: auto;
+  }
+  &-no-title {
+    .#{$--x-drawer}-content {
+      padding: 0.5rem 1rem;
+    }
+  }
+}

@@ -22,7 +22,7 @@
         <x-icon class="x-upload-state success" *ngSwitchCase="'success'" type="fto-check"></x-icon>
         <x-icon class="x-upload-state error" *ngSwitchCase="'error'" type="fto-info"></x-icon>
       </ng-container>
-      <x-button icon="fto-x" onlyIcon (click)="remove(file, i)" *ngIf="file.state !== 'uploading'"></x-button>
+      <x-button *ngIf="file.state !== 'uploading'" icon="fto-x" (click)="remove(file, i)" onlyIcon closable></x-button>
     </li>
   </ul>
 </div>

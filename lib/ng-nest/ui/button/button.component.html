@@ -8,6 +8,7 @@
   [class.x-button-round]="round"
   [class.x-button-circle]="circle"
   [class.x-button-icon]="icon && !content.innerHTML.trim()"
+  [class.x-button-closable]="closable"
   [title]="title"
 >
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>

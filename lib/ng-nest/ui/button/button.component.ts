@@ -24,15 +24,16 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() type?: XButtonType;
   @Input() icon?: string;
   @Input() title?: string = '';
+  @Input() direction?: XDirection;
+  @Input() size?: XSize;
   @Input() @XInputBoolean() onlyIcon?: boolean;
   @Input() @XInputBoolean() activated?: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
   @Input() @XInputBoolean() plain?: boolean;
   @Input() @XInputBoolean() round?: boolean;
   @Input() @XInputBoolean() circle?: boolean;
-  @Input() direction?: XDirection;
   @Input() @XInputBoolean() loading?: boolean;
-  @Input() size?: XSize;
+  @Input() @XInputBoolean() closable?: boolean;
   @ViewChild('button', { static: true }) button: ElementRef;
   @ViewChild('content', { static: true }) content: ElementRef;
   classMap: XClassMap = {};

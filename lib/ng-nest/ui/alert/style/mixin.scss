@@ -45,12 +45,6 @@
       color: $color;
       background-color: $background;
       border-color: $border-color;
-      .#{$--x-alert}-close .x-button {
-        color: $--x-text-400;
-        &:hover {
-          color: $--x-text-500;
-        }
-      }
     }
     &.x-dark {
       color: $background;

@@ -5,7 +5,7 @@
 @import './param';
 
 @mixin radio {
-  color: var(--x-text);
+  display: inline-block;
   &-item {
     position: relative;
     display: inline-flex;

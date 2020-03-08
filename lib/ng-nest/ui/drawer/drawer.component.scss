@@ -1,0 +1,10 @@
+// Drawer
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-drawer} {
+  @include reset-component();
+  @include drawer();
+}

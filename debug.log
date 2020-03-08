@@ -1,1 +1,2 @@
 [0227/121944.488:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: �����ɹ���ɡ� (0x0)
+[0308/081405.683:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports

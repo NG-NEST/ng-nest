@@ -35,6 +35,7 @@ import { XTimelineModule } from '@ng-nest/ui/timeline';
 import { XTreeModule } from '@ng-nest/ui/tree';
 
 import { XAlertModule } from '@ng-nest/ui/alert';
+import { XDrawerModule } from '@ng-nest/ui/drawer';
 
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
@@ -99,6 +100,7 @@ export * from '@ng-nest/ui/timeline';
 export * from '@ng-nest/ui/tree';
 
 export * from '@ng-nest/ui/alert';
+export * from '@ng-nest/ui/drawer';
 
 export * from '@ng-nest/ui/radio';
 export * from '@ng-nest/ui/checkbox';
@@ -163,6 +165,7 @@ export * from '@ng-nest/ui/form';
     XTreeModule,
 
     XAlertModule,
+    XDrawerModule,
 
     XRadioModule,
     XCheckboxModule,

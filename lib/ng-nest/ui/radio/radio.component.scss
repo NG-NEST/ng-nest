@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-radio-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-radio-prefix} {
   @include reset-component();
   @include radio();

@@ -279,7 +279,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "alert",
     "router": "./docs/ui/components/alert",
-    "label": "Alert 警告提示 [待]",
+    "label": "Alert 警告提示",
     "category": "Feedback"
   },
   {
@@ -287,7 +287,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "drawer",
     "router": "./docs/ui/components/drawer",
-    "label": "Drawer 抽屉 [待]",
+    "label": "Drawer 抽屉",
     "category": "Feedback"
   },
   {

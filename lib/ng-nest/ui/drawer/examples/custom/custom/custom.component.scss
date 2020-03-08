@@ -1,0 +1,25 @@
+:host {
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  .row x-button:not(:first-child) {
+    margin-left: 1rem;
+  }
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .custom-table tr {
+    border-bottom: 0.0625rem solid var(--x-border);
+  }
+  .custom-table tr th,
+  .custom-table tr td {
+    padding: 0.25rem 0.325rem;
+    text-align: left;
+  }
+
+  .custom-form li:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

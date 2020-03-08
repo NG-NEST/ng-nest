@@ -231,7 +231,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
       ),
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPositionStrategy()
+        positionStrategy: this.setPlacement()
       }
     });
     this.addListen();
@@ -250,10 +250,10 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     this.displayValue = this.datePipe.transform(this.numberValue, this.format);
   }
 
-  setPositionStrategy() {
+  setPlacement() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPositionStrategy(
+    return this.portalService.setPlacement(
       this.inputCom.input,
       this.protalTobottom ? 'bottom-start' : 'top-start'
     );
@@ -267,7 +267,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
     //   this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
     // }
     if (this.portalAttached()) {
-      this.portal.overlayRef.updatePositionStrategy(this.setPositionStrategy());
+      this.portal.overlayRef.updatePositionStrategy(this.setPlacement());
     }
   }
 }
