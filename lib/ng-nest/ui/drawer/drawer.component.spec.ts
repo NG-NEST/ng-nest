@@ -11,6 +11,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputModule } from '@ng-nest/ui/input';
+import { XPosition } from '../core';
 
 describe(XDrawerPrefix, () => {
   beforeEach(async(() => {
@@ -87,7 +88,7 @@ describe(XDrawerPrefix, () => {
     <div class="row">
       <x-radio [data]="data" [(ngModel)]="value"></x-radio>
       <x-button (click)="open()">打开</x-button>
-      <x-drawer title="标题" [visible]="visible" [position]="value" (close)="close()">
+      <x-drawer title="标题" [visible]="visible" [placement]="value" (close)="close()">
         <span>内容区域</span>
       </x-drawer>
     </div>
@@ -105,8 +106,8 @@ describe(XDrawerPrefix, () => {
   ]
 })
 class TestXDrawerComponent {
-  value: string = 'right';
-  data = [
+  value: XPosition = 'right';
+  data: { id: XPosition; label: string }[] = [
     { id: 'left', label: '左边' },
     { id: 'right', label: '右边' },
     { id: 'top', label: '上边' },
@@ -194,7 +195,7 @@ class TestXDrawerTitleComponent {
         </table>
       </x-drawer>
 
-      <x-drawer title="表单" [visible]="visibleForm" position="left" (close)="closeForm()">
+      <x-drawer title="表单" [visible]="visibleForm" placement="left" (close)="closeForm()">
         <ul class="custom-form">
           <li><x-input label="账号" direction="row"></x-input></li>
           <li><x-input label="邮箱" direction="row"></x-input></li>

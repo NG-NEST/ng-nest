@@ -6,10 +6,24 @@ import {
   ChangeDetectionStrategy,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy
 } from '@angular/core';
 import { XAlertPrefix, XAlertType } from './alert.type';
-import { XClassMap, XTemplate, XInputBoolean, XEffect, XFadeAnimation } from '@ng-nest/ui/core';
+import {
+  XClassMap,
+  XTemplate,
+  XInputBoolean,
+  XEffect,
+  XFadeAnimation,
+  XIsChange,
+  XIsBoolean,
+  XInputNumber
+} from '@ng-nest/ui/core';
+import { of, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: `${XAlertPrefix}`,
@@ -19,23 +33,31 @@ import { XClassMap, XTemplate, XInputBoolean, XEffect, XFadeAnimation } from '@n
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XFadeAnimation]
 })
-export class XAlertComponent implements OnInit {
+export class XAlertComponent implements OnInit, OnDestroy {
   @Input() label?: XTemplate;
   @Input() description?: XTemplate;
   @Input() type?: XAlertType = 'info';
-  @Input() @XInputBoolean() dark?: boolean;
   @Input() effect?: XEffect = 'light';
+  @Input() @XInputBoolean() hide?: boolean = false;
   @Input('hide-close') @XInputBoolean() hideClose?: boolean;
   @Input('close-text') closeText?: string;
   @Input('show-icon') @XInputBoolean() showIcon?: boolean;
+  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean = false;
+  @Input() @XInputBoolean() manual?: boolean;
+  @Input() @XInputNumber() duration: number = 0;
   @Output() close = new EventEmitter();
-  fade = false;
   classMap: XClassMap = {};
+  close$: Subscription | null = null;
 
   constructor(public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.setClassMap();
+    this.setDuration();
+  }
+
+  ngOnDestroy() {
+    this.close$ && this.close$.unsubscribe();
   }
 
   setClassMap() {
@@ -44,9 +66,26 @@ export class XAlertComponent implements OnInit {
     this.classMap[`${XAlertPrefix}-icon-medium`] = this.label && this.description && this.showIcon;
   }
 
+  setDuration() {
+    if (this.duration) {
+      this.close$ = of(true)
+        .pipe(delay(this.duration))
+        .subscribe(x => this.onClose());
+    }
+  }
+
   onClose() {
-    this.fade = true;
-    this.close.emit();
-    this.cdr.detectChanges();
+    if (this.manual) {
+      this.close.emit();
+    } else {
+      this.hide = true;
+      this.cdr.detectChanges();
+    }
+  }
+
+  onCloseAnimationDone() {
+    if (this.hide) {
+      this.close.emit();
+    }
   }
 }

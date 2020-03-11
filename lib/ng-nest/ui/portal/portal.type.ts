@@ -1,6 +1,6 @@
-import { TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { TemplateRef, ViewContainerRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { ComponentType, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
-import { OverlayRef, OverlayPositionBuilder, OverlayConfig } from '@angular/cdk/overlay';
+import { OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
 
 /**
  * Portal 组件名
@@ -41,15 +41,23 @@ export interface XPortalInput {
 
 export interface XPortalOverlayRef {
   /**
-   * 创建的覆盖视图层
+   * cdk 创建的覆盖视图层
    */
-  overlayRef?: OverlayRef;
+  overlayRef: OverlayRef;
   /**
-   * 模板视图
+   * cdk 模板视图
    */
   templatePortal: TemplatePortal<any>;
   /**
-   * 组件视图
+   * cdk 组件视图
    */
   componentPortal: ComponentPortal<any>;
+  /**
+   * 组件视图
+   */
+  componentRef: ComponentRef<any>;
+  /**
+   * 模板视图
+   */
+  embeddedViewRef: EmbeddedViewRef<any>;
 }

@@ -33,10 +33,10 @@
       font-size: 2rem;
     }
   }
-  @include type('success', $--x-success, $--x-success-800, $--x-success-700);
-  @include type('info', $--x-info, $--x-info-800, $--x-info-700);
-  @include type('warning', $--x-warning, $--x-warning-800, $--x-warning-700);
-  @include type('error', $--x-danger, $--x-danger-800, $--x-danger-700);
+  @include type('success', $--x-success, $--x-success-900, $--x-success-700);
+  @include type('info', $--x-info, $--x-info-900, $--x-info-700);
+  @include type('warning', $--x-warning, $--x-warning-900, $--x-warning-700);
+  @include type('error', $--x-danger, $--x-danger-900, $--x-danger-700);
 }
 
 @mixin type($type, $color, $background, $border-color) {

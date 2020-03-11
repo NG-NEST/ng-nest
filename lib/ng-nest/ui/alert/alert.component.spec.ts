@@ -1,28 +1,19 @@
-import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAlertComponent } from './alert.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XFenceModule } from '@ng-nest/ui/fence';
 import { XAlertModule } from './alert.module';
 import { FormsModule } from '@angular/forms';
 import { XAlertPrefix } from './alert.type';
+import { XStatisticModule } from '@ng-nest/ui/statistic';
+import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XAlertPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        BrowserAnimationsModule,
-        XAlertModule,
-        XButtonModule,
-        XContainerModule,
-        XFenceModule,
-        XIconModule
-      ],
+      imports: [FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule],
       declarations: [TestXAlertComponent]
     }).compileComponents();
   }));
@@ -58,6 +49,8 @@ describe(XAlertPrefix, () => {
       <x-alert label="不可关闭" type="success" hide-close> </x-alert>
       <x-alert label="自定义关闭内容" type="info" close-text="知道了"> </x-alert>
       <x-alert label="关闭回调" type="warning" (close)="close()"> </x-alert>
+      <x-alert [label]="labelTpl" type="success" show-icon duration="10000" description="秒后关闭"></x-alert>
+      <ng-template #labelTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
     </div>
     <div class="row">
       <x-alert label="成功提示" type="success" show-icon> </x-alert>
@@ -74,6 +67,10 @@ describe(XAlertPrefix, () => {
       <x-alert label="警告提示" type="warning" [description]="description" show-icon> </x-alert>
       <x-alert label="错误提示" type="error" [description]="description" show-icon> </x-alert>
     </div>
+    <div class="row">
+      <x-alert label="控制关闭" type="success" [hide]="hide" (close)="close()" manual show-icon> </x-alert>
+      <x-button (click)="toggle()">{{ hide ? '显示' : '隐藏' }}</x-button>
+    </div>
   `,
   styles: [
     `
@@ -87,9 +84,20 @@ describe(XAlertPrefix, () => {
   ]
 })
 class TestXAlertComponent {
+  hide = false;
   description =
     '天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
+
+  deadline = XAddSeconds(new Date(), 10).getTime();
+  constructor(private cdr: ChangeDetectorRef) {}
+
   close() {
-    console.log('关闭回调');
+    this.hide = true;
+    this.cdr.detectChanges();
+  }
+
+  toggle() {
+    this.hide = !this.hide;
+    this.cdr.detectChanges();
   }
 }

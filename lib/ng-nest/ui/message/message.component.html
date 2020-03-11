@@ -1,0 +1,22 @@
+<div class="x-message">
+  <ng-container *ngFor="let item of message.list">
+    <x-alert
+      [@x-move-animation]="item.placement"
+      (@x-move-animation.done)="moveDone($event)"
+      (mouseenter)="onEnter(item)"
+      (mouseleave)="onLeave(item)"
+      (close)="onClose(item)"
+      [hide]="item.hide"
+      [label]="item.label"
+      [description]="item.description"
+      [type]="item.type"
+      [effect]="item.effect"
+      [hide-close]="item.hideClose"
+      [close-text]="item.closeText"
+      [show-icon]="item.showIcon"
+      duration="0"
+      manual
+      disabled-animation
+    ></x-alert>
+  </ng-container>
+</div>

@@ -23,7 +23,7 @@ export interface XDrawerInput {
    * 展示方向
    * @defalut 'right'
    */
-  position?: XPosition;
+  placement?: XPosition;
   /**
    * 尺寸，支持固定值
    * @defalut '30%'

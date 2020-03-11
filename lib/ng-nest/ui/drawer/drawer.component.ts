@@ -32,7 +32,7 @@ import { Overlay } from '@angular/cdk/overlay';
 export class XDrawerComponent implements OnInit, OnChanges {
   @Input() title?: XTemplate;
   @Input() @XInputBoolean() visible?: boolean;
-  @Input() position?: XPosition = 'right';
+  @Input() placement?: XPosition = 'right';
   @Input() size: string = '30%';
   @Output() close = new EventEmitter();
   @ViewChild('drawerTpl', { static: true }) drawerTpl: TemplateRef<void>;
@@ -66,7 +66,7 @@ export class XDrawerComponent implements OnInit, OnChanges {
   }
 
   setClassMap() {
-    this.classMap[`${XDrawerPrefix}-${this.position}`] = this.position ? true : false;
+    this.classMap[`${XDrawerPrefix}-${this.placement}`] = this.placement ? true : false;
     this.classMap[`${XDrawerPrefix}-no-title`] = XIsEmpty(this.title);
   }
 
@@ -79,15 +79,15 @@ export class XDrawerComponent implements OnInit, OnChanges {
   }
 
   createPortal() {
-    const width = this.position === 'left' || this.position === 'right' ? this.size : '100%';
-    const height = this.position === 'top' || this.position === 'bottom' ? this.size : '100%';
+    const width = this.placement === 'left' || this.placement === 'right' ? this.size : '100%';
+    const height = this.placement === 'top' || this.placement === 'bottom' ? this.size : '100%';
     this.portal = this.portalService.create({
       content: this.drawerTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         hasBackdrop: true,
         scrollStrategy: this.overlay.scrollStrategies.noop(),
-        positionStrategy: this.portalService.setPosition(this.position, width, height)
+        positionStrategy: this.portalService.setPosition(this.placement, width, height)
       }
     });
     this.back$ = this.portal.overlayRef.backdropClick().subscribe(() => this.closePortal());

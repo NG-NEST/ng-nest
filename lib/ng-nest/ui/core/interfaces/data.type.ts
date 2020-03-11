@@ -28,13 +28,12 @@ export const XIsDate = XIsType('Date');
 export const XIsRegExp = XIsType('RegExp');
 export const XIsValue = (object: any) =>
   XIsString(object) || XIsNumber(object) || XIsBoolean(object) || XIsDate(object);
-export const XIsUndefined = (object: any) => {
-  return typeof object === 'undefined';
-};
-export const XIsValueArray = (object: any) => {
-  return XIsArray(object) && object.length > 0 && !XIsObject(object[0]);
-};
-export const XIsObjectArray = (object: any) => {
-  return XIsArray(object) && object.length > 0 && XIsObject(object[0]);
-};
+export const XIsUndefined = (object: any) => typeof object === 'undefined';
+export const XIsEmpty = (object: any) =>
+  typeof object === 'undefined' || object === null || object === '' || object.length === 0;
+export const XIsValueArray = (object: any) => XIsArray(object) && object.length > 0 && !XIsObject(object[0]);
+export const XIsObjectArray = (object: any) => XIsArray(object) && object.length > 0 && XIsObject(object[0]);
 export const XIsObservable = (object: any) => isObservable(object);
+export const XIsTemplateRef = (object: any) => !XIsEmpty(object) && object.elementRef;
+export const XIsXTemplate = (object: any) =>
+  XIsString(object) || XIsNumber(object) || XIsDate(object) || XIsTemplateRef(object);

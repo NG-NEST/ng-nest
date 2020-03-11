@@ -19,6 +19,15 @@ export type XPosition = 'top' | 'right' | 'bottom' | 'left';
 export type XType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
+ * 状态类型
+ * @value "success"
+ * @value "info"
+ * @value "warning"
+ * @value "error"
+ */
+export type XStatus = 'success' | 'info' | 'warning' | 'error';
+
+/**
  * 样式映射类型
  */
 export type XClassMap = { [property: string]: boolean };
@@ -78,7 +87,14 @@ export type XPlacement =
   | 'right-start'
   | 'right-end';
 
-// 表单对象共有的参数
+/**
+ * 九宫格方位
+ */
+export type XPlace = XPosition | 'center' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
+
+/**
+ * 表单对象共有的参数
+ */
 export interface XFormProperty {
   justify?: XJustify;
   align?: XAlign;
@@ -87,3 +103,18 @@ export interface XFormProperty {
   disabled?: boolean;
   required?: boolean;
 }
+
+/**
+ * 九宫格方位
+ */
+// export interface XPlace {
+//   topStart?: string;
+//   top?: string;
+//   topEnd?: string;
+//   left?: string;
+//   center?: string;
+//   right?: string;
+//   bottomStart?: string;
+//   bottom?: string;
+//   bottomEnd?: string;
+// }

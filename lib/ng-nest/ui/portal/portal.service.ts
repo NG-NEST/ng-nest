@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from '@angular/core';
+import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import {
   Overlay,
   OverlayRef,
@@ -9,7 +9,7 @@ import {
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { XPortalServiceModule } from './portal.service.module';
 import { XPortalInput, XPortalOverlayRef } from './portal.type';
-import { XPlacement, XPosition } from '@ng-nest/ui/core';
+import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
@@ -24,9 +24,11 @@ export class XPortalService {
     let overlayRef = this.createOverlayRef(option);
     let templatePortal: TemplatePortal<any>;
     let componentPortal: ComponentPortal<any>;
+    let componentRef: ComponentRef<any>;
+    let embeddedViewRef: EmbeddedViewRef<any>;
     if (option.content instanceof TemplateRef) {
       templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
-      overlayRef.attach(templatePortal);
+      embeddedViewRef = overlayRef.attach(templatePortal);
     } else {
       componentPortal = new ComponentPortal(
         option.content,
@@ -34,13 +36,15 @@ export class XPortalService {
         option.injector,
         option.componentFactoryResolver
       );
-      overlayRef.attach(componentPortal);
+      componentRef = overlayRef.attach(componentPortal);
     }
 
     return {
       overlayRef: overlayRef,
       templatePortal: templatePortal,
-      componentPortal: componentPortal
+      componentPortal: componentPortal,
+      componentRef: componentRef,
+      embeddedViewRef: embeddedViewRef
     };
   }
 
@@ -128,6 +132,36 @@ export class XPortalService {
       return result.top();
     } else if (position === 'bottom') {
       return result.bottom();
+    }
+  }
+
+  setPlace(place: XPlace, offset?: string, width?: string, height?: string): PositionStrategy {
+    let result = this.overlay
+      .position()
+      .global()
+      .width(width)
+      .height(height);
+    switch (place) {
+      case 'top-start':
+        return result.top(offset).left(offset);
+      case 'top':
+        return result.centerHorizontally().top(offset);
+      case 'top-end':
+        return result.top(offset).right(offset);
+      case 'left':
+        return result.centerVertically().left(offset);
+      case 'center':
+        return result.centerVertically().centerHorizontally();
+      case 'right':
+        return result.centerVertically().right(offset);
+      case 'bottom-start':
+        return result.bottom(offset).left(offset);
+      case 'bottom':
+        return result.centerHorizontally().bottom(offset);
+      case 'bottom-end':
+        return result.bottom(offset).right(offset);
+      default:
+        return result.centerVertically().centerHorizontally();
     }
   }
 

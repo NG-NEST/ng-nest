@@ -1,0 +1,16 @@
+// Message
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-message} {
+  @include reset-component();
+  @include message();
+}
+
+.#{$--x-message}-portal {
+  #{$--x-message} {
+    width: 100%;
+  }
+}

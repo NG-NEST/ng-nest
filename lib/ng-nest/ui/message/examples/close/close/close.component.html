@@ -1,0 +1,8 @@
+<div class="row">
+  <x-button type="success" plain (click)="message.success({ label: '成功提示', hideClose: false })"
+    >成功提示，包含关闭按钮</x-button
+  >
+  <x-button type="success" (click)="message.success({ label: '成功提示', hideClose: false, effect: 'dark' })"
+    >成功提示，包含关闭按钮</x-button
+  >
+</div>

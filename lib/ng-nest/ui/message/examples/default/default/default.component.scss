@@ -1,0 +1,10 @@
+:host {
+  .row {
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

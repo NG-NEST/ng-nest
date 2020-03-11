@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { XPosition } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
@@ -6,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  value: string = 'right';
-  data = [
+  value: XPosition = 'right';
+  data: { id: XPosition; label: string }[] = [
     { id: 'left', label: '左边' },
     { id: 'right', label: '右边' },
     { id: 'top', label: '上边' },
