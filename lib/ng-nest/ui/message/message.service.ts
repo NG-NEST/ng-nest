@@ -61,7 +61,7 @@ export class XMessageService {
   private createMessage(option: XTemplate | XMessageInput, type: XMessageType): XMessageRef {
     let opt: XMessageInput;
     if (XIsXTemplate(option)) {
-      opt = { label: option as XTemplate, type: type };
+      opt = { title: option as XTemplate, type: type };
     } else {
       opt = option as XMessageInput;
       opt.type = type;

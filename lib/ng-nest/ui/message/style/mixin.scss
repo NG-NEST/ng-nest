@@ -6,11 +6,9 @@
 
 @mixin message {
   > x-alert {
+    padding: 0.25rem 0;
     > .x-alert {
       box-shadow: $--x-box-shadow-base;
-    }
-    &:not(:first-child) {
-      padding-top: 0.5rem;
     }
   }
 }

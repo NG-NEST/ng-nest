@@ -1,0 +1,16 @@
+// Notification
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-notification} {
+  @include reset-component();
+  @include notification();
+}
+
+.#{$--x-notification}-portal {
+  #{$--x-notification} {
+    width: 100%;
+  }
+}

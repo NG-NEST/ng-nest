@@ -1,0 +1,54 @@
+<div
+  class="x-message-box"
+  *ngIf="!messageBox.input?.hide"
+  [@x-move-box-animation]="messageBox.input?.placement"
+  (@x-move-box-animation.done)="moveDone($event)"
+>
+  <x-alert
+    (close)="onClose()"
+    [title]="messageBox.input?.title"
+    [content]="contentTpl"
+    [type]="messageBox.input?.type"
+    [effect]="messageBox.input?.effect"
+    [hide-close]="messageBox.input?.hideClose"
+    [close-text]="messageBox.input?.closeText"
+    show-icon="false"
+    duration="0"
+    manual
+    disabled-animation
+  ></x-alert>
+  <ng-template #contentTpl let-iconTpl="$iconTpl">
+    <div class="x-message-box-inner">
+      <div class="x-message-box-content">
+        <ng-container *ngIf="!messageBox.input?.showInput; else inputTpl">
+          <ng-container *ngIf="messageBox.input?.showIcon">
+            <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
+          </ng-container>
+          <ng-container *xOutlet="messageBox.input?.content">
+            {{ messageBox.input?.content }}
+          </ng-container>
+        </ng-container>
+        <ng-template #inputTpl>
+          <form [formGroup]="formGroup">
+            <x-input
+              formControlName="inputValue"
+              [type]="messageBox.input?.inputType"
+              [label]="messageBox.input?.content"
+              [placeholder]="messageBox.input?.inputPlaceholder"
+              [error]="formGroup.get('inputValue').invalid"
+              [errorMessage]="messageBox.input?.inputErrorMessage"
+            ></x-input>
+          </form>
+        </ng-template>
+      </div>
+      <x-buttons space="1">
+        <x-button *ngIf="messageBox.input?.showCancel" (click)="onCancel()">{{
+          messageBox.input?.cancelText
+        }}</x-button>
+        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup && formGroup.invalid">{{
+          messageBox.input?.confirmText
+        }}</x-button>
+      </x-buttons>
+    </div>
+  </ng-template>
+</div>

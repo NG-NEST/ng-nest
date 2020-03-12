@@ -7,8 +7,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
   OnDestroy
 } from '@angular/core';
 import { XAlertPrefix, XAlertType } from './alert.type';
@@ -18,8 +16,6 @@ import {
   XInputBoolean,
   XEffect,
   XFadeAnimation,
-  XIsChange,
-  XIsBoolean,
   XInputNumber
 } from '@ng-nest/ui/core';
 import { of, Subscription } from 'rxjs';
@@ -34,8 +30,8 @@ import { delay } from 'rxjs/operators';
   animations: [XFadeAnimation]
 })
 export class XAlertComponent implements OnInit, OnDestroy {
-  @Input() label?: XTemplate;
-  @Input() description?: XTemplate;
+  @Input() title?: XTemplate;
+  @Input() content?: XTemplate;
   @Input() type?: XAlertType = 'info';
   @Input() effect?: XEffect = 'light';
   @Input() @XInputBoolean() hide?: boolean = false;
@@ -63,14 +59,14 @@ export class XAlertComponent implements OnInit, OnDestroy {
   setClassMap() {
     this.classMap[`${XAlertPrefix}-${this.type}`] = this.type ? true : false;
     this.classMap[`x-${this.effect}`] = this.effect ? true : false;
-    this.classMap[`${XAlertPrefix}-icon-medium`] = this.label && this.description && this.showIcon;
+    this.classMap[`${XAlertPrefix}-icon-medium`] = this.title && this.content && this.showIcon;
   }
 
   setDuration() {
     if (this.duration) {
       this.close$ = of(true)
         .pipe(delay(this.duration))
-        .subscribe(x => this.onClose());
+        .subscribe(() => this.onClose());
     }
   }
 

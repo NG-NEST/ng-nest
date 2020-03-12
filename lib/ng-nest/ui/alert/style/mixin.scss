@@ -17,20 +17,24 @@
     top: 0.425rem;
     right: 0.25rem;
   }
-  > .x-icon {
-    font-size: 1.25rem;
-    margin-right: 0.5rem;
+  &-inner {
+    width: 100%;
+  }
+  &-title.x-bold {
+    font-weight: 600;
   }
   &-content {
-    p {
-      font-size: 0.75rem;
-      line-height: 1.3rem;
-      margin: 0.25rem 0 0 0;
-    }
+    font-size: $--x-alert-content-font-size;
+    line-height: 1.3rem;
+    margin: 0.25rem 0 0 0;
+  }
+  &-icon.x-icon {
+    font-size: $--x-alert-icon-font-size;
+    margin-right: 0.5rem;
   }
   &-icon-medium {
     > .x-icon {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
   }
   @include type('success', $--x-success, $--x-success-900, $--x-success-700);
@@ -55,6 +59,14 @@
         &:hover {
           color: $--x-white;
         }
+      }
+    }
+    &.x-white {
+      color: $--x-text-500;
+      background-color: $--x-white;
+      border-color: $--x-border-200;
+      .#{$--x-alert}-icon.x-icon {
+        color: $color;
       }
     }
   }

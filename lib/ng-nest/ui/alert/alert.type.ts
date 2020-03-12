@@ -17,13 +17,13 @@ export interface XAlertInput {
    */
   hide?: boolean;
   /**
-   * 标签
+   * 标题
    */
-  label?: XTemplate;
+  title?: XTemplate;
   /**
-   * 说明
+   * 内容
    */
-  description?: XTemplate;
+  content?: XTemplate;
   /**
    * 类型
    * @default 'info'

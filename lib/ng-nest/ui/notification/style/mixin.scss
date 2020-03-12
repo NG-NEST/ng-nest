@@ -1,0 +1,19 @@
+// Notification
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin notification {
+  > x-alert {
+    padding: 0.25rem;
+    > .x-alert {
+      box-shadow: $--x-box-shadow-base;
+    }
+    .x-alert-icon.x-icon {
+      margin-top: 0.125rem;
+      font-size: 1.25rem;
+      align-self: flex-start;
+    }
+  }
+}

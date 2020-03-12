@@ -9,7 +9,7 @@ import { XPlace } from '@ng-nest/ui/core';
 })
 export class ExDefaultComponent {
   constructor(private message: XMessageService) {}
-  open(place: XPlace, label: string) {
-    this.message.info({ label: `${label} 消息`, placement: place });
+  open(place: XPlace, title: string) {
+    this.message.info({ title: `${title} 消息1`, placement: place });
   }
 }

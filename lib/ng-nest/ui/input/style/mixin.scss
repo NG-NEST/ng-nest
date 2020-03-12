@@ -14,6 +14,12 @@
     white-space: nowrap;
     height: $--x-input-height;
     line-height: $--x-input-height;
+    position: relative;
+    > span {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
   }
   > .#{$--x-input-prefix}-row {
     flex: 1;
@@ -49,25 +55,36 @@
       transition: all $--x-animation-duration-base;
     }
   }
-  &.x-required {
-    &.x-required-show {
-      > label {
+  &-error-message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: $--x-input-font-size - 0.125rem;
+    color: $--x-danger;
+    margin-bottom: -($--x-input-font-size + 0.325rem);
+  }
+  &.x-error-show {
+    > .#{$--x-input-prefix}-row {
+      > #{$--x-prefix}-icon {
         color: $--x-danger;
       }
-      > .#{$--x-input-prefix}-row {
-        > #{$--x-prefix}-icon {
-          color: $--x-danger;
-        }
-        &:before {
-          content: ' ';
-          position: absolute;
-          height: $--x-input-height;
-          line-height: $--x-input-height;
-          border-top-left-radius: $--x-input-border-radius;
-          border-bottom-left-radius: $--x-input-border-radius;
-          width: 0.125rem;
-          background-color: $--x-danger;
-        }
+      &:before,
+      &:after {
+        content: ' ';
+        position: absolute;
+        height: $--x-input-height;
+        line-height: $--x-input-height;
+        width: 0.125rem;
+        background-color: $--x-danger;
+      }
+      &:before {
+        border-top-left-radius: $--x-input-border-radius;
+        border-bottom-left-radius: $--x-input-border-radius;
+      }
+      &:after {
+        border-top-right-radius: $--x-input-border-radius;
+        border-bottom-right-radius: $--x-input-border-radius;
+        right: 0;
       }
     }
   }

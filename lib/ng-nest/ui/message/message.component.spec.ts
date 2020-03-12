@@ -29,7 +29,7 @@ describe(XMessagePrefix, () => {
       expect(message).toBeDefined();
     });
   });
-  describe(`default.`, () => {
+  describe(`type.`, () => {
     let fixture: ComponentFixture<TestXMessageTypeComponent>;
     let message: DebugElement;
     beforeEach(() => {
@@ -78,8 +78,8 @@ describe(XMessagePrefix, () => {
 })
 class TestXMessageComponent {
   constructor(private message: XMessageService) {}
-  open(place: XPlace, label: string) {
-    this.message.info({ label: `${label} 消息`, placement: place });
+  open(place: XPlace, title: string) {
+    this.message.info({ title: `${title} 消息`, placement: place });
   }
 }
 
@@ -92,16 +92,16 @@ class TestXMessageComponent {
       <x-button type="danger" plain (click)="message.error('错误提示')">错误提示</x-button>
     </div>
     <div class="row">
-      <x-button type="success" (click)="message.success({ label: '成功提示', effect: 'dark' })">成功提示</x-button>
-      <x-button type="info" (click)="message.info({ label: '消息提示', effect: 'dark' })">消息提示</x-button>
-      <x-button type="warning" (click)="message.warning({ label: '警告提示', effect: 'dark' })">警告提示</x-button>
-      <x-button type="danger" (click)="message.error({ label: '错误提示', effect: 'dark' })">错误提示</x-button>
+      <x-button type="success" (click)="message.success({ title: '成功提示', effect: 'dark' })">成功提示</x-button>
+      <x-button type="info" (click)="message.info({ title: '消息提示', effect: 'dark' })">消息提示</x-button>
+      <x-button type="warning" (click)="message.warning({ title: '警告提示', effect: 'dark' })">警告提示</x-button>
+      <x-button type="danger" (click)="message.error({ title: '错误提示', effect: 'dark' })">错误提示</x-button>
     </div>
     <div class="row">
-      <x-button type="success" plain (click)="message.success({ label: '成功提示', hideClose: false })"
+      <x-button type="success" plain (click)="message.success({ title: '成功提示', hideClose: false })"
         >成功提示，包含关闭按钮</x-button
       >
-      <x-button type="success" (click)="message.success({ label: '成功提示', hideClose: false, effect: 'dark' })"
+      <x-button type="success" (click)="message.success({ title: '成功提示', hideClose: false, effect: 'dark' })"
         >成功提示，包含关闭按钮</x-button
       >
     </div>

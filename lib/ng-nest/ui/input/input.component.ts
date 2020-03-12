@@ -22,7 +22,8 @@ import {
   XInputBoolean,
   XInputNumber,
   removeNgTag,
-  XSize
+  XSize,
+  XIsChange
 } from '@ng-nest/ui/core';
 
 @Component({
@@ -41,13 +42,15 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() iconLayout?: XInputIconLayoutType = 'left';
   @Input() @XInputBoolean() iconSpin?: boolean;
   @Input() @XInputNumber() maxlength?: number;
-  @Input() size: XSize;
+  @Input() size?: XSize;
+  @Input() error?: boolean;
+  @Input() errorMessage?: string;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('input', { static: true }) input: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
+  get getError() {
+    return this.error || (this.required && XIsEmpty(this.value));
   }
 
   writeValue(value: any) {
@@ -89,10 +92,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    let clearableChange = changes.clearable;
-    if (clearableChange && clearableChange.currentValue !== clearableChange.previousValue) {
-      this.setClearable();
-    }
+    XIsChange(changes.clearable) && this.setClearable();
   }
 
   change(value) {

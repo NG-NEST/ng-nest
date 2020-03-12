@@ -137,6 +137,7 @@ export class XPortalService {
 
   setPlace(place: XPlace, offset?: string, width?: string, height?: string): PositionStrategy {
     let result = this.overlay
+      
       .position()
       .global()
       .width(width)

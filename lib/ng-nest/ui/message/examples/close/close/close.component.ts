@@ -7,5 +7,5 @@ import { XMessageService } from '@ng-nest/ui/message';
   styleUrls: ['./close.component.scss']
 })
 export class ExCloseComponent {
-  constructor(private message: XMessageService) {}
+  constructor(public message: XMessageService) {}
 }

@@ -7,20 +7,23 @@
   (@x-fade-animation.done)="onCloseAnimationDone()"
 >
   <ng-container *ngIf="showIcon">
-    <ng-container [ngSwitch]="type">
-      <x-icon *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
-      <x-icon *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
-      <x-icon *ngSwitchCase="'warning'" type="adf-exclamation-circle"></x-icon>
-      <x-icon *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
   </ng-container>
-  <div class="x-alert-content">
-    <span class="x-alert-label">
-      <ng-container *xOutlet="label; context: { $label: label }">{{ label }}</ng-container>
+  <ng-template #iconTpl>
+    <ng-container [ngSwitch]="type">
+      <x-icon class="x-alert-icon" *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
+      <x-icon class="x-alert-icon" *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
+      <x-icon class="x-alert-icon" *ngSwitchCase="'warning'" type="adf-exclamation-circle"></x-icon>
+      <x-icon class="x-alert-icon" *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
+    </ng-container>
+  </ng-template>
+  <div class="x-alert-inner">
+    <span class="x-alert-title" [class.x-bold]="title && content">
+      <ng-container *xOutlet="title; context: { $iconTpl: iconTpl }">{{ title }}</ng-container>
     </span>
-    <p class="x-alert-description" *ngIf="description">
-      <ng-container *xOutlet="description; context: { $description: description }">{{ description }}</ng-container>
-    </p>
+    <div class="x-alert-content" *ngIf="content">
+      <ng-container *xOutlet="content; context: { $iconTpl: iconTpl }">{{ content }}</ng-container>
+    </div>
     <x-button
       *ngIf="!hideClose"
       class="x-alert-close"
@@ -32,8 +35,5 @@
       closable
       >{{ closeText }}</x-button
     >
-    <!-- <x-button *ngIf="closeText" class="x-alert-close" size="small" type="text" (click)="onClose()" closable>{{
-      closeText
-    }}</x-button> -->
   </div>
 </div>

@@ -7,5 +7,5 @@ import { XMessageService } from '@ng-nest/ui/message';
   styleUrls: ['./type.component.scss']
 })
 export class ExTypeComponent {
-  constructor(private message: XMessageService) {}
+  constructor(public message: XMessageService) {}
 }

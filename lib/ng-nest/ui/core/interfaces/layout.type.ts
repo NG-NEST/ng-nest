@@ -35,7 +35,7 @@ export type XClassMap = { [property: string]: boolean };
 /**
  * 样式主题
  */
-export type XEffect = 'light' | 'dark';
+export type XEffect = 'light' | 'dark' | 'white';
 
 /**
  * 尺寸
@@ -76,21 +76,17 @@ export type XDirection = 'column' | 'column-reverse' | 'row' | 'row-reverse';
 /**
  * 相对与连接元素的位置
  */
-export type XPlacement =
-  | XPosition
-  | 'top-start'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'left-start'
-  | 'left-end'
-  | 'right-start'
-  | 'right-end';
+export type XPlacement = XPosition | XCorner | 'left-start' | 'left-end' | 'right-start' | 'right-end';
+
+/**
+ * 四个角落
+ */
+export type XCorner = 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
 
 /**
  * 九宫格方位
  */
-export type XPlace = XPosition | 'center' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
+export type XPlace = XPosition | XCorner | 'center';
 
 /**
  * 表单对象共有的参数
@@ -103,18 +99,3 @@ export interface XFormProperty {
   disabled?: boolean;
   required?: boolean;
 }
-
-/**
- * 九宫格方位
- */
-// export interface XPlace {
-//   topStart?: string;
-//   top?: string;
-//   topEnd?: string;
-//   left?: string;
-//   center?: string;
-//   right?: string;
-//   bottomStart?: string;
-//   bottom?: string;
-//   bottomEnd?: string;
-// }

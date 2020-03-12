@@ -1,0 +1,16 @@
+// MessageBox
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-message-box} {
+  @include reset-component();
+  @include message-box();
+}
+
+.#{$--x-message-box}-portal {
+  #{$--x-message-box} {
+    width: 100%;
+  }
+}

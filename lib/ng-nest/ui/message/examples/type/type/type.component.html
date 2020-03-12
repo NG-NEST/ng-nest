@@ -5,8 +5,8 @@
   <x-button type="danger" plain (click)="message.error('错误提示')">错误提示</x-button>
 </div>
 <div class="row">
-  <x-button type="success" (click)="message.success({ label: '成功提示', effect: 'dark' })">成功提示</x-button>
-  <x-button type="info" (click)="message.info({ label: '消息提示', effect: 'dark' })">消息提示</x-button>
-  <x-button type="warning" (click)="message.warning({ label: '警告提示', effect: 'dark' })">警告提示</x-button>
-  <x-button type="danger" (click)="message.error({ label: '错误提示', effect: 'dark' })">错误提示</x-button>
+  <x-button type="success" (click)="message.success({ title: '成功提示', effect: 'dark' })">成功提示</x-button>
+  <x-button type="info" (click)="message.info({ title: '消息提示', effect: 'dark' })">消息提示</x-button>
+  <x-button type="warning" (click)="message.warning({ title: '警告提示', effect: 'dark' })">警告提示</x-button>
+  <x-button type="danger" (click)="message.error({ title: '错误提示', effect: 'dark' })">错误提示</x-button>
 </div>
