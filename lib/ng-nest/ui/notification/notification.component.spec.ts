@@ -58,7 +58,7 @@ describe(XNotificationPrefix, () => {
         width: 16rem;
         height: 10rem;
         padding: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.03);
         position: relative;
       }
       .row x-button {

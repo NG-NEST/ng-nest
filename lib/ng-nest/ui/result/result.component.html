@@ -1,0 +1,28 @@
+<div #result class="x-result" [ngClass]="classMap">
+  <div class="x-result-icon">
+    <ng-container *ngIf="!icon; else iconTpl" [ngSwitch]="status">
+      <x-icon *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
+      <x-icon *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
+      <x-icon *ngSwitchCase="'warning'" type="adf-warning"></x-icon>
+      <x-icon *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
+      <x-icon *ngSwitchCase="'403'" type="fto-lock"></x-icon>
+      <x-icon *ngSwitchCase="'404'" type="fto-code"></x-icon>
+      <x-icon *ngSwitchCase="'500'" type="adf-close-circle"></x-icon>
+    </ng-container>
+    <ng-template #iconTpl>
+      <ng-container *xOutlet="icon">
+        <x-icon [type]="icon"></x-icon>
+      </ng-container>
+    </ng-template>
+  </div>
+
+  <div class="x-result-title">
+    <ng-container *xOutlet="title">{{ title }}</ng-container>
+  </div>
+  <div class="x-result-sub-title">
+    <ng-container *xOutlet="subTitle">{{ subTitle }}</ng-container>
+  </div>
+  <div class="x-result-content">
+    <ng-content></ng-content>
+  </div>
+</div>

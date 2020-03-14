@@ -1,5 +1,5 @@
 ---
-label: 'Result 结果 [待]'
+label: 'Result 结果'
 category: 'Feedback'
 ---
 

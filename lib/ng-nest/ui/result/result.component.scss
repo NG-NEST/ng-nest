@@ -1,0 +1,10 @@
+// Result
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-result} {
+  @include reset-component();
+  @include result();
+}

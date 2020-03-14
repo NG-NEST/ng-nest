@@ -1,0 +1,11 @@
+<div class="row">
+  <x-result [icon]="iconTpl" title="404" sub-title="抱歉，访问的页面不存在。">
+    <x-button type="primary">返回列表</x-button>
+  </x-result>
+  <ng-template #iconTpl>
+    <img
+      [style.width.rem]="18"
+      src="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+    />
+  </ng-template>
+</div>

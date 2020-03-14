@@ -1,0 +1,41 @@
+// Result
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  &-icon {
+    font-size: $--x-font-size * 5;
+    margin-bottom: $--x-font-size-lg;
+  }
+  &-title {
+    font-size: $--x-font-size-lg;
+    line-height: $--x-font-size-lg * 1.5;
+  }
+  &-sub-title {
+    color: $--x-text-400;
+  }
+  &-content {
+    margin-top: $--x-font-size-lg;
+  }
+  @include type('success', $--x-success);
+  @include type('info', $--x-info);
+  @include type('warning', $--x-warning);
+  @include type('error', $--x-danger);
+  @include type('403', $--x-text-400);
+  @include type('404', $--x-text-400);
+  @include type('500', $--x-danger);
+}
+
+@mixin type($type, $color) {
+  &-#{$type} {
+    .#{$--x-result}-icon {
+      color: $color;
+    }
+  }
+}
