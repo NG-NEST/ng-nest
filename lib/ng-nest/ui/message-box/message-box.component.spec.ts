@@ -34,22 +34,24 @@ describe(XMessageBoxPrefix, () => {
 
 @Component({
   template: `
-    <div class="row">
-      <x-button (click)="alert('top-start', '上左')">上左</x-button>
-      <x-button (click)="alert('top', '上')">上</x-button>
-      <x-button (click)="alert('top-end', '上右')">上右</x-button>
+    <div class="box">
+      <div class="row">
+        <x-button (click)="alert('top-start', '上左')">上左</x-button>
+        <x-button (click)="alert('top', '上')">上</x-button>
+        <x-button (click)="alert('top-end', '上右')">上右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="alert('left', '左')">左</x-button>
+        <x-button (click)="alert('center', '中')">中(默认)</x-button>
+        <x-button (click)="alert('right', '右')">右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="alert('bottom-start', '下左')">下左</x-button>
+        <x-button (click)="alert('bottom', '下')">下</x-button>
+        <x-button (click)="alert('bottom-end', '下右')">下右</x-button>
+      </div>
     </div>
-    <div class="row">
-      <x-button (click)="alert('left', '左')">左</x-button>
-      <x-button (click)="alert('center', '中')">中(默认)</x-button>
-      <x-button (click)="alert('right', '右')">右</x-button>
-    </div>
-    <div class="row">
-      <x-button (click)="alert('bottom-start', '下左')">下左</x-button>
-      <x-button (click)="alert('bottom', '下')">下</x-button>
-      <x-button (click)="alert('bottom-end', '下右')">下右</x-button>
-    </div>
-
+    
     <div class="row">
       <x-button (click)="confirm()">消息确认</x-button>
     </div>
@@ -88,15 +90,23 @@ describe(XMessageBoxPrefix, () => {
   `,
   styles: [
     `
+      .box {
+        width: 16rem;
+        height: 10rem;
+        padding: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
       .row {
-        width: 20rem;
+        height: 3rem;
         display: flex;
+        align-items: center;
         justify-content: space-between;
       }
-      .row:not(:first-child) {
-        margin-top: 1rem;
+      .box .row:first-child {
+        align-items: flex-start;
       }
-      .row x-button:not(:first-child) {
+      .box .row:last-child {
+        align-items: flex-end;
       }
       .custom-table {
         border-collapse: collapse;
@@ -119,7 +129,8 @@ class TestXMessageBoxComponent {
   alert(place: XPlace, title: string) {
     this.msgBox.alert({
       title: '弹框 ' + title,
-      content: '这是一段内容',
+      content:
+        '天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
       placement: place,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });

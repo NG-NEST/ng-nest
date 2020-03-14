@@ -30,9 +30,9 @@ export class XMessageComponent {
     this.cdr.detectChanges();
   }
 
-  moveDone() {
-    if (XIsEmpty(this.message.list)) {
-      this.message.ref.overlayRef.dispose();
+  moveDone($event) {
+    if ($event.toState === 'void' && XIsEmpty(this.message.list)) {
+      this.message.ref.overlayRef.detach();
     }
   }
 

@@ -1,0 +1,30 @@
+<ng-template #dialogTpl>
+  <div class="x-dialog" [@x-move-box-animation]="placement" (@x-move-box-animation.done)="moveDone($event)">
+    <x-alert
+      (close)="onClose()"
+      [title]="title"
+      [content]="contentTpl"
+      [type]="type"
+      [effect]="effect"
+      [hide-close]="hideClose"
+      [close-text]="closeText"
+      show-icon="false"
+      duration="0"
+      manual
+      disabled-animation
+    ></x-alert>
+    <ng-template #contentTpl>
+      <div class="x-dialog-inner">
+        <div class="x-dialog-content">
+          <ng-content></ng-content>
+        </div>
+        <ng-container *xOutlet="footer">
+          <x-buttons space="1" *ngIf="showCancel || showConfirm">
+            <x-button *ngIf="showCancel" (click)="onCancel()">{{ cancelText }}</x-button>
+            <x-button *ngIf="showConfirm" type="primary" (click)="onConfirm()">{{ confirmText }}</x-button>
+          </x-buttons>
+        </ng-container>
+      </div>
+    </ng-template>
+  </div>
+</ng-template>

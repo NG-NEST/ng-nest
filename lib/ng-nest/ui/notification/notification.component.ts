@@ -30,9 +30,9 @@ export class XNotificationComponent {
     this.cdr.detectChanges();
   }
 
-  moveDone() {
-    if (XIsEmpty(this.notification.list)) {
-      this.notification.ref.overlayRef.dispose();
+  moveDone($event) {
+    if ($event.toState === 'void' && XIsEmpty(this.notification.list)) {
+      this.notification.ref.overlayRef.detach();
     }
   }
 

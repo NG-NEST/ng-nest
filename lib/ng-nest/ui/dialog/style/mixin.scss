@@ -1,0 +1,21 @@
+// Dialog
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin dialog {
+  width: 100%;
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    > x-buttons {
+      margin-top: 1rem;
+      align-self: flex-end;
+    }
+  }
+  &-content {
+    display: inline-flex;
+  }
+}

@@ -26,7 +26,7 @@ export interface XNotificationInput extends XAlertInput {
   placement?: XCorner;
   /**
    * 偏移距离
-   * @default '2rem'
+   * @default '0.5rem'
    */
   offset?: string;
   /**
@@ -36,7 +36,7 @@ export interface XNotificationInput extends XAlertInput {
   type?: XNotificationType;
   /**
    * 宽度
-   * @default '16rem'
+   * @default '20rem'
    */
   width?: string;
   /**
@@ -45,7 +45,7 @@ export interface XNotificationInput extends XAlertInput {
   height?: string;
   /**
    * 延迟关闭时间
-   * @default 3000
+   * @default 4500
    */
   duration?: number;
   /**

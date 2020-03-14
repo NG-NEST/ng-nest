@@ -45,33 +45,43 @@ describe(XMessagePrefix, () => {
 
 @Component({
   template: `
-    <div class="row">
-      <x-button (click)="open('top-start', '上左')">上左</x-button>
-      <x-button (click)="open('top', '上')">上(默认)</x-button>
-      <x-button (click)="open('top-end', '上右')">上右</x-button>
-    </div>
-    <div class="row">
-      <x-button (click)="open('left', '左')">左</x-button>
-      <x-button (click)="open('center', '中')">中</x-button>
-      <x-button (click)="open('right', '右')">右</x-button>
-    </div>
-    <div class="row">
-      <x-button (click)="open('bottom-start', '下左')">下左</x-button>
-      <x-button (click)="open('bottom', '下')">下</x-button>
-      <x-button (click)="open('bottom-end', '下右')">下右</x-button>
+    <div class="box">
+      <div class="row">
+        <x-button (click)="open('top-start', '上左')">上左</x-button>
+        <x-button (click)="open('top', '上')">上(默认)</x-button>
+        <x-button (click)="open('top-end', '上右')">上右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="open('left', '左')">左</x-button>
+        <x-button (click)="open('center', '中')">中</x-button>
+        <x-button (click)="open('right', '右')">右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="open('bottom-start', '下左')">下左</x-button>
+        <x-button (click)="open('bottom', '下')">下</x-button>
+        <x-button (click)="open('bottom-end', '下右')">下右</x-button>
+      </div>
     </div>
   `,
   styles: [
     `
+      .box {
+        width: 16rem;
+        height: 10rem;
+        padding: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
       .row {
-        width: 20rem;
+        height: 3rem;
         display: flex;
+        align-items: center;
         justify-content: space-between;
       }
-      .row:not(:first-child) {
-        margin-top: 1rem;
+      .box .row:first-child {
+        align-items: flex-start;
       }
-      .row x-button:not(:first-child) {
+      .box .row:last-child {
+        align-items: flex-end;
       }
     `
   ]

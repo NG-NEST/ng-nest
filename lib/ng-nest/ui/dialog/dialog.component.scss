@@ -1,0 +1,16 @@
+// Dialog
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-dialog} {
+  @include reset-component();
+  @include dialog();
+}
+
+.#{$--x-dialog}-portal {
+  #{$--x-dialog} {
+    width: 100%;
+  }
+}

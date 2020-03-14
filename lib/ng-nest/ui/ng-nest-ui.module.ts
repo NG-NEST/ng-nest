@@ -36,6 +36,7 @@ import { XTreeModule } from '@ng-nest/ui/tree';
 
 import { XAlertModule } from '@ng-nest/ui/alert';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
+import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XMessageModule } from '@ng-nest/ui/message';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { XNotificationModule } from '@ng-nest/ui/notification';
@@ -104,6 +105,7 @@ export * from '@ng-nest/ui/tree';
 
 export * from '@ng-nest/ui/alert';
 export * from '@ng-nest/ui/drawer';
+export * from '@ng-nest/ui/dialog';
 export * from '@ng-nest/ui/message';
 export * from '@ng-nest/ui/message-box';
 export * from '@ng-nest/ui/notification';
@@ -172,6 +174,7 @@ export * from '@ng-nest/ui/form';
 
     XAlertModule,
     XDrawerModule,
+    XDialogModule,
     XMessageModule,
     XMessageBoxModule,
     XNotificationModule,

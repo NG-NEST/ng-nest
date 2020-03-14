@@ -103,7 +103,6 @@ export class XNotificationService {
   }
 
   private removeNotification(option: XNotificationInput) {
-    this.notifications[option.placement].list.splice(this.notifications[option.placement].list.indexOf(option), 1);
-    this.notificationChange(this.notifications[option.placement]);
+    this.notifications[option.placement].ref.componentRef.instance.onClose(option);
   }
 }

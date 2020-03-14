@@ -55,7 +55,6 @@ export class XMessageBoxService {
     } else {
       opt = option as XMessageBoxInput;
     }
-    console.log(opt, Object.assign(this.default, def));
     fillDefault(opt, Object.assign(this.default, def));
     return this.createMessageBoxPlacement(opt);
   }

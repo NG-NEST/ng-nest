@@ -7,7 +7,7 @@ import { XMessageService } from '@ng-nest/ui/message';
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })
-export class ExPromptComponent {
+export class ExCustomComponent {
   @ViewChild('contentTpl', { static: true }) contentTpl: TemplateRef<void>;
   constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
   alertCustom() {

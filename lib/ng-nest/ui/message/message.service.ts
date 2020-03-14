@@ -98,13 +98,11 @@ export class XMessageService {
         .pipe(delay(option.duration))
         .subscribe(x => {
           this.removeMessage(option);
-          option.duration$ && option.duration$.unsubscribe();
         });
     }
   }
 
   private removeMessage(option: XMessageInput) {
-    this.messages[option.placement].list.splice(this.messages[option.placement].list.indexOf(option), 1);
-    this.messageChange(this.messages[option.placement]);
+    this.messages[option.placement].ref.componentRef.instance.onClose(option);
   }
 }
