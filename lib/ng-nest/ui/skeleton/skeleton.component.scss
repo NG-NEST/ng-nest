@@ -1,0 +1,10 @@
+// Skeleton
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-skeleton} {
+  @include reset-component();
+  @include skeleton();
+}

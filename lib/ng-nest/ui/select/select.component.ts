@@ -31,13 +31,15 @@ import {
   XDataConvert,
   XToDataConvert,
   XIsObservable,
-  removeNgTag
+  removeNgTag,
+  XIsChange
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT } from '@angular/common';
 import { XSelectPortalComponent } from './select-portal.component';
 import { map } from 'rxjs/operators';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'x-select',
@@ -90,6 +92,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     private portalService: XPortalService,
     private ngZone: NgZone,
     private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay,
     @Inject(DOCUMENT) private doc: any
   ) {
     super(renderer);
@@ -98,38 +101,14 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   ngOnInit() {
     fillDefault(this, this._default);
     this.setFlex(this.select.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
-  }
-
-  ngAfterViewInit() {
-    this.setPortal();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {
     this.data$ && this.data$.unsubscribe();
-    this.removeListen();
-  }
-
-  addListen() {
-    this.scrollFunction = this.renderer.listen('window', 'scroll', () => {
-      this.setPortal();
-    });
-    this.resizeFunction = this.renderer.listen('window', 'resize', () => {
-      this.setPortal();
-    });
-  }
-
-  removeListen() {
-    this.scrollFunction && this.scrollFunction();
-    this.resizeFunction && this.resizeFunction();
-    this.cdr.markForCheck();
   }
 
   private setData() {
@@ -148,7 +127,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   private setDataChange(value: XSelectNode[]) {
     this.nodes = value;
-    this.setPortal();
     this.setDisplayValue();
     this.cdr.detectChanges();
   }
@@ -199,7 +177,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   closePortal() {
     if (this.portalAttached()) {
       this.portal.overlayRef.dispose();
-      this.removeListen();
+      // this.removeListen();
       return true;
     }
     return false;
@@ -231,23 +209,23 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.portal = this.portalService.create({
       content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      injector: this.portalService.createInjector(
-        {
-          data: this.nodes,
-          value: this.value,
-          valueChange: this.valueChange,
-          closePortal: () => this.closePortal(),
-          nodeEmit: node => this.nodeClick(node)
-        },
-        XSelectPortal
-      ),
       overlayConfig: {
         backdropClass: '',
+        scrollStrategy: this.overlay.scrollStrategies.reposition({ autoClose: true }),
         width: this.box.width,
         positionStrategy: this.setPlacement()
       }
     });
-    this.addListen();
+    this.setInstance();
+  }
+
+  setInstance() {
+    this.portal.componentRef.instance.data = this.nodes;
+    this.portal.componentRef.instance.value = this.value;
+    this.portal.componentRef.instance.valueChange = this.valueChange;
+    this.portal.componentRef.instance.closePortal = () => this.closePortal();
+    this.portal.componentRef.instance.nodeEmit = node => this.nodeClick(node);
+    this.portal.componentRef.changeDetectorRef.detectChanges();
   }
 
   nodeClick(node: XSelectNode) {
@@ -261,22 +239,6 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   setPlacement() {
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPlacement(
-      this.inputCom.input,
-      this.protalTobottom ? 'bottom-start' : 'top-start'
-    );
-  }
-
-  setPortal() {
-    if (!this.inputCom.input) return;
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    if (this.box && this.nodes.length > 0) {
-      this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
-    }
-    if (this.portalAttached()) {
-      this.portal.overlayRef.updatePositionStrategy(this.setPlacement());
-    }
+    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'top-start');
   }
 }

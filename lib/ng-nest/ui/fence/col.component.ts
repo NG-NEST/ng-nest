@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { XColPrefix } from './fence.type';
 import { XRowComponent } from './row.component';
-import { XInputNumber } from '@ng-nest/ui/core';
+import { XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XColPrefix}`,
@@ -29,6 +29,7 @@ export class XColComponent implements OnInit {
   @Input() @XInputNumber() md?: number;
   @Input() @XInputNumber() lg?: number;
   @Input() @XInputNumber() xl?: number;
+  @Input() @XInputBoolean() inherit?: number;
 
   @HostBinding(`class.x-col-24`) get getFlex() {
     return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24;
@@ -47,6 +48,7 @@ export class XColComponent implements OnInit {
     this.setOffset();
     this.setSpace();
     this.setLayout();
+    this.setInherit();
   }
 
   setSpan() {
@@ -81,5 +83,10 @@ export class XColComponent implements OnInit {
     if (this.xl) {
       this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-xl-${this.xl}`);
     }
+  }
+
+  setInherit() {
+    if (!this.inherit) return;
+    this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-inherit`);
   }
 }

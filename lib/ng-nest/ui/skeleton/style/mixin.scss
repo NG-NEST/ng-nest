@@ -1,0 +1,97 @@
+// Skeleton
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin skeleton {
+  x-row,
+  x-col {
+    min-height: 1rem;
+  }
+  x-row {
+    background-color: $--x-white;
+  }
+  x-row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  x-col {
+    > div {
+      width: 100%;
+      height: 1rem;
+      background-color: $--x-info-900;
+      border-radius: 0.125rem;
+      position: relative;
+    }
+    &.has-child {
+      > div {
+        background-color: transparent;
+      }
+    }
+    &.has-size {
+      width: inherit;
+    }
+    &.avatar > div {
+      border-radius: 50%;
+    }
+    &.title > div,
+    &.avatar > div,
+    &.img > div {
+      background-color: $--x-info-800;
+    }
+    &.transparent {
+      padding: 0 !important;
+      > div {
+        background-color: transparent;
+      }
+    }
+  }
+  &-border {
+    x-row {
+      margin: 0 !important;
+      x-col {
+        border-left: 0.0625rem solid $--x-border-200;
+        border-bottom: 0.0625rem solid $--x-border-200;
+      }
+      x-col:last-child {
+        border-right: 0.0625rem solid $--x-border-200;
+      }
+      &:first-child x-col {
+        border-top: 0.0625rem solid $--x-border-200;
+      }
+    }
+  }
+  &-active {
+    x-col:not(.has-child):not(.transparent) {
+      > div {
+        &::before {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: $--x-white;
+          border-radius: 0.125rem;
+          opacity: 0;
+          animation: skeleton-active 1.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          content: '';
+        }
+      }
+    }
+  }
+}
+
+@keyframes skeleton-active {
+  0% {
+    width: 0;
+    opacity: 0.1;
+  }
+  20% {
+    width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}

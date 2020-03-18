@@ -1,0 +1,10 @@
+// Transfer
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-transfer} {
+  @include reset-component();
+  @include transfer();
+}

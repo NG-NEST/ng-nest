@@ -36,7 +36,7 @@ describe(XPopconfirmPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-popconfirm title="确定删除吗？" (ok)="ok()" (cancel)="cancel()">
+      <x-popconfirm title="确定删除吗？" (confirm)="confirm()" (cancel)="cancel()">
         <x-button icon="fto-trash-2">删除</x-button>
       </x-popconfirm>
     </div>
@@ -58,8 +58,8 @@ class TestXPopconfirmComponent {
       this.cdr.detectChanges();
     });
   }
-  ok() {
-    console.log('ok');
+  confirm() {
+    console.log('confirm');
   }
   cancel() {
     console.log('cancel');

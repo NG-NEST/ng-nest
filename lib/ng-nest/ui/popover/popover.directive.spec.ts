@@ -58,8 +58,8 @@ describe(XPopoverPrefix, () => {
       </div>
     </div>
     <div class="box">
-      <x-button x-popover content="天将降大任于斯人也" trigger="click">click 激活</x-button>
-      <x-popover title="标题" content="天将降大任于斯人也" trigger="click">
+      <x-button x-popover content="天将降大任于是人也" trigger="click">click 激活</x-button>
+      <x-popover title="标题" content="天将降大任于是人也" trigger="click">
         <x-button>激活</x-button>
       </x-popover>
       <x-popover [title]="titleTemp" [content]="contentTemp" trigger="click">

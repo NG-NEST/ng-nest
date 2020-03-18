@@ -10,8 +10,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { XSelectPortal, XSelectNode } from './select.type';
-import { Subscription } from 'rxjs';
-import { removeNgTag } from '@ng-nest/ui/core';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
   selector: 'x-select-portal',
@@ -23,24 +22,25 @@ import { removeNgTag } from '@ng-nest/ui/core';
 export class XSelectPortalComponent implements OnInit, OnDestroy {
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
+  data: XSelectNode[];
+  value: any;
+  valueChange: Subject<any>;
+  closePortal: Function;
+  nodeEmit: Function;
 
-  constructor(public renderer: Renderer2, @Inject(XSelectPortal) public option: any, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueChange$ = this.option.valueChange.subscribe(x => {
-      this.option.value = x;
+    this.valueChange$ = this.valueChange.subscribe(x => {
+      this.value = x;
       this.cdr.markForCheck();
     });
     setTimeout(
       () =>
         (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.option.closePortal();
+          this.closePortal();
         }))
     );
-  }
-
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {
@@ -53,6 +53,6 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XSelectNode) {
-    this.option.nodeEmit(node);
+    this.nodeEmit(node);
   }
 }

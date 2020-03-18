@@ -1,6 +1,6 @@
 import { TemplateRef, ViewContainerRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { ComponentType, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
-import { OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
+import { OverlayRef, OverlayConfig, ConnectedPosition } from '@angular/cdk/overlay';
 
 /**
  * Portal 组件名
@@ -8,6 +8,21 @@ import { OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
  * @decorator component
  */
 export const PortalPrefix = 'x-portal';
+
+export const XPortalPlacement: { [proptery: string]: ConnectedPosition } = {
+  bottom: { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top' },
+  left: { originX: 'start', originY: 'center', overlayX: 'end', overlayY: 'center' },
+  right: { originX: 'end', originY: 'center', overlayX: 'start', overlayY: 'center' },
+  top: { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom' },
+  'bottom-end': { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
+  'bottom-start': { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+  'left-end': { originX: 'start', originY: 'bottom', overlayX: 'end', overlayY: 'bottom' },
+  'left-start': { originX: 'start', originY: 'top', overlayX: 'end', overlayY: 'top' },
+  'right-end': { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'bottom' },
+  'right-start': { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top' },
+  'top-end': { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
+  'top-start': { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' }
+};
 
 /**
  * Portal @Input

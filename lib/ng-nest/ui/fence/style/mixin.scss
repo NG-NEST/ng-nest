@@ -34,6 +34,7 @@
   position: relative;
   float: left;
   display: block;
+  width: 100%;
   box-sizing: border-box;
   $col-fence-initial: $--x-col-fence;
   @while $col-fence-initial>0 {
@@ -48,5 +49,8 @@
   }
   @each $key, $value in $--x-size-range {
     @include media-screen($key, $value);
+  }
+  &-inherit {
+    width: inherit;
   }
 }

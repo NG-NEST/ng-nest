@@ -1,0 +1,26 @@
+<ng-content></ng-content>
+
+<ng-container *ngIf="!fullScreen">
+  <ng-container *ngTemplateOutlet="loadingTpl"></ng-container>
+</ng-container>
+
+<ng-template #loadingTpl>
+  <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" [hidden]="!loading">
+    <div class="x-loading-spinner" [style.color]="color">
+      <ng-container *ngIf="icon; else circularTpl">
+        <div class="x-loading-icon">
+          <x-icon [type]="icon"></x-icon>
+        </div>
+      </ng-container>
+      <div class="x-loading-text">
+        <ng-container *xOutlet="text">{{ text }}</ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #circularTpl>
+  <svg class="x-loading-circular" viewBox="25 25 50 50">
+    <circle class="x-loading-path" cx="50" cy="50" r="20" fill="none" />
+  </svg>
+</ng-template>

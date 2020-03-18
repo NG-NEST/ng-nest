@@ -85,8 +85,9 @@ export class XDrawerComponent implements OnInit, OnChanges {
       content: this.drawerTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
+
         hasBackdrop: true,
-        scrollStrategy: this.overlay.scrollStrategies.noop(),
+        scrollStrategy: this.overlay.scrollStrategies.reposition(),
         positionStrategy: this.portalService.setPosition(this.placement, width, height)
       }
     });

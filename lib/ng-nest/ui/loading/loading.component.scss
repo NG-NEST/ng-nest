@@ -1,0 +1,14 @@
+// Loading
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-loading}-parent {
+  position: relative;
+}
+
+.#{$--x-loading} {
+  @include reset-component();
+  @include loading();
+}

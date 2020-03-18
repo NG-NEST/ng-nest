@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./line-height.component.scss']
 })
 export class ExLineHeightComponent implements OnInit {
-  text = '天将降大任于斯人也，<br/>必先苦其心志，劳其筋骨<br/>，饿其体肤';
+  text = '天将降大任于是人也，<br/>必先苦其心志，劳其筋骨<br/>，饿其体肤';
   constructor() {}
 
   ngOnInit() {}

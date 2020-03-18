@@ -1,0 +1,78 @@
+// Loading
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin loading {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-spinner {
+    color: $--x-primary;
+    text-align: center;
+  }
+  &-circular {
+    height: 1.675rem;
+    width: 1.675rem;
+    animation: loading-rotate 2s linear infinite;
+  }
+  &-icon {
+    font-size: 1.675rem;
+    animation: loading-rotate 2s linear infinite;
+    display: inline-flex;
+  }
+  &-path {
+    animation: loading-dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke-width: 2;
+    stroke: $--x-primary;
+    stroke-linecap: round;
+  }
+  @include size('large', 2.175rem);
+  @include size('medium', 1.875rem);
+  @include size('small', 1.5rem);
+  @include size('mini', 1.375rem);
+}
+
+@mixin size($size, $width) {
+  &-#{$size} {
+    .#{$--x-loading}-circular {
+      height: $width;
+      width: $width;
+    }
+    .#{$--x-loading}-icon {
+      font-size: $width;
+    }
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -2.5rem;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -7.5rem;
+  }
+}

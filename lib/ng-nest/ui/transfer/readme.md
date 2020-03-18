@@ -1,5 +1,5 @@
 ---
-label: 'Transfer 穿梭框 [待]'
+label: 'Transfer 穿梭框'
 category: 'Form'
 ---
 

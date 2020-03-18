@@ -33,7 +33,7 @@ export class XPopconfirmComponent implements OnInit, OnChanges {
   @Input() icon?: string = 'fto-help-circle';
   @Input() iconColor?: string = '#e6a23c';
   @Output() cancel = new EventEmitter();
-  @Output() ok = new EventEmitter();
+  @Output() confirm = new EventEmitter();
   @ViewChild('popconfirm', { static: true }) popconfirm: ElementRef;
   visible;
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
@@ -47,8 +47,8 @@ export class XPopconfirmComponent implements OnInit, OnChanges {
     this.cancel.emit();
   }
 
-  onOk() {
+  onConfirm() {
     this.visible = false;
-    this.ok.emit();
+    this.confirm.emit();
   }
 }

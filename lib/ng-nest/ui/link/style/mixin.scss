@@ -19,6 +19,7 @@
   transition: all $--x-animation-duration-base ease-in-out;
   > x-icon {
     font-size: $--x-font-size + 0.125rem;
+    margin-right: 0.125rem;
   }
   &-underline {
     &:hover:after {
@@ -33,6 +34,8 @@
   }
   &-icon-right {
     flex-direction: row-reverse;
+    margin-right: 0;
+    margin-left: 0.125rem;
   }
   @include link-type('', inherit, $--x-primary, $--x-primary-a100, $--x-text-300);
   @include link-type('primary', $--x-primary, $--x-primary-200, $--x-primary-200, $--x-primary-500);

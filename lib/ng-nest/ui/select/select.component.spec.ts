@@ -229,11 +229,6 @@ class TestXSelectRequiredComponent {
   data = data;
   model1: any;
   model2: any;
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
-      this.cdr.detectChanges();
-    });
-  }
 }
 
 @Component({

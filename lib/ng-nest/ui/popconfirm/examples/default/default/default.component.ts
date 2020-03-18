@@ -10,8 +10,8 @@ export class ExDefaultComponent implements OnInit {
 
   ngOnInit() {}
 
-  ok() {
-    console.log('ok');
+  confirm() {
+    console.log('confirm');
   }
   cancel() {
     console.log('cancel');

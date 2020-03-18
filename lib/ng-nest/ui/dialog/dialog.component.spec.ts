@@ -75,7 +75,7 @@ describe(XDialogPrefix, () => {
       (confirm)="close()"
     >
       <span
-        >天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
+        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
       >
     </x-dialog>
 
@@ -134,7 +134,7 @@ describe(XDialogPrefix, () => {
       <x-button (click)="custom()">自定义标题以及底部按钮</x-button>
       <x-dialog [title]="titleTpl" [footer]="footerTpl" [visible]="visibleCustom" (close)="customClose()">
         <span
-          >天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
+          >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
         >
         <ng-template #titleTpl>
           <x-icon type="fto-user"></x-icon>
