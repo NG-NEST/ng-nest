@@ -5,4 +5,81 @@
 @import './param';
 
 @mixin transfer {
+  display: inline-flex;
+  align-items: center;
+  &-box {
+    border: 0.0625rem solid $--x-border;
+    border-radius: 0.125rem;
+    width: 12rem;
+  }
+  &-title {
+    padding: 0.25rem 0.5625rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.0625rem solid $--x-border-200;
+    background-color: $--x-background;
+    color: $--x-text-500;
+    > span {
+      margin-left: 0.325rem;
+    }
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 0.25rem;
+    height: 18rem;
+    overflow-y: auto;
+    > li {
+      @include transfer-li();
+      transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base,
+        color $--x-animation-duration-base;
+    }
+    &.cdk-drop-list-dragging {
+      > li {
+        &.cdk-drag-placeholder {
+          border-color: $--x-border;
+          color: $--x-text-400;
+          background-color: $--x-white;
+          opacity: 0.9;
+        }
+        &:not(.cdk-drag-placeholder) {
+          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+    }
+  }
+  &-buttons {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    > x-button:not(:first-child) {
+      margin-top: 0.5rem;
+    }
+  }
+  &-search {
+    padding: 0.5rem;
+    border-bottom: 0.0625rem solid $--x-border-100;
+  }
+}
+
+@mixin transfer-li {
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.125rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem dashed transparent;
+}
+
+@mixin transfer-item {
+  &.cdk-drag-preview {
+    @include transfer-li();
+    border-color: $--x-primary;
+    color: $--x-primary;
+    background-color: $--x-background;
+    opacity: 0.8;
+  }
+  &.cdk-drag-animating {
+    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+  }
 }

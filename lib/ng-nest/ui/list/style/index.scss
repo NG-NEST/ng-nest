@@ -11,3 +11,7 @@
   @include reset-component();
   @include list();
 }
+
+body > li.#{$--x-list-prefix}-item {
+  @include list-item();
+}

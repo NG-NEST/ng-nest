@@ -14,16 +14,13 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    overflow-y: auto;
+    // overflow-y: auto;
     min-width: 7rem;
     cursor: pointer;
     > li {
-      padding: 0 0.4rem;
-      height: $--x-list-height;
-      line-height: $--x-list-height;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include list-li();
+      transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base,
+        color $--x-animation-duration-base;
       > span {
         overflow: hidden;
         white-space: nowrap;
@@ -48,5 +45,45 @@
         margin-top: $--x-border-width;
       }
     }
+    &.cdk-drop-list-dragging {
+      > li {
+        &:hover {
+          background-color: transparent;
+        }
+        &.cdk-drag-placeholder {
+          border-color: $--x-border;
+          color: $--x-text-400;
+          background-color: $--x-white;
+          opacity: 0.9;
+        }
+        &:not(.cdk-drag-placeholder) {
+          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+    }
+  }
+}
+
+@mixin list-li {
+  padding: 0 0.4rem;
+  height: $--x-list-height;
+  line-height: $--x-list-height;
+  border-radius: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.0625rem dashed transparent;
+}
+
+@mixin list-item {
+  &.cdk-drag-preview {
+    @include list-li();
+    border-color: $--x-primary;
+    color: $--x-primary;
+    background-color: $--x-background;
+    opacity: 0.8;
+  }
+  &.cdk-drag-animating {
+    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
   }
 }

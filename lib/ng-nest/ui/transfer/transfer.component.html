@@ -1,1 +1,81 @@
-<div #transfer class="x-transfer" [ngClass]="classMap"></div>
+<div #transfer class="x-transfer" cdkDropListGroup [ngClass]="classMap">
+  <div class="x-transfer-box">
+    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left }"></ng-container>
+    <ul
+      class="x-transfer-list"
+      cdkDropList
+      (cdkDropListDropped)="dropCdk($event)"
+      [cdkDropListData]="left.list"
+      [cdkDropListDisabled]="!drag"
+      [cdkDropListEnterPredicate]="predicate"
+    >
+      <li class="x-transfer-item" *ngFor="let node of left.list" cdkDrag [cdkDragData]="node">
+        <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left }"></ng-container>
+      </li>
+    </ul>
+  </div>
+  <div class="x-transfer-buttons">
+    <x-button
+      type="primary"
+      icon="fto-chevron-right"
+      [disabled]="left.disabledButton"
+      (click)="move(left, right)"
+    ></x-button>
+    <x-button
+      type="primary"
+      icon="fto-chevron-left"
+      [disabled]="right.disabledButton"
+      (click)="move(right, left)"
+    ></x-button>
+  </div>
+  <div class="x-transfer-box">
+    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right }"></ng-container>
+    <ul
+      class="x-transfer-list"
+      cdkDropList
+      (cdkDropListDropped)="dropCdk($event)"
+      [cdkDropListData]="right.list"
+      [cdkDropListDisabled]="!drag"
+      [cdkDropListEnterPredicate]="predicate"
+    >
+      <li class="x-transfer-item" *ngFor="let node of right.list" cdkDrag [cdkDragData]="node">
+        <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #sourceTitleTpl let-source="source">
+  <div class="x-transfer-title">
+    <x-checkbox
+      [data]="[{ id: true, label: titleTpl ? '' : source.title }]"
+      [(ngModel)]="source.checkedAll"
+      (ngModelChange)="checkedAllChange($event, source)"
+      [indeterminate]="source.indeterminate"
+    ></x-checkbox>
+    <ng-container
+      *xOutlet="
+        titleTpl;
+        context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.list.length }
+      "
+      ><span>{{ source.checkedCount }} / {{ source.list.length }}</span></ng-container
+    >
+  </div>
+  <!-- <div class="x-transfer-search" *ngIf="search">
+    <x-input
+      icon="fto-search"
+      [(ngModel)]="source.searchInput"
+      (ngModelChange)="searchInputChange(source)"
+      clearable
+    ></x-input>
+  </div> -->
+</ng-template>
+
+<ng-template #sourceNodeTpl let-node="node" let-source="source">
+  <x-checkbox
+    [data]="[{ id: node.id, label: nodeTpl ? nodeTpl : node.label, node: node }]"
+    [disabled]="node.disabled"
+    [(ngModel)]="node.checked"
+    (ngModelChange)="checkedChange($event, source)"
+  ></x-checkbox>
+</ng-template>

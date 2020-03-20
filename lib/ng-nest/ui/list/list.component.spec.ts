@@ -91,6 +91,12 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
         ></x-list>
       </x-col>
     </x-row>
+    <x-row space="1">
+      <x-col span="8">
+        <h6>上下拖动</h6>
+        <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
+      </x-col>
+    </x-row>
   `,
   styles: [
     `
@@ -107,16 +113,18 @@ class TestXListComponent {
   data4 = JSON.parse(JSON.stringify(data));
   data5 = JSON.parse(JSON.stringify(data));
   data6 = JSON.parse(JSON.stringify(data));
+  data7 = JSON.parse(JSON.stringify(data));
   model1: any;
   model2 = 'AAAA';
   model3: any;
   model4 = ['AAAA', 'BBBB'];
   model5: any;
   model6 = ['BBBB', 'CCCC'];
+  model7 = 'BBBB';
   constructor(private cdr: ChangeDetectorRef) {
-    // interval(500).subscribe(x => {
-    //   this.cdr.detectChanges();
-    // });
+    interval(0).subscribe(x => {
+      this.cdr.detectChanges();
+    });
   }
   change(val) {
     // console.log(val);

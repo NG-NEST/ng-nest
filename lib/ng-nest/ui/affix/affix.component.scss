@@ -1,14 +1,10 @@
-// Transfer
+// Affix
 
 @import '../style/themes/default';
 @import '../style/mixins/index';
 @import './style/mixin';
 
-.#{$--x-transfer} {
+.#{$--x-affix} {
   @include reset-component();
-  @include transfer();
-}
-
-body > li.#{$--x-transfer}-item {
-  @include transfer-item();
+  @include affix();
 }

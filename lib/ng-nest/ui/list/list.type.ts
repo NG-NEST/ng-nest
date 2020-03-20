@@ -1,4 +1,4 @@
-import { XIdentityInput, XFormProperty, XParentIdentityInput } from '@ng-nest/ui/core';
+import { XParentIdentityInput, XData } from '@ng-nest/ui/core';
 
 /**
  * List 组件名
@@ -10,11 +10,23 @@ export const XListPrefix = 'x-list';
 /**
  * List @List
  */
-export interface XListInput extends XIdentityInput {
+export interface XListInput {
+  /**
+   * 列表数据
+   */
+  data?: XData<XListNode[]>;
   /**
    * 多选个数
    */
   multiple?: number;
+  /**
+   * 选中
+   */
+  checked?: boolean;
+  /**
+   * 拖动
+   */
+  drag?: boolean;
 }
 
 /**

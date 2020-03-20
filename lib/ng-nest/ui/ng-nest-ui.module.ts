@@ -105,6 +105,7 @@ import { XSelectModule } from '@ng-nest/ui/select';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XTransferModule } from '@ng-nest/ui/transfer';
 import { XUploadModule } from '@ng-nest/ui/upload';
 export * from '@ng-nest/ui/cascade';
 export * from '@ng-nest/ui/checkbox';
@@ -120,6 +121,7 @@ export * from '@ng-nest/ui/select';
 export * from '@ng-nest/ui/slider-select';
 export * from '@ng-nest/ui/switch';
 export * from '@ng-nest/ui/time-picker';
+export * from '@ng-nest/ui/transfer';
 export * from '@ng-nest/ui/upload';
 
 /**
@@ -157,7 +159,6 @@ export * from '@ng-nest/ui/portal';
  */
 export * from '@ng-nest/ui/core';
 
-
 @NgModule({
   exports: [
     XBorderModule,
@@ -187,6 +188,7 @@ export * from '@ng-nest/ui/core';
     XTimeAgoModule,
     XTimeRangeModule,
     XTimelineModule,
+    XTransferModule,
     XTreeModule,
 
     XAlertModule,

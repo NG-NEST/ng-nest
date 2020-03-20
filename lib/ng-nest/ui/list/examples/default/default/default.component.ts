@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { XListNode } from '@ng-nest/ui/list';
-import { XData } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
@@ -15,12 +13,14 @@ export class ExDefaultComponent implements OnInit {
   data4 = JSON.parse(JSON.stringify(this.data));
   data5 = JSON.parse(JSON.stringify(this.data));
   data6 = JSON.parse(JSON.stringify(this.data));
+  data7 = JSON.parse(JSON.stringify(this.data));
   model1: any;
   model2 = 'AAAA';
   model3: any;
   model4 = ['AAAA', 'BBBB'];
   model5: any;
   model6 = ['BBBB', 'CCCC'];
+  model7 = 'BBBB';
   constructor() {}
 
   ngOnInit() {}

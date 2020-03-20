@@ -1,5 +1,5 @@
 ---
-label: 'Affix 固钉 [待]'
+label: 'Affix 固钉'
 category: 'Navigation'
 ---
 

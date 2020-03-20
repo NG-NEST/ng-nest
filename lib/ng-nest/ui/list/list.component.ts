@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Renderer2,
-  ElementRef,
   Input,
   SimpleChanges,
   OnChanges,
@@ -23,9 +22,11 @@ import {
   XIsObservable,
   XDataConvert,
   XToDataConvert,
-  XInputBoolean
+  XInputBoolean,
+  XIsChange
 } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'x-list',
@@ -39,6 +40,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   @Input() @XDataConvert() data?: XData<XListNode[]>;
   @Input() @XInputNumber() multiple?: number;
   @Input() @XInputBoolean() checked?: boolean;
+  @Input() @XInputBoolean() drag?: boolean;
   @Output() nodeEmit?: EventEmitter<XListNode> = new EventEmitter<XListNode>();
 
   nodes: XListNode[] = [];
@@ -62,13 +64,11 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   ngOnInit() {
     fillDefault(this, this._default);
     // removeNgTag(this.elementRef.nativeElement);
+    console.log(this.drag)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -145,5 +145,10 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     if (this.onChange) this.onChange(this.value);
     node.event = event;
     this.nodeEmit.emit(node);
+  }
+
+  dropCdk(event: CdkDragDrop<XListNode[]>) {
+    moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
+    this.cdr.detectChanges();
   }
 }

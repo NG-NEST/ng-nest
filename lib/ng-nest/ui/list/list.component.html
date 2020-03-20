@@ -1,10 +1,12 @@
 <div class="x-list">
-  <ul>
+  <ul cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag">
     <li
+      class="x-list-item"
       *ngFor="let node of nodes"
       [class.x-selected]="node.selected"
       [class.x-disabled]="node.disabled"
       (click)="nodeClick($event, node)"
+      cdkDrag
     >
       <span>{{ node.label }}</span>
       <x-icon type="fto-chevron-right" *ngIf="node.leaf"></x-icon>

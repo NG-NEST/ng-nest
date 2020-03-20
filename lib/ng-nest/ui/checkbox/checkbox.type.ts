@@ -1,4 +1,4 @@
-import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { XIdentityInput, XData, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Checkbox 组件名
@@ -49,4 +49,8 @@ export interface XCheckboxNode extends XIdentityInput {
    * 图标的提示信息
    */
   title?: string;
+  /**
+   * 标签文字
+   */
+  label?: XTemplate
 }
