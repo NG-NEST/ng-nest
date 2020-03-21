@@ -1,0 +1,17 @@
+:host {
+  .row.scroll {
+    height: 12rem;
+    width: 12rem;
+    overflow: auto;
+    border-radius: 0.125rem;
+    border: 0.0625rem solid var(--x-border);
+  }
+  .row .box {
+    height: 25rem;
+    width: 25rem;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  }
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

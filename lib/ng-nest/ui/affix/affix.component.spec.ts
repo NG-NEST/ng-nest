@@ -35,20 +35,31 @@ describe(XAffixPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-affix>
+      <x-affix top="0">
         <x-button>滚动条下滑，我将固定到顶部</x-button>
       </x-affix>
-      <x-affix offset-top="5rem">
+      <x-affix top="5rem">
         <x-button>滚动条下滑，我与顶部距离5rem</x-button>
       </x-affix>
     </div>
     <div class="row scroll">
       <div class="box">
-        <br />
-        <br />
-        <br />
-        <x-affix>
-          <x-button>范围内固定</x-button>
+        <x-affix top="2rem">
+          <x-button>top </x-button>
+        </x-affix>
+      </div>
+    </div>
+    <div class="row scroll">
+      <div class="box">
+        <x-affix left="2rem">
+          <x-button>left </x-button>
+        </x-affix>
+      </div>
+    </div>
+    <div class="row scroll">
+      <div class="box">
+        <x-affix top="2rem" left="2rem">
+          <x-button>top + left</x-button>
         </x-affix>
       </div>
     </div>
@@ -59,13 +70,16 @@ describe(XAffixPrefix, () => {
         height: 50rem;
       }
       .row.scroll {
-        height: 15rem;
-        width: 10rem;
-        background-color: rgba(0, 0, 0, 0.1);
+        height: 12rem;
+        width: 12rem;
         overflow: auto;
+        border-radius: 0.125rem;
+        border: 0.0625rem solid var(--x-border);
       }
       .row .box {
-        height: 40rem;
+        height: 25rem;
+        width: 25rem;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
       }
       .row x-affix:not(:first-child) {
         margin-left: 1rem;

@@ -127,9 +127,11 @@ export * from '@ng-nest/ui/upload';
 /**
  * Navigation
  */
+import { XAffixModule } from '@ng-nest/ui/affix';
 import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+export * from '@ng-nest/ui/affix';
 export * from '@ng-nest/ui/anchor';
 export * from '@ng-nest/ui/crumb';
 export * from '@ng-nest/ui/tabs';
@@ -155,7 +157,7 @@ export * from '@ng-nest/ui/inner';
 export * from '@ng-nest/ui/portal';
 
 /**
- * 核心
+ * Core
  */
 export * from '@ng-nest/ui/core';
 
@@ -219,6 +221,7 @@ export * from '@ng-nest/ui/core';
     XTimePickerModule,
     XUploadModule,
 
+    XAffixModule,
     XAnchorModule,
     XCrumbModule,
     XTabsModule,
