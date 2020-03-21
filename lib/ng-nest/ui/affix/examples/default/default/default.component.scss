@@ -11,7 +11,7 @@
     width: 200%;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
   }
-  .row:not(:first-child) {
-    margin-top: 1rem;
+  .row x-affix:not(:first-child) {
+    margin-left: 1rem;
   }
 }

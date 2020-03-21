@@ -24,7 +24,6 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'x-anchor',
   templateUrl: './anchor.component.html',
-  // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./style/index.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

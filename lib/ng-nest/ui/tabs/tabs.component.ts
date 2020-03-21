@@ -26,7 +26,6 @@ import { XTabComponent } from './tab.component';
   selector: 'x-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./style/index.scss'],
-  // Todo: 使用 ShadowDom 模式后，模板中使用 ng-content 里面的内容无法显示
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

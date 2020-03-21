@@ -1,6 +1,10 @@
-<x-affix top="0">
-  <x-button>滚动条下滑，我将固定到顶部</x-button>
-</x-affix>
-<x-affix [style.margin-left.rem]="1" top="5rem">
-  <x-button>滚动条下滑，我与顶部距离5rem</x-button>
-</x-affix>
+<div class="row scroll">
+  <div class="box">
+    <x-affix top="0">
+      <x-button>滚动条下滑，我将固定到顶部</x-button>
+    </x-affix>
+    <x-affix [style.margin-left.rem]="1" top="5rem">
+      <x-button>滚动条下滑，我与顶部距离5rem</x-button>
+    </x-affix>
+  </div>
+</div>

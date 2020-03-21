@@ -68,24 +68,26 @@ export * from '@ng-nest/ui/tree';
 import { XAlertModule } from '@ng-nest/ui/alert';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
+import { XLoadingModule } from '@ng-nest/ui/loading';
 import { XMessageModule } from '@ng-nest/ui/message';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { XNotificationModule } from '@ng-nest/ui/notification';
 import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
 import { XPopoverModule } from '@ng-nest/ui/popover';
 import { XResultModule } from '@ng-nest/ui/result';
-import { XLoadingModule } from '@ng-nest/ui/loading';
+import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 export * from '@ng-nest/ui/alert';
 export * from '@ng-nest/ui/dialog';
 export * from '@ng-nest/ui/drawer';
+export * from '@ng-nest/ui/loading';
 export * from '@ng-nest/ui/message';
 export * from '@ng-nest/ui/message-box';
 export * from '@ng-nest/ui/notification';
 export * from '@ng-nest/ui/popconfirm';
 export * from '@ng-nest/ui/popover';
 export * from '@ng-nest/ui/result';
-export * from '@ng-nest/ui/loading';
+export * from '@ng-nest/ui/skeleton';
 export * from '@ng-nest/ui/tooltip';
 
 /**
@@ -196,13 +198,14 @@ export * from '@ng-nest/ui/core';
     XAlertModule,
     XDialogModule,
     XDrawerModule,
+    XLoadingModule,
     XMessageModule,
     XMessageBoxModule,
     XNotificationModule,
     XPopconfirmModule,
     XPopoverModule,
     XResultModule,
-    XLoadingModule,
+    XSkeletonModule,
     XTooltipModule,
 
     XCascadeModule,

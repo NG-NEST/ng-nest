@@ -1,5 +1,4 @@
-import { TemplateRef } from '@angular/core';
-import { XStatus } from '../core';
+import { XStatus } from '@ng-nest/ui/core';
 
 /**
  * Result 组件名

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ShareModule } from 'src/share/share.module';
 import { MainRoutesModule } from 'src/main/routes.module';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { MainRoutesModule } from 'src/main/routes.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ShareModule,
     MainRoutesModule
   ],
   bootstrap: [AppComponent]

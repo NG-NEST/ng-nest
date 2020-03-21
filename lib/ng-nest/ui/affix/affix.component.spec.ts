@@ -34,7 +34,7 @@ describe(XAffixPrefix, () => {
 
 @Component({
   template: `
-    <div class="row">
+    <div class="row scroll">
       <x-affix top="0">
         <x-button>滚动条下滑，我将固定到顶部</x-button>
       </x-affix>

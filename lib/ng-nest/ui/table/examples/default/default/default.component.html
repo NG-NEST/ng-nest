@@ -9,12 +9,12 @@
 <ng-template #nameHeaderTemp let-column="$column">
   <div class="header-name">
     <x-icon type="fto-user"></x-icon>
-    <span>{{ column.name }}</span>
+    <span>{{ column.label }}</span>
   </div>
 </ng-template>
 <ng-template #nameBodyTemp let-column="$column" let-item="$item">
   <div class="body-name">
     <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
-    <span>{{ item[column.key] }}</span>
+    <span>{{ item[column.id] }}</span>
   </div>
 </ng-template>
