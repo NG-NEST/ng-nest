@@ -1,0 +1,23 @@
+<div #ancher class="x-ancher" [ngClass]="classMap">
+  <div #content class="x-ancher-content">
+    <ng-content></ng-content>
+  </div>
+  <x-affix class="x-ancher-affix" [top]="affixTop">
+    <div class="x-ancher-slider" [style.height.px]="sliderHeight">
+      <x-slider
+        [data]="sliderData"
+        layout="column"
+        [borderPosition]="borderPosition"
+        [nodeTemplate]="sliderNodeTpl"
+        [activatedIndex]="activatedIndex"
+        (indexChange)="activatedChange($event)"
+      ></x-slider>
+    </div>
+  </x-affix>
+</div>
+
+<ng-template #sliderNodeTpl let-node="node$">
+  <a [ngStyle]="{ 'padding-left.rem': node.left - 1 }">
+    <span>{{ node.label }}</span>
+  </a>
+</ng-template>

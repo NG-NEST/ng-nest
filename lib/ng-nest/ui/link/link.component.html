@@ -5,9 +5,10 @@
   [class.x-link-disabled]="disabled"
   [class.x-link-underline]="underline && !disabled"
   [class.x-link-icon-right]="iconRight"
+  [class.x-link-only-icon]="icon && !content.innerHTML.trim()"
   [attr.href]="href"
   [attr.target]="target"
 >
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
-  <span><ng-content></ng-content></span>
+  <span #content><ng-content></ng-content></span>
 </a>

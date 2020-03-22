@@ -1,0 +1,23 @@
+// Ancher
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin ancher {
+  display: flex;
+  &-content {
+    flex: 1;
+  }
+  &-affix {
+    max-width: 10rem;
+    padding-right: 1.0625rem;
+  }
+  &-slider {
+    float: left;
+    overflow: hidden;
+    &:hover {
+      overflow-y: auto;
+    }
+  }
+}

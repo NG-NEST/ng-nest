@@ -37,6 +37,11 @@
     margin-right: 0;
     margin-left: 0.125rem;
   }
+  &-only-icon {
+    > x-icon {
+      margin-right: 0;
+    }
+  }
   @include link-type('', inherit, $--x-primary, $--x-primary-a100, $--x-text-300);
   @include link-type('primary', $--x-primary, $--x-primary-200, $--x-primary-200, $--x-primary-500);
   @include link-type('success', $--x-success, $--x-success-200, $--x-success-200, $--x-success-500);

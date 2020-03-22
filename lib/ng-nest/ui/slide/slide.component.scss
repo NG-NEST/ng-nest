@@ -1,0 +1,14 @@
+// Slide
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-slide} {
+  display: block;
+}
+
+.#{$--x-slide} {
+  @include reset-component();
+  @include slide();
+}

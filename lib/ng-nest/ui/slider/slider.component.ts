@@ -14,15 +14,8 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import {
-  SliderPrefix,
-  XSliderInput,
-  XActivatedSlider,
-  XSliderNode,
-  XSliderLayoutType,
-  XSliderBorderPositionType
-} from './slider.type';
-import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert, XInputBoolean } from '@ng-nest/ui/core';
+import { SliderPrefix, XSliderInput, XActivatedSlider, XSliderNode, XSliderLayoutType, XSliderBorderPositionType } from './slider.type';
+import { fillDefault, XData, XDataConvert, XIsObservable, XToDataConvert, XInputBoolean, XIsChange, XClassMap } from '@ng-nest/ui/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -34,36 +27,18 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSliderComponent implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XSliderNode[]>;
+  @Input() @XDataConvert() data?: XData<XSliderNode[]> = [];
   @Input() @XInputBoolean() animated: boolean = true;
-  @Input() layout?: XSliderLayoutType;
+  @Input() layout: XSliderLayoutType = 'row';
   @Input() borderPosition?: XSliderBorderPositionType;
   @Input() nodeTemplate?: any;
+  @Input() activatedIndex: number = 0;
 
   activatedSlider: XSliderNode;
   highlightHidden: boolean;
-
-  private _activatedIndex: number;
-  public get activatedIndex(): number {
-    return this._activatedIndex;
-  }
-  @Input()
-  public set activatedIndex(value: number) {
-    this._activatedIndex = value;
-    if (this.sliderNodes.length > 0) {
-      this.activatedSlider = this.sliderNodes[value];
-    }
-    this.setHighlight();
-    this.cdr.detectChanges();
-  }
+  classMap: XClassMap = {};
 
   @Output() indexChange?: EventEmitter<XActivatedSlider> = new EventEmitter<XActivatedSlider>();
-
-  private _default: XSliderInput = {
-    data: [],
-    layout: 'row',
-    activatedIndex: 0
-  };
 
   @ViewChild('sliders', { static: true }) slidersRef: ElementRef;
   @ViewChild('highlight', { static: true }) highlightRef: ElementRef;
@@ -122,20 +97,15 @@ export class XSliderComponent implements OnInit, OnChanges {
     this.renderer.addClass(this.elementRef.nativeElement, SliderPrefix);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-    this.setData();
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.setHighlight();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
+    XIsChange(changes.activatedIndex) && this.setActivatedIndex();
   }
 
   ngOnDestroy(): void {
@@ -157,6 +127,14 @@ export class XSliderComponent implements OnInit, OnChanges {
     }
   }
 
+  setActivatedIndex() {
+    if (this.sliderNodes.length > 0) {
+      this.activatedSlider = this.sliderNodes[this.activatedIndex];
+    }
+    this.setHighlight();
+    this.cdr.detectChanges();
+  }
+
   setHighlight() {
     const activeEle = this.slidersRef.nativeElement.querySelector(`li:nth-child(${this.activatedIndex + 1})`);
     if (!activeEle) return;
@@ -167,6 +145,8 @@ export class XSliderComponent implements OnInit, OnChanges {
     this.renderer.setStyle(this.highlightRef.nativeElement, 'top', `${activeEle.offsetTop}px`);
     this.highlightHidden = activeEle.offsetWidth === 0 && activeEle.offsetHeight === 0;
   }
+
+  setClassMap() {}
 
   private removeListen() {
     if (this.data$) this.data$.unsubscribe();
