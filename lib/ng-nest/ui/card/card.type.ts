@@ -1,4 +1,4 @@
-import { TemplateRef } from '@angular/core';
+import { XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Card 组件名
@@ -22,7 +22,7 @@ export interface XCardInput {
   /**
    * 头部模板
    */
-  header?: TemplateRef<any>;
+  header?: XTemplate;
   /**
    * 阴影显示方式
    * @default "always"

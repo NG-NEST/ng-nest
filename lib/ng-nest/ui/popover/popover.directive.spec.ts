@@ -2,7 +2,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XPopoverDirective } from './popover.directive';
-import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPopoverModule } from './popover.module';
 import { XPopoverPrefix } from './popover.type';
@@ -109,7 +109,7 @@ describe(XPopoverPrefix, () => {
 })
 class TestXPopoverComponent {
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

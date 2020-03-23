@@ -1,5 +1,5 @@
 import { Observable, BehaviorSubject, isObservable } from 'rxjs';
-import { TemplateRef, SimpleChange, SimpleChanges } from '@angular/core';
+import { TemplateRef, SimpleChange } from '@angular/core';
 
 // 数据类型
 export type XData<T> = T | BehaviorSubject<T> | Observable<T> | any;

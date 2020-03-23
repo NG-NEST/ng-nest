@@ -44,7 +44,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -126,8 +125,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-nest-site:build",
-            "aot": false
+            "browserTarget": "ng-nest-site:build"
           },
           "configurations": {
             "production": {
@@ -196,6 +194,11 @@
           "options": {
             "tsConfig": "lib/ng-nest/ui/tsconfig.lib.json",
             "project": "lib/ng-nest/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "lib/ng-nest/ui/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -218,5 +221,8 @@
       }
     }
   },
-  "defaultProject": "ng-nest-site"
+  "defaultProject": "ng-nest-site",
+  "cli": {
+    "analytics": "a1dad8b2-137f-41b7-820a-b4a924402c3a"
+  }
 }

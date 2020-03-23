@@ -4,7 +4,6 @@ import {
   XData,
   XIsNull,
   XIsUndefined,
-  XIsObservable,
   XIsArray,
   XIsValue,
   XIsObject

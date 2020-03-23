@@ -1,6 +1,5 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import { Observable } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 export const XResize = (...element: Element[]): Observable<{ entry: ResizeObserverEntry; resizeObserver: ResizeObserver }> => {
   return Observable.create(x => {

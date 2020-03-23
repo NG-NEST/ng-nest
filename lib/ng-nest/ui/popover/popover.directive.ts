@@ -11,7 +11,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { XPlacement, XInputBoolean } from '@ng-nest/ui/core';
+import { XPlacement, XInputBoolean, XTemplate } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPortal, XPopoverTrigger } from './popover.type';
@@ -21,9 +21,9 @@ import { BehaviorSubject } from 'rxjs';
   selector: '[x-popover], x-popover'
 })
 export class XPopoverDirective implements OnInit, OnChanges {
-  @Input() title?: string | TemplateRef<void>;
-  @Input() content?: string | TemplateRef<void>;
-  @Input() footer?: string | TemplateRef<void>;
+  @Input() title?: XTemplate;
+  @Input() content?: XTemplate;
+  @Input() footer?: XTemplate;
   @Input() placement: XPlacement = 'bottom';
   @Input() trigger: XPopoverTrigger = 'hover';
   @Input() width: string = '10rem';

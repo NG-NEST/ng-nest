@@ -1,5 +1,4 @@
-import { TemplateRef } from '@angular/core';
-import { XIdentityInput } from '../core';
+import { XIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * Slide 组件名

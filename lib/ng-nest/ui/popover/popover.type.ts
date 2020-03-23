@@ -1,5 +1,5 @@
-import { InjectionToken, TemplateRef } from '@angular/core';
-import { XPlacement } from '@ng-nest/ui/core';
+import { InjectionToken } from '@angular/core';
+import { XPlacement, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Popover 组件名
@@ -17,15 +17,15 @@ export interface XPopoverInput {
   /**
    * 标题，支持自定义模板
    */
-  title?: string | TemplateRef<void>;
+  title?: XTemplate;
   /**
    * 内容，支持自定义模板
    */
-  content?: string | TemplateRef<void>;
+  content?: XTemplate;
   /**
    * 底部，支持自定义模板
    */
-  footer?: string | TemplateRef<void>;
+  footer?: XTemplate;
   /**
    * 弹出的位置
    * @default "bottom"

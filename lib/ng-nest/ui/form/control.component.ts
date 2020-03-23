@@ -5,12 +5,10 @@ import {
   ChangeDetectionStrategy,
   OnChanges,
   SimpleChanges,
-  Renderer2,
-  ElementRef,
   Input
 } from '@angular/core';
 import { XControlOption } from './form.type';
-import { fillDefault, removeNgTag } from '@ng-nest/ui/core';
+import { fillDefault } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-control',
@@ -24,7 +22,7 @@ export class XControlComponent implements OnInit, OnChanges {
 
   private _default: any | XControlOption = {};
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
+  constructor() {}
 
   ngOnInit() {
     fillDefault(this.option, this._default);

@@ -12,7 +12,7 @@ import {
   Optional
 } from '@angular/core';
 import { XCollapsePanelPrefix } from './collapse.type';
-import { XInputBoolean, XDropAnimation, XIsString } from '@ng-nest/ui/core';
+import { XInputBoolean, XDropAnimation, XIsString, XTemplate } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
 
 @Component({
@@ -24,11 +24,9 @@ import { XCollapseComponent } from './collapse.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCollapsePanelComponent implements OnInit {
-  @Input() label?: string | TemplateRef<any>;
+  @Input() label?: XTemplate;
   @Input() @XInputBoolean() active = false;
   index?: number;
-  labelString?: string;
-  labelTemp?: TemplateRef<any>;
 
   constructor(
     @Optional() @Host() public collapseComponent: XCollapseComponent,
@@ -46,11 +44,6 @@ export class XCollapsePanelComponent implements OnInit {
         this.headerClick();
       }
     ];
-    if (XIsString(this.label)) {
-      this.labelString = this.label as string;
-    } else {
-      this.labelTemp = this.label as TemplateRef<any>;
-    }
     if (this.active) this.collapseComponent.change(this.index);
   }
 

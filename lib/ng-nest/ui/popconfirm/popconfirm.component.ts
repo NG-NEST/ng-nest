@@ -9,12 +9,11 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  TemplateRef,
   Input,
   Output,
   EventEmitter
 } from '@angular/core';
-import { XPlacement } from '@ng-nest/ui/core';
+import { XPlacement, XTemplate } from '@ng-nest/ui/core';
 import { XPopoverTrigger } from '@ng-nest/ui/popover';
 
 @Component({
@@ -25,8 +24,8 @@ import { XPopoverTrigger } from '@ng-nest/ui/popover';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPopconfirmComponent implements OnInit, OnChanges {
-  @Input() title?: string | TemplateRef<void>;
-  @Input() content?: string | TemplateRef<void>;
+  @Input() title?: XTemplate;
+  @Input() content?: XTemplate;
   @Input() placement?: XPlacement = 'bottom';
   @Input() trigger?: XPopoverTrigger = 'click';
   @Input() width?: string = '10rem';

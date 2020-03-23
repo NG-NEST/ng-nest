@@ -1,4 +1,4 @@
-import { XPlacement } from '@ng-nest/ui/core';
+import { XPlacement, XTemplate } from '@ng-nest/ui/core';
 import { TemplateRef } from '@angular/core';
 import { XPopoverTrigger } from '@ng-nest/ui/popover';
 
@@ -16,15 +16,15 @@ export interface XPopconfirmInput {
   /**
    * 标题，支持自定义模板
    */
-  title?: string | TemplateRef<void>;
+  title?: XTemplate;
   /**
    * 内容，支持自定义模板
    */
-  content?: string | TemplateRef<void>;
+  content?: XTemplate;
   /**
    * 底部，支持自定义模板
    */
-  footer?: string | TemplateRef<void>;
+  footer?: XTemplate;
   /**
    * 弹出的位置
    * @default "bottom"

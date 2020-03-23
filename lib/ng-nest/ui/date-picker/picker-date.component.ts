@@ -11,7 +11,6 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ElementRef,
   TemplateRef
 } from '@angular/core';
 import { chunk } from '@ng-nest/ui/core';

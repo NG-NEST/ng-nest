@@ -5,14 +5,11 @@ import {
   ChangeDetectionStrategy,
   OnChanges,
   SimpleChanges,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
   Input
 } from '@angular/core';
 import { XFormInput, XControl, XFormRow } from './form.type';
-import { fillDefault, removeNgTag } from '@ng-nest/ui/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { fillDefault } from '@ng-nest/ui/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'x-form',
@@ -33,7 +30,7 @@ export class XFormComponent implements OnInit, OnChanges {
 
   private _controls: XControl[] = [];
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit() {
     fillDefault(this, this._default);

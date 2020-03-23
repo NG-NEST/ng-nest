@@ -11,7 +11,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XPosition } from '../core';
+import { XPosition } from '@ng-nest/ui/core';
 
 describe(XDrawerPrefix, () => {
   beforeEach(async(() => {

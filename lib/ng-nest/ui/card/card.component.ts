@@ -9,11 +9,10 @@ import {
   Input,
   ViewChild,
   SimpleChanges,
-  OnChanges,
-  TemplateRef
+  OnChanges
 } from '@angular/core';
 import { XCardPrefix, XCardShadow } from './card.type';
-import { XClassMap } from '@ng-nest/ui/core';
+import { XClassMap, XTemplate } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCardPrefix}`,
@@ -25,7 +24,7 @@ import { XClassMap } from '@ng-nest/ui/core';
 export class XCardComponent implements OnInit, OnChanges {
   @Input() width?: string;
   @Input() bodyStyle?: any = {};
-  @Input() header?: TemplateRef<any>;
+  @Input() header?: XTemplate;
   @Input() shadow?: XCardShadow = 'always';
   @ViewChild('card', { static: true }) card: ElementRef;
   classMap: XClassMap = {};

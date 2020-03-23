@@ -1,8 +1,7 @@
 <div class="x-collapse-panel" [class.x-activated]="active">
   <div class="x-collapse-panel-header" (click)="headerClick()">
-    <span *ngIf="labelString">{{ labelString }}</span>
-    <div *ngIf="labelTemp">
-      <ng-container *ngTemplateOutlet="labelTemp"></ng-container>
+    <div>
+      <ng-container *xOutlet="label">{{ label }}</ng-container>
     </div>
     <x-icon type="fto-chevron-right"></x-icon>
   </div>

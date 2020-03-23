@@ -5,10 +5,12 @@
     "types": [],
     "module": "esnext"
   },
-  "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/environments/environment.prod.ts"],
-  "angularCompilerOptions": {
-    "enableIvy": true
-  }
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": ["src/test.ts", "src/**/*.spec.ts"],
 }
