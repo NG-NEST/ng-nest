@@ -51,7 +51,7 @@ export type XSize = 'large' | 'medium' | 'small' | 'mini';
  * @value "start"
  * @value "end"
  * @value "center"
- * @value "spaceAround"
+ * @value "space-around"
  * @value "space-between"
  */
 export type XJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';

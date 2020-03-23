@@ -1,7 +1,3 @@
 // Tabs style paramters
 
-$prefix: $--x-prefix + '-tabs';
-
-$tabs-color: $--x-text;
-
-$tabs-activated-color: $--x-primary;
+$--x-tabs-prefix: $--x-prefix + '-tabs';

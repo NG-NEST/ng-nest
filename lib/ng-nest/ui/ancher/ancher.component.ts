@@ -9,13 +9,10 @@ import {
   SimpleChanges,
   OnChanges,
   Input,
-  ViewChild,
-  AfterContentChecked,
-  AfterViewChecked
-} from '@angular/core';
+  ViewChild} from '@angular/core';
 import { XAncherPrefix, XAncherNode } from './ancher.type';
 import { XClassMap, computedStyle, XIsEmpty } from '@ng-nest/ui/core';
-import { XSliderNode, XSliderBorderPositionType, XActivatedSlider } from '@ng-nest/ui/slider';
+import { XSliderNode } from '@ng-nest/ui/slider';
 
 @Component({
   selector: `${XAncherPrefix}`,
@@ -31,7 +28,6 @@ export class XAncherComponent implements OnInit, OnChanges {
   classMap: XClassMap = {};
   hElements: HTMLElement[] = [];
   sliderData: XSliderNode[] = [];
-  borderPosition: XSliderBorderPositionType = 'left';
   activatedIndex: number = 0;
   sliderHeight?: number;
 
@@ -45,9 +41,9 @@ export class XAncherComponent implements OnInit, OnChanges {
 
   ngOnChanges(simple: SimpleChanges) {}
 
-  activatedChange(activated: XActivatedSlider) {
+  activatedChange(index: number) {
     if (XIsEmpty(this.hElements) || XIsEmpty(this.scroll)) return;
-    let hElement = this.hElements[activated.activatedIndex];
+    let hElement = this.hElements[index];
     console.log(hElement.offsetTop);
     console.log(this.scroll.offsetTop);
   }
@@ -56,7 +52,6 @@ export class XAncherComponent implements OnInit, OnChanges {
     // this.classMap[`${XAncherPrefix}-${this.shadow}`] = this.shadow ? true : false;
   }
 
-  private setScrollTop() {}
 
   private setSliderData() {
     let hElements = this.content.nativeElement.querySelectorAll(':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5');

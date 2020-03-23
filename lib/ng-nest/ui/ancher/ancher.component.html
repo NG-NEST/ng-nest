@@ -7,16 +7,15 @@
       <x-slider
         [data]="sliderData"
         layout="column"
-        [borderPosition]="borderPosition"
-        [nodeTemplate]="sliderNodeTpl"
         [activatedIndex]="activatedIndex"
+        [nodeTpl]="sliderNodeTpl"
         (indexChange)="activatedChange($event)"
       ></x-slider>
     </div>
   </x-affix>
 </div>
 
-<ng-template #sliderNodeTpl let-node="node$">
+<ng-template #sliderNodeTpl let-node="$node">
   <a [ngStyle]="{ 'padding-left.rem': node.left - 1 }">
     <span>{{ node.label }}</span>
   </a>

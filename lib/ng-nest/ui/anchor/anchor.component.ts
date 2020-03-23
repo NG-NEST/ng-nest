@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from './anchor.type';
 import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber, removeNgTag } from '@ng-nest/ui/core';
-import { XSliderNode, XActivatedSlider, XSliderInput } from '@ng-nest/ui/slider';
+import { XSliderNode, XSliderInput } from '@ng-nest/ui/slider';
 import { BehaviorSubject, Subscription, fromEvent, Observable } from 'rxjs';
 import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
@@ -36,13 +36,13 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   @Input()
   public set layout(value: XAnchorLayoutType) {
     this._layout = value;
-    this.sliderOption.borderPosition = this._layout === 'left' ? 'right' : 'left';
+    // this.sliderOption.borderPosition = this._layout === 'left' ? 'right' : 'left';
   }
   @Input() scrollElement: HTMLElement | Window;
   @Input() @XInputNumber() top: number;
   @Input() @XInputBoolean() sliderFixed: boolean;
 
-  @Output() indexChange?: EventEmitter<XActivatedAnchor> = new EventEmitter<XActivatedAnchor>();
+  @Output() indexChange = new EventEmitter<number>();
 
   @ViewChild('list', { static: false }) list: ElementRef;
   @ViewChild('content', { static: false }) content: ElementRef;
@@ -52,8 +52,8 @@ export class XAnchorComponent implements OnInit, OnDestroy {
 
   sliderOption: XSliderInput = {
     data: new BehaviorSubject<XSliderNode[]>([]),
-    activatedIndex: 0,
-    borderPosition: 'left'
+    activatedIndex: 0
+    // borderPosition: 'left'
   };
 
   scrollObservable: Observable<any>;
@@ -94,9 +94,9 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     this.removeListen();
   }
 
-  activatedChange(activated: XActivatedSlider) {
+  activatedChange(index: number) {
     this._isAnimation = true;
-    const activatedEle = this._hElements[activated.activatedIndex];
+    const activatedEle = this._hElements[index];
     let top = activatedEle.offsetTop + this.anchor.nativeElement.offsetTop - this._top;
     let scrollEle = this._windowScroll ? this.doc.documentElement : (this.scrollElement as HTMLElement);
     let scrollHeight = scrollEle.scrollHeight - scrollEle.clientHeight;
@@ -105,7 +105,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       top -= scrollEle.offsetTop;
     }
     this.scrollTo(scrollEle, parseInt(`${top}`), 150);
-    this.indexChange.emit(activated);
+    this.indexChange.emit(index);
     setTimeout(() => {
       this._isAnimation = false;
     }, 300);
@@ -129,9 +129,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   }
 
   private setHElements() {
-    this._hElements = this.content.nativeElement.querySelectorAll(
-      ':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5'
-    );
+    this._hElements = this.content.nativeElement.querySelectorAll(':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5');
     if (this._hElements.length > 0) {
       this.renderer.addClass(this.anchor.nativeElement, `${AnchorPrefix}-open`);
       let list: XAnchorNode[] = [];
@@ -173,11 +171,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
       this._offsetParent = (this.scrollElement as HTMLElement).offsetParent;
       // ToDo: 当文档在tab中时获取不到高度
       setTimeout(() =>
-        this.renderer.setStyle(
-          this.list.nativeElement,
-          'max-height',
-          `${(this.scrollElement as HTMLElement).clientHeight - this._top}px`
-        )
+        this.renderer.setStyle(this.list.nativeElement, 'max-height', `${(this.scrollElement as HTMLElement).clientHeight - this._top}px`)
       );
       if (this._offsetParent) {
         fromEvent(this._offsetParent, 'scroll')
@@ -264,11 +258,7 @@ export class XAnchorComponent implements OnInit, OnDestroy {
   private setListFixed() {
     let fixedLeft = this.anchor.nativeElement.offsetLeft;
     let anchorLeft = this.getAnchorLeft();
-    this.renderer.setStyle(
-      this.list.nativeElement,
-      'left',
-      `${this.listFixed ? fixedLeft + anchorLeft : anchorLeft}px`
-    );
+    this.renderer.setStyle(this.list.nativeElement, 'left', `${this.listFixed ? fixedLeft + anchorLeft : anchorLeft}px`);
   }
 
   private setLeft(element: HTMLElement): number {

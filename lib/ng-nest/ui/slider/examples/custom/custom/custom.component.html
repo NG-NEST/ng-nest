@@ -1,0 +1,8 @@
+<x-slider [data]="data" [nodeTpl]="nodeTpl"> </x-slider>
+
+<ng-template #nodeTpl let-node="$node">
+  <div class="custom-node">
+    <x-icon *ngIf="node.icon" type="node.icon"></x-icon>
+    <span>{{ node.label }}</span>
+  </div>
+</ng-template>

@@ -6,79 +6,45 @@ import { TemplateRef } from '@angular/core';
  * @selector x-slider
  * @decorator component
  */
-export const SliderPrefix = 'x-slider';
+export const XSliderPrefix = 'x-slider';
 
 /**
  * Slider @Input
  */
 export interface XSliderInput {
   /**
-   * Data 数据
-   * @default []
+   * 节点数据
    */
   data?: XData<XSliderNode[]>;
   /**
-   * 布局方式
-   * @default "row"
+   * 滑动动画
+   * @default true
    */
-  layout?: XSliderLayoutType;
+  animated?: boolean;
   /**
-   * 边框方位
-   * @default "bottom"
-   */
-  borderPosition?: XSliderBorderPositionType;
-  /**
-   * 激活的序列号
+   * 当前激活的索引
    * @default 0
    */
   activatedIndex?: number;
   /**
-   * slider 模板
+   * 排列方式
+   * @default 'row'
    */
-  nodeTemplate?: TemplateRef<any>;
+  layout?: XSliderLayout;
   /**
-   * 动画
-   * @default true
+   * 节点自定义模板
    */
-  animated?: boolean;
+  nodeTpl?: TemplateRef<any>;
 }
 
 /**
  * Slider 数据对象
  */
-export interface XSliderNode extends XIdentityInput {
-  /**
-   * 自定义数据属性
-   */
-  [property: string]: any;
-}
-
-/**
- * 激活的 Slider
- */
-export interface XActivatedSlider {
-  /**
-   * 激活的序号
-   */
-  activatedIndex?: number;
-  /**
-   * 激活的slider对象
-   */
-  activatedSlider?: XSliderNode;
-}
+export interface XSliderNode extends XIdentityInput {}
 
 /**
  * 布局方式
  * @value "row"
  * @value "column"
  */
-export type XSliderLayoutType = 'row' | 'column';
-
-/**
- * 边框方位
- * @value "top"
- * @value "right"
- * @value "bottom"
- * @value "left"
- */
-export type XSliderBorderPositionType = 'top' | 'right' | 'bottom' | 'left';
+export type XSliderLayout = 'row' | 'column';

@@ -1,20 +1,21 @@
-<ul #sliders>
-  <li
-    *ngFor="let slider of sliderNodes; index as i"
-    [ngClass]="{ 'x-slider-activated': i == activatedIndex }"
-    (click)="action('click', slider, i)"
-    [title]="nodeTemplate ? slider.label : ''"
-  >
-    <ng-container *ngIf="!nodeTemplate">{{ slider.label }}</ng-container>
-    <ng-container *ngIf="nodeTemplate">
-      <ng-container *ngTemplateOutlet="nodeTemplate; context: { node$: slider }"></ng-container>
-    </ng-container>
-  </li>
-  <li
-    #highlight
-    class="x-slider-highlight"
-    [class.x-slider-highlight-animated]="animated"
-    [hidden]="highlightHidden"
-    [title]="nodeTemplate ? activatedSlider?.label : ''"
-  ></li>
-</ul>
+<div #slider class="x-slider" [ngClass]="classMap">
+  <x-link *ngIf="showArrow" [disabled]="offset === 0" class="x-slider-arrow-left" icon="fto-chevron-left" (click)="scrollPrev()"></x-link>
+  <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
+    <ul #sliderNodes [style.transform]="transform">
+      <li *ngFor="let node of nodes; index as i" [class.x-slider-activated]="i === activatedIndex">
+        <x-link (click)="nodeClick(node, i)">
+          <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+          <ng-container *ngIf="!nodeTpl">{{ node.label }}</ng-container>
+        </x-link>
+      </li>
+      <li #highlight class="x-slider-highlight" [class.x-slider-highlight-animated]="animated" [ngStyle]="highlightBox"></li>
+    </ul>
+  </div>
+  <x-link
+    *ngIf="showArrow"
+    [disabled]="offset === maxOffset"
+    class="x-slider-arrow-right"
+    icon="fto-chevron-right"
+    (click)="scrollNext()"
+  ></x-link>
+</div>

@@ -4,22 +4,7 @@
 @import '../../style/mixins/index';
 @import './mixin';
 
-.#{$prefix} {
+.#{$--x-tabs-prefix} {
   @include reset-component();
   @include tabs();
-  &-top {
-    flex-direction: column;
-  }
-
-  &-right {
-    flex-direction: row-reverse;
-  }
-
-  &-bottom {
-    flex-direction: column-reverse;
-  }
-
-  &-left {
-    flex-direction: row;
-  }
 }

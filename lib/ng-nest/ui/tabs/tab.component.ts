@@ -7,6 +7,7 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
+import { XTemplate } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-tab',
@@ -15,7 +16,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTabComponent implements OnInit {
-  @Input() label: string;
+  @Input() label: XTemplate;
   @ViewChild(TemplateRef, { static: true }) content: TemplateRef<void>;
   constructor() {}
 

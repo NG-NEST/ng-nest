@@ -1,14 +1,10 @@
-// Slide
+// Slider
 
 @import '../style/themes/default';
 @import '../style/mixins/index';
 @import './style/mixin';
 
-#{$--x-slide} {
-  display: block;
-}
-
-.#{$--x-slide} {
+.#{$--x-slider} {
   @include reset-component();
-  @include slide();
+  @include slider();
 }

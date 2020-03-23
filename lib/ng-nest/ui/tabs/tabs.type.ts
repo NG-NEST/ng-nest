@@ -5,7 +5,7 @@ import { XIdentityInput, XData } from '@ng-nest/ui/core';
  * @selector x-tabs
  * @decorator component
  */
-export const TabsPrefix = 'x-tabs';
+export const XTabsPrefix = 'x-tabs';
 
 /**
  * Tabs @Input
@@ -42,6 +42,8 @@ export interface XActivatedTab {
   activatedIndex?: number;
   activatedTab?: XTabsNode;
 }
+
+export type XTabsType = 'tag' | 'card';
 
 /**
  * 布局方式
