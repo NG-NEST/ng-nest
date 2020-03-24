@@ -18,7 +18,7 @@ export interface XTabsInput {
   /**
    * 布局方式
    */
-  layout?: XTabsLayoutType;
+  layout?: XTabsLayout;
   /**
    * 激活的序号
    */
@@ -43,7 +43,7 @@ export interface XActivatedTab {
   activatedTab?: XTabsNode;
 }
 
-export type XTabsType = 'tag' | 'card';
+export type XTabsType = 'block' | 'tag' | 'card';
 
 /**
  * 布局方式
@@ -52,4 +52,4 @@ export type XTabsType = 'tag' | 'card';
  * @value "bottom"
  * @value "left"
  */
-export type XTabsLayoutType = 'top' | 'right' | 'bottom' | 'left';
+export type XTabsLayout = 'top' | 'right' | 'bottom' | 'left';

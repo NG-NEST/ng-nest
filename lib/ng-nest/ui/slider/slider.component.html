@@ -5,7 +5,9 @@
       <li *ngFor="let node of nodes; index as i" [class.x-slider-activated]="i === activatedIndex">
         <x-link (click)="nodeClick(node, i)">
           <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
-          <ng-container *ngIf="!nodeTpl">{{ node.label }}</ng-container>
+          <ng-container *ngIf="!nodeTpl">
+            <ng-container *xOutlet="node.label">{{ node.label }}</ng-container>
+          </ng-container>
         </x-link>
       </li>
       <li #highlight class="x-slider-highlight" [class.x-slider-highlight-animated]="animated" [ngStyle]="highlightBox"></li>

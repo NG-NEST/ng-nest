@@ -38,17 +38,6 @@
   }
   &-top {
     flex-direction: column;
-    .#{$--x-tabs-prefix}-list {
-      border-bottom: 0.0625rem solid $--x-border;
-      > x-slider {
-        width: 100%;
-        .x-slider-scroll > ul > li.x-slider-highlight {
-          border-bottom: 0;
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-      }
-    }
   }
   &-right {
     flex-direction: row-reverse;
@@ -59,37 +48,56 @@
   &-left {
     flex-direction: row;
   }
-  &-tag {
-    .#{$--x-tabs-prefix}-list {
-      border-bottom: 0;
-      > x-slider {
-        .x-slider-scroll {
-          &::after {
-            content: ' ';
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-bottom: 0.0625rem solid $--x-border;
+
+  @include block(top, bottom, bottom-left-radius, bottom-right-radius);
+  @include block(right, left, top-left-radius, bottom-left-radius);
+  @include block(bottom, top, top-left-radius, top-right-radius);
+  @include block(left, right, top-right-radius, bottom-right-radius, flex-end);
+
+  @include tag(top, bottom, top-left-radius, top-right-radius, left, bottom, width, bottom);
+  @include tag(right, left, top-right-radius, bottom-right-radius, top, left, height, left);
+  @include tag(bottom, bottom, bottom-left-radius, bottom-right-radius, left, top, width, top);
+  @include tag(left, right, top-left-radius, bottom-left-radius, top, right, height, right);
+
+  @include card(top, bottom, width, top, bottom, left, right);
+  @include card(right, left, height, left, right, top, bottom);
+  @include card(bottom, top, width, top, bottom, left, right);
+  @include card(left, right, height, left, right, top, bottom);
+
+  &-right,
+  &-left {
+    &.#{$--x-tabs-prefix} {
+      &-block,
+      &-tag,
+      &-card {
+        .#{$--x-tabs-prefix}-list {
+          > x-slider {
+            .x-slider-scroll > ul > li {
+              width: 100%;
+            }
           }
-          > ul {
-            z-index: 1;
-            > li {
-              border: 0.0625rem solid $--x-border;
-              background-color: $--x-white;
-              &:first-child {
-                border-top-left-radius: 0.125rem;
-              }
-              &:nth-last-child(2) {
-                border-top-right-radius: 0.125rem;
-              }
-              &:not(:first-child) {
-                border-left: 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin block($layout, $border, $border-radius-first, $border-radius-second, $text-justify-content: flex-start) {
+  &-block {
+    &.#{$--x-tabs-prefix} {
+      &-#{$layout} {
+        .#{$--x-tabs-prefix}-list {
+          border-#{$border}: $--x-border-base;
+          > x-slider {
+            width: 100%;
+            .x-slider-scroll > ul > li {
+              > x-link {
+                justify-content: $text-justify-content;
               }
               &.x-slider-highlight {
-                display: none;
-              }
-              &.x-slider-activated {
-                border-bottom-color: $--x-white;
+                border-#{$border}: none;
+                border-#{$border-radius-first}: 0;
+                border-#{$border-radius-second}: 0;
               }
             }
           }
@@ -97,41 +105,132 @@
       }
     }
   }
-  &-card {
-    border: 0.0625rem solid $--x-border;
-    border-top: none;
-    .#{$--x-tabs-prefix}-list {
-      border-bottom: none;
-      > x-slider {
-        .x-slider-scroll {
-          background-color: $--x-background;
-          &::after,
-          &::before {
-            content: ' ';
-            position: absolute;
+}
+
+@mixin tag($layout, $border, $border-radio-first, $border-radio-second, $border-none, $border-activated, $border-size, $border-position) {
+  &-tag {
+    &.#{$--x-tabs-prefix} {
+      &-#{$layout} {
+        .#{$--x-tabs-prefix}-list {
+          border-#{$border}: none;
+          > x-slider {
             width: 100%;
-            border-bottom: 0.0625rem solid $--x-border;
-          }
-          &::after {
-            bottom: 0;
-          }
-          &::before {
-            top: 0;
-          }
-          > ul {
-            z-index: 1;
-            > li {
-              border-radius: none;
-              &:not(:first-child) {
-                border-left: none;
+            .x-slider {
+              &::before {
+                content: ' ';
+                position: absolute;
+                #{$border-position}: 0;
+                #{$border-size}: 100%;
+                border-#{$border}: $--x-border-base;
               }
-              &.x-slider-highlight {
-                border-left: 0.0625rem solid $--x-border;
-                border-right: 0.0625rem solid $--x-border;
-                background-color: $--x-white;
+              &-scroll {
+                > ul {
+                  z-index: 1;
+                  > li {
+                    border: $--x-border-base;
+                    background-color: $--x-white;
+                    &:first-child {
+                      border-#{$border-radio-first}: 0.125rem;
+                    }
+                    &:nth-last-child(2) {
+                      border-#{$border-radio-second}: 0.125rem;
+                    }
+                    &:not(:first-child) {
+                      border-#{$border-none}: none;
+                    }
+                    &.x-slider-highlight {
+                      display: none;
+                    }
+                    &.x-slider-activated {
+                      border-#{$border-activated}-color: $--x-white;
+                    }
+                  }
+                }
               }
-              &.x-slider-activated {
-                border-bottom-color: $--x-white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin card($layout, $border, $border-size, $border-position-first, $border-position-second, $border-li-first, $border-li-second) {
+  &-card {
+    &.#{$--x-tabs-prefix} {
+      &-#{$layout} {
+        border: $--x-border-200-base;
+        border-#{$layout}: none;
+        box-shadow: $--x-box-shadow-base;
+        .#{$--x-tabs-prefix}-list {
+          border-#{$border}: none;
+          > x-slider {
+            width: 100%;
+            .x-slider {
+              &-scroll {
+                background-color: $--x-background;
+                &::after,
+                &::before {
+                  content: ' ';
+                  position: absolute;
+                  #{$border-size}: 100%;
+                  border-#{$border}: $--x-border-200-base;
+                }
+                &::after {
+                  #{$border-position-first}: 0;
+                }
+                &::before {
+                  #{$border-position-second}: 0;
+                }
+                > ul {
+                  z-index: 1;
+                  > li {
+                    border-radius: 0;
+                    &:not(:first-child) {
+                      border-#{$border-li-first}: none;
+                    }
+                    &.x-slider-highlight {
+                      border-#{$border-li-first}: $--x-border-200-base;
+                      border-#{$border-li-second}: $--x-border-200-base;
+                      border-#{$border}-color: $--x-white;
+                      background-color: $--x-white;
+                    }
+                    &.x-slider-activated {
+                      border-#{$border}-color: $--x-white;
+                    }
+                  }
+                }
+              }
+              &-arrow-left {
+                border: $--x-border-200-base;
+                border-#{$border-li-first}: 0;
+              }
+              &-arrow-right {
+                border-#{$border-li-first}: $--x-border-200-base;
+              }
+            }
+          }
+        }
+        &.#{$--x-tabs-prefix}-is-first {
+          .#{$--x-tabs-prefix}-list {
+            > x-slider {
+              .x-slider {
+                &-scroll ul li.x-slider-highlight {
+                  border-#{$border-li-first}: none;
+                }
+              }
+            }
+          }
+        }
+        &.#{$--x-tabs-prefix}-is-last {
+          .#{$--x-tabs-prefix}-list {
+            > x-slider {
+              .x-slider {
+                &-show-arrow {
+                  .x-slider-scroll ul li.x-slider-highlight {
+                    border-#{$border-li-second}: none;
+                  }
+                }
               }
             }
           }

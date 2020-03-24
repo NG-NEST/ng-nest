@@ -12,7 +12,7 @@
   height: 1.625rem;
   line-height: 1.625rem;
   padding: 0 0.65rem;
-  border: 0.0625rem solid $--x-border;
+  border: $--x-border-base;
   background-color: $--x-white;
   > .x-icon {
     position: relative;

@@ -1,4 +1,4 @@
-import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { XIdentityInput, XData, XTemplate } from '@ng-nest/ui/core';
 import { TemplateRef } from '@angular/core';
 
 /**
@@ -40,7 +40,9 @@ export interface XSliderInput {
 /**
  * Slider 数据对象
  */
-export interface XSliderNode extends XIdentityInput {}
+export interface XSliderNode extends XIdentityInput {
+  label?: XTemplate;
+}
 
 /**
  * 布局方式

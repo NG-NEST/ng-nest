@@ -13,11 +13,12 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation,
-  TemplateRef
+  TemplateRef,
+  SimpleChange
 } from '@angular/core';
-import { XTabsPrefix, XTabsNode, XActivatedTab, XTabsLayoutType, XTabsType } from './tabs.type';
-import { XData, XInputBoolean, XJustify, XClassMap } from '@ng-nest/ui/core';
-import { BehaviorSubject, Observable, Subscription, Subject } from 'rxjs';
+import { XTabsPrefix, XTabsNode, XActivatedTab, XTabsType, XTabsLayout } from './tabs.type';
+import { XData, XInputBoolean, XJustify, XClassMap, XIsChange } from '@ng-nest/ui/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { XSliderNode, XSliderInput, XSliderComponent } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 import { takeUntil } from 'rxjs/operators';
@@ -32,11 +33,10 @@ import { takeUntil } from 'rxjs/operators';
 export class XTabsComponent implements OnInit, OnChanges {
   @Input() data?: XData<XTabsNode[]>;
   @Input() justify: XJustify = 'start';
-  @Input() type?: XTabsType;
+  @Input() type?: XTabsType = 'block';
   @Input() @XInputBoolean() animated: boolean = true;
   @Input() nodeTpl: TemplateRef<any>;
-
-  @Input() layout: XTabsLayoutType = 'top';
+  @Input() layout: XTabsLayout = 'top';
 
   private _activatedIndex: number = 0;
   public get activatedIndex(): number {
@@ -76,10 +76,8 @@ export class XTabsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
+    XIsChange(changes.layout) && this.setLayout(changes.layout);
   }
 
   ngOnDestroy(): void {
@@ -93,15 +91,24 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   activatedChange(index: number) {
     this.activatedIndex = index;
+    this.setFirstAndLast();
     this.indexChange.emit({
       activatedIndex: index,
       activatedTab: this.tabs[index]
     });
+    this.cdr.detectChanges();
   }
 
   private setClassMap() {
     this.classMap[`${XTabsPrefix}-${this.layout}`] = this.layout ? true : false;
     this.classMap[`${XTabsPrefix}-${this.type}`] = this.type ? true : false;
+  }
+
+  private setLayout(layout: SimpleChange) {
+    this.classMap[`${XTabsPrefix}-${layout.previousValue}`] = false;
+    this.classMap[`${XTabsPrefix}-${layout.currentValue}`] = true;
+    this.setSliderOption();
+    this.cdr.detectChanges();
   }
 
   private setData() {
@@ -129,10 +136,16 @@ export class XTabsComponent implements OnInit, OnChanges {
     this.tabs = value;
     this.sliderHidden = this.tabs.length <= 1;
     this.sliderOption.data = this.tabs;
+    this.setFirstAndLast();
     this.cdr.detectChanges();
   }
 
   private setSliderOption() {
     this.sliderOption.layout = ['top', 'bottom'].indexOf(this.layout) !== -1 ? 'row' : 'column';
+  }
+
+  private setFirstAndLast() {
+    this.classMap[`${XTabsPrefix}-is-first`] = this.activatedIndex === 0;
+    this.classMap[`${XTabsPrefix}-is-last`] = this.activatedIndex === this.tabs.length - 1;
   }
 }

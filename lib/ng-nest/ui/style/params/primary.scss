@@ -94,6 +94,10 @@ $--x-padding-ss: 0.275rem;
 $--x-border-style: solid;
 $--x-border-radius: 0.125rem;
 $--x-border-width: 0.0625rem;
+$--x-border-base: $--x-border-width $--x-border-style $--x-border;
+$--x-border-100-base: $--x-border-width $--x-border-style $--x-border-100;
+$--x-border-200-base: $--x-border-width $--x-border-style $--x-border-200;
+$--x-border-300-base: $--x-border-width $--x-border-style $--x-border-300;
 
 // box-shadow
 $--x-box-shadow-base: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);

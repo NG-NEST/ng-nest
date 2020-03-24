@@ -14,7 +14,8 @@ import {
   OnDestroy,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  SimpleChange
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderLayout } from './slider.type';
 import {
@@ -93,6 +94,7 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setData();
+    XIsChange(changes.layout) && this.setLayout(changes.layout);
     XIsChange(changes.activatedIndex) &&
       this.setDirection(changes.activatedIndex.currentValue, changes.activatedIndex.previousValue) &&
       this.setActivated();
@@ -112,6 +114,12 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   setClassMap() {
     this.classMap[`${XSliderPrefix}-${this.layout}`] = this.layout ? true : false;
     this.scrollClassMap[`x-flex-justity-${this.justify}`] = this.justify ? true : false;
+  }
+
+  setLayout(layout: SimpleChange) {
+    this.classMap[`${XSliderPrefix}-${layout.previousValue}`] = false;
+    this.classMap[`${XSliderPrefix}-${layout.currentValue}`] = true;
+    this.cdr.detectChanges();
   }
 
   setSubscribe() {

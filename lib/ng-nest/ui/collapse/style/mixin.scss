@@ -7,8 +7,8 @@
 @mixin collapse {
   font-size: $--x-font-size;
   box-sizing: border-box;
-  border-top: 0.0625rem solid $--x-border;
-  border-bottom: 0.0625rem solid $--x-border;
+  border-top: $--x-border-base;
+  border-bottom: $--x-border-base;
   x-collapse-panel:last-child {
     .x-collapse-panel {
       margin-bottom: -0.0625rem;
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.625rem 0;
-    border-bottom: 0.0625rem solid $--x-border;
+    border-bottom: $--x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;
     > .x-icon {

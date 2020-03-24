@@ -1,56 +1,24 @@
-<x-tabs [layout]="'top'">
-  <x-tab [label]="'栅格'">
-    <h1>1 栅格</h1>
-  </x-tab>
-  <x-tab [label]="'代码高亮'">
-    <h1>2 代码高亮</h1>
-  </x-tab>
-  <x-tab [label]="'SVG图标'">
-    <h1>3 SVG图标</h1>
-  </x-tab>
-  <x-tab [label]="'滑块'">
-    <h1>4 滑块</h1>
-  </x-tab>
-</x-tabs>
-<x-tabs [layout]="'right'">
-  <x-tab [label]="'栅格'">
-    <h1>1 栅格</h1>
-  </x-tab>
-  <x-tab [label]="'代码高亮'">
-    <h1>2 代码高亮</h1>
-  </x-tab>
-  <x-tab [label]="'SVG图标'">
-    <h1>3 SVG图标</h1>
-  </x-tab>
-  <x-tab [label]="'滑块'">
-    <h1>4 滑块</h1>
-  </x-tab>
-</x-tabs>
-<x-tabs [layout]="'bottom'">
-  <x-tab [label]="'栅格'">
-    <h1>1 栅格</h1>
-  </x-tab>
-  <x-tab [label]="'代码高亮'">
-    <h1>2 代码高亮</h1>
-  </x-tab>
-  <x-tab [label]="'SVG图标'">
-    <h1>3 SVG图标</h1>
-  </x-tab>
-  <x-tab [label]="'滑块'">
-    <h1>4 滑块</h1>
-  </x-tab>
-</x-tabs>
-<x-tabs [layout]="'left'">
-  <x-tab [label]="'栅格'">
-    <h1>1 栅格</h1>
-  </x-tab>
-  <x-tab [label]="'代码高亮'">
-    <h1>2 代码高亮</h1>
-  </x-tab>
-  <x-tab [label]="'SVG图标'">
-    <h1>3 SVG图标</h1>
-  </x-tab>
-  <x-tab [label]="'滑块'">
-    <h1>4 滑块</h1>
-  </x-tab>
-</x-tabs>
+<div class="row">
+  <x-radio [style.margin-bottom.rem]="1" [data]="radios" [(ngModel)]="layout" (ngModelChange)="change($event)" button></x-radio>
+</div>
+<div class="row">
+  <x-tabs [layout]="layout">
+    <x-tab *ngFor="let label of labels" [label]="label">
+      <div class="tab-content">{{ label }}</div>
+    </x-tab>
+  </x-tabs>
+</div>
+<div class="row">
+  <x-tabs type="tag" [layout]="layout">
+    <x-tab *ngFor="let label of labels" [label]="label">
+      <div class="tab-content">{{ label }}</div>
+    </x-tab>
+  </x-tabs>
+</div>
+<div class="row">
+  <x-tabs type="card" [layout]="layout">
+    <x-tab *ngFor="let label of labels" [label]="label">
+      <div class="tab-content">{{ label }}</div>
+    </x-tab>
+  </x-tabs>
+</div>

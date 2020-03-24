@@ -8,7 +8,7 @@
   font-size: $--x-font-size;
   box-sizing: border-box;
   position: relative;
-  border: 0.0625rem solid $--x-border;
+  border: $--x-border-base;
   border-radius: 0.125rem;
   background-color: $--x-white;
   transition: box-shadow 0.3s;
@@ -25,7 +25,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.675rem;
-    border-bottom: 0.0625rem solid $--x-border;
+    border-bottom: $--x-border-base;
   }
   &-body {
     padding: 0.875rem;

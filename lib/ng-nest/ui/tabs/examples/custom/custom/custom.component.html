@@ -1,0 +1,5 @@
+<x-tabs [layout]="layout">
+  <x-tab *ngFor="let label of labels" [label]="label">
+    <div class="tab-content">{{ label }}</div>
+  </x-tab>
+</x-tabs>

@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   &-box {
-    border: 0.0625rem solid $--x-border;
+    border: $--x-border-base;
     border-radius: 0.125rem;
     width: 12rem;
   }

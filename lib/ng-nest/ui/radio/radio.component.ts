@@ -7,7 +7,6 @@ import {
   ElementRef,
   Input,
   ChangeDetectorRef,
-  HostBinding,
   OnChanges,
   SimpleChanges,
   ViewChild
@@ -22,7 +21,6 @@ import {
   XDataConvert,
   XIsObservable,
   XToDataConvert,
-  removeNgTag,
   XSize,
   XIsChange
 } from '@ng-nest/ui/core';
