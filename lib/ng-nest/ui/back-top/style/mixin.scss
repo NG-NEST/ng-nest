@@ -1,0 +1,22 @@
+// BackTop
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin back-top {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > x-link .x-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: $--x-white;
+    font-size: 1.25rem;
+    box-shadow: $--x-box-shadow-base;
+    border: $--x-border-200-base;
+    
+  }
+}

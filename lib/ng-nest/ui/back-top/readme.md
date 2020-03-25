@@ -1,5 +1,5 @@
 ---
-label: 'BackTop 回到顶部 [待]'
+label: 'BackTop 回到顶部'
 category: 'Navigation'
 ---
 

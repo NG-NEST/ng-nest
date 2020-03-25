@@ -48,7 +48,7 @@ export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDes
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: any
   ) {}
 
   ngOnInit() {

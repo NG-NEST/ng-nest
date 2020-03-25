@@ -1,0 +1,12 @@
+<x-back-top> </x-back-top>
+<x-back-top [template]="templateTpl" bottom="6rem" visibility-height="100"> </x-back-top>
+<ng-template #templateTpl>
+  <div class="custom-template">UP</div>
+</ng-template>
+<div #scroll class="scroll">
+  <div class="box">
+    <x-back-top right="6rem" [target]="scroll"> </x-back-top>
+    <x-button *ngFor="let button of buttons">{{ button }}</x-button>
+  </div>
+</div>
+

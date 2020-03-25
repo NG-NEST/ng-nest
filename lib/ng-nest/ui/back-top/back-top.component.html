@@ -1,0 +1,4 @@
+<div class="x-back-top" [ngClass]="classMap" [style.right]="right" [style.bottom]="bottom" *ngIf="visiable" (click)="onBackTop()">
+  <x-link *ngIf="!template" icon="fto-arrow-up"> </x-link>
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>
