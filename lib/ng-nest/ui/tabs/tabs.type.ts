@@ -1,4 +1,4 @@
-import { XIdentityInput, XData } from '@ng-nest/ui/core';
+import { XIdentityInput, XData, XJustify } from '@ng-nest/ui/core';
 
 /**
  * Tabs 组件名
@@ -16,7 +16,18 @@ export interface XTabsInput {
    */
   data?: XData<XTabsNode[]>;
   /**
+   * 对齐方式
+   * @default 'start'
+   */
+  justify: XJustify;
+  /**
+   * 样式
+   * @default 'block'
+   */
+  type?: XTabsType;
+  /**
    * 布局方式
+   * @default 'top'
    */
   layout?: XTabsLayout;
   /**
@@ -43,6 +54,12 @@ export interface XActivatedTab {
   activatedTab?: XTabsNode;
 }
 
+/**
+ * 样式类型
+ * @value "block"
+ * @value "tag"
+ * @value "card"
+ */
 export type XTabsType = 'block' | 'tag' | 'card';
 
 /**

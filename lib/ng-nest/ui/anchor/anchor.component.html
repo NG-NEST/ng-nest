@@ -1,25 +1,21 @@
-<div #anchor class="x-anchor" [class.x-anchor-left]="layout === 'left'" [class.x-anchor-right]="layout === 'right'">
+<div #anchor class="x-anchor" [ngClass]="classMap">
   <div #content class="x-anchor-content">
     <ng-content></ng-content>
   </div>
-  <div
-    #list
-    class="x-anchor-list"
-    [ngClass]="{ 'x-anchor-list-fixed': listFixed }"
-    [style.top.rem]="listFixed ? top : 0"
-  >
-    <x-slider
-      [data]="sliderOption.data"
-      [layout]="'column'"
-      [activatedIndex]="sliderOption.activatedIndex"
-      (indexChange)="activatedChange($event)"
-    ></x-slider>
-  </div>
+  <x-affix class="x-anchor-affix" [top]="affixTop">
+    <div class="x-anchor-slider" [style.height.px]="sliderHeight">
+      <x-slider
+        [data]="sliderData"
+        layout="column"
+        [activatedIndex]="activatedIndex"
+        [node-justify]="justify"
+        [nodeTpl]="sliderNodeTpl"
+        (indexChange)="activatedChange($event)"
+      ></x-slider>
+    </div>
+  </x-affix>
 </div>
 
-<ng-template #sliderNodeTpl let-node="node$">
-  <!-- Todo: 组件使用 ShadowDom 模式，传入的模板样式无法通过 class 指定-->
-  <a [ngStyle]="{ 'padding-left.rem': node.left - 1 }">
-    <span>{{ node.label }}</span>
-  </a>
+<ng-template #sliderNodeTpl let-node="$node">
+  <span [style.padding-left.rem]="node.left - 1">{{ node.label }}</span>
 </ng-template>

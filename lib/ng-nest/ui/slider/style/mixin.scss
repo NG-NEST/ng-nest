@@ -31,6 +31,7 @@
           line-height: 1.675rem;
           padding: 0 0.625rem;
           flex: 1;
+          @include flex-justity();
         }
         &.#{$--x-slider}-highlight {
           position: absolute;
@@ -78,6 +79,7 @@
       flex-direction: column;
       > li {
         display: flex;
+        width: 100%;
       }
     }
     > .#{$--x-slider}-arrow-left,

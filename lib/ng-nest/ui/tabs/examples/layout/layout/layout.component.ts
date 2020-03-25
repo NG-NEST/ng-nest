@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { XTabsLayout } from '@ng-nest/ui/tabs';
+import { XJustify } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-layout',
@@ -8,6 +9,8 @@ import { XTabsLayout } from '@ng-nest/ui/tabs';
 })
 export class ExLayoutComponent {
   labels = ['用户管理', '配置管理', '角色管理', '任务'];
-  radios = ['top', 'right', 'bottom', 'left'];
+  layoutRadios = ['top', 'right', 'bottom', 'left'];
   layout: XTabsLayout = 'top';
+  justifyRadios = ['start', 'center', 'end'];
+  justify: XJustify = 'start';
 }

@@ -52,37 +52,20 @@
   @include block(top, bottom, bottom-left-radius, bottom-right-radius);
   @include block(right, left, top-left-radius, bottom-left-radius);
   @include block(bottom, top, top-left-radius, top-right-radius);
-  @include block(left, right, top-right-radius, bottom-right-radius, flex-end);
+  @include block(left, right, top-right-radius, bottom-right-radius);
 
   @include tag(top, bottom, top-left-radius, top-right-radius, left, bottom, width, bottom);
   @include tag(right, left, top-right-radius, bottom-right-radius, top, left, height, left);
   @include tag(bottom, bottom, bottom-left-radius, bottom-right-radius, left, top, width, top);
   @include tag(left, right, top-left-radius, bottom-left-radius, top, right, height, right);
 
-  @include card(top, bottom, width, top, bottom, left, right);
-  @include card(right, left, height, left, right, top, bottom);
-  @include card(bottom, top, width, top, bottom, left, right);
-  @include card(left, right, height, left, right, top, bottom);
-
-  &-right,
-  &-left {
-    &.#{$--x-tabs-prefix} {
-      &-block,
-      &-tag,
-      &-card {
-        .#{$--x-tabs-prefix}-list {
-          > x-slider {
-            .x-slider-scroll > ul > li {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
-  }
+  @include card(top, bottom, width, top, bottom, left, right, first, left, last, right);
+  @include card(right, left, height, left, right, top, bottom, first, top, last, bottom);
+  @include card(bottom, top, width, top, bottom, left, right, first, left, last, right);
+  @include card(left, right, height, left, right, top, bottom, first, top, last, bottom);
 }
 
-@mixin block($layout, $border, $border-radius-first, $border-radius-second, $text-justify-content: flex-start) {
+@mixin block($layout, $border, $border-radius-first, $border-radius-second) {
   &-block {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
@@ -91,9 +74,6 @@
           > x-slider {
             width: 100%;
             .x-slider-scroll > ul > li {
-              > x-link {
-                justify-content: $text-justify-content;
-              }
               &.x-slider-highlight {
                 border-#{$border}: none;
                 border-#{$border-radius-first}: 0;
@@ -155,7 +135,19 @@
   }
 }
 
-@mixin card($layout, $border, $border-size, $border-position-first, $border-position-second, $border-li-first, $border-li-second) {
+@mixin card(
+  $layout,
+  $border,
+  $border-size,
+  $border-position-first,
+  $border-position-second,
+  $border-li-first,
+  $border-li-second,
+  $sort-first,
+  $sort-border-first,
+  $sort-second: '',
+  $sort-border-second: ''
+) {
   &-card {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
@@ -185,10 +177,6 @@
                 > ul {
                   z-index: 1;
                   > li {
-                    border-radius: 0;
-                    &:not(:first-child) {
-                      border-#{$border-li-first}: none;
-                    }
                     &.x-slider-highlight {
                       border-#{$border-li-first}: $--x-border-200-base;
                       border-#{$border-li-second}: $--x-border-200-base;
@@ -211,24 +199,50 @@
             }
           }
         }
-        &.#{$--x-tabs-prefix}-is-first {
+        &.#{$--x-tabs-prefix}-is-#{$sort-first} {
           .#{$--x-tabs-prefix}-list {
             > x-slider {
               .x-slider {
-                &-scroll ul li.x-slider-highlight {
-                  border-#{$border-li-first}: none;
+                &-scroll {
+                  &.x-flex-justity-start ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-first}: none;
+                    }
+                  }
+                  &.x-flex-justity-center ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-first}: $--x-border-200-base;
+                    }
+                  }
+                  &.x-flex-justity-end ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-first}: $--x-border-200-base;
+                    }
+                  }
                 }
               }
             }
           }
         }
-        &.#{$--x-tabs-prefix}-is-last {
+        &.#{$--x-tabs-prefix}-is-#{$sort-second} {
           .#{$--x-tabs-prefix}-list {
             > x-slider {
               .x-slider {
-                &-show-arrow {
-                  .x-slider-scroll ul li.x-slider-highlight {
-                    border-#{$border-li-second}: none;
+                &-scroll {
+                  &.x-flex-justity-start ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-second}: $--x-border-200-base;
+                    }
+                  }
+                  &.x-flex-justity-center ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-second}: $--x-border-200-base;
+                    }
+                  }
+                  &.x-flex-justity-end ul li {
+                    &.x-slider-highlight {
+                      border-#{$sort-border-second}: none;
+                    }
                   }
                 }
               }

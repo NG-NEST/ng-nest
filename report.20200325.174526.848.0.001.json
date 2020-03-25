@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20200323.111441.2456.0.001.json",
-    "dumpEventTime": "2020-03-23T11:14:41Z",
-    "dumpEventTimeStamp": "1584933281553",
-    "processId": 2456,
+    "filename": "report.20200325.174526.848.0.001.json",
+    "dumpEventTime": "2020-03-25T17:45:26Z",
+    "dumpEventTimeStamp": "1585129526427",
+    "processId": 848,
     "cwd": "F:\\projects\\git\\ng-nest",
     "commandLine": [
       "node",
@@ -53,38 +53,38 @@
       {
         "model": "Intel(R) Core(TM) i5-2450M CPU @ 2.50GHz",
         "speed": 2494,
-        "user": 1869546,
+        "user": 403578,
         "nice": 0,
-        "sys": 3321078,
-        "idle": 34783906,
-        "irq": 147640
+        "sys": 1002093,
+        "idle": 947687,
+        "irq": 29109
       },
       {
         "model": "Intel(R) Core(TM) i5-2450M CPU @ 2.50GHz",
         "speed": 2494,
-        "user": 1815062,
+        "user": 382109,
         "nice": 0,
-        "sys": 2195125,
-        "idle": 35963937,
-        "irq": 16796
+        "sys": 938078,
+        "idle": 1032750,
+        "irq": 6687
       },
       {
         "model": "Intel(R) Core(TM) i5-2450M CPU @ 2.50GHz",
         "speed": 2494,
-        "user": 2384437,
+        "user": 483953,
         "nice": 0,
-        "sys": 2935953,
-        "idle": 34653734,
-        "irq": 10921
+        "sys": 1032015,
+        "idle": 836968,
+        "irq": 2921
       },
       {
         "model": "Intel(R) Core(TM) i5-2450M CPU @ 2.50GHz",
         "speed": 2494,
-        "user": 2063750,
+        "user": 364953,
         "nice": 0,
-        "sys": 2217234,
-        "idle": 35693140,
-        "irq": 8250
+        "sys": 996812,
+        "idle": 991171,
+        "irq": 1781
       }
     ],
     "networkInterfaces": [
@@ -133,71 +133,71 @@
   },
   "nativeStack": [
     {
-      "pc": "0x00007ff67da119f9",
+      "pc": "0x00007ff6426d19f9",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
     },
     {
-      "pc": "0x00007ff67da15e1c",
+      "pc": "0x00007ff6426d5e1c",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
     },
     {
-      "pc": "0x00007ff67da14dd8",
+      "pc": "0x00007ff6426d4dd8",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
     },
     {
-      "pc": "0x00007ff67db134cb",
+      "pc": "0x00007ff6427d34cb",
       "symbol": "v8::base::CPU::has_sse+38363"
     },
     {
-      "pc": "0x00007ff67e329f4e",
+      "pc": "0x00007ff642fe9f4e",
       "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
     },
     {
-      "pc": "0x00007ff67e312021",
+      "pc": "0x00007ff642fd2021",
       "symbol": "v8::SharedArrayBuffer::Externalize+833"
     },
     {
-      "pc": "0x00007ff67e1de57c",
+      "pc": "0x00007ff642e9e57c",
       "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
     },
     {
-      "pc": "0x00007ff67e1e97d0",
+      "pc": "0x00007ff642ea97d0",
       "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
     },
     {
-      "pc": "0x00007ff67e1e62f4",
+      "pc": "0x00007ff642ea62f4",
       "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
     },
     {
-      "pc": "0x00007ff67e1dbb13",
+      "pc": "0x00007ff642e9bb13",
       "symbol": "v8::internal::Heap::CollectGarbage+1283"
     },
     {
-      "pc": "0x00007ff67e1da184",
+      "pc": "0x00007ff642e9a184",
       "symbol": "v8::internal::Heap::AddRetainedMap+2452"
     },
     {
-      "pc": "0x00007ff67e1fb36d",
+      "pc": "0x00007ff642ebb36d",
       "symbol": "v8::internal::Factory::NewFillerObject+61"
     },
     {
-      "pc": "0x00007ff67df60c51",
+      "pc": "0x00007ff642c20c51",
       "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+1665"
     },
     {
-      "pc": "0x00007ff67e774ddd",
+      "pc": "0x00007ff643434ddd",
       "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
     },
     {
-      "pc": "0x000000902da1086e",
+      "pc": "0x0000026a7a695ecd",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 8601841664,
-    "totalCommittedMemory": 8601841664,
-    "usedMemory": 8540505136,
-    "availableMemory": 40543040,
+    "totalMemory": 8602374144,
+    "totalCommittedMemory": 8602374144,
+    "usedMemory": 8539741088,
+    "availableMemory": 41899008,
     "memoryLimit": 8640266240,
     "heapSpaces": {
       "read_only_space": {
@@ -211,35 +211,35 @@
         "memorySize": 2097152,
         "committedMemory": 2097152,
         "capacity": 1047456,
-        "used": 71272,
-        "available": 976184
+        "used": 211832,
+        "available": 835624
       },
       "old_space": {
-        "memorySize": 7942586368,
-        "committedMemory": 7942586368,
-        "capacity": 7891844160,
-        "used": 7891749336,
-        "available": 94824
+        "memorySize": 7945469952,
+        "committedMemory": 7945469952,
+        "capacity": 7894556448,
+        "used": 7892432616,
+        "available": 2123832
       },
       "code_space": {
         "memorySize": 9605120,
         "committedMemory": 9605120,
-        "capacity": 7823808,
-        "used": 7823808,
+        "capacity": 8033824,
+        "used": 8033824,
         "available": 0
       },
       "map_space": {
-        "memorySize": 7081984,
-        "committedMemory": 7081984,
-        "capacity": 2420320,
-        "used": 2420320,
+        "memorySize": 6557696,
+        "committedMemory": 6557696,
+        "capacity": 2423680,
+        "used": 2423680,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 639250432,
-        "committedMemory": 639250432,
-        "capacity": 637540424,
-        "used": 637540424,
+        "memorySize": 637423616,
+        "committedMemory": 637423616,
+        "capacity": 635739160,
+        "used": 635739160,
         "available": 0
       },
       "code_large_object_space": {
@@ -259,17 +259,17 @@
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 1056.86,
-    "kernelCpuSeconds": 2600.45,
-    "cpuConsumptionPercent": 178.58,
-    "maxRss": 6551810048,
+    "userCpuSeconds": 1083.5,
+    "kernelCpuSeconds": 2716.55,
+    "cpuConsumptionPercent": 167.108,
+    "maxRss": 7253671936,
     "pageFaults": {
-      "IORequired": 35122340,
+      "IORequired": 30013991,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 10907,
-      "writes": 1649
+      "reads": 11918,
+      "writes": 1652
     }
   },
   "libuv": [
@@ -279,7 +279,6 @@
     "ALLUSERSPROFILE": "C:\\ProgramData",
     "APPDATA": "C:\\Users\\liwen\\AppData\\Roaming",
     "BROWSERSLIST_IGNORE_OLD_DATA": "1",
-    "COLORTERM": "truecolor",
     "CommonProgramFiles": "C:\\Program Files\\Common Files",
     "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
     "CommonProgramW6432": "C:\\Program Files\\Common Files",
@@ -290,7 +289,6 @@
     "HOMEDRIVE": "C:",
     "HOMEPATH": "\\Users\\liwen",
     "INIT_CWD": "F:\\projects\\git\\ng-nest",
-    "LANG": "zh_CN.UTF-8",
     "LOCALAPPDATA": "C:\\Users\\liwen\\AppData\\Local",
     "LOGONSERVER": "\\\\DESKTOP-NVI0DLN",
     "NODE": "C:\\Program Files\\nodejs\\node.exe",
@@ -473,7 +471,7 @@
     "npm_package_devDependencies__types_lodash": "^4.14.149",
     "npm_package_devDependencies__types_marked": "^0.7.3",
     "npm_package_devDependencies__types_node": "^12.11.1",
-    "npm_package_gitHead": "ee5eb049d5bc5f0ebf61d34b1d16fec6588f4427",
+    "npm_package_gitHead": "d10192a3829544ced16944354e5179274dadb1c3",
     "npm_package_name": "ng-nest",
     "npm_package_private": "false",
     "npm_package_readmeFilename": "README.md",
@@ -516,14 +514,14 @@
     "SystemDrive": "C:",
     "SystemRoot": "C:\\Windows",
     "TEMP": "C:\\Users\\liwen\\AppData\\Local\\Temp",
-    "TERM_PROGRAM": "vscode",
-    "TERM_PROGRAM_VERSION": "1.43.1",
     "TMP": "C:\\Users\\liwen\\AppData\\Local\\Temp",
     "USERDOMAIN": "DESKTOP-NVI0DLN",
     "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-NVI0DLN",
     "USERNAME": "liwen",
     "USERPROFILE": "C:\\Users\\liwen",
-    "windir": "C:\\Windows"
+    "windir": "C:\\Windows",
+    "WSLENV": "WT_SESSION:",
+    "WT_SESSION": "38cd37fa-e282-45b2-bbef-071be2cf092d"
   },
   "sharedObjects": [
     "C:\\Program Files\\nodejs\\node.exe",
@@ -533,15 +531,15 @@
     "C:\\Windows\\System32\\WS2_32.dll",
     "C:\\Windows\\System32\\RPCRT4.dll",
     "C:\\Windows\\SYSTEM32\\dbghelp.dll",
-    "C:\\Windows\\System32\\ucrtbase.dll",
     "C:\\Windows\\System32\\PSAPI.DLL",
+    "C:\\Windows\\System32\\ucrtbase.dll",
     "C:\\Windows\\System32\\ADVAPI32.dll",
-    "C:\\Windows\\SYSTEM32\\IPHLPAPI.DLL",
-    "C:\\Windows\\SYSTEM32\\USERENV.dll",
-    "C:\\Windows\\System32\\profapi.dll",
     "C:\\Windows\\System32\\msvcrt.dll",
     "C:\\Windows\\System32\\sechost.dll",
+    "C:\\Windows\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\Windows\\SYSTEM32\\USERENV.dll",
     "C:\\Windows\\System32\\USER32.dll",
+    "C:\\Windows\\System32\\profapi.dll",
     "C:\\Windows\\System32\\win32u.dll",
     "C:\\Windows\\System32\\GDI32.dll",
     "C:\\Windows\\System32\\gdi32full.dll",
@@ -570,7 +568,6 @@
     "C:\\Windows\\System32\\winrnr.dll",
     "C:\\Windows\\system32\\NLAapi.dll",
     "C:\\Windows\\system32\\wshbth.dll",
-    "C:\\Windows\\System32\\rasadhlp.dll",
-    "C:\\Windows\\System32\\fwpuclnt.dll"
+    "C:\\Windows\\System32\\rasadhlp.dll"
   ]
 }

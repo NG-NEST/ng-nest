@@ -1,22 +1,25 @@
 <div class="row">
-  <x-radio [style.margin-bottom.rem]="1" [data]="radios" [(ngModel)]="layout" (ngModelChange)="change($event)" button></x-radio>
+  <x-radio [data]="justifyRadios" [(ngModel)]="justify" button></x-radio>
 </div>
 <div class="row">
-  <x-tabs [layout]="layout">
+  <x-radio [data]="layoutRadios" [(ngModel)]="layout" button></x-radio>
+</div>
+<div class="row">
+  <x-tabs [layout]="layout" [justify]="justify">
     <x-tab *ngFor="let label of labels" [label]="label">
       <div class="tab-content">{{ label }}</div>
     </x-tab>
   </x-tabs>
 </div>
 <div class="row">
-  <x-tabs type="tag" [layout]="layout">
+  <x-tabs type="tag" [layout]="layout" [justify]="justify">
     <x-tab *ngFor="let label of labels" [label]="label">
       <div class="tab-content">{{ label }}</div>
     </x-tab>
   </x-tabs>
 </div>
 <div class="row">
-  <x-tabs type="card" [layout]="layout">
+  <x-tabs type="card" [layout]="layout" [justify]="justify">
     <x-tab *ngFor="let label of labels" [label]="label">
       <div class="tab-content">{{ label }}</div>
     </x-tab>

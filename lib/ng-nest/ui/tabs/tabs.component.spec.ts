@@ -8,6 +8,7 @@ import { XTabsPrefix, XTabsLayout } from './tabs.type';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XJustify } from '@ng-nest/ui/core';
 
 describe(XTabsPrefix, () => {
   beforeEach(async(() => {
@@ -60,31 +61,34 @@ describe(XTabsPrefix, () => {
     </div>
 
     <div class="row">
-      <x-radio [style.margin-bottom.rem]="1" [data]="radios" [(ngModel)]="layout" (ngModelChange)="change($event)" button></x-radio>
+      <x-radio [data]="justifyRadios" [(ngModel)]="justify" (ngModelChange)="change($event)" button></x-radio>
     </div>
     <div class="row">
-      <x-tabs [layout]="layout">
+      <x-radio [data]="layoutRadios" [(ngModel)]="layout" (ngModelChange)="change($event)" button></x-radio>
+    </div>
+    <div class="row">
+      <x-tabs [layout]="layout" [justify]="justify">
         <x-tab *ngFor="let label of labels" [label]="label">
           <div class="tab-content">{{ label }}</div>
         </x-tab>
       </x-tabs>
     </div>
     <div class="row">
-      <x-tabs type="tag" [layout]="layout">
+      <x-tabs type="tag" [layout]="layout" [justify]="justify">
         <x-tab *ngFor="let label of labels" [label]="label">
           <div class="tab-content">{{ label }}</div>
         </x-tab>
       </x-tabs>
     </div>
     <div class="row">
-      <x-tabs type="card" [layout]="layout">
+      <x-tabs type="card" [layout]="layout" [justify]="justify">
         <x-tab *ngFor="let label of labels" [label]="label">
           <div class="tab-content">{{ label }}</div>
         </x-tab>
       </x-tabs>
     </div>
     <div class="row">
-      <x-tabs type="card" [layout]="layout">
+      <x-tabs type="card" [layout]="layout" [justify]="justify">
         <x-tab [label]="labelTpl1">
           <ng-template #labelTpl1>
             <x-icon type="fto-box" [style.margin-right.rem]="0.125"></x-icon>
@@ -121,8 +125,10 @@ describe(XTabsPrefix, () => {
 })
 class TestXTabsComponent {
   labels = ['用户管理', '配置管理', '角色管理', '任务'];
-  radios = ['top', 'right', 'bottom', 'left'];
+  layoutRadios = ['top', 'right', 'bottom', 'left'];
   layout: XTabsLayout = 'top';
+  justifyRadios = ['start', 'center', 'end'];
+  justify: XJustify = 'start';
 
   customLabels = ['用户管理', '配置管理', '角色管理', '任务'];
   constructor(private cdr: ChangeDetectorRef) {}

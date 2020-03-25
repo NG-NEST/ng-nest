@@ -78,13 +78,10 @@ export class XTabsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.layout) && this.setLayout(changes.layout);
+    XIsChange(changes.justify) && this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {
-    this.removeListen();
-  }
-
-  private removeListen() {
     this.unSubject.next();
     this.unSubject.unsubscribe();
   }

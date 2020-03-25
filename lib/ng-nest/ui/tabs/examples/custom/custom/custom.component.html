@@ -1,5 +1,22 @@
-<x-tabs [layout]="layout">
-  <x-tab *ngFor="let label of labels" [label]="label">
-    <div class="tab-content">{{ label }}</div>
+<x-tabs type="card">
+  <x-tab [label]="labelTpl1">
+    <ng-template #labelTpl1>
+      <x-icon type="fto-box" [style.margin-right.rem]="0.125"></x-icon>
+      <span>用户管理</span>
+    </ng-template>
+    <div class="tab-content">用户管理</div>
+  </x-tab>
+  <x-tab [label]="labelTpl2">
+    <ng-template #labelTpl2>
+      <x-icon type="fto-settings" [style.margin-right.rem]="0.125"></x-icon>
+      <span>配置管理</span>
+    </ng-template>
+    <div class="tab-content">配置管理</div>
+  </x-tab>
+  <x-tab label="角色管理">
+    <div class="tab-content">角色管理</div>
+  </x-tab>
+  <x-tab label="任务">
+    <div class="tab-content">任务</div>
   </x-tab>
 </x-tabs>

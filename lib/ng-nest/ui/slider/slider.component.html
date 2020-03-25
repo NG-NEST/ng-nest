@@ -3,7 +3,7 @@
   <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
     <ul #sliderNodes [style.transform]="transform">
       <li *ngFor="let node of nodes; index as i" [class.x-slider-activated]="i === activatedIndex">
-        <x-link (click)="nodeClick(node, i)">
+        <x-link (click)="nodeClick(node, i)" [ngClass]="nodeClassMap">
           <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
           <ng-container *ngIf="!nodeTpl">
             <ng-container *xOutlet="node.label">{{ node.label }}</ng-container>

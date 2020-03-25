@@ -1,28 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAncherComponent } from './ancher.component';
+import { XAnchorComponent } from './anchor.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAncherModule } from './ancher.module';
-import { XAncherPrefix } from './ancher.type';
+import { XAnchorModule } from './anchor.module';
+import { XAnchorPrefix } from './anchor.type';
 
-describe(XAncherPrefix, () => {
+describe(XAnchorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XAncherModule],
-      declarations: [TestXAncherComponent]
+      imports: [XAnchorModule],
+      declarations: [TestXAnchorComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXAncherComponent>;
-    let ancher: DebugElement;
+    let fixture: ComponentFixture<TestXAnchorComponent>;
+    let anchor: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXAncherComponent);
+      fixture = TestBed.createComponent(TestXAnchorComponent);
       fixture.detectChanges();
-      ancher = fixture.debugElement.query(By.directive(XAncherComponent));
+      anchor = fixture.debugElement.query(By.directive(XAnchorComponent));
     });
     it('should create.', () => {
-      expect(ancher).toBeDefined();
+      expect(anchor).toBeDefined();
     });
   });
 });
@@ -175,15 +175,15 @@ const htmlTemplate = `
 @Component({
   template: `
     <div #scroll class="row scroll">
-      <x-ancher [scroll]="scroll">
+      <x-anchor [scroll]="scroll" layout="left">
         ${htmlTemplate}
-      </x-ancher>
+      </x-anchor>
     </div>
   `,
   styles: [
     `
       .row.scroll {
-        height: 40rem;
+        height: 20rem;
         width: 100%;
         overflow: auto;
         border-radius: 0.125rem;
@@ -192,4 +192,4 @@ const htmlTemplate = `
     `
   ]
 })
-class TestXAncherComponent {}
+class TestXAnchorComponent {}

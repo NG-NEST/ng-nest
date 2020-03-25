@@ -29,7 +29,6 @@ import {
   XInputNumber,
   XResize,
   XPosition,
-  XIsNull,
   XIsUndefined,
   XJustify
 } from '@ng-nest/ui/core';
@@ -49,6 +48,7 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   @Input() @XInputNumber() activatedIndex: number = 0;
   @Input() layout: XSliderLayout = 'row';
   @Input() justify: XJustify = 'start';
+  @Input('node-justify') nodeJustify: XJustify = 'center';
   @Input() nodeTpl: TemplateRef<any>;
   @Output() indexChange = new EventEmitter<number>();
   @ViewChild('sliderScroll') sliderScroll: ElementRef;
@@ -58,6 +58,7 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   activated: XSliderNode;
   classMap: XClassMap = {};
   scrollClassMap: XClassMap = {};
+  nodeClassMap: XClassMap = {};
   showArrow = false;
   private _offset: number = 0;
   get offset(): number {
@@ -94,7 +95,9 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setData();
-    XIsChange(changes.layout) && this.setLayout(changes.layout);
+    XIsChange(changes.layout) && this.setChange(this.classMap, changes.layout);
+    XIsChange(changes.justify) && this.setChange(this.scrollClassMap, changes.justify, 'x-flex-justity');
+    XIsChange(changes.nodeJustify) && this.setChange(this.nodeClassMap, changes.nodeJustify, 'x-flex-justity');
     XIsChange(changes.activatedIndex) &&
       this.setDirection(changes.activatedIndex.currentValue, changes.activatedIndex.previousValue) &&
       this.setActivated();
@@ -114,11 +117,12 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   setClassMap() {
     this.classMap[`${XSliderPrefix}-${this.layout}`] = this.layout ? true : false;
     this.scrollClassMap[`x-flex-justity-${this.justify}`] = this.justify ? true : false;
+    this.nodeClassMap[`x-flex-justity-${this.nodeJustify}`] = this.nodeJustify ? true : false;
   }
 
-  setLayout(layout: SimpleChange) {
-    this.classMap[`${XSliderPrefix}-${layout.previousValue}`] = false;
-    this.classMap[`${XSliderPrefix}-${layout.currentValue}`] = true;
+  setChange(map: XClassMap, change: SimpleChange, prefix = XSliderPrefix) {
+    map[`${prefix}-${change.previousValue}`] = false;
+    map[`${prefix}-${change.currentValue}`] = true;
     this.cdr.detectChanges();
   }
 

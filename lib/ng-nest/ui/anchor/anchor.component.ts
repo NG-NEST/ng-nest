@@ -1,139 +1,113 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
-  HostBinding,
-  ChangeDetectorRef,
-  ElementRef,
+  ViewEncapsulation,
   Renderer2,
-  ViewChild,
-  Inject,
-  OnDestroy,
+  ElementRef,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  SimpleChanges,
+  OnChanges,
   Input,
-  Output,
-  EventEmitter,
-  ViewEncapsulation
+  ViewChild,
+  AfterViewInit,
+  Inject,
+  OnDestroy
 } from '@angular/core';
-import { AnchorPrefix, XAnchorInput, XAnchorNode, XActivatedAnchor, XAnchorLayoutType } from './anchor.type';
-import { fillDefault, reqAnimFrame, computedStyle, XInputBoolean, XInputNumber, removeNgTag } from '@ng-nest/ui/core';
-import { XSliderNode, XSliderInput } from '@ng-nest/ui/slider';
-import { BehaviorSubject, Subscription, fromEvent, Observable } from 'rxjs';
-import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
+import { XAnchorPrefix, XAnchorNode, XAnchorLayout } from './anchor.type';
+import { XClassMap, computedStyle, XIsEmpty, XJustify, reqAnimFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
+import { XSliderNode } from '@ng-nest/ui/slider';
 import { DOCUMENT } from '@angular/common';
+import { fromEvent, Subject } from 'rxjs';
+import { throttleTime, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'x-anchor',
+  selector: `${XAnchorPrefix}`,
   templateUrl: './anchor.component.html',
+  styleUrls: ['./anchor.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./style/index.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAnchorComponent implements OnInit, OnDestroy {
-  private _layout: XAnchorLayoutType;
-  public get layout(): XAnchorLayoutType {
-    return this._layout;
-  }
-  @Input()
-  public set layout(value: XAnchorLayoutType) {
-    this._layout = value;
-    // this.sliderOption.borderPosition = this._layout === 'left' ? 'right' : 'left';
-  }
-  @Input() scrollElement: HTMLElement | Window;
-  @Input() @XInputNumber() top: number;
-  @Input() @XInputBoolean() sliderFixed: boolean;
-
-  @Output() indexChange = new EventEmitter<number>();
-
-  @ViewChild('list', { static: false }) list: ElementRef;
-  @ViewChild('content', { static: false }) content: ElementRef;
+export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  @Input() scroll?: HTMLElement;
+  @Input('affix-top') affixTop?: string = '0';
+  @Input() layout?: XAnchorLayout = 'right';
+  @Input() justify?: XJustify = 'start';
   @ViewChild('anchor', { static: true }) anchor: ElementRef;
-
-  listFixed: boolean = false;
-
-  sliderOption: XSliderInput = {
-    data: new BehaviorSubject<XSliderNode[]>([]),
-    activatedIndex: 0
-    // borderPosition: 'left'
-  };
-
-  scrollObservable: Observable<any>;
-
-  private _default: XAnchorInput = {
-    layout: 'right',
-    top: 0,
-    sliderFixed: false
-  };
-  private _windowScroll: boolean = false;
-  private _scroll$: Subscription | null = null;
-  private _windowScroll$: Subscription | null = null;
-  private _windowSize$: Subscription | null = null;
-  private _hElements: HTMLElement[];
-  private _isAnimation: boolean = false;
-  private _offsetParent: any;
-  private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
-  private _top: number = 0;
+  @ViewChild('content', { static: true }) content: ElementRef;
+  classMap: XClassMap = {};
+  hElements: HTMLElement[] = [];
+  sliderData: XSliderNode[] = [];
+  activatedIndex: number = 0;
+  sliderHeight?: number;
+  private scrolling = false;
+  private fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
+  private unSubject = new Subject();
 
   constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) private doc: Document
   ) {}
 
   ngOnInit() {
-    fillDefault(this, this._default);
-    this._top = this._fontSize * this.top;
-    // removeNgTag(this.elementRef.nativeElement);
+    this.setClassMap();
+    this.setSliderData();
+    this.setHeight();
   }
 
+  ngOnChanges(simple: SimpleChanges) {}
+
   ngAfterViewInit() {
-    this.setElements();
+    this.setScroll();
   }
 
   ngOnDestroy(): void {
-    this.removeListen();
+    this.unSubject.next();
+    this.unSubject.unsubscribe();
   }
 
   activatedChange(index: number) {
-    this._isAnimation = true;
-    const activatedEle = this._hElements[index];
-    let top = activatedEle.offsetTop + this.anchor.nativeElement.offsetTop - this._top;
-    let scrollEle = this._windowScroll ? this.doc.documentElement : (this.scrollElement as HTMLElement);
-    let scrollHeight = scrollEle.scrollHeight - scrollEle.clientHeight;
-    top = top > scrollHeight ? scrollHeight : top;
-    if (!this._windowScroll) {
-      top -= scrollEle.offsetTop;
-    }
-    this.scrollTo(scrollEle, parseInt(`${top}`), 150);
-    this.indexChange.emit(index);
-    setTimeout(() => {
-      this._isAnimation = false;
-    }, 300);
+    if (XIsEmpty(this.hElements) || XIsEmpty(this.scroll)) return;
+    this.scrolling = true;
+    const hElement = this.hElements[index];
+    const scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
+    this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 
-  private removeListen() {
-    this._scroll$.unsubscribe();
-    this._windowSize$.unsubscribe();
-    if (this._windowScroll$) {
-      this._windowScroll$.unsubscribe();
-    }
+  private setClassMap() {
+    this.classMap[`${XAnchorPrefix}-${this.layout}`] = this.layout ? true : false;
   }
 
-  private setElements() {
-    this.setHElements();
-    this.setScrollElement();
-    this.windowSizeChange();
-    if (this.listFixed) {
-      this.setListFixed();
-    }
+  private setScroll() {
+    if (!this.scroll) this.scroll = this.doc.documentElement;
+    fromEvent(this.scroll, 'scroll')
+      .pipe(throttleTime(10), takeUntil(this.unSubject))
+      .subscribe(x => {
+        if (this.scrolling) return;
+        this.setActivatedByScroll(x);
+      });
   }
 
-  private setHElements() {
-    this._hElements = this.content.nativeElement.querySelectorAll(':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5');
-    if (this._hElements.length > 0) {
-      this.renderer.addClass(this.anchor.nativeElement, `${AnchorPrefix}-open`);
+  private setActivatedByScroll(event: Event) {
+    let now = 0;
+    this.hElements.forEach((h, index) => {
+      let distance = this.scroll.scrollTop + this.anchor.nativeElement.offsetTop;
+      if (distance >= h.offsetTop) {
+        now = index;
+        return;
+      }
+    });
+    this.activatedIndex = now;
+    this.cdr.detectChanges();
+  }
+
+  private setSliderData() {
+    this.hElements = this.content.nativeElement.querySelectorAll(':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5');
+    if (this.hElements.length > 0) {
       let list: XAnchorNode[] = [];
-      this._hElements.forEach((x: HTMLElement, i: number) => {
+      this.hElements.forEach((x: HTMLElement, i: number) => {
         const link = `x-anchor-${i}`;
         const left = this.setLeft(x);
         this.renderer.setAttribute(x, 'id', link);
@@ -143,122 +117,12 @@ export class XAnchorComponent implements OnInit, OnDestroy {
             id: i,
             label: x.innerText,
             left: left,
-            // icon: left > 1 ? "adf-forward" : "adf-forward",
-            // router: `${this.location.path()}`,
             link: link
           }
         ];
       });
-      (this.sliderOption.data as BehaviorSubject<XSliderNode[]>).next(list);
-      (this.sliderOption.data as BehaviorSubject<XSliderNode[]>).complete();
+      this.sliderData = list;
     }
-  }
-
-  private getScrollTop() {
-    if (this._windowScroll) {
-      return document.documentElement.scrollTop;
-    } else {
-      return (this.scrollElement as HTMLElement).scrollTop;
-    }
-  }
-
-  private setScrollElement() {
-    if (typeof this.scrollElement === 'undefined') {
-      this.scrollElement = window;
-      this._windowScroll = true;
-      setTimeout(() => this.renderer.setStyle(this.list.nativeElement, 'max-height', `calc(100% - ${this._top}px)`));
-    } else {
-      this._offsetParent = (this.scrollElement as HTMLElement).offsetParent;
-      // ToDo: 当文档在tab中时获取不到高度
-      setTimeout(() =>
-        this.renderer.setStyle(this.list.nativeElement, 'max-height', `${(this.scrollElement as HTMLElement).clientHeight - this._top}px`)
-      );
-      if (this._offsetParent) {
-        fromEvent(this._offsetParent, 'scroll')
-          .pipe(distinctUntilChanged())
-          .subscribe(() => {
-            if (this.listFixed) {
-              this.setFixedTop();
-            }
-          });
-      }
-      this.setWindowScroll();
-    }
-    this.scrollObservable = fromEvent(this.scrollElement, 'scroll').pipe(throttleTime(10), distinctUntilChanged());
-    this._scroll$ = this.scrollObservable.subscribe(() => {
-      this.setActiveatedIndex();
-    });
-  }
-
-  setActiveatedIndex() {
-    let scrollTop = this.getScrollTop();
-    this.listFixed = this.setFixed(scrollTop + this._top);
-    this.setListFixed();
-    if (!this._isAnimation) {
-      let now = 0;
-      this._hElements.forEach((item, index) => {
-        let distance = scrollTop - this.anchor.nativeElement.offsetTop;
-        if (!this._windowScroll) distance += (this.scrollElement as HTMLElement).offsetTop;
-        if (distance >= item.offsetTop - this._top) {
-          now = index;
-          return;
-        }
-      });
-      this.sliderOption.activatedIndex = now;
-    }
-    this.cdr.detectChanges();
-  }
-
-  private setWindowScroll() {
-    this._windowScroll$ = fromEvent(window, 'scroll')
-      .pipe(distinctUntilChanged())
-      .subscribe(() => {
-        if (this.listFixed) {
-          this.setFixedTop();
-        }
-      });
-  }
-
-  private setFixed(scrollTop) {
-    let eleTop = this.anchor.nativeElement.offsetTop;
-    if (this._windowScroll) {
-      return scrollTop >= eleTop;
-    } else {
-      let scroll = this.scrollElement as HTMLElement;
-      let fixed = scrollTop >= eleTop - scroll.offsetTop;
-      if (fixed) {
-        this.setFixedTop();
-      } else {
-        this.renderer.setStyle(this.list.nativeElement, 'top', `${this._top}`);
-      }
-      return fixed;
-    }
-  }
-
-  private setFixedTop() {
-    let windowScrollTop = document.documentElement.scrollTop;
-    let offsetTop = (this.scrollElement as HTMLElement).offsetTop;
-    let offsetParent = (this.scrollElement as HTMLElement).offsetParent as HTMLElement;
-    if (offsetParent) offsetTop = offsetTop + offsetParent.offsetTop - offsetParent.scrollTop;
-    this.renderer.setStyle(this.list.nativeElement, 'top', `${offsetTop - windowScrollTop + this._top}px`);
-  }
-
-  private windowSizeChange() {
-    this._windowSize$ = fromEvent(window, 'resize')
-      .pipe(distinctUntilChanged())
-      .subscribe(() => {
-        this.setListFixed();
-      });
-  }
-
-  private getAnchorLeft() {
-    return this.layout === 'right' ? this.content.nativeElement.clientWidth : 0;
-  }
-
-  private setListFixed() {
-    let fixedLeft = this.anchor.nativeElement.offsetLeft;
-    let anchorLeft = this.getAnchorLeft();
-    this.renderer.setStyle(this.list.nativeElement, 'left', `${this.listFixed ? fixedLeft + anchorLeft : anchorLeft}px`);
   }
 
   private setLeft(element: HTMLElement): number {
@@ -267,12 +131,32 @@ export class XAnchorComponent implements OnInit, OnDestroy {
     return index + 1;
   }
 
-  private scrollTo(element: HTMLElement, to: number, duration: number): void {
+  private setHeight() {
+    if (this.scroll) {
+      let height = this.scroll.offsetHeight;
+      let top = parseFloat(computedStyle(this.scroll, 'padding-top'));
+      let borderTop = parseFloat(computedStyle(this.scroll, 'border-top'));
+      let bottom = parseFloat(computedStyle(this.scroll, 'padding-bottom'));
+      let borderBottom = parseFloat(computedStyle(this.scroll, 'border-bottom'));
+      this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
+      console.log(this.sliderHeight, this.getTop());
+    }
+  }
+
+  private getTop() {
+    if (this.affixTop === '0') return 0;
+    if (XIsNumber(this.affixTop)) return Number(this.affixTop);
+    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this.fontSize;
+    else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
+  }
+
+  private scrollTo(element: HTMLElement, to: number, duration: number) {
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
     reqAnimFrame(() => {
       element.scrollTop = element.scrollTop + perTick;
       if (element.scrollTop === to || duration <= 0) {
+        setTimeout(() => (this.scrolling = false), 20);
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

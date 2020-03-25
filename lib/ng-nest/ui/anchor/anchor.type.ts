@@ -2,33 +2,29 @@ import { XIdentityInput } from '@ng-nest/ui/core';
 
 /**
  * Anchor 组件名
- * @selector x-input
+ * @selector x-anchor
  * @decorator component
  */
-export const AnchorPrefix = 'x-anchor';
+export const XAnchorPrefix = 'x-anchor';
 
 /**
  * Anchor @Input
  */
 export interface XAnchorInput {
   /**
-   * 布局方式
-   * @default "right"
+   * 滚动区域对象
    */
-  layout?: XAnchorLayoutType;
+  scroll?: HTMLElement;
   /**
-   * 滚动的对象
+   * 顶部距离
+   * @default '0'
    */
-  scrollElement?: HTMLElement | Window;
+  affixTop?: number;
   /**
-   * 导航是否固定
+   * 导航相对内容位置
+   * @default 'right'
    */
-  sliderFixed?: boolean;
-  /**
-   * 距离顶部距离，单位rem，自动转换
-   * @default 0
-   */
-  top?: number;
+  layout?: XAnchorLayout;
 }
 
 /**
@@ -50,22 +46,8 @@ export interface XAnchorNode extends XIdentityInput {
 }
 
 /**
- * 激活的 Anchor
- */
-export interface XActivatedAnchor {
-  /**
-   * 激活的序号
-   */
-  activatedIndex?: number;
-  /**
-   * 激活的anchor对象
-   */
-  activatedAnchor?: XAnchorNode;
-}
-
-/**
  * 布局方式，相对内容的位置
  * @value "left"
  * @value "right"
  */
-export type XAnchorLayoutType = 'left' | 'right';
+export type XAnchorLayout = 'left' | 'right';
