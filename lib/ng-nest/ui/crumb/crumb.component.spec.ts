@@ -1,17 +1,17 @@
-import { BehaviorSubject } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCrumbComponent } from './crumb.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCrumbModule } from './crumb.module';
-import { CrumbPrefix, XCrumbNode } from './crumb.type';
-import { XData } from '@ng-nest/ui/core';
+import { XCrumbPrefix } from './crumb.type';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XTagModule } from '@ng-nest/ui/tag';
 
-describe(CrumbPrefix, () => {
+describe(XCrumbPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XCrumbModule],
+      imports: [XCrumbModule, XIconModule, XTagModule],
       declarations: [TestXCrumbComponent]
     }).compileComponents();
   }));
@@ -30,27 +30,27 @@ describe(CrumbPrefix, () => {
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it('should className.', () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(CrumbPrefix);
-    });
   });
 });
-
-const testXCrumbNode: XCrumbNode[] = [
-  { id: 1, label: 'Home' },
-  { id: 2, label: 'Docs' },
-  { id: 3, label: 'Examples' },
-  { id: 4, label: 'Api' }
-];
 
 @Component({
   selector: 'test-x-crumb',
   template: `
-    <x-crumb [data]="data" (nodeClick)="nodeClick($event)"></x-crumb>
+    <x-crumb [data]="data"></x-crumb>
+    <x-crumb [data]="dataIcon"></x-crumb>
+    <x-crumb [data]="data" separator="·"></x-crumb>
+    <x-crumb [data]="data" [separator]="separatorTpl"></x-crumb>
+    <ng-template #separatorTpl>
+      <x-icon type="fto-chevron-right"></x-icon>
+    </ng-template>
+    <x-crumb [data]="data" [nodeTpl]="nodeTpl"></x-crumb>
+    <ng-template #nodeTpl let-node="$node">
+      <x-tag>{{ node.label }}</x-tag>
+    </ng-template>
   `
 })
 class TestXCrumbComponent {
-  data: XData<XCrumbNode[]> = testXCrumbNode;
-  nodeClick(option) {}
+  data = ['首页', '用户管理', '用户列表', '用户详情'];
+  dataIcon = [{ icon: 'fto-home' }, { label: '用户管理', icon: 'fto-user' }, '用户列表', '用户详情'];
+  nodeClick() {}
 }

@@ -3,62 +3,48 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
   Input,
   OnChanges,
   SimpleChanges,
-  ViewChild,
-  ElementRef,
-  Renderer2,
   ChangeDetectorRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  TemplateRef
 } from '@angular/core';
-import { CrumbPrefix, XCrumbInput, XCrumbNode, XCrumbNodeClick } from './crumb.type';
-import { fillDefault, XData } from '@ng-nest/ui/core';
-import { Subscription } from 'rxjs';
+import { XCrumbPrefix, XCrumbNode, XCrumbNodeClick } from './crumb.type';
+import { XData, XDataConvert, XIsObservable, XToDataConvert, XIsChange, XTemplate } from '@ng-nest/ui/core';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'x-crumb',
+  selector: `${XCrumbPrefix}`,
   templateUrl: './crumb.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCrumbComponent implements OnInit, OnChanges {
-  @Input() data?: XData<XCrumbNode[]>;
-  @Input() nodeTemplate?: any;
+  @Input() @XDataConvert() data?: XData<XCrumbNode[]>;
+  @Input() nodeTpl?: TemplateRef<any>;
+  @Input() separator?: XTemplate = '/';
   @Output() nodeClick?: EventEmitter<XCrumbNodeClick> = new EventEmitter<XCrumbNodeClick>();
+  nodes: XCrumbNode[] = [];
 
-  private _default: XCrumbInput = {
-    data: []
-  };
+  private unSubject = new Subject();
 
-  @ViewChild('crumbs', { static: true }) crumbsRef: ElementRef;
-  crumbs: XCrumbNode[] = [];
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  private _data$: Subscription | null = null;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, CrumbPrefix);
-  }
-
-  ngOnInit() {
-    fillDefault(this, this._default);
-    this.setData();
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {
-    this.removeListen();
+    this.unSubject.next();
+    this.unSubject.unsubscribe();
   }
 
   action(type: string, option?: any, event?: Event) {
@@ -68,28 +54,28 @@ export class XCrumbComponent implements OnInit, OnChanges {
           event: event,
           node: option
         });
-        this.cdr.detectChanges();
         break;
     }
   }
 
-  private removeListen() {
-    if (this._data$) this._data$.unsubscribe();
-  }
-
   private setData() {
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
+    if (typeof this.data === 'undefined') return;
+    if (XIsObservable(this.data)) {
+      (this.data as Observable<any>)
+        .pipe(
+          map(x => XToDataConvert(x)),
+          takeUntil(this.unSubject)
+        )
+        .subscribe(x => {
+          this.setDataChange(x);
+        });
     } else {
-      if (this._data$) this._data$.unsubscribe();
-      this._data$ = this.data.subscribe(x => {
-        this.setDataChange(x);
-      });
+      this.setDataChange(this.data as XCrumbNode[]);
     }
   }
 
   private setDataChange(value: XCrumbNode[]) {
-    this.crumbs = value;
+    this.nodes = value;
     this.cdr.detectChanges();
   }
 }

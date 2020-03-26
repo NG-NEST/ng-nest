@@ -6,7 +6,7 @@ import { TemplateRef } from '@angular/core';
  * @selector x-crumb
  * @decorator component
  */
-export const CrumbPrefix = 'x-crumb';
+export const XCrumbPrefix = 'x-crumb';
 
 /**
  * Crumb @Input
@@ -27,6 +27,14 @@ export interface XCrumbInput {
  * Crumb 数据对象
  */
 export interface XCrumbNode extends XIdentityInput {
+  /**
+   * 图标
+   */
+  icon?: string;
+  /**
+   * 禁用
+   */
+  disabled?: boolean;
   /**
    * 自定义数据属性
    */

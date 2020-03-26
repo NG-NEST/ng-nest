@@ -4,7 +4,7 @@
 @import '../../style/mixins/index';
 @import './mixin';
 
-.#{$prefix} {
+.#{$--x-crumb-prefix} {
   @include reset-component();
   @include crumb();
 }

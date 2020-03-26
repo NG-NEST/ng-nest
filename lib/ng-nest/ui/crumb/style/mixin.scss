@@ -5,40 +5,21 @@
 @import './param';
 
 @mixin crumb {
-  display: inline-block;
-  color: $crumb-color;
-  font-size: $crumb-font-size;
-  > ul {
-    display: flex;
+  display: flex;
+  > li {
     padding: 0;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    height: fit-content;
-    > li {
-      padding: 0;
-      border-style: solid;
-      border-color: $crumb-border-color;
-      border-width: 0;
-      white-space: nowrap;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      .#{$prefix}-link {
-        cursor: pointer;
-        &:hover {
-          color: $crumb-activated-color;
-        }
-      }
-      .#{$prefix}-separator {
-        margin: 0 0.5rem;
-      }
-      &:not(:last-child) {
-        color: $--x-text-300;
-      }
-      &:last-child {
-        pointer-events: none;
-      }
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    .x-link.x-link-disabled {
+      color: $--x-text-500;
+      cursor: text;
     }
+  }
+  &-separator {
+    margin: 0 0.5rem;
+    font-weight: 600;
+    color: $--x-text-400;
   }
 }

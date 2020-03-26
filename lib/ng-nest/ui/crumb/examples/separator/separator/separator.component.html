@@ -1,0 +1,5 @@
+<x-crumb [data]="data" separator="·"></x-crumb>
+<x-crumb [data]="data" [separator]="separatorTpl"></x-crumb>
+<ng-template #separatorTpl>
+  <x-icon type="fto-chevron-right"></x-icon>
+</ng-template>

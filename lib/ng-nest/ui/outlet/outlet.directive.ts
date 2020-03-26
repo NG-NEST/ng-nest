@@ -1,13 +1,4 @@
-import {
-  Directive,
-  TemplateRef,
-  Input,
-  ViewContainerRef,
-  SimpleChanges,
-  EmbeddedViewRef,
-  OnChanges,
-  SimpleChange
-} from '@angular/core';
+import { Directive, TemplateRef, Input, ViewContainerRef, SimpleChanges, EmbeddedViewRef, OnChanges, SimpleChange } from '@angular/core';
 
 @Directive({ selector: '[xOutlet]' })
 export class XOutletDirective implements OnChanges {
@@ -17,6 +8,7 @@ export class XOutletDirective implements OnChanges {
   constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<any>) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes.xOutlet);
     const shouldRecreateView = (ctxChanges: SimpleChanges): boolean => {
       const { xOutletContext, xOutlet } = ctxChanges;
       let shouldOutletRecreate = false;
