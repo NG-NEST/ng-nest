@@ -71,10 +71,6 @@ export class XTabsComponent implements OnInit, OnChanges {
     this.setSliderOption();
   }
 
-  ngAfterViewInit() {
-    this.setData();
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.layout) && this.setLayout(changes.layout);

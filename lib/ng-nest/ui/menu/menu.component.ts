@@ -12,10 +12,11 @@ import {
   OnDestroy,
   TemplateRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  AfterViewInit
 } from '@angular/core';
 import { XMenuPrefix, XMenuLayout, XMenuNode, XMenuTrigger } from './menu.type';
-import { XClassMap, XDataConvert, XData, XIsChange, XIsObservable, XToDataConvert, XSize, XIsEmpty } from '@ng-nest/ui/core';
+import { XClassMap, XDataConvert, XData, XIsChange, XIsObservable, XToDataConvert, XSize, XIsEmpty, XJustify } from '@ng-nest/ui/core';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -26,7 +27,7 @@ import { map, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuComponent implements OnInit, OnChanges, OnDestroy {
+export class XMenuComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @Input() @XDataConvert() data: XData<XMenuNode[]>;
   @Input() layout: XMenuLayout = 'row';
   @Input() size: XSize = 'medium';
@@ -38,12 +39,17 @@ export class XMenuComponent implements OnInit, OnChanges, OnDestroy {
   datas: XMenuNode[] = [];
   nodes: XMenuNode[] = [];
   rootIndex: number = 0;
+  activated: XMenuNode;
   private unSubject = new Subject();
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.setClassMap();
+  }
+
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -64,6 +70,20 @@ export class XMenuComponent implements OnInit, OnChanges, OnDestroy {
   rootIndexChange(index: number) {
     this.rootIndex = index;
     this.nodeClick.emit(this.nodes[index]);
+    this.cdr.detectChanges();
+  }
+
+  onToggle(event: Event, node: XMenuNode) {
+    if (!node.leaf) {
+      this.activated = node;
+    } else {
+      event.stopPropagation();
+      node.open = !node.open;
+      if (node.open && !node.childrenLoaded) {
+        node.childrenLoaded = true;
+      }
+    }
+    this.nodeClick.emit(node);
     this.cdr.detectChanges();
   }
 

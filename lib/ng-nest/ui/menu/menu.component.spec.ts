@@ -39,11 +39,14 @@ describe(XMenuPrefix, () => {
       <x-menu [data]="dataLeaf" (nodeClick)="nodeClick($event)"> </x-menu>
     </div>
     <div class="row">
-      <x-menu [data]="data" size="big"> </x-menu>
-      <x-menu [data]="data" size="large"> </x-menu>
-      <x-menu [data]="data" size="medium"> </x-menu>
-      <x-menu [data]="data" size="small"> </x-menu>
-      <x-menu [data]="data" size="mini"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column"> </x-menu>
+    </div>
+    <div class="row">
+      <x-menu [data]="dataLeaf" layout="column" size="big"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" size="large"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" size="medium"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" size="small"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" size="mini"> </x-menu>
     </div>
   `,
   styles: [
@@ -61,10 +64,10 @@ class TestXMenuComponent {
   data = ['最新活动', '产品', '解决方案', '帮助和支持'];
   dataIcon = ['最新活动', { label: '产品', icon: 'fto-package' }, '解决方案', { label: '帮助和支持', icon: 'fto-phone' }];
   dataLeaf = [
-    { id: 1, label: '最新活动' },
-    { id: 2, label: '产品' },
-    { id: 3, label: '解决方案' },
-    { id: 4, label: '帮助和支持' },
+    { id: 1, label: '最新活动', icon: 'fto-gift' },
+    { id: 2, label: '产品', icon: 'fto-package' },
+    { id: 3, label: '解决方案', icon: 'fto-layers' },
+    { id: 4, label: '帮助和支持', icon: 'fto-phone' },
     { id: 5, pid: 2, label: '云基础' },
     { id: 6, pid: 2, label: '智能大数据' },
     { id: 7, pid: 2, label: '行业应用' },

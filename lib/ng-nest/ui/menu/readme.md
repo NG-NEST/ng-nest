@@ -6,3 +6,15 @@ category: 'Navigation'
 # Menu 导航菜单
 
 为页面和功能提供导航的菜单列表。
+
+## 示例代码
+
+{{ __examples }}
+
+## API
+
+{{ __api }}
+
+## 样式参数
+
+{{ __pattern }}

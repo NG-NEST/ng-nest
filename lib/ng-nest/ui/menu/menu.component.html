@@ -1,25 +1,47 @@
 <div #menu class="x-menu" [ngClass]="classMap">
+  <div class="x-menu-nodes" *ngIf="layout === 'column'">
+    <ng-container *ngFor="let node of nodes">
+      <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>
+    </ng-container>
+  </div>
   <x-slider
+    *ngIf="layout === 'row'"
     [data]="nodes"
     [size]="size"
-    [nodeTpl]="nodeTpl"
+    [nodeTpl]="nodeRowTpl"
+    [node-justify]="'center'"
     [activatedIndex]="rootIndex"
     (indexChange)="rootIndexChange($event)"
   ></x-slider>
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <x-dropdown
-    [disabled]="!node.leaf"
-    [data]="node.children"
-    [trigger]="trigger"
-    (nodeClick)="onNodeClick($event)"
-    children
-  >
+  <x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
+  <span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
+  <x-icon class="x-menu-arrow" *ngIf="node.leaf" [class.is-open]="node.open" type="fto-chevron-down"></x-icon>
+</ng-template>
+
+<ng-template #nodeRowTpl let-node="$node">
+  <x-dropdown [disabled]="!node.leaf" [data]="node.children" [trigger]="trigger" (nodeClick)="onNodeClick($event)" children>
     <div class="x-menu-node" [ngClass]="nodeClassMap">
-      <x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
-      <span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
-      <x-icon class="x-menu-arrow" *ngIf="node.leaf" type="fto-chevron-down"></x-icon>
+      <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
     </div>
   </x-dropdown>
+</ng-template>
+
+<ng-template #nodeColumnTpl let-node="$node">
+  <div
+    class="x-menu-node"
+    [class.x-activated]="activated?.id === node.id"
+    [ngClass]="nodeClassMap"
+    (click)="onToggle($event, node)"
+    [style.padding-left.rem]="(node.level + 1) * 0.875"
+  >
+    <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+  </div>
+  <div class="x-menu-nodes" *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
+    <ng-container *ngFor="let child of node.children">
+      <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: child }"></ng-container>
+    </ng-container>
+  </div>
 </ng-template>

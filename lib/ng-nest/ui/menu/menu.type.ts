@@ -17,6 +17,18 @@ export interface XMenuNode extends XParentIdentityInput {
    * 图标
    */
   icon?: string;
+  /**
+   * 子节点
+   */
+  children?: XMenuNode[];
+  /**
+   * 展开
+   */
+  open?: boolean;
+  /**
+   * 子节点已加载过
+   */
+  childrenLoaded?: boolean;
 }
 
 export type XMenuLayout = 'row' | 'column';

@@ -8,10 +8,15 @@
   &-icon.x-icon {
     margin-right: 0.25rem;
     margin-left: -0.25rem;
+    font-size: 1rem;
   }
   &-arrow.x-icon {
     margin-right: -0.25rem;
     margin-left: 0.25rem;
+    transition: $--x-animation-duration-base;
+    &.is-open {
+      transform: rotate(180deg);
+    }
   }
   &-node {
     &.x-size {
@@ -34,6 +39,40 @@
         padding: 0 !important;
         height: inherit !important;
         line-height: inherit !important;
+      }
+    }
+  }
+  &-column {
+    width: 12rem;
+  }
+  &-nodes {
+    > .#{$--x-menu}-node {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: $--x-animation-duration-base;
+      border-right: 0.125rem solid $--x-border;
+      position: relative;
+      user-select: none;
+      padding-right: 0.875rem !important;
+      .#{$--x-menu}-text {
+        flex: 1;
+      }
+      &:hover {
+        background-color: $--x-background;
+      }
+      &.x-activated {
+        color: $--x-primary;
+        background-color: $--x-background;
+        &::after {
+          content: '';
+          position: absolute;
+          height: 100%;
+          right: -0.125rem;
+          top: 0;
+          border-right: 0.125rem solid $--x-primary;
+        }
       }
     }
   }

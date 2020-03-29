@@ -1,0 +1,5 @@
+:host {
+  x-menu:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
