@@ -8,35 +8,25 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  HostBinding,
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
-  ViewChild,
-  TemplateRef,
-  Inject,
-  NgZone
+  ViewChild
 } from '@angular/core';
-import { XSelectPrefix, XSelectInput, XSelectNode, XSelectPortal } from './select.type';
+import { XSelectNode } from './select.type';
 import {
-  fillDefault,
   XValueAccessor,
   XControlValueAccessor,
-  XJustify,
-  XAlign,
-  XDirection,
   XData,
   XIsEmpty,
   XInputBoolean,
   XDataConvert,
   XToDataConvert,
   XIsObservable,
-  removeNgTag,
   XIsChange
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { DOCUMENT } from '@angular/common';
 import { XSelectPortalComponent } from './select-portal.component';
 import { map } from 'rxjs/operators';
 import { Overlay } from '@angular/cdk/overlay';
@@ -81,25 +71,20 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   asyncLoading = false;
   scrollFunction: Function;
   resizeFunction: Function;
-  private _default: XSelectInput = {};
   private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
 
   constructor(
     public renderer: Renderer2,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private ngZone: NgZone,
     private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    @Inject(DOCUMENT) private doc: any
+    private overlay: Overlay
   ) {
     super(renderer);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.select.nativeElement, this.justify, this.align, this.direction);
   }
 
@@ -131,7 +116,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     this.cdr.detectChanges();
   }
 
-  change(event: Event) {
+  change() {
     // if (this.onChange) this.onChange(this.value);
   }
 
@@ -155,7 +140,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     }
   }
 
-  clearEmit(event: Event) {
+  clearEmit() {
     this.value = '';
     this.displayValue = '';
     this.mleave();
@@ -171,7 +156,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   portalAttached() {
-    return this.portal && this.portal.overlayRef.hasAttached();
+    return this.portal?.overlayRef.hasAttached();
   }
 
   closePortal() {
@@ -183,7 +168,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     return false;
   }
 
-  showPortal(event: Event) {
+  showPortal() {
     if (this.disabled || this.iconSpin) return;
     if (this.closePortal()) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {

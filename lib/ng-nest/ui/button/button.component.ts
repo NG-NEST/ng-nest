@@ -24,8 +24,8 @@ export class XButtonComponent implements OnInit, OnChanges {
   @Input() type?: XButtonType;
   @Input() icon?: string;
   @Input() title?: string = '';
-  @Input() direction?: XDirection;
-  @Input() size?: XSize;
+  @Input() direction?: XDirection = 'row'
+  @Input() size?: XSize = 'medium';
   @Input() @XInputBoolean() onlyIcon?: boolean;
   @Input() @XInputBoolean() activated?: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
@@ -53,7 +53,7 @@ export class XButtonComponent implements OnInit, OnChanges {
     this.classMap[`${XButtonPrefix}-${this.type}`] = this.type && !this.plain;
     this.classMap[`${XButtonPrefix}-${this.type}-plain`] = this.type && this.plain;
     this.classMap[`${XButtonPrefix}-plain`] = !this.type && this.plain;
-    this.classMap[`${XButtonPrefix}-${this.size}`] = this.size ? true : false;
-    this.classMap[`x-flex-direction-${this.direction}`] = this.direction ? true : false;
+    this.classMap[`x-size-${this.size}`] = this.size ? true : false;
+    this.classMap[`x-direction-${this.direction}`] = this.direction ? true : false;
   }
 }

@@ -133,11 +133,13 @@ import { XAffixModule } from '@ng-nest/ui/affix';
 import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XBackTopModule } from '@ng-nest/ui/back-top';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
+import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 export * from '@ng-nest/ui/affix';
 export * from '@ng-nest/ui/anchor';
 export * from '@ng-nest/ui/back-top';
 export * from '@ng-nest/ui/crumb';
+export * from '@ng-nest/ui/dropdown';
 export * from '@ng-nest/ui/tabs';
 
 /**
@@ -230,6 +232,7 @@ export * from '@ng-nest/ui/core';
     XAnchorModule,
     XBackTopModule,
     XCrumbModule,
+    XDropdownModule,
     XTabsModule,
 
     XDocModule,

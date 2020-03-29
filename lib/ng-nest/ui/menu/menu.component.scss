@@ -1,0 +1,14 @@
+// Menu
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-menu} {
+  display: block;
+}
+
+.#{$--x-menu} {
+  @include reset-component();
+  @include menu();
+}

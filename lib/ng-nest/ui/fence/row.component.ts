@@ -45,11 +45,11 @@ export class XRowComponent implements OnInit {
 
   setJustify() {
     if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `x-flex-justity-${this.justify}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-justity-${this.justify}`);
   }
 
   setAlign() {
     if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `x-flex-align-${this.align}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-align-${this.align}`);
   }
 }

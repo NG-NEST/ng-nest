@@ -15,7 +15,7 @@ $--x-slider-select-track-height: $--x-slider-select-height/ 4;
 $--x-slider-select-button-size: 1rem;
 
 /* 内边距 */
-$--x-slider-select-padding: 0 $control-padding-horizontal;
+$--x-slider-select-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-slider-select-color: $--x-primary-900;
@@ -36,7 +36,7 @@ $--x-slider-select-border-radius: $--x-border-radius;
 $--x-slider-select-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-slider-select-icon-font-size: $--x-font-size-md;
+$--x-slider-select-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-slider-select-icon-padding: $control-padding-horizontal;
+$--x-slider-select-icon-padding: $--x-control-padding-horizontal;

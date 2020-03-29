@@ -28,9 +28,9 @@ export abstract class XControlValueAccessor implements ControlValueAccessor {
     this.disabled = disabled;
   }
   setFlex(ele: Element, justify: XJustify, align: XAlign, direction: XDirection) {
-    if (justify) this.renderer.addClass(ele, `x-flex-justity-${this.justify}`);
-    if (align) this.renderer.addClass(ele, `x-flex-align-${this.align}`);
-    if (direction) this.renderer.addClass(ele, `x-flex-direction-${this.direction}`);
+    if (justify) this.renderer.addClass(ele, `x-justity-${this.justify}`);
+    if (align) this.renderer.addClass(ele, `x-align-${this.align}`);
+    if (direction) this.renderer.addClass(ele, `x-direction-${this.direction}`);
   }
 }
 

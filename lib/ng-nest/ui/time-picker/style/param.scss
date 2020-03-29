@@ -9,7 +9,7 @@ $--x-time-picker-font-size: $--x-font-size;
 $--x-time-picker-height: $--x-font-size + 1rem;
 
 /* 内边距 */
-$--x-time-picker-padding: 0 $control-padding-horizontal;
+$--x-time-picker-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-time-picker-color: $--x-primary-900;
@@ -30,9 +30,9 @@ $--x-time-picker-border-radius: $--x-border-radius;
 $--x-time-picker-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-time-picker-icon-font-size: $--x-font-size-md;
+$--x-time-picker-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-time-picker-icon-padding: $control-padding-horizontal;
+$--x-time-picker-icon-padding: $--x-control-padding-horizontal;
 
 $--x-time-picker-portal-prefix: $--x-prefix + '-time-picker-portal';

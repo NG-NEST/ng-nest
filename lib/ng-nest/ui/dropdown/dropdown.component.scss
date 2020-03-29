@@ -1,0 +1,10 @@
+// Dropdown
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-dropdown} {
+  @include reset-component();
+  @include dropdown();
+}

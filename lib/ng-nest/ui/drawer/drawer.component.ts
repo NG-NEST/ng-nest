@@ -95,7 +95,7 @@ export class XDrawerComponent implements OnInit, OnChanges {
   }
 
   portalAttached() {
-    return this.portal && this.portal.overlayRef.hasAttached();
+    return this.portal?.overlayRef.hasAttached();
   }
 
   closePortal() {

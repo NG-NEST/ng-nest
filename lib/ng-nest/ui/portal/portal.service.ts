@@ -1,12 +1,4 @@
-import {
-  Injectable,
-  TemplateRef,
-  Injector,
-  InjectionToken,
-  ElementRef,
-  ComponentRef,
-  EmbeddedViewRef
-} from '@angular/core';
+import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import {
   Overlay,
   OverlayRef,
@@ -39,12 +31,7 @@ export class XPortalService {
       templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
       embeddedViewRef = overlayRef.attach(templatePortal);
     } else {
-      componentPortal = new ComponentPortal(
-        option.content,
-        option.viewContainerRef,
-        option.injector,
-        option.componentFactoryResolver
-      );
+      componentPortal = new ComponentPortal(option.content, option.viewContainerRef, option.injector, option.componentFactoryResolver);
       componentRef = overlayRef.attach(componentPortal);
     }
 
@@ -63,7 +50,7 @@ export class XPortalService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  setPlacement(elementRef?: ElementRef, ...placement: XPlacement[]): PositionStrategy {
+  setPlacement(elementRef?: ElementRef, ...placement: XPlace[] | XPlacement[]): PositionStrategy {
     if (!elementRef) {
       return this.overlay
         .position()
@@ -75,7 +62,7 @@ export class XPortalService {
         .position()
         .flexibleConnectedTo(elementRef)
         .withPositions(this.setConnectedPosition(...placement))
-        .withLockedPosition(true)
+        .withLockedPosition(true);
     }
   }
 
@@ -130,7 +117,7 @@ export class XPortalService {
     return this.overlay.create(option.overlayConfig);
   }
 
-  setConnectedPosition(...placement: XPlacement[]): ConnectedPosition[] {
+  setConnectedPosition(...placement: XPlace[] | XPlacement[]): ConnectedPosition[] {
     let result: ConnectedPosition[] = [];
     placement.forEach(place => result.push(XPortalPlacement[place]));
     return result;

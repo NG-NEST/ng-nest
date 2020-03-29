@@ -422,29 +422,29 @@ class TestXButtonLoadingComponent {
   selector: 'test-x-size-button',
   template: `
     <div class="row">
+      <x-button size="big">超大按钮</x-button>
       <x-button size="large">大型按钮</x-button>
-      <x-button size="medium">中等按钮</x-button>
       <x-button>默认按钮</x-button>
       <x-button size="small">小型按钮</x-button>
       <x-button size="mini">迷你按钮</x-button>
     </div>
     <div class="row">
+      <x-button type="primary" size="big">超大按钮</x-button>
       <x-button type="primary" size="large">大型按钮</x-button>
-      <x-button type="primary" size="medium">中等按钮</x-button>
       <x-button type="primary">默认按钮</x-button>
       <x-button type="primary" size="small">小型按钮</x-button>
       <x-button type="primary" size="mini">迷你按钮</x-button>
     </div>
     <div class="row">
+      <x-button type="primary" size="big" round>超大按钮</x-button>
       <x-button type="primary" size="large" round>大型按钮</x-button>
-      <x-button type="primary" size="medium" round>中等按钮</x-button>
       <x-button type="primary" round>默认按钮</x-button>
       <x-button type="primary" size="small" round>小型按钮</x-button>
       <x-button type="primary" size="mini" round>迷你按钮</x-button>
     </div>
     <div class="row">
+      <x-button icon="fto-share" type="primary" size="big"></x-button>
       <x-button icon="fto-share" type="primary" size="large"></x-button>
-      <x-button icon="fto-share" type="primary" size="medium"></x-button>
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-share" type="primary" size="small"></x-button>
       <x-button icon="fto-share" type="primary" size="mini"></x-button>

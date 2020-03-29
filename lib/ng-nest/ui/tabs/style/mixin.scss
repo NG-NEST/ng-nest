@@ -204,17 +204,17 @@
             > x-slider {
               .x-slider {
                 &-scroll {
-                  &.x-flex-justity-start ul li {
+                  &.x-justity-start ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-first}: none;
                     }
                   }
-                  &.x-flex-justity-center ul li {
+                  &.x-justity-center ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-first}: $--x-border-200-base;
                     }
                   }
-                  &.x-flex-justity-end ul li {
+                  &.x-justity-end ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-first}: $--x-border-200-base;
                     }
@@ -229,17 +229,17 @@
             > x-slider {
               .x-slider {
                 &-scroll {
-                  &.x-flex-justity-start ul li {
+                  &.x-justity-start ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-second}: $--x-border-200-base;
                     }
                   }
-                  &.x-flex-justity-center ul li {
+                  &.x-justity-center ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-second}: $--x-border-200-base;
                     }
                   }
-                  &.x-flex-justity-end ul li {
+                  &.x-justity-end ul li {
                     &.x-slider-highlight {
                       border-#{$sort-border-second}: none;
                     }

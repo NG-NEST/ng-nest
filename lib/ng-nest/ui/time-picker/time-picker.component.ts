@@ -162,7 +162,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   portalAttached() {
-    return this.portal && this.portal.overlayRef.hasAttached();
+    return this.portal?.overlayRef.hasAttached();
   }
 
   closePortal() {

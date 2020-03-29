@@ -5,8 +5,6 @@
 @import './param';
 
 @mixin list {
-  font-size: $--x-list-font-size;
-  color: $--x-text;
   display: flex;
   width: 100%;
   flex: 1;
@@ -26,13 +24,23 @@
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-      > x-icon {
-        right: 0;
-        margin-left: 0.4rem;
-        color: $--x-text-400;
+      &:not(:first-child) {
+        margin-top: $--x-border-width;
       }
       &:hover {
         background-color: $--x-background;
+      }
+      &.x-list-divided {
+        margin-top: 0.8125rem;
+        &::before {
+          content: ' ';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          margin-top: -0.5rem;
+          border-top: $--x-border-100-base;
+        }
       }
       &.x-selected {
         color: $--x-primary;
@@ -41,8 +49,15 @@
           color: $--x-primary;
         }
       }
-      &:not(:first-child) {
-        margin-top: $--x-border-width;
+      &.x-disabled {
+        color: var(--x-text-300);
+        cursor: not-allowed;
+        &:hover {
+          background-color: inherit;
+        }
+        > span x-icon {
+          color: var(--x-text-300);
+        }
       }
     }
     &.cdk-drop-list-dragging {
@@ -62,12 +77,23 @@
       }
     }
   }
+  &-leaf,
+  &-checked {
+    right: 0;
+    margin-left: 0.4rem;
+    color: $--x-text-400;
+  }
+  &-icon > span x-icon {
+    color: $--x-text-500;
+    margin-right: 0.25rem;
+  }
 }
 
 @mixin list-li {
   padding: 0 0.4rem;
   height: $--x-list-height;
   line-height: $--x-list-height;
+  position: relative;
   border-radius: 0.125rem;
   display: flex;
   align-items: center;

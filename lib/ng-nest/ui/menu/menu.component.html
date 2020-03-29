@@ -1,0 +1,25 @@
+<div #menu class="x-menu" [ngClass]="classMap">
+  <x-slider
+    [data]="nodes"
+    [size]="size"
+    [nodeTpl]="nodeTpl"
+    [activatedIndex]="rootIndex"
+    (indexChange)="rootIndexChange($event)"
+  ></x-slider>
+</div>
+
+<ng-template #nodeTpl let-node="$node">
+  <x-dropdown
+    [disabled]="!node.leaf"
+    [data]="node.children"
+    [trigger]="trigger"
+    (nodeClick)="onNodeClick($event)"
+    children
+  >
+    <div class="x-menu-node" [ngClass]="nodeClassMap">
+      <x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
+      <span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
+      <x-icon class="x-menu-arrow" *ngIf="node.leaf" type="fto-chevron-down"></x-icon>
+    </div>
+  </x-dropdown>
+</ng-template>

@@ -30,9 +30,10 @@ import {
   XResize,
   XPosition,
   XIsUndefined,
-  XJustify
+  XJustify,
+  XSize
 } from '@ng-nest/ui/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, observable } from 'rxjs';
 import { map, takeUntil, debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -50,6 +51,8 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   @Input() justify: XJustify = 'start';
   @Input('node-justify') nodeJustify: XJustify = 'center';
   @Input() nodeTpl: TemplateRef<any>;
+  @Input() size: XSize = 'medium';
+  @Input() class: string;
   @Output() indexChange = new EventEmitter<number>();
   @ViewChild('sliderScroll') sliderScroll: ElementRef;
   @ViewChild('sliderNodes') sliderNodes: ElementRef;
@@ -96,8 +99,8 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.layout) && this.setChange(this.classMap, changes.layout);
-    XIsChange(changes.justify) && this.setChange(this.scrollClassMap, changes.justify, 'x-flex-justity');
-    XIsChange(changes.nodeJustify) && this.setChange(this.nodeClassMap, changes.nodeJustify, 'x-flex-justity');
+    XIsChange(changes.justify) && this.setChange(this.scrollClassMap, changes.justify, 'x-justify');
+    XIsChange(changes.nodeJustify) && this.setChange(this.nodeClassMap, changes.nodeJustify, 'x-justify');
     XIsChange(changes.activatedIndex) &&
       this.setDirection(changes.activatedIndex.currentValue, changes.activatedIndex.previousValue) &&
       this.setActivated();
@@ -116,8 +119,10 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
 
   setClassMap() {
     this.classMap[`${XSliderPrefix}-${this.layout}`] = this.layout ? true : false;
-    this.scrollClassMap[`x-flex-justity-${this.justify}`] = this.justify ? true : false;
-    this.nodeClassMap[`x-flex-justity-${this.nodeJustify}`] = this.nodeJustify ? true : false;
+    this.classMap[`${this.class}`] = this.class ? true : false;
+    this.scrollClassMap[`x-justify-${this.justify}`] = this.justify ? true : false;
+    this.nodeClassMap[`x-justify-${this.nodeJustify}`] = this.nodeJustify ? true : false;
+    this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;
   }
 
   setChange(map: XClassMap, change: SimpleChange, prefix = XSliderPrefix) {

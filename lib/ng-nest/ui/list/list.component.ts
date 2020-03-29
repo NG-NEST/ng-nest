@@ -12,9 +12,8 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { XListInput, XListNode } from './list.type';
+import { XListNode } from './list.type';
 import {
-  fillDefault,
   XData,
   XValueAccessor,
   XControlValueAccessor,
@@ -38,11 +37,12 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class XListComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XDataConvert() data?: XData<XListNode[]>;
-  @Input() @XInputNumber() multiple?: number;
+  @Input() @XInputNumber() multiple: number = 1;
   @Input() @XInputBoolean() checked?: boolean;
   @Input() @XInputBoolean() drag?: boolean;
-  @Output() nodeEmit?: EventEmitter<XListNode> = new EventEmitter<XListNode>();
-
+  @Output() nodeMouseenter = new EventEmitter<XListNode>();
+  @Output() nodeMouseleave = new EventEmitter<XListNode>();
+  @Output() nodeClick = new EventEmitter<XListNode>();
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
 
@@ -52,20 +52,13 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  private _default: XListInput = {
-    multiple: 1
-  };
   private data$: Subscription | null = null;
 
   constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
     super(renderer);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-    // removeNgTag(this.elementRef.nativeElement);
-    console.log(this.drag)
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
@@ -115,7 +108,11 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     }
   }
 
-  nodeClick(event: Event, node: XListNode) {
+  onNodeClick(event: Event, node: XListNode) {
+    if (node.disabled) {
+      event.stopPropagation();
+      return;
+    }
     event.preventDefault();
     if (node.disabled || (node.selected && this.multiple === 1)) return;
     const selected = !node.selected;
@@ -144,7 +141,25 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     }
     if (this.onChange) this.onChange(this.value);
     node.event = event;
-    this.nodeEmit.emit(node);
+    this.nodeClick.emit(node);
+  }
+
+  onMouseenter(event: Event, node: XListNode) {
+    if (node.disabled) {
+      event.stopPropagation();
+      return;
+    }
+    node.event = event;
+    this.nodeMouseenter.emit(node);
+  }
+
+  onMouseleave(event: Event, node: XListNode) {
+    if (node.disabled) {
+      event.stopPropagation();
+      return;
+    }
+    node.event = event;
+    this.nodeMouseleave.emit(node);
   }
 
   dropCdk(event: CdkDragDrop<XListNode[]>) {

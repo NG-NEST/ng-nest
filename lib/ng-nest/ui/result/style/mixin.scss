@@ -11,17 +11,17 @@
   padding: 3rem 2rem;
   &-icon {
     font-size: $--x-font-size * 5;
-    margin-bottom: $--x-font-size-lg;
+    margin-bottom: $--x-font-size-large;
   }
   &-title {
-    font-size: $--x-font-size-lg;
-    line-height: $--x-font-size-lg * 1.5;
+    font-size: $--x-font-size-large;
+    line-height: $--x-font-size-large * 1.5;
   }
   &-sub-title {
     color: $--x-text-400;
   }
   &-content {
-    margin-top: $--x-font-size-lg;
+    margin-top: $--x-font-size-large;
   }
   @include type('success', $--x-success);
   @include type('info', $--x-info);

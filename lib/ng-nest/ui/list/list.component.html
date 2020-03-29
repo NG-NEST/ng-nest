@@ -5,12 +5,16 @@
       *ngFor="let node of nodes"
       [class.x-selected]="node.selected"
       [class.x-disabled]="node.disabled"
-      (click)="nodeClick($event, node)"
+      [class.x-list-icon]="node.icon"
+      [class.x-list-divided]="node.divided"
+      (click)="onNodeClick($event, node)"
+      (mouseenter)="onMouseenter($event, node)"
+      (mouseleave)="onMouseleave($event, node)"
       cdkDrag
     >
-      <span>{{ node.label }}</span>
-      <x-icon type="fto-chevron-right" *ngIf="node.leaf"></x-icon>
-      <x-icon type="fto-check" *ngIf="checked && !node.leaf && node.selected"></x-icon>
+      <span><x-icon [type]="node.icon" *ngIf="node.icon"></x-icon>{{ node.label }}</span>
+      <x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="node.leaf"></x-icon>
+      <x-icon class="x-list-checked" type="fto-check" *ngIf="checked && !node.leaf && node.selected"></x-icon>
     </li>
   </ul>
 </div>

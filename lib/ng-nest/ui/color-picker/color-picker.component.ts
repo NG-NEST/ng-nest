@@ -144,7 +144,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   }
 
   portalAttached() {
-    return this.portal && this.portal.overlayRef.hasAttached();
+    return this.portal?.overlayRef.hasAttached();
   }
 
   closePortal() {

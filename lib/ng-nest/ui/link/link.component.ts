@@ -7,7 +7,8 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   Input,
-  ViewChild
+  ViewChild,
+  HostListener
 } from '@angular/core';
 import { XLinkPrefix, XLinkType } from './link.type';
 import { XInputBoolean, XClassMap } from '@ng-nest/ui/core';
@@ -24,11 +25,22 @@ export class XLinkComponent implements OnInit {
   @Input() icon?: string;
   @Input() @XInputBoolean() underline: boolean;
   @Input() @XInputBoolean() disabled?: boolean;
-  @Input() @XInputBoolean() iconRight?: boolean;
+  @Input('icon-right') @XInputBoolean() iconRight?: boolean;
   @Input() type?: XLinkType;
   @Input() target?: string;
   @ViewChild('link', { static: true }) link: ElementRef;
+  hover: boolean = false;
   mapClass: XClassMap = {};
+
+  @HostListener('mouseenter') mouseenter() {
+    this.hover = true;
+    this.cdr.detectChanges();
+  }
+
+  @HostListener('mouseleave') mouseleave() {
+    this.hover = false;
+    this.cdr.detectChanges();
+  }
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 

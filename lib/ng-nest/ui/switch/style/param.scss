@@ -9,7 +9,7 @@ $--x-switch-font-size: $--x-font-size;
 $--x-switch-height: 1.2rem;
 
 /* 内边距 */
-$--x-switch-padding: 0 $control-padding-horizontal;
+$--x-switch-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-switch-color: $--x-primary-900;
@@ -30,9 +30,9 @@ $--x-switch-border-radius: $--x-border-radius;
 $--x-switch-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-switch-icon-font-size: $--x-font-size-md;
+$--x-switch-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-switch-icon-padding: $control-padding-horizontal;
+$--x-switch-icon-padding: $--x-control-padding-horizontal;
 
 $--x-switch-portal-prefix: $--x-prefix + '-switch-portal';

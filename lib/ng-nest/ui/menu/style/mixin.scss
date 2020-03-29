@@ -1,0 +1,54 @@
+// Menu
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin menu {
+  &-icon.x-icon {
+    margin-right: 0.25rem;
+    margin-left: -0.25rem;
+  }
+  &-arrow.x-icon {
+    margin-right: -0.25rem;
+    margin-left: 0.25rem;
+  }
+  &-node {
+    &.x-size {
+      @include size(big, $--x-height-big, $--x-padding-big);
+      @include size(large, $--x-height-large, $--x-padding-large);
+      @include size(medium, $--x-height-medium, $--x-padding-medium);
+      @include size(small, $--x-height-small, $--x-padding-small);
+      @include size(mini, $--x-height-mini, $--x-padding-mini);
+    }
+  }
+  x-slider {
+    .x-slider-scroll > ul > li {
+      &.x-slider-highlight {
+        background-color: inherit;
+        border-radius: 0;
+        border: none;
+        border-bottom: 0.125rem solid $--x-primary;
+      }
+      > x-link {
+        padding: 0 !important;
+        height: inherit !important;
+        line-height: inherit !important;
+      }
+    }
+  }
+}
+
+@mixin size($size, $hegiht, $padding) {
+  @if $size != small and $size != mini {
+    $padding: $padding + 0.25rem;
+    $hegiht: $hegiht + 0.75rem;
+  } @else {
+    $hegiht: $hegiht + 0.5rem;
+  }
+  &-#{$size} {
+    padding: 0 $padding;
+    height: $hegiht;
+    line-height: $hegiht;
+  }
+}

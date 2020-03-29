@@ -39,12 +39,13 @@ export type XEffect = 'light' | 'dark' | 'white';
 
 /**
  * 尺寸
+ * @value "big" 超大
  * @value "large" 大型
  * @value "medium" 中等
  * @value "samll" 小型
  * @value "mini" 迷你
  */
-export type XSize = 'large' | 'medium' | 'small' | 'mini';
+export type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
 
 /**
  * flex 布局下的子元素水平排列方式

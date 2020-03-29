@@ -59,6 +59,13 @@ describe(XSliderPrefix, () => {
         </div>
       </ng-template>
     </div>
+    <div class="row">
+      <x-slider [data]="data" size="big"> </x-slider>
+      <x-slider [data]="data" size="large"> </x-slider>
+      <x-slider [data]="data" size="medium"> </x-slider>
+      <x-slider [data]="data" size="small"> </x-slider>
+      <x-slider [data]="data" size="mini"> </x-slider>
+    </div>
   `,
   styles: [
     `

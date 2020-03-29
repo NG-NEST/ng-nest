@@ -27,9 +27,7 @@ import {
   XIsEmpty,
   XDataConvert,
   XIsObservable,
-  XToDataConvert,
-  removeNgTag
-} from '@ng-nest/ui/core';
+  XToDataConvert} from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
@@ -73,7 +71,6 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   protalTobottom: boolean = true;
   scrollFunction: Function;
   resizeFunction: Function;
-  private _default: XCascadeInput = {};
   private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
@@ -91,7 +88,6 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.cascade.nativeElement, this.justify, this.align, this.direction);
     // removeNgTag(this.elementRef.nativeElement);
   }
@@ -185,7 +181,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   }
 
   portalAttached() {
-    return this.portal && this.portal.overlayRef.hasAttached();
+    return this.portal?.overlayRef.hasAttached();
   }
 
   closePortal() {
@@ -197,7 +193,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
     return false;
   }
 
-  showPortal(event: Event) {
+  showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
     this.portal = this.portalService.create({

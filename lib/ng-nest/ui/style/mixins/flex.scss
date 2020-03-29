@@ -8,51 +8,51 @@
 }
 
 @mixin flex-justity() {
-  &.x-flex {
-    &-justity-start {
+  &.x-justify {
+    &-start {
       justify-content: flex-start;
     }
-    &-justity-center {
+    &-center {
       justify-content: center;
     }
-    &-justity-end {
+    &-end {
       justify-content: flex-end;
     }
-    &-justity-space-between {
+    &-space-between {
       justify-content: space-between;
     }
-    &-justity-space-around {
+    &-space-around {
       justify-content: space-around;
     }
   }
 }
 
 @mixin flex-align() {
-  &.x-flex {
-    &-align-top {
+  &.x-align {
+    &-top {
       align-items: top;
     }
-    &-align-center {
+    &-center {
       align-items: center;
     }
-    &-align-bottom {
+    &-bottom {
       align-items: bottom;
     }
   }
 }
 
 @mixin flex-direction() {
-  &.x-flex {
-    &-direction-column {
+  &.x-direction {
+    &-column {
       flex-direction: column;
     }
-    &-direction-column-reverse {
+    &-column-reverse {
       flex-direction: column-reverse;
     }
-    &-direction-row {
+    &-row {
       flex-direction: row;
     }
-    &-direction-row-reverse {
+    &-row-reverse {
       flex-direction: row-reverse;
     }
   }

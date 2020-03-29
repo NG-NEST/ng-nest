@@ -27,11 +27,13 @@
         white-space: nowrap;
         z-index: 2;
         x-link {
-          height: 1.675rem;
-          line-height: 1.675rem;
-          padding: 0 0.625rem;
           flex: 1;
           @include flex-justity();
+          @include size(big, $--x-height-big, 0 $--x-padding-big);
+          @include size(large, $--x-height-large, 0 $--x-padding-large);
+          @include size(medium, $--x-height-medium, 0 $--x-padding-medium);
+          @include size(small, $--x-height-small, 0 $--x-padding-small);
+          @include size(mini, $--x-height-mini, 0 $--x-padding-mini);
         }
         &.#{$--x-slider}-highlight {
           position: absolute;
@@ -75,11 +77,14 @@
   &-column {
     display: inline-flex;
     flex-direction: column;
-    > .#{$--x-slider}-scroll > ul {
-      flex-direction: column;
-      > li {
-        display: flex;
-        width: 100%;
+    > .#{$--x-slider}-scroll {
+      display: inline-block;
+      > ul {
+        flex-direction: column;
+        > li {
+          display: flex;
+          width: 100%;
+        }
       }
     }
     > .#{$--x-slider}-arrow-left,

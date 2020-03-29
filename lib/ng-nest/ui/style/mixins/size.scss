@@ -1,0 +1,7 @@
+@mixin size($size, $height, $padding) {
+  &.x-size-#{$size} {
+    height: $height;
+    line-height: $height;
+    padding: $padding;
+  }
+}

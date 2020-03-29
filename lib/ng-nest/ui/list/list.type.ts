@@ -33,5 +33,20 @@ export interface XListInput {
  * List 数据对象
  */
 export interface XListNode extends XParentIdentityInput {
+  /**
+   * 图标
+   */
+  icon?: string;
+  /**
+   * 分割线
+   */
+  divided?: boolean;
+  /**
+   * 事件
+   */
   event?: Event;
+  /**
+   * hover
+   */
+  hover?: boolean;
 }

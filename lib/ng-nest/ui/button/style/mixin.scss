@@ -7,24 +7,20 @@
 @mixin button {
   border: $--x-border-width solid;
   border-color: $--x-button-border;
-  border-radius: 0.125rem;
+  border-radius: $--x-border-radius;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.65rem;
-  font-size: 0.75rem;
-  height: 1.675rem;
+  font-size: $--x-font-size-small;
   text-align: center;
   background-color: $--x-button-white;
   background-clip: border-box;
-  color: $--x-button-text;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
   transition: all $--x-animation-duration-base ease-in-out;
   > .x-icon {
-    font-size: 1rem;
-    margin-right: 0.25rem;
+    font-size: 0.925rem;
   }
   &:hover {
     @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
@@ -34,16 +30,23 @@
     @include button-color($--x-button-active, $--x-button-active-background, $--x-button-active-border);
   }
   @include flex-direction();
-  &-icon {
-    padding: 0 0.4rem;
+  &.x-direction-row {
     > .x-icon {
-      margin-right: 0;
+      margin-right: 0.25rem;
+      margin-left: -0.25rem;
     }
   }
-  &.x-flex-direction-row-reverse {
+  &.x-direction-row-reverse {
+    > .x-icon {
+      margin-right: -0.25rem;
+      margin-left: 0.25rem;
+    }
+  }
+  &-icon.x-direction-row,
+  &-icon.x-direction-row-reverse {
     > .x-icon {
       margin-right: 0;
-      margin-left: 0.25rem;
+      margin-left: 0;
     }
   }
   &-activated {
@@ -108,22 +111,11 @@
       @include button-color($--x-button-disabled, transparent, transparent);
     }
   }
-  &-large {
-    height: 2.175rem;
-    padding: 0 1rem;
-  }
-  &-medium {
-    height: 1.875rem;
-    padding: 0 0.8rem;
-  }
-  &-small {
-    height: 1.5rem;
-    padding: 0 0.3rem;
-  }
-  &-mini {
-    height: 1.375rem;
-    padding: 0 0.25rem;
-  }
+  @include size(big, $--x-height-big, 0 $--x-padding-big);
+  @include size(large, $--x-height-large, 0 $--x-padding-large);
+  @include size(medium, $--x-height-medium, 0 $--x-padding-medium);
+  @include size(small, $--x-height-small, 0 $--x-padding-small);
+  @include size(mini, $--x-height-mini, 0 $--x-padding-mini);
 }
 
 @mixin button-color($color, $background, $border) {

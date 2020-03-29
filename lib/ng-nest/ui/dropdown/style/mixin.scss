@@ -1,0 +1,20 @@
+// Dropdown
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin dropdown {
+  display: inline-block;
+  &.x-visible {
+    color: $--x-primary;
+  }
+}
+
+@mixin dropdown-portal {
+  padding: 0.325rem 0;
+  background-color: $--x-white;
+  border: $--x-border-200-base;
+  border-radius: $--x-border-radius;
+  box-shadow: $--x-box-shadow-base;
+}

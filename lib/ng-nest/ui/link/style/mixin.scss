@@ -33,12 +33,15 @@
   }
   &-icon-right {
     flex-direction: row-reverse;
-    margin-right: 0;
-    margin-left: 0.125rem;
+    > x-icon {
+      margin-right: 0;
+      margin-left: 0.125rem;
+    }
   }
   &-only-icon {
     > x-icon {
       margin-right: 0;
+      margin-left: 0;
     }
   }
   @include link-type('', inherit, $--x-primary, $--x-primary-a100, $--x-text-300);

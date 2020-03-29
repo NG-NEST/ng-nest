@@ -1,0 +1,10 @@
+// Dropdown Portal
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-dropdown-portal} {
+  @include reset-component();
+  @include dropdown-portal();
+}

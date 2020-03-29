@@ -1,0 +1,11 @@
+<div
+  #dropdown
+  class="x-dropdown"
+  [ngClass]="classMap"
+  [class.x-visible]="visible"
+  (mouseenter)="onEnter()"
+  (mouseleave)="onLeave()"
+  (click)="showPortal()"
+>
+  <ng-content></ng-content>
+</div>

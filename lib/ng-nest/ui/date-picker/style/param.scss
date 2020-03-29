@@ -9,7 +9,7 @@ $--x-date-picker-font-size: $--x-font-size;
 $--x-date-picker-height: $--x-font-size + 1rem;
 
 /* 内边距 */
-$--x-date-picker-padding: 0 $control-padding-horizontal;
+$--x-date-picker-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-date-picker-color: $--x-primary-900;
@@ -30,10 +30,10 @@ $--x-date-picker-border-radius: $--x-border-radius;
 $--x-date-picker-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-date-picker-icon-font-size: $--x-font-size-md;
+$--x-date-picker-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-date-picker-icon-padding: $control-padding-horizontal;
+$--x-date-picker-icon-padding: $--x-control-padding-horizontal;
 
 $--x-date-picker-portal-prefix: $--x-prefix + '-date-picker-portal';
 

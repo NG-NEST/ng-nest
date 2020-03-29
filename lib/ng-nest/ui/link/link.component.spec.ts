@@ -55,7 +55,7 @@ describe(XLinkPrefix, () => {
       </x-col>
       <x-col span="24">
         <x-link icon="fto-chevron-left" underline>后退</x-link>
-        <x-link icon="fto-chevron-right" underline iconRight>前进</x-link>
+        <x-link icon="fto-chevron-right" underline icon-right>前进</x-link>
       </x-col>
     </x-row>
   `,

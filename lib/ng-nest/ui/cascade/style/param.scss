@@ -9,7 +9,7 @@ $--x-cascade-font-size: $--x-font-size;
 $--x-cascade-height: $--x-font-size + 1rem;
 
 /* 内边距 */
-$--x-cascade-padding: 0 $control-padding-horizontal;
+$--x-cascade-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-cascade-color: $--x-primary-900;
@@ -30,9 +30,9 @@ $--x-cascade-border-radius: $--x-border-radius;
 $--x-cascade-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-cascade-icon-font-size: $--x-font-size-md;
+$--x-cascade-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-cascade-icon-padding: $control-padding-horizontal;
+$--x-cascade-icon-padding: $--x-control-padding-horizontal;
 
 $--x-cascade-portal-prefix: $--x-prefix + '-cascade-portal';

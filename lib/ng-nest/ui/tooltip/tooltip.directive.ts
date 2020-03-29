@@ -61,7 +61,7 @@ export class XTooltipDirective implements OnInit, OnChanges {
   }
 
   hide() {
-    if (this.portal && this.portal.overlayRef.hasAttached()) {
+    if (this.portal?.overlayRef.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.visible = false;
         this.portal.overlayRef.dispose();

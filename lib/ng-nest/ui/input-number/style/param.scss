@@ -9,7 +9,7 @@ $--x-input-number-font-size: $--x-font-size;
 $--x-input-number-height: $--x-font-size + 1rem;
 
 /* 内边距 */
-$--x-input-number-padding: 0 $control-padding-horizontal;
+$--x-input-number-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
 $--x-input-number-color: $--x-primary-900;
@@ -30,7 +30,7 @@ $--x-input-number-border-radius: $--x-border-radius;
 $--x-input-number-disabled-color: $--x-text-300;
 
 /* 输入框中的图标大小 */
-$--x-input-number-icon-font-size: $--x-font-size-md;
+$--x-input-number-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-input-number-icon-padding: $control-padding-horizontal;
+$--x-input-number-icon-padding: $--x-control-padding-horizontal;

@@ -41,7 +41,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [data]="data1"
           [(ngModel)]="model1"
           (ngModelChange)="change($event)"
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
       <x-col span="6">
@@ -49,7 +49,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [data]="data2"
           [(ngModel)]="model2"
           (ngModelChange)="change($event)"
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
       <x-col span="6">
@@ -58,7 +58,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [(ngModel)]="model3"
           (ngModelChange)="change($event)"
           multiple
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
       <x-col span="6">
@@ -67,7 +67,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [(ngModel)]="model4"
           multiple
           (ngModelChange)="change($event)"
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
     </x-row>
@@ -78,7 +78,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [(ngModel)]="model5"
           multiple="2"
           (ngModelChange)="change($event)"
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
       <x-col span="6">
@@ -87,7 +87,7 @@ const data: XData<XListNode[]> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true },
           [(ngModel)]="model6"
           multiple="2"
           (ngModelChange)="change($event)"
-          (nodeEmit)="nodeEmit($event)"
+          (nodeClick)="nodeEmit($event)"
         ></x-list>
       </x-col>
     </x-row>
