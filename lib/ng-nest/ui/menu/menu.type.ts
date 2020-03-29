@@ -1,4 +1,5 @@
-import { XParentIdentityInput } from '@ng-nest/ui/core';
+import { XParentIdentityInput, XData, XSize } from '@ng-nest/ui/core';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Menu 组件名
@@ -10,7 +11,31 @@ export const XMenuPrefix = 'x-menu';
 /**
  * Menu @Input
  */
-export interface XMenuInput {}
+export interface XMenuInput {
+  /**
+   * 节点数据
+   */
+  data: XData<XMenuNode[]>;
+  /**
+   * 布局方向
+   * @default 'row'
+   */
+  layout: XMenuLayout;
+  /**
+   * 尺寸
+   * @default 'medium'
+   */
+  size: XSize;
+  /**
+   * 触发方式，只针对横向布局
+   * @default 'hover'
+   */
+  trigger: XMenuTrigger;
+  /**
+   * 节点模板
+   */
+  nodeTpl: TemplateRef<any>;
+}
 
 export interface XMenuNode extends XParentIdentityInput {
   /**

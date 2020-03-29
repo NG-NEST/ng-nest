@@ -1,0 +1,29 @@
+// PageHeader
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin page-header {
+  display: inline-flex;
+  align-items: center;
+  height: $--x-height-large;
+  &-back-icon {
+    .x-button {
+      font-size: 0.875rem;
+    }
+  }
+  &-divided {
+    margin: 0 0.875rem 0 0.25rem;
+    height: 1rem;
+    border-right: $--x-border-base;
+  }
+  &-title {
+    font-size: 1rem;
+  }
+  &-sub-title {
+    font-size: 0.75rem;
+    color: $--x-text-400;
+    margin-left: 0.5rem;
+  }
+}
