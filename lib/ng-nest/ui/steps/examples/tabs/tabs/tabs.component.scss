@@ -1,0 +1,13 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  .custom-steps-content {
+    height: 10rem;
+    border: 0.0625rem solid var(--x-border);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.125rem;
+    line-height: 10rem;
+    text-align: center;
+  }
+}

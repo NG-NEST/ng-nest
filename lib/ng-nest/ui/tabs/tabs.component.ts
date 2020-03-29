@@ -37,6 +37,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() animated: boolean = true;
   @Input() nodeTpl: TemplateRef<any>;
   @Input() layout: XTabsLayout = 'top';
+  @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
 
   private _activatedIndex: number = 0;
   public get activatedIndex(): number {
@@ -46,6 +47,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   public set activatedIndex(value: number) {
     this._activatedIndex = value;
     this.sliderOption.activatedIndex = value;
+    this.setFirstAndLast();
     this.cdr.detectChanges();
   }
   @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<XActivatedTab>();
@@ -55,7 +57,7 @@ export class XTabsComponent implements OnInit, OnChanges {
     layout: 'row',
     activatedIndex: 0
   };
-  sliderHidden: boolean = false;
+
   tabs: XTabsNode[] = [];
   classMap: XClassMap = {};
   private unSubject = new Subject();
@@ -84,7 +86,6 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   activatedChange(index: number) {
     this.activatedIndex = index;
-    this.setFirstAndLast();
     this.indexChange.emit({
       activatedIndex: index,
       activatedTab: this.tabs[index]

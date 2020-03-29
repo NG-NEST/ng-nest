@@ -1,0 +1,10 @@
+// Steps
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-steps} {
+  @include reset-component();
+  @include steps();
+}

@@ -1,0 +1,125 @@
+// Steps
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin steps {
+  display: flex;
+  &-node {
+    position: relative;
+    flex: 1;
+    display: flex;
+    &:last-child {
+      flex: inherit;
+      .#{$--x-steps}-line {
+        display: none;
+      }
+    }
+  }
+  &-content {
+    padding: 0 0.5rem;
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  &-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    line-height: 2rem;
+    transition: $--x-animation-duration-base;
+  }
+  &-label {
+    padding-right: 0.5rem;
+    white-space: nowrap;
+    transition: $--x-animation-duration-base;
+  }
+  &-line {
+    flex: 1;
+    border-bottom: $--x-border-base;
+    transition: $--x-animation-duration-base;
+  }
+  &-icon {
+    height: 2rem;
+    width: 2rem;
+    border: $--x-border-base;
+    background-color: $--x-white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $--x-animation-duration-base;
+    > .x-icon {
+      font-size: 1rem;
+    }
+    &.#{$--x-steps}-only-icon {
+      border: none;
+      .x-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  &-description {
+    font-size: $--x-font-size-small;
+    color: $--x-text-400;
+    max-width: 8rem;
+  }
+  &-row {
+    flex-direction: row;
+  }
+  &-column {
+    flex-direction: column;
+    .#{$--x-steps} {
+      &-header {
+        min-height: 5rem;
+      }
+      &-line {
+        border-bottom: none;
+        border-right: $--x-border-base;
+        margin: 0.5rem 0;
+      }
+      &-content {
+        padding: 0 0 0.5rem 0.5rem;
+      }
+      &-description {
+        max-width: inherit;
+      }
+    }
+  }
+
+  @include status(wait, $--x-text-400, $--x-text-400, '', '', '', '');
+  @include status(process, $--x-text-500, $--x-white, $--x-primary, $--x-primary, '', bold);
+  @include status(finish, $--x-text-400, $--x-primary, '', '', $--x-primary, '');
+  @include status(error, $--x-danger, $--x-danger, '', $--x-danger, '', '');
+}
+
+@mixin status($status, $color, $icon-color, $icon-background-color, $icon-border-color, $line-color, $font-weight) {
+  &-#{$status} {
+    .#{$--x-steps} {
+      &-label {
+        color: $color;
+        font-weight: $font-weight;
+      }
+      &-icon {
+        color: $icon-color;
+        background-color: $icon-background-color;
+        border-color: $icon-border-color;
+        @if $status == process {
+          &.#{$--x-steps}-only-icon {
+            color: $--x-primary;
+            background-color: inherit;
+          }
+        }
+      }
+      &-line {
+        border-color: $line-color;
+      }
+    }
+  }
+}

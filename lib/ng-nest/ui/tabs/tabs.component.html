@@ -1,5 +1,5 @@
 <div class="x-tabs" [ngClass]="classMap">
-  <div #list class="x-tabs-list" [hidden]="sliderHidden">
+  <div #list class="x-tabs-list" *ngIf="!sliderHidden">
     <x-slider
       #slider
       [animated]="animated && type !== 'tag'"

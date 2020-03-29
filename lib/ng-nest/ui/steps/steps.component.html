@@ -1,0 +1,24 @@
+<div #steps class="x-steps" [ngClass]="classMap">
+  <div class="x-steps-node x-steps-{{ node.status }}" *ngFor="let node of nodes; index as i">
+    <div class="x-steps-header">
+      <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
+        <x-icon *ngIf="node.icon; else iconTpl" [type]="node.icon"></x-icon>
+        <ng-template #iconTpl>
+          <ng-container [ngSwitch]="node.status">
+            <x-icon *ngSwitchCase="'finish'" type="fto-check"></x-icon>
+            <x-icon *ngSwitchCase="'error'" type="fto-x"></x-icon>
+            <span *ngSwitchDefault>{{ this.startIndex + i + 1 }}</span>
+          </ng-container>
+        </ng-template>
+      </div>
+      <span class="x-steps-line" *ngIf="layout === 'column'"></span>
+    </div>
+    <div class="x-steps-content">
+      <div class="x-steps-title">
+        <span class="x-steps-label">{{ node.label }}</span>
+        <span class="x-steps-line" *ngIf="layout === 'row'"></span>
+      </div>
+      <div class="x-steps-description">{{ node.description }}</div>
+    </div>
+  </div>
+</div>
