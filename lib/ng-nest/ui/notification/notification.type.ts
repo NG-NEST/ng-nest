@@ -1,5 +1,5 @@
-import { InjectionToken, ComponentRef } from '@angular/core';
-import { XStatus, XPlace, XCorner } from '@ng-nest/ui/core';
+import { ComponentRef } from '@angular/core';
+import { XStatus, XCorner } from '@ng-nest/ui/core';
 import { XAlertInput } from '@ng-nest/ui/alert';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { XNotificationComponent } from './notification.component';

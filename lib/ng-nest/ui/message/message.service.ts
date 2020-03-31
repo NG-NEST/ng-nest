@@ -1,22 +1,14 @@
-import { Injectable } from '@angular/core';
-import { XMessageServiceModule } from './message.service.module';
-import { XPortalService } from '@ng-nest/ui/portal';
-import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
-import {
-  XMessageInput,
-  XMessageOverlayRef,
-  XMessageType,
-  XMessagePlacement,
-  XMessageRef,
-  XMessagePortal
-} from './message.type';
-import { XMessageComponent } from './message.component';
+import { Injectable, Injector } from '@angular/core';
+import { XPortalgService } from '@ng-nest/ui/portal';
 import { Overlay } from '@angular/cdk/overlay';
+import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
+import { XMessageInput, XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal } from './message.type';
+import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-@Injectable({ providedIn: XMessageServiceModule })
-export class XMessageService {
+@Injectable()
+export class XMessageService extends XPortalgService {
   messages: XMessagePlacement = {};
 
   default: XMessageInput = {
@@ -30,7 +22,9 @@ export class XMessageService {
     showIcon: true
   };
 
-  constructor(private protalService: XPortalService, private overlay: Overlay) {}
+  constructor(public overlay: Overlay, public injector: Injector) {
+    super(overlay, injector);
+  }
 
   info(option: XTemplate | XMessageInput): XMessageRef {
     return this.createMessage(option, 'info');
@@ -49,11 +43,11 @@ export class XMessageService {
   }
 
   create(option: XMessageInput): XMessageOverlayRef {
-    return this.protalService.create({
+    return this.createPortal({
       content: XMessageComponent,
       overlayConfig: {
         panelClass: XMessagePortal,
-        positionStrategy: this.protalService.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.setPlace(option.placement, option.offset, option.width, option.height)
       }
     });
   }

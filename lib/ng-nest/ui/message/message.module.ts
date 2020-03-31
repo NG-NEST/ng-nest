@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XMessageComponent } from './message.component';
+import { XMessageService } from './message.service';
 import { XAlertModule } from '@ng-nest/ui/alert';
-import { XPortalModule } from '@ng-nest/ui/portal';
-import { XMessageServiceModule } from './message.service.module';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [XMessageComponent],
   exports: [XMessageComponent],
-  entryComponents: [XMessageComponent],
-  imports: [CommonModule, XPortalModule, XAlertModule, XMessageServiceModule]
+  imports: [CommonModule, OverlayModule, PortalModule, XAlertModule],
+  providers: [XMessageService]
 })
 export class XMessageModule {}

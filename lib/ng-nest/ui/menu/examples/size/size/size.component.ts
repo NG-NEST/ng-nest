@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ex-leaf',
-  templateUrl: './leaf.component.html'
+  selector: 'ex-size',
+  templateUrl: './size.component.html',
+  styleUrls: ['./size.component.scss']
 })
-export class ExLeafComponent {
+export class ExSizeComponent {
   data = [
     { id: 1, label: '最新活动', icon: 'fto-gift' },
     { id: 2, label: '产品', icon: 'fto-package' },

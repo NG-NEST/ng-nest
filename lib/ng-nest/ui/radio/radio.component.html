@@ -1,8 +1,8 @@
-<div #radio class="x-radio" [class.x-disabled]="disabled">
+<div class="x-radio" [class.x-disabled]="disabled">
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
-        *ngFor="let item of radioNodes"
+        *ngFor="let item of nodes"
         [icon]="item.icon"
         [title]="item.title"
         [size]="size"
@@ -18,7 +18,7 @@
 <ng-template #default>
   <div
     class="x-radio-item"
-    *ngFor="let item of radioNodes"
+    *ngFor="let item of nodes"
     [class.x-checked]="item.id === value"
     [class.x-disabled]="item.disabled"
     (click)="radioClick($event, item)"

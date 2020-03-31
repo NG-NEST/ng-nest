@@ -17,7 +17,7 @@ import {
   SimpleChange
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XActivatedTab, XTabsType, XTabsLayout } from './tabs.type';
-import { XData, XInputBoolean, XJustify, XClassMap, XIsChange } from '@ng-nest/ui/core';
+import { XData, XInputBoolean, XJustify, XClassMap, XIsChange, XSize } from '@ng-nest/ui/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { XSliderNode, XSliderInput, XSliderComponent } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
@@ -37,6 +37,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() animated: boolean = true;
   @Input() nodeTpl: TemplateRef<any>;
   @Input() layout: XTabsLayout = 'top';
+  @Input() size: XSize = 'medium'
   @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
 
   private _activatedIndex: number = 0;
@@ -82,6 +83,10 @@ export class XTabsComponent implements OnInit, OnChanges {
   ngOnDestroy(): void {
     this.unSubject.next();
     this.unSubject.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.setData();
   }
 
   activatedChange(index: number) {

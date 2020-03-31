@@ -1,20 +1,16 @@
-import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XAffixComponent } from './affix.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
 import { XAffixModule } from './affix.module';
-import { FormsModule } from '@angular/forms';
 import { XAffixPrefix } from './affix.type';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
 
 describe(XAffixPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XAffixModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [XAffixModule, XButtonModule],
       declarations: [TestXAffixComponent]
     }).compileComponents();
   }));

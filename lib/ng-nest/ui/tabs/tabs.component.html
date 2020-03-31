@@ -7,6 +7,7 @@
       [node-justify]="layout === 'left' ? 'end' : layout === 'right' ? 'start' : 'center'"
       [data]="sliderOption.data"
       [layout]="sliderOption.layout"
+      [size]="size"
       [nodeTpl]="nodeTpl"
       [activatedIndex]="sliderOption.activatedIndex"
       (indexChange)="activatedChange($event)"

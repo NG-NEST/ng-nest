@@ -8,23 +8,11 @@ import {
   Input,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges,
-  ViewChild
+  SimpleChanges
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode } from './radio.type';
-import { Subscription, Observable } from 'rxjs';
-import {
-  XData,
-  XValueAccessor,
-  XControlValueAccessor,
-  XInputBoolean,
-  XDataConvert,
-  XIsObservable,
-  XToDataConvert,
-  XSize,
-  XIsChange
-} from '@ng-nest/ui/core';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { XData, XValueAccessor, XControlValueAccessor, XInputBoolean, XDataConvert, XSize, XIsChange, XSetData } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -35,13 +23,12 @@ import { map } from 'rxjs/operators';
   providers: [XValueAccessor(XRadioComponent)]
 })
 export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XRadioNode[]>;
-  @Input() @XInputBoolean() button?: boolean;
-  @Input() @XInputBoolean() icon?: boolean;
-  @Input() size?: XSize;
-  @ViewChild('radio', { static: true }) radio: ElementRef;
-  radioNodes: XRadioNode[] = [];
-  private data$: Subscription | null = null;
+  @Input() @XDataConvert() data: XData<XRadioNode[]>;
+  @Input() @XInputBoolean() button: boolean;
+  @Input() @XInputBoolean() icon: boolean;
+  @Input() size: XSize = 'medium';
+  nodes: XRadioNode[] = [];
+  private _unSubject = new Subject();
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
@@ -54,7 +41,8 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   writeValue(value: any) {
@@ -71,19 +59,9 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XRadioNode[]);
-    }
-  }
-
-  private setDataChange(value: XRadioNode[]) {
-    this.radioNodes = value;
-    this.cdr.detectChanges();
+    XSetData<XRadioNode[]>(this.data, this._unSubject).subscribe(x => {
+      this.nodes = x;
+      this.cdr.detectChanges();
+    });
   }
 }

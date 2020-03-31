@@ -24,7 +24,6 @@ import { XValueAccessor, XControlValueAccessor, XInputNumber, XIsEmpty } from '@
 })
 export class XRateComponent extends XControlValueAccessor implements OnInit, OnChanges {
   @Input() @XInputNumber() count = 5;
-  @ViewChild('rate', { static: true }) rate: ElementRef;
   rates = Array(this.count)
     .fill(0)
     .map((_, i) => i + 1);

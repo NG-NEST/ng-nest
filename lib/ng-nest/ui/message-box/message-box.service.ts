@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { XMessageBoxServiceModule } from './message-box.service.module';
-import { XPortalService } from '@ng-nest/ui/portal';
+import { XPortalgService } from '@ng-nest/ui/portal';
 import { XTemplate, XIsXTemplate, fillDefault } from '@ng-nest/ui/core';
 import { XMessageBoxInput, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.type';
 import { XMessageBoxComponent } from './message-box.component';
 import { Overlay } from '@angular/cdk/overlay';
 
 @Injectable({ providedIn: XMessageBoxServiceModule })
-export class XMessageBoxService {
+export class XMessageBoxService extends XPortalgService {
   default: XMessageBoxInput = {
     type: 'info',
     width: '20rem',
@@ -23,7 +23,9 @@ export class XMessageBoxService {
     inputPlaceholder: ''
   };
 
-  constructor(private protalService: XPortalService) {}
+  constructor(public overlay: Overlay, public injector: Injector) {
+    super(overlay, injector);
+  }
 
   alert(option: XTemplate | XMessageBoxInput): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: false, showInput: false });
@@ -38,12 +40,12 @@ export class XMessageBoxService {
   }
 
   create(option: XMessageBoxInput): XMessageBoxOverlayRef {
-    return this.protalService.create({
+    return this.createPortal({
       content: XMessageBoxComponent,
       overlayConfig: {
         panelClass: XMessageBoxPortal,
         hasBackdrop: true,
-        positionStrategy: this.protalService.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.setPlace(option.placement, option.offset, option.width, option.height)
       }
     });
   }
@@ -62,8 +64,7 @@ export class XMessageBoxService {
   private createMessageBoxPlacement(option: XMessageBoxInput): XMessageBoxRef {
     let result = { ref: this.create(option), input: option };
     result.ref.componentRef.instance.messageBox = result;
-    if (option.backdropClose)
-      result.ref.overlayRef.backdropClick().subscribe(() => result.ref.componentRef.instance.onClose());
+    if (option.backdropClose) result.ref.overlayRef.backdropClick().subscribe(() => result.ref.componentRef.instance.onClose());
     return result;
   }
 }

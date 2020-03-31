@@ -135,6 +135,8 @@ import { XBackTopModule } from '@ng-nest/ui/back-top';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XMenuModule } from '@ng-nest/ui/menu';
+import { XPageHeaderModule } from '@ng-nest/ui/page-header';
+import { XStepsModule } from '@ng-nest/ui/steps';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 export * from '@ng-nest/ui/affix';
 export * from '@ng-nest/ui/anchor';
@@ -142,6 +144,8 @@ export * from '@ng-nest/ui/back-top';
 export * from '@ng-nest/ui/crumb';
 export * from '@ng-nest/ui/dropdown';
 export * from '@ng-nest/ui/menu';
+export * from '@ng-nest/ui/page-header';
+export * from '@ng-nest/ui/steps';
 export * from '@ng-nest/ui/tabs';
 
 /**
@@ -236,6 +240,8 @@ export * from '@ng-nest/ui/core';
     XCrumbModule,
     XDropdownModule,
     XMenuModule,
+    XPageHeaderModule,
+    XStepsModule,
     XTabsModule,
 
     XDocModule,

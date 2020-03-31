@@ -37,7 +37,7 @@ export class XMessageComponent {
   }
 
   onEnter(item: XMessageInput) {
-    item.duration$ && item.duration$.unsubscribe();
+    item.duration$?.unsubscribe();
   }
 
   onLeave(item: XMessageInput) {

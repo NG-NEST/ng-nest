@@ -52,7 +52,6 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   @Input('node-justify') nodeJustify: XJustify = 'center';
   @Input() nodeTpl: TemplateRef<any>;
   @Input() size: XSize = 'medium';
-  @Input() class: string;
   @Output() indexChange = new EventEmitter<number>();
   @ViewChild('sliderScroll') sliderScroll: ElementRef;
   @ViewChild('sliderNodes') sliderNodes: ElementRef;
@@ -119,7 +118,6 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
 
   setClassMap() {
     this.classMap[`${XSliderPrefix}-${this.layout}`] = this.layout ? true : false;
-    this.classMap[`${this.class}`] = this.class ? true : false;
     this.scrollClassMap[`x-justify-${this.justify}`] = this.justify ? true : false;
     this.nodeClassMap[`x-justify-${this.nodeJustify}`] = this.nodeJustify ? true : false;
     this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;

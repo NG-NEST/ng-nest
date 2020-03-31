@@ -18,10 +18,10 @@
               icon="fto-message-square"
               [activated]="node.commentShow"
               (click)="commentOnClick(node)"
-              onlyIcon
+              only-icon
               >{{ '评论' + (node.count ? node.count : '') }}</x-button
             >
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>{{
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" only-icon>{{
               '点赞' + (node.likes ? node.likes : '')
             }}</x-button>
           </x-buttons>
@@ -50,10 +50,10 @@
                     icon="fto-message-square"
                     [activated]="child.commentShow"
                     (click)="replyOnClick(child)"
-                    onlyIcon
+                    only-icon
                     >回复</x-button
                   >
-                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>{{
+                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" only-icon>{{
                     '点赞' + (child.likes ? child.likes : '')
                   }}</x-button>
                 </x-buttons>

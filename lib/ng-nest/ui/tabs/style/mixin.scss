@@ -69,7 +69,7 @@
   &-block {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
-        .#{$--x-tabs-prefix}-list {
+        > .#{$--x-tabs-prefix}-list {
           border-#{$border}: $--x-border-base;
           > x-slider {
             width: 100%;

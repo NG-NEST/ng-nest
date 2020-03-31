@@ -20,7 +20,8 @@ import {
   XInputBoolean,
   XDataConvert,
   XIsObservable,
-  XToDataConvert
+  XToDataConvert,
+  XSize
 } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,7 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   @Input() @XInputBoolean() button?: boolean;
   @Input() @XInputBoolean() icon?: boolean;
   @Input() @XInputBoolean() indeterminate?: boolean;
+  @Input() size: XSize = 'medium';
   @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
 
   writeValue(value: any) {

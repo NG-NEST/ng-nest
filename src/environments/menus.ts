@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-83",
+    "id": "3-0-84",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -483,7 +483,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-84",
+    "id": "3-0-85",
     "parentId": "3-0",
     "name": "upload",
     "router": "./docs/ui/components/upload",
@@ -511,7 +511,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "back-top",
     "router": "./docs/ui/components/back-top",
-    "label": "BackTop 回到顶部 [待]",
+    "label": "BackTop 回到顶部",
     "category": "Navigation"
   },
   {
@@ -527,7 +527,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "dropdown",
     "router": "./docs/ui/components/dropdown",
-    "label": "Dropdown 下拉菜单 [待]",
+    "label": "Dropdown 下拉菜单",
     "category": "Navigation"
   },
   {
@@ -543,7 +543,15 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "page-header",
     "router": "./docs/ui/components/page-header",
-    "label": "PageHeader 页头 [待]",
+    "label": "PageHeader 页头",
+    "category": "Navigation"
+  },
+  {
+    "id": "3-0-61",
+    "parentId": "3-0",
+    "name": "slider",
+    "router": "./docs/ui/components/slider",
+    "label": "Slider 滑动菜单",
     "category": "Navigation"
   },
   {
@@ -551,7 +559,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "steps",
     "router": "./docs/ui/components/steps",
-    "label": "Steps 步骤条 [待]",
+    "label": "Steps 步骤条",
     "category": "Navigation"
   },
   {
@@ -618,13 +626,6 @@ export const menus: Menu[] = [
     "name": "portal",
     "router": "./docs/ui/components/portal",
     "label": "动态组件"
-  },
-  {
-    "id": "3-0-61",
-    "parentId": "3-0",
-    "name": "slider",
-    "router": "./docs/ui/components/slider",
-    "label": "滑块"
   },
   {
     "id": "3-1-0",

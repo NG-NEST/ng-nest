@@ -11,7 +11,6 @@ import {
   XNotificationPortal
 } from './notification.type';
 import { XNotificationComponent } from './notification.component';
-import { Overlay } from '@angular/cdk/overlay';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -29,7 +28,7 @@ export class XNotificationService {
     showIcon: true
   };
 
-  constructor(private protalService: XPortalService, private overlay: Overlay) {}
+  constructor(private protalService: XPortalService) {}
 
   info(option: XTemplate | XNotificationInput): XNotificationRef {
     return this.createNotification(option, 'info');

@@ -4,11 +4,10 @@ import {
   OnChanges,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ElementRef,
   Input,
-  ViewChild,
   SimpleChanges,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  AfterViewInit
 } from '@angular/core';
 import { XButtonPrefix, XButtonType } from './button.type';
 import { XDirection, XSize, XInputBoolean, XClassMap, XIsChange } from '@ng-nest/ui/core';
@@ -20,33 +19,35 @@ import { XDirection, XSize, XInputBoolean, XClassMap, XIsChange } from '@ng-nest
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent implements OnInit, OnChanges {
+export class XButtonComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() type?: XButtonType;
   @Input() icon?: string;
-  @Input() title?: string = '';
-  @Input() direction?: XDirection = 'row'
-  @Input() size?: XSize = 'medium';
-  @Input() @XInputBoolean() onlyIcon?: boolean;
-  @Input() @XInputBoolean() activated?: boolean;
-  @Input() @XInputBoolean() disabled?: boolean;
-  @Input() @XInputBoolean() plain?: boolean;
-  @Input() @XInputBoolean() round?: boolean;
-  @Input() @XInputBoolean() circle?: boolean;
-  @Input() @XInputBoolean() loading?: boolean;
-  @Input() @XInputBoolean() closable?: boolean;
-  @ViewChild('button', { static: true }) button: ElementRef;
-  @ViewChild('content', { static: true }) content: ElementRef;
+  @Input() title: string = '';
+  @Input() direction: XDirection = 'row';
+  @Input() size: XSize = 'medium';
+  @Input('only-icon') @XInputBoolean() onlyIcon: boolean;
+  @Input() @XInputBoolean() activated: boolean;
+  @Input() @XInputBoolean() disabled: boolean;
+  @Input() @XInputBoolean() plain: boolean;
+  @Input() @XInputBoolean() round: boolean;
+  @Input() @XInputBoolean() circle: boolean;
+  @Input() @XInputBoolean() loading: boolean;
+  @Input() @XInputBoolean() closable: boolean;
   classMap: XClassMap = {};
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setClassMap();
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (XIsChange(changes.loading)) this.disabled = this.loading;
-    XIsChange(changes.disabled, changes.activated) && this.cdr.markForCheck();
+    XIsChange(changes.disabled, changes.activated) && this.cdr.detectChanges();
   }
 
   setClassMap() {

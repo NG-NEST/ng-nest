@@ -18,8 +18,6 @@ const modules = [
   FormsModule,
   RouterModule,
   ReactiveFormsModule,
-  OverlayModule,
-  PortalModule,
   DragDropModule,
   LayoutModule,
   NgNestUiModule

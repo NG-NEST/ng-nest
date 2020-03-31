@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
 import { XAffixPrefix } from './affix.type';
 
 @Component({
@@ -11,5 +11,4 @@ import { XAffixPrefix } from './affix.type';
 export class XAffixComponent {
   @Input() top?: string;
   @Input() left?: string;
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 }

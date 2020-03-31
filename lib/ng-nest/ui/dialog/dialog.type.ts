@@ -1,7 +1,6 @@
 import { InjectionToken, ComponentRef } from '@angular/core';
 import { XStatus, XPlace } from '@ng-nest/ui/core';
 import { XAlertInput } from '@ng-nest/ui/alert';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { XDialogComponent } from './dialog.component';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';

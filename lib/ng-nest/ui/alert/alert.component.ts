@@ -10,16 +10,9 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XAlertPrefix, XAlertType } from './alert.type';
-import {
-  XClassMap,
-  XTemplate,
-  XInputBoolean,
-  XEffect,
-  XFadeAnimation,
-  XInputNumber
-} from '@ng-nest/ui/core';
-import { of, Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { XClassMap, XTemplate, XInputBoolean, XEffect, XFadeAnimation, XInputNumber } from '@ng-nest/ui/core';
+import { of, Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XAlertPrefix}`,
@@ -43,7 +36,7 @@ export class XAlertComponent implements OnInit, OnDestroy {
   @Input() @XInputNumber() duration: number = 0;
   @Output() close = new EventEmitter();
   classMap: XClassMap = {};
-  close$: Subscription | null = null;
+  private _unSubject = new Subject();
 
   constructor(public cdr: ChangeDetectorRef) {}
 
@@ -53,7 +46,8 @@ export class XAlertComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.close$ && this.close$.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   setClassMap() {
@@ -64,8 +58,8 @@ export class XAlertComponent implements OnInit, OnDestroy {
 
   setDuration() {
     if (this.duration) {
-      this.close$ = of(true)
-        .pipe(delay(this.duration))
+      of(true)
+        .pipe(delay(this.duration), takeUntil(this._unSubject))
         .subscribe(() => this.onClose());
     }
   }

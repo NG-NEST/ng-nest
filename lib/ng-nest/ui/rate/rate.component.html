@@ -2,7 +2,7 @@
   <x-buttons (mouseleave)="leaveRates()">
     <x-button
       *ngFor="let rate of rates"
-      onlyIcon
+      only-icon
       [activated]="rate <= hoverActivated"
       [disabled]="disabled"
       icon="adf-star"

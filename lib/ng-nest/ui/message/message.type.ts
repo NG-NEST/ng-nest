@@ -1,4 +1,4 @@
-import { InjectionToken, ComponentRef } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { XStatus, XPlace } from '@ng-nest/ui/core';
 import { XAlertInput } from '@ng-nest/ui/alert';
 import { ComponentPortal } from '@angular/cdk/portal';

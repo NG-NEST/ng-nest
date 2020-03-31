@@ -5,7 +5,7 @@
 @import './param';
 
 @mixin examples {
-  display: flex;
+  display: block;
   background-color: #fff;
   border-radius: 0.125rem;
   .#{$prefix}-html,
@@ -13,66 +13,70 @@
     padding: 1rem;
   }
   .#{$prefix}-code {
-    > .x-tabs {
-      padding-top: 0;
-      background-color: var(--x-info-900);
+    > x-tabs > .x-tabs {
       border-radius: 0.125rem;
-      > .x-tabs-contents > .x-tab-content > .x-highlight {
-        background-color: transparent;
+      > .x-tabs-list {
+        border: none;
+        > x-slider > .x-slider-row > .x-slider-scroll > ul > li.x-slider-highlight {
+          border-color: $--x-border-200;
+        }
+      }
+      > .x-tabs-contents {
+        background-color: rgba(0, 0, 0, 0.05);
+        > .x-tab-content > .x-highlight {
+          background-color: transparent;
+        }
       }
     }
   }
   .#{$prefix}-info {
     padding: 1rem;
-    border: 1px solid var(--x-border-100);
+    border: $--x-border-100-base;
     border-radius: 0.125rem;
     margin: 0 1rem;
+    background-color: $--x-background-300;
     > p {
-      margin: 0.5rem 0 0;
+      margin: 0.25rem 0 0;
+      &:first-of-type {
+        margin-top: 0;
+      }
     }
     > ul {
-      margin: 0.5rem 0;
+      margin: 0.25rem 0;
       > li {
         list-style-type: square;
         margin-left: 1.25rem;
-        line-height: 1.75rem;
+        line-height: 1.5rem;
       }
     }
   }
-  > .x-tabs {
+  > x-tabs > .x-tabs {
     width: 100%;
     > .x-tabs-list {
-      padding: 1rem;
-      border-right: 1px solid var(--x-border-100);
-      > .x-slider {
-        min-width: 6rem;
-        &.x-slider-border-position-right > ul > li {
-          border-right-width: 0;
-          height: 2rem;
-          line-height: 2rem;
+      border: none;
+    }
+    &-left,
+    &-top {
+      > .x-tabs-list {
+        > x-slider {
+          > .x-slider-row,
+          > .x-slider-column {
+            > .x-slider-scroll > ul > li.x-slider-highlight {
+              border-radius: $--x-border-radius;
+              border: $--x-border-200-base;
+            }
+          }
         }
       }
     }
-    > .x-tabs-contents {
-      padding-left: 0;
-      > .x-tab-content {
-        > .x-tabs {
-          padding-top: 0;
-          > .x-tabs-list {
-            padding: 1rem 1rem 0 1rem;
-            > .x-slider {
-              &.x-slider-border-position-bottom > ul > li {
-                height: 2rem;
-                line-height: 2rem;
-              }
-            }
-          }
-          > .x-tabs-contents {
-            > .x-tab-content {
-              border-radius: 0.25rem;
-            }
-          }
-        }
+    &-left {
+      > .x-tabs-list {
+        padding: 1rem 0 1rem 1rem;
+      }
+    }
+    &-top {
+      > .x-tabs-list {
+        padding: 1rem 1rem 0 1rem;
       }
     }
   }

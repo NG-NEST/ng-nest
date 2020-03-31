@@ -5,6 +5,7 @@
         *ngFor="let item of checkboxNodes"
         [icon]="item.icon"
         [title]="item.title"
+        [size]="size"
         [activated]="value && value?.indexOf(item.id) >= 0"
         [disabled]="disabled || item.disabled"
         (click)="checkboxClick($event, item)"

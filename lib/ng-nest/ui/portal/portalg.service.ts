@@ -7,11 +7,10 @@ import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 /**
  * 动态创建视图服务
  */
-@Injectable({ providedIn: 'root' })
-export class XPortalService {
+export class XPortalgService {
   constructor(public overlay: Overlay, public injector: Injector) {}
 
-  create(option?: XPortalInput): XPortalOverlayRef {
+  createPortal(option?: XPortalInput): XPortalOverlayRef {
     let overlayRef = this.createOverlayRef(option);
     let templatePortal: TemplatePortal<any>;
     let componentPortal: ComponentPortal<any>;
@@ -34,7 +33,7 @@ export class XPortalService {
     };
   }
 
-  createInjector(data, token: InjectionToken<any>): PortalInjector {
+  createPortalInjector(data, token: InjectionToken<any>): PortalInjector {
     const injectorTokens = new WeakMap();
     injectorTokens.set(token, data);
     return new PortalInjector(this.injector, injectorTokens);

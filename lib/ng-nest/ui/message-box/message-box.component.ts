@@ -1,15 +1,7 @@
-import {
-  Component,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  OnInit
-} from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.type';
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
