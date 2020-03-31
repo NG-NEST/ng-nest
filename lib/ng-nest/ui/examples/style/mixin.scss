@@ -7,7 +7,7 @@
 @mixin examples {
   display: block;
   background-color: #fff;
-  border-radius: 0.125rem;
+  border: $--x-border-100-base;
   .#{$prefix}-html,
   .#{$prefix}-code {
     padding: 1rem;
@@ -55,28 +55,50 @@
     > .x-tabs-list {
       border: none;
     }
-    &-left,
-    &-top {
-      > .x-tabs-list {
-        > x-slider {
-          > .x-slider-row,
-          > .x-slider-column {
-            > .x-slider-scroll > ul > li.x-slider-highlight {
-              border-radius: $--x-border-radius;
-              border: $--x-border-200-base;
-            }
+    > .x-tabs-contents {
+      > x-tab-content > x-tabs > .x-tabs {
+        &-top {
+          > .x-tabs-list {
+            border: none;
+          }
+          @include tabs-list();
+        }
+        &-top {
+          > .x-tabs-list {
+            padding: 1rem 1rem 0 1rem;
           }
         }
       }
     }
+    &-left,
+    &-top {
+      @include tabs-list();
+    }
     &-left {
       > .x-tabs-list {
         padding: 1rem 0 1rem 1rem;
+        > x-slider > .x-slider > .x-slider-scroll > ul {
+          min-width: 6rem;
+        }
       }
     }
     &-top {
       > .x-tabs-list {
         padding: 1rem 1rem 0 1rem;
+      }
+    }
+  }
+}
+
+@mixin tabs-list() {
+  > .x-tabs-list {
+    > x-slider {
+      > .x-slider-row,
+      > .x-slider-column {
+        > .x-slider-scroll > ul > li.x-slider-highlight {
+          border-radius: $--x-border-radius;
+          border: $--x-border-200-base;
+        }
       }
     }
   }

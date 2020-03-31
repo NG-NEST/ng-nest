@@ -314,25 +314,13 @@ class TestXInputRequiredComponent {
         <x-input [(ngModel)]="value" (ngModelChange)="change($event)" label="用户名" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          label="用户名"
-          direction="row"
-          maxlength="50"
-        ></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" label="用户名" direction="row" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
         <x-input [(ngModel)]="value" (ngModelChange)="change($event)" icon="ado-user" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          [(ngModel)]="value"
-          (ngModelChange)="change($event)"
-          icon="ado-user"
-          iconLayout="right"
-          maxlength="50"
-        ></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" icon="ado-user" iconLayout="right" maxlength="50"></x-input>
       </x-col>
     </x-row>
   `,
@@ -356,10 +344,10 @@ class TestXInputLengthComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="large"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="big"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="medium"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="large"></x-input>
       </x-col>
       <x-col span="24">
         <x-input [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>

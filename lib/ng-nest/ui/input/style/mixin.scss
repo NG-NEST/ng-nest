@@ -27,10 +27,7 @@
     align-items: center;
     position: relative;
     > input {
-      padding: $--x-input-padding;
       flex: 1;
-      height: $--x-input-height;
-      line-height: $--x-input-height;
       width: 100%;
       font-size: $--x-input-font-size;
       background-color: $--x-input-background-color;
@@ -143,20 +140,22 @@
   }
   &.x-flex {
     align-items: center;
-    &-direction-row {
+  }
+  &.x-direction {
+    &-row {
       > label {
         margin: 0 0.5rem 0 0;
       }
     }
-    &-direction-row-reverse {
+    &-row-reverse {
       > label {
         margin: 0 0 0 0.5rem;
       }
     }
-    &-direction-column {
+    &-column {
       align-items: inherit;
     }
-    &-direction-column-reverse {
+    &-column-reverse {
       align-items: inherit;
     }
   }
@@ -193,10 +192,11 @@
       }
     }
   }
-  @include size('large', 2.175rem, 0 1rem);
-  @include size('medium', 1.875rem, 0 0.8rem);
-  @include size('small', 1.5rem, 0 0.3rem);
-  @include size('mini', 1.375rem, 0 0.25rem);
+  @include size('big', $--x-height-big, 0 $--x-padding-big);
+  @include size('large', $--x-height-large, 0 $--x-padding-large);
+  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
+  @include size('small', $--x-height-small, 0 $--x-padding-small);
+  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {

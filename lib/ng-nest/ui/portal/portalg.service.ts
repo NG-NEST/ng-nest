@@ -7,6 +7,7 @@ import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 /**
  * 动态创建视图服务
  */
+@Injectable({ providedIn: 'root' })
 export class XPortalgService {
   constructor(public overlay: Overlay, public injector: Injector) {}
 

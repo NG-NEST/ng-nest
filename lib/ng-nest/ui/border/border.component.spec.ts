@@ -38,78 +38,95 @@ describe(XBorderPrefix, () => {
     <x-doc>
       <x-row space="1">
         <x-col span="24">
-          <table>
+          <table class="type">
             <tr>
-              <th width="100">名称</th>
-              <th width="100">粗细</th>
+              <th width="90">名称</th>
+              <th width="250">样式名</th>
               <th>显示</th>
             </tr>
             <tr>
               <td>实线</td>
-              <td>0.0625rem</td>
+              <td>border: 0.0625rem solid #f2f6fc;</td>
               <td><div class="solid"></div></td>
             </tr>
             <tr>
               <td>虚线</td>
-              <td>0.0625rem</td>
+              <td>border: 0.0625rem dashed #f2f6fc;</td>
               <td><div class="dashed"></div></td>
             </tr>
           </table>
         </x-col>
       </x-row>
       <x-row space="2">
-        <x-col span="6">
-          <div class="box">
-            <span>无圆角</span>
-            <span class="value">border-radius: 0</span>
-            <div></div>
-          </div>
-        </x-col>
-        <x-col span="6">
-          <div class="box">
-            <span>小圆角</span>
-            <span class="value">border-radius: 0.125rem</span>
-            <div [style.border-radius.rem]="0.125"></div>
-          </div>
-        </x-col>
-        <x-col span="6">
-          <div class="box">
-            <span>大圆角</span>
-            <span class="value">border-radius: 0.25rem</span>
-            <div [style.border-radius.rem]="0.25"></div>
-          </div>
-        </x-col>
-        <x-col span="6">
-          <div class="box">
-            <span>圆形圆角</span>
-            <span class="value">border-radius: 3rem</span>
-            <div [style.border-radius.rem]="3"></div>
-          </div>
+        <x-col span="24">
+          <table class="radio">
+            <tr>
+              <th width="90">名称</th>
+              <th width="250">样式名</th>
+              <th>显示</th>
+            </tr>
+            <tr>
+              <td>无圆角</td>
+              <td>border-radius: 0;</td>
+              <td>
+                <div></div>
+              </td>
+            </tr>
+            <tr>
+              <td>小圆角</td>
+              <td>border-radius: 0.125rem;</td>
+              <td>
+                <div [style.border-radius.rem]="0.125"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>大圆角</td>
+              <td>border-radius: 0.25rem;</td>
+              <td>
+                <div [style.border-radius.rem]="0.25"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>圆形圆角</td>
+              <td>border-radius: 1.5rem;</td>
+              <td>
+                <div [style.border-radius.rem]="1.5"></div>
+              </td>
+            </tr>
+          </table>
         </x-col>
       </x-row>
       <x-row space="2">
         <x-col span="24">
-          <div class="box">
-            <span>基础投影</span>
-            <span class="value">box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.04)</span>
-            <div class="shadow" [style.border-radius.rem]="0.125"></div>
-          </div>
-        </x-col>
-        <x-col span="24">
-          <div class="box">
-            <span>浅色投影</span>
-            <span class="value">box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)</span>
-            <div class="shadow-light" [style.border-radius.rem]="0.125"></div>
-          </div>
+          <table class="box-shadow">
+            <tr>
+              <th width="90">名称</th>
+              <th width="250">样式名</th>
+              <th>显示</th>
+            </tr>
+            <tr>
+              <td>基础投影</td>
+              <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06);</td>
+              <td>
+                <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06)'"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>浅色投影</td>
+              <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04);</td>
+              <td>
+                <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04)'"></div>
+              </td>
+            </tr>
+          </table>
         </x-col>
       </x-row>
     </x-doc>
   `,
   styles: [
     `
-      table > tr > td > div {
+      table.radio > tr > td > div {
         width: 100%;
-        height: 0;
       }
       div.solid {
         border-top: 0.0625rem solid var(--x-border);
@@ -117,24 +134,11 @@ describe(XBorderPrefix, () => {
       div.dashed {
         border-top: 0.0625rem dashed var(--x-border);
       }
-      div.box span {
-        display: block;
-        line-height: 1.7rem;
-        font-size: 1rem;
-      }
-      div.box span.value {
-        font-size: 0.825rem;
-      }
-      div.box > div {
+      table.radio > tr > td > div,
+      table.box-shadow > tr > td > div {
+        width: 100%;
+        height: 3rem;
         border: 0.0625rem solid var(--x-border);
-        height: 3.25rem;
-        margin-top: 1rem;
-      }
-      div.box > div.shadow {
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.04);
-      }
-      div.box > div.shadow-light {
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       }
     `
   ]

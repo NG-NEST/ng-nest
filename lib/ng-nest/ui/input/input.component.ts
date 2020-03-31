@@ -42,7 +42,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   @Input() iconLayout?: XInputIconLayoutType = 'left';
   @Input() @XInputBoolean() iconSpin?: boolean;
   @Input() @XInputNumber() maxlength?: number;
-  @Input() size?: XSize;
+  @Input() size?: XSize = 'medium';
   @Input() error?: boolean;
   @Input() errorMessage?: string;
   @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();

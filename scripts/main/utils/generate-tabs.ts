@@ -17,6 +17,7 @@ export function generateTabs(tabs: NcTabs): NcTabs {
     content += `<x-tab label="${x.label}">${x.content}</x-tab>\n`;
   });
   tpl = replaceKey(tpl, '__layout', tabs.layout);
+  tpl = replaceKey(tpl, '__nodeJustify', tabs.nodeJustify);
   tpl = replaceKey(tpl, '__content', content);
   tabs.content = tpl;
 

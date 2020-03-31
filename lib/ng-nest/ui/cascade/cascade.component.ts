@@ -18,9 +18,8 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { XCascadePrefix, XCascadeInput, XCascadeNode, XCascadePortal } from './cascade.type';
+import { XCascadePrefix, XCascadeNode, XCascadePortal } from './cascade.type';
 import {
-  fillDefault,
   XValueAccessor,
   XControlValueAccessor,
   XData,

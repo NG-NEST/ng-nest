@@ -9,8 +9,6 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [XMessageBoxComponent],
@@ -19,8 +17,6 @@ import { PortalModule } from '@angular/cdk/portal';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    OverlayModule,
-    PortalModule,
     XInputModule,
     XButtonModule,
     XIconModule,

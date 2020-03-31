@@ -250,15 +250,14 @@ export * from '@ng-nest/ui/core';
     XPatternModule,
     XSliderModule,
     XHighlightModule,
-    XInnerModule,
-    XPortalModule
+    XInnerModule
   ]
 })
 export class NgNestUiModule {
   /**
    * @deprecated Use `NgNestUiModule` instead.
    */
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<NgNestUiModule> {
     return {
       ngModule: NgNestUiModule
     };

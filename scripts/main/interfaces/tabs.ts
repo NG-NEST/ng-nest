@@ -14,6 +14,13 @@ export interface NcTabs {
    */
   layout?: NcTabsLayoutEnum;
   /**
+   * 节点对齐方式
+   *
+   * @type {NcTabsNodeJustifyEnum}
+   * @memberof NcTabs
+   */
+  nodeJustify?: NcTabsNodeJustifyEnum;
+  /**
    * 编码
    *
    * @type {NcTabsLayoutEnum}
@@ -98,4 +105,16 @@ export enum NcTabsLayoutEnum {
   Right = 'right',
   Bottom = 'bottom',
   Left = 'left'
+}
+
+/**
+ * 标签页的布局方式
+ *
+ * @export
+ * @enum {number}
+ */
+export enum NcTabsNodeJustifyEnum {
+  Start = 'start',
+  Center = 'center',
+  End = 'end'
 }

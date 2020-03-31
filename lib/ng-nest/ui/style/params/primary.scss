@@ -82,7 +82,7 @@ $--x-font-size-big: $--x-font-size-large + 0.125rem;
 $--x-line-height: 1.5rem;
 $--x-placeholder-color: $--x-info-700;
 
-// Height 
+// Height
 $--x-height-big: 2.25rem;
 $--x-height-large: 2rem;
 $--x-height-medium: 1.75rem;
@@ -106,7 +106,8 @@ $--x-border-200-base: $--x-border-width $--x-border-style $--x-border-200;
 $--x-border-300-base: $--x-border-width $--x-border-style $--x-border-300;
 
 // box-shadow
-$--x-box-shadow-base: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+$--x-box-shadow-base: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06);
+$--x-box-shadow-light: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04);
 
 // Animation
 $--x-animation-duration-slow: 0.3s;

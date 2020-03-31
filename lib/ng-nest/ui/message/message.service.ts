@@ -7,7 +7,7 @@ import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XMessageService extends XPortalgService {
   messages: XMessagePlacement = {};
 

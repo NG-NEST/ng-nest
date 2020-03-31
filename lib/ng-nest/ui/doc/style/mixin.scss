@@ -74,9 +74,10 @@
     width: 100%;
     background: white;
     border-collapse: collapse;
+    border: $--x-border-100-base;
     tr > th,
     tr > td {
-      border-bottom: 1px solid var(--x-border-100);
+      border-bottom: $--x-border-100-base;
       text-align: left;
       padding: 0.5rem 1rem;
     }
@@ -89,7 +90,7 @@
       }
       th {
         white-space: nowrap;
-        color: var(--x-text-500);
+        color: $--x-text-500;
       }
     }
   }

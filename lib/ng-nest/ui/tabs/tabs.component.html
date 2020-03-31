@@ -4,7 +4,7 @@
       #slider
       [animated]="animated && type !== 'tag'"
       [justify]="justify"
-      [node-justify]="layout === 'left' ? 'end' : layout === 'right' ? 'start' : 'center'"
+      [node-justify]="nodeJustify"
       [data]="sliderOption.data"
       [layout]="sliderOption.layout"
       [size]="size"

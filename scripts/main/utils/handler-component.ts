@@ -1,4 +1,4 @@
-import { NcTabsLayoutEnum } from './../interfaces/tabs';
+import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum } from './../interfaces/tabs';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcPage } from '../interfaces/page';
@@ -48,6 +48,7 @@ export function handlerExamples(page: NcPage) {
   while (func == '' || _.hasIn(comTpl.syswords.constant, func)) func = randomString();
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
+    nodeJustify: NcTabsNodeJustifyEnum.Start,
     folderPath: examples.path
   });
   tabs.tabs.forEach(x => {

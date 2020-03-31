@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
 
-@NgModule()
+@NgModule({
+  imports: [OverlayModule, PortalModule]
+})
 export class XNotificationServiceModule {}

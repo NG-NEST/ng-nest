@@ -14,7 +14,7 @@ import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 describe(XMessageBoxPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XMessageBoxModule, XButtonModule, XMessageModule],
+      imports: [BrowserAnimationsModule, XMessageBoxModule, XButtonModule],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
   }));

@@ -37,7 +37,8 @@ export class XTabsComponent implements OnInit, OnChanges {
   @Input() @XInputBoolean() animated: boolean = true;
   @Input() nodeTpl: TemplateRef<any>;
   @Input() layout: XTabsLayout = 'top';
-  @Input() size: XSize = 'medium'
+  @Input() size: XSize = 'medium';
+  @Input('node-justify') nodeJustify: XJustify;
   @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
 
   private _activatedIndex: number = 0;
@@ -72,6 +73,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.setClassMap();
     this.setSliderOption();
+    this.setNodeJustify();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -108,6 +110,10 @@ export class XTabsComponent implements OnInit, OnChanges {
     this.classMap[`${XTabsPrefix}-${layout.currentValue}`] = true;
     this.setSliderOption();
     this.cdr.detectChanges();
+  }
+
+  private setNodeJustify() {
+    this.nodeJustify = this.nodeJustify ? this.nodeJustify : this.layout === 'left' ? 'end' : this.layout === 'right' ? 'start' : 'center';
   }
 
   private setData() {

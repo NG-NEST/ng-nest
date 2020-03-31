@@ -1,16 +1,25 @@
 <x-row>
   <x-col span="24">
-    <div class="box">
-      <span>基础投影</span>
-      <span class="value">box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.04)</span>
-      <div class="shadow" [style.border-radius.rem]="0.125"></div>
-    </div>
-  </x-col>
-  <x-col span="24">
-    <div class="box">
-      <span>浅色投影</span>
-      <span class="value">box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)</span>
-      <div class="shadow-light" [style.border-radius.rem]="0.125"></div>
-    </div>
+    <table>
+      <tr>
+        <th width="90">名称</th>
+        <th width="250">样式名</th>
+        <th>显示</th>
+      </tr>
+      <tr>
+        <td>基础投影</td>
+        <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06);</td>
+        <td>
+          <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06)'"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>浅色投影</td>
+        <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04);</td>
+        <td>
+          <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04)'"></div>
+        </td>
+      </tr>
+    </table>
   </x-col>
 </x-row>

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { XNotificationServiceModule } from './notification.service.module';
-import { XPortalService } from '@ng-nest/ui/portal';
+import { XPortalgService } from '@ng-nest/ui/portal';
 import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
 import {
   XNotificationInput,
@@ -13,9 +13,10 @@ import {
 import { XNotificationComponent } from './notification.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Overlay } from '@angular/cdk/overlay';
 
-@Injectable({ providedIn: XNotificationServiceModule })
-export class XNotificationService {
+@Injectable({ providedIn: 'any' })
+export class XNotificationService extends XPortalgService {
   notifications: XNotificationPlacement = {};
 
   default: XNotificationInput = {
@@ -28,7 +29,9 @@ export class XNotificationService {
     showIcon: true
   };
 
-  constructor(private protalService: XPortalService) {}
+  constructor(public overlay: Overlay, public injector: Injector) {
+    super(overlay, injector);
+  }
 
   info(option: XTemplate | XNotificationInput): XNotificationRef {
     return this.createNotification(option, 'info');
@@ -47,11 +50,11 @@ export class XNotificationService {
   }
 
   create(option: XNotificationInput): XNotificationOverlayRef {
-    return this.protalService.create({
+    return this.createPortal({
       content: XNotificationComponent,
       overlayConfig: {
         panelClass: XNotificationPortal,
-        positionStrategy: this.protalService.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.setPlace(option.placement, option.offset, option.width, option.height)
       }
     });
   }

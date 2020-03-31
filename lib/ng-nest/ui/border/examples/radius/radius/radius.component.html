@@ -1,30 +1,39 @@
-<x-row space="1">
-  <x-col span="6">
-    <div class="box">
-      <span>无圆角</span>
-      <span class="value">border-radius: 0</span>
-      <div></div>
-    </div>
-  </x-col>
-  <x-col span="6">
-    <div class="box">
-      <span>小圆角</span>
-      <span class="value">border-radius: 0.125rem</span>
-      <div [style.border-radius.rem]="0.125"></div>
-    </div>
-  </x-col>
-  <x-col span="6">
-    <div class="box">
-      <span>大圆角</span>
-      <span class="value">border-radius: 0.25rem</span>
-      <div [style.border-radius.rem]="0.25"></div>
-    </div>
-  </x-col>
-  <x-col span="6">
-    <div class="box">
-      <span>圆形圆角</span>
-      <span class="value">border-radius: 3rem</span>
-      <div [style.border-radius.rem]="3"></div>
-    </div>
+<x-row>
+  <x-col span="24">
+    <table>
+      <tr>
+        <th width="90">名称</th>
+        <th width="250">样式名</th>
+        <th>显示</th>
+      </tr>
+      <tr>
+        <td>无圆角</td>
+        <td>border-radius: 0;</td>
+        <td>
+          <div></div>
+        </td>
+      </tr>
+      <tr>
+        <td>小圆角</td>
+        <td>border-radius: 0.125rem;</td>
+        <td>
+          <div [style.border-radius.rem]="0.125"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>大圆角</td>
+        <td>border-radius: 0.25rem;</td>
+        <td>
+          <div [style.border-radius.rem]="0.25"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>圆形圆角</td>
+        <td>border-radius: 1.5rem;</td>
+        <td>
+          <div [style.border-radius.rem]="1.5"></div>
+        </td>
+      </tr>
+    </table>
   </x-col>
 </x-row>

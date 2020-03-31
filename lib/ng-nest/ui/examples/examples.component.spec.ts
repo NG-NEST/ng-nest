@@ -34,9 +34,49 @@ describe(ExamplesPrefix, () => {
   selector: 'test-x-examples',
   template: `
     <x-examples>
-      <x-tabs [layout]="'left'">
+      <x-tabs [layout]="'left'" node-justify="start">
         <x-tab label="基础用法"
           ><x-tabs [layout]="'top'">
+            <x-tab label="默认">
+              <div class="x-examples-html">基础用法</div>
+
+              <div class="x-examples-info">
+                <p>基础的按钮用法。</p>
+                <ul>
+                  <li>
+                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和 <code>circle</code> 属性来定义 Button 的样式。
+                  </li>
+                </ul>
+              </div>
+
+              <div class="x-examples-code">
+                <x-tabs [layout]="'top'">
+                  <x-tab label="default.component.html">456 </x-tab>
+                  <x-tab label="default.component.scss">789 </x-tab>
+                  <x-tab label="default.component.ts">101112 </x-tab>
+                </x-tabs>
+              </div>
+            </x-tab>
+            <x-tab label="默认">
+              <div class="x-examples-html">基础用法</div>
+
+              <div class="x-examples-info">
+                <p>基础的按钮用法。</p>
+                <ul>
+                  <li>
+                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和 <code>circle</code> 属性来定义 Button 的样式。
+                  </li>
+                </ul>
+              </div>
+
+              <div class="x-examples-code">
+                <x-tabs [layout]="'top'">
+                  <x-tab label="default.component.html">456 </x-tab>
+                  <x-tab label="default.component.scss">789 </x-tab>
+                  <x-tab label="default.component.ts">101112 </x-tab>
+                </x-tabs>
+              </div>
+            </x-tab>
             <x-tab label="默认">
               <div class="x-examples-html">基础用法</div>
 
