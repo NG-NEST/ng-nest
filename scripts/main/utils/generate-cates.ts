@@ -58,8 +58,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     let param = '';
     while (param == '' || _.hasIn(comTpl.syswords.constant, param)) param = randomString();
     let tpl = highlightTpl;
-    let content =
-      x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
+    let content = x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
     let type = extToType[x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length)];
     tpl = replaceKey(tpl, '__type', type);
     tpl = replaceKey(tpl, '__data', param);
@@ -75,7 +74,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   });
   tab.content = `
   <div class="x-examples-html">${html}</div>\n
-  <div class="x-examples-info">${tab.content}</div>\n
+  ${tab.content ? `<div class="x-examples-info">${tab.content}</div>\n` : ''}
   <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 

@@ -40,7 +40,7 @@ describe(XBorderPrefix, () => {
         <x-col span="24">
           <table class="type">
             <tr>
-              <th width="90">名称</th>
+              <th width="100">名称</th>
               <th width="250">样式名</th>
               <th>显示</th>
             </tr>
@@ -61,7 +61,7 @@ describe(XBorderPrefix, () => {
         <x-col span="24">
           <table class="radio">
             <tr>
-              <th width="90">名称</th>
+              <th width="100">名称</th>
               <th width="250">样式名</th>
               <th>显示</th>
             </tr>
@@ -100,7 +100,7 @@ describe(XBorderPrefix, () => {
         <x-col span="24">
           <table class="box-shadow">
             <tr>
-              <th width="90">名称</th>
+              <th width="100">名称</th>
               <th width="250">样式名</th>
               <th>显示</th>
             </tr>
