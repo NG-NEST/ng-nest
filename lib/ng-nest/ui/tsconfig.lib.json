@@ -9,8 +9,8 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "inlineSources": true,
-    "lib": ["es2018", "dom"],
-    "module": "es2015",
+    "lib": ["es2015", "dom"],
+    "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
     "strictFunctionTypes": true,
@@ -21,10 +21,8 @@
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
+    "fullTemplateTypeCheck": false,
     "strictInjectionParameters": true,
     "enableResourceInlining": true
-  },
-  "exclude": ["./test.ts", "**/index.ts", "**/*.spec.ts"],
-  "files": ["./ng-nest-ui.module.ts"]
+  }
 }

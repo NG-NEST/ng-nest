@@ -78,7 +78,7 @@
             </ng-container>
             <ng-container *ngIf="!j && rowIconActions.length > 0">
               <ng-container
-                *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, notBorder: true }"
+                *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"
               ></ng-container>
             </ng-container>
           </li>
@@ -91,8 +91,8 @@
   </div>
 </div>
 
-<ng-template #buttonsTpl let-space="space" let-notBorder="notBorder" let-actions="actions">
-  <x-buttons [space]="space" [notBorder]="notBorder">
+<ng-template #buttonsTpl let-space="space" let-hiddenBorder="hiddenBorder" let-actions="actions">
+  <x-buttons [space]="space" [hidden-border]="hiddenBorder">
     <x-button
       *ngFor="let action of actions"
       [icon]="action.icon"

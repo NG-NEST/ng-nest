@@ -13,6 +13,33 @@
   @include reset-component();
   @include button();
   @include button-type(
+    'initial',
+    $--x-button-initial-color,
+    $--x-button-initial-background,
+    $--x-button-initial-border,
+    $--x-button-initial-hover,
+    $--x-button-initial-hover-background,
+    $--x-button-initial-hover-border,
+    $--x-button-initial-active,
+    $--x-button-initial-active-background,
+    $--x-button-initial-active-border,
+    $--x-button-initial-disabled,
+    $--x-button-initial-disabled-background,
+    $--x-button-initial-disabled-border,
+    $--x-button-initial-plain-color,
+    $--x-button-initial-plain-background,
+    $--x-button-initial-plain-border,
+    $--x-button-initial-plain-hover,
+    $--x-button-initial-plain-hover-background,
+    $--x-button-initial-plain-hover-border,
+    $--x-button-initial-plain-active,
+    $--x-button-initial-plain-active-background,
+    $--x-button-initial-plain-active-border,
+    $--x-button-initial-plain-disabled,
+    $--x-button-initial-plain-disabled-background,
+    $--x-button-initial-plain-disabled-border
+  );
+  @include button-type(
     'primary',
     $--x-button-primary-color,
     $--x-button-primary-background,

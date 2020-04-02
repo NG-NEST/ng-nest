@@ -4,13 +4,17 @@ import {
   OnChanges,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   SimpleChanges,
   ChangeDetectorRef,
-  AfterViewInit
+  AfterViewInit,
+  Optional,
+  Host,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
-import { XButtonPrefix, XButtonType } from './button.type';
-import { XDirection, XSize, XInputBoolean, XClassMap, XIsChange } from '@ng-nest/ui/core';
+import { XIsChange } from '@ng-nest/ui/core';
+import { XButtonPrefix, XButtonProperty } from './button.property';
+import { XButtonsComponent } from './buttons.component';
 
 @Component({
   selector: `${XButtonPrefix}`,
@@ -19,25 +23,18 @@ import { XDirection, XSize, XInputBoolean, XClassMap, XIsChange } from '@ng-nest
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent implements OnInit, OnChanges, AfterViewInit {
-  @Input() type?: XButtonType;
-  @Input() icon?: string;
-  @Input() title: string = '';
-  @Input() direction: XDirection = 'row';
-  @Input() size: XSize = 'medium';
-  @Input('only-icon') @XInputBoolean() onlyIcon: boolean;
-  @Input() @XInputBoolean() activated: boolean;
-  @Input() @XInputBoolean() disabled: boolean;
-  @Input() @XInputBoolean() plain: boolean;
-  @Input() @XInputBoolean() round: boolean;
-  @Input() @XInputBoolean() circle: boolean;
-  @Input() @XInputBoolean() loading: boolean;
-  @Input() @XInputBoolean() closable: boolean;
-  classMap: XClassMap = {};
-
-  constructor(private cdr: ChangeDetectorRef) {}
+export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges, AfterViewInit {
+  constructor(
+    @Optional() @Host() private buttons: XButtonsComponent,
+    private cdr: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    private renderer: Renderer2
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
+    this.setSpace();
     this.setClassMap();
   }
 
@@ -56,5 +53,11 @@ export class XButtonComponent implements OnInit, OnChanges, AfterViewInit {
     this.classMap[`${XButtonPrefix}-plain`] = !this.type && this.plain;
     this.classMap[`x-size-${this.size}`] = this.size ? true : false;
     this.classMap[`x-direction-${this.direction}`] = this.direction ? true : false;
+  }
+
+  setSpace() {
+    if (!this.buttons?.space) return;
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${this.buttons.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${this.buttons.space / 2}rem`);
   }
 }

@@ -35,11 +35,7 @@ export class XColComponent implements OnInit {
     return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24;
   }
 
-  constructor(
-    @Optional() @Host() public rowComponent: XRowComponent,
-    private renderer: Renderer2,
-    private elementRef: ElementRef
-  ) {
+  constructor(@Optional() @Host() public rowComponent: XRowComponent, private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XColPrefix);
   }
 
@@ -62,7 +58,7 @@ export class XColComponent implements OnInit {
   }
 
   setSpace() {
-    if (!this.rowComponent || !this.rowComponent.space) return;
+    if (!this.rowComponent?.space) return;
     this.renderer.setStyle(this.elementRef.nativeElement, 'padding-left', `${this.rowComponent.space / 2}rem`);
     this.renderer.setStyle(this.elementRef.nativeElement, 'padding-right', `${this.rowComponent.space / 2}rem`);
   }

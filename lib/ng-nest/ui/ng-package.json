@@ -3,7 +3,7 @@
   "dest": "../../../dist/ng-nest/ui",
   "deleteDestPath": true,
   "lib": {
-    "entryFile": "./ng-nest-ui.module.ts",
+    "entryFile": "./index.ts",
     "umdModuleIds": {
       "highlight.js": "hljs"
     },

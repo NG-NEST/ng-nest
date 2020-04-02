@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { XNotificationServiceModule } from './notification.service.module';
 import { XPortalgService } from '@ng-nest/ui/portal';
 import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
 import {
@@ -97,7 +96,7 @@ export class XNotificationService extends XPortalgService {
     if (option.duration) {
       option.duration$ = of(true)
         .pipe(delay(option.duration))
-        .subscribe(x => {
+        .subscribe(() => {
           this.removeNotification(option);
           option.duration$ && option.duration$.unsubscribe();
         });

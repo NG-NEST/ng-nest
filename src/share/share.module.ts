@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { DevelopingComponent } from './developing/developing.component';
-import { NgNestUiModule } from '@ng-nest/ui';
 
 const components = [DevelopingComponent];
 
@@ -15,8 +14,7 @@ const modules = [
   FormsModule,
   RouterModule,
   ReactiveFormsModule,
-  LayoutModule,
-  NgNestUiModule
+  LayoutModule
 ];
 
 const providers = [];

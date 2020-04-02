@@ -8,18 +8,12 @@ import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { SiderComponent } from './sider/sider.component';
 import { SiderNodeComponent } from './sider/sider-node/sider-node.component';
+import { XIconModule } from '@ng-nest/ui/icon';
 
-const components = [
-  LayoutComponent,
-  HeaderComponent,
-  SiderComponent,
-  SiderNodeComponent,
-  ContentComponent,
-  FooterComponent
-];
+const components = [LayoutComponent, HeaderComponent, SiderComponent, SiderNodeComponent, ContentComponent, FooterComponent];
 
 @NgModule({
-  imports: [CommonModule, ShareModule, LayoutRoutesModule],
+  imports: [CommonModule, XIconModule, ShareModule, LayoutRoutesModule],
   declarations: [...components],
   exports: [...components]
 })

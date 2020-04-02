@@ -1,7 +1,12 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { forwardRef, Input, Renderer2, Component } from '@angular/core';
 import { XInputBoolean } from './convert';
-import { XJustify, XAlign, XDirection } from '../interfaces';
+import { XJustify, XAlign, XDirection, XClassMap } from '../interfaces';
+
+@Component({ template: '' })
+export abstract class XProperty {
+  classMap?: XClassMap = {};
+}
 
 @Component({ template: '' })
 export abstract class XControlValueAccessor implements ControlValueAccessor {

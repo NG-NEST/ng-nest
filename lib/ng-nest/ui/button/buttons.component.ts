@@ -1,15 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  Input,
-  HostBinding
-} from '@angular/core';
-import { XButtonsInput, XButtonsPrefix } from './button.type';
-import { fillDefault, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, HostBinding } from '@angular/core';
+import { XButtonsPrefix, XButtonsProperty } from './button.property';
 
 @Component({
   selector: `${XButtonsPrefix}`,
@@ -18,24 +8,26 @@ import { fillDefault, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonsComponent implements OnInit {
-  @Input() @XInputNumber() space?: number;
-  @Input() @XInputBoolean() notBorder?: boolean;
+export class XButtonsComponent extends XButtonsProperty implements OnInit {
   @HostBinding('class.x-buttons-space') get getSpace() {
     return this.space;
   }
-  @HostBinding('class.x-buttons-not-border') get getNotBorder() {
-    return this.notBorder;
+  @HostBinding('class.x-buttons-hidden-border') get getHiddenBorder() {
+    return this.hiddenBorder;
   }
 
-  private _default: XButtonsInput = {
-    space: 0
-  };
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XButtonsPrefix);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
+    this.setSpace();
+  }
+
+  setSpace() {
+    if (!this.space) return;
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${this.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${this.space / 2}rem`);
   }
 }

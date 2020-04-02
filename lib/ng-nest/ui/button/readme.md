@@ -14,7 +14,3 @@ category: 'Basic'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

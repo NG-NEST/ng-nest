@@ -4,7 +4,7 @@ import { XButtonComponent } from './button.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonModule } from './button.module';
-import { XButtonPrefix } from './button.type';
+import { XButtonPrefix } from './button.property';
 
 describe(XButtonPrefix, () => {
   beforeEach(async(() => {
@@ -154,6 +154,7 @@ describe(XButtonPrefix, () => {
       <x-button icon="fto-check" type="success" circle></x-button>
       <x-button icon="fto-star" type="warning" circle></x-button>
       <x-button icon="fto-trash-2" type="danger" circle></x-button>
+      <x-button icon="fto-trash" type="info" circle></x-button>
     </div>
   `,
   styles: [
@@ -202,6 +203,7 @@ class TestXButtonComponent {}
       <x-button icon="fto-check" type="success" circle disabled></x-button>
       <x-button icon="fto-star" type="warning" circle disabled></x-button>
       <x-button icon="fto-trash-2" type="danger" circle disabled></x-button>
+      <x-button icon="fto-trash" type="info" circle disabled></x-button>
     </div>
   `,
   styles: [
@@ -366,6 +368,25 @@ class TestXButtonIconComponent {}
         <x-button icon="fto-edit-3" type="primary" round></x-button>
         <x-button icon="fto-share" type="primary" round></x-button>
         <x-button icon="fto-trash-2" type="primary" round></x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons space="1">
+        <x-button>上一页</x-button>
+        <x-button>1</x-button>
+        <x-button>2</x-button>
+        <x-button>3</x-button>
+        <x-button>4</x-button>
+        <x-button>下一页</x-button>
+      </x-buttons>
+    </div>
+    <div class="row">
+      <x-buttons space="0.5" hidden-border>
+        <x-button icon="fto-edit-3" only-icon></x-button>
+        <x-button icon="fto-share" only-icon></x-button>
+        <x-button icon="fto-trash-2" only-icon></x-button>
+        <x-button icon="fto-search" only-icon></x-button>
+        <x-button icon="fto-upload-cloud" only-icon></x-button>
       </x-buttons>
     </div>
   `,

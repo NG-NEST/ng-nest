@@ -6,14 +6,12 @@
 
 @mixin button {
   border: $--x-border-width solid;
-  border-color: $--x-button-border;
   border-radius: $--x-border-radius;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: $--x-font-size-small;
   text-align: center;
-  background-color: $--x-button-white;
   background-clip: border-box;
   cursor: pointer;
   user-select: none;
@@ -21,13 +19,6 @@
   transition: all $--x-animation-duration-base ease-in-out;
   > .x-icon {
     font-size: 0.925rem;
-  }
-  &:hover {
-    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
-  }
-  &:active {
-    transform: translate(1px, 1px);
-    @include button-color($--x-button-active, $--x-button-active-background, $--x-button-active-border);
   }
   @include flex-direction();
   &.x-direction-row {
@@ -49,25 +40,15 @@
       margin-left: 0;
     }
   }
+  &:active {
+    transform: translate(1px, 1px);
+  }
+  &-disabled {
+    transform: none !important;
+  }
   &-activated {
     z-index: 1;
     @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
-  }
-  &-text {
-    border-width: 0px;
-    background-color: transparent;
-    &:hover,
-    &:active {
-      background-color: transparent;
-    }
-  }
-  &-plain {
-    &:hover {
-      @include button-color($--x-button-primary, $--x-button-white, $--x-button-primary);
-    }
-    &:active {
-      background-color: $--x-button-white;
-    }
   }
   &-round {
     border-radius: 5rem;
@@ -77,12 +58,13 @@
     padding: 0;
     width: 1.675rem;
   }
-  &-only-icon {
-    background-color: transparent;
-    border-color: transparent;
+  &-only-icon,
+  &-text {
+    border: none !important;
+    background-color: transparent !important;
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, transparent, transparent);
+      @include button-color($--x-button-hover, transparent !important, transparent !important);
     }
   }
   &-closable {
@@ -90,12 +72,6 @@
     &:hover {
       color: $--x-text-500;
     }
-  }
-  &-disabled {
-    &:active {
-      transform: none;
-    }
-    @include disabled($--x-button-disabled, $--x-button-disabled-background, $--x-button-disabled-border);
   }
   &-disabled.#{$--x-button}-activated {
     background-color: $--x-info-900;
@@ -162,17 +138,17 @@
     &.#{$--x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
     }
-  }
-  &-#{$type}-plain {
-    @include button-color($plain-color, $plain-background, $plain-border);
-    &:hover {
-      @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
-    }
-    &:active {
-      @include button-color($plain-active, $plain-active-background, $plain-active-border);
-    }
-    &.#{$--x-button}-disabled {
-      @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
+    &-plain {
+      @include button-color($plain-color, $plain-background, $plain-border);
+      &:hover {
+        @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
+      }
+      &:active {
+        @include button-color($plain-active, $plain-active-background, $plain-active-border);
+      }
+      &.#{$--x-button}-disabled {
+        @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
+      }
     }
   }
 }
@@ -242,12 +218,7 @@
       }
     }
   }
-  &-space {
-    > #{$--x-button}:not(:first-child) {
-      margin-left: 0.5rem;
-    }
-  }
-  &-not-border {
+  &-hidden-border {
     > #{$--x-button} {
       .#{$--x-button} {
         border: 0;

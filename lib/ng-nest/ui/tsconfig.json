@@ -6,7 +6,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
-      "@ng-nest/ui": ["./ng-nest-ui.module"],
+      "@ng-nest/ui": ["./"],
       "@ng-nest/ui/*": ["./*"]
     }
   },

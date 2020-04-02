@@ -1,5 +1,5 @@
 import { XIdentityInput, XData, XQuery, XRepositoryAbstract } from '@ng-nest/ui/core';
-import { XButtonInput } from '@ng-nest/ui/button';
+import { XButtonProperty } from '@ng-nest/ui/button';
 import { XPaginationInput } from '@ng-nest/ui/pagination';
 import { TemplateRef } from '@angular/core';
 
@@ -114,7 +114,7 @@ export interface XTableColumn extends XIdentityInput {
 /**
  * 操作参数
  */
-export interface XTableAction extends XButtonInput {
+export interface XTableAction extends XButtonProperty {
   /**
    * 按钮名称
    */
@@ -132,10 +132,6 @@ export interface XTableAction extends XButtonInput {
    * 触发分组的功能
    */
   group?: string;
-  /**
-   * 激活的
-   */
-  activated?: boolean;
 }
 
 /**
