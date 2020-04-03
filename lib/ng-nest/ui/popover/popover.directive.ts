@@ -95,7 +95,7 @@ export class XPopoverDirective implements OnInit, OnChanges {
 
   createPortal() {
     this.box = this.elementRef.nativeElement.getBoundingClientRect();
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XPopoverPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(

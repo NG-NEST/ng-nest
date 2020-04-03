@@ -1,14 +1,13 @@
-import { Injectable, Injector } from '@angular/core';
-import { XPortalgService } from '@ng-nest/ui/portal';
-import { Overlay } from '@angular/cdk/overlay';
+import { Injectable } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
 import { XMessageInput, XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal } from './message.type';
 import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { XPortalService } from '@ng-nest/ui/portal';
 
-@Injectable({ providedIn: 'root' })
-export class XMessageService extends XPortalgService {
+@Injectable()
+export class XMessageService {
   messages: XMessagePlacement = {};
 
   default: XMessageInput = {
@@ -22,9 +21,7 @@ export class XMessageService extends XPortalgService {
     showIcon: true
   };
 
-  constructor(public overlay: Overlay, public injector: Injector) {
-    super(overlay, injector);
-  }
+  constructor(public portal: XPortalService) {}
 
   info(option: XTemplate | XMessageInput): XMessageRef {
     return this.createMessage(option, 'info');
@@ -43,11 +40,11 @@ export class XMessageService extends XPortalgService {
   }
 
   create(option: XMessageInput): XMessageOverlayRef {
-    return this.createPortal({
+    return this.portal.attach({
       content: XMessageComponent,
       overlayConfig: {
         panelClass: XMessagePortal,
-        positionStrategy: this.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.portal.setPlace(option.placement, option.offset, option.width, option.height)
       }
     });
   }
@@ -90,7 +87,7 @@ export class XMessageService extends XPortalgService {
     if (option.duration) {
       option.duration$ = of(true)
         .pipe(delay(option.duration))
-        .subscribe(x => {
+        .subscribe(() => {
           this.removeMessage(option);
         });
     }

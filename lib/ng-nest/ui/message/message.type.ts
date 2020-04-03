@@ -3,8 +3,8 @@ import { XStatus, XPlace } from '@ng-nest/ui/core';
 import { XAlertInput } from '@ng-nest/ui/alert';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { XMessageComponent } from './message.component';
-import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
+import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 /**
  * Message 组件名

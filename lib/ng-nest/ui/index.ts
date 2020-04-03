@@ -97,4 +97,3 @@ export * from '@ng-nest/ui/pattern';
 export * from '@ng-nest/ui/slider';
 export * from '@ng-nest/ui/highlight';
 export * from '@ng-nest/ui/inner';
-export * from '@ng-nest/ui/portal';

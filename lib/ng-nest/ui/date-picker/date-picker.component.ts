@@ -216,7 +216,7 @@ export class XDatePickerComponent extends XControlValueAccessor implements OnIni
   showPortal(event: Event) {
     if (this.disabled) return;
     if (this.closePortal()) return;
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XDatePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(

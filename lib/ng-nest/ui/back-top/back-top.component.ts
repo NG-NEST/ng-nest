@@ -9,13 +9,12 @@ import {
   SimpleChanges,
   OnChanges,
   Input,
-  AfterViewInit,
   Inject,
   OnDestroy,
   TemplateRef
 } from '@angular/core';
 import { XBackTopPrefix } from './back-top.type';
-import { XClassMap, XFadeAnimation, reqAnimFrame } from '@ng-nest/ui/core';
+import { XClassMap, reqAnimFrame } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
@@ -67,7 +66,7 @@ export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: any
   ) {}
 
   ngOnInit() {
@@ -97,11 +96,11 @@ export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(throttleTime(10), takeUntil(this.unSubject))
       .subscribe(x => {
         // if (this.scrolling) return;
-        this.setScrolling(x);
+        this.setScrolling();
       });
   }
 
-  private setScrolling(event: Event) {
+  private setScrolling() {
     const scrollTop = this.scrollTop;
     const visible = scrollTop >= this.visibilityHeight;
     if (this.visiable !== visible) {

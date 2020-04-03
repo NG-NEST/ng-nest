@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { XMessageBoxService } from '@ng-nest/ui/message-box';
 
 @Component({
   selector: 'ns-home',
@@ -9,7 +8,7 @@ import { XMessageBoxService } from '@ng-nest/ui/message-box';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  constructor(public router: Router, public message: XMessageBoxService) {}
+  constructor(public router: Router) {}
 
   ngOnInit() {}
 }

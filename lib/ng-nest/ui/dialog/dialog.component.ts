@@ -87,7 +87,7 @@ export class XDialogComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   create() {
-    this.dialogRef = this.protalService.create({
+    this.dialogRef = this.protalService.attach({
       content: this.dialogTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

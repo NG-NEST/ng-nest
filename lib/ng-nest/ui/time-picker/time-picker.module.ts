@@ -12,7 +12,6 @@ import { XTimePickerPortalComponent } from './time-picker-portal.component';
 @NgModule({
   declarations: [XTimePickerComponent, XTimePickerPortalComponent],
   exports: [XTimePickerComponent, XTimePickerPortalComponent],
-  entryComponents: [XTimePickerPortalComponent],
   imports: [
     CommonModule,
     FormsModule,

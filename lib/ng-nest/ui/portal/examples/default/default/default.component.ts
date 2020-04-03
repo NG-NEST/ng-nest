@@ -9,7 +9,7 @@ export class ExDefaultComponent {
   @ViewChild('temp', { static: false }) temp: TemplateRef<any>;
   constructor(private viewContainerRef: ViewContainerRef) {}
   showPortal() {
-    // this.portal.create({
+    // this.portal.attach({
     //   content: this.temp,
     //   viewContainerRef: this.viewContainerRef,
     //   context: { text: '名字' },

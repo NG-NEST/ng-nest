@@ -10,7 +10,6 @@ import { XSelectPortalComponent } from './select-portal.component';
 @NgModule({
   declarations: [XSelectComponent, XSelectPortalComponent],
   exports: [XSelectComponent, XSelectPortalComponent],
-  entryComponents: [XSelectPortalComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule]
 })
 export class XSelectModule {}

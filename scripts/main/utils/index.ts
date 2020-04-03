@@ -12,6 +12,7 @@ export * from './handler-tabs';
 export * from './handler-cates';
 export * from './handler-type';
 export * from './handler-pattern';
+export * from './handler-spec';
 export * from './generate-cates';
 export * from './generate-page';
 export * from './generate-menu';

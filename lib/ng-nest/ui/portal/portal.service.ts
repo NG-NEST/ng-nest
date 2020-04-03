@@ -1,17 +1,17 @@
 import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { XPortalInput, XPortalOverlayRef, XPortalPlacement } from './portal.type';
+import { XPortalOption, XPortalOverlayRef, XPortalPlacement } from './portal.type';
 import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
  */
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class XPortalService {
   constructor(public overlay: Overlay, public injector: Injector) {}
 
-  create(option?: XPortalInput): XPortalOverlayRef {
+  attach(option?: XPortalOption): XPortalOverlayRef {
     let overlayRef = this.createOverlayRef(option);
     let templatePortal: TemplatePortal<any>;
     let componentPortal: ComponentPortal<any>;
@@ -103,7 +103,7 @@ export class XPortalService {
     }
   }
 
-  private createOverlayRef(option?: XPortalInput): OverlayRef {
+  private createOverlayRef(option?: XPortalOption): OverlayRef {
     return this.overlay.create(option.overlayConfig);
   }
 

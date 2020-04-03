@@ -81,7 +81,7 @@ export class XDrawerComponent implements OnInit, OnChanges {
   createPortal() {
     const width = this.placement === 'left' || this.placement === 'right' ? this.size : '100%';
     const height = this.placement === 'top' || this.placement === 'bottom' ? this.size : '100%';
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: this.drawerTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

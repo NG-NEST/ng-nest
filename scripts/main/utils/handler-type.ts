@@ -12,6 +12,10 @@ import * as _ from 'lodash';
  */
 export function hanlderType(fsPath: string): Promise<NcType[]> {
   return new Promise((res, rej) => {
+    if (!fs.existsSync(fsPath)) {
+      res([]);
+      return;
+    }
     let lines = readline.createInterface({
       input: fs.createReadStream(fsPath)
     });

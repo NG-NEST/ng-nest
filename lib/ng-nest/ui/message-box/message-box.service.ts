@@ -1,13 +1,11 @@
-import { Injectable, Injector } from '@angular/core';
-import { XMessageBoxServiceModule } from './message-box.service.module';
-import { XPortalgService } from '@ng-nest/ui/portal';
+import { Injectable } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault } from '@ng-nest/ui/core';
 import { XMessageBoxInput, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.type';
 import { XMessageBoxComponent } from './message-box.component';
-import { Overlay } from '@angular/cdk/overlay';
+import { XPortalService } from '@ng-nest/ui/portal';
 
-@Injectable({ providedIn: XMessageBoxServiceModule })
-export class XMessageBoxService extends XPortalgService {
+@Injectable()
+export class XMessageBoxService {
   default: XMessageBoxInput = {
     type: 'info',
     width: '20rem',
@@ -23,9 +21,7 @@ export class XMessageBoxService extends XPortalgService {
     inputPlaceholder: ''
   };
 
-  constructor(public overlay: Overlay, public injector: Injector) {
-    super(overlay, injector);
-  }
+  constructor(public portal: XPortalService) {}
 
   alert(option: XTemplate | XMessageBoxInput): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: false, showInput: false });
@@ -40,12 +36,12 @@ export class XMessageBoxService extends XPortalgService {
   }
 
   create(option: XMessageBoxInput): XMessageBoxOverlayRef {
-    return this.createPortal({
+    return this.portal.attach({
       content: XMessageBoxComponent,
       overlayConfig: {
         panelClass: XMessageBoxPortal,
         hasBackdrop: true,
-        positionStrategy: this.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.portal.setPlace(option.placement, option.offset, option.width, option.height)
       }
     });
   }

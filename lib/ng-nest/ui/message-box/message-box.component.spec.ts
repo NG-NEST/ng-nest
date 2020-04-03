@@ -14,7 +14,7 @@ import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 describe(XMessageBoxPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XMessageBoxModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XMessageBoxModule, XButtonModule, XMessageModule],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
   }));
@@ -51,7 +51,7 @@ describe(XMessageBoxPrefix, () => {
         <x-button (click)="alert('bottom-end', '下右')">下右</x-button>
       </div>
     </div>
-    
+
     <div class="row">
       <x-button (click)="confirm()">消息确认</x-button>
     </div>
@@ -129,8 +129,7 @@ class TestXMessageBoxComponent {
   alert(place: XPlace, title: string) {
     this.msgBox.alert({
       title: '弹框 ' + title,
-      content:
-        '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
+      content: '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
       placement: place,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });

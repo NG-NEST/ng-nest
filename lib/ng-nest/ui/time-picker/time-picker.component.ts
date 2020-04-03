@@ -177,7 +177,7 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   showPortal(event: Event) {
     if (this.disabled) return;
     if (this.closePortal()) return;
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XTimePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(

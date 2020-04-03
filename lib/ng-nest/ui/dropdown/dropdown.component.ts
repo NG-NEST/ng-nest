@@ -116,7 +116,7 @@ export class XDropdownComponent implements OnInit, OnChanges {
   }
 
   createPortal() {
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XDropdownPortalComponent,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

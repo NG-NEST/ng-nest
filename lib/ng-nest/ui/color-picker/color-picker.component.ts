@@ -159,7 +159,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XColorPickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(

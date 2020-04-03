@@ -88,7 +88,7 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   createPortal() {
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XDropdownPortalComponent,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

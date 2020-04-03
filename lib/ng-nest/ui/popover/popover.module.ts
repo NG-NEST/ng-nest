@@ -8,7 +8,6 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 @NgModule({
   declarations: [XPopoverDirective, XPopoverPortalComponent],
   exports: [XPopoverDirective, XPopoverPortalComponent],
-  entryComponents: [XPopoverPortalComponent],
   imports: [CommonModule, XPortalModule, XOutletModule]
 })
 export class XPopoverModule {}

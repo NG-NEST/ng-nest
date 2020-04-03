@@ -12,7 +12,6 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 @NgModule({
   declarations: [XDialogComponent],
   exports: [XDialogComponent],
-  entryComponents: [XDialogComponent],
   imports: [
     CommonModule,
     FormsModule,

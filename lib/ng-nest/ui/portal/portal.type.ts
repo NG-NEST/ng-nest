@@ -27,7 +27,7 @@ export const XPortalPlacement: { [proptery: string]: ConnectedPosition } = {
 /**
  * Portal @Input
  */
-export interface XPortalInput {
+export interface XPortalOption {
   /**
    * 内容，模板/组件
    */

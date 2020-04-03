@@ -12,7 +12,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [XColorPickerComponent, XColorPickerPortalComponent],
   exports: [XColorPickerComponent, XColorPickerPortalComponent],
-  entryComponents: [XColorPickerPortalComponent],
   imports: [
     CommonModule,
     FormsModule,

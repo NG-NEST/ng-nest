@@ -11,9 +11,9 @@ type Task<T> = {
 };
 
 // @dynamic
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class XIconService {
-  rootUrl = `http://localhost:8081/assets/icons/`;
+  rootUrl = `http://47.93.183.122/`;
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskXm: number = 0;

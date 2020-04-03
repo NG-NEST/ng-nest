@@ -72,7 +72,7 @@ export class XLoadingComponent implements OnInit, OnChanges {
   }
 
   createFullScreen() {
-    this.portalRef = this.portal.create({
+    this.portalRef = this.portal.attach({
       content: this.loadingTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

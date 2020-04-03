@@ -11,7 +11,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XCascadeNode, XCascadePortal } from './cascade.type';
-import { XIsEmpty, removeNgTag } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { Subscription } from 'rxjs';
 
 @Component({

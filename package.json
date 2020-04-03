@@ -10,7 +10,7 @@
     "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build --prod ",
     "build:en": "ng build --prod --configuration=production-en",
     "build:zh": "ng build --prod --configuration=production-zh",
-    "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui",
+    "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui --prod",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
     "build:styles": "scss-bundle",
@@ -18,8 +18,7 @@
     "test:ng-nest-ui": "ng test ng-nest-ui",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "extract": "ng xi18n --output-path=locale",
-    "link:ng-nest-ui": "npm link dist/ng-nest/ui"
+    "extract": "ng xi18n --output-path=locale"
   },
   "private": false,
   "dependencies": {

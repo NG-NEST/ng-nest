@@ -4,17 +4,38 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { DevelopingComponent } from './developing/developing.component';
+import { XDocModule } from '@ng-nest/ui/doc';
+import { XExamplesModule } from '@ng-nest/ui/examples';
+import { XApiModule } from '@ng-nest/ui/api';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XSliderModule } from '@ng-nest/ui/slider';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XAlertModule } from '@ng-nest/ui/alert';
+import { XFenceModule } from '@ng-nest/ui/fence';
+import { XHighlightModule } from '@ng-nest/ui/highlight';
+import { XLinkModule } from '@ng-nest/ui/link';
+import { XPatternModule } from '@ng-nest/ui/pattern';
 
 const components = [DevelopingComponent];
-
-const entryComponents = [];
 
 const modules = [
   CommonModule,
   FormsModule,
   RouterModule,
   ReactiveFormsModule,
-  LayoutModule
+  LayoutModule,
+  XDocModule,
+  XExamplesModule,
+  XApiModule,
+  XIconModule,
+  XTabsModule,
+  XSliderModule,
+  XButtonModule,
+  XAlertModule,
+  XFenceModule,
+  XHighlightModule,
+  XPatternModule
 ];
 
 const providers = [];
@@ -23,7 +44,6 @@ const providers = [];
   imports: [...modules],
   declarations: [...components],
   exports: [...components, ...modules],
-  entryComponents: [...entryComponents],
   providers: [...providers]
 })
 export class ShareModule {}

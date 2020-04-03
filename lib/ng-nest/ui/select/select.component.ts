@@ -191,7 +191,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   createPortal() {
     this.nodes.filter(x => x.selected).map(x => (x.selected = false));
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {

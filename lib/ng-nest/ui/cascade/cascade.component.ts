@@ -1,5 +1,4 @@
 import { XCascadePortalComponent } from './cascade-portal.component';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription, Observable, Subject } from 'rxjs';
 import {
   Component,
@@ -26,10 +25,12 @@ import {
   XIsEmpty,
   XDataConvert,
   XIsObservable,
-  XToDataConvert} from '@ng-nest/ui/core';
+  XToDataConvert
+} from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
   selector: 'x-cascade',
@@ -195,7 +196,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
-    this.portal = this.portalService.create({
+    this.portal = this.portalService.attach({
       content: XCascadePortalComponent,
       viewContainerRef: this.viewContainerRef,
       injector: this.portalService.createInjector(
@@ -242,10 +243,7 @@ export class XCascadeComponent extends XControlValueAccessor implements OnInit, 
   setPlacement() {
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPlacement(
-      this.inputCom.input,
-      this.protalTobottom ? 'bottom-start' : 'top-start'
-    );
+    return this.portalService.setPlacement(this.inputCom.input, this.protalTobottom ? 'bottom-start' : 'top-start');
   }
 
   setPortal() {

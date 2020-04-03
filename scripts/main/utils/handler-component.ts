@@ -13,7 +13,8 @@ import {
   hanlderType,
   generateTypes,
   hanlderPattern,
-  generatePatterns
+  generatePatterns,
+  hanlderSpec
 } from '.';
 import * as _ from 'lodash';
 
@@ -29,6 +30,7 @@ export async function handlerComponent(page: NcPage) {
   handlerExamples(page);
   await handlerApi(page);
   await handlerPattern(page);
+  await handlerSpec(page);
 }
 
 /**
@@ -70,13 +72,19 @@ export function handlerExamples(page: NcPage) {
 }
 
 export async function handlerApi(page: NcPage) {
-  if (page.custom.indexOf('__api') <= -1) return;
+  if (page.custom.indexOf('__api') === -1) return;
   let types = await hanlderType(path.join(page.path, `${page.name}.type.ts`));
   page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
 }
 
 export async function handlerPattern(page: NcPage) {
-  if (page.custom.indexOf('__pattern') <= -1) return;
+  if (page.custom.indexOf('__pattern') === -1) return;
   let patterns = await hanlderPattern(path.join(page.path, 'style', `param.scss`));
   page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
+}
+
+export async function handlerSpec(page: NcPage) {
+  if (page.name === 'button') {
+    await hanlderSpec(path.join(page.path, `${page.name}.component.spec.ts`));
+  }
 }

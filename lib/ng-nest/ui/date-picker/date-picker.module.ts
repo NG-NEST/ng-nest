@@ -26,7 +26,6 @@ import { XPickerYearComponent } from './picker-year.component';
     XPickerMonthComponent,
     XPickerYearComponent
   ],
-  entryComponents: [XDatePickerPortalComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XButtonModule, XIconModule]
 })
 export class XDatePickerModule {}

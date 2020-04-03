@@ -11,8 +11,7 @@ export const XButtonPrefix = 'x-button';
 /**
  * Button Property
  */
-@Component({ template: '' })
-export class XButtonProperty extends XProperty {
+export abstract class XButtonProperty extends XProperty {
   /**
    * 类型
    */
@@ -76,7 +75,9 @@ export type XButtonType = 'initial' | 'primary' | 'success' | 'info' | 'warning'
  */
 export const XButtonsPrefix = 'x-buttons';
 
-@Component({ template: '' })
+/**
+ * Buttons Property
+ */
 export class XButtonsProperty extends XProperty {
   /**
    * 按钮间距，单位 rem （按 1rem = 16px 比例来计算）

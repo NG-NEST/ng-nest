@@ -99,7 +99,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-37",
+    "id": "3-0-38",
     "parentId": "3-0",
     "name": "link",
     "router": "./docs/ui/components/link",
@@ -291,7 +291,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-39",
+    "id": "3-0-40",
     "parentId": "3-0",
     "name": "loading",
     "router": "./docs/ui/components/loading",
@@ -299,7 +299,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-41",
+    "id": "3-0-42",
     "parentId": "3-0",
     "name": "message",
     "router": "./docs/ui/components/message",
@@ -307,7 +307,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-42",
+    "id": "3-0-43",
     "parentId": "3-0",
     "name": "message-box",
     "router": "./docs/ui/components/message-box",
@@ -403,7 +403,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-34",
+    "id": "3-0-35",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
@@ -411,7 +411,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-35",
+    "id": "3-0-36",
     "parentId": "3-0",
     "name": "input-number",
     "router": "./docs/ui/components/input-number",
@@ -419,7 +419,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-38",
+    "id": "3-0-39",
     "parentId": "3-0",
     "name": "list",
     "router": "./docs/ui/components/list",
@@ -531,7 +531,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "3-0-40",
+    "id": "3-0-41",
     "parentId": "3-0",
     "name": "menu",
     "router": "./docs/ui/components/menu",
@@ -607,7 +607,7 @@ export const menus: Menu[] = [
     "label": "代码高亮"
   },
   {
-    "id": "3-0-33",
+    "id": "3-0-34",
     "parentId": "3-0",
     "name": "inner",
     "router": "./docs/ui/components/inner",
