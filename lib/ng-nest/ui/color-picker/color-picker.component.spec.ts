@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XColorPickerComponent } from './color-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XColorPickerModule } from './color-picker.module';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix, XColorPickerNode } from './color-picker.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

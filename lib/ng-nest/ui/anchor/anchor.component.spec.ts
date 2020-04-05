@@ -3,14 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAnchorComponent } from './anchor.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAnchorModule } from './anchor.module';
+import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.type';
 
 describe(XAnchorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XAnchorModule],
-      declarations: [TestXAnchorComponent]
+      declarations: [TestXAnchorComponent],
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -189,7 +189,7 @@ const htmlTemplate = `
         border-radius: 0.125rem;
         background: rgba(0, 0, 0, 0.02);
       }
-    `
-  ]
+    `,
+  ],
 })
 class TestXAnchorComponent {}

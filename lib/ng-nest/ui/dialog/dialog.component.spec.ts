@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDialogComponent } from './dialog.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDialogModule } from './dialog.module';
+import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDialogPrefix } from './dialog.type';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
-import { XLinkModule } from '../link';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 describe(XDialogPrefix, () => {
   beforeEach(async(() => {

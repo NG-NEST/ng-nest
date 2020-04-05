@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCrumbComponent } from './crumb.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCrumbModule } from './crumb.module';
+import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XCrumbPrefix } from './crumb.type';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTagModule } from '@ng-nest/ui/tag';

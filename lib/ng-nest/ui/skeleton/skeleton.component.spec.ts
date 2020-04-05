@@ -5,7 +5,7 @@ import { XSkeletonComponent } from './skeleton.component';
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XSkeletonModule } from './skeleton.module';
+import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.type';
 import { XButtonModule } from '@ng-nest/ui/button';

@@ -14,7 +14,7 @@ import {
   generateTypes,
   hanlderPattern,
   generatePatterns,
-  hanlderSpec
+  hanlderSpec,
 } from '.';
 import * as _ from 'lodash';
 
@@ -42,7 +42,7 @@ export async function handlerComponent(page: NcPage) {
 export function handlerExamples(page: NcPage) {
   if (page.custom.indexOf('__examples') <= -1) return;
   let examples: NcExamples = {};
-  let comTpl = _.find(page.templates, x => x.name == 'component');
+  let comTpl = _.find(page.templates, (x) => x.name == 'component');
 
   examples.path = path.join(page.path, 'examples');
   examples.tplPath = path.join(tplDir, 'examples-component.template.html');
@@ -51,9 +51,9 @@ export function handlerExamples(page: NcPage) {
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
     nodeJustify: NcTabsNodeJustifyEnum.Start,
-    folderPath: examples.path
+    folderPath: examples.path,
   });
-  tabs.tabs.forEach(x => {
+  tabs.tabs.forEach((x) => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
     hanlderCates(cates, page);
     generateCates(cates, comTpl);
@@ -67,7 +67,7 @@ export function handlerExamples(page: NcPage) {
   page.copyDir.push({
     from: examples.path,
     to: path.join(page.genDir, 'examples'),
-    exclude: ['.md']
+    exclude: ['.md'],
   });
 }
 
@@ -84,7 +84,16 @@ export async function handlerPattern(page: NcPage) {
 }
 
 export async function handlerSpec(page: NcPage) {
-  if (page.name === 'button') {
-    await hanlderSpec(path.join(page.path, `${page.name}.component.spec.ts`));
+  const fileTypes = ['component', 'directive', 'pipe'];
+  let fsPath = '';
+  for (let fileTpye of fileTypes) {
+    fsPath = path.join(page.path, `${page.name}.${fileTpye}.spec.ts`);
+    if (fs.existsSync(fsPath)) break;
   }
+  let specs = await hanlderSpec(fsPath);
+  let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
+  specs.forEach((x) => {
+    mod.syswords.imports += `${x.import}\n`;
+    mod.syswords.modules += `, ${x.module}`;
+  });
 }

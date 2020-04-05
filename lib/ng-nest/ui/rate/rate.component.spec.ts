@@ -5,7 +5,7 @@ import { XRateComponent } from './rate.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XRateModule } from './rate.module';
+import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.type';
 

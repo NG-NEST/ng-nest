@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTimePickerComponent } from './time-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTimePickerModule } from './time-picker.module';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

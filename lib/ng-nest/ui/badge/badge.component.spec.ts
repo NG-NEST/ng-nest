@@ -5,7 +5,7 @@ import { XBadgeComponent } from './badge.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XBadgeModule } from './badge.module';
+import { XBadgeModule } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.type';
 import { XButtonModule } from '@ng-nest/ui/button';

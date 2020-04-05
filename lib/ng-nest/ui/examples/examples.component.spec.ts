@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XExamplesComponent } from './examples.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XExamplesModule } from './examples.module';
+import { XExamplesModule } from '@ng-nest/ui/examples';
 import { ExamplesPrefix } from './examples.type';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XMessageBoxComponent } from './message-box.component';
 import { Component, DebugElement, ViewChild, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMessageBoxModule } from './message-box.module';
+import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.type';
 import { XMessageBoxService } from './message-box.service';

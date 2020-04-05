@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSliderComponent } from './slider.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSliderModule } from './slider.module';
+import { XSliderModule } from '@ng-nest/ui/slider';
 import { XSliderPrefix, XSliderNode } from './slider.type';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +13,7 @@ describe(XSliderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XSliderModule, BrowserAnimationsModule, XIconModule],
-      declarations: [TestXSliderComponent]
+      declarations: [TestXSliderComponent],
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -75,8 +75,8 @@ describe(XSliderPrefix, () => {
       .custom-node x-icon {
         margin-right: 0.125rem;
       }
-    `
-  ]
+    `,
+  ],
 })
 class TestXSliderComponent {
   data: XData<XSliderNode[]> = ['用户管理', '配置管理', '角色管理', '任务', '工作', '消息', '流程', '新闻'];
@@ -88,6 +88,6 @@ class TestXSliderComponent {
     '工作',
     '消息',
     '流程',
-    '新闻'
+    '新闻',
   ];
 }

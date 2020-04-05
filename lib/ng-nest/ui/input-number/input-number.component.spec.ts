@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XInputNumberComponent } from './input-number.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XInputNumberModule } from './input-number.module';
+import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputNumberPrefix } from './input-number.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

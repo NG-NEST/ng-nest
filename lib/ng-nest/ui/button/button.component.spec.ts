@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XButtonComponent } from './button.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XButtonModule } from './button.module';
+import { XButtonModule } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
 
 describe(XButtonPrefix, () => {

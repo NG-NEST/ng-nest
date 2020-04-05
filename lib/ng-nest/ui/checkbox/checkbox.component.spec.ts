@@ -6,7 +6,7 @@ import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XCheckboxModule } from './checkbox.module';
+import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.type';
 import { XData } from '@ng-nest/ui/core';

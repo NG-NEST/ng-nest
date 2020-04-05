@@ -5,7 +5,7 @@ import { XAvatarComponent } from './avatar.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XAvatarModule } from './avatar.module';
+import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.type';
 

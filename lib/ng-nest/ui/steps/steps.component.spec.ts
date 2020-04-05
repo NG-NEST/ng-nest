@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XStepsComponent } from './steps.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XStepsModule } from './steps.module';
+import { XStepsModule } from '@ng-nest/ui/steps';
 import { XStepsPrefix } from './steps.type';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';

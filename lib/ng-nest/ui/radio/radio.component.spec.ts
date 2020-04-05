@@ -6,7 +6,7 @@ import { XRadioComponent } from './radio.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XRadioModule } from './radio.module';
+import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XRadioPrefix, XRadioNode } from './radio.type';
 import { XData } from '@ng-nest/ui/core';

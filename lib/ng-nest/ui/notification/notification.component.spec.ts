@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XNotificationComponent } from './notification.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XNotificationModule } from './notification.module';
+import { XNotificationModule } from '@ng-nest/ui/notification';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XNotificationPrefix } from './notification.type';
 import { XNotificationService } from './notification.service';

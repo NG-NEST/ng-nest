@@ -5,7 +5,7 @@ import { XStatisticComponent } from './statistic.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XStatisticModule } from './statistic.module';
+import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.type';
 import { XButtonModule } from '@ng-nest/ui/button';

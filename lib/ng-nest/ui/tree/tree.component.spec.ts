@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTreeComponent } from './tree.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTreeModule } from './tree.module';
+import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode } from './tree.type';
 import { XFenceModule } from '@ng-nest/ui/fence';
 import { Observable } from 'rxjs';

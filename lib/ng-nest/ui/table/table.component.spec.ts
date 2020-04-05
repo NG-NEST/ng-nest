@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTableComponent } from './table.component';
 import { Component, DebugElement, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTableModule } from './table.module';
+import { XTableModule } from '@ng-nest/ui/table';
 import { TablePrefix, XTableColumn, XTableAction } from './table.type';
 import {
   XId,

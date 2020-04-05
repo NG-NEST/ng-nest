@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XPageHeaderComponent } from './page-header.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPageHeaderModule } from './page-header.module';
+import { XPageHeaderModule } from '@ng-nest/ui/page-header';
 import { XPageHeaderPrefix } from './page-header.type';
 
 describe(XPageHeaderPrefix, () => {

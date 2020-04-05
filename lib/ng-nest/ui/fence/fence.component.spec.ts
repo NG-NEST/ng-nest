@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from './fence.module';
+import { XFenceModule } from '@ng-nest/ui/fence';
 import { XRowPrefix } from './fence.type';
 import { XRowComponent } from './row.component';
 

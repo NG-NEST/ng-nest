@@ -4,7 +4,7 @@ import { XColorComponent } from './color.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XColorModule } from './color.module';
+import { XColorModule } from '@ng-nest/ui/color';
 import { XColorPrefix } from './color.type';
 
 describe(XColorPrefix, () => {

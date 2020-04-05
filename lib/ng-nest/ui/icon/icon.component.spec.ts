@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XIconComponent } from './icon.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XIconModule } from './icon.module';
+import { XIconModule } from '@ng-nest/ui/icon';
 import { XIconPrefix } from './icon.type';
 
 describe(XIconPrefix, () => {

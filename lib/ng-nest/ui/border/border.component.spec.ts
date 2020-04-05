@@ -5,7 +5,7 @@ import { XBorderComponent } from './border.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XBorderModule } from './border.module';
+import { XBorderModule } from '@ng-nest/ui/border';
 import { XBorderPrefix } from './border.type';
 
 describe(XBorderPrefix, () => {

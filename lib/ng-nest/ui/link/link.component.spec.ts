@@ -5,7 +5,7 @@ import { XLinkComponent } from './link.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XLinkModule } from './link.module';
+import { XLinkModule } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.type';
 

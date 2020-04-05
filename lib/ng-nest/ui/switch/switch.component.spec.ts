@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSwitchComponent } from './switch.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSwitchModule } from './switch.module';
+import { XSwitchModule } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSwitchPrefix } from './switch.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

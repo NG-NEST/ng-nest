@@ -5,7 +5,7 @@ import { XProgressComponent } from './progress.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XProgressModule } from './progress.module';
+import { XProgressModule } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.type';
 import { XButtonModule } from '@ng-nest/ui/button';

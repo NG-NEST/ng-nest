@@ -5,7 +5,7 @@ import { XTransferComponent } from './transfer.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XTransferModule } from './transfer.module';
+import { XTransferModule } from '@ng-nest/ui/transfer';
 import { FormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.type';
 import { XButtonModule } from '@ng-nest/ui/button';

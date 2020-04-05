@@ -5,7 +5,7 @@ import { XCommentComponent } from './comment.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XCommentModule } from './comment.module';
+import { XCommentModule } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
 import { XCommentPrefix, XCommentNode } from './comment.type';
 import { XButtonModule } from '@ng-nest/ui/button';

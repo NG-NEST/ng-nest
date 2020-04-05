@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { XPortalModule } from './portal.module';
+import { XPortalModule } from '@ng-nest/ui/portal';
 import { PortalPrefix } from './portal.type';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
@@ -11,7 +10,7 @@ describe(PortalPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XPortalModule],
-      declarations: [TestXPortalComponent]
+      declarations: [TestXPortalComponent],
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -38,7 +37,7 @@ describe(PortalPrefix, () => {
     <x-portal></x-portal>
     <button (click)="showPortal()">打开模板</button>
     <ng-template #temp let-text="text">{{ text }}模板内容</ng-template>
-  `
+  `,
 })
 class TestXPortalComponent {
   @ViewChild('temp', { static: false }) temp: TemplateRef<any>;
@@ -49,12 +48,8 @@ class TestXPortalComponent {
       viewContainerRef: this.viewContainerRef,
       context: { text: '名字' },
       overlayConfig: {
-        positionStrategy: this.overlay
-          .position()
-          .global()
-          .centerHorizontally()
-          .centerVertically()
-      }
+        positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      },
     });
   }
 }

@@ -5,7 +5,7 @@ import { XPopconfirmComponent } from './popconfirm.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XPopconfirmModule } from './popconfirm.module';
+import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
 import { FormsModule } from '@angular/forms';
 import { XPopconfirmPrefix } from './popconfirm.type';
 import { XButtonModule } from '@ng-nest/ui/button';

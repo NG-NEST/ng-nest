@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XFormComponent } from './form.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFormModule } from './form.module';
+import { XFormModule } from '@ng-nest/ui/form';
 import { FormPrefix, XControl, XInputControl } from './form.type';
 
 describe(FormPrefix, () => {

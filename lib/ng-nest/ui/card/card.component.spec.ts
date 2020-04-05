@@ -5,7 +5,7 @@ import { XCardComponent } from './card.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XCardModule } from './card.module';
+import { XCardModule } from '@ng-nest/ui/card';
 import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.type';
 import { XButtonModule } from '@ng-nest/ui/button';

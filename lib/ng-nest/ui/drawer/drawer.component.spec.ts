@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { XDrawerModule } from './drawer.module';
+import { XDrawerModule } from '@ng-nest/ui/drawer';
 import { XDrawerPrefix } from './drawer.type';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XButtonModule } from '@ng-nest/ui/button';

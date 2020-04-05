@@ -6,7 +6,7 @@ import { XUploadComponent } from './upload.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XUploadModule } from './upload.module';
+import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule } from '@angular/forms';
 import { XUploadPrefix, XUploadNode } from './upload.type';
 import { XData } from '@ng-nest/ui/core';

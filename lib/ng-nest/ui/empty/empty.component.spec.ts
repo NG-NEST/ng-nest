@@ -5,7 +5,7 @@ import { XEmptyComponent } from './empty.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XEmptyModule } from './empty.module';
+import { XEmptyModule } from '@ng-nest/ui/empty';
 import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.type';
 import { XButtonModule } from '@ng-nest/ui/button';

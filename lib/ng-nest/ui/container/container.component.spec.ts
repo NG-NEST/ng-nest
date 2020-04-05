@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XContainerComponent } from './container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XContainerModule } from './container.module';
+import { XContainerModule } from '@ng-nest/ui/container';
 import { XContainerPrefix } from './container.type';
 
 describe(XContainerPrefix, () => {

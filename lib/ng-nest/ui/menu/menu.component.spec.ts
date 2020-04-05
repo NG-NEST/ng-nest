@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XMenuComponent } from './menu.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMenuModule } from './menu.module';
+import { XMenuModule } from '@ng-nest/ui/menu';
 import { XMenuPrefix } from './menu.type';
 
 describe(XMenuPrefix, () => {

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTimelineComponent } from './timeline.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTimelineModule } from './timeline.module';
+import { XTimelineModule } from '@ng-nest/ui/timeline';
 import { XTimelinePrefix, XTimelineNode } from './timeline.type';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 import { XCardModule } from '@ng-nest/ui/card';

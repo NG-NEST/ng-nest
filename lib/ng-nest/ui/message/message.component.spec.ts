@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XMessageComponent } from './message.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMessageModule } from './message.module';
+import { XMessageModule } from '@ng-nest/ui/message';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.type';
 import { XMessageService } from './message.service';

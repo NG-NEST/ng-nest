@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSelectComponent } from './select.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSelectModule } from './select.module';
+import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSelectPrefix, XSelectNode } from './select.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

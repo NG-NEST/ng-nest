@@ -2,7 +2,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XOutletModule } from './outlet.module';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XOutletPrefix } from './outlet.type';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 

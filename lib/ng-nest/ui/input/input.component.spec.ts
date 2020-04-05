@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XInputComponent } from './input.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XInputModule } from './input.module';
+import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { XInputPrefix, XInputType, XInputIconLayoutType } from './input.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XPopoverDirective } from './popover.directive';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPopoverModule } from './popover.module';
+import { XPopoverModule } from '@ng-nest/ui/popover';
 import { XPopoverPrefix } from './popover.type';
 import { interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';

@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCascadeComponent } from './cascade.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCascadeModule } from './cascade.module';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

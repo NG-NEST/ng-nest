@@ -3,7 +3,7 @@ import { XAlertComponent } from './alert.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XAlertModule } from './alert.module';
+import { XAlertModule } from '@ng-nest/ui/alert';
 import { FormsModule } from '@angular/forms';
 import { XAlertPrefix } from './alert.type';
 import { XStatisticModule } from '@ng-nest/ui/statistic';

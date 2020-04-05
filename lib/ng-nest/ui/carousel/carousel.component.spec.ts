@@ -5,7 +5,7 @@ import { XCarouselComponent } from './carousel.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XCarouselModule } from './carousel.module';
+import { XCarouselModule } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.type';
 import { XButtonModule } from '@ng-nest/ui/button';

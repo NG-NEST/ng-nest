@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDatePickerComponent } from './date-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDatePickerModule } from './date-picker.module';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix, XDatePickerNode } from './date-picker.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

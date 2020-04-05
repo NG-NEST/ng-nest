@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAffixComponent } from './affix.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAffixModule } from './affix.module';
+import { XAffixModule } from '@ng-nest/ui/affix';
 import { XAffixPrefix } from './affix.type';
 import { XButtonModule } from '@ng-nest/ui/button';
 

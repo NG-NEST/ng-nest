@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XListComponent } from './list.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XListModule } from './list.module';
+import { XListModule } from '@ng-nest/ui/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.type';
 import { XFenceModule } from '@ng-nest/ui/fence';

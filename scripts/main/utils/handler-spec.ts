@@ -18,14 +18,23 @@ export function hanlderSpec(fsPath: string): Promise<NcSpec[]> {
       return;
     }
     let lines = readline.createInterface({
-      input: fs.createReadStream(fsPath)
+      input: fs.createReadStream(fsPath),
     });
-    let isReadImport = false;
+    let specs: NcSpec[] = [];
     lines.on('line', (line: string) => {
       line = line.trim();
-      if (line.startsWith('import ')) {
-        
+      if (line.startsWith('import ') && line.indexOf('Module') !== -1 && line.indexOf('@ng-nest/ui/') !== -1) {
+        let spec: NcSpec = {};
+        let mod = line.slice(0, line.indexOf('Module') + 6);
+        mod = mod.slice(mod.lastIndexOf(' ') + 1, mod.length);
+        spec.module = mod;
+        const impt = line.slice(line.indexOf('@ng-nest/ui/'), line.length);
+        spec.import = `import { ${mod} } from '${impt}`;
+        specs.push(spec);
       }
+    });
+    lines.on('close', () => {
+      res(specs);
     });
   });
 }

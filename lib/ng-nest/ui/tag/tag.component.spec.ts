@@ -5,7 +5,7 @@ import { XTagComponent } from './tag.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XTagModule } from './tag.module';
+import { XTagModule } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XTagPrefix } from './tag.type';
 import { XButtonModule } from '@ng-nest/ui/button';

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDropdownComponent } from './dropdown.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDropdownModule } from './dropdown.module';
+import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XDropdownPrefix } from './dropdown.type';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XButtonModule } from '@ng-nest/ui/button';

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTabsComponent } from './tabs.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTabsModule } from './tabs.module';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XTabsPrefix, XTabsLayout } from './tabs.type';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';

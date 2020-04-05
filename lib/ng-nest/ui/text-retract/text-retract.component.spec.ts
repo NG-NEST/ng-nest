@@ -5,7 +5,7 @@ import { XTextRetractComponent } from './text-retract.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XTextRetractModule } from './text-retract.module';
+import { XTextRetractModule } from '@ng-nest/ui/text-retract';
 import { FormsModule } from '@angular/forms';
 import { XTextRetractPrefix } from './text-retract.type';
 

@@ -5,7 +5,7 @@ import { XTypographyComponent } from './typography.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XTypographyModule } from './typography.module';
+import { XTypographyModule } from '@ng-nest/ui/typography';
 import { XTypographyPrefix } from './typography.type';
 
 describe(XTypographyPrefix, () => {

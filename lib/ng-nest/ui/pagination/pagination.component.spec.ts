@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XPaginationComponent } from './pagination.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPaginationModule } from './pagination.module';
+import { XPaginationModule } from '@ng-nest/ui/pagination';
 import { PaginationPrefix } from './pagination.type';
 
 describe(PaginationPrefix, () => {

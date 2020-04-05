@@ -5,7 +5,7 @@ import { XCollapseComponent } from './collapse.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XCollapseModule } from './collapse.module';
+import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { FormsModule } from '@angular/forms';
 import { XCollapsePrefix } from './collapse.type';
 import { XButtonModule } from '@ng-nest/ui/button';

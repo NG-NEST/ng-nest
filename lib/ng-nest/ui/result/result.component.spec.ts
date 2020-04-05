@@ -5,7 +5,7 @@ import { XResultComponent } from './result.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFenceModule } from '@ng-nest/ui/fence';
-import { XResultModule } from './result.module';
+import { XResultModule } from '@ng-nest/ui/result';
 import { FormsModule } from '@angular/forms';
 import { XResultPrefix } from './result.type';
 import { XButtonModule } from '@ng-nest/ui/button';
