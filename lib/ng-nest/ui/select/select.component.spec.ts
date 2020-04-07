@@ -6,14 +6,14 @@ import { By } from '@angular/platform-browser';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSelectPrefix, XSelectNode } from './select.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSelectModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,

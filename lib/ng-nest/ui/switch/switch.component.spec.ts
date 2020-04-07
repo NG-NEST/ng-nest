@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSwitchPrefix } from './switch.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XSwitchPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSwitchModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
     }).compileComponents();
   }));

@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTagComponent } from './tag.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XTagPrefix } from './tag.type';
@@ -14,7 +14,7 @@ import { XContainerModule } from '@ng-nest/ui/container';
 describe(XTagPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTagModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XTagModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXTagComponent]
     }).compileComponents();
   }));

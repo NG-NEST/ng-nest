@@ -6,7 +6,6 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  Input,
   OnChanges,
   SimpleChanges,
   Inject,
@@ -14,23 +13,23 @@ import {
   HostBinding
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { XIconPrefix, XIconInput, XIconSourceEnum } from './icon.type';
+import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, fillDefault, XInputBoolean, XInputNumber } from '@ng-nest/ui/core';
+import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange } from '@ng-nest/ui/core';
 import * as _ from 'lodash';
 
 // 来源路径对应
 export const XSouceUrl = {
-  adf: `${XIconSourceEnum.AntDesign}/fill/`,
-  ado: `${XIconSourceEnum.AntDesign}/outline/`,
-  adt: `${XIconSourceEnum.AntDesign}/twotone/`,
-  eaf: `${XIconSourceEnum.Eva}/fill/`,
-  eao: `${XIconSourceEnum.Eva}/outline/`,
-  fto: `${XIconSourceEnum.Feather}/`,
-  fab: `${XIconSourceEnum.FontAwesome}/brands/`,
-  far: `${XIconSourceEnum.FontAwesome}/regular/`,
-  fas: `${XIconSourceEnum.FontAwesome}/solid/`,
-  md: `${XIconSourceEnum.MaterialDesign}/`
+  adf: `ant-design/fill/`,
+  ado: `ant-design/outline/`,
+  adt: `ant-design/twotone/`,
+  eaf: `eva/fill/`,
+  eao: `eva/outline/`,
+  fto: `feather/`,
+  fab: `font-awesome/brands/`,
+  far: `font-awesome/regular/`,
+  fas: `font-awesome/solid/`,
+  md: `material-design/`
 };
 
 export const XViewBox = [
@@ -46,14 +45,8 @@ export const XViewBox = [
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XIconComponent implements OnInit, OnChanges {
-  @Input() type?: string;
-  @Input() color?: string | string[];
-  @Input() @XInputNumber() rotate?: number;
-  @Input() to?: string;
-  @Input() @XInputBoolean() spin?: boolean;
+export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   private _svgElement: SVGElement;
-  private _default: XIconInput = {};
   private _loaded: boolean = false;
 
   @HostBinding('class.x-icon-spin') get getSpin() {
@@ -67,18 +60,16 @@ export class XIconComponent implements OnInit, OnChanges {
     private cdr: ChangeDetectorRef,
     @Optional() @Inject(DOCUMENT) private document: any
   ) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XIconPrefix);
   }
 
-  ngOnInit() {
-    fillDefault(this, this._default);
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const typeChange = changes.type;
-    if (typeChange && typeChange.currentValue !== typeChange.previousValue) {
+    if (XIsChange(changes.type)) {
       this.setSvgElement();
-      this.renderer.removeClass(this.elementRef.nativeElement, typeChange.previousValue);
+      this.renderer.removeClass(this.elementRef.nativeElement, changes.type.previousValue);
       this.renderer.addClass(this.elementRef.nativeElement, `${this.type}`);
     }
   }
@@ -103,7 +94,7 @@ export class XIconComponent implements OnInit, OnChanges {
     if (typeof toIcon !== 'undefined') {
       icons = [...icons, toIcon];
     }
-    this.iconService.getSvgs(...icons).subscribe(x => this.setSvgs(x));
+    this.iconService.getSvgs(...icons).subscribe((x) => this.setSvgs(x));
   }
 
   setSvgs(svgs: string[]) {
@@ -143,7 +134,7 @@ export class XIconComponent implements OnInit, OnChanges {
     const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGAElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
-    svg.children.forEach(x => {
+    svg.children.forEach((x) => {
       x.removeAttribute('class');
       if (x.tagName === 'rect') {
         x.setAttribute('fill', 'none');

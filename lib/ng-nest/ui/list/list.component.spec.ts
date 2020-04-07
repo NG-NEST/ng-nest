@@ -7,13 +7,13 @@ import { By } from '@angular/platform-browser';
 import { XListModule } from '@ng-nest/ui/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
 
 describe(XListPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XListModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XListModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXListComponent]
     }).compileComponents();
   }));

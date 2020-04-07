@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
-import { XMainPrefix } from './container.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { XMainPrefix } from './container.property';
 
 @Component({
   selector: `${XMainPrefix}`,
@@ -8,10 +8,8 @@ import { XMainPrefix } from './container.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMainComponent implements OnInit {
+export class XMainComponent {
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XMainPrefix);
   }
-
-  ngOnInit() {}
 }

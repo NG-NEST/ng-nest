@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XEmptyComponent } from './empty.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XEmptyModule } from '@ng-nest/ui/empty';
 import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.type';
@@ -14,7 +14,7 @@ import { XContainerModule } from '@ng-nest/ui/container';
 describe(XEmptyPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XEmptyModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XEmptyModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXEmptyComponent]
     }).compileComponents();
   }));

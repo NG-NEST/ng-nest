@@ -4,13 +4,13 @@ import { XIconComponent } from './icon.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XIconModule } from '@ng-nest/ui/icon';
-import { XFenceModule } from '@ng-nest/ui/fence';
-import { XIconPrefix } from './icon.type';
+import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XIconPrefix } from './icon.property';
 
 describe(XIconPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XIconModule, XFenceModule],
+      imports: [XIconModule, XLayoutModule],
       declarations: [TestXIconComponent]
     }).compileComponents();
   }));

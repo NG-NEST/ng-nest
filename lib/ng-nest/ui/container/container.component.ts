@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  Input,
-  SimpleChanges
-} from '@angular/core';
-import { XContainerPrefix } from './container.type';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, SimpleChanges } from '@angular/core';
+import { XContainerPrefix, XContainerProperty } from './container.property';
 import { XDirection } from '@ng-nest/ui/core';
 
 @Component({
@@ -18,19 +9,20 @@ import { XDirection } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XContainerComponent implements OnInit {
+export class XContainerComponent extends XContainerProperty implements OnInit {
   private _direction?: XDirection;
   public get direction(): XDirection {
     return this._direction;
   }
-  @Input()
   public set direction(value: XDirection) {
     if (this._direction !== value) {
       this._direction = value;
       this.setDirection();
     }
   }
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
   }
 

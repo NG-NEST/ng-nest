@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XStatisticComponent } from './statistic.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.type';
@@ -16,7 +16,7 @@ import { XAddDays } from '@ng-nest/ui/core';
 describe(XStatisticPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XStatisticModule, XButtonModule, XCardModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XStatisticModule, XButtonModule, XCardModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXStatisticComponent]
     }).compileComponents();
   }));

@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSkeletonComponent } from './skeleton.component';
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.type';
@@ -23,7 +23,7 @@ describe(XSkeletonPrefix, () => {
         XSwitchModule,
         XButtonModule,
         XContainerModule,
-        XFenceModule,
+        XLayoutModule,
         XAvatarModule,
         XIconModule,
         XLinkModule

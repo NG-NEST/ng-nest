@@ -10,7 +10,7 @@ import {
   Host,
   HostBinding
 } from '@angular/core';
-import { XFooterPrefix } from './container.type';
+import { XFooterPrefix, XFooterProperty } from './container.property';
 import { XContainerComponent } from './container.component';
 
 @Component({
@@ -20,16 +20,12 @@ import { XContainerComponent } from './container.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XFooterComponent implements OnInit {
-  @Input() height: number = 3;
+export class XFooterComponent extends XFooterProperty implements OnInit {
   @HostBinding(`style.height.rem`) get getHeight() {
     return this.height;
   }
-  constructor(
-    @Optional() @Host() public container: XContainerComponent,
-    private renderer: Renderer2,
-    private elementRef: ElementRef
-  ) {
+  constructor(@Optional() @Host() public container: XContainerComponent, private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XFooterPrefix);
   }
 

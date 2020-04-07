@@ -6,13 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { XInputPrefix, XInputType, XInputIconLayoutType } from './input.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XInputModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXInputComponent,
         TestXInputLabelComponent,

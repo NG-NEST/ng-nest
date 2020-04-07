@@ -1,15 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  Input,
-  Inject
-} from '@angular/core';
-import { XColorPrefix } from './color.type';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { XColorPrefix, XColorProperty } from './color.property';
 
 @Component({
   selector: 'x-color',
@@ -18,18 +9,16 @@ import { DOCUMENT } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XColorComponent implements OnInit {
-  @Input() label?: string = 'color';
-  @Input() hex?: string;
-  @Input() merge?: string = '#ffffff';
-  @Input() amounts?: number[] = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+export class XColorComponent extends XColorProperty implements OnInit {
   colors: string[] = [];
+
   constructor(@Inject(DOCUMENT) private doc: any, private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
   }
 
   ngOnInit() {
-    if (!this.hex) this.hex = getComputedStyle(this.doc.documentElement).getPropertyValue('--x-primary');
+    if (!this.hex || this.hex === 'var(--x-primary)') this.hex = getComputedStyle(this.doc.documentElement).getPropertyValue('--x-primary');
     if (this.hex) this.setColors();
   }
 
@@ -46,6 +35,7 @@ export class XColorComponent implements OnInit {
     let rgb2 = this.toRgb(color2);
     let weight1 = weight;
     let weight2 = 1 - weight;
+
     return {
       r: Math.round(rgb1.r * weight1 + rgb2.r * weight2),
       g: Math.round(rgb1.g * weight1 + rgb2.g * weight2),

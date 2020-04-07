@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  Input,
-  HostBinding
-} from '@angular/core';
-import { XAsidePrefix } from './container.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, HostBinding } from '@angular/core';
+import { XAsidePrefix, XAsideProperty } from './container.property';
 
 @Component({
   selector: `${XAsidePrefix}`,
@@ -17,14 +8,13 @@ import { XAsidePrefix } from './container.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAsideComponent implements OnInit {
-  @Input() width: number = 12;
+export class XAsideComponent extends XAsideProperty {
   @HostBinding(`style.width.rem`) get getWidth() {
     return this.width;
   }
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XAsidePrefix);
   }
-
-  ngOnInit() {}
 }

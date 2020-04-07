@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XProgressComponent } from './progress.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XProgressModule } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.type';
@@ -14,7 +14,7 @@ import { XContainerModule } from '@ng-nest/ui/container';
 describe(XProgressPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XProgressModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XProgressModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXProgressComponent]
     }).compileComponents();
   }));

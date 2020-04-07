@@ -4,7 +4,7 @@ import { XContainerComponent } from './container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XContainerModule } from '@ng-nest/ui/container';
-import { XContainerPrefix } from './container.type';
+import { XContainerPrefix } from './container.property';
 
 describe(XContainerPrefix, () => {
   beforeEach(async(() => {

@@ -6,13 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderSelectModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,

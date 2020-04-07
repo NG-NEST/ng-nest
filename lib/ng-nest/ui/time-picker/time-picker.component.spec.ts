@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTimePickerModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXTimePickerComponent,
         TestXTimePickerLabelComponent,

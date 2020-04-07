@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XCascadePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XCascadeModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXCascadeComponent,
         TestXCascadeLabelComponent,

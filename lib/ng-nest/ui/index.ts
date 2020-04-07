@@ -10,7 +10,7 @@ export * from '@ng-nest/ui/border';
 export * from '@ng-nest/ui/button';
 export * from '@ng-nest/ui/color';
 export * from '@ng-nest/ui/container';
-export * from '@ng-nest/ui/fence';
+export * from '@ng-nest/ui/layout';
 export * from '@ng-nest/ui/icon';
 export * from '@ng-nest/ui/link';
 export * from '@ng-nest/ui/typography';

@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix, XDatePickerNode } from './date-picker.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XDatePickerModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,

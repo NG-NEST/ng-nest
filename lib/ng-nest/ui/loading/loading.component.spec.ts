@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XLoadingComponent } from './loading.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import { XLoadingPrefix } from './loading.type';
@@ -16,7 +16,7 @@ import { delay } from 'rxjs/operators';
 describe(XLoadingPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XLoadingModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XLoadingModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXLoadingComponent]
     }).compileComponents();
   }));

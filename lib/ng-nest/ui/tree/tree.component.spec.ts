@@ -5,7 +5,7 @@ import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } fro
 import { By } from '@angular/platform-browser';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode } from './tree.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XLinkModule } from '@ng-nest/ui/link';
@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 describe(XTreePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTreeModule, XFenceModule, XButtonModule, XLinkModule],
+      imports: [XTreeModule, XLayoutModule, XButtonModule, XLinkModule],
       declarations: [
         TestXTreeComponent,
         TestXTreeLazyComponent,

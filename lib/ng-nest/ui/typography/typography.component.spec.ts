@@ -4,14 +4,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTypographyComponent } from './typography.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTypographyModule } from '@ng-nest/ui/typography';
-import { XTypographyPrefix } from './typography.type';
+import { XTypographyPrefix } from './typography.property';
 
 describe(XTypographyPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTypographyModule, XFenceModule, XDocModule],
+      imports: [XTypographyModule, XLayoutModule, XDocModule],
       declarations: [TestXTypographyComponent]
     }).compileComponents();
   }));

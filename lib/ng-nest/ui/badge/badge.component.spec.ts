@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XBadgeComponent } from './badge.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XBadgeModule } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.type';
@@ -13,7 +13,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 describe(XBadgePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XBadgeModule, XButtonModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XBadgeModule, XButtonModule, XLayoutModule, XIconModule],
       declarations: [TestXBadgeComponent]
     }).compileComponents();
   }));

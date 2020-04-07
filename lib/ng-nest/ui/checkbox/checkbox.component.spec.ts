@@ -5,7 +5,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/cor
 import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.type';
@@ -14,7 +14,7 @@ import { XData } from '@ng-nest/ui/core';
 describe(XCheckboxPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCheckboxModule, XButtonModule, XFenceModule],
+      imports: [FormsModule, XCheckboxModule, XButtonModule, XLayoutModule],
       declarations: [
         TestXCheckboxComponent,
         TestXCheckboxDisabledComponent,

@@ -7,12 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix, XColorPickerNode } from './color-picker.type';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XColorPickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XColorPickerModule, FormsModule, ReactiveFormsModule, XFenceModule],
+      imports: [XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,

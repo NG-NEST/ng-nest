@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCalendarModule, XCalendarComponent } from '@ng-nest/ui/calendar';
 import { FormsModule } from '@angular/forms';
 import { XCalendarPrefix, XCalendarData } from './calendar.type';
@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 describe(XCalendarPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCalendarModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XCalendarModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXCalendarComponent],
     }).compileComponents();
   }));

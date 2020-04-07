@@ -83,19 +83,19 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-29",
-    "parentId": "3-0",
-    "name": "fence",
-    "router": "./docs/ui/components/fence",
-    "label": "Layout 栅格布局",
-    "category": "Basic"
-  },
-  {
-    "id": "3-0-32",
+    "id": "3-0-31",
     "parentId": "3-0",
     "name": "icon",
     "router": "./docs/ui/components/icon",
     "label": "Icon 图标",
+    "category": "Basic"
+  },
+  {
+    "id": "3-0-37",
+    "parentId": "3-0",
+    "name": "layout",
+    "router": "./docs/ui/components/layout",
+    "label": "Layout 栅格布局",
     "category": "Basic"
   },
   {
@@ -395,7 +395,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-30",
+    "id": "3-0-29",
     "parentId": "3-0",
     "name": "form",
     "router": "./docs/ui/components/form",
@@ -403,7 +403,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-35",
+    "id": "3-0-34",
     "parentId": "3-0",
     "name": "input",
     "router": "./docs/ui/components/input",
@@ -411,7 +411,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-36",
+    "id": "3-0-35",
     "parentId": "3-0",
     "name": "input-number",
     "router": "./docs/ui/components/input-number",
@@ -600,14 +600,14 @@ export const menus: Menu[] = [
     "label": "示例"
   },
   {
-    "id": "3-0-31",
+    "id": "3-0-30",
     "parentId": "3-0",
     "name": "highlight",
     "router": "./docs/ui/components/highlight",
     "label": "代码高亮"
   },
   {
-    "id": "3-0-34",
+    "id": "3-0-33",
     "parentId": "3-0",
     "name": "inner",
     "router": "./docs/ui/components/inner",

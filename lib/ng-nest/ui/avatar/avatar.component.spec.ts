@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAvatarComponent } from './avatar.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.type';
@@ -12,7 +12,7 @@ import { XAvatarPrefix } from './avatar.type';
 describe(XAvatarPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XAvatarModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XAvatarModule, XLayoutModule, XIconModule],
       declarations: [TestXAvatarComponent]
     }).compileComponents();
   }));

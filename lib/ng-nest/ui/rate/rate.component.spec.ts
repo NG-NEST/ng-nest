@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XRateComponent } from './rate.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.type';
@@ -12,7 +12,7 @@ import { XRatePrefix } from './rate.type';
 describe(XRatePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XRateModule, XButtonModule, XFenceModule],
+      imports: [FormsModule, XRateModule, XButtonModule, XLayoutModule],
       declarations: [TestXRateComponent, TestXRateDisabledComponent]
     }).compileComponents();
   }));

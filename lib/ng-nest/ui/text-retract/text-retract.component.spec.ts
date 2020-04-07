@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTextRetractComponent } from './text-retract.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTextRetractModule } from '@ng-nest/ui/text-retract';
 import { FormsModule } from '@angular/forms';
 import { XTextRetractPrefix } from './text-retract.type';
@@ -12,7 +12,7 @@ import { XTextRetractPrefix } from './text-retract.type';
 describe(XTextRetractPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTextRetractModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XTextRetractModule, XLayoutModule, XIconModule],
       declarations: [TestXTextRetractComponent]
     }).compileComponents();
   }));

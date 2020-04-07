@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCardComponent } from './card.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCardModule } from '@ng-nest/ui/card';
 import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.type';
@@ -14,7 +14,7 @@ import { XContainerModule } from '@ng-nest/ui/container';
 describe(XCardPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCardModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XCardModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXCardComponent]
     }).compileComponents();
   }));

@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCommentComponent } from './comment.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCommentModule } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
 import { XCommentPrefix, XCommentNode } from './comment.type';
@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 describe(XCommentPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCommentModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XCommentModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXCommentComponent]
     }).compileComponents();
   }));

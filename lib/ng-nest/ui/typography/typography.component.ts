@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  Input,
-  Inject
-} from '@angular/core';
-import { XTypographyPrefix } from './typography.type';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { XTypographyPrefix, XTypographyProperty } from './typography.property';
 
 @Component({
   selector: 'x-typography',
@@ -17,11 +8,11 @@ import { XTypographyPrefix } from './typography.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTypographyComponent implements OnInit {
-  @Input() font?: string = 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif';
-  @Input() text?: string;
+export class XTypographyComponent extends XTypographyProperty implements OnInit {
   firstText: string;
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XTypographyPrefix);
   }
 

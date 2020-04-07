@@ -6,12 +6,9 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   HostListener
 } from '@angular/core';
-import { XLinkPrefix, XLinkType } from './link.type';
-import { XInputBoolean, XClassMap } from '@ng-nest/ui/core';
+import { XLinkPrefix, XLinkProperty } from './link.property';
 
 @Component({
   selector: `${XLinkPrefix}`,
@@ -20,17 +17,8 @@ import { XInputBoolean, XClassMap } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XLinkComponent implements OnInit {
-  @Input() href?: string;
-  @Input() icon?: string;
-  @Input() @XInputBoolean() underline: boolean;
-  @Input() @XInputBoolean() disabled?: boolean;
-  @Input('icon-right') @XInputBoolean() iconRight?: boolean;
-  @Input() type?: XLinkType;
-  @Input() target?: string;
-  @ViewChild('link', { static: true }) link: ElementRef;
+export class XLinkComponent extends XLinkProperty implements OnInit {
   hover: boolean = false;
-  mapClass: XClassMap = {};
 
   @HostListener('mouseenter') mouseenter() {
     this.hover = true;
@@ -42,13 +30,15 @@ export class XLinkComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
-
-  ngOnInit() {
-    this.setMapClass();
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
   }
 
-  setMapClass() {
-    this.mapClass[`${XLinkPrefix}-${this.type}`] = this.type ? true : false;
+  ngOnInit() {
+    this.setClassMap();
+  }
+
+  setClassMap() {
+    this.classMap[`${XLinkPrefix}-${this.type}`] = this.type ? true : false;
   }
 }

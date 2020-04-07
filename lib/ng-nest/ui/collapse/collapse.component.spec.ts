@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCollapseComponent } from './collapse.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { FormsModule } from '@angular/forms';
 import { XCollapsePrefix } from './collapse.type';
@@ -21,7 +21,7 @@ describe(XCollapsePrefix, () => {
         XCollapseModule,
         XButtonModule,
         XContainerModule,
-        XFenceModule,
+        XLayoutModule,
         XIconModule
       ],
       declarations: [TestXCollapseComponent]

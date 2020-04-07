@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XSkeletonComponent } from './skeleton.component';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 
 @NgModule({
   declarations: [XSkeletonComponent],
   exports: [XSkeletonComponent],
-  imports: [CommonModule, XFenceModule]
+  imports: [CommonModule, XLayoutModule]
 })
 export class XSkeletonModule {}

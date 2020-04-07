@@ -5,7 +5,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/cor
 import { XUploadComponent } from './upload.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule } from '@angular/forms';
 import { XUploadPrefix, XUploadNode } from './upload.type';
@@ -14,7 +14,7 @@ import { XData } from '@ng-nest/ui/core';
 describe(XUploadPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XUploadModule, XButtonModule, XFenceModule],
+      imports: [FormsModule, XUploadModule, XButtonModule, XLayoutModule],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent]
     }).compileComponents();
   }));

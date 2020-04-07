@@ -7,7 +7,7 @@ import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XApiModule } from '@ng-nest/ui/api';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
 

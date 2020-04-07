@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCarouselComponent } from './carousel.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCarouselModule } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.type';
@@ -14,7 +14,7 @@ import { XContainerModule } from '@ng-nest/ui/container';
 describe(XCarouselPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCarouselModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XCarouselModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent]
     }).compileComponents();
   }));

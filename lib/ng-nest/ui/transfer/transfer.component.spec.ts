@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTransferComponent } from './transfer.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTransferModule } from '@ng-nest/ui/transfer';
 import { FormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.type';
@@ -16,7 +16,7 @@ import { delay } from 'rxjs/operators';
 describe(XTransferPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTransferModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XTransferModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXTransferComponent]
     }).compileComponents();
   }));

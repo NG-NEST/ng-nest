@@ -4,15 +4,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XLinkComponent } from './link.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
-import { XLinkPrefix } from './link.type';
+import { XLinkPrefix } from './link.property';
 
 describe(XLinkPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XLinkModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XLinkModule, XLayoutModule, XIconModule],
       declarations: [TestXLinkComponent]
     }).compileComponents();
   }));

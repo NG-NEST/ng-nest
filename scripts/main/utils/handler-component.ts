@@ -76,12 +76,13 @@ export function handlerExamples(page: NcPage) {
 
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf('__api') === -1) return;
-
-  if (page.name === 'button') {
-    let props = await hanlderProp(path.join(page.path, `${page.name}.property.ts`));
+  const propertyPath = path.join(page.path, `${page.name}.property.ts`);
+  const typePath = path.join(page.path, `${page.name}.type.ts`);
+  if (fs.existsSync(propertyPath)) {
+    let props = await hanlderProp(propertyPath);
     page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...props)}</x-api>`);
   } else {
-    let types = await hanlderType(path.join(page.path, `${page.name}.type.ts`));
+    let types = await hanlderType(typePath);
     page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
   }
 }
@@ -91,8 +92,6 @@ export async function handlerPattern(page: NcPage) {
   let patterns = await hanlderPattern(path.join(page.path, 'style', `param.scss`));
   page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
 }
-
-export function handlerImportComponent(page: NcPage, impt: string) {}
 
 export async function handlerSpec(page: NcPage) {
   const fileTypes = ['component', 'directive', 'pipe'];

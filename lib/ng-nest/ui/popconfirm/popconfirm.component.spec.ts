@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XPopconfirmComponent } from './popconfirm.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFenceModule } from '@ng-nest/ui/fence';
+import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
 import { FormsModule } from '@angular/forms';
 import { XPopconfirmPrefix } from './popconfirm.type';
@@ -15,7 +15,7 @@ import { interval } from 'rxjs';
 describe(XPopconfirmPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XPopconfirmModule, XButtonModule, XContainerModule, XFenceModule, XIconModule],
+      imports: [FormsModule, XPopconfirmModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXPopconfirmComponent]
     }).compileComponents();
   }));
