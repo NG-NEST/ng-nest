@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDocComponent } from './doc.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDocModule } from './doc.module';
+import { XDocModule } from '@ng-nest/ui/doc';
 import { DocPrefix } from './doc.type';
 
 describe(DocPrefix, () => {
@@ -35,8 +35,6 @@ describe(DocPrefix, () => {
 
 @Component({
   selector: 'test-x-doc',
-  template: `
-    <x-doc>x-doc</x-doc>
-  `
+  template: ` <x-doc>x-doc</x-doc> `
 })
 class TestXDocComponent {}

@@ -7,6 +7,10 @@ category: 'Data'
 
 扩展 `ngTemplateOutlet` 指令，支持多种数据格式。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

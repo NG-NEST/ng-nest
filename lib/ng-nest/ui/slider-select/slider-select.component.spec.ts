@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSliderSelectComponent } from './slider-select.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSliderSelectModule } from './slider-select.module';
+import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.type';
 import { XFenceModule } from '@ng-nest/ui/fence';
@@ -108,7 +108,7 @@ describe(XSliderSelectPrefix, () => {
 class TestXSliderSelectComponent {
   model = 60;
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -145,7 +145,7 @@ class TestXSliderSelectLimitComponent {
   model2 = 0;
   model3 = 0;
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -174,7 +174,7 @@ class TestXSliderSelectLimitComponent {
 })
 class TestXSliderSelectPrecisionComponent {
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -214,7 +214,7 @@ class TestXSliderSelectPrecisionComponent {
 class TestXSliderSelectLabelComponent {
   model: number = 0;
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

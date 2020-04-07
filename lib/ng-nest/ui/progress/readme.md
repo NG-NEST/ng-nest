@@ -7,6 +7,10 @@ category: 'Data'
 
 用于展示操作进度，告知用户当前状态和预期。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

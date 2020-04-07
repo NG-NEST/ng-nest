@@ -535,7 +535,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "menu",
     "router": "./docs/ui/components/menu",
-    "label": "Menu 导航菜单 [待]",
+    "label": "Menu 导航菜单",
     "category": "Navigation"
   },
   {

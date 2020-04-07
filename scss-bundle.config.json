@@ -1,9 +1,9 @@
 {
   "bundlerOptions": {
-    "entryFile": "./lib/ng-nest/ui/style/core/index.scss",
+    "entryFile": "./a.scss",
     "rootDir": "./",
-    "outFile": "./dist/ng-nest/ui/ng-nest-ui.scss",
+    "outFile": "./ng-nest-ui.scss",
     "ignoreImports": ["~@angular/.*"],
-    "logLevel": "silent"
+    "logLevel": "trace"
   }
 }

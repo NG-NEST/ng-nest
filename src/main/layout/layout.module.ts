@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareModule } from '../../share/share.module';
 import { LayoutComponent } from './layout.component';
 import { LayoutRoutesModule } from './layout-routes.module';
 import { HeaderComponent } from './header/header.component';
@@ -13,7 +12,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 const components = [LayoutComponent, HeaderComponent, SiderComponent, SiderNodeComponent, ContentComponent, FooterComponent];
 
 @NgModule({
-  imports: [CommonModule, XIconModule, ShareModule, LayoutRoutesModule],
+  imports: [CommonModule, XIconModule, LayoutRoutesModule],
   declarations: [...components],
   exports: [...components]
 })

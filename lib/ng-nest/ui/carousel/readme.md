@@ -7,6 +7,10 @@ category: 'Data'
 
 在有限空间内，循环播放同一类型的图片、文字等内容。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

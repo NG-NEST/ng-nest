@@ -25,8 +25,7 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
-              "node_modules/highlight.js/styles/github.css",
-              "lib/ng-nest/ui/style/core/index.scss",
+              "dist/ng-nest/ui/style/core/index.scss",
               "src/styles.scss"
             ],
             "scripts": []

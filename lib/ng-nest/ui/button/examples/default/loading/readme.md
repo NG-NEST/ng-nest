@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 6
 label: '加载中'
 ---
 

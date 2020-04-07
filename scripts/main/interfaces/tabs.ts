@@ -21,6 +21,13 @@ export interface NcTabs {
    */
   nodeJustify?: NcTabsNodeJustifyEnum;
   /**
+   * 尺寸
+   *
+   * @type {NcTabsNodeJustifyEnum}
+   * @memberof NcTabs
+   */
+  size?: NcTabsSizeEnum;
+  /**
    * 编码
    *
    * @type {NcTabsLayoutEnum}
@@ -98,7 +105,7 @@ export interface NcTab {
  * 标签页的布局方式
  *
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export enum NcTabsLayoutEnum {
   Top = 'top',
@@ -111,10 +118,24 @@ export enum NcTabsLayoutEnum {
  * 标签页的布局方式
  *
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export enum NcTabsNodeJustifyEnum {
   Start = 'start',
   Center = 'center',
   End = 'end'
+}
+
+/**
+ * 标签页的尺寸
+ *  
+ * @export
+ * @enum {string}
+ */
+export enum NcTabsSizeEnum {
+  Big = 'big',
+  Large = 'large',
+  Medium = 'medium',
+  Small = 'small',
+  Mini = 'mini'
 }

@@ -7,6 +7,10 @@ category: 'Data'
 
 分页组件，通常用来做表格或列表数据的分页读取。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

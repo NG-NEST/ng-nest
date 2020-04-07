@@ -7,6 +7,10 @@ category: 'Form'
 
 评分组件。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Form'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

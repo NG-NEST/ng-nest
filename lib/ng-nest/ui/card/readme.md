@@ -7,6 +7,10 @@ category: 'Data'
 
 将信息聚合在卡片容器中展示。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

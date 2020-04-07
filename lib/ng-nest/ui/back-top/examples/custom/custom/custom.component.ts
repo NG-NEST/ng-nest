@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ex-default',
-  templateUrl: './default.component.html'
+  selector: 'ex-custom',
+  templateUrl: './custom.component.html'
 })
-export class ExDefaultComponent {
+export class ExCustomComponent {
 }

@@ -11,6 +11,10 @@ category: 'Navigation'
 
 - `x-examples` 示例组件中的分类以及子类的展示。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -18,7 +22,3 @@ category: 'Navigation'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

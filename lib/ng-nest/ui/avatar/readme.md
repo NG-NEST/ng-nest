@@ -7,6 +7,10 @@ category: 'Data'
 
 用图标、图片或者字符的形式展示用户或事物信息。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Data'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

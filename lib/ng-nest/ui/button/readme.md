@@ -7,6 +7,10 @@ category: 'Basic'
 
 定义按钮和按钮组的样式。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}

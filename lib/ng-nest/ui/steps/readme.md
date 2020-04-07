@@ -7,6 +7,10 @@ category: 'Navigation'
 
 引导用户按照流程完成任务的导航条。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Navigation'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

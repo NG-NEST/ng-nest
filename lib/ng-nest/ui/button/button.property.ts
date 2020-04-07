@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Input } from '@angular/core';
 import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber } from '@ng-nest/ui/core';
 
 /**
@@ -11,7 +11,7 @@ export const XButtonPrefix = 'x-button';
 /**
  * Button Property
  */
-export abstract class XButtonProperty extends XProperty {
+export class XButtonProperty extends XProperty {
   /**
    * 类型
    */
@@ -66,6 +66,9 @@ export abstract class XButtonProperty extends XProperty {
   @Input() @XInputBoolean() closable?: boolean;
 }
 
+/**
+ * 按钮类型
+ */
 export type XButtonType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
@@ -86,5 +89,5 @@ export class XButtonsProperty extends XProperty {
   /**
    * 隐藏边框
    */
-  @Input('hidden-border') @XInputBoolean() hiddenBorder: boolean;
+  @Input('hidden-border') @XInputBoolean() hiddenBorder?: boolean;
 }

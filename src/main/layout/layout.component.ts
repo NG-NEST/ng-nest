@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from '@angular/core';
-import { MediaMatcher, Breakpoints } from '@angular/cdk/layout';
+// import { MediaMatcher, Breakpoints } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
-import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/overlay';
+// import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/overlay';
 import { ContentComponent } from './content/content.component';
 
 @Component({
@@ -17,24 +17,24 @@ export class LayoutComponent implements OnInit {
   @ViewChild('content', { static: true }) content: ContentComponent;
 
   constructor(
-    private mediaMatcher: MediaMatcher,
+    // private mediaMatcher: MediaMatcher,
     private layoutService: LayoutService,
-    private scrollDispatcher: ScrollDispatcher
+    // private scrollDispatcher: ScrollDispatcher
   ) {}
 
   toXSmall: MediaQueryList;
 
   ngOnInit() {
-    this.toXSmall = this.mediaMatcher.matchMedia(Breakpoints.XSmall);
-    this.toXSmall.addListener(this.toXSmallListener);
-    this.scrollDispatcher.scrolled().subscribe((scrollable: CdkScrollable) => {
-      if (scrollable) {
-        const scrollRef = scrollable.getElementRef();
-        if (scrollRef.nativeElement.tagName === 'NS-CONTENT') {
-          this.layoutService.contentScrolling.next(scrollable);
-        }
-      }
-    });
+    // this.toXSmall = this.mediaMatcher.matchMedia(Breakpoints.XSmall);
+    // this.toXSmall.addListener(this.toXSmallListener);
+    // this.scrollDispatcher.scrolled().subscribe((scrollable: CdkScrollable) => {
+    //   if (scrollable) {
+    //     const scrollRef = scrollable.getElementRef();
+    //     if (scrollRef.nativeElement.tagName === 'NS-CONTENT') {
+    //       this.layoutService.contentScrolling.next(scrollable);
+    //     }
+    //   }
+    // });
   }
 
   toXSmallListener(event: MediaQueryListEvent) {}

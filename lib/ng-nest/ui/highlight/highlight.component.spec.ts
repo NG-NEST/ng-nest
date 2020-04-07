@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { XHighlightComponent } from './highlight.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XHighlightModule } from './highlight.module';
+import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { HighlightPrefix } from './highlight.type';
 
 describe(HighlightPrefix, () => {

@@ -2,7 +2,7 @@
  * 生成随机的字母字符串
  *
  * @export
- * @param {number} [num=4]
+ * @param {number} [num=6]
  * @returns
  */
 export function randomString(num: number = 6) {
@@ -12,5 +12,5 @@ export function randomString(num: number = 6) {
     var ranXm = Math.ceil(Math.random() * 25);
     result.push(String.fromCharCode(65 + ranXm));
   }
-  return result.join('');
+  return result.join('').toLowerCase();
 }

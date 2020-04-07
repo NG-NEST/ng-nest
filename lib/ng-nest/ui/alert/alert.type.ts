@@ -1,4 +1,3 @@
-import { TemplateRef } from '@angular/core';
 import { XStatus, XTemplate, XEffect } from '@ng-nest/ui/core';
 
 /**

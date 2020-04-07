@@ -7,11 +7,12 @@ import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XDropdownPrefix } from './dropdown.type';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XFenceModule } from '@ng-nest/ui/fence';
 
 describe(XDropdownPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XDropdownModule, XButtonModule, XLinkModule],
+      imports: [XDropdownModule, XButtonModule, XLinkModule, XFenceModule],
       declarations: [TestXDropdownComponent]
     }).compileComponents();
   }));

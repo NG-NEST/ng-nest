@@ -1,4 +1,4 @@
-import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum } from './../interfaces/tabs';
+import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum } from './../interfaces/tabs';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcPage } from '../interfaces/page';
@@ -15,6 +15,8 @@ import {
   hanlderPattern,
   generatePatterns,
   hanlderSpec,
+  hanlderProp,
+  generateProps
 } from '.';
 import * as _ from 'lodash';
 
@@ -51,7 +53,8 @@ export function handlerExamples(page: NcPage) {
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
     nodeJustify: NcTabsNodeJustifyEnum.Start,
-    folderPath: examples.path,
+    size: NcTabsSizeEnum.Large,
+    folderPath: examples.path
   });
   tabs.tabs.forEach((x) => {
     let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
@@ -67,14 +70,20 @@ export function handlerExamples(page: NcPage) {
   page.copyDir.push({
     from: examples.path,
     to: path.join(page.genDir, 'examples'),
-    exclude: ['.md'],
+    exclude: ['.md']
   });
 }
 
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf('__api') === -1) return;
-  let types = await hanlderType(path.join(page.path, `${page.name}.type.ts`));
-  page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
+
+  if (page.name === 'button') {
+    let props = await hanlderProp(path.join(page.path, `${page.name}.property.ts`));
+    page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...props)}</x-api>`);
+  } else {
+    let types = await hanlderType(path.join(page.path, `${page.name}.type.ts`));
+    page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
+  }
 }
 
 export async function handlerPattern(page: NcPage) {
@@ -82,6 +91,8 @@ export async function handlerPattern(page: NcPage) {
   let patterns = await hanlderPattern(path.join(page.path, 'style', `param.scss`));
   page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
 }
+
+export function handlerImportComponent(page: NcPage, impt: string) {}
 
 export async function handlerSpec(page: NcPage) {
   const fileTypes = ['component', 'directive', 'pipe'];
@@ -92,8 +103,19 @@ export async function handlerSpec(page: NcPage) {
   }
   let specs = await hanlderSpec(fsPath);
   let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
-  specs.forEach((x) => {
+  specs.forEach(async (x) => {
     mod.syswords.imports += `${x.import}\n`;
     mod.syswords.modules += `, ${x.module}`;
+    if (x.import.indexOf(`@ng-nest/ui/${page.name}`) !== -1) {
+      let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
+      if (temp !== null) {
+        let tpl = fs.readFileSync(path.join(tplDir, 'highlight-component.template.html'), 'utf8');
+        let param = randomString(7);
+        tpl = replaceKey(tpl, '__type', 'typescript');
+        tpl = replaceKey(tpl, '__data', param);
+        temp.syswords.constant += `${param} = \`${x.import}\`;\n`;
+        page.custom = replaceKey(page.custom, '__component', `${tpl}`);
+      }
+    }
   });
 }

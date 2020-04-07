@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { NcCates, NcCate } from '../interfaces/examples';
 import { handlerTabs, handlerTabsByFiles, randomString } from '.';
-import { NcTabsLayoutEnum, NcTab } from '../interfaces/tabs';
+import { NcTabsLayoutEnum, NcTab, NcTabsSizeEnum } from '../interfaces/tabs';
 import { generateTabs } from '.';
 import * as _ from 'lodash';
 import { replaceKey } from './replace-key';
@@ -23,6 +23,7 @@ export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
     while (subFunc == '' || _.hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
+      size: NcTabsSizeEnum.Large,
       folderPath: cates.folderPath
     });
     catesTabs.tabs.forEach(x => {
@@ -50,6 +51,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   if (!comTpl) return;
   let childTabs = handlerTabsByFiles({
     layout: NcTabsLayoutEnum.Top,
+    size: NcTabsSizeEnum.Medium,
     folderPath: folderPath,
     id: func
   });

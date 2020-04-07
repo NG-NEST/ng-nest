@@ -13,6 +13,10 @@ category: 'Basic'
 - `<x-main>`：主要区域容器。
 - `<x-footer>`：底栏容器。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 常见页面布局
 
 {{ __examples }}
@@ -20,7 +24,3 @@ category: 'Basic'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

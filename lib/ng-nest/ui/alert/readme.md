@@ -7,6 +7,10 @@ category: 'Feedback'
 
 警告提示，展现需要关注的信息。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -14,7 +18,3 @@ category: 'Feedback'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}

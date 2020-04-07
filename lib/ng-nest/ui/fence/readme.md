@@ -12,6 +12,10 @@ category: 'Basic'
 - `x-form` 表单控件布局。
 - `x-table` 表格行列布局。
 
+## 单独引入此组件
+
+{{ __component }}
+
 ## 示例代码
 
 {{ __examples }}
@@ -19,7 +23,3 @@ category: 'Basic'
 ## API
 
 {{ __api }}
-
-## 样式参数
-
-{{ __pattern }}
