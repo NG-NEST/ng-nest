@@ -160,7 +160,7 @@ describe(XButtonPrefix, () => {
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;
@@ -209,7 +209,7 @@ class TestXButtonComponent {}
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;
@@ -230,7 +230,7 @@ class TestXButtonDiabledComponent {}
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;
@@ -255,7 +255,7 @@ class TestXButtonTextComponent {}
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;
@@ -397,7 +397,7 @@ class TestXButtonIconComponent {}
         align-items: center;
       }
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-buttons:not(:first-child) {
         margin-left: 0.5rem;
@@ -417,7 +417,7 @@ class TestXButtonGroupComponent {}
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;
@@ -474,7 +474,7 @@ class TestXButtonLoadingComponent {
   styles: [
     `
       .row:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
         margin-left: 0.5rem;

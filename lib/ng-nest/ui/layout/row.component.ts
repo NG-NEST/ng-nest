@@ -33,7 +33,7 @@ export class XRowComponent extends XRowProperty implements OnInit {
 
   setJustify() {
     if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `x-justity-${this.justify}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-justify-${this.justify}`);
   }
 
   setAlign() {

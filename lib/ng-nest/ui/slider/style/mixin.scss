@@ -13,7 +13,7 @@
     overflow: hidden;
     flex: 1;
     display: inline-flex;
-    @include flex-justity();
+    @include flex-justify();
     > ul {
       display: inline-flex;
       align-items: center;
@@ -28,7 +28,7 @@
         z-index: 2;
         x-link {
           flex: 1;
-          @include flex-justity();
+          @include flex-justify();
           @include size(big, $--x-height-big, 0 $--x-padding-big);
           @include size(large, $--x-height-large, 0 $--x-padding-large);
           @include size(medium, $--x-height-medium, 0 $--x-padding-medium);

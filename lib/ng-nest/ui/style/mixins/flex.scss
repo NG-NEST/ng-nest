@@ -2,12 +2,12 @@
   &.x-flex {
     display: flex;
   }
-  @include flex-justity();
+  @include flex-justify();
   @include flex-align();
   @include flex-direction();
 }
 
-@mixin flex-justity() {
+@mixin flex-justify() {
   &.x-justify {
     &-start {
       justify-content: flex-start;
