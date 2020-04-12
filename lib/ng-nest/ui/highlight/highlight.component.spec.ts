@@ -4,9 +4,9 @@ import { XHighlightComponent } from './highlight.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
-import { HighlightPrefix } from './highlight.type';
+import { XHighlightPrefix } from './highlight.property';
 
-describe(HighlightPrefix, () => {
+describe(XHighlightPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XHighlightModule],
@@ -30,18 +30,18 @@ describe(HighlightPrefix, () => {
     });
     it('should className.', () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(HighlightPrefix);
+      expect(element.classList).toContain(XHighlightPrefix);
     });
     it('should html code.', () => {
       testComponent.type = 'html';
       testComponent.data = `<div class="code"></div>`;
       fixture.detectChanges();
-      expect(element.classList).toContain(HighlightPrefix);
+      expect(element.classList).toContain(XHighlightPrefix);
     });
     it("should data change 'undefined'.", () => {
       testComponent.dataXll = undefined;
       fixture.detectChanges();
-      expect(element.classList).toContain(HighlightPrefix);
+      expect(element.classList).toContain(XHighlightPrefix);
     });
   });
 });
@@ -56,5 +56,5 @@ describe(HighlightPrefix, () => {
 class TestXHighlightComponent {
   type: string = `html`;
   data: string = `<div class="html"></div>`;
-  dataXll: string;
+  dataXll: undefined;
 }

@@ -10,27 +10,17 @@
           <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
         </div>
         <p>
-          <x-text-retract [label]="node.content"></x-text-retract>
+          <x-text-retract [content]="node.content"></x-text-retract>
         </p>
         <div class="x-comment-action">
           <x-buttons>
-            <x-button
-              icon="fto-message-square"
-              [activated]="node.commentShow"
-              (click)="commentOnClick(node)"
-              only-icon
-              >{{ '评论' + (node.count ? node.count : '') }}</x-button
-            >
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" only-icon>{{
-              '点赞' + (node.likes ? node.likes : '')
+            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" only-icon>{{
+              '评论' + (node.count ? node.count : '')
             }}</x-button>
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" only-icon>{{ '点赞' + (node.likes ? node.likes : '') }}</x-button>
           </x-buttons>
         </div>
-        <x-comment-reply
-          *ngIf="node.commentShow"
-          [maxlength]="contentMax"
-          (sureClick)="sureOnClick($event, node)"
-        ></x-comment-reply>
+        <x-comment-reply *ngIf="node.commentShow" [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
         <ul>
           <li *ngFor="let child of node.children">
             <div>
@@ -40,17 +30,13 @@
                   <span class="x-comment-reply">回复</span> <x-link>{{ child.replyAuthor }}</x-link></ng-container
                 >：
                 <span>
-                  <x-text-retract [label]="child.content"></x-text-retract>
+                  <x-text-retract [content]="child.content"></x-text-retract>
                 </span>
               </p>
               <div class="x-comment-action">
                 <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                 <x-buttons>
-                  <x-button
-                    icon="fto-message-square"
-                    [activated]="child.commentShow"
-                    (click)="replyOnClick(child)"
-                    only-icon
+                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" only-icon
                     >回复</x-button
                   >
                   <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" only-icon>{{

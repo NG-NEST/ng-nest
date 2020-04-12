@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCarouselModule } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
-import { XCarouselPrefix } from './carousel.type';
+import { XCarouselPrefix } from './carousel.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 

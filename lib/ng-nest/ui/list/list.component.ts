@@ -1,4 +1,4 @@
-import { Subscription, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -6,43 +6,22 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Renderer2,
-  Input,
   SimpleChanges,
-  OnChanges,
-  Output,
-  EventEmitter
+  OnChanges
 } from '@angular/core';
-import { XListNode } from './list.type';
-import {
-  XData,
-  XValueAccessor,
-  XControlValueAccessor,
-  XInputNumber,
-  XIsObservable,
-  XDataConvert,
-  XToDataConvert,
-  XInputBoolean,
-  XIsChange
-} from '@ng-nest/ui/core';
-import { map } from 'rxjs/operators';
+import { XListPrefix, XListNode, XListProperty } from './list.property';
+import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'x-list',
+  selector: `${XListPrefix}`,
   templateUrl: './list.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XListComponent)]
 })
-export class XListComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XListNode[]>;
-  @Input() @XInputNumber() multiple: number = 1;
-  @Input() @XInputBoolean() checked?: boolean;
-  @Input() @XInputBoolean() drag?: boolean;
-  @Output() nodeMouseenter = new EventEmitter<XListNode>();
-  @Output() nodeMouseleave = new EventEmitter<XListNode>();
-  @Output() nodeClick = new EventEmitter<XListNode>();
+export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
 
@@ -52,7 +31,7 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  private data$: Subscription | null = null;
+  private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
     super(renderer);
@@ -65,43 +44,34 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
   }
 
   ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as Array<any>);
-    }
-  }
-
-  private setDataChange(value: XListNode[]) {
-    this.nodes = value;
-    this.setSelected();
-    this.cdr.detectChanges();
+    XSetData<XListNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+      this.setSelected();
+      this.cdr.detectChanges();
+    });
   }
 
   setSelected() {
     if (this.nodes.length > 0) {
-      let valArry = [];
+      let valArry: any[] = [];
       if (this.value instanceof Array) {
         valArry = this.value;
       } else {
         valArry = [this.value];
       }
       this.nodes
-        .filter(x => x.selected)
-        .map(x => {
+        .filter((x) => x.selected)
+        .map((x) => {
           x.selected = false;
         });
       this.selectedNodes = this.nodes
-        .filter(x => valArry.indexOf(x.id) > -1)
-        .map(x => {
+        .filter((x) => valArry.indexOf(x.id) > -1)
+        .map((x) => {
           x.selected = true;
           return x;
         });
@@ -130,14 +100,14 @@ export class XListComponent extends XControlValueAccessor implements OnInit, OnC
     } else {
       node.selected = selected;
       this.selectedNodes.splice(
-        this.selectedNodes.findIndex(x => x.id == node.id),
+        this.selectedNodes.findIndex((x) => x.id == node.id),
         1
       );
     }
     if (this.multiple === 1 && this.selectedNodes.length === 1) {
       this.value = this.selectedNodes[0].id;
     } else {
-      this.value = this.selectedNodes.map(x => x.id);
+      this.value = this.selectedNodes.map((x) => x.id);
     }
     if (this.onChange) this.onChange(this.value);
     node.event = event;

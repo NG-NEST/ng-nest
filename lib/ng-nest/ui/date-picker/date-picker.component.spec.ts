@@ -6,7 +6,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XDatePickerPrefix, XDatePickerNode } from './date-picker.type';
+import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XDatePickerPrefix, () => {
@@ -109,7 +109,7 @@ class TestXDatePickerComponent {
   model1: any;
   model2 = new Date();
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(x => {
+    interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -149,7 +149,7 @@ class TestXDatePickerComponent {
 class TestXDatePickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -204,7 +204,7 @@ class TestXDatePickerDisabledComponent {
 class TestXDatePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -235,7 +235,7 @@ class TestXDatePickerYearOrMonthComponent {
   model1: any;
   model2: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

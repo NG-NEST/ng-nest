@@ -4,7 +4,7 @@ import { XMenuComponent } from './menu.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMenuModule } from '@ng-nest/ui/menu';
-import { XMenuPrefix } from './menu.type';
+import { XMenuPrefix, XMenuNode } from './menu.property';
 
 describe(XMenuPrefix, () => {
   beforeEach(async(() => {
@@ -78,7 +78,7 @@ class TestXMenuComponent {
     { id: 12, pid: 5, label: '存储' },
     { id: 13, pid: 5, label: '数据库' }
   ];
-  nodeClick($event) {
+  nodeClick($event: XMenuNode) {
     console.log($event);
   }
 }

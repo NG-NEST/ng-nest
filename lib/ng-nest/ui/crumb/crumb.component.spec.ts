@@ -4,7 +4,7 @@ import { XCrumbComponent } from './crumb.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
-import { XCrumbPrefix } from './crumb.type';
+import { XCrumbPrefix } from './crumb.property';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTagModule } from '@ng-nest/ui/tag';
 

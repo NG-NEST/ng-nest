@@ -5,7 +5,7 @@ import { XTooltipDirective } from './tooltip.directive';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
-import { XTooltipPrefix } from './tooltip.type';
+import { XTooltipPrefix } from './tooltip.property';
 import { interval } from 'rxjs';
 
 describe(XTooltipPrefix, () => {

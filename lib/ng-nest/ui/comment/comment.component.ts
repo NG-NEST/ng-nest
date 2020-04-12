@@ -1,30 +1,16 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   SimpleChanges,
-  OnChanges,
-  Output,
-  EventEmitter
+  OnChanges
 } from '@angular/core';
-import { XCommentPrefix, XCommentNode } from './comment.type';
-import {
-  XInputNumber,
-  XDataConvert,
-  XData,
-  XIsObservable,
-  XToDataConvert,
-  XIsEmpty,
-  XIsChange
-} from '@ng-nest/ui/core';
-import { Subscription, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { XCommentPrefix, XCommentNode, XCommentProperty } from './comment.property';
+import { XIsEmpty, XIsChange, XSetData, XGetChildren } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XCommentPrefix}`,
@@ -33,24 +19,21 @@ import { map } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCommentComponent implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XCommentNode[]>;
-  @Input() @XInputNumber() contentMax = 512;
-  @Output() likeClick = new EventEmitter();
-  @Output() commentClick = new EventEmitter();
-  @Output() replyClick = new EventEmitter();
-  @Output() sureClick = new EventEmitter();
-  @Output() moreClick = new EventEmitter();
-  @ViewChild('comment', { static: true }) comment: ElementRef;
+export class XCommentComponent extends XCommentProperty implements OnChanges {
   nodes: XCommentNode[] = [];
-  private data$: Subscription | null = null;
+  private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
-
-  ngOnInit() {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   likeOnClick(node: XCommentNode) {
@@ -79,23 +62,9 @@ export class XCommentComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XCommentNode[]);
-    }
-  }
-
-  private setDataChange(value: XCommentNode[]) {
-    let getChildren = (node: XCommentNode, level: number) => {
-      node.level = level;
-      node.leaf = node.children.length > 0;
-      return node;
-    };
-    this.nodes = value.filter(x => XIsEmpty(x.pid)).map(x => getChildren(x, 0));
+    XSetData<XCommentNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XCommentNode>(x, y, 0));
+      this.cdr.detectChanges();
+    });
   }
 }

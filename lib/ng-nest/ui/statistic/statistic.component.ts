@@ -1,15 +1,6 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ElementRef,
-  ChangeDetectionStrategy,
-  ViewChild,
-  SimpleChanges,
-  OnChanges,
-  Input
-} from '@angular/core';
-import { XStatisticPrefix } from './statistic.type';
-import { XTemplate, XIsChange } from '@ng-nest/ui/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
+import { XStatisticPrefix, XStatisticProperty } from './statistic.property';
+import { XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XStatisticPrefix}`,
@@ -18,15 +9,13 @@ import { XTemplate, XIsChange } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XStatisticComponent implements OnChanges {
-  @Input() value?: XTemplate;
-  @Input() label?: XTemplate;
-  @Input() prefix?: XTemplate;
-  @Input() suffix?: XTemplate;
-  @Input() valueStyle = {};
-  @ViewChild('statistic', { static: true }) statistic: ElementRef;
+export class XStatisticComponent extends XStatisticProperty implements OnChanges {
   displayInt = '';
   displayDecimal = '';
+
+  constructor() {
+    super();
+  }
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.value) && this.setDisplay();

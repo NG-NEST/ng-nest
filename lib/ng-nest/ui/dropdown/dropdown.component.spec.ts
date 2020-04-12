@@ -4,7 +4,7 @@ import { XDropdownComponent } from './dropdown.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
-import { XDropdownPrefix } from './dropdown.type';
+import { XDropdownPrefix, XDropdownNode } from './dropdown.property';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XLayoutModule } from '@ng-nest/ui/layout';
@@ -99,7 +99,7 @@ class TestXDropdownComponent {
     { id: 21, pid: 17, label: 'CCCCC-3-1' },
     { id: 22, pid: 17, label: 'CCCCC-3-2' }
   ];
-  nodeClick(node) {
+  nodeClick(node: XDropdownNode) {
     console.log(node);
   }
 }

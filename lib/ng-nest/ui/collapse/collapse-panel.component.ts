@@ -6,14 +6,13 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  TemplateRef,
   Host,
   Optional
 } from '@angular/core';
-import { XCollapsePanelPrefix } from './collapse.type';
-import { XInputBoolean, XDropAnimation, XIsString, XTemplate } from '@ng-nest/ui/core';
+import { XCollapsePanelPrefix } from './collapse.property';
+import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
+import { XCarouselPanelProperty } from '../carousel';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
@@ -23,17 +22,17 @@ import { XCollapseComponent } from './collapse.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCollapsePanelComponent implements OnInit {
-  @Input() label?: XTemplate;
-  @Input() @XInputBoolean() active = false;
-  index?: number;
+export class XCollapsePanelComponent extends XCarouselPanelProperty implements OnInit {
+  index: number;
 
   constructor(
     @Optional() @Host() public collapseComponent: XCollapseComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.index = this.collapseComponent.start;

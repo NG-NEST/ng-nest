@@ -1,39 +1,34 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { forwardRef, Input, Renderer2 } from '@angular/core';
-import { XInputBoolean } from './convert';
-import { XJustify, XAlign, XDirection } from '../interfaces';
+import { forwardRef, Renderer2, Type } from '@angular/core';
+import { XJustify, XAlign, XDirection, XIsEmpty } from '../interfaces';
+import { XFormProp } from './property';
 
-export abstract class XControlValueAccessor implements ControlValueAccessor {
-  constructor(public renderer: Renderer2) {}
-  value?: any;
-  @Input() justify?: XJustify;
-  @Input() align?: XAlign;
-  @Input() direction?: XDirection;
-  @Input() label?: string;
-  @Input() placeholder: string = '';
-  @Input() @XInputBoolean() required?: boolean;
-  @Input() @XInputBoolean() disabled?: boolean;
-  onChange: (value: any) => void;
+export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
+  constructor(public renderer: Renderer2) {
+    super();
+  }
+  value: T;
+  onChange: (value: T) => void;
   onTouched: () => void;
-  writeValue(value: any): void {
+  writeValue(value: T): void {
     this.value = value;
   }
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: T) => void): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
   setFlex(ele: Element, justify: XJustify, align: XAlign, direction: XDirection) {
-    if (justify) this.renderer.addClass(ele, `x-justify-${this.justify}`);
-    if (align) this.renderer.addClass(ele, `x-align-${this.align}`);
-    if (direction) this.renderer.addClass(ele, `x-direction-${this.direction}`);
+    if (!XIsEmpty(justify)) this.renderer.addClass(ele, `x-justify-${this.justify}`);
+    if (!XIsEmpty(align)) this.renderer.addClass(ele, `x-align-${this.align}`);
+    if (!XIsEmpty(direction)) this.renderer.addClass(ele, `x-direction-${this.direction}`);
   }
 }
 
-export function XValueAccessor(component) {
+export function XValueAccessor<T>(component: Type<T>) {
   return { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => component), multi: true };
 }

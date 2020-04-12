@@ -34,8 +34,9 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
-  @include size('large', 2.175rem, 1rem);
-  @include size('medium', 1.875rem, 0.8rem);
+  @include size('big', 2.175rem, 1rem);
+  @include size('large', 1.875rem, 0.8rem);
+  @include size('medium', 1.625rem, 0.65rem);
   @include size('small', 1.5rem, 0.3rem);
   @include size('mini', 1.375rem, 0.25rem);
 

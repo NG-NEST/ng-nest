@@ -6,14 +6,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   Input,
   Inject,
-  OnDestroy,
-  TemplateRef
+  OnDestroy
 } from '@angular/core';
-import { XBackTopPrefix } from './back-top.type';
+import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { XClassMap, reqAnimFrame } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -26,11 +23,7 @@ import { throttleTime, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() right: string = '2.5rem';
-  @Input() bottom: string = '2.5rem';
-  @Input('visibility-height') visibilityHeight: number = 200;
-  @Input() template: TemplateRef<any>;
+export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDestroy {
   @Input() set target(el: string | HTMLElement) {
     this._target = typeof el === 'string' ? this.doc.querySelector(el) : el;
     this.setScrollEvent();
@@ -66,23 +59,18 @@ export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any
-  ) {}
+    @Inject(DOCUMENT) private doc: Document
+  ) {
+    super();
+  }
 
   ngOnInit() {
-    this.setClassMap();
     this.setScrollEvent();
   }
 
-  ngOnChanges(simple: SimpleChanges) {}
-
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.unSubject.next();
     this.unSubject.unsubscribe();
-  }
-
-  setClassMap() {
-    // this.classMap[`${XBackTopPrefix}-${this.shadow}`] = this.shadow ? true : false;
   }
 
   onBackTop() {
@@ -94,8 +82,7 @@ export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
     this.unSubject.next();
     fromEvent(this.scroll, 'scroll')
       .pipe(throttleTime(10), takeUntil(this.unSubject))
-      .subscribe(x => {
-        // if (this.scrolling) return;
+      .subscribe(() => {
         this.setScrolling();
       });
   }
@@ -115,7 +102,6 @@ export class XBackTopComponent implements OnInit, OnChanges, OnDestroy {
     reqAnimFrame(() => {
       this.scrollTop = this.scrollTop + perTick;
       if (this.scrollTop === to || duration <= 0) {
-        // setTimeout(() => (this.scrolling = false), 20);
         return;
       } else {
         this.scrollTo(to, duration - 10);

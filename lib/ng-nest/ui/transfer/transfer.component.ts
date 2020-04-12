@@ -8,25 +8,12 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
-  TemplateRef
+  OnDestroy
 } from '@angular/core';
-import { XTransferPrefix, XTransferNode, XTransferSource } from './transfer.type';
-import {
-  XClassMap,
-  XValueAccessor,
-  XControlValueAccessor,
-  XData,
-  XIsChange,
-  XIsObservable,
-  XToDataConvert,
-  XDataConvert,
-  XIsEmpty,
-  XInputBoolean,
-  XIsUndefined
-} from '@ng-nest/ui/core';
-import { Subscription, Observable, of } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty } from './transfer.property';
+import { XValueAccessor, XIsChange, XIsEmpty, XSetData } from '@ng-nest/ui/core';
+import { of, Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -37,14 +24,7 @@ import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angul
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XTransferComponent)]
 })
-export class XTransferComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data: XData<XTransferNode[]>;
-  @Input() titles: string[] = ['列表 1', '列表 2'];
-  @Input() @XInputBoolean() drag?: boolean;
-  @Input() @XInputBoolean() search?: boolean;
-  @Input() nodeTpl?: TemplateRef<any>;
-  @Input() titleTpl?: TemplateRef<any>;
-  classMap: XClassMap = {};
+export class XTransferComponent extends XTransferProperty implements OnInit, OnChanges, OnDestroy {
   nodes: XTransferNode[] = [];
   left: XTransferSource = {
     list: [],
@@ -59,7 +39,7 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
     disabledButton: true
   };
   searchInput: string = '';
-  private data$: Subscription | null = null;
+  private _unSubject = new Subject<void>();
 
   writeValue(value: any): void {
     this.value = value;
@@ -71,7 +51,6 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
   }
 
   ngOnInit() {
-    this.setClassMap();
     this.setTitles();
   }
 
@@ -79,15 +58,20 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
     XIsChange(changes.data) && this.setData();
   }
 
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+  }
+
   searchInputChange(source: XTransferSource) {
-    source.list = source.searchList.filter(x => x.label.indexOf(source.searchInput) >= 0);
+    source.list = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0);
     this.cdr.detectChanges();
   }
 
-  checkedAllChange($event, source: XTransferSource) {
+  checkedAllChange($event: any[], source: XTransferSource) {
     const checked = !XIsEmpty($event);
-    let list = source.list.filter(x => !x.disabled);
-    list.map(x => {
+    let list = source.list?.filter((x) => !x.disabled) as XTransferNode[];
+    list.map((x) => {
       x.checked = checked ? [x.id] : [];
       return x;
     });
@@ -97,9 +81,9 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
     this.cdr.detectChanges();
   }
 
-  checkedChange($event, source: XTransferSource) {
-    if (XIsEmpty($event)) source.checkedCount--;
-    else source.checkedCount++;
+  checkedChange($event: any[], source: XTransferSource) {
+    if (XIsEmpty($event)) (source.checkedCount as number)--;
+    else (source.checkedCount as number)++;
     this.setCheckedAll(source);
     this.setButtonDisabled(source);
     this.cdr.detectChanges();
@@ -107,12 +91,12 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
 
   move(from: XTransferSource, to: XTransferSource) {
     if (from.disabledButton) return;
-    let checkedItems = from.list.filter(x => !XIsEmpty(x.checked));
+    let checkedItems = from.list?.filter((x) => !XIsEmpty(x.checked)) as XTransferNode[];
     let j = 0;
-    checkedItems.forEach(x => {
-      const index = from.list.indexOf(x);
+    checkedItems.forEach((x) => {
+      const index = from.list?.indexOf(x) as number;
       x.checked = [];
-      transferArrayItem(from.list, to.list, index, j);
+      transferArrayItem(from.list as XTransferNode[], to.list as XTransferNode[], index, j);
       j++;
     });
     from.checkedAll = [];
@@ -144,8 +128,8 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
 
   private setCheckedAll(...sources: XTransferSource[]) {
     for (let source of sources) {
-      if (source.checkedCount > 0) {
-        if (source.checkedCount === source.list.filter(x => !x.disabled).length) {
+      if ((source.checkedCount as number) > 0) {
+        if (source.checkedCount === source.list?.filter((x) => !x.disabled).length) {
           source.checkedAll = [true];
         } else {
           source.checkedAll = [];
@@ -158,7 +142,7 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
   }
 
   private setCheckedCount(...sources: XTransferSource[]) {
-    for (let source of sources) source.checkedCount = source.list.filter(x => !XIsEmpty(x.checked)).length;
+    for (let source of sources) source.checkedCount = source.list?.filter((x) => !XIsEmpty(x.checked)).length;
   }
 
   private setButtonDisabled(...sources: XTransferSource[]) {
@@ -166,7 +150,7 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
   }
 
   private setValue() {
-    this.value = this.right.list.map(x => x.id);
+    this.value = this.right.list?.map((x) => x.id) as any[];
     this.onChange(this.value);
   }
 
@@ -174,40 +158,29 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
     if (this.search) {
       for (let source of sources) {
         if (XIsEmpty(source.searchInput)) {
-          source.searchList = [...source.list];
+          source.searchList = [...(source.list as XTransferNode[])];
         }
       }
     }
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XTransferNode[]);
-    }
-  }
-
-  private setDataChange(nodes: XTransferNode[]) {
-    this.nodes = nodes;
+    XSetData<XTransferNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+    });
   }
 
   private setList() {
     if (!XIsEmpty(this.value)) {
-      this.left.list = this.nodes.filter(x => this.value.indexOf(x.id) < 0);
-      this.right.list = this.nodes.filter(x => this.value.indexOf(x.id) >= 0);
+      this.left.list = this.nodes.filter((x) => this.value.indexOf(x.id) < 0);
+      this.right.list = this.nodes.filter((x) => this.value.indexOf(x.id) >= 0);
     } else {
       this.left.list = this.nodes;
     }
     this.setSearchList(this.left, this.right);
     // ToDo: x-checkbox error. Attempt to use a destroyed view: detectChanges
-    this.data$ && this.data$.unsubscribe();
-    this.data$ = of(true)
-      .pipe(delay(0))
+    of(true)
+      .pipe(delay(0), takeUntil(this._unSubject))
       .subscribe(() => this.cdr.detectChanges());
   }
 
@@ -217,9 +190,5 @@ export class XTransferComponent extends XControlValueAccessor implements OnInit,
       if (this.titles.length > 1) this.right.title = this.titles[1];
     }
     this.cdr.detectChanges();
-  }
-
-  setClassMap() {
-    // this.classMap[`${XTransferPrefix}-${this.shadow}`] = this.shadow ? true : false;
   }
 }

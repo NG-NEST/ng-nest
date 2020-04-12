@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XSelectPrefix, XSelectNode } from './select.type';
+import { XSelectPrefix, XSelectNode } from './select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
@@ -85,7 +85,7 @@ describe(XSelectPrefix, () => {
   });
 });
 
-const data: XData<XSelectNode[]> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
 @Component({
   template: `
@@ -117,7 +117,7 @@ class TestXSelectComponent {
   model1: any;
   model2: any = 'BBBB';
   constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -161,7 +161,7 @@ class TestXSelectLabelComponent {
   data = data;
   model: any;
   constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -195,7 +195,7 @@ class TestXSelectDisabledComponent {
   data = data;
   model = 'DDDD';
   constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -235,7 +235,7 @@ class TestXSelectRequiredComponent {
   template: `
     <x-row>
       <x-col>
-        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" async></x-select>
+        <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change()" async></x-select>
       </x-col>
     </x-row>
   `,
@@ -252,7 +252,7 @@ class TestXSelectRequiredComponent {
 })
 class TestXSelectAsyncComponent {
   model = 'QQ';
-  data = Observable.create(x => {
+  data = new Observable((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
       this.model = '钉钉';
@@ -261,11 +261,11 @@ class TestXSelectAsyncComponent {
     }, 2000);
   });
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
-  change(val) {
+  change() {
     this.cdr.detectChanges();
   }
 }

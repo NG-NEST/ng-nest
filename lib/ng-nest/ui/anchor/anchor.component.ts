@@ -8,14 +8,13 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
   ViewChild,
   AfterViewInit,
   Inject,
   OnDestroy
 } from '@angular/core';
-import { XAnchorPrefix, XAnchorNode, XAnchorLayout } from './anchor.type';
-import { XClassMap, computedStyle, XIsEmpty, XJustify, reqAnimFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
+import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
+import { computedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -28,28 +27,25 @@ import { throttleTime, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @Input() scroll?: HTMLElement;
-  @Input('affix-top') affixTop?: string = '0';
-  @Input() layout?: XAnchorLayout = 'right';
-  @Input() justify?: XJustify = 'start';
+export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('anchor', { static: true }) anchor: ElementRef;
   @ViewChild('content', { static: true }) content: ElementRef;
-  classMap: XClassMap = {};
   hElements: HTMLElement[] = [];
   sliderData: XSliderNode[] = [];
   activatedIndex: number = 0;
   sliderHeight?: number;
-  private scrolling = false;
-  private fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
-  private unSubject = new Subject();
+  private _scrolling = false;
+  private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
+  private _unSubject = new Subject();
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any
-  ) {}
+    @Inject(DOCUMENT) private doc: Document
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -57,40 +53,38 @@ export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDes
     this.setHeight();
   }
 
-  ngOnChanges(simple: SimpleChanges) {}
-
   ngAfterViewInit() {
     this.setScroll();
   }
 
-  ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   activatedChange(index: number) {
-    if (XIsEmpty(this.hElements) || XIsEmpty(this.scroll)) return;
-    this.scrolling = true;
+    if (XIsEmpty(this.hElements) || XIsUndefined(this.scroll)) return;
+    this._scrolling = true;
     const hElement = this.hElements[index];
     const scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 
   private setClassMap() {
-    this.classMap[`${XAnchorPrefix}-${this.layout}`] = this.layout ? true : false;
+    this.classMap[`${XAnchorPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
   }
 
   private setScroll() {
     if (!this.scroll) this.scroll = this.doc.documentElement;
     fromEvent(this.scroll, 'scroll')
-      .pipe(throttleTime(10), takeUntil(this.unSubject))
-      .subscribe(x => {
-        if (this.scrolling) return;
-        this.setActivatedByScroll(x);
+      .pipe(throttleTime(10), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        if (this._scrolling) return;
+        this.setActivatedByScroll();
       });
   }
 
-  private setActivatedByScroll(event: Event) {
+  private setActivatedByScroll() {
     let now = 0;
     this.hElements.forEach((h, index) => {
       let distance = this.scroll.scrollTop + this.anchor.nativeElement.offsetTop;
@@ -139,15 +133,15 @@ export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDes
       let bottom = parseFloat(computedStyle(this.scroll, 'padding-bottom'));
       let borderBottom = parseFloat(computedStyle(this.scroll, 'border-bottom'));
       this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
-      console.log(this.sliderHeight, this.getTop());
     }
   }
 
   private getTop() {
     if (this.affixTop === '0') return 0;
     if (XIsNumber(this.affixTop)) return Number(this.affixTop);
-    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this.fontSize;
+    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
     else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
+    return 0;
   }
 
   private scrollTo(element: HTMLElement, to: number, duration: number) {
@@ -156,7 +150,7 @@ export class XAnchorComponent implements OnInit, OnChanges, AfterViewInit, OnDes
     reqAnimFrame(() => {
       element.scrollTop = element.scrollTop + perTick;
       if (element.scrollTop === to || duration <= 0) {
-        setTimeout(() => (this.scrolling = false), 20);
+        setTimeout(() => (this._scrolling = false), 20);
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

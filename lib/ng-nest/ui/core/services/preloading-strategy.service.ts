@@ -10,7 +10,7 @@ export class XPreloadingStrategyService implements PreloadingStrategy {
 
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     if (route.data && route.data.preload) {
-      this.preloadedModules.push(route.path);
+      this.preloadedModules.push(route.path as string);
       return load();
     } else {
       return of(null);

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
-import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.type';
+import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -18,13 +18,13 @@ export class XMessageBoxComponent implements OnInit {
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.messageBox.input.showInput && this.createFormGroup();
+    this.messageBox.input?.showInput && this.createFormGroup();
   }
 
   onClose() {
-    this.messageBox.input.hide = true;
+    if (this.messageBox.input?.hide && this.messageBox.input?.hide !== true) this.messageBox.input.hide = true;
     this.cdr.detectChanges();
-    this.messageBox.ref.overlayRef.detach();
+    this.messageBox.ref?.overlayRef?.detach();
   }
 
   onCancel() {
@@ -32,16 +32,16 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   onConfirm() {
-    if (!this.messageBox.input.showInput || (this.messageBox.input.showInput && this.formGroup.valid)) {
+    if (!this.messageBox.input?.showInput || (this.messageBox.input.showInput && this.formGroup.valid)) {
       this.action = 'confirm';
       this.onClose();
     }
   }
 
-  moveDone($event) {
+  moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
-      this.messageBox.input.callback && this.messageBox.input.callback(this.action, this.getInputValue());
-      this.messageBox.ref.overlayRef.dispose();
+      this.messageBox.input?.callback && this.messageBox.input.callback(this.action, this.getInputValue());
+      this.messageBox.ref?.overlayRef?.dispose();
     }
   }
 
@@ -51,9 +51,9 @@ export class XMessageBoxComponent implements OnInit {
 
   createFormGroup() {
     this.formGroup = new FormGroup({
-      inputValue: new FormControl(this.messageBox.input.inputValue, [
+      inputValue: new FormControl(this.messageBox.input?.inputValue, [
         Validators.required,
-        Validators.pattern(this.messageBox.input.inputPattern)
+        Validators.pattern(this.messageBox.input?.inputPattern as RegExp)
       ])
     });
   }

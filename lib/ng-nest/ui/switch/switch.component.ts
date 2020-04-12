@@ -8,18 +8,18 @@ import {
   ElementRef,
   ViewChild
 } from '@angular/core';
-import { XSwitchInput } from './switch.type';
-import { fillDefault, XValueAccessor, XControlValueAccessor, removeNgTag } from '@ng-nest/ui/core';
+import { XSwitchProperty, XSwitchPrefix } from './switch.property';
+import { XValueAccessor } from '@ng-nest/ui/core';
 
 @Component({
-  selector: 'x-switch',
+  selector: `${XSwitchPrefix}`,
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSwitchComponent)]
 })
-export class XSwitchComponent extends XControlValueAccessor implements OnInit {
+export class XSwitchComponent extends XSwitchProperty implements OnInit {
   @ViewChild('switch', { static: true }) switch: ElementRef;
 
   writeValue(value: any) {
@@ -27,16 +27,12 @@ export class XSwitchComponent extends XControlValueAccessor implements OnInit {
     this.cdr.detectChanges();
   }
 
-  private _default: XSwitchInput = {};
-
-  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
     super(renderer);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.switch.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
   }
 
   switchClick() {

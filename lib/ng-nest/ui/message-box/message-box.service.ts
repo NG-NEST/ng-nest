@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault } from '@ng-nest/ui/core';
-import { XMessageBoxInput, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.type';
+import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalService } from '@ng-nest/ui/portal';
 
 @Injectable()
 export class XMessageBoxService {
-  default: XMessageBoxInput = {
+  default: XMessageBoxOption = {
     type: 'info',
     width: '20rem',
     placement: 'center',
@@ -23,19 +23,19 @@ export class XMessageBoxService {
 
   constructor(public portal: XPortalService) {}
 
-  alert(option: XTemplate | XMessageBoxInput): XMessageBoxRef {
+  alert(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: false, showInput: false });
   }
 
-  confirm(option: XTemplate | XMessageBoxInput): XMessageBoxRef {
+  confirm(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: true, showCancel: true, showInput: false });
   }
 
-  prompt(option: XTemplate | XMessageBoxInput): XMessageBoxRef {
+  prompt(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: true, showInput: true });
   }
 
-  create(option: XMessageBoxInput): XMessageBoxOverlayRef {
+  create(option: XMessageBoxOption): XMessageBoxOverlayRef {
     return this.portal.attach({
       content: XMessageBoxComponent,
       overlayConfig: {
@@ -46,21 +46,21 @@ export class XMessageBoxService {
     });
   }
 
-  private createMessageBox(option: XTemplate | XMessageBoxInput, def: XMessageBoxInput): XMessageBoxRef {
-    let opt: XMessageBoxInput;
+  private createMessageBox(option: XTemplate | XMessageBoxOption, def: XMessageBoxOption): XMessageBoxRef {
+    let opt: XMessageBoxOption;
     if (XIsXTemplate(option)) {
       opt = { title: option as XTemplate };
     } else {
-      opt = option as XMessageBoxInput;
+      opt = option as XMessageBoxOption;
     }
     fillDefault(opt, Object.assign(this.default, def));
     return this.createMessageBoxPlacement(opt);
   }
 
-  private createMessageBoxPlacement(option: XMessageBoxInput): XMessageBoxRef {
+  private createMessageBoxPlacement(option: XMessageBoxOption): XMessageBoxRef {
     let result = { ref: this.create(option), input: option };
-    result.ref.componentRef.instance.messageBox = result;
-    if (option.backdropClose) result.ref.overlayRef.backdropClick().subscribe(() => result.ref.componentRef.instance.onClose());
+    (result.ref.componentRef?.instance as any).messageBox = result;
+    if (option.backdropClose) result.ref.overlayRef?.backdropClick().subscribe(() => result.ref.componentRef?.instance.onClose());
     return result;
   }
 }

@@ -3,17 +3,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnInit,
   Renderer2,
-  OnDestroy,
-  Input,
-  Output,
-  EventEmitter,
   OnChanges,
-  SimpleChanges,
-  TemplateRef
+  SimpleChanges
 } from '@angular/core';
 import { chunk, XIsChange } from '@ng-nest/ui/core';
+import { XPickerMonthProperty } from './date-picker.property';
 
 @Component({
   selector: 'x-picker-month',
@@ -22,24 +17,17 @@ import { chunk, XIsChange } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPickerMonthComponent implements OnInit, OnChanges, OnDestroy {
+export class XPickerMonthComponent extends XPickerMonthProperty implements OnChanges {
   now = new Date();
-  @Input() display = new Date();
-  @Input() model;
-  @Input() monthTemp?: TemplateRef<any>;
-  @Output() modelChange = new EventEmitter();
-  @Output() rangeChange = new EventEmitter();
-  dates = [];
+  dates: Date[] = [];
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.display) && this.init();
   }
-
-  ngOnDestroy(): void {}
 
   init() {
     this.setMonths();
@@ -47,7 +35,7 @@ export class XPickerMonthComponent implements OnInit, OnChanges, OnDestroy {
 
   setMonths() {
     let year = this.display.getFullYear();
-    let dates = [];
+    let dates: Date[] = [];
     for (let i = 0; i < 16; i++) {
       dates = [...dates, new Date(year, i, 1)];
     }

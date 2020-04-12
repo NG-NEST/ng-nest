@@ -6,22 +6,16 @@ import {
   OnChanges,
   SimpleChanges,
   ChangeDetectorRef,
-  Output,
-  EventEmitter,
   ContentChildren,
-  ElementRef,
-  Renderer2,
   ViewChild,
   ViewEncapsulation,
-  TemplateRef,
   SimpleChange
 } from '@angular/core';
-import { XTabsPrefix, XTabsNode, XActivatedTab, XTabsType, XTabsLayout } from './tabs.type';
-import { XData, XInputBoolean, XJustify, XClassMap, XIsChange, XSize } from '@ng-nest/ui/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { XSliderNode, XSliderInput, XSliderComponent } from '@ng-nest/ui/slider';
+import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
+import { XIsChange, XSetData, XIsUndefined } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XTabsPrefix}`,
@@ -30,45 +24,39 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTabsComponent implements OnInit, OnChanges {
-  @Input() data?: XData<XTabsNode[]>;
-  @Input() justify: XJustify = 'start';
-  @Input() type?: XTabsType = 'block';
-  @Input() @XInputBoolean() animated: boolean = true;
-  @Input() nodeTpl: TemplateRef<any>;
-  @Input() layout: XTabsLayout = 'top';
-  @Input() size: XSize = 'medium';
-  @Input('node-justify') nodeJustify: XJustify;
-  @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
-
+export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   private _activatedIndex: number = 0;
   public get activatedIndex(): number {
     return this._activatedIndex;
   }
   @Input()
   public set activatedIndex(value: number) {
+    console.log('1', value);
+    if (XIsUndefined(value)) return;
+    console.log('2', value);
     this._activatedIndex = value;
+    console.log('3', value);
+    if (typeof this.sliderOption === 'undefined') {
+      this.sliderOption = new XSliderProperty();
+    }
     this.sliderOption.activatedIndex = value;
+    console.log('4', value);
     this.setFirstAndLast();
-    this.cdr.detectChanges();
+    console.log('5', value);
+    this.cdr?.detectChanges();
   }
-  @Output() indexChange?: EventEmitter<XActivatedTab> = new EventEmitter<XActivatedTab>();
 
-  sliderOption: XSliderInput = {
-    data: [],
-    layout: 'row',
-    activatedIndex: 0
-  };
-
+  sliderOption = new XSliderProperty();
   tabs: XTabsNode[] = [];
-  classMap: XClassMap = {};
-  private unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
   @ContentChildren(XTabComponent) listTabs: Array<XTabComponent>;
 
   @ViewChild(XSliderComponent, { static: false }) slider: XSliderComponent;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -83,8 +71,8 @@ export class XTabsComponent implements OnInit, OnChanges {
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -92,6 +80,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   }
 
   activatedChange(index: number) {
+    console.log(index);
     this.activatedIndex = index;
     this.indexChange.emit({
       activatedIndex: index,
@@ -119,7 +108,7 @@ export class XTabsComponent implements OnInit, OnChanges {
   private setData() {
     if (typeof this.data === 'undefined') {
       if (this.listTabs && this.listTabs.length > 0) {
-        let _data = [];
+        let _data: any[] = [];
         this.listTabs.forEach((x, index) => {
           _data = [...(_data as XTabsNode[]), { id: index + 1, label: x.label }];
         });
@@ -128,21 +117,13 @@ export class XTabsComponent implements OnInit, OnChanges {
         return;
       }
     }
-    if (this.data instanceof Array) {
-      this.setDataChange(this.data);
-    } else if (this.data instanceof BehaviorSubject || this.data instanceof Observable) {
-      this.data.pipe(takeUntil(this.unSubject)).subscribe(x => {
-        this.setDataChange(x);
-      });
-    }
-  }
-
-  private setDataChange(value: XSliderNode[]) {
-    this.tabs = value;
-    this.sliderHidden = this.tabs.length <= 1;
-    this.sliderOption.data = this.tabs;
-    this.setFirstAndLast();
-    this.cdr.detectChanges();
+    XSetData<XTabsNode>(this.data, this._unSubject).subscribe((x) => {
+      this.tabs = x;
+      this.sliderHidden = this.tabs.length <= 1;
+      this.sliderOption.data = this.tabs;
+      this.setFirstAndLast();
+      this.cdr.detectChanges();
+    });
   }
 
   private setSliderOption() {
@@ -151,6 +132,6 @@ export class XTabsComponent implements OnInit, OnChanges {
 
   private setFirstAndLast() {
     this.classMap[`${XTabsPrefix}-is-first`] = this.activatedIndex === 0;
-    this.classMap[`${XTabsPrefix}-is-last`] = this.activatedIndex === this.tabs.length - 1;
+    this.classMap[`${XTabsPrefix}-is-last`] = this.activatedIndex === this.tabs?.length - 1;
   }
 }

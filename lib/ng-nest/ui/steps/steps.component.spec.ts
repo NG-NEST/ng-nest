@@ -4,7 +4,7 @@ import { XStepsComponent } from './steps.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XStepsModule } from '@ng-nest/ui/steps';
-import { XStepsPrefix } from './steps.type';
+import { XStepsPrefix } from './steps.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 

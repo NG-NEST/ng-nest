@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { XCascadeNode } from '@ng-nest/ui/cascade';
 import { XData } from '@ng-nest/ui/core';
 
@@ -7,11 +7,11 @@ import { XData } from '@ng-nest/ui/core';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent implements OnInit {
+export class ExDefaultComponent {
   model1: number;
   model2: number = 22;
   model3: number = 9;
-  data: XData<XCascadeNode[]> = [
+  data: XData<XCascadeNode> = [
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },
     { id: 3, label: 'CCCC' },
@@ -49,7 +49,4 @@ export class ExDefaultComponent implements OnInit {
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
   ];
-  constructor() {}
-
-  ngOnInit() {}
 }

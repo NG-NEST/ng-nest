@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
 import {
-  XNotificationInput,
+  XNotificationOption,
   XNotificationOverlayRef,
   XNotificationType,
   XNotificationPlacement,
   XNotificationRef,
   XNotificationPortal
-} from './notification.type';
+} from './notification.property';
 import { XNotificationComponent } from './notification.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { XPortalService } from '@ng-nest/ui/portal';
 export class XNotificationService {
   notifications: XNotificationPlacement = {};
 
-  default: XNotificationInput = {
+  default: XNotificationOption = {
     type: 'info',
     width: '20rem',
     placement: 'top-end',
@@ -29,23 +29,23 @@ export class XNotificationService {
 
   constructor(public portal: XPortalService) {}
 
-  info(option: XTemplate | XNotificationInput): XNotificationRef {
+  info(option: XTemplate | XNotificationOption): XNotificationRef {
     return this.createNotification(option, 'info');
   }
 
-  success(option: XTemplate | XNotificationInput): XNotificationRef {
+  success(option: XTemplate | XNotificationOption): XNotificationRef {
     return this.createNotification(option, 'success');
   }
 
-  warning(option: XTemplate | XNotificationInput): XNotificationRef {
+  warning(option: XTemplate | XNotificationOption): XNotificationRef {
     return this.createNotification(option, 'warning');
   }
 
-  error(option: XTemplate | XNotificationInput): XNotificationRef {
+  error(option: XTemplate | XNotificationOption): XNotificationRef {
     return this.createNotification(option, 'error');
   }
 
-  create(option: XNotificationInput): XNotificationOverlayRef {
+  create(option: XNotificationOption): XNotificationOverlayRef {
     return this.portal.attach({
       content: XNotificationComponent,
       overlayConfig: {
@@ -55,28 +55,29 @@ export class XNotificationService {
     });
   }
 
-  private createNotification(option: XTemplate | XNotificationInput, type: XNotificationType): XNotificationRef {
-    let opt: XNotificationInput;
+  private createNotification(option: XTemplate | XNotificationOption, type: XNotificationType): XNotificationRef {
+    let opt: XNotificationOption;
     if (XIsXTemplate(option)) {
       opt = { title: option as XTemplate, type: type };
     } else {
-      opt = option as XNotificationInput;
+      opt = option as XNotificationOption;
       opt.type = type;
     }
     fillDefault(opt, this.default);
     return this.createNotificationPlacement(opt);
   }
 
-  private createNotificationPlacement(option: XNotificationInput): XNotificationRef {
+  private createNotificationPlacement(option: XNotificationOption): XNotificationRef {
+    if (typeof option.placement === 'undefined') return {};
     let msgPlacement = this.notifications[option.placement];
     this.setDuration(option);
-    if (XIsEmpty(msgPlacement) || !msgPlacement.ref.overlayRef.hasAttached()) {
+    if (XIsEmpty(msgPlacement) || !msgPlacement.ref?.overlayRef?.hasAttached()) {
       this.notifications[option.placement] = {
         ref: this.create(option),
         list: [option]
       };
     } else {
-      this.notifications[option.placement].list = [...this.notifications[option.placement].list, option];
+      this.notifications[option.placement].list = [...(this.notifications[option.placement].list as XNotificationOption[]), option];
     }
     this.notificationChange(this.notifications[option.placement]);
 
@@ -84,12 +85,12 @@ export class XNotificationService {
   }
 
   private notificationChange(notification: XNotificationRef) {
-    if (!notification.ref.overlayRef.hasAttached()) return;
+    if (!notification.ref?.overlayRef?.hasAttached() || !notification?.ref?.componentRef?.instance) return;
     notification.ref.componentRef.instance.notification = notification;
     notification.ref.componentRef.instance.cdr.detectChanges();
   }
 
-  private setDuration(option: XNotificationInput) {
+  private setDuration(option: XNotificationOption) {
     if (option.duration) {
       option.duration$ = of(true)
         .pipe(delay(option.duration))
@@ -100,7 +101,8 @@ export class XNotificationService {
     }
   }
 
-  private removeNotification(option: XNotificationInput) {
-    this.notifications[option.placement].ref.componentRef.instance.onClose(option);
+  private removeNotification(option: XNotificationOption) {
+    if (typeof option.placement === 'undefined') return;
+    this.notifications[option.placement].ref?.componentRef?.instance.onClose(option);
   }
 }

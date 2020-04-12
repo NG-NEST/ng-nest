@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
-import { XTimeAgoPrefix } from './time-ago.type';
+import { XTimeAgoPrefix } from './time-ago.property';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 
 describe(XTimeAgoPrefix, () => {

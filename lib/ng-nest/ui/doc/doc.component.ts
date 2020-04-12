@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
-import { DocPrefix } from './doc.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { XDocPrefix } from './doc.property';
 
 @Component({
   selector: 'x-doc',
@@ -8,10 +8,8 @@ import { DocPrefix } from './doc.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDocComponent implements OnInit {
+export class XDocComponent {
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, DocPrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XDocPrefix);
   }
-
-  ngOnInit() {}
 }

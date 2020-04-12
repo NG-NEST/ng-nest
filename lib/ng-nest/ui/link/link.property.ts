@@ -2,7 +2,7 @@ import { XProperty, XInputBoolean } from '@ng-nest/ui/core';
 import { Input } from '@angular/core';
 
 /**
- * Link 组件名
+ * Link
  * @selector x-link
  * @decorator component
  */
@@ -23,15 +23,15 @@ export class XLinkProperty extends XProperty {
   /**
    * 下划线
    */
-  @Input() @XInputBoolean() underline: boolean;
+  @Input() @XInputBoolean() underline: boolean = false;
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled?: boolean;
+  @Input() @XInputBoolean() disabled: boolean = false;
   /**
    * 图标靠右对齐
    */
-  @Input('icon-right') @XInputBoolean() iconRight?: boolean;
+  @Input('icon-right') @XInputBoolean() iconRight: boolean = false;
   /**
    * 链接类型
    */

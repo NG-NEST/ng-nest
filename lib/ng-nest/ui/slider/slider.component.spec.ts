@@ -4,7 +4,7 @@ import { XSliderComponent } from './slider.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderModule } from '@ng-nest/ui/slider';
-import { XSliderPrefix, XSliderNode } from './slider.type';
+import { XSliderPrefix, XSliderNode } from './slider.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
@@ -79,8 +79,8 @@ describe(XSliderPrefix, () => {
   ],
 })
 class TestXSliderComponent {
-  data: XData<XSliderNode[]> = ['用户管理', '配置管理', '角色管理', '任务', '工作', '消息', '流程', '新闻'];
-  dataCustom: XData<XSliderNode[]> = [
+  data: XData<XSliderNode> = ['用户管理', '配置管理', '角色管理', '任务', '工作', '消息', '流程', '新闻'];
+  dataCustom: XData<XSliderNode> = [
     { label: '用户管理', icon: 'fto-box' },
     { label: '配置管理', icon: 'fto-settings' },
     '角色管理',

@@ -4,14 +4,14 @@
       [columns]="groupColumns"
       [query]="groupQuery"
       [service]="service"
-      tableHeaderHidden
-      tableFooterHidden
-      allowSelectRow
-      firstRowSelected
-      [rowPrimary]="groupQuery.group"
-      [activatedRow]="groupActivatedRow"
-      [searchPlaceholder]="groupSearchPlaceholder"
-      [serialNumberHidden]="groupSearchSerialNumberHidden"
+      header-hidden
+      footer-hidden
+      allow-select-row
+      first-row-selected
+      [row-primary]="groupQuery.group"
+      [activated-row]="groupActivatedRow"
+      [search-placeholder]="groupSearchPlaceholder"
+      [serial-number-hidden]="groupSearchSerialNumberHidden"
       (rowClick)="groupRowClick($event)"
     ></x-table>
   </div>
@@ -34,7 +34,7 @@
         </ng-container>
       </div>
     </div>
-    <div class="x-table-header" *ngIf="!tableHeaderHidden">
+    <div class="x-table-header" *ngIf="!headerHidden">
       <ul>
         <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
           <span>{{ serialNumberText }}</span>
@@ -67,25 +67,18 @@
           <div>{{ (index - 1) * size + i + 1 }}</div>
         </li>
         <ng-container *ngFor="let column of columns; index as j">
-          <li
-            [style.width.rem]="column.width"
-            [style.flex]="column.flex"
-            [title]="item[column.id]"
-            [class.x-table-no-flex]="column.width"
-          >
+          <li [style.width.rem]="column.width" [style.flex]="column.flex" [title]="item[column.id]" [class.x-table-no-flex]="column.width">
             <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
               <div [innerHTML]="item[column.id]"></div>
             </ng-container>
             <ng-container *ngIf="!j && rowIconActions.length > 0">
-              <ng-container
-                *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"
-              ></ng-container>
+              <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
             </ng-container>
           </li>
         </ng-container>
       </ul>
     </div>
-    <div class="x-table-footer" *ngIf="!tableFooterHidden">
+    <div class="x-table-footer" *ngIf="!footerHidden">
       <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
     </div>
   </div>

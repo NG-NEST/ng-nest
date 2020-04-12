@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XSliderSelectPrefix } from './slider-select.type';
+import { XSliderSelectPrefix } from './slider-select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 

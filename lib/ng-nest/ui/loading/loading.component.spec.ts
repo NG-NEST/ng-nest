@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
-import { XLoadingPrefix } from './loading.type';
+import { XLoadingPrefix } from './loading.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { of } from 'rxjs';

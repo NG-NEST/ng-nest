@@ -8,7 +8,7 @@
   color: $--x-text;
   font-size: $--x-font-size;
   > .x-buttons {
-    > .x-button {
+    > x-button > .x-button {
       padding: 0 0.2rem;
       color: $--x-text-300;
       .x-icon {

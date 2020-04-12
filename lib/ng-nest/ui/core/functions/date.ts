@@ -1,11 +1,11 @@
-import { XIsDate, XIsString, XIsNumber } from '../interfaces';
+import { XIsDate, XIsNumber } from '../interfaces';
 
 export type XDate = string | Date | number;
 
 export function XToDate(date: XDate): Date {
   if (XIsDate(date) || XIsNumber(date)) {
     return new Date(date);
-  } else if (XIsString(date)) {
+  } else {
     return new Date(Date.parse(date as string));
   }
 }

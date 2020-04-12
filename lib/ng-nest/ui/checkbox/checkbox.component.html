@@ -2,7 +2,7 @@
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
-        *ngFor="let item of checkboxNodes"
+        *ngFor="let item of nodes"
         [icon]="item.icon"
         [title]="item.title"
         [size]="size"
@@ -18,7 +18,7 @@
 <ng-template #default>
   <div
     class="x-checkbox-item"
-    *ngFor="let item of checkboxNodes"
+    *ngFor="let item of nodes"
     [class.x-checked]="value && value?.indexOf(item.id) >= 0"
     [class.x-disabled]="item.disabled"
     [class.x-indeterminate]="indeterminate"

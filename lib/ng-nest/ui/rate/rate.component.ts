@@ -1,18 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-  Input
-} from '@angular/core';
-import { XRatePrefix } from './rate.type';
-import { XValueAccessor, XControlValueAccessor, XInputNumber, XIsEmpty } from '@ng-nest/ui/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
+import { XValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
+import { XRatePrefix, XRateProperty } from './rate.property';
 
 @Component({
   selector: `${XRatePrefix}`,
@@ -22,8 +10,7 @@ import { XValueAccessor, XControlValueAccessor, XInputNumber, XIsEmpty } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRateComponent)]
 })
-export class XRateComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XInputNumber() count = 5;
+export class XRateComponent extends XRateProperty {
   rates = Array(this.count)
     .fill(0)
     .map((_, i) => i + 1);
@@ -42,16 +29,7 @@ export class XRateComponent extends XControlValueAccessor implements OnInit, OnC
     super(renderer);
   }
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      // this.setData();
-    }
-  }
-
-  hoverRate(rate) {
+  hoverRate(rate: number) {
     if (this.disabled) return;
     this.hoverActivated = rate;
     this.cdr.detectChanges();
@@ -64,7 +42,7 @@ export class XRateComponent extends XControlValueAccessor implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  rateClick(rate) {
+  rateClick(rate: number) {
     if (this.disabled) return;
     this.value = this.value === rate ? 0 : rate;
     if (this.onChange) this.onChange(this.value);

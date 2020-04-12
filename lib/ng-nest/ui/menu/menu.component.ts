@@ -8,15 +8,11 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
   OnDestroy,
-  TemplateRef,
-  Output,
-  EventEmitter,
   AfterViewInit
 } from '@angular/core';
-import { XMenuPrefix, XMenuLayout, XMenuNode, XMenuTrigger } from './menu.type';
-import { XClassMap, XDataConvert, XData, XIsChange, XIsObservable, XToDataConvert, XSize, XIsEmpty, XJustify } from '@ng-nest/ui/core';
+import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
+import { XClassMap, XIsChange, XIsObservable, XToDataConvert, XIsEmpty, XSetData, XGetChildren } from '@ng-nest/ui/core';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -27,22 +23,17 @@ import { map, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @Input() @XDataConvert() data: XData<XMenuNode[]>;
-  @Input() layout: XMenuLayout = 'row';
-  @Input() size: XSize = 'medium';
-  @Input() trigger: XMenuTrigger = 'hover';
-  @Input() nodeTpl: TemplateRef<any>;
-  @Output() nodeClick = new EventEmitter<XMenuNode>();
-  classMap: XClassMap = {};
+export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   nodeClassMap: XClassMap = {};
   datas: XMenuNode[] = [];
   nodes: XMenuNode[] = [];
   rootIndex: number = 0;
   activated: XMenuNode;
-  private unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -57,8 +48,8 @@ export class XMenuComponent implements OnInit, OnChanges, OnDestroy, AfterViewIn
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   onNodeClick(node: XMenuNode) {
@@ -93,38 +84,17 @@ export class XMenuComponent implements OnInit, OnChanges, OnDestroy, AfterViewIn
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      (this.data as Observable<any>)
-        .pipe(
-          map(x => XToDataConvert(x)),
-          takeUntil(this.unSubject)
-        )
-        .subscribe(x => {
-          this.setDataChange(x);
-        });
-    } else {
-      this.setDataChange(this.data as XMenuNode[]);
-    }
-  }
-
-  private setDataChange(value: XMenuNode[]) {
-    this.datas = value;
-    const getChildren = (node: XMenuNode, level: number) => {
-      node.level = level;
-      node.children = value.filter(y => y.pid === node.id);
-      node.leaf = node.children.length > 0;
-      if (node.leaf) node.children.map(y => getChildren(y, level + 1));
-      return node;
-    };
-    this.nodes = value.filter(x => XIsEmpty(x.pid)).map(x => getChildren(x, 0));
-    this.cdr.detectChanges();
+    XSetData<XMenuNode>(this.data, this._unSubject).subscribe((x) => {
+      this.datas = x;
+      this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XMenuNode>(x, y, 0));
+      this.cdr.detectChanges();
+    });
   }
 
   private getRoot(value: XMenuNode) {
     let root = value;
     const getParent = (node: XMenuNode) => {
-      const parent = this.datas.find(x => node.pid === x.id);
+      const parent = this.datas.find((x) => node.pid === x.id) as XMenuNode;
       if (XIsEmpty(parent?.pid)) root = parent;
       else getParent(parent);
     };

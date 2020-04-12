@@ -7,10 +7,10 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCommentModule } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
-import { XCommentPrefix, XCommentNode } from './comment.type';
+import { XCommentPrefix, XCommentNode } from './comment.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
-import { XData, XAddMinutes, XAddHours } from '@ng-nest/ui/core';
+import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 
 describe(XCommentPrefix, () => {
@@ -37,12 +37,7 @@ describe(XCommentPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-comment
-        [data]="data"
-        (likeClick)="likeClick($event)"
-        (sureClick)="sureClick($event)"
-        (moreClick)="moreClick($event)"
-      ></x-comment>
+      <x-comment [data]="data" (likeClick)="likeClick($event)" (sureClick)="sureClick($event)" (moreClick)="moreClick($event)"></x-comment>
     </div>
   `,
   styles: [
@@ -147,7 +142,7 @@ class TestXCommentComponent {
 
   constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
 
-  createNode(pid, content, index = 0) {
+  createNode(pid: any, content: string | undefined, index = 0) {
     return {
       id: `${pid}-${Math.floor(Math.random() * 100)}`,
       pid: pid,
@@ -159,11 +154,13 @@ class TestXCommentComponent {
   }
 
   likeClick(node: XCommentNode) {
+    if (!node.likes) node.likes = 0;
     node.likes++;
     this.cdr.detectChanges();
   }
 
   sureClick(node: XCommentNode) {
+    if (!node.children) node.children = [];
     let children: XCommentNode[] = [this.createNode(node.pid, node.replyContent), ...node.children];
     node.children = children;
     this.cdr.detectChanges();
@@ -171,6 +168,7 @@ class TestXCommentComponent {
 
   moreClick(node: XCommentNode) {
     let nodes: XCommentNode[] = [];
+    if (!node.children) node.children = [];
     for (let i = 1; i <= 10; i++) {
       nodes = [...nodes, this.createNode(node.id, node.content, -i)];
     }

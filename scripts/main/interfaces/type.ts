@@ -55,7 +55,7 @@ export interface NcType {
    */
   value?: string;
   /**
-   * 组件名/指令名
+   * 组件/指令名
    *
    * @type {string}
    * @memberof NcType

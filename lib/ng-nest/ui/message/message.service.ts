@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
-import { XMessageInput, XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal } from './message.type';
+import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault } from '@ng-nest/ui/core';
+import { XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal, XMessageOption } from './message.property';
 import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { XPortalService } from '@ng-nest/ui/portal';
 export class XMessageService {
   messages: XMessagePlacement = {};
 
-  default: XMessageInput = {
+  default: XMessageOption = {
     type: 'info',
     width: '16rem',
     placement: 'top',
@@ -23,23 +23,23 @@ export class XMessageService {
 
   constructor(public portal: XPortalService) {}
 
-  info(option: XTemplate | XMessageInput): XMessageRef {
+  info(option: XTemplate | XMessageOption): XMessageRef {
     return this.createMessage(option, 'info');
   }
 
-  success(option: XTemplate | XMessageInput): XMessageRef {
+  success(option: XTemplate | XMessageOption): XMessageRef {
     return this.createMessage(option, 'success');
   }
 
-  warning(option: XTemplate | XMessageInput): XMessageRef {
+  warning(option: XTemplate | XMessageOption): XMessageRef {
     return this.createMessage(option, 'warning');
   }
 
-  error(option: XTemplate | XMessageInput): XMessageRef {
+  error(option: XTemplate | XMessageOption): XMessageRef {
     return this.createMessage(option, 'error');
   }
 
-  create(option: XMessageInput): XMessageOverlayRef {
+  create(option: XMessageOption): XMessageOverlayRef {
     return this.portal.attach({
       content: XMessageComponent,
       overlayConfig: {
@@ -49,28 +49,30 @@ export class XMessageService {
     });
   }
 
-  private createMessage(option: XTemplate | XMessageInput, type: XMessageType): XMessageRef {
-    let opt: XMessageInput;
+  private createMessage(option: XTemplate | XMessageOption, type: XMessageType): XMessageRef {
+    let opt: XMessageOption;
     if (XIsXTemplate(option)) {
       opt = { title: option as XTemplate, type: type };
     } else {
-      opt = option as XMessageInput;
+      opt = option as XMessageOption;
       opt.type = type;
     }
     fillDefault(opt, this.default);
+
     return this.createMessagePlacement(opt);
   }
 
-  private createMessagePlacement(option: XMessageInput): XMessageRef {
+  private createMessagePlacement(option: XMessageOption): XMessageRef {
+    if (typeof option.placement === 'undefined') return {};
     let msgPlacement = this.messages[option.placement];
     this.setDuration(option);
-    if (XIsEmpty(msgPlacement) || !msgPlacement.ref.overlayRef.hasAttached()) {
+    if (XIsEmpty(msgPlacement) || !msgPlacement.ref?.overlayRef?.hasAttached()) {
       this.messages[option.placement] = {
         ref: this.create(option),
         list: [option]
       };
     } else {
-      this.messages[option.placement].list = [...this.messages[option.placement].list, option];
+      this.messages[option.placement].list = [...(this.messages[option.placement].list as XMessageOption[]), option];
     }
     this.messageChange(this.messages[option.placement]);
 
@@ -78,12 +80,12 @@ export class XMessageService {
   }
 
   private messageChange(message: XMessageRef) {
-    if (!message.ref.overlayRef.hasAttached()) return;
+    if (!message.ref?.overlayRef?.hasAttached() || !message?.ref?.componentRef?.instance) return;
     message.ref.componentRef.instance.message = message;
     message.ref.componentRef.instance.cdr.detectChanges();
   }
 
-  private setDuration(option: XMessageInput) {
+  private setDuration(option: XMessageOption) {
     if (option.duration) {
       option.duration$ = of(true)
         .pipe(delay(option.duration))
@@ -93,7 +95,8 @@ export class XMessageService {
     }
   }
 
-  private removeMessage(option: XMessageInput) {
-    this.messages[option.placement].ref.componentRef.instance.onClose(option);
+  private removeMessage(option: XMessageOption) {
+    if (typeof option.placement === 'undefined') return;
+    this.messages[option.placement].ref?.componentRef?.instance.onClose(option);
   }
 }

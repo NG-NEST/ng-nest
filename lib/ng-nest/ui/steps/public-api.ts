@@ -1,3 +1,3 @@
 export * from './steps.component';
 export * from './steps.module';
-export * from './steps.type';
+export * from './steps.property';

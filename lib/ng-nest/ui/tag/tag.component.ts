@@ -1,18 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Input,
-  ViewChild,
-  Output,
-  EventEmitter
-} from '@angular/core';
-import { XTagPrefix } from './tag.type';
-import { XTemplate, XType, XClassMap, XSize, XInputBoolean } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { XTagPrefix, XTagProperty } from './tag.property';
+import { XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTagPrefix}`,
@@ -21,24 +9,18 @@ import { XTemplate, XType, XClassMap, XSize, XInputBoolean } from '@ng-nest/ui/c
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTagComponent implements OnInit {
-  @Input() type?: XType;
-  @Input() size?: XSize;
-  @Input() @XInputBoolean() closable?: boolean;
-  @Input() @XInputBoolean() dark?: boolean;
-  @Output() close = new EventEmitter();
-  @ViewChild('tag', { static: true }) tag: ElementRef;
-  classMap: XClassMap = {};
-
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+export class XTagComponent extends XTagProperty implements OnInit {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
   }
 
   setClassMap() {
-    this.classMap[`${XTagPrefix}-${this.type}`] = this.type ? true : false;
-    this.classMap[`${XTagPrefix}-${this.size}`] = this.size ? true : false;
+    this.classMap[`${XTagPrefix}-${this.type}`] = !XIsEmpty(this.type);
+    this.classMap[`${XTagPrefix}-${this.size}`] = !XIsEmpty(this.size);
     this.classMap[`${XTagPrefix}-dark`] = this.dark;
   }
 

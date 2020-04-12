@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XDialogPrefix } from './dialog.type';
+import { XDialogPrefix } from './dialog.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
 import { XMessageBoxService, XMessageBoxModule, XMessageBoxAction } from '@ng-nest/ui/message-box';

@@ -19,7 +19,7 @@ import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange } from '@ng-nest/ui
 import * as _ from 'lodash';
 
 // 来源路径对应
-export const XSouceUrl = {
+export const XSouceUrl: { [prop: string]: string } = {
   adf: `ant-design/fill/`,
   ado: `ant-design/outline/`,
   adt: `ant-design/twotone/`,
@@ -98,12 +98,12 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   setSvgs(svgs: string[]) {
-    if (svgs && svgs.length > 0) {
+    if (svgs?.length > 0) {
       let firstChild = this.elementRef.nativeElement.firstChild;
       if (firstChild) {
         this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
       }
-      this._svgElement = this.buildSvg(svgs.shift());
+      this._svgElement = this.buildSvg(svgs.shift() as string) as SVGAElement;
       // this.setAnimates(svgs);
       this.setAttributes(this._svgElement);
       this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
@@ -112,9 +112,10 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   setSourceUrl(type: string) {
-    if (typeof type === 'undefined') return;
+    if (typeof type === 'undefined') return '';
     const split = type.split('-');
     const souce = split.shift();
+    if (typeof souce === 'undefined') return '';
     const souceUrl = XSouceUrl[souce];
     const fileName = split.join('-');
     if (!souceUrl || !fileName) {
@@ -130,7 +131,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     }
   }
 
-  buildSvg(svgStr: string): SVGAElement {
+  buildSvg(svgStr: string): SVGAElement | undefined {
     const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGAElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
@@ -177,19 +178,19 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   //<animate begin="mouseenter" dur="500ms" repeatCount="1" attributeName="d" from="M86.425,13.204l5.648,12.741H0.55   l0.125-12.616L0.55,0.544h91.523L86.425,13.204z" to="M92.725,13.521l0.044,12.887H1.245   l7-12.616l-7-12.785h91.523L92.725,13.521z" fill="freeze"></animate>
 
   setAnimates(svgs: string[]) {
-    if (svgs && svgs.length > 0) {
-      let svg = this.createSvg(svgs.shift());
+    if (svgs?.length > 0) {
+      let svg = this.createSvg(svgs.shift() as string);
       for (let i = 0; i < this._svgElement.children.length; i++) {
         let child = this._svgElement.children[i];
-        let toChild = svg.children[i];
-        if (child && toChild && child.nodeName === 'path' && toChild.nodeName === 'path') {
+        let toChild = svg?.children[i];
+        if (child?.nodeName === 'path' && toChild?.nodeName === 'path') {
           let toAnimate = document.createElement('animate');
           toAnimate.setAttribute('dur', '500ms');
           toAnimate.setAttribute('repeatCount', '1');
           toAnimate.setAttribute('attributeName', 'd');
           toAnimate.setAttribute('fill', 'freeze');
-          toAnimate.setAttribute('from', child.getAttribute('d'));
-          toAnimate.setAttribute('to', toChild.getAttribute('d'));
+          toAnimate.setAttribute('from', child.getAttribute('d') as string);
+          toAnimate.setAttribute('to', toChild.getAttribute('d') as string);
           this.renderer.appendChild(child, toAnimate);
         }
       }

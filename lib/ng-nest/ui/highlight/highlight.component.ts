@@ -1,41 +1,30 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
-  Input,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { HighlightPrefix, XHighlightInput } from './highlight.type';
-import { fillDefault } from '@ng-nest/ui/core';
+import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import * as hljs from 'highlight.js';
 
 @Component({
-  selector: 'x-highlight',
+  selector: `${XHighlightPrefix}`,
   templateUrl: './highlight.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XHighlightComponent implements OnInit, OnChanges, AfterViewInit {
-  @Input() type?: string;
-  @Input() data?: string;
-
+export class XHighlightComponent extends XHighlightProperty implements OnChanges, AfterViewInit {
   @ViewChild('code', { static: false }) codeRef: ElementRef;
 
-  private _default: XHighlightInput = {};
-
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.renderer.addClass(this.elementRef.nativeElement, HighlightPrefix);
-  }
-
-  ngOnInit() {
-    fillDefault(this, this._default);
+    super();
+    this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -4,9 +4,9 @@ import { XApiComponent } from './api.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XApiModule } from './api.module';
-import { ApiPrefix } from './api.type';
+import { XApiPrefix } from './api.property';
 
-describe(ApiPrefix, () => {
+describe(XApiPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XApiModule],
@@ -28,15 +28,13 @@ describe(ApiPrefix, () => {
     });
     it('should className.', () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(ApiPrefix);
+      expect(element.classList).toContain(XApiPrefix);
     });
   });
 });
 
 @Component({
   selector: 'test-x-api',
-  template: `
-    <x-api>x-api</x-api>
-  `
+  template: ` <x-api>x-api</x-api> `
 })
 class TestXApiComponent {}

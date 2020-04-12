@@ -1,4 +1,4 @@
-import { Subscription, Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -7,41 +7,26 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
   ViewChild
 } from '@angular/core';
-import { XSelectNode } from './select.type';
-import {
-  XValueAccessor,
-  XControlValueAccessor,
-  XData,
-  XIsEmpty,
-  XInputBoolean,
-  XDataConvert,
-  XToDataConvert,
-  XIsObservable,
-  XIsChange
-} from '@ng-nest/ui/core';
+import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
+import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
-import { map } from 'rxjs/operators';
-import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'x-select',
+  selector: `${XSelectPrefix}`,
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSelectComponent)]
 })
-export class XSelectComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XSelectNode[]>;
-  @Input() @XInputBoolean() async?: boolean;
+export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
   @ViewChild('select', { static: true }) select: ElementRef;
 
@@ -61,7 +46,7 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   enter: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
-  portal: XPortalOverlayRef;
+  portal: XPortalOverlayRef<XSelectPortalComponent>;
   icon: string = 'fto-chevron-down';
   iconSpin: boolean = false;
   box: DOMRect;
@@ -71,15 +56,14 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   asyncLoading = false;
   scrollFunction: Function;
   resizeFunction: Function;
-  private data$: Subscription | null = null;
+  private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
 
   constructor(
     public renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
+    private viewContainerRef: ViewContainerRef
   ) {
     super(renderer);
   }
@@ -93,31 +77,17 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      if (!this.async) {
-        this.data$ && this.data$.unsubscribe();
-        this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-          this.setDataChange(x);
-        });
-      }
-    } else {
-      this.setDataChange(this.data as XSelectNode[]);
-    }
-  }
-
-  private setDataChange(value: XSelectNode[]) {
-    this.nodes = value;
-    this.setDisplayValue();
-    this.cdr.detectChanges();
-  }
-
-  change() {
-    // if (this.onChange) this.onChange(this.value);
+    if (this.async) return;
+    XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+      this.setDisplayValue();
+      this.cdr.detectChanges();
+    });
   }
 
   menter() {
@@ -150,19 +120,18 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
 
   setDisplayValue() {
     if (this.nodes.length > 0) {
-      let node = this.nodes.find(x => x.id === this.value);
+      let node = this.nodes.find((x) => x.id === this.value);
       this.displayValue = node ? node.label : '';
     }
   }
 
   portalAttached() {
-    return this.portal?.overlayRef.hasAttached();
+    return this.portal.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef.dispose();
-      // this.removeListen();
+      this.portal.overlayRef?.dispose();
       return true;
     }
     return false;
@@ -172,12 +141,12 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
     if (this.disabled || this.iconSpin) return;
     if (this.closePortal()) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
-      this.data$ && this.data$.unsubscribe();
       this.icon = 'fto-loader';
       this.iconSpin = true;
       this.cdr.detectChanges();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
+      XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
+        this.nodes = x;
+        this.setDisplayValue();
         this.createPortal();
         this.icon = 'fto-chevron-down';
         this.iconSpin = false;
@@ -189,41 +158,40 @@ export class XSelectComponent extends XControlValueAccessor implements OnInit, O
   }
 
   createPortal() {
-    this.nodes.filter(x => x.selected).map(x => (x.selected = false));
+    this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
     this.portal = this.portalService.attach({
       content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        scrollStrategy: this.overlay.scrollStrategies.reposition({ autoClose: true }),
         width: this.box.width,
-        positionStrategy: this.setPlacement()
+        positionStrategy: this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end')
       }
     });
     this.setInstance();
   }
 
   setInstance() {
-    this.portal.componentRef.instance.data = this.nodes;
-    this.portal.componentRef.instance.value = this.value;
-    this.portal.componentRef.instance.valueChange = this.valueChange;
-    this.portal.componentRef.instance.closePortal = () => this.closePortal();
-    this.portal.componentRef.instance.nodeEmit = node => this.nodeClick(node);
-    this.portal.componentRef.changeDetectorRef.detectChanges();
+    let componentRef = this.portal.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      datas: this.nodes,
+      nodes: this.nodes,
+      value: this.value,
+      valueChange: this.valueChange,
+      closePortal: () => this.closePortal(),
+      nodeEmit: (node: XSelectNode) => this.nodeClick(node)
+    });
+    componentRef.changeDetectorRef.detectChanges();
   }
 
   nodeClick(node: XSelectNode) {
-    event.preventDefault();
     if (node.disabled) return;
     this.displayValue = node.label;
     this.value = node.id;
     this.closePortal();
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
-  }
-
-  setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'top-start');
   }
 }

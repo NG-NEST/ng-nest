@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTextRetractModule } from '@ng-nest/ui/text-retract';
 import { FormsModule } from '@angular/forms';
-import { XTextRetractPrefix } from './text-retract.type';
+import { XTextRetractPrefix } from './text-retract.property';
 
 describe(XTextRetractPrefix, () => {
   beforeEach(async(() => {
@@ -33,12 +33,12 @@ describe(XTextRetractPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-text-retract [label]="label"></x-text-retract>
+      <x-text-retract [content]="content"></x-text-retract>
     </div>
   `
 })
 class TestXTextRetractComponent {
-  label = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
+  content = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。

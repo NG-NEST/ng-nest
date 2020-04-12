@@ -6,12 +6,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
   Host,
   Optional
 } from '@angular/core';
-import { XCarouselPanelPrefix } from './carousel.type';
-import { XInputBoolean, XDropAnimation } from '@ng-nest/ui/core';
+import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.property';
+import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -24,13 +23,12 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCarouselPanelComponent implements OnInit {
-  @Input() @XInputBoolean() active = false;
-  index?: number;
-  width?: number;
-  height?: number;
-  animating?: boolean;
-  preTranslate?: number;
+export class XCarouselPanelComponent extends XCarouselPanelProperty implements OnInit {
+  index: number;
+  width: number;
+  height: number;
+  animating: boolean;
+  preTranslate: number;
   cardScale = 0.83;
   scale = 1;
   inStage = false;
@@ -43,7 +41,9 @@ export class XCarouselPanelComponent implements OnInit {
     public elementRef: ElementRef,
     public sanitizer: DomSanitizer,
     public cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.carousel.start++;
@@ -54,14 +54,14 @@ export class XCarouselPanelComponent implements OnInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.updateSub.subscribe(x => {
+      this.updateSub.subscribe((x) => {
         if (x) this.update();
       });
     });
   }
 
   ngOnDestroy(): void {
-    this.updateSub$ && this.updateSub$.unsubscribe();
+    this.updateSub$?.unsubscribe();
   }
 
   setActive() {
@@ -109,14 +109,10 @@ export class XCarouselPanelComponent implements OnInit {
       this.carousel.start === Math.abs(offset) ||
       this.carousel.card;
     this.setClass('x-carousel-animating', this.animating);
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'transform',
-      `${translateType}(${translate}px) scale(${this.scale})`
-    );
+    this.renderer.setStyle(this.elementRef.nativeElement, 'transform', `${translateType}(${translate}px) scale(${this.scale})`);
   }
 
-  calcCardTranslate(index, activeIndex) {
+  calcCardTranslate(index: number, activeIndex: number) {
     const parentWidth = this.carousel.carousel.nativeElement.offsetWidth;
     let offset: number = index - activeIndex;
     let activeFirstOrLast = this.carousel.start > 1 && this.carousel.start === Math.abs(offset);

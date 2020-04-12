@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
-import { XBorderPrefix } from './border.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
+import { XBorderPrefix } from './border.property';
 
 @Component({
   selector: 'x-border',
@@ -8,10 +8,8 @@ import { XBorderPrefix } from './border.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XBorderComponent implements OnInit {
+export class XBorderComponent {
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.renderer.addClass(this.elementRef.nativeElement, XBorderPrefix);
   }
-
-  ngOnInit() {}
 }

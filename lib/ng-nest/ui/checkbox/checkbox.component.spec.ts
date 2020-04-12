@@ -1,6 +1,6 @@
 import { XButtonModule } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
-import { XCheckboxPrefix, XCheckboxNode } from './checkbox.type';
+import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
 
 describe(XCheckboxPrefix, () => {
@@ -123,9 +123,9 @@ describe(XCheckboxPrefix, () => {
   });
 });
 
-const data: XData<XCheckboxNode[]> = ['QQ', '微信', '钉钉', '微博'];
+const data = ['QQ', '微信', '钉钉', '微博'];
 
-const iconData: XData<XCheckboxNode[]> = [
+const iconData: XData<XCheckboxNode> = [
   { label: 'QQ', icon: 'ado-qq' },
   { label: '微信', icon: 'ado-wechat' },
   { label: '钉钉', icon: 'ado-dingding' },
@@ -152,9 +152,9 @@ const iconData: XData<XCheckboxNode[]> = [
   ]
 })
 class TestXCheckboxComponent {
-  data: XData<XCheckboxNode[]> = data;
+  data: XData<XCheckboxNode> = data;
   model = ['钉钉'];
-  change(value) {
+  change(value: string[]) {
     console.log(value);
   }
 }
@@ -182,8 +182,8 @@ class TestXCheckboxComponent {
   ]
 })
 class TestXCheckboxDisabledComponent {
-  data: XData<XCheckboxNode[]> = data;
-  dataDisabled: XData<XCheckboxNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  data: XData<XCheckboxNode> = data;
+  dataDisabled: XData<XCheckboxNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
   model = ['钉钉'];
 }
 
@@ -217,10 +217,10 @@ class TestXCheckboxDisabledComponent {
 })
 class TestXCheckboxButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode[]> = data;
-  dataDisabled: XData<XCheckboxNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  data: XData<XCheckboxNode> = data;
+  dataDisabled: XData<XCheckboxNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
   model = ['钉钉'];
-  change($event) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -255,15 +255,16 @@ class TestXCheckboxButtonComponent {
 })
 class TestXCheckboxIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode[]> = iconData;
-  dataDisabled: XData<XCheckboxNode[]> = [
+  data: XData<XCheckboxNode> = iconData;
+  dataDisabled: XData<XCheckboxNode> = [
     { label: 'QQ', icon: 'ado-qq' },
     { label: '微信', icon: 'ado-wechat' },
     { label: '钉钉', disabled: true, icon: 'ado-dingding' },
     { label: '微博', icon: 'ado-weibo' }
   ];
   model = ['钉钉'];
-  change($event) {
+  change(value: string[]) {
+    console.log(value);
     this.cdr.detectChanges();
   }
 }
@@ -292,12 +293,12 @@ class TestXCheckboxIconComponent {
 })
 class TestXCheckboxAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode[]>;
+  data: XData<XCheckboxNode>;
   model = ['钉钉'];
   loading = false;
   getData() {
     this.loading = true;
-    this.data = Observable.create(x => {
+    this.data = new Observable((x) => {
       // 替换成http请求，或者data直接定义成 Observable 对象
       setTimeout(() => {
         this.model = ['微博'];
@@ -337,17 +338,17 @@ class TestXCheckboxAsyncComponent {
 })
 class TestXCheckboxIndeterminateComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  checkAllData: XData<XCheckboxNode[]> = [{ id: true, label: '全选' }];
+  checkAllData: XData<XCheckboxNode> = [{ id: true, label: '全选' }];
   checkAll = [false];
   indeterminate = true;
-  data: XData<XCheckboxNode[]> = ['QQ', '微信', '钉钉', '微博'];
+  data: string[] = ['QQ', '微信', '钉钉', '微博'];
   model: any = ['QQ'];
-  change(value) {
-    this.model = value.indexOf(true) >= 0 ? (this.data as Array<any>).map(x => x) : [];
+  change(value: boolean[]) {
+    this.model = value.indexOf(true) >= 0 ? this.data.map((x) => x) : [];
     this.indeterminate = false;
   }
-  itemChange(value) {
-    this.checkAll = [value.length === (this.data as Array<any>).length];
-    this.indeterminate = value.length > 0 && value.length < (this.data as Array<any>).length;
+  itemChange(value: string[]) {
+    this.checkAll = [value.length === this.data.length];
+    this.indeterminate = value.length > 0 && value.length < this.data.length;
   }
 }

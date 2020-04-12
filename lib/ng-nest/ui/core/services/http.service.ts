@@ -11,35 +11,35 @@ export class XHttpService {
   /**
    * get请求
    */
-  get(url: string, params?) {
+  get(url: string, params?: { [prop: string]: any }) {
     return this.request('GET', url, params);
   }
 
   /**
    * get请求
    */
-  post(url: string, params?): Observable<any> {
+  post(url: string, params?: { [prop: string]: any }): Observable<any> {
     return this.request('POST', url, params);
   }
 
   /**
    * put请求
    */
-  put(url: string, params?): Observable<any> {
+  put(url: string, params?: { [prop: string]: any }): Observable<any> {
     return this.request('PUT', url, params);
   }
 
   /**
    * delete请求
    */
-  delete(url: string, params?): Observable<any> {
+  delete(url: string, params?: { [prop: string]: any }): Observable<any> {
     return this.request('DELETE', url, params);
   }
 
   /**
    * request通用请求
    */
-  request(method: string, url: string, params?, option?): Observable<any> {
+  request(method: string, url: string, params?: { [prop: string]: any }, option?: { [prop: string]: any }): Observable<any> {
     if (!option) option = {};
     let opt = {};
     url = `${this.api}${url}`;
@@ -51,13 +51,13 @@ export class XHttpService {
     }
     Object.assign(opt, option);
     this.addHeader(opt);
-    return Observable.create(x => {
+    return new Observable((x) => {
       this.http.request(method, url, opt).subscribe(
         (y: any) => {
           x.next(y);
           x.complete();
         },
-        y => {
+        (y) => {
           x.error(y);
           x.complete();
           this.handleError(y);
@@ -78,7 +78,7 @@ export class XHttpService {
   /**
    * 添加头部信息
    */
-  private addHeader(option) {
+  private addHeader(option: { [prop: string]: any }) {
     // let auth = this.setting.getSession("Auth");
     // if (auth && auth["token"]) {
     //   option["headers"] = { Authorization: `Bearer ${auth["token"]}` };

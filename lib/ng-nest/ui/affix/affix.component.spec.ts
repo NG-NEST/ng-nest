@@ -4,7 +4,7 @@ import { XAffixComponent } from './affix.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAffixModule } from '@ng-nest/ui/affix';
-import { XAffixPrefix } from './affix.type';
+import { XAffixPrefix } from './affix.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XAffixPrefix, () => {

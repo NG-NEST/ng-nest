@@ -6,13 +6,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XTextRetractPrefix } from './text-retract.type';
-import { XInputNumber, XIsChange } from '@ng-nest/ui/core';
+import { XTextRetractPrefix, XTextRetractProperty } from './text-retract.property';
+import { XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
@@ -21,29 +19,29 @@ import { XInputNumber, XIsChange } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTextRetractComponent implements OnInit, OnChanges {
-  @Input() label?: string;
-  @Input() @XInputNumber() max: number = 256;
-  @ViewChild('textRetract', { static: true }) textRetract: ElementRef;
+export class XTextRetractComponent extends XTextRetractProperty implements OnInit, OnChanges {
   displayValue: string;
   retract: boolean = false;
   unfold: boolean = true;
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setDisplayValue();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.label) && this.setDisplayValue();
+    XIsChange(changes.content) && this.setDisplayValue();
   }
 
   setDisplayValue() {
-    if (this.label && this.label.length > this.max) {
-      this.displayValue = this.label.substring(0, this.max);
+    if (this.content && this.content.length > this.max) {
+      this.displayValue = this.content.substring(0, this.max);
       this.retract = true;
     } else {
-      this.displayValue = this.label;
+      this.displayValue = this.content;
     }
     this.cdr.markForCheck();
   }
@@ -51,9 +49,9 @@ export class XTextRetractComponent implements OnInit, OnChanges {
   toggle() {
     this.unfold = !this.unfold;
     if (this.unfold) {
-      this.displayValue = this.label.substring(0, this.max);
+      this.displayValue = this.content.substring(0, this.max);
     } else {
-      this.displayValue = this.label;
+      this.displayValue = this.content;
     }
     this.cdr.detectChanges();
   }

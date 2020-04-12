@@ -1,6 +1,6 @@
 import { coerceBooleanProperty, _isNumberValue } from '@angular/cdk/coercion';
-import { XIdentityInput, XData, XIsNull, XIsUndefined, XIsArray, XIsValue, XIsObject, XIsObservable } from '../interfaces';
-import { Observable, Subject } from 'rxjs';
+import { XData, XIsNull, XIsUndefined, XIsArray, XIsValue, XIsObject, XIsObservable, XParentIdentityProperty } from '../interfaces';
+import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 export function XToBoolean(value: boolean): boolean {
@@ -13,7 +13,7 @@ function XToNumber(value: number | string, fallbackValue: number = 0): number {
   return _isNumberValue(value) ? Number(value) : fallbackValue;
 }
 
-export function XToDataConvert(value: XData<XIdentityInput>): any {
+export function XToDataConvert<T>(value: XData<T>): XData<T> {
   if (XIsArray(value)) {
     return (value as []).map((x: any) => {
       if (XIsValue(x)) {
@@ -28,32 +28,40 @@ export function XToDataConvert(value: XData<XIdentityInput>): any {
   return value;
 }
 
-export function XSetData<T>(data: XData<T>, unSubject: Subject<any>): Observable<T> {
-  return Observable.create(x => {
-    const result = (res: T) => {
+export function XSetData<T>(data: XData<T>, unSubject: Subject<void>): Observable<T[]> {
+  return new Observable((x: Observer<T[]>) => {
+    const result = (res: T[]) => {
       x.next(res);
       x.complete();
     };
     if (typeof data === 'undefined') {
-      result([] as any);
+      result([]);
     } else {
       if (XIsObservable(data)) {
-        (data as Observable<T>)
+        (data as Observable<T[]>)
           .pipe(
-            map(y => XToDataConvert(y) as T),
+            map((y) => XToDataConvert(y)),
             takeUntil(unSubject)
           )
-          .subscribe(y => {
-            result(y);
+          .subscribe((y) => {
+            result(y as T[]);
           });
       } else {
-        result(data);
+        result(XToDataConvert(data) as T[]);
       }
     }
   });
 }
 
 export function XSetClassMap() {}
+
+export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], node: T, level: number) {
+  node.level = level;
+  node.children = nodes.filter((y) => y.pid === node.id);
+  node.leaf = node.children?.length > 0;
+  if (node.leaf) node.children.map((y) => XGetChildren(nodes, y, level + 1));
+  return node;
+}
 
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
   function propDecorator(target: any, propName: string, originalDescriptor?: TypedPropertyDescriptor<any>): any {

@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
-import { XAffixPrefix } from './affix.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { XAffixPrefix, XAffixProperty } from './affix.property';
 
 @Component({
   selector: `${XAffixPrefix}`,
@@ -8,7 +8,4 @@ import { XAffixPrefix } from './affix.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAffixComponent {
-  @Input() top?: string;
-  @Input() left?: string;
-}
+export class XAffixComponent extends XAffixProperty {}

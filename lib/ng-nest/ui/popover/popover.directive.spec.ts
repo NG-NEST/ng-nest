@@ -5,7 +5,7 @@ import { XPopoverDirective } from './popover.directive';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPopoverModule } from '@ng-nest/ui/popover';
-import { XPopoverPrefix } from './popover.type';
+import { XPopoverPrefix } from './popover.property';
 import { interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 

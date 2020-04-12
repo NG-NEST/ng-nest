@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAlertModule } from '@ng-nest/ui/alert';
 import { FormsModule } from '@angular/forms';
-import { XAlertPrefix } from './alert.type';
+import { XAlertPrefix } from './alert.property';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonModule } from '@ng-nest/ui/button';
@@ -54,7 +54,7 @@ describe(XAlertPrefix, () => {
     <div class="row">
       <x-alert title="不可关闭" type="success" hide-close> </x-alert>
       <x-alert title="自定义关闭内容" type="info" close-text="知道了"> </x-alert>
-      <x-alert title="关闭回调" type="warning" (close)="close()"> </x-alert>
+      <x-alert title="关闭事件" type="warning" (close)="close()"> </x-alert>
       <x-alert [title]="titleTpl" type="success" show-icon duration="10000" content="秒后关闭"></x-alert>
       <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
     </div>

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class ExDefaultComponent {
   activatedIndex = 0;
-  data = ['步骤 1', '步骤 2', '步骤 3'];
+  data: string[] = ['步骤 1', '步骤 2', '步骤 3'];
   next() {
     this.activatedIndex++;
     if (this.activatedIndex > this.data.length - 1) this.activatedIndex = 0;

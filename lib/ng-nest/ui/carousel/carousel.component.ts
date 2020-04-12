@@ -6,15 +6,12 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   SimpleChanges,
   OnChanges,
-  Output,
-  EventEmitter
+  ViewChild
 } from '@angular/core';
-import { XCarouselPrefix, XCarouselTrigger, XCarouselArrow, XCarouselDirection } from './carousel.type';
-import { XInputBoolean, XInputNumber, XIsUndefined, XIsChange, XClassMap } from '@ng-nest/ui/core';
+import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
+import { XIsUndefined, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -24,32 +21,23 @@ import { BehaviorSubject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCarouselComponent implements OnInit, OnChanges {
-  @Input() @XInputNumber() active: number = 0;
-  @Input() height?: string = '15rem';
-  @Input() trigger?: XCarouselTrigger = 'hover';
-  @Input() arrow?: XCarouselArrow = 'hover';
-  @Input() direction?: XCarouselDirection = 'horizontal';
-  @Input() @XInputBoolean() autoplay: boolean = true;
-  @Input() interval: number = 3000;
-  @Input() @XInputBoolean() outside?: boolean;
-  @Input() @XInputBoolean() card?: boolean;
-  @ViewChild('carousel', { static: true }) carousel: ElementRef;
-  @Output() activeChange = new EventEmitter();
+export class XCarouselComponent extends XCarouselProperty implements OnInit, OnChanges {
+  @ViewChild('carousel') carousel: ElementRef;
   start: number = -1;
   before: number;
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
-  classMap: XClassMap = {};
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
   }
 
   ngAfterViewInit() {
-    this.panelChanges.forEach(sub => sub.next(true));
+    this.panelChanges.forEach((sub) => sub.next(true));
   }
 
   // ngAfterViewChecked(): void {
@@ -65,7 +53,7 @@ export class XCarouselComponent implements OnInit, OnChanges {
 
   ngOnDestroy(): void {
     this.timer && clearInterval(this.timer);
-    this.panelChanges.forEach(x => x.complete());
+    this.panelChanges.forEach((x) => x.complete());
   }
 
   action(index: number, event?: string): void {
@@ -86,12 +74,12 @@ export class XCarouselComponent implements OnInit, OnChanges {
     this.before = this.active;
     const nextValue = index > this.start ? 0 : index < 0 ? this.start : index;
     this.active = nextValue;
-    this.panelChanges.forEach(sub => sub.next(true));
+    this.panelChanges.forEach((sub) => sub.next(true));
     this.activeChange.emit(this.active);
     this.cdr.detectChanges();
   }
 
   setClassMap() {
-    this.classMap[`${XCarouselPrefix}-${this.direction}`] = this.direction ? true : false;
+    this.classMap[`${XCarouselPrefix}-${this.direction}`] = !XIsEmpty(this.direction);
   }
 }

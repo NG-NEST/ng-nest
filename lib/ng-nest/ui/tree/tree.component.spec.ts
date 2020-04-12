@@ -4,7 +4,7 @@ import { XTreeComponent } from './tree.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeModule } from '@ng-nest/ui/tree';
-import { XTreePrefix, XTreeNode } from './tree.type';
+import { XTreePrefix, XTreeNode } from './tree.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
@@ -124,11 +124,11 @@ class TreeServiceTest {
   ];
 
   getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
-    return Observable.create(x => {
+    return new Observable((x) => {
       let result = this.data
-        .filter(y => y.pid === pid)
-        .map(x => {
-          x.leaf = this.data.find(y => y.pid === x.id) ? true : false;
+        .filter((y) => y.pid === pid)
+        .map((x) => {
+          x.leaf = this.data.find((y) => y.pid === x.id) ? true : false;
           return x;
         });
       setTimeout(() => {
@@ -285,14 +285,7 @@ class TestXTreeCustomComponent {
         </ul>
       </x-col>
       <x-col span="8">
-        <x-tree
-          #treeCom
-          checkbox
-          [data]="service.data"
-          (activatedChange)="activatedChange($event)"
-          [expandedAll]="expandedAll"
-        >
-        </x-tree>
+        <x-tree #treeCom checkbox [data]="service.data" (activatedChange)="activatedChange($event)" [expandedAll]="expandedAll"> </x-tree>
       </x-col>
     </x-row>
   `,

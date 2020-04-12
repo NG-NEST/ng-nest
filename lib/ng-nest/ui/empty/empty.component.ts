@@ -1,15 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  ViewChild,
-  Input
-} from '@angular/core';
-import { XEmptyPrefix } from './empty.type';
-import { XTemplate } from '@ng-nest/ui/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { XEmptyPrefix, XEmptyProperty } from './empty.property';
 
 @Component({
   selector: `${XEmptyPrefix}`,
@@ -18,12 +8,8 @@ import { XTemplate } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XEmptyComponent {
-  @Input() img?: XTemplate;
-  @Input() content?: XTemplate;
-  @ViewChild('empty', { static: true }) empty: ElementRef;
-  isImageTemp: boolean = false;
-  isContentTemp: boolean = false;
-
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+export class XEmptyComponent extends XEmptyProperty {
+  constructor() {
+    super();
+  }
 }

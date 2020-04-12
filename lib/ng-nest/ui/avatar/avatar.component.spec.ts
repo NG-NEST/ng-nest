@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
-import { XAvatarPrefix } from './avatar.type';
+import { XAvatarPrefix } from './avatar.property';
 
 describe(XAvatarPrefix, () => {
   beforeEach(async(() => {

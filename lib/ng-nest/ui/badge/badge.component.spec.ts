@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XBadgeModule } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
-import { XBadgePrefix } from './badge.type';
+import { XBadgePrefix } from './badge.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XBadgePrefix, () => {

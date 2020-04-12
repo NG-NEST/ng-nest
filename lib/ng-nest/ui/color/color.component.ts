@@ -30,7 +30,7 @@ export class XColorComponent extends XColorProperty implements OnInit {
     this.colors = colors;
   }
 
-  mixColors(color1, color2, weight) {
+  mixColors(color1: string, color2: string, weight: number) {
     let rgb1 = this.toRgb(color1);
     let rgb2 = this.toRgb(color2);
     let weight1 = weight;
@@ -43,11 +43,11 @@ export class XColorComponent extends XColorProperty implements OnInit {
     };
   }
 
-  toHex(rgb) {
+  toHex(rgb: { r: number; g: number; b: number }) {
     return '#' + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
   }
 
-  toRgb(hex) {
+  toRgb(hex: string) {
     if (hex.indexOf('#') == 0) hex = hex.slice(1);
     let num = parseInt(hex, 16);
     let r = num >> 16;

@@ -11,28 +11,28 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { PaginationPrefix } from './pagination.type';
+import { XPaginationPrefix } from './pagination.property';
 import { XInputNumber, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
-  selector: 'x-pagination',
+  selector: `${XPaginationPrefix}`,
   templateUrl: './pagination.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPaginationComponent implements OnChanges {
-  @Input() @XInputNumber() index?: number = 1;
-  @Input() @XInputNumber() size?: number = 10;
-  @Input() @XInputNumber() total?: number = 0;
+  @Input() @XInputNumber() index: number = 1;
+  @Input() @XInputNumber() size: number = 10;
+  @Input() @XInputNumber() total: number = 0;
   @Output() indexChange = new EventEmitter<number>();
-  lastIndex?: number;
+  lastIndex: number;
   indexes: number[] = [];
   indexFirst: number = 1;
   indexLast: number = 1;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, PaginationPrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

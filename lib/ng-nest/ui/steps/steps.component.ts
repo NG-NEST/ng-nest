@@ -8,24 +8,13 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
   OnDestroy,
   AfterViewInit
 } from '@angular/core';
-import { XStepsPrefix, XStepsNode, XStepsLayout, XStepsStatus } from './steps.type';
-import {
-  XClassMap,
-  XDataConvert,
-  XData,
-  XIsChange,
-  XIsObservable,
-  XToDataConvert,
-  XIsUndefined,
-  XIsNumber,
-  XInputNumber
-} from '@ng-nest/ui/core';
-import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { XStepsPrefix, XStepsNode, XStepsProperty } from './steps.property';
+import { XIsChange, XIsUndefined, XIsNumber, XSetData, XIsEmpty } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: `${XStepsPrefix}`,
@@ -34,17 +23,13 @@ import { map, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XStepsComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @Input() @XDataConvert() data?: XData<XStepsNode[]>;
-  @Input() layout: XStepsLayout = 'row';
-  @Input() @XInputNumber() activatedIndex: number;
-  @Input('start-index') @XInputNumber() startIndex: number = 0;
-  @Input() status: XStepsStatus;
+export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   nodes: XStepsNode[] = [];
-  classMap: XClassMap = {};
-  private unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -56,8 +41,8 @@ export class XStepsComponent implements OnInit, OnChanges, OnDestroy, AfterViewI
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   ngAfterViewInit(): void {
@@ -65,28 +50,16 @@ export class XStepsComponent implements OnInit, OnChanges, OnDestroy, AfterViewI
   }
 
   setClassMap() {
-    this.classMap[`${XStepsPrefix}-${this.layout}`] = this.layout ? true : false;
+    this.classMap[`${XStepsPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      (this.data as Observable<any>)
-        .pipe(
-          map(x => XToDataConvert(x)),
-          takeUntil(this.unSubject)
-        )
-        .subscribe(x => {
-          this.setDataChange(x);
-        });
-    } else {
-      this.setDataChange(this.data as XStepsNode[]);
-    }
-  }
-
-  private setDataChange(value: XStepsNode[]) {
-    this.nodes = this.setStatus(value);
-    this.cdr.detectChanges();
+    XSetData<XStepsNode>(this.data, this._unSubject)
+      .pipe(map((x) => this.setStatus(x)))
+      .subscribe((x) => {
+        this.nodes = x;
+        this.cdr.detectChanges();
+      });
   }
 
   private setStatus(value: XStepsNode[]) {

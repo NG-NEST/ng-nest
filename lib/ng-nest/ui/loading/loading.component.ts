@@ -8,37 +8,28 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
   HostBinding,
   ViewChild,
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import { XLoadingPrefix } from './loading.type';
-import { XClassMap, XInputBoolean, XSize, XTemplate, XIsChange } from '@ng-nest/ui/core';
+import { XLoadingPrefix, XLoadingProperty } from './loading.property';
+import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
-  selector: `${XLoadingPrefix},[${XLoadingPrefix}]`,
+  selector: `${XLoadingPrefix}, [${XLoadingPrefix}]`,
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XLoadingComponent implements OnInit, OnChanges {
-  @Input('x-loading') @XInputBoolean() loading: boolean = false;
-  @Input('size') size: XSize;
-  @Input('text') text: XTemplate;
-  @Input('icon') icon: string;
-  @Input('color') color: string;
-  @Input('full-screen') @XInputBoolean() fullScreen: boolean;
-  @Input() background: string;
+export class XLoadingComponent extends XLoadingProperty implements OnInit, OnChanges {
   @HostBinding('class.x-loading-parent') get getLoading() {
     return this.loading;
   }
   @ViewChild('loadingTpl', { static: true }) loadingTpl: TemplateRef<void>;
-  classMap: XClassMap = {};
-  portalRef: XPortalOverlayRef;
+  portalRef: XPortalOverlayRef<any>;
 
   constructor(
     public renderer: Renderer2,
@@ -46,7 +37,9 @@ export class XLoadingComponent implements OnInit, OnChanges {
     public cdr: ChangeDetectorRef,
     public portal: XPortalService,
     public viewContainerRef: ViewContainerRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -57,7 +50,7 @@ export class XLoadingComponent implements OnInit, OnChanges {
   }
 
   setClassMap() {
-    this.classMap[`${XLoadingPrefix}-${this.size}`] = this.size ? true : false;
+    this.classMap[`${XLoadingPrefix}-${this.size}`] = !XIsEmpty(this.size);
   }
 
   setLoading() {
@@ -84,7 +77,7 @@ export class XLoadingComponent implements OnInit, OnChanges {
   }
 
   closeFullScreen() {
-    if (this.portalRef && this.portalRef.overlayRef.hasAttached()) {
+    if (this.portalRef?.overlayRef?.hasAttached()) {
       this.portalRef.overlayRef.detach();
     }
   }

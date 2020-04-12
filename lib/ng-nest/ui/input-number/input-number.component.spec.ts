@@ -5,7 +5,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XInputNumberPrefix } from './input-number.type';
+import { XInputNumberPrefix } from './input-number.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XInputNumberPrefix, () => {

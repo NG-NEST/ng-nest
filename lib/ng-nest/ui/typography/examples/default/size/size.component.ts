@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-size',
-  templateUrl: './size.component.html',
-  styleUrls: ['./size.component.scss']
+  templateUrl: './size.component.html'
 })
-export class ExSizeComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class ExSizeComponent {}

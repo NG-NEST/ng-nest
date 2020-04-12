@@ -2,11 +2,8 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  ViewChild,
   SimpleChanges,
   OnChanges,
   Input,
@@ -14,10 +11,8 @@ import {
   EventEmitter,
   NgZone
 } from '@angular/core';
-import { XCountdownPrefix } from './statistic.type';
-import { XStatisticComponent } from './statistic.component';
+import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
 import { interval, Subscription } from 'rxjs';
-import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: `${XCountdownPrefix}`,
@@ -26,16 +21,13 @@ import { Platform } from '@angular/cdk/platform';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCountdownComponent extends XStatisticComponent implements OnInit, OnChanges {
-  @Input() format: string = 'HH:mm:ss';
-  @Output() readonly finish = new EventEmitter<void>();
-  @ViewChild('countdown', { static: true }) countdown: ElementRef;
+export class XCountdownComponent extends XCountdownProperty implements OnInit, OnChanges {
   diff: number;
   period = 1000 / 30;
-  private target: number;
-  private updater_: Subscription | null;
+  private _target: number;
+  private _updater: Subscription | null;
 
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, private platform: Platform) {
+  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone) {
     super();
   }
 
@@ -45,7 +37,7 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.value) {
-      this.target = Number(changes.value.currentValue);
+      this._target = Number(changes.value.currentValue);
       if (!changes.value.isFirstChange()) {
         this.syncTimer();
       }
@@ -57,7 +49,7 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
   }
 
   syncTimer(): void {
-    if (this.target >= Date.now()) {
+    if (this._target >= Date.now()) {
       this.startTimer();
     } else {
       this.stopTimer();
@@ -67,7 +59,7 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
   startTimer(): void {
     this.ngZone.runOutsideAngular(() => {
       this.stopTimer();
-      this.updater_ = interval(this.period).subscribe(() => {
+      this._updater = interval(this.period).subscribe(() => {
         this.updateValue();
         this.cdr.detectChanges();
       });
@@ -75,14 +67,14 @@ export class XCountdownComponent extends XStatisticComponent implements OnInit, 
   }
 
   stopTimer(): void {
-    if (this.updater_) {
-      this.updater_.unsubscribe();
-      this.updater_ = null;
+    if (this._updater) {
+      this._updater.unsubscribe();
+      this._updater = null;
     }
   }
 
   updateValue(): void {
-    this.diff = Math.max(this.target - Date.now(), 0);
+    this.diff = Math.max(this._target - Date.now(), 0);
     if (this.diff === 0) {
       this.stopTimer();
       this.finish.emit();

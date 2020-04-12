@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { XTimeRangePrefix } from './time-range.property';
 
 export const timeUnits: Array<[string, number]> = [
   ['Y', 1000 * 60 * 60 * 24 * 365], // years
@@ -10,7 +11,7 @@ export const timeUnits: Array<[string, number]> = [
   ['S', 1] // million seconds
 ];
 
-@Pipe({ name: 'xTimeRange' })
+@Pipe({ name: `${XTimeRangePrefix}` })
 export class XTimeRangePipe implements PipeTransform {
   transform(value: string | number, format: string = 'HH:mm:ss'): string {
     let duration = Number(value || 0);
@@ -36,8 +37,6 @@ export class XTimeRangePipe implements PipeTransform {
   }
 
   getRepeatedElement(length: number, element: string): string {
-    return Array(length)
-      .fill(element)
-      .join('');
+    return Array(length).fill(element).join('');
   }
 }

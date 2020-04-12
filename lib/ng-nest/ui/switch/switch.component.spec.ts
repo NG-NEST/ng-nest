@@ -1,4 +1,3 @@
-import { interval } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSwitchComponent } from './switch.component';
@@ -6,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XSwitchPrefix } from './switch.type';
+import { XSwitchPrefix } from './switch.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XSwitchPrefix, () => {
@@ -82,7 +81,7 @@ class TestXSwitchComponent {
   model1: boolean;
   model2 = true;
   constructor(private cdr: ChangeDetectorRef) {}
-  change(event) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -119,7 +118,7 @@ class TestXSwitchComponent {
   ]
 })
 class TestXSwitchLabelComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 }
 
 @Component({

@@ -1,8 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { XToDate, XDate } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
+import { XTimeAgoPrefix } from './time-ago.property';
 
-@Pipe({ name: 'xTimeAgo' })
+@Pipe({ name: `${XTimeAgoPrefix}` })
 export class XTimeAgoPipe implements PipeTransform {
   constructor(private datePipe: DatePipe) {}
   transform(input: XDate): string {
@@ -13,7 +14,7 @@ export class XTimeAgoPipe implements PipeTransform {
     return this.getDiff(date);
   }
 
-  getDiff(date: Date) {
+  getDiff(date: Date): string {
     const time = date.getTime();
     const second = 1000;
     const minute = 1000 * 60;
@@ -22,7 +23,7 @@ export class XTimeAgoPipe implements PipeTransform {
     const now = new Date();
     const diffValue = now.getTime() - time;
     if (diffValue < 0) {
-      return;
+      return '';
     }
     const dayDiff = diffValue / day;
     const hourDiff = diffValue / hour;
@@ -30,9 +31,9 @@ export class XTimeAgoPipe implements PipeTransform {
     const secondDiff = diffValue / second;
     let result = '';
     if (date.getFullYear() !== now.getFullYear()) {
-      result = this.datePipe.transform(time, 'yyyy-MM-dd');
+      result = this.datePipe.transform(time, 'yyyy-MM-dd') as string;
     } else if (dayDiff >= 1) {
-      result = this.datePipe.transform(time, 'MM-dd HH:mm');
+      result = this.datePipe.transform(time, 'MM-dd HH:mm') as string;
     } else if (hourDiff >= 1) {
       result = `${Math.floor(hourDiff)}小时前`;
     } else if (minDiff >= 1) {

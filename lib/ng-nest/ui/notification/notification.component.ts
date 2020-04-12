@@ -1,13 +1,6 @@
-import {
-  Component,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
-import { XNotificationPrefix, XNotificationInput, XNotificationRef } from './notification.type';
+import { XNotificationPrefix, XNotificationOption, XNotificationRef } from './notification.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -24,23 +17,23 @@ export class XNotificationComponent {
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
-  onClose(item: XNotificationInput) {
-    this.notification.list.splice(this.notification.list.indexOf(item), 1);
+  onClose(item: XNotificationOption) {
+    this.notification.list?.splice(this.notification.list.indexOf(item), 1);
     item.duration$ && item.duration$.unsubscribe();
     this.cdr.detectChanges();
   }
 
-  moveDone($event) {
+  moveDone($event: { toState: string }) {
     if ($event.toState === 'void' && XIsEmpty(this.notification.list)) {
-      this.notification.ref.overlayRef.detach();
+      this.notification.ref?.overlayRef?.detach();
     }
   }
 
-  onEnter(item: XNotificationInput) {
+  onEnter(item: XNotificationOption) {
     item.duration$ && item.duration$.unsubscribe();
   }
 
-  onLeave(item: XNotificationInput) {
+  onLeave(item: XNotificationOption) {
     if (item.duration) {
       item.duration$ = of(true)
         .pipe(delay(item.duration))

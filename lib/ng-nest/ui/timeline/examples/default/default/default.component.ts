@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  templateUrl: './default.component.html'
 })
-export class ExDefaultComponent implements OnInit {
+export class ExDefaultComponent {
   now = new Date();
   data: XTimelineNode[] = [
     {
@@ -36,7 +35,4 @@ export class ExDefaultComponent implements OnInit {
       time: XAddHours(this.now, -6)
     }
   ];
-  constructor() {}
-
-  ngOnInit() {}
 }

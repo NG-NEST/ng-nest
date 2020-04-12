@@ -11,7 +11,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   // 存储的复用路由
   public static storages: XRouteReuseStorage[] = [];
   // 用一个临时变量记录待删除的路由
-  private static waitDelete: string;
+  private static waitDelete: string | null;
 
   /**
    * 表示对所有路由允许复用 如果你有路由不想利用可以在这加一些业务逻辑判断
@@ -37,7 +37,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    * 若 path 在缓存中有的都认为允许还原路由
    */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return !!_.find(XReuseStrategyService.storages, x => x.id == this.getRouteUrl(route));
+    return !!_.find(XReuseStrategyService.storages, (x) => x.id == this.getRouteUrl(route));
   }
 
   /**
@@ -45,10 +45,10 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    */
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
     if (!route.routeConfig) {
-      return null;
+      return {};
     }
-    let stroage = _.find(XReuseStrategyService.storages, x => x.id == this.getRouteUrl(route));
-    return stroage ? stroage.handle : null;
+    let stroage = _.find(XReuseStrategyService.storages, (x) => x.id == this.getRouteUrl(route));
+    return stroage ? stroage.handle : {};
   }
 
   /**
@@ -63,7 +63,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    * 解决不同的主路由会存在相同名称的子路由
    */
   private getRouteUrl(route: ActivatedRouteSnapshot) {
-    let url = route['_routerState'].url.replace(/\//g, '_');
+    let url = route.url.map((x) => x.path).join('_');
     return url;
   }
 
@@ -73,7 +73,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   public static deleteRouteSnapshot(name?: string): void {
     if (name) {
       let id = name.replace(/\//g, '_');
-      _.remove(XReuseStrategyService.storages, x => x.id.indexOf(id) === 0);
+      _.remove(XReuseStrategyService.storages, (x) => x.id.indexOf(id) === 0);
       XReuseStrategyService.waitDelete = id;
     } else {
       XReuseStrategyService.storages = [];
@@ -81,7 +81,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   }
 
   private add(id: string, handle: DetachedRouteHandle) {
-    _.remove(XReuseStrategyService.storages, x => x.id == id);
+    _.remove(XReuseStrategyService.storages, (x) => x.id == id);
     XReuseStrategyService.storages = [...XReuseStrategyService.storages, { id: id, handle: handle }];
   }
 }

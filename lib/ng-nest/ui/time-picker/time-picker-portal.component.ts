@@ -3,7 +3,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Inject,
   ChangeDetectorRef,
   OnInit,
   Renderer2,
@@ -11,12 +10,12 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { XTimePickerPortal, XTimePickerType } from './time-picker.type';
+import { XTimePickerPortalPrefix, XTimePickerType } from './time-picker.property';
 import { XIsEmpty, reqAnimFrame } from '@ng-nest/ui/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'x-time-picker-portal',
+  selector: `${XTimePickerPortalPrefix}`,
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -30,6 +29,10 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   type: XTimePickerType = 'time';
   model: Date;
   _type: XTimePickerType;
+  value: any;
+  valueChange: Subject<any>;
+  closePortal: Function;
+  nodeEmit: Function;
 
   hour: number = 0;
   minute: number = 0;
@@ -56,24 +59,20 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
-  constructor(
-    @Inject(XTimePickerPortal) public option: any,
-    public renderer: Renderer2,
-    public cdr: ChangeDetectorRef
-  ) {
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     this.init();
   }
 
   ngOnInit(): void {
-    this.valueChange$ = this.option.valueChange.subscribe(x => {
-      this.option.value = x;
+    this.valueChange$ = this.valueChange.subscribe((x: any) => {
+      this.value = x;
       this.init();
       this.cdr.markForCheck();
     });
     setTimeout(
       () =>
         (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.option.closePortal();
+          this.closePortal();
         }))
     );
   }
@@ -92,12 +91,12 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    if (!XIsEmpty(this.option.value)) {
+    if (!XIsEmpty(this.value)) {
       this.setDefault();
     } else {
       this.model = new Date(0, 0, 0, this.now.getHours(), this.now.getMinutes(), this.now.getSeconds());
     }
-    this.type = this.option.type;
+    this.type = this.type;
     this.setTime(this.model);
   }
 
@@ -106,7 +105,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setDefault() {
-    const date = new Date(this.option.value);
+    const date = new Date(this.value);
     this.model = new Date(0, 0, 0, date.getHours(), date.getMinutes(), date.getSeconds());
   }
 
@@ -132,22 +131,22 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   hourClick(date: XListNode) {
     this.hour = date.id;
     this.model.setHours(this.hour);
-    this.option.nodeEmit(this.model);
-    this.scrollTo(this.hourRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);
+    this.nodeEmit(this.model);
+    this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   minuteClick(date: XListNode) {
     this.minute = date.id;
     this.model.setMinutes(this.minute);
-    this.option.nodeEmit(this.model);
-    this.scrollTo(this.minuteRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);
+    this.nodeEmit(this.model);
+    this.scrollTo(this.minuteRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   secondClick(date: XListNode) {
     this.second = date.id;
     this.model.setSeconds(this.second);
-    this.option.nodeEmit(this.model);
-    this.scrollTo(this.secondRef.nativeElement, (date.event.srcElement as HTMLElement).offsetTop, 120);
+    this.nodeEmit(this.model);
+    this.scrollTo(this.secondRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   private scrollTo(element: HTMLElement, to: number, duration: number): void {

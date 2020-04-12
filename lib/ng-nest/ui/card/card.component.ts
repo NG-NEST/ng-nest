@@ -1,18 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Input,
-  ViewChild,
-  SimpleChanges,
-  OnChanges
-} from '@angular/core';
-import { XCardPrefix, XCardShadow } from './card.type';
-import { XClassMap, XTemplate } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { XCardPrefix, XCardProperty } from './card.property';
+import { XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCardPrefix}`,
@@ -21,23 +9,16 @@ import { XClassMap, XTemplate } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCardComponent implements OnInit, OnChanges {
-  @Input() width?: string;
-  @Input() bodyStyle?: any = {};
-  @Input() header?: XTemplate;
-  @Input() shadow?: XCardShadow = 'always';
-  @ViewChild('card', { static: true }) card: ElementRef;
-  classMap: XClassMap = {};
-
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+export class XCardComponent extends XCardProperty implements OnInit {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
   }
 
-  ngOnChanges(simple: SimpleChanges) {}
-
   setClassMap() {
-    this.classMap[`${XCardPrefix}-${this.shadow}`] = this.shadow ? true : false;
+    this.classMap[`${XCardPrefix}-${this.shadow}`] = !XIsEmpty(this.shadow);
   }
 }

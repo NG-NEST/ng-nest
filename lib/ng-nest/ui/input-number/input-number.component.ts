@@ -7,41 +7,26 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XInputNumberInput } from './input-number.type';
-import {
-  fillDefault,
-  XIsEmpty,
-  XValueAccessor,
-  XControlValueAccessor,
-  XInputNumber,
-  removeNgTag
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor } from '@ng-nest/ui/core';
+import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 
 @Component({
-  selector: 'x-input-number',
+  selector: `${XInputNumberPrefix}`,
   templateUrl: './input-number.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputNumberComponent)]
 })
-export class XInputNumberComponent extends XControlValueAccessor implements OnInit {
-  @Input() @XInputNumber() min: number = Number.MIN_SAFE_INTEGER;
-  @Input() @XInputNumber() max: number = Number.MAX_SAFE_INTEGER;
-  @Input() @XInputNumber() step: number = 1;
-  @Input() @XInputNumber() debounce: number = 40;
-  @Input() @XInputNumber() precision: number = 0;
+export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
   @ViewChild('inputNumber', { static: true }) inputNumber: ElementRef;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
   }
-
-  private _default: XInputNumberInput = {};
 
   writeValue(value: any) {
     this.value = value;
@@ -55,25 +40,23 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
   mousedown$: Subscription;
   timer: any;
 
-  @HostListener('document:mouseup', ['$event']) onMouseup(event) {
+  @HostListener('document:mouseup', ['$event']) onMouseup(event: Event) {
     this.up(event);
   }
 
-  constructor(public renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
     super(renderer);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.inputNumber.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
   }
 
   setDisplayValue() {
     if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(this.precision);
   }
 
-  change(value) {
+  change(value: any) {
     this.verify(value);
     if (this.onChange) this.onChange(this.value);
   }
@@ -105,7 +88,7 @@ export class XInputNumberComponent extends XControlValueAccessor implements OnIn
     if (this.onChange) this.onChange(this.value);
   }
 
-  verify(value) {
+  verify(value: any) {
     const oldValue: number = this.value;
     this.value = value;
     if (Number.isNaN(+this.value)) {

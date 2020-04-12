@@ -1,10 +1,7 @@
-import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { XOutletModule } from '@ng-nest/ui/outlet';
-import { XOutletPrefix } from './outlet.type';
-import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
+import { XOutletPrefix } from './outlet.property';
 
 describe(XOutletPrefix, () => {
   beforeEach(async(() => {
@@ -15,7 +12,6 @@ describe(XOutletPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXOutletComponent>;
-    let Outlet: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXOutletComponent);
       fixture.detectChanges();

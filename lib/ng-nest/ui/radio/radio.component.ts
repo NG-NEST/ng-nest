@@ -1,18 +1,16 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input,
   ChangeDetectorRef,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XRadioPrefix, XRadioNode } from './radio.type';
+import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
-import { XData, XValueAccessor, XControlValueAccessor, XInputBoolean, XDataConvert, XSize, XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -22,19 +20,13 @@ import { XData, XValueAccessor, XControlValueAccessor, XInputBoolean, XDataConve
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data: XData<XRadioNode[]>;
-  @Input() @XInputBoolean() button: boolean;
-  @Input() @XInputBoolean() icon: boolean;
-  @Input() size: XSize = 'medium';
+export class XRadioComponent extends XRadioProperty implements OnChanges {
   nodes: XRadioNode[] = [];
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
   }
-
-  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
@@ -59,7 +51,7 @@ export class XRadioComponent extends XControlValueAccessor implements OnInit, On
   }
 
   private setData() {
-    XSetData<XRadioNode[]>(this.data, this._unSubject).subscribe(x => {
+    XSetData<XRadioNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
       this.cdr.detectChanges();
     });

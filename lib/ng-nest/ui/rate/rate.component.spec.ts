@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
-import { XRatePrefix } from './rate.type';
+import { XRatePrefix } from './rate.property';
 
 describe(XRatePrefix, () => {
   beforeEach(async(() => {

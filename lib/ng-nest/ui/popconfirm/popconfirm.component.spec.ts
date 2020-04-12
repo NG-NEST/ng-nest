@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
 import { FormsModule } from '@angular/forms';
-import { XPopconfirmPrefix } from './popconfirm.type';
+import { XPopconfirmPrefix } from './popconfirm.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';

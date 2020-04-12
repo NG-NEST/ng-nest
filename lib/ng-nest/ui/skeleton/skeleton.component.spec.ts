@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
-import { XSkeletonPrefix, XSkeletonRow } from './skeleton.type';
+import { XSkeletonPrefix, XSkeletonRow } from './skeleton.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XSwitchModule } from '@ng-nest/ui/switch';
@@ -76,10 +76,7 @@ describe(XSkeletonPrefix, () => {
           <x-skeleton [loading]="loadingList" [data]="dataCustom" active>
             <x-row justify="start" space="1">
               <x-col inherit class="content">
-                <x-avatar
-                  src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-                  size="medium"
-                ></x-avatar>
+                <x-avatar src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" size="medium"></x-avatar>
               </x-col>
               <x-col class="content">
                 <x-row>
@@ -165,13 +162,7 @@ class TestXSkeletonComponent {
             {
               space: 1,
               flex: true,
-              cols: [
-                { width: '3rem' },
-                { width: '3rem' },
-                { width: '3rem' },
-                { type: 'transparent' },
-                { width: '9rem' }
-              ]
+              cols: [{ width: '3rem' }, { width: '3rem' }, { width: '3rem' }, { type: 'transparent' }, { width: '9rem' }]
             }
           ]
         },

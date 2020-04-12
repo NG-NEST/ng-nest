@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  Input
-} from '@angular/core';
-import { XControlOption } from './form.type';
-import { fillDefault } from '@ng-nest/ui/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { XContainerProperty } from '../container';
 
 @Component({
   selector: 'x-control',
@@ -17,23 +8,8 @@ import { fillDefault } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XControlComponent implements OnInit, OnChanges {
-  @Input() option: any | XControlOption;
-
-  private _default: any | XControlOption = {};
-
-  constructor() {}
-
-  ngOnInit() {
-    fillDefault(this.option, this._default);
-    // removeNgTag(this.elementRef.nativeElement);
+export class XControlComponent extends XContainerProperty {
+  constructor() {
+    super();
   }
-
-  ngOnChanges(changes: SimpleChanges): void {}
-
-  ngOnDestroy(): void {
-    this.removeListen();
-  }
-
-  private removeListen() {}
 }

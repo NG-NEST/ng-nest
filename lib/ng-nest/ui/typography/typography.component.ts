@@ -18,6 +18,6 @@ export class XTypographyComponent extends XTypographyProperty implements OnInit 
 
   ngOnInit() {
     if (this.font) this.renderer.setStyle(this.elementRef.nativeElement, 'font-family', this.font);
-    if (this.text.length > 0) this.firstText = this.text.slice(0, 1);
+    if (this.text?.length > 0) this.firstText = this.text.slice(0, 1);
   }
 }

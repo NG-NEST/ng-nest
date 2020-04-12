@@ -29,7 +29,7 @@
       height: initial;
     }
   }
-  @include avatar-size('', $--x-avatar-size);
+  @include avatar-size('big', $--x-avatar-size-big);
   @include avatar-size('large', $--x-avatar-size-large);
   @include avatar-size('medium', $--x-avatar-size-medium);
   @include avatar-size('small', $--x-avatar-size-small);
@@ -37,9 +37,6 @@
 }
 
 @mixin avatar-size($type, $size) {
-  @if $type!= '' {
-    $type: '-' + $type;
-  }
   &#{$type} {
     height: $size;
     width: $size;

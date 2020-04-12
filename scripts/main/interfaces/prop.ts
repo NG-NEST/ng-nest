@@ -27,7 +27,7 @@ export interface NcProp {
    */
   value?: string | number;
   /**
-   * 组件名/指令名/管道名
+   * 组件/指令名/管道名
    */
   selector?: string;
   /**

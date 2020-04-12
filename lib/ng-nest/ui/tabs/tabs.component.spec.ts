@@ -4,7 +4,7 @@ import { XTabsComponent } from './tabs.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XTabsPrefix, XTabsLayout } from './tabs.type';
+import { XTabsPrefix, XTabsLayout } from './tabs.property';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XIconModule } from '@ng-nest/ui/icon';
@@ -61,10 +61,10 @@ describe(XTabsPrefix, () => {
     </div>
 
     <div class="row">
-      <x-radio [data]="justifyRadios" [(ngModel)]="justify" (ngModelChange)="change($event)" button></x-radio>
+      <x-radio [data]="justifyRadios" [(ngModel)]="justify" (ngModelChange)="change()" button></x-radio>
     </div>
     <div class="row">
-      <x-radio [data]="layoutRadios" [(ngModel)]="layout" (ngModelChange)="change($event)" button></x-radio>
+      <x-radio [data]="layoutRadios" [(ngModel)]="layout" (ngModelChange)="change()" button></x-radio>
     </div>
     <div class="row">
       <x-tabs [layout]="layout" [justify]="justify">
@@ -133,7 +133,7 @@ class TestXTabsComponent {
   customLabels = ['用户管理', '配置管理', '角色管理', '任务'];
   constructor(private cdr: ChangeDetectorRef) {}
 
-  change(event) {
+  change() {
     this.cdr.detectChanges();
   }
 }

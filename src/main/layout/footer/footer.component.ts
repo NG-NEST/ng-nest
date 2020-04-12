@@ -5,8 +5,4 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './footer.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class FooterComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class FooterComponent {}

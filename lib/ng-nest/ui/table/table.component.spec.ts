@@ -4,7 +4,7 @@ import { XTableComponent } from './table.component';
 import { Component, DebugElement, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTableModule } from '@ng-nest/ui/table';
-import { TablePrefix, XTableColumn, XTableAction } from './table.type';
+import { XTablePrefix, XTableColumn, XTableAction } from './table.property';
 import {
   XId,
   XRepositoryService,
@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 
-describe(TablePrefix, () => {
+describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XTableModule, XIconModule, XAvatarModule],
@@ -70,18 +70,18 @@ class UsersServiceTest extends XRepositoryAbstract {
     };
   });
 
-  getList(index?: number, size?: number, query?: XQuery): Observable<XResultList<User | XGroupItem>> {
-    return Observable.create(x => {
+  getList(index: number, size: number, query?: XQuery): Observable<XResultList<User | XGroupItem>> {
+    return new Observable((x) => {
       let data: User[] | XGroupItem[] = [];
-      data = this.setFilter(this.users, query.filter);
-      if (!XIsEmpty(query.group)) {
+      data = this.setFilter(this.users, query?.filter as XFilter[]);
+      if (query?.group) {
         data = this.setGroup(data, query.group);
       }
-      if (!XIsEmpty(query.sort)) {
+      if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
       let chunks = _.chunk(data, size);
-      if (index <= chunks.length) {
+      if ((index as number) <= chunks.length) {
         x.next({ total: data.length, list: chunks[index - 1] });
       } else {
         x.next({ total: data.length, list: [] });
@@ -90,23 +90,23 @@ class UsersServiceTest extends XRepositoryAbstract {
     });
   }
   get(id: number | string): Observable<User> {
-    return;
+    return new Observable();
   }
   post(entity: User): Observable<User> {
-    return;
+    return new Observable();
   }
   put(entity: User): Observable<User> {
-    return;
+    return new Observable();
   }
   delete(id: number | string): Observable<boolean> {
-    return;
+    return new Observable();
   }
 
   private setFilter(data: User[], filters: XFilter[]): User[] {
     let result = data;
     if (filters && filters.length > 0) {
-      filters.forEach((x, index) => {
-        result = result.filter(y => y[x.field].indexOf(x.value) >= 0);
+      filters.forEach((x) => {
+        result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
       });
     }
     return result;
@@ -123,8 +123,8 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return _.orderBy(
       data,
-      _.map(sort, x => x.field),
-      _.map(sort, x => x.value) as ('desc' | 'asc')[]
+      _.map(sort, (x) => x.field),
+      _.map(sort, (x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }
@@ -136,6 +136,7 @@ interface User extends XId {
   email?: string;
   phone?: string;
   organization?: string;
+  [prop: string]: any;
 }
 
 @Component({

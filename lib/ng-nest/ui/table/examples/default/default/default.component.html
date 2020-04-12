@@ -2,9 +2,9 @@
   [columns]="columns"
   [actions]="actions"
   [service]="defaultService"
-  [headerColumnTpl]="{ name: nameHeaderTemp }"
-  [bodyColumnTpl]="{ name: nameBodyTemp }"
-  allowSelectRow
+  [header-column-tpl]="{ name: nameHeaderTemp }"
+  [body-column-tpl]="{ name: nameBodyTemp }"
+  allow-select-row
 ></x-table>
 <ng-template #nameHeaderTemp let-column="$column">
   <div class="header-name">

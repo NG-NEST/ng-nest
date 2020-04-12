@@ -6,17 +6,14 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
   ViewChild,
   SimpleChanges,
   OnChanges,
   TemplateRef,
-  ViewContainerRef,
-  EventEmitter,
-  Output
+  ViewContainerRef
 } from '@angular/core';
-import { XDrawerPrefix } from './drawer.type';
-import { XClassMap, XInputBoolean, XPosition, XTemplate, XIsChange, XIsEmpty, XSlideAnimation } from '@ng-nest/ui/core';
+import { XDrawerPrefix, XDrawerProperty } from './drawer.property';
+import { XIsChange, XIsEmpty, XSlideAnimation } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
@@ -29,15 +26,9 @@ import { Overlay } from '@angular/cdk/overlay';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XSlideAnimation]
 })
-export class XDrawerComponent implements OnInit, OnChanges {
-  @Input() title?: XTemplate;
-  @Input() @XInputBoolean() visible?: boolean;
-  @Input() placement?: XPosition = 'right';
-  @Input() size: string = '30%';
-  @Output() close = new EventEmitter();
+export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChanges {
   @ViewChild('drawerTpl', { static: true }) drawerTpl: TemplateRef<void>;
-  classMap: XClassMap = {};
-  portal: XPortalOverlayRef;
+  portal: XPortalOverlayRef<any>;
   back$: Subscription | null = null;
 
   constructor(
@@ -47,7 +38,9 @@ export class XDrawerComponent implements OnInit, OnChanges {
     public overlay: Overlay,
     public portalService: XPortalService,
     public viewContainerRef: ViewContainerRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -66,7 +59,7 @@ export class XDrawerComponent implements OnInit, OnChanges {
   }
 
   setClassMap() {
-    this.classMap[`${XDrawerPrefix}-${this.placement}`] = this.placement ? true : false;
+    this.classMap[`${XDrawerPrefix}-${this.placement}`] = !XIsEmpty(this.placement);
     this.classMap[`${XDrawerPrefix}-no-title`] = XIsEmpty(this.title);
   }
 
@@ -85,22 +78,21 @@ export class XDrawerComponent implements OnInit, OnChanges {
       content: this.drawerTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
-
         hasBackdrop: true,
         scrollStrategy: this.overlay.scrollStrategies.reposition(),
         positionStrategy: this.portalService.setPosition(this.placement, width, height)
       }
     });
-    this.back$ = this.portal.overlayRef.backdropClick().subscribe(() => this.closePortal());
+    if (this.portal.overlayRef) this.back$ = this.portal.overlayRef.backdropClick().subscribe(() => this.closePortal());
   }
 
   portalAttached() {
-    return this.portal?.overlayRef.hasAttached();
+    return this.portal?.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef.detach();
+      this.portal?.overlayRef?.detach();
       this.unsubscribe();
       this.close.emit();
       return true;

@@ -4,7 +4,7 @@ import { XAnchorComponent } from './anchor.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAnchorModule } from '@ng-nest/ui/anchor';
-import { XAnchorPrefix } from './anchor.type';
+import { XAnchorPrefix } from './anchor.property';
 
 describe(XAnchorPrefix, () => {
   beforeEach(async(() => {

@@ -1,20 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Input,
-  ViewChild,
-  SimpleChanges,
-  OnChanges,
-  Output,
-  EventEmitter
-} from '@angular/core';
-import { XCollapsePrefix } from './collapse.type';
-import { XInputBoolean, XIsArray } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { XCollapsePrefix, XCollapseProperty } from './collapse.property';
+import { XIsArray } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
@@ -23,23 +9,17 @@ import { XInputBoolean, XIsArray } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCollapseComponent implements OnInit, OnChanges {
-  @Input() @XInputBoolean() accordion?: boolean;
-  @Input() active: number | number[] = [];
-  @ViewChild('collapse', { static: true }) collapse: ElementRef;
-  @Output() activeChange = new EventEmitter();
+export class XCollapseComponent extends XCollapseProperty implements OnInit {
   start: number = 0;
   panelChanges: Function[] = [];
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     if (!XIsArray(this.active)) this.active = [Number(this.active)];
   }
-
-  ngOnChanges(simple: SimpleChanges) {}
-
-  ngAfterViewInit() {}
 
   change(num: number, add = true) {
     this.active = this.active as number[];
@@ -54,7 +34,7 @@ export class XCollapseComponent implements OnInit, OnChanges {
       }
     }
     if (this.accordion && this.active.length === 2) {
-      this.panelChanges[this.active[0]]();
+      this.panelChanges[this.active[0]]?.();
       return;
     }
     this.activeChange.emit(this.active);

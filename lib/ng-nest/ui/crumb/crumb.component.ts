@@ -1,20 +1,15 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   OnChanges,
   SimpleChanges,
   ChangeDetectorRef,
-  Output,
-  EventEmitter,
-  TemplateRef
+  OnDestroy
 } from '@angular/core';
-import { XCrumbPrefix, XCrumbNode, XCrumbNodeClick } from './crumb.type';
-import { XData, XDataConvert, XIsObservable, XToDataConvert, XIsChange, XTemplate } from '@ng-nest/ui/core';
-import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { XCrumbPrefix, XCrumbNode, XCrumbProperty } from './crumb.property';
+import { XIsChange, XSetData } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XCrumbPrefix}`,
@@ -23,31 +18,24 @@ import { map, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCrumbComponent implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XCrumbNode[]>;
-  @Input() nodeTpl?: TemplateRef<any>;
-  @Input() separator?: XTemplate = '/';
-  @Output() nodeClick?: EventEmitter<XCrumbNodeClick> = new EventEmitter<XCrumbNodeClick>();
+export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDestroy {
   nodes: XCrumbNode[] = [];
+  private _unSubject = new Subject<void>();
 
-  private unSubject = new Subject();
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {}
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
-  action(type: string, option?: any, event?: Event) {
+  action(type: string, option: XCrumbNode, event: Event) {
     switch (type) {
       case 'click':
         this.nodeClick.emit({
@@ -59,23 +47,9 @@ export class XCrumbComponent implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      (this.data as Observable<any>)
-        .pipe(
-          map(x => XToDataConvert(x)),
-          takeUntil(this.unSubject)
-        )
-        .subscribe(x => {
-          this.setDataChange(x);
-        });
-    } else {
-      this.setDataChange(this.data as XCrumbNode[]);
-    }
-  }
-
-  private setDataChange(value: XCrumbNode[]) {
-    this.nodes = value;
-    this.cdr.detectChanges();
+    XSetData<XCrumbNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+      this.cdr.detectChanges();
+    });
   }
 }

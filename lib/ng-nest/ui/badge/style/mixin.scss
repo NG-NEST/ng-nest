@@ -17,7 +17,6 @@
     top: 0;
     right: 0.625rem;
     transform: translateY(-50%) translateX(100%);
-    background-color: $--x-danger;
     border-radius: 0.625rem;
     color: #fff;
     display: inline-block;
@@ -46,9 +45,6 @@
 }
 
 @mixin badge-type($type, $color) {
-  @if $type!= '' {
-    $type: '-' + $type;
-  }
   &#{$type} {
     > sup {
       background-color: $color;

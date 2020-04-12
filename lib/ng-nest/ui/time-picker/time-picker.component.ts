@@ -1,6 +1,6 @@
 import { XTimePickerPortalComponent } from './time-picker-portal.component';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,33 +10,30 @@ import {
   Renderer2,
   ElementRef,
   Input,
-  OnChanges,
   ViewContainerRef,
   ViewChild,
   EventEmitter,
-  Output,
-  Inject,
-  SimpleChanges
+  Output
 } from '@angular/core';
-import { XTimePickerPrefix, XTimePickerPortal, XTimePickerInput, XTimePickerType } from './time-picker.type';
-import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty, XIsDate, XIsNumber } from '@ng-nest/ui/core';
+import { XTimePickerPrefix, XTimePickerType, XTimePickerProperty } from './time-picker.property';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { DOCUMENT, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'x-time-picker',
+  selector: `${XTimePickerPrefix}`,
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
-export class XTimePickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
+export class XTimePickerComponent extends XTimePickerProperty implements OnInit {
   @Input() type: XTimePickerType = 'time';
   @Input() format: string = 'HH:mm:ss';
+  @Output() nodeClick = new EventEmitter<number>();
   @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
-  @Output() nodeEmit?: EventEmitter<number> = new EventEmitter<number>();
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -55,16 +52,13 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   clearable: boolean = false;
   enter: boolean = false;
   displayValue: any = '';
-  portal: XPortalOverlayRef;
+  portal: XPortalOverlayRef<XTimePickerPortalComponent>;
   icon: string = 'fto-clock';
   box: DOMRect;
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  scrollFunction: Function;
-  resizeFunction: Function;
-  private _default: XTimePickerInput = {};
-  private data$: Subscription | null = null;
+  private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
 
@@ -74,17 +68,14 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe,
-    @Inject(DOCUMENT) private doc: any
+    private datePipe: DatePipe
   ) {
     super(renderer);
     this.renderer.addClass(this.elementRef.nativeElement, XTimePickerPrefix);
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.datePicker.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
     this.setFormat();
   }
 
@@ -92,16 +83,9 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
     this.setPortal();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      // this.setData();
-    }
-  }
-
   ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
-    this.removeListen();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   setFormat() {
@@ -112,25 +96,6 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
         this.format = 'HH:mm';
       }
     }
-  }
-
-  addListen() {
-    this.scrollFunction = this.renderer.listen('window', 'scroll', () => {
-      this.setPortal();
-    });
-    this.resizeFunction = this.renderer.listen('window', 'resize', () => {
-      this.setPortal();
-    });
-  }
-
-  removeListen() {
-    this.scrollFunction && this.scrollFunction();
-    this.resizeFunction && this.resizeFunction();
-    this.cdr.markForCheck();
-  }
-
-  change() {
-    // if (this.onChange) this.onChange(this.value);
   }
 
   menter() {
@@ -162,48 +127,49 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   portalAttached() {
-    return this.portal?.overlayRef.hasAttached();
+    return this.portal.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef.dispose();
-      this.removeListen();
+      this.portal.overlayRef?.dispose();
       return true;
     }
     return false;
   }
 
-  showPortal(event: Event) {
+  showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
     this.portal = this.portalService.attach({
       content: XTimePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      injector: this.portalService.createInjector(
-        {
-          type: this.type,
-          value: this.value,
-          valueChange: this.valueChange,
-          closePortal: () => this.closePortal(),
-          nodeEmit: node => this.nodeClick(node)
-        },
-        XTimePickerPortal
-      ),
       overlayConfig: {
         backdropClass: '',
         positionStrategy: this.setPlacement()
       }
     });
-    this.addListen();
+    this.setInstance();
   }
 
-  nodeClick(date: Date) {
+  setInstance() {
+    let componentRef = this.portal?.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      type: this.type,
+      value: this.value,
+      valueChange: this.valueChange,
+      closePortal: () => this.closePortal(),
+      nodeEmit: (node: Date) => this.onNodeClick(node)
+    });
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
+  onNodeClick(date: Date) {
     this.value = date.getTime();
     this.setDisplayValue();
-    // this.closePortal();
     if (this.onChange) this.onChange(this.value);
-    this.nodeEmit.emit(this.value);
+    this.nodeClick.emit(this.value);
   }
 
   setDisplayValue() {
@@ -211,23 +177,12 @@ export class XTimePickerComponent extends XControlValueAccessor implements OnIni
   }
 
   setPlacement() {
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPlacement(
-      this.inputCom.input,
-      this.protalTobottom ? 'bottom-start' : 'top-start'
-    );
+    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
   }
 
   setPortal() {
-    if (!this.inputCom.input) return;
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalHeight = 180;
-    // if (this.box && this.nodes.length > 0) {
-    //   this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
-    // }
     if (this.portalAttached()) {
-      this.portal.overlayRef.updatePositionStrategy(this.setPlacement());
+      this.portal.overlayRef?.updatePositionStrategy(this.setPlacement());
     }
   }
 }

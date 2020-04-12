@@ -2,7 +2,7 @@ import { Directive, TemplateRef, Input, ViewContainerRef, SimpleChanges, Embedde
 
 @Directive({ selector: '[xOutlet]' })
 export class XOutletDirective implements OnChanges {
-  @Input() xOutletContext;
+  @Input() xOutletContext: any;
   @Input() xOutlet: any | TemplateRef<any>;
   private embeddedViewRef?: EmbeddedViewRef<any>;
   constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<any>) {}

@@ -1,13 +1,6 @@
-import {
-  Component,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
-import { XMessagePrefix, XMessageInput, XMessageRef } from './message.type';
+import { XMessagePrefix, XMessageOption, XMessageRef } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -24,23 +17,23 @@ export class XMessageComponent {
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
-  onClose(item: XMessageInput) {
-    this.message.list.splice(this.message.list.indexOf(item), 1);
-    item.duration$ && item.duration$.unsubscribe();
+  onClose(item: XMessageOption) {
+    this.message.list?.splice(this.message.list.indexOf(item), 1);
+    item.duration$?.unsubscribe();
     this.cdr.detectChanges();
   }
 
-  moveDone($event) {
+  moveDone($event: { toState: string }) {
     if ($event.toState === 'void' && XIsEmpty(this.message.list)) {
-      this.message.ref.overlayRef.detach();
+      this.message.ref?.overlayRef?.detach();
     }
   }
 
-  onEnter(item: XMessageInput) {
+  onEnter(item: XMessageOption) {
     item.duration$?.unsubscribe();
   }
 
-  onLeave(item: XMessageInput) {
+  onLeave(item: XMessageOption) {
     if (item.duration) {
       item.duration$ = of(true)
         .pipe(delay(item.duration))

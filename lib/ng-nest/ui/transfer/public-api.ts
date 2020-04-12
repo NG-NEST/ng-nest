@@ -1,3 +1,3 @@
 export * from './transfer.component';
 export * from './transfer.module';
-export * from './transfer.type';
+export * from './transfer.property';

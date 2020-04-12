@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input,
   Optional,
   Host,
   HostBinding

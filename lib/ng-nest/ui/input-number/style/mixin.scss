@@ -50,14 +50,18 @@
     > x-button {
       position: absolute;
       &.#{$--x-input-number-prefix}-plus {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        right: 0;
+        > .button {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          right: 0;
+        }
       }
       &.#{$--x-input-number-prefix}-reduce {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        left: 0;
+        > .button {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          left: 0;
+        }
       }
       &:hover,
       &:focus {

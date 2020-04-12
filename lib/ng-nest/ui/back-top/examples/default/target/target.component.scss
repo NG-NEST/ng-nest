@@ -1,0 +1,18 @@
+:host {
+  .scroll {
+    width: 15rem;
+    height: 15rem;
+    overflow: auto;
+  }
+  .scroll .box {
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  }
+  .scroll .box x-button {
+    margin-top: 1rem;
+  }
+}

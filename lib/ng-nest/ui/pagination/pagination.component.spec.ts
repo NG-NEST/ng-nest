@@ -4,9 +4,9 @@ import { XPaginationComponent } from './pagination.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPaginationModule } from '@ng-nest/ui/pagination';
-import { PaginationPrefix } from './pagination.type';
+import { XPaginationPrefix } from './pagination.property';
 
-describe(PaginationPrefix, () => {
+describe(XPaginationPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XPaginationModule],
@@ -28,16 +28,14 @@ describe(PaginationPrefix, () => {
     });
     it('should className.', () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(PaginationPrefix);
+      expect(element.classList).toContain(XPaginationPrefix);
     });
   });
 });
 
 @Component({
   selector: 'test-x-pagination',
-  template: `
-    <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
-  `
+  template: ` <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination> `
 })
 class TestXPaginationComponent {
   index = 1;

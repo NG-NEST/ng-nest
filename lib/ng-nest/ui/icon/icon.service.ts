@@ -5,9 +5,9 @@ import { Observable, Subscriber } from 'rxjs';
 import * as _ from 'lodash';
 
 type Task<T> = {
-  name?: string;
-  observable?: Observable<T>;
-  callback?: Function;
+  name: string;
+  observable: Observable<T>;
+  callback: Function;
 };
 
 // @dynamic
@@ -37,12 +37,12 @@ export class XIconService {
       return;
     }
     return task.observable.subscribe(
-      result => {
+      (result) => {
         this.caches[task.name] = result;
         task.callback(result);
         return result;
       },
-      error => {
+      (error) => {
         console.error(error);
         this.activeTaskXm--;
         this.isRunningTask = false;
@@ -86,6 +86,6 @@ export class XIconService {
   getSvgElement(icon: string): Observable<string> {
     const url = `${this.rootUrl}${icon}.svg`;
     const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
-    return this.http.get(safeUrl, { responseType: 'text' });
+    return this.http.get(safeUrl as string, { responseType: 'text' });
   }
 }

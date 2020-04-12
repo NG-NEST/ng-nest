@@ -4,9 +4,9 @@ import { XFormComponent } from './form.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
-import { FormPrefix, XControl, XInputControl } from './form.type';
+import { XFormPrefix, XControl, XInputControl } from './form.property';
 
-describe(FormPrefix, () => {
+describe(XFormPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XFormModule],
@@ -31,9 +31,7 @@ describe(FormPrefix, () => {
 
 @Component({
   selector: 'test-x-form',
-  template: `
-    <x-form [controls]="controls"></x-form>
-  `
+  template: ` <x-form [controls]="controls"></x-form> `
 })
 class TestXFormComponent {
   controls: XControl[] = [

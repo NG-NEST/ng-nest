@@ -1,15 +1,13 @@
 import { XButtonModule } from '@ng-nest/ui/button';
-import { Observable, interval } from 'rxjs';
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XUploadComponent } from './upload.component';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule } from '@angular/forms';
-import { XUploadPrefix, XUploadNode } from './upload.type';
-import { XData } from '@ng-nest/ui/core';
+import { XUploadPrefix } from './upload.property';
 
 describe(XUploadPrefix, () => {
   beforeEach(async(() => {
@@ -92,5 +90,5 @@ class TestXUploadComponent {
   ]
 })
 class TestXUploadDisabledComponent {
-  model;
+  model: any;
 }

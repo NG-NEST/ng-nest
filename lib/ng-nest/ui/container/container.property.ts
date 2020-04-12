@@ -33,7 +33,7 @@ export class XHeaderProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height?: number = 3;
+  @Input() height: number = 3;
 }
 
 /**
@@ -50,7 +50,7 @@ export class XAsideProperty extends XProperty {
   /**
    * 宽度，rem
    */
-  @Input() width?: number = 12;
+  @Input() width: number = 12;
 }
 
 /**
@@ -74,5 +74,5 @@ export class XFooterProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height?: number = 3;
+  @Input() height: number = 3;
 }

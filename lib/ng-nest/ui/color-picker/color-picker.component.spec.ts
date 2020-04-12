@@ -6,7 +6,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XColorPickerPrefix, XColorPickerNode } from './color-picker.type';
+import { XColorPickerPrefix } from './color-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XColorPickerPrefix, () => {
@@ -71,8 +71,6 @@ describe(XColorPickerPrefix, () => {
   });
 });
 
-const data: XColorPickerNode[] = [];
-
 @Component({
   template: `
     <x-row>
@@ -113,7 +111,7 @@ class TestXColorPickerComponent {
   model3 = 'rgb(64, 158, 255)';
   model4 = 'hsl(210, 100%, 63%)';
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -156,7 +154,7 @@ class TestXColorPickerComponent {
 class TestXColorPickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -217,7 +215,7 @@ class TestXColorPickerDisabledComponent {
 class TestXColorPickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

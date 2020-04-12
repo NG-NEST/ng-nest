@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
-import { XTagPrefix } from './tag.type';
+import { XTagPrefix } from './tag.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 
@@ -99,7 +99,7 @@ describe(XTagPrefix, () => {
 class TestXTagComponent {
   tags = ['标签一', '标签二', '标签三', '标签四', '标签五'];
   constructor(private cdr: ChangeDetectorRef) {}
-  close(tag) {
+  close(tag: string) {
     this.tags.splice(this.tags.indexOf(tag), 1);
     this.cdr.detectChanges();
   }

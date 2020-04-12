@@ -5,7 +5,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XNotificationModule } from '@ng-nest/ui/notification';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XNotificationPrefix } from './notification.type';
+import { XNotificationPrefix } from './notification.property';
 import { XNotificationService } from './notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XCorner } from '@ng-nest/ui/core';

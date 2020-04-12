@@ -7,43 +7,24 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
-  ViewChild,
-  Output,
-  EventEmitter
+  ViewChild
 } from '@angular/core';
-import { XSliderSelectInput } from './slider-select.type';
-import {
-  fillDefault,
-  XIsEmpty,
-  XValueAccessor,
-  XIsUndefined,
-  XControlValueAccessor,
-  XInputNumber,
-  XInputBoolean
-} from '@ng-nest/ui/core';
+import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
+import { XIsEmpty, XValueAccessor, XIsUndefined } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'x-slider-select',
+  selector: `${XSliderSelectPrefix}`,
   templateUrl: './slider-select.component.html',
   styleUrls: ['./slider-select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
-export class XSliderSelectComponent extends XControlValueAccessor implements OnInit {
-  @Input() @XInputNumber() min: number = 0;
-  @Input() @XInputNumber() max: number = 100;
-  @Input() @XInputNumber() step: number = 1;
-  @Input() @XInputNumber() precision: number;
-  @Output() dragStarted = new EventEmitter();
-  @Output() dragMoved = new EventEmitter();
-  @Output() dragEnded = new EventEmitter();
+export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit {
   @ViewChild('sliderSelect', { static: true }) sliderSelect: ElementRef;
   @ViewChild('dragRef', { static: true }) dragRef: ElementRef;
   @ViewChild('railRef', { static: true }) railRef: ElementRef;
-  @ViewChild('trackRef', { static: true }) trackRef: ElementRef;
   @ViewChild('processRef', { static: true }) processRef: ElementRef;
   @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
@@ -56,9 +37,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     return this.required && XIsEmpty(this.value);
   }
 
-  private _default: XSliderSelectInput = {};
-
-  writeValue(value: any) {
+  writeValue(value: number) {
     if (value === null) value = 0;
     this.value = value;
     this.setLeft();
@@ -71,10 +50,8 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.sliderSelect.nativeElement, this.justify, this.align, this.direction);
     this.setPrecision();
-    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
@@ -126,7 +103,7 @@ export class XSliderSelectComponent extends XControlValueAccessor implements OnI
     let transform = drag.source.getFreeDragPosition();
     this.setDrag(transform.x);
     drag.source.reset();
-    this.tooltip.update();
+    this.tooltip.updatePortal();
     this.change();
     this.dragMoved.emit(drag);
   }

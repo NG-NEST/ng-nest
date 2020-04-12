@@ -2,7 +2,7 @@ import { XJustify, XAlign, XProperty, XInputNumber, XInputBoolean } from '@ng-ne
 import { Input } from '@angular/core';
 
 /**
- * Row 组件名
+ * Row
  * @selector x-row
  * @decorator component
  */
@@ -27,7 +27,7 @@ export class XRowProperty extends XProperty {
 }
 
 /**
- * Col 组件名
+ * Col
  * @selector x-col
  * @decorator component
  */
@@ -68,5 +68,5 @@ export class XColProperty extends XProperty {
   /**
    * 默认样式
    */
-  @Input() @XInputBoolean() inherit?: boolean;
+  @Input() @XInputBoolean() inherit: boolean = false;
 }

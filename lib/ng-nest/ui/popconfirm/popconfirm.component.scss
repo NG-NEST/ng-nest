@@ -12,7 +12,7 @@
 .#{$--x-popconfirm}-buttons {
   display: flex;
   justify-content: flex-end;
-  > .x-button:not(:first-child) {
+  > x-button:not(:first-child) {
     margin-left: 0.5rem;
   }
 }

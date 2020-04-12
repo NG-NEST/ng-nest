@@ -10,7 +10,7 @@ import { XDirection } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty implements OnInit {
-  private _direction?: XDirection;
+  private _direction: XDirection;
   public get direction(): XDirection {
     return this._direction;
   }

@@ -1,20 +1,16 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   OnDestroy,
   HostListener,
   ViewContainerRef
 } from '@angular/core';
-import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.type';
+import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
-import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
@@ -23,14 +19,14 @@ import { Overlay } from '@angular/cdk/overlay';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
+export class XDropdownPortalComponent implements OnDestroy {
   data: XDropdownNode[];
   trigger: XDropdownTrigger;
   close: Function;
   nodeEmit: Function;
   docClickFunction: Function;
   portalHover: Function;
-  portal: XPortalOverlayRef;
+  portal: XPortalOverlayRef<XDropdownPortalComponent>;
   node: XDropdownNode;
   timeoutHide: any;
   timespan = 200;
@@ -48,13 +44,8 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
+    private viewContainerRef: ViewContainerRef
   ) {}
-
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {}
 
   ngAfterViewInit() {
     this.trigger === 'click' &&
@@ -76,12 +67,12 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   portalAttached() {
-    return this.portal?.overlayRef.hasAttached();
+    return this.portal?.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef.dispose();
+      this.portal?.overlayRef?.dispose();
       return true;
     }
     return false;
@@ -93,7 +84,6 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        scrollStrategy: this.overlay.scrollStrategies.reposition({ autoClose: true }),
         positionStrategy: this.setPlacement()
       }
     });
@@ -101,11 +91,15 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   setInstance() {
-    this.portal.componentRef.instance.data = this.node?.children;
-    this.portal.componentRef.instance.close = () => this.closePortal();
-    this.portal.componentRef.instance.nodeEmit = (node: XDropdownNode) => this.nodeClick(node);
-    this.portal.componentRef.instance.portalHover = (hover: boolean) => this.hover(hover);
-    this.portal.componentRef.changeDetectorRef.detectChanges();
+    let componentRef = this.portal?.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      datas: this.node?.children,
+      close: () => this.closePortal(),
+      nodeEmit: (node: XDropdownNode) => this.nodeClick(node),
+      portalHover: (hover: boolean) => this.hover(hover)
+    });
+    componentRef.changeDetectorRef.detectChanges();
   }
 
   hover(hover: boolean) {
@@ -118,14 +112,14 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(new ElementRef(this.node?.event.target), 'right-start', 'right-end', 'left-start', 'left-end');
+    return this.portalService.setPlacement(new ElementRef(this.node?.event?.target), 'right-start', 'right-end', 'left-start', 'left-end');
   }
 
   onEnter(node: XDropdownNode) {
     if (!node.leaf || node.disabled) return;
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.portalAttached() && this.node?.id !== node.id) {
-      this.portal.overlayRef.dispose();
+      this.portal?.overlayRef?.dispose();
     }
     this.node = node;
     if (!this.portalAttached()) {
@@ -137,7 +131,7 @@ export class XDropdownPortalComponent implements OnInit, OnChanges, OnDestroy {
   onLeave() {
     if (this.portalAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.portal.overlayRef.dispose();
+        this.portal?.overlayRef?.dispose();
       });
     }
   }

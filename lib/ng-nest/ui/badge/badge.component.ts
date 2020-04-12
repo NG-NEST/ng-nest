@@ -6,13 +6,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   SimpleChanges,
   OnChanges
 } from '@angular/core';
-import { XBadgePrefix, XBadgeType } from './badge.type';
-import { XInputBoolean, XInputNumber, XIsNumber, XIsChange, XClassMap } from '@ng-nest/ui/core';
+import { XBadgePrefix, XBadgeProperty } from './badge.property';
+import { XIsNumber, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -21,16 +19,12 @@ import { XInputBoolean, XInputNumber, XIsNumber, XIsChange, XClassMap } from '@n
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XBadgeComponent implements OnInit, OnChanges {
-  @Input() type?: XBadgeType;
-  @Input() @XInputNumber() max?: number;
-  @Input() value?: number | string;
-  @Input() @XInputBoolean() dot?: boolean;
-  @ViewChild('badge', { static: true }) badge: ElementRef;
-  displayValue;
-  classMap: XClassMap = {};
+export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
+  displayValue: string = '';
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -41,7 +35,7 @@ export class XBadgeComponent implements OnInit, OnChanges {
   }
 
   setClassMap() {
-    this.classMap[`${XBadgePrefix}-${this.type}`] = this.type ? true : false;
+    this.classMap[`${XBadgePrefix}-${this.type}`] = !XIsEmpty(this.type);
   }
 
   setDisplayValue() {

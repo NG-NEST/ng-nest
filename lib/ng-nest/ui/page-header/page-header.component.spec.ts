@@ -4,7 +4,7 @@ import { XPageHeaderComponent } from './page-header.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPageHeaderModule } from '@ng-nest/ui/page-header';
-import { XPageHeaderPrefix } from './page-header.type';
+import { XPageHeaderPrefix } from './page-header.property';
 
 describe(XPageHeaderPrefix, () => {
   beforeEach(async(() => {

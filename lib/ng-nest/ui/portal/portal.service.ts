@@ -1,7 +1,7 @@
-import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
-import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition } from '@angular/cdk/overlay';
+import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from '@angular/core';
+import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { XPortalOption, XPortalOverlayRef, XPortalPlacement } from './portal.type';
+import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
 import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 
 /**
@@ -11,30 +11,27 @@ import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 export class XPortalService {
   constructor(public overlay: Overlay, public injector: Injector) {}
 
-  attach(option?: XPortalOption): XPortalOverlayRef {
-    let overlayRef = this.createOverlayRef(option);
-    let templatePortal: TemplatePortal<any>;
-    let componentPortal: ComponentPortal<any>;
-    let componentRef: ComponentRef<any>;
-    let embeddedViewRef: EmbeddedViewRef<any>;
-    if (option.content instanceof TemplateRef) {
-      templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
-      embeddedViewRef = overlayRef.attach(templatePortal);
+  attach<T>(option: XPortalProperty): XPortalOverlayRef<T> {
+    let portal: XPortalOverlayRef<T> = {};
+    if (typeof option.content === 'undefined') return portal;
+    portal.overlayRef = this.createOverlayRef(option);
+    if (option.content instanceof TemplateRef && option.viewContainerRef) {
+      portal.templatePortal = new TemplatePortal(option.content, option.viewContainerRef, option.context);
+      portal.embeddedViewRef = portal.overlayRef.attach(portal.templatePortal);
     } else {
-      componentPortal = new ComponentPortal(option.content, option.viewContainerRef, option.injector, option.componentFactoryResolver);
-      componentRef = overlayRef.attach(componentPortal);
+      portal.componentPortal = new ComponentPortal(
+        option.content as ComponentType<any>,
+        option.viewContainerRef,
+        option.injector,
+        option.componentFactoryResolver
+      );
+      portal.componentRef = portal.overlayRef.attach(portal.componentPortal);
     }
 
-    return {
-      overlayRef: overlayRef,
-      templatePortal: templatePortal,
-      componentPortal: componentPortal,
-      componentRef: componentRef,
-      embeddedViewRef: embeddedViewRef
-    };
+    return portal;
   }
 
-  createInjector(data, token: InjectionToken<any>): PortalInjector {
+  createInjector(data: any, token: InjectionToken<any>): PortalInjector {
     const injectorTokens = new WeakMap();
     injectorTokens.set(token, data);
     return new PortalInjector(this.injector, injectorTokens);
@@ -42,11 +39,7 @@ export class XPortalService {
 
   setPlacement(elementRef?: ElementRef, ...placement: XPlace[] | XPlacement[]): PositionStrategy {
     if (!elementRef) {
-      return this.overlay
-        .position()
-        .global()
-        .centerHorizontally()
-        .centerVertically();
+      return this.overlay.position().global().centerHorizontally().centerVertically();
     } else {
       return this.overlay
         .position()
@@ -57,28 +50,22 @@ export class XPortalService {
   }
 
   setPosition(position?: XPosition, width?: string, height?: string): PositionStrategy {
-    let result = this.overlay
-      .position()
-      .global()
-      .width(width)
-      .height(height);
-    if (position === 'left') {
-      return result.left();
-    } else if (position === 'right') {
-      return result.right();
-    } else if (position === 'top') {
-      return result.top();
-    } else if (position === 'bottom') {
-      return result.bottom();
+    let result = this.overlay.position().global().width(width).height(height);
+    switch (position) {
+      case 'left':
+        return result.left();
+      case 'right':
+        return result.right();
+      case 'top':
+        return result.top();
+      case 'bottom':
+      default:
+        return result.bottom();
     }
   }
 
-  setPlace(place: XPlace, offset?: string, width?: string, height?: string): PositionStrategy {
-    let result = this.overlay
-      .position()
-      .global()
-      .width(width)
-      .height(height);
+  setPlace(place?: XPlace, offset?: string, width?: string, height?: string): PositionStrategy {
+    let result = this.overlay.position().global().width(width).height(height);
     switch (place) {
       case 'top-start':
         return result.top(offset).left(offset);
@@ -103,13 +90,13 @@ export class XPortalService {
     }
   }
 
-  private createOverlayRef(option?: XPortalOption): OverlayRef {
+  private createOverlayRef(option: XPortalProperty): OverlayRef {
     return this.overlay.create(option.overlayConfig);
   }
 
   setConnectedPosition(...placement: XPlace[] | XPlacement[]): ConnectedPosition[] {
     let result: ConnectedPosition[] = [];
-    placement.forEach(place => result.push(XPortalPlacement[place]));
+    placement.forEach((place: XPlace | XPlacement) => result.push(XPortalPlacement[place]));
     return result;
   }
 }

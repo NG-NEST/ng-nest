@@ -9,7 +9,6 @@ import { XRowPrefix, XRowProperty } from './layout.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XRowComponent extends XRowProperty implements OnInit {
-  
   @HostBinding(`class.x-flex`) get getFlex() {
     return this.justify || this.align;
   }

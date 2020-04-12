@@ -3,54 +3,39 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnInit,
   Renderer2,
-  OnDestroy,
-  Input,
-  Output,
-  EventEmitter,
   OnChanges,
-  SimpleChanges,
-  TemplateRef
+  SimpleChanges
 } from '@angular/core';
-import { chunk } from '@ng-nest/ui/core';
+import { chunk, XIsChange } from '@ng-nest/ui/core';
+import { XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 
 @Component({
-  selector: 'x-picker-date',
+  selector: `${XPickerDatePrefix}`,
   templateUrl: './picker-date.component.html',
   styleUrls: ['./picker-date.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPickerDateComponent implements OnInit, OnChanges, OnDestroy {
+export class XPickerDateComponent extends XPickerDateProperty implements OnChanges {
   weeks = ['一', '二', '三', '四', '五', '六', '日'];
   now = new Date();
-  @Input() display = new Date();
-  @Input() model;
-  @Input() dateTemp: TemplateRef<any>;
-  @Output() modelChange = new EventEmitter();
-  @Output() rangeChange = new EventEmitter();
-  dates = [];
+  dates: Date[] = [];
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
-
-  ngOnChanges(simples: SimpleChanges) {
-    let displayChange = simples.display;
-    if (displayChange && displayChange.currentValue !== displayChange.previousValue) {
-      this.init();
-    }
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+    super();
   }
 
-  ngOnDestroy(): void {}
+  ngOnChanges(simples: SimpleChanges) {
+    XIsChange(simples.display) && this.init();
+  }
 
   init() {
     this.setDays(this.display);
   }
 
   setDays(date: Date) {
-    let dates = [];
+    let dates: Date[] = [];
     const year = date.getFullYear();
     const month = date.getMonth();
     const first = new Date(year, month, 1);

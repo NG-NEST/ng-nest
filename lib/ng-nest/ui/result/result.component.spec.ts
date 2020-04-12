@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XResultModule } from '@ng-nest/ui/result';
 import { FormsModule } from '@angular/forms';
-import { XResultPrefix } from './result.type';
+import { XResultPrefix } from './result.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 

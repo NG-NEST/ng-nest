@@ -5,8 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']
 })
-export class ExDisabledComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class ExDisabledComponent {}

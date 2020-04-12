@@ -4,7 +4,7 @@ import { XBackTopComponent } from './back-top.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XBackTopModule } from '@ng-nest/ui/back-top';
-import { XBackTopPrefix } from './back-top.type';
+import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
 

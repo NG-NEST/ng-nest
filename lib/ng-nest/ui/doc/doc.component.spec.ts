@@ -4,9 +4,9 @@ import { XDocComponent } from './doc.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDocModule } from '@ng-nest/ui/doc';
-import { DocPrefix } from './doc.type';
+import { XDocPrefix } from './doc.property';
 
-describe(DocPrefix, () => {
+describe(XDocPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XDocModule],
@@ -28,7 +28,7 @@ describe(DocPrefix, () => {
     });
     it('should className.', () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(DocPrefix);
+      expect(element.classList).toContain(XDocPrefix);
     });
   });
 });

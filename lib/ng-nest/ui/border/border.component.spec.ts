@@ -6,7 +6,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XBorderModule } from '@ng-nest/ui/border';
-import { XBorderPrefix } from './border.type';
+import { XBorderPrefix } from './border.property';
 
 describe(XBorderPrefix, () => {
   beforeEach(async(() => {

@@ -4,7 +4,7 @@ import { XTimelineComponent } from './timeline.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTimelineModule } from '@ng-nest/ui/timeline';
-import { XTimelinePrefix, XTimelineNode } from './timeline.type';
+import { XTimelinePrefix, XTimelineNode } from './timeline.property';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 import { XCardModule } from '@ng-nest/ui/card';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';

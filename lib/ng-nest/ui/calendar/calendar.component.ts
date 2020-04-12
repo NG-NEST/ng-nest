@@ -13,7 +13,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { XCalendarPrefix, XCalendarData, XCalendarModel } from './calendar.type';
+import { XCalendarPrefix, XCalendarData, XCalendarModel, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 
@@ -25,25 +25,15 @@ import { DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DatePipe]
 })
-export class XCalendarComponent implements OnInit, OnChanges {
-  @Input() data?: XCalendarData;
-  @Input() model?: XCalendarModel = 'month';
-  @Output() dateChange = new EventEmitter();
-  @Output() rangeChange = new EventEmitter();
-  @ViewChild('calendar', { static: true }) calendar: ElementRef;
+export class XCalendarComponent extends XCalendarProperty implements OnChanges {
   now: Date = new Date();
   datetime: Date = new Date();
   activatedDate: Date = new Date();
-  monthData = {};
+  monthData: { [prop: string]: XCalendarNode[] } = {};
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef,
-    public datePipe: DatePipe
-  ) {}
-
-  ngOnInit() {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef, public datePipe: DatePipe) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setMonthData();
@@ -61,11 +51,11 @@ export class XCalendarComponent implements OnInit, OnChanges {
   }
 
   setMonthData() {
-    let dt = {};
+    let dt: { [prop: string]: XCalendarNode[] } = {};
     for (let key in this.data) {
-      let month = this.datePipe.transform(key, 'yyyy-MM');
+      let month = this.datePipe.transform(key, 'yyyy-MM') as string;
       let value = '';
-      this.data[key].forEach(x => {
+      this.data[key].forEach((x) => {
         value += `${x.id}${x.label} <br/>`;
       });
       let item = { id: key, label: value };

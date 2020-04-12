@@ -1,3 +1,3 @@
 export * from './portal.module';
-export * from './portal.type';
+export * from './portal.property';
 export * from './portal.service';

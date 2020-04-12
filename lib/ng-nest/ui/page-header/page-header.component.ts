@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { XPageHeaderPrefix } from './page-header.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { XPageHeaderPrefix, XPageHeaderProperty } from './page-header.property';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
@@ -8,10 +8,8 @@ import { XPageHeaderPrefix } from './page-header.type';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPageHeaderComponent {
-  @Input('back-icon') backIcon: string = 'fto-arrow-left';
-  @Input('back-text') backText: string = '返回';
-  @Input() title: string;
-  @Input('sub-title') subTitle: string;
-  @Output() backClick = new EventEmitter();
+export class XPageHeaderComponent extends XPageHeaderProperty {
+  constructor() {
+    super();
+  }
 }

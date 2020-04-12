@@ -1,29 +1,16 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges,
-  ViewChild
+  SimpleChanges
 } from '@angular/core';
-import { XCheckboxPrefix, XCheckboxNode } from './checkbox.type';
-import { Subscription, Observable } from 'rxjs';
-import {
-  XData,
-  XValueAccessor,
-  XControlValueAccessor,
-  XInputBoolean,
-  XDataConvert,
-  XIsObservable,
-  XToDataConvert,
-  XSize
-} from '@ng-nest/ui/core';
-import { map } from 'rxjs/operators';
+import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
+import { Subject } from 'rxjs';
+import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
@@ -33,34 +20,20 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCheckboxComponent)]
 })
-export class XCheckboxComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() @XDataConvert() data?: XData<XCheckboxNode[]>;
-  @Input() @XInputBoolean() button?: boolean;
-  @Input() @XInputBoolean() icon?: boolean;
-  @Input() @XInputBoolean() indeterminate?: boolean;
-  @Input() size: XSize = 'medium';
-  @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
-
-  writeValue(value: any) {
+export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
+  writeValue(value: any[]) {
     this.value = value;
     this.cdr.detectChanges();
   }
 
-  checkboxNodes: XCheckboxNode[] = [];
-  private data$: Subscription | null = null;
+  nodes: XCheckboxNode[] = [];
+  private _unSubject = new Subject<void>();
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super(renderer);
   }
 
-  ngOnInit() {
-    // removeNgTag(this.elementRef.nativeElement);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      this.setData();
-    }
+    XIsChange(changes.data) && this.setData();
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {
@@ -77,23 +50,14 @@ export class XCheckboxComponent extends XControlValueAccessor implements OnInit,
   }
 
   ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      this.data$ && this.data$.unsubscribe();
-      this.data$ = (this.data as Observable<any>).pipe(map(x => XToDataConvert(x))).subscribe(x => {
-        this.setDataChange(x);
-      });
-    } else {
-      this.setDataChange(this.data as XCheckboxNode[]);
-    }
-  }
-
-  private setDataChange(value: XCheckboxNode[]) {
-    this.checkboxNodes = value;
-    this.cdr.detectChanges();
+    XSetData<XCheckboxNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+      this.cdr.detectChanges();
+    });
   }
 }

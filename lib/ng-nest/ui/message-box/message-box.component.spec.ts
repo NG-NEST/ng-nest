@@ -5,7 +5,7 @@ import { Component, DebugElement, ViewChild, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.type';
+import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.property';
 import { XMessageBoxService } from './message-box.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';

@@ -4,10 +4,10 @@ import { XExamplesComponent } from './examples.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XExamplesModule } from '@ng-nest/ui/examples';
-import { ExamplesPrefix } from './examples.type';
+import { XExamplesPrefix } from './examples.property';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 
-describe(ExamplesPrefix, () => {
+describe(XExamplesPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XExamplesModule, XTabsModule],

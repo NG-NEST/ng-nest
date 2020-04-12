@@ -1,16 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-  OnDestroy
-} from '@angular/core';
-import { XAlertPrefix, XAlertType } from './alert.type';
-import { XClassMap, XTemplate, XInputBoolean, XEffect, XFadeAnimation, XInputNumber } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { XAlertPrefix, XAlertProperty } from './alert.property';
+import { XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
@@ -22,23 +12,12 @@ import { delay, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XFadeAnimation]
 })
-export class XAlertComponent implements OnInit, OnDestroy {
-  @Input() title?: XTemplate;
-  @Input() content?: XTemplate;
-  @Input() type?: XAlertType = 'info';
-  @Input() effect?: XEffect = 'light';
-  @Input() @XInputBoolean() hide?: boolean = false;
-  @Input('hide-close') @XInputBoolean() hideClose?: boolean;
-  @Input('close-text') closeText?: string;
-  @Input('show-icon') @XInputBoolean() showIcon?: boolean;
-  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean = false;
-  @Input() @XInputBoolean() manual?: boolean;
-  @Input() @XInputNumber() duration: number = 0;
-  @Output() close = new EventEmitter();
-  classMap: XClassMap = {};
+export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
   private _unSubject = new Subject();
 
-  constructor(public cdr: ChangeDetectorRef) {}
+  constructor(public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -51,9 +30,9 @@ export class XAlertComponent implements OnInit, OnDestroy {
   }
 
   setClassMap() {
-    this.classMap[`${XAlertPrefix}-${this.type}`] = this.type ? true : false;
-    this.classMap[`x-${this.effect}`] = this.effect ? true : false;
-    this.classMap[`${XAlertPrefix}-icon-medium`] = this.title && this.content && this.showIcon;
+    this.classMap[`${XAlertPrefix}-${this.type}`] = !XIsEmpty(this.type);
+    this.classMap[`x-${this.effect}`] = !XIsEmpty(this.effect);
+    this.classMap[`${XAlertPrefix}-icon-medium`] = !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon);
   }
 
   setDuration() {
@@ -66,7 +45,7 @@ export class XAlertComponent implements OnInit, OnDestroy {
 
   onClose() {
     if (this.manual) {
-      this.close.emit();
+      this.close?.emit();
     } else {
       this.hide = true;
       this.cdr.detectChanges();
@@ -75,7 +54,7 @@ export class XAlertComponent implements OnInit, OnDestroy {
 
   onCloseAnimationDone() {
     if (this.hide) {
-      this.close.emit();
+      this.close?.emit();
     }
   }
 }

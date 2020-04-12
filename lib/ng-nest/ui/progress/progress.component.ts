@@ -6,21 +6,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   SimpleChanges,
   OnChanges
 } from '@angular/core';
-import { XProgressPrefix, XProgressStatus } from './progress.type';
-import {
-  XInputBoolean,
-  XInputNumber,
-  XIsFunction,
-  XIsString,
-  XIsObjectArray,
-  XIsEmpty,
-  XIsChange
-} from '@ng-nest/ui/core';
+import { XProgressPrefix, XProgressProperty } from './progress.property';
+import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XProgressPrefix}`,
@@ -29,19 +19,12 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XProgressComponent implements OnInit, OnChanges {
-  @Input() @XInputNumber() percent: number = 0;
-  @Input() height: string = '0.5rem';
-  @Input() status: XProgressStatus = 'normal';
-  @Input() @XInputBoolean() info: boolean = true;
-  @Input() @XInputBoolean() inside: boolean = false;
-  @Input() format?: Function;
-  @Input() color?: string | { color: string; percent: number }[] | Function;
-  @ViewChild('progress', { static: true }) progress: ElementRef;
+export class XProgressComponent extends XProgressProperty implements OnInit, OnChanges {
   currentColor: string;
-  classMap = {};
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {}
 
@@ -66,7 +49,7 @@ export class XProgressComponent implements OnInit, OnChanges {
     }
   }
 
-  getLevelColor(percent) {
+  getLevelColor(percent: number) {
     let colors = (this.color as { color: string; percent: number }[]).sort((a, b) => a.percent - b.percent);
     for (let i = 0; i < colors.length; i++) {
       if (colors[i].percent > percent) {
@@ -76,7 +59,7 @@ export class XProgressComponent implements OnInit, OnChanges {
     return colors[colors.length - 1].color;
   }
 
-  onFormat(percent) {
-    return this.format(percent);
+  onFormat(percent: number) {
+    return this.format?.(percent);
   }
 }

@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
-import { XStatisticPrefix } from './statistic.type';
+import { XStatisticPrefix } from './statistic.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XCardModule } from '@ng-nest/ui/card';

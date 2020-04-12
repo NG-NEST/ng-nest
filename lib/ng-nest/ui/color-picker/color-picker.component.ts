@@ -9,15 +9,14 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  SimpleChanges,
-  OnChanges,
   ViewContainerRef,
   ViewChild,
   Inject
 } from '@angular/core';
-import { XColorPickerPrefix, XColorPickerInput, XColorPickerNode, XColorPickerPortal } from './color-picker.type';
-import { fillDefault, XValueAccessor, XControlValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
+import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
+import { XValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { Overlay } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -28,7 +27,7 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XColorPickerComponent)]
 })
-export class XColorPickerComponent extends XControlValueAccessor implements OnInit, OnChanges {
+export class XColorPickerComponent extends XColorPickerProperty implements OnInit {
   @ViewChild('colorPicker', { static: true }) colorPicker: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
 
@@ -36,7 +35,7 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     return this.required && XIsEmpty(this.value);
   }
 
-  writeValue(value: any) {
+  writeValue(value: string) {
     this.value = value;
     this.displayValue = value;
     this.valueChange.next(this.value);
@@ -46,10 +45,8 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
-  displayValue: any = '';
-  datas: XColorPickerNode[] = [];
-  nodes: XColorPickerNode[] = [];
-  portal: XPortalOverlayRef;
+  displayValue: string = '';
+  portal: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon: string = 'fto-chevron-down';
   box: DOMRect;
   protalHeight: number;
@@ -57,7 +54,6 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   protalTobottom: boolean = true;
   scrollFunction: Function;
   resizeFunction: Function;
-  private _default: XColorPickerInput = {};
   private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
@@ -75,20 +71,11 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setFlex(this.colorPicker.nativeElement, this.justify, this.align, this.direction);
-    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {
     this.setPortal();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    let dataChange = changes.data;
-    if (dataChange && dataChange.currentValue !== dataChange.previousValue) {
-      // this.setData();
-    }
   }
 
   ngOnDestroy(): void {
@@ -106,8 +93,8 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   }
 
   removeListen() {
-    this.scrollFunction && this.scrollFunction();
-    this.resizeFunction && this.resizeFunction();
+    this.scrollFunction?.();
+    this.resizeFunction?.();
     this.cdr.markForCheck();
   }
 
@@ -144,12 +131,12 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
   }
 
   portalAttached() {
-    return this.portal?.overlayRef.hasAttached();
+    return this.portal?.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef.dispose();
+      this.portal?.overlayRef?.dispose();
       this.removeListen();
       return true;
     }
@@ -162,49 +149,37 @@ export class XColorPickerComponent extends XControlValueAccessor implements OnIn
     this.portal = this.portalService.attach({
       content: XColorPickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      injector: this.portalService.createInjector(
-        {
-          datas: this.datas,
-          nodes: this.nodes,
-          value: this.value,
-          valueChange: this.valueChange,
-          closePortal: () => this.closePortal(),
-          nodeEmit: node => this.nodeClick(node)
-        },
-        XColorPickerPortal
-      ),
       overlayConfig: {
         backdropClass: '',
         positionStrategy: this.setPlacement()
       }
     });
-    this.addListen();
+    this.setInstance();
   }
 
-  nodeClick(color: string) {
+  setInstance() {
+    let componentRef = this.portal?.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      value: this.value,
+      valueChange: this.valueChange,
+      closePortal: () => this.closePortal(),
+      nodeEmit: (color: string) => this.onNodeClick(color)
+    });
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
+  onNodeClick(color: string) {
     this.value = color;
     this.displayValue = color;
     if (this.onChange) this.onChange(this.value);
   }
 
   setPlacement() {
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    this.protalTobottom = this.doc.documentElement.clientHeight - this.box.top - this.box.height > this.protalHeight;
-    return this.portalService.setPlacement(
-      this.inputCom.input,
-      this.protalTobottom ? 'bottom-start' : 'top-start'
-    );
+    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
   }
 
   setPortal() {
-    if (!this.inputCom.input) return;
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
-    if (this.box && this.nodes.length > 0) {
-      this.protalHeight = this.box.height * (this.nodes.length > this.maxNodes ? this.maxNodes : this.nodes.length);
-    }
-    this.protalHeight = 300;
-    if (this.portalAttached()) {
-      this.portal.overlayRef.updatePositionStrategy(this.setPlacement());
-    }
+    this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 }

@@ -1,6 +1,6 @@
 import { XButtonModule } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XRadioComponent } from './radio.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
-import { XRadioPrefix, XRadioNode } from './radio.type';
+import { XRadioPrefix, XRadioNode } from './radio.property';
 import { XData } from '@ng-nest/ui/core';
 
 describe(XRadioPrefix, () => {
@@ -106,9 +106,9 @@ describe(XRadioPrefix, () => {
   });
 });
 
-const data: XData<XRadioNode[]> = ['QQ', '微信', '钉钉', '微博'];
+const data: string[] = ['QQ', '微信', '钉钉', '微博'];
 
-const iconData: XData<XRadioNode[]> = [
+const iconData: XData<XRadioNode> = [
   { label: 'QQ', icon: 'ado-qq' },
   { label: '微信', icon: 'ado-wechat' },
   { label: '钉钉', icon: 'ado-dingding' },
@@ -135,7 +135,7 @@ const iconData: XData<XRadioNode[]> = [
   ]
 })
 class TestXRadioComponent {
-  data: XData<XRadioNode[]> = data;
+  data: XData<XRadioNode> = data;
   model = 'QQ';
 }
 
@@ -162,8 +162,8 @@ class TestXRadioComponent {
   ]
 })
 class TestXRadioDisabledComponent {
-  data: XData<XRadioNode[]> = data;
-  dataDisabled: XData<XRadioNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  data: XData<XRadioNode> = data;
+  dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
   model = '钉钉';
 }
 
@@ -174,7 +174,7 @@ class TestXRadioDisabledComponent {
         <x-radio [data]="data" button></x-radio>
       </x-col>
       <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" button></x-radio>
+        <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="change()" button></x-radio>
       </x-col>
       <x-col span="24">
         <x-radio [data]="data" button disabled></x-radio>
@@ -197,10 +197,10 @@ class TestXRadioDisabledComponent {
 })
 class TestXRadioButtonComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XRadioNode[]> = data;
-  dataDisabled: XData<XRadioNode[]> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
+  data: XData<XRadioNode> = data;
+  dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
   model = '钉钉';
-  change($event) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -235,15 +235,15 @@ class TestXRadioButtonComponent {
 })
 class TestXRadioIconComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XRadioNode[]> = iconData;
-  dataDisabled: XData<XRadioNode[]> = [
+  data: XData<XRadioNode> = iconData;
+  dataDisabled: XData<XRadioNode> = [
     { label: 'QQ', icon: 'ado-qq' },
     { label: '微信', icon: 'ado-wechat' },
     { label: '钉钉', disabled: true, icon: 'ado-dingding' },
     { label: '微博', icon: 'ado-weibo' }
   ];
   model = '钉钉';
-  change($event) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -272,12 +272,12 @@ class TestXRadioIconComponent {
 })
 class TestXRadioAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XRadioNode[]>;
+  data: XData<XRadioNode>;
   model = 2;
   loading = false;
   getData() {
     this.loading = true;
-    this.data = Observable.create(x => {
+    this.data = new Observable((x) => {
       // 替换成http请求，或者data直接定义成 Observable 对象
       setTimeout(() => {
         this.model = 3;

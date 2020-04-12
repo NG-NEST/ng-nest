@@ -5,33 +5,28 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Input,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { InnerPrefix, XInnerInput } from './inner.type';
-import { fillDefault } from '@ng-nest/ui/core';
+import { XInnerPrefix, XInnerProperty } from './inner.property';
 
 @Component({
-  selector: 'x-inner',
+  selector: `${XInnerPrefix}`,
   templateUrl: './inner.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XInnerComponent implements OnInit, OnChanges {
-  @Input() padding: string;
-  private _default: XInnerInput = {
-    padding: '1rem'
-  };
+export class XInnerComponent extends XInnerProperty implements OnInit, OnChanges {
   private _ele: HTMLElement;
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.renderer.addClass(this.elementRef.nativeElement, InnerPrefix);
+    super();
+    this.renderer.addClass(this.elementRef.nativeElement, XInnerPrefix);
     this._ele = this.elementRef.nativeElement;
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setStyle();
   }
 

@@ -1,5 +1,5 @@
 // 标识对象
-export interface XIdentityInput {
+export interface XIdentityProperty {
   // 编码
   id?: any;
   // 标题
@@ -7,7 +7,7 @@ export interface XIdentityInput {
 }
 
 // 父节点标识对象
-export interface XParentIdentityInput extends XIdentityInput {
+export interface XParentIdentityProperty<T> extends XIdentityProperty {
   // 编码
   pid?: any;
   // 层级
@@ -15,7 +15,7 @@ export interface XParentIdentityInput extends XIdentityInput {
   // 叶子节点
   leaf?: boolean;
   // 子节点
-  children?: XParentIdentityInput[];
+  children?: T[];
   // 选中
   selected?: boolean;
   // 禁用

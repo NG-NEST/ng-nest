@@ -6,7 +6,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XTimePickerPrefix } from './time-picker.type';
+import { XTimePickerPrefix } from './time-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 
 describe(XTimePickerPrefix, () => {

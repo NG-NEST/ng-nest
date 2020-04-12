@@ -1,19 +1,9 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Inject,
-  ChangeDetectorRef,
-  OnInit,
-  ElementRef,
-  OnDestroy,
-  Renderer2
-} from '@angular/core';
-import { XSelectPortal, XSelectNode } from './select.type';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'x-select-portal',
+  selector: `${XSelectPortalPrefix}`,
   templateUrl: './select-portal.component.html',
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -31,7 +21,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueChange$ = this.valueChange.subscribe(x => {
+    this.valueChange$ = this.valueChange.subscribe((x) => {
       this.value = x;
       this.cdr.markForCheck();
     });

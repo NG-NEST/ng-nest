@@ -1,13 +1,10 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { XCommentNode } from '@ng-nest/ui/comment';
-import { DatePipe } from '@angular/common';
 import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss'],
-  providers: [DatePipe]
+  templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
   now = new Date();
@@ -100,13 +97,13 @@ export class ExDefaultComponent {
     }
   ];
 
-  constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  createNode(pid, content, index = 0) {
+  createNode(pid: string, content: string | undefined, index = 0) {
     return {
-      value: pid + '-' + Math.floor(Math.random() * 100),
+      id: `${pid}-${Math.floor(Math.random() * 100)}`,
       pid: pid,
-      author: '用户' + index,
+      author: `用户${index}`,
       datetime: XAddMinutes(new Date(), index),
       content: content,
       children: []
@@ -114,11 +111,13 @@ export class ExDefaultComponent {
   }
 
   likeClick(node: XCommentNode) {
+    if (!node.likes) node.likes = 0;
     node.likes++;
     this.cdr.detectChanges();
   }
 
   sureClick(node: XCommentNode) {
+    if (!node.children) node.children = [];
     let children: XCommentNode[] = [this.createNode(node.pid, node.replyContent), ...node.children];
     node.children = children;
     this.cdr.detectChanges();
@@ -126,6 +125,7 @@ export class ExDefaultComponent {
 
   moreClick(node: XCommentNode) {
     let nodes: XCommentNode[] = [];
+    if (!node.children) node.children = [];
     for (let i = 1; i <= 10; i++) {
       nodes = [...nodes, this.createNode(node.id, node.content, -i)];
     }

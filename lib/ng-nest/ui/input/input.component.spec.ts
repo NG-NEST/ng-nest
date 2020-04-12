@@ -4,8 +4,8 @@ import { XInputComponent } from './input.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputModule } from '@ng-nest/ui/input';
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { XInputPrefix, XInputType, XInputIconLayoutType } from './input.type';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XInputPrefix } from './input.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 
@@ -144,7 +144,7 @@ describe(XInputPrefix, () => {
 })
 class TestXInputComponent {
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1000).subscribe(x => {
+    interval(1000).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -202,17 +202,17 @@ class TestXInputIconComponent {}
   template: `
     <x-row>
       <x-col span="8">
-        <x-input clearable [(ngModel)]="model" (ngModelChange)="change($event)"></x-input>
+        <x-input clearable [(ngModel)]="model" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input clearable [(ngModel)]="modelValue" (ngModelChange)="change($event)"></x-input>
+        <x-input clearable [(ngModel)]="modelValue" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change($event)"></x-input>
+        <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
   `,
@@ -229,7 +229,7 @@ class TestXInputClearableComponent {
   modelValue = '显示清除按钮';
   modelIcon: any;
   constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -274,17 +274,17 @@ class TestXInputDisabledComponent {
   template: `
     <x-row>
       <x-col span="8">
-        <x-input required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+        <x-input required [(ngModel)]="value" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input label="用户名" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+        <x-input label="用户名" required [(ngModel)]="value" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+        <x-input icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
   `,
@@ -299,7 +299,7 @@ class TestXInputDisabledComponent {
 class TestXInputRequiredComponent {
   value: any;
   constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -308,19 +308,19 @@ class TestXInputRequiredComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" label="用户名" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" label="用户名" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" label="用户名" direction="row" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" label="用户名" direction="row" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" icon="ado-user" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" icon="ado-user" iconLayout="right" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" iconLayout="right" maxlength="50"></x-input>
       </x-col>
     </x-row>
   `,
@@ -335,7 +335,7 @@ class TestXInputRequiredComponent {
 class TestXInputLengthComponent {
   value: any;
   constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
+  change() {
     this.cdr.detectChanges();
   }
 }
@@ -344,19 +344,19 @@ class TestXInputLengthComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="big"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="big"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="large"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="large"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="small"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="small"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change($event)" size="mini"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="mini"></x-input>
       </x-col>
     </x-row>
   `,
@@ -371,7 +371,7 @@ class TestXInputLengthComponent {
 class TestXInputSizeComponent {
   value: any;
   constructor(private cdr: ChangeDetectorRef) {}
-  change(val) {
+  change() {
     this.cdr.detectChanges();
   }
 }

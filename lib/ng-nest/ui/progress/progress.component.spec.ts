@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XProgressModule } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
-import { XProgressPrefix } from './progress.type';
+import { XProgressPrefix } from './progress.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 
@@ -79,7 +79,7 @@ describe(XProgressPrefix, () => {
 })
 class TestXProgressComponent {
   constructor(private cdr: ChangeDetectorRef) {}
-  format(percent) {
+  format(percent: number) {
     return percent === 100 ? '已完成' : `加载中${percent}%`;
   }
   percent = 10;
@@ -91,7 +91,7 @@ class TestXProgressComponent {
     { color: '#1989fa', percent: 80 },
     { color: '#6f7ad3', percent: 100 }
   ];
-  colorFunc(percent) {
+  colorFunc(percent: number) {
     if (percent < 30) {
       return '#909399';
     } else if (percent < 70) {
@@ -100,7 +100,7 @@ class TestXProgressComponent {
       return '#67c23a';
     }
   }
-  plus(num) {
+  plus(num: number) {
     if ((this.percent === 0 && num === -10) || (this.percent === 100 && num === 10)) return;
     this.percent = this.percent + num;
     this.cdr.detectChanges();

@@ -1,16 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  Input,
-  ViewChild
-} from '@angular/core';
-import { XAvatarPrefix, XAvatarShape, XAvatarFit } from './avatar.type';
-import { XSize, XTemplate, XClassMap } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
+import { XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAvatarPrefix}`,
@@ -19,29 +9,23 @@ import { XSize, XTemplate, XClassMap } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent implements OnInit {
-  @Input() label?: XTemplate;
-  @Input() size?: XSize;
-  @Input() icon?: string;
-  @Input() shape?: XAvatarShape = 'circle';
-  @Input() src?: string;
-  @Input() fit?: XAvatarFit = 'cover';
-  @ViewChild('avatar', { static: true }) avatar: ElementRef;
+export class XAvatarComponent extends XAvatarProperty implements OnInit {
   isImgError: boolean = false;
-  classMap: XClassMap = {};
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
   }
 
   setClassMap() {
-    this.classMap[`${XAvatarPrefix}-${this.shape}`] = this.shape ? true : false;
-    this.classMap[`${XAvatarPrefix}-${this.size}`] = this.size ? true : false;
+    this.classMap[`${XAvatarPrefix}-${this.shape}`] = !XIsEmpty(this.shape);
+    this.classMap[`${XAvatarPrefix}-${this.size}`] = !XIsEmpty(this.size);
   }
 
-  imgError(event: Event) {
+  imgError() {
     this.isImgError = true;
     this.cdr.detectChanges();
   }

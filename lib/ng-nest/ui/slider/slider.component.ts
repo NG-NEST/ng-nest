@@ -8,33 +8,15 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
   ViewChild,
   AfterViewInit,
   OnDestroy,
-  TemplateRef,
-  Output,
-  EventEmitter,
   SimpleChange
 } from '@angular/core';
-import { XSliderPrefix, XSliderNode, XSliderLayout } from './slider.type';
-import {
-  XClassMap,
-  XDataConvert,
-  XData,
-  XIsChange,
-  XIsObservable,
-  XToDataConvert,
-  XInputBoolean,
-  XInputNumber,
-  XResize,
-  XPosition,
-  XIsUndefined,
-  XJustify,
-  XSize
-} from '@ng-nest/ui/core';
-import { Observable, Subject, observable } from 'rxjs';
-import { map, takeUntil, debounceTime } from 'rxjs/operators';
+import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
+import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { takeUntil, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: `${XSliderPrefix}`,
@@ -43,19 +25,9 @@ import { map, takeUntil, debounceTime } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @Input() @XDataConvert() data: XData<XSliderNode[]>;
-  @Input() @XInputBoolean() animated: boolean = true;
-  @Input() @XInputNumber() activatedIndex: number = 0;
-  @Input() layout: XSliderLayout = 'row';
-  @Input() justify: XJustify = 'start';
-  @Input('node-justify') nodeJustify: XJustify = 'center';
-  @Input() nodeTpl: TemplateRef<any>;
-  @Input() size: XSize = 'medium';
-  @Output() indexChange = new EventEmitter<number>();
+export class XSliderComponent extends XSliderProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   @ViewChild('sliderScroll') sliderScroll: ElementRef;
   @ViewChild('sliderNodes') sliderNodes: ElementRef;
-  @ViewChild('highlight') highlight: ElementRef;
   nodes: XSliderNode[] = [];
   activated: XSliderNode;
   classMap: XClassMap = {};
@@ -86,10 +58,12 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
     left: '',
     top: ''
   };
-  private unSubject = new Subject();
+  private _unSubject = new Subject<void>();
   private resizeObserver: ResizeObserver;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -106,9 +80,9 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
-    this.resizeObserver && this.resizeObserver.disconnect();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+    this.resizeObserver?.disconnect();
   }
 
   ngAfterViewInit(): void {
@@ -117,7 +91,7 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   setClassMap() {
-    this.classMap[`${XSliderPrefix}-${this.layout}`] = this.layout ? true : false;
+    this.classMap[`${XSliderPrefix}-${this.layout}`] = XIsEmpty(this.layout);
     this.scrollClassMap[`x-justify-${this.justify}`] = this.justify ? true : false;
     this.nodeClassMap[`x-justify-${this.nodeJustify}`] = this.nodeJustify ? true : false;
     this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;
@@ -131,8 +105,8 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
 
   setSubscribe() {
     XResize(this.sliderScroll.nativeElement, this.sliderNodes.nativeElement)
-      .pipe(debounceTime(50), takeUntil(this.unSubject))
-      .subscribe(x => {
+      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .subscribe((x) => {
         this.resizeObserver = x.resizeObserver;
         this.sizeChecked();
         this.setActivated();
@@ -241,24 +215,10 @@ export class XSliderComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') return;
-    if (XIsObservable(this.data)) {
-      (this.data as Observable<any>)
-        .pipe(
-          map(x => XToDataConvert(x)),
-          takeUntil(this.unSubject)
-        )
-        .subscribe(x => {
-          this.setDataChange(x);
-        });
-    } else {
-      this.setDataChange(this.data as XSliderNode[]);
-    }
-  }
-
-  private setDataChange(value: XSliderNode[]) {
-    this.nodes = value;
-    this.cdr.detectChanges();
-    setTimeout(() => this.setActivated());
+    XSetData<XSliderNode>(this.data, this._unSubject).subscribe((x) => {
+      this.nodes = x;
+      this.cdr.detectChanges();
+      setTimeout(() => this.setActivated());
+    });
   }
 }

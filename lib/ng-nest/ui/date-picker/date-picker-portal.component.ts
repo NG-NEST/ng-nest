@@ -2,19 +2,18 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Inject,
   ChangeDetectorRef,
   OnInit,
   Renderer2,
   OnDestroy,
   AfterViewInit
 } from '@angular/core';
-import { XDatePickerPortal, XDatePickerType } from './date-picker.type';
+import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'x-date-picker-portal',
+  selector: `${XDatePickerPortalPrefix}`,
   templateUrl: './date-picker-portal.component.html',
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -23,29 +22,29 @@ import { Subscription } from 'rxjs';
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
   type: XDatePickerType = 'date';
   display = new Date();
-  model;
+  model: Date;
   startYear: number;
+  value: any;
+  valueChange: Subject<any>;
+  closePortal: Function;
+  nodeEmit: Function;
 
   private _type: XDatePickerType;
 
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
-  constructor(
-    @Inject(XDatePickerPortal) public option: any,
-    public renderer: Renderer2,
-    public cdr: ChangeDetectorRef
-  ) {}
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueChange$ = this.option.valueChange.subscribe(x => {
-      this.option.value = x;
+    this.valueChange$ = this.valueChange.subscribe((x) => {
+      this.value = x;
       this.init();
     });
     setTimeout(
       () =>
         (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.option.closePortal();
+          this.closePortal();
         }))
     );
   }
@@ -55,18 +54,18 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   ngOnDestroy(): void {
-    this.valueChange$ && this.valueChange$.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
+    this.valueChange$?.unsubscribe();
+    this.docClickFunction?.();
   }
 
   init() {
-    if (!XIsEmpty(this.option.value)) {
+    if (!XIsEmpty(this.value)) {
       this.setDefault();
     } else {
       this.model = this.display;
     }
-    this.type = this.option.type;
-    this._type = this.option.type;
+    this.type = this.type;
+    this._type = this.type;
     this.setDisplay(this.model);
     this.cdr.detectChanges();
   }
@@ -76,7 +75,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   setDefault() {
-    const date = new Date(this.option.value);
+    const date = new Date(this.value);
     this.model = date;
   }
 
@@ -87,15 +86,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   dateChange(date: Date) {
     this.setDisplay(date);
     this.model = date;
-    this.option.nodeEmit(date);
-    // this.cdr.detectChanges();
+    this.nodeEmit(date);
   }
 
   monthChange(date: Date) {
     this.setDisplay(date);
     if (this._type === 'month') {
       this.model = date;
-      this.option.nodeEmit(date);
+      this.nodeEmit(date);
     } else {
       this.type = 'date';
     }
@@ -106,7 +104,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.setDisplay(date);
     if (this._type === 'year') {
       this.model = date;
-      this.option.nodeEmit(date);
+      this.nodeEmit(date);
     } else {
       this.type = 'month';
     }

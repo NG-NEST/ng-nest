@@ -3,8 +3,7 @@ import { XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
   data: XTreeNode[] = [

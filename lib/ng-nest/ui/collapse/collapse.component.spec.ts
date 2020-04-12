@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { FormsModule } from '@angular/forms';
-import { XCollapsePrefix } from './collapse.type';
+import { XCollapsePrefix } from './collapse.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

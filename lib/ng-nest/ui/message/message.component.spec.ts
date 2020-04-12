@@ -5,7 +5,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageModule } from '@ng-nest/ui/message';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XMessagePrefix } from './message.type';
+import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';

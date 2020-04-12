@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  templateUrl: './default.component.html'
 })
-export class ExDefaultComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-
+export class ExDefaultComponent {
   confirm() {
     console.log('confirm');
   }

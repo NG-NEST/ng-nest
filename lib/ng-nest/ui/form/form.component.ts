@@ -1,49 +1,26 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  Input
-} from '@angular/core';
-import { XFormInput, XControl, XFormRow } from './form.type';
-import { fillDefault } from '@ng-nest/ui/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { XFormProperty, XControl, XFormRow, XFormPrefix } from './form.property';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'x-form',
+  selector: `${XFormPrefix}`,
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XFormComponent implements OnInit, OnChanges {
-  @Input() title: string;
-  @Input() controls?: XControl[] | XFormRow[];
-
+export class XFormComponent extends XFormProperty implements OnInit {
   formGroup: FormGroup;
-
   controlsType: 'controls' | 'rows';
-
-  private _default: XFormInput = {};
-
   private _controls: XControl[] = [];
 
-  constructor() {}
-
-  ngOnInit() {
-    fillDefault(this, this._default);
-    this.getControlsType();
-    this.createFormGroup();
-
-    // removeNgTag(this.elementRef.nativeElement);
+  constructor() {
+    super();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
-
-  ngOnDestroy(): void {
-    this.removeListen();
+  ngOnInit() {
+    this.getControlsType();
+    this.createFormGroup();
   }
 
   getControlsType() {
@@ -61,13 +38,11 @@ export class XFormComponent implements OnInit, OnChanges {
 
   createFormGroup() {
     let group: { [property: string]: FormControl } = {};
-    this._controls.forEach(x => {
+    this._controls.forEach((x) => {
       group[x.id] = new FormControl(x.value);
     });
     this.formGroup = new FormGroup(group);
   }
 
   submit() {}
-
-  private removeListen() {}
 }

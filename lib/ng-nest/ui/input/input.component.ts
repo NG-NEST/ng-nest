@@ -6,46 +6,22 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
   ViewChild,
-  EventEmitter,
-  Output,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XInputPrefix, XInputInput, XInputType, XInputIconLayoutType } from './input.type';
-import {
-  fillDefault,
-  XIsEmpty,
-  XValueAccessor,
-  XControlValueAccessor,
-  XInputBoolean,
-  XInputNumber,
-  removeNgTag,
-  XSize,
-  XIsChange
-} from '@ng-nest/ui/core';
+import { XInputPrefix, XInputProperty } from './input.property';
+import { XIsEmpty, XValueAccessor, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
-  selector: 'x-input',
+  selector: `${XInputPrefix}`,
   templateUrl: './input.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputComponent)]
 })
-export class XInputComponent extends XControlValueAccessor implements OnInit, OnChanges {
-  @Input() type?: XInputType = 'text';
-  @Input() @XInputBoolean() clearable?: boolean;
-  @Input() @XInputBoolean() readonly?: boolean;
-  @Input() icon?: string;
-  @Input() iconLayout?: XInputIconLayoutType = 'left';
-  @Input() @XInputBoolean() iconSpin?: boolean;
-  @Input() @XInputNumber() maxlength?: number;
-  @Input() size?: XSize = 'medium';
-  @Input() error?: boolean;
-  @Input() errorMessage?: string;
-  @Output() clearEmit?: EventEmitter<any> = new EventEmitter<any>();
+export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
   @ViewChild('input', { static: true }) input: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
 
@@ -59,7 +35,6 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     this.cdr.detectChanges();
   }
 
-  private _default: XInputInput = {};
   private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = '';
@@ -84,18 +59,16 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
   }
 
   ngOnInit() {
-    fillDefault(this, this._default);
     this.setPadding();
     this.setFlex(this.input.nativeElement, this.justify, this.align, this.direction);
     this.setSize();
-    // removeNgTag(this.elementRef.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.clearable) && this.setClearable();
   }
 
-  change(value) {
+  change(value: any) {
     if (this._required && !this.disabled) {
       this.required = XIsEmpty(value);
     }
@@ -109,7 +82,7 @@ export class XInputComponent extends XControlValueAccessor implements OnInit, On
     if (this.onChange) this.onChange(value);
   }
 
-  clear(event: Event) {
+  clear() {
     const clearValue = this.value;
     this.value = '';
     this.change(this.value);

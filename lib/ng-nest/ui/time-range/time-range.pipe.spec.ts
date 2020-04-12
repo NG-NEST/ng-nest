@@ -1,10 +1,7 @@
-import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { XTimeRangeModule } from '@ng-nest/ui/time-range';
-import { XTimeRangePrefix } from './time-range.type';
-import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
+import { XTimeRangePrefix } from './time-range.property';
 
 describe(XTimeRangePrefix, () => {
   beforeEach(async(() => {
@@ -15,7 +12,6 @@ describe(XTimeRangePrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeRangeComponent>;
-    let timeRange: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTimeRangeComponent);
       fixture.detectChanges();
