@@ -62,7 +62,7 @@ describe(XLinkPrefix, () => {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row > x-col > x-link:not(:first-child) {
         margin-left: 0.25rem;

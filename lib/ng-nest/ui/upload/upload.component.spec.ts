@@ -61,7 +61,7 @@ describe(XUploadPrefix, () => {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row > x-col {
         width: 14rem;
@@ -84,7 +84,7 @@ class TestXUploadComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

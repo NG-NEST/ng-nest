@@ -100,7 +100,7 @@ describe(XDatePickerPrefix, () => {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -141,7 +141,7 @@ class TestXDatePickerComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -171,7 +171,7 @@ class TestXDatePickerLabelComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -196,7 +196,7 @@ class TestXDatePickerDisabledComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -226,7 +226,7 @@ class TestXDatePickerRequiredComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

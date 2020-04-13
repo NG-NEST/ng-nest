@@ -1,5 +1,5 @@
 import { XTemplate, XPosition, XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Drawer
@@ -11,6 +11,7 @@ export const XDrawerPrefix = 'x-drawer';
 /**
  * Drawer Property
  */
+@Component({ template: '' })
 export class XDrawerProperty extends XProperty {
   /**
    * 标题
@@ -19,7 +20,7 @@ export class XDrawerProperty extends XProperty {
   /**
    * 显示/隐藏
    */
-  @Input() @XInputBoolean() visible: boolean = false;
+  @Input() @XInputBoolean() visible: boolean;
   /**
    * 展示方向
    */

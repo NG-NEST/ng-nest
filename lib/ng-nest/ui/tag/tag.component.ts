@@ -19,9 +19,11 @@ export class XTagComponent extends XTagProperty implements OnInit {
   }
 
   setClassMap() {
-    this.classMap[`${XTagPrefix}-${this.type}`] = !XIsEmpty(this.type);
-    this.classMap[`${XTagPrefix}-${this.size}`] = !XIsEmpty(this.size);
-    this.classMap[`${XTagPrefix}-dark`] = this.dark;
+    this.classMap = {
+      [`${XTagPrefix}-${this.type}`]: !XIsEmpty(this.type),
+      [`${XTagPrefix}-${this.size}`]: !XIsEmpty(this.size),
+      [`${XTagPrefix}-dark`]: this.dark
+    };
   }
 
   onClose() {

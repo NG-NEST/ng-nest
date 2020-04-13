@@ -55,7 +55,7 @@ export type XJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-betw
 /**
  * flex 布局下的子元素垂直排列方式
  */
-export type XAlign = 'top' | 'center' | 'bottom';
+export type XAlign = 'start' | 'center' | 'end';
 
 /**
  * flex 布局下的子元素排列方向

@@ -1,5 +1,5 @@
 import { XIdentityProperty, XProperty, XJustify } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Anchor
@@ -11,6 +11,7 @@ export const XAnchorPrefix = 'x-anchor';
 /**
  * Anchor Property
  */
+@Component({ template: '' })
 export class XAnchorProperty extends XProperty {
   /**
    * 滚动区域对象

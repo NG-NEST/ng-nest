@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XStatus, XPlace, XInputBoolean } from '@ng-nest/ui/core';
 import { XAlertProperty } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
@@ -16,8 +16,9 @@ export const XDialogPortal = 'x-dialog-portal';
 /**
  * Dialog Property
  */
+@Component({ template: '' })
 export class XDialogProperty extends XAlertProperty {
-  @Input() @XInputBoolean() visible = false;
+  @Input() @XInputBoolean() visible: boolean;
   /**
    * 方位，九宫格
    */

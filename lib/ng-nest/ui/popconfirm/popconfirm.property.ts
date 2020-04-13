@@ -1,6 +1,6 @@
 import { XPlacement, XTemplate, XProperty } from '@ng-nest/ui/core';
 import { XPopoverTrigger } from '@ng-nest/ui/popover';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component, Directive } from '@angular/core';
 
 /**
  * Popconfirm
@@ -12,6 +12,7 @@ export const XPopconfirmPrefix = 'x-popconfirm';
 /**
  * Popconfirm Property
  */
+@Component({ template: '' })
 export class XPopconfirmProperty extends XProperty {
   /**
    * 标题，支持自定义模板

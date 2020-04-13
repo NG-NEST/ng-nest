@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { XTooltipPortalPrefix } from './tooltip.property';
-import { XPlacement } from '@ng-nest/ui/core';
+import { XPlacement, XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTooltipPortalPrefix}`,
@@ -25,8 +25,9 @@ import { XPlacement } from '@ng-nest/ui/core';
 export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, AfterViewInit {
   contentChange: BehaviorSubject<any>;
   contentChange$: Subscription | null = null;
-  classMap = {};
+  classMap: XClassMap = {};
   box: DOMRect;
+  portalBox: DOMRect;
   arrowBox: DOMRect;
   portalHover: Function;
   viewInit: Function;
@@ -43,23 +44,21 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
     this.portalHover(false);
   }
 
-  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {
-    this.classMap = {
-      [`${XTooltipPortalPrefix}-${this.placement}`]: true
-    };
-  }
+  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.contentChange$ = this.contentChange.subscribe((x) => {
       this.content = x;
       this.cdr.detectChanges();
     });
+    this.classMap[`${XTooltipPortalPrefix}-${this.placement}`] = true;
   }
 
   ngAfterViewInit() {
     this.viewInit();
-    this.box = this.tooltipPortal.nativeElement.getBoundingClientRect();
+    this.portalBox = this.tooltipPortal.nativeElement.getBoundingClientRect();
     this.arrowBox = this.tooltipArrow.nativeElement.getBoundingClientRect();
+    console.log(this.box, this.arrowBox);
     this.setArrow();
     this.cdr.detectChanges();
   }
@@ -70,13 +69,13 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
 
   setArrow() {
     let offset = this.arrowBox.height / 2;
-    if (this.box.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
+    if (this.portalBox.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
       if (this.includes('-start')) {
         this.renderer.setStyle(this.tooltipArrow.nativeElement, 'top', `${this.box.height / 2 - offset}px`);
       } else if (this.includes('-end')) {
         this.renderer.setStyle(this.tooltipArrow.nativeElement, 'bottom', `${this.box.height / 2 - offset}px`);
       }
-    } else if (this.box.width > this.box.width && (this.includes('top-') || this.includes('bottom-'))) {
+    } else if (this.portalBox.width > this.box.width && (this.includes('top-') || this.includes('bottom-'))) {
       if (this.includes('-start')) {
         this.renderer.setStyle(this.tooltipArrow.nativeElement, 'left', `${this.box.width / 2 - offset}px`);
       } else if (this.includes('-end')) {

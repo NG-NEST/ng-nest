@@ -48,11 +48,13 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   }
 
   setClassMap() {
-    this.classMap[`${XButtonPrefix}-${this.type}`] = !XIsEmpty(this.type) && XIsEmpty(this.plain);
-    this.classMap[`${XButtonPrefix}-${this.type}-plain`] = !XIsEmpty(this.type) && !XIsEmpty(this.plain);
-    this.classMap[`${XButtonPrefix}-plain`] = !XIsEmpty(this.type) && !XIsEmpty(this.plain);
-    this.classMap[`x-size-${this.size}`] = !XIsEmpty(this.size);
-    this.classMap[`x-direction-${this.direction}`] = !XIsEmpty(this.direction);
+    this.classMap = {
+      [`${XButtonPrefix}-${this.type}`]: !XIsEmpty(this.type) && XIsEmpty(this.plain),
+      [`${XButtonPrefix}-${this.type}-plain`]: !XIsEmpty(this.type) && !XIsEmpty(this.plain),
+      [`${XButtonPrefix}-plain`]: XIsEmpty(this.type) && !XIsEmpty(this.plain),
+      [`x-size-${this.size}`]: !XIsEmpty(this.size),
+      [`x-direction-${this.direction}`]: !XIsEmpty(this.direction)
+    };
   }
 
   setSpace() {

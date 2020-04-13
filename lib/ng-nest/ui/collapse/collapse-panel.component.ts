@@ -9,10 +9,9 @@ import {
   Host,
   Optional
 } from '@angular/core';
-import { XCollapsePanelPrefix } from './collapse.property';
+import { XCollapsePanelPrefix, XCollapsePanelProperty } from './collapse.property';
 import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
-import { XCarouselPanelProperty } from '../carousel';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
@@ -22,7 +21,7 @@ import { XCarouselPanelProperty } from '../carousel';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCollapsePanelComponent extends XCarouselPanelProperty implements OnInit {
+export class XCollapsePanelComponent extends XCollapsePanelProperty implements OnInit {
   index: number;
 
   constructor(

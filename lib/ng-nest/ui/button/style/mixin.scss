@@ -46,10 +46,6 @@
   &-disabled {
     transform: none !important;
   }
-  &-activated {
-    z-index: 1;
-    @include button-color($--x-button-hover, $--x-button-hover-background, $--x-button-hover-border);
-  }
   &-round {
     border-radius: 5rem;
   }
@@ -60,11 +56,11 @@
   }
   &-only-icon,
   &-text {
-    border: none !important;
-    background-color: transparent !important;
+    border: none;
+    background-color: transparent;
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, transparent !important, transparent !important);
+      @include button-color($--x-button-hover, transparent, transparent);
     }
   }
   &-closable {
@@ -76,17 +72,15 @@
   &-disabled.#{$--x-button}-activated {
     background-color: $--x-info-900;
   }
-  &-disabled.#{$--x-button}-text {
-    background-color: transparent;
-  }
+  &-disabled.#{$--x-button}-text,
   &-disabled.#{$--x-button}-only-icon {
-    background-color: transparent;
-    border-color: transparent;
+    @include disabled($--x-button-disabled, transparent, transparent);
     &:hover,
     &:active {
-      @include button-color($--x-button-disabled, transparent, transparent);
+      @include disabled($--x-button-disabled, transparent, transparent);
     }
   }
+
   @include size(big, $--x-height-big, 0 $--x-padding-big);
   @include size(large, $--x-height-large, 0 $--x-padding-large);
   @include size(medium, $--x-height-medium, 0 $--x-padding-medium);
@@ -149,6 +143,10 @@
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
       }
+    }
+    &.#{$--x-button}-activated {
+      z-index: 1;
+      @include button-color($active, $active-background, $active-border);
     }
   }
 }

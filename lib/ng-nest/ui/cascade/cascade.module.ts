@@ -6,9 +6,10 @@ import { XCascadePortalComponent } from './cascade-portal.component';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XListModule } from '@ng-nest/ui/list';
 import { XPortalModule } from '@ng-nest/ui/portal';
+import { XCascadeProperty } from './cascade.property';
 
 @NgModule({
-  declarations: [XCascadeComponent, XCascadePortalComponent],
+  declarations: [XCascadeComponent, XCascadePortalComponent, XCascadeProperty],
   exports: [XCascadeComponent, XCascadePortalComponent],
   imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule]
 })

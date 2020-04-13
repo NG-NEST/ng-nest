@@ -1,5 +1,5 @@
 import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Input, Output, EventEmitter, Renderer2, Component } from '@angular/core';
 
 /**
  * Cascade
@@ -11,6 +11,7 @@ export const XCascadePrefix = 'x-cascade';
 /**
  * Cascade Property
  */
+@Component({ template: '' })
 export class XCascadeProperty extends XControlValueAccessor<any> {
   /**
    * 节点数据

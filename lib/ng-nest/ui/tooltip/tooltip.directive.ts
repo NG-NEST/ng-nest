@@ -5,9 +5,7 @@ import { XTooltipPrefix, XTooltipProperty } from './tooltip.property';
 import { BehaviorSubject } from 'rxjs';
 import { XIsChange } from '@ng-nest/ui/core';
 
-@Directive({
-  selector: `[${XTooltipPrefix}], ${XTooltipPrefix}`
-})
+@Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
   portal: XPortalOverlayRef<XTooltipPortalComponent>;
   box: DOMRect;

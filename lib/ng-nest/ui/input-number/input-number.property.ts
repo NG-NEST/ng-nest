@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Renderer2 } from '@angular/core';
+import { Input, Renderer2, Component } from '@angular/core';
 
 /**
  * InputNumber
@@ -11,6 +11,7 @@ export const XInputNumberPrefix = 'x-input-number';
 /**
  * InputNumber Property
  */
+@Component({ template: '' })
 export class XInputNumberProperty extends XControlValueAccessor<any> {
   /**
    * 最小值

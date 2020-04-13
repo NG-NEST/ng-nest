@@ -1,5 +1,5 @@
 import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Timeline
@@ -11,6 +11,7 @@ export const XTimelinePrefix = 'x-timeline';
 /**
  * Timeline Property
  */
+@Component({ template: '' })
 export class XTimelineProperty extends XProperty {
   /**
    * 数据

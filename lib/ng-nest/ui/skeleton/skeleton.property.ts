@@ -1,5 +1,5 @@
 import { XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Skeleton
@@ -11,6 +11,7 @@ export const XSkeletonPrefix = 'x-skeleton';
 /**
  * Skeleton Property
  */
+@Component({ template: '' })
 export class XSkeletonProperty extends XProperty {
   /**
    * 骨架数据
@@ -23,11 +24,11 @@ export class XSkeletonProperty extends XProperty {
   /**
    * 激活动画
    */
-  @Input() @XInputBoolean() active: boolean = false;
+  @Input() @XInputBoolean() active: boolean;
   /**
    * 显示边框
    */
-  @Input() @XInputBoolean() border: boolean = false;
+  @Input() @XInputBoolean() border: boolean;
 }
 
 /**

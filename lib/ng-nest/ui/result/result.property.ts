@@ -1,5 +1,5 @@
 import { XStatus, XProperty, XTemplate } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Result
@@ -11,6 +11,7 @@ export const XResultPrefix = 'x-result';
 /**
  * Result Property
  */
+@Component({ template: '' })
 export class XResultProperty extends XProperty {
   /**
    * 状态

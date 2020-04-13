@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Inner
@@ -11,6 +11,7 @@ export const XInnerPrefix = 'x-inner';
 /**
  * Inner Property
  */
+@Component({ template: '' })
 export class XInnerProperty extends XProperty {
   /**
    * 内边距

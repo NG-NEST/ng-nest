@@ -1,5 +1,5 @@
 import { XData, XControlValueAccessor, XDataConvert, XInputBoolean, XParentIdentityProperty } from '@ng-nest/ui/core';
-import { TemplateRef, Input } from '@angular/core';
+import { TemplateRef, Input, Component } from '@angular/core';
 
 /**
  * Transfer
@@ -11,6 +11,7 @@ export const XTransferPrefix = 'x-transfer';
 /**
  * Transfer Property
  */
+@Component({ template: '' })
 export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
    * 数据对象
@@ -23,11 +24,11 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
    * 是否能拖动
    */
-  @Input() @XInputBoolean() drag: boolean = false;
+  @Input() @XInputBoolean() drag: boolean;
   /**
    * 是否显示搜索
    */
-  @Input() @XInputBoolean() search: boolean = false;
+  @Input() @XInputBoolean() search: boolean;
   /**
    * 数据自定义模板
    */

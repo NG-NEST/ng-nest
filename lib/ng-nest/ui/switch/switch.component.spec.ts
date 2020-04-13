@@ -72,7 +72,7 @@ describe(XSwitchPrefix, () => {
         height: 900px;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -112,7 +112,7 @@ class TestXSwitchComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -137,7 +137,7 @@ class TestXSwitchLabelComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

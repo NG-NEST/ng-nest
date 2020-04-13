@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * PageHeader
@@ -10,6 +10,7 @@ export const XPageHeaderPrefix = 'x-page-header';
 /**
  * PageHeader Property
  */
+@Component({ template: '' })
 export class XPageHeaderProperty {
   /**
    * 返回图标

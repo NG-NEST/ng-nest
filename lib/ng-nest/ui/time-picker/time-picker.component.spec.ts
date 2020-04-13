@@ -100,7 +100,7 @@ describe(XTimePickerPrefix, () => {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -141,7 +141,7 @@ class TestXTimePickerComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -171,7 +171,7 @@ class TestXTimePickerLabelComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -196,7 +196,7 @@ class TestXTimePickerDisabledComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -226,7 +226,7 @@ class TestXTimePickerRequiredComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

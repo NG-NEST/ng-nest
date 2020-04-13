@@ -8,19 +8,11 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { XColorPickerProperty } from './color-picker.property';
 
 @NgModule({
-  declarations: [XColorPickerComponent, XColorPickerPortalComponent],
+  declarations: [XColorPickerComponent, XColorPickerPortalComponent, XColorPickerProperty],
   exports: [XColorPickerComponent, XColorPickerPortalComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    XPortalModule,
-    XSliderSelectModule,
-    XTabsModule,
-    XInputModule
-  ]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DragDropModule, XPortalModule, XSliderSelectModule, XTabsModule, XInputModule]
 })
 export class XColorPickerModule {}

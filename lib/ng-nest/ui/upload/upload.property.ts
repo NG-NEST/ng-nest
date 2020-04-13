@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Upload
@@ -11,6 +11,7 @@ export const XUploadPrefix = 'x-upload';
 /**
  * Upload Property
  */
+@Component({ template: '' })
 export class XUploadProperty extends XControlValueAccessor<any> {
   /**
    * 请求地址
@@ -23,7 +24,7 @@ export class XUploadProperty extends XControlValueAccessor<any> {
   /**
    * 多文件上传
    */
-  @Input() @XInputBoolean() multiple: boolean = false;
+  @Input() @XInputBoolean() multiple: boolean;
   /**
    * 删除按钮的事件
    */

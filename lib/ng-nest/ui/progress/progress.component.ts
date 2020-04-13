@@ -34,8 +34,10 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
   }
 
   setClassMap() {
-    this.classMap[`${XProgressPrefix}-${this.status}`] = true;
-    this.classMap[`${XProgressPrefix}-inside`] = this.inside;
+    this.classMap = {
+      [`${XProgressPrefix}-${this.status}`]: true,
+      [`${XProgressPrefix}-inside`]: this.inside
+    };
   }
 
   setColor() {

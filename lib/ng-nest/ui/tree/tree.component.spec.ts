@@ -295,7 +295,7 @@ class TestXTreeCustomComponent {
         margin-top: 1rem;
       }
       .operations > li:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ],

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { XPopoverPortalPrefix, XPopoverTrigger } from './popover.property';
-import { XTemplate, XPlacement } from '@ng-nest/ui/core';
+import { XTemplate, XPlacement, XClassMap } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XPopoverPortalPrefix}`,
@@ -23,8 +23,9 @@ import { XTemplate, XPlacement } from '@ng-nest/ui/core';
 })
 export class XPopoverPortalComponent implements OnInit, OnDestroy {
   contentChange$: Subscription | null = null;
-  classMap = {};
+  classMap: XClassMap = {};
   box: DOMRect;
+  portalBox: DOMRect;
   arrowBox: DOMRect;
   docClickFunction: Function;
   title: XTemplate;
@@ -36,8 +37,9 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   portalHover: Function;
   closePortal: Function;
   viewInit: Function;
+  width: string;
   @ViewChild('popoverPortal', { static: true }) popoverPortal: ElementRef;
-  @ViewChild('popoverArrow', { static: false }) popoverArrow: ElementRef;
+  @ViewChild('popoverArrow', { static: true }) popoverArrow: ElementRef;
 
   @HostListener('mouseenter') mouseenter() {
     if (this.trigger === 'hover') {
@@ -51,11 +53,7 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {
-    this.classMap = {
-      [`${XPopoverPortalPrefix}-${this.placement}`]: true
-    };
-  }
+  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.contentChange$ = this.contentChange.subscribe((x) => {
@@ -70,6 +68,7 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
           }))
       );
     }
+    this.classMap[`${XPopoverPortalPrefix}-${this.placement}`] = true;
   }
 
   stopPropagation(event: Event): void {
@@ -78,7 +77,7 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.viewInit();
-    this.box = this.popoverPortal.nativeElement.getBoundingClientRect();
+    this.portalBox = this.popoverPortal.nativeElement.getBoundingClientRect();
     this.arrowBox = this.popoverArrow.nativeElement.getBoundingClientRect();
     this.setArrow();
     this.cdr.detectChanges();
@@ -93,13 +92,16 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   setArrow() {
     let offset = this.arrowBox.height / 2;
-    if (this.box.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
+    console.log(this.portalBox.height, this.box.height);
+    console.log(this.popoverArrow.nativeElement);
+    console.log(this.placement);
+    if (this.portalBox.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
       if (this.includes('-start')) {
         this.renderer.setStyle(this.popoverArrow.nativeElement, 'top', `${this.box.height / 2 - offset}px`);
       } else if (this.includes('-end')) {
         this.renderer.setStyle(this.popoverArrow.nativeElement, 'bottom', `${this.box.height / 2 - offset}px`);
       }
-    } else if (this.box.width > this.box.width && (this.includes('top-') || this.includes('bottom-'))) {
+    } else if (this.portalBox.width > this.box.width && (this.includes('top-') || this.includes('bottom-'))) {
       if (this.includes('-start')) {
         this.renderer.setStyle(this.popoverArrow.nativeElement, 'left', `${this.box.width / 2 - offset}px`);
       } else if (this.includes('-end')) {

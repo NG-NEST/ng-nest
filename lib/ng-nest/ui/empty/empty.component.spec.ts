@@ -65,7 +65,7 @@ describe(XEmptyPrefix, () => {
         margin-top: 2rem;
       }
       .row x-empty .x-button {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

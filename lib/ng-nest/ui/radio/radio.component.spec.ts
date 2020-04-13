@@ -129,7 +129,7 @@ const iconData: XData<XRadioNode> = [
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -156,7 +156,7 @@ class TestXRadioComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -190,7 +190,7 @@ class TestXRadioDisabledComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -228,7 +228,7 @@ class TestXRadioButtonComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -265,7 +265,7 @@ class TestXRadioIconComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

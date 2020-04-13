@@ -127,12 +127,12 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   portalAttached() {
-    return this.portal.overlayRef?.hasAttached();
+    return this.portal?.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef?.dispose();
+      this.portal?.overlayRef?.dispose();
       return true;
     }
     return false;

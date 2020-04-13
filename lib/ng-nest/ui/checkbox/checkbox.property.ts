@@ -1,5 +1,5 @@
 import { XData, XTemplate, XIdentityProperty, XControlValueAccessor, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
-import { Input, Renderer2 } from '@angular/core';
+import { Input, Renderer2, Component } from '@angular/core';
 
 /**
  * Checkbox
@@ -11,6 +11,7 @@ export const XCheckboxPrefix = 'x-checkbox';
 /**
  * Checkbox Property
  */
+@Component({ template: '' })
 export class XCheckboxProperty extends XControlValueAccessor<any[]> {
   /**
    * 单选框数据
@@ -19,15 +20,15 @@ export class XCheckboxProperty extends XControlValueAccessor<any[]> {
   /**
    * 按钮样式
    */
-  @Input() @XInputBoolean() button: boolean = false;
+  @Input() @XInputBoolean() button: boolean;
   /**
    * 图标样式
    */
-  @Input() @XInputBoolean() icon: boolean = false;
+  @Input() @XInputBoolean() icon: boolean;
   /**
    * 不确定状态的样式
    */
-  @Input() @XInputBoolean() indeterminate: boolean = false;
+  @Input() @XInputBoolean() indeterminate: boolean;
   /**
    * 尺寸
    */

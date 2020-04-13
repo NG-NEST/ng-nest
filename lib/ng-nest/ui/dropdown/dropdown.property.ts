@@ -1,6 +1,6 @@
 import { XData, XPlace, XProperty, XDataConvert, XInputBoolean } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Dropdown
@@ -12,6 +12,7 @@ export const XDropdownPrefix = 'x-dropdown';
 /**
  * Dropdown Property
  */
+@Component({ template: '' })
 export class XDropdownProperty extends XProperty {
   /**
    * 节点数据
@@ -28,11 +29,11 @@ export class XDropdownProperty extends XProperty {
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: boolean = false;
+  @Input() @XInputBoolean() disabled: boolean;
   /**
    * 节点中已经包含子节点数据
    */
-  @Input() @XInputBoolean() children: boolean = false;
+  @Input() @XInputBoolean() children: boolean;
   /**
    * 节点点击事件
    */

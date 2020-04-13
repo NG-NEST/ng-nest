@@ -1,5 +1,5 @@
 import { XData, XJustify, XProperty, XInputBoolean, XSize, XIdentityProperty, XTemplate, XInputNumber } from '@ng-nest/ui/core';
-import { Input, TemplateRef, Output, EventEmitter } from '@angular/core';
+import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Tabs
@@ -11,6 +11,7 @@ export const XTabsPrefix = 'x-tabs';
 /**
  * Tabs Property
  */
+@Component({ template: '' })
 export class XTabsProperty extends XProperty {
   /**
    * Data 数据
@@ -51,7 +52,7 @@ export class XTabsProperty extends XProperty {
   /**
    * 隐藏标签栏
    */
-  @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean = false;
+  @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
   /**
    * 标签切换变化的事件
    */
@@ -91,6 +92,7 @@ export const XTabPrefix = 'x-tab';
 /**
  * Tab Property
  */
+@Component({ template: '' })
 export class XTabProperty {
   /**
    * 标签名称，支持自定义模板

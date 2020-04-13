@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Color
@@ -11,6 +11,7 @@ export const XColorPrefix = 'x-color';
 /**
  * Color Property
  */
+@Component({ template: '' })
 export class XColorProperty extends XProperty {
   /**
    * 颜色名称

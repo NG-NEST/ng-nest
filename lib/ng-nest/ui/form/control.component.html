@@ -1,5 +1,5 @@
 <div class="x-control">
-  <ng-container [ngSwitch]="option.controlType">
+  <ng-container [ngSwitch]="option?.controlType">
     <ng-container *ngSwitchCase="'input'">
       <x-input
         [(ngModel)]="option.value"

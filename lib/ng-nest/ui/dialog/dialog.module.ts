@@ -8,9 +8,10 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XDialogProperty } from './dialog.property';
 
 @NgModule({
-  declarations: [XDialogComponent],
+  declarations: [XDialogComponent, XDialogProperty],
   exports: [XDialogComponent],
   imports: [
     CommonModule,

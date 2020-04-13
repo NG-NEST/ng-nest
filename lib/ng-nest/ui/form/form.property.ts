@@ -1,5 +1,5 @@
-import { XIdentity, XProperty, XIdentityProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { XIdentity, XIdentityProperty } from '@ng-nest/ui/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Form
@@ -11,6 +11,7 @@ export const XFormPrefix = 'x-form';
 /**
  * Form Property
  */
+@Component({ template: '' })
 export class XFormProperty {
   /**
    * 表单名称
@@ -129,6 +130,7 @@ export const XControlPrefix = 'x-control';
 /**
  * Control Property
  */
+@Component({ template: '' })
 export class XControlProperty {
   /**
    * 控件对象

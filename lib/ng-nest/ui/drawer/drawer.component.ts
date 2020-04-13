@@ -59,8 +59,10 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
   }
 
   setClassMap() {
-    this.classMap[`${XDrawerPrefix}-${this.placement}`] = !XIsEmpty(this.placement);
-    this.classMap[`${XDrawerPrefix}-no-title`] = XIsEmpty(this.title);
+    this.classMap = {
+      [`${XDrawerPrefix}-${this.placement}`]: !XIsEmpty(this.placement),
+      [`${XDrawerPrefix}-no-title`]: XIsEmpty(this.title)
+    };
   }
 
   setVisible() {

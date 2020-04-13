@@ -1,5 +1,5 @@
 import { XControlValueAccessor } from '@ng-nest/ui/core';
-import { Renderer2 } from '@angular/core';
+import { Renderer2, Component } from '@angular/core';
 
 /**
  * ColorPicker
@@ -11,7 +11,8 @@ export const XColorPickerPrefix = 'x-color-picker';
 /**
  * ColorPicker Property
  */
-export abstract class XColorPickerProperty extends XControlValueAccessor<string> {
+@Component({ template: '' })
+export class XColorPickerProperty extends XControlValueAccessor<string> {
   constructor(public renderer: Renderer2) {
     super(renderer);
   }

@@ -1,19 +1,13 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
   SimpleChanges,
-  OnChanges,
-  Output,
-  EventEmitter
-} from '@angular/core';
-import { XCalendarPrefix, XCalendarData, XCalendarModel, XCalendarProperty, XCalendarNode } from './calendar.property';
+  OnChanges} from '@angular/core';
+import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 

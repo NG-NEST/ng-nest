@@ -9,19 +9,11 @@ import { XLinkModule } from '@ng-nest/ui/link';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XTextRetractModule } from '@ng-nest/ui/text-retract';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { XCommentProperty } from './comment.property';
 
 @NgModule({
-  declarations: [XCommentComponent, XCommentReplyComponent],
+  declarations: [XCommentComponent, XCommentReplyComponent, XCommentProperty],
   exports: [XCommentComponent, XCommentReplyComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    XInputModule,
-    XLinkModule,
-    XAvatarModule,
-    XButtonModule,
-    XTextRetractModule,
-    XTimeAgoModule
-  ]
+  imports: [CommonModule, FormsModule, XInputModule, XLinkModule, XAvatarModule, XButtonModule, XTextRetractModule, XTimeAgoModule]
 })
 export class XCommentModule {}

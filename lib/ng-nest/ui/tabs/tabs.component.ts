@@ -9,10 +9,12 @@ import {
   ContentChildren,
   ViewChild,
   ViewEncapsulation,
-  SimpleChange
+  SimpleChange,
+  ViewChildren,
+  QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsUndefined, XIsEmpty } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
@@ -31,18 +33,13 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
   @Input()
   public set activatedIndex(value: number) {
-    console.log('1', value);
     if (XIsUndefined(value)) return;
-    console.log('2', value);
     this._activatedIndex = value;
-    console.log('3', value);
     if (typeof this.sliderOption === 'undefined') {
       this.sliderOption = new XSliderProperty();
     }
     this.sliderOption.activatedIndex = value;
-    console.log('4', value);
     this.setFirstAndLast();
-    console.log('5', value);
     this.cdr?.detectChanges();
   }
 
@@ -50,7 +47,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
 
-  @ContentChildren(XTabComponent) listTabs: Array<XTabComponent>;
+  @ContentChildren(XTabComponent) listTabs: QueryList<XTabComponent>;
 
   @ViewChild(XSliderComponent, { static: false }) slider: XSliderComponent;
 
@@ -80,7 +77,6 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   activatedChange(index: number) {
-    console.log(index);
     this.activatedIndex = index;
     this.indexChange.emit({
       activatedIndex: index,
@@ -90,8 +86,10 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   private setClassMap() {
-    this.classMap[`${XTabsPrefix}-${this.layout}`] = this.layout ? true : false;
-    this.classMap[`${XTabsPrefix}-${this.type}`] = this.type ? true : false;
+    this.classMap = {
+      [`${XTabsPrefix}-${this.layout}`]: !XIsEmpty(this.layout),
+      [`${XTabsPrefix}-${this.type}`]: !XIsEmpty(this.type)
+    };
   }
 
   private setLayout(layout: SimpleChange) {
@@ -106,7 +104,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   private setData() {
-    if (typeof this.data === 'undefined') {
+    if (XIsEmpty(this.data)) {
       if (this.listTabs && this.listTabs.length > 0) {
         let _data: any[] = [];
         this.listTabs.forEach((x, index) => {

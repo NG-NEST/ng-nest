@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Typography
@@ -11,6 +11,7 @@ export const XTypographyPrefix = 'x-typography';
 /**
  * Typography Property
  */
+@Component({ template: '' })
 export class XTypographyProperty extends XProperty {
   /**
    * 字体

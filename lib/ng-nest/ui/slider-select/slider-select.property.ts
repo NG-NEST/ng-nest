@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Input, Output, EventEmitter, Renderer2, Component } from '@angular/core';
 import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 /**
@@ -12,6 +12,7 @@ export const XSliderSelectPrefix = 'x-slider-select';
 /**
  * SliderSelect Property
  */
+@Component({ template: '' })
 export class XSliderSelectProperty extends XControlValueAccessor<number> {
   /**
    * 最小值

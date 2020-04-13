@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Input, Output, EventEmitter, Renderer2, Component } from '@angular/core';
 
 /**
  * Input
@@ -11,6 +11,7 @@ export const XInputPrefix = 'x-input';
 /**
  * Input Property
  */
+@Component({ template: '' })
 export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 输入类型
@@ -19,11 +20,11 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: boolean = false;
+  @Input() @XInputBoolean() clearable: boolean;
   /**
    * 只读
    */
-  @Input() @XInputBoolean() readonly: boolean = false;
+  @Input() @XInputBoolean() readonly: boolean;
   /**
    * 图标
    */
@@ -35,7 +36,7 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 图标动画
    */
-  @Input() @XInputBoolean() iconSpin: boolean = false;
+  @Input() @XInputBoolean() iconSpin: boolean;
   /**
    * 输入最大长度
    */

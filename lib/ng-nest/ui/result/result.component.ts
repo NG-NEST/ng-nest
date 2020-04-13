@@ -19,6 +19,6 @@ export class XResultComponent extends XResultProperty implements OnInit {
   }
 
   setClassMap() {
-    this.classMap[`${XResultPrefix}-${this.status}`] = XIsEmpty(this.status);
+    this.classMap[`${XResultPrefix}-${this.status}`] = !XIsEmpty(this.status);
   }
 }

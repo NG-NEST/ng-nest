@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Renderer2, Input } from '@angular/core';
+import { Renderer2, Input, Component } from '@angular/core';
 
 /**
  * Rate
@@ -11,6 +11,7 @@ export const XRatePrefix = 'x-rate';
 /**
  * Rate Property
  */
+@Component({ template: '' })
 export class XRateProperty extends XControlValueAccessor<any> {
   /**
    * 评分个数

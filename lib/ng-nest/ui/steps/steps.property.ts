@@ -1,5 +1,5 @@
 import { XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Steps
@@ -11,6 +11,7 @@ export const XStepsPrefix = 'x-steps';
 /**
  * Steps Property
  */
+@Component({ template: '' })
 export class XStepsProperty extends XProperty {
   /**
    * 节点数据

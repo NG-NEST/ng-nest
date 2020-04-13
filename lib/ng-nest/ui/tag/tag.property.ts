@@ -1,5 +1,5 @@
 import { XType, XSize, XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Tag
@@ -11,6 +11,7 @@ export const XTagPrefix = 'x-tag';
 /**
  * Tag Property
  */
+@Component({ template: '' })
 export class XTagProperty extends XProperty {
   /**
    * 标签样式类型
@@ -23,11 +24,11 @@ export class XTagProperty extends XProperty {
   /**
    * 显示关闭按钮
    */
-  @Input() @XInputBoolean() closable: boolean = false;
+  @Input() @XInputBoolean() closable: boolean;
   /**
    * 深色主题
    */
-  @Input() @XInputBoolean() dark: boolean = false;
+  @Input() @XInputBoolean() dark: boolean;
   /**
    * 点击关闭的事件
    */

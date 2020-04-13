@@ -1,5 +1,5 @@
 import { XDirection, XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Container
@@ -11,6 +11,7 @@ export const XContainerPrefix = 'x-container';
 /**
  * Container Property
  */
+@Component({ template: '' })
 export class XContainerProperty extends XProperty {
   /**
    * flex 布局下的子元素排列方向
@@ -29,6 +30,7 @@ export const XHeaderPrefix = 'x-header';
 /**
  * Header Property
  */
+@Component({ template: '' })
 export class XHeaderProperty extends XProperty {
   /**
    * 高度，rem
@@ -46,6 +48,7 @@ export const XAsidePrefix = 'x-aside';
 /**
  * Aside Property
  */
+@Component({ template: '' })
 export class XAsideProperty extends XProperty {
   /**
    * 宽度，rem
@@ -70,6 +73,7 @@ export const XFooterPrefix = 'x-footer';
 /**
  * Footer Property
  */
+@Component({ template: '' })
 export class XFooterProperty extends XProperty {
   /**
    * 高度，rem

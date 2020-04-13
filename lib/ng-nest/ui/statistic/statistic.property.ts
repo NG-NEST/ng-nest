@@ -1,5 +1,5 @@
 import { XTemplate } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Statistic
@@ -11,6 +11,7 @@ export const XStatisticPrefix = 'x-statistic';
 /**
  * Statistic Property
  */
+@Component({ template: '' })
 export class XStatisticProperty {
   /**
    * 显示值
@@ -44,6 +45,7 @@ export const XCountdownPrefix = 'x-countdown';
 /**
  * Countdown Property
  */
+@Component({ template: '' })
 export class XCountdownProperty extends XStatisticProperty {
   /**
    * 格式化

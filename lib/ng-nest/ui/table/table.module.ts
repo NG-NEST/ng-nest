@@ -8,19 +8,11 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 import { FormsModule } from '@angular/forms';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XTableProperty } from './table.property';
 
 @NgModule({
-  declarations: [XTableComponent],
+  declarations: [XTableComponent, XTableProperty],
   exports: [XTableComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    XIconModule,
-    XInputModule,
-    XButtonModule,
-    XPaginationModule,
-    XOutletModule,
-    XLinkModule
-  ]
+  imports: [CommonModule, FormsModule, XIconModule, XInputModule, XButtonModule, XPaginationModule, XOutletModule, XLinkModule]
 })
 export class XTableModule {}

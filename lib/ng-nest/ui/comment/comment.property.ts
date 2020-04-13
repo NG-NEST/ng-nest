@@ -1,5 +1,5 @@
 import { XDate, XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber } from '@ng-nest/ui/core';
-import { Input, EventEmitter, Output } from '@angular/core';
+import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
  * Comment
@@ -11,6 +11,7 @@ export const XCommentPrefix = 'x-comment';
 /**
  * Comment Property
  */
+@Component({ template: '' })
 export class XCommentProperty extends XProperty {
   /**
    * 评论数据
@@ -94,6 +95,7 @@ export const XCommentReplyPrefix = 'x-comment-reply';
 /**
  * Comment Reply Property
  */
+@Component({ template: '' })
 export class XCommentReplyProperty extends XProperty {
   /**
    * 回复的最大字数

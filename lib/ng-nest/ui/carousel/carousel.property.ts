@@ -1,5 +1,5 @@
 import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Carousel
@@ -11,6 +11,7 @@ export const XCarouselPrefix = 'x-carousel';
 /**
  * Carousel Property
  */
+@Component({ template: '' })
 export class XCarouselProperty extends XProperty {
   /**
    * 当前激活的幻灯片索引
@@ -43,11 +44,11 @@ export class XCarouselProperty extends XProperty {
   /**
    * 切换器否显示在外面
    */
-  @Input() @XInputBoolean() outside: boolean = false;
+  @Input() @XInputBoolean() outside: boolean;
   /**
    * 是否以卡片的方式显示幻灯片
    */
-  @Input() @XInputBoolean() card: boolean = false;
+  @Input() @XInputBoolean() card: boolean;
   /**
    * 激活的序号改变的事件
    */
@@ -79,9 +80,10 @@ export const XCarouselPanelPrefix = 'x-carousel-panel';
 /**
  * Carousel Panel Property
  */
+@Component({ template: '' })
 export class XCarouselPanelProperty extends XProperty {
   /**
    * 激活当前幻灯片
    */
-  @Input() @XInputBoolean() active = false;
+  @Input() @XInputBoolean() active: boolean;
 }

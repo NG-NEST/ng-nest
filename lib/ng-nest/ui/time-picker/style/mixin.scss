@@ -49,22 +49,23 @@
     }
   }
   &.x-flex {
-    align-items: center;
-    &-direction-row {
-      > label {
-        margin: 0 0.5rem 0 0;
+    &.x-direction {
+      &-row {
+        > label {
+          margin: 0 0.5rem 0 0;
+        }
       }
-    }
-    &-direction-row-reverse {
-      > label {
-        margin: 0 0 0 0.5rem;
+      &-row-reverse {
+        > label {
+          margin: 0 0 0 0.5rem;
+        }
       }
-    }
-    &-direction-column {
-      align-items: inherit;
-    }
-    &-direction-column-reverse {
-      align-items: inherit;
+      &-column {
+        align-items: inherit;
+      }
+      &-column-reverse {
+        align-items: inherit;
+      }
     }
   }
 }

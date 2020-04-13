@@ -1,5 +1,5 @@
 import { XData, XControlValueAccessor, XIdentityProperty, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
-import { Input, Renderer2 } from '@angular/core';
+import { Input, Renderer2, Component } from '@angular/core';
 
 /**
  * Radio
@@ -11,6 +11,7 @@ export const XRadioPrefix = 'x-radio';
 /**
  * Radio Property
  */
+@Component({ template: '' })
 export class XRadioProperty extends XControlValueAccessor<any> {
   /**
    * 单选框数据
@@ -19,11 +20,11 @@ export class XRadioProperty extends XControlValueAccessor<any> {
   /**
    * 按钮样式
    */
-  @Input() @XInputBoolean() button: boolean = false;
+  @Input() @XInputBoolean() button: boolean;
   /**
    * 图标样式
    */
-  @Input() @XInputBoolean() icon: boolean = false;
+  @Input() @XInputBoolean() icon: boolean;
   /**
    * 尺寸
    */

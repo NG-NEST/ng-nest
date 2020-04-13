@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XParentIdentityProperty, XDataConvert, XInputBoolean, XData } from '@ng-nest/ui/core';
-import { Renderer2, Input } from '@angular/core';
+import { Renderer2, Input, Component } from '@angular/core';
 
 /**
  * Select
@@ -11,6 +11,7 @@ export const XSelectPrefix = 'x-select';
 /**
  * Select Property
  */
+@Component({ template: '' })
 export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * 节点数据
@@ -19,7 +20,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * 异步加载
    */
-  @Input() @XInputBoolean() async: boolean = false;
+  @Input() @XInputBoolean() async: boolean;
 
   constructor(public renderer: Renderer2) {
     super(renderer);

@@ -1,5 +1,5 @@
 import { XData, XProperty, XDataConvert, XIdentityProperty, XTemplate } from '@ng-nest/ui/core';
-import { TemplateRef, Input, Output, EventEmitter } from '@angular/core';
+import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Crumb
@@ -11,6 +11,7 @@ export const XCrumbPrefix = 'x-crumb';
 /**
  * Crumb Property
  */
+@Component({ template: '' })
 export class XCrumbProperty extends XProperty {
   /**
    * 节点数据

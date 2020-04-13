@@ -7,18 +7,11 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { XCalendarProperty } from './calendar.property';
 
 @NgModule({
-  declarations: [XCalendarComponent],
+  declarations: [XCalendarComponent, XCalendarProperty],
   exports: [XCalendarComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    XLinkModule,
-    XTooltipModule,
-    XRadioModule,
-    XDatePickerModule,
-    XButtonModule
-  ]
+  imports: [CommonModule, FormsModule, XLinkModule, XTooltipModule, XRadioModule, XDatePickerModule, XButtonModule]
 })
 export class XCalendarModule {}

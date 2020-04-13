@@ -5,8 +5,19 @@ import { XFooterComponent } from './footer.component';
 import { XMainComponent } from './main.component';
 import { XAsideComponent } from './aside.component';
 import { XHeaderComponent } from './header.component';
+import { XContainerProperty, XHeaderProperty, XAsideProperty, XFooterProperty } from './container.property';
 
-const components = [XContainerComponent, XHeaderComponent, XAsideComponent, XMainComponent, XFooterComponent];
+const components = [
+  XContainerComponent,
+  XHeaderComponent,
+  XAsideComponent,
+  XMainComponent,
+  XFooterComponent,
+  XContainerProperty,
+  XHeaderProperty,
+  XAsideProperty,
+  XFooterProperty
+];
 
 @NgModule({
   declarations: [...components],

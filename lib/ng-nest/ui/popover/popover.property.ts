@@ -1,5 +1,5 @@
 import { XPlacement, XTemplate, XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 
 /**
  * Popover
@@ -11,6 +11,7 @@ export const XPopoverPrefix = 'x-popover';
 /**
  * Popover Property
  */
+@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverProperty extends XProperty {
   /**
    * 标题，支持自定义模板
@@ -39,7 +40,7 @@ export class XPopoverProperty extends XProperty {
   /**
    * 显示/隐藏控制
    */
-  @Input() @XInputBoolean() visible: boolean = false;
+  @Input() @XInputBoolean() visible: boolean;
   /**
    * 显示/隐藏改变的事件
    */

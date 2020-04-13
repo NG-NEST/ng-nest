@@ -15,7 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange } from '@ng-nest/ui/core';
+import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import * as _ from 'lodash';
 
 // 来源路径对应
@@ -90,8 +90,8 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     const typeIcon = this.setSourceUrl(this.type);
     const toIcon = this.setSourceUrl(this.to);
     let icons = [typeIcon];
-    if (typeof typeIcon === 'undefined') return;
-    if (typeof toIcon !== 'undefined') {
+    if (XIsEmpty(typeIcon)) return;
+    if (!XIsEmpty(toIcon)) {
       icons = [...icons, toIcon];
     }
     this.iconService.getSvgs(...icons).subscribe((x) => this.setSvgs(x));

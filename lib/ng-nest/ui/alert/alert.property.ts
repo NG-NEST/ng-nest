@@ -1,5 +1,5 @@
 import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, EventEmitter, Output } from '@angular/core';
+import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
  * Alert
@@ -11,11 +11,12 @@ export const XAlertPrefix = 'x-alert';
 /**
  * Alert Property
  */
+@Component({ template: '' })
 export class XAlertProperty extends XProperty {
   /**
    * 隐藏
    */
-  @Input() @XInputBoolean() hide: boolean = false;
+  @Input() @XInputBoolean() hide: boolean;
   /**
    * 标题
    */
@@ -35,7 +36,7 @@ export class XAlertProperty extends XProperty {
   /**
    * 隐藏关闭按钮
    */
-  @Input('hide-close') @XInputBoolean() hideClose: boolean = false;
+  @Input('hide-close') @XInputBoolean() hideClose: boolean;
   /**
    * 关闭按钮文字替换
    */
@@ -43,11 +44,11 @@ export class XAlertProperty extends XProperty {
   /**
    * 显示图标
    */
-  @Input('show-icon') @XInputBoolean() showIcon: boolean = false;
+  @Input('show-icon') @XInputBoolean() showIcon: boolean;
   /**
    * 禁用动画
    */
-  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean = false;
+  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean;
   /**
    * 延迟关闭，默认 0 表示不关闭
    */
@@ -55,7 +56,7 @@ export class XAlertProperty extends XProperty {
   /**
    * 手动处理关闭事件
    */
-  @Input() @XInputBoolean() manual: boolean = false;
+  @Input() @XInputBoolean() manual: boolean;
   /**
    * 关闭的事件
    */

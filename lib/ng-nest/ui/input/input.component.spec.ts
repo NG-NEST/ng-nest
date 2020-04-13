@@ -137,7 +137,7 @@ describe(XInputPrefix, () => {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -170,7 +170,7 @@ class TestXInputComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -191,7 +191,7 @@ class TestXInputLabelComponent {}
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -219,7 +219,7 @@ class TestXInputIconComponent {}
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -260,7 +260,7 @@ class TestXInputClearableComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -291,7 +291,7 @@ class TestXInputDisabledComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -327,7 +327,7 @@ class TestXInputRequiredComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -363,7 +363,7 @@ class TestXInputLengthComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

@@ -4,9 +4,7 @@ import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPrefix, XPopoverProperty } from './popover.property';
 import { BehaviorSubject } from 'rxjs';
 
-@Directive({
-  selector: `[${XPopoverPrefix}], ${XPopoverPrefix}`
-})
+@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverDirective extends XPopoverProperty implements OnInit, OnChanges {
   portal: XPortalOverlayRef<XPopoverPortalComponent>;
   box: DOMRect;

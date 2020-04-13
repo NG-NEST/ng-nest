@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 import { XInputNumber } from '@ng-nest/ui/core';
 
 /**
@@ -11,6 +11,7 @@ export const XTextRetractPrefix = 'x-text-retract';
 /**
  * TextRetract Property
  */
+@Component({ template: '' })
 export class XTextRetractProperty {
   /**
    * 文本

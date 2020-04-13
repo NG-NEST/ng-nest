@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber } from '@ng-nest/ui/core';
 
 /**
@@ -11,6 +11,7 @@ export const XButtonPrefix = 'x-button';
 /**
  * Button Property
  */
+@Component({ template: '' })
 export class XButtonProperty extends XProperty {
   /**
    * 类型
@@ -35,35 +36,35 @@ export class XButtonProperty extends XProperty {
   /**
    * 仅显示图标
    */
-  @Input('only-icon') @XInputBoolean() onlyIcon: boolean = false;
+  @Input('only-icon') @XInputBoolean() onlyIcon: boolean;
   /**
    * 激活的按钮（样式差异）
    */
-  @Input() @XInputBoolean() activated: boolean = false;
+  @Input() @XInputBoolean() activated: boolean;
   /**
    * 禁用按钮
    */
-  @Input() @XInputBoolean() disabled: boolean = false;
+  @Input() @XInputBoolean() disabled: boolean;
   /**
    * 朴素按钮
    */
-  @Input() @XInputBoolean() plain: boolean = false;
+  @Input() @XInputBoolean() plain: boolean;
   /**
    * 圆角按钮
    */
-  @Input() @XInputBoolean() round: boolean = false;
+  @Input() @XInputBoolean() round: boolean;
   /**
    * 圆型按钮（配合图标来使用）
    */
-  @Input() @XInputBoolean() circle: boolean = false;
+  @Input() @XInputBoolean() circle: boolean;
   /**
    * 加载中
    */
-  @Input() @XInputBoolean() loading: boolean = false;
+  @Input() @XInputBoolean() loading: boolean;
   /**
    * 关闭按钮
    */
-  @Input() @XInputBoolean() closable: boolean = false;
+  @Input() @XInputBoolean() closable: boolean;
 }
 
 /**
@@ -139,6 +140,7 @@ export const XButtonsPrefix = 'x-buttons';
 /**
  * Buttons Property
  */
+@Component({ template: '' })
 export class XButtonsProperty extends XProperty {
   /**
    * 按钮间距，单位 rem （按 1rem = 16px 比例来计算）

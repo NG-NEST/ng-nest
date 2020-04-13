@@ -100,7 +100,7 @@ describe(XSliderSelectPrefix, () => {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -135,7 +135,7 @@ class TestXSliderSelectComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -167,7 +167,7 @@ class TestXSliderSelectLimitComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -206,7 +206,7 @@ class TestXSliderSelectPrecisionComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -236,7 +236,7 @@ class TestXSliderSelectLabelComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

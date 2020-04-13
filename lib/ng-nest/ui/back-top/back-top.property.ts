@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input, TemplateRef } from '@angular/core';
+import { Input, TemplateRef, Component } from '@angular/core';
 
 /**
  * BackTop
@@ -11,6 +11,7 @@ export const XBackTopPrefix = 'x-back-top';
 /**
  * BackTop Property
  */
+@Component({ template: '' })
 export class XBackTopProperty extends XProperty {
   /**
    * 距离右边的距离

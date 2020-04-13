@@ -1,5 +1,5 @@
 import { XSize, XTemplate, XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Avatar
@@ -11,6 +11,7 @@ export const XAvatarPrefix = 'x-avatar';
 /**
  * Avatar Property
  */
+@Component({ template: '' })
 export class XAvatarProperty extends XProperty {
   /**
    * 显示字符

@@ -1,5 +1,5 @@
 import { XData, XParentIdentityProperty, XControlValueAccessor, XDataConvert, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * List
@@ -9,8 +9,9 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export const XListPrefix = 'x-list';
 
 /**
- * List @List
+ * List Property
  */
+@Component({ template: '' })
 export class XListProperty extends XControlValueAccessor<any> {
   /**
    * 列表数据
@@ -23,11 +24,11 @@ export class XListProperty extends XControlValueAccessor<any> {
   /**
    * 选中
    */
-  @Input() @XInputBoolean() checked: boolean = false;
+  @Input() @XInputBoolean() checked: boolean;
   /**
    * 拖动
    */
-  @Input() @XInputBoolean() drag: boolean = false;
+  @Input() @XInputBoolean() drag: boolean;
   /**
    * 节点 mouseenter 事件
    */

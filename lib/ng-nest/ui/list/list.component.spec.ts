@@ -67,7 +67,7 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

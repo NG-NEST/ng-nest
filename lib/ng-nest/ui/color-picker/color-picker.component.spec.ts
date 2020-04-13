@@ -97,7 +97,7 @@ describe(XColorPickerPrefix, () => {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row x-col {
         width: 15rem;
@@ -143,7 +143,7 @@ class TestXColorPickerComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row x-col {
         width: 15rem;
@@ -176,7 +176,7 @@ class TestXColorPickerLabelComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row x-col {
         width: 15rem;
@@ -204,7 +204,7 @@ class TestXColorPickerDisabledComponent {
   styles: [
     `
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       x-row x-col {
         width: 15rem;

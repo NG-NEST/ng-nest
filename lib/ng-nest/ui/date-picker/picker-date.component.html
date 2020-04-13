@@ -7,25 +7,27 @@
     </thead>
     <tbody>
       <tr *ngFor="let weeks of dates">
-        <td
-          *ngFor="let week of weeks"
-          [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
-          [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-          (click)="dateTemp && dateClick(week)"
-        >
-          <x-button
-            *ngIf="!dateTemp"
-            type="text"
-            size="mini"
-            [title]="week | date: 'yyyy年MM月dd日'"
-            [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
-            (click)="dateClick(week)"
-            >{{ week | date: 'd' }}</x-button
+        <ng-container *ngFor="let week of weeks">
+          <td
+            *ngIf="week"
+            [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
+            [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
+            (click)="dateTemp && dateClick(week)"
           >
-          <ng-container *ngIf="dateTemp">
-            <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
-          </ng-container>
-        </td>
+            <x-button
+              *ngIf="!dateTemp"
+              type="text"
+              size="mini"
+              [title]="week | date: 'yyyy年MM月dd日'"
+              [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+              (click)="dateClick(week)"
+              >{{ week | date: 'd' }}</x-button
+            >
+            <ng-container *ngIf="dateTemp">
+              <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
+            </ng-container>
+          </td>
+        </ng-container>
       </tr>
     </tbody>
   </table>

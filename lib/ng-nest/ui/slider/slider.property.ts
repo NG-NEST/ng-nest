@@ -9,7 +9,7 @@ import {
   XJustify,
   XSize
 } from '@ng-nest/ui/core';
-import { TemplateRef, Input, EventEmitter, Output } from '@angular/core';
+import { TemplateRef, Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
  * Slider
@@ -21,6 +21,7 @@ export const XSliderPrefix = 'x-slider';
 /**
  * Slider Property
  */
+@Component({ template: '' })
 export class XSliderProperty extends XProperty {
   /**
    * 节点数据

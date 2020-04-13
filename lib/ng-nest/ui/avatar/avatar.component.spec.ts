@@ -78,7 +78,7 @@ describe(XAvatarPrefix, () => {
         align-items: center;
       }
       .row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       .row x-avatar:not(:first-child) {
         margin-left: 1rem;

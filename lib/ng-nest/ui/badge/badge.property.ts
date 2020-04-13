@@ -1,5 +1,5 @@
 import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Badge
@@ -11,6 +11,7 @@ export const XBadgePrefix = 'x-badge';
 /**
  * Badge Property
  */
+@Component({ template: '' })
 export class XBadgeProperty extends XProperty {
   /**
    * 背景颜色
@@ -27,7 +28,7 @@ export class XBadgeProperty extends XProperty {
   /**
    * 是否显示小红点
    */
-  @Input() @XInputBoolean() dot: boolean = false;
+  @Input() @XInputBoolean() dot: boolean;
 }
 
 /**

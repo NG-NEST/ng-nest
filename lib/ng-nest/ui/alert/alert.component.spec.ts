@@ -84,7 +84,7 @@ describe(XAlertPrefix, () => {
         margin-top: 1rem;
       }
       .row x-alert:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

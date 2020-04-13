@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { XLinkComponent } from './link.component';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XLinkProperty } from './link.property';
 
 @NgModule({
-  declarations: [XLinkComponent],
+  declarations: [XLinkComponent, XLinkProperty],
   exports: [XLinkComponent],
   imports: [CommonModule, XIconModule, XOutletModule]
 })

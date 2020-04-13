@@ -1,5 +1,5 @@
 import { XControlValueAccessor } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * TimePicker
@@ -11,6 +11,7 @@ export const XTimePickerPrefix = 'x-time-picker';
 /**
  * TimePicker Property
  */
+@Component({ template: '' })
 export class XTimePickerProperty extends XControlValueAccessor<any> {
   /**
    * 时间类型

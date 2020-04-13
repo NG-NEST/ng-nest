@@ -21,8 +21,10 @@ export class XAvatarComponent extends XAvatarProperty implements OnInit {
   }
 
   setClassMap() {
-    this.classMap[`${XAvatarPrefix}-${this.shape}`] = !XIsEmpty(this.shape);
-    this.classMap[`${XAvatarPrefix}-${this.size}`] = !XIsEmpty(this.size);
+    this.classMap = {
+      [`${XAvatarPrefix}-${this.shape}`]: !XIsEmpty(this.shape),
+      [`${XAvatarPrefix}-${this.size}`]: !XIsEmpty(this.size)
+    };
   }
 
   imgError() {

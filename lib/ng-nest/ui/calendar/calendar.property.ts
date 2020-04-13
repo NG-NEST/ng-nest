@@ -1,5 +1,5 @@
 import { XIdentityProperty, XProperty } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Calendar
@@ -11,6 +11,7 @@ export const XCalendarPrefix = 'x-calendar';
 /**
  * Calendar Property
  */
+@Component({ template: '' })
 export class XCalendarProperty extends XProperty {
   /**
    * 事务数据对象

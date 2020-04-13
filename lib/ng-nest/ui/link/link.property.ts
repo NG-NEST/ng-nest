@@ -1,5 +1,5 @@
 import { XProperty, XInputBoolean } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Link
@@ -11,6 +11,7 @@ export const XLinkPrefix = 'x-link';
 /**
  * Link Property
  */
+@Component({ template: '' })
 export class XLinkProperty extends XProperty {
   /**
    * 链接
@@ -23,15 +24,15 @@ export class XLinkProperty extends XProperty {
   /**
    * 下划线
    */
-  @Input() @XInputBoolean() underline: boolean = false;
+  @Input() @XInputBoolean() underline: boolean;
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: boolean = false;
+  @Input() @XInputBoolean() disabled: boolean;
   /**
    * 图标靠右对齐
    */
-  @Input('icon-right') @XInputBoolean() iconRight: boolean = false;
+  @Input('icon-right') @XInputBoolean() iconRight: boolean;
   /**
    * 链接类型
    */

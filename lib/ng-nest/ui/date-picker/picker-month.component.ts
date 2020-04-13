@@ -19,7 +19,7 @@ import { XPickerMonthProperty } from './date-picker.property';
 })
 export class XPickerMonthComponent extends XPickerMonthProperty implements OnChanges {
   now = new Date();
-  dates: Date[] = [];
+  dates: Date[][] = [[]];
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     super();

@@ -146,7 +146,7 @@ const iconData: XData<XCheckboxNode> = [
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -176,7 +176,7 @@ class TestXCheckboxComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -210,7 +210,7 @@ class TestXCheckboxDisabledComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -248,7 +248,7 @@ class TestXCheckboxButtonComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -286,7 +286,7 @@ class TestXCheckboxIconComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -331,7 +331,7 @@ class TestXCheckboxAsyncComponent {
   styles: [
     `
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

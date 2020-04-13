@@ -91,7 +91,7 @@ describe(XTagPrefix, () => {
         margin-top: 1rem;
       }
       .row x-tag:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]

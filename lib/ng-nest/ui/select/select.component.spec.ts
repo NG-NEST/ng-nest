@@ -106,7 +106,7 @@ const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF'
         height: 900px;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -152,7 +152,7 @@ class TestXSelectComponent {
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -186,7 +186,7 @@ class TestXSelectLabelComponent {
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -220,7 +220,7 @@ class TestXSelectDisabledComponent {
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -245,7 +245,7 @@ class TestXSelectRequiredComponent {
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

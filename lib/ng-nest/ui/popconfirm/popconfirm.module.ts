@@ -5,9 +5,10 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { CommonModule } from '@angular/common';
+import { XPopconfirmProperty } from './popconfirm.property';
 
 @NgModule({
-  declarations: [XPopconfirmComponent],
+  declarations: [XPopconfirmComponent, XPopconfirmProperty],
   exports: [XPopconfirmComponent],
   imports: [CommonModule, XPopoverModule, XButtonModule, XIconModule, XOutletModule]
 })

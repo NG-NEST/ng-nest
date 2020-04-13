@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Highlight
@@ -9,8 +9,9 @@ import { Input } from '@angular/core';
 export const XHighlightPrefix = 'x-highlight';
 
 /**
- * Highlight 对象
+ * Highlight Property
  */
+@Component({ template: '' })
 export class XHighlightProperty extends XProperty {
   /**
    * 代码类型

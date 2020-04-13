@@ -7,7 +7,8 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostBinding,
-  Optional
+  Optional,
+  Input
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty } from './tree.property';
 import { XTreeComponent } from './tree.component';
@@ -22,6 +23,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
+  @Input() parent: XTreeNodeComponent;
   @HostBinding('class.x-tree-node') rootClass = true;
   private _loading = false;
   public get loading() {

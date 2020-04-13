@@ -19,7 +19,7 @@ import { XPickerYearProperty } from './date-picker.property';
 })
 export class XPickerYearComponent extends XPickerYearProperty implements OnChanges {
   now = new Date();
-  dates: Date[] = [];
+  dates: Date[][] = [[]];
   start: number;
   end: number;
 

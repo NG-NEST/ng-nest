@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputBoolean, XProperty } from '@ng-nest/ui/core';
-import { Renderer2, Input, EventEmitter, Output, TemplateRef } from '@angular/core';
+import { Renderer2, Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
  * DatePicker
@@ -11,6 +11,7 @@ export const XDatePickerPrefix = 'x-date-picker';
 /**
  * DatePicker Property
  */
+@Component({ template: '' })
 export class XDatePickerProperty extends XControlValueAccessor<any> {
   /**
    * 选择类型
@@ -61,6 +62,7 @@ export const XPickerDatePrefix = 'x-picker-date';
 /**
  * PickerDate Property
  */
+@Component({ template: '' })
 export class XPickerDateProperty extends XProperty {
   /**
    * 显示的日期
@@ -94,6 +96,7 @@ export const XPickerMonthPrefix = 'x-picker-month';
 /**
  * PickerMonth Property
  */
+@Component({ template: '' })
 export class XPickerMonthProperty extends XProperty {
   /**
    * 显示的日期
@@ -127,6 +130,7 @@ export const XPickerYearPrefix = 'x-picker-year';
 /**
  * PickerYear Property
  */
+@Component({ template: '' })
 export class XPickerYearProperty extends XProperty {
   /**
    * 显示的日期
@@ -135,7 +139,7 @@ export class XPickerYearProperty extends XProperty {
   /**
    * 选中的日期
    */
-  @Input() model?: Date;
+  @Input() model: Date;
   /**
    * 选中的事件
    */

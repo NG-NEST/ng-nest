@@ -1,5 +1,5 @@
 import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Icon
@@ -11,6 +11,7 @@ export const XIconPrefix = 'x-icon';
 /**
  * Icon Property
  */
+@Component({ template: '' })
 export class XIconProperty extends XProperty {
   /**
    * 图标类型
@@ -27,7 +28,7 @@ export class XIconProperty extends XProperty {
   /**
    * loading效果（图标一直旋转）
    */
-  @Input() @XInputBoolean() spin: boolean = false;
+  @Input() @XInputBoolean() spin: boolean;
   /**
    * 变化为的图标（未实现）
    */

@@ -1,7 +1,7 @@
 import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean } from '@ng-nest/ui/core';
 import { XButtonOption } from '@ng-nest/ui/button';
 import { XPaginationProperty } from '@ng-nest/ui/pagination';
-import { TemplateRef, Input, Output, EventEmitter } from '@angular/core';
+import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Table
@@ -13,6 +13,7 @@ export const XTablePrefix = 'x-table';
 /**
  * Table Property
  */
+@Component({ template: '' })
 export class XTableProperty extends XPaginationProperty {
   /**
    * 数据
@@ -37,19 +38,19 @@ export class XTableProperty extends XPaginationProperty {
   /**
    * 隐藏表格列头
    */
-  @Input('header-hidden') @XInputBoolean() headerHidden: boolean = false;
+  @Input('header-hidden') @XInputBoolean() headerHidden: boolean;
   /**
    * 隐藏表格分页
    */
-  @Input('footer-hidden') @XInputBoolean() footerHidden: boolean = false;
+  @Input('footer-hidden') @XInputBoolean() footerHidden: boolean;
   /**
    * 允许行点击选中
    */
-  @Input('allow-select-row') @XInputBoolean() allowSelectRow: boolean = false;
+  @Input('allow-select-row') @XInputBoolean() allowSelectRow: boolean;
   /**
    * 选中第一行数据，触发选中事件
    */
-  @Input('first-row-selected') @XInputBoolean() firstRowSelected: boolean = false;
+  @Input('first-row-selected') @XInputBoolean() firstRowSelected: boolean;
   /**
    * 行主键
    */
@@ -65,7 +66,7 @@ export class XTableProperty extends XPaginationProperty {
   /**
    * 隐藏序号列
    */
-  @Input('serial-number-hidden') @XInputBoolean() serialNumberHidden: boolean = false;
+  @Input('serial-number-hidden') @XInputBoolean() serialNumberHidden: boolean;
   /**
    * 列头自定义模板
    */

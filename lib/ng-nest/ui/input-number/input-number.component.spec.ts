@@ -143,7 +143,7 @@ class TestXInputNumberComponent {}
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -174,7 +174,7 @@ class TestXInputNumberLabelComponent {}
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -195,7 +195,7 @@ class TestXInputNumberLimitComponent {}
         width: 10rem;
       }
       x-row:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -219,7 +219,7 @@ class TestXInputNumberPrecisionComponent {}
         width: 10rem;
       }
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]
@@ -245,7 +245,7 @@ class TestXInputNumberDisabledComponent {
         width: 10rem;
       }
       x-row > x-col:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
     `
   ]

@@ -1,5 +1,5 @@
-import { XTemplate, XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { XTemplate } from '@ng-nest/ui/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Empty
@@ -11,6 +11,7 @@ export const XEmptyPrefix = 'x-empty';
 /**
  * Empty Property
  */
+@Component({ template: '' })
 export class XEmptyProperty {
   /**
    * 图片地址或自定义模板

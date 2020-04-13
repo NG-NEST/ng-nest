@@ -30,7 +30,6 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   @ViewChild('sliderNodes') sliderNodes: ElementRef;
   nodes: XSliderNode[] = [];
   activated: XSliderNode;
-  classMap: XClassMap = {};
   scrollClassMap: XClassMap = {};
   nodeClassMap: XClassMap = {};
   showArrow = false;
@@ -91,10 +90,12 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   setClassMap() {
-    this.classMap[`${XSliderPrefix}-${this.layout}`] = XIsEmpty(this.layout);
-    this.scrollClassMap[`x-justify-${this.justify}`] = this.justify ? true : false;
-    this.nodeClassMap[`x-justify-${this.nodeJustify}`] = this.nodeJustify ? true : false;
-    this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;
+    this.classMap[`${XSliderPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
+    this.scrollClassMap[`x-justify-${this.justify}`] = !XIsEmpty(this.justify);
+    this.nodeClassMap = {
+      [`x-justify-${this.nodeJustify}`]: !XIsEmpty(this.nodeJustify),
+      [`x-size-${this.size}`]: !XIsEmpty(this.size)
+    };
   }
 
   setChange(map: XClassMap, change: SimpleChange, prefix = XSliderPrefix) {

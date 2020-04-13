@@ -1,5 +1,5 @@
 import { XTemplate, XProperty } from '@ng-nest/ui/core';
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Card
@@ -11,6 +11,7 @@ export const XCardPrefix = 'x-card';
 /**
  * Card Property
  */
+@Component({ template: '' })
 export class XCardProperty extends XProperty {
   /**
    * 卡片宽度

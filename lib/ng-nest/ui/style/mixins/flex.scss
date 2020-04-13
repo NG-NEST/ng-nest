@@ -29,14 +29,14 @@
 
 @mixin flex-align() {
   &.x-align {
-    &-top {
-      align-items: top;
+    &-start {
+      align-items: flex-start;
     }
     &-center {
       align-items: center;
     }
-    &-bottom {
-      align-items: bottom;
+    &-end {
+      align-items: flex-end;
     }
   }
 }

@@ -1,5 +1,5 @@
-import { XProperty, XIdentityProperty, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { XProperty, XInputNumber } from '@ng-nest/ui/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Pagination
@@ -11,6 +11,7 @@ export const XPaginationPrefix = 'x-pagination';
 /**
  * Pagination Property
  */
+@Component({ template: '' })
 export class XPaginationProperty extends XProperty {
   /**
    * 当前页码

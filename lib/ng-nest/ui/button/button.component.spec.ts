@@ -163,7 +163,7 @@ describe(XButtonPrefix, () => {
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -212,7 +212,7 @@ class TestXButtonComponent {}
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -233,7 +233,7 @@ class TestXButtonDiabledComponent {}
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -258,7 +258,7 @@ class TestXButtonTextComponent {}
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -400,7 +400,7 @@ class TestXButtonIconComponent {}
         margin-bottom: 1rem;
       }
       .row > x-buttons:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -420,7 +420,7 @@ class TestXButtonGroupComponent {}
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]
@@ -477,7 +477,7 @@ class TestXButtonLoadingComponent {
         margin-bottom: 1rem;
       }
       .row > x-button:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
       }
     `
   ]

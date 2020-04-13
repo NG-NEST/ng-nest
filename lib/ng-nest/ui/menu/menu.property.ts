@@ -1,5 +1,5 @@
 import { XParentIdentityProperty, XData, XSize, XProperty, XDataConvert } from '@ng-nest/ui/core';
-import { TemplateRef, Input, Output, EventEmitter } from '@angular/core';
+import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Menu
@@ -11,6 +11,7 @@ export const XMenuPrefix = 'x-menu';
 /**
  * Menu Property
  */
+@Component({ template: '' })
 export class XMenuProperty extends XProperty {
   /**
    * 节点数据

@@ -21,7 +21,7 @@ export class XFormProp extends XProperty {
   /**
    * flex 布局下的子元素垂直排列方式
    */
-  @Input() align: XAlign = 'center';
+  @Input() align: XAlign = 'start';
   /**
    * flex 布局下的子元素排列方向
    */
@@ -33,9 +33,9 @@ export class XFormProp extends XProperty {
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: boolean = false;
+  @Input() @XInputBoolean() disabled: boolean;
   /**
    * 必填
    */
-  @Input() @XInputBoolean() required: boolean = false;
+  @Input() @XInputBoolean() required: boolean;
 }
