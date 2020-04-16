@@ -28,7 +28,7 @@ export class XTimelineProperty extends XProperty {
   /**
    * 内容模板
    */
-  wrapper: XTemplate;
+  @Input() wrapper: XTemplate;
 }
 
 /**

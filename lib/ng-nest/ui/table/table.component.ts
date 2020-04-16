@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import * as _ from 'lodash';
 
@@ -41,7 +41,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   serialNumberText = '序号';
   serialNumberWidth = 5;
   searchInput: any;
-  searchSub = new Subject();
+  searchSub = new Subject<string>();
   sortStr = '';
   private _unSubject = new Subject<void>();
   private _isFirst = true;

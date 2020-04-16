@@ -41,7 +41,9 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
     if (this.duration) {
       of(true)
         .pipe(delay(this.duration), takeUntil(this._unSubject))
-        .subscribe(() => this.onClose());
+        .subscribe(() => {
+          this.onClose();
+        });
     }
   }
 

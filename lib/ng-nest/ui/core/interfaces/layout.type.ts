@@ -1,29 +1,15 @@
 /**
  * 方位
- * @value "top"
- * @value "right"
- * @value "bottom"
- * @value "left"
  */
 export type XPosition = 'top' | 'right' | 'bottom' | 'left';
 
 /**
  * 颜色类型
- * @value "primary"
- * @value "success"
- * @value "info"
- * @value "warning"
- * @value "danger"
- * @value "text"
  */
 export type XType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
  * 状态类型
- * @value "success"
- * @value "info"
- * @value "warning"
- * @value "error"
  */
 export type XStatus = 'success' | 'info' | 'warning' | 'error';
 
@@ -36,6 +22,11 @@ export type XClassMap = { [property: string]: boolean };
  * 样式主题
  */
 export type XEffect = 'light' | 'dark' | 'white';
+
+/**
+ * 样式属性
+ */
+export type XStyle = { [prop: string]: any };
 
 /**
  * 尺寸

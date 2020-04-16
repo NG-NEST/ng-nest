@@ -26,7 +26,7 @@ export class XRateComponent extends XRateProperty {
 
   rateNodes: any = [];
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   hoverRate(rate: number) {

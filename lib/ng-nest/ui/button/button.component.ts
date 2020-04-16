@@ -39,7 +39,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   }
 
   ngAfterViewInit() {
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,6 +55,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
       [`x-size-${this.size}`]: !XIsEmpty(this.size),
       [`x-direction-${this.direction}`]: !XIsEmpty(this.direction)
     };
+    this.cdr.detectChanges();
   }
 
   setSpace() {

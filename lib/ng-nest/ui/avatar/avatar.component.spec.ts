@@ -33,29 +33,29 @@ describe(XAvatarPrefix, () => {
 @Component({
   template: `
     <div class="row">
+      <x-avatar size="big" [src]="src"></x-avatar>
       <x-avatar size="large" [src]="src"></x-avatar>
-      <x-avatar size="medium" [src]="src"></x-avatar>
       <x-avatar [src]="src"></x-avatar>
       <x-avatar size="small" [src]="src"></x-avatar>
       <x-avatar size="mini" [src]="src"></x-avatar>
     </div>
     <div class="row">
+      <x-avatar size="big" shape="square" [src]="src"></x-avatar>
       <x-avatar size="large" shape="square" [src]="src"></x-avatar>
-      <x-avatar size="medium" shape="square" [src]="src"></x-avatar>
       <x-avatar shape="square" [src]="src"></x-avatar>
       <x-avatar size="small" shape="square" [src]="src"></x-avatar>
       <x-avatar size="mini" shape="square" [src]="src"></x-avatar>
     </div>
     <div class="row">
+      <x-avatar size="big" [icon]="icon"></x-avatar>
       <x-avatar size="large" [icon]="icon"></x-avatar>
-      <x-avatar size="medium" [icon]="icon"></x-avatar>
       <x-avatar [icon]="icon"></x-avatar>
       <x-avatar size="small" [icon]="icon"></x-avatar>
       <x-avatar size="mini" [icon]="icon"></x-avatar>
     </div>
     <div class="row">
+      <x-avatar size="big" [label]="label"></x-avatar>
       <x-avatar size="large" [label]="label"></x-avatar>
-      <x-avatar size="medium" [label]="label"></x-avatar>
       <x-avatar [label]="label"></x-avatar>
       <x-avatar size="small" [label]="label"></x-avatar>
       <x-avatar size="mini" [label]="label"></x-avatar>
@@ -64,11 +64,11 @@ describe(XAvatarPrefix, () => {
       <x-avatar src="https://empty"></x-avatar>
     </div>
     <div class="row">
-      <x-avatar size="large" [src]="srcFit" fit="fill"></x-avatar>
-      <x-avatar size="large" [src]="srcFit" fit="contain"></x-avatar>
-      <x-avatar size="large" [src]="srcFit" fit="cover"></x-avatar>
-      <x-avatar size="large" [src]="srcFit" fit="none"></x-avatar>
-      <x-avatar size="large" [src]="srcFit" fit="scale-down"></x-avatar>
+      <x-avatar size="big" [src]="srcFit" fit="fill"></x-avatar>
+      <x-avatar size="big" [src]="srcFit" fit="contain"></x-avatar>
+      <x-avatar size="big" [src]="srcFit" fit="cover"></x-avatar>
+      <x-avatar size="big" [src]="srcFit" fit="none"></x-avatar>
+      <x-avatar size="big" [src]="srcFit" fit="scale-down"></x-avatar>
     </div>
   `,
   styles: [

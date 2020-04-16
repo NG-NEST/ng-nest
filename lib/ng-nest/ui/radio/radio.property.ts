@@ -1,5 +1,6 @@
 import { XData, XControlValueAccessor, XIdentityProperty, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
-import { Input, Renderer2, Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
+import { XButtonType } from '@ng-nest/ui/button';
 
 /**
  * Radio
@@ -29,10 +30,10 @@ export class XRadioProperty extends XControlValueAccessor<any> {
    * 尺寸
    */
   @Input() size: XSize = 'medium';
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
+  /**
+   * 按钮样式时生效
+   */
+  @Input() type: XButtonType = 'initial';
 }
 
 /**

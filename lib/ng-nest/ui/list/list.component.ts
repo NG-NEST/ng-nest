@@ -34,7 +34,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {}

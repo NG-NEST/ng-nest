@@ -16,7 +16,7 @@ export class XCalendarProperty extends XProperty {
   /**
    * 事务数据对象
    */
-  @Input() data?: XCalendarData;
+  @Input() data: XCalendarData;
   /**
    * 显示模式
    */

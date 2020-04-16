@@ -6,8 +6,7 @@ import {
   ElementRef,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges,
-  OnInit
+  SimpleChanges
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
@@ -21,20 +20,15 @@ import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent extends XRadioProperty implements OnInit, OnChanges {
+export class XRadioComponent extends XRadioProperty implements OnChanges {
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
-  }
-
-  ngOnInit(): void {
-    console.log(this.data);
+    super();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes.data);
     XIsChange(changes.data) && this.setData();
   }
 

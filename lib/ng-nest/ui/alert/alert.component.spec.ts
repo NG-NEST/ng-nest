@@ -99,7 +99,7 @@ class TestXAlertComponent {
 
   close() {
     this.hide = true;
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   toggle() {

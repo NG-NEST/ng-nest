@@ -3,7 +3,6 @@
     <tr *ngFor="let months of dates">
       <ng-container *ngFor="let month of months">
         <td
-          *ngIf="month"
           [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
           [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
           (click)="monthTemp && monthClick(month)"

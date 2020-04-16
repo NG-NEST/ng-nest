@@ -3,7 +3,6 @@
 </a>
 <a
   *ngIf="option.type !== 'router'"
-  (click)="sider(option)"
   [routerLink]="[option.router]"
   [routerLinkActive]="'active'"
   [title]="option.label"

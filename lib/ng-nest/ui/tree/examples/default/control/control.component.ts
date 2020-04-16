@@ -43,7 +43,7 @@ export class ExControlComponent {
     this.content = this.treeCom.getCheckedKeys();
   }
 
-  setCheckedKeys(keys = []) {
+  setCheckedKeys(keys: number[] = []) {
     this.treeCom.setCheckedKeys(keys);
   }
 

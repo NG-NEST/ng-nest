@@ -1,7 +1,7 @@
 <div
   class="x-tree-node-content"
   [class.x-activated]="tree.activatedNode?.id === node.id"
-  [style.padding-left.rem]="node.level * 0.875"
+  [style.padding-left.rem]="level * 0.875"
   (click)="onActivate(node)"
 >
   <x-icon
@@ -21,18 +21,11 @@
     [disabled]="node.disabled"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
-  <span *ngIf="!tree.labelTemp; else labelTpl">{{ node.label }}</span>
+  <span *ngIf="!tree.labelTpl; else labelTpl">{{ node.label }}</span>
   <ng-template #labelTpl>
-    <ng-container *xOutlet="tree.labelTemp; context: { $node: node }"></ng-container>
+    <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
   </ng-template>
 </div>
 <ul *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
-  <li
-    x-tree-node
-    *ngFor="let child of node.children"
-    [node]="child"
-    [parent]="this"
-    [lazy]="lazy"
-    [lazyData]="lazyData"
-  ></li>
+  <li x-tree-node *ngFor="let child of node.children" [node]="child" [parent]="this" [lazy]="lazy" [lazyData]="lazyData"></li>
 </ul>

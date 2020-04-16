@@ -45,16 +45,16 @@
     height: 1rem;
     background-color: #fff;
     position: relative;
-    display: inline-block;
     box-sizing: border-box;
     transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       border-color: var(--x-primary);
     }
     &::after {
       position: absolute;
-      top: 0.175rem;
-      left: 0.175rem;
       display: inline-block;
       width: 0.5rem;
       height: 0.5rem;

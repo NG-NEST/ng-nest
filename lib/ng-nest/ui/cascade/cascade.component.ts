@@ -53,8 +53,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  scrollFunction: Function;
-  resizeFunction: Function;
   private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
@@ -66,12 +64,12 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef
   ) {
-    super(renderer);
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XCascadePrefix);
   }
 
   ngOnInit() {
-    this.setFlex(this.cascade.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.cascade.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   ngAfterViewInit() {
@@ -85,13 +83,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.removeListen();
-  }
-
-  removeListen() {
-    this.scrollFunction?.();
-    this.resizeFunction?.();
-    this.cdr.markForCheck();
   }
 
   private setData() {
@@ -138,7 +129,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.dispose();
-      this.removeListen();
       return true;
     }
     return false;
@@ -163,7 +153,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
       datas: this.datas,
-      nodes: this.nodes,
+      nodes: [this.nodes],
       value: this.value,
       valueChange: this.valueChange,
       closePortal: () => this.closePortal(),

@@ -9,21 +9,23 @@ import {
 } from '@angular/core';
 import { chunk, XIsChange } from '@ng-nest/ui/core';
 import { XPickerYearProperty } from './date-picker.property';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'x-picker-year',
   templateUrl: './picker-year.component.html',
   styleUrls: ['./picker-year.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe]
 })
 export class XPickerYearComponent extends XPickerYearProperty implements OnChanges {
   now = new Date();
-  dates: Date[][] = [[]];
+  dates: Date[][] = [];
   start: number;
   end: number;
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe) {
     super();
   }
 
@@ -43,7 +45,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     for (let i = -3; i < 13; i++) {
       dates = [...dates, new Date(this.start + i, 1, 1)];
     }
-    this.dates = chunk(dates, 4);
+    this.dates = chunk(dates, 4) as Date[][];
     this.startChange.emit(this.start);
   }
 
@@ -51,5 +53,14 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     this.model = date;
     this.modelChange.emit(date);
     this.cdr.markForCheck();
+  }
+
+  lastOrNext(year: Date) {
+    const yearStr = this.datePipe.transform(year, 'yyyy') as string;
+    return yearStr < `${this.start}` || yearStr > `${this.end}`;
+  }
+
+  equalYear(one: Date, two: Date) {
+    return this.datePipe.transform(one, 'yyyy') === this.datePipe.transform(two, 'yyyy');
   }
 }

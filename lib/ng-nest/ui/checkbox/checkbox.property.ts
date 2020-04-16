@@ -1,5 +1,5 @@
 import { XData, XTemplate, XIdentityProperty, XControlValueAccessor, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
-import { Input, Renderer2, Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Checkbox
@@ -33,10 +33,6 @@ export class XCheckboxProperty extends XControlValueAccessor<any[]> {
    * 尺寸
    */
   @Input() size: XSize = 'medium';
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }
 
 /**

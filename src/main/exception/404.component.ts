@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { SimpleReuseStrategy } from '../simple-reuse-srategy';
 
 @Component({
   selector: 'exception-404',
@@ -10,7 +9,7 @@ import { SimpleReuseStrategy } from '../simple-reuse-srategy';
 })
 export class Exception404Component {
   constructor(private router: Router) {
-    SimpleReuseStrategy.deleteRouteSnapshot(this.router.url);
+    // SimpleReuseStrategy.deleteRouteSnapshot(this.router.url);
   }
   back() {
     window.history.back();

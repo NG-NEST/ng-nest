@@ -87,14 +87,11 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contentChange$?.unsubscribe();
-    this.docClickFunction?.();
+    this.docClickFunction && this.docClickFunction();
   }
 
   setArrow() {
     let offset = this.arrowBox.height / 2;
-    console.log(this.portalBox.height, this.box.height);
-    console.log(this.popoverArrow.nativeElement);
-    console.log(this.placement);
     if (this.portalBox.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
       if (this.includes('-start')) {
         this.renderer.setStyle(this.popoverArrow.nativeElement, 'top', `${this.box.height / 2 - offset}px`);

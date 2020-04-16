@@ -105,7 +105,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
-      datas: this.nodes,
+      data: this.nodes,
       trigger: this.trigger,
       close: () => this.closePortal(),
       nodeEmit: (node: XDropdownNode) => this.nodeClick.emit(node),

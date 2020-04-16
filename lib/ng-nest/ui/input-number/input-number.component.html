@@ -13,17 +13,8 @@
       icon="fto-minus"
       size="medium"
       [disabled]="disabled || minDisabled"
-      (click)="!disabled && !minDisabled && plus($event, -step)"
+      (click)="!minDisabled && plus($event, -step)"
       (mousedown)="!minDisabled && down($event, -step)"
-      (mouseup)="up($event)"
-    ></x-button>
-    <x-button
-      class="x-input-number-plus"
-      icon="fto-plus"
-      size="medium"
-      [disabled]="disabled || maxDisabled"
-      (click)="!disabled && !maxDisabled && plus($event, step)"
-      (mousedown)="!maxDisabled && down($event, step)"
       (mouseup)="up($event)"
     ></x-button>
     <input
@@ -35,5 +26,14 @@
       [(ngModel)]="displayValue"
       (ngModelChange)="change($event)"
     />
+    <x-button
+      class="x-input-number-plus"
+      icon="fto-plus"
+      size="medium"
+      [disabled]="disabled || maxDisabled"
+      (click)="!maxDisabled && plus($event, step)"
+      (mousedown)="!maxDisabled && down($event, step)"
+      (mouseup)="up($event)"
+    ></x-button>
   </div>
 </div>

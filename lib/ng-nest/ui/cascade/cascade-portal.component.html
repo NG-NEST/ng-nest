@@ -1,3 +1,5 @@
 <div class="x-cascade-portal" (click)="stopPropagation($event)">
-  <x-list *ngFor="let list of nodes" [data]="list" [(ngModel)]="values" (nodeClick)="nodeClick($event)" checked></x-list>
+  <ng-container *ngFor="let list of nodes">
+    <x-list [data]="list" [(ngModel)]="values" (nodeClick)="nodeClick($event)" checked></x-list>
+  </ng-container>
 </div>

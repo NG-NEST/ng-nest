@@ -2,14 +2,13 @@
   <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
-        <th *ngFor="let week of weeks">{{ week }}</th>
+        <th *ngFor="let title of titles">{{ title }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let weeks of dates">
         <ng-container *ngFor="let week of weeks">
           <td
-            *ngIf="week"
             [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
             [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
             (click)="dateTemp && dateClick(week)"

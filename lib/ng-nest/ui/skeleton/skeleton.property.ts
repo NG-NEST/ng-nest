@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XStyle } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -54,7 +54,7 @@ export interface XSkeletonRow {
   /**
    * 样式
    */
-  style?: { [prop: string]: any };
+  style?: XStyle;
 }
 
 /**
@@ -84,7 +84,7 @@ export interface XSkeletonCol {
   /**
    * 样式
    */
-  style?: { [prop: string]: any };
+  style?: XStyle;
 }
 
 /**

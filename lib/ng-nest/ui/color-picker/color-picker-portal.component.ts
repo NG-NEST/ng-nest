@@ -15,7 +15,7 @@ import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subscription, Subject } from 'rxjs';
-import { CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 
 @Component({
@@ -54,7 +54,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   constructor(
     public elementRef: ElementRef,
     public renderer: Renderer2,
-    @Inject(DOCUMENT) public doc: Document,
+    @Inject(DOCUMENT) public doc: any,
     public ngZone: NgZone,
     public cdr: ChangeDetectorRef,
     public decimal: DecimalPipe,
@@ -79,7 +79,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.valueChange$?.unsubscribe();
-    this.docClickFunction?.();
+    this.docClickFunction && this.docClickFunction();
   }
 
   ngAfterViewInit() {

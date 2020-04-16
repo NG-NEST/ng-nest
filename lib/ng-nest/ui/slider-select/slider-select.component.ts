@@ -42,15 +42,14 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.value = value;
     this.setLeft();
     this.setDisplayValue();
-    this.cdr.detectChanges();
   }
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {
-    this.setFlex(this.sliderSelect.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.sliderSelect.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setPrecision();
   }
 
@@ -76,11 +75,13 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
 
   setDisplayValue() {
     this.displayValue = Number(this.value).toFixed(this.precision);
+    this.cdr.detectChanges();
   }
 
   setPrecision() {
     if (XIsUndefined(this.precision)) {
       let stepStr = String(this.step);
+      console.log(stepStr);
       let indexpoint = stepStr.indexOf('.');
       if (indexpoint === -1) {
         this.precision = 0;

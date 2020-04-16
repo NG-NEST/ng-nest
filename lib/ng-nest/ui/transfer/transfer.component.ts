@@ -47,7 +47,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {

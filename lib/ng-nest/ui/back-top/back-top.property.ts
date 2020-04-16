@@ -28,9 +28,9 @@ export class XBackTopProperty extends XProperty {
   /**
    * 内容模板
    */
-  @Input() template?: TemplateRef<any>;
+  @Input() template: TemplateRef<any>;
   /**
    * 滚动的元素
    */
-  @Input() target?: string | HTMLElement;
+  @Input() target: string | HTMLElement;
 }

@@ -26,10 +26,10 @@ export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
       size: NcTabsSizeEnum.Large,
       folderPath: cates.folderPath
     });
-    catesTabs.tabs.forEach(x => {
+    catesTabs.tabs.forEach((x) => {
       generateFiles(
         x,
-        cates.list.find(y => y.name == x.name),
+        cates.list.find((y) => y.name == x.name),
         comTpl,
         path.join(cates.folderPath, x.name),
         subFunc
@@ -88,7 +88,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
  */
 export function handlerContent(content: string) {
   let special = [`\``];
-  special.forEach(x => {
+  special.forEach((x) => {
     if (content.indexOf(x) > -1) {
       let rep = `\\${x}`;
       content = content.replace(new RegExp(x, 'g'), `${rep}`);

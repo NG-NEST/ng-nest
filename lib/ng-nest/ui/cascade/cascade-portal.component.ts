@@ -31,11 +31,10 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
-  constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {
-    this.init();
-  }
+  constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.init();
     this.valueChange$ = this.valueChange.subscribe((x) => {
       this.value = x;
       this.init();
@@ -51,7 +50,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.valueChange$?.unsubscribe();
-    this.docClickFunction?.();
+    this.docClickFunction && this.docClickFunction();
   }
 
   init() {
@@ -70,12 +69,14 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     let node = this.datas.find((x) => x.id === this.value) as XCascadeNode;
     this.selecteds = [node];
     this.nodes = [this.datas.filter((x) => x.pid === node.pid)];
+    console.log(this.nodes);
     while (!XIsEmpty(node.pid)) {
       node = this.datas.find((x) => x.id === node.pid) as XCascadeNode;
       this.selecteds = [node, ...this.selecteds];
       this.nodes = [this.datas.filter((x) => x.pid === node.pid), ...this.nodes];
     }
     this.values = this.selecteds.map((x) => x.id) as XCascadeNode[];
+    console.log(this.values, this.nodes);
   }
 
   nodeClick(node: XCascadeNode) {

@@ -4,8 +4,8 @@
       <x-button
         *ngFor="let item of nodes"
         [icon]="item.icon"
-        [title]="item.title"
         [size]="size"
+        [type]="type"
         [activated]="item.id === value"
         [disabled]="disabled || item.disabled"
         (click)="radioClick($event, item)"

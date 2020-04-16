@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Renderer2, Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * InputNumber
@@ -33,8 +33,4 @@ export class XInputNumberProperty extends XControlValueAccessor<any> {
    * 精度
    */
   @Input() @XInputNumber() precision: number = 0;
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }

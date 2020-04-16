@@ -55,12 +55,12 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(this.input.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.input.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setSize();
   }
 

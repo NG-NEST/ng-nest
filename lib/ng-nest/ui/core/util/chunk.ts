@@ -1,4 +1,4 @@
-export const chunk = (array: any[], size = 1) => {
+export function chunk<T>(array: T[], size = 1): T[][] {
   const len = array == null ? 0 : array.length;
   if (!len || size < 1) {
     return [];
@@ -11,4 +11,4 @@ export const chunk = (array: any[], size = 1) => {
     result[resIndex++] = array.slice(index, (index += size));
   }
   return result;
-};
+}

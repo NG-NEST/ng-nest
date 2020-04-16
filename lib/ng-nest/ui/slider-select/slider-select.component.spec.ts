@@ -107,11 +107,6 @@ describe(XSliderSelectPrefix, () => {
 })
 class TestXSliderSelectComponent {
   model = 60;
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
 }
 
 @Component({
@@ -144,11 +139,6 @@ class TestXSliderSelectLimitComponent {
   model1 = 0;
   model2 = 0;
   model3 = 0;
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
 }
 
 @Component({
@@ -172,13 +162,7 @@ class TestXSliderSelectLimitComponent {
     `
   ]
 })
-class TestXSliderSelectPrecisionComponent {
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
-}
+class TestXSliderSelectPrecisionComponent {}
 
 @Component({
   template: `
@@ -213,11 +197,6 @@ class TestXSliderSelectPrecisionComponent {
 })
 class TestXSliderSelectLabelComponent {
   model: number = 0;
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
 }
 
 @Component({

@@ -174,7 +174,7 @@ interface User extends XId {
       }
       .header-username > span,
       .body-username > span {
-        margin-left: 0.25rem;
+        margin-left: 1rem;
       }
     `
   ],

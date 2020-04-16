@@ -13,24 +13,22 @@ import * as _ from 'lodash';
 export class SiderNodeComponent implements OnInit {
   option: Menu = {};
   level: number;
-  child = [];
+  child: Menu[] = [];
   showCategory = false;
 
   constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {
     this.level = this.level + 1;
-    this.child = this.layoutService.menus.filter(x => x.parentId === this.option.id);
+    this.child = this.layoutService.menus.filter((x) => x.parentId === this.option.id);
     if (this.layoutService.category !== this.option.category) {
-      this.layoutService.category = this.option.category;
+      this.layoutService.category = this.option.category as string;
       this.showCategory = true;
     }
   }
 
-  toggle(event: Event, option) {
+  toggle(event: Event, option: Menu) {
     event.stopPropagation();
     if (this.child.length > 0) option.childrenShow = !option.childrenShow;
   }
-
-  sider(option) {}
 }

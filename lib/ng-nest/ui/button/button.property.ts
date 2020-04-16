@@ -12,7 +12,7 @@ export const XButtonPrefix = 'x-button';
  * Button Property
  */
 @Component({ template: '' })
-export class XButtonProperty extends XProperty {
+export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 类型
    */
@@ -69,6 +69,7 @@ export class XButtonProperty extends XProperty {
 
 /**
  * Button Option
+ * @undocument true
  */
 export interface XButtonOption {
   /**

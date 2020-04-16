@@ -10,14 +10,11 @@ import {
   Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild,
-  Inject
+  ViewChild
 } from '@angular/core';
 import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
 import { XValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { Overlay } from '@angular/cdk/overlay';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'x-color-picker',
@@ -52,9 +49,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  scrollFunction: Function;
-  resizeFunction: Function;
-  private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
 
@@ -63,43 +57,18 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private doc: any
+    private viewContainerRef: ViewContainerRef
   ) {
-    super(renderer);
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XColorPickerPrefix);
   }
 
   ngOnInit() {
-    this.setFlex(this.colorPicker.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   ngAfterViewInit() {
     this.setPortal();
-  }
-
-  ngOnDestroy(): void {
-    this.data$ && this.data$.unsubscribe();
-    this.removeListen();
-  }
-
-  addListen() {
-    this.scrollFunction = this.renderer.listen('window', 'scroll', () => {
-      this.setPortal();
-    });
-    this.resizeFunction = this.renderer.listen('window', 'resize', () => {
-      this.setPortal();
-    });
-  }
-
-  removeListen() {
-    this.scrollFunction?.();
-    this.resizeFunction?.();
-    this.cdr.markForCheck();
-  }
-
-  change() {
-    // if (this.onChange) this.onChange(this.value);
   }
 
   menter() {
@@ -137,7 +106,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.dispose();
-      this.removeListen();
       return true;
     }
     return false;

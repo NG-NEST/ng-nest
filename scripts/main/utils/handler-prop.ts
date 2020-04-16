@@ -24,6 +24,7 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
     let doc = [];
     let isReadDoc = false;
     let isReadProp = false;
+    let isReadComDir = false;
     let isReadType = false;
     let isReadConst = false;
     let docItem: any = {};
@@ -44,9 +45,12 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
         docItem[index] = line;
         doc.push(docItem);
         docItem = {};
+      } else if (line.startsWith('@Component') || line.startsWith('@Directive')) {
+        isReadComDir = true;
       } else if (line.startsWith('export')) {
-        let docItem = doc.find((x) => x.end == index - 1);
-        if (docItem) {
+        let docItem = doc.find((x) => x.end == index - (isReadComDir ? 2 : 1));
+        let undocument = getDocs(docItem, 'undocument') as string;
+        if (docItem && undocument !== 'true') {
           let type = line.replace('export', '').trim();
           prop.type = type.slice(0, type.indexOf(' ')) as NcPropType;
           let name = type.replace(prop.type, '').trim();
@@ -68,7 +72,6 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
             case NcPropType.Interface:
             case NcPropType.Class:
               isReadProp = true;
-
               break;
             case NcPropType.Type:
               isReadType = true;
@@ -80,6 +83,7 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
         }
       } else if (line.startsWith('}')) {
         isReadProp = false;
+        isReadComDir = false;
         if (JSON.stringify(prop) != '{}') {
           props.push(prop);
           prop = {};
@@ -98,12 +102,14 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
           type = line.indexOf('<') !== -1 ? line.replace(/(.*)\<(.*)\>(.*);/, '$2') : '';
         }
         if (docItem) {
+          const def = getDocs(docItem, 'default') as string;
+          const description = getDocs(docItem, 'description') as string;
           const property: NcPrope = {
             name: name,
             type: type,
             label: docItem[docItem.start + 1],
-            defalut: spt[1].indexOf('=') !== -1 ? spt[1].replace(/(.*) \= (.*);/, '$2') : '',
-            description: getDocs(docItem, 'description') as string,
+            defalut: def ? def : spt[1].indexOf('=') !== -1 ? spt[1].replace(/(.*) \= (.*);/, '$2') : '',
+            description: description,
             decorator: sptd.length > 1 ? sptd.filter((x) => x.indexOf('@') !== -1) : [],
             attr: sptd.length > 1 && sptd[0].indexOf("'") !== -1 ? sptd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name,
             propType: propType

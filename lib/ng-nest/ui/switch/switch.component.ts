@@ -28,11 +28,11 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
   }
 
   constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {
-    this.setFlex(this.switch.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.switch.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   switchClick() {

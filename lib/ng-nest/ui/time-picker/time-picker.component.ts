@@ -70,12 +70,12 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe
   ) {
-    super(renderer);
+    super();
     this.renderer.addClass(this.elementRef.nativeElement, XTimePickerPrefix);
   }
 
   ngOnInit() {
-    this.setFlex(this.datePicker.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
   }
 

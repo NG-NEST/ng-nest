@@ -13,13 +13,13 @@ export class HeaderComponent implements OnInit {
     { name: 'News', page: './news' }
   ];
 
-  lang: string = localStorage.getItem('Lang');
+  lang = localStorage.getItem('Lang');
 
   constructor() {}
 
   ngOnInit() {}
 
-  push(page) {
+  push(page: string) {
     localStorage.setItem('Lang', page);
     location.href = `${location.origin}/${page}/${location.hash}`;
   }

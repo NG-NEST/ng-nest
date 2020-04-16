@@ -1,4 +1,4 @@
-import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XFadeAnimation, XInputNumber } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
@@ -20,11 +20,11 @@ export class XAlertProperty extends XProperty {
   /**
    * 标题
    */
-  @Input() title?: XTemplate;
+  @Input() title: XTemplate;
   /**
    * 内容
    */
-  @Input() content?: XTemplate;
+  @Input() content: XTemplate;
   /**
    * 类型
    */
@@ -48,11 +48,11 @@ export class XAlertProperty extends XProperty {
   /**
    * 禁用动画
    */
-  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean;
+  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean = false;
   /**
    * 延迟关闭，默认 0 表示不关闭
    */
-  @Input() duration: number = 0;
+  @Input() @XInputNumber() duration: number = 0;
   /**
    * 手动处理关闭事件
    */

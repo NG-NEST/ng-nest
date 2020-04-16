@@ -37,7 +37,7 @@
 }
 
 @mixin avatar-size($type, $size) {
-  &#{$type} {
+  &-#{$type} {
     height: $size;
     width: $size;
     line-height: $size;

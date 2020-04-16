@@ -20,7 +20,7 @@ export class XBadgeProperty extends XProperty {
   /**
    * 最大值
    */
-  @Input() @XInputNumber() max?: number;
+  @Input() @XInputNumber() max: number;
   /**
    * 显示值
    */

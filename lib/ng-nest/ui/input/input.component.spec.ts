@@ -215,6 +215,11 @@ class TestXInputIconComponent {}
         <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
+    <x-row>
+      <x-col span="8">
+        <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" iconLayout="left" (ngModelChange)="change()"></x-input>
+      </x-col>
+    </x-row>
   `,
   styles: [
     `

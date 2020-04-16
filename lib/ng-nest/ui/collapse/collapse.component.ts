@@ -34,7 +34,7 @@ export class XCollapseComponent extends XCollapseProperty implements OnInit {
       }
     }
     if (this.accordion && this.active.length === 2) {
-      this.panelChanges[this.active[0]]?.();
+      this.panelChanges[this.active[0]] && this.panelChanges[this.active[0]]();
       return;
     }
     this.activeChange.emit(this.active);

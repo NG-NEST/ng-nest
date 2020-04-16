@@ -16,7 +16,7 @@ export class XFormProperty {
   /**
    * 表单名称
    */
-  @Input() title?: string;
+  @Input() title: string;
   /**
    * 表单控件
    */

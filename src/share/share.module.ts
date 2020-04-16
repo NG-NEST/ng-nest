@@ -5,13 +5,9 @@ import { RouterModule } from '@angular/router';
 import { XDocModule } from '@ng-nest/ui/doc';
 import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XApiModule } from '@ng-nest/ui/api';
-import { XIconModule } from '@ng-nest/ui/icon';
 import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
-
-const components = [];
 
 const modules = [
   CommonModule,
@@ -26,12 +22,8 @@ const modules = [
   XPatternModule
 ];
 
-const providers = [];
-
 @NgModule({
   imports: [...modules],
-  declarations: [...components],
-  exports: [...components, ...modules],
-  providers: [...providers]
+  exports: [...modules]
 })
 export class ShareModule {}

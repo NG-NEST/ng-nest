@@ -16,27 +16,27 @@ export class XAvatarProperty extends XProperty {
   /**
    * 显示字符
    */
-  @Input() label?: XTemplate;
+  @Input() label: XTemplate;
   /**
    * 尺寸
    */
-  @Input() size?: XSize = 'medium';
+  @Input() size: XSize = 'medium';
   /**
    * 显示图标
    */
-  @Input() icon?: string;
+  @Input() icon: string;
   /**
    * 形状
    */
-  @Input() shape?: XAvatarShape = 'circle';
+  @Input() shape: XAvatarShape = 'circle';
   /**
    * 图片地址
    */
-  @Input() src?: string;
+  @Input() src: string;
   /**
    * 图片适应方式
    */
-  @Input() fit?: XAvatarFit = 'cover';
+  @Input() fit: XAvatarFit = 'cover';
 }
 
 /**

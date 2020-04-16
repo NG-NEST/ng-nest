@@ -18,9 +18,9 @@ import { XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPickerDateComponent extends XPickerDateProperty implements OnChanges {
-  weeks = ['一', '二', '三', '四', '五', '六', '日'];
+  titles = ['一', '二', '三', '四', '五', '六', '日'];
   now = new Date();
-  dates: Date[][] = [[]];
+  dates: Date[][] = [];
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     super();

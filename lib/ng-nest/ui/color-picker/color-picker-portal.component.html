@@ -11,7 +11,7 @@
         cdkDrag
         [cdkDragBoundary]="panelRef"
         (cdkDragStarted)="started()"
-        (cdkDragEnded)="ended($event)"
+        (cdkDragEnded)="ended()"
         (cdkDragMoved)="moved($event)"
       ></div>
     </div>
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="x-color-picker-portal-type">
-      <x-tabs animated="false">
+      <x-tabs animated="false" justify="center">
         <x-tab label="HEX">
           <div class="x-color-picker-portal-type-content">
             <x-input [(ngModel)]="hex"></x-input>

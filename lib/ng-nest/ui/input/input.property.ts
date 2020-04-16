@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Renderer2, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Input
@@ -57,10 +57,6 @@ export class XInputProperty extends XControlValueAccessor<any> {
    * 清除按钮的事件
    */
   @Output() clearEmit = new EventEmitter<any>();
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }
 
 /**

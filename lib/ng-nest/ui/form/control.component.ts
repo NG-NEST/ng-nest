@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { XContainerProperty } from '../container';
+import { XControlProperty } from './form.property';
 
 @Component({
   selector: 'x-control',
@@ -8,7 +8,7 @@ import { XContainerProperty } from '../container';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XControlComponent extends XContainerProperty {
+export class XControlComponent extends XControlProperty {
   constructor() {
     super();
   }

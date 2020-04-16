@@ -18,7 +18,8 @@ export class XMessageBoxService {
     backdropClose: false,
     cancelText: '取消',
     confirmText: '确认',
-    inputPlaceholder: ''
+    inputPlaceholder: '',
+    hide: false
   };
 
   constructor(public portal: XPortalService) {}
@@ -59,8 +60,8 @@ export class XMessageBoxService {
 
   private createMessageBoxPlacement(option: XMessageBoxOption): XMessageBoxRef {
     let result = { ref: this.create(option), input: option };
-    (result.ref.componentRef?.instance as any).messageBox = result;
-    if (option.backdropClose) result.ref.overlayRef?.backdropClick().subscribe(() => result.ref.componentRef?.instance.onClose());
+    (result.ref?.componentRef?.instance as any).messageBox = result;
+    if (option.backdropClose) result.ref?.overlayRef?.backdropClick().subscribe(() => result.ref?.componentRef?.instance.onClose());
     return result;
   }
 }

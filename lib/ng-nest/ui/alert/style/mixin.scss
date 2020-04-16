@@ -37,24 +37,30 @@
       font-size: 1.75rem;
     }
   }
-  @include type('success', $--x-success, $--x-success-900, $--x-success-700);
-  @include type('info', $--x-info, $--x-info-900, $--x-info-700);
-  @include type('warning', $--x-warning, $--x-warning-900, $--x-warning-700);
-  @include type('error', $--x-danger, $--x-danger-900, $--x-danger-700);
+  @include type('success', $--x-success, $--x-success-800, $--x-success-600, $--x-success-400);
+  @include type('info', $--x-info, $--x-info-800, $--x-info-600, $--x-info-400);
+  @include type('warning', $--x-warning, $--x-warning-800, $--x-warning-600, $--x-warning-400);
+  @include type('error', $--x-danger, $--x-danger-800, $--x-danger-600, $--x-danger-400);
 }
 
-@mixin type($type, $color, $background, $border-color) {
+@mixin type($type, $color, $background, $border-color, $close-color) {
   &-#{$type} {
     &.x-light {
       color: $color;
       background-color: $background;
       border-color: $border-color;
+      x-button.#{$--x-alert}-close .x-button {
+        color: $close-color;
+        &:hover {
+          color: $color;
+        }
+      }
     }
     &.x-dark {
       color: $background;
       background-color: $color;
       border-color: $border-color;
-      .#{$--x-alert}-close .x-button {
+      x-button.#{$--x-alert}-close .x-button {
         color: $background;
         &:hover {
           color: $--x-white;
@@ -67,6 +73,12 @@
       border-color: $--x-border-200;
       .#{$--x-alert}-icon.x-icon {
         color: $color;
+      }
+      x-button.#{$--x-alert}-close .x-button {
+        color: $--x-text-300;
+        &:hover {
+          color: $--x-text-500;
+        }
       }
     }
   }

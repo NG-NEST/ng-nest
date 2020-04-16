@@ -40,12 +40,12 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
     this.panelChanges.forEach((sub) => sub.next(true));
   }
 
-  // ngAfterViewChecked(): void {
-  //   const timer = setTimeout(() => {
-  //     this.autoplay && this.resetInterval();
-  //     clearTimeout(timer);
-  //   }, 0);
-  // }
+  ngAfterViewChecked(): void {
+    const timer = setTimeout(() => {
+      this.autoplay && this.resetInterval();
+      clearTimeout(timer);
+    }, 0);
+  }
 
   ngOnChanges(simples: SimpleChanges): void {
     XIsChange(simples.active) && this.setActiveItem(this.active);

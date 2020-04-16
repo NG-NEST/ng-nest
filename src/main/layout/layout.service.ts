@@ -12,12 +12,12 @@ export class LayoutService {
   contentRef: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
   shrink = false;
-  category;
+  category: string;
 
   menus: Menu[] = menus;
 
   constructor(private router: Router) {
-    this.router.events.pipe(filter(x => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
+    this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
       this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
     });
   }

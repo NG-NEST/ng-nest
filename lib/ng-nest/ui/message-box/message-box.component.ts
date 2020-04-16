@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class XMessageBoxComponent implements OnInit {
   messageBox: XMessageBoxRef = {};
   action: XMessageBoxAction = 'cancel';
-  formGroup: FormGroup;
+  formGroup: FormGroup = new FormGroup({});
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -23,8 +23,8 @@ export class XMessageBoxComponent implements OnInit {
 
   onClose() {
     if (this.messageBox.input?.hide && this.messageBox.input?.hide !== true) this.messageBox.input.hide = true;
-    this.cdr.detectChanges();
     this.messageBox.ref?.overlayRef?.detach();
+    this.cdr.detectChanges();
   }
 
   onCancel() {
@@ -40,21 +40,23 @@ export class XMessageBoxComponent implements OnInit {
 
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
+      console.log(this.messageBox);
       this.messageBox.input?.callback && this.messageBox.input.callback(this.action, this.getInputValue());
       this.messageBox.ref?.overlayRef?.dispose();
     }
   }
 
   getInputValue() {
-    return this.formGroup && this.formGroup.controls.inputValue.value;
+    return this.formGroup.controls['inputValue']?.value;
   }
 
   createFormGroup() {
-    this.formGroup = new FormGroup({
-      inputValue: new FormControl(this.messageBox.input?.inputValue, [
+    this.formGroup.addControl(
+      'inputValue',
+      new FormControl(this.messageBox.input?.inputValue, [
         Validators.required,
         Validators.pattern(this.messageBox.input?.inputPattern as RegExp)
       ])
-    });
+    );
   }
 }

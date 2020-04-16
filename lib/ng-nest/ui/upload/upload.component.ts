@@ -24,7 +24,7 @@ export class XUploadComponent extends XUploadProperty {
 
   uploadNodes: XUploadNode[] = [];
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public http: HttpClient, public cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   change(event: Event) {

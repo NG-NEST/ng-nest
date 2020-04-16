@@ -4,9 +4,6 @@ import { XJustify, XAlign, XDirection, XIsEmpty } from '../interfaces';
 import { XFormProp } from './property';
 
 export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
-  constructor(public renderer: Renderer2) {
-    super();
-  }
   value: T;
   onChange: (value: T) => void;
   onTouched: () => void;
@@ -22,10 +19,10 @@ export abstract class XControlValueAccessor<T> extends XFormProp implements Cont
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
-  setFlex(ele: Element, justify: XJustify, align: XAlign, direction: XDirection) {
-    if (!XIsEmpty(justify)) this.renderer.addClass(ele, `x-justify-${this.justify}`);
-    if (!XIsEmpty(align)) this.renderer.addClass(ele, `x-align-${this.align}`);
-    if (!XIsEmpty(direction)) this.renderer.addClass(ele, `x-direction-${this.direction}`);
+  setFlex(ele: Element, renderer: Renderer2, justify: XJustify, align: XAlign, direction: XDirection) {
+    if (!XIsEmpty(justify)) renderer.addClass(ele, `x-justify-${this.justify}`);
+    if (!XIsEmpty(align)) renderer.addClass(ele, `x-align-${this.align}`);
+    if (!XIsEmpty(direction)) renderer.addClass(ele, `x-direction-${this.direction}`);
   }
 }
 

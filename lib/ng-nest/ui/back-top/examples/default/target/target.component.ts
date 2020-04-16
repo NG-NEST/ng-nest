@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  selector: 'ex-target',
+  templateUrl: './target.component.html',
+  styleUrls: ['./target.component.scss']
 })
-export class ExDefaultComponent {}
+export class ExTargetComponent {
+  buttons = Array.from({ length: 20 }).map((x, i) => '按钮' + (i + 1));
+}

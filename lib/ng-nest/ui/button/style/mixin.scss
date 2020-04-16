@@ -145,7 +145,7 @@
       }
     }
     &.#{$--x-button}-activated {
-      z-index: 1;
+      z-index: 2;
       @include button-color($active, $active-background, $active-border);
     }
   }

@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Renderer2, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 /**
@@ -27,9 +27,9 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> {
    */
   @Input() @XInputNumber() step: number = 1;
   /**
-   * 精度
+   * 精度，默认根据步数来计算
    */
-  @Input() @XInputNumber() precision: number = 0;
+  @Input() @XInputNumber() precision: number;
   /**
    * 开始拖动的事件
    */
@@ -42,8 +42,4 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> {
    * 移动结束的事件
    */
   @Output() dragEnded = new EventEmitter<CdkDragEnd>();
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }

@@ -9,16 +9,11 @@
 </ng-container>
 
 <ng-template #rowsTpl let-rows="rows">
-  <x-row
-    *ngFor="let row of rows"
-    [space]="row.space"
-    [justify]="row.flex ? 'start' : ''"
-    [ngStyle]="row.style"
-  >
+  <x-row *ngFor="let row of rows" [space]="row.space" [justify]="row.flex ? 'start' : ''" [ngStyle]="row.style">
     <x-col
       *ngFor="let col of row.cols"
       [span]="col.span"
-      [inherit]="col.width || col.height"
+      [inherit]="col.width || col.height ? true : false"
       [ngStyle]="col.style"
       [style.padding-top.rem]="border && row.space / 2"
       [style.padding-bottom.rem]="border && row.space / 2"

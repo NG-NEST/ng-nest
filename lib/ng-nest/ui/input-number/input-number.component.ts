@@ -45,11 +45,11 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {
-    this.setFlex(this.inputNumber.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.inputNumber.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   setDisplayValue() {
@@ -62,6 +62,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   down(event: Event, limit: number): void {
+    if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
     this.timer = setTimeout(() => {
@@ -72,12 +73,14 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   up(event: Event) {
+    if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
     if (this.mousedown$) this.mousedown$.unsubscribe();
   }
 
   plus(event: Event, limit: number) {
+    if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
     if (this.timer) clearTimeout(this.timer);

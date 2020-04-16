@@ -6,7 +6,8 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges} from '@angular/core';
+  OnChanges
+} from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
@@ -77,5 +78,13 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges {
 
   rangeOnChange(range: Date[]) {
     this.rangeChange.emit(range);
+  }
+
+  getDate(date: Date): XCalendarNode[] {
+    return this.data?.[this.datePipe.transform(date, 'yyyy-MM-dd') as string];
+  }
+
+  getMonth(date: Date): XCalendarNode[] {
+    return this.monthData?.[this.datePipe.transform(date, 'yyyy-MM') as string];
   }
 }

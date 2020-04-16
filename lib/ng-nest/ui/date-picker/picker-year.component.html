@@ -2,14 +2,8 @@
   <table class="x-picker-year-table" cellspacing="0" cellpadding="0">
     <tr *ngFor="let years of dates">
       <ng-container *ngFor="let year of years">
-        <td
-          *ngIf="year"
-          [class.x-date-last-or-next]="(year | date: 'yyyy') < start + '' || (year | date: 'yyyy') > end + ''"
-          [class.x-date-now]="(year | date: 'yyyy') === (now | date: 'yyyy')"
-        >
-          <x-button type="text" [activated]="(year | date: 'yyyy') === (model | date: 'yyyy')" (click)="yearClick(year)">{{
-            year | date: 'yyyy'
-          }}</x-button>
+        <td [class.x-date-last-or-next]="lastOrNext(year)" [class.x-date-now]="equalYear(year, now)">
+          <x-button type="text" [activated]="equalYear(year, now)" (click)="yearClick(year)">{{ year | date: 'yyyy' }}</x-button>
         </td>
       </ng-container>
     </tr>

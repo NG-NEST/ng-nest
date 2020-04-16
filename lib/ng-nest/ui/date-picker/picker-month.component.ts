@@ -19,7 +19,7 @@ import { XPickerMonthProperty } from './date-picker.property';
 })
 export class XPickerMonthComponent extends XPickerMonthProperty implements OnChanges {
   now = new Date();
-  dates: Date[][] = [[]];
+  dates: Date[][] = [];
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     super();
@@ -39,7 +39,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     for (let i = 0; i < 16; i++) {
       dates = [...dates, new Date(year, i, 1)];
     }
-    this.dates = chunk(dates, 4);
+    this.dates = chunk(dates, 4) as Date[][];
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
     }

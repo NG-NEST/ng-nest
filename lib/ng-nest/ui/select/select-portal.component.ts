@@ -34,7 +34,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChange$ && this.valueChange$.unsubscribe();
+    this.valueChange$?.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 

@@ -23,9 +23,7 @@ export class ExDefaultComponent {
         { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容1，处理内容1' },
         { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容2，处理内容2' },
         { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容3，处理内容3' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容4，处理内容4' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容5，处理内容5' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容6，处理内容6' }
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容4，处理内容4' }
       ];
       i++;
       if (i === 10) break;

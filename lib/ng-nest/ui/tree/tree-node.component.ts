@@ -47,6 +47,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
       if (check) this.onCheckboxChange();
       this.cdr.detectChanges();
     };
+    this.level = this.node?.level ? this.node.level : 0;
     if (!XIsEmpty(this.node.checked)) this.onCheckboxChange();
     this.setIndeterminate(this.node);
   }
@@ -81,15 +82,14 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   onActivate(node: XTreeNode) {
-    let change: Function;
+    let change: Function = this.tree.activatedNode?.change as Function;
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id) return;
-      change = this.tree.activatedNode.change as Function;
-      change?.();
     }
     this.tree.activatedNode = node;
     this.tree.activatedChange.emit(node);
     this.cdr.detectChanges();
+    change && change();
   }
 
   onCheckboxChange() {

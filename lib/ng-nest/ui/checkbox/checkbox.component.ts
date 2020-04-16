@@ -29,7 +29,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   nodes: XCheckboxNode[] = [];
   private _unSubject = new Subject<void>();
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
-    super(renderer);
+    super();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

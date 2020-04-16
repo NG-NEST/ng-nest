@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputBoolean, XProperty } from '@ng-nest/ui/core';
-import { Renderer2, Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
+import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
  * DatePicker
@@ -29,10 +29,6 @@ export class XDatePickerProperty extends XControlValueAccessor<any> {
    *
    */
   @Output() nodeClick = new EventEmitter<number>();
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }
 
 /**

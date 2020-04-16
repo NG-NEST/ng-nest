@@ -1,4 +1,4 @@
-import { XTemplate } from '@ng-nest/ui/core';
+import { XTemplate, XStyle } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -32,7 +32,7 @@ export class XStatisticProperty {
   /**
    * 显示值样式
    */
-  @Input() valueStyle: { [prop: string]: any } = {};
+  @Input() valueStyle: XStyle = {};
 }
 
 /**

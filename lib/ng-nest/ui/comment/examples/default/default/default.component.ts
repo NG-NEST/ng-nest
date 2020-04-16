@@ -101,9 +101,9 @@ export class ExDefaultComponent {
 
   createNode(pid: string, content: string | undefined, index = 0) {
     return {
-      id: `${pid}-${Math.floor(Math.random() * 100)}`,
+      id: pid + '-' + Math.floor(Math.random() * 100),
       pid: pid,
-      author: `用户${index}`,
+      author: '用户' + index,
       datetime: XAddMinutes(new Date(), index),
       content: content,
       children: []

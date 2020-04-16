@@ -55,7 +55,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   ngOnDestroy(): void {
     this.valueChange$?.unsubscribe();
-    this.docClickFunction?.();
+    this.docClickFunction && this.docClickFunction();
   }
 
   init() {

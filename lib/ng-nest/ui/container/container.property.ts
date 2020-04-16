@@ -17,7 +17,7 @@ export class XContainerProperty extends XProperty {
    * flex 布局下的子元素排列方向
    * @description 子元素中有 x-header 或 x-footer 时为 column
    */
-  @Input() direction?: XDirection;
+  @Input() direction: XDirection;
 }
 
 /**

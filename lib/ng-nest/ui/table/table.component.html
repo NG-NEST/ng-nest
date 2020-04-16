@@ -89,7 +89,7 @@
     <x-button
       *ngFor="let action of actions"
       [icon]="action.icon"
-      [type]="action.type"
+      [type]="action.type ? action.type : 'initial'"
       [title]="action.title ? action.title : action.label ? action.label : ''"
       [activated]="action.activated"
       (click)="actionEmit(action, $event)"

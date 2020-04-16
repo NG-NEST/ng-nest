@@ -174,7 +174,7 @@ class TestXRadioDisabledComponent {
         <x-radio [data]="data" button></x-radio>
       </x-col>
       <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="change()" button></x-radio>
+        <x-radio [data]="data" [(ngModel)]="model" button></x-radio>
       </x-col>
       <x-col span="24">
         <x-radio [data]="data" button disabled></x-radio>
@@ -196,13 +196,9 @@ class TestXRadioDisabledComponent {
   ]
 })
 class TestXRadioButtonComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XRadioNode> = data;
   dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
   model = '钉钉';
-  change() {
-    this.cdr.detectChanges();
-  }
 }
 
 @Component({
@@ -212,7 +208,7 @@ class TestXRadioButtonComponent {
         <x-radio [data]="data" icon></x-radio>
       </x-col>
       <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" icon></x-radio>
+        <x-radio [data]="data" [(ngModel)]="model" icon></x-radio>
       </x-col>
       <x-col span="24">
         <x-radio [data]="data" icon disabled></x-radio>
@@ -234,7 +230,6 @@ class TestXRadioButtonComponent {
   ]
 })
 class TestXRadioIconComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
   data: XData<XRadioNode> = iconData;
   dataDisabled: XData<XRadioNode> = [
     { label: 'QQ', icon: 'ado-qq' },
@@ -243,9 +238,6 @@ class TestXRadioIconComponent {
     { label: '微博', icon: 'ado-weibo' }
   ];
   model = '钉钉';
-  change() {
-    this.cdr.detectChanges();
-  }
 }
 
 @Component({

@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, RouteReuseStrategy } from '@angular/router';
-import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { RouterModule } from '@angular/router';
 import { mainRoutes } from '../environments/routes';
-import { SimpleReuseStrategy } from './simple-reuse-srategy';
+import { XPreloadingStrategyService } from '@ng-nest/ui/core';
 
 @NgModule({
   imports: [
     RouterModule.forRoot(mainRoutes, {
       enableTracing: false,
       anchorScrolling: 'enabled',
-      preloadingStrategy: SelectivePreloadingStrategy
+      preloadingStrategy: XPreloadingStrategyService
     })
   ],
   exports: [RouterModule],
   providers: [
-    SelectivePreloadingStrategy
+    XPreloadingStrategyService
     // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
   ]
 })

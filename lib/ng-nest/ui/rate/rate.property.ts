@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
-import { Renderer2, Input, Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 /**
  * Rate
@@ -17,8 +17,4 @@ export class XRateProperty extends XControlValueAccessor<any> {
    * 评分个数
    */
   @Input() @XInputNumber() count = 5;
-
-  constructor(public renderer: Renderer2) {
-    super(renderer);
-  }
 }

@@ -65,11 +65,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef
   ) {
-    super(renderer);
+    super();
   }
 
   ngOnInit() {
-    this.setFlex(this.select.nativeElement, this.justify, this.align, this.direction);
+    this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -126,12 +126,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   portalAttached() {
-    return this.portal.overlayRef?.hasAttached();
+    return this.portal?.overlayRef?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef?.dispose();
+      this.portal?.overlayRef?.dispose();
       return true;
     }
     return false;
@@ -176,8 +176,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     let componentRef = this.portal.componentRef;
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
-      datas: this.nodes,
-      nodes: this.nodes,
+      data: this.nodes,
       value: this.value,
       valueChange: this.valueChange,
       closePortal: () => this.closePortal(),

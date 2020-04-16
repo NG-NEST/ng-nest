@@ -21,7 +21,7 @@
     position: relative;
     > input {
       padding: $--x-input-number-padding;
-      margin: 0 2.675rem;
+      margin: 0 0.125rem;
       flex: 1;
       height: $--x-input-number-height;
       text-align: center;
@@ -48,19 +48,17 @@
       }
     }
     > x-button {
-      position: absolute;
+      position: relative;
       &.#{$--x-input-number-prefix}-plus {
         > .button {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
-          right: 0;
         }
       }
       &.#{$--x-input-number-prefix}-reduce {
         > .button {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
-          left: 0;
         }
       }
       &:hover,
@@ -106,7 +104,7 @@
     }
   }
   &.x-flex {
-    &-direction {
+    &.x-direction {
       &-row {
         > label {
           margin: 0 0.5rem 0 0;

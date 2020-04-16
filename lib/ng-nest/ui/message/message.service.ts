@@ -15,15 +15,17 @@ export class XMessageService {
     width: '16rem',
     placement: 'top',
     offset: '2rem',
-    effect: 'light',
+    effect: 'white',
     duration: 3000,
     hideClose: true,
-    showIcon: true
+    showIcon: true,
+    hide: false
   };
 
   constructor(public portal: XPortalService) {}
 
   info(option: XTemplate | XMessageOption): XMessageRef {
+    console.log(option);
     return this.createMessage(option, 'info');
   }
 

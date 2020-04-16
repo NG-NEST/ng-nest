@@ -37,8 +37,8 @@
   <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate | date: 'yyyyMMdd')">
     <span [title]="date | date: 'yyyy年MM月dd日'">{{ date | date: 'd' }}</span>
     <div class="x-calendar-date-content">
-      <ul *ngIf="data && data[date | date: 'yyyy-MM-dd']">
-        <li *ngFor="let item of data[date | date: 'yyyy-MM-dd']">
+      <ul *ngIf="getDate(date)">
+        <li *ngFor="let item of getDate(date)">
           <span [title]="item.id + item.label">{{ item.id }}{{ item.label }}</span>
         </li>
       </ul>
@@ -50,8 +50,8 @@
   <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate | date: 'yyyyMM')">
     <span [title]="date | date: 'yyyy年MM月'">{{ date | date: 'M月' }}</span>
     <div class="x-calendar-month-content">
-      <ul *ngIf="monthData && monthData[date | date: 'yyyy-MM']">
-        <li *ngFor="let item of monthData[date | date: 'yyyy-MM']">
+      <ul *ngIf="getMonth(date)">
+        <li *ngFor="let item of getMonth(date)">
           <x-link x-tooltip [content]="item.label" placement="top">{{ item.id }}</x-link>
         </li>
       </ul>

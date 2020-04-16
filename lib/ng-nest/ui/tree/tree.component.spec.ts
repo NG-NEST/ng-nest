@@ -260,7 +260,7 @@ class TestXTreeDiabledComponent {
         margin-left: 1rem;
       }
       .custom-links x-link:not(:first-child) {
-        margin-left: 0.25rem;
+        margin-left: 1rem;
       }
     `
   ],

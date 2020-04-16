@@ -4,8 +4,7 @@ import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-size',
-  templateUrl: './size.component.html',
-  styleUrls: ['./size.component.scss']
+  templateUrl: './size.component.html'
 })
 export class ExSizeComponent {
   now = new Date();

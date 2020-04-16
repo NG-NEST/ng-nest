@@ -1,10 +1,21 @@
 import { coerceBooleanProperty, _isNumberValue } from '@angular/cdk/coercion';
-import { XData, XIsNull, XIsUndefined, XIsArray, XIsValue, XIsObject, XIsObservable, XParentIdentityProperty } from '../interfaces';
+import {
+  XData,
+  XIsNull,
+  XIsUndefined,
+  XIsArray,
+  XIsValue,
+  XIsObject,
+  XIsObservable,
+  XParentIdentityProperty,
+  XIsBoolean,
+  XIsString
+} from '../interfaces';
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 export function XToBoolean(value: boolean): boolean {
-  return coerceBooleanProperty(value);
+  return (XIsBoolean(value) && value) || (XIsString(value) && String(value).trim() === '');
 }
 
 function XToNumber(value: number | string): number;

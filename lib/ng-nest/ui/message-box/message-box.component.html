@@ -1,6 +1,6 @@
 <div
   class="x-message-box"
-  *ngIf="!messageBox.input?.hide"
+  *ngIf="!messageBox?.input?.hide"
   [@x-move-box-animation]="messageBox.input?.placement"
   (@x-move-box-animation.done)="moveDone($event)"
 >
@@ -35,19 +35,15 @@
               [type]="messageBox.input?.inputType"
               [label]="messageBox.input?.content"
               [placeholder]="messageBox.input?.inputPlaceholder"
-              [error]="formGroup.get('inputValue').invalid"
+              [error]="formGroup?.get('inputValue')?.invalid"
               [errorMessage]="messageBox.input?.inputErrorMessage"
             ></x-input>
           </form>
         </ng-template>
       </div>
       <x-buttons space="1">
-        <x-button *ngIf="messageBox.input?.showCancel" (click)="onCancel()">{{
-          messageBox.input?.cancelText
-        }}</x-button>
-        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup && formGroup.invalid">{{
-          messageBox.input?.confirmText
-        }}</x-button>
+        <x-button *ngIf="messageBox.input?.showCancel" (click)="onCancel()">{{ messageBox.input?.cancelText }}</x-button>
+        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup?.invalid">{{ messageBox.input?.confirmText }}</x-button>
       </x-buttons>
     </div>
   </ng-template>

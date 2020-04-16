@@ -58,7 +58,6 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
     this.viewInit();
     this.portalBox = this.tooltipPortal.nativeElement.getBoundingClientRect();
     this.arrowBox = this.tooltipArrow.nativeElement.getBoundingClientRect();
-    console.log(this.box, this.arrowBox);
     this.setArrow();
     this.cdr.detectChanges();
   }

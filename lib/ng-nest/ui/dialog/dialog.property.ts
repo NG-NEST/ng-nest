@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect } from '@ng-nest/ui/core';
 import { XAlertProperty } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -18,7 +18,7 @@ export const XDialogPortal = 'x-dialog-portal';
  */
 @Component({ template: '' })
 export class XDialogProperty extends XAlertProperty {
-  @Input() @XInputBoolean() visible: boolean;
+  @Input() @XInputBoolean() visible: boolean = false;
   /**
    * 方位，九宫格
    */
@@ -38,7 +38,15 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 高度
    */
-  @Input() height?: string;
+  @Input() height: string;
+  /**
+   * 样式主题
+   */
+  @Input() effect: XEffect = 'white';
+  /**
+   * 底部自定义模板
+   */
+  @Input() footer: XTemplate;
   /**
    * 显示取消按钮
    */
@@ -62,7 +70,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 是否显示背景遮罩
    */
-  @Input('has-backdrop') hasBackdrop?: boolean = true;
+  @Input('has-backdrop') hasBackdrop: boolean = true;
   /**
    * 自定义样式名
    */

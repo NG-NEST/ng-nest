@@ -94,7 +94,7 @@ export class XDropdownPortalComponent implements OnDestroy {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
-      datas: this.node?.children,
+      data: this.node?.children,
       close: () => this.closePortal(),
       nodeEmit: (node: XDropdownNode) => this.nodeClick(node),
       portalHover: (hover: boolean) => this.hover(hover)

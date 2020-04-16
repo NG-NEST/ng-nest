@@ -27,22 +27,6 @@ import { XTabComponent } from './tab.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
-  private _activatedIndex: number = 0;
-  public get activatedIndex(): number {
-    return this._activatedIndex;
-  }
-  @Input()
-  public set activatedIndex(value: number) {
-    if (XIsUndefined(value)) return;
-    this._activatedIndex = value;
-    if (typeof this.sliderOption === 'undefined') {
-      this.sliderOption = new XSliderProperty();
-    }
-    this.sliderOption.activatedIndex = value;
-    this.setFirstAndLast();
-    this.cdr?.detectChanges();
-  }
-
   sliderOption = new XSliderProperty();
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
@@ -65,6 +49,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.layout) && this.setLayout(changes.layout);
     XIsChange(changes.justify) && this.cdr.detectChanges();
+    XIsChange(changes.activatedIndex) && this.setActivatedIndex();
   }
 
   ngOnDestroy(): void {
@@ -82,6 +67,15 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
       activatedIndex: index,
       activatedTab: this.tabs[index]
     });
+    this.cdr.detectChanges();
+  }
+
+  setActivatedIndex() {
+    if (typeof this.sliderOption === 'undefined') {
+      this.sliderOption = new XSliderProperty();
+    }
+    this.sliderOption.activatedIndex = this.activatedIndex;
+    this.setFirstAndLast();
     this.cdr.detectChanges();
   }
 
@@ -117,7 +111,9 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     }
     XSetData<XTabsNode>(this.data, this._unSubject).subscribe((x) => {
       this.tabs = x;
-      this.sliderHidden = this.tabs.length <= 1;
+      if (!this.sliderHidden) {
+        this.sliderHidden = this.tabs.length <= 1;
+      }
       this.sliderOption.data = this.tabs;
       this.setFirstAndLast();
       this.cdr.detectChanges();

@@ -36,10 +36,10 @@
   }
   &-value {
     position: absolute;
-    top: 0.325rem;
-    left: 0.325rem;
+    top: 0.3rem;
+    left: 0.3rem;
     width: calc(100% - 2rem);
-    height: 0.975rem;
+    height: 1.125rem;
     background-image: $--x-color-picker-transparent;
     cursor: pointer;
     > div {
@@ -73,7 +73,7 @@
     }
   }
   &.x-flex {
-    &-direction {
+    &.x-direction {
       &-row {
         > label {
           margin: 0 0.5rem 0 0;
