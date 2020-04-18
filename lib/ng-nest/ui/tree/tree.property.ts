@@ -104,10 +104,6 @@ export class XTreeNodeProperty {
    */
   @Input() node: XTreeNode = {};
   /**
-   * 父节点组件
-   */
-  // @Input() parent: XTreeNodeComponent;
-  /**
    * 层级
    */
   @Input() level: number;

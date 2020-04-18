@@ -91,27 +91,36 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
       }
       if (!isReadDoc && isReadProp && line != '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end == index - 1);
-        const spt = line.split(':');
-        if (spt.length <= 1) spt.push('');
-        const sptd = spt[0].split(' ');
-        let name = sptd[sptd.length - 1].replace('?', '');
-        let type = spt[1].indexOf('=') !== -1 ? spt[1].replace(/ (.*) \= (.*);/, '$1') : spt[1].replace(/ (.*);/, '$1');
-        const propType = sptd.length > 1 ? sptd[0].replace(/\@(.*)\((.*)/, '$1') : '';
+        let ix = line.indexOf(':');
+        if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
+        const lf = line.slice(0, ix).trim();
+        const rt = line.slice(ix + 1, line.length).trim();
+        const propd = lf.split(' ');
+        const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
+        let name = propd[propd.length - 1].replace('?', '').trim();
+        let type = '',
+          val = '';
+        if (rt.indexOf(' = ') !== -1) {
+          const spt = rt.split('=');
+          type = spt[0].trim();
+          val = spt[1].replace(';', '').trim();
+        } else {
+          type = rt.replace(';', '').trim();
+        }
         if (propType === 'Output') {
-          name = sptd.length > 1 ? sptd[1] : '';
-          type = line.indexOf('<') !== -1 ? line.replace(/(.*)\<(.*)\>(.*);/, '$2') : '';
+          type = type.indexOf('<') !== -1 ? type.replace(/(.*)\<(.*)\>(.*)/, '$2') : '';
         }
         if (docItem) {
-          const def = getDocs(docItem, 'default') as string;
+          let def = getDocs(docItem, 'default') as string;
           const description = getDocs(docItem, 'description') as string;
           const property: NcPrope = {
             name: name,
             type: type,
             label: docItem[docItem.start + 1],
-            defalut: def ? def : spt[1].indexOf('=') !== -1 ? spt[1].replace(/(.*) \= (.*);/, '$2') : '',
+            default: def ? def : val,
             description: description,
-            decorator: sptd.length > 1 ? sptd.filter((x) => x.indexOf('@') !== -1) : [],
-            attr: sptd.length > 1 && sptd[0].indexOf("'") !== -1 ? sptd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name,
+            decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
+            attr: propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name,
             propType: propType
           };
           prop.properties.push(property);

@@ -56,7 +56,7 @@ export interface NcPrope {
   /**
    * 默认值
    */
-  defalut?: string;
+  default?: string;
   /**
    * 属性类型
    */

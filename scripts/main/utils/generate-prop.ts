@@ -21,31 +21,23 @@ export function generateProps(...types: NcProp[]) {
           let table = '';
           let inputTable = '';
           let outputTable = '';
+
           x.properties.forEach((y) => {
+            let tr = `<tr>
+              <td><span><code>${y.attr}</code></span></td>
+              <td><code [innerHTML]="'${y.type}'"></code></td>
+              <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
+              <td>${y.label}<span>${y.description}</span></td>
+            </tr>`;
             switch (y.propType) {
               case 'Input':
-                inputTable += `<tr>
-                  <td><span><code>${y.attr}</code></span></td>
-                  <td><code [innerHtml]="'${y.type}'"></code></td>
-                  <td><code>${y.defalut}</code></td>
-                  <td>${y.label}<span>${y.description}</span></td>
-                </tr>`;
+                inputTable += tr;
                 break;
               case 'Output':
-                outputTable += `<tr>
-                  <td><span><code>${y.attr}</code></span></td>
-                  <td><code [innerHtml]="'${y.type}'"></code></td>
-                  <td><code>${y.defalut}</code></td>
-                  <td>${y.label}<span>${y.description}</span></td>
-                </tr>`;
+                outputTable += tr;
                 break;
               default:
-                table += `<tr>
-                  <td><span><code>${y.attr}</code></span></td>
-                  <td><code [innerHtml]="'${y.type}'"></code></td>
-                  <td><code>${y.defalut}</code></td>
-                  <td>${y.label}<span>${y.description}</span></td>
-                </tr>`;
+                table += tr;
                 break;
             }
           });
@@ -120,4 +112,12 @@ export function generateProps(...types: NcProp[]) {
   }
 
   return result;
+}
+
+export function replaceEscape(str: string) {
+  let map = {
+    "'": "\\'",
+    '"': '\\"'
+  };
+  return str.replace(/[&<>"']/g, (m) => map[m]);
 }
