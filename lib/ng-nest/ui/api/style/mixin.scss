@@ -17,7 +17,7 @@
         border: 0.0625rem solid $--x-primary;
         color: $--x-primary;
         font-size: 0.825rem;
-        border-radius: 0.125rem;
+        border-radius: $--x-border-radius;
       }
     }
   }

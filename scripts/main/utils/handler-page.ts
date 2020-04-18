@@ -17,7 +17,7 @@ export function handlerPage(page: NcPage) {
 
 export function handleTemplates(page: NcPage, fromDir: string, toDir: string, ...name: NcTplName[]): NcTemplate[] {
   let tpls: NcTemplate[] = [];
-  name.forEach(x => {
+  name.forEach((x) => {
     let tpl: NcTemplate;
     if (isString(x)) {
       tpl = new NcTemplate({ fileName: page.fileName, name: x });
@@ -44,13 +44,20 @@ export function createRouterOutlet(name: string) {
 
 export function pageAddChildren(page: NcPage, children: NcPage[]) {
   if (page && children) {
-    let routes = page.templates.find(x => x.name === 'routes-module');
+    let routes = page.templates.find((x) => x.name === 'routes-module');
     if (routes) {
       children.forEach((x, index) => {
         let route = `      {
         path: '${x.name}',
         loadChildren: () => import('./${x.name}/${x.fileName}.module').then(x => x.${x.capName}Module)
       }`;
+        if (x.default) {
+          route = `      {
+        path: '',
+        redirectTo: 'ng-nest',
+        pathMatch: 'full'
+      },\n${route}`;
+        }
         routes.syswords.loadChildren += `\n${route}${index !== children.length - 1 ? ',' : '\n    '}`;
       });
     }

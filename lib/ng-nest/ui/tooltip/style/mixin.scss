@@ -20,7 +20,7 @@
     color: $--x-info-600;
     padding: 0.325rem 0.5rem;
     max-width: 10rem;
-    border-radius: 0.125rem;
+    border-radius: $--x-border-radius;
     box-shadow: $--x-box-shadow-base;
   }
   .#{$--x-tooltip-portal-prefix}-arrow,

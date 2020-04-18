@@ -22,7 +22,7 @@
       align-items: center;
       overflow: hidden;
       cursor: pointer;
-      border-radius: 0.125rem;
+      border-radius: $--x-border-radius;
       .x-icon {
         color: $--x-text-400;
         font-size: 1rem;

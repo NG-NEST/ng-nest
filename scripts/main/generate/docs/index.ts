@@ -69,7 +69,7 @@ export class NcDocs {
         }
       }
     });
-    page.children = _.sortBy(page.children, x => x.order);
+    page.children = _.sortBy(page.children, (x) => x.order);
     pageAddChildren(page, page.children);
   }
 
@@ -83,6 +83,7 @@ export class NcDocs {
             type: 'custom',
             custom: read.content
           });
+    child.default = read.meta.default;
     child.order = read.meta.order;
     child.genDir = folder;
     handlerPage(child);

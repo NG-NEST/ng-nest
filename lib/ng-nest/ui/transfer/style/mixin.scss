@@ -9,7 +9,7 @@
   align-items: center;
   &-box {
     border: $--x-border-base;
-    border-radius: 0.125rem;
+    border-radius: $--x-border-radius;
     width: 12rem;
   }
   &-title {
@@ -65,7 +65,7 @@
 
 @mixin transfer-li {
   padding: 0.125rem 0.25rem;
-  border-radius: 0.125rem;
+  border-radius: $--x-border-radius;
   display: flex;
   align-items: center;
   border: 0.0625rem dashed transparent;

@@ -35,9 +35,7 @@ describe(XColorPrefix, () => {
   template: `
     <x-row space="1">
       <x-col span="12"><x-color label="Primary"></x-color></x-col>
-      <x-col span="12"
-        ><x-color class="black" label="Background" hex="#f5f7fa" [amounts]="[0.3, 0.6, 0.9]"></x-color
-      ></x-col>
+      <x-col span="12"><x-color class="black" label="Background" hex="#f5f7fa" [amounts]="[0.3, 0.6, 0.9]"></x-color></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="12"><x-color label="Success" hex="#67c23a"></x-color></x-col>

@@ -9,7 +9,7 @@
   box-sizing: border-box;
   position: relative;
   border: $--x-border-base;
-  border-radius: 0.125rem;
+  border-radius: $--x-border-radius;
   background-color: $--x-white;
   transition: box-shadow 0.3s;
   &-always {

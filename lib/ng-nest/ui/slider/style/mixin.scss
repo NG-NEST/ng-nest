@@ -42,7 +42,7 @@
           z-index: 1;
           width: 0;
           height: 0;
-          border-radius: 0.125rem;
+          border-radius: $--x-border-radius;
           background-color: rgba(0, 0, 0, 0.05);
           border: 0.0625rem solid $--x-border-300;
           &-animated {

@@ -94,7 +94,7 @@
   height: $--x-list-height;
   line-height: $--x-list-height;
   position: relative;
-  border-radius: 0.125rem;
+  border-radius: $--x-border-radius;
   display: flex;
   align-items: center;
   justify-content: space-between;

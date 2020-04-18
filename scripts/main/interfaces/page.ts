@@ -18,6 +18,7 @@ export class NcPage {
   children?: NcPage[] = [];
   path?: string = '';
   order?: number;
+  default?: boolean;
   constructor(param: NcPage) {
     Object.assign(this, param);
     if (!this.fileName) {
@@ -29,7 +30,7 @@ export class NcPage {
     if (!this.capName) {
       this.capName = this.comName
         .split('-')
-        .map(x => firstLetterCapital(x))
+        .map((x) => firstLetterCapital(x))
         .join('');
     }
   }

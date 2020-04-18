@@ -35,13 +35,13 @@
     overflow: hidden;
     vertical-align: middle;
     background-color: $--x-border-300;
-    border-radius: 0.125rem;
+    border-radius: $--x-border-radius;
   }
   &-bg {
     position: relative;
     background-color: $--x-primary;
     transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
-    border-radius: 0.125rem;
+    border-radius: $--x-border-radius;
     text-align: right;
     color: white;
     > span {
@@ -62,7 +62,7 @@
       bottom: 0;
       left: 0;
       background: $--x-white;
-      border-radius: 0.125rem;
+      border-radius: $--x-border-radius;
       opacity: 0;
       animation: x-progress-active 2s cubic-bezier(0.23, 1, 0.32, 1) infinite;
       content: '';

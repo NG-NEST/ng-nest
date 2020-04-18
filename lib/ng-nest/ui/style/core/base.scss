@@ -6,11 +6,16 @@
 
 body,
 input {
-  font-family: ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
-    WenQuanYi Micro Hei, sans-serif;
+  font-family: $--x-font-family;
   font-size: $--x-font-size;
   color: $--x-text;
   line-height: $--x-line-height;
+}
+
+code,
+pre,
+tt {
+  font-family: $--x-font-code-family;
 }
 
 ul,

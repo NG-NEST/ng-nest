@@ -14,7 +14,7 @@ export const menus: Menu[] = [
     "name": "getting-started",
     "router": "./docs/ui/getting-started",
     "order": 2,
-    "label": "快速上手 [待]"
+    "label": "快速上手"
   },
   {
     "id": "3-6",
@@ -641,7 +641,8 @@ export const menus: Menu[] = [
     "name": "ng-nest",
     "router": "./docs/ng-nest",
     "order": 0,
-    "label": "NG-NEST"
+    "label": "NG-NEST",
+    "default": true
   },
   {
     "id": "3",

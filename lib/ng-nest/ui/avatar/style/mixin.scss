@@ -22,7 +22,7 @@
     border-radius: 50%;
   }
   &-square {
-    border-radius: 0.125rem;
+    border-radius: $--x-border-radius;
   }
   &-error {
     > img {

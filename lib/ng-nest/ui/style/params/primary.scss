@@ -74,7 +74,8 @@ $--x-background-900: var(--x-background-900);
 // Font
 $--x-font-size: 0.875rem;
 $--x-font-variant: tabular-nums;
-$--x-font-family: -apple-system, SF UI Text, Arial, PingFang SC, sans-serif;
+$--x-font-family: ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+$--x-font-code-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
 $--x-font-size-small: $--x-font-size - 0.125rem;
 $--x-font-size-medium: $--x-font-size + 0.125rem;
 $--x-font-size-large: $--x-font-size-medium + 0.125rem;
