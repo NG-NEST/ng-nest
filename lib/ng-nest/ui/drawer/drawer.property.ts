@@ -1,4 +1,4 @@
-import { XTemplate, XPosition, XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XDrawerProperty extends XProperty {
   /**
    * 显示/隐藏
    */
-  @Input() @XInputBoolean() visible: boolean;
+  @Input() @XInputBoolean() visible: XBoolean;
   /**
    * 展示方向
    */

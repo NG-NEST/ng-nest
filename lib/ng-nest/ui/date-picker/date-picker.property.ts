@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XProperty } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -24,7 +24,7 @@ export class XDatePickerProperty extends XControlValueAccessor<any> {
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: boolean = true;
+  @Input() @XInputBoolean() clearable: XBoolean = true;
   /**
    *
    */

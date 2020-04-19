@@ -1,4 +1,4 @@
-import { XType, XSize, XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XType, XSize, XProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -24,11 +24,11 @@ export class XTagProperty extends XProperty {
   /**
    * 显示关闭按钮
    */
-  @Input() @XInputBoolean() closable: boolean;
+  @Input() @XInputBoolean() closable: XBoolean;
   /**
    * 深色主题
    */
-  @Input() @XInputBoolean() dark: boolean;
+  @Input() @XInputBoolean() dark: XBoolean;
   /**
    * 点击关闭的事件
    */

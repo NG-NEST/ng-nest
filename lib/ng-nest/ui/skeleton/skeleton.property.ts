@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XStyle } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XStyle, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XSkeletonProperty extends XProperty {
   /**
    * 加载中
    */
-  @Input() @XInputBoolean() loading: boolean = true;
+  @Input() @XInputBoolean() loading: XBoolean = true;
   /**
    * 激活动画
    */
-  @Input() @XInputBoolean() active: boolean;
+  @Input() @XInputBoolean() active: XBoolean;
   /**
    * 显示边框
    */
-  @Input() @XInputBoolean() border: boolean;
+  @Input() @XInputBoolean() border: XBoolean;
 }
 
 /**

@@ -61,7 +61,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   private setDataChange(value: XTreeNode[]) {
     const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
-      node.open = this.expandedAll || this.expanded.indexOf(node.id) >= 0;
+      node.open = Boolean(this.expandedAll) || this.expanded.indexOf(node.id) >= 0;
       node.checked = this.checked.indexOf(node.id) >= 0 ? [node.id] : [];
       node.childrenLoaded = node.open;
       if (XIsUndefined(node.children)) node.children = value.filter((y) => y.pid === node.id);
@@ -105,7 +105,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const setChildren = (nodes: XTreeNode[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
-        x.open = this.expandedAll;
+        x.open = Boolean(this.expandedAll);
         x.change && x.change();
         setChildren(x.children as XTreeNode[]);
       });

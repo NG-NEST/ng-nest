@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XParentIdentityProperty, XDataConvert, XInputBoolean, XData } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XParentIdentityProperty, XDataConvert, XInputBoolean, XData, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * 异步加载
    */
-  @Input() @XInputBoolean() async: boolean;
+  @Input() @XInputBoolean() async: XBoolean;
 }
 
 /**

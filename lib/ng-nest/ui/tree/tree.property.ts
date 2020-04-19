@@ -1,4 +1,4 @@
-import { XDataConvert, XProperty, XData, XInputBoolean, XParentIdentityProperty } from '@ng-nest/ui/core';
+import { XDataConvert, XProperty, XData, XInputBoolean, XParentIdentityProperty, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 import { XTreeNodeComponent } from './tree-node.component';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class XTreeProperty extends XProperty {
   /**
    * 显示多选框
    */
-  @Input() @XInputBoolean() checkbox: boolean;
+  @Input() @XInputBoolean() checkbox: XBoolean;
   /**
    * 展开的节点
    */
@@ -34,7 +34,7 @@ export class XTreeProperty extends XProperty {
   /**
    * 展开所有节点
    */
-  @Input() @XInputBoolean() expandedAll: boolean;
+  @Input() @XInputBoolean() expandedAll: XBoolean;
   /**
    * 标签自定义模板
    */
@@ -106,11 +106,11 @@ export class XTreeNodeProperty {
   /**
    * 层级
    */
-  @Input() level: number;
+  @Input() level: XNumber;
   /**
    * 懒加载子节点
    */
-  @Input() @XInputBoolean() lazy: boolean;
+  @Input() @XInputBoolean() lazy: XBoolean;
   /**
    * 懒加载函数
    */

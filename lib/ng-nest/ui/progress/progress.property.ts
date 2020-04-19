@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XInputNumber, XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Progress
@@ -16,7 +16,7 @@ export class XProgressProperty extends XProperty {
   /**
    * 显示进度 0-100
    */
-  @Input() @XInputNumber() percent: number = 0;
+  @Input() @XInputNumber() percent: XNumber = 0;
   /**
    * 进度条高度
    */
@@ -28,11 +28,11 @@ export class XProgressProperty extends XProperty {
   /**
    * 是否显示百分比文本
    */
-  @Input() @XInputBoolean() info: boolean = true;
+  @Input() @XInputBoolean() info: XBoolean = true;
   /**
    * 百分比文本是否显示在进度条里面
    */
-  @Input() @XInputBoolean() inside: boolean;
+  @Input() @XInputBoolean() inside: XBoolean;
   /**
    * 自定义百分比文本内容
    */

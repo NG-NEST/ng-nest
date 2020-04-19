@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XCarouselProperty extends XProperty {
   /**
    * 当前激活的幻灯片索引
    */
-  @Input() @XInputNumber() active: number = 0;
+  @Input() @XInputNumber() active: XNumber = 0;
   /**
    * 幻灯片高度
    */
@@ -36,19 +36,19 @@ export class XCarouselProperty extends XProperty {
   /**
    * 自动切换
    */
-  @Input() @XInputBoolean() autoplay: boolean = true;
+  @Input() @XInputBoolean() autoplay: XBoolean = true;
   /**
    * 自动切换时间间隔
    */
-  @Input() interval: number = 3000;
+  @Input() interval: XNumber = 3000;
   /**
    * 切换器否显示在外面
    */
-  @Input() @XInputBoolean() outside: boolean;
+  @Input() @XInputBoolean() outside: XBoolean;
   /**
    * 是否以卡片的方式显示幻灯片
    */
-  @Input() @XInputBoolean() card: boolean;
+  @Input() @XInputBoolean() card: XBoolean;
   /**
    * 激活的序号改变的事件
    */
@@ -85,5 +85,5 @@ export class XCarouselPanelProperty extends XProperty {
   /**
    * 激活当前幻灯片
    */
-  @Input() @XInputBoolean() active: boolean;
+  @Input() @XInputBoolean() active: XBoolean;
 }

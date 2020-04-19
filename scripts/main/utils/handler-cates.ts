@@ -61,9 +61,6 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
         content: fs.readFileSync(path.join(cate.path, x), 'utf8')
       };
       if (code.type === 'ts' && code.subType === 'component') {
-        // code.content = code.content.replace(/`/g, '\`');
-        // code.content = code.content.replace(/$/g, '\\`\\$');
-        // if (code.content.indexOf('XCommentNode') !== -1) console.log(code.content);
         const matchSelector = code.content.match(/selector: \'(\S*)\',/);
         const matchClassName = code.content.match(/export class (\S*) /);
         if (matchSelector.length > 1) cate.selector = matchSelector[1];

@@ -115,7 +115,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSliderNode, index: number) {
-    this.setDirection(index, this.activatedIndex);
+    this.setDirection(index, Number(this.activatedIndex));
     this.activatedIndex = index;
     this.activated = node;
     this.setHighlight();
@@ -150,7 +150,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     if (XIsUndefined(this.sliderScroll) || XIsUndefined(this.sliderNodes)) return;
     const sliderRect = this.sliderScroll.nativeElement.getBoundingClientRect();
     const sliderNodesRect = this.sliderNodes.nativeElement.getBoundingClientRect();
-    let moveIndex = ['bottom', 'right'].indexOf(this.direction) !== -1 ? this.activatedIndex + 2 : this.activatedIndex;
+    let moveIndex = ['bottom', 'right'].indexOf(this.direction) !== -1 ? Number(this.activatedIndex) + 2 : Number(this.activatedIndex);
     moveIndex = moveIndex > this.nodes.length ? this.nodes.length : moveIndex === 0 ? 1 : moveIndex;
     let moveEle = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
@@ -196,7 +196,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   setActivated() {
     if (this.nodes.length > 0) {
-      this.activated = this.nodes[this.activatedIndex];
+      this.activated = this.nodes[Number(this.activatedIndex)];
     }
     this.setHighlight();
     this.setTranslate();
@@ -204,7 +204,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   setHighlight() {
     if (XIsUndefined(this.sliderNodes)) return;
-    const activeEle = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${this.activatedIndex + 1})`);
+    const activeEle = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${Number(this.activatedIndex) + 1})`);
     if (!activeEle) return;
     this.highlightBox = {
       width: `${activeEle.offsetWidth}px`,
@@ -221,5 +221,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
       this.cdr.detectChanges();
       setTimeout(() => this.setActivated());
     });
+  }
+
+  getActivated(index: number) {
+    return Number(this.activatedIndex) === index;
   }
 }

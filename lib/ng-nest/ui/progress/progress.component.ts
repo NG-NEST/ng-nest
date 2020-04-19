@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XProgressPrefix, XProgressProperty } from './progress.property';
-import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange } from '@ng-nest/ui/core';
+import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XProgressPrefix}`,
@@ -36,7 +36,7 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
   setClassMap() {
     this.classMap = {
       [`${XProgressPrefix}-${this.status}`]: true,
-      [`${XProgressPrefix}-inside`]: this.inside
+      [`${XProgressPrefix}-inside`]: Boolean(this.inside)
     };
   }
 
@@ -51,17 +51,17 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
     }
   }
 
-  getLevelColor(percent: number) {
+  getLevelColor(percent: XNumber) {
     let colors = (this.color as { color: string; percent: number }[]).sort((a, b) => a.percent - b.percent);
     for (let i = 0; i < colors.length; i++) {
-      if (colors[i].percent > percent) {
+      if (colors[i].percent > Number(percent)) {
         return colors[i].color;
       }
     }
     return colors[colors.length - 1].color;
   }
 
-  onFormat(percent: number) {
-    return this.format?.(percent);
+  onFormat(percent: XNumber) {
+    return this.format && this.format(percent);
   }
 }

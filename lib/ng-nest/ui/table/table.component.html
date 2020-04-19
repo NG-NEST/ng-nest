@@ -64,7 +64,7 @@
         (click)="rowEmit(item, $event)"
       >
         <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
-          <div>{{ (index - 1) * size + i + 1 }}</div>
+          <div>{{ getIndex(i) }}</div>
         </li>
         <ng-container *ngFor="let column of columns; index as j">
           <li [style.width.rem]="column.width" [style.flex]="column.flex" [title]="item[column.id]" [class.x-table-no-flex]="column.width">

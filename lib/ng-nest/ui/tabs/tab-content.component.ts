@@ -7,6 +7,7 @@ import {
   ElementRef,
   Renderer2
 } from '@angular/core';
+import { XBoolean } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-tab-content',
@@ -17,7 +18,7 @@ import {
 })
 export class XTabContentComponent {
   @Input() content: TemplateRef<void>;
-  @Input() active: boolean = false;
+  @Input() active: XBoolean = false;
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.renderer.addClass(this.elementRef.nativeElement, 'x-tab-content');
   }

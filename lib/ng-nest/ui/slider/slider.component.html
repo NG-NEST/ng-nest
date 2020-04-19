@@ -2,7 +2,7 @@
   <x-link *ngIf="showArrow" [disabled]="offset === 0" class="x-slider-arrow-left" icon="fto-chevron-left" (click)="scrollPrev()"></x-link>
   <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
     <ul #sliderNodes [style.transform]="transform">
-      <li *ngFor="let node of nodes; index as i" [class.x-slider-activated]="i === activatedIndex">
+      <li *ngFor="let node of nodes; index as i" [class.x-slider-activated]="getActivated(i)">
         <x-link (click)="nodeClick(node, i)" [ngClass]="nodeClassMap">
           <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
           <ng-container *ngIf="!nodeTpl">

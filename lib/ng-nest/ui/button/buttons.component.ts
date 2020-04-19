@@ -27,7 +27,7 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
 
   setSpace() {
     if (!this.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${this.space / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${this.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${Number(this.space) / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${Number(this.space) / 2}rem`);
   }
 }

@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -24,7 +24,7 @@ export class XUploadProperty extends XControlValueAccessor<any> {
   /**
    * 多文件上传
    */
-  @Input() @XInputBoolean() multiple: boolean;
+  @Input() @XInputBoolean() multiple: XBoolean;
   /**
    * 删除按钮的事件
    */

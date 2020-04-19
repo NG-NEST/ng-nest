@@ -1,4 +1,4 @@
-import { XData, XTemplate, XIdentityProperty, XControlValueAccessor, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
+import { XData, XTemplate, XIdentityProperty, XControlValueAccessor, XDataConvert, XInputBoolean, XSize, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XCheckboxProperty extends XControlValueAccessor<any[]> {
   /**
    * 按钮样式
    */
-  @Input() @XInputBoolean() button: boolean;
+  @Input() @XInputBoolean() button: XBoolean;
   /**
    * 图标样式
    */
-  @Input() @XInputBoolean() icon: boolean;
+  @Input() @XInputBoolean() icon: XBoolean;
   /**
    * 不确定状态的样式
    */
-  @Input() @XInputBoolean() indeterminate: boolean;
+  @Input() @XInputBoolean() indeterminate: XBoolean;
   /**
    * 尺寸
    */

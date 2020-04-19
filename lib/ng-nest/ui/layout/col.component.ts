@@ -49,8 +49,8 @@ export class XColComponent extends XColProperty implements OnInit {
 
   setSpace() {
     if (!this.rowComponent?.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-left', `${this.rowComponent.space / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-right', `${this.rowComponent.space / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-left', `${Number(this.rowComponent.space) / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-right', `${Number(this.rowComponent.space) / 2}rem`);
   }
 
   setLayout() {

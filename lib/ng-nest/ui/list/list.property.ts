@@ -1,4 +1,4 @@
-import { XData, XParentIdentityProperty, XControlValueAccessor, XDataConvert, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { XData, XParentIdentityProperty, XControlValueAccessor, XDataConvert, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XListProperty extends XControlValueAccessor<any> {
   /**
    * 多选个数
    */
-  @Input() @XInputNumber() multiple: number = 1;
+  @Input() @XInputNumber() multiple: XNumber = 1;
   /**
    * 选中
    */
-  @Input() @XInputBoolean() checked: boolean;
+  @Input() @XInputBoolean() checked: XBoolean;
   /**
    * 拖动
    */
-  @Input() @XInputBoolean() drag: boolean;
+  @Input() @XInputBoolean() drag: XBoolean;
   /**
    * 节点 mouseenter 事件
    */

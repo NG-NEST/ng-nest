@@ -1,7 +1,7 @@
 <div
   class="x-tree-node-content"
   [class.x-activated]="tree.activatedNode?.id === node.id"
-  [style.padding-left.rem]="level * 0.875"
+  [style.padding-left.rem]="paddingLeft"
   (click)="onActivate(node)"
 >
   <x-icon

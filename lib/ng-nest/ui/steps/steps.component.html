@@ -7,7 +7,7 @@
           <ng-container [ngSwitch]="node.status">
             <x-icon *ngSwitchCase="'finish'" type="fto-check"></x-icon>
             <x-icon *ngSwitchCase="'error'" type="fto-x"></x-icon>
-            <span *ngSwitchDefault>{{ this.startIndex + i + 1 }}</span>
+            <span *ngSwitchDefault>{{ getIndex(i) }}</span>
           </ng-container>
         </ng-template>
       </div>

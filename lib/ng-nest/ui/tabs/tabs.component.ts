@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  Input,
   OnChanges,
   SimpleChanges,
   ChangeDetectorRef,
@@ -10,11 +9,10 @@ import {
   ViewChild,
   ViewEncapsulation,
   SimpleChange,
-  ViewChildren,
   QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsUndefined, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
@@ -30,6 +28,10 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   sliderOption = new XSliderProperty();
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
+
+  get activeIndex() {
+    return Number(this.activatedIndex);
+  }
 
   @ContentChildren(XTabComponent) listTabs: QueryList<XTabComponent>;
 

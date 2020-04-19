@@ -1,4 +1,4 @@
-import { XData, XJustify, XProperty, XInputBoolean, XSize, XIdentityProperty, XTemplate, XInputNumber } from '@ng-nest/ui/core';
+import { XData, XJustify, XProperty, XInputBoolean, XSize, XIdentityProperty, XTemplate, XInputNumber, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -32,11 +32,11 @@ export class XTabsProperty extends XProperty {
   /**
    * 激活的序号
    */
-  @Input() @XInputNumber() activatedIndex: number = 0;
+  @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
    * 动画
    */
-  @Input() @XInputBoolean() animated: boolean = true;
+  @Input() @XInputBoolean() animated: XBoolean = true;
   /**
    * 节点模板
    */
@@ -52,7 +52,7 @@ export class XTabsProperty extends XProperty {
   /**
    * 隐藏标签栏
    */
-  @Input('slider-hidden') @XInputBoolean() sliderHidden: boolean;
+  @Input('slider-hidden') @XInputBoolean() sliderHidden: XBoolean;
   /**
    * 标签切换变化的事件
    */

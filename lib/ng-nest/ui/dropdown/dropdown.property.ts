@@ -1,4 +1,4 @@
-import { XData, XPlace, XProperty, XDataConvert, XInputBoolean } from '@ng-nest/ui/core';
+import { XData, XPlace, XProperty, XDataConvert, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
@@ -29,11 +29,11 @@ export class XDropdownProperty extends XProperty {
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: boolean;
+  @Input() @XInputBoolean() disabled: XBoolean;
   /**
    * 节点中已经包含子节点数据
    */
-  @Input() @XInputBoolean() children: boolean;
+  @Input() @XInputBoolean() children: XBoolean;
   /**
    * 节点点击事件
    */

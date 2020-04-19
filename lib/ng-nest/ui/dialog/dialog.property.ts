@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean } from '@ng-nest/ui/core';
 import { XAlertProperty } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -18,7 +18,7 @@ export const XDialogPortal = 'x-dialog-portal';
  */
 @Component({ template: '' })
 export class XDialogProperty extends XAlertProperty {
-  @Input() @XInputBoolean() visible: boolean = false;
+  @Input() @XInputBoolean() visible: XBoolean = false;
   /**
    * 方位，九宫格
    */
@@ -50,7 +50,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 显示取消按钮
    */
-  @Input('show-cancel') showCancel: boolean = true;
+  @Input('show-cancel') showCancel: XBoolean = true;
   /**
    * 取消按钮文字
    */
@@ -58,7 +58,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 显示确认按钮
    */
-  @Input('show-confirm') showConfirm: boolean = true;
+  @Input('show-confirm') showConfirm: XBoolean = true;
   /**
    * 确认按钮文字
    */
@@ -66,11 +66,11 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 点击遮罩关闭
    */
-  @Input('backdrop-close') backdropClose: boolean = true;
+  @Input('backdrop-close') backdropClose: XBoolean = true;
   /**
    * 是否显示背景遮罩
    */
-  @Input('has-backdrop') hasBackdrop: boolean = true;
+  @Input('has-backdrop') hasBackdrop: XBoolean = true;
   /**
    * 自定义样式名
    */

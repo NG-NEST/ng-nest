@@ -13,8 +13,8 @@
       icon="fto-minus"
       size="medium"
       [disabled]="disabled || minDisabled"
-      (click)="!minDisabled && plus($event, -step)"
-      (mousedown)="!minDisabled && down($event, -step)"
+      (click)="!minDisabled && plus($event, step, false)"
+      (mousedown)="!minDisabled && down($event, step, false)"
       (mouseup)="up($event)"
     ></x-button>
     <input

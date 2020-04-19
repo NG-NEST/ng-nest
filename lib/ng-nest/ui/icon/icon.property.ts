@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -24,11 +24,11 @@ export class XIconProperty extends XProperty {
   /**
    * 图标旋转角度
    */
-  @Input() @XInputNumber() rotate: number;
+  @Input() @XInputNumber() rotate: XNumber;
   /**
    * loading效果（图标一直旋转）
    */
-  @Input() @XInputBoolean() spin: boolean;
+  @Input() @XInputBoolean() spin: XBoolean;
   /**
    * 变化为的图标（未实现）
    */

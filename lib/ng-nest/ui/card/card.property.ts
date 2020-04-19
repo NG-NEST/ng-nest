@@ -1,4 +1,4 @@
-import { XTemplate, XProperty } from '@ng-nest/ui/core';
+import { XTemplate, XProperty, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XCardProperty extends XProperty {
   /**
    * 内容样式
    */
-  @Input() bodyStyle: { [prop: string]: string | number } = {};
+  @Input() bodyStyle: { [prop: string]: XNumber } = {};
   /**
    * 头部模板
    */

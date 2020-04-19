@@ -1,4 +1,4 @@
-import { XDirection, XProperty } from '@ng-nest/ui/core';
+import { XDirection, XProperty, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -35,7 +35,7 @@ export class XHeaderProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height: number = 3;
+  @Input() height: XNumber = 3;
 }
 
 /**
@@ -53,7 +53,7 @@ export class XAsideProperty extends XProperty {
   /**
    * 宽度，rem
    */
-  @Input() width: number = 12;
+  @Input() width: XNumber = 12;
 }
 
 /**
@@ -78,5 +78,5 @@ export class XFooterProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height: number = 3;
+  @Input() height: XNumber = 3;
 }

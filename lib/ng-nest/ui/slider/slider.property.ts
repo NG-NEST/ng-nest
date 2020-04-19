@@ -7,7 +7,9 @@ import {
   XInputBoolean,
   XInputNumber,
   XJustify,
-  XSize
+  XSize,
+  XNumber,
+  XBoolean
 } from '@ng-nest/ui/core';
 import { TemplateRef, Input, EventEmitter, Output, Component } from '@angular/core';
 
@@ -30,11 +32,11 @@ export class XSliderProperty extends XProperty {
   /**
    * 滑动动画
    */
-  @Input() @XInputBoolean() animated: boolean = true;
+  @Input() @XInputBoolean() animated: XBoolean = true;
   /**
    * 当前激活的索引
    */
-  @Input() @XInputNumber() activatedIndex: number = 0;
+  @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
    * 排列方式
    */

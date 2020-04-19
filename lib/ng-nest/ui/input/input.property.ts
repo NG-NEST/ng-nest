@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,11 +20,11 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: boolean;
+  @Input() @XInputBoolean() clearable: XBoolean;
   /**
    * 只读
    */
-  @Input() @XInputBoolean() readonly: boolean;
+  @Input() @XInputBoolean() readonly: XBoolean;
   /**
    * 图标
    */
@@ -36,11 +36,11 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 图标动画
    */
-  @Input() @XInputBoolean() iconSpin: boolean;
+  @Input() @XInputBoolean() iconSpin: XBoolean;
   /**
    * 输入最大长度
    */
-  @Input() @XInputNumber() maxlength: number;
+  @Input() @XInputNumber() maxlength: XNumber;
   /**
    * 尺寸
    */
@@ -48,7 +48,7 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 异常
    */
-  @Input() error: boolean;
+  @Input() error: XBoolean;
   /**
    * 异常提示文字
    */

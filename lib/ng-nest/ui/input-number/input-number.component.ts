@@ -10,7 +10,7 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XIsEmpty, XValueAccessor } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XNumber } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 
 @Component({
@@ -53,7 +53,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   setDisplayValue() {
-    if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(this.precision);
+    if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(Number(this.precision));
   }
 
   change(value: any) {
@@ -61,13 +61,13 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (this.onChange) this.onChange(this.value);
   }
 
-  down(event: Event, limit: number): void {
+  down(event: Event, limit: XNumber, increase: boolean = true): void {
     if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
     this.timer = setTimeout(() => {
-      this.mousedown$ = interval(this.debounce).subscribe(() => {
-        this.plus(event, limit);
+      this.mousedown$ = interval(Number(this.debounce)).subscribe(() => {
+        this.plus(event, limit, increase);
       });
     }, 150);
   }
@@ -79,8 +79,10 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (this.mousedown$) this.mousedown$.unsubscribe();
   }
 
-  plus(event: Event, limit: number) {
+  plus(event: Event, limit: XNumber, increase: boolean = true) {
     if (this.disabled) return;
+    limit = Number(limit);
+    if (!increase) limit = -limit;
     event.preventDefault();
     event.stopPropagation();
     if (this.timer) clearTimeout(this.timer);

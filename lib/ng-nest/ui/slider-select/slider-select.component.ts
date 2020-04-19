@@ -59,14 +59,16 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   change() {
-    const val = Number(((this.max - this.min) * this.left) / 100 + this.min).toFixed(this.precision);
+    const val = Number(((Number(this.max) - Number(this.min)) * Number(this.left)) / 100 + Number(this.min)).toFixed(
+      Number(this.precision)
+    );
     this.value = parseFloat(val);
     this.setDisplayValue();
     if (this.onChange) this.onChange(this.value);
   }
 
   setLeft() {
-    this.left = Math.round(((this.value - this.min) * 100) / (this.max - this.min));
+    this.left = Math.round(((this.value - Number(this.min)) * 100) / (Number(this.max) - Number(this.min)));
     const start = this.left;
     this.start = start;
     this.setDrag();
@@ -74,7 +76,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   setDisplayValue() {
-    this.displayValue = Number(this.value).toFixed(this.precision);
+    this.displayValue = Number(this.value).toFixed(Number(this.precision));
     this.cdr.detectChanges();
   }
 
@@ -118,7 +120,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
 
   setDrag(distance: number = 0) {
     let railBox = this.railRef.nativeElement.getBoundingClientRect();
-    let stepWidth = railBox.width / ((this.max - this.min) / this.step);
+    let stepWidth = railBox.width / ((Number(this.max) - Number(this.min)) / Number(this.step));
     let offset = Math.abs(distance % stepWidth);
     let dis =
       offset < stepWidth / 2

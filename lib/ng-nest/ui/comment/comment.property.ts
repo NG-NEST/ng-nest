@@ -1,4 +1,4 @@
-import { XDate, XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber } from '@ng-nest/ui/core';
+import { XDate, XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
@@ -100,7 +100,7 @@ export class XCommentReplyProperty extends XProperty {
   /**
    * 回复的最大字数
    */
-  @Input() @XInputNumber() maxlength: number = 512;
+  @Input() @XInputNumber() maxlength: XNumber = 512;
   /**
    * 回复确认的事件
    */

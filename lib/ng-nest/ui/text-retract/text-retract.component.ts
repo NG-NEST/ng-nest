@@ -38,7 +38,7 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
 
   setDisplayValue() {
     if (this.content && this.content.length > this.max) {
-      this.displayValue = this.content.substring(0, this.max);
+      this.displayValue = this.content.substring(0, Number(this.max));
       this.retract = true;
     } else {
       this.displayValue = this.content;
@@ -49,7 +49,7 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   toggle() {
     this.unfold = !this.unfold;
     if (this.unfold) {
-      this.displayValue = this.content.substring(0, this.max);
+      this.displayValue = this.content.substring(0, Number(this.max));
     } else {
       this.displayValue = this.content;
     }

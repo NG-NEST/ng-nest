@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsUndefined, XIsChange, XIsEmpty, XNumber } from '@ng-nest/ui/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -48,7 +48,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   ngOnChanges(simples: SimpleChanges): void {
-    XIsChange(simples.active) && this.setActiveItem(this.active);
+    XIsChange(simples.active) && this.setActiveItem(Number(this.active));
   }
 
   ngOnDestroy(): void {
@@ -56,22 +56,22 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
     this.panelChanges.forEach((x) => x.complete());
   }
 
-  action(index: number, event?: string): void {
+  action(index: XNumber, increase: number, event?: string): void {
     if (!XIsUndefined(event) && this.trigger !== event) return;
     this.autoplay && this.resetInterval();
-    this.setActiveItem(index);
+    this.setActiveItem(Number(index) + increase);
   }
 
   resetInterval(): void {
     this.timer && clearInterval(this.timer);
     this.timer = setInterval(() => {
-      this.setActiveItem(this.active + 1);
-    }, this.interval);
+      this.setActiveItem(Number(this.active) + 1);
+    }, Number(this.interval));
   }
 
   setActiveItem(index: number): void {
     if (this.start === -1) return;
-    this.before = this.active;
+    this.before = Number(this.active);
     const nextValue = index > this.start ? 0 : index < 0 ? this.start : index;
     this.active = nextValue;
     this.panelChanges.forEach((sub) => sub.next(true));
@@ -81,5 +81,9 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
 
   setClassMap() {
     this.classMap[`${XCarouselPrefix}-${this.direction}`] = !XIsEmpty(this.direction);
+  }
+
+  getActivated(index: number) {
+    return Number(this.active) === index;
   }
 }

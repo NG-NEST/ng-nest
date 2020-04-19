@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputNumber } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,21 +16,21 @@ export class XInputNumberProperty extends XControlValueAccessor<any> {
   /**
    * 最小值
    */
-  @Input() @XInputNumber() min: number = Number.MIN_SAFE_INTEGER;
+  @Input() @XInputNumber() min: XNumber = Number.MIN_SAFE_INTEGER;
   /**
    * 最大值
    */
-  @Input() @XInputNumber() max: number = Number.MAX_SAFE_INTEGER;
+  @Input() @XInputNumber() max: XNumber = Number.MAX_SAFE_INTEGER;
   /**
    * 步数
    */
-  @Input() @XInputNumber() step: number = 1;
+  @Input() @XInputNumber() step: XNumber = 1;
   /**
    * 按住后步进速度
    */
-  @Input() @XInputNumber() debounce: number = 40;
+  @Input() @XInputNumber() debounce: XNumber = 40;
   /**
    * 精度
    */
-  @Input() @XInputNumber() precision: number = 0;
+  @Input() @XInputNumber() precision: XNumber = 0;
 }

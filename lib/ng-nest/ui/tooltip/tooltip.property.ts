@@ -1,5 +1,5 @@
-import { XPlacement, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Component, Directive } from '@angular/core';
+import { XPlacement, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { Input, Directive } from '@angular/core';
 
 /**
  * Tooltip
@@ -24,7 +24,7 @@ export class XTooltipProperty {
   /**
    * 显示/隐藏
    */
-  @Input() @XInputBoolean() visible: boolean;
+  @Input() @XInputBoolean() visible: XBoolean;
 }
 
 /**

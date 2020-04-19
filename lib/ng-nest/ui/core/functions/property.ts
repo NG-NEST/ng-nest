@@ -1,4 +1,4 @@
-import { XClassMap, XJustify, XAlign, XDirection } from '../interfaces';
+import { XClassMap, XJustify, XAlign, XDirection, XBoolean } from '../interfaces';
 import { Input } from '@angular/core';
 import { XInputBoolean } from './convert';
 
@@ -33,9 +33,9 @@ export class XFormProp extends XProperty {
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: boolean;
+  @Input() @XInputBoolean() disabled: XBoolean;
   /**
    * 必填
    */
-  @Input() @XInputBoolean() required: boolean;
+  @Input() @XInputBoolean() required: XBoolean;
 }

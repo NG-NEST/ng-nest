@@ -1,4 +1,4 @@
-import { XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber } from '@ng-nest/ui/core';
+import { XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -24,11 +24,11 @@ export class XStepsProperty extends XProperty {
   /**
    * 当前激活节点
    */
-  @Input() @XInputNumber() activatedIndex: number = 0;
+  @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
    * 步骤开始序号
    */
-  @Input('start-index') @XInputNumber() startIndex: number = 0;
+  @Input('start-index') @XInputNumber() startIndex: XNumber = 0;
   /**
    * 当前激活节点状态
    */

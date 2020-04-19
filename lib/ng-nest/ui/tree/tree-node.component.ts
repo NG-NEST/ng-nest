@@ -33,6 +33,11 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     this._loading = value;
     this.cdr.detectChanges();
   }
+
+  get paddingLeft() {
+    return Number(this.level) * 0.875;
+  }
+
   constructor(
     @Optional() public tree: XTreeComponent,
     public renderer: Renderer2,

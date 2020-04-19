@@ -4,6 +4,12 @@ import { TemplateRef, SimpleChange } from '@angular/core';
 // 数据类型
 export type XData<T> = T[] | BehaviorSubject<T[] | any[]> | Observable<T[] | any[]> | any[] | Function;
 
+// Boolean 类型
+export type XBoolean = boolean | string;
+
+// Number 类型
+export type XNumber = number | string;
+
 // 模板类型
 export type XTemplate = string | number | Date | TemplateRef<any>;
 

@@ -22,7 +22,7 @@ export class XTagComponent extends XTagProperty implements OnInit {
     this.classMap = {
       [`${XTagPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`${XTagPrefix}-${this.size}`]: !XIsEmpty(this.size),
-      [`${XTagPrefix}-dark`]: this.dark
+      [`${XTagPrefix}-dark`]: Boolean(this.dark)
     };
   }
 

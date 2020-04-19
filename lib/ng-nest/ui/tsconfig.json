@@ -10,5 +10,14 @@
       "@ng-nest/ui/*": ["./*"]
     }
   },
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictTemplates": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  },
   "include": ["./**/*.ts"]
 }

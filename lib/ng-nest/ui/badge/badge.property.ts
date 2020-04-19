@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XBadgeProperty extends XProperty {
   /**
    * 最大值
    */
-  @Input() @XInputNumber() max: number;
+  @Input() @XInputNumber() max: XNumber;
   /**
    * 显示值
    */
-  @Input() value: number | string = '';
+  @Input() value: XNumber = '';
   /**
    * 是否显示小红点
    */
-  @Input() @XInputBoolean() dot: boolean;
+  @Input() @XInputBoolean() dot: XBoolean;
 }
 
 /**

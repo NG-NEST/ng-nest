@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ExAsyncComponent {
   model = 'BBBB';
-  data = new Observable((x) => {
+  data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
       this.model = 'CCCC';

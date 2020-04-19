@@ -1,4 +1,4 @@
-import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XFadeAnimation, XInputNumber } from '@ng-nest/ui/core';
+import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XInputNumber, XBoolean, XNumber } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XAlertProperty extends XProperty {
   /**
    * 隐藏
    */
-  @Input() @XInputBoolean() hide: boolean;
+  @Input() @XInputBoolean() hide: XBoolean;
   /**
    * 标题
    */
@@ -36,7 +36,7 @@ export class XAlertProperty extends XProperty {
   /**
    * 隐藏关闭按钮
    */
-  @Input('hide-close') @XInputBoolean() hideClose: boolean;
+  @Input('hide-close') @XInputBoolean() hideClose: XBoolean;
   /**
    * 关闭按钮文字替换
    */
@@ -44,19 +44,19 @@ export class XAlertProperty extends XProperty {
   /**
    * 显示图标
    */
-  @Input('show-icon') @XInputBoolean() showIcon: boolean;
+  @Input('show-icon') @XInputBoolean() showIcon: XBoolean;
   /**
    * 禁用动画
    */
-  @Input('disabled-animation') @XInputBoolean() disabledAnimation: boolean = false;
+  @Input('disabled-animation') @XInputBoolean() disabledAnimation: XBoolean = false;
   /**
    * 延迟关闭，默认 0 表示不关闭
    */
-  @Input() @XInputNumber() duration: number = 0;
+  @Input() @XInputNumber() duration: XNumber = 0;
   /**
    * 手动处理关闭事件
    */
-  @Input() @XInputBoolean() manual: boolean;
+  @Input() @XInputBoolean() manual: XBoolean;
   /**
    * 关闭的事件
    */

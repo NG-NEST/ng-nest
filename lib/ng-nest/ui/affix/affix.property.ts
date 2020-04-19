@@ -16,9 +16,9 @@ export class XAffixProperty extends XProperty {
   /**
    * 距离顶部距离
    */
-  @Input() top?: string;
+  @Input() top: string;
   /**
    * 距离左边距离
    */
-  @Input() left?: string;
+  @Input() left: string;
 }

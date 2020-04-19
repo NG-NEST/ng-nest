@@ -48,7 +48,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   ngOnInit() {
     this.carousel.start++;
     this.index = this.carousel.start;
-    this.setClass('x-carousel-card', this.carousel.card);
+    this.setClass('x-carousel-card', Boolean(this.carousel.card));
     this.carousel.panelChanges.push(this.updateSub);
   }
 
@@ -77,7 +77,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
     this.height = this.elementRef.nativeElement.offsetHeight;
 
     let translate: number;
-    let offset: number = this.carousel.active - this.index;
+    let offset: number = Number(this.carousel.active) - this.index;
     let distance = this.width;
     let translateType = 'translateX';
     if (this.carousel.card) {
@@ -86,7 +86,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       }
       this.inStage = Math.round(Math.abs(offset)) <= 1;
       this.setClass('x-carousel-in-stage', this.inStage);
-      translate = this.calcCardTranslate(this.index, this.carousel.active);
+      translate = this.calcCardTranslate(this.index, Number(this.carousel.active));
       this.scale = offset === 0 ? 1 : this.cardScale;
     } else {
       if (this.carousel.direction === 'vertical') {
@@ -107,7 +107,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       this.carousel.active === this.index ||
       this.carousel.before === this.index ||
       this.carousel.start === Math.abs(offset) ||
-      this.carousel.card;
+      Boolean(this.carousel.card);
     this.setClass('x-carousel-animating', this.animating);
     this.renderer.setStyle(this.elementRef.nativeElement, 'transform', `${translateType}(${translate}px) scale(${this.scale})`);
   }

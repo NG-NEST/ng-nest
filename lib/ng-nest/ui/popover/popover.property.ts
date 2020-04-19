@@ -1,4 +1,4 @@
-import { XPlacement, XTemplate, XProperty, XInputBoolean } from '@ng-nest/ui/core';
+import { XPlacement, XTemplate, XProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Directive } from '@angular/core';
 
 /**
@@ -40,11 +40,11 @@ export class XPopoverProperty extends XProperty {
   /**
    * 显示/隐藏控制
    */
-  @Input() @XInputBoolean() visible: boolean;
+  @Input() @XInputBoolean() visible: XBoolean;
   /**
    * 显示/隐藏改变的事件
    */
-  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() visibleChange = new EventEmitter<XBoolean>();
 }
 
 /**

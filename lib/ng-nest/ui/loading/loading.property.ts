@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XLoadingProperty extends XProperty {
   /**
    * 显示 loading
    */
-  @Input('x-loading') @XInputBoolean() loading: boolean;
+  @Input('x-loading') @XInputBoolean() loading: XBoolean;
   /**
    * 尺寸
    */
@@ -36,7 +36,7 @@ export class XLoadingProperty extends XProperty {
   /**
    * 全屏显示
    */
-  @Input('full-screen') @XInputBoolean() fullScreen: boolean;
+  @Input('full-screen') @XInputBoolean() fullScreen: XBoolean;
   /**
    * 背景样式
    */

@@ -143,6 +143,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
+  getIndex(index: number) {
+    return (Number(this.index) - 1) * Number(this.size) + index + 1;
+  }
+
   private removeListen() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
@@ -160,7 +164,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   private setData(first?: boolean) {
     if (this.service) {
-      this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      this.service.getList(Number(this.index), Number(this.size), this.query).subscribe((x) => {
         if (first || (this._isFirst && this.firstRowSelected)) {
           let ft = _.first(x.list);
           if (ft) {
@@ -183,7 +187,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
         switchMap((x: string) => {
           this.index = 1;
           this.setFilter(this.query, x);
-          return service.getList(this.index, this.size, this.query);
+          return service.getList(this.index, Number(this.size), this.query);
         }),
         takeUntil(this._unSubject)
       )

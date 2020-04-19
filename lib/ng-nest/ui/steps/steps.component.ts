@@ -53,6 +53,10 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
     this.classMap[`${XStepsPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
   }
 
+  getIndex(index: number) {
+    return Number(this.startIndex) + index + 1;
+  }
+
   private setData() {
     XSetData<XStepsNode>(this.data, this._unSubject)
       .pipe(map((x) => this.setStatus(x)))

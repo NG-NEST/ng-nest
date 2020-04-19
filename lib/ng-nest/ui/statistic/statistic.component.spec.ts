@@ -39,19 +39,19 @@ describe(XStatisticPrefix, () => {
     <x-row space="1">
       <x-col span="12">
         <x-card>
-          <x-statistic label="在线人数" [value]="2981231 | number"> </x-statistic>
+          <x-statistic label="在线人数" value="{{ 2981231 | number }}"> </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-statistic label="销售总额（CNY）" [value]="1023123.122 | number: '1.0-2'"> </x-statistic>
+          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number: '1.0-2' }}"> </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
         <x-card>
           <x-statistic
             label="上升比例"
-            [value]="15.28 | number: '1.0-2'"
+            value="{{ 15.28 | number: '1.0-2' }}"
             [prefix]="prefixTempOne"
             suffix="%"
             [valueStyle]="{ color: '#67c23a' }"
@@ -64,7 +64,7 @@ describe(XStatisticPrefix, () => {
         <x-card>
           <x-statistic
             label="下降比例"
-            [value]="2.28 | number: '1.0-2'"
+            value="{{ 2.28 | number: '1.0-2' }}"
             [prefix]="prefixTempTwo"
             suffix="%"
             [valueStyle]="{ color: '#f56c6c' }"

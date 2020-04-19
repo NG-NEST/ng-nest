@@ -1,4 +1,4 @@
-import { XJustify, XAlign, XProperty, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import { XJustify, XAlign, XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XRowProperty extends XProperty {
   /**
    * 列间隔，rem
    */
-  @Input() @XInputNumber() space: number;
+  @Input() @XInputNumber() space: XNumber;
   /**
    * flex 布局下的水平排列方式
    */
@@ -42,33 +42,33 @@ export class XColProperty extends XProperty {
   /**
    * 24栅格布局，列占的宽度
    */
-  @Input() @XInputNumber() span: number;
+  @Input() @XInputNumber() span: XNumber;
   /**
    * 栅格左侧的间隔格数
    */
-  @Input() @XInputNumber() offset: number;
+  @Input() @XInputNumber() offset: XNumber;
   /**
    * <768px
    */
-  @Input() @XInputNumber() xs: number;
+  @Input() @XInputNumber() xs: XNumber;
   /**
    * ≥768px
    */
-  @Input() @XInputNumber() sm: number;
+  @Input() @XInputNumber() sm: XNumber;
   /**
    * ≥992px
    */
-  @Input() @XInputNumber() md: number;
+  @Input() @XInputNumber() md: XNumber;
   /**
    * ≥1200px
    */
-  @Input() @XInputNumber() lg: number;
+  @Input() @XInputNumber() lg: XNumber;
   /**
    * ≥1920px
    */
-  @Input() @XInputNumber() xl: number;
+  @Input() @XInputNumber() xl: XNumber;
   /**
    * 默认样式
    */
-  @Input() @XInputBoolean() inherit: boolean;
+  @Input() @XInputBoolean() inherit: XBoolean;
 }

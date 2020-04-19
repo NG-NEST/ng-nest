@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber } from '@ng-nest/ui/core';
+import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Button
@@ -36,35 +36,35 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 仅显示图标
    */
-  @Input('only-icon') @XInputBoolean() onlyIcon: boolean;
+  @Input('only-icon') @XInputBoolean() onlyIcon: XBoolean;
   /**
    * 激活的按钮（样式差异）
    */
-  @Input() @XInputBoolean() activated: boolean;
+  @Input() @XInputBoolean() activated: XBoolean;
   /**
    * 禁用按钮
    */
-  @Input() @XInputBoolean() disabled: boolean;
+  @Input() @XInputBoolean() disabled: XBoolean;
   /**
    * 朴素按钮
    */
-  @Input() @XInputBoolean() plain: boolean;
+  @Input() @XInputBoolean() plain: XBoolean;
   /**
    * 圆角按钮
    */
-  @Input() @XInputBoolean() round: boolean;
+  @Input() @XInputBoolean() round: XBoolean;
   /**
    * 圆型按钮（配合图标来使用）
    */
-  @Input() @XInputBoolean() circle: boolean;
+  @Input() @XInputBoolean() circle: XBoolean;
   /**
    * 加载中
    */
-  @Input() @XInputBoolean() loading: boolean;
+  @Input() @XInputBoolean() loading: XBoolean;
   /**
    * 关闭按钮
    */
-  @Input() @XInputBoolean() closable: boolean;
+  @Input() @XInputBoolean() closable: XBoolean;
 }
 
 /**
@@ -95,35 +95,35 @@ export interface XButtonOption {
   /**
    * 仅显示图标
    */
-  onlyIcon?: boolean;
+  onlyIcon?: XBoolean;
   /**n
    * 激活的按钮（样式差异）
    */
-  activated?: boolean;
+  activated?: XBoolean;
   /**
    * 禁用按钮
    */
-  disabled?: boolean;
+  disabled?: XBoolean;
   /**
    * 朴素按钮
    */
-  plain?: boolean;
+  plain?: XBoolean;
   /**
    * 圆角按钮
    */
-  round?: boolean;
+  round?: XBoolean;
   /**
    * 圆型按钮（配合图标来使用）
    */
-  circle?: boolean;
+  circle?: XBoolean;
   /**
    * 加载中
    */
-  loading?: boolean;
+  loading?: XBoolean;
   /**
    * 关闭按钮
    */
-  closable?: boolean;
+  closable?: XBoolean;
 }
 
 /**
@@ -146,9 +146,9 @@ export class XButtonsProperty extends XProperty {
   /**
    * 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
    */
-  @Input() @XInputNumber() space: number = 0;
+  @Input() @XInputNumber() space: XNumber = 0;
   /**
    * 隐藏边框
    */
-  @Input('hidden-border') @XInputBoolean() hiddenBorder?: boolean;
+  @Input('hidden-border') @XInputBoolean() hiddenBorder?: XBoolean;
 }

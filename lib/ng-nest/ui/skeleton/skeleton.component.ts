@@ -34,8 +34,8 @@ export class XSkeletonComponent extends XSkeletonProperty implements OnInit, OnC
 
   setClassMap() {
     this.classMap = {
-      [`${XSkeletonPrefix}-active`]: this.active,
-      [`${XSkeletonPrefix}-border`]: this.border
+      [`${XSkeletonPrefix}-active`]: Boolean(this.active),
+      [`${XSkeletonPrefix}-border`]: Boolean(this.border)
     };
     this.cdr.markForCheck();
   }

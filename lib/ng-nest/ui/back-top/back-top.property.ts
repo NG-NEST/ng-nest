@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XProperty, XNumber } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -24,7 +24,7 @@ export class XBackTopProperty extends XProperty {
   /**
    * 滚动的多少高度后显示
    */
-  @Input('visibility-height') visibilityHeight: number = 200;
+  @Input('visibility-height') visibilityHeight: XNumber = 200;
   /**
    * 内容模板
    */

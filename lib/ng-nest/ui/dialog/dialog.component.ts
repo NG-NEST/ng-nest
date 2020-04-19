@@ -66,7 +66,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         panelClass: [XDialogPortal, this.className],
-        hasBackdrop: this.hasBackdrop,
+        hasBackdrop: Boolean(this.hasBackdrop),
         positionStrategy: this.protalService.setPlace(this.placement, this.offset, this.width, this.height)
       }
     });

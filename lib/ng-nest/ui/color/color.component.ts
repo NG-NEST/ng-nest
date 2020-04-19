@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
+import { XNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-color',
@@ -30,7 +31,8 @@ export class XColorComponent extends XColorProperty implements OnInit {
     this.colors = colors;
   }
 
-  mixColors(color1: string, color2: string, weight: number) {
+  mixColors(color1: string, color2: string, weight: XNumber) {
+    weight = Number(weight);
     let rgb1 = this.toRgb(color1);
     let rgb2 = this.toRgb(color2);
     let weight1 = weight;

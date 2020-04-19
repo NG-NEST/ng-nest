@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XInputNumber } from '@ng-nest/ui/core';
+import { XInputNumber, XNumber } from '@ng-nest/ui/core';
 
 /**
  * TextRetract
@@ -20,5 +20,5 @@ export class XTextRetractProperty {
   /**
    * 默认最大显示字符数
    */
-  @Input() @XInputNumber() max: number = 256;
+  @Input() @XInputNumber() max: XNumber = 256;
 }

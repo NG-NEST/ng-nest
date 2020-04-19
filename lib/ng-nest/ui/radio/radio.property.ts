@@ -1,4 +1,4 @@
-import { XData, XControlValueAccessor, XIdentityProperty, XDataConvert, XInputBoolean, XSize } from '@ng-nest/ui/core';
+import { XData, XControlValueAccessor, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 
@@ -21,11 +21,11 @@ export class XRadioProperty extends XControlValueAccessor<any> {
   /**
    * 按钮样式
    */
-  @Input() @XInputBoolean() button: boolean;
+  @Input() @XInputBoolean() button: XBoolean;
   /**
    * 图标样式
    */
-  @Input() @XInputBoolean() icon: boolean;
+  @Input() @XInputBoolean() icon: XBoolean;
   /**
    * 尺寸
    */
