@@ -1,0 +1,15 @@
+// TreeFile
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin tree-file {
+  display: flex;
+  &-catalog {
+    width: 15rem;
+  }
+  &-body {
+    flex: 1;
+  }
+}

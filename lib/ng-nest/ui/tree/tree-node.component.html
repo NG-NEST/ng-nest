@@ -2,14 +2,14 @@
   class="x-tree-node-content"
   [class.x-activated]="tree.activatedNode?.id === node.id"
   [style.padding-left.rem]="paddingLeft"
-  (click)="onActivate(node)"
+  (click)="onActivate($event, node)"
 >
   <x-icon
     *ngIf="!loading"
     [class.is-leaf]="!node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
-    (click)="onToggle($event, node)"
+    (click)="!tree.nodeOpen && onToggle($event, node)"
   ></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <x-checkbox
@@ -21,7 +21,7 @@
     [disabled]="node.disabled"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
-  <span *ngIf="!tree.labelTpl; else labelTpl">{{ node.label }}</span>
+  <span class="x-tree-node-label" *ngIf="!tree.labelTpl; else labelTpl">{{ node.label }}</span>
   <ng-template #labelTpl>
     <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
   </ng-template>

@@ -36,6 +36,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() expandedAll: XBoolean;
   /**
+   * 点击节点就触发展开/收起的操作，请确保节点上没有其它操作（checkbox、自定义的操作按钮）
+   */
+  @Input('node-open') @XInputBoolean() nodeOpen: XBoolean;
+  /**
    * 标签自定义模板
    */
   @Input() labelTpl: TemplateRef<void>;
@@ -50,13 +54,9 @@ export class XTreeProperty extends XProperty {
 }
 
 /**
- * Timeline 数据对象
+ * Tree 数据对象
  */
 export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
-  /**
-   * 子节点
-   */
-  children?: XTreeNode[];
   /**
    * 展开
    */

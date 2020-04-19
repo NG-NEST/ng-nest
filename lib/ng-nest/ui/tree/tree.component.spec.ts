@@ -146,6 +146,9 @@ class TreeServiceTest {
         <x-tree [data]="service.data"> </x-tree>
       </x-col>
       <x-col span="8">
+        <x-tree [data]="service.data" node-open> </x-tree>
+      </x-col>
+      <x-col span="8">
         <x-tree [data]="service.data" checkbox> </x-tree>
       </x-col>
     </x-row>

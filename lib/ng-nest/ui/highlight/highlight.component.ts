@@ -4,13 +4,15 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
-  AfterViewInit,
   OnChanges,
+  ViewChild,
+  ChangeDetectorRef,
   SimpleChanges,
-  ViewChild
+  AfterViewChecked
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import * as hljs from 'highlight.js';
+import { XIsChange, XIsUndefined, XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XHighlightPrefix}`,
@@ -19,30 +21,21 @@ import * as hljs from 'highlight.js';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XHighlightComponent extends XHighlightProperty implements OnChanges, AfterViewInit {
+export class XHighlightComponent extends XHighlightProperty implements OnChanges, AfterViewChecked {
   @ViewChild('code', { static: false }) codeRef: ElementRef;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const dataChange = changes.data;
-    if (
-      typeof dataChange != 'undefined' &&
-      typeof dataChange.currentValue != 'undefined' &&
-      typeof dataChange.currentValue != null &&
-      dataChange.currentValue != '' &&
-      dataChange.currentValue !== dataChange.previousValue
-    ) {
-      setTimeout(() => hljs.highlightBlock(this.codeRef.nativeElement));
-    }
+    XIsChange(changes.data) && this.cdr.detectChanges();
   }
 
-  ngAfterViewInit() {
-    if (typeof this.data != 'undefined' && typeof this.data != null && this.data != '') {
-      hljs.highlightBlock(this.codeRef.nativeElement);
-    }
+  ngAfterViewChecked(): void {
+    if (XIsEmpty(this.data)) this.data = '';
+    this.codeRef.nativeElement.innerText = this.data;
+    hljs.highlightBlock(this.codeRef.nativeElement);
   }
 }

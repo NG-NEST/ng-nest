@@ -58,7 +58,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   onToggle(event: Event, node: XTreeNode) {
-    event.stopPropagation();
+    event.preventDefault();
     node.open = !node.open;
     if (node.open && !node.childrenLoaded) {
       if (this.lazy) {
@@ -86,15 +86,16 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  onActivate(node: XTreeNode) {
-    let change: Function = this.tree.activatedNode?.change as Function;
+  onActivate(event: Event, node: XTreeNode) {
+    const change: Function = this.tree.activatedNode?.change as Function;
+    this.tree.nodeOpen && node.leaf && this.onToggle(event, node);
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id) return;
     }
     this.tree.activatedNode = node;
     this.tree.activatedChange.emit(node);
-    this.cdr.detectChanges();
     change && change();
+    this.cdr.detectChanges();
   }
 
   onCheckboxChange() {

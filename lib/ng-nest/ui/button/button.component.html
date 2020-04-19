@@ -14,3 +14,6 @@
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <span #content><ng-content></ng-content></span>
 </div>
+
+<!-- 提前加载 loading 的图标-->
+<x-icon *ngIf="loading" [style.display]="'none'" type="fto-loader"></x-icon>

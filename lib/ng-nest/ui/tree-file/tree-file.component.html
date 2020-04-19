@@ -1,0 +1,8 @@
+<div #treeFile class="x-tree-file" [ngClass]="classMap">
+  <div class="x-tree-file-catalog">
+    <x-tree [data]="data" (activatedChange)="catalogChange($event)" node-open></x-tree>
+  </div>
+  <div class="x-tree-file-body">
+    <x-highlight type="json" [data]="activatedNode?.content"></x-highlight>
+  </div>
+</div>

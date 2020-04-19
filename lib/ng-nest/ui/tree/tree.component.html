@@ -3,3 +3,6 @@
     <li x-tree-node *ngFor="let node of nodes" [node]="node" [lazy]="lazy" [lazyData]="data"></li>
   </ul>
 </div>
+
+<!-- 提前加载loading的图标-->
+<x-icon *ngIf="lazy" [style.display]="'none'" type="fto-loader"></x-icon>
