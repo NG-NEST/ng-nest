@@ -8,7 +8,7 @@
   display: block;
   line-height: 0;
   width: 100%;
-  background-color: #eff0f1;
+  background-color: $--x-background;
   > pre {
     display: flex;
     padding: 0;
@@ -25,8 +25,8 @@
     display: block;
     overflow-x: auto;
     background: transparent;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
-      Courier New, monospace, sans-serif;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+      monospace, sans-serif;
   }
 
   .hljs-comment,

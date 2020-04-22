@@ -39,8 +39,8 @@ export class XTreeFileComponent extends XTreeFileProperty implements OnInit {
     this.activatedNode = node;
     if (node.url && !node.contentLoaded) {
       this.http.get(node.url, { responseType: 'text' }).subscribe((x) => {
-        this.activatedNode.content = x;
-        this.activatedNode.contentLoaded = true;
+        node.content = x;
+        node.contentLoaded = true;
         this.cdr.detectChanges();
       });
     } else {

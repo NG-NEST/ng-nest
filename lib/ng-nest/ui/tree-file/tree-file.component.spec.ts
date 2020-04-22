@@ -37,10 +37,28 @@ describe(XTreeFilePrefix, () => {
 class TreeFileServiceTest {
   data: XTreeFileNode[] = [
     { id: 1, label: '针对上一步改变的文件' },
-    { id: 2, label: 'MY-APP' },
-    { id: 5, label: 'tsconfig.json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/tsconfig.json', pid: 1 },
-    { id: 6, label: 'package.json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/package.json', pid: 1 },
-    { id: 7, label: 'tsconfig.app.json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/tsconfig.app.json', pid: 1 },
+    { id: 2, label: 'my-app' },
+    {
+      id: 5,
+      label: 'app.component.html',
+      type: 'html',
+      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.html',
+      pid: 1
+    },
+    {
+      id: 6,
+      label: 'app.component.scss',
+      type: 'css',
+      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.scss',
+      pid: 1
+    },
+    {
+      id: 7,
+      label: 'app.component.ts',
+      type: 'typescript',
+      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.ts',
+      pid: 1
+    },
     { id: 8, label: 'angular.json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/angular.json', pid: 1 },
     { id: 9, label: 'src', pid: 2 },
     { id: 10, label: 'app', pid: 9 },
@@ -87,5 +105,4 @@ class TreeFileServiceTest {
 })
 class TestXTreeFileComponent {
   constructor(public service: TreeFileServiceTest) {}
-  list = [1, 2, 3, 4, 5, 6];
 }

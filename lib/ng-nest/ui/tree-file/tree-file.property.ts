@@ -34,6 +34,10 @@ export interface XTreeFileNode extends XTreeNode {
    */
   content?: string;
   /**
+   * 文件类型
+   */
+  type?: string;
+  /**
    * 文件地址，配置了地址将从 url 中加载文件内容
    */
   url?: string;

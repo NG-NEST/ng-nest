@@ -107,7 +107,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-84",
+    "id": "3-0-85",
     "parentId": "3-0",
     "name": "typography",
     "router": "./docs/ui/components/typography",
@@ -264,6 +264,14 @@ export const menus: Menu[] = [
     "name": "tree",
     "router": "./docs/ui/components/tree",
     "label": "Tree 树形控件",
+    "category": "Data"
+  },
+  {
+    "id": "3-0-79",
+    "parentId": "3-0",
+    "name": "tree-file",
+    "router": "./docs/ui/components/tree-file",
+    "label": "TreeFile 树形文件",
     "category": "Data"
   },
   {
@@ -483,7 +491,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-85",
+    "id": "3-0-86",
     "parentId": "3-0",
     "name": "upload",
     "router": "./docs/ui/components/upload",

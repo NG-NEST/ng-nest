@@ -6,10 +6,32 @@
 
 @mixin tree-file {
   display: flex;
+  background-color: $--x-background;
+  border-radius: $--x-border-radius;
+  border: $--x-border-200-base;
+  color: $--x-text-500;
+  font-size: 0.8125rem;
   &-catalog {
     width: 15rem;
+    max-height: 37.5rem;
+    overflow: auto;
+    padding: 0.5rem;
+    border-right: $--x-border-200-base;
+    .x-tree {
+      &-node-content {
+        height: 1.375rem;
+        &:hover {
+          background-color: $--x-primary-900;
+        }
+        &.x-activated {
+          background-color: $--x-primary-800;
+        }
+      }
+    }
   }
   &-body {
     flex: 1;
+    max-height: 37.5rem;
+    overflow: auto;
   }
 }
