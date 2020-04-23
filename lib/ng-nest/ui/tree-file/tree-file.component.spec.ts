@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
-import { Observable } from 'rxjs';
 
 describe(XTreeFilePrefix, () => {
   beforeEach(async(() => {
@@ -42,7 +41,7 @@ class TreeFileServiceTest {
       id: 5,
       label: 'app.component.html',
       type: 'html',
-      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.html',
+      url: 'https://ngnest.com/static/docs/ui/getting-started/demo/my-app__1/src/app/app.component.html',
       pid: 1
     },
     {
@@ -59,36 +58,54 @@ class TreeFileServiceTest {
       url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.ts',
       pid: 1
     },
-    { id: 8, label: 'angular.json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/angular.json', pid: 1 },
+    { id: 8, label: 'angular.json', type: 'json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/angular.json', pid: 1 },
     { id: 9, label: 'src', pid: 2 },
     { id: 10, label: 'app', pid: 9 },
     { id: 11, label: 'assets', pid: 9 },
     { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 13, label: 'app.component.html', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    { id: 12, label: 'app-routing.module.ts', pid: 10 },
+    {
+      id: 13,
+      label: 'app.component.html',
+      pid: 10,
+      type: 'html',
+      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.html'
+    },
     { id: 14, label: 'app.component.scss', pid: 10 },
-    { id: 15, label: 'app.component.ts', pid: 10 }
+    {
+      id: 15,
+      label: 'app.component.ts',
+      pid: 10,
+      type: 'typescript',
+      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.ts'
+    }
   ];
-
-  getTreeList = (pid = undefined): Observable<XTreeFileNode[]> => {
-    return new Observable((x) => {
-      let result = this.data
-        .filter((y) => y.pid === pid)
-        .map((x) => {
-          x.leaf = this.data.find((y) => y.pid === x.id) ? true : false;
-          return x;
-        });
-      setTimeout(() => {
-        x.next(result);
-        x.complete();
-      }, 500);
-    });
-  };
 }
 
 @Component({
   template: `
     <div class="row">
-      <x-tree-file [data]="service.data"> </x-tree-file>
+      <x-tree-file [data]="service.data" activated-id="15"> </x-tree-file>
     </div>
   `,
   styles: [

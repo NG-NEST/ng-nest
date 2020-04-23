@@ -59,9 +59,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   private setDataChange(value: XTreeNode[]) {
+    !XIsEmpty(this.activatedId) && this.setActivatedNode(value);
     const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
-      node.open = Boolean(this.expandedAll) || this.expanded.indexOf(node.id) >= 0;
+      node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0;
       node.checked = this.checked.indexOf(node.id) >= 0 ? [node.id] : [];
       node.childrenLoaded = node.open;
       if (XIsUndefined(node.children)) node.children = value.filter((y) => y.pid === node.id);
@@ -111,5 +112,25 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       });
     };
     setChildren(this.nodes);
+  }
+
+  setActivatedNode(nodes: XTreeNode[]) {
+    this.activatedNode = nodes.find((x) => x.id == this.activatedId) as XTreeNode;
+    if (this.activatedNode) {
+      this.setParentOpen(nodes, this.activatedNode);
+      this.activatedChange.emit(this.activatedNode);
+    }
+  }
+
+  setParentOpen(nodes: XTreeNode[], node: XTreeNode) {
+    const getParent = (child: XTreeNode) => {
+      if (XIsEmpty(child.pid)) return;
+      const parent = nodes.find((x) => x.id === child.pid) as XTreeNode;
+      if (!XIsEmpty(parent)) {
+        this.expanded = [...this.expanded, parent.id];
+        getParent(parent);
+      }
+    };
+    getParent(node);
   }
 }

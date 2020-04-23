@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XHighlightComponent } from './highlight.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix } from './highlight.property';
@@ -28,33 +28,84 @@ describe(XHighlightPrefix, () => {
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it('should className.', () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(XHighlightPrefix);
-    });
-    it('should html code.', () => {
-      testComponent.type = 'html';
-      testComponent.data = `<div class="code"></div>`;
-      fixture.detectChanges();
-      expect(element.classList).toContain(XHighlightPrefix);
-    });
-    it("should data change 'undefined'.", () => {
-      testComponent.dataXll = undefined;
-      fixture.detectChanges();
-      expect(element.classList).toContain(XHighlightPrefix);
-    });
   });
 });
 
 @Component({
   selector: 'test-x-highlight',
-  template: `
-    <x-highlight [type]="type" [data]="data"></x-highlight>
-    <x-highlight [data]="dataXll"></x-highlight>
-  `
+  template: ` <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data"></x-highlight> `
 })
 class TestXHighlightComponent {
-  type: string = `html`;
-  data: string = `<div class="html"></div>`;
-  dataXll: undefined;
+  list = [
+    {
+      type: 'html',
+      data: `<div class="row">
+  <x-button>默认按钮</x-button>
+  <x-button type="primary">主要按钮</x-button>
+  <x-button type="success">成功按钮</x-button>
+  <x-button type="warning">警告按钮</x-button>
+  <x-button type="danger">危险按钮</x-button>
+  <x-button type="info">信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button plain>朴素按钮</x-button>
+  <x-button type="primary" plain>主要按钮</x-button>
+  <x-button type="success" plain>成功按钮</x-button>
+  <x-button type="warning" plain>警告按钮</x-button>
+  <x-button type="danger" plain>危险按钮</x-button>
+  <x-button type="info" plain>信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button round>圆角按钮</x-button>
+  <x-button type="primary" round>主要按钮</x-button>
+  <x-button type="success" round>成功按钮</x-button>
+  <x-button type="warning" round>警告按钮</x-button>
+  <x-button type="danger" round>危险按钮</x-button>
+  <x-button type="info" round>信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button icon="fto-search" circle></x-button>
+  <x-button icon="fto-edit-3" type="primary" circle></x-button>
+  <x-button icon="fto-check" type="success" circle></x-button>
+  <x-button icon="fto-star" type="warning" circle></x-button>
+  <x-button icon="fto-trash-2" type="danger" circle></x-button>
+  <x-button icon="fto-trash" type="info" circle></x-button>
+</div>`
+    },
+    {
+      type: 'scss',
+      data: `:host {
+        .row:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+        .row > x-button:not(:first-child) {
+          margin-left: 1rem;
+        }
+      }`
+    },
+    {
+      type: 'typescript',
+      data: `import { Component } from '@angular/core';
+
+      @Component({
+        selector: 'ex-default',
+        templateUrl: './default.component.html',
+        styleUrls: ['./default.component.scss']
+      })
+      export class ExDefaultComponent {}`
+    }
+  ];
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.list[0] = {
+        type: 'js',
+        data: `var ji='wdasd';
+      var sjdi='ssd';`
+      };
+      this.cdr.detectChanges();
+    }, 2000);
+  }
 }

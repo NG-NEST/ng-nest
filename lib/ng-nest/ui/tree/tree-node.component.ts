@@ -35,7 +35,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   get paddingLeft() {
-    return Number(this.level) * 0.875;
+    return Number(this.level) * Number(this.tree.spacing);
   }
 
   constructor(

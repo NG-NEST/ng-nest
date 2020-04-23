@@ -13,7 +13,7 @@ type Task<T> = {
 // @dynamic
 @Injectable()
 export class XIconService {
-  rootUrl = `http://47.93.183.122/`;
+  rootUrl = `https://ngnest.com/static/icons/`;
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskXm: number = 0;

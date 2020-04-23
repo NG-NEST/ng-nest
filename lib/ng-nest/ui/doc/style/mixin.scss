@@ -95,13 +95,17 @@
     border-radius: $--x-border-radius;
   }
 
+  > p > x-tree-file {
+    font-family: Segoe WPC, Segoe UI, Microsoft YaHei, sans-serif;
+  }
+
   > pre {
     display: flex;
     overflow: auto;
     width: 100%;
     code {
       &.language- {
-        @include code(bash, $--x-text-300, $--x-text, $--x-text, $--x-text);
+        @include code(bash, $--x-white, $--x-text-500, $--x-text-500, $--x-text-500);
         @each $state, $value in $--x-doc-states {
           @include code(
             $state,
@@ -151,6 +155,7 @@
     color: $color;
     border: $--x-border-base;
     border-color: $border-color;
+    text-shadow: none;
     @if map-has-key($--x-doc-states, $type) {
       padding: 0.5rem 0.5rem 0.5rem 0.875rem;
       white-space: normal;

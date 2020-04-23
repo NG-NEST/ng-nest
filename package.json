@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
@@ -33,8 +33,8 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
     "core-js": "^3.6.4",
-    "highlight.js": "^9.18.1",
     "marked": "^0.8.2",
+    "prismjs": "^1.20.0",
     "remark": "^11.0.2",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.4",
@@ -49,7 +49,6 @@
     "@angular/compiler-cli": "~9.1.0",
     "@angular/language-service": "~9.1.0",
     "@types/fs-extra": "^8.1.0",
-    "@types/highlight.js": "^9.12.3",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/lodash": "^4.14.149",

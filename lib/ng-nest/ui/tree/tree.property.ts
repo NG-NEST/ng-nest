@@ -1,6 +1,5 @@
-import { XDataConvert, XProperty, XData, XInputBoolean, XParentIdentityProperty, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XDataConvert, XProperty, XData, XInputBoolean, XParentIdentityProperty, XNumber, XBoolean, XInputNumber } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
-import { XTreeNodeComponent } from './tree-node.component';
 import { Observable } from 'rxjs';
 
 /**
@@ -24,21 +23,33 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() checkbox: XBoolean;
   /**
+   * 当前激活的节点 Id
+   */
+  @Input('activated-id') activatedId: any;
+  /**
    * 展开的节点
    */
   @Input() expanded: any[] = [];
   /**
-   * 选中的节点
+   * checkbox 选中的节点
    */
   @Input() checked: any[] = [];
   /**
    * 展开所有节点
    */
-  @Input() @XInputBoolean() expandedAll: XBoolean;
+  @Input('expanded-all') @XInputBoolean() expandedAll: XBoolean;
+  /**
+   * 默认展开的层级
+   */
+  @Input('expanded-level') @XInputNumber() expandedLevel: XNumber = -1;
   /**
    * 点击节点就触发展开/收起的操作，请确保节点上没有其它操作（checkbox、自定义的操作按钮）
    */
   @Input('node-open') @XInputBoolean() nodeOpen: XBoolean;
+  /**
+   * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
+   */
+  @Input() @XInputNumber() spacing: XNumber = 0.875;
   /**
    * 标签自定义模板
    */

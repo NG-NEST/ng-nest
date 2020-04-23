@@ -4,10 +4,7 @@
   "deleteDestPath": true,
   "lib": {
     "entryFile": "./index.ts",
-    "umdModuleIds": {
-      "highlight.js": "hljs"
-    },
     "styleIncludePaths": ["./style"]
   },
-  "whitelistedNonPeerDependencies": ["tslib", "angular", "hljs", "highlight.js"]
+  "whitelistedNonPeerDependencies": ["tslib", "angular"]
 }

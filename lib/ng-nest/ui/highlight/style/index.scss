@@ -3,9 +3,7 @@
 @import '../../style/mixins/index';
 @import './mixin';
 
-
 .#{$prefix} {
   @include reset-component();
   @include highlight();
-  @include github();
 }

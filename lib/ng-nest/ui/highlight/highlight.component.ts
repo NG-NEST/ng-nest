@@ -7,12 +7,13 @@ import {
   OnChanges,
   ViewChild,
   ChangeDetectorRef,
-  SimpleChanges,
-  AfterViewChecked
+  SimpleChanges
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
-import * as hljs from 'highlight.js';
-import { XIsChange, XIsUndefined, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+declare let Prism: any;
 
 @Component({
   selector: `${XHighlightPrefix}`,
@@ -21,21 +22,28 @@ import { XIsChange, XIsUndefined, XIsEmpty } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XHighlightComponent extends XHighlightProperty implements OnChanges, AfterViewChecked {
+export class XHighlightComponent extends XHighlightProperty implements OnChanges {
   @ViewChild('code', { static: false }) codeRef: ElementRef;
 
-  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+  display: SafeHtml;
+
+  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef, public sanitizer: DomSanitizer) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.cdr.detectChanges();
+    XIsChange(changes.data) && this.setData();
   }
 
-  ngAfterViewChecked(): void {
+  setData(): void {
     if (XIsEmpty(this.data)) this.data = '';
-    this.codeRef.nativeElement.innerText = this.data;
-    hljs.highlightBlock(this.codeRef.nativeElement);
+    if (Prism?.languages?.[this.type]) {
+      this.display = this.sanitizer.bypassSecurityTrustHtml(Prism.highlight(this.data, Prism.languages[this.type], this.type));
+    } else {
+      console.warn(`x-highlight: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`);
+      this.display = this.sanitizer.bypassSecurityTrustHtml(this.data);
+    }
+    this.cdr.detectChanges();
   }
 }

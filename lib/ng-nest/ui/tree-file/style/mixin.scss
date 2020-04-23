@@ -12,7 +12,7 @@
   color: $--x-text-500;
   font-size: 0.8125rem;
   &-catalog {
-    width: 15rem;
+    width: 16rem;
     max-height: 37.5rem;
     overflow: auto;
     padding: 0.5rem;
@@ -31,7 +31,28 @@
   }
   &-body {
     flex: 1;
-    max-height: 37.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  &-crumb {
+    background-color: $--x-border-300;
+    > x-crumb {
+      > .x-crumb {
+        padding: 0 0.5rem;
+        color: $--x-text-400;
+        .x-crumb-separator {
+          margin: 0 0.125rem;
+        }
+      }
+    }
+  }
+  &-code {
+    flex: 1;
+    max-height: 36rem;
     overflow: auto;
+    > x-highlight > pre {
+      overflow: inherit;
+    }
   }
 }

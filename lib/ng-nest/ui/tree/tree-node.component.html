@@ -21,7 +21,7 @@
     [disabled]="node.disabled"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
-  <span class="x-tree-node-label" *ngIf="!tree.labelTpl; else labelTpl">{{ node.label }}</span>
+  <span class="x-tree-node-label" [title]="node.label" *ngIf="!tree.labelTpl; else labelTpl">{{ node.label }}</span>
   <ng-template #labelTpl>
     <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
   </ng-template>

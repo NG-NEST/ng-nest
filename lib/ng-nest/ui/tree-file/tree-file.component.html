@@ -1,8 +1,25 @@
 <div #treeFile class="x-tree-file" [ngClass]="classMap">
-  <div class="x-tree-file-catalog">
-    <x-tree [data]="data" (activatedChange)="catalogChange($event)" node-open></x-tree>
+  <div class="x-tree-file-catalog" *ngIf="!hiddenTree">
+    <x-tree
+      [data]="data"
+      (activatedChange)="catalogChange($event)"
+      node-open
+      [expanded-all]="expandedAll"
+      [expanded-level]="expandedLevel"
+      [expanded]="expanded"
+      [spacing]="spacing"
+      [activated-id]="activatedId"
+    ></x-tree>
   </div>
   <div class="x-tree-file-body">
-    <x-highlight [type]="activatedNode?.type" [data]="activatedNode?.content"></x-highlight>
+    <div class="x-tree-file-crumb">
+      <x-crumb [data]="activatedNode?.crumbData" [separator]="separatorTpl"></x-crumb>
+      <ng-template #separatorTpl>
+        <x-icon type="fto-chevron-right"></x-icon>
+      </ng-template>
+    </div>
+    <div class="x-tree-file-code">
+      <x-highlight [type]="activatedNode?.type" [data]="activatedNode?.content"></x-highlight>
+    </div>
   </div>
 </div>

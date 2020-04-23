@@ -24,11 +24,14 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": [
-              "dist/ng-nest/ui/style/core/index.scss",
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["node_modules/prismjs/themes/prism.css", "dist/ng-nest/ui/style/core/index.scss", "src/styles.scss"],
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-json.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -207,7 +210,13 @@
             "tsConfig": "lib/ng-nest/ui/tsconfig.spec.json",
             "karmaConfig": "lib/ng-nest/ui/karma.conf.js",
             "codeCoverage": true,
-            "styles": ["lib/ng-nest/ui/style/core/index.scss"]
+            "styles": ["lib/ng-nest/ui/style/core/index.scss", "node_modules/prismjs/themes/prism.css"],
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-json.min.js"
+            ]
           }
         },
         "lint": {

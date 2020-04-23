@@ -26,7 +26,7 @@ $ ng new my-app
 
 Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CLI 会在当前目录中创建一个工作区。
 
-{{ __my-app\__1 }}
+{{ __my-app\__1:src/index.html }}
 
 ## 2. 使用 npm 安装 @ng-nest/ui 包并导入模块
 

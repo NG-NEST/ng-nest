@@ -35,7 +35,7 @@ export class NcDocs {
     this.page = createRouterOutlet(docsPrefix);
     this.page.genDir = genDir;
     handlerPage(this.page);
-    this.addChildren(this.page, docsDir, `./${docsPrefix}`);
+    this.addChildren(this.page, docsDir, `${docsPrefix}`);
     generatePage(this.page);
     this.menus = _.sortBy(this.menus, ['parentId', 'category', 'order', 'name']);
     generateMenu(genMenusDir, this.menus);
@@ -46,7 +46,8 @@ export class NcDocs {
     if (typeof level !== 'undefined') level--;
     children.forEach(async (x, i) => {
       if (x === 'demo') {
-        handlerDemo(page, docDir);
+        console.log(router);
+        handlerDemo(page, docDir, router);
       } else {
         const dir = path.join(docDir, x);
         const stat = fs.statSync(dir);

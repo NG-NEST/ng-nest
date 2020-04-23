@@ -7,18 +7,21 @@ import _ = require('lodash');
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
-export function handlerDemo(page: NcPage, docDir: string) {
+export function handlerDemo(page: NcPage, docDir: string, router: string) {
+  // console.log(page, docDir);
   const demoPath = path.join(docDir, 'demo');
   const children = fs.readdirSync(path.join(docDir, 'demo'));
   for (let child of children) {
-    const treeFile = this.getTreeFile(demoPath, child);
+    const treeFile = this.getTreeFile(demoPath, child, router);
     let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
     if (temp !== null) {
       let tpl = fs.readFileSync(path.join(tplDir, 'tree-file.component.template.html'), 'utf8');
-      let param = randomString(8);
-      tpl = replaceKey(tpl, '__data', param);
-      temp.syswords.constant += `${param} = ${JSON.stringify(treeFile)};\n`;
-      page.custom = replaceKey(page.custom, `__${child}`, `${tpl}`);
+      let constant = randomString(8);
+      let params = getKeys(page.custom, child);
+      tpl = replaceKey(tpl, '__data', constant);
+      tpl = replaceKey(tpl, '__activatedId', params?.length > 0 ? `${child}/${params[0]}` : '');
+      temp.syswords.constant += `${constant} = ${JSON.stringify(treeFile)};\n`;
+      page.custom = replaceKey(page.custom, `__${child}${params?.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
     }
   }
   if (children.length > 0) {
@@ -28,7 +31,7 @@ export function handlerDemo(page: NcPage, docDir: string) {
   }
 }
 
-export function getTreeFile(demoPath: string, demo: string) {
+export function getTreeFile(demoPath: string, demo: string, router: string) {
   const spt = demo.split('__');
   if (spt.length !== 2) return;
   let nodes: NcDemoTreeNode[] = [{ id: demo, label: spt[0] }];
@@ -49,19 +52,28 @@ export function getTreeFile(demoPath: string, demo: string) {
             id: `${dir}/${child}`,
             pid: dir,
             label: child,
-            url: `${dir}/${child}`,
+            url: `static/${router}/demo/${dir}/${child}`,
             type: child.indexOf('.') !== -1 ? child.slice(child.lastIndexOf('.') + 1, child.length) : ''
           }
         ];
       }
     }
     sortNodes = _.orderBy(sortNodes, [(x) => x.leaf, (x) => x.label.toLowerCase()]);
-    console.log('----------');
-    console.log(sortNodes);
-    console.log('----------');
     nodes = [...nodes, ...sortNodes];
   };
   getChildren(root, demo);
 
   return nodes;
+}
+
+export function getKeys(content: string, demo: string) {
+  const key = `{{ __${demo}:`;
+  const index = content.indexOf(key);
+  if (index !== -1) {
+    let str = content.slice(index + key.length, content.length);
+    str = str.slice(0, str.indexOf(` }}`));
+    return str.split(':');
+  } else {
+    return null;
+  }
 }
