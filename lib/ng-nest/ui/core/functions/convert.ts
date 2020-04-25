@@ -9,13 +9,18 @@ import {
   XIsObservable,
   XParentIdentityProperty,
   XIsBoolean,
-  XIsString
+  XIsString,
+  XBoolean
 } from '../interfaces';
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-export function XToBoolean(value: boolean): boolean {
-  return (XIsBoolean(value) && value) || (XIsString(value) && String(value).trim() === '');
+export function XToBoolean(value: XBoolean): boolean {
+  if (XIsString(value)) {
+    return ['', 'true'].indexOf(String(value).trim()) !== -1;
+  } else {
+    return Boolean(value);
+  }
 }
 
 function XToNumber(value: number | string): number;

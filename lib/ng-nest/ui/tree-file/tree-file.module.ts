@@ -7,10 +7,11 @@ import { XTreeModule } from '@ng-nest/ui/tree';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 @NgModule({
   declarations: [XTreeFileComponent, XTreeFileProperty],
   exports: [XTreeFileComponent],
-  imports: [CommonModule, HttpClientModule, XTreeModule, XCrumbModule, XIconModule, XHighlightModule]
+  imports: [CommonModule, HttpClientModule, XTreeModule, XLinkModule, XCrumbModule, XIconModule, XHighlightModule]
 })
 export class XTreeFileModule {}

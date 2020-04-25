@@ -20,9 +20,29 @@ export class XTreeFileProperty extends XTreeProperty {
    */
   @Input() @XDataConvert() data: XData<XTreeFileNode> = [];
   /**
-   * 隐藏树
+   * 文件绝对路径地址前缀，为空表示取当前运行的地址
    */
-  @Input('hidden-tree') @XInputBoolean() hiddenTree: XBoolean;
+  @Input() domain: string = '';
+  /**
+   * 切换状态
+   */
+  @Input('toggle') @XInputBoolean() toggle: XBoolean = true;
+  /**
+   * 显示切换按钮
+   */
+  @Input('show-toggle') @XInputBoolean() showToggle: XBoolean = true;
+  /**
+   * 显示树，为 true 的时候隐藏切换按钮
+   */
+  @Input('show-tree') @XInputBoolean() showTree: XBoolean = true;
+  /**
+   * 显示面包屑
+   */
+  @Input('show-crumb') @XInputBoolean() showCrumb: XBoolean = true;
+  /**
+   * 最大高度，单位 rem
+   */
+  @Input('max-height') @XInputNumber() maxHeight: XNumber = 37.5;
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */
@@ -46,6 +66,10 @@ export interface XTreeFileNode extends XTreeNode {
    */
   type?: string;
   /**
+   * 文件分类
+   */
+  fileType?: XTreeFileType;
+  /**
    * 文件地址，配置了地址将从 url 中加载文件内容
    */
   url?: string;
@@ -58,3 +82,13 @@ export interface XTreeFileNode extends XTreeNode {
    */
   contentLoaded?: boolean;
 }
+
+/**
+ * 文件分类
+ */
+export type XTreeFileType = 'code' | 'img';
+
+/**
+ * 支持显示的图片格式
+ */
+export const XTreeFileImgs = ['webp', 'png', 'jpg', 'gif', 'jpeg', 'ico'];

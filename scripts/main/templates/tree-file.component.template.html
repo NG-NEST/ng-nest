@@ -1,1 +1,8 @@
-<x-tree-file [data]="{{ __data }}" expanded-level="0" activated-id="{{ __activatedId }}"></x-tree-file>
+<x-tree-file
+  [data]="{{ __data }}"
+  expanded-level="0"
+  activated-id="{{ __activatedId }}"
+  show-tree="{{ __showTree }}"
+  show-crumb="{{ __showCrumb }}"
+  [domain]="static"
+></x-tree-file>

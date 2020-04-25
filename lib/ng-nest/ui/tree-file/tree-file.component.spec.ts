@@ -41,55 +41,39 @@ class TreeFileServiceTest {
       id: 5,
       label: 'app.component.html',
       type: 'html',
-      url: 'https://ngnest.com/static/docs/ui/getting-started/demo/my-app__1/src/app/app.component.html',
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.html',
       pid: 1
     },
     {
       id: 6,
       label: 'app.component.scss',
       type: 'css',
-      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.scss',
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.scss',
       pid: 1
     },
     {
       id: 7,
       label: 'app.component.ts',
       type: 'typescript',
-      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.ts',
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.ts',
       pid: 1
     },
-    { id: 8, label: 'angular.json', type: 'json', url: 'http://localhost:8081/docs/ui/getting-started/my-app/angular.json', pid: 1 },
+    {
+      id: 8,
+      label: 'angular.json',
+      type: 'json',
+      url: 'ui/getting-started/demo/1__my-app/angular.json',
+      pid: 1
+    },
     { id: 9, label: 'src', pid: 2 },
     { id: 10, label: 'app', pid: 9 },
     { id: 11, label: 'assets', pid: 9 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
-    { id: 12, label: 'app-routing.module.ts', pid: 10 },
     {
       id: 13,
       label: 'app.component.html',
       pid: 10,
       type: 'html',
-      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.html'
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.html'
     },
     { id: 14, label: 'app.component.scss', pid: 10 },
     {
@@ -97,15 +81,40 @@ class TreeFileServiceTest {
       label: 'app.component.ts',
       pid: 10,
       type: 'typescript',
-      url: 'http://localhost:8081/docs/ui/getting-started/my-app/src/app/app.component.ts'
-    }
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.ts'
+    },
+    {
+      id: 16,
+      label: '1.png',
+      pid: 10,
+      type: 'png',
+      url: 'ui/getting-started/demo/3__img/1.png'
+    },
+    { id: 17, label: 'assets', pid: 9 },
+    { id: 18, label: 'assets', pid: 9 },
+    { id: 19, label: 'assets', pid: 9 },
+    { id: 20, label: 'assets', pid: 9 },
+    { id: 21, label: 'assets', pid: 9 },
+    { id: 22, label: 'assets', pid: 9 },
+    { id: 23, label: 'assets', pid: 9 },
+    { id: 24, label: 'assets', pid: 9 },
+    { id: 25, label: 'assets', pid: 9 },
+    { id: 26, label: 'assets', pid: 9 },
+    { id: 27, label: 'assets', pid: 9 },
+    { id: 28, label: 'assets', pid: 9 },
+    { id: 29, label: 'assets', pid: 9 },
+    { id: 30, label: 'assets', pid: 9 },
+    { id: 31, label: 'assets', pid: 9 },
+    { id: 32, label: 'assets', pid: 9 },
+    { id: 33, label: 'assets', pid: 9 },
+    { id: 34, label: 'assets', pid: 9 }
   ];
 }
 
 @Component({
   template: `
     <div class="row">
-      <x-tree-file [data]="service.data" activated-id="15"> </x-tree-file>
+      <x-tree-file [data]="service.data" activated-id="16" domain="https://ngnest.com/static/docs"> </x-tree-file>
     </div>
   `,
   styles: [

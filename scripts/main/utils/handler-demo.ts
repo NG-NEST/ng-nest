@@ -8,18 +8,21 @@ import _ = require('lodash');
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
 export function handlerDemo(page: NcPage, docDir: string, router: string) {
-  // console.log(page, docDir);
   const demoPath = path.join(docDir, 'demo');
   const children = fs.readdirSync(path.join(docDir, 'demo'));
-  for (let child of children) {
-    const treeFile = this.getTreeFile(demoPath, child, router);
-    let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
-    if (temp !== null) {
+  let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
+  if (temp !== null) {
+    temp.syswords.imports += `import { environment } from 'src/environments/environment';\n`;
+    temp.syswords.constant += `static = environment.static;\n`;
+    for (let child of children) {
+      const treeFile = this.getTreeFile(demoPath, child, router);
       let tpl = fs.readFileSync(path.join(tplDir, 'tree-file.component.template.html'), 'utf8');
       let constant = randomString(8);
       let params = getKeys(page.custom, child);
       tpl = replaceKey(tpl, '__data', constant);
       tpl = replaceKey(tpl, '__activatedId', params?.length > 0 ? `${child}/${params[0]}` : '');
+      tpl = replaceKey(tpl, '__showTree', params?.length > 1 ? `${params[1]}` : 'true');
+      tpl = replaceKey(tpl, '__showCrumb', params?.length > 2 ? `${params[2]}` : 'true');
       temp.syswords.constant += `${constant} = ${JSON.stringify(treeFile)};\n`;
       page.custom = replaceKey(page.custom, `__${child}${params?.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
     }
@@ -34,7 +37,7 @@ export function handlerDemo(page: NcPage, docDir: string, router: string) {
 export function getTreeFile(demoPath: string, demo: string, router: string) {
   const spt = demo.split('__');
   if (spt.length !== 2) return;
-  let nodes: NcDemoTreeNode[] = [{ id: demo, label: spt[0] }];
+  let nodes: NcDemoTreeNode[] = [{ id: demo, label: spt[1] }];
   const rootPath = path.join(demoPath, demo);
   const root = fs.readdirSync(rootPath);
   const getChildren = (children, dir) => {
@@ -52,7 +55,7 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
             id: `${dir}/${child}`,
             pid: dir,
             label: child,
-            url: `static/${router}/demo/${dir}/${child}`,
+            url: `${router}/demo/${dir}/${child}`,
             type: child.indexOf('.') !== -1 ? child.slice(child.lastIndexOf('.') + 1, child.length) : ''
           }
         ];

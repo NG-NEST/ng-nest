@@ -10,21 +10,21 @@
   border-radius: $--x-border-radius;
   border: $--x-border-200-base;
   color: $--x-text-500;
-  font-size: 0.8125rem;
   &-catalog {
-    width: 16rem;
-    max-height: 37.5rem;
+    width: 0;
     overflow: auto;
-    padding: 0.5rem;
-    border-right: $--x-border-200-base;
+    opacity: 0;
+    font-size: 0.8125rem;
+    transition: $--x-animation-duration-slow;
     .x-tree {
+      padding: 0.5rem;
       &-node-content {
         height: 1.375rem;
         &:hover {
-          background-color: $--x-primary-900;
+          background-color: $--x-border-200;
         }
         &.x-activated {
-          background-color: $--x-primary-800;
+          background-color: $--x-border;
         }
       }
     }
@@ -37,7 +37,21 @@
   }
   &-crumb {
     background-color: $--x-border-300;
+    display: flex;
+    > x-link {
+      line-height: 1.5rem;
+      height: 1.5rem;
+      border-right: $--x-border-base;
+      transition: $--x-animation-duration-base;
+      &:hover {
+        background-color: $--x-border;
+      }
+      > a {
+        padding: 0 0.5rem;
+      }
+    }
     > x-crumb {
+      flex: 1;
       > .x-crumb {
         padding: 0 0.5rem;
         color: $--x-text-400;
@@ -47,12 +61,34 @@
       }
     }
   }
-  &-code {
+  &-content {
     flex: 1;
-    max-height: 36rem;
     overflow: auto;
+    transition: $--x-animation-duration-slow;
+    display: flex;
     > x-highlight > pre {
       overflow: inherit;
+    }
+    > .#{$--x-tree-file}-img {
+      margin: auto;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      > img {
+        max-width: 100%;
+        height: auto;
+        margin: auto;
+        box-shadow: $--x-box-shadow-base;
+        border-radius: $--x-border-radius;
+        background-color: #fff;
+      }
+    }
+  }
+  &-toggle {
+    > .#{$--x-tree-file}-catalog {
+      width: 16rem;
+      opacity: 1;
+      border-right: $--x-border-200-base;
     }
   }
 }

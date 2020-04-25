@@ -8,6 +8,7 @@ import { XPreloadingStrategyService } from '@ng-nest/ui/core';
     RouterModule.forRoot(mainRoutes, {
       enableTracing: false,
       anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'top',
       preloadingStrategy: XPreloadingStrategyService
     })
   ],

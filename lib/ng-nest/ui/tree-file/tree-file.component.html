@@ -1,5 +1,5 @@
-<div #treeFile class="x-tree-file" [ngClass]="classMap">
-  <div class="x-tree-file-catalog" *ngIf="!hiddenTree">
+<div #treeFile class="x-tree-file" [ngClass]="classMap" [class.x-tree-file-toggle]="toggle">
+  <div class="x-tree-file-catalog" [style.max-height.rem]="catalogHeight" *ngIf="showTree">
     <x-tree
       [data]="data"
       (activatedChange)="catalogChange($event)"
@@ -12,14 +12,16 @@
     ></x-tree>
   </div>
   <div class="x-tree-file-body">
-    <div class="x-tree-file-crumb">
+    <div class="x-tree-file-crumb" *ngIf="showCrumb">
+      <x-link icon="fto-menu" *ngIf="showToggle && showTree" (click)="menuToggle()"></x-link>
       <x-crumb [data]="activatedNode?.crumbData" [separator]="separatorTpl"></x-crumb>
       <ng-template #separatorTpl>
         <x-icon type="fto-chevron-right"></x-icon>
       </ng-template>
     </div>
-    <div class="x-tree-file-code">
-      <x-highlight [type]="activatedNode?.type" [data]="activatedNode?.content"></x-highlight>
+    <div class="x-tree-file-content" [style.max-height.rem]="codeHeight" [ngSwitch]="activatedNode?.fileType">
+      <div *ngSwitchCase="'img'" class="x-tree-file-img"><img [src]="activatedNode?.url" /></div>
+      <x-highlight *ngSwitchCase="'code'" [type]="activatedNode?.type" [data]="activatedNode?.content"></x-highlight>
     </div>
   </div>
 </div>

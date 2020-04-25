@@ -37,11 +37,14 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   }
 
   setData(): void {
+    if (XIsEmpty(this.type)) return;
     if (XIsEmpty(this.data)) this.data = '';
     if (Prism?.languages?.[this.type]) {
       this.display = this.sanitizer.bypassSecurityTrustHtml(Prism.highlight(this.data, Prism.languages[this.type], this.type));
     } else {
-      console.warn(`x-highlight: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`);
+      console.warn(
+        `x-highlight: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`
+      );
       this.display = this.sanitizer.bypassSecurityTrustHtml(this.data);
     }
     this.cdr.detectChanges();

@@ -46,7 +46,6 @@ export class NcDocs {
     if (typeof level !== 'undefined') level--;
     children.forEach(async (x, i) => {
       if (x === 'demo') {
-        console.log(router);
         handlerDemo(page, docDir, router);
       } else {
         const dir = path.join(docDir, x);
