@@ -26,4 +26,8 @@ export interface NcDemoTreeNode {
    * 叶子节点
    */
   leaf?: boolean;
+  /**
+   *
+   */
+  highlightLines?: { [prop: string]: string };
 }

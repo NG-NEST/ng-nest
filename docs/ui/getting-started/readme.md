@@ -67,4 +67,4 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 要继续探索 `ng-nest` ，请选择以下选项之一：
 
-- [教程：招聘管理系统](index/docs/ui/course/guide)，在本教程中，你将构建一个应用，来帮助招聘机构管理一群企业。
+- [教程：RBAC 权限系统](index/docs/ui/course/guide)，在本教程中，你将构建一个应用，用来管理用户和权限。

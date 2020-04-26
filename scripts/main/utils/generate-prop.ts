@@ -90,8 +90,8 @@ export function generateProps(...types: NcProp[]) {
           break;
         case NcPropType.Type:
           typeTable += `<tr>
-            <td><code>${x.name}</code></td>
-            <td><code>${x.value}</code></td>
+            <td><code [innerHTML]="'${x.name}'"></code></td>
+            <td><code [innerHTML]="'${replaceEscape(x.value as string)}'"></code></td>
             <td>${x.label}</td>
           </tr>`;
           break;

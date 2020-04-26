@@ -2,7 +2,7 @@ import * as path from 'path';
 import { NcPage } from '../interfaces/page';
 import * as fs from 'fs-extra';
 import { NcDemoTreeNode } from '../interfaces/demo';
-import { randomString, replaceKey } from '.';
+import { randomString, replaceKey, parseMdDoc } from '.';
 import _ = require('lodash');
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
@@ -43,6 +43,7 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
   const getChildren = (children, dir) => {
     let sortNodes: NcDemoTreeNode[] = [];
     for (let child of children) {
+      if (child.indexOf('__') === 0) continue;
       const childPath = path.join(demoPath, dir, child);
       const stat = fs.lstatSync(childPath);
       if (stat.isDirectory()) {
@@ -56,7 +57,8 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
             pid: dir,
             label: child,
             url: `${router}/demo/${dir}/${child}`,
-            type: child.indexOf('.') !== -1 ? child.slice(child.lastIndexOf('.') + 1, child.length) : ''
+            type: child.indexOf('.') !== -1 ? child.slice(child.lastIndexOf('.') + 1, child.length) : '',
+            highlightLines: getHighlightLines(path.join(demoPath, dir, `__${child}.md`))
           }
         ];
       }
@@ -79,4 +81,13 @@ export function getKeys(content: string, demo: string) {
   } else {
     return null;
   }
+}
+
+export function getHighlightLines(filePath: string) {
+  let result: { [prop: string]: string } = {};
+  const md = parseMdDoc(filePath);
+  if (md) {
+    result = md.meta;
+  }
+  return result;
 }
