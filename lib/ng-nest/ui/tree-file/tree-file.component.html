@@ -21,7 +21,12 @@
     </div>
     <div class="x-tree-file-content" [style.max-height.rem]="codeHeight" [ngSwitch]="activatedNode?.fileType">
       <div *ngSwitchCase="'img'" class="x-tree-file-img"><img [src]="activatedNode?.url" /></div>
-      <x-highlight *ngSwitchCase="'code'" [type]="activatedNode?.type" [data]="activatedNode?.content"></x-highlight>
+      <x-highlight
+        *ngSwitchCase="'code'"
+        [type]="activatedNode?.type"
+        [data]="activatedNode?.content"
+        [highlight-lines]="activatedNode?.highlightLines"
+      ></x-highlight>
     </div>
   </div>
 </div>

@@ -11,13 +11,57 @@
   background-color: $--x-background;
   > pre {
     display: flex;
-    padding: 0;
+    padding: 0.875rem 0.875rem 0.875rem 3.5rem;
     margin: 0;
     overflow: auto;
+    counter-reset: line-number;
     > code {
-      padding: 0.875rem;
+      position: relative;
       line-height: 1.1875rem;
       text-shadow: none;
+      white-space: inherit;
+      > span.line-numbers {
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        font-size: 100%;
+        left: -3.5rem;
+        width: 3.5rem;
+        letter-spacing: -1px;
+        user-select: none;
+        color: $--x-text-400;
+        > span::before {
+          border-right: $--x-border-base;
+          padding-right: 0.5rem;
+          margin-right: 0.875rem;
+          text-align: right;
+          pointer-events: none;
+          display: block;
+          counter-increment: line-number;
+          content: counter(line-number);
+        }
+      }
+      > .line-highlight {
+        position: absolute;
+        opacity: 0.1;
+        pointer-events: none;
+        line-height: inherit;
+        white-space: pre;
+        width: calc(100% + 3.5rem);
+        left: -3.5rem;
+        border-radius: $--x-border-radius;
+        @include line-highlight-type(primary, $--x-primary);
+        @include line-highlight-type(success, $--x-success);
+        @include line-highlight-type(warining, $--x-primary);
+        @include line-highlight-type(danger, $--x-danger);
+        @include line-highlight-type(info, $--x-info);
+      }
     }
+  }
+}
+
+@mixin line-highlight-type($type, $background-color) {
+  &.#{$type} {
+    background-color: $background-color;
   }
 }

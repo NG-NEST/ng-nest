@@ -4,7 +4,7 @@ import { XHighlightComponent } from './highlight.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
-import { XHighlightPrefix } from './highlight.property';
+import { XHighlightPrefix, XHighlightLines } from './highlight.property';
 
 describe(XHighlightPrefix, () => {
   beforeEach(async(() => {
@@ -33,12 +33,17 @@ describe(XHighlightPrefix, () => {
 
 @Component({
   selector: 'test-x-highlight',
-  template: ` <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data"></x-highlight> `
+  template: `
+    <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data" [highlight-lines]="item.highlightLines"></x-highlight>
+  `
 })
 class TestXHighlightComponent {
+  highlightLines: XHighlightLines = { danger: '1, 2, 4', primary: '7-10, 12, 15-20' };
+
   list = [
     {
       type: 'html',
+      highlightLines: this.highlightLines,
       data: `<div class="row">
   <x-button>默认按钮</x-button>
   <x-button type="primary">主要按钮</x-button>
@@ -99,13 +104,13 @@ class TestXHighlightComponent {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.list[0] = {
-        type: 'js',
-        data: `var ji='wdasd';
-      var sjdi='ssd';`
-      };
-      this.cdr.detectChanges();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.list[0] = {
+    //     type: 'js',
+    //     data: `var ji='wdasd';
+    //   var sjdi='ssd';`
+    //   };
+    //   this.cdr.detectChanges();
+    // }, 2000);
   }
 }

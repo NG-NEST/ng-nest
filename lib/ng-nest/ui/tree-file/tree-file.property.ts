@@ -2,6 +2,7 @@ import { XDataConvert, XData, XInputBoolean, XBoolean, XInputNumber, XNumber } f
 import { Component, Input } from '@angular/core';
 import { XTreeNode, XTreeProperty } from '@ng-nest/ui/tree';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
+import { XHighlightLines } from '@ng-nest/ui/highlight';
 
 /**
  * TreeFile
@@ -81,6 +82,10 @@ export interface XTreeFileNode extends XTreeNode {
    * 文件内容已经加载过
    */
   contentLoaded?: boolean;
+  /**
+   * 行高亮着色
+   */
+  highlightLines?: XHighlightLines;
 }
 
 /**

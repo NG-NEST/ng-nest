@@ -73,7 +73,14 @@ class TreeFileServiceTest {
       label: 'app.component.html',
       pid: 10,
       type: 'html',
-      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.html'
+      url: 'ui/getting-started/demo/1__my-app/src/app/app.component.html',
+      highlightLines: {
+        primary: '1-3, 5',
+        success: '7-10, 13',
+        warning: '15-20, 23',
+        danger: '30-32, 35',
+        info: '40-44, 48'
+      }
     },
     { id: 14, label: 'app.component.scss', pid: 10 },
     {
@@ -114,7 +121,7 @@ class TreeFileServiceTest {
 @Component({
   template: `
     <div class="row">
-      <x-tree-file [data]="service.data" activated-id="16" domain="https://ngnest.com/static/docs"> </x-tree-file>
+      <x-tree-file [data]="service.data" activated-id="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
     </div>
   `,
   styles: [
