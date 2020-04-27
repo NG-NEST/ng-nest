@@ -52,7 +52,7 @@
         border-radius: $--x-border-radius;
         @include line-highlight-type(primary, $--x-primary);
         @include line-highlight-type(success, $--x-success);
-        @include line-highlight-type(warining, $--x-primary);
+        @include line-highlight-type(warning, $--x-warning);
         @include line-highlight-type(danger, $--x-danger);
         @include line-highlight-type(info, $--x-info);
       }
