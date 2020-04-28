@@ -7,11 +7,15 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  ViewChild
+  ViewChild,
+  OnDestroy,
+  AfterViewInit
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
-import { XIsEmpty, XValueAccessor, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XIsUndefined, XResize } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XSliderSelectPrefix}`,
@@ -21,7 +25,7 @@ import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
-export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit {
+export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sliderSelect', { static: true }) sliderSelect: ElementRef;
   @ViewChild('dragRef', { static: true }) dragRef: ElementRef;
   @ViewChild('railRef', { static: true }) railRef: ElementRef;
@@ -32,6 +36,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   start: number;
   value = 0;
   displayValue = '0';
+  private _unSubject = new Subject<void>();
+  private _resizeObserver: ResizeObserver;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -54,8 +60,20 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   ngAfterViewInit() {
-    this.setLeft();
-    this.setDisplayValue();
+    XResize(this.sliderSelect.nativeElement)
+      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this._resizeObserver = x.resizeObserver;
+        this.setLeft();
+        this.setDisplayValue();
+        this.cdr.detectChanges();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
   }
 
   change() {
@@ -83,7 +101,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   setPrecision() {
     if (XIsUndefined(this.precision)) {
       let stepStr = String(this.step);
-      console.log(stepStr);
       let indexpoint = stepStr.indexOf('.');
       if (indexpoint === -1) {
         this.precision = 0;

@@ -1,24 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSliderSelectComponent } from './slider-select.component';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { interval } from 'rxjs';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
       declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,
         TestXSliderSelectLimitComponent,
         TestXSliderSelectPrecisionComponent,
-        TestXSliderSelectDisabledComponent
+        TestXSliderSelectDisabledComponent,
+        TestXSliderSelectTabsComponent
       ]
     }).compileComponents();
   }));
@@ -75,6 +76,18 @@ describe(XSliderSelectPrefix, () => {
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSliderSelectDisabledComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectDisabledComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`tabs.`, () => {
+    let fixture: ComponentFixture<TestXSliderSelectTabsComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSliderSelectTabsComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectDisabledComponent));
     });
@@ -223,3 +236,42 @@ class TestXSliderSelectLabelComponent {
 class TestXSliderSelectDisabledComponent {
   model = 60;
 }
+
+@Component({
+  template: `
+    <x-tabs>
+      <x-tab label="1111">
+        <x-row>
+          <x-col span="12">
+            <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
+          </x-col>
+        </x-row>
+        <x-row>
+          <x-col span="12">
+            <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
+          </x-col>
+        </x-row>
+      </x-tab>
+      <x-tab label="2222">
+        <x-row>
+          <x-col span="12">
+            <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
+          </x-col>
+        </x-row>
+        <x-row>
+          <x-col span="12">
+            <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
+          </x-col>
+        </x-row>
+      </x-tab>
+    </x-tabs>
+  `,
+  styles: [
+    `
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXSliderSelectTabsComponent {}

@@ -58,7 +58,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     top: ''
   };
   private _unSubject = new Subject<void>();
-  private resizeObserver: ResizeObserver;
+  private _resizeObserver: ResizeObserver;
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
@@ -81,7 +81,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.resizeObserver?.disconnect();
+    this._resizeObserver?.disconnect();
   }
 
   ngAfterViewInit(): void {
@@ -108,7 +108,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     XResize(this.sliderScroll.nativeElement, this.sliderNodes.nativeElement)
       .pipe(debounceTime(30), takeUntil(this._unSubject))
       .subscribe((x) => {
-        this.resizeObserver = x.resizeObserver;
+        this._resizeObserver = x.resizeObserver;
         this.sizeChecked();
         this.setActivated();
       });

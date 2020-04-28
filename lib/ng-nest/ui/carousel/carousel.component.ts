@@ -30,7 +30,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
   private _unSubject = new Subject<void>();
-  private resizeObserver: ResizeObserver;
+  private _resizeObserver: ResizeObserver;
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
@@ -46,16 +46,9 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
       .pipe(debounceTime(30), takeUntil(this._unSubject))
       .subscribe((x) => {
         this.panelChanges.forEach((sub) => sub.next(true));
-        this.resizeObserver = x.resizeObserver;
+        this._resizeObserver = x.resizeObserver;
         this.cdr.detectChanges();
       });
-  }
-
-  ngAfterViewChecked(): void {
-    // const timer = setTimeout(() => {
-    //   this.autoplay && this.resetInterval();
-    //   clearTimeout(timer);
-    // }, 0);
   }
 
   ngOnChanges(simples: SimpleChanges): void {
@@ -65,7 +58,9 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   ngOnDestroy(): void {
     this.timer && clearInterval(this.timer);
     this.panelChanges.forEach((x) => x.complete());
-    this.resizeObserver?.disconnect();
+    this._unSubject.complete();
+    this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
   }
 
   action(index: XNumber, increase: number, event?: string): void {
