@@ -134,6 +134,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
 
   panelClick() {
     if (this.carousel.card && this.carousel.active !== this.index) {
+      this.carousel.autoplay && this.carousel.resetInterval();
       this.carousel.setActiveItem(this.index);
     }
   }

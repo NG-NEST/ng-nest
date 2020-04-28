@@ -11,8 +11,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty, XNumber } from '@ng-nest/ui/core';
-import { BehaviorSubject } from 'rxjs';
+import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize } from '@ng-nest/ui/core';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: `${XCarouselPrefix}`,
@@ -23,10 +24,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class XCarouselComponent extends XCarouselProperty implements OnInit, OnChanges {
   @ViewChild('carousel') carousel: ElementRef;
+  @ViewChild('content') content: ElementRef;
   start: number = -1;
   before: number;
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
+  private _unSubject = new Subject<void>();
+  private resizeObserver: ResizeObserver;
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
@@ -37,14 +41,21 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   ngAfterViewInit() {
-    this.panelChanges.forEach((sub) => sub.next(true));
+    this.resetInterval();
+    XResize(this.content.nativeElement)
+      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.panelChanges.forEach((sub) => sub.next(true));
+        this.resizeObserver = x.resizeObserver;
+        this.cdr.detectChanges();
+      });
   }
 
   ngAfterViewChecked(): void {
-    const timer = setTimeout(() => {
-      this.autoplay && this.resetInterval();
-      clearTimeout(timer);
-    }, 0);
+    // const timer = setTimeout(() => {
+    //   this.autoplay && this.resetInterval();
+    //   clearTimeout(timer);
+    // }, 0);
   }
 
   ngOnChanges(simples: SimpleChanges): void {
@@ -54,6 +65,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   ngOnDestroy(): void {
     this.timer && clearInterval(this.timer);
     this.panelChanges.forEach((x) => x.complete());
+    this.resizeObserver?.disconnect();
   }
 
   action(index: XNumber, increase: number, event?: string): void {

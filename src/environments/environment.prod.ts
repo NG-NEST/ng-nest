@@ -2,5 +2,5 @@ export const environment = {
   production: true,
   layout: 'index',
   defaultPage: 'home',
-  static: ''
+  static: 'https://ngnest.com/static'
 };

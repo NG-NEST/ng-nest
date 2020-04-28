@@ -10,12 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 describe(XCarouselPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCarouselModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
-      declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent]
+      imports: [FormsModule, XCarouselModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule, XTabsModule],
+      declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -47,6 +48,18 @@ describe(XCarouselPrefix, () => {
     let carousel: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCarouselDirectionComponent);
+      fixture.detectChanges();
+      carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
+    });
+    it('should create.', () => {
+      expect(carousel).toBeDefined();
+    });
+  });
+  describe(`tabs.`, () => {
+    let fixture: ComponentFixture<TestXCarouselTabsComponent>;
+    let carousel: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXCarouselTabsComponent);
       fixture.detectChanges();
       carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
@@ -194,5 +207,56 @@ class TestXCarouselCardComponent {
   ]
 })
 class TestXCarouselDirectionComponent {
+  list = [1, 2, 3, 4, 5];
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-tabs>
+        <x-tab label="1111">
+          <x-carousel height="15rem" card>
+            <x-carousel-panel *ngFor="let item of list">
+              <h3>{{ item }}</h3>
+            </x-carousel-panel>
+          </x-carousel>
+        </x-tab>
+        <x-tab label="2222">
+          <x-carousel height="15rem" card>
+            <x-carousel-panel *ngFor="let item of list">
+              <h3>{{ item }}</h3>
+            </x-carousel-panel>
+          </x-carousel>
+        </x-tab>
+      </x-tabs>
+    </div>
+  `,
+  styles: [
+    `
+      .row {
+        width: 100%;
+        padding: 1.625rem 1rem;
+        border: 0.0625rem solid #dcdfe6;
+        background-color: white;
+      }
+      .row:not(:first-child) {
+        margin-top: 2rem;
+      }
+      .row x-carousel-panel:nth-child(odd) {
+        background-color: var(--x-info-800);
+      }
+      .row x-carousel-panel:nth-child(even) {
+        background-color: var(--x-info-600);
+      }
+      .row x-carousel-panel h3 {
+        text-align: center;
+        line-height: 15rem;
+        margin: 0;
+        color: var(--x-text-500);
+      }
+    `
+  ]
+})
+class TestXCarouselTabsComponent {
   list = [1, 2, 3, 4, 5];
 }
