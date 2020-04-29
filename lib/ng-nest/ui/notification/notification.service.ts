@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
 import {
   XNotificationOption,
   XNotificationOverlayRef,
@@ -46,11 +46,12 @@ export class XNotificationService {
   }
 
   create(option: XNotificationOption): XNotificationOverlayRef {
+    const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
     return this.portal.attach({
       content: XNotificationComponent,
       overlayConfig: {
         panelClass: XNotificationPortal,
-        positionStrategy: this.portal.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
       }
     });
   }

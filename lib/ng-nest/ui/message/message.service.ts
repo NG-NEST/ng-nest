@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString } from '@ng-nest/ui/core';
 import { XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal, XMessageOption } from './message.property';
 import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
@@ -25,7 +25,6 @@ export class XMessageService {
   constructor(public portal: XPortalService) {}
 
   info(option: XTemplate | XMessageOption): XMessageRef {
-    console.log(option);
     return this.createMessage(option, 'info');
   }
 
@@ -42,11 +41,12 @@ export class XMessageService {
   }
 
   create(option: XMessageOption): XMessageOverlayRef {
+    const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
     return this.portal.attach({
       content: XMessageComponent,
       overlayConfig: {
         panelClass: XMessagePortal,
-        positionStrategy: this.portal.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
       }
     });
   }

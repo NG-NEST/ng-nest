@@ -7,12 +7,13 @@ import { XBackTopModule } from '@ng-nest/ui/back-top';
 import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 describe(XBackTopPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XBackTopModule, XButtonModule, BrowserAnimationsModule],
-      declarations: [TestXBackTopComponent]
+      imports: [XBackTopModule, XButtonModule, BrowserAnimationsModule, XTabsModule],
+      declarations: [TestXBackTopComponent, TestXBackTopTabsComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -20,6 +21,18 @@ describe(XBackTopPrefix, () => {
     let backTop: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXBackTopComponent);
+      fixture.detectChanges();
+      backTop = fixture.debugElement.query(By.directive(XBackTopComponent));
+    });
+    it('should create.', () => {
+      expect(backTop).toBeDefined();
+    });
+  });
+  describe(`tabs.`, () => {
+    let fixture: ComponentFixture<TestXBackTopTabsComponent>;
+    let backTop: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXBackTopTabsComponent);
       fixture.detectChanges();
       backTop = fixture.debugElement.query(By.directive(XBackTopComponent));
     });
@@ -59,7 +72,7 @@ describe(XBackTopPrefix, () => {
         overflow: auto;
       }
       .scroll .box {
-        height: 30rem;
+        height: 60rem;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -91,3 +104,29 @@ describe(XBackTopPrefix, () => {
 class TestXBackTopComponent {
   buttons = Array.from({ length: 20 }).map((x, i) => `按钮 ${i + 1}`);
 }
+
+@Component({
+  template: `
+    <div class="row">
+      <x-tabs>
+        <x-tab label="1111">
+          <x-back-top> </x-back-top>
+        </x-tab>
+        <x-tab label="2222">
+          <x-back-top right="6rem"> </x-back-top>
+        </x-tab>
+        <x-tab label="3333">
+          <x-back-top right="12rem"> </x-back-top>
+        </x-tab>
+      </x-tabs>
+    </div>
+  `,
+  styles: [
+    `
+      .row {
+        height: 100rem;
+      }
+    `
+  ]
+})
+class TestXBackTopTabsComponent {}

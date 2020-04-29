@@ -2,7 +2,7 @@ import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from '@
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
-import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
+import { XPlacement, XPosition, XPlace, XIsArray } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
@@ -64,27 +64,32 @@ export class XPortalService {
     }
   }
 
-  setPlace(place?: XPlace, offset?: string, width?: string, height?: string): PositionStrategy {
+  setPlace(place?: XPlace, width?: string, height?: string, ...offset: string[]): PositionStrategy {
     let result = this.overlay.position().global().width(width).height(height);
+    if (offset.length === 0) offset = Array.from({ length: 4 }).map(() => `0`);
+    else if (offset.length < 4) {
+      Array.from({ length: 4 - offset.length }).map(() => (offset = [...offset, offset[offset.length - 1]]));
+    }
+    let [top, right, bottom, left] = offset;
     switch (place) {
       case 'top-start':
-        return result.top(offset).left(offset);
+        return result.top(top).left(right);
       case 'top':
-        return result.centerHorizontally().top(offset);
+        return result.centerHorizontally().top(top);
       case 'top-end':
-        return result.top(offset).right(offset);
+        return result.top(bottom).right(left);
       case 'left':
-        return result.centerVertically().left(offset);
+        return result.centerVertically().left(left);
       case 'center':
         return result.centerVertically().centerHorizontally();
       case 'right':
-        return result.centerVertically().right(offset);
+        return result.centerVertically().right(right);
       case 'bottom-start':
-        return result.bottom(offset).left(offset);
+        return result.bottom(bottom).left(left);
       case 'bottom':
-        return result.centerHorizontally().bottom(offset);
+        return result.centerHorizontally().bottom(bottom);
       case 'bottom-end':
-        return result.bottom(offset).right(offset);
+        return result.bottom(bottom).right(right);
       default:
         return result.centerVertically().centerHorizontally();
     }

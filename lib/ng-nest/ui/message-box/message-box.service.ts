@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, fillDefault, XIsString } from '@ng-nest/ui/core';
 import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalService } from '@ng-nest/ui/portal';
@@ -37,12 +37,13 @@ export class XMessageBoxService {
   }
 
   create(option: XMessageBoxOption): XMessageBoxOverlayRef {
+    const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
     return this.portal.attach({
       content: XMessageBoxComponent,
       overlayConfig: {
         panelClass: XMessageBoxPortal,
         hasBackdrop: true,
-        positionStrategy: this.portal.setPlace(option.placement, option.offset, option.width, option.height)
+        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
       }
     });
   }

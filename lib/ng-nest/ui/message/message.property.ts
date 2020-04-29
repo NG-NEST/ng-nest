@@ -26,7 +26,7 @@ export interface XMessageOption extends XAlertOption {
    * 偏移距离
    * @default '2rem'
    */
-  offset?: string;
+  offset?: string | string[];
   /**
    * 类型
    * @default 'info'

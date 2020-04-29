@@ -8,13 +8,17 @@ import {
   ChangeDetectionStrategy,
   Input,
   Inject,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { XClassMap, reqAnimFrame } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
   selector: `${XBackTopPrefix}`,
@@ -28,6 +32,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
     this._target = typeof el === 'string' ? this.doc.querySelector(el) : el;
     this.setScrollEvent();
   }
+  @ViewChild('backTopTpl') backTopTpl: TemplateRef<void>;
 
   get scroll(): HTMLElement | Window {
     return this._target || window;
@@ -52,13 +57,16 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
   classMap: XClassMap = {};
   visiable = false;
   scrolling = false;
-  private unSubject = new Subject();
+  portalRef: XPortalOverlayRef<any>;
+  private _unSubject = new Subject();
   private _target: HTMLElement | null = null;
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
+    public portal: XPortalService,
+    public viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private doc: any
   ) {
     super();
@@ -69,8 +77,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
   }
 
   ngOnDestroy() {
-    this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   onBackTop() {
@@ -79,9 +87,9 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
   }
 
   private setScrollEvent() {
-    this.unSubject.next();
+    this._unSubject.next();
     fromEvent(this.scroll, 'scroll')
-      .pipe(throttleTime(10), takeUntil(this.unSubject))
+      .pipe(throttleTime(20), takeUntil(this._unSubject))
       .subscribe(() => {
         this.setScrolling();
       });
@@ -92,6 +100,17 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
     const visible = scrollTop >= this.visibilityHeight;
     if (this.visiable !== visible) {
       this.visiable = visible;
+      if (this.visiable) {
+        this.portalRef = this.portal.attach({
+          content: this.backTopTpl,
+          viewContainerRef: this.viewContainerRef,
+          overlayConfig: {
+            positionStrategy: this.portal.setPlace('bottom-end', '2.5rem', '2.5rem', ...['0', this.right, this.bottom, '0'])
+          }
+        });
+      } else {
+        this.portalRef?.overlayRef?.hasAttached() && this.portalRef.overlayRef.detach();
+      }
       this.cdr.detectChanges();
     }
   }

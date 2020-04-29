@@ -40,7 +40,6 @@ export class XMessageBoxComponent implements OnInit {
 
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
-      console.log(this.messageBox);
       this.messageBox.input?.callback && this.messageBox.input.callback(this.action, this.getInputValue());
       this.messageBox.ref?.overlayRef?.dispose();
     }
