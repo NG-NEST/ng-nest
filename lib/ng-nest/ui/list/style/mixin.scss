@@ -23,6 +23,8 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        pointer-events: none;
+        user-select: none;
       }
       &:not(:first-child) {
         margin-top: $--x-border-width;

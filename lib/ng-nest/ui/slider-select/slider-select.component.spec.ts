@@ -255,12 +255,12 @@ class TestXSliderSelectDisabledComponent {
       <x-tab label="2222">
         <x-row>
           <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
+            <x-slider-select min="0" max="1" step="0.1" [(ngModel)]="model1"></x-slider-select>
           </x-col>
         </x-row>
         <x-row>
           <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
+            <x-slider-select min="0" max="1" step="0.01" [(ngModel)]="model2"></x-slider-select>
           </x-col>
         </x-row>
       </x-tab>
@@ -274,4 +274,7 @@ class TestXSliderSelectDisabledComponent {
     `
   ]
 })
-class TestXSliderSelectTabsComponent {}
+class TestXSliderSelectTabsComponent {
+  model1 = 0.3;
+  model2 = 0.44;
+}

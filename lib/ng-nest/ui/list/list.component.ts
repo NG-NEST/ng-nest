@@ -83,7 +83,6 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       event.stopPropagation();
       return;
     }
-    event.preventDefault();
     if (node.disabled || (node.selected && this.multiple === 1)) return;
     const selected = !node.selected;
     if (selected) {

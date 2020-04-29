@@ -22,9 +22,9 @@ import { Subscription, Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTimePickerPortalComponent implements OnInit, OnDestroy {
-  @ViewChild('hourRef', { static: true }) hourRef: ElementRef;
-  @ViewChild('minuteRef', { static: true }) minuteRef: ElementRef;
-  @ViewChild('secondRef', { static: true }) secondRef: ElementRef;
+  @ViewChild('hourRef', { static: false }) hourRef: ElementRef;
+  @ViewChild('minuteRef', { static: false }) minuteRef: ElementRef;
+  @ViewChild('secondRef', { static: false }) secondRef: ElementRef;
   now = new Date();
   type: XTimePickerType = 'time';
   model: Date;
@@ -40,34 +40,31 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   hourDate = Array.from({ length: 24 }).map((_, i) => {
     return {
       label: this.prefixZero(i, 2),
-      value: i
+      id: i
     };
   });
   minuteDate = Array.from({ length: 60 }).map((_, i) => {
     return {
       label: this.prefixZero(i, 2),
-      value: i
+      id: i
     };
   });
   secondDate = Array.from({ length: 60 }).map((_, i) => {
     return {
       label: this.prefixZero(i, 2),
-      value: i
+      id: i
     };
   });
 
   valueChange$: Subscription | null = null;
   docClickFunction: Function;
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
-    this.init();
-  }
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.valueChange$ = this.valueChange.subscribe((x: any) => {
       this.value = x;
       this.init();
-      this.cdr.markForCheck();
     });
     setTimeout(
       () =>
@@ -78,11 +75,12 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChange$ && this.valueChange$.unsubscribe();
+    this.valueChange$?.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 
   ngAfterViewInit() {
+    this.init();
     this.setScrollTop();
   }
 
@@ -98,6 +96,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     }
     this.type = this.type;
     this.setTime(this.model);
+    this.cdr.detectChanges();
   }
 
   stopPropagation(event: Event): void {
