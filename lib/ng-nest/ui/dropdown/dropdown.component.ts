@@ -131,6 +131,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
       this.datas = x;
       if (!this.children) {
         this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(x, y, 0));
+      } else {
+        this.nodes = x;
       }
       this.cdr.detectChanges();
     });

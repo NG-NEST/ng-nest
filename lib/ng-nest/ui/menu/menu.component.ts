@@ -12,9 +12,8 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
-import { XClassMap, XIsChange, XIsObservable, XToDataConvert, XIsEmpty, XSetData, XGetChildren } from '@ng-nest/ui/core';
-import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { XClassMap, XIsChange, XIsEmpty, XSetData, XGetChildren } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XMenuPrefix}`,
