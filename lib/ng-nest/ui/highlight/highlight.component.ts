@@ -67,7 +67,6 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
     let result = '';
     for (const key in this.highlightLines) {
       const spt = this.highlightLines[key].split(',');
-      console.log(spt);
       for (const st of spt) {
         const sp = st.split('-');
         const top = this.lineHeight * (Number(sp[0]) - 1);

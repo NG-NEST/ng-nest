@@ -3,6 +3,8 @@ import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from
 import { HttpClient } from '@angular/common/http';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
@@ -13,6 +15,7 @@ import { XCrumbNode } from '@ng-nest/ui/crumb';
 })
 export class XTreeFileComponent extends XTreeFileProperty {
   activatedNode: XTreeFileNode;
+  loading: boolean = false;
 
   get catalogHeight() {
     return Number(this.maxHeight);
@@ -48,12 +51,19 @@ export class XTreeFileComponent extends XTreeFileProperty {
           });
           break;
         case 'img':
-          setTimeout(() => this.cdr.detectChanges());
+          this.cdr.detectChanges();
           break;
       }
     } else {
       this.cdr.detectChanges();
     }
+  }
+
+  imgOnload() {
+    setTimeout(() => {
+      this.loading = false;
+      this.cdr.detectChanges();
+    });
   }
 
   setCurmbData(node: XTreeFileNode) {

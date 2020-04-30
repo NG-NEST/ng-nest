@@ -28,7 +28,7 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   @HostBinding('class.x-loading-parent') get getLoading() {
     return this.loading;
   }
-  @ViewChild('loadingTpl', { static: true }) loadingTpl: TemplateRef<void>;
+  @ViewChild('loadingTpl', { static: false }) loadingTpl: TemplateRef<void>;
   portalRef: XPortalOverlayRef<any>;
 
   constructor(
@@ -51,6 +51,7 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
 
   setClassMap() {
     this.classMap[`${XLoadingPrefix}-${this.size}`] = !XIsEmpty(this.size);
+    this.cdr.markForCheck();
   }
 
   setLoading() {

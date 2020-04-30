@@ -8,12 +8,13 @@ import { XSliderPrefix, XSliderNode } from './slider.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 describe(XSliderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderModule, BrowserAnimationsModule, XIconModule],
-      declarations: [TestXSliderComponent],
+      imports: [XSliderModule, BrowserAnimationsModule, XIconModule, XTabsModule],
+      declarations: [TestXSliderComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -66,6 +67,17 @@ describe(XSliderPrefix, () => {
       <x-slider [data]="data" size="small"> </x-slider>
       <x-slider [data]="data" size="mini"> </x-slider>
     </div>
+    <x-tabs>
+      <x-tab label="1111">
+        <x-slider [data]="data" size="large"> </x-slider>
+      </x-tab>
+      <x-tab label="2222">
+        <x-slider [data]="data" size="large"> </x-slider>
+      </x-tab>
+      <x-tab label="3333">
+        <x-slider [data]="data" size="large"> </x-slider>
+      </x-tab>
+    </x-tabs>
   `,
   styles: [
     `
@@ -75,8 +87,8 @@ describe(XSliderPrefix, () => {
       .custom-node x-icon {
         margin-right: 0.125rem;
       }
-    `,
-  ],
+    `
+  ]
 })
 class TestXSliderComponent {
   data: XData<XSliderNode> = ['用户管理', '配置管理', '角色管理', '任务', '工作', '消息', '流程', '新闻'];
@@ -88,6 +100,6 @@ class TestXSliderComponent {
     '工作',
     '消息',
     '流程',
-    '新闻',
+    '新闻'
   ];
 }

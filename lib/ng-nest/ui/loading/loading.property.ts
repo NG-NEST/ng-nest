@@ -16,7 +16,7 @@ export class XLoadingProperty extends XProperty {
   /**
    * 显示 loading
    */
-  @Input('x-loading') @XInputBoolean() loading: XBoolean;
+  @Input('x-loading') @XInputBoolean() loading: XBoolean = false;
   /**
    * 尺寸
    */

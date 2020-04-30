@@ -37,31 +37,25 @@ describe(XLoadingPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <div [x-loading]="true" size="large">
+      <div x-loading="true" size="big">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
-      <div [x-loading]="true" size="medium">
+      <div x-loading="true" size="large">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
-      <div [x-loading]="true">
+      <div x-loading="true">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
-      <div [x-loading]="true" size="small">
+      <div x-loading="true" size="small">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
-      <div [x-loading]="true" size="mini">
+      <div x-loading="true" size="mini">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
     </div>
 
     <div class="row">
-      <div
-        [x-loading]="true"
-        background="rgba(0,0,0,0.9)"
-        color="rgba(170,170,170,1)"
-        icon="fto-loader"
-        text="努力加载中"
-      >
+      <div [x-loading]="true" background="rgba(0,0,0,0.9)" color="rgba(170,170,170,1)" icon="fto-loader" text="努力加载中">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
     </div>
@@ -129,7 +123,7 @@ class TestXLoadingComponent {
     this.cdr.detectChanges();
     of(true)
       .pipe(delay(2000))
-      .subscribe(x => {
+      .subscribe((x) => {
         this.loading = false;
         this.cdr.detectChanges();
       });

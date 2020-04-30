@@ -11,7 +11,7 @@
       [activated-id]="activatedId"
     ></x-tree>
   </div>
-  <div class="x-tree-file-body">
+  <div class="x-tree-file-body" [x-loading]="loading">
     <div class="x-tree-file-crumb" *ngIf="showCrumb">
       <x-link icon="fto-menu" *ngIf="showToggle && showTree" (click)="menuToggle()"></x-link>
       <x-crumb [data]="activatedNode?.crumbData" [separator]="separatorTpl"></x-crumb>
@@ -20,7 +20,7 @@
       </ng-template>
     </div>
     <div class="x-tree-file-content" [style.max-height.rem]="codeHeight" [ngSwitch]="activatedNode?.fileType">
-      <div *ngSwitchCase="'img'" class="x-tree-file-img"><img [src]="activatedNode?.url" /></div>
+      <div *ngSwitchCase="'img'" class="x-tree-file-img"><img [src]="activatedNode?.url" (load)="imgOnload()"/></div>
       <x-highlight
         *ngSwitchCase="'code'"
         [type]="activatedNode?.type"

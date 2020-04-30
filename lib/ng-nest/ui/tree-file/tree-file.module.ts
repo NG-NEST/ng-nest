@@ -8,10 +8,11 @@ import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { XLoadingModule } from '@ng-nest/ui/loading';
 
 @NgModule({
   declarations: [XTreeFileComponent, XTreeFileProperty],
   exports: [XTreeFileComponent],
-  imports: [CommonModule, HttpClientModule, XTreeModule, XLinkModule, XCrumbModule, XIconModule, XHighlightModule]
+  imports: [CommonModule, HttpClientModule, XTreeModule, XLinkModule, XCrumbModule, XIconModule, XLoadingModule, XHighlightModule]
 })
 export class XTreeFileModule {}

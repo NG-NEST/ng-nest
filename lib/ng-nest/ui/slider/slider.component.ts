@@ -148,11 +148,11 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   setTranslate() {
     if (XIsUndefined(this.sliderScroll) || XIsUndefined(this.sliderNodes)) return;
-    const sliderRect = this.sliderScroll.nativeElement.getBoundingClientRect();
-    const sliderNodesRect = this.sliderNodes.nativeElement.getBoundingClientRect();
+    const sliderRect = this.sliderScroll.nativeElement?.getBoundingClientRect();
+    const sliderNodesRect = this.sliderNodes.nativeElement?.getBoundingClientRect();
     let moveIndex = ['bottom', 'right'].indexOf(this.direction) !== -1 ? Number(this.activatedIndex) + 2 : Number(this.activatedIndex);
     moveIndex = moveIndex > this.nodes.length ? this.nodes.length : moveIndex === 0 ? 1 : moveIndex;
-    let moveEle = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${moveIndex})`);
+    let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
     if (XIsUndefined(moveEle)) return;
     const moveRect = moveEle.getBoundingClientRect();
