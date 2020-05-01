@@ -2,7 +2,6 @@ import { AnimationTriggerMetadata, trigger, state, style, animate, transition } 
 import { XDuration } from './consts';
 
 export const XFadeAnimation: AnimationTriggerMetadata = trigger('x-fade-animation', [
-  state('true', style({ opacity: 0, display: 'none' })),
-  state('false', style({ opacity: 1 })),
-  transition('* => *', animate(`${XDuration.Base} ease-out`))
+  transition(':enter', [style({ opacity: 0 }), animate(`${XDuration.Base} ease-in`, style({ opacity: 1 }))]),
+  transition(':leave', [animate(`${XDuration.Base} ease-out`, style({ opacity: 0 }))])
 ]);

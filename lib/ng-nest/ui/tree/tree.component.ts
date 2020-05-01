@@ -45,13 +45,11 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (XIsObservable(this.data)) {
       XSetData<XTreeNode>(this.data, this._unSubject).subscribe((x) => {
         this.setDataChange(x);
-        this.cdr.detectChanges();
       });
     } else if (XIsFunction(this.data)) {
       this.lazy = true;
       XSetData<XTreeNode>((this.data as Function)(), this._unSubject).subscribe((x) => {
         this.setDataChange(x);
-        this.cdr.detectChanges();
       });
     } else {
       this.setDataChange(this.data as XTreeNode[]);
@@ -71,6 +69,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       return node;
     };
     this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
+    this.cdr.detectChanges();
   }
 
   getCheckedNodes(): XTreeNode[] {

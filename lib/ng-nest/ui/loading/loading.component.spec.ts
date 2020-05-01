@@ -12,11 +12,12 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XLoadingPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XLoadingModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [FormsModule, BrowserAnimationsModule, XLoadingModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXLoadingComponent]
     }).compileComponents();
   }));

@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XTreeFilePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTreeFileModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [FormsModule, BrowserAnimationsModule, XTreeFileModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
       declarations: [TestXTreeFileComponent]
     }).compileComponents();
   }));

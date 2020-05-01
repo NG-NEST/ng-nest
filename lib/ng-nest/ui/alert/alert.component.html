@@ -2,8 +2,9 @@
   #alert
   class="x-alert"
   [ngClass]="classMap"
+  *ngIf="!hide"
+  @x-fade-animation
   [@.disabled]="disabledAnimation"
-  [@x-fade-animation]="hide"
   (@x-fade-animation.done)="onCloseAnimationDone()"
 >
   <ng-container *ngIf="showIcon">

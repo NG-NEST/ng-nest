@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XFadeAnimation } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
@@ -22,7 +22,8 @@ import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XFadeAnimation]
 })
 export class XLoadingComponent extends XLoadingProperty implements OnInit, OnChanges {
   @HostBinding('class.x-loading-parent') get getLoading() {

@@ -3,8 +3,8 @@ import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from
 import { HttpClient } from '@angular/common/http';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, delayWhen } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
@@ -16,6 +16,8 @@ import { delay } from 'rxjs/operators';
 export class XTreeFileComponent extends XTreeFileProperty {
   activatedNode: XTreeFileNode;
   loading: boolean = false;
+  time: number;
+  timeout: number = 500;
 
   get catalogHeight() {
     return Number(this.maxHeight);
@@ -37,33 +39,39 @@ export class XTreeFileComponent extends XTreeFileProperty {
 
   catalogChange(node: XTreeFileNode) {
     if (node?.leaf) return;
-    this.activatedNode = node;
     if (node.url && !node.contentLoaded) {
+      this.time = new Date().getTime();
+      this.loading = true;
+      this.cdr.detectChanges();
+      this.activatedNode = node;
       node.fileType = XTreeFileImgs.indexOf((node.type as string).toLowerCase()) !== -1 ? 'img' : 'code';
       node.crumbData = this.setCurmbData(node);
       node.url = node.url?.indexOf(this.domain) === 0 ? node.url : `${this.domain}/${node.url}`;
       switch (node.fileType) {
         case 'code':
-          this.http.get(node.url, { responseType: 'text' }).subscribe((x) => {
-            node.content = x;
-            node.contentLoaded = true;
-            this.cdr.detectChanges();
-          });
+          this.http
+            .get(node.url, { responseType: 'text' })
+            .pipe(delay(new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time))
+            .subscribe((x) => {
+              node.content = x;
+              node.contentLoaded = true;
+              this.loading = false;
+              this.cdr.detectChanges();
+            });
           break;
         case 'img':
           this.cdr.detectChanges();
           break;
       }
     } else {
+      this.activatedNode = node;
       this.cdr.detectChanges();
     }
   }
 
   imgOnload() {
-    setTimeout(() => {
-      this.loading = false;
-      this.cdr.detectChanges();
-    });
+    this.loading = false;
+    this.cdr.detectChanges();
   }
 
   setCurmbData(node: XTreeFileNode) {
