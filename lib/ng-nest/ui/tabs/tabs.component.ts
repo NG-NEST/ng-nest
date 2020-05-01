@@ -130,6 +130,5 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   private setFirstAndLast() {
     this.classMap[`${XTabsPrefix}-is-first`] = this.activatedIndex === 0;
     this.classMap[`${XTabsPrefix}-is-last`] = this.activatedIndex === this.tabs?.length - 1;
-    console.log(this.classMap);
   }
 }

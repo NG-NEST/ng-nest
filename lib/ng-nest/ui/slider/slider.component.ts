@@ -154,7 +154,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     moveIndex = moveIndex > this.nodes.length ? this.nodes.length : moveIndex === 0 ? 1 : moveIndex;
     let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
-    if (XIsUndefined(moveEle)) return;
+    if (XIsEmpty(moveEle)) return;
     const moveRect = moveEle.getBoundingClientRect();
     const currentOffset = this.offset;
     let offset = currentOffset;
