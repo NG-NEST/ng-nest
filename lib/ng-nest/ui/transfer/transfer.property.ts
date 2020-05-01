@@ -44,9 +44,9 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
  */
 export interface XTransferNode extends XParentIdentityProperty<XTransferNode> {
   /**
-   * checkbox 选中的值
+   * checkbox 是否选中
    */
-  checked?: any[];
+  checked?: boolean;
   /**
    * 序号
    */
@@ -65,7 +65,7 @@ export interface XTransferSource {
   /**
    * 全选
    */
-  checkedAll?: any[];
+  checkedAll?: boolean;
   /**
    * 选中的数量
    */

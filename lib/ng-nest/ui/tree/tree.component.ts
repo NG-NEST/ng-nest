@@ -61,7 +61,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
       node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0;
-      node.checked = this.checked.indexOf(node.id) >= 0 ? [node.id] : [];
+      node.checked = this.checked.indexOf(node.id) >= 0;
       node.childrenLoaded = node.open;
       if (XIsUndefined(node.children)) node.children = value.filter((y) => y.pid === node.id);
       if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) > 0;
@@ -77,7 +77,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const getChildren = (nodes: XTreeNode[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
-        if (!XIsEmpty(x.checked)) result = [...result, x];
+        if (x.checked) result = [...result, x];
         getChildren(x.children as XTreeNode[]);
       });
     };
@@ -93,7 +93,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const setChildren = (nodes: XTreeNode[], clear = false) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
-        x.checked = !clear && keys.indexOf(x.id) >= 0 ? [x.id] : [];
+        x.checked = !clear && keys.indexOf(x.id) >= 0;
         x.change && x.change(true);
         setChildren(x.children as XTreeNode[], clear);
       });

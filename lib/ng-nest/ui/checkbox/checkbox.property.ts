@@ -12,7 +12,7 @@ export const XCheckboxPrefix = 'x-checkbox';
  * Checkbox Property
  */
 @Component({ template: '' })
-export class XCheckboxProperty extends XControlValueAccessor<any[]> {
+export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> {
   /**
    * 单选框数据
    */

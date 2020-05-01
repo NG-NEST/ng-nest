@@ -68,21 +68,19 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  checkedAllChange($event: any[], source: XTransferSource) {
-    const checked = !XIsEmpty($event);
-    let list = source.list?.filter((x) => !x.disabled) as XTransferNode[];
-    list.map((x) => {
-      x.checked = checked ? [x.id] : [];
+  checkedAllChange($event: boolean, source: XTransferSource) {
+    let list = (source.list?.filter((x) => !x.disabled) as XTransferNode[]).map((x) => {
+      x.checked = $event;
       return x;
     });
-    source.checkedCount = checked ? list.length : 0;
-    source.indeterminate = checked;
+    source.checkedCount = $event ? list.length : 0;
+    source.indeterminate = $event;
     this.setButtonDisabled(source);
     this.cdr.detectChanges();
   }
 
-  checkedChange($event: any[], source: XTransferSource) {
-    if (XIsEmpty($event)) (source.checkedCount as number)--;
+  checkedChange($event: boolean, source: XTransferSource) {
+    if (!$event) (source.checkedCount as number)--;
     else (source.checkedCount as number)++;
     this.setCheckedAll(source);
     this.setButtonDisabled(source);
@@ -95,11 +93,11 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     let j = 0;
     checkedItems.forEach((x) => {
       const index = from.list?.indexOf(x) as number;
-      x.checked = [];
+      x.checked = false;
       transferArrayItem(from.list as XTransferNode[], to.list as XTransferNode[], index, j);
       j++;
     });
-    from.checkedAll = [];
+    from.checkedAll = false;
     from.checkedCount = 0;
     from.indeterminate = false;
     from.disabledButton = true;
@@ -130,9 +128,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     for (let source of sources) {
       if ((source.checkedCount as number) > 0) {
         if (source.checkedCount === source.list?.filter((x) => !x.disabled).length) {
-          source.checkedAll = [true];
+          source.checkedAll = true;
         } else {
-          source.checkedAll = [];
+          source.checkedAll = false;
           source.indeterminate = true;
         }
       } else {

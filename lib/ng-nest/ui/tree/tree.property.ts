@@ -85,9 +85,9 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    */
   childrenLoaded?: boolean;
   /**
-   * checkbox 选中的值
+   * checkbox 是否选中
    */
-  checked?: any[];
+  checked?: boolean;
   /**
    * 禁用checkbox
    */

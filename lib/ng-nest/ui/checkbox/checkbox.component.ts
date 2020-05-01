@@ -21,12 +21,13 @@ import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
   providers: [XValueAccessor(XCheckboxComponent)]
 })
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
-  writeValue(value: any[]) {
+  writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();
   }
 
   nodes: XCheckboxNode[] = [];
+  single: boolean = false;
   private _unSubject = new Subject<void>();
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
@@ -39,12 +40,17 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   checkboxClick(event: Event, node: XCheckboxNode) {
     event.preventDefault();
     if (this.disabled || node.disabled) return;
-    if (typeof this.value === 'undefined') this.value = [];
-    let index = this.value.indexOf(node.id);
-    if (index >= 0) {
-      this.value.splice(index, 1);
-      this.value = [...this.value];
-    } else this.value = [...this.value, node.id];
+    if (this.single) {
+      this.value = !this.value;
+    } else {
+      this.value = this.value as Array<any>;
+      if (typeof this.value === 'undefined') this.value = [];
+      let index = this.value.indexOf(node.id);
+      if (index >= 0) {
+        this.value.splice(index, 1);
+        this.value = [...this.value];
+      } else this.value = [...this.value, node.id];
+    }
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
@@ -54,9 +60,15 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     this._unSubject.unsubscribe();
   }
 
+  getChecked(id: any): boolean {
+    if (this.single) return this.value as boolean;
+    else return Array.isArray(this.value) && this.value.includes(id);
+  }
+
   private setData() {
     XSetData<XCheckboxNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
+      this.single = this.nodes.length === 1;
       this.cdr.detectChanges();
     });
   }

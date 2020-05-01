@@ -288,7 +288,15 @@ class TestXTreeCustomComponent {
         </ul>
       </x-col>
       <x-col span="8">
-        <x-tree #treeCom checkbox [data]="service.data" (activatedChange)="activatedChange($event)" [expanded-all]="expandedAll"> </x-tree>
+        <x-tree
+          #treeCom
+          checkbox
+          [data]="service.data"
+          [checked]="[15, 8]"
+          (activatedChange)="activatedChange($event)"
+          [expanded-all]="expandedAll"
+        >
+        </x-tree>
       </x-col>
     </x-row>
   `,

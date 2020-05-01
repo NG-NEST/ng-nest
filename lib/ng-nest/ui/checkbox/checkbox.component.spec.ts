@@ -136,6 +136,9 @@ const iconData: XData<XCheckboxNode> = [
   template: `
     <x-row>
       <x-col span="24">
+        <x-checkbox [data]="['一个选项']" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-checkbox>
+      </x-col>
+      <x-col span="24">
         <x-checkbox [data]="data"></x-checkbox>
       </x-col>
       <x-col span="24">
@@ -152,6 +155,7 @@ const iconData: XData<XCheckboxNode> = [
   ]
 })
 class TestXCheckboxComponent {
+  model1: boolean = true;
   data: XData<XCheckboxNode> = data;
   model = ['钉钉'];
   change(value: string[]) {
@@ -338,17 +342,19 @@ class TestXCheckboxAsyncComponent {
 })
 class TestXCheckboxIndeterminateComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  checkAllData: XData<XCheckboxNode> = [{ id: true, label: '全选' }];
-  checkAll = [false];
+  checkAllData: XData<XCheckboxNode> = ['全选'];
+  checkAll = false;
   indeterminate = true;
   data: string[] = ['QQ', '微信', '钉钉', '微博'];
   model: any = ['QQ'];
-  change(value: boolean[]) {
-    this.model = value.indexOf(true) >= 0 ? this.data.map((x) => x) : [];
+  change(value: boolean) {
+    this.model = value ? this.data.map((x) => x) : [];
     this.indeterminate = false;
+    this.cdr.detectChanges();
   }
   itemChange(value: string[]) {
-    this.checkAll = [value.length === this.data.length];
+    this.checkAll = value.length === this.data.length;
     this.indeterminate = value.length > 0 && value.length < this.data.length;
+    this.cdr.detectChanges();
   }
 }

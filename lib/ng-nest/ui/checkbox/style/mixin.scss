@@ -96,6 +96,7 @@
   }
   &-label {
     margin-left: 0.325rem;
+    user-select: none;
   }
   &.x-disabled {
     .#{$--x-checkbox-prefix}-item {
