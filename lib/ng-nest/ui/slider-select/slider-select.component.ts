@@ -33,6 +33,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
   left: number = 0;
   visible: boolean = false;
+  manual: boolean = false;
   start: number;
   value = 0;
   displayValue = '0';
@@ -113,8 +114,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   started(drag: CdkDragStart) {
     const start = this.left;
     this.start = start;
+    this.manual = true;
     this.visible = true;
-    this.tooltip.show();
     this.cdr.detectChanges();
     this.dragStarted.emit(drag);
   }
@@ -129,8 +130,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   ended(drag: CdkDragEnd) {
+    this.manual = false;
     this.visible = false;
-    this.tooltip.hide();
     this.cdr.detectChanges();
     this.dragEnded.emit(drag);
   }
