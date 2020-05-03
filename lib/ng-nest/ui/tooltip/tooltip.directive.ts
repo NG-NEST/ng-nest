@@ -17,15 +17,19 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   @HostListener('mouseenter') mouseenter() {
-    this.show();
+    !this.manual && this.show();
   }
 
   @HostListener('mouseleave') mouseleave() {
-    this.hide();
+    !this.manual && this.hide();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.content) && this.contentChange.next(this.content);
+    if (XIsChange(changes.visible)) {
+      if (this.visible) this.show();
+      else this.hide();
+    }
   }
 
   ngOnDestroy(): void {

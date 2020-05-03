@@ -1,4 +1,4 @@
-import { XPlacement, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XPlacement, XInputBoolean, XBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Directive } from '@angular/core';
 
 /**
@@ -25,6 +25,10 @@ export class XTooltipProperty {
    * 显示/隐藏
    */
   @Input() @XInputBoolean() visible: XBoolean;
+  /**
+   * 手动处理关闭事件
+   */
+  @Input() @XInputBoolean() manual: XBoolean;
 }
 
 /**

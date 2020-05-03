@@ -12,7 +12,7 @@ describe(XTooltipPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XTooltipModule, XButtonModule],
-      declarations: [TestXTooltipComponent],
+      declarations: [TestXTooltipComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -56,6 +56,9 @@ describe(XTooltipPrefix, () => {
         ><x-button x-tooltip content="下右下右下右下右下右下右下右下右下右下右" placement="bottom-end">下右</x-button>
       </div>
     </div>
+    <div class="row">
+      <x-button x-tooltip content="自定义控制显示/隐藏" [visible]="visible" (click)="custom()" manual>自定义控制显示/隐藏</x-button>
+    </div>
   `,
   styles: [
     `
@@ -86,13 +89,15 @@ describe(XTooltipPrefix, () => {
         clear: both;
         text-align: center;
       }
-    `,
-  ],
+    `
+  ]
 })
 class TestXTooltipComponent {
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(() => {
-      this.cdr.detectChanges();
-    });
+  visible = false;
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  custom() {
+    this.visible = !this.visible;
+    this.cdr.detectChanges();
   }
 }
