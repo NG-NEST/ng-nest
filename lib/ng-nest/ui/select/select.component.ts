@@ -17,6 +17,7 @@ import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData } from '@n
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -63,7 +64,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     public renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
   ) {
     super();
   }
@@ -166,7 +168,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       overlayConfig: {
         backdropClass: '',
         width: this.box.width,
-        positionStrategy: this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end')
+        positionStrategy: this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end'),
+        scrollStrategy: this.overlay.scrollStrategies.reposition()
       }
     });
     this.setInstance();

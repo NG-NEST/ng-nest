@@ -19,6 +19,7 @@ import { XTimePickerPrefix, XTimePickerType, XTimePickerProperty } from './time-
 import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XTimePickerPrefix}`,
@@ -68,7 +69,8 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private overlay: Overlay
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XTimePickerPrefix);
@@ -146,7 +148,8 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPlacement()
+        positionStrategy: this.setPlacement(),
+        scrollStrategy: this.overlay.scrollStrategies.reposition()
       }
     });
     this.setInstance();

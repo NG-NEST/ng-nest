@@ -17,6 +17,7 @@ import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.proper
 import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'x-cascade',
@@ -62,7 +63,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XCascadePrefix);
@@ -142,7 +144,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPlacement()
+        positionStrategy: this.setPlacement(),
+        scrollStrategy: this.overlay.scrollStrategies.reposition()
       }
     });
     this.setInstance();

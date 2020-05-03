@@ -18,6 +18,7 @@ import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './
 import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
@@ -76,7 +77,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private overlay: Overlay
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XDatePickerPrefix);
@@ -175,7 +177,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPlacement()
+        positionStrategy: this.setPlacement(),
+        scrollStrategy: this.overlay.scrollStrategies.reposition()
       }
     });
     this.setInstance();

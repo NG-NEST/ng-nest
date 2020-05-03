@@ -15,6 +15,7 @@ import {
 import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
 import { XValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'x-color-picker',
@@ -57,7 +58,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XColorPickerPrefix);
@@ -119,7 +121,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         backdropClass: '',
-        positionStrategy: this.setPlacement()
+        positionStrategy: this.setPlacement(),
+        scrollStrategy: this.overlay.scrollStrategies.reposition()
       }
     });
     this.setInstance();
