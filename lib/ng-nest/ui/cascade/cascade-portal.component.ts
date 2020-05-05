@@ -6,39 +6,54 @@ import {
   OnInit,
   NgZone,
   Renderer2,
-  OnDestroy
+  OnDestroy,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XCascadeNode } from './cascade.property';
-import { XIsEmpty } from '@ng-nest/ui/core';
-import { Subscription, Subject } from 'rxjs';
+import { XIsEmpty, XCorner, XConnectAnimation } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-cascade-portal',
   templateUrl: './cascade-portal.component.html',
   styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XConnectAnimation]
 })
 export class XCascadePortalComponent implements OnInit, OnDestroy {
+  @HostBinding('@x-connect-animation') public placement: XCorner;
+  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+    event.toState === 'void' && this.destroyPortal();
+  }
+
   nodes: XCascadeNode[][] = [];
   datas: XCascadeNode[] = [];
   selecteds: XCascadeNode[] = [];
   value: any;
   valueChange: Subject<any>;
+  positionChange: Subject<any>;
   closePortal: Function;
+  destroyPortal: Function;
   nodeEmit: Function;
   values: XCascadeNode[] = [];
-  valueChange$: Subscription | null = null;
   docClickFunction: Function;
+  private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.init();
-    this.valueChange$ = this.valueChange.subscribe((x) => {
+    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.value = x;
       this.init();
-      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.cdr.detectChanges();
     });
     setTimeout(
       () =>
@@ -49,7 +64,8 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 
@@ -69,14 +85,12 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     let node = this.datas.find((x) => x.id === this.value) as XCascadeNode;
     this.selecteds = [node];
     this.nodes = [this.datas.filter((x) => x.pid === node.pid)];
-    console.log(this.nodes);
     while (!XIsEmpty(node.pid)) {
       node = this.datas.find((x) => x.id === node.pid) as XCascadeNode;
       this.selecteds = [node, ...this.selecteds];
       this.nodes = [this.datas.filter((x) => x.pid === node.pid), ...this.nodes];
     }
     this.values = this.selecteds.map((x) => x.id) as XCascadeNode[];
-    console.log(this.values, this.nodes);
   }
 
   nodeClick(node: XCascadeNode) {

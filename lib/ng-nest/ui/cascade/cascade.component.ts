@@ -14,10 +14,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.property';
-import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren } from '@ng-nest/ui/core';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner } from '@ng-nest/ui/core';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-cascade',
@@ -57,6 +58,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
+  positionChange: Subject<any> = new Subject();
 
   constructor(
     public renderer: Renderer2,
@@ -130,25 +132,39 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portal?.overlayRef?.detach();
       return true;
     }
     return false;
   }
 
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
+  }
+
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XCascadePortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.setPlacement(),
-        scrollStrategy: this.overlay.scrollStrategies.reposition()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -158,8 +174,11 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       datas: this.datas,
       nodes: [this.nodes],
       value: this.value,
+      placement: this.placement,
       valueChange: this.valueChange,
+      positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: { node: XCascadeNode; label: string }) => this.onNodeClick(node)
     });
     componentRef.changeDetectorRef.detectChanges();
@@ -189,7 +208,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
   }
 
   setPortal() {

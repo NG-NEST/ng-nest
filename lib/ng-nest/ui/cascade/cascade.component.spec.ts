@@ -8,17 +8,13 @@ import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XCascadePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule],
-      declarations: [
-        TestXCascadeComponent,
-        TestXCascadeLabelComponent,
-        TestXCascadeDisabledComponent,
-        TestXCascadeRequiredComponent
-      ]
+      imports: [BrowserAnimationsModule, XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      declarations: [TestXCascadeComponent, TestXCascadeLabelComponent, TestXCascadeDisabledComponent, TestXCascadeRequiredComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -147,7 +143,7 @@ class TestXCascadeComponent {
   model2 = 22;
   model3 = 10;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -188,7 +184,7 @@ class TestXCascadeLabelComponent {
   data = data;
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -246,7 +242,7 @@ class TestXCascadeRequiredComponent {
   model1: any;
   model2: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
