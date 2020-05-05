@@ -8,11 +8,12 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXTimePickerComponent,
         TestXTimePickerLabelComponent,
@@ -109,7 +110,7 @@ class TestXTimePickerComponent {
   model1: any;
   model2 = new Date();
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(x => {
+    interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -149,7 +150,7 @@ class TestXTimePickerComponent {
 class TestXTimePickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -204,7 +205,7 @@ class TestXTimePickerDisabledComponent {
 class TestXTimePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -234,7 +235,7 @@ class TestXTimePickerRequiredComponent {
 class TestXTimePickerHourOrMinuteComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(x => {
+    interval(50).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

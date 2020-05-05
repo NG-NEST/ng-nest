@@ -1,5 +1,5 @@
 import { XTimePickerPortalComponent } from './time-picker-portal.component';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { Subject } from 'rxjs';
 import {
   Component,
@@ -16,10 +16,11 @@ import {
   Output
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerType, XTimePickerProperty } from './time-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XCorner } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XTimePickerPrefix}`,
@@ -59,9 +60,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
@@ -134,25 +136,39 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portal?.overlayRef?.detach();
       return true;
     }
     return false;
   }
 
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
+  }
+
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XTimePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.setPlacement(),
-        scrollStrategy: this.overlay.scrollStrategies.reposition()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -161,8 +177,11 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     Object.assign(componentRef.instance, {
       type: this.type,
       value: this.value,
+      placement: this.placement,
       valueChange: this.valueChange,
+      positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node)
     });
     componentRef.changeDetectorRef.detectChanges();
@@ -180,7 +199,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
   }
 
   setPortal() {

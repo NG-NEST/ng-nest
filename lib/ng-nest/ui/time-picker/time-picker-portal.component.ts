@@ -8,20 +8,29 @@ import {
   Renderer2,
   OnDestroy,
   ViewChild,
-  ElementRef
+  ElementRef,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XTimePickerPortalPrefix, XTimePickerType } from './time-picker.property';
-import { XIsEmpty, reqAnimFrame } from '@ng-nest/ui/core';
+import { XIsEmpty, reqAnimFrame, XConnectAnimation, XCorner } from '@ng-nest/ui/core';
 import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XConnectAnimation]
 })
 export class XTimePickerPortalComponent implements OnInit, OnDestroy {
+  @HostBinding('@x-connect-animation') public placement: XCorner;
+  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+    event.toState === 'void' && this.destroyPortal();
+  }
+
   @ViewChild('hourRef', { static: false }) hourRef: ElementRef;
   @ViewChild('minuteRef', { static: false }) minuteRef: ElementRef;
   @ViewChild('secondRef', { static: false }) secondRef: ElementRef;
@@ -31,7 +40,9 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   _type: XTimePickerType;
   value: any;
   valueChange: Subject<any>;
+  positionChange: Subject<any>;
   closePortal: Function;
+  destroyPortal: Function;
   nodeEmit: Function;
 
   hour: number = 0;
@@ -56,15 +67,19 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     };
   });
 
-  valueChange$: Subscription | null = null;
   docClickFunction: Function;
+  private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueChange$ = this.valueChange.subscribe((x: any) => {
+    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: any) => {
       this.value = x;
       this.init();
+    });
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.cdr.detectChanges();
     });
     setTimeout(
       () =>
@@ -75,7 +90,8 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 

@@ -1,4 +1,4 @@
-import { XControlValueAccessor } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XCorner } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -25,6 +25,10 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    * 节点点击的事件
    */
   @Output() nodeClick = new EventEmitter<number>();
+  /**
+   * 展示方位
+   */
+  @Input() placement: XCorner = 'bottom-start';
 }
 
 /**
