@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -26,9 +26,13 @@ export class XDatePickerProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() clearable: XBoolean = true;
   /**
-   *
+   * 节点点击的事件
    */
   @Output() nodeClick = new EventEmitter<number>();
+  /**
+   * 展示方位
+   */
+  @Input() placement: XCorner = 'bottom-start';
 }
 
 /**

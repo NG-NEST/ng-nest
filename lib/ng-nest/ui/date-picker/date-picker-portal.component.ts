@@ -6,40 +6,53 @@ import {
   OnInit,
   Renderer2,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
-import { XIsEmpty } from '@ng-nest/ui/core';
-import { Subscription, Subject } from 'rxjs';
+import { XIsEmpty, XConnectAnimation, XCorner } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
   templateUrl: './date-picker-portal.component.html',
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XConnectAnimation]
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
+  @HostBinding('@x-connect-animation') public placement: XCorner;
+  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+    event.toState === 'void' && this.destroyPortal();
+  }
+
   type: XDatePickerType = 'date';
   display = new Date();
   model: Date;
   startYear: number;
   value: any;
   valueChange: Subject<any>;
+  positionChange: Subject<any>;
   closePortal: Function;
+  destroyPortal: Function;
   nodeEmit: Function;
-
-  private _type: XDatePickerType;
-
-  valueChange$: Subscription | null = null;
   docClickFunction: Function;
+  private _type: XDatePickerType;
+  private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueChange$ = this.valueChange.subscribe((x) => {
+    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.value = x;
       this.init();
+    });
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.cdr.detectChanges();
     });
     setTimeout(
       () =>
@@ -54,7 +67,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   ngOnDestroy(): void {
-    this.valueChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 

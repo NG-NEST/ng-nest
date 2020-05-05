@@ -1,5 +1,5 @@
 import { XDatePickerPortalComponent } from './date-picker-portal.component';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import {
   Component,
@@ -15,10 +15,11 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
@@ -65,11 +66,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  scrollFunction: Function;
-  resizeFunction: Function;
-  private data$: Subscription | null = null;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
@@ -101,7 +101,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   ngOnDestroy(): void {
-    this.data$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   setFormat() {
@@ -163,25 +164,39 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portal?.overlayRef?.detach();
       return true;
     }
     return false;
   }
 
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
+  }
+
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XDatePickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.setPlacement(),
-        scrollStrategy: this.overlay.scrollStrategies.reposition()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -190,8 +205,11 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     Object.assign(componentRef.instance, {
       type: this.type,
       value: this.numberValue,
+      placement: this.placement,
       valueChange: this.valueChange,
+      positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node)
     });
     componentRef.changeDetectorRef.detectChanges();
