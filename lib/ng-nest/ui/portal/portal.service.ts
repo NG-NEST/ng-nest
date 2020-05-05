@@ -2,7 +2,7 @@ import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from '@
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
-import { XPlacement, XPosition, XPlace, XIsArray } from '@ng-nest/ui/core';
+import { XPlacement, XPosition, XPlace, XIsArray, XInvertKeyValues } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
@@ -44,7 +44,7 @@ export class XPortalService {
       return this.overlay
         .position()
         .flexibleConnectedTo(elementRef)
-        .withPositions(this.setConnectedPosition(...placement))
+        .withPositions(this.setConnectedPosition(...placement));
     }
   }
 

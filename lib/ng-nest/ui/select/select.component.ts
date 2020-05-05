@@ -13,11 +13,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData } from '@ng-nest/ui/core';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner } from '@ng-nest/ui/core';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -55,10 +56,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;
-  scrollFunction: Function;
-  resizeFunction: Function;
-  private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
@@ -133,10 +133,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portal?.overlayRef?.detach();
       return true;
     }
     return false;
+  }
+
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
   }
 
   showPortal() {
@@ -162,17 +166,34 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
+    const config: OverlayConfig = {
+      backdropClass: '',
+      width: this.box.width,
+      positionStrategy: this.portalService.setPlacement(
+        this.inputCom.input,
+        this.placement,
+        'bottom-start',
+        'bottom-end',
+        'top-start',
+        'top-end'
+      ),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XSelectPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        width: this.box.width,
-        positionStrategy: this.portalService.setPlacement(this.inputCom.input, 'bottom-start', 'bottom-end', 'top-start', 'top-end'),
-        scrollStrategy: this.overlay.scrollStrategies.reposition()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -181,8 +202,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     Object.assign(componentRef.instance, {
       data: this.nodes,
       value: this.value,
+      placement: this.placement,
       valueChange: this.valueChange,
+      positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node)
     });
     componentRef.changeDetectorRef.detectChanges();

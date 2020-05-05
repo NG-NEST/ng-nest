@@ -1,6 +1,7 @@
 import { TemplateRef, ViewContainerRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { ComponentType, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { OverlayRef, OverlayConfig, ConnectedPosition } from '@angular/cdk/overlay';
+import { XInvertKeyValues } from '@ng-nest/ui/core';
 
 /**
  * Portal
@@ -23,6 +24,8 @@ export const XPortalPlacement: { [proptery: string]: ConnectedPosition } = {
   'top-end': { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
   'top-start': { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' }
 };
+
+export const XPortalConnectedPosition: Map<ConnectedPosition, string> = XInvertKeyValues(XPortalPlacement);
 
 /**
  * Portal Property

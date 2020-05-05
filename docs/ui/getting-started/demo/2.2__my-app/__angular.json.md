@@ -1,3 +1,3 @@
 ---
-primary: '28'
+primary: '27'
 ---

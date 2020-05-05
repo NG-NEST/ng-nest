@@ -9,11 +9,12 @@ import { XSelectPrefix, XSelectNode } from './select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,

@@ -69,14 +69,19 @@ export function XSetData<T>(data: XData<T>, unSubject: Subject<void>): Observabl
   });
 }
 
-export function XSetClassMap() {}
-
 export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], node: T, level: number) {
   node.level = level;
   node.children = nodes.filter((y) => y.pid === node.id);
   node.leaf = node.children?.length > 0;
   if (node.leaf) node.children.map((y) => XGetChildren(nodes, y, level + 1));
   return node;
+}
+
+export function XInvertKeyValues(obj: any): Map<any, any> {
+  return Object.keys(obj).reduce((nw, key) => {
+    nw.set(obj[key], key);
+    return nw;
+  }, new Map());
 }
 
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
