@@ -1,5 +1,5 @@
-import { XControlValueAccessor } from '@ng-nest/ui/core';
-import { Component } from '@angular/core';
+import { XControlValueAccessor, XCorner } from '@ng-nest/ui/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * ColorPicker
@@ -12,7 +12,12 @@ export const XColorPickerPrefix = 'x-color-picker';
  * ColorPicker Property
  */
 @Component({ template: '' })
-export class XColorPickerProperty extends XControlValueAccessor<string> {}
+export class XColorPickerProperty extends XControlValueAccessor<string> {
+  /**
+   * 展示方位
+   */
+  @Input() placement: XCorner = 'bottom-start';
+}
 
 /**
  * 颜色种类

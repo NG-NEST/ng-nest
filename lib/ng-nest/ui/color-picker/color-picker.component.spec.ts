@@ -8,11 +8,12 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix } from './color-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XColorPickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,

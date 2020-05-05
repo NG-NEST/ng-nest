@@ -9,14 +9,17 @@ import {
   NgZone,
   Renderer2,
   OnDestroy,
-  ViewChild
+  ViewChild,
+  HostListener,
+  HostBinding
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XConnectAnimation } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subscription, Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
@@ -24,18 +27,25 @@ import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
   styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DecimalPipe, PercentPipe]
+  providers: [DecimalPipe, PercentPipe],
+  animations: [XConnectAnimation]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
-  value: string;
+  @HostBinding('@x-connect-animation') public placement: XCorner;
+  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+    event.toState === 'void' && this.destroyPortal();
+  }
+
   @ViewChild('panelRef', { static: true }) panelRef: ElementRef;
   @ViewChild('plateRef', { static: true }) plateRef: ElementRef;
   @ViewChild('transparentCom', { static: true }) transparentCom: XSliderSelectComponent;
+  value: string;
   transparentRail: HTMLElement;
-  valueChange$: Subscription | null = null;
   docClickFunction: Function;
   valueChange: Subject<string>;
+  positionChange: Subject<any>;
   closePortal: Function;
+  destroyPortal: Function;
   nodeEmit: Function;
 
   sliderColorNum = 0;
@@ -51,6 +61,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = { h: 0, a: 1 };
   hex: string;
 
+  private _unSubject = new Subject<void>();
+
   constructor(
     public elementRef: ElementRef,
     public renderer: Renderer2,
@@ -64,10 +76,14 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.valueChange$ = this.valueChange.subscribe((x) => {
+    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: string) => {
       this.value = x;
       this.init();
-      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.cdr.detectChanges();
     });
     setTimeout(
       () =>
@@ -78,7 +94,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.valueChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.docClickFunction && this.docClickFunction();
   }
 

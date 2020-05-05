@@ -55,10 +55,10 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   protalHeight: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  private _unSubject = new Subject<void>();
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,

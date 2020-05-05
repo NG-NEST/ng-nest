@@ -1,5 +1,5 @@
 import { XColorPickerPortalComponent } from './color-picker-portal.component';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import {
   Component,
@@ -13,9 +13,10 @@ import {
   ViewChild
 } from '@angular/core';
 import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
-import { XValueAccessor, XIsEmpty } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XCorner } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-color-picker',
@@ -52,6 +53,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
@@ -71,6 +74,11 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   ngAfterViewInit() {
     this.setPortal();
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   menter() {
@@ -107,25 +115,39 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portal?.overlayRef?.detach();
       return true;
     }
     return false;
   }
 
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
+  }
+
   showPortal() {
     if (this.disabled) return;
     if (this.closePortal()) return;
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XColorPickerPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.setPlacement(),
-        scrollStrategy: this.overlay.scrollStrategies.reposition()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -133,8 +155,11 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
       value: this.value,
+      placement: this.placement,
       valueChange: this.valueChange,
+      positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
       nodeEmit: (color: string) => this.onNodeClick(color)
     });
     componentRef.changeDetectorRef.detectChanges();
