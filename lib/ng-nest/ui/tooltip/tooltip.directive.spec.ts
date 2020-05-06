@@ -7,11 +7,12 @@ import { By } from '@angular/platform-browser';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
 import { interval } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XTooltipPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTooltipModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XTooltipModule, XButtonModule],
       declarations: [TestXTooltipComponent]
     }).compileComponents();
   }));

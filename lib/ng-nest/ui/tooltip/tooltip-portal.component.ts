@@ -9,49 +9,63 @@ import {
   ViewChild,
   Renderer2,
   HostListener,
-  AfterViewInit
+  AfterViewInit,
+  HostBinding
 } from '@angular/core';
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { XTooltipPortalPrefix } from './tooltip.property';
-import { XPlacement, XClassMap } from '@ng-nest/ui/core';
+import { XPlacement, XClassMap, XFadeAnimation } from '@ng-nest/ui/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XTooltipPortalPrefix}`,
   templateUrl: './tooltip-portal.component.html',
   styleUrls: ['./tooltip-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XFadeAnimation]
 })
 export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, AfterViewInit {
+  @HostListener('mouseenter') mouseenter() {
+    this.portalHover(true);
+  }
+  @HostListener('mouseleave') mouseleave() {
+    this.portalHover(false);
+  }
+
+  @HostBinding('@x-fade-animation') animation: any;
+
+  @ViewChild('tooltipPortal', { static: true }) tooltipPortal: ElementRef;
+  @ViewChild('tooltipArrow', { static: false }) tooltipArrow: ElementRef;
+
   contentChange: BehaviorSubject<any>;
-  contentChange$: Subscription | null = null;
   classMap: XClassMap = {};
   box: DOMRect;
   portalBox: DOMRect;
   arrowBox: DOMRect;
   portalHover: Function;
   viewInit: Function;
+  destroy: Function;
   placement: XPlacement;
+  previousPlacement: XPlacement;
   content: string;
-  @ViewChild('tooltipPortal', { static: true }) tooltipPortal: ElementRef;
-  @ViewChild('tooltipArrow', { static: false }) tooltipArrow: ElementRef;
-
-  @HostListener('mouseenter') mouseenter() {
-    this.portalHover(true);
-  }
-
-  @HostListener('mouseleave') mouseleave() {
-    this.portalHover(false);
-  }
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.contentChange$ = this.contentChange.subscribe((x) => {
+    this.contentChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.content = x;
       this.cdr.detectChanges();
     });
-    this.classMap[`${XTooltipPortalPrefix}-${this.placement}`] = true;
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.setClassMap();
+      setTimeout(() => this.setArrow());
+      this.cdr.detectChanges();
+    });
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -63,7 +77,14 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
   }
 
   ngOnDestroy(): void {
-    this.contentChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    this.classMap[`${XTooltipPortalPrefix}-${this.previousPlacement}`] = false;
+    this.classMap[`${XTooltipPortalPrefix}-${this.placement}`] = true;
+    this.previousPlacement = `${this.placement}` as XPlacement;
   }
 
   setArrow() {

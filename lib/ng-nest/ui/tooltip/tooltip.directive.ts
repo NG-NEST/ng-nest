@@ -1,18 +1,27 @@
 import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
 import { XTooltipPrefix, XTooltipProperty } from './tooltip.property';
-import { BehaviorSubject } from 'rxjs';
-import { XIsChange } from '@ng-nest/ui/core';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { XIsChange, XPlacement } from '@ng-nest/ui/core';
+import { takeUntil } from 'rxjs/operators';
+import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, Overlay } from '@angular/cdk/overlay';
 
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
   portal: XPortalOverlayRef<XTooltipPortalComponent>;
   box: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
+  positionChange: Subject<any> = new Subject();
   timeoutHide: any;
+  private _unSubject = new Subject();
 
-  constructor(private elementRef: ElementRef, private portalService: XPortalService, private viewContainerRef: ViewContainerRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private portalService: XPortalService,
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
+  ) {
     super();
   }
 
@@ -33,7 +42,7 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   ngOnDestroy(): void {
-    this.contentChange.complete();
+    this.contentChange.unsubscribe();
   }
 
   show() {
@@ -54,30 +63,26 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   createPortal() {
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.portalService.setPlacement(this.elementRef, this.placement, 'bottom', 'top', 'left', 'right'),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XTooltipPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.portalService.setPlacement(
-          this.elementRef,
-          this.placement,
-          'bottom-start',
-          'bottom',
-          'bottom-end',
-          'top-start',
-          'top',
-          'top-end',
-          'left-start',
-          'left',
-          'left-end',
-          'right-start',
-          'right',
-          'right-end'
-        )
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -89,6 +94,7 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
       content: this.content,
       contentChange: this.contentChange,
       placement: this.placement,
+      positionChange: this.positionChange,
       portalHover: (hover: boolean) => {
         if (this.timeoutHide && hover) {
           clearTimeout(this.timeoutHide);
