@@ -8,11 +8,12 @@ import { XPopoverModule } from '@ng-nest/ui/popover';
 import { XPopoverPrefix } from './popover.property';
 import { interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XPopoverPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XPopoverModule, XButtonModule, XIconModule],
+      imports: [BrowserAnimationsModule, XPopoverModule, XButtonModule, XIconModule],
       declarations: [TestXPopoverComponent]
     }).compileComponents();
   }));

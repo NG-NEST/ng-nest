@@ -8,39 +8,23 @@ import {
   OnDestroy,
   ViewChild,
   Renderer2,
-  HostListener
+  HostListener,
+  HostBinding
 } from '@angular/core';
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { XPopoverPortalPrefix, XPopoverTrigger } from './popover.property';
-import { XTemplate, XPlacement, XClassMap } from '@ng-nest/ui/core';
+import { XTemplate, XPlacement, XClassMap, XFadeAnimation } from '@ng-nest/ui/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XPopoverPortalPrefix}`,
   templateUrl: './popover-portal.component.html',
   styleUrls: ['./popover-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XFadeAnimation]
 })
 export class XPopoverPortalComponent implements OnInit, OnDestroy {
-  contentChange$: Subscription | null = null;
-  classMap: XClassMap = {};
-  box: DOMRect;
-  portalBox: DOMRect;
-  arrowBox: DOMRect;
-  docClickFunction: Function;
-  title: XTemplate;
-  content: XTemplate;
-  footer: XTemplate;
-  contentChange: BehaviorSubject<any>;
-  trigger: XPopoverTrigger;
-  placement: XPlacement;
-  portalHover: Function;
-  closePortal: Function;
-  viewInit: Function;
-  width: string;
-  @ViewChild('popoverPortal', { static: true }) popoverPortal: ElementRef;
-  @ViewChild('popoverArrow', { static: true }) popoverArrow: ElementRef;
-
   @HostListener('mouseenter') mouseenter() {
     if (this.trigger === 'hover') {
       this.portalHover(true);
@@ -53,11 +37,41 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostBinding('@x-fade-animation') animation: any;
+
+  @ViewChild('popoverPortal', { static: true }) popoverPortal: ElementRef;
+  @ViewChild('popoverArrow', { static: true }) popoverArrow: ElementRef;
+
+  classMap: XClassMap = {};
+  box: DOMRect;
+  portalBox: DOMRect;
+  arrowBox: DOMRect;
+  docClickFunction: Function;
+  title: XTemplate;
+  content: XTemplate;
+  footer: XTemplate;
+  contentChange: BehaviorSubject<any>;
+  trigger: XPopoverTrigger;
+  placement: XPlacement;
+  previousPlacement: XPlacement;
+  portalHover: Function;
+  closePortal: Function;
+  viewInit: Function;
+  width: string;
+  positionChange: Subject<any> = new Subject();
+  private _unSubject = new Subject<void>();
+
   constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.contentChange$ = this.contentChange.subscribe((x) => {
+    this.contentChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.content = x;
+      this.cdr.detectChanges();
+    });
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.setClassMap();
+      setTimeout(() => this.setArrow());
       this.cdr.detectChanges();
     });
     if (this.trigger === 'click') {
@@ -68,7 +82,7 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
           }))
       );
     }
-    this.classMap[`${XPopoverPortalPrefix}-${this.placement}`] = true;
+    this.setClassMap();
   }
 
   stopPropagation(event: Event): void {
@@ -83,11 +97,16 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  ngAfterContentInit() {}
-
   ngOnDestroy(): void {
-    this.contentChange$?.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.docClickFunction && this.docClickFunction();
+  }
+
+  setClassMap() {
+    this.classMap[`${XPopoverPortalPrefix}-${this.previousPlacement}`] = false;
+    this.classMap[`${XPopoverPortalPrefix}-${this.placement}`] = true;
+    this.previousPlacement = `${this.placement}` as XPlacement;
   }
 
   setArrow() {

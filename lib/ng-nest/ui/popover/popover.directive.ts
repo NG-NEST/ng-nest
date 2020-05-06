@@ -1,17 +1,28 @@
 import { OnInit, ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges } from '@angular/core';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPrefix, XPopoverProperty } from './popover.property';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, Overlay } from '@angular/cdk/overlay';
+import { takeUntil } from 'rxjs/operators';
+import { XPlacement, XIsChange } from '@ng-nest/ui/core';
 
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverDirective extends XPopoverProperty implements OnInit, OnChanges {
   portal: XPortalOverlayRef<XPopoverPortalComponent>;
   box: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
+  positionChange: Subject<any> = new Subject();
   timeoutHide: any;
+  private _unSubject = new Subject();
+  private realPlacement: XPlacement;
 
-  constructor(private elementRef: ElementRef, private portalService: XPortalService, private viewContainerRef: ViewContainerRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private portalService: XPortalService,
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
+  ) {
     super();
   }
 
@@ -35,18 +46,16 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let contentChange = changes.content;
-    if (contentChange && contentChange.currentValue != contentChange.previousValue) {
-      this.contentChange.next(this.content);
-    }
-    let visibleChange = changes.visible;
-    if (visibleChange && visibleChange.currentValue != visibleChange.previousValue) {
+    XIsChange(changes.content) && this.contentChange.next(this.content);
+    if (XIsChange(changes.visible)) {
       if (this.visible) this.show();
       else this.hide();
     }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.contentChange.unsubscribe();
+  }
 
   ngAfterViewInit() {}
 
@@ -70,42 +79,44 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   }
 
   createPortal() {
+    const config: OverlayConfig = {
+      backdropClass: '',
+      positionStrategy: this.portalService.setPlacement(this.elementRef, this.placement, 'bottom', 'top', 'left', 'right'),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XPopoverPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.portalService.setPlacement(
-          this.elementRef,
-          this.placement,
-          'bottom-start',
-          'bottom',
-          'bottom-end',
-          'top-start',
-          'top',
-          'top-end',
-          'left-start',
-          'left',
-          'left-end',
-          'right-start',
-          'right',
-          'right-end'
-        )
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
+      if (place !== this.realPlacement) {
+        this.realPlacement = place;
+        this.positionChange.next(place);
+        this.portal.overlayRef?.updatePosition();
+      }
+    });
   }
 
   setInstance() {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
     this.box = this.elementRef.nativeElement.getBoundingClientRect();
+    this.realPlacement = `${this.placement}` as XPlacement;
     Object.assign(componentRef.instance, {
       box: this.box,
       title: this.title,
       content: this.content,
       footer: this.footer,
       contentChange: this.contentChange,
+      positionChange: this.positionChange,
       trigger: this.trigger,
       placement: this.placement,
       width: this.width,
