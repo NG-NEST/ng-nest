@@ -16,3 +16,5 @@ label: '简介'
 - 示例代码
 - API
 - 样式参数
+
+{{ ____动图:Basic/Button 按钮.gif }}

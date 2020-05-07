@@ -15,7 +15,7 @@ import { XPreloadingStrategyService } from '@ng-nest/ui/core';
   exports: [RouterModule],
   providers: [
     XPreloadingStrategyService
-    // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
+    // { provide: RouteReuseStrategy, useClass: XReuseStrategyService }
   ]
 })
 export class MainRoutesModule {}
