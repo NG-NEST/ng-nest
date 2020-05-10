@@ -39,6 +39,8 @@ $--x-button-initial-plain-active-border: $--x-primary-a100;
 $--x-button-initial-plain-disabled: $--x-text-300;
 $--x-button-initial-plain-disabled-background: $--x-white;
 $--x-button-initial-plain-disabled-border: $--x-border-200;
+$--x-button-initial-plain-box-shadow-color: $--x-border-100;
+$--x-button-initial-box-shadow-color: $--x-border-100;
 
 $--x-button-primary: $--x-primary;
 $--x-button-primary-color: $--x-white;
@@ -65,6 +67,8 @@ $--x-button-primary-plain-active-border: $--x-primary-a100;
 $--x-button-primary-plain-disabled: $--x-primary-400;
 $--x-button-primary-plain-disabled-background: $--x-primary-900;
 $--x-button-primary-plain-disabled-border: $--x-primary-800;
+$--x-button-primary-plain-box-shadow-color: $--x-primary-900;
+$--x-button-primary-box-shadow-color: $--x-primary-800;
 
 $--x-button-success: $--x-success;
 $--x-button-success-color: $--x-white;
@@ -91,6 +95,8 @@ $--x-button-success-plain-active-border: $--x-success-a100;
 $--x-button-success-plain-disabled: $--x-success-400;
 $--x-button-success-plain-disabled-background: $--x-success-900;
 $--x-button-success-plain-disabled-border: $--x-success-800;
+$--x-button-success-plain-box-shadow-color: $--x-success-900;
+$--x-button-success-box-shadow-color: $--x-success-800;
 
 $--x-button-warning: $--x-warning;
 $--x-button-warning-color: $--x-white;
@@ -117,6 +123,8 @@ $--x-button-warning-plain-active-border: $--x-warning-a100;
 $--x-button-warning-plain-disabled: $--x-warning-400;
 $--x-button-warning-plain-disabled-background: $--x-warning-900;
 $--x-button-warning-plain-disabled-border: $--x-warning-800;
+$--x-button-warning-plain-box-shadow-color: $--x-warning-900;
+$--x-button-warning-box-shadow-color: $--x-warning-800;
 
 $--x-button-danger: $--x-danger;
 $--x-button-danger-color: $--x-white;
@@ -143,6 +151,8 @@ $--x-button-danger-plain-active-border: $--x-danger-a100;
 $--x-button-danger-plain-disabled: $--x-danger-400;
 $--x-button-danger-plain-disabled-background: $--x-danger-900;
 $--x-button-danger-plain-disabled-border: $--x-danger-800;
+$--x-button-danger-plain-box-shadow-color: $--x-danger-900;
+$--x-button-danger-box-shadow-color: $--x-danger-800;
 
 $--x-button-info: $--x-info;
 $--x-button-info-color: $--x-white;
@@ -169,5 +179,7 @@ $--x-button-info-plain-active-border: $--x-info-a100;
 $--x-button-info-plain-disabled: $--x-info-400;
 $--x-button-info-plain-disabled-background: $--x-info-900;
 $--x-button-info-plain-disabled-border: $--x-info-800;
+$--x-button-info-plain-box-shadow-color: $--x-info-900;
+$--x-button-info-box-shadow-color: $--x-info-800;
 
 $--x-buttons: $--x-prefix + '-buttons';

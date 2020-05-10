@@ -57,7 +57,8 @@
   &-only-icon,
   &-text {
     border: none;
-    background-color: transparent;
+    background-color: transparent !important;
+    box-shadow: none !important;
     &:hover,
     &:active {
       @include button-color($--x-button-hover, transparent, transparent);
@@ -119,10 +120,13 @@
   $plain-active-border,
   $plain-disabled,
   $plain-disabled-background,
-  $plain-disabled-border
+  $plain-disabled-border,
+  $box-shadow-color,
+  $plain-box-shadow-color
 ) {
   &-#{$type} {
     @include button-color($color, $background, $border);
+    box-shadow: $--x-box-shadow $box-shadow-color;
     &:hover {
       @include button-color($hover, $hover-background, $hover-border);
     }
@@ -134,6 +138,7 @@
     }
     &-plain {
       @include button-color($plain-color, $plain-background, $plain-border);
+      box-shadow: $--x-box-shadow $plain-box-shadow-color;
       &:hover {
         @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
       }
