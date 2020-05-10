@@ -407,7 +407,7 @@ export const menus: Menu[] = [
     "parentId": "3-0",
     "name": "form",
     "router": "docs/ui/components/form",
-    "label": "Form 表单 [待]",
+    "label": "Form 表单",
     "category": "Form"
   },
   {

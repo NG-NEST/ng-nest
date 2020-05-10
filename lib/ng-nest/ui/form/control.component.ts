@@ -1,14 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Input,
-  Host,
-  Optional,
-  ViewChild,
-  ContentChild,
-  ComponentRef
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Host, Optional, ViewChild } from '@angular/core';
 import { XControlProperty, XFormControlOption, XFormControlType } from './form.property';
 import { XFormComponent } from './form.component';
 import { FormControlName, Validators } from '@angular/forms';
@@ -16,7 +6,6 @@ import { FormControlName, Validators } from '@angular/forms';
 @Component({
   selector: 'x-control',
   templateUrl: './control.component.html',
-  styleUrls: ['./control.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

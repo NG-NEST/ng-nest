@@ -12,7 +12,7 @@ const modules = [XInputModule, XSelectModule];
 
 @NgModule({
   declarations: [XFormComponent, XControlComponent, XFormProperty, XControlProperty],
-  exports: [XFormComponent, XControlComponent, ...modules],
+  exports: [XFormComponent, XControlComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, XLayoutModule, ...modules]
 })
 export class XFormModule {}
