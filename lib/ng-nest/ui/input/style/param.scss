@@ -26,6 +26,9 @@ $--x-input-border: $--x-border-width $--x-border-style $--x-border;
 /* 边框圆角 */
 $--x-input-border-radius: $--x-border-radius;
 
+/* 阴影 */
+$--x-input-box-shadow: $--x-box-shadow $--x-border-100;
+
 /* 禁用颜色 */
 $--x-input-disabled-color: $--x-text-300;
 
