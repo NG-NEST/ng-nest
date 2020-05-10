@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XValueAccessor, XIsChange } from '@ng-nest/ui/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -54,7 +55,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
   }
 
@@ -82,7 +83,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     if (this.onChange) this.onChange(value);
   }
 
-  clear() {
+  onClear() {
     const clearValue = this.value;
     this.value = '';
     this.change(this.value);
@@ -119,5 +120,11 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     if (this.size) {
       this.renderer.addClass(this.input.nativeElement, `${XInputPrefix}-${this.size}`);
     }
+  }
+
+  formControlChanges() {
+    this.change(this.value);
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

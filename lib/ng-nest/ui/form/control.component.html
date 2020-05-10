@@ -1,16 +1,10 @@
-<div class="x-control">
+<div class="x-control" [formGroup]="form?.formGroup">
   <ng-container [ngSwitch]="option?.controlType">
     <ng-container *ngSwitchCase="'input'">
-      <!-- <x-input
-        [(ngModel)]="option?.value"
-        [label]="option?.label"
-        [type]="option?.type"
-        [placeholder]="option?.placeholder"
-        [required]="option?.required"
-        [disabled]="option?.disabled"
-        [icon]="option?.icon"
-        [iconLayout]="option?.iconLayout"
-      ></x-input> -->
+      <x-input [formControlName]="option.id" (clearEmit)="option.clear($event)"></x-input>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+      <x-select [formControlName]="option.id"></x-select>
     </ng-container>
   </ng-container>
 </div>

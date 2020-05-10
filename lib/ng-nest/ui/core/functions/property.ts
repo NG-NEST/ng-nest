@@ -1,5 +1,5 @@
 import { XClassMap, XJustify, XAlign, XDirection, XBoolean } from '../interfaces';
-import { Input } from '@angular/core';
+import { Input, EventEmitter } from '@angular/core';
 import { XInputBoolean } from './convert';
 
 export class XProperty {
@@ -33,9 +33,40 @@ export class XFormProp extends XProperty {
   /**
    * 禁用
    */
-  @Input() @XInputBoolean() disabled: XBoolean;
+  @Input() @XInputBoolean() disabled: XBoolean = false;
   /**
    * 必填
    */
-  @Input() @XInputBoolean() required: XBoolean;
+  @Input() @XInputBoolean() required: XBoolean = false;
+}
+
+export interface XFormOption {
+  /**
+   * 标签
+   */
+  label?: any;
+  /**
+   * flex 布局下的子元素水平排列方式
+   */
+  justify?: XJustify;
+  /**
+   * flex 布局下的子元素垂直排列方式
+   */
+  align?: XAlign;
+  /**
+   * flex 布局下的子元素排列方向
+   */
+  direction?: XDirection;
+  /**
+   * 输入提示信息
+   */
+  placeholder?: string;
+  /**
+   * 禁用
+   */
+  disabled?: XBoolean;
+  /**
+   * 必填
+   */
+  required?: XBoolean;
 }

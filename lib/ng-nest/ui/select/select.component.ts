@@ -83,7 +83,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this._unSubject.unsubscribe();
   }
 
-  private setData() {
+  setData() {
     if (this.async) return;
     XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
@@ -218,6 +218,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.value = node.id;
     this.closePortal();
     if (this.onChange) this.onChange(this.value);
+    this.cdr.detectChanges();
+  }
+
+  formControlChanges() {
+    this.setData();
+    this.ngOnInit();
     this.cdr.detectChanges();
   }
 }

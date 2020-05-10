@@ -1,4 +1,13 @@
-import { XControlValueAccessor, XParentIdentityProperty, XDataConvert, XInputBoolean, XData, XBoolean, XCorner } from '@ng-nest/ui/core';
+import {
+  XControlValueAccessor,
+  XParentIdentityProperty,
+  XDataConvert,
+  XInputBoolean,
+  XData,
+  XBoolean,
+  XCorner,
+  XFormOption
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -25,6 +34,25 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * 展示方位
    */
   @Input() placement: XCorner = 'bottom-start';
+}
+
+/**
+ * Select Option
+ * @undocument true
+ */
+export interface XSelectOption extends XFormOption {
+  /**
+   * 节点数据
+   */
+  data?: XData<XSelectNode>;
+  /**
+   * 异步加载
+   */
+  async?: XBoolean;
+  /**
+   * 展示方位
+   */
+  placement?: XCorner;
 }
 
 /**

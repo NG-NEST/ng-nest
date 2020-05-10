@@ -1,5 +1,7 @@
-import { XIdentity, XIdentityProperty } from '@ng-nest/ui/core';
+import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
+import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
 
 /**
  * Form
@@ -33,29 +35,32 @@ export interface XControlOption extends XIdentityProperty {
   value?: any;
   /**
    * 控件类型
-   * @default "input"
    */
   controlType?: XControlType;
   /**
    * 禁用
    */
-  disabled?: boolean;
+  disabled?: XBoolean;
   /**
    * 只读
    */
-  readonly?: boolean;
+  readonly?: XBoolean;
   /**
    * 必填
    */
-  required?: boolean;
+  required?: XBoolean;
   /**
    * 隐藏
    */
-  hidden?: boolean;
+  hidden?: XBoolean;
   /**
    * 列宽
    */
   span?: number;
+  /**
+   * 自定义属性
+   */
+  [prop: string]: any;
 }
 
 /**
@@ -68,29 +73,32 @@ export class XControl extends XIdentity {
   value?: any;
   /**
    * 控件类型
-   * @default "input"
    */
   controlType?: XControlType;
   /**
    * 禁用
    */
-  disabled?: boolean;
+  disabled?: XBoolean;
   /**
    * 只读
    */
-  readonly?: boolean;
+  readonly?: XBoolean;
   /**
    * 必填
    */
-  required?: boolean;
+  required?: XBoolean;
   /**
    * 隐藏
    */
-  hidden?: boolean;
+  hidden?: XBoolean;
   /**
    * 列宽
    */
   span?: number;
+  /**
+   * 自定义属性
+   */
+  [prop: string]: any;
 
   constructor(option: XControlOption = {}) {
     super();
@@ -117,7 +125,7 @@ export interface XFormRow {
   /**
    * 隐藏
    */
-  hidden?: boolean;
+  hidden?: XBoolean;
 }
 
 /**
@@ -138,13 +146,33 @@ export class XControlProperty {
   @Input() option: XControlOption;
 }
 
-export interface XInputControlOption extends XControlOption {}
+export type XFormControlOption = XInputControlOption | XSelectControlOption;
 
+export type XFormControlType = XInputComponent | XSelectComponent;
+
+/**
+ * Input Control
+ */
+export interface XInputControlOption extends XControlOption, XInputOption {}
 export class XInputControl extends XControl {
   controlType: XControlType = 'input';
   constructor(option: XInputControlOption = {}) {
     super(option);
-    if (typeof this.value == 'undefined') this.value = '';
+    if (XIsEmpty(this.value)) this.value = '';
+    Object.assign(this, option);
+  }
+}
+
+/**
+ * Select Control
+ */
+export interface XSelectControlOption extends XControlOption, XSelectOption {}
+export class XSelectControl extends XControl {
+  controlType: XControlType = 'select';
+  constructor(option: XSelectControlOption = {}) {
+    super(option);
+    if (XIsEmpty(this.value)) this.value = '';
+    Object.assign(this, option);
   }
 }
 

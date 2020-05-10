@@ -27,5 +27,5 @@ export class XIdentity {
   // 编码
   id?: any;
   // 标题
-  label?: string;
+  label?: any;
 }

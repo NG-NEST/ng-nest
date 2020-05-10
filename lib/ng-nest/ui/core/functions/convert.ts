@@ -16,11 +16,12 @@ import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 export function XToBoolean(value: XBoolean): boolean {
-  if (XIsString(value)) {
-    return ['', 'true'].indexOf(String(value).trim()) !== -1;
-  } else {
-    return Boolean(value);
-  }
+  // if (XIsString(value)) {
+  //   return ['', 'true'].indexOf(String(value).trim()) !== -1;
+  // } else {
+  //   return Boolean(value);
+  // }
+  return coerceBooleanProperty(value);
 }
 
 function XToNumber(value: number | string): number;

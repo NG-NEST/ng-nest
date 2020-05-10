@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XFormOption } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -12,7 +12,7 @@ export const XInputPrefix = 'x-input';
  * Input Property
  */
 @Component({ template: '' })
-export class XInputProperty extends XControlValueAccessor<any> {
+export class XInputProperty extends XControlValueAccessor<any> implements XInputOption {
   /**
    * 输入类型
    */
@@ -20,11 +20,11 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: XBoolean;
+  @Input() @XInputBoolean() clearable: XBoolean = false;
   /**
    * 只读
    */
-  @Input() @XInputBoolean() readonly: XBoolean;
+  @Input() @XInputBoolean() readonly: XBoolean = false;
   /**
    * 图标
    */
@@ -36,11 +36,11 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 图标动画
    */
-  @Input() @XInputBoolean() iconSpin: XBoolean;
+  @Input() @XInputBoolean() iconSpin: XBoolean = false;
   /**
    * 输入最大长度
    */
-  @Input() @XInputNumber() maxlength: XNumber;
+  @Input() @XInputNumber() maxlength: XNumber = 0;
   /**
    * 尺寸
    */
@@ -48,15 +48,66 @@ export class XInputProperty extends XControlValueAccessor<any> {
   /**
    * 异常
    */
-  @Input() error: XBoolean;
+  @Input() @XInputBoolean() error: XBoolean = false;
   /**
    * 异常提示文字
    */
-  @Input() errorMessage: string;
+  @Input() errorMessage: string = '';
   /**
    * 清除按钮的事件
    */
   @Output() clearEmit = new EventEmitter<any>();
+}
+
+/**
+ * Input Option
+ * @undocument true
+ */
+export interface XInputOption extends XFormOption {
+  /**
+   * 输入类型
+   */
+  type?: XInputType;
+  /**
+   * 清除按钮
+   */
+  clearable?: XBoolean;
+  /**
+   * 只读
+   */
+  readonly?: XBoolean;
+  /**
+   * 图标
+   */
+  icon?: string;
+  /**
+   * 图标布局方式
+   */
+  iconLayout?: XInputIconLayoutType;
+  /**
+   * 图标动画
+   */
+  iconSpin?: XBoolean;
+  /**
+   * 输入最大长度
+   */
+  maxlength?: XNumber;
+  /**
+   * 尺寸
+   */
+  size?: XSize;
+  /**
+   * 异常
+   */
+  error?: XBoolean;
+  /**
+   * 异常提示文字
+   */
+  errorMessage?: string;
+  /**
+   * 清除按钮的事件
+   */
+  clear?: any;
 }
 
 /**
