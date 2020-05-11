@@ -118,7 +118,7 @@ class TestXSelectComponent {
   model1: any;
   model2: any = 'BBBB';
   constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -161,11 +161,7 @@ class TestXSelectComponent {
 class TestXSelectLabelComponent {
   data = data;
   model: any;
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(public cdr: ChangeDetectorRef) {}
 }
 
 @Component({
@@ -195,11 +191,7 @@ class TestXSelectLabelComponent {
 class TestXSelectDisabledComponent {
   data = data;
   model = 'DDDD';
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(public cdr: ChangeDetectorRef) {}
 }
 
 @Component({
@@ -261,11 +253,7 @@ class TestXSelectAsyncComponent {
       x.complete();
     }, 2000);
   });
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
   change() {
     this.cdr.detectChanges();
   }

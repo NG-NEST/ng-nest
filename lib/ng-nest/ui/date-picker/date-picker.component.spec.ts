@@ -149,11 +149,7 @@ class TestXDatePickerComponent {
 })
 class TestXDatePickerLabelComponent {
   model: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
 }
 
 @Component({
@@ -205,7 +201,7 @@ class TestXDatePickerDisabledComponent {
 class TestXDatePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }
@@ -236,7 +232,7 @@ class TestXDatePickerYearOrMonthComponent {
   model1: any;
   model2: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

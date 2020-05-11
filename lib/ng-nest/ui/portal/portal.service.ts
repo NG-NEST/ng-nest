@@ -44,7 +44,8 @@ export class XPortalService {
       return this.overlay
         .position()
         .flexibleConnectedTo(elementRef)
-        .withPositions(this.setConnectedPosition(...placement));
+        .withPositions(this.setConnectedPosition(...placement))
+        // .withLockedPosition(true);
     }
   }
 

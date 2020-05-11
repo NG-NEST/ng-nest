@@ -55,10 +55,11 @@
     width: 1.675rem;
   }
   &-only-icon,
+  &-only-icon.#{$--x-button}-initial,
   &-text {
     border: none;
-    background-color: transparent !important;
-    box-shadow: none !important;
+    background-color: transparent;
+    box-shadow: none;
     &:hover,
     &:active {
       @include button-color($--x-button-hover, transparent, transparent);

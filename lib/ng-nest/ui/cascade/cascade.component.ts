@@ -168,7 +168,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   setInstance() {
-    let componentRef = this.portal?.componentRef;
+    let componentRef = this.portal.componentRef;
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
       datas: this.datas,

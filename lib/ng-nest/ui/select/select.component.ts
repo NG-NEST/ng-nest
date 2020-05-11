@@ -78,6 +78,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     XIsChange(changes.data) && this.setData();
   }
 
+  ngAfterViewInit() {
+    this.setPortal();
+  }
+
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
@@ -88,6 +92,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
       this.setDisplayValue();
+      this.setPortal();
       this.cdr.detectChanges();
     });
   }
@@ -169,15 +174,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.box.width,
-      positionStrategy: this.portalService.setPlacement(
-        this.inputCom.input,
-        this.placement,
-        'bottom-start',
-        'bottom-end',
-        'top-start',
-        'top-end'
-      ),
-      scrollStrategy: this.overlay.scrollStrategies.reposition()
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition({ autoClose: false })
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({
@@ -219,6 +217,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.closePortal();
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
+  }
+
+  setPlacement() {
+    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+  }
+
+  setPortal() {
+    this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 
   formControlChanges() {
