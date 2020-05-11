@@ -107,7 +107,7 @@ export interface XInputOption extends XFormOption {
   /**
    * 清除按钮的事件
    */
-  clear?: any;
+  clearClick?: (value: any) => void;
 }
 
 /**

@@ -2,6 +2,7 @@ import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty } from '@ng-nest/ui/co
 import { Input, Component } from '@angular/core';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
+import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
 
 /**
  * Form
@@ -146,9 +147,9 @@ export class XControlProperty {
   @Input() option: XControlOption;
 }
 
-export type XFormControlOption = XInputControlOption | XSelectControlOption;
+export type XFormControlOption = XInputControlOption | XSelectControlOption | XCascadeControlOption;
 
-export type XFormControlType = XInputComponent | XSelectComponent;
+export type XFormControlType = XInputComponent | XSelectComponent | XCascadeComponent;
 
 /**
  * Input Control
@@ -176,4 +177,17 @@ export class XSelectControl extends XControl {
   }
 }
 
-export type XControlType = 'input' | 'select';
+/**
+ * Cascade Control
+ */
+export interface XCascadeControlOption extends XControlOption, XCascadeOption {}
+export class XCascadeControl extends XControl {
+  controlType: XControlType = 'cascade';
+  constructor(option: XCascadeControlOption = {}) {
+    super(option);
+    if (XIsEmpty(this.value)) this.value = '';
+    Object.assign(this, option);
+  }
+}
+
+export type XControlType = 'input' | 'select' | 'cascade';

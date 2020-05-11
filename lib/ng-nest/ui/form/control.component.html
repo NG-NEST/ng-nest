@@ -1,10 +1,13 @@
 <div class="x-control" [formGroup]="form?.formGroup">
   <ng-container [ngSwitch]="option?.controlType">
     <ng-container *ngSwitchCase="'input'">
-      <x-input [formControlName]="option.id" (clearEmit)="option.clear($event)"></x-input>
+      <x-input [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-input>
     </ng-container>
     <ng-container *ngSwitchCase="'select'">
       <x-select [formControlName]="option.id"></x-select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'cascade'">
+      <x-cascade [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-cascade>
     </ng-container>
   </ng-container>
 </div>

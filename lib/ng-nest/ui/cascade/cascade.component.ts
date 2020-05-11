@@ -133,6 +133,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
       return true;
     }
     return false;
@@ -163,7 +164,10 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      place !== this.placement && this.positionChange.next(place);
+      if (place !== this.placement) {
+        this.positionChange.next(place);
+        this.cdr.detectChanges();
+      }
     });
   }
 
@@ -189,7 +193,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     this.displayValue = selected.label;
     this.closePortal();
     if (this.onChange) this.onChange(this.value);
-    this.nodeClick.emit(selected);
+    this.nodeEmit.emit(selected);
   }
 
   setDisplayValue() {
@@ -213,5 +217,11 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
+  }
+
+  formControlChanges() {
+    this.setData();
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

@@ -7,8 +7,9 @@ import { XControlComponent } from './control.component';
 import { XFormProperty, XControlProperty } from './form.property';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
 
-const modules = [XInputModule, XSelectModule];
+const modules = [XInputModule, XSelectModule, XCascadeModule];
 
 @NgModule({
   declarations: [XFormComponent, XControlComponent, XFormProperty, XControlProperty],

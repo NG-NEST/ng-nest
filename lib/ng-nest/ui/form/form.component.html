@@ -20,7 +20,7 @@
 
 <ng-template #controlsTemp let-controls="controls">
   <x-row space="1">
-    <x-col *ngFor="let control of controls" [span]="control.span">
+    <x-col [style.padding-top.rem]="1" *ngFor="let control of controls" [span]="control.span">
       <x-control [option]="control"></x-control>
     </x-col>
   </x-row>

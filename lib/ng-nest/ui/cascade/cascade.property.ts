@@ -1,4 +1,4 @@
-import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor, XCorner } from '@ng-nest/ui/core';
+import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor, XCorner, XFormOption } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -12,19 +12,38 @@ export const XCascadePrefix = 'x-cascade';
  * Cascade Property
  */
 @Component({ template: '' })
-export class XCascadeProperty extends XControlValueAccessor<any> {
+export class XCascadeProperty extends XControlValueAccessor<any> implements XCascadeOption {
   /**
    * 节点数据
    */
   @Input() @XDataConvert() data: XData<XCascadeNode> = [];
   /**
-   * 节点点击的事件
-   */
-  @Output() nodeClick = new EventEmitter<XCascadeNode>();
-  /**
    * 展示方位
    */
   @Input() placement: XCorner = 'bottom-start';
+  /**
+   * 节点点击的事件
+   */
+  @Output() nodeEmit = new EventEmitter<XCascadeNode>();
+}
+
+/**
+ * Cascade Option
+ * @undocument true
+ */
+export interface XCascadeOption extends XFormOption {
+  /**
+   * 节点数据
+   */
+  data?: XData<XCascadeNode>;
+  /**
+   * 展示方位
+   */
+  placement?: XCorner;
+  /**
+   * 节点点击的事件
+   */
+  nodeClick?: (node: XCascadeNode) => void;
 }
 
 /**

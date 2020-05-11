@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XValueAccessor, XIsChange } from '@ng-nest/ui/core';
-import { interval } from 'rxjs';
 
 @Component({
   selector: `${XInputPrefix}`,

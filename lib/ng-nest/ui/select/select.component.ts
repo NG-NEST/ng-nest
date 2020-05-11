@@ -139,6 +139,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
       return true;
     }
     return false;

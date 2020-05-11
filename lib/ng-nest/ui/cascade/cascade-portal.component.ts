@@ -111,7 +111,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
         this.values = this.selecteds.map((x) => x.id);
         this.cdr.detectChanges();
       } else {
-        if (this.selecteds.length === level + 1) {
+        if (this.selecteds.length >= level + 1) {
           this.selecteds = this.selecteds.splice(0, level);
         }
         this.selecteds = [...this.selecteds, node];
