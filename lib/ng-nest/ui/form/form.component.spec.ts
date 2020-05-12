@@ -11,7 +11,8 @@ import {
   XSelectControl,
   XCascadeControl,
   XCheckboxControl,
-  XColorPickerControl
+  XColorPickerControl,
+  XDatePickerControl
 } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { interval } from 'rxjs';
@@ -80,15 +81,20 @@ class TestXFormComponent {
       ],
       span: 6
     }),
+    new XColorPickerControl({
+      id: 'color',
+      label: '喜欢的颜色',
+      span: 6
+    }),
     new XCheckboxControl({
       id: 'active',
       label: '爱好',
       data: ['乒乓球', '篮球', '足球'],
       span: 12
     }),
-    new XColorPickerControl({
-      id: 'color',
-      label: '喜欢的颜色',
+    new XDatePickerControl({
+      id: 'createDate',
+      label: '创建日期',
       span: 6
     })
   ];

@@ -12,7 +12,7 @@ export const XColorPickerPrefix = 'x-color-picker';
  * ColorPicker Property
  */
 @Component({ template: '' })
-export class XColorPickerProperty extends XControlValueAccessor<string> {
+export class XColorPickerProperty extends XControlValueAccessor<string> implements XColorPickerOption {
   /**
    * 展示方位
    */

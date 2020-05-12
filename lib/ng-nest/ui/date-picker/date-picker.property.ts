@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner, XFormOption } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -12,7 +12,7 @@ export const XDatePickerPrefix = 'x-date-picker';
  * DatePicker Property
  */
 @Component({ template: '' })
-export class XDatePickerProperty extends XControlValueAccessor<any> {
+export class XDatePickerProperty extends XControlValueAccessor<any> implements XDatePickerOption {
   /**
    * 选择类型
    */
@@ -26,13 +26,40 @@ export class XDatePickerProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() clearable: XBoolean = true;
   /**
-   * 节点点击的事件
-   */
-  @Output() nodeClick = new EventEmitter<number>();
-  /**
    * 展示方位
    */
   @Input() placement: XCorner = 'bottom-start';
+  /**
+   * 节点点击的事件
+   */
+  @Output() nodeEmit = new EventEmitter<number>();
+}
+
+/**
+ * DatePicker Option
+ * @undocument true
+ */
+export interface XDatePickerOption extends XFormOption {
+  /**
+   * 选择类型
+   */
+  type?: XDatePickerType;
+  /**
+   * 格式化类型
+   */
+  format?: string;
+  /**
+   * 清除按钮
+   */
+  clearable?: XBoolean;
+  /**
+   * 展示方位
+   */
+  placement?: XCorner;
+  /**
+   * 节点点击的事件
+   */
+  nodeClick?: (value: number) => void;
 }
 
 /**

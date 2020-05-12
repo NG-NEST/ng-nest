@@ -5,6 +5,7 @@ import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XCheckboxOption, XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XColorPickerOption, XColorPickerComponent } from '@ng-nest/ui/color-picker';
+import { XDatePickerOption, XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
 /**
  * Form
@@ -105,6 +106,7 @@ export class XControl extends XIdentity {
 
   constructor(option: XControlOption = {}) {
     super();
+    if (XIsEmpty(this.value)) this.value = '';
     Object.assign(this, option);
   }
 }
@@ -154,11 +156,18 @@ export type XFormControlOption =
   | XSelectControlOption
   | XCascadeControlOption
   | XCheckboxControlOption
-  | XColorPickerControlOption;
+  | XColorPickerControlOption
+  | XDatePickerControlOption;
 
-export type XFormControlType = XInputComponent | XSelectComponent | XCascadeComponent | XCheckboxComponent | XColorPickerComponent;
+export type XFormControlType =
+  | XInputComponent
+  | XSelectComponent
+  | XCascadeComponent
+  | XCheckboxComponent
+  | XColorPickerComponent
+  | XDatePickerComponent;
 
-export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker';
+export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker';
 
 /**
  * Input Control
@@ -168,8 +177,6 @@ export class XInputControl extends XControl {
   controlType: XControlType = 'input';
   constructor(option: XInputControlOption = {}) {
     super(option);
-    if (XIsEmpty(this.value)) this.value = '';
-    Object.assign(this, option);
   }
 }
 
@@ -181,8 +188,6 @@ export class XSelectControl extends XControl {
   controlType: XControlType = 'select';
   constructor(option: XSelectControlOption = {}) {
     super(option);
-    if (XIsEmpty(this.value)) this.value = '';
-    Object.assign(this, option);
   }
 }
 
@@ -194,8 +199,6 @@ export class XCascadeControl extends XControl {
   controlType: XControlType = 'cascade';
   constructor(option: XCascadeControlOption = {}) {
     super(option);
-    if (XIsEmpty(this.value)) this.value = '';
-    Object.assign(this, option);
   }
 }
 
@@ -207,8 +210,6 @@ export class XCheckboxControl extends XControl {
   controlType: XControlType = 'checkbox';
   constructor(option: XCheckboxControlOption = {}) {
     super(option);
-    if (XIsEmpty(this.value)) this.value = '';
-    Object.assign(this, option);
   }
 }
 
@@ -220,7 +221,16 @@ export class XColorPickerControl extends XControl {
   controlType: XControlType = 'color-picker';
   constructor(option: XColorPickerControlOption = {}) {
     super(option);
-    if (XIsEmpty(this.value)) this.value = '';
-    Object.assign(this, option);
+  }
+}
+
+/**
+ * DatePicker Control
+ */
+export interface XDatePickerControlOption extends XControlOption, XDatePickerOption {}
+export class XDatePickerControl extends XControl {
+  controlType: XControlType = 'date-picker';
+  constructor(option: XDatePickerControlOption = {}) {
+    super(option);
   }
 }

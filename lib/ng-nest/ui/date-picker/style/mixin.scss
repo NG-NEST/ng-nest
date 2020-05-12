@@ -5,13 +5,14 @@
 @import './param';
 
 @mixin date-picker {
-  font-size: $--x-date-picker-font-size;
-  color: $--x-text;
+  width: 100%;
   @include flex();
   > label {
     display: inline-block;
     height: $--x-date-picker-height;
     line-height: $--x-date-picker-height;
+    color: $--x-text-500;
+    font-weight: 600;
   }
   > .#{$--x-date-picker-prefix}-row {
     flex: 1;

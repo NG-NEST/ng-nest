@@ -224,7 +224,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     this.setDisplayValue();
     this.closePortal();
     this.modelChange();
-    this.nodeClick.emit(this.numberValue);
+    this.nodeEmit.emit(this.numberValue);
   }
 
   setDisplayValue() {
@@ -237,5 +237,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
+  }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }
