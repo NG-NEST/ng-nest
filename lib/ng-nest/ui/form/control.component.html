@@ -24,5 +24,8 @@
     <ng-container *ngSwitchCase="'radio'">
       <x-radio [formControlName]="option.id"></x-radio>
     </ng-container>
+    <ng-container *ngSwitchCase="'rate'">
+      <x-rate [formControlName]="option.id"></x-rate>
+    </ng-container>
   </ng-container>
 </div>

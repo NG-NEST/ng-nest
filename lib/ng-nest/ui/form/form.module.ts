@@ -13,6 +13,7 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRateModule } from '@ng-nest/ui/rate';
 
 const modules = [
   XInputModule,
@@ -22,7 +23,8 @@ const modules = [
   XColorPickerModule,
   XDatePickerModule,
   XInputNumberModule,
-  XRadioModule
+  XRadioModule,
+  XRateModule
 ];
 
 @NgModule({
