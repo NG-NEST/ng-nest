@@ -1,4 +1,5 @@
-<div class="x-radio" [class.x-disabled]="disabled">
+<div #radio class="x-radio" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled">
+  <label *ngIf="label">{{ label }}</label>
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
@@ -16,14 +17,16 @@
 </div>
 
 <ng-template #default>
-  <div
-    class="x-radio-item"
-    *ngFor="let item of nodes"
-    [class.x-checked]="item.id === value"
-    [class.x-disabled]="item.disabled"
-    (click)="radioClick($event, item)"
-  >
-    <span class="x-radio-box"></span>
-    <span class="x-radio-label">{{ item.label }}</span>
+  <div class="x-radio-row">
+    <div
+      class="x-radio-item"
+      *ngFor="let item of nodes"
+      [class.x-checked]="item.id === value"
+      [class.x-disabled]="item.disabled"
+      (click)="radioClick($event, item)"
+    >
+      <span class="x-radio-box"></span>
+      <span class="x-radio-label">{{ item.label }}</span>
+    </div>
   </div>
 </ng-template>

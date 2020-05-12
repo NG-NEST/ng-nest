@@ -13,7 +13,8 @@ import {
   XCheckboxControl,
   XColorPickerControl,
   XDatePickerControl,
-  XInputNumberControl
+  XInputNumberControl,
+  XRadioControl
 } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { interval } from 'rxjs';
@@ -95,6 +96,12 @@ class TestXFormComponent {
     new XInputNumberControl({
       id: 'age',
       label: '年龄',
+      span: 6
+    }),
+    new XRadioControl({
+      id: 'gender',
+      label: '性别',
+      data: ['男', '女'],
       span: 6
     }),
     new XCheckboxControl({

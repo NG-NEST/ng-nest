@@ -6,7 +6,8 @@ import {
   ElementRef,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
@@ -21,11 +22,16 @@ import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
   providers: [XValueAccessor(XRadioComponent)]
 })
 export class XRadioComponent extends XRadioProperty implements OnChanges {
+  @ViewChild('radio', { static: true }) radio: ElementRef;
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
+  }
+
+  ngOnInit() {
+    this.setFlex(this.radio.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,5 +61,11 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
       this.nodes = x;
       this.cdr.detectChanges();
     });
+  }
+
+  formControlChanges() {
+    this.setData();
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

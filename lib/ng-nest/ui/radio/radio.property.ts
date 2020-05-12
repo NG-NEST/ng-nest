@@ -1,4 +1,13 @@
-import { XData, XControlValueAccessor, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean } from '@ng-nest/ui/core';
+import {
+  XData,
+  XControlValueAccessor,
+  XIdentityProperty,
+  XDataConvert,
+  XInputBoolean,
+  XSize,
+  XBoolean,
+  XFormOption
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 
@@ -13,7 +22,7 @@ export const XRadioPrefix = 'x-radio';
  * Radio Property
  */
 @Component({ template: '' })
-export class XRadioProperty extends XControlValueAccessor<any> {
+export class XRadioProperty extends XControlValueAccessor<any> implements XRadioOption {
   /**
    * 单选框数据
    */
@@ -34,6 +43,33 @@ export class XRadioProperty extends XControlValueAccessor<any> {
    * 按钮样式时生效
    */
   @Input() type: XButtonType = 'initial';
+}
+
+/**
+ * Radio Option
+ * @undocument true
+ */
+export interface XRadioOption extends XFormOption {
+  /**
+   * 单选框数据
+   */
+  data?: XData<XRadioNode>;
+  /**
+   * 按钮样式
+   */
+  button?: XBoolean;
+  /**
+   * 图标样式
+   */
+  icon?: XBoolean;
+  /**
+   * 尺寸
+   */
+  size?: XSize;
+  /**
+   * 按钮样式时生效
+   */
+  type?: XButtonType;
 }
 
 /**

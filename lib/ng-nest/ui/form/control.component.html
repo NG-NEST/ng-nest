@@ -21,5 +21,8 @@
     <ng-container *ngSwitchCase="'input-number'">
       <x-input-number [formControlName]="option.id"></x-input-number>
     </ng-container>
+    <ng-container *ngSwitchCase="'radio'">
+      <x-radio [formControlName]="option.id"></x-radio>
+    </ng-container>
   </ng-container>
 </div>
