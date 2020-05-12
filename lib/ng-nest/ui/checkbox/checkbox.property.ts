@@ -1,4 +1,14 @@
-import { XData, XTemplate, XIdentityProperty, XControlValueAccessor, XDataConvert, XInputBoolean, XSize, XBoolean } from '@ng-nest/ui/core';
+import {
+  XData,
+  XTemplate,
+  XIdentityProperty,
+  XControlValueAccessor,
+  XDataConvert,
+  XInputBoolean,
+  XSize,
+  XBoolean,
+  XFormOption
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -12,7 +22,7 @@ export const XCheckboxPrefix = 'x-checkbox';
  * Checkbox Property
  */
 @Component({ template: '' })
-export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> {
+export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> implements XCheckboxOption {
   /**
    * 单选框数据
    */
@@ -33,6 +43,33 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
    * 尺寸
    */
   @Input() size: XSize = 'medium';
+}
+
+/**
+ * Checkbox Option
+ * @undocument true
+ */
+export interface XCheckboxOption extends XFormOption {
+  /**
+   * 单选框数据
+   */
+  data?: XData<XCheckboxNode>;
+  /**
+   * 按钮样式
+   */
+  button?: XBoolean;
+  /**
+   * 图标样式
+   */
+  icon?: XBoolean;
+  /**
+   * 不确定状态的样式
+   */
+  indeterminate?: XBoolean;
+  /**
+   * 尺寸
+   */
+  size?: XSize;
 }
 
 /**

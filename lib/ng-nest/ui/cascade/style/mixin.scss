@@ -5,14 +5,14 @@
 @import './param';
 
 @mixin cascade {
-  font-size: $--x-cascade-font-size;
-  color: $--x-text;
   width: 100%;
   @include flex();
   > label {
     display: inline-block;
     height: $--x-cascade-height;
     line-height: $--x-cascade-height;
+    color: $--x-text-500;
+    font-weight: 600;
   }
   > .#{$--x-cascade-prefix}-row {
     flex: 1;

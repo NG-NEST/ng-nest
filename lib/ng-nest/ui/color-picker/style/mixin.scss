@@ -5,13 +5,14 @@
 @import './param';
 
 @mixin color-picker {
-  font-size: $--x-color-picker-font-size;
-  color: $--x-text;
+  width: 100%;
   @include flex();
   > label {
     display: inline-block;
     height: $--x-color-picker-height;
     line-height: $--x-color-picker-height;
+    color: $--x-text-500;
+    font-weight: 600;
   }
   > .#{$--x-color-picker-prefix}-row {
     flex: 1;

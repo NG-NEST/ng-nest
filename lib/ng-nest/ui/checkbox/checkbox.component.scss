@@ -4,11 +4,6 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
-#{$--x-checkbox-prefix} {
-  display: inline-flex;
-  align-items: center;
-}
-
 .#{$--x-checkbox-prefix} {
   @include reset-component();
   @include checkbox();

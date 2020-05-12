@@ -6,7 +6,8 @@ import {
   ElementRef,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
@@ -21,6 +22,7 @@ import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
   providers: [XValueAccessor(XCheckboxComponent)]
 })
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
+  @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
   writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();
@@ -31,6 +33,10 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   private _unSubject = new Subject<void>();
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
+  }
+
+  ngOnInit() {
+    this.setFlex(this.checkbox.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -71,5 +77,11 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
       this.single = this.nodes.length === 1;
       this.cdr.detectChanges();
     });
+  }
+
+  formControlChanges() {
+    this.setData();
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

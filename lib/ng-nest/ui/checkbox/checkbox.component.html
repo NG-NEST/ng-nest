@@ -1,4 +1,5 @@
-<div #checkbox class="x-checkbox" [class.x-disabled]="disabled">
+<div #checkbox class="x-checkbox" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled">
+  <label *ngIf="label">{{ label }}</label>
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
@@ -16,17 +17,19 @@
 </div>
 
 <ng-template #default>
-  <div
-    class="x-checkbox-item"
-    *ngFor="let item of nodes"
-    [class.x-checked]="getChecked(item.id)"
-    [class.x-disabled]="item.disabled"
-    [class.x-indeterminate]="indeterminate"
-    (click)="checkboxClick($event, item)"
-  >
-    <span class="x-checkbox-box"></span>
-    <span class="x-checkbox-label">
-      <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
-    </span>
+  <div class="x-checkbox-row">
+    <div
+      class="x-checkbox-item"
+      *ngFor="let item of nodes"
+      [class.x-checked]="getChecked(item.id)"
+      [class.x-disabled]="item.disabled"
+      [class.x-indeterminate]="indeterminate"
+      (click)="checkboxClick($event, item)"
+    >
+      <span class="x-checkbox-box"></span>
+      <span class="x-checkbox-label">
+        <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
+      </span>
+    </div>
   </div>
 </ng-template>

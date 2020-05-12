@@ -116,6 +116,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
       return true;
     }
     return false;
@@ -171,6 +172,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   onNodeClick(color: string) {
     this.value = color;
     this.displayValue = color;
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -180,5 +182,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
+  }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

@@ -1,11 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XFormComponent } from './form.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
-import { XFormPrefix, XControl, XInputControl, XSelectControl, XCascadeControl } from './form.property';
+import {
+  XFormPrefix,
+  XControl,
+  XInputControl,
+  XSelectControl,
+  XCascadeControl,
+  XCheckboxControl,
+  XColorPickerControl
+} from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { interval } from 'rxjs';
 
 describe(XFormPrefix, () => {
   beforeEach(async(() => {
@@ -70,6 +79,21 @@ class TestXFormComponent {
         { id: 7, pid: 1, label: '荆州市' }
       ],
       span: 6
+    }),
+    new XCheckboxControl({
+      id: 'active',
+      label: '爱好',
+      data: ['乒乓球', '篮球', '足球'],
+      span: 12
+    }),
+    new XColorPickerControl({
+      id: 'color',
+      label: '喜欢的颜色',
+      span: 6
     })
   ];
+
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(20).subscribe((x) => this.cdr.detectChanges());
+  }
 }

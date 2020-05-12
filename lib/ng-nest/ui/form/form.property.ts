@@ -3,6 +3,8 @@ import { Input, Component } from '@angular/core';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XCheckboxOption, XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { XColorPickerOption, XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
 /**
  * Form
@@ -147,9 +149,16 @@ export class XControlProperty {
   @Input() option: XControlOption;
 }
 
-export type XFormControlOption = XInputControlOption | XSelectControlOption | XCascadeControlOption;
+export type XFormControlOption =
+  | XInputControlOption
+  | XSelectControlOption
+  | XCascadeControlOption
+  | XCheckboxControlOption
+  | XColorPickerControlOption;
 
-export type XFormControlType = XInputComponent | XSelectComponent | XCascadeComponent;
+export type XFormControlType = XInputComponent | XSelectComponent | XCascadeComponent | XCheckboxComponent | XColorPickerComponent;
+
+export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker';
 
 /**
  * Input Control
@@ -190,4 +199,28 @@ export class XCascadeControl extends XControl {
   }
 }
 
-export type XControlType = 'input' | 'select' | 'cascade';
+/**
+ * Checkbox Control
+ */
+export interface XCheckboxControlOption extends XControlOption, XCheckboxOption {}
+export class XCheckboxControl extends XControl {
+  controlType: XControlType = 'checkbox';
+  constructor(option: XCheckboxControlOption = {}) {
+    super(option);
+    if (XIsEmpty(this.value)) this.value = '';
+    Object.assign(this, option);
+  }
+}
+
+/**
+ * ColorPicker Control
+ */
+export interface XColorPickerControlOption extends XControlOption, XColorPickerOption {}
+export class XColorPickerControl extends XControl {
+  controlType: XControlType = 'color-picker';
+  constructor(option: XColorPickerControlOption = {}) {
+    super(option);
+    if (XIsEmpty(this.value)) this.value = '';
+    Object.assign(this, option);
+  }
+}

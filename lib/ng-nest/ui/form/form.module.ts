@@ -8,8 +8,10 @@ import { XFormProperty, XControlProperty } from './form.property';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 
-const modules = [XInputModule, XSelectModule, XCascadeModule];
+const modules = [XInputModule, XSelectModule, XCascadeModule, XCheckboxModule, XColorPickerModule];
 
 @NgModule({
   declarations: [XFormComponent, XControlComponent, XFormProperty, XControlProperty],

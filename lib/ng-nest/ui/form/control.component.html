@@ -9,5 +9,11 @@
     <ng-container *ngSwitchCase="'cascade'">
       <x-cascade [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-cascade>
     </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+      <x-checkbox [formControlName]="option.id"></x-checkbox>
+    </ng-container>
+    <ng-container *ngSwitchCase="'color-picker'">
+      <x-color-picker [formControlName]="option.id"></x-color-picker>
+    </ng-container>
   </ng-container>
 </div>
