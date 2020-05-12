@@ -5,20 +5,23 @@
 @import './param';
 
 @mixin input-number {
-  font-size: $--x-input-number-font-size;
-  color: $--x-text;
   width: 100%;
   @include flex();
   > label {
     display: inline-block;
+    white-space: nowrap;
     height: $--x-input-number-height;
     line-height: $--x-input-number-height;
+    color: $--x-text-500;
+    font-weight: 600;
   }
   > .#{$--x-input-number-prefix}-row {
     flex: 1;
     display: flex;
     align-items: center;
     position: relative;
+    height: $--x-input-number-height;
+    line-height: $--x-input-number-height;
     > input {
       padding: $--x-input-number-padding;
       margin: 0 0.125rem;
@@ -49,6 +52,7 @@
     }
     > x-button {
       position: relative;
+      height: inherit;
       &.#{$--x-input-number-prefix}-plus {
         > .button {
           border-top-left-radius: 0;

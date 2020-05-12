@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputNumber, XNumber, XFormOption } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -12,7 +12,7 @@ export const XInputNumberPrefix = 'x-input-number';
  * InputNumber Property
  */
 @Component({ template: '' })
-export class XInputNumberProperty extends XControlValueAccessor<any> {
+export class XInputNumberProperty extends XControlValueAccessor<any> implements XInputNumberOption {
   /**
    * 最小值
    */
@@ -33,4 +33,31 @@ export class XInputNumberProperty extends XControlValueAccessor<any> {
    * 精度
    */
   @Input() @XInputNumber() precision: XNumber = 0;
+}
+
+/**
+ * InputNumber Option
+ * @undocument true
+ */
+export interface XInputNumberOption extends XFormOption {
+  /**
+   * 最小值
+   */
+  min?: XNumber;
+  /**
+   * 最大值
+   */
+  max?: XNumber;
+  /**
+   * 步数
+   */
+  step?: XNumber;
+  /**
+   * 按住后步进速度
+   */
+  debounce?: XNumber;
+  /**
+   * 精度
+   */
+  precision?: XNumber;
 }

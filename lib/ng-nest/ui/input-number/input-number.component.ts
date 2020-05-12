@@ -105,4 +105,9 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
     this.setDisplayValue();
   }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
+  }
 }

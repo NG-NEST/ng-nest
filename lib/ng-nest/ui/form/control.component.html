@@ -18,5 +18,8 @@
     <ng-container *ngSwitchCase="'date-picker'">
       <x-date-picker [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-date-picker>
     </ng-container>
+    <ng-container *ngSwitchCase="'input-number'">
+      <x-input-number [formControlName]="option.id"></x-input-number>
+    </ng-container>
   </ng-container>
 </div>

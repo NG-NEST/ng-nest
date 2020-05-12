@@ -11,8 +11,9 @@ import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XInputNumberModule } from '@ng-nest/ui/input-number';
 
-const modules = [XInputModule, XSelectModule, XCascadeModule, XCheckboxModule, XColorPickerModule, XDatePickerModule];
+const modules = [XInputModule, XSelectModule, XCascadeModule, XCheckboxModule, XColorPickerModule, XDatePickerModule, XInputNumberModule];
 
 @NgModule({
   declarations: [XFormComponent, XControlComponent, XFormProperty, XControlProperty],

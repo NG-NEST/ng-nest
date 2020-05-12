@@ -6,6 +6,7 @@ import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XCheckboxOption, XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XColorPickerOption, XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XDatePickerOption, XDatePickerComponent } from '@ng-nest/ui/date-picker';
+import { XInputNumberOption, XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 /**
  * Form
@@ -157,7 +158,8 @@ export type XFormControlOption =
   | XCascadeControlOption
   | XCheckboxControlOption
   | XColorPickerControlOption
-  | XDatePickerControlOption;
+  | XDatePickerControlOption
+  | XInputNumberControlOption;
 
 export type XFormControlType =
   | XInputComponent
@@ -165,9 +167,10 @@ export type XFormControlType =
   | XCascadeComponent
   | XCheckboxComponent
   | XColorPickerComponent
-  | XDatePickerComponent;
+  | XDatePickerComponent
+  | XInputNumberComponent;
 
-export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker';
+export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker' | 'input-number';
 
 /**
  * Input Control
@@ -231,6 +234,17 @@ export interface XDatePickerControlOption extends XControlOption, XDatePickerOpt
 export class XDatePickerControl extends XControl {
   controlType: XControlType = 'date-picker';
   constructor(option: XDatePickerControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
+ * InputNumber Control
+ */
+export interface XInputNumberControlOption extends XControlOption, XInputNumberOption {}
+export class XInputNumberControl extends XControl {
+  controlType: XControlType = 'input-number';
+  constructor(option: XInputNumberControlOption = {}) {
     super(option);
   }
 }
