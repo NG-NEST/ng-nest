@@ -1,5 +1,5 @@
-import { XClassMap, XJustify, XAlign, XDirection, XBoolean } from '../interfaces';
-import { Input, EventEmitter } from '@angular/core';
+import { XClassMap, XJustify, XAlign, XDirection, XBoolean, XSize } from '../interfaces';
+import { Input } from '@angular/core';
 import { XInputBoolean } from './convert';
 
 export class XProperty {
@@ -26,6 +26,10 @@ export class XFormProp extends XProperty {
    * flex 布局下的子元素排列方向
    */
   @Input() direction: XDirection = 'column';
+  /**
+   * 尺寸
+   */
+  @Input() size: XSize = 'medium';
   /**
    * 输入提示信息
    */
@@ -57,6 +61,10 @@ export interface XFormOption {
    * flex 布局下的子元素排列方向
    */
   direction?: XDirection;
+  /**
+   * 尺寸
+   */
+  size?: XSize;
   /**
    * 输入提示信息
    */

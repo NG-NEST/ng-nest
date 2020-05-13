@@ -48,7 +48,7 @@ describe(XFormPrefix, () => {
 
 @Component({
   selector: 'test-x-form',
-  template: ` <x-form [controls]="controls"></x-form> `
+  template: ` <x-form [controls]="controls" direction="row" space="1.5" label-suffix=":"></x-form> `
 })
 class TestXFormComponent {
   controls: XControl[] = [

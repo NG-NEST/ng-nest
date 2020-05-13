@@ -1,4 +1,4 @@
-import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty } from '@ng-nest/ui/core';
+import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XFormProp, XNumber, XInputNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
@@ -24,11 +24,19 @@ export const XFormPrefix = 'x-form';
  * Form Property
  */
 @Component({ template: '' })
-export class XFormProperty {
+export class XFormProperty extends XFormProp {
   /**
    * 表单名称
    */
   @Input() title: string;
+  /**
+   * 间距
+   */
+  @Input() @XInputNumber() space: XNumber = 1;
+  /**
+   * 标签后缀
+   */
+  @Input('label-suffix') labelSuffix: string = '';
   /**
    * 表单控件
    */

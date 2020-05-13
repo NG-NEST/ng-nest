@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Host, Opt
 import { XControlProperty, XFormControlOption, XFormControlType } from './form.property';
 import { XFormComponent } from './form.component';
 import { FormControlName, Validators } from '@angular/forms';
+import { XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-control',
@@ -19,10 +20,18 @@ export class XControlComponent extends XControlProperty {
   ngOnInit() {}
 
   ngAfterViewInit() {
+    this.setProps('disabled', 'required', 'direction', 'justify', 'align');
+    this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     Object.assign(this.control.valueAccessor, this.option);
     if (this.option.disabled) this.control.control.disable();
     if (this.option.required) this.control.control.setValidators(Validators.required);
     this.control.control.updateValueAndValidity();
     (this.control.valueAccessor as XFormControlType).formControlChanges();
+  }
+
+  setProps(...props: string[]) {
+    for (let prop of props) {
+      if (XIsEmpty(this.option[prop])) this.option[prop] = (this.form as any)[prop];
+    }
   }
 }

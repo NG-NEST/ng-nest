@@ -42,10 +42,6 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() maxlength: XNumber = 0;
   /**
-   * 尺寸
-   */
-  @Input() size: XSize = 'medium';
-  /**
    * 异常
    */
   @Input() @XInputBoolean() error: XBoolean = false;
