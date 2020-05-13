@@ -9,6 +9,7 @@ import { XDatePickerOption, XDatePickerComponent } from '@ng-nest/ui/date-picker
 import { XInputNumberOption, XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { XRadioOption, XRadioComponent } from '@ng-nest/ui/radio';
 import { XRateOption, XRateComponent } from '@ng-nest/ui/rate';
+import { XSliderSelectOption, XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 /**
  * Form
@@ -163,7 +164,8 @@ export type XFormControlOption =
   | XDatePickerControlOption
   | XInputNumberControlOption
   | XRadioControlOption
-  | XRateControlOption;
+  | XRateControlOption
+  | XSliderSelectControlOption;
 
 export type XFormControlType =
   | XInputComponent
@@ -174,9 +176,20 @@ export type XFormControlType =
   | XDatePickerComponent
   | XInputNumberComponent
   | XRadioComponent
-  | XRateComponent;
+  | XRateComponent
+  | XSliderSelectComponent;
 
-export type XControlType = 'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker' | 'input-number' | 'radio' | 'rate';
+export type XControlType =
+  | 'input'
+  | 'select'
+  | 'cascade'
+  | 'checkbox'
+  | 'color-picker'
+  | 'date-picker'
+  | 'input-number'
+  | 'radio'
+  | 'rate'
+  | 'slider-select';
 
 /**
  * Input Control
@@ -273,6 +286,17 @@ export interface XRateControlOption extends XControlOption, XRateOption {}
 export class XRateControl extends XControl {
   controlType: XControlType = 'rate';
   constructor(option: XRateControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
+ * SliderSelect Control
+ */
+export interface XSliderSelectControlOption extends XControlOption, XSliderSelectOption {}
+export class XSliderSelectControl extends XControl {
+  controlType: XControlType = 'slider-select';
+  constructor(option: XSliderSelectControlOption = {}) {
     super(option);
   }
 }

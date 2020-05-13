@@ -14,6 +14,7 @@ import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XRateModule } from '@ng-nest/ui/rate';
+import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 
 const modules = [
   XInputModule,
@@ -24,7 +25,8 @@ const modules = [
   XDatePickerModule,
   XInputNumberModule,
   XRadioModule,
-  XRateModule
+  XRateModule,
+  XSliderSelectModule
 ];
 
 @NgModule({

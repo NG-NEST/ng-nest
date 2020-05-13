@@ -8,11 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
+      imports: [BrowserAnimationsModule, XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
       declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,

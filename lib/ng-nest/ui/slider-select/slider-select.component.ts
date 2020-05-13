@@ -117,7 +117,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.manual = true;
     this.visible = true;
     this.cdr.detectChanges();
-    this.dragStarted.emit(drag);
+    this.dragStartEmit.emit(drag);
   }
 
   moved(drag: CdkDragMove) {
@@ -126,14 +126,14 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     drag.source.reset();
     this.tooltip.updatePortal();
     this.change();
-    this.dragMoved.emit(drag);
+    this.dragMoveEmit.emit(drag);
   }
 
   ended(drag: CdkDragEnd) {
     this.manual = false;
     this.visible = false;
     this.cdr.detectChanges();
-    this.dragEnded.emit(drag);
+    this.dragEndEmit.emit(drag);
   }
 
   setDrag(distance: number = 0) {
@@ -153,5 +153,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.left}%`);
     this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.left}%`);
     this.renderer.removeStyle(this.dragRef.nativeElement, 'transform');
+  }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }

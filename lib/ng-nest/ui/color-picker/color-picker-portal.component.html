@@ -29,8 +29,8 @@
             min="0"
             max="360"
             step="1"
-            (dragStarted)="started()"
-            (dragEnded)="ended()"
+            (dragStartEmit)="started()"
+            (dragEndEmit)="ended()"
             (ngModelChange)="hueChange()"
           ></x-slider-select>
         </div>

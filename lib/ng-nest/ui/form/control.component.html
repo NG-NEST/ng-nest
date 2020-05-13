@@ -27,5 +27,8 @@
     <ng-container *ngSwitchCase="'rate'">
       <x-rate [formControlName]="option.id"></x-rate>
     </ng-container>
+    <ng-container *ngSwitchCase="'slider-select'">
+      <x-slider-select [formControlName]="option.id"></x-slider-select>
+    </ng-container>
   </ng-container>
 </div>

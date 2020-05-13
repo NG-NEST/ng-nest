@@ -15,7 +15,8 @@ import {
   XDatePickerControl,
   XInputNumberControl,
   XRadioControl,
-  XRateControl
+  XRateControl,
+  XSliderSelectControl
 } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { interval } from 'rxjs';
@@ -115,6 +116,11 @@ class TestXFormComponent {
       id: 'active',
       label: '爱好',
       data: ['乒乓球', '篮球', '足球'],
+      span: 12
+    }),
+    new XSliderSelectControl({
+      id: 'process',
+      label: '进度',
       span: 12
     })
   ];

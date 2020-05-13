@@ -16,7 +16,7 @@ import {
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
 import { XIsEmpty, XCorner, XConnectAnimation } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';

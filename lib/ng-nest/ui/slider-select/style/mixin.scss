@@ -5,14 +5,15 @@
 @import './param';
 
 @mixin slider-select {
-  font-size: $--x-slider-select-font-size;
-  color: $--x-text;
   width: 100%;
   @include flex();
   > label {
     display: inline-block;
+    white-space: nowrap;
     height: $--x-slider-select-height;
     line-height: $--x-slider-select-height;
+    color: $--x-text-500;
+    font-weight: 600;
   }
   > .#{$--x-slider-select-prefix}-inner {
     flex: 1;
@@ -47,7 +48,9 @@
     > .#{$--x-slider-select-prefix}-drags {
       position: relative;
       width: 100%;
-      height: $--x-slider-select-button-size;
+      height: $--x-slider-select-height;
+      display: flex;
+      align-items: center;
       > .#{$--x-slider-select-prefix}-drag {
         position: absolute;
         left: 0%;
