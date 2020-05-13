@@ -16,7 +16,8 @@ import {
   XInputNumberControl,
   XRadioControl,
   XRateControl,
-  XSliderSelectControl
+  XSliderSelectControl,
+  XSwitchControl
 } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { interval } from 'rxjs';
@@ -112,15 +113,20 @@ class TestXFormComponent {
       count: 6,
       span: 6
     }),
-    new XCheckboxControl({
-      id: 'active',
-      label: '爱好',
-      data: ['乒乓球', '篮球', '足球'],
-      span: 12
+    new XSwitchControl({
+      id: 'disabled',
+      label: '禁用',
+      span: 6
     }),
     new XSliderSelectControl({
       id: 'process',
       label: '进度',
+      span: 12
+    }),
+    new XCheckboxControl({
+      id: 'active',
+      label: '爱好',
+      data: ['乒乓球', '篮球', '足球'],
       span: 12
     })
   ];

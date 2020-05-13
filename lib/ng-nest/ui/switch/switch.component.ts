@@ -41,4 +41,9 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
+  }
 }

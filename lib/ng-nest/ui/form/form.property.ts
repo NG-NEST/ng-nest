@@ -10,6 +10,7 @@ import { XInputNumberOption, XInputNumberComponent } from '@ng-nest/ui/input-num
 import { XRadioOption, XRadioComponent } from '@ng-nest/ui/radio';
 import { XRateOption, XRateComponent } from '@ng-nest/ui/rate';
 import { XSliderSelectOption, XSliderSelectComponent } from '@ng-nest/ui/slider-select';
+import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 
 /**
  * Form
@@ -165,7 +166,8 @@ export type XFormControlOption =
   | XInputNumberControlOption
   | XRadioControlOption
   | XRateControlOption
-  | XSliderSelectControlOption;
+  | XSliderSelectControlOption
+  | XSwitchControlOption;
 
 export type XFormControlType =
   | XInputComponent
@@ -177,7 +179,8 @@ export type XFormControlType =
   | XInputNumberComponent
   | XRadioComponent
   | XRateComponent
-  | XSliderSelectComponent;
+  | XSliderSelectComponent
+  | XSwitchComponent;
 
 export type XControlType =
   | 'input'
@@ -189,7 +192,8 @@ export type XControlType =
   | 'input-number'
   | 'radio'
   | 'rate'
-  | 'slider-select';
+  | 'slider-select'
+  | 'switch';
 
 /**
  * Input Control
@@ -297,6 +301,17 @@ export interface XSliderSelectControlOption extends XControlOption, XSliderSelec
 export class XSliderSelectControl extends XControl {
   controlType: XControlType = 'slider-select';
   constructor(option: XSliderSelectControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
+ * Switch Control
+ */
+export interface XSwitchControlOption extends XControlOption, XSwitchOption {}
+export class XSwitchControl extends XControl {
+  controlType: XControlType = 'switch';
+  constructor(option: XSwitchControlOption = {}) {
     super(option);
   }
 }

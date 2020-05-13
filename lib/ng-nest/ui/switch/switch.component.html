@@ -1,10 +1,6 @@
-<div
-  #switch
-  class="x-switch"
-  [class.x-flex]="justify || align || direction"
-  [class.x-checked]="value"
-  [class.x-disabled]="disabled"
->
+<div #switch class="x-switch" [class.x-flex]="justify || align || direction" [class.x-checked]="value" [class.x-disabled]="disabled">
   <label *ngIf="label">{{ label }}</label>
-  <div class="x-switch-row" (click)="switchClick()"></div>
+  <div class="x-switch-row">
+    <div class="x-switch-slider" (click)="switchClick()"></div>
+  </div>
 </div>

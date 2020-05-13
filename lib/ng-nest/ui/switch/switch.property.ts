@@ -1,4 +1,4 @@
-import { XControlValueAccessor } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/core';
 import { Component } from '@angular/core';
 
 /**
@@ -12,4 +12,10 @@ export const XSwitchPrefix = 'x-switch';
  * Switch Property
  */
 @Component({ template: '' })
-export class XSwitchProperty extends XControlValueAccessor<boolean> {}
+export class XSwitchProperty extends XControlValueAccessor<boolean> implements XSwitchOption {}
+
+/**
+ * Switch Option
+ * @undocument true
+ */
+export interface XSwitchOption extends XFormOption {}

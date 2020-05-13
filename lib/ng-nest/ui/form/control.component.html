@@ -30,5 +30,8 @@
     <ng-container *ngSwitchCase="'slider-select'">
       <x-slider-select [formControlName]="option.id"></x-slider-select>
     </ng-container>
+    <ng-container *ngSwitchCase="'switch'">
+      <x-switch [formControlName]="option.id"></x-switch>
+    </ng-container>
   </ng-container>
 </div>

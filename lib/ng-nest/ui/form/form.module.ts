@@ -15,6 +15,7 @@ import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XRateModule } from '@ng-nest/ui/rate';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
+import { XSwitchModule } from '@ng-nest/ui/switch';
 
 const modules = [
   XInputModule,
@@ -26,7 +27,8 @@ const modules = [
   XInputNumberModule,
   XRadioModule,
   XRateModule,
-  XSliderSelectModule
+  XSliderSelectModule,
+  XSwitchModule
 ];
 
 @NgModule({
