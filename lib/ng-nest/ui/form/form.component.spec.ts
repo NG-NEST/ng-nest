@@ -17,7 +17,8 @@ import {
   XRadioControl,
   XRateControl,
   XSliderSelectControl,
-  XSwitchControl
+  XSwitchControl,
+  XTimePickerControl
 } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { interval } from 'rxjs';
@@ -116,6 +117,11 @@ class TestXFormComponent {
     new XSwitchControl({
       id: 'disabled',
       label: '禁用',
+      span: 6
+    }),
+    new XTimePickerControl({
+      id: 'time',
+      label: '时间',
       span: 6
     }),
     new XSliderSelectControl({

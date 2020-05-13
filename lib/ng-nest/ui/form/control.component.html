@@ -33,5 +33,8 @@
     <ng-container *ngSwitchCase="'switch'">
       <x-switch [formControlName]="option.id"></x-switch>
     </ng-container>
+    <ng-container *ngSwitchCase="'time-picker'">
+      <x-time-picker [formControlName]="option.id"></x-time-picker>
+    </ng-container>
   </ng-container>
 </div>

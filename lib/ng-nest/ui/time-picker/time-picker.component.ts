@@ -31,9 +31,6 @@ import { takeUntil } from 'rxjs/operators';
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
 export class XTimePickerComponent extends XTimePickerProperty implements OnInit {
-  @Input() type: XTimePickerType = 'time';
-  @Input() format: string = 'HH:mm:ss';
-  @Output() nodeClick = new EventEmitter<number>();
   @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
 
@@ -137,6 +134,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
       return true;
     }
     return false;
@@ -190,8 +188,9 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   onNodeClick(date: Date) {
     this.value = date.getTime();
     this.setDisplayValue();
+    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
-    this.nodeClick.emit(this.value);
+    this.nodeEmit.emit(this.value);
   }
 
   setDisplayValue() {
@@ -206,5 +205,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     if (this.portalAttached()) {
       this.portal.overlayRef?.updatePositionStrategy(this.setPlacement());
     }
+  }
+
+  formControlChanges() {
+    this.ngOnInit();
+    this.cdr.detectChanges();
   }
 }
