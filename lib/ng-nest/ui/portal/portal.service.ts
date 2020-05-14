@@ -45,7 +45,7 @@ export class XPortalService {
         .position()
         .flexibleConnectedTo(elementRef)
         .withPositions(this.setConnectedPosition(...placement))
-        // .withLockedPosition(true);
+        .withLockedPosition(true);
     }
   }
 

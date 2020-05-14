@@ -12,7 +12,7 @@ import {
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
 import { XCorner, XConnectAnimation } from '@ng-nest/ui/core';
-import { takeUntil, debounceTime } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
@@ -36,6 +36,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   closePortal: Function;
   destroyPortal: Function;
   nodeEmit: Function;
+  show: boolean = false;
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}

@@ -117,7 +117,9 @@ class TestXSelectComponent {
   data2 = JSON.parse(JSON.stringify(data));
   model1: any;
   model2: any = 'BBBB';
-  constructor(public cdr: ChangeDetectorRef) {}
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => this.cdr.detectChanges());
+  }
 }
 
 @Component({

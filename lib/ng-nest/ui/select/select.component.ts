@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -18,7 +18,7 @@ import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, delay } from 'rxjs/operators';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -176,7 +176,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       backdropClass: '',
       width: this.box.width,
       positionStrategy: this.setPlacement(),
-      scrollStrategy: this.overlay.scrollStrategies.reposition({ autoClose: false })
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({

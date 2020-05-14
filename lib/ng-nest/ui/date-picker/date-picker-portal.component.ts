@@ -103,6 +103,11 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.nodeEmit(date);
   }
 
+  typeChange(type: XDatePickerType) {
+    this.type = type;
+    this.cdr.detectChanges();
+  }
+
   monthChange(date: Date) {
     this.setDisplay(date);
     if (this._type === 'month') {
@@ -111,7 +116,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     } else {
       this.type = 'date';
     }
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   yearChange(date: Date) {
@@ -122,7 +127,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     } else {
       this.type = 'month';
     }
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   yearStartChange(number: number) {
@@ -134,14 +139,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     let date = new Date(this.display);
     date.setMonth(date.getMonth() + num);
     this.setDisplay(date);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   nextYear(num: number) {
     let date = new Date(this.display);
     date.setFullYear(date.getFullYear() + num);
     this.setDisplay(date);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   nextYears(num: number) {
@@ -149,6 +154,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     let date = new Date(this.display);
     date.setFullYear(this.startYear);
     this.setDisplay(date);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 }

@@ -73,6 +73,8 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
     }
+
+    this.cdr.detectChanges();
   }
 
   dateClick(date: Date) {

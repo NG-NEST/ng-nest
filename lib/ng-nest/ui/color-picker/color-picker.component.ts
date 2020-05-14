@@ -147,10 +147,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      if (place !== this.placement) {
-        this.positionChange.next(place);
-        this.cdr.detectChanges();
-      }
+      place !== this.placement && this.positionChange.next(place);
     });
   }
 
@@ -172,8 +169,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   onNodeClick(color: string) {
     this.value = color;
     this.displayValue = color;
-    this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
+    this.cdr.detectChanges();
   }
 
   setPlacement() {

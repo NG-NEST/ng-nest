@@ -147,6 +147,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     this.hour = date.id;
     this.model.setHours(this.hour);
     this.nodeEmit(this.model);
+    this.cdr.detectChanges();
     this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
@@ -154,6 +155,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     this.minute = date.id;
     this.model.setMinutes(this.minute);
     this.nodeEmit(this.model);
+    this.cdr.detectChanges();
     this.scrollTo(this.minuteRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
@@ -161,6 +163,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     this.second = date.id;
     this.model.setSeconds(this.second);
     this.nodeEmit(this.model);
+    this.cdr.detectChanges();
     this.scrollTo(this.secondRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 

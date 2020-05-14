@@ -4,8 +4,8 @@
       <x-button icon="fto-chevrons-left" size="mini" only-icon (click)="nextYear(-1)"></x-button>
       <x-button icon="fto-chevron-left" size="mini" only-icon (click)="nextMonth(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button type="text" size="mini" (click)="type = 'year'">{{ display | date: 'yyyy年' }}</x-button>
-        <x-button type="text" size="mini" (click)="type = 'month'">{{ display | date: 'M月' }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy年' }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('month')">{{ display | date: 'M月' }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" only-icon (click)="nextMonth(1)"></x-button>
       <x-button icon="fto-chevrons-right" size="mini" only-icon (click)="nextYear(1)"></x-button>
@@ -13,7 +13,7 @@
     <ng-container *ngSwitchCase="'month'">
       <x-button icon="fto-chevron-left" size="mini" only-icon (click)="nextYear(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button type="text" size="mini" (click)="type = 'year'">{{ display | date: 'yyyy年' }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy年' }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" only-icon (click)="nextYear(1)"></x-button>
     </ng-container>

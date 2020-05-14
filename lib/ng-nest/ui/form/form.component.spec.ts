@@ -48,7 +48,7 @@ describe(XFormPrefix, () => {
 
 @Component({
   selector: 'test-x-form',
-  template: ` <x-form [controls]="controls" direction="row" space="1.5" label-suffix=":"></x-form> `
+  template: `<x-form [controls]="controls"></x-form>`
 })
 class TestXFormComponent {
   controls: XControl[] = [
@@ -136,8 +136,4 @@ class TestXFormComponent {
       span: 12
     })
   ];
-
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(20).subscribe((x) => this.cdr.detectChanges());
-  }
 }

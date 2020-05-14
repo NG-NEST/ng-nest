@@ -111,11 +111,7 @@ class TestXColorPickerComponent {
   model2 = '#409eff';
   model3 = 'rgb(64, 158, 255)';
   model4 = 'hsl(210, 100%, 63%)';
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor() {}
 }
 
 @Component({

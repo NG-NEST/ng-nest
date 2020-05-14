@@ -107,6 +107,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
+    this.cdr.detectChanges();
   }
 
   hexChange() {
@@ -286,7 +287,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.setValueByType();
     this.setRailBackground();
     this.nodeEmit(this.value);
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   setValueByType() {

@@ -165,6 +165,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
       return true;
     }
     return false;
@@ -195,10 +196,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      if (place !== this.placement) {
-        this.positionChange.next(place);
-        this.cdr.detectChanges();
-      }
+      place !== this.placement && this.positionChange.next(place);
     });
   }
 

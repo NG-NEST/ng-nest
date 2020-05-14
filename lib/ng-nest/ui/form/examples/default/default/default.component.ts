@@ -1,5 +1,19 @@
 import { Component } from '@angular/core';
-import { XControl, XInputControl, XSelectControl } from '@ng-nest/ui/form';
+import {
+  XControl,
+  XInputControl,
+  XSelectControl,
+  XCascadeControl,
+  XColorPickerControl,
+  XDatePickerControl,
+  XInputNumberControl,
+  XRadioControl,
+  XRateControl,
+  XSwitchControl,
+  XTimePickerControl,
+  XSliderSelectControl,
+  XCheckboxControl
+} from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-default',
@@ -7,19 +21,88 @@ import { XControl, XInputControl, XSelectControl } from '@ng-nest/ui/form';
 })
 export class ExDefaultComponent {
   controls: XControl[] = [
-    new XInputControl({ id: 'id', label: '编码', span: 6, maxlength: 10, required: true, value: 909090 }),
+    new XInputControl({
+      id: 'id',
+      label: '编码',
+      span: 6,
+      maxlength: 10,
+      required: true,
+      value: 909090
+    }),
     new XInputControl({ id: 'name', label: '姓名', span: 6, disabled: true }),
     new XInputControl({
       id: 'account',
       label: '账号',
       span: 6,
       clearable: true,
-      clear: (value: any) => {
+      clearClick: (value: any) => {
         console.log(value);
       }
     }),
     new XInputControl({ id: 'password', label: '密码', span: 6 }),
     new XInputControl({ id: 'file', label: '文件', span: 6 }),
-    new XSelectControl({ id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], span: 6 })
+    new XSelectControl({ id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', span: 6 }),
+    new XCascadeControl({
+      id: 'city',
+      label: '城市',
+      data: [
+        { id: 1, label: '湖北省' },
+        { id: 2, label: '浙江省' },
+        { id: 3, label: '河南省' },
+        { id: 4, label: '河北省' },
+        { id: 5, pid: 1, label: '武汉市' },
+        { id: 6, pid: 1, label: '宜昌市' },
+        { id: 7, pid: 1, label: '荆州市' }
+      ],
+      span: 6
+    }),
+    new XColorPickerControl({
+      id: 'color',
+      label: '喜欢的颜色',
+      span: 6
+    }),
+    new XDatePickerControl({
+      id: 'createDate',
+      label: '创建日期',
+      span: 6
+    }),
+    new XInputNumberControl({
+      id: 'age',
+      label: '年龄',
+      span: 6
+    }),
+    new XRadioControl({
+      id: 'gender',
+      label: '性别',
+      data: ['男', '女'],
+      span: 6
+    }),
+    new XRateControl({
+      id: 'level',
+      label: '级别',
+      count: 6,
+      span: 6
+    }),
+    new XSwitchControl({
+      id: 'disabled',
+      label: '禁用',
+      span: 6
+    }),
+    new XTimePickerControl({
+      id: 'time',
+      label: '时间',
+      span: 6
+    }),
+    new XSliderSelectControl({
+      id: 'process',
+      label: '进度',
+      span: 12
+    }),
+    new XCheckboxControl({
+      id: 'active',
+      label: '爱好',
+      data: ['乒乓球', '篮球', '足球'],
+      span: 12
+    })
   ];
 }
