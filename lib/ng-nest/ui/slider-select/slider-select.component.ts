@@ -12,7 +12,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
-import { XIsEmpty, XValueAccessor, XIsUndefined, XResize } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XIsUndefined, XResize, XClearClass } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -58,6 +58,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   ngOnInit() {
     this.setFlex(this.sliderSelect.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setPrecision();
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -84,6 +85,11 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.value = parseFloat(val);
     this.setDisplayValue();
     if (this.onChange) this.onChange(this.value);
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   setLeft() {

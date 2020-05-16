@@ -1,9 +1,10 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty } from '../interfaces';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap } from '../interfaces';
 import { XFormProp } from './property';
 
 export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
+  labelMap: XClassMap = {};
   value: T;
   onChange: (value: T) => void;
   onTouched: () => void;

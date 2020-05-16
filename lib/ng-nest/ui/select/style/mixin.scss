@@ -15,6 +15,7 @@
     line-height: $--x-select-height;
     color: $--x-text-500;
     font-weight: 600;
+    @include text-align();
   }
   > .#{$--x-select-prefix}-row {
     flex: 1;

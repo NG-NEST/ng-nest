@@ -9,7 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
-import { XValueAccessor } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XSwitchPrefix}`,
@@ -33,6 +33,12 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
 
   ngOnInit() {
     this.setFlex(this.switch.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   switchClick() {

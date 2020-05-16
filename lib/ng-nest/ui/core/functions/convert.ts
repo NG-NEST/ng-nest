@@ -10,7 +10,8 @@ import {
   XParentIdentityProperty,
   XIsBoolean,
   XIsString,
-  XBoolean
+  XBoolean,
+  XClassMap
 } from '../interfaces';
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -83,6 +84,14 @@ export function XInvertKeyValues(obj: any): Map<any, any> {
     nw.set(obj[key], key);
     return nw;
   }, new Map());
+}
+
+export function XClearClass(...classMaps: XClassMap[]) {
+  classMaps.forEach((classMap) => {
+    for (const key in classMap) {
+      classMap[key] = false;
+    }
+  });
 }
 
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {

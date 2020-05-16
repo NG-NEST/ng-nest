@@ -13,7 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -72,6 +72,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   ngOnInit() {
     this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -85,6 +86,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   setData() {

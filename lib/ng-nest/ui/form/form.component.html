@@ -1,4 +1,4 @@
-<form #form class="x-form" (ngSubmit)="submit()" [formGroup]="formGroup">
+<form #form class="x-form" (ngSubmit)="submit()" [formGroup]="formGroup" [style.width]="width">
   <ng-container [ngSwitch]="controlsType">
     <ng-container *ngSwitchCase="'controls'">
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls }"> </ng-container>
@@ -20,7 +20,7 @@
 
 <ng-template #controlsTemp let-controls="controls">
   <x-row [space]="space">
-    <x-col [style.padding-top.rem]="space" *ngFor="let control of controls" [span]="control.span">
+    <x-col [style.padding-top.rem]="space" [span]="control.span" *ngFor="let control of controls">
       <x-control [option]="control"></x-control>
     </x-col>
   </x-row>

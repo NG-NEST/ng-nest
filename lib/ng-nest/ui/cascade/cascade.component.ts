@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.property';
-import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -74,6 +74,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   ngOnInit() {
     this.setFlex(this.cascade.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -89,7 +90,12 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     this._unSubject.unsubscribe();
   }
 
-  private setData() {
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
+  }
+
+  setData() {
     XSetData<XCascadeNode>(this.data, this._unSubject).subscribe((x) => {
       this.datas = x;
       this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XCascadeNode>(x, y, 0));

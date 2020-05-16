@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
@@ -37,10 +37,21 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
 
   ngOnInit() {
     this.setFlex(this.checkbox.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {
@@ -59,11 +70,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     }
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
   }
 
   getChecked(id: any): boolean {

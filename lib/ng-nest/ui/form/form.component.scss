@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$prefix} {
+  display: inline-block;
+}
+
 .#{$prefix} {
   @include reset-component();
   @include form();

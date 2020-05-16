@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -32,6 +32,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
 
   ngOnInit() {
     this.setFlex(this.radio.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,6 +47,11 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   writeValue(value: any) {
     this.value = value;
     this.cdr.detectChanges();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   radioClick(event: Event, node: XRadioNode) {

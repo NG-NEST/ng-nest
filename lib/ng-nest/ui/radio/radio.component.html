@@ -1,5 +1,5 @@
 <div #radio class="x-radio" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled">
-  <label *ngIf="label">{{ label }}</label>
+  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button

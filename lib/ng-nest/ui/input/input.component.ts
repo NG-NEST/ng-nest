@@ -11,7 +11,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XValueAccessor, XIsChange } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XIsChange, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -61,7 +61,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   ngOnInit() {
     this.setPadding();
     this.setFlex(this.input.nativeElement, this.renderer, this.justify, this.align, this.direction);
-    this.setSize();
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -115,10 +115,10 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         : 0.4;
   }
 
-  setSize() {
-    if (this.size) {
-      this.renderer.addClass(this.input.nativeElement, `${XInputPrefix}-${this.size}`);
-    }
+  setClassMap() {
+    XClearClass(this.classMap, this.labelMap);
+    this.classMap[`${XInputPrefix}-${this.size}`] = this.size ? true : false;
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   formControlChanges() {

@@ -15,7 +15,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -87,6 +87,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -235,6 +236,11 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   formControlChanges() {

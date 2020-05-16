@@ -14,6 +14,7 @@
     line-height: $--x-input-number-height;
     color: $--x-text-500;
     font-weight: 600;
+    @include text-align();
   }
   > .#{$--x-input-number-prefix}-row {
     flex: 1;

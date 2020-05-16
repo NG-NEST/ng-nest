@@ -16,7 +16,7 @@ import {
   Output
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerType, XTimePickerProperty } from './time-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XCorner } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -78,6 +78,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -87,6 +88,11 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   setFormat() {

@@ -10,7 +10,7 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XIsEmpty, XValueAccessor, XNumber } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XNumber, XClearClass } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 
 @Component({
@@ -50,6 +50,12 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
 
   ngOnInit() {
     this.setFlex(this.inputNumber.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   setDisplayValue() {

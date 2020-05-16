@@ -15,6 +15,14 @@ export class XFormProp extends XProperty {
    */
   @Input() label: string = '';
   /**
+   * 标签宽度
+   */
+  @Input('label-width') labelWidth: string = '';
+  /**
+   * 标签文字对齐方式
+   */
+  @Input('label-align') labelAlign: XAlign = 'start';
+  /**
    * flex 布局下的子元素水平排列方式
    */
   @Input() justify: XJustify = 'start';

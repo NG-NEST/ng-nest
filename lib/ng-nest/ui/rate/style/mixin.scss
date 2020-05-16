@@ -15,11 +15,7 @@
     position: relative;
     color: $--x-text-500;
     font-weight: 600;
-    > span {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
+    @include text-align();
   }
   > .x-buttons {
     > x-button > .x-button {

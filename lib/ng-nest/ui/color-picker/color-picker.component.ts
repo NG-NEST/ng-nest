@@ -13,7 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
-import { XValueAccessor, XIsEmpty, XCorner } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
@@ -70,6 +70,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   ngOnInit() {
     this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
   }
 
   ngAfterViewInit() {
@@ -179,6 +180,11 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   formControlChanges() {

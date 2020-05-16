@@ -30,9 +30,13 @@ export class XFormProperty extends XFormProp {
    */
   @Input() title: string;
   /**
-   * 间距
+   * 控件间距，单位rem
    */
   @Input() @XInputNumber() space: XNumber = 1;
+  /**
+   * 控件宽度，24栅格
+   */
+  @Input() @XInputNumber() span: XNumber;
   /**
    * 标签后缀
    */
@@ -41,6 +45,10 @@ export class XFormProperty extends XFormProp {
    * 表单控件
    */
   @Input() controls: XControl[] | XFormRow[] = [];
+  /**
+   * 表单宽度
+   */
+  @Input() width: string = '100%';
 }
 
 /**

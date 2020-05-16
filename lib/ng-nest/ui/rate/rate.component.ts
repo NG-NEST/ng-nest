@@ -8,7 +8,7 @@ import {
   Input,
   ViewChild
 } from '@angular/core';
-import { XValueAccessor, XIsEmpty, XNumber } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XNumber, XClearClass } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
 
 @Component({
@@ -40,6 +40,12 @@ export class XRateComponent extends XRateProperty {
   ngOnInit() {
     this.setRates();
     this.setFlex(this.rate.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setClassMap();
+  }
+
+  setClassMap() {
+    XClearClass(this.labelMap);
+    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   setRates() {

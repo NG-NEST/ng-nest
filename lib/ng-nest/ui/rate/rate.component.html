@@ -1,5 +1,5 @@
 <div #rate class="x-rate" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled">
-  <label *ngIf="label">{{ label }}</label>
+  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <x-buttons (mouseleave)="leaveRates()">
     <x-button
       *ngFor="let rate of rates"
