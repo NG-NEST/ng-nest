@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass, XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
@@ -23,6 +23,11 @@ import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/co
 })
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
+
+  get getError() {
+    return this.error || (this.required && XIsEmpty(this.value));
+  }
+
   writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();

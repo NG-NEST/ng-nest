@@ -30,6 +30,11 @@
       }
     }
   }
+  &.x-error-show {
+    > label {
+      color: $--x-danger;
+    }
+  }
   &.x-direction {
     &-row {
       > label {
