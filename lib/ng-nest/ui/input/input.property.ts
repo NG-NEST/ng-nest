@@ -42,14 +42,6 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() maxlength: XNumber = 0;
   /**
-   * 异常
-   */
-  @Input() @XInputBoolean() error: XBoolean = false;
-  /**
-   * 异常提示文字
-   */
-  @Input() errorMessage: string = '';
-  /**
    * 清除按钮的事件
    */
   @Output() clearEmit = new EventEmitter<any>();

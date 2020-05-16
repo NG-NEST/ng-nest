@@ -28,6 +28,10 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     return this.required && XIsEmpty(this.value);
   }
 
+  get getError() {
+    return this.error || (this.required && XIsEmpty(this.value));
+  }
+
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
@@ -65,6 +69,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   change(value: any) {
     this.verify(value);
     if (this.onChange) this.onChange(this.value);
+    this.cdr.detectChanges();
   }
 
   down(event: Event, limit: XNumber, increase: boolean = true): void {

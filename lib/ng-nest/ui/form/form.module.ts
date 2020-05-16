@@ -17,8 +17,11 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XIconModule } from '../icon';
 
 const modules = [
+  XLayoutModule,
+  XIconModule,
   XInputModule,
   XSelectModule,
   XCascadeModule,
@@ -36,6 +39,6 @@ const modules = [
 @NgModule({
   declarations: [XFormComponent, XControlComponent, XFormProperty, XControlProperty],
   exports: [XFormComponent, XControlComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XLayoutModule, ...modules]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...modules]
 })
 export class XFormModule {}

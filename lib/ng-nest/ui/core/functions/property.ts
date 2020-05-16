@@ -50,6 +50,14 @@ export class XFormProp extends XProperty {
    * 必填
    */
   @Input() @XInputBoolean() required: XBoolean = false;
+  /**
+   * 异常
+   */
+  @Input() @XInputBoolean() error: XBoolean = false;
+  /**
+   * 异常提示文字
+   */
+  @Input() errorMessage: string = '';
 }
 
 export interface XFormOption {

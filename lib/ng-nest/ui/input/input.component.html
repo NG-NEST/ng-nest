@@ -32,5 +32,11 @@
     <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
     <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
     <span class="x-input-error-message" *ngIf="getError && errorMessage">{{ errorMessage }}</span>
+    <ng-container *ngIf="getError">
+      <div class="x-border-error x-top-left"></div>
+      <div class="x-border-error x-top-right"></div>
+      <div class="x-border-error x-bottom-left"></div>
+      <div class="x-border-error x-bottom-right"></div>
+    </ng-container>
   </div>
 </div>

@@ -6,4 +6,17 @@
 
 @mixin form {
   display: inline-block;
+  &-title {
+    display: flex;
+    align-items: center;
+    font-size: $--x-font-size-medium;
+    > x-icon {
+      margin-right: 0.25rem;
+    }
+  }
+  &-rows {
+    > x-row:not(:first-child) {
+      margin-top: 1.5rem;
+    }
+  }
 }

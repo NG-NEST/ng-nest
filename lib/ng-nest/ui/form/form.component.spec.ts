@@ -257,45 +257,40 @@ class TestXFormRowComponent {
 
 @Component({
   selector: 'test-x-form-title',
-  template: `<x-form
-    [controls]="controls"
-    direction="row"
-    label-suffix=":"
-    width="28rem"
-    label-width="8rem"
-    label-align="end"
-    span="20"
-  ></x-form>`
+  template: `<x-form [controls]="controls" direction="row" label-suffix=":" label-width="6rem" label-align="end" span="12"></x-form>`
 })
 class TestXFormTitleComponent {
   controls: XFormRow[] = [
     {
       title: '基本信息',
+      icon: 'fto-user',
       controls: [
+        new XInputControl({ id: 'name', label: '姓名', required: true, maxlength: 10 }),
         new XInputControl({
           id: 'id',
           label: '编码',
-          maxlength: 10,
-          required: true,
-          value: 909090
+          disabled: true,
+          value: '001001001',
+          required: true
         }),
-        new XInputControl({ id: 'name', label: '姓名', disabled: true }),
         new XInputControl({
           id: 'account',
           label: '账号',
           clearable: true,
           clearClick: (value: any) => {
             console.log(value);
-          }
+          },
+          required: true
         }),
-        new XInputControl({ id: 'password', label: '密码' })
+        new XInputControl({ id: 'password', label: '密码', type: 'password', required: true })
       ]
     },
     {
       title: '详细信息',
+      icon: 'fto-list',
       controls: [
-        new XInputControl({ id: 'file', label: '文件' }),
-        new XSelectControl({ id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员' }),
+        new XInputControl({ id: 'file', label: '文件', required: true }),
+        new XSelectControl({ id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true }),
         new XCascadeControl({
           id: 'city',
           label: '城市',
@@ -307,29 +302,35 @@ class TestXFormTitleComponent {
             { id: 5, pid: 1, label: '武汉市' },
             { id: 6, pid: 1, label: '宜昌市' },
             { id: 7, pid: 1, label: '荆州市' }
-          ]
+          ],
+          required: true
         }),
         new XColorPickerControl({
           id: 'color',
-          label: '喜欢的颜色'
+          label: '喜欢的颜色',
+          required: true
         }),
         new XDatePickerControl({
           id: 'createDate',
-          label: '创建日期'
+          label: '创建日期',
+          required: true
         }),
         new XInputNumberControl({
           id: 'age',
-          label: '年龄'
+          label: '年龄',
+          required: true
         }),
         new XRadioControl({
           id: 'gender',
           label: '性别',
-          data: ['男', '女']
+          data: ['男', '女'],
+          required: true
         }),
         new XRateControl({
           id: 'level',
           label: '级别',
-          count: 6
+          count: 6,
+          required: true
         }),
         new XSwitchControl({
           id: 'disabled',
@@ -337,16 +338,19 @@ class TestXFormTitleComponent {
         }),
         new XTimePickerControl({
           id: 'time',
-          label: '时间'
+          label: '时间',
+          required: true
         }),
         new XSliderSelectControl({
           id: 'process',
-          label: '进度'
+          label: '进度',
+          required: true
         }),
         new XCheckboxControl({
           id: 'active',
           label: '爱好',
-          data: ['乒乓球', '篮球', '足球']
+          data: ['乒乓球', '篮球', '足球'],
+          required: true
         })
       ]
     }

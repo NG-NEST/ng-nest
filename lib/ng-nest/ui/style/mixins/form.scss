@@ -1,0 +1,22 @@
+@mixin border-error() {
+  .x-border-error {
+    position: absolute;
+    height: 0.5rem;
+    width: 0.5rem;
+    z-index: 10;
+    @include border-placement(top, left);
+    @include border-placement(top, right);
+    @include border-placement(bottom, left);
+    @include border-placement(bottom, right);
+  }
+}
+
+@mixin border-placement($first, $second) {
+  &.x-#{$first}-#{$second} {
+    border-#{$first}-#{$second}-radius: $--x-border-radius;
+    #{$first}: 0;
+    #{$second}: 0;
+    border-#{$first}: $--x-border-width solid $--x-danger;
+    border-#{$second}: $--x-border-width solid $--x-danger;
+  }
+}

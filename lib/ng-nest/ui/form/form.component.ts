@@ -22,6 +22,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
 
   ngOnInit() {
     this.setControls();
+    this.setClassMap();
     this.createFormGroup();
   }
 
@@ -43,6 +44,10 @@ export class XFormComponent extends XFormProperty implements OnInit {
       if (XIsEmpty(control[prop])) control[prop] = (this as any)[prop];
     }
     return control;
+  }
+
+  setClassMap() {
+    this.classMap[`${XFormPrefix}-${this.controlsType}`] = true;
   }
 
   createFormGroup() {
