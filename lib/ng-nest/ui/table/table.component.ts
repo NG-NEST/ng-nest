@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter } from '@ng-nest/ui/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import * as _ from 'lodash';
 

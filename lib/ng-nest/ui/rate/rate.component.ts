@@ -25,10 +25,6 @@ export class XRateComponent extends XRateProperty {
 
   hoverActivated = 0;
 
-  get getError() {
-    return this.error || (this.required && XIsEmpty(this.value));
-  }
-
   writeValue(value: any) {
     if (XIsEmpty(value)) value = 0;
     this.value = value;

@@ -51,13 +51,13 @@ export class XFormProp extends XProperty {
    */
   @Input() @XInputBoolean() required: XBoolean = false;
   /**
-   * 异常
+   * 正则验证规则
    */
-  @Input() @XInputBoolean() error: XBoolean = false;
+  @Input() pattern: RegExp;
   /**
-   * 异常提示文字
+   * 验证不通过提示文字
    */
-  @Input() errorMessage: string = '';
+  @Input() invalidMessage: string = '';
 }
 
 export interface XFormOption {
@@ -65,6 +65,14 @@ export interface XFormOption {
    * 标签
    */
   label?: any;
+  /**
+   * 标签宽度
+   */
+  labelWidth?: string;
+  /**
+   * 标签文字对齐方式
+   */
+  labelAlign?: XAlign;
   /**
    * flex 布局下的子元素水平排列方式
    */
@@ -93,4 +101,12 @@ export interface XFormOption {
    * 必填
    */
   required?: XBoolean;
+  /**
+   * 正则验证规则
+   */
+  pattern?: RegExp;
+  /**
+   * 验证不通过提示文字
+   */
+  invalidMessage?: string;
 }

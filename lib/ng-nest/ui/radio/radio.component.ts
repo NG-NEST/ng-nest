@@ -26,10 +26,6 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
 
-  get getError() {
-    return this.error || (this.required && XIsEmpty(this.value));
-  }
-
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
   }

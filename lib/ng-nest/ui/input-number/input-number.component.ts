@@ -24,14 +24,6 @@ import { XInputNumberPrefix, XInputNumberProperty } from './input-number.propert
 export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
   @ViewChild('inputNumber', { static: true }) inputNumber: ElementRef;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
-  get getError() {
-    return this.error || (this.required && XIsEmpty(this.value));
-  }
-
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();

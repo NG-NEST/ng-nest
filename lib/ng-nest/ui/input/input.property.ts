@@ -91,7 +91,7 @@ export interface XInputOption extends XFormOption {
   /**
    * 异常提示文字
    */
-  errorMessage?: string;
+  invalidMessage?: string;
   /**
    * 清除按钮的事件
    */

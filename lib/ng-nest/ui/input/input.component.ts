@@ -25,10 +25,6 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   @ViewChild('input', { static: true }) input: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
 
-  get getError() {
-    return this.error || (this.required && XIsEmpty(this.value));
-  }
-
   writeValue(value: any) {
     this.value = value;
     this.change(value);
@@ -78,8 +74,8 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
     this.setPadding();
-    this.cdr.detectChanges();
     if (this.onChange) this.onChange(value);
+    this.cdr.detectChanges();
   }
 
   onClear() {
@@ -124,6 +120,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   formControlChanges() {
     this.change(this.value);
     this.ngOnInit();
+    console.log(this.pattern);
     this.cdr.detectChanges();
   }
 }

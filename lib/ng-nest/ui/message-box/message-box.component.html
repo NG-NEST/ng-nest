@@ -29,16 +29,14 @@
           </ng-container>
         </ng-container>
         <ng-template #inputTpl>
-          <form [formGroup]="formGroup">
-            <x-input
-              formControlName="inputValue"
-              [type]="messageBox.input?.inputType"
-              [label]="messageBox.input?.content"
-              [placeholder]="messageBox.input?.inputPlaceholder"
-              [error]="formGroup?.get('inputValue')?.invalid"
-              [errorMessage]="messageBox.input?.inputErrorMessage"
-            ></x-input>
-          </form>
+          <x-input
+            [ngModel]="messageBox.input?.inputValue"
+            [type]="messageBox.input?.inputType"
+            [label]="messageBox.input?.content"
+            [placeholder]="messageBox.input?.inputPlaceholder"
+            [pattern]="messageBox.input?.inputPattern"
+            [invalidMessage]="messageBox.input?.inputInvalidMessage"
+          ></x-input>
         </ng-template>
       </div>
       <x-buttons space="1">

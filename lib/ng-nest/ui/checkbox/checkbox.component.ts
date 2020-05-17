@@ -24,10 +24,6 @@ import { XValueAccessor, XIsChange, XSetData, XClearClass, XIsEmpty } from '@ng-
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
 
-  get getError() {
-    return this.error || (this.required && XIsEmpty(this.value));
-  }
-
   writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();

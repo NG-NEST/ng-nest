@@ -55,9 +55,13 @@
     left: 0;
     font-size: $--x-input-font-size - 0.125rem;
     color: $--x-danger;
-    margin-bottom: -($--x-input-font-size + 0.325rem);
+    margin-bottom: -($--x-input-font-size + 0.45rem);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  &.x-error-show {
+  &.x-invalid {
     > label {
       color: $--x-danger;
     }

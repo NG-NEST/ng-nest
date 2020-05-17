@@ -84,7 +84,7 @@ export interface XMessageBoxOption extends XAlertOption {
   /**
    * 匹配失败的信息提示
    */
-  inputErrorMessage?: string;
+  inputInvalidMessage?: string;
   /**
    * 输入框的占位符
    */

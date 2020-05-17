@@ -5,7 +5,7 @@
   [class.x-checked]="value"
   [class.x-disabled]="disabled"
   [class.x-required]="required"
-  [class.x-error-show]="getError"
+  [class.x-invalid]="invalid"
   [class.x-clearable]="clearable"
   [class.x-clear-show]="clearShow"
   [class.x-input-icon]="getIcon"
@@ -31,8 +31,8 @@
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
     <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
     <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
-    <span class="x-input-error-message" *ngIf="getError && errorMessage">{{ errorMessage }}</span>
-    <ng-container *ngIf="getError">
+    <span class="x-input-error-message" *ngIf="invalid && invalidMessage">{{ invalidMessage }}</span>
+    <ng-container *ngIf="invalid">
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>

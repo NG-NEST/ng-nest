@@ -27,6 +27,4 @@ export class XControlComponent extends XControlProperty {
     this.control.control.updateValueAndValidity();
     (this.control.valueAccessor as XFormControlType).formControlChanges();
   }
-
-  
 }

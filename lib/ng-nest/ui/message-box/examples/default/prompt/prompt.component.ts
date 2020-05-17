@@ -14,7 +14,7 @@ export class ExPromptComponent {
       content: '请输入邮箱',
       inputValue: 'ngnest@163',
       inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-      inputErrorMessage: '邮箱格式不正确',
+      inputInvalidMessage: '邮箱格式不正确',
       callback: (action: XMessageBoxAction, msg) => {
         if (action === 'confirm') {
           // 业务处理......

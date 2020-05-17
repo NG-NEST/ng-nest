@@ -4,7 +4,7 @@
   [class.x-flex]="justify || align || direction"
   [class.x-disabled]="disabled"
   [class.x-required]="required"
-  [class.x-error-show]="getError"
+  [class.x-invalid]="invalid"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-input-number-row">
@@ -35,7 +35,7 @@
       (mousedown)="!maxDisabled && down($event, step)"
       (mouseup)="up($event)"
     ></x-button>
-    <ng-container *ngIf="getError">
+    <ng-container *ngIf="invalid">
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>

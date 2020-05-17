@@ -4,6 +4,16 @@ import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap } from '../interfaces
 import { XFormProp } from './property';
 
 export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
+  get invalid() {
+    return (
+      (this.required && XIsEmpty(this.value)) || (!XIsEmpty(this.value) && !XIsEmpty(this.pattern) && !this.regExp.test(this.value as any))
+    );
+  }
+
+  get regExp(): RegExp {
+    return new RegExp(this.pattern);
+  }
+
   labelMap: XClassMap = {};
   value: T;
   onChange: (value: T) => void;
