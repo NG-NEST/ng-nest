@@ -226,8 +226,9 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   formControlChanges() {
-    this.setData();
     this.ngOnInit();
+    this.setData();
+    this.setDisplayValue();
     this.cdr.detectChanges();
   }
 }

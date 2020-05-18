@@ -184,7 +184,7 @@ class TestXInputLabelComponent {}
         <x-input icon="ado-user"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input icon="ado-user" iconLayout="right"></x-input>
+        <x-input icon="ado-user" iconLayout="left"></x-input>
       </x-col>
     </x-row>
   `,
@@ -325,7 +325,7 @@ class TestXInputRequiredComponent {
         <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" iconLayout="right" maxlength="50"></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
       </x-col>
     </x-row>
   `,

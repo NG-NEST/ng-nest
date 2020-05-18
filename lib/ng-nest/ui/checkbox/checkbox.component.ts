@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData, XClearClass, XIsEmpty } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
