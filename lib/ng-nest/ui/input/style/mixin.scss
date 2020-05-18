@@ -61,7 +61,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  &.x-invalid {
+  &.x-invalid,
+  &.x-required {
     > label {
       color: $--x-danger;
     }

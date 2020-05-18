@@ -53,11 +53,11 @@ export class XFormProp extends XProperty {
   /**
    * 正则验证规则
    */
-  @Input() pattern: RegExp;
+  @Input() pattern: RegExp | RegExp[];
   /**
    * 验证不通过提示文字
    */
-  @Input() invalidMessage: string = '';
+  @Input() message: string | string[];
 }
 
 export interface XFormOption {
@@ -104,9 +104,9 @@ export interface XFormOption {
   /**
    * 正则验证规则
    */
-  pattern?: RegExp;
+  pattern?: RegExp | RegExp[];
   /**
    * 验证不通过提示文字
    */
-  invalidMessage?: string;
+  message?: string | string[];
 }

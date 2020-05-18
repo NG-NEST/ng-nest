@@ -85,14 +85,6 @@ export interface XInputOption extends XFormOption {
    */
   size?: XSize;
   /**
-   * 异常
-   */
-  error?: XBoolean;
-  /**
-   * 异常提示文字
-   */
-  invalidMessage?: string;
-  /**
    * 清除按钮的事件
    */
   clearClick?: (value: any) => void;

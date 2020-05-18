@@ -1,8 +1,8 @@
-import { Observable, BehaviorSubject, isObservable } from 'rxjs';
+import { Observable, isObservable } from 'rxjs';
 import { TemplateRef, SimpleChange } from '@angular/core';
 
 // 数据类型
-export type XData<T> = T[] | BehaviorSubject<T[] | any[]> | Observable<T[] | any[]> | any[] | Function;
+export type XData<T> = T[] | Observable<T[] | any[]> | any[] | Function;
 
 // Boolean 类型
 export type XBoolean = boolean | string;

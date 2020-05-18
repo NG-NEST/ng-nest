@@ -5,15 +5,36 @@ import { XFormProp } from './property';
 
 export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
   get invalid() {
-    return (
-      (this.required && XIsEmpty(this.value)) || (!XIsEmpty(this.value) && !XIsEmpty(this.pattern) && !this.regExp.test(this.value as any))
-    );
+    return !XIsEmpty(this.value) && this.invalidPattern;
   }
-
-  get regExp(): RegExp {
-    return new RegExp(this.pattern);
+  get invalidPattern(): boolean {
+    let result = false;
+    let index = 0;
+    if (Array.isArray(this.pattern)) {
+      for (const pt of this.pattern) {
+        result = !new RegExp(pt).test(this.value as any);
+        if (result) {
+          this.invalidIndex = index;
+          break;
+        }
+        index++;
+      }
+    } else {
+      result = !new RegExp(this.pattern).test(this.value as any);
+    }
+    return result;
   }
-
+  get requiredIsEmpty() {
+    return this.required && XIsEmpty(this.value);
+  }
+  get invalidMessage(): string {
+    if (Array.isArray(this.message)) {
+      return this.message.length > this.invalidIndex ? this.message[this.invalidIndex] : '';
+    } else {
+      return this.message;
+    }
+  }
+  invalidIndex: number = 0;
   labelMap: XClassMap = {};
   value: T;
   onChange: (value: T) => void;

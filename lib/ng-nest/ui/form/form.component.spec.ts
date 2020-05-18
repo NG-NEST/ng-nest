@@ -87,28 +87,29 @@ class TestXFormComponent {
       controls: [
         new XInputControl({
           id: 'input',
-          label: '输入框',
+          label: '默认',
           span: 6
         }),
         new XInputControl({
           id: 'inputDisabled',
-          label: '输入框禁用',
+          label: '禁用',
           span: 6,
           disabled: true
         }),
         new XInputControl({
           id: 'inputRequired',
-          label: '输入框必填',
+          label: '必填',
           span: 6,
           required: true
         }),
         new XInputControl({
           id: 'inputRequired',
-          label: '输入框异常提示信息',
+          label: '必填+正则验证',
+          value: 0.1,
           span: 6,
           required: true,
-          pattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          invalidMessage: '邮箱格式不正确'
+          pattern: /^-?\d+$/,
+          message: '整数'
         })
       ]
     }
