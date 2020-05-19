@@ -131,7 +131,8 @@
       @include disabled();
     }
   }
-  &.x-invalid {
+  &.x-invalid,
+  &.x-required {
     > label {
       color: $--x-danger;
     }

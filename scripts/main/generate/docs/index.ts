@@ -52,7 +52,7 @@ export class NcDocs {
         const stat = fs.statSync(dir);
         if (stat.isDirectory()) {
           const read = parseMdDoc(path.join(dir, 'readme.md'));
-          if (read) {
+          if (read && !read.meta.hidden) {
             const folder = path.join(page.genDir, x);
             const child = this.createChild(read, x, folder);
             child.genDir = folder;

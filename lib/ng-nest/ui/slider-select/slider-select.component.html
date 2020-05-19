@@ -3,8 +3,8 @@
   class="x-slider-select"
   [class.x-flex]="justify || align || direction"
   [class.x-disabled]="disabled"
-  [class.x-required]="required"
-  [class.x-required-show]="getRequired"
+  [class.x-required]="requiredIsEmpty"
+  [class.x-invalid]="invalid"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-slider-select-inner" #innerRef>

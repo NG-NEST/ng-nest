@@ -32,10 +32,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
   @ViewChild('select', { static: true }) select: ElementRef;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();

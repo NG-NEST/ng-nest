@@ -1,4 +1,11 @@
-<div #rate class="x-rate" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled" [class.x-invalid]="invalid">
+<div
+  #rate
+  class="x-rate"
+  [class.x-flex]="justify || align || direction"
+  [class.x-disabled]="disabled"
+  [class.x-required]="requiredIsEmpty"
+  [class.x-invalid]="invalid"
+>
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <x-buttons (mouseleave)="leaveRates()">
     <x-button

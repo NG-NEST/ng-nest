@@ -17,22 +17,6 @@ export const menus: Menu[] = [
     "label": "快速上手"
   },
   {
-    "id": "3-6",
-    "parentId": "3",
-    "name": "schematics",
-    "router": "docs/ui/schematics",
-    "order": 3,
-    "label": "脚手架 [待]"
-  },
-  {
-    "id": "3-3",
-    "parentId": "3",
-    "name": "i18n",
-    "router": "docs/ui/i18n",
-    "order": 4,
-    "label": "国际化 [待]"
-  },
-  {
     "id": "3-1",
     "parentId": "3",
     "name": "course",
@@ -641,7 +625,7 @@ export const menus: Menu[] = [
     "name": "guide",
     "router": "docs/ui/course/guide",
     "order": 1,
-    "label": "指南 [待]"
+    "label": "RBAC 权限系统"
   },
   {
     "id": "2",
@@ -659,42 +643,6 @@ export const menus: Menu[] = [
     "router": "docs/ui",
     "order": 1,
     "label": "UI库",
-    "type": "router"
-  },
-  {
-    "id": "1",
-    "parentId": null,
-    "name": "form-design",
-    "router": "docs/form-design",
-    "order": 2,
-    "label": "表单设计器",
-    "type": "router"
-  },
-  {
-    "id": "5",
-    "parentId": null,
-    "name": "workflow-design",
-    "router": "docs/workflow-design",
-    "order": 3,
-    "label": "工作流设计",
-    "type": "router"
-  },
-  {
-    "id": "0",
-    "parentId": null,
-    "name": "code-generator",
-    "router": "docs/code-generator",
-    "order": 4,
-    "label": "代码生成",
-    "type": "router"
-  },
-  {
-    "id": "4",
-    "parentId": null,
-    "name": "user-lib",
-    "router": "docs/user-lib",
-    "order": 5,
-    "label": "用户模块",
     "type": "router"
   }
 ]

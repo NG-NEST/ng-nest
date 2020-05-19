@@ -26,7 +26,6 @@
     line-height: $--x-input-number-height;
     > input {
       padding: $--x-input-number-padding;
-      margin: 0 0.125rem;
       flex: 1;
       height: $--x-input-number-height;
       text-align: center;
@@ -73,7 +72,8 @@
       }
     }
   }
-  &.x-invalid {
+  &.x-invalid,
+  &.x-required {
     > label {
       color: $--x-danger;
     }

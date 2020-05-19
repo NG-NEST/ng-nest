@@ -64,26 +64,25 @@
       }
     }
   }
+  &.x-invalid,
   &.x-required {
-    &.x-required-show {
-      > label {
+    > label {
+      color: $--x-danger;
+    }
+    > .#{$--x-slider-select-prefix}-row {
+      > #{$--x-prefix}-icon {
         color: $--x-danger;
       }
-      > .#{$--x-slider-select-prefix}-row {
-        > #{$--x-prefix}-icon {
-          color: $--x-danger;
-        }
-        &:before {
-          content: ' ';
-          z-index: 2;
-          position: absolute;
-          height: $--x-slider-select-height;
-          line-height: $--x-slider-select-height;
-          border-top-left-radius: $--x-slider-select-border-radius;
-          border-bottom-left-radius: $--x-slider-select-border-radius;
-          width: 0.125rem;
-          background-color: $--x-danger;
-        }
+      &:before {
+        content: ' ';
+        z-index: 2;
+        position: absolute;
+        height: $--x-slider-select-height;
+        line-height: $--x-slider-select-height;
+        border-top-left-radius: $--x-slider-select-border-radius;
+        border-bottom-left-radius: $--x-slider-select-border-radius;
+        width: 0.125rem;
+        background-color: $--x-danger;
       }
     }
   }

@@ -34,10 +34,6 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
   writeValue(value: any) {
     if (XIsDate(value)) this.value = value.getTime();
     else if (XIsNumber(value)) this.value = value;

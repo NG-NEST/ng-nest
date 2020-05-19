@@ -1,4 +1,11 @@
-<div #radio class="x-radio" [class.x-flex]="justify || align || direction" [class.x-disabled]="disabled" [class.x-invalid]="invalid">
+<div
+  #radio
+  class="x-radio"
+  [class.x-flex]="justify || align || direction"
+  [class.x-disabled]="disabled"
+  [class.x-required]="requiredIsEmpty"
+  [class.x-invalid]="invalid"
+>
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>

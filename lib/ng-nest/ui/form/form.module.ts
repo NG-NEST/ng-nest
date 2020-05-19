@@ -17,7 +17,7 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XIconModule } from '../icon';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 const modules = [
   XLayoutModule,

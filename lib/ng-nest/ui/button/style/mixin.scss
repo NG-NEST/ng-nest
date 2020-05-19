@@ -71,8 +71,13 @@
       color: $--x-text-500;
     }
   }
-  &-disabled.#{$--x-button}-activated {
-    background-color: $--x-info-900;
+
+  &-disabled.#{$--x-button}-activated.#{$--x-button}-initial {
+    @include disabled($--x-primary-700, $--x-background, $--x-primary-700);
+    &:hover,
+    &:active {
+      @include disabled($--x-primary-700, $--x-background, $--x-primary-700);
+    }
   }
   &-disabled.#{$--x-button}-text,
   &-disabled.#{$--x-button}-only-icon {

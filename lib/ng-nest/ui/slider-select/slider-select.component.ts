@@ -106,7 +106,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   setPrecision() {
-    if (XIsUndefined(this.precision)) {
+    if (XIsUndefined(this.precision) || !XIsEmpty(this.step)) {
       let stepStr = String(this.step);
       let indexpoint = stepStr.indexOf('.');
       if (indexpoint === -1) {

@@ -11,14 +11,15 @@ import { menus } from 'src/environments/menus';
 export class LayoutService {
   contentRef: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
-  shrink = false;
+  shrink = true;
   category: string;
 
   menus: Menu[] = menus;
 
   constructor(private router: Router) {
-    this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
-      this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
-    });
+    // this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
+    //   this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
+    //   console.log(this.shrink);
+    // });
   }
 }

@@ -28,9 +28,18 @@
         color: $--x-warning;
         background-color: transparent;
       }
+      &.x-button-activated.x-button-disabled {
+        color: $--x-warning-500;
+        background-color: transparent;
+        &:hover {
+          color: $--x-warning-500;
+          background-color: transparent;
+        }
+      }
     }
   }
-  &.x-invalid {
+  &.x-invalid,
+  &.x-required {
     > label {
       color: $--x-danger;
     }

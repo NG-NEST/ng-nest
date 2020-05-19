@@ -32,11 +32,10 @@
       }
     }
   }
+  &.x-invalid,
   &.x-required {
-    &.x-required-show {
-      > label {
-        color: $--x-danger;
-      }
+    > label {
+      color: $--x-danger;
     }
   }
   &.x-disabled {
