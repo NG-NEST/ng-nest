@@ -37,7 +37,7 @@ export class NcDocs {
     handlerPage(this.page);
     this.addChildren(this.page, docsDir, `${docsPrefix}`);
     generatePage(this.page);
-    this.menus = _.sortBy(this.menus, ['parentId', 'category', 'order', 'name']);
+    this.menus = _.sortBy(this.menus, ['pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
   }
 
@@ -97,8 +97,8 @@ export class NcDocs {
 
   createMenu(read: { meta: any; content?: string }, dirName: string, index: string, i: number, router: string): NcMenu {
     const id = index == null ? `${i}` : `${index}-${i}`;
-    const parentId = index == null ? null : `${index}`;
-    const menu: NcMenu = Object.assign({ id: id, parentId: parentId, name: dirName, router: router }, read.meta);
+    const pid = index == null ? null : `${index}`;
+    const menu: NcMenu = Object.assign({ id: id, pid: pid, name: dirName, router: router }, read.meta);
     this.menus = [...this.menus, menu];
     return menu;
   }

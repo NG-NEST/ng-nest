@@ -16,9 +16,7 @@
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
-  <span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
-  <x-icon class="x-menu-arrow" *ngIf="node.leaf" [class.is-open]="node.open" type="fto-chevron-down"></x-icon>
+  <x-menu-node [node]="node"></x-menu-node>
 </ng-template>
 
 <ng-template #nodeRowTpl let-node="$node">
@@ -33,6 +31,7 @@
   <div
     class="x-menu-node"
     [class.x-activated]="activated?.id === node.id"
+    [class.x-menu-category]="node.categoryNode"
     [ngClass]="nodeClassMap"
     (click)="onToggle($event, node)"
     [style.padding-left.rem]="(node.level + 1) * 0.875"

@@ -1,5 +1,3 @@
 <section>
-  <ul>
-    <li ns-sider-node *ngFor="let item of option" [option]="item" [level]="level"></li>
-  </ul>
+  <x-menu [data]="option" layout="column" (nodeClick)="nodeClick($event)"></x-menu>
 </section>

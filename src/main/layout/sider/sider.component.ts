@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { LayoutService } from '../layout.service';
-import * as _ from 'lodash';
+import { Menu } from 'src/environments/routes';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ns-sider',
@@ -8,14 +9,12 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SiderComponent implements OnInit {
-  option: any = _.filter(this.layoutService.menus, x => x.parentId === null);
+export class SiderComponent {
+  option: Menu[] = this.layoutService.menus;
 
-  nodeEmit = new EventEmitter<object>();
+  constructor(private layoutService: LayoutService, private router: Router, private activated: ActivatedRoute) {}
 
-  level: number = 0;
-
-  constructor(private layoutService: LayoutService) {}
-
-  ngOnInit() {}
+  nodeClick(menu: Menu) {
+    if (menu.type != 'router') this.router.navigate([menu.router], { relativeTo: this.activated });
+  }
 }

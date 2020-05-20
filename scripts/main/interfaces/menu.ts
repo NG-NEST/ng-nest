@@ -21,7 +21,7 @@ export interface NcMenu {
    * @type {string}
    * @memberof NcMenu
    */
-  parentId?: string;
+  pid?: string;
   /**
    * 名称
    *

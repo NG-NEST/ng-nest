@@ -1,4 +1,14 @@
-import { XParentIdentityProperty, XData, XSize, XProperty, XDataConvert } from '@ng-nest/ui/core';
+import {
+  XParentIdentityProperty,
+  XData,
+  XSize,
+  XProperty,
+  XDataConvert,
+  XInputNumber,
+  XNumber,
+  XInputBoolean,
+  XBoolean
+} from '@ng-nest/ui/core';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -34,6 +44,18 @@ export class XMenuProperty extends XProperty {
    */
   @Input() nodeTpl: TemplateRef<any>;
   /**
+   * 展开的所有层级，只对 layout 布局为 'column' 的生效
+   */
+  @Input('expanded-all') @XInputBoolean() expandedAll: XBoolean;
+  /**
+   * 默认展开的层级，只对 layout 布局为 'column' 的生效
+   */
+  @Input('expanded-level') @XInputNumber() expandedLevel: XNumber = -1;
+  /**
+   * 当前激活的节点 id
+   */
+  @Input('activated-id') activatedId: any;
+  /**
    * 节点点击的事件
    */
   @Output() nodeClick = new EventEmitter<XMenuNode>();
@@ -52,6 +74,18 @@ export interface XMenuNode extends XParentIdentityProperty<XMenuNode> {
    * 子节点已加载过
    */
   childrenLoaded?: boolean;
+  /**
+   * 分类显示，设置值后节点显示成分类样式
+   */
+  category?: string;
+  /**
+   * 分类节点，通过内部计算
+   */
+  categoryNode?: boolean;
+  /**
+   * 检查更新
+   */
+  change?: Function;
 }
 
 /**
@@ -63,3 +97,21 @@ export type XMenuLayout = 'row' | 'column';
  * 触发方式
  */
 export type XMenuTrigger = 'hover' | 'click';
+
+/**
+ * Menu Node
+ * @selector x-menu-node
+ * @decorator component
+ */
+export const XMenuNodePrefix = 'x-menu-node';
+
+/**
+ * Menu Node Property
+ */
+@Component({ template: '' })
+export class XMenuNodeProperty {
+  /**
+   * 节点数据
+   */
+  @Input() node: XMenuNode;
+}

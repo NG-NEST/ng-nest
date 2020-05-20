@@ -1,22 +1,5 @@
 @import 'src/styles/index';
 
-@mixin hover {
-  background-color: rgba(0, 0, 0, 0.02);
-}
-
-@mixin activated {
-  color: $--x-primary;
-  background-color: rgba(0, 0, 0, 0.02);
-}
-
-@mixin no-hover {
-  background-color: transparent;
-}
-
-@mixin no-activated {
-  background-color: transparent;
-}
-
 ns-layout {
   > ns-header {
     height: $header-height;
@@ -63,7 +46,6 @@ ns-layout {
     height: 100%;
     width: 0;
     opacity: 0;
-    overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -71,81 +53,27 @@ ns-layout {
     // box-shadow: $box-shadow;
     transition: width $transition-duration-slow, padding $transition-duration-slow, opacity $transition-duration-slow;
     padding-top: 0.5rem;
-    padding-bottom: 1.5rem;
-    li {
-      a {
-        padding: 0;
-        transition: color $transition-duration, box-shadow $transition-duration, background-color $transition-duration;
-        display: flex;
-        align-items: center;
-        height: 2.25rem;
-        font-size: 0.875rem;
-        color: $--x-text;
-        border-radius: 0.125rem;
-        p {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin: 0 0.25rem;
-          transition: visibility $transition-duration, opacity $transition-duration;
-          flex: 1;
-          visibility: hidden;
-          opacity: 0;
-          cursor: inherit;
-          > span {
-            margin-left: 0.25rem;
-          }
-        }
-        i {
-          font-size: 1rem;
-          visibility: hidden;
-          transition: visibility $transition-duration, opacity $transition-duration;
-          opacity: 0;
-          &.menu {
-            font-size: 1.25rem;
-          }
-          &.arrow {
-            opacity: 0;
-            color: $--x-text;
-          }
-        }
-        &:hover {
-          @include hover;
-        }
-        &.active {
-          @include activated;
-          &:hover {
-            @include activated;
-          }
-        }
-        &.category {
-          cursor: default;
-          color: rgba(0, 0, 0, 0.35);
-          &:hover {
-            @include no-hover;
-          }
-          &.active {
-            @include no-activated;
-            &:hover {
-              @include no-activated;
-            }
-          }
-        }
-      }
-      > ul {
-        visibility: hidden;
-        height: 0;
-        opacity: 0;
+    padding-bottom: 0.5rem;
+    > section {
+      position: relative;
+      height: 100%;
+      width: $sider-width;
+      float: left;
+      overflow: hidden;
+      @include scrollbar();
+      &:hover {
+        overflow-y: auto;
       }
     }
-    > section {
-      > ul {
-        > li {
-          ul li {
-            > a {
-              color: $--x-text-500;
-            }
-          }
+    x-menu {
+      .x-menu.x-menu-column {
+        width: $sider-width;
+      }
+      .x-menu-nodes > .x-menu-node {
+        border-right: none;
+        margin: 0 0.5rem;
+        &.x-activated::after {
+          border-right: none;
         }
       }
     }
@@ -188,7 +116,6 @@ ns-layout {
     }
     > ns-sider {
       width: $sider-width;
-      overflow-y: auto;
       opacity: 1;
       li {
         a {

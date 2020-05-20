@@ -6,13 +6,13 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { SiderComponent } from './sider/sider.component';
-import { SiderNodeComponent } from './sider/sider-node/sider-node.component';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XMenuModule } from '@ng-nest/ui/menu';
 
-const components = [LayoutComponent, HeaderComponent, SiderComponent, SiderNodeComponent, ContentComponent, FooterComponent];
+const components = [LayoutComponent, HeaderComponent, SiderComponent, ContentComponent, FooterComponent];
 
 @NgModule({
-  imports: [CommonModule, XIconModule, LayoutRoutesModule],
+  imports: [CommonModule, XIconModule, XMenuModule, LayoutRoutesModule],
   declarations: [...components],
   exports: [...components]
 })

@@ -1,0 +1,3 @@
+<x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
+<span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
+<x-icon class="x-menu-arrow" *ngIf="node.leaf" [class.is-open]="node.open" type="fto-chevron-down"></x-icon>
