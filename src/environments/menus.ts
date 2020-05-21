@@ -22,7 +22,7 @@ export const menus: Menu[] = [
     "name": "course",
     "router": "docs/ui/course",
     "order": 9,
-    "label": "教程 [待]",
+    "label": "教程",
     "type": "router"
   },
   {
@@ -625,7 +625,7 @@ export const menus: Menu[] = [
     "name": "guide",
     "router": "docs/ui/course/guide",
     "order": 1,
-    "label": "RBAC 权限系统"
+    "label": "RBAC 权限系统 [待]"
   },
   {
     "id": "2",
