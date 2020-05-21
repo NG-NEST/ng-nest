@@ -1,3 +1,10 @@
-<section>
-  <x-menu [data]="option" layout="column" (nodeClick)="nodeClick($event)"></x-menu>
+<section #scroll>
+  <x-menu
+    [data]="option"
+    layout="column"
+    expanded-level="3"
+    [target]="scroll"
+    [activated-id]="layoutService.defaultActivatedId"
+    (nodeClick)="nodeClick($event)"
+  ></x-menu>
 </section>

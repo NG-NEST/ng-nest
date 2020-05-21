@@ -56,6 +56,10 @@ export class XMenuProperty extends XProperty {
    */
   @Input('activated-id') activatedId: any;
   /**
+   * 滚动容器
+   */
+  @Input() target: string | HTMLElement;
+  /**
    * 节点点击的事件
    */
   @Output() nodeClick = new EventEmitter<XMenuNode>();

@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SiderComponent {
   option: Menu[] = this.layoutService.menus;
 
-  constructor(private layoutService: LayoutService, private router: Router, private activated: ActivatedRoute) {}
+  constructor(public layoutService: LayoutService, public router: Router, public activated: ActivatedRoute) {}
 
   nodeClick(menu: Menu) {
     if (menu.type != 'router') this.router.navigate([menu.router], { relativeTo: this.activated });

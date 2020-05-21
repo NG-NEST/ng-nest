@@ -1,6 +1,6 @@
 ---
 order: 1
-label: 'RBAC 权限系统'
+label: 'RBAC 权限系统 [待]'
 ---
 
 # 教程：RBAC 权限系统

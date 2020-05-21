@@ -1,5 +1,5 @@
 ---
 order: 9
-label: '教程 [待]'
+label: '教程'
 type: 'router'
 ---
