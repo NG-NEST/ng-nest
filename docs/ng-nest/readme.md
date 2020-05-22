@@ -38,3 +38,7 @@ npm 0.2.1
 ## 基本假设
 
 本文档假设你已经熟悉了 [Angular](https://angular.io/docs) 和 [Nest](https://docs.nestjs.com/) 的一些基础知识。文档中的代码范例都是使用最新版本的 [TypeScript](https://www.typescriptlang.org/) ,它会用 [类型](https://www.typescriptlang.org/docs/handbook/classes.html) 实现依赖注入，还会用 [装饰器](https://www.typescriptlang.org/docs/handbook/decorators.html) 来提供元数据。
+
+## 交流群号
+
+<img src="assets/img/tim.jpg" width="250" />

@@ -15,7 +15,7 @@ label: '快速上手'
 
 打开命令行窗口程序，使用 `ng new my-app` 命令创建项目， `my-app` 为项目名称 。
 
-```warning
+```primary
 此处请选择 SCSS 来做样式语言，暂不支持其它语言。
 ```
 
@@ -45,7 +45,7 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 {{ __3.1\__my-app:src/app/app.module.ts:false }}
 
-```info
+```primary
 所有的组件只支持单独引入，一次性引入所有组件会导致打包体积比较大。
 ```
 

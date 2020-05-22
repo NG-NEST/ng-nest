@@ -41,13 +41,44 @@ ns-layout {
     }
   }
 
-  > ns-sider {
+  > ns-logo {
     background-color: #f0f0f0;
-    height: 100%;
+    height: $header-height;
     width: 0;
     opacity: 0;
     position: fixed;
     top: 0;
+    left: 0;
+    z-index: 9;
+    > section {
+      position: relative;
+      height: 100%;
+      width: $sider-width;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      h1 {
+        margin: 0.875rem;
+      }
+      .github svg {
+        vertical-align: middle;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  > ns-sider {
+    background-color: #f0f0f0;
+    height: calc(100% - #{$header-height});
+    width: 0;
+    opacity: 0;
+    position: fixed;
+    top: $header-height;
     left: 0;
     z-index: 9;
     // box-shadow: $box-shadow;
@@ -116,6 +147,10 @@ ns-layout {
       position: fixed;
       margin-top: -$header-height;
       opacity: 0;
+    }
+    > ns-logo {
+      width: $sider-width;
+      opacity: 1;
     }
     > ns-sider {
       width: $sider-width;

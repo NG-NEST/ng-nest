@@ -7,6 +7,7 @@ import { CdkScrollable } from '@angular/cdk/overlay';
 import { Menu } from 'src/environments/routes';
 import { menus } from 'src/environments/menus';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
@@ -17,12 +18,20 @@ export class LayoutService {
 
   menus: Menu[] = menus;
 
-  constructor(private router: Router, private location: Location) {
-    // this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
-    //   this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
-    //   console.log(this.shrink);
-    // });
-    const route = this.menus.find((x) => x.type !== 'router' && this.location.path().indexOf(`/${environment.layout}/${x.router}`) === 0);
+  versions = ['0.2.0', '0.2.1'];
+
+  getCurrentMenu(url: string): Menu {
+    return this.menus.find((x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.router}`) === 0) as Menu;
+  }
+
+  constructor(private router: Router, private location: Location, private title: Title) {
+    this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
+      // this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
+      // console.log(this.shrink);
+      const route = this.getCurrentMenu(x.url);
+      if (route) this.title.setTitle(route.label as string);
+    });
+    const route = this.getCurrentMenu(this.location.path());
     if (route) {
       this.defaultActivatedId = route.id;
     }
