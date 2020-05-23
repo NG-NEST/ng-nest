@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from '@angular/core';
-// import { MediaMatcher, Breakpoints } from '@angular/cdk/layout';
+import { MediaMatcher, Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
-// import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/overlay';
 import { ContentComponent } from './content/content.component';
 
 @Component({
@@ -14,28 +13,46 @@ export class LayoutComponent implements OnInit {
   @HostBinding('class.shrink') get shrink() {
     return this.layoutService.shrink;
   }
+  @HostBinding('class.small') get small() {
+    return this.layoutService.small;
+  }
   @ViewChild('content', { static: true }) content: ContentComponent;
 
-  constructor(
-    // private mediaMatcher: MediaMatcher,
-    private layoutService: LayoutService,
-    // private scrollDispatcher: ScrollDispatcher
-  ) {}
-
-  toXSmall: MediaQueryList;
+  constructor(private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
 
   ngOnInit() {
-    // this.toXSmall = this.mediaMatcher.matchMedia(Breakpoints.XSmall);
-    // this.toXSmall.addListener(this.toXSmallListener);
-    // this.scrollDispatcher.scrolled().subscribe((scrollable: CdkScrollable) => {
-    //   if (scrollable) {
-    //     const scrollRef = scrollable.getElementRef();
-    //     if (scrollRef.nativeElement.tagName === 'NS-CONTENT') {
-    //       this.layoutService.contentScrolling.next(scrollable);
-    //     }
-    //   }
-    // });
-  }
+    // // 手持设备
+    // let Handset = Breakpoints.Handset;
+    // // 手持landscape屏
+    // let HandsetLandscape = Breakpoints.HandsetLandscape;
+    // //手持portrait屏
+    // let HandsetPortrait = Breakpoints.HandsetPortrait;
+    // // 多媒体
+    // let Medium = Breakpoints.Medium;
+    // // 平板电脑
+    // let Tablet = Breakpoints.Tablet;
+    // // 平板电脑 Landscape
+    // let TabletLandscape = Breakpoints.TabletLandscape;
+    // // 平板电脑 Portrait
+    // let TabletPortrait = Breakpoints.TabletPortrait;
+    // // web
+    // let Web = Breakpoints.Web;
+    // // web landscape
+    // let WebLandscape = Breakpoints.WebLandscape;
+    // // web portrait
+    // let WebPortrait = Breakpoints.WebPortrait;
+    // // 大屏幕
+    // let Large = Breakpoints.Large;
+    // // 更大屏幕
+    // let XLarge = Breakpoints.XLarge;
+    // // 更小屏幕
+    // let XSmall = Breakpoints.XSmall;X
+    // // 小屏幕
+    // let Small = Breakpoints.Small;
 
-  toXSmallListener(event: MediaQueryListEvent) {}
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe((res) => {
+      this.layoutService.small = res.matches;
+      if (!res.matches && this.layoutService.drawerVisible) this.layoutService.drawerVisible = false;
+    });
+  }
 }

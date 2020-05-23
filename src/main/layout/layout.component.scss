@@ -1,175 +1,136 @@
 @import 'src/styles/index';
 
-ns-layout {
-  > ns-header {
-    height: $header-height;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10;
+ns-header {
+  height: $header-height;
+  background-color: $slider-bg-color;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: fixed;
+  opacity: 1;
+  transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  > x-button.menu {
+    margin-left: 0.875rem;
+    .x-button .x-icon {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+ns-logo {
+  width: 100%;
+  min-width: $sider-width;
+  > section {
+    position: relative;
+    padding: 0 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
-    box-sizing: border-box;
+    > .logo {
+      display: flex;
+      align-items: center;
+    }
+    h1 {
+      margin: 0.875rem;
+    }
+    .github svg {
+      vertical-align: middle;
+      align-self: flex-end;
+    }
+  }
+}
+
+ns-sider {
+  background-color: $slider-bg-color;
+  height: 100%;
+  width: $sider-width;
+  margin-left: -#{$sider-width};
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  // box-shadow: $box-shadow;
+  transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  > section {
     position: relative;
-    opacity: 1;
-    transition: margin $transition-duration-slow, opacity $transition-duration-slow;
-    > ul {
-      display: flex;
-      align-items: center;
-      > li {
-        > a {
-          padding: 0.5rem 1rem;
-          margin: 0 0.125rem;
-          color: $--x-white;
-          &:hover,
-          &.active {
-            color: $--x-white;
-            opacity: 0.7;
-          }
-        }
-        &.logo {
-          display: flex;
-          align-items: center;
-          margin-right: 0.5rem;
-          > img {
-            width: 3rem;
-          }
-        }
-      }
-    }
-  }
-
-  > ns-logo {
-    background-color: #f0f0f0;
-    height: $header-height;
-    width: 0;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    > section {
-      position: relative;
-      height: 100%;
-      width: $sider-width;
-      padding: 0 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .logo {
-        display: flex;
-        align-items: center;
-      }
-      h1 {
-        margin: 0.875rem;
-      }
-      .github svg {
-        vertical-align: middle;
-        align-self: flex-end;
-      }
-    }
-  }
-
-  > ns-sider {
-    background-color: #f0f0f0;
     height: calc(100% - #{$header-height});
-    width: 0;
-    opacity: 0;
-    position: fixed;
-    top: $header-height;
-    left: 0;
-    z-index: 9;
-    // box-shadow: $box-shadow;
-    transition: width $transition-duration-slow, padding $transition-duration-slow, opacity $transition-duration-slow;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    > section {
-      position: relative;
-      height: 100%;
-      width: $sider-width;
-      float: left;
-      overflow: hidden;
-      @include scrollbar();
-      &:hover {
-        overflow-y: auto;
-      }
+    width: $sider-width;
+    padding: 0.5rem 0;
+    float: left;
+    overflow: hidden;
+    @include scrollbar();
+    &:hover {
+      overflow-y: auto;
     }
-    x-menu {
-      .x-menu.x-menu-column {
-        width: $sider-width;
-      }
-      .x-menu-nodes > .x-menu-node {
+  }
+  x-menu {
+    .x-menu.x-menu-column {
+      width: $sider-width;
+    }
+    .x-menu-nodes > .x-menu-node {
+      border-right: none;
+      margin: 0 0.5rem;
+      &.x-activated::after {
         border-right: none;
-        margin: 0 0.5rem;
-        &.x-activated::after {
-          border-right: none;
-        }
-        &.x-menu-category > x-menu-node {
-          border-color: rgba(0, 0, 0, 0.1);
-        }
+      }
+      &.x-menu-category > x-menu-node {
+        border-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
+  &.drawer {
+    margin-left: 0;
+    opacity: 1;
+    > section {
+      overflow-y: auto;
+    }
+  }
+}
 
-  > ns-content {
+ns-content {
+  width: 100%;
+  display: block;
+  transition: padding-left $transition-duration-slow, padding-top $transition-duration-slow;
+  > ns-footer {
     width: 100%;
     display: block;
-    transition: padding-left $transition-duration-slow;
-    > ns-footer {
-      width: 100%;
-      display: block;
-      background-color: white;
-      border-top: 1px solid #f5f5f5;
-      > section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 0;
-        > p,
-        > a {
-          text-align: center;
-          font-size: 0.825rem;
-          line-height: 1.75rem;
-          color: #777;
-        }
-        > a:hover {
-          color: $--x-primary;
-        }
+    background-color: white;
+    border-top: 1px solid #f5f5f5;
+    > section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+      > p,
+      > a {
+        text-align: center;
+        font-size: 0.825rem;
+        line-height: 1.75rem;
+        color: #777;
+      }
+      > a:hover {
+        color: $--x-primary;
       }
     }
   }
-
+}
+ns-layout {
   &.shrink {
     > ns-header {
       position: fixed;
       margin-top: -$header-height;
       opacity: 0;
     }
-    > ns-logo {
-      width: $sider-width;
-      opacity: 1;
-    }
     > ns-sider {
-      width: $sider-width;
+      margin-left: 0;
       opacity: 1;
-      li {
-        a {
-          padding: 0 0.75rem;
-          p,
-          i {
-            visibility: inherit;
-            opacity: 1;
-          }
-        }
-        ul {
-          visibility: inherit;
-          height: inherit;
-          opacity: 1;
-        }
-      }
     }
     > ns-content {
       padding-left: $sider-width;
@@ -177,6 +138,20 @@ ns-layout {
       > ns-footer {
         display: none;
       }
+    }
+  }
+  &.shrink.small {
+    > ns-header {
+      margin-top: 0;
+      opacity: 1;
+    }
+    > ns-sider {
+      margin-left: -$sider-width;
+      opacity: 0;
+    }
+    > ns-content {
+      padding-left: 0;
+      padding-top: $header-height;
     }
   }
 }

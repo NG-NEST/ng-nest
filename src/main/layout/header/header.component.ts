@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'ns-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   lang = localStorage.getItem('Lang');
 
-  constructor() {}
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {}
 

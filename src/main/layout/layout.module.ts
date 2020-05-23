@@ -4,6 +4,8 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XDrawerModule } from '@ng-nest/ui/drawer';
+import { LayoutModule as CdkLayoutModule } from '@angular/cdk/layout';
 import { LayoutComponent } from './layout.component';
 import { LayoutRoutesModule } from './layout-routes.module';
 import { HeaderComponent } from './header/header.component';
@@ -15,7 +17,7 @@ import { LogoComponent } from './logo/logo.component';
 const components = [LayoutComponent, HeaderComponent, LogoComponent, SiderComponent, ContentComponent, FooterComponent];
 
 @NgModule({
-  imports: [CommonModule, XIconModule, XMenuModule, XButtonModule, XDropdownModule, LayoutRoutesModule],
+  imports: [CommonModule, XIconModule, XMenuModule, XButtonModule, XDropdownModule, XDrawerModule, CdkLayoutModule, LayoutRoutesModule],
   declarations: [...components],
   exports: [...components]
 })

@@ -14,6 +14,8 @@ export class LayoutService {
   contentRef: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
   shrink = true;
+  small = false;
+  drawerVisible = false;
   defaultActivatedId: any;
 
   menus: Menu[] = menus;

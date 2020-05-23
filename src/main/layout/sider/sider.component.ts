@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import { Menu } from 'src/environments/routes';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,5 +16,6 @@ export class SiderComponent {
 
   nodeClick(menu: Menu) {
     if (menu.type != 'router') this.router.navigate([menu.router], { relativeTo: this.activated });
+    this.layoutService.drawerVisible = false;
   }
 }

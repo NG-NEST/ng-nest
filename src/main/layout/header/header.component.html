@@ -1,30 +1,28 @@
-<ul>
-  <li class="logo"><img src="assets/img/logo-white.png" /></li>
-  <li>
-    <a [routerLink]="['./home']" [routerLinkActive]="'active'" i18n="@@home">首页</a>
-  </li>
-  <!-- <li>
-    <a [routerLink]="['./demo']" [routerLinkActive]="'active'" i18n="@@demo"
-      >示例</a
-    >
-  </li> -->
-  <li>
-    <a [routerLink]="['./docs']" [routerLinkActive]="'active'" i18n="@@docs">文档</a>
-  </li>
-  <!-- <li>
-    <a [routerLink]="['./news']" [routerLinkActive]="'active'" i18n="@@news"
-      >最新</a
-    >
-  </li> -->
-</ul>
-<ul>
-  <li class="github">
-    <a href="https://github.com/NG-NEST" target="_blank">
-      <i class="icon icon-github"></i>
-    </a>
-  </li>
-  <li class="lang">
-    <a *ngIf="lang !== 'en'" (click)="push('en')">English</a>
-    <a *ngIf="lang !== 'zh'" (click)="push('zh')">中文</a>
-  </li>
-</ul>
+<x-button class="menu" *ngIf="layoutService.small" icon="fto-list" (click)="layoutService.drawerVisible = true" only-icon></x-button>
+<ns-logo> </ns-logo>
+
+<x-drawer [visible]="layoutService.drawerVisible" placement="left" (close)="layoutService.drawerVisible = false" size="16.25rem">
+  <ns-sider class="drawer"></ns-sider>
+</x-drawer>
+
+<!-- <ul>
+    <li class="logo"><img src="assets/img/logo/logo-32x32.png" /></li>
+    <li>
+      <a [routerLink]="['./home']" [routerLinkActive]="'active'" i18n="@@home">首页</a>
+    </li>
+    
+    <li>
+      <a [routerLink]="['./docs']" [routerLinkActive]="'active'" i18n="@@docs">文档</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="github">
+      <a href="https://github.com/NG-NEST" target="_blank">
+        <i class="icon icon-github"></i>
+      </a>
+    </li>
+    <li class="lang">
+      <a *ngIf="lang !== 'en'" (click)="push('en')">English</a>
+      <a *ngIf="lang !== 'zh'" (click)="push('zh')">中文</a>
+    </li>
+  </ul> -->
