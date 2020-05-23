@@ -9,7 +9,7 @@ export const XResize = (...element: Element[]): Observable<{ entry: ResizeObserv
       }
     });
     for (let ele of element) {
-      resizeObserver.observe(ele);
+      if (ele) resizeObserver.observe(ele);
     }
 
     //XResize 取消订阅的时候自动销毁

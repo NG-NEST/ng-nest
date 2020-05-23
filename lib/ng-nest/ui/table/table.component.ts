@@ -7,13 +7,15 @@ import {
   ElementRef,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
-import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter } from '@ng-nest/ui/core';
+import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -23,6 +25,7 @@ import * as _ from 'lodash';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableComponent extends XTableProperty implements OnInit, OnChanges {
+  @ViewChild('virtualBody', { static: false }) virtualBody: CdkVirtualScrollViewport;
   tableData: any[] = [];
   groupData: any[] = [];
   topLeftActions: XTableAction[] = [];
@@ -43,8 +46,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   searchInput: any;
   searchSub = new Subject<string>();
   sortStr = '';
+
+  hasScrollY = false;
+  scrollYWidth = 0;
+  hasScrollX = false;
+  scrollXWidth = 0;
+
   private _unSubject = new Subject<void>();
   private _isFirst = true;
+  private _resizeObserver: ResizeObserver;
   constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XTablePrefix);
@@ -53,15 +63,20 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   ngOnInit() {
     this.setActions();
     this.setData();
-    this.setSubject();
   }
 
-  ngOnDestroy(): void {
-    this.removeListen();
+  ngAfterViewInit() {
+    this.setSubject();
   }
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.rowPrimary) && this.setData(true);
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
   }
 
   change(index: number) {
@@ -122,7 +137,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
           groupColumn.flex = 4;
           groupColumn.search = true;
           this.groupSearchPlaceholder = `查找${groupColumn.label}`;
-          this.groupColumns = [groupColumn, { id: 'count', flex: 1 }];
+          this.groupColumns = [groupColumn, { id: 'count', flex: 2 }];
         }
         this.cdr.detectChanges();
       } else if (this.groupQuery.group) {
@@ -145,11 +160,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   getIndex(index: number) {
     return (Number(this.index) - 1) * Number(this.size) + index + 1;
-  }
-
-  private removeListen() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
   }
 
   private setActions() {
@@ -178,6 +188,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   private setSubject() {
+    XResize(
+      this.elementRef.nativeElement,
+      this.virtualBody?.elementRef?.nativeElement.querySelector('.cdk-virtual-scroll-content-wrapper') as HTMLElement
+    )
+      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this._resizeObserver = x.resizeObserver;
+        this.setScroll();
+      });
     if (!this.service) return;
     const service = this.service;
     this.searchSub
@@ -196,9 +215,25 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       });
   }
 
+  private setScroll() {
+    if (!this.virtualBody) return;
+    const ele = this.virtualBody.elementRef.nativeElement;
+    const hasY = ele.scrollHeight > this.bodyHeight;
+    if (!this.hasScrollY && hasY) {
+      this.hasScrollY = true;
+      this.scrollYWidth = ele.offsetWidth - ele.clientWidth;
+      this.cdr.detectChanges();
+    } else if (this.hasScrollY && !hasY) {
+      this.hasScrollY = false;
+      this.scrollYWidth = 0;
+      this.cdr.detectChanges();
+    }
+  }
+
   private setDataChange(result: XResultList<any>) {
     this.total = result.total as number;
     this.tableData = result.list as any[];
+    if (this.hasScrollY) this.virtualBody?.scrollTo({ top: 0 });
     this.cdr.detectChanges();
   }
 

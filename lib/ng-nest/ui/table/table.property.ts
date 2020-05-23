@@ -1,4 +1,4 @@
-import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean, XBoolean, XInputNumber } from '@ng-nest/ui/core';
 import { XButtonOption } from '@ng-nest/ui/button';
 import { XPaginationProperty } from '@ng-nest/ui/pagination';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
@@ -75,6 +75,26 @@ export class XTableProperty extends XPaginationProperty {
    * 列内容自定义模板
    */
   @Input('body-column-tpl') bodyColumnTpl: XTableColumnTemplate = {};
+  /**
+   * 开启虚拟滚动
+   */
+  @Input('virtual-scroll') @XInputBoolean() virtualScroll: XBoolean = false;
+  /**
+   * 行高，对应 cdk scroll 中的参数
+   */
+  @Input('item-size') itemSize = 42;
+  /**
+   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   */
+  @Input('min-buffer-px') minBufferPx = 100;
+  /**
+   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   */
+  @Input('max-buffer-px') maxBufferPx = 200;
+  /**
+   * body 数据高度
+   */
+  @Input('body-height') @XInputNumber() bodyHeight: number;
   /**
    * 操作按钮点击事件
    */

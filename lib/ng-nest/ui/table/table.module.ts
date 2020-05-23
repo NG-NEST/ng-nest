@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XTableComponent } from './table.component';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XPaginationModule } from '@ng-nest/ui/pagination';
@@ -13,6 +14,16 @@ import { XTableProperty } from './table.property';
 @NgModule({
   declarations: [XTableComponent, XTableProperty],
   exports: [XTableComponent],
-  imports: [CommonModule, FormsModule, XIconModule, XInputModule, XButtonModule, XPaginationModule, XOutletModule, XLinkModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ScrollingModule,
+    XIconModule,
+    XInputModule,
+    XButtonModule,
+    XPaginationModule,
+    XOutletModule,
+    XLinkModule
+  ]
 })
 export class XTableModule {}

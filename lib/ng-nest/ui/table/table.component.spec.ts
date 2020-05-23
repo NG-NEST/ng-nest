@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTableComponent } from './table.component';
-import { Component, DebugElement, Injectable } from '@angular/core';
+import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTableModule } from '@ng-nest/ui/table';
 import { XTablePrefix, XTableColumn, XTableAction } from './table.property';
@@ -14,11 +14,10 @@ import {
   XRepositoryAbstract,
   XFilter,
   XGroupItem,
-  XSort,
-  XIsEmpty
+  XSort
 } from '@ng-nest/ui/core';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 
@@ -26,7 +25,7 @@ describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XTableModule, XIconModule, XAvatarModule],
-      declarations: [TestXTableComponent]
+      declarations: [TestXTableComponent, TestXTableScrollComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -36,6 +35,22 @@ describe(XTablePrefix, () => {
     let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableComponent);
+      testComponent = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XTableComponent));
+      element = debugElement.nativeElement;
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`scroll`, () => {
+    let fixture: ComponentFixture<TestXTableScrollComponent>;
+    let testComponent: TestXTableScrollComponent;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTableScrollComponent);
       testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTableComponent));
@@ -58,7 +73,7 @@ class UsersService extends XRepositoryService<User> {
 class UsersServiceTest extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 1234 }).map((x, i) => {
+  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
     i++;
     return {
       id: i,
@@ -147,8 +162,9 @@ interface User extends XId {
         [columns]="columns"
         [actions]="actions"
         [service]="usersServiceTest"
-        [headerColumnTpl]="{ name: nameHeaderTemp }"
-        [bodyColumnTpl]="{ name: nameBodyTemp }"
+        [size]="10"
+        [header-column-tpl]="{ name: nameHeaderTemp }"
+        [body-column-tpl]="{ name: nameBodyTemp }"
         allowSelectRow
       ></x-table>
     </div>
@@ -174,14 +190,14 @@ interface User extends XId {
       }
       .header-username > span,
       .body-username > span {
-        margin-left: 1rem;
+        margin-left: 0.5rem;
       }
     `
   ],
   providers: [UsersServiceTest]
 })
 class TestXTableComponent {
-  constructor(public usersServiceTest: UsersServiceTest) {}
+  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
   columns: XTableColumn[] = [
     { id: 'name', label: '用户', flex: 1.5, search: true, sort: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
@@ -222,4 +238,100 @@ class TestXTableComponent {
       actionLayoutType: 'row-icon'
     }
   ];
+
+  ngAfterViewInit() {
+    interval(10).subscribe(() => this.cdr.detectChanges());
+  }
+}
+
+@Component({
+  selector: 'test-x-table-scroll',
+  template: `
+    <div style="padding: 1rem 2rem; background: #fafafa;">
+      <x-table
+        [columns]="columns"
+        [actions]="actions"
+        [service]="usersServiceTest"
+        [size]="10000"
+        [body-height]="420"
+        [header-column-tpl]="{ name: nameHeaderTemp }"
+        [body-column-tpl]="{ name: nameBodyTemp }"
+        allow-select-row
+        virtual-scroll
+      ></x-table>
+    </div>
+    <ng-template #nameHeaderTemp let-column="$column">
+      <div class="header-username">
+        <x-icon type="fto-user"></x-icon>
+        <span>{{ column.label }}</span>
+      </div>
+    </ng-template>
+    <ng-template #nameBodyTemp let-column="$column" let-item="$item">
+      <div class="body-username">
+        <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+        <span>{{ item[column.id] }}</span>
+      </div>
+    </ng-template>
+  `,
+  styles: [
+    `
+      .header-username,
+      .body-username {
+        display: flex;
+        align-items: center;
+      }
+      .header-username > span,
+      .body-username > span {
+        margin-left: 0.5rem;
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTableScrollComponent {
+  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  columns: XTableColumn[] = [
+    { id: 'name', label: '用户', width: 200, search: true, sort: true },
+    { id: 'position', label: '职位', flex: 0.5, sort: true },
+    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'phone', label: '电话', flex: 1 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+  ];
+  actions: XTableAction[] = [
+    { label: '新增', icon: 'fto-plus', type: 'primary' },
+    { label: '导出', icon: 'fto-download' },
+    { label: '批量操作', icon: 'fto-list' },
+    {
+      icon: 'fto-menu',
+      title: '列表视图',
+      activated: true,
+      actionLayoutType: 'top-right-icon'
+    },
+    {
+      icon: 'fto-disc',
+      title: '组织视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'organization'
+    },
+    {
+      icon: 'fto-briefcase',
+      title: '职位视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'position'
+    },
+    {
+      icon: 'fto-edit',
+      title: '编辑',
+      actionLayoutType: 'row-icon'
+    },
+    {
+      icon: 'fto-trash-2',
+      title: '删除',
+      actionLayoutType: 'row-icon'
+    }
+  ];
+
+  ngAfterViewInit() {
+    interval(10).subscribe(() => this.cdr.detectChanges());
+  }
 }

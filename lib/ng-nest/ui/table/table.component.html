@@ -34,13 +34,13 @@
         </ng-container>
       </div>
     </div>
-    <div class="x-table-header" *ngIf="!headerHidden">
-      <ul>
+    <div class="x-table-header" *ngIf="!headerHidden" [style.padding-right.px]="scrollYWidth">
+      <ul class="x-table-row" [style.height.px]="itemSize">
         <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
           <span>{{ serialNumberText }}</span>
         </li>
         <ng-container *ngFor="let column of columns">
-          <li [style.width.rem]="column.width" [style.flex]="column.flex">
+          <li [style.width.px]="column.width" [style.flex]="column.width ? 'none' : column.flex">
             <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
               <ng-container *xOutlet="headerColumnTpl[column.id]; context: { $column: column }">
                 {{ column.label }}
@@ -58,31 +58,64 @@
       </ul>
     </div>
     <div class="x-table-body">
-      <ul
-        *ngFor="let item of tableData; index as i"
-        [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
-        (click)="rowEmit(item, $event)"
+      <cdk-virtual-scroll-viewport
+        #virtualBody
+        *ngIf="virtualScroll; else bodyTpl"
+        class="x-table-virtual-body"
+        [itemSize]="itemSize"
+        [minBufferPx]="minBufferPx"
+        [maxBufferPx]="maxBufferPx"
+        [style.height.px]="bodyHeight"
       >
-        <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
-          <div>{{ getIndex(i) }}</div>
-        </li>
-        <ng-container *ngFor="let column of columns; index as j">
-          <li [style.width.rem]="column.width" [style.flex]="column.flex" [title]="item[column.id]" [class.x-table-no-flex]="column.width">
-            <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
-              <div [innerHTML]="item[column.id]"></div>
-            </ng-container>
-            <ng-container *ngIf="!j && rowIconActions.length > 0">
-              <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
-            </ng-container>
-          </li>
-        </ng-container>
-      </ul>
+        <ul
+          *cdkVirtualFor="let item of tableData; index as i"
+          class="x-table-row"
+          [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
+          [style.height.px]="itemSize"
+          (click)="rowEmit(item, $event)"
+        >
+          <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
+        </ul>
+      </cdk-virtual-scroll-viewport>
     </div>
     <div class="x-table-footer" *ngIf="!footerHidden">
       <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
     </div>
   </div>
 </div>
+
+<ng-template #bodyTpl>
+  <ul
+    *ngFor="let item of tableData; index as i"
+    class="x-table-row"
+    [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
+    [style.height.px]="itemSize"
+    (click)="rowEmit(item, $event)"
+  >
+    <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
+  </ul>
+</ng-template>
+
+<ng-template #bodyRows let-item="item" let-i="i">
+  <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
+    <div>{{ getIndex(i) }}</div>
+  </li>
+  <ng-container *ngFor="let column of columns; index as j">
+    <li
+      [style.width.px]="column.width"
+      [style.flex]="column.width ? 'none' : column.flex"
+      [title]="item[column.id]"
+      [class.x-table-no-flex]="column.width"
+    >
+      <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
+        <div [innerHTML]="item[column.id]"></div>
+      </ng-container>
+      <ng-container *ngIf="!j && rowIconActions.length > 0">
+        <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
+      </ng-container>
+    </li>
+  </ng-container>
+</ng-template>
 
 <ng-template #buttonsTpl let-space="space" let-hiddenBorder="hiddenBorder" let-actions="actions">
   <x-buttons [space]="space" [hidden-border]="hiddenBorder">

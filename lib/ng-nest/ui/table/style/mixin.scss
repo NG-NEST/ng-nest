@@ -40,12 +40,11 @@
 
   &-header,
   &-body {
-    > ul {
+    .#{$--x-table-prefix}-row {
       display: flex;
       cursor: default;
       > li {
         flex: 1;
-        height: $--x-font-size * 3;
         &:not(:last-child) {
           padding-right: 0.875rem;
         }
@@ -53,6 +52,15 @@
           flex: inherit;
         }
       }
+    }
+  }
+
+  &-body {
+    cdk-virtual-scroll-viewport {
+      // overflow: hidden;
+      // &:hover {
+      //   overflow: auto;
+      // }
     }
   }
 
@@ -82,6 +90,9 @@
         align-items: center;
         cursor: default;
         color: $--x-text-400;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         &.#{$--x-table-prefix}-header-sort {
           cursor: pointer;
           transition: transform 0.2s;
@@ -111,7 +122,7 @@
   }
 
   &-body {
-    > ul {
+    .#{$--x-table-prefix}-row {
       > li {
         display: flex;
         justify-content: space-between;
@@ -136,21 +147,12 @@
       }
       &:hover,
       &.x-table-row-activated {
-        margin-left: -1rem;
-        margin-right: -1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
         background-color: $--x-background;
         > li > .x-buttons {
           display: inline-block;
         }
-      }
-      &.x-table-row-activated {
-        color: $--x-primary;
-      }
-      &:not(:last-child) {
-        > li {
-          border-bottom: 0.0625rem solid $--x-border-200;
+        &.x-table-row-activated {
+          color: $--x-primary;
         }
       }
     }
