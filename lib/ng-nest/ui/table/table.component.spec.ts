@@ -20,12 +20,15 @@ import * as _ from 'lodash';
 import { Observable, interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
+import { XDialogModule } from '@ng-nest/ui/dialog';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTableModule, XIconModule, XAvatarModule],
-      declarations: [TestXTableComponent, TestXTableScrollComponent]
+      imports: [BrowserAnimationsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
+      declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -58,6 +61,18 @@ describe(XTablePrefix, () => {
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`adaption`, () => {
+    let fixture: ComponentFixture<TestXTableAdaptionComponent>;
+    let testComponent: TestXTableAdaptionComponent;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTableAdaptionComponent);
+      testComponent = fixture.debugElement.componentInstance;
+      fixture.detectChanges();
+    });
+    it('should create.', () => {
+      expect(true).toBe(true);
     });
   });
 });
@@ -335,5 +350,120 @@ class TestXTableScrollComponent {
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());
+  }
+}
+
+@Component({
+  selector: 'test-x-table-adaption',
+  template: `
+    <x-button (click)="dialog()">弹框表格自适应</x-button>
+    <x-dialog
+      title="弹框表格自适应(缩放浏览器窗口查看效果)"
+      width="90%"
+      height="90%"
+      [visible]="visible"
+      (close)="close()"
+      (cancel)="close()"
+      (confirm)="close()"
+    >
+      <x-table
+        [columns]="columns"
+        [actions]="actions"
+        [service]="usersServiceTest"
+        [size]="10000"
+        [body-height]="420"
+        [header-column-tpl]="{ name: nameHeaderTemp }"
+        [body-column-tpl]="{ name: nameBodyTemp }"
+        [adaption-height]="104"
+        [doc-percent]="0.9"
+        allow-select-row
+        virtual-scroll
+      ></x-table>
+    </x-dialog>
+    <ng-template #nameHeaderTemp let-column="$column">
+      <div class="header-username">
+        <x-icon type="fto-user"></x-icon>
+        <span>{{ column.label }}</span>
+      </div>
+    </ng-template>
+    <ng-template #nameBodyTemp let-column="$column" let-item="$item">
+      <div class="body-username">
+        <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+        <span>{{ item[column.id] }}</span>
+      </div>
+    </ng-template>
+  `,
+  styles: [
+    `
+      .header-username,
+      .body-username {
+        display: flex;
+        align-items: center;
+      }
+      .header-username > span,
+      .body-username > span {
+        margin-left: 0.5rem;
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTableAdaptionComponent {
+  visible = false;
+  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  columns: XTableColumn[] = [
+    { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
+    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
+    { id: 'position', label: '职位', width: 150, sort: true },
+    { id: 'email', label: '邮箱', width: 300 },
+    { id: 'phone', label: '电话', flex: 1 },
+    { id: 'organization', label: '组织机构', width: 150, sort: true }
+  ];
+  actions: XTableAction[] = [
+    { label: '新增', icon: 'fto-plus', type: 'primary' },
+    { label: '导出', icon: 'fto-download' },
+    { label: '批量操作', icon: 'fto-list' },
+    {
+      icon: 'fto-menu',
+      title: '列表视图',
+      activated: true,
+      actionLayoutType: 'top-right-icon'
+    },
+    {
+      icon: 'fto-disc',
+      title: '组织视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'organization'
+    },
+    {
+      icon: 'fto-briefcase',
+      title: '职位视图',
+      actionLayoutType: 'top-right-icon',
+      group: 'position'
+    },
+    {
+      icon: 'fto-edit',
+      title: '编辑',
+      actionLayoutType: 'row-icon'
+    },
+    {
+      icon: 'fto-trash-2',
+      title: '删除',
+      actionLayoutType: 'row-icon'
+    }
+  ];
+
+  ngAfterViewInit() {
+    interval(10).subscribe(() => this.cdr.detectChanges());
+  }
+
+  dialog() {
+    this.visible = true;
+    this.cdr.detectChanges();
+  }
+
+  close() {
+    this.visible = false;
+    this.cdr.detectChanges();
   }
 }

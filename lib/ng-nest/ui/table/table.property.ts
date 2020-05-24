@@ -88,6 +88,14 @@ export class XTableProperty extends XPaginationProperty {
    */
   @Input('max-buffer-px') maxBufferPx = 200;
   /**
+   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   */
+  @Input('adaption-height') @XInputNumber() adaptionHeight: XNumber;
+  /**
+   * 文档高度百分比，弹窗百分比高度用到
+   */
+  @Input('doc-percent') @XInputNumber() docPercent: XNumber = 1;
+  /**
    * body 数据高度
    */
   @Input('body-height') @XInputNumber() bodyHeight: number;

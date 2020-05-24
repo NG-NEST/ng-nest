@@ -6,10 +6,27 @@
 
 @mixin dialog {
   width: 100%;
+  x-alert {
+    height: 100%;
+    .x-alert {
+      height: 100%;
+      &-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      &-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
   &-inner {
     display: flex;
     flex-direction: column;
     margin: 0.5rem 0;
+    flex: 1;
     > x-buttons {
       margin-top: 1rem;
       align-self: flex-end;
@@ -17,5 +34,6 @@
   }
   &-content {
     display: inline-flex;
+    flex: 1;
   }
 }

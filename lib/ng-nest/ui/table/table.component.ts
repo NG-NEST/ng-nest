@@ -9,7 +9,8 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-  HostBinding
+  HostBinding,
+  Inject
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize } from '@ng-nest/ui/core';
@@ -17,6 +18,9 @@ import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { inject } from '@angular/core/testing';
+import { DOCUMENT } from '@angular/common';
+import { format } from 'path';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -34,6 +38,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
   @ViewChild('header', { static: false }) header: ElementRef;
   @ViewChild('headerRow', { static: false }) headerRow: ElementRef;
+  @ViewChild('tool', { static: false }) tool: ElementRef;
+  @ViewChild('footer', { static: false }) footer: ElementRef;
   @ViewChild('virtualBody', { static: false }) virtualBody: CdkVirtualScrollViewport;
   tableData: any[] = [];
   groupData: any[] = [];
@@ -66,7 +72,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   private _unSubject = new Subject<void>();
   private _isFirst = true;
   private _resizeObserver: ResizeObserver;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) private doc: Document
+  ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XTablePrefix);
   }
@@ -208,11 +219,17 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       .pipe(debounceTime(10), takeUntil(this._unSubject))
       .subscribe((x) => {
         this._resizeObserver = x.resizeObserver;
+        this.setAdaptionHeight();
         this.setScroll();
+      });
+    fromEvent(window, 'resize')
+      .pipe(debounceTime(10), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.setAdaptionHeight();
       });
     if (this.scrollContentEle) {
       fromEvent(this.virtualBody.elementRef.nativeElement, 'scroll')
-        .pipe(takeUntil(this._unSubject))
+        .pipe(debounceTime(10), takeUntil(this._unSubject))
         .subscribe((x) => {
           const ele = x.srcElement as HTMLElement;
           this.scrollTop = ele.scrollTop;
@@ -266,6 +283,26 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       this.scrollXWidth = ele.offsetWidth + ele.scrollWidth - ele.clientWidth;
     }
     this.cdr.detectChanges();
+  }
+
+  private setAdaptionHeight() {
+    if (!XIsUndefined(this.adaptionHeight)) {
+      const toolHeight = this.tool?.nativeElement.clientHeight;
+      const headerHeight = this.header?.nativeElement.clientHeight;
+      const footerHeight = this.footer?.nativeElement.clientHeight;
+      this.bodyHeight =
+        Number(this.docPercent) * this.doc.documentElement.clientHeight -
+        toolHeight -
+        headerHeight -
+        footerHeight -
+        Number(this.adaptionHeight);
+      console.log(this.bodyHeight);
+      this.minBufferPx = this.bodyHeight;
+      this.maxBufferPx = this.bodyHeight * 1.2;
+      this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
+      this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
+      this.cdr.detectChanges();
+    }
   }
 
   private setDataChange(result: XResultList<any>) {

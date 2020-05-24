@@ -66,23 +66,16 @@ describe(XDialogPrefix, () => {
       </div>
     </div>
 
-    <x-dialog
-      title="标题"
-      [visible]="visible"
-      [placement]="placement"
-      [before-close]="beforeClose"
-      (cancel)="close()"
-      (confirm)="close()"
-    >
-      <span
-        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
-      >
+    <x-dialog title="标题" [visible]="visible" [placement]="placement" [before-close]="beforeClose" (cancel)="close()" (confirm)="close()">
+      <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
     </x-dialog>
 
     <div class="row">
       <x-button (click)="customTable()">自定义表格</x-button>
       <x-dialog
         title="表格"
+        width="80%"
+        height="80%"
         [visible]="visibleTable"
         (close)="tableClose()"
         (cancel)="tableClose()"
@@ -115,13 +108,7 @@ describe(XDialogPrefix, () => {
 
     <div class="row">
       <x-button (click)="customForm()">自定义表单</x-button>
-      <x-dialog
-        title="表单"
-        [visible]="visibleForm"
-        (close)="formClose()"
-        (cancel)="formClose()"
-        (confirm)="formClose()"
-      >
+      <x-dialog title="表单" [visible]="visibleForm" (close)="formClose()" (cancel)="formClose()" (confirm)="formClose()">
         <ul class="custom-form">
           <li><x-input label="账号" direction="row"></x-input></li>
           <li><x-input label="邮箱" direction="row"></x-input></li>
@@ -133,9 +120,7 @@ describe(XDialogPrefix, () => {
     <div class="row">
       <x-button (click)="custom()">自定义标题以及底部按钮</x-button>
       <x-dialog [title]="titleTpl" [footer]="footerTpl" [visible]="visibleCustom" (close)="customClose()">
-        <span
-          >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
-        >
+        <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
         <ng-template #titleTpl>
           <x-icon type="fto-user"></x-icon>
         </ng-template>

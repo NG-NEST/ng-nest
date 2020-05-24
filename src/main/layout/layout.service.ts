@@ -31,7 +31,7 @@ export class LayoutService {
       // this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
       // console.log(this.shrink);
       const route = this.getCurrentMenu(x.url);
-      if (route) this.title.setTitle(route.label as string);
+      if (route) this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
     });
     const route = this.getCurrentMenu(this.location.path());
     if (route) {
