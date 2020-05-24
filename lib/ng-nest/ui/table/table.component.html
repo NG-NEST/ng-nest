@@ -11,7 +11,6 @@
       [row-primary]="groupQuery.group"
       [activated-row]="groupActivatedRow"
       [search-placeholder]="groupSearchPlaceholder"
-      [serial-number-hidden]="groupSearchSerialNumberHidden"
       (rowClick)="groupRowClick($event)"
     ></x-table>
   </div>
@@ -34,27 +33,41 @@
         </ng-container>
       </div>
     </div>
-    <div class="x-table-header" *ngIf="!headerHidden" [style.padding-right.px]="scrollYWidth">
-      <ul class="x-table-row" [style.height.px]="itemSize">
-        <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
-          <span>{{ serialNumberText }}</span>
+    <div #header class="x-table-header" *ngIf="!headerHidden" [style.height.px]="itemSize">
+      <ul
+        #headerRow
+        class="x-table-row"
+        [style.height.px]="itemSize"
+        [style.padding-right.px]="scrollYWidth"
+        [style.width.px]="scrollXWidth"
+      >
+        <li
+          *ngFor="let column of columns"
+          [class.x-table-sticky]="getSticky(column)"
+          [style.width.px]="column.width"
+          [style.left.px]="column.left"
+          [style.flex]="column.width ? 'none' : column.flex"
+        >
+          <ng-container [ngSwitch]="column.type">
+            <ng-container *ngSwitchCase="'index'">
+              <span>{{ column.label }}</span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
+                <ng-container *xOutlet="headerColumnTpl[column.id]; context: { $column: column }">
+                  {{ column.label }}
+                </ng-container>
+                <x-icon
+                  class="x-table-header-sort-icon"
+                  *ngIf="column.sort"
+                  [class.x-table-icon-up]="sortStr === column.id + ' desc'"
+                  [class.x-table-icon-down]="sortStr === column.id + ' asc'"
+                  type="fto-bar-chart"
+                ></x-icon>
+              </a>
+            </ng-container>
+          </ng-container>
         </li>
-        <ng-container *ngFor="let column of columns">
-          <li [style.width.px]="column.width" [style.flex]="column.width ? 'none' : column.flex">
-            <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
-              <ng-container *xOutlet="headerColumnTpl[column.id]; context: { $column: column }">
-                {{ column.label }}
-              </ng-container>
-              <x-icon
-                class="x-table-header-sort-icon"
-                *ngIf="column.sort"
-                [class.x-table-icon-up]="sortStr === column.id + ' desc'"
-                [class.x-table-icon-down]="sortStr === column.id + ' asc'"
-                type="fto-bar-chart"
-              ></x-icon>
-            </a>
-          </li>
-        </ng-container>
       </ul>
     </div>
     <div class="x-table-body">
@@ -97,21 +110,26 @@
 </ng-template>
 
 <ng-template #bodyRows let-item="item" let-i="i">
-  <li class="x-table-no-flex" *ngIf="!serialNumberHidden" [style.width.rem]="serialNumberWidth">
-    <div>{{ getIndex(i) }}</div>
-  </li>
   <ng-container *ngFor="let column of columns; index as j">
     <li
       [style.width.px]="column.width"
       [style.flex]="column.width ? 'none' : column.flex"
-      [title]="item[column.id]"
-      [class.x-table-no-flex]="column.width"
+      [title]="item[column.id] ? item[column.id] : ''"
+      [class.x-table-sticky]="getSticky(column)"
+      [style.left.px]="column.left"
     >
-      <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
-        <div [innerHTML]="item[column.id]"></div>
-      </ng-container>
-      <ng-container *ngIf="!j && rowIconActions.length > 0">
-        <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
+      <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'index'">
+          <div>{{ getIndex(i) }}</div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
+            <div [innerHTML]="item[column.id]"></div>
+          </ng-container>
+          <ng-container *ngIf="!j && rowIconActions.length > 0">
+            <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
+          </ng-container>
+        </ng-container>
       </ng-container>
     </li>
   </ng-container>

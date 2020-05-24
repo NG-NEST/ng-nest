@@ -1,4 +1,4 @@
-import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean, XBoolean, XInputNumber } from '@ng-nest/ui/core';
+import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean, XBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { XButtonOption } from '@ng-nest/ui/button';
 import { XPaginationProperty } from '@ng-nest/ui/pagination';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
@@ -64,10 +64,6 @@ export class XTableProperty extends XPaginationProperty {
    */
   @Input('search-placeholder') searchPlaceholder: string = '查找';
   /**
-   * 隐藏序号列
-   */
-  @Input('serial-number-hidden') @XInputBoolean() serialNumberHidden: XBoolean;
-  /**
    * 列头自定义模板
    */
   @Input('header-column-tpl') headerColumnTpl: XTableColumnTemplate = {};
@@ -96,6 +92,10 @@ export class XTableProperty extends XPaginationProperty {
    */
   @Input('body-height') @XInputNumber() bodyHeight: number;
   /**
+   * 横向滚动条出现的最小宽度
+   */
+  @Input('min-scroll-x') minScrollX: XNumber = '100%';
+  /**
    * 操作按钮点击事件
    */
   @Output() actionClick = new EventEmitter<XTableAction>();
@@ -109,6 +109,7 @@ export class XTableProperty extends XPaginationProperty {
  * 列参数
  */
 export interface XTableColumn extends XIdentityProperty {
+  type?: XColumnType;
   /**
    * 宽度
    */
@@ -125,6 +126,14 @@ export interface XTableColumn extends XIdentityProperty {
    * 排序字段
    */
   sort?: boolean;
+  /**
+   * 固定列，距离左边的距离
+   */
+  left?: number;
+  /**
+   * 自定义属性
+   */
+  [prop: string]: any;
 }
 
 /**
@@ -149,6 +158,11 @@ export interface XTableAction extends XButtonOption {
    */
   group?: string;
 }
+
+/**
+ * 列类型
+ */
+export type XColumnType = 'label' | 'index';
 
 /**
  * 操作按钮位置

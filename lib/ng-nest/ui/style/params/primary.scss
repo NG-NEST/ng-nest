@@ -109,7 +109,15 @@ $--x-border-300-base: $--x-border-width $--x-border-style $--x-border-300;
 // box-shadow
 $--x-box-shadow: 0 0 0.125rem 0.0625rem;
 $--x-box-shadow-base: $--x-box-shadow rgba(0, 0, 0, 0.07);
+$--x-box-shadow-base-right: 0.125rem 0 0.125rem rgba(0, 0, 0, 0.07);
+$--x-box-shadow-base-left: -0.125rem 0 0.125rem rgba(0, 0, 0, 0.07);
+$--x-box-shadow-base-top: 0 -0.125rem 0.125rem rgba(0, 0, 0, 0.07);
+$--x-box-shadow-base-bottom: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.07);
 $--x-box-shadow-light: $--x-box-shadow rgba(0, 0, 0, 0.05);
+$--x-box-shadow-light-right: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+$--x-box-shadow-light-left: -0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+$--x-box-shadow-light-top: 0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+$--x-box-shadow-light-bottom: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
 
 // Animation
 $--x-animation-duration-slow: 0.3s;

@@ -157,7 +157,7 @@ interface User extends XId {
 @Component({
   selector: 'test-x-table',
   template: `
-    <div style="padding: 1rem 2rem; background: #fafafa;">
+    <div style="padding: 1rem 2rem;">
       <x-table
         [columns]="columns"
         [actions]="actions"
@@ -247,12 +247,13 @@ class TestXTableComponent {
 @Component({
   selector: 'test-x-table-scroll',
   template: `
-    <div style="padding: 1rem 2rem; background: #fafafa;">
+    <div style="padding: 1rem 2rem;">
       <x-table
         [columns]="columns"
         [actions]="actions"
         [service]="usersServiceTest"
         [size]="10000"
+        [item-size]="50"
         [body-height]="420"
         [header-column-tpl]="{ name: nameHeaderTemp }"
         [body-column-tpl]="{ name: nameBodyTemp }"
@@ -291,11 +292,12 @@ class TestXTableComponent {
 class TestXTableScrollComponent {
   constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
   columns: XTableColumn[] = [
-    { id: 'name', label: '用户', width: 200, search: true, sort: true },
-    { id: 'position', label: '职位', flex: 0.5, sort: true },
-    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
+    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
+    { id: 'position', label: '职位', width: 150, sort: true },
+    { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+    { id: 'organization', label: '组织机构', width: 150, sort: true }
   ];
   actions: XTableAction[] = [
     { label: '新增', icon: 'fto-plus', type: 'primary' },
