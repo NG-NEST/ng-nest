@@ -177,7 +177,6 @@ interface User extends XId {
         [columns]="columns"
         [actions]="actions"
         [service]="usersServiceTest"
-        [size]="10"
         [header-column-tpl]="{ name: nameHeaderTemp }"
         [body-column-tpl]="{ name: nameBodyTemp }"
         allowSelectRow

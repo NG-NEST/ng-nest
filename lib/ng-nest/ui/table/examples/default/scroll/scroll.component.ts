@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { XTableAction, XTableColumn } from '@ng-nest/ui/table';
-import { ExDefaultService } from './default.service';
+import { ExScrollService } from './scroll.service';
 
 @Component({
-  selector: 'ex-default',
-  templateUrl: './default.component.html',
+  selector: 'ex-scroll',
+  templateUrl: './scroll.component.html',
   styles: [
     `
       .header-name,
@@ -18,18 +18,18 @@ import { ExDefaultService } from './default.service';
       }
     `
   ],
-  providers: [ExDefaultService]
+  providers: [ExScrollService]
 })
-export class ExDefaultComponent {
-  constructor(public service: ExDefaultService) {}
+export class ExScrollComponent {
+  constructor(public service: ExScrollService) {}
 
   columns: XTableColumn[] = [
-    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
-    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true },
-    { id: 'position', label: '职位', flex: 0.5, sort: true },
-    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
+    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
+    { id: 'position', label: '职位', width: 200, sort: true },
+    { id: 'email', label: '邮箱', width: 200 },
     { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+    { id: 'organization', label: '组织机构', width: 150, sort: true }
   ];
 
   actions: XTableAction[] = [

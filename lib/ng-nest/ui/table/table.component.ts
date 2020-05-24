@@ -76,7 +76,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: any
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XTablePrefix);
@@ -216,20 +216,20 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   private setSubject() {
     this.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector('.cdk-virtual-scroll-content-wrapper') as HTMLElement;
     XResize(this.elementRef.nativeElement, this.scrollContentEle)
-      .pipe(debounceTime(10), takeUntil(this._unSubject))
+      .pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
         this._resizeObserver = x.resizeObserver;
         this.setAdaptionHeight();
         this.setScroll();
       });
     fromEvent(window, 'resize')
-      .pipe(debounceTime(10), takeUntil(this._unSubject))
+      .pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
         this.setAdaptionHeight();
       });
     if (this.scrollContentEle) {
       fromEvent(this.virtualBody.elementRef.nativeElement, 'scroll')
-        .pipe(debounceTime(10), takeUntil(this._unSubject))
+        .pipe(takeUntil(this._unSubject))
         .subscribe((x) => {
           const ele = x.srcElement as HTMLElement;
           this.scrollTop = ele.scrollTop;
@@ -296,7 +296,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
         headerHeight -
         footerHeight -
         Number(this.adaptionHeight);
-      console.log(this.bodyHeight);
       this.minBufferPx = this.bodyHeight;
       this.maxBufferPx = this.bodyHeight * 1.2;
       this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;

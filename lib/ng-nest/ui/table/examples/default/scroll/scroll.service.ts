@@ -4,7 +4,7 @@ import { XId, XGroupItem, XSort, XFilter, XQuery, XResultList, XRepositoryAbstra
 import * as _ from 'lodash';
 
 @Injectable()
-export class ExDefaultService extends XRepositoryAbstract {
+export class ExScrollService extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {

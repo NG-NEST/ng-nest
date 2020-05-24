@@ -1,0 +1,36 @@
+<x-button (click)="dialog()">弹框表格自适应</x-button>
+<x-dialog
+  title="表格高度自适应， 缩放浏览器窗口查看效果"
+  width="90%"
+  height="90%"
+  class-name="ex-adaption"
+  [visible]="visible"
+  (close)="close()"
+  (cancel)="close()"
+  (confirm)="close()"
+>
+  <x-table
+    [columns]="columns"
+    [actions]="actions"
+    [service]="service"
+    [size]="10000"
+    [header-column-tpl]="{ name: nameHeaderTemp }"
+    [body-column-tpl]="{ name: nameBodyTemp }"
+    [adaption-height]="104"
+    [doc-percent]="0.9"
+    allow-select-row
+    virtual-scroll
+  ></x-table>
+</x-dialog>
+<ng-template #nameHeaderTemp let-column="$column">
+  <div style="display: flex; align-items: center;">
+    <x-icon type="fto-user"></x-icon>
+    <span style="margin-left: 0.25rem;">{{ column.label }}</span>
+  </div>
+</ng-template>
+<ng-template #nameBodyTemp let-column="$column" let-item="$item">
+  <div style="display: flex; align-items: center;">
+    <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+    <span style="margin-left: 0.25rem;">{{ item[column.id] }}</span>
+  </div>
+</ng-template>

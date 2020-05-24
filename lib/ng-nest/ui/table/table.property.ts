@@ -78,15 +78,15 @@ export class XTableProperty extends XPaginationProperty {
   /**
    * 行高，对应 cdk scroll 中的参数
    */
-  @Input('item-size') itemSize = 42;
+  @Input('item-size') itemSize: number = 42;
   /**
    * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    */
-  @Input('min-buffer-px') minBufferPx = 100;
+  @Input('min-buffer-px') minBufferPx: number = 100;
   /**
    * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    */
-  @Input('max-buffer-px') maxBufferPx = 200;
+  @Input('max-buffer-px') maxBufferPx: number = 200;
   /**
    * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    */
