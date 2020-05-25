@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./fit.component.scss']
 })
 export class ExFitComponent {
-  src = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
+  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
 }

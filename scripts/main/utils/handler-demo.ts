@@ -23,6 +23,7 @@ export function handlerDemo(page: NcPage, docDir: string, router: string) {
       tpl = replaceKey(tpl, '__activatedId', params?.length > 0 ? `${child}/${params[0]}` : '');
       tpl = replaceKey(tpl, '__showTree', params?.length > 1 ? `${params[1]}` : 'true');
       tpl = replaceKey(tpl, '__showCrumb', params?.length > 2 ? `${params[2]}` : 'true');
+      tpl = replaceKey(tpl, '__maxHeight', params?.length > 3 ? `${params[3]}` : '37.5');
       temp.syswords.constant += `${constant} = ${JSON.stringify(treeFile)};\n`;
       page.custom = replaceKey(page.custom, `__${child}${params?.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
     }

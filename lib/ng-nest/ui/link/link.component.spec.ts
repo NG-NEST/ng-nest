@@ -34,7 +34,7 @@ describe(XLinkPrefix, () => {
   template: `
     <x-row>
       <x-col span="24">
-        <x-link href="http://www.ng-nest.com" target="_blank">默认链接</x-link>
+        <x-link href="https://www.ngnest.com" target="_blank">默认链接</x-link>
         <x-link type="primary">主要链接</x-link>
         <x-link type="success">成功链接</x-link>
         <x-link type="warning">警告链接</x-link>
@@ -42,7 +42,7 @@ describe(XLinkPrefix, () => {
         <x-link type="info">信息链接</x-link>
       </x-col>
       <x-col span="24">
-        <x-link href="http://www.ng-nest.com" target="_blank" disabled>默认链接</x-link>
+        <x-link href="https://www.ngnest.com" target="_blank" disabled>默认链接</x-link>
         <x-link type="primary" disabled>主要链接</x-link>
         <x-link type="success" disabled>成功链接</x-link>
         <x-link type="warning" disabled>警告链接</x-link>

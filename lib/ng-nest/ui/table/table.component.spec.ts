@@ -190,7 +190,7 @@ interface User extends XId {
     </ng-template>
     <ng-template #nameBodyTemp let-column="$column" let-item="$item">
       <div class="body-username">
-        <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
         <span>{{ item[column.id] }}</span>
       </div>
     </ng-template>
@@ -283,7 +283,7 @@ class TestXTableComponent {
     </ng-template>
     <ng-template #nameBodyTemp let-column="$column" let-item="$item">
       <div class="body-username">
-        <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
         <span>{{ item[column.id] }}</span>
       </div>
     </ng-template>
@@ -387,7 +387,7 @@ class TestXTableScrollComponent {
     </ng-template>
     <ng-template #nameBodyTemp let-column="$column" let-item="$item">
       <div class="body-username">
-        <x-avatar size="mini" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></x-avatar>
+        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
         <span>{{ item[column.id] }}</span>
       </div>
     </ng-template>

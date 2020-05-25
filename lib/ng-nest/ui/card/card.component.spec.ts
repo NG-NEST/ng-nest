@@ -54,7 +54,7 @@ describe(XCardPrefix, () => {
     </div>
     <div class="row">
       <x-card width="16rem" class="card" [bodyStyle]="{ padding: 0 }">
-        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" />
+        <img src="https://ngnest.com/assets/img/logo/logo-144x144.png" />
         <div class="bottom">
           <p>好吃的汉堡</p>
           <div class="time">

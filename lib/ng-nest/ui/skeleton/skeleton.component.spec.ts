@@ -76,7 +76,7 @@ describe(XSkeletonPrefix, () => {
           <x-skeleton [loading]="loadingList" [data]="dataCustom" active>
             <x-row justify="start" space="1">
               <x-col inherit class="content">
-                <x-avatar src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" size="medium"></x-avatar>
+                <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png" size="medium"></x-avatar>
               </x-col>
               <x-col class="content">
                 <x-row>
@@ -105,7 +105,7 @@ describe(XSkeletonPrefix, () => {
               </x-col>
               <x-col inherit class="content">
                 <img
-                  src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+                  src="https://ngnest.com/assets/img/logo/logo-144x144.png"
                   [style.width]="'10rem'"
                   [style.height]="'9rem'"
                 />

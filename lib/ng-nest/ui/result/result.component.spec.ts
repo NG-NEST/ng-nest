@@ -88,7 +88,7 @@ describe(XResultPrefix, () => {
       <ng-template #iconTpl>
         <img
           [style.width.rem]="18"
-          src="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+          src="https://ngnest.com/assets/img/logo/logo-144x144.png"
         />
       </ng-template>
     </div>

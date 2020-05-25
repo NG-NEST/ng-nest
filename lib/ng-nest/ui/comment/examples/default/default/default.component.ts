@@ -8,7 +8,7 @@ import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 })
 export class ExDefaultComponent {
   now = new Date();
-  src = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
+  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
   content = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
