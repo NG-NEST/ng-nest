@@ -37,6 +37,12 @@ ns-logo {
     }
     h1 {
       margin: 0.875rem;
+      span {
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+        color: var(--x-text-400);
+        font-weight: 500;
+      }
     }
     .github svg {
       vertical-align: middle;
