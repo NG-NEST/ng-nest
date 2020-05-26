@@ -135,9 +135,6 @@ ns-layout {
     > ns-content {
       padding-left: $sider-width;
       padding-top: 0;
-      > ns-footer {
-        display: none;
-      }
     }
   }
   &.shrink.small {
