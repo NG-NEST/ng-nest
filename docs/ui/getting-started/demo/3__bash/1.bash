@@ -1,4 +1,4 @@
-$ ng server -o
+$ ng serve -o
 
 ...
 
