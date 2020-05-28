@@ -6,13 +6,10 @@
 
 @mixin menu {
   &-icon.x-icon {
-    margin-right: 0.25rem;
-    margin-left: -0.25rem;
     font-size: 1rem;
+    transition: $--x-animation-duration-base;
   }
   &-arrow.x-icon {
-    margin-right: -0.25rem;
-    margin-left: 0.25rem;
     transition: $--x-animation-duration-base;
     &.is-open {
       transform: rotate(180deg);
@@ -44,29 +41,36 @@
   }
   &-column {
     width: 12rem;
+    transition: $--x-animation-duration-base;
   }
   &-nodes {
-    > .#{$--x-menu}-node {
+    .#{$--x-menu}-node {
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: $--x-animation-duration-base;
+      transition: width $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
       border-right: 0.125rem solid $--x-border;
       position: relative;
       user-select: none;
-      padding-right: 0.875rem !important;
+      padding-right: 0.875rem;
       .#{$--x-menu}-text {
         flex: 1;
+        margin: 0 0.25rem;
+        transition: $--x-animation-duration-base;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       &:hover {
         background-color: $--x-background;
       }
-      > #{$--x-menu}-node {
+      #{$--x-menu}-node {
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        overflow: hidden;
       }
       &.x-activated {
         color: $--x-primary;
@@ -90,6 +94,38 @@
           border-bottom: $--x-border-100-base;
         }
       }
+    }
+  }
+  &-collapsed {
+    &.#{$--x-menu}-column {
+      width: 3rem;
+    }
+    .#{$--x-menu}-nodes {
+      x-dropdown,
+      .x-dropdown {
+        display: flex;
+        flex: 1;
+      }
+      .#{$--x-menu}-node {
+        padding-left: 0 !important;
+        padding-right: 0;
+        #{$--x-menu}-node {
+          padding-left: 0.875rem;
+        }
+        .#{$--x-menu}-text {
+          opacity: 0;
+          width: 0;
+          visibility: hidden;
+        }
+      }
+      .#{$--x-menu}-nodes {
+        display: none;
+      }
+    }
+    .#{$--x-menu}-arrow.x-icon {
+      opacity: 0;
+      width: 0;
+      visibility: hidden;
     }
   }
 }

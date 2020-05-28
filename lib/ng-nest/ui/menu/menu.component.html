@@ -16,7 +16,18 @@
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <x-menu-node [node]="node"></x-menu-node>
+  <x-dropdown
+    *ngIf="node.level === 0 && collapsed"
+    [disabled]="!node.leaf"
+    [data]="node.children"
+    [trigger]="trigger"
+    placement="right-start"
+    (nodeClick)="onNodeClick($event)"
+    children
+  >
+    <x-menu-node [node]="node"></x-menu-node>
+  </x-dropdown>
+  <x-menu-node *ngIf="!collapsed" [node]="node"></x-menu-node>
 </ng-template>
 
 <ng-template #nodeRowTpl let-node="$node">

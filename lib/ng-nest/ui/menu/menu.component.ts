@@ -53,6 +53,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setData();
+    XIsChange(changes.collapsed) && this.setClassMap();
   }
 
   ngOnDestroy(): void {
@@ -76,9 +77,13 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   onNodeClick(node: XMenuNode) {
-    this.rootIndex = this.nodes.indexOf(this.getRoot(node));
-    this.nodeClick.emit(node);
-    this.cdr.detectChanges();
+    if (!this.collapsed) {
+      this.rootIndex = this.nodes.indexOf(this.getRoot(node));
+      this.nodeClick.emit(node);
+      this.cdr.detectChanges();
+    } else {
+      this.onToggle(null, node, true);
+    }
   }
 
   rootIndexChange(index: number) {
@@ -87,12 +92,13 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     this.cdr.detectChanges();
   }
 
-  onToggle(event: Event, node: XMenuNode) {
-    if (node.categoryNode) return;
+  onToggle(event: Event | null, node: XMenuNode, isDropdown = false) {
+    console.log(node);
+    if ((this.collapsed && !isDropdown) || node.categoryNode) return;
     if (!node.leaf) {
       this.activated = node;
     } else {
-      event.stopPropagation();
+      event?.stopPropagation();
       node.open = !node.open;
       if (node.open && !node.childrenLoaded) {
         node.childrenLoaded = true;
@@ -105,6 +111,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
 
   setClassMap() {
     this.classMap[`${XMenuPrefix}-${this.layout}`] = this.layout ? true : false;
+    this.classMap[`${XMenuPrefix}-collapsed`] = Boolean(this.collapsed);
     this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;
     this.cdr.detectChanges();
   }

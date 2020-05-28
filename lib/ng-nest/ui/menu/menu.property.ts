@@ -36,6 +36,10 @@ export class XMenuProperty extends XProperty {
    */
   @Input() size: XSize = 'medium';
   /**
+   * 缩起菜单
+   */
+  @Input() @XInputBoolean() collapsed: XBoolean = false;
+  /**
    * 触发方式，只针对横向布局
    */
   @Input() trigger: XMenuTrigger = 'hover';

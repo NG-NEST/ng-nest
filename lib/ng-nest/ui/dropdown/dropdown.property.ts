@@ -1,4 +1,4 @@
-import { XData, XPlace, XProperty, XDataConvert, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XData, XProperty, XDataConvert, XInputBoolean, XBoolean, XPlacement } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
@@ -25,7 +25,7 @@ export class XDropdownProperty extends XProperty {
   /**
    * 展示位置
    */
-  @Input() placement: XPlace = 'bottom-start';
+  @Input() placement: XPlacement = 'bottom-start';
   /**
    * 禁用
    */

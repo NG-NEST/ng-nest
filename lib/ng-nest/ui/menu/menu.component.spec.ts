@@ -1,16 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMenuComponent } from './menu.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMenuModule } from '@ng-nest/ui/menu';
+import { XButtonModule } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 
 describe(XMenuPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XMenuModule],
-      declarations: [TestXMenuComponent, TestXMenuExpandedComponent]
+      imports: [XMenuModule, XButtonModule],
+      declarations: [TestXMenuComponent, TestXMenuExpandedComponent, TestXMenuCollapsedComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -30,6 +31,18 @@ describe(XMenuPrefix, () => {
     let menu: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXMenuExpandedComponent);
+      fixture.detectChanges();
+      menu = fixture.debugElement.query(By.directive(XMenuComponent));
+    });
+    it('should create.', () => {
+      expect(menu).toBeDefined();
+    });
+  });
+  describe(`collapsed.`, () => {
+    let fixture: ComponentFixture<TestXMenuCollapsedComponent>;
+    let menu: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXMenuCollapsedComponent);
       fixture.detectChanges();
       menu = fixture.debugElement.query(By.directive(XMenuComponent));
     });
@@ -179,5 +192,55 @@ class TestXMenuExpandedComponent {
   ];
   nodeClick($event: XMenuNode) {
     console.log($event);
+  }
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
+      <x-menu [data]="dataLeaf" layout="column" [collapsed]="collapsed"> </x-menu>
+    </div>
+  `,
+  styles: [
+    `
+      .row x-menu:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXMenuCollapsedComponent {
+  dataLeaf: XMenuNode[] = [
+    { id: 1, label: '最新活动', icon: 'fto-gift' },
+    { id: 2, label: '产品', icon: 'fto-package' },
+    { id: 3, label: '解决方案', icon: 'fto-layers' },
+    { id: 4, label: '帮助和支持', icon: 'fto-phone' },
+    { id: 5, pid: 2, label: '云基础' },
+    { id: 6, pid: 2, label: '智能大数据' },
+    { id: 7, pid: 2, label: '行业应用' },
+    { id: 8, pid: 2, label: '区块链' },
+    { id: 9, pid: 2, label: '专有云' },
+    { id: 33, pid: 3, label: '云基础', category: '123' },
+    { id: 34, pid: 3, label: '智能大数据', category: '123' },
+    { id: 35, pid: 3, label: '行业应用', category: '123' },
+    { id: 36, pid: 3, label: '区块链', category: '123' },
+    { id: 37, pid: 3, label: '专有云', category: '123' }
+  ];
+
+  collapsed = false;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  nodeClick($event: XMenuNode) {
+    console.log($event);
+  }
+
+  onCollapsed() {
+    this.collapsed = !this.collapsed;
+    this.cdr.detectChanges();
   }
 }
