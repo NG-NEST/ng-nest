@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { XId, XGroupItem, XSort, XFilter, XQuery, XResultList, XRepositoryAbstract } from '@ng-nest/ui/core';
-import * as _ from 'lodash';
+import { chunk, map, orderBy, groupBy } from 'lodash';
 
 @Injectable()
 export class ExDefaultService extends XRepositoryAbstract {
@@ -29,7 +29,7 @@ export class ExDefaultService extends XRepositoryAbstract {
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
-      let chunks = _.chunk(data, size);
+      let chunks = chunk(data, size);
       if ((index as number) <= chunks.length) {
         x.next({ total: data.length, list: chunks[index - 1] });
       } else {
@@ -62,7 +62,7 @@ export class ExDefaultService extends XRepositoryAbstract {
   }
 
   private setGroup(data: User[], group: string): XGroupItem[] {
-    return _.map(_.groupBy(data, group), (value, key) => {
+    return map(groupBy(data, group), (value, key) => {
       let groupItem: XGroupItem = { id: key, count: value.length };
       groupItem[group] = key;
       return groupItem;
@@ -70,10 +70,10 @@ export class ExDefaultService extends XRepositoryAbstract {
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
-    return _.orderBy(
+    return orderBy(
       data,
-      _.map(sort, (x) => x.field),
-      _.map(sort, (x) => x.value) as ('desc' | 'asc')[]
+      map(sort, (x) => x.field),
+      map(sort, (x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

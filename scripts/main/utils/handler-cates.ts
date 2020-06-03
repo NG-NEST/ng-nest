@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcCate, NcCates, NcCode, NcCodeBox } from '../interfaces/examples';
 import { parseMdDoc } from '.';
-import * as _ from 'lodash';
+import { sortBy } from 'lodash';
 import { NcPage } from '../interfaces/page';
 
 /**
@@ -32,7 +32,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           mod.syswords.imports += `import { ${cate.className} } from '${cate.rootPath}';\n`;
         }
         cates.list.push(cate);
-        cates.list = _.sortBy(cates.list, 'order');
+        cates.list = sortBy(cates.list, 'order');
       }
     }
   });

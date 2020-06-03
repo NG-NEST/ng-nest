@@ -1,7 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
-import * as _ from 'lodash';
 import { NcSpec } from '../interfaces/spec';
 
 /**

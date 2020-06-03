@@ -16,7 +16,7 @@ import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './tabl
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
-import * as _ from 'lodash';
+import { first, find, filter, unionBy } from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import { XTableToolComponent } from './table-tool.component';
@@ -123,7 +123,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       field: this.groupQuery.group,
       value: row[this.groupQuery.group as string]
     };
-    this.query.filter = _.unionBy([groupFilter], this.query.filter, (y) => y.field) as XFilter[];
+    this.query.filter = unionBy([groupFilter], this.query.filter, (y) => y.field) as XFilter[];
     this.index = 1;
     this.setData();
   }
@@ -145,18 +145,18 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   setActions() {
     if (typeof this.actions === 'undefined') return;
-    this.rowIconActions = _.filter(this.actions, (x) => x.actionLayoutType === 'row-icon');
-    this.activatedAction = _.find(this.actions, (x) => x.activated) as XTableAction;
+    this.rowIconActions = filter(this.actions, (x) => x.actionLayoutType === 'row-icon');
+    this.activatedAction = find(this.actions, (x) => x.activated) as XTableAction;
     this.cdr.markForCheck();
   }
 
-  setData(first?: boolean) {
+  setData(fst?: boolean) {
     if (this.service) {
       this.service.getList(Number(this.index), Number(this.size), this.query).subscribe((x) => {
-        if (first || (this._isFirst && this.firstRowSelected)) {
-          let ft = _.first(x.list);
+        if (fst || (this._isFirst && this.firstRowSelected)) {
+          let ft = first(x.list);
           if (ft) {
-            this.rowEmit(_.first(x.list));
+            this.rowEmit(first(x.list));
             this._isFirst = false;
           }
         }

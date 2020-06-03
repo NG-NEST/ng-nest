@@ -9,7 +9,6 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XLinkModule } from '@ng-nest/ui/link';
-import * as _ from 'lodash';
 
 describe(XTreePrefix, () => {
   beforeEach(async(() => {

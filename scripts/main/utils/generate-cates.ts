@@ -4,7 +4,7 @@ import { NcCates, NcCate } from '../interfaces/examples';
 import { handlerTabs, handlerTabsByFiles, randomString } from '.';
 import { NcTabsLayoutEnum, NcTab, NcTabsSizeEnum, NcTabsNodeJustifyEnum } from '../interfaces/tabs';
 import { generateTabs } from '.';
-import * as _ from 'lodash';
+import { hasIn } from 'lodash';
 import { replaceKey } from './replace-key';
 import { NcTemplate } from '../interfaces/template';
 
@@ -20,7 +20,7 @@ const tplDir = path.resolve(__dirname, '../../main/templates');
 export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
   if (cates.list.length > 0) {
     let subFunc = '';
-    while (subFunc == '' || _.hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
+    while (subFunc == '' || hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
       nodeJustify: NcTabsNodeJustifyEnum.Center,
@@ -60,7 +60,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   let html = '';
   childTabs.tabs.forEach((x, index) => {
     let param = '';
-    while (param == '' || _.hasIn(comTpl.syswords.constant, param)) param = randomString();
+    while (param == '' || hasIn(comTpl.syswords.constant, param)) param = randomString();
     let tpl = highlightTpl;
     let content = x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
     let type = extToType[x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length)];

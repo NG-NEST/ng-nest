@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
-import * as _ from 'lodash';
+import { map, join, find } from 'lodash';
 import { NcPattern } from '../interfaces/pattern';
 
 /**
@@ -48,7 +48,7 @@ export function hanlderPattern(fsPath: string): Promise<NcPattern[]> {
 
 export function paramReplace(pattern: NcPattern) {
   let spt = pattern.value.split(' ');
-  let newSpt = _.map(spt, (x: string) => {
+  let newSpt = map(spt, (x: string) => {
     if (x.startsWith('$')) {
       return getParam(x);
     } else {
@@ -56,17 +56,17 @@ export function paramReplace(pattern: NcPattern) {
     }
   });
 
-  pattern.inherit = _.join(newSpt, ' ');
+  pattern.inherit = join(newSpt, ' ');
 }
 
 export function getParam(value) {
   let themes = global['NcThemes'];
   let spt = value.split(' ');
-  let newSpt = _.map(spt, (x: string) => {
+  let newSpt = map(spt, (x: string) => {
     if (!x.startsWith('$')) return x;
-    let param = _.find(themes, y => y.name === x);
+    let param = find(themes, (y) => y.name === x);
     if (!param) return x;
     return getParam(param.value);
   });
-  return _.join(newSpt, ' ');
+  return join(newSpt, ' ');
 }

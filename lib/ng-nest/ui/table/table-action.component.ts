@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit, HostBind
 import { XTableAction } from './table.property';
 import { XTableComponent } from './table.component';
 import { XFilter } from '@ng-nest/ui/core';
-import * as _ from 'lodash';
+import { remove, cloneDeep } from 'lodash';
 
 @Component({
   selector: `x-table-action`,
@@ -26,12 +26,12 @@ export class XTableActionComponent implements OnInit {
       action.activated = true;
       this.table.activatedAction = action;
       if (action.group) {
-        _.remove(this.table.query.filter as XFilter[], (x) => x.field === this.table.groupQuery.group);
+        remove(this.table.query.filter as XFilter[], (x) => x.field === this.table.groupQuery.group);
         this.table.groupQuery.filter = [];
         this.table.groupIndex = 1;
         this.table.groupQuery.group = action.group;
         this.table.groupQuery.sort = [{ field: 'count', value: 'desc' }];
-        let groupColumn = _.cloneDeep(this.table.columns?.find((x) => x.id === action.group));
+        let groupColumn = cloneDeep(this.table.columns?.find((x) => x.id === action.group));
         if (groupColumn) {
           groupColumn.flex = 4;
           groupColumn.search = true;
@@ -40,7 +40,7 @@ export class XTableActionComponent implements OnInit {
         }
         this.table.cdr.detectChanges();
       } else if (this.table.groupQuery.group) {
-        _.remove(this.table.query.filter as XFilter[], (x) => x.field === this.table.groupQuery.group);
+        remove(this.table.query.filter as XFilter[], (x) => x.field === this.table.groupQuery.group);
         this.table.groupQuery.group = undefined;
         this.table.groupQuery.filter = [];
         this.table.setData();

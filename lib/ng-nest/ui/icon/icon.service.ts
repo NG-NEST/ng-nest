@@ -2,7 +2,7 @@ import { Injectable, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber } from 'rxjs';
-import * as _ from 'lodash';
+import { hasIn } from 'lodash';
 
 type Task<T> = {
   name: string;
@@ -29,7 +29,7 @@ export class XIconService {
 
   private execute<T>(task: Task<T>) {
     this.isRunningTask = true;
-    if (_.hasIn(this.caches, task.name)) {
+    if (hasIn(this.caches, task.name)) {
       task.callback(this.caches[task.name]);
       this.activeTaskXm--;
       this.isRunningTask = false;

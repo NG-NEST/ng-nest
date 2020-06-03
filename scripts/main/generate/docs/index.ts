@@ -13,7 +13,7 @@ import {
 } from '../../utils';
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import * as _ from 'lodash';
+import { sortBy } from 'lodash';
 
 export const docsDir = path.resolve(__dirname, '../../../../docs');
 export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui');
@@ -37,7 +37,7 @@ export class NcDocs {
     handlerPage(this.page);
     this.addChildren(this.page, docsDir, `${docsPrefix}`);
     generatePage(this.page);
-    this.menus = _.sortBy(this.menus, ['pid', 'category', 'order', 'label']);
+    this.menus = sortBy(this.menus, ['pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
   }
 
@@ -74,7 +74,7 @@ export class NcDocs {
         }
       }
     });
-    page.children = _.sortBy(page.children, (x) => x.order);
+    page.children = sortBy(page.children, (x) => x.order);
     pageAddChildren(page, page.children);
   }
 

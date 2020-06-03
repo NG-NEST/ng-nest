@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
 import { NcType, NcObjectType, NcProperty } from '../interfaces/type';
-import * as _ from 'lodash';
+import { map } from 'lodash';
 
 /**
  * 类型文件处理
@@ -47,7 +47,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
         doc.push(docItem);
         docItem = {};
       } else if (line.startsWith('export')) {
-        let docItem = doc.find(x => x.end == index - 1);
+        let docItem = doc.find((x) => x.end == index - 1);
         if (docItem) {
           let object = line.replace('export', '').trim();
           type.object = object.slice(0, object.indexOf(' ')) as NcObjectType;
@@ -72,7 +72,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
             case NcObjectType.Type:
               isReadType = true;
               let val = '';
-              let objs = _.map(getDoc(docItem, 'value', true) as Array<string>, x => {
+              let objs = map(getDoc(docItem, 'value', true) as Array<string>, (x) => {
                 let spt = x.split(' ');
                 val += `${val === '' ? '' : ' | '}${spt[0]}`;
                 return {
@@ -95,7 +95,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
         }
       }
       if (!isReadDoc && isReadProp && line != '' && !line.startsWith('export')) {
-        let docItem = doc.find(x => x.end == index - 1);
+        let docItem = doc.find((x) => x.end == index - 1);
         let spt = line.split(':');
         if (spt.length <= 1) spt.push('');
         if (docItem) {

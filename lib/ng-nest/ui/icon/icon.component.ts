@@ -16,7 +16,6 @@ import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
 import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
-import * as _ from 'lodash';
 
 // 来源路径对应
 export const XSouceUrl: { [prop: string]: string } = {

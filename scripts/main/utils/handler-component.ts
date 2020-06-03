@@ -18,7 +18,7 @@ import {
   hanlderProp,
   generateProps
 } from '.';
-import * as _ from 'lodash';
+import { find, hasIn } from 'lodash';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
@@ -44,12 +44,12 @@ export async function handlerComponent(page: NcPage) {
 export function handlerExamples(page: NcPage) {
   if (page.custom.indexOf('__examples') <= -1) return;
   let examples: NcExamples = {};
-  let comTpl = _.find(page.templates, (x) => x.name == 'component');
+  let comTpl = find(page.templates, (x) => x.name == 'component');
 
   examples.path = path.join(page.path, 'examples');
   examples.tplPath = path.join(tplDir, 'examples-component.template.html');
   let func = '';
-  while (func == '' || _.hasIn(comTpl.syswords.constant, func)) func = randomString();
+  while (func == '' || hasIn(comTpl.syswords.constant, func)) func = randomString();
   let tabs = handlerTabs({
     layout: NcTabsLayoutEnum.Left,
     nodeJustify: NcTabsNodeJustifyEnum.Start,
