@@ -15,24 +15,13 @@
     ></x-table>
   </div>
   <div class="x-table-struct">
-    <div #tool class="x-table-tool">
-      <div class="x-table-tool-left" *ngIf="topLeftActions.length > 0">
-        <ng-container *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: topLeftActions }"></ng-container>
-      </div>
-      <div class="x-table-tool-right">
-        <x-input
-          icon="fto-search"
-          iconLayout="left"
-          [placeholder]="searchPlaceholder"
-          [(ngModel)]="searchInput"
-          (ngModelChange)="searchChange($event)"
-          clearable
-        ></x-input>
-        <ng-container *ngIf="topRightIconActions.length > 0">
-          <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: topRightIconActions }"></ng-container>
-        </ng-container>
-      </div>
-    </div>
+    <x-table-tool
+      #tool
+      [actions]="actions"
+      [searchPlaceholder]="searchPlaceholder"
+      [searchInput]="searchInput"
+      (searchChange)="searchSub.next($event)"
+    ></x-table-tool>
     <div #header class="x-table-header" *ngIf="!headerHidden" [style.height.px]="itemSize">
       <ul
         #headerRow
@@ -136,15 +125,5 @@
 </ng-template>
 
 <ng-template #buttonsTpl let-space="space" let-hiddenBorder="hiddenBorder" let-actions="actions">
-  <x-buttons [space]="space" [hidden-border]="hiddenBorder">
-    <x-button
-      *ngFor="let action of actions"
-      [icon]="action.icon"
-      [type]="action.type ? action.type : 'initial'"
-      [title]="action.title ? action.title : action.label ? action.label : ''"
-      [activated]="action.activated"
-      (click)="actionEmit(action, $event)"
-      >{{ action.label }}</x-button
-    >
-  </x-buttons>
+  <x-table-action [space]="space" [hiddenBorder]="hiddenBorder" [actions]="actions"></x-table-action>
 </ng-template>

@@ -67,7 +67,7 @@
       > x-input {
         width: 10rem;
       }
-      > .x-buttons {
+      > #{$--x-table-prefix}-action {
         margin-left: 0.5rem;
       }
     }
@@ -76,6 +76,7 @@
   &-header {
     position: relative;
     overflow: hidden;
+    display: block;
     > ul {
       position: absolute;
       width: 100%;
@@ -128,7 +129,7 @@
           text-overflow: ellipsis;
           overflow: hidden;
         }
-        > .x-buttons {
+        > #{$--x-table-prefix}-action {
           margin-left: 0.5rem;
           display: none;
           > x-button .x-button {
@@ -143,7 +144,7 @@
       &.x-table-row-activated {
         > li {
           background-color: $--x-background;
-          > .x-buttons {
+          > #{$--x-table-prefix}-action {
             display: inline-block;
           }
         }

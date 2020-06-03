@@ -10,9 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTableProperty } from './table.property';
+import { XTableToolComponent } from './table-tool.component';
+import { XTableActionComponent } from './table-action.component';
 
 @NgModule({
-  declarations: [XTableComponent, XTableProperty],
+  declarations: [XTableComponent, XTableToolComponent, XTableActionComponent, XTableProperty],
   exports: [XTableComponent],
   imports: [
     CommonModule,

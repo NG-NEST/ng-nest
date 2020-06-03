@@ -165,12 +165,21 @@ export interface XTableAction extends XButtonOption {
    * 触发分组的功能
    */
   group?: string;
+  /**
+   * 操作类型
+   */
+  action?: XTableActionType;
 }
 
 /**
  * 列类型
  */
 export type XColumnType = 'label' | 'index';
+
+/**
+ * 表格操作类型
+ */
+export type XTableActionType = 'add' | 'edit' | 'delete';
 
 /**
  * 操作按钮位置

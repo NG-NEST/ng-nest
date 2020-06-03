@@ -172,7 +172,7 @@ interface User extends XId {
 @Component({
   selector: 'test-x-table',
   template: `
-    <div style="padding: 1rem 2rem;">
+    <div style="padding: 1rem;">
       <x-table
         [columns]="columns"
         [actions]="actions"

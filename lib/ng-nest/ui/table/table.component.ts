@@ -18,9 +18,8 @@ import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { inject } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
-import { format } from 'path';
+import { XTableToolComponent } from './table-tool.component';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -38,14 +37,11 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
   @ViewChild('header', { static: false }) header: ElementRef;
   @ViewChild('headerRow', { static: false }) headerRow: ElementRef;
-  @ViewChild('tool', { static: false }) tool: ElementRef;
+  @ViewChild('tool', { static: false }) tool: XTableToolComponent;
   @ViewChild('footer', { static: false }) footer: ElementRef;
   @ViewChild('virtualBody', { static: false }) virtualBody: CdkVirtualScrollViewport;
   tableData: any[] = [];
   groupData: any[] = [];
-  topLeftActions: XTableAction[] = [];
-  topRightActions: XTableAction[] = [];
-  topRightIconActions: XTableAction[] = [];
   rowIconActions: XTableAction[] = [];
   activatedAction: XTableAction;
   groupIndex: number = 1;
@@ -72,12 +68,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   private _unSubject = new Subject<void>();
   private _isFirst = true;
   private _resizeObserver: ResizeObserver;
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any
-  ) {
+  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef, @Inject(DOCUMENT) public doc: any) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XTablePrefix);
   }
@@ -105,11 +96,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.index = index;
     this.indexChange.emit(index);
     this.setData();
-  }
-
-  searchChange(event: any) {
-    if (XIsUndefined(event)) return;
-    this.searchSub.next(event);
   }
 
   onSort(column: XTableColumn) {
@@ -142,37 +128,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.setData();
   }
 
-  actionEmit(action: XTableAction, event: Event) {
-    action.event = event;
-    if (action.actionLayoutType === 'top-right-icon') {
-      this.activatedAction.activated = false;
-      action.activated = true;
-      this.activatedAction = action;
-      if (action.group) {
-        _.remove(this.query.filter as XFilter[], (x) => x.field === this.groupQuery.group);
-        this.groupQuery.filter = [];
-        this.groupIndex = 1;
-        this.groupQuery.group = action.group;
-        this.groupQuery.sort = [{ field: 'count', value: 'desc' }];
-        let groupColumn = _.cloneDeep(this.columns?.find((x) => x.id === action.group));
-        if (groupColumn) {
-          groupColumn.flex = 4;
-          groupColumn.search = true;
-          this.groupSearchPlaceholder = `查找${groupColumn.label}`;
-          this.groupColumns = [groupColumn, { id: 'count', flex: 2 }];
-        }
-        this.cdr.detectChanges();
-      } else if (this.groupQuery.group) {
-        _.remove(this.query.filter as XFilter[], (x) => x.field === this.groupQuery.group);
-        this.groupQuery.group = undefined;
-        this.groupQuery.filter = [];
-        this.setData();
-      }
-    }
-
-    this.actionClick.emit(action);
-  }
-
   rowEmit(row: any, event?: Event) {
     row.event = event;
     this.activatedRow = row;
@@ -188,17 +143,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     return Number(column.left) >= 0;
   }
 
-  private setActions() {
+  setActions() {
     if (typeof this.actions === 'undefined') return;
-    this.topLeftActions = _.filter(this.actions, (x) => typeof x.actionLayoutType === 'undefined' || x.actionLayoutType === 'top-left');
-    this.topRightActions = _.filter(this.actions, (x) => x.actionLayoutType === 'top-right');
-    this.topRightIconActions = _.filter(this.actions, (x) => x.actionLayoutType === 'top-right-icon');
     this.rowIconActions = _.filter(this.actions, (x) => x.actionLayoutType === 'row-icon');
     this.activatedAction = _.find(this.actions, (x) => x.activated) as XTableAction;
     this.cdr.markForCheck();
   }
 
-  private setData(first?: boolean) {
+  setData(first?: boolean) {
     if (this.service) {
       this.service.getList(Number(this.index), Number(this.size), this.query).subscribe((x) => {
         if (first || (this._isFirst && this.firstRowSelected)) {
@@ -213,7 +165,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     }
   }
 
-  private setSubject() {
+  setSubject() {
     this.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector('.cdk-virtual-scroll-content-wrapper') as HTMLElement;
     XResize(this.elementRef.nativeElement, this.scrollContentEle)
       .pipe(takeUntil(this._unSubject))
@@ -224,7 +176,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       });
     fromEvent(window, 'resize')
       .pipe(takeUntil(this._unSubject))
-      .subscribe((x) => {
+      .subscribe(() => {
         this.setAdaptionHeight();
       });
     if (this.scrollContentEle) {
@@ -257,7 +209,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       });
   }
 
-  private setScroll() {
+  setScroll() {
     if (!this.virtualBody) return;
     const ele = this.virtualBody.elementRef.nativeElement;
     const hasY = ele.scrollHeight > this.bodyHeight;
@@ -285,9 +237,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
-  private setAdaptionHeight() {
+  setAdaptionHeight() {
     if (!XIsUndefined(this.adaptionHeight)) {
-      const toolHeight = this.tool?.nativeElement.clientHeight;
+      const toolHeight = this.tool?.elementRef.nativeElement.clientHeight;
       const headerHeight = this.header?.nativeElement.clientHeight;
       const footerHeight = this.footer?.nativeElement.clientHeight;
       this.bodyHeight =
@@ -304,7 +256,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     }
   }
 
-  private setDataChange(result: XResultList<any>) {
+  setDataChange(result: XResultList<any>) {
     this.total = result.total as number;
     this.tableData = result.list as any[];
     if (this.hasScrollY) this.virtualBody?.scrollTo({ top: 0 });
@@ -312,7 +264,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
-  private setFilter(query: XQuery, value: string) {
+  setFilter(query: XQuery, value: string) {
     let searchColumns = this.columns.filter((x) => x.search);
     if (XIsEmpty(query.filter)) query.filter = [];
     searchColumns.forEach((x) => {
