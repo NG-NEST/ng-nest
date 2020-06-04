@@ -1,8 +1,52 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Host, Optional, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { XControlProperty, XFormControlOption, XFormControlType } from './form.property';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Input,
+  Host,
+  Optional,
+  ViewChild,
+  ChangeDetectorRef,
+  OnInit,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
+import {
+  XControlProperty,
+  XFormControlOption,
+  XFormControlComponent,
+  XFormControlType,
+  XCascadeControl,
+  XCascadeControlOption,
+  XInputControl,
+  XInputControlOption,
+  XSelectControl,
+  XSelectControlOption,
+  XCheckboxControl,
+  XCheckboxControlOption,
+  XRadioControl,
+  XRadioControlOption,
+  XDatePickerControlOption,
+  XDatePickerControl,
+  XInputNumberControl,
+  XInputNumberControlOption,
+  XSwitchControl,
+  XSwitchControlOption,
+  XRateControl,
+  XRateControlOption,
+  XSliderSelectControl,
+  XSliderSelectControlOption,
+  XTimePickerControl,
+  XTimePickerControlOption,
+  XColorPickerControl,
+  XColorPickerControlOption,
+  XFormControl
+} from './form.property';
 import { XFormComponent } from './form.component';
-import { FormControlName, Validators } from '@angular/forms';
+import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'x-control',
@@ -10,21 +54,117 @@ import { XIsEmpty } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XControlComponent extends XControlProperty {
+export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   @Input() option: XFormControlOption;
   @ViewChild(FormControlName, { static: false }) control: FormControlName;
+  private _sharedProps = ['span', 'disabled', 'required', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
+  private _control: XFormControlType;
+  private _validatorFns: ValidatorFn[] = [];
+  private _unSubject = new Subject();
+  private _formControl: FormControl;
+
   constructor(@Host() @Optional() public form: XFormComponent, public cdr: ChangeDetectorRef) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setProps();
+    this.option.label = `${this.option.label}${this.form.labelSuffix}`;
+    this._control = this.createControl(this.option);
+    this._formControl = new FormControl(this._control.value);
+    if (this._control.disabled) {
+      this._formControl.disable();
+    }
+    if (this._control.required) {
+      this._validatorFns = [...this._validatorFns, Validators.required];
+    }
+    if (this._control.pattern) {
+      this.setPattern();
+    }
+    this._formControl.setValidators(this._validatorFns);
+    this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.setMessages(x);
+    });
+    this.form.formGroup.addControl(this._control.id, this._formControl);
+  }
 
   ngAfterViewInit() {
-    this.option.label = `${this.option.label}${this.form.labelSuffix}`;
-    Object.assign(this.control.valueAccessor, this.option);
-    if (this.option.disabled) this.control.control.disable();
-    if (this.option.required) this.control.control.setValidators(Validators.required);
-    this.control.control.updateValueAndValidity();
-    (this.control.valueAccessor as XFormControlType).formControlChanges();
+    Object.assign(this.control.valueAccessor, this._control);
+    (this.control.valueAccessor as XFormControlComponent).formControlChanges();
+  }
+
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+  }
+
+  setProps() {
+    for (let prop of this._sharedProps) {
+      if (XIsEmpty(this.option[prop])) this.option[prop] = (this.form as any)[prop];
+    }
+  }
+
+  setPattern() {
+    if (Array.isArray(this._control.pattern)) {
+      for (const pt of this._control.pattern) {
+        this._validatorFns = [...this._validatorFns, Validators.pattern(pt)];
+      }
+    } else {
+      this._validatorFns = [...this._validatorFns, Validators.pattern(this._control.pattern as RegExp)];
+    }
+  }
+
+  getPatternMsg(pattern: string) {
+    if (Array.isArray(this._control.pattern)) {
+      return (this._control.message as Array<any>)[this._control.pattern.findIndex((x) => String(x) === pattern)];
+    } else {
+      return this._control.message;
+    }
+  }
+
+  setMessages(state: 'INVALID' | 'VALID' | 'DISABLED') {
+    let control: XFormControl = this._formControl;
+    if (state === 'INVALID' && this._formControl.errors !== null) {
+      for (const key in control.errors) {
+        if (key === 'required') {
+          control.messages = [`${this._control.label} 必填`];
+        } else if (key === 'pattern') {
+          control.messages = [`${this._control.label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
+        }
+      }
+    } else if (state === 'VALID') {
+      control.messages = [];
+    }
+  }
+
+  createControl(option: XFormControlOption) {
+    switch (option.control) {
+      case 'input':
+        return new XInputControl(option as XInputControlOption);
+      case 'select':
+        return new XSelectControl(option as XSelectControlOption);
+      case 'checkbox':
+        return new XCheckboxControl(option as XCheckboxControlOption);
+      case 'radio':
+        return new XRadioControl(option as XRadioControlOption);
+      case 'switch':
+        return new XSwitchControl(option as XSwitchControlOption);
+      case 'rate':
+        return new XRateControl(option as XRateControlOption);
+      case 'date-picker':
+        return new XDatePickerControl(option as XDatePickerControlOption);
+      case 'time-picker':
+        return new XTimePickerControl(option as XTimePickerControlOption);
+      case 'input-number':
+        return new XInputNumberControl(option as XInputNumberControlOption);
+      case 'slider-select':
+        return new XSliderSelectControl(option as XSliderSelectControlOption);
+      case 'cascade':
+        return new XCascadeControl(option as XCascadeControlOption);
+      case 'color-picker':
+        return new XColorPickerControl(option as XColorPickerControlOption);
+      default:
+        return new XInputControl(option as XInputControlOption);
+    }
   }
 }

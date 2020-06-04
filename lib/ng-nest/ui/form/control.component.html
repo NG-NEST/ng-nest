@@ -1,5 +1,5 @@
 <div class="x-control" [formGroup]="form?.formGroup">
-  <ng-container [ngSwitch]="option?.controlType">
+  <ng-container [ngSwitch]="option?.control">
     <ng-container *ngSwitchCase="'input'">
       <x-input [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-input>
     </ng-container>

@@ -169,6 +169,10 @@ export interface XTableAction extends XButtonOption {
    * 操作类型
    */
   action?: XTableActionType;
+  /**
+   * 自定义数据
+   */
+  data?: { [prop: string]: any };
 }
 
 /**

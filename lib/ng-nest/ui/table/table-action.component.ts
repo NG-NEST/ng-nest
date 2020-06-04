@@ -46,6 +46,9 @@ export class XTableActionComponent implements OnInit {
         this.table.setData();
       }
     }
+    if (action.action === 'add') {
+      
+    }
     this.table.actionClick.emit(action);
   }
 }

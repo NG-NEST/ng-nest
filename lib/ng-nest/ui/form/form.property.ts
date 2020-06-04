@@ -1,5 +1,6 @@
 import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XFormProp, XNumber, XInputNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
@@ -44,7 +45,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 表单控件
    */
-  @Input() controls: XControl[] | XFormRow[] = [];
+  @Input() controls: XFormControlOption[] | XFormRow[] = [];
   /**
    * 表单宽度
    */
@@ -62,7 +63,7 @@ export interface XControlOption extends XIdentityProperty {
   /**
    * 控件类型
    */
-  controlType?: XControlType;
+  control?: XControlType;
   /**
    * 禁用
    */
@@ -83,6 +84,14 @@ export interface XControlOption extends XIdentityProperty {
    * 列宽
    */
   span?: number;
+  /**
+   * 正则验证规则
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * 验证不通过提示文字
+   */
+  message?: string | string[];
   /**
    * 自定义属性
    */
@@ -92,7 +101,7 @@ export interface XControlOption extends XIdentityProperty {
 /**
  * 控件对象
  */
-export class XControl extends XIdentity {
+export class XControl extends XIdentity implements XControlOption {
   /**
    * 值
    */
@@ -100,7 +109,7 @@ export class XControl extends XIdentity {
   /**
    * 控件类型
    */
-  controlType?: XControlType;
+  control?: XControlType;
   /**
    * 禁用
    */
@@ -121,6 +130,14 @@ export class XControl extends XIdentity {
    * 列宽
    */
   span?: number;
+  /**
+   * 正则验证规则
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * 验证不通过提示文字
+   */
+  message?: string | string[];
   /**
    * 自定义属性
    */
@@ -148,7 +165,7 @@ export interface XFormRow {
   /**
    * 行中的控件
    */
-  controls: XControl[];
+  controls: XFormControlOption[];
   /**
    * 隐藏
    */
@@ -173,6 +190,13 @@ export class XControlProperty {
   @Input() option: XControlOption;
 }
 
+export class XFormControl extends FormControl {
+  /**
+   * 提示信息
+   */
+  messages?: string[] = [];
+}
+
 export type XFormControlOption =
   | XInputControlOption
   | XSelectControlOption
@@ -187,7 +211,7 @@ export type XFormControlOption =
   | XSwitchControlOption
   | XTimePickerControlOption;
 
-export type XFormControlType =
+export type XFormControlComponent =
   | XInputComponent
   | XSelectComponent
   | XCascadeComponent
@@ -200,6 +224,20 @@ export type XFormControlType =
   | XSliderSelectComponent
   | XSwitchComponent
   | XTimePickerComponent;
+
+export type XFormControlType =
+  | XInputControl
+  | XSelectControl
+  | XCascadeControl
+  | XCheckboxControl
+  | XColorPickerControl
+  | XDatePickerControl
+  | XInputNumberControl
+  | XRadioControl
+  | XRateControl
+  | XSliderSelectControl
+  | XSwitchControl
+  | XTimePickerControl;
 
 export type XControlType =
   | 'input'
@@ -220,7 +258,6 @@ export type XControlType =
  */
 export interface XInputControlOption extends XControlOption, XInputOption {}
 export class XInputControl extends XControl {
-  controlType: XControlType = 'input';
   constructor(option: XInputControlOption = {}) {
     super(option);
   }
@@ -231,7 +268,6 @@ export class XInputControl extends XControl {
  */
 export interface XSelectControlOption extends XControlOption, XSelectOption {}
 export class XSelectControl extends XControl {
-  controlType: XControlType = 'select';
   constructor(option: XSelectControlOption = {}) {
     super(option);
   }
@@ -242,7 +278,6 @@ export class XSelectControl extends XControl {
  */
 export interface XCascadeControlOption extends XControlOption, XCascadeOption {}
 export class XCascadeControl extends XControl {
-  controlType: XControlType = 'cascade';
   constructor(option: XCascadeControlOption = {}) {
     super(option);
   }
@@ -253,7 +288,6 @@ export class XCascadeControl extends XControl {
  */
 export interface XCheckboxControlOption extends XControlOption, XCheckboxOption {}
 export class XCheckboxControl extends XControl {
-  controlType: XControlType = 'checkbox';
   constructor(option: XCheckboxControlOption = {}) {
     super(option);
   }
@@ -264,7 +298,6 @@ export class XCheckboxControl extends XControl {
  */
 export interface XColorPickerControlOption extends XControlOption, XColorPickerOption {}
 export class XColorPickerControl extends XControl {
-  controlType: XControlType = 'color-picker';
   constructor(option: XColorPickerControlOption = {}) {
     super(option);
   }
@@ -275,7 +308,6 @@ export class XColorPickerControl extends XControl {
  */
 export interface XDatePickerControlOption extends XControlOption, XDatePickerOption {}
 export class XDatePickerControl extends XControl {
-  controlType: XControlType = 'date-picker';
   constructor(option: XDatePickerControlOption = {}) {
     super(option);
   }
@@ -286,7 +318,6 @@ export class XDatePickerControl extends XControl {
  */
 export interface XInputNumberControlOption extends XControlOption, XInputNumberOption {}
 export class XInputNumberControl extends XControl {
-  controlType: XControlType = 'input-number';
   constructor(option: XInputNumberControlOption = {}) {
     super(option);
   }
@@ -297,7 +328,6 @@ export class XInputNumberControl extends XControl {
  */
 export interface XRadioControlOption extends XControlOption, XRadioOption {}
 export class XRadioControl extends XControl {
-  controlType: XControlType = 'radio';
   constructor(option: XRadioControlOption = {}) {
     super(option);
   }
@@ -308,7 +338,6 @@ export class XRadioControl extends XControl {
  */
 export interface XRateControlOption extends XControlOption, XRateOption {}
 export class XRateControl extends XControl {
-  controlType: XControlType = 'rate';
   constructor(option: XRateControlOption = {}) {
     super(option);
   }
@@ -319,7 +348,6 @@ export class XRateControl extends XControl {
  */
 export interface XSliderSelectControlOption extends XControlOption, XSliderSelectOption {}
 export class XSliderSelectControl extends XControl {
-  controlType: XControlType = 'slider-select';
   constructor(option: XSliderSelectControlOption = {}) {
     super(option);
   }
@@ -330,7 +358,6 @@ export class XSliderSelectControl extends XControl {
  */
 export interface XSwitchControlOption extends XControlOption, XSwitchOption {}
 export class XSwitchControl extends XControl {
-  controlType: XControlType = 'switch';
   constructor(option: XSwitchControlOption = {}) {
     super(option);
   }
@@ -341,7 +368,6 @@ export class XSwitchControl extends XControl {
  */
 export interface XTimePickerControlOption extends XControlOption, XTimePickerOption {}
 export class XTimePickerControl extends XControl {
-  controlType: XControlType = 'time-picker';
   constructor(option: XTimePickerControlOption = {}) {
     super(option);
   }
