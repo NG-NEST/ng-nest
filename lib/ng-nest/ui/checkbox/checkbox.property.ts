@@ -24,7 +24,7 @@ export const XCheckboxPrefix = 'x-checkbox';
 @Component({ template: '' })
 export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> implements XCheckboxOption {
   /**
-   * 单选框数据
+   * 多选框数据
    */
   @Input() @XDataConvert() data: XData<XCheckboxNode> = [];
   /**
