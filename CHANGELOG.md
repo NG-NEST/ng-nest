@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/NG-NEST/ng-nest/compare/1.1.0...1.1.1) (2020-06-08)
+
+
+### Bug Fixes
+
+* **module:layout:** modify flex return type ([aeec851](https://github.com/NG-NEST/ng-nest/commit/aeec8516c3cc14c03ca5a313a8430baf841144bc))
+
+
+
 # [1.1.0](https://github.com/NG-NEST/ng-nest/compare/1.0.0...1.1.0) (2020-06-08)
 
 
