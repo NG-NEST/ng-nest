@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { XFormProperty, XControl, XFormRow, XFormPrefix, XFormControlOption, XFormControl } from './form.property';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XFormProperty, XFormRow, XFormPrefix, XFormControlOption, XFormControl } from './form.property';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: `${XFormPrefix}`,

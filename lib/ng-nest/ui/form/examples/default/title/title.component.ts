@@ -1,19 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  XInputControl,
-  XSelectControl,
-  XCascadeControl,
-  XColorPickerControl,
-  XDatePickerControl,
-  XInputNumberControl,
-  XRadioControl,
-  XRateControl,
-  XSwitchControl,
-  XTimePickerControl,
-  XSliderSelectControl,
-  XCheckboxControl,
-  XControl
-} from '@ng-nest/ui/form';
+import { XControl } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-title',
@@ -21,9 +7,10 @@ import {
 })
 export class ExTitleComponent {
   controls: XControl[] = [
-    new XInputControl({ id: 'name', label: '姓名', required: true, maxlength: 10 }),
-    new XInputControl({ id: 'id', label: '编码', disabled: true, value: '001001001', required: true }),
-    new XInputControl({
+    { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10 },
+    { control: 'input', id: 'id', label: '编码', disabled: true, value: '001001001', required: true },
+    {
+      control: 'input',
       id: 'account',
       label: '账号',
       clearable: true,
@@ -31,11 +18,12 @@ export class ExTitleComponent {
         console.log(value);
       },
       required: true
-    }),
-    new XInputControl({ id: 'password', label: '密码', type: 'password', required: true }),
-    new XInputControl({ id: 'file', label: '文件', required: true }),
-    new XSelectControl({ id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true }),
-    new XCascadeControl({
+    },
+    { control: 'input', id: 'password', label: '密码', type: 'password', required: true },
+    { control: 'input', id: 'file', label: '文件', required: true },
+    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true },
+    {
+      control: 'cascade',
       id: 'city',
       label: '城市',
       data: [
@@ -48,15 +36,15 @@ export class ExTitleComponent {
         { id: 7, pid: 1, label: '荆州市' }
       ],
       required: true
-    }),
-    new XColorPickerControl({ id: 'color', label: '喜欢颜色', required: true }),
-    new XDatePickerControl({ id: 'createDate', label: '创建日期', required: true }),
-    new XInputNumberControl({ id: 'age', label: '年龄', required: true }),
-    new XRadioControl({ id: 'gender', label: '性别', data: ['男', '女'], required: true }),
-    new XRateControl({ id: 'level', label: '级别', count: 6, required: true }),
-    new XSwitchControl({ id: 'disabled', label: '禁用' }),
-    new XTimePickerControl({ id: 'time', label: '时间', required: true }),
-    new XSliderSelectControl({ id: 'process', label: '进度', required: true }),
-    new XCheckboxControl({ id: 'active', label: '爱好', data: ['乒乓球', '篮球', '足球'], required: true })
+    },
+    { control: 'color-picker', id: 'color', label: '喜欢颜色', required: true },
+    { control: 'date-picker', id: 'createDate', label: '创建日期', required: true },
+    { control: 'input-number', id: 'age', label: '年龄', required: true },
+    { control: 'radio', id: 'gender', label: '性别', data: ['男', '女'], required: true },
+    { control: 'rate', id: 'level', label: '级别', count: 6, required: true },
+    { control: 'switch', id: 'disabled', label: '禁用' },
+    { control: 'time-picker', id: 'time', label: '时间', required: true },
+    { control: 'slider-select', id: 'process', label: '进度', required: true },
+    { control: 'checkbox', id: 'active', label: '爱好', data: ['乒乓球', '篮球', '足球'], required: true }
   ];
 }
