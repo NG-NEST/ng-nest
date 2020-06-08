@@ -21,7 +21,7 @@ import { XRowComponent } from './row.component';
 })
 export class XColComponent extends XColProperty implements OnInit {
   @HostBinding(`class.x-col-24`) get getFlex() {
-    return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24;
+    return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24 ? true : false;
   }
 
   constructor(@Optional() @Host() public rowComponent: XRowComponent, private renderer: Renderer2, private elementRef: ElementRef) {

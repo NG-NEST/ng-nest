@@ -10,7 +10,7 @@ import { XRowPrefix, XRowProperty } from './layout.property';
 })
 export class XRowComponent extends XRowProperty implements OnInit {
   @HostBinding(`class.x-flex`) get getFlex() {
-    return this.justify || this.align;
+    return this.justify || this.align ? true : false;
   }
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
