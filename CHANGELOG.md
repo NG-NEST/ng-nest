@@ -1,0 +1,154 @@
+# [1.1.0](https://github.com/NG-NEST/ng-nest/compare/1.0.0...1.1.0) (2020-06-08)
+
+
+### Features
+
+* **module:form:** add validator messages ([d24343d](https://github.com/NG-NEST/ng-nest/commit/d24343d8d05ca0e73768912cda94be076e7bc953))
+* **module:menu:** add collapsed property ([daa9c36](https://github.com/NG-NEST/ng-nest/commit/daa9c365dfafea0cf87c3a7128a30adb618ffa2c))
+
+
+
+# [1.0.0](https://github.com/NG-NEST/ng-nest/compare/0.2.2...1.0.0) (2020-05-26)
+
+
+
+## [0.2.2](https://github.com/NG-NEST/ng-nest/compare/0.2.1...0.2.2) (2020-05-24)
+
+
+### Features
+
+* **module:table:** add height adaption ([f4e4508](https://github.com/NG-NEST/ng-nest/commit/f4e4508e7a925899c5fe23ba5e2aa5a088b0c9ad))
+* **module:table:** add the fixed column ([16b2b4b](https://github.com/NG-NEST/ng-nest/commit/16b2b4bd139dc1ca091e6173c26c9a207bbb4950))
+* **module:table:** add virtual scroll ([842bbff](https://github.com/NG-NEST/ng-nest/commit/842bbff4f2f2500c7c684b43611afd7da9dbdedd))
+
+
+
+## [0.2.1](https://github.com/NG-NEST/ng-nest/compare/0.2.0...0.2.1) (2020-05-21)
+
+
+### Features
+
+* **module:menu:** add location and category ([918b9e6](https://github.com/NG-NEST/ng-nest/commit/918b9e60cbde575da2bca8d12ff01d5415e98455))
+
+
+
+# [0.2.0](https://github.com/NG-NEST/ng-nest/compare/0.1.7...0.2.0) (2020-05-19)
+
+
+### Bug Fixes
+
+* **module:input:**  change iconLayout default val ([9ff2f97](https://github.com/NG-NEST/ng-nest/commit/9ff2f97ad53d3be7b54f3c3ad83aa8aff6b94f18))
+
+
+### Features
+
+* **module:form:** add control exception state ([b492ca3](https://github.com/NG-NEST/ng-nest/commit/b492ca31b8317c114cc3676fc66f72fed7a8e804))
+* **module:form:** add control invalid ([41f6722](https://github.com/NG-NEST/ng-nest/commit/41f67225737cbed33f0ae297f1cb95bdedeac22a))
+* **module:form:** add public property settings ([a3fc001](https://github.com/NG-NEST/ng-nest/commit/a3fc001a5af87b042698a4a3bf36e6a3df7c5bf2))
+* **module:form:** add regular verification ([a996469](https://github.com/NG-NEST/ng-nest/commit/a996469e2d0715a0dea2e6bd70053b30195dfde9))
+
+
+
+## [0.1.7](https://github.com/NG-NEST/ng-nest/compare/0.1.6...0.1.7) (2020-05-14)
+
+
+### Bug Fixes
+
+* **module:form:** adjust animation exception ([3a7589b](https://github.com/NG-NEST/ng-nest/commit/3a7589b515a29840ffcbb7f07b7b923044e5252b))
+* **module:select:** scroll questions after pop-up ([93873da](https://github.com/NG-NEST/ng-nest/commit/93873dad3bbba87463de2ee55ac90778446f2a51))
+
+
+### Features
+
+* **module:form:** add cascade component ([8798746](https://github.com/NG-NEST/ng-nest/commit/87987469b0260bb11c07e2fdcdf7059c3ff78720))
+* **module:form:** add checkbox, color-picker ([20fe7e2](https://github.com/NG-NEST/ng-nest/commit/20fe7e2caa467eb6002bed328dfd0d7c7f93c2dd))
+* **module:form:** add date-picker component ([6889ee2](https://github.com/NG-NEST/ng-nest/commit/6889ee2882cfd2f5d73f59a89d4cc5369bcaa7e8))
+* **module:form:** add input-number component ([a3040a0](https://github.com/NG-NEST/ng-nest/commit/a3040a04add064ef9b493d52b19fefdf1acc983f))
+* **module:form:** add radio component ([afa603f](https://github.com/NG-NEST/ng-nest/commit/afa603ff4e0c07438c2251d41f6164e29f0e2385))
+* **module:form:** add rate component ([20090b1](https://github.com/NG-NEST/ng-nest/commit/20090b1e5049833246565d3f9ebcd6b3b5db6c35))
+* **module:form:** add setting shared property ([dd3e81e](https://github.com/NG-NEST/ng-nest/commit/dd3e81e9ddde7695dd7473e913339188f031a542))
+* **module:form:** add slider-select component ([148a2be](https://github.com/NG-NEST/ng-nest/commit/148a2be9c41916b1ecbbe909f26b7dde34ee9ea1))
+* **module:form:** add switch component ([6146e12](https://github.com/NG-NEST/ng-nest/commit/6146e12fd9b4d129d834160c415c85e414b3639d))
+* **module:form:** add time-picker component ([9fe14c0](https://github.com/NG-NEST/ng-nest/commit/9fe14c077b7b439e750baa190d6f62a6bce0004b))
+
+
+
+## [0.1.6](https://github.com/NG-NEST/ng-nest/compare/0.1.4...0.1.6) (2020-05-10)
+
+
+### Bug Fixes
+
+* **module:*:** alert scroll position ([f7ef84b](https://github.com/NG-NEST/ng-nest/commit/f7ef84b73c160196cd62c920489d94f4be82edd1))
+* **module:dialog:** position call error ([79da110](https://github.com/NG-NEST/ng-nest/commit/79da1106b3f80b293738ffcb966e5163febae8f2))
+* **module:slider-select:** dragging show tooltip ([348e507](https://github.com/NG-NEST/ng-nest/commit/348e507047395f185fbc79077b83fc22fd22fb89))
+
+
+### Features
+
+* **module:cascade:** add animation expand,fold ([5b6ec30](https://github.com/NG-NEST/ng-nest/commit/5b6ec302eb75491b6f8e4fbd445588b1b1bfb04a))
+* **module:color-picker:** add animation ([c346f7e](https://github.com/NG-NEST/ng-nest/commit/c346f7e3233f95302b8da23b3e28ece7ae58c501))
+* **module:date-picker:** add animation ([0c421c9](https://github.com/NG-NEST/ng-nest/commit/0c421c917a9c16d3d2518cca9455af87a248037a))
+* **module:form:** add input and select component ([a0b3ad3](https://github.com/NG-NEST/ng-nest/commit/a0b3ad379a41a86f59f0ad1fa60f649ad2bce1b2))
+* **module:popover:** add animation ([50985c4](https://github.com/NG-NEST/ng-nest/commit/50985c4033a849bb20482923f3b7f0746edc0082))
+* **module:select:** add animation expand,fold ([b544f44](https://github.com/NG-NEST/ng-nest/commit/b544f44063aa705e26bb2bf810191afd765212ca))
+* **module:time-picker:** add animation ([cfa7165](https://github.com/NG-NEST/ng-nest/commit/cfa7165c9912bc2a8854100c6df49ea994fddddf))
+* **module:tooltip:** add animation ([93b4436](https://github.com/NG-NEST/ng-nest/commit/93b443600d01d1d6782d3f8aaf67bf9b239775da))
+* **module:tooltip:** add manual control visible ([d4b71cb](https://github.com/NG-NEST/ng-nest/commit/d4b71cb5c9504f695b3106c1d92d6bd537e839ab))
+
+
+
+## [0.1.4](https://github.com/NG-NEST/ng-nest/compare/0.1.3...0.1.4) (2020-05-01)
+
+
+### Bug Fixes
+
+* **carousel:** included tabs styles and switch ([e3b6ce2](https://github.com/NG-NEST/ng-nest/commit/e3b6ce29afa8717abe0308f701172358ce444566))
+* **module:back-top:** fixed in tabs ([72c984e](https://github.com/NG-NEST/ng-nest/commit/72c984e7539630de5545cbfad7bc2e814da954e6))
+* **module:dropdown:** children property don't work ([b984fe1](https://github.com/NG-NEST/ng-nest/commit/b984fe198161c085c45826e8efdb59e49d4504fe))
+* **module:loading:** load is not displayed ([856745e](https://github.com/NG-NEST/ng-nest/commit/856745e40c08a6e36353520b8da5948a1bad8c9f))
+* **module:slider:** move element is null ([2a99fe6](https://github.com/NG-NEST/ng-nest/commit/2a99fe69032283951050b991757ba263f1c752b7))
+* **module:slider-select:** included tabs drag ([0f249fa](https://github.com/NG-NEST/ng-nest/commit/0f249fa7fbed2c2db0af7b751927c0bd7fa08c6c))
+* **module:tabs:** card border style ([b3c53e1](https://github.com/NG-NEST/ng-nest/commit/b3c53e1e546cfce1c3ebbde8034305b160715d71))
+* **module:time-picker:** sliding abnormalities ([0137756](https://github.com/NG-NEST/ng-nest/commit/0137756958db3c6e9fbbb0cc788af5d629db03d2))
+* **module:tree-file:** first request flashes ([6ec7879](https://github.com/NG-NEST/ng-nest/commit/6ec78794115ba056d76e0eb6b0b01812b151d2e0))
+
+
+### Features
+
+* **module:checkbox:** single use true, false ([8cd65e1](https://github.com/NG-NEST/ng-nest/commit/8cd65e15e1a4c8108daf93354ae8e3a34e286b0a))
+
+
+
+## [0.1.3](https://github.com/NG-NEST/ng-nest/compare/0.1.2...0.1.3) (2020-04-27)
+
+
+### Bug Fixes
+
+* file-tree warning style ([fae15da](https://github.com/NG-NEST/ng-nest/commit/fae15da2d31cbad244f2d6267ff1ed77b0d97804))
+
+
+### Features
+
+* highlight component add line highlinght ([2c56a9b](https://github.com/NG-NEST/ng-nest/commit/2c56a9b10de7e88a74ddc606f895cee890c343dc))
+
+
+
+## [0.1.2](https://github.com/NG-NEST/ng-nest/compare/9d15fb8b3b3bfc5199c0c8fa3c15e9d9c40633eb...0.1.2) (2020-04-23)
+
+
+### Bug Fixes
+
+* carousel no animation on the second page ([9d15fb8](https://github.com/NG-NEST/ng-nest/commit/9d15fb8b3b3bfc5199c0c8fa3c15e9d9c40633eb))
+* resolve error reporting in strict mode ([9d15ca7](https://github.com/NG-NEST/ng-nest/commit/9d15ca78f9c3a4ae00c8e57da196718461d8c44b))
+
+
+### Features
+
+* add prismjs highlight plugin ([03f3739](https://github.com/NG-NEST/ng-nest/commit/03f3739309b4e76326b9d35d43ca06ad470c2022))
+* add strictTemplates is true ([67239d6](https://github.com/NG-NEST/ng-nest/commit/67239d615c610f887f157b4a547ac11f42a25092))
+* add tree-file component ([1af18f1](https://github.com/NG-NEST/ng-nest/commit/1af18f1f2480919f2db80a5447443adfbea7c8f9))
+* add typescript strict mode ([6a7b475](https://github.com/NG-NEST/ng-nest/commit/6a7b475649977f2e975b6ec03cabb14e112e19d2))
+* generate demo tree-file component ([02126f8](https://github.com/NG-NEST/ng-nest/commit/02126f8e34d47f23ba961a7b0f49312641066110))
+
+
+
