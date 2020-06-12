@@ -46,7 +46,7 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
   return value;
 }
 
-export function XSetData<T>(data: XData<T>, unSubject: Subject<void>): Observable<T[]> {
+export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
     const result = (res: T[]) => {
       x.next(res);
@@ -58,14 +58,14 @@ export function XSetData<T>(data: XData<T>, unSubject: Subject<void>): Observabl
       if (XIsObservable(data)) {
         (data as Observable<T[]>)
           .pipe(
-            map((y) => XToDataConvert(y)),
+            map((y) => (toConvert ? XToDataConvert(y) : y)),
             takeUntil(unSubject)
           )
           .subscribe((y) => {
             result(y as T[]);
           });
       } else {
-        result(XToDataConvert(data) as T[]);
+        result((toConvert ? XToDataConvert(data) : data) as T[]);
       }
     }
   });

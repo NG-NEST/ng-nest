@@ -21,11 +21,13 @@
     <div class="x-dialog-content">
       <ng-content></ng-content>
     </div>
-    <ng-container *xOutlet="footer">
-      <x-buttons space="1" *ngIf="showCancel || showConfirm">
-        <x-button *ngIf="showCancel" (click)="onCancel()">{{ cancelText }}</x-button>
-        <x-button *ngIf="showConfirm" type="primary" (click)="onConfirm()">{{ confirmText }}</x-button>
-      </x-buttons>
-    </ng-container>
+    <div class="x-dialog-buttons" [class.x-dialog-buttons-center]="buttonsCenter">
+      <ng-container *xOutlet="footer">
+        <x-buttons space="1" *ngIf="showCancel || showConfirm">
+          <x-button *ngIf="showCancel" (click)="onCancel()">{{ cancelText }}</x-button>
+          <x-button *ngIf="showConfirm" type="primary" (click)="onConfirm()">{{ confirmText }}</x-button>
+        </x-buttons>
+      </ng-container>
+    </div>
   </div>
 </ng-template>

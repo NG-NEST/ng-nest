@@ -14,6 +14,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { interval } from 'rxjs';
 
 describe(XDialogPrefix, () => {
   beforeEach(async(() => {
@@ -66,7 +67,14 @@ describe(XDialogPrefix, () => {
       </div>
     </div>
 
-    <x-dialog title="标题" [visible]="visible" [placement]="placement" [before-close]="beforeClose" (cancel)="close()" (confirm)="close()">
+    <x-dialog
+      title="标题"
+      [(visible)]="visible"
+      [placement]="placement"
+      [before-close]="beforeClose"
+      (cancel)="refresh()"
+      (confirm)="refresh()"
+    >
       <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
     </x-dialog>
 
@@ -76,10 +84,10 @@ describe(XDialogPrefix, () => {
         title="表格"
         width="80%"
         height="80%"
-        [visible]="visibleTable"
-        (close)="tableClose()"
-        (cancel)="tableClose()"
-        (confirm)="tableClose()"
+        [(visible)]="visibleTable"
+        (close)="refresh()"
+        (cancel)="refresh()"
+        (confirm)="refresh()"
       >
         <table class="custom-table">
           <tr>
@@ -108,7 +116,7 @@ describe(XDialogPrefix, () => {
 
     <div class="row">
       <x-button (click)="customForm()">自定义表单</x-button>
-      <x-dialog title="表单" [visible]="visibleForm" (close)="formClose()" (cancel)="formClose()" (confirm)="formClose()">
+      <x-dialog title="表单" [(visible)]="visibleForm" (close)="refresh()" (cancel)="refresh()" (confirm)="refresh()" buttons-center>
         <ul class="custom-form">
           <li><x-input label="账号" direction="row"></x-input></li>
           <li><x-input label="邮箱" direction="row"></x-input></li>
@@ -119,7 +127,14 @@ describe(XDialogPrefix, () => {
 
     <div class="row">
       <x-button (click)="custom()">自定义标题以及底部按钮</x-button>
-      <x-dialog [title]="titleTpl" [footer]="footerTpl" [visible]="visibleCustom" (close)="customClose()">
+      <x-dialog
+        [title]="titleTpl"
+        [footer]="footerTpl"
+        [(visible)]="visibleCustom"
+        (close)="refresh()"
+        (cancel)="refresh()"
+        (confirm)="refresh()"
+      >
         <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
         <ng-template #titleTpl>
           <x-icon type="fto-user"></x-icon>
@@ -181,7 +196,12 @@ class TestXDialogComponent {
   visibleForm: boolean;
   visibleCustom: boolean;
 
-  constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService) {}
+  constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService) {
+    // interval(1000).subscribe((x) => {
+    //   console.log(this.visibleForm);
+    //   this.cdr.detectChanges();
+    // });
+  }
 
   dialog(place: XPlace) {
     this.placement = place;
@@ -189,8 +209,7 @@ class TestXDialogComponent {
     this.cdr.detectChanges();
   }
 
-  close() {
-    this.visible = false;
+  refresh() {
     this.cdr.detectChanges();
   }
 
@@ -200,7 +219,10 @@ class TestXDialogComponent {
       content: '有未保存的数据，确认关闭吗？',
       type: 'warning',
       callback: (action: XMessageBoxAction) => {
-        action === 'confirm' && this.close();
+        if (action === 'confirm') {
+          this.visible = false;
+          this.cdr.detectChanges();
+        }
       }
     });
   };
@@ -210,18 +232,8 @@ class TestXDialogComponent {
     this.cdr.detectChanges();
   }
 
-  tableClose() {
-    this.visibleTable = false;
-    this.cdr.detectChanges();
-  }
-
   customForm() {
     this.visibleForm = true;
-    this.cdr.detectChanges();
-  }
-
-  formClose() {
-    this.visibleForm = false;
     this.cdr.detectChanges();
   }
 

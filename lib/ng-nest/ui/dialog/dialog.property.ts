@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XIsBoolean } from '@ng-nest/ui/core';
 import { XAlertProperty } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -18,7 +18,7 @@ export const XDialogPortal = 'x-dialog-portal';
  */
 @Component({ template: '' })
 export class XDialogProperty extends XAlertProperty {
-  @Input() @XInputBoolean() visible: XBoolean = false;
+  @Input() @XInputBoolean() visible: boolean = false;
   /**
    * 方位，九宫格
    */
@@ -76,6 +76,10 @@ export class XDialogProperty extends XAlertProperty {
    */
   @Input('class-name') className: string = '';
   /**
+   * 按钮居中
+   */
+  @Input('buttons-center') @XInputBoolean() buttonsCenter: XBoolean;
+  /**
    * 关闭前处理函数
    */
   @Input('before-close') beforeClose: Function;
@@ -87,6 +91,10 @@ export class XDialogProperty extends XAlertProperty {
    * 确认按钮的事件
    */
   @Output() confirm = new EventEmitter();
+  /**
+   * 显示/隐藏改变事件
+   */
+  @Output() visibleChange = new EventEmitter<boolean>();
 }
 
 export interface XDialogCallback {

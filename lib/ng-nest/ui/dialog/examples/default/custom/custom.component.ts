@@ -12,26 +12,6 @@ export class ExCustomComponent {
 
   constructor() {}
 
-  customTable() {
-    this.visibleTable = true;
-  }
-
-  tableClose() {
-    this.visibleTable = false;
-  }
-
-  customForm() {
-    this.visibleForm = true;
-  }
-
-  formClose() {
-    this.visibleForm = false;
-  }
-
-  custom() {
-    this.visibleCustom = true;
-  }
-
   customClose() {
     this.visibleCustom = false;
   }

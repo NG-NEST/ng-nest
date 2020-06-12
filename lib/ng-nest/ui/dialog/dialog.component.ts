@@ -16,6 +16,7 @@ import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
 import { XDialogPrefix, XDialogOverlayRef, XDialogPortal, XDialogProperty } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription } from 'rxjs';
+import { BlockScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -29,6 +30,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   @ViewChild('dialogTpl', { static: true }) dialogTpl: TemplateRef<void>;
   dialogRef: XDialogOverlayRef;
   backdropClick$: Subscription;
+  scrollStrategy: BlockScrollStrategy;
 
   constructor(
     public renderer: Renderer2,
@@ -38,6 +40,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     public protalService: XPortalService
   ) {
     super();
+    this.scrollStrategy = this.protalService.overlay.scrollStrategies.block()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,6 +60,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       this.create();
     } else {
       this.detach();
+      // this.visibleChange.emit(false);
     }
   }
 
@@ -70,6 +74,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         positionStrategy: this.protalService.setPlace(this.placement, this.width, this.height, this.offset)
       }
     });
+    this.scrollStrategy.enable();
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
     }
@@ -77,7 +82,10 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
 
   detach() {
     if (this.portalAttached()) {
+      this.visible = false;
+      this.visibleChange.emit(this.visible);
       this.dialogRef?.overlayRef?.detach();
+      this.scrollStrategy.disable();
       this.unsubscribe();
       this.close.emit();
     }
@@ -96,10 +104,12 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   }
 
   onCancel() {
+    this.onClose();
     this.cancel.emit();
   }
 
   onConfirm() {
+    this.onClose();
     this.confirm.emit();
   }
 
