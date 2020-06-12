@@ -13,13 +13,14 @@ import {
   Inject
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
-import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize } from '@ng-nest/ui/core';
+import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize, XIsObservable, XSetData } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import { first, find, filter, unionBy } from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import { XTableToolComponent } from './table-tool.component';
+import { BlockScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -56,6 +57,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   searchSub = new Subject<string>();
   sortStr = '';
 
+  scrollStrategy: BlockScrollStrategy;
   scrollContentEle: HTMLElement;
   hasScrollY = false;
   scrollYWidth = 0;
@@ -83,7 +85,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.rowPrimary) && this.setData(true);
+    XIsChange(simples.rowPrimary, simples.data) && this.setData(true);
   }
 
   ngOnDestroy(): void {
@@ -125,13 +127,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     };
     this.query.filter = unionBy([groupFilter], this.query.filter, (y) => y.field) as XFilter[];
     this.index = 1;
+    this.indexChange.emit(this.index);
     this.setData();
   }
 
-  rowEmit(row: any, event?: Event) {
+  rowOnClick(row: any, event?: Event) {
     row.event = event;
     this.activatedRow = row;
-    this.rowClick.emit(row);
+    this.rowEmit.emit(row);
     this.cdr.detectChanges();
   }
 
@@ -156,12 +159,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
         if (fst || (this._isFirst && this.firstRowSelected)) {
           let ft = first(x.list);
           if (ft) {
-            this.rowEmit(first(x.list));
+            this.rowOnClick(first(x.list));
             this._isFirst = false;
           }
         }
+        console.log(x);
         this.setDataChange(x);
       });
+    } else if (this.data) {
+      this.setDataChange(this.data);
     }
   }
 
@@ -199,6 +205,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
         debounceTime(200),
         switchMap((x: string) => {
           this.index = 1;
+          this.indexChange.emit(this.index);
           this.setFilter(this.query, x);
           return service.getList(this.index, Number(this.size), this.query);
         }),
@@ -239,9 +246,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   setAdaptionHeight() {
     if (!XIsUndefined(this.adaptionHeight)) {
-      const toolHeight = this.tool?.elementRef.nativeElement.clientHeight;
-      const headerHeight = this.header?.nativeElement.clientHeight;
-      const footerHeight = this.footer?.nativeElement.clientHeight;
+      const toolHeight = this.tool?.elementRef.nativeElement.clientHeight || 0;
+      const headerHeight = this.header?.nativeElement.clientHeight || 0;
+      const footerHeight = this.footer?.nativeElement.clientHeight || 0;
       this.bodyHeight =
         Number(this.docPercent) * this.doc.documentElement.clientHeight -
         toolHeight -

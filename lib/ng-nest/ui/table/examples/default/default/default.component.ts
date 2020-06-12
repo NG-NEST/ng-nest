@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { XTableAction, XTableColumn } from '@ng-nest/ui/table';
-import { ExDefaultService } from './default.service';
+import { XTableColumn } from '@ng-nest/ui/table';
+import { ExDefaultService, User } from './default.service';
+import { XResultList } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
@@ -23,46 +24,30 @@ import { ExDefaultService } from './default.service';
 export class ExDefaultComponent {
   constructor(public service: ExDefaultService) {}
 
+  query = {};
+  index = 1;
+  size = 10;
+  data: XResultList<User>;
   columns: XTableColumn[] = [
-    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
-    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true },
+    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true, action: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
     { id: 'email', label: '邮箱', flex: 1 },
     { id: 'phone', label: '电话', flex: 1 },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  actions: XTableAction[] = [
-    { label: '新增', icon: 'fto-plus', type: 'primary' },
-    { label: '导出', icon: 'fto-download' },
-    { label: '批量操作', icon: 'fto-list' },
-    {
-      icon: 'fto-menu',
-      title: '列表视图',
-      activated: true,
-      actionLayoutType: 'top-right-icon'
-    },
-    {
-      icon: 'fto-disc',
-      title: '组织视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'organization'
-    },
-    {
-      icon: 'fto-briefcase',
-      title: '职位视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'position'
-    },
-    {
-      icon: 'fto-edit',
-      title: '编辑',
-      actionLayoutType: 'row-icon'
-    },
-    {
-      icon: 'fto-trash-2',
-      title: '删除',
-      actionLayoutType: 'row-icon'
-    }
-  ];
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      this.data = x;
+    });
+  }
+
+  indexChange(index: number) {
+    console.log(index);
+    this.getData();
+  }
 }

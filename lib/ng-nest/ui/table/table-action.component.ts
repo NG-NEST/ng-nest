@@ -49,6 +49,6 @@ export class XTableActionComponent implements OnInit {
     if (action.action === 'add') {
       
     }
-    this.table.actionClick.emit(action);
+    this.table.actionEmit.emit(action);
   }
 }

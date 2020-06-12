@@ -1,6 +1,16 @@
-import { XData, XQuery, XRepositoryAbstract, XIdentityProperty, XInputBoolean, XBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import {
+  XData,
+  XQuery,
+  XRepositoryAbstract,
+  XIdentityProperty,
+  XInputBoolean,
+  XBoolean,
+  XInputNumber,
+  XNumber,
+  XResultList
+} from '@ng-nest/ui/core';
 import { XButtonOption } from '@ng-nest/ui/button';
-import { XPaginationProperty } from '@ng-nest/ui/pagination';
+import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -14,11 +24,11 @@ export const XTablePrefix = 'x-table';
  * Table Property
  */
 @Component({ template: '' })
-export class XTableProperty extends XPaginationProperty {
+export class XTableProperty extends XPaginationProperty implements XTableOption {
   /**
    * 数据
    */
-  @Input() data: XData<any> = [];
+  @Input() data: XResultList<any>;
   /**
    * 列集合
    */
@@ -59,6 +69,10 @@ export class XTableProperty extends XPaginationProperty {
    * 当前选中行数据
    */
   @Input('activated-row') activatedRow?: any;
+  /**
+   * 显示搜索框
+   */
+  @Input('search-show') @XInputBoolean() searchShow: XBoolean;
   /**
    * 查找框提示信息
    */
@@ -106,11 +120,118 @@ export class XTableProperty extends XPaginationProperty {
   /**
    * 操作按钮点击事件
    */
-  @Output() actionClick = new EventEmitter<XTableAction>();
+  @Output() actionEmit = new EventEmitter<XTableAction>();
   /**
    * 行点击事件
    */
-  @Output() rowClick = new EventEmitter<any>();
+  @Output() rowEmit = new EventEmitter<any>();
+}
+
+/**
+ * Table Option
+ * @undocument true
+ */
+export interface XTableOption extends XPaginationOption {
+  /**
+   * 数据
+   */
+  data?: XResultList<any>;
+  /**
+   * 列集合
+   */
+  columns?: XTableColumn[];
+  /**
+   * 操作集合
+   */
+  actions?: XTableAction[];
+  /**
+   * 数据服务
+   */
+  service?: XRepositoryAbstract;
+  /**
+   * 查询条件
+   */
+  query?: XQuery;
+  /**
+   * 隐藏表格列头
+   */
+  headerHidden?: XBoolean;
+  /**
+   * 隐藏表格分页
+   */
+  footerHidden?: XBoolean;
+  /**
+   * 允许行点击选中
+   */
+  allowSelectRow?: XBoolean;
+  /**
+   * 选中第一行数据，触发选中事件
+   */
+  firstRowSelected?: XBoolean;
+  /**
+   * 行主键
+   */
+  rowPrimary?: string;
+  /**
+   * 当前选中行数据
+   */
+  activatedRow?: any;
+  /**
+   * 显示搜索框
+   */
+  searchShow?: XBoolean;
+  /**
+   * 查找框提示信息
+   */
+  searchPlaceholder?: string;
+  /**
+   * 列头自定义模板
+   */
+  headerColumnTpl?: XTableColumnTemplate;
+  /**
+   * 列内容自定义模板
+   */
+  bodyColumnTpl?: XTableColumnTemplate;
+  /**
+   * 开启虚拟滚动
+   */
+  virtualScroll?: XBoolean;
+  /**
+   * 行高，对应 cdk scroll 中的参数
+   */
+  itemSize?: number;
+  /**
+   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   */
+  minBufferPx?: number;
+  /**
+   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   */
+  maxBufferPx?: number;
+  /**
+   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   */
+  adaptionHeight?: XNumber;
+  /**
+   * 文档高度百分比，弹窗百分比高度用到
+   */
+  docPercent?: XNumber;
+  /**
+   * body 数据高度
+   */
+  bodyHeight?: number;
+  /**
+   * 横向滚动条出现的最小宽度
+   */
+  minScrollX?: XNumber;
+  /**
+   * 操作按钮点击事件
+   */
+  actionClick?: (action: XTableAction) => void;
+  /**
+   * 行点击事件
+   */
+  rowClick?: (row: any) => void;
 }
 
 /**
@@ -138,6 +259,10 @@ export interface XTableColumn extends XIdentityProperty {
    * 固定列，距离左边的距离
    */
   left?: number;
+  /**
+   * 操作按钮
+   */
+  action?: boolean;
   /**
    * 自定义属性
    */

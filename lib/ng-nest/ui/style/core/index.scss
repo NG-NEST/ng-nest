@@ -1,3 +1,7 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
+.cdk-global-overlay-wrapper {
+  pointer-events: auto;
+  overflow: auto;
+}
 @import './var';
 @import './base.scss';

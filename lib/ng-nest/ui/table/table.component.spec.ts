@@ -174,12 +174,14 @@ interface User extends XId {
   template: `
     <div style="padding: 1rem;">
       <x-table
+        [data]="data"
+        [(index)]="index"
+        [(size)]="size"
+        (indexChange)="indexChange($event)"
         [columns]="columns"
-        [actions]="actions"
-        [service]="usersServiceTest"
         [header-column-tpl]="{ name: nameHeaderTemp }"
         [body-column-tpl]="{ name: nameBodyTemp }"
-        allowSelectRow
+        allow-select-row
       ></x-table>
     </div>
     <ng-template #nameHeaderTemp let-column="$column">
@@ -212,49 +214,34 @@ interface User extends XId {
 })
 class TestXTableComponent {
   constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  query = {};
+  index = 1;
+  size = 10;
+  data: XResultList<User>;
   columns: XTableColumn[] = [
-    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true },
+    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true, action: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
     { id: 'email', label: '邮箱', flex: 1 },
     { id: 'phone', label: '电话', flex: 1 },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
-  actions: XTableAction[] = [
-    { label: '新增', icon: 'fto-plus', type: 'primary' },
-    { label: '导出', icon: 'fto-download' },
-    { label: '批量操作', icon: 'fto-list' },
-    {
-      icon: 'fto-menu',
-      title: '列表视图',
-      activated: true,
-      actionLayoutType: 'top-right-icon'
-    },
-    {
-      icon: 'fto-disc',
-      title: '组织视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'organization'
-    },
-    {
-      icon: 'fto-briefcase',
-      title: '职位视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'position'
-    },
-    {
-      icon: 'fto-edit',
-      title: '编辑',
-      actionLayoutType: 'row-icon'
-    },
-    {
-      icon: 'fto-trash-2',
-      title: '删除',
-      actionLayoutType: 'row-icon'
-    }
-  ];
+
+  ngOnInit() {
+    this.getData();
+  }
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());
+  }
+
+  getData() {
+    this.usersServiceTest.getList(this.index, this.size, this.query).subscribe((x) => {
+      this.data = x;
+    });
+  }
+
+  indexChange(index: number) {
+    this.getData();
   }
 }
 
@@ -272,6 +259,7 @@ class TestXTableComponent {
         [header-column-tpl]="{ name: nameHeaderTemp }"
         [body-column-tpl]="{ name: nameBodyTemp }"
         allow-select-row
+        search-show
         virtual-scroll
       ></x-table>
     </div>
@@ -307,7 +295,7 @@ class TestXTableScrollComponent {
   constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
-    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
+    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true, action: true },
     { id: 'position', label: '职位', width: 150, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', flex: 1 },
@@ -360,7 +348,7 @@ class TestXTableScrollComponent {
       title="弹框表格自适应(缩放浏览器窗口查看效果)"
       width="90%"
       height="90%"
-      [visible]="visible"
+      [(visible)]="visible"
       (close)="close()"
       (cancel)="close()"
       (confirm)="close()"
@@ -375,6 +363,7 @@ class TestXTableScrollComponent {
         [body-column-tpl]="{ name: nameBodyTemp }"
         [adaption-height]="104"
         [doc-percent]="0.9"
+        search-show
         allow-select-row
         virtual-scroll
       ></x-table>
@@ -412,7 +401,7 @@ class TestXTableAdaptionComponent {
   constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
-    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
+    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true, action: true },
     { id: 'position', label: '职位', width: 150, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', flex: 1 },

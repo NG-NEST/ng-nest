@@ -1,7 +1,9 @@
 <x-table
+  [data]="data"
+  [(index)]="index"
+  [(size)]="size"
+  (indexChange)="indexChange($event)"
   [columns]="columns"
-  [actions]="actions"
-  [service]="service"
   [header-column-tpl]="{ name: nameHeaderTemp }"
   [body-column-tpl]="{ name: nameBodyTemp }"
   allow-select-row

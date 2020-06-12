@@ -25,6 +25,7 @@ export class XTableToolComponent implements OnInit {
   @Input() actions: XTableAction[] = [];
   @Input() searchPlaceholder: string = '';
   @Input() searchInput: string = '';
+  @Input() searchShow: boolean = true;
   @Output() searchChange = new EventEmitter();
   @HostBinding('class.x-table-tool') class = true;
   leftActions: XTableAction[] = [];

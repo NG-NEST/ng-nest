@@ -8,19 +8,22 @@
       footer-hidden
       allow-select-row
       first-row-selected
+      search-show
       [row-primary]="groupQuery.group"
       [activated-row]="groupActivatedRow"
       [search-placeholder]="groupSearchPlaceholder"
-      (rowClick)="groupRowClick($event)"
+      (rowEmit)="groupRowClick($event)"
     ></x-table>
   </div>
   <div class="x-table-struct">
     <x-table-tool
       #tool
       [actions]="actions"
+      [searchShow]="searchShow"
       [searchPlaceholder]="searchPlaceholder"
       [searchInput]="searchInput"
       (searchChange)="searchSub.next($event)"
+      *ngIf="actions?.length > 0 || this.searchShow"
     ></x-table-tool>
     <div #header class="x-table-header" *ngIf="!headerHidden" [style.height.px]="itemSize">
       <ul
@@ -74,14 +77,14 @@
           class="x-table-row"
           [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
           [style.height.px]="itemSize"
-          (click)="rowEmit(item, $event)"
+          (click)="rowOnClick(item, $event)"
         >
           <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
         </ul>
       </cdk-virtual-scroll-viewport>
     </div>
     <div #footer class="x-table-footer" *ngIf="!footerHidden">
-      <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
+      <x-pagination [(index)]="index" [(size)]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
     </div>
   </div>
 </div>
@@ -92,7 +95,7 @@
     class="x-table-row"
     [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
     [style.height.px]="itemSize"
-    (click)="rowEmit(item, $event)"
+    (click)="rowOnClick(item, $event)"
   >
     <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
   </ul>
@@ -115,7 +118,7 @@
           <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
             <div [innerHTML]="item[column.id]"></div>
           </ng-container>
-          <ng-container *ngIf="!j && rowIconActions.length > 0">
+          <ng-container *ngIf="column.action && rowIconActions.length > 0">
             <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
           </ng-container>
         </ng-container>
