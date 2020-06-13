@@ -1,0 +1,14 @@
+// Find
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-find-prefix} {
+  @include reset-component();
+  @include find();
+}
+
+.#{$--x-find-prefix}-dialog {
+  @include find-dialog();
+}

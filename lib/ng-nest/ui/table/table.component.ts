@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize, XIsObservable, XSetData } from '@ng-nest/ui/core';
-import { Subject, fromEvent } from 'rxjs';
+import { Subject, fromEvent, interval } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import { first, find, filter, unionBy } from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -40,7 +40,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   @ViewChild('headerRow', { static: false }) headerRow: ElementRef;
   @ViewChild('tool', { static: false }) tool: XTableToolComponent;
   @ViewChild('footer', { static: false }) footer: ElementRef;
-  @ViewChild('virtualBody', { static: false }) virtualBody: CdkVirtualScrollViewport;
+
+  private _virtualBody: CdkVirtualScrollViewport;
+  @ViewChild('virtualBody', { static: false })
+  public get virtualBody(): CdkVirtualScrollViewport {
+    return this._virtualBody;
+  }
+  public set virtualBody(value: CdkVirtualScrollViewport) {
+    this._virtualBody = value;
+  }
   tableData: any[] = [];
   groupData: any[] = [];
   rowIconActions: XTableAction[] = [];
@@ -85,7 +93,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.rowPrimary, simples.data) && this.setData(true);
+    XIsChange(simples.rowPrimary) && this.setData(true);
+    XIsChange(simples.data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -154,6 +163,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   setData(fst?: boolean) {
+    console.log(fst);
     if (this.service) {
       this.service.getList(Number(this.index), Number(this.size), this.query).subscribe((x) => {
         if (fst || (this._isFirst && this.firstRowSelected)) {
@@ -163,7 +173,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
             this._isFirst = false;
           }
         }
-        console.log(x);
         this.setDataChange(x);
       });
     } else if (this.data) {
@@ -172,19 +181,25 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   setSubject() {
-    this.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector('.cdk-virtual-scroll-content-wrapper') as HTMLElement;
-    XResize(this.elementRef.nativeElement, this.scrollContentEle)
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((x) => {
-        this._resizeObserver = x.resizeObserver;
-        this.setAdaptionHeight();
-        this.setScroll();
-      });
-    fromEvent(window, 'resize')
-      .pipe(takeUntil(this._unSubject))
-      .subscribe(() => {
-        this.setAdaptionHeight();
-      });
+    // console.log(this.virtualBody);
+    if (this.virtualBody) {
+      this.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector(
+        '.cdk-virtual-scroll-content-wrapper'
+      ) as HTMLElement;
+      // console.log(this.scrollContentEle);
+      XResize(this.elementRef.nativeElement, this.scrollContentEle)
+        .pipe(takeUntil(this._unSubject))
+        .subscribe((x) => {
+          this._resizeObserver = x.resizeObserver;
+          this.setAdaptionHeight();
+          this.setScroll();
+        });
+      fromEvent(window, 'resize')
+        .pipe(takeUntil(this._unSubject))
+        .subscribe(() => {
+          this.setAdaptionHeight();
+        });
+    }
     if (this.scrollContentEle) {
       fromEvent(this.virtualBody.elementRef.nativeElement, 'scroll')
         .pipe(takeUntil(this._unSubject))

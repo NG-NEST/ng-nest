@@ -1,0 +1,31 @@
+<div #find class="x-find" [class.x-flex]="justify || align || direction" [class.x-checked]="value" [class.x-disabled]="disabled">
+  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <div class="x-find-row">
+    <x-button #buttonCom icon="fto-search" (click)="showModal()">{{ value ? value[columnLabel] : '' }}</x-button>
+  </div>
+</div>
+
+<x-dialog
+  #dialogCom
+  [title]="dialogTitle"
+  [width]="dialogWidth"
+  [height]="dialogHeight"
+  [buttons-center]="dialogButtonsCenter"
+  [(visible)]="dialogVisible"
+  (cancel)="change()"
+  (close)="change()"
+  (confirm)="sure()"
+>
+  <div class="x-find-dialog">
+    <x-table
+      #tableCom
+      [columns]="tableColumn"
+      [service]="tableService"
+      [search-show]="tableSearchShow"
+      [allow-select-row]="tableAllowSelectRow"
+      [activated-row]="tableActivatedRow"
+      (actionEmit)="actionEmit($event)"
+      (rowEmit)="rowEmit($event)"
+    ></x-table>
+  </div>
+</x-dialog>

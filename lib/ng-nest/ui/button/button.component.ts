@@ -25,10 +25,10 @@ import { XButtonsComponent } from './buttons.component';
 })
 export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges, AfterViewInit {
   constructor(
-    @Optional() @Host() private buttons: XButtonsComponent,
-    private cdr: ChangeDetectorRef,
-    private elementRef: ElementRef,
-    private renderer: Renderer2
+    @Optional() @Host() public buttons: XButtonsComponent,
+    public cdr: ChangeDetectorRef,
+    public elementRef: ElementRef,
+    public renderer: Renderer2
   ) {
     super();
   }

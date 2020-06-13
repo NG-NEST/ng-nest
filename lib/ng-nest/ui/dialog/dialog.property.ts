@@ -1,6 +1,6 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XIsBoolean } from '@ng-nest/ui/core';
-import { XAlertProperty } from '@ng-nest/ui/alert';
+import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 
@@ -95,6 +95,74 @@ export class XDialogProperty extends XAlertProperty {
    * 显示/隐藏改变事件
    */
   @Output() visibleChange = new EventEmitter<boolean>();
+}
+
+export interface XDialogOption extends XAlertOption {
+  visible?: boolean;
+  /**
+   * 方位，九宫格
+   */
+  placement?: XPlace;
+  /**
+   * 偏移距离
+   */
+  offset?: string;
+  /**
+   * 类型
+   */
+  type?: XDialogType;
+  /**
+   * 宽度
+   */
+  width?: string;
+  /**
+   * 高度
+   */
+  height?: string;
+  /**
+   * 样式主题
+   */
+  effect?: XEffect;
+  /**
+   * 底部自定义模板
+   */
+  footer?: XTemplate;
+  /**
+   * 显示取消按钮
+   */
+  showCancel?: XBoolean;
+  /**
+   * 取消按钮文字
+   */
+  cancelText?: string;
+  /**
+   * 显示确认按钮
+   */
+  showConfirm?: XBoolean;
+  /**
+   * 确认按钮文字
+   */
+  confirmText?: string;
+  /**
+   * 点击遮罩关闭
+   */
+  backdropClose?: XBoolean;
+  /**
+   * 是否显示背景遮罩
+   */
+  hasBackdrop?: XBoolean;
+  /**
+   * 自定义样式名
+   */
+  className?: string;
+  /**
+   * 按钮居中
+   */
+  buttonsCenter?: XBoolean;
+  /**
+   * 关闭前处理函数
+   */
+  beforeClose?: Function;
 }
 
 export interface XDialogCallback {
