@@ -41,6 +41,10 @@
           [style.flex]="column.width ? 'none' : column.flex"
         >
           <ng-container [ngSwitch]="column.type">
+            <ng-container *ngSwitchCase="'checkbox'">
+              <span>{{ column.label }}</span>
+              <!-- <x-checkbox [data]="[{ id: true, label: '全选' }]" [(ngModel)]="checkAll"></x-checkbox> -->
+            </ng-container>
             <ng-container *ngSwitchCase="'index'">
               <span>{{ column.label }}</span>
             </ng-container>
@@ -82,6 +86,7 @@
           <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
         </ul>
       </cdk-virtual-scroll-viewport>
+      <x-empty *ngIf="isEmpty"></x-empty>
     </div>
     <div #footer class="x-table-footer" *ngIf="!footerHidden">
       <x-pagination [(index)]="index" [(size)]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
@@ -111,6 +116,9 @@
       [style.left.px]="column.left"
     >
       <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'checkbox'">
+          <x-checkbox [data]="[{ id: true, label: '' }]" [(ngModel)]="item[column.id]"></x-checkbox>
+        </ng-container>
         <ng-container *ngSwitchCase="'index'">
           <div>{{ getIndex(i) }}</div>
         </ng-container>

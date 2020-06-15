@@ -12,6 +12,7 @@
   height: 1.625rem;
   line-height: 1.625rem;
   padding: 0 0.65rem;
+  white-space: nowrap;
   border: $--x-border-base;
   background-color: $--x-white;
   > .x-icon {
@@ -34,11 +35,11 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
-  @include size('big', 2.175rem, 1rem);
-  @include size('large', 1.875rem, 0.8rem);
-  @include size('medium', 1.625rem, 0.65rem);
-  @include size('small', 1.5rem, 0.3rem);
-  @include size('mini', 1.375rem, 0.25rem);
+  @include size('big', $--x-height-big, $--x-padding-big);
+  @include size('large', $--x-height-large, $--x-padding-large);
+  @include size('medium', $--x-height-medium, $--x-padding-medium);
+  @include size('small', $--x-height-small, $--x-padding-small);
+  @include size('mini', $--x-height-mini, $--x-padding-mini);
 
   @include type('primary', $--x-primary, $--x-primary-600, $--x-primary-900);
   @include type('success', $--x-success, $--x-success-600, $--x-success-900);

@@ -14,7 +14,11 @@ export const XFindPrefix = 'x-find';
  * Find Property
  */
 @Component({ template: '' })
-export class XFindProperty extends XControlValueAccessor<any> implements XFindOption {
+export class XFindProperty extends XControlValueAccessor<any | any[]> implements XFindOption {
+  /**
+   * 多选
+   */
+  @Input() @XInputBoolean() multiple: XBoolean = false;
   /**
    * 选中 label 名称字段
    */
@@ -42,7 +46,7 @@ export class XFindProperty extends XControlValueAccessor<any> implements XFindOp
   /**
    * 表格列参数
    */
-  @Input() tableColumn: XTableColumn[] = [];
+  @Input() tableColumns: XTableColumn[] = [];
   /**
    * 表格服务
    */

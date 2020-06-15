@@ -28,9 +28,12 @@ export class XFindComponent extends XFindProperty implements OnInit {
   @ViewChild('tableCom') tableCom: XTableComponent;
   @ViewChild('buttonCom') buttonCom: XButtonComponent;
 
+  private _value: any;
+
+  tableCheckedRow: { [prop: string]: any[] } = {};
+
   writeValue(value: any) {
     this.value = value;
-    if (this.value) this.tableActivatedRow = this.value;
     this.cdr.detectChanges();
   }
 
@@ -41,10 +44,12 @@ export class XFindComponent extends XFindProperty implements OnInit {
   ngOnInit() {
     this.setFlex(this.find.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setMultiple();
   }
 
   ngAfterViewInit() {
-    if (this.value) this.buttonCom.cdr.detectChanges();
+    if (this.value) this.cdr.detectChanges();
+    if (this.multiple) this.tableAllowSelectRow = false;
   }
 
   setClassMap() {
@@ -52,15 +57,47 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
+  setMultiple() {
+    if (!this.multiple) return;
+    this.tableColumns = [{ id: 'checked', label: '选择', type: 'checkbox', width: 100 }, ...this.tableColumns];
+  }
+
   showModal() {
     if (this.disabled) return;
     this.dialogVisible = true;
+    if (this.value) {
+      if (this.multiple) {
+        this._value = (this.value as Array<any>).map((x) => Object.assign({}, x));
+        this.tableCheckedRow = {
+          ...this.tableCheckedRow,
+          checked: (this._value as Array<any>).map((x) => x.id)
+        };
+        console.log(this.tableCheckedRow);
+      } else {
+        this.tableActivatedRow = this.value;
+      }
+    }
     this.cdr.detectChanges();
   }
 
-  sure() {}
+  sure() {
+    this.value = this._value;
+    this._value = null;
+    this.cdr.detectChanges();
+  }
 
-  change() {
+  closeModal() {
+    this.cdr.detectChanges();
+  }
+
+  tagClose(index: number = -1) {
+    if (index >= 0) {
+      this.value.splice(index, 1);
+    } else {
+      this.value = null;
+      this.tableActivatedRow = null;
+    }
+
     this.cdr.detectChanges();
   }
 
@@ -69,13 +106,27 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   rowEmit(data: any) {
-    this.tableActivatedRow = data;
-    this.value = data;
-    if (typeof this.value[this.columnLabel] === 'undefined') {
-      this.value[this.columnLabel] = data[this.columnLabel];
+    if (this.multiple) {
+      this.rowMultiple(data);
+    } else {
+      this._value = data;
     }
-    this.buttonCom.cdr.detectChanges();
+    this.tableActivatedRow = data;
+
     this.tableRowEmit.emit(data);
+  }
+
+  rowMultiple(data: any) {
+    if (typeof this._value === 'undefined') this._value = [];
+    data.checked = !data.checked;
+    if (data.checked) {
+      this._value = [...this._value, data];
+    } else {
+      this._value.splice(
+        (this._value as Array<any>).findIndex((x) => x.id === data.id),
+        1
+      );
+    }
   }
 
   formControlChanges() {

@@ -40,7 +40,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     public protalService: XPortalService
   ) {
     super();
-    this.scrollStrategy = this.protalService.overlay.scrollStrategies.block()
+    this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

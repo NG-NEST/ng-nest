@@ -52,8 +52,8 @@ describe(XTagPrefix, () => {
     </div>
 
     <div class="row">
+      <x-tag size="big">标签</x-tag>
       <x-tag size="large">标签</x-tag>
-      <x-tag size="medium">标签</x-tag>
       <x-tag>标签</x-tag>
       <x-tag size="small">标签</x-tag>
       <x-tag size="mini">标签</x-tag>

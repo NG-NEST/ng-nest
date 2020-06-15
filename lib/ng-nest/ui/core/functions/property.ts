@@ -2,7 +2,13 @@ import { XClassMap, XJustify, XAlign, XDirection, XBoolean, XSize } from '../int
 import { Input } from '@angular/core';
 import { XInputBoolean } from './convert';
 
+/**
+ * 组件公共属性
+ */
 export class XProperty {
+  /**
+   * 样式映射属性
+   */
   classMap: XClassMap = {};
 }
 

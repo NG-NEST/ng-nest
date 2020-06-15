@@ -9,6 +9,8 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 import { FormsModule } from '@angular/forms';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XEmptyModule } from '@ng-nest/ui/empty';
 import { XTableProperty } from './table.property';
 import { XTableToolComponent } from './table-tool.component';
 import { XTableActionComponent } from './table-action.component';
@@ -25,7 +27,9 @@ import { XTableActionComponent } from './table-action.component';
     XButtonModule,
     XPaginationModule,
     XOutletModule,
-    XLinkModule
+    XLinkModule,
+    XCheckboxModule,
+    XEmptyModule
   ]
 })
 export class XTableModule {}

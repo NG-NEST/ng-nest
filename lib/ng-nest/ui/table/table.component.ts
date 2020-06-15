@@ -10,11 +10,12 @@ import {
   SimpleChanges,
   ViewChild,
   HostBinding,
-  Inject
+  Inject,
+  SimpleChange
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableAction } from './table.property';
 import { XQuery, XIsUndefined, XIsEmpty, XResultList, XIsChange, XFilter, XResize, XIsObservable, XSetData } from '@ng-nest/ui/core';
-import { Subject, fromEvent, interval } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, switchMap, takeUntil } from 'rxjs/operators';
 import { first, find, filter, unionBy } from 'lodash';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -75,6 +76,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   scrollLeft = 0;
   scrollTop = 0;
 
+  isEmpty = false;
+
   private _unSubject = new Subject<void>();
   private _isFirst = true;
   private _resizeObserver: ResizeObserver;
@@ -94,7 +97,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.rowPrimary) && this.setData(true);
-    XIsChange(simples.data) && this.setData();
+    XIsChange(simples.data, simples.checkedRow) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -163,7 +166,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   setData(fst?: boolean) {
-    console.log(fst);
     if (this.service) {
       this.service.getList(Number(this.index), Number(this.size), this.query).subscribe((x) => {
         if (fst || (this._isFirst && this.firstRowSelected)) {
@@ -177,6 +179,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
       });
     } else if (this.data) {
       this.setDataChange(this.data);
+    } else {
+      this.isEmpty = true;
     }
   }
 
@@ -280,7 +284,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
 
   setDataChange(result: XResultList<any>) {
     this.total = result.total as number;
+    this.setChecked(result.list);
     this.tableData = result.list as any[];
+    this.isEmpty = this.tableData.length === 0;
     if (this.hasScrollY) this.virtualBody?.scrollTo({ top: 0 });
     if (this.hasScrollX) this.virtualBody?.scrollTo({ left: 0 });
     this.cdr.detectChanges();
@@ -297,5 +303,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
         query.filter = [...(query.filter as XFilter[]), { field: x.id, value: value }];
       }
     });
+  }
+
+  setChecked(list?: any[]) {
+    if (XIsUndefined(list) || !this.checkedRow) return;
+    for (let key in this.checkedRow) {
+      const arr = this.checkedRow[key];
+      for (let item of list as any[]) {
+        item[key] = arr.includes(item.id);
+      }
+    }
   }
 }

@@ -118,6 +118,10 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input('min-scroll-x') minScrollX: XNumber = '100%';
   /**
+   * checkbox 列初始选中的数据
+   */
+  @Input('checked-row') checkedRow: { [prop: string]: any[] } = {};
+  /**
    * 操作按钮点击事件
    */
   @Output() actionEmit = new EventEmitter<XTableAction>();
@@ -225,6 +229,10 @@ export interface XTableOption extends XPaginationOption {
    */
   minScrollX?: XNumber;
   /**
+   * checkbox 列初始选中的数据
+   */
+  checkedRow?: { [prop: string]: any[] };
+  /**
    * 操作按钮点击事件
    */
   actionClick?: (action: XTableAction) => void;
@@ -303,7 +311,7 @@ export interface XTableAction extends XButtonOption {
 /**
  * 列类型
  */
-export type XColumnType = 'label' | 'index';
+export type XColumnType = 'label' | 'index' | 'checkbox';
 
 /**
  * 表格操作类型

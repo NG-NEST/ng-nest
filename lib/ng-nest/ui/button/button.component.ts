@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   ChangeDetectorRef,
-  AfterViewInit,
   Optional,
   Host,
   ElementRef,
@@ -23,7 +22,7 @@ import { XButtonsComponent } from './buttons.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges, AfterViewInit {
+export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
   constructor(
     @Optional() @Host() public buttons: XButtonsComponent,
     public cdr: ChangeDetectorRef,
@@ -36,10 +35,6 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   ngOnInit(): void {
     this.setSpace();
     this.setClassMap();
-  }
-
-  ngAfterViewInit() {
-    // this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

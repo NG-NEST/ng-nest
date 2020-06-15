@@ -147,13 +147,24 @@ interface User extends XId {
 @Component({
   template: `
     <x-row>
-      <x-col span="12">
-        <x-find [(ngModel)]="model1" (ngModelChange)="change($event)" [tableColumn]="table.columns" [tableService]="table.service"></x-find>
+      <x-col span="24">
+        <x-find
+          [(ngModel)]="model1"
+          (ngModelChange)="change($event)"
+          [tableColumns]="table.columns"
+          [tableService]="table.service"
+          multiple
+        ></x-find>
       </x-col>
     </x-row>
     <x-row>
-      <x-col span="12">
-        <x-find [(ngModel)]="model2" (ngModelChange)="change($event)" [tableColumn]="table.columns" [tableService]="table.service"></x-find>
+      <x-col span="24">
+        <x-find
+          [(ngModel)]="model2"
+          (ngModelChange)="change($event)"
+          [tableColumns]="table.columns"
+          [tableService]="table.service"
+        ></x-find>
       </x-col>
     </x-row>
   `,

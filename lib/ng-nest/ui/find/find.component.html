@@ -1,7 +1,15 @@
 <div #find class="x-find" [class.x-flex]="justify || align || direction" [class.x-checked]="value" [class.x-disabled]="disabled">
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-find-row">
-    <x-button #buttonCom icon="fto-search" (click)="showModal()">{{ value ? value[columnLabel] : '' }}</x-button>
+    <x-button #buttonCom icon="fto-search" (click)="showModal()"></x-button>
+    <div class="x-find-tags">
+      <ng-container *ngIf="multiple; else singleTpl">
+        <x-tag *ngFor="let item of value; index as i" closable (close)="tagClose(i)">{{ item[columnLabel] }}</x-tag>
+      </ng-container>
+      <ng-template #singleTpl>
+        <x-tag *ngIf="value" closable (close)="tagClose()">{{ value[columnLabel] }}</x-tag>
+      </ng-template>
+    </div>
   </div>
 </div>
 
@@ -12,18 +20,19 @@
   [height]="dialogHeight"
   [buttons-center]="dialogButtonsCenter"
   [(visible)]="dialogVisible"
-  (cancel)="change()"
-  (close)="change()"
+  (cancel)="closeModal()"
+  (close)="closeModal()"
   (confirm)="sure()"
 >
   <div class="x-find-dialog">
     <x-table
       #tableCom
-      [columns]="tableColumn"
+      [columns]="tableColumns"
       [service]="tableService"
       [search-show]="tableSearchShow"
       [allow-select-row]="tableAllowSelectRow"
       [activated-row]="tableActivatedRow"
+      [checked-row]="tableCheckedRow"
       (actionEmit)="actionEmit($event)"
       (rowEmit)="rowEmit($event)"
     ></x-table>
