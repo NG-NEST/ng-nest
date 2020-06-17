@@ -77,6 +77,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   scrollTop = 0;
 
   isEmpty = false;
+  rowChecked: XTableColumn;
 
   private _unSubject = new Subject<void>();
   private _isFirst = true;
@@ -89,6 +90,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   ngOnInit() {
     this.setActions();
     this.setData();
+    this.setRowChecked();
   }
 
   ngAfterViewInit() {
@@ -143,9 +145,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.setData();
   }
 
-  rowOnClick(row: any, event?: Event) {
+  rowOnClick(row: any, event?: MouseEvent) {
     row.event = event;
     this.activatedRow = row;
+    if (this.rowChecked) {
+      if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
+        row[this.rowChecked.id] = !row[this.rowChecked.id];
+      }
+    }
     this.rowEmit.emit(row);
     this.cdr.detectChanges();
   }
@@ -163,6 +170,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
     this.rowIconActions = filter(this.actions, (x) => x.actionLayoutType === 'row-icon');
     this.activatedAction = find(this.actions, (x) => x.activated) as XTableAction;
     this.cdr.markForCheck();
+  }
+
+  setRowChecked() {
+    this.rowChecked = this.columns.find((x) => x.rowChecked) as XTableColumn;
   }
 
   setData(fst?: boolean) {
@@ -283,6 +294,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnChanges
   }
 
   setDataChange(result: XResultList<any>) {
+    console.log(result);
     this.total = result.total as number;
     this.setChecked(result.list);
     this.tableData = result.list as any[];

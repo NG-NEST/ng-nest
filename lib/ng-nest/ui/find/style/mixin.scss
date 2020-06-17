@@ -58,4 +58,46 @@
 
 @mixin find-dialog {
   flex: 1;
+  display: flex;
+  &-table {
+    flex: 1;
+    min-height: 18.75rem;
+    height: fit-content;
+  }
+  &-tree {
+    flex: 1;
+    min-height: 18.75rem;
+    max-height: 25rem;
+    overflow-y: auto;
+  }
+  &-checked {
+    margin-left: 1rem;
+    border-left: $--x-border-200-base;
+    padding-left: 1rem;
+    width: 10rem;
+    overflow-y: auto;
+    height: 100%;
+    x-tag {
+      display: block;
+      &:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+      .x-tag {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        > span {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+    &.x-find-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

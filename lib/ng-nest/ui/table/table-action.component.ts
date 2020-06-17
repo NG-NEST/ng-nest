@@ -37,6 +37,7 @@ export class XTableActionComponent implements OnInit {
           groupColumn.search = true;
           this.table.groupSearchPlaceholder = `查找${groupColumn.label}`;
           this.table.groupColumns = [groupColumn, { id: 'count', flex: 2 }];
+          console.log(this.table.groupColumns);
         }
         this.table.cdr.detectChanges();
       } else if (this.table.groupQuery.group) {

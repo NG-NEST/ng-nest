@@ -1,7 +1,18 @@
-import { XControlValueAccessor, XFormOption, XRepositoryAbstract, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import {
+  XControlValueAccessor,
+  XFormOption,
+  XRepositoryAbstract,
+  XInputBoolean,
+  XBoolean,
+  XDataConvert,
+  XData,
+  XInputNumber,
+  XNumber
+} from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableOption, XTableColumn, XTableAction } from '@ng-nest/ui/table';
 import { XDialogOption } from '@ng-nest/ui/dialog';
+import { XTreeNode } from '@ng-nest/ui/tree';
 
 /**
  * Find
@@ -26,11 +37,11 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 弹框标题
    */
-  @Input() dialogTitle: string = '查找';
+  @Input() dialogTitle: string = '查找选择';
   /**
    * 弹框宽度
    */
-  @Input() dialogWidth: string = '50rem';
+  @Input() dialogWidth: string;
   /**
    * 弹框高度
    */
@@ -47,6 +58,10 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * 表格列参数
    */
   @Input() tableColumns: XTableColumn[] = [];
+  /**
+   * 表格操作按钮
+   */
+  @Input() tableActions: XTableAction[] = [];
   /**
    * 表格服务
    */
@@ -71,6 +86,31 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * 表格行点击事件
    */
   @Output() tableRowEmit = new EventEmitter<any>();
+
+  /**
+   * 树节点数据
+   */
+  @Input() @XDataConvert() treeData: XData<XTreeNode> = [];
+  /**
+   * 树当前点击选中的节点变化的事件
+   */
+  @Output() treeActivatedChange = new EventEmitter<XTreeNode>();
+  /**
+   * 树当前激活的节点 Id
+   */
+  @Input() treeActivatedId: any;
+  /**
+   * 默认展开的层级
+   */
+  @Input() @XInputNumber() treeExpandedLevel: XNumber = 0;
+  /**
+   * checkbox 选中的节点
+   */
+  @Input() treeChecked: any[] = [];
+  /**
+   * 显示多选框
+   */
+  @Input() @XInputBoolean() treeCheckbox: XBoolean;
 }
 
 /**

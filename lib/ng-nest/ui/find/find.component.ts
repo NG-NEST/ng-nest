@@ -9,10 +9,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XValueAccessor, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass, XResize, XIsUndefined } from '@ng-nest/ui/core';
 import { XTableAction, XTableComponent } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: `${XFindPrefix}`,
@@ -27,10 +29,27 @@ export class XFindComponent extends XFindProperty implements OnInit {
   @ViewChild('dialogCom') dialogCom: XDialogComponent;
   @ViewChild('tableCom') tableCom: XTableComponent;
   @ViewChild('buttonCom') buttonCom: XButtonComponent;
+  @ViewChild('tableRef') tableRef: ElementRef;
+  @ViewChild('treeRef') treeRef: ElementRef;
 
-  private _value: any;
+  get getEmpty() {
+    return !this.temp || this.temp.length === 0;
+  }
 
+  get hasTable() {
+    return this.tableColumns?.length > 0;
+  }
+
+  get hasTree() {
+    return (Array.isArray(this.treeData) && this.treeData.length > 0) || this.treeData instanceof Observable;
+  }
+
+  temp: any;
   tableCheckedRow: { [prop: string]: any[] } = {};
+  height = 100;
+
+  private _unSubject = new Subject<void>();
+  private _resizeObserver: ResizeObserver;
 
   writeValue(value: any) {
     this.value = value;
@@ -45,11 +64,19 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.setFlex(this.find.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setMultiple();
+    this.setWidth();
   }
 
   ngAfterViewInit() {
     if (this.value) this.cdr.detectChanges();
-    if (this.multiple) this.tableAllowSelectRow = false;
+    if (this.multiple) {
+      this.tableAllowSelectRow = false;
+      this.setSubscribe();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._resizeObserver?.disconnect();
   }
 
   setClassMap() {
@@ -57,9 +84,37 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
+  setSubscribe() {
+    XResize(this.tableRef?.nativeElement, this.treeRef?.nativeElement)
+      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this._resizeObserver = x.resizeObserver;
+        if (this.tableRef) {
+          this.height = this.tableRef.nativeElement.clientHeight;
+        } else if (this.treeRef) {
+          this.height = this.treeRef.nativeElement.clientHeight;
+        }
+        this.cdr.detectChanges();
+      });
+  }
+
   setMultiple() {
     if (!this.multiple) return;
-    this.tableColumns = [{ id: 'checked', label: '选择', type: 'checkbox', width: 100 }, ...this.tableColumns];
+    if (this.hasTable) {
+      this.tableColumns = [{ id: 'checked', label: '选择', rowChecked: true, type: 'checkbox', width: 60 }, ...this.tableColumns];
+    }
+  }
+
+  setWidth() {
+    if (XIsUndefined(this.dialogWidth)) {
+      if ((this.hasTable && this.hasTree) || this.hasTable) {
+        this.dialogWidth = '50rem';
+      } else if (this.hasTree && this.multiple) {
+        this.dialogWidth = '30rem';
+      } else if (this.hasTree) {
+        this.dialogWidth = '20rem';
+      }
+    }
   }
 
   showModal() {
@@ -67,26 +122,39 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.dialogVisible = true;
     if (this.value) {
       if (this.multiple) {
-        this._value = (this.value as Array<any>).map((x) => Object.assign({}, x));
+        this.temp = (this.value as Array<any>).map((x) => Object.assign({}, x));
+        const ids = (this.temp as Array<any>).map((x) => x.id);
         this.tableCheckedRow = {
           ...this.tableCheckedRow,
-          checked: (this._value as Array<any>).map((x) => x.id)
+          checked: ids
         };
-        console.log(this.tableCheckedRow);
+        this.treeChecked = ids;
+        console.log(this.treeChecked);
       } else {
         this.tableActivatedRow = this.value;
+        this.treeActivatedId = this.value.id;
       }
     }
     this.cdr.detectChanges();
   }
 
   sure() {
-    this.value = this._value;
-    this._value = null;
+    this.value = this.temp;
+    this.temp = null;
     this.cdr.detectChanges();
   }
 
   closeModal() {
+    this.cdr.detectChanges();
+  }
+
+  tempClose(index: number, item: any) {
+    this.temp.splice(index, 1);
+    let it = this.tableCom.tableData.find((x) => item.id === x.id);
+    if (it) {
+      it.checked = false;
+      this.tableCom.cdr.detectChanges();
+    }
     this.cdr.detectChanges();
   }
 
@@ -96,37 +164,43 @@ export class XFindComponent extends XFindProperty implements OnInit {
     } else {
       this.value = null;
       this.tableActivatedRow = null;
+      this.treeActivatedId = null;
     }
 
     this.cdr.detectChanges();
   }
 
-  actionEmit(action: XTableAction) {
+  tableActionClick(action: XTableAction) {
     this.tableActionEmit.emit(action);
   }
 
-  rowEmit(data: any) {
+  tableRowClick(data: any) {
     if (this.multiple) {
       this.rowMultiple(data);
     } else {
-      this._value = data;
+      this.temp = data;
     }
     this.tableActivatedRow = data;
-
     this.tableRowEmit.emit(data);
   }
 
   rowMultiple(data: any) {
-    if (typeof this._value === 'undefined') this._value = [];
-    data.checked = !data.checked;
+    if (typeof this.temp === 'undefined') this.temp = [];
     if (data.checked) {
-      this._value = [...this._value, data];
+      this.temp = [...this.temp, data];
     } else {
-      this._value.splice(
-        (this._value as Array<any>).findIndex((x) => x.id === data.id),
+      this.temp.splice(
+        (this.temp as Array<any>).findIndex((x) => x.id === data.id),
         1
       );
     }
+    this.cdr.detectChanges();
+  }
+
+  treeActivatedClick(node: any) {
+    this.temp = node;
+    this.treeActivatedId = node.id;
+    this.treeActivatedChange.emit(node);
   }
 
   formControlChanges() {

@@ -272,6 +272,10 @@ export interface XTableColumn extends XIdentityProperty {
    */
   action?: boolean;
   /**
+   * type 为 checkbox 时绑定行点击事件
+   */
+  rowChecked?: boolean;
+  /**
    * 自定义属性
    */
   [prop: string]: any;

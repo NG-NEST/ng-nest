@@ -11,8 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XTableOption } from '@ng-nest/ui/table';
 import { XDialogOption } from '@ng-nest/ui/dialog';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
-import { Observable, interval } from 'rxjs';
+import { Observable } from 'rxjs';
 import { orderBy, map } from 'lodash';
+import { XTreeNode } from '@ng-nest/ui/tree';
 
 describe(XFindPrefix, () => {
   beforeEach(async(() => {
@@ -77,10 +78,11 @@ class UsersServiceTest extends XRepositoryAbstract {
 
   getList(index: number, size: number, query?: XQuery): Observable<XResultList<User | XGroupItem>> {
     return new Observable((x) => {
+      console.log('query', query);
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query?.filter as XFilter[]);
       if (query?.group) {
-        data = this.setGroup(data, query.group);
+        console.log(data, index, size, query);
       }
       if (query?.sort) {
         data = this.setSort(data, query.sort);
@@ -134,6 +136,46 @@ class UsersServiceTest extends XRepositoryAbstract {
   }
 }
 
+@Injectable()
+class TreeServiceTest {
+  data: XTreeNode[] = [
+    { id: 1, label: '一级 1' },
+    { id: 2, label: '一级 2' },
+    { id: 3, label: '一级 3' },
+    { id: 5, label: '二级 1-1', pid: 1 },
+    { id: 6, label: '二级 1-2', pid: 1 },
+    { id: 7, label: '二级 1-3', pid: 1 },
+    { id: 8, label: '二级 1-4', pid: 1 },
+    { id: 9, label: '二级 2-1', pid: 2 },
+    { id: 10, label: '二级 2-2', pid: 2 },
+    { id: 11, label: '二级 2-3', pid: 2 },
+    { id: 12, label: '二级 2-4', pid: 2 },
+    { id: 13, label: '二级 3-1', pid: 3 },
+    { id: 14, label: '二级 3-2', pid: 3 },
+    { id: 15, label: '二级 3-3', pid: 3 },
+    { id: 16, label: '二级 3-4', pid: 3 },
+    { id: 21, label: '三级 1-1-1', pid: 5 },
+    { id: 22, label: '三级 1-1-2', pid: 5 },
+    { id: 23, label: '三级 1-1-3', pid: 5 },
+    { id: 24, label: '三级 1-1-4', pid: 5 }
+  ];
+
+  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+    return new Observable((x) => {
+      let result = this.data
+        .filter((y) => y.pid === pid)
+        .map((x) => {
+          x.leaf = this.data.find((y) => y.pid === x.id) ? true : false;
+          return x;
+        });
+      setTimeout(() => {
+        x.next(result);
+        x.complete();
+      }, 500);
+    });
+  };
+}
+
 interface User extends XId {
   name?: string;
   account?: string;
@@ -147,25 +189,29 @@ interface User extends XId {
 @Component({
   template: `
     <x-row>
-      <x-col span="24">
-        <x-find
-          [(ngModel)]="model1"
-          (ngModelChange)="change($event)"
-          [tableColumns]="table.columns"
-          [tableService]="table.service"
-          multiple
-        ></x-find>
-      </x-col>
+      <x-find
+        label="表格单选"
+        [(ngModel)]="model1"
+        (ngModelChange)="change($event)"
+        [tableColumns]="table.columns"
+        [tableService]="table.service"
+      ></x-find>
     </x-row>
     <x-row>
-      <x-col span="24">
-        <x-find
-          [(ngModel)]="model2"
-          (ngModelChange)="change($event)"
-          [tableColumns]="table.columns"
-          [tableService]="table.service"
-        ></x-find>
-      </x-col>
+      <x-find
+        label="表格多选"
+        [(ngModel)]="model2"
+        (ngModelChange)="change($event)"
+        [tableColumns]="table.columns"
+        [tableService]="table.service"
+        multiple
+      ></x-find>
+    </x-row>
+    <x-row>
+      <x-find label="树单选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.data"></x-find>
+    </x-row>
+    <x-row>
+      <x-find label="树多选" [(ngModel)]="model4" (ngModelChange)="change($event)" [treeData]="treeData4" multiple></x-find>
     </x-row>
   `,
   styles: [
@@ -178,22 +224,33 @@ interface User extends XId {
       }
     `
   ],
-  providers: [UsersServiceTest]
+  providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFindComponent {
   dialog: XDialogOption = {};
   table: XTableOption = {
-    service: this.service,
+    service: this.tableService,
     columns: [
-      { id: 'index', label: '序号', type: 'index', width: 100 },
+      { id: 'index', label: '序号', type: 'index', width: 80 },
       { id: 'label', label: '用户', flex: 1, search: true, sort: true },
       { id: 'position', label: '职位', flex: 1, sort: true },
       { id: 'organization', label: '组织机构', flex: 1, sort: true }
     ]
   };
-  model1: boolean;
-  model2 = { id: 1, label: '姓名1' };
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {
+
+  model1 = { id: 1, label: '姓名1' };
+  model2 = [
+    { id: 1, label: '姓名1' },
+    { id: 2, label: '姓名1' }
+  ];
+
+  model3 = { id: 1, label: '一级 1' };
+  model4 = [
+    { id: 10, label: '二级 2-2' },
+    { id: 22, label: '三级 1-1-2' }
+  ];
+  treeData4 = JSON.parse(JSON.stringify(this.treeService.data));
+  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {
     // interval(100).subscribe((x) => this.cdr.detectChanges());
   }
   change() {

@@ -1,5 +1,7 @@
-<div class="x-table-tool-left" *ngIf="leftActions.length > 0">
-  <ng-container *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: leftActions }"></ng-container>
+<div class="x-table-tool-left">
+  <ng-container *ngIf="leftActions.length > 0">
+    <ng-container *ngTemplateOutlet="buttonsTpl; context: { space: 1, actions: leftActions }"></ng-container>
+  </ng-container>
 </div>
 <div class="x-table-tool-right">
   <x-input

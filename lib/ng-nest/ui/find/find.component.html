@@ -24,17 +24,39 @@
   (close)="closeModal()"
   (confirm)="sure()"
 >
-  <div class="x-find-dialog">
-    <x-table
-      #tableCom
-      [columns]="tableColumns"
-      [service]="tableService"
-      [search-show]="tableSearchShow"
-      [allow-select-row]="tableAllowSelectRow"
-      [activated-row]="tableActivatedRow"
-      [checked-row]="tableCheckedRow"
-      (actionEmit)="actionEmit($event)"
-      (rowEmit)="rowEmit($event)"
-    ></x-table>
+  <div class="x-find-dialog" [class.x-find-dialog-table]="hasTable" [class.x-find-dialog-tree]="hasTree">
+    <div class="x-find-dialog-tree" *ngIf="hasTree" #treeRef>
+      <x-tree
+        [data]="treeData"
+        [node-open]="!multiple"
+        [activated-id]="treeActivatedId"
+        [expanded-level]="treeExpandedLevel"
+        [checkbox]="multiple"
+        [checked]="treeChecked"
+        (activatedChange)="treeActivatedClick($event)"
+      ></x-tree>
+    </div>
+    <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>
+      <x-table
+        #tableCom
+        [columns]="tableColumns"
+        [actions]="tableActions"
+        [service]="tableService"
+        [search-show]="tableSearchShow"
+        [allow-select-row]="tableAllowSelectRow"
+        [activated-row]="tableActivatedRow"
+        [checked-row]="tableCheckedRow"
+        (actionEmit)="tableActionClick($event)"
+        (rowEmit)="tableRowClick($event)"
+      ></x-table>
+    </div>
+    <div *ngIf="multiple" class="x-find-dialog-checked" [class.x-find-empty]="getEmpty" [style.height.px]="height">
+      <x-empty *ngIf="getEmpty" content="请选择数据"></x-empty>
+      <div class="x-find-dialog-tags">
+        <x-tag *ngFor="let item of temp; index as i" closable (close)="tempClose(i, item)">
+          <span>{{ item[columnLabel] }}</span>
+        </x-tag>
+      </div>
+    </div>
   </div>
 </x-dialog>

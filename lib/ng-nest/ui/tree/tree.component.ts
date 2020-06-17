@@ -26,6 +26,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   activatedNode: XTreeNode;
   lazy: boolean = false;
   private _unSubject = new Subject<void>();
+  private _data: XTreeNode[] = [];
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
   }
@@ -33,6 +34,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.expandedAll) && this.setExpandedAll();
     XIsChange(changes.data) && this.setData();
+    XIsChange(changes.activatedId) && this.setActivatedNode(this._data);
+    XIsChange(changes.checked) && this.setCheckedKeys(this.checked);
   }
 
   ngOnDestroy(): void {
@@ -68,6 +71,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));
       return node;
     };
+    this._data = value;
     this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
     this.cdr.detectChanges();
   }
@@ -99,6 +103,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       });
     };
     setChildren(this.nodes, keys.length === 0);
+    this.cdr.detectChanges();
   }
 
   setExpandedAll() {
@@ -114,10 +119,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   setActivatedNode(nodes: XTreeNode[]) {
+    let before = this.activatedNode;
     this.activatedNode = nodes.find((x) => x.id == this.activatedId) as XTreeNode;
     if (this.activatedNode) {
       this.setParentOpen(nodes, this.activatedNode);
       this.activatedChange.emit(this.activatedNode);
+    } else if (before) {
+      before.change && before.change();
     }
   }
 
