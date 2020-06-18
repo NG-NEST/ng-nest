@@ -27,7 +27,7 @@ import { BlockScrollStrategy } from '@angular/cdk/overlay';
   animations: [XMoveBoxAnimation]
 })
 export class XDialogComponent extends XDialogProperty implements OnChanges, OnDestroy {
-  @ViewChild('dialogTpl', { static: true }) dialogTpl: TemplateRef<void>;
+  @ViewChild('dialogTpl', { static: false }) dialogTpl: TemplateRef<void>;
   dialogRef: XDialogOverlayRef;
   backdropClick$: Subscription;
   scrollStrategy: BlockScrollStrategy;

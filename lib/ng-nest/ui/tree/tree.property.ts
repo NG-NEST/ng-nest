@@ -55,6 +55,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() labelTpl: TemplateRef<void>;
   /**
+   * 节点的高度，单位 rem
+   */
+  @Input() @XInputNumber() nodeHeight: XNumber = 1.625;
+  /**
    * 当前点击选中的节点变化的事件
    */
   @Output() activatedChange = new EventEmitter<XTreeNode>();
@@ -122,6 +126,10 @@ export class XTreeNodeProperty {
    * 懒加载子节点
    */
   @Input() @XInputBoolean() lazy: XBoolean;
+  /**
+   * 节点的高度，单位 rem
+   */
+  @Input() @XInputNumber() nodeHeight: XNumber = 1.625;
   /**
    * 懒加载函数
    */

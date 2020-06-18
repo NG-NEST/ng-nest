@@ -69,6 +69,17 @@
     min-height: 18.75rem;
     max-height: 25rem;
     overflow-y: auto;
+    .x-tree-node-content.x-activated {
+      color: $--x-primary;
+    }
+  }
+  &-tree-table {
+    .#{$--x-find-prefix}-dialog-tree {
+      flex: inherit;
+      min-height: inherit;
+      max-height: inherit;
+      width: 15rem;
+    }
   }
   &-checked {
     margin-left: 1rem;

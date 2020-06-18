@@ -10,7 +10,6 @@ import { FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XFormComponent extends XFormProperty implements OnInit {
-  formGroup: FormGroup = new FormGroup({});
   controlsType: 'controls' | 'rows';
 
   constructor(public cdr: ChangeDetectorRef) {

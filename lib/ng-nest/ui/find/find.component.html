@@ -24,15 +24,13 @@
   (close)="closeModal()"
   (confirm)="sure()"
 >
-  <div class="x-find-dialog" [class.x-find-dialog-table]="hasTable" [class.x-find-dialog-tree]="hasTree">
+  <div class="x-find-dialog" [class.x-find-dialog-tree]="hasTable && hasTree">
     <div class="x-find-dialog-tree" *ngIf="hasTree" #treeRef>
       <x-tree
         [data]="treeData"
-        [node-open]="!multiple"
+        nodeHeight="1.8"
         [activated-id]="treeActivatedId"
         [expanded-level]="treeExpandedLevel"
-        [checkbox]="multiple"
-        [checked]="treeChecked"
         (activatedChange)="treeActivatedClick($event)"
       ></x-tree>
     </div>

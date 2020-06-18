@@ -9,7 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XValueAccessor, XClearClass, XResize, XIsUndefined } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass, XResize, XIsUndefined, XResultList } from '@ng-nest/ui/core';
 import { XTableAction, XTableComponent } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -44,8 +44,16 @@ export class XFindComponent extends XFindProperty implements OnInit {
     return (Array.isArray(this.treeData) && this.treeData.length > 0) || this.treeData instanceof Observable;
   }
 
+  get hasTreeTable() {
+    return this.hasTable && this.hasTree;
+  }
+
   temp: any;
   tableCheckedRow: { [prop: string]: any[] } = {};
+  query = {};
+  index = 1;
+  tableSize = 10;
+  data: XResultList<any>;
   height = 100;
 
   private _unSubject = new Subject<void>();
@@ -128,11 +136,11 @@ export class XFindComponent extends XFindProperty implements OnInit {
           ...this.tableCheckedRow,
           checked: ids
         };
-        this.treeChecked = ids;
-        console.log(this.treeChecked);
       } else {
         this.tableActivatedRow = this.value;
-        this.treeActivatedId = this.value.id;
+        if (!this.hasTreeTable && this.hasTree) {
+          this.treeActivatedId = this.value.id;
+        }
       }
     }
     this.cdr.detectChanges();
@@ -164,7 +172,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
     } else {
       this.value = null;
       this.tableActivatedRow = null;
-      this.treeActivatedId = null;
+      if (!this.hasTreeTable && this.hasTree) {
+        this.treeActivatedId = null;
+      }
     }
 
     this.cdr.detectChanges();
@@ -198,9 +208,11 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   treeActivatedClick(node: any) {
-    this.temp = node;
-    this.treeActivatedId = node.id;
-    this.treeActivatedChange.emit(node);
+    if (!this.hasTreeTable && this.hasTree) {
+      this.temp = node;
+      this.treeActivatedId = node.id;
+      this.treeActivatedChange.emit(node);
+    }
   }
 
   formControlChanges() {

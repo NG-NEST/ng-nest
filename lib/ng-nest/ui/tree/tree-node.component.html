@@ -2,6 +2,7 @@
   class="x-tree-node-content"
   [class.x-activated]="tree.activatedNode?.id === node.id"
   [style.padding-left.rem]="paddingLeft"
+  [style.height.rem]="nodeHeight"
   (click)="onActivate($event, node)"
 >
   <x-icon
@@ -9,7 +10,7 @@
     [class.is-leaf]="!node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
-    (click)="!tree.nodeOpen && onToggle($event, node)"
+    (click)="!tree.nodeOpen && onToggle($event, node) && $event.stop"
   ></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <x-checkbox
@@ -27,5 +28,13 @@
   </ng-template>
 </div>
 <ul *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
-  <li x-tree-node *ngFor="let child of node.children" [node]="child" [parent]="this" [lazy]="lazy" [lazyData]="lazyData"></li>
+  <li
+    x-tree-node
+    *ngFor="let child of node.children"
+    [node]="child"
+    [parent]="this"
+    [lazy]="lazy"
+    [lazyData]="lazyData"
+    [nodeHeight]="nodeHeight"
+  ></li>
 </ul>

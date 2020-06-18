@@ -62,7 +62,17 @@ describe(XFindPrefix, () => {
 
 @Injectable()
 class UsersServiceTest extends XRepositoryAbstract {
-  organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
+  organizations = [
+    '雷浩集团',
+    '企业发展事业群',
+    '社交网络事业群',
+    '互动娱乐事业群',
+    '移动互联网事业群',
+    '网络媒体事业群',
+    '人事部',
+    '行政部',
+    '财务部'
+  ];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {
     i++;
@@ -72,7 +82,7 @@ class UsersServiceTest extends XRepositoryAbstract {
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: '邮箱' + i,
       phone: '手机' + i,
-      organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 5]
+      organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 9]
     };
   });
 
@@ -139,25 +149,15 @@ class UsersServiceTest extends XRepositoryAbstract {
 @Injectable()
 class TreeServiceTest {
   data: XTreeNode[] = [
-    { id: 1, label: '一级 1' },
-    { id: 2, label: '一级 2' },
-    { id: 3, label: '一级 3' },
-    { id: 5, label: '二级 1-1', pid: 1 },
-    { id: 6, label: '二级 1-2', pid: 1 },
-    { id: 7, label: '二级 1-3', pid: 1 },
-    { id: 8, label: '二级 1-4', pid: 1 },
-    { id: 9, label: '二级 2-1', pid: 2 },
-    { id: 10, label: '二级 2-2', pid: 2 },
-    { id: 11, label: '二级 2-3', pid: 2 },
-    { id: 12, label: '二级 2-4', pid: 2 },
-    { id: 13, label: '二级 3-1', pid: 3 },
-    { id: 14, label: '二级 3-2', pid: 3 },
-    { id: 15, label: '二级 3-3', pid: 3 },
-    { id: 16, label: '二级 3-4', pid: 3 },
-    { id: 21, label: '三级 1-1-1', pid: 5 },
-    { id: 22, label: '三级 1-1-2', pid: 5 },
-    { id: 23, label: '三级 1-1-3', pid: 5 },
-    { id: 24, label: '三级 1-1-4', pid: 5 }
+    { id: 1, label: '雷浩集团' },
+    { id: 2, label: '企业发展事业群', pid: 1 },
+    { id: 3, label: '社交网络事业群', pid: 1 },
+    { id: 4, label: '互动娱乐事业群', pid: 1 },
+    { id: 5, label: '移动互联网事业群', pid: 1 },
+    { id: 6, label: '网络媒体事业群', pid: 1 },
+    { id: 7, label: '人事部', pid: 4 },
+    { id: 8, label: '行政部', pid: 4 },
+    { id: 9, label: '财务部', pid: 4 }
   ];
 
   getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
@@ -210,15 +210,18 @@ interface User extends XId {
     <x-row>
       <x-find label="树单选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.data"></x-find>
     </x-row>
-    <x-row>
-      <x-find label="树多选" [(ngModel)]="model4" (ngModelChange)="change($event)" [treeData]="treeData4" multiple></x-find>
-    </x-row>
+    <!-- <x-row>
+      <x-find
+        label="树加表格单选"
+        [(ngModel)]="model4"
+        [treeData]="treeData4"
+        [tableColumns]="table.columns"
+        [tableService]="table.service"
+      ></x-find>
+    </x-row> -->
   `,
   styles: [
     `
-      :host {
-        height: 900px;
-      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -241,14 +244,12 @@ class TestXFindComponent {
   model1 = { id: 1, label: '姓名1' };
   model2 = [
     { id: 1, label: '姓名1' },
-    { id: 2, label: '姓名1' }
+    { id: 2, label: '姓名2' }
   ];
 
-  model3 = { id: 1, label: '一级 1' };
-  model4 = [
-    { id: 10, label: '二级 2-2' },
-    { id: 22, label: '三级 1-1-2' }
-  ];
+  model3 = { id: 7, label: '人事部' };
+  model4 = { id: 1, label: '姓名1' };
+
   treeData4 = JSON.parse(JSON.stringify(this.treeService.data));
   constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {
     // interval(100).subscribe((x) => this.cdr.detectChanges());

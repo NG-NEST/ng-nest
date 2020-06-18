@@ -58,7 +58,6 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   onToggle(event: Event, node: XTreeNode) {
-    event.preventDefault();
     node.open = !node.open;
     if (node.open && !node.childrenLoaded) {
       if (this.lazy) {
@@ -83,6 +82,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
         node.childrenLoaded = true;
       }
     }
+    event.preventDefault();
+    event.stopPropagation();
     this.cdr.detectChanges();
   }
 
