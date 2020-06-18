@@ -34,7 +34,7 @@ describe(XHighlightPrefix, () => {
 @Component({
   selector: 'test-x-highlight',
   template: `
-    <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data" [highlight-lines]="item.highlightLines"></x-highlight>
+    <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data" [highlightLines]="item.highlightLines"></x-highlight>
   `
 })
 class TestXHighlightComponent {

@@ -30,7 +30,7 @@ describe(XPageHeaderPrefix, () => {
 @Component({
   template: `
     <div class="row">
-      <x-page-header title="标题" sub-title="小标题"> </x-page-header>
+      <x-page-header title="标题" subTitle="小标题"> </x-page-header>
     </div>
   `,
   styles: [

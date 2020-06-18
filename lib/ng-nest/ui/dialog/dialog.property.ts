@@ -50,39 +50,39 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 显示取消按钮
    */
-  @Input('show-cancel') showCancel: XBoolean = true;
+  @Input() showCancel: XBoolean = true;
   /**
    * 取消按钮文字
    */
-  @Input('cancel-text') cancelText: string = '取消';
+  @Input() cancelText: string = '取消';
   /**
    * 显示确认按钮
    */
-  @Input('show-confirm') showConfirm: XBoolean = true;
+  @Input() showConfirm: XBoolean = true;
   /**
    * 确认按钮文字
    */
-  @Input('confirm-text') confirmText: string = '确认';
+  @Input() confirmText: string = '确认';
   /**
    * 点击遮罩关闭
    */
-  @Input('backdrop-close') backdropClose: XBoolean = true;
+  @Input() backdropClose: XBoolean = true;
   /**
    * 是否显示背景遮罩
    */
-  @Input('has-backdrop') hasBackdrop: XBoolean = true;
+  @Input() hasBackdrop: XBoolean = true;
   /**
    * 自定义样式名
    */
-  @Input('class-name') className: string = '';
+  @Input() className: string = '';
   /**
    * 按钮居中
    */
-  @Input('buttons-center') @XInputBoolean() buttonsCenter: XBoolean;
+  @Input() @XInputBoolean() buttonsCenter: XBoolean;
   /**
    * 关闭前处理函数
    */
-  @Input('before-close') beforeClose: Function;
+  @Input() beforeClose: Function;
   /**
    * 取消按钮的事件
    */

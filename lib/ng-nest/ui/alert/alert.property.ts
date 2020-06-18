@@ -36,19 +36,19 @@ export class XAlertProperty extends XProperty {
   /**
    * 隐藏关闭按钮
    */
-  @Input('hide-close') @XInputBoolean() hideClose: XBoolean;
+  @Input() @XInputBoolean() hideClose: XBoolean;
   /**
    * 关闭按钮文字替换
    */
-  @Input('close-text') closeText: string;
+  @Input() closeText: string;
   /**
    * 显示图标
    */
-  @Input('show-icon') @XInputBoolean() showIcon: XBoolean;
+  @Input() @XInputBoolean() showIcon: XBoolean;
   /**
    * 禁用动画
    */
-  @Input('disabled-animation') @XInputBoolean() disabledAnimation: XBoolean = false;
+  @Input() @XInputBoolean() disabledAnimation: XBoolean = false;
   /**
    * 延迟关闭，默认 0 表示不关闭
    */

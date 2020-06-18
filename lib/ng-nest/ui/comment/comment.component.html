@@ -14,10 +14,10 @@
         </p>
         <div class="x-comment-action">
           <x-buttons>
-            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" only-icon>{{
+            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" onlyIcon>{{
               '评论' + (node.count ? node.count : '')
             }}</x-button>
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" only-icon>{{ '点赞' + (node.likes ? node.likes : '') }}</x-button>
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>{{ '点赞' + (node.likes ? node.likes : '') }}</x-button>
           </x-buttons>
         </div>
         <x-comment-reply *ngIf="node.commentShow" [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
@@ -36,10 +36,10 @@
               <div class="x-comment-action">
                 <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                 <x-buttons>
-                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" only-icon
+                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" onlyIcon
                     >回复</x-button
                   >
-                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" only-icon>{{
+                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>{{
                     '点赞' + (child.likes ? child.likes : '')
                   }}</x-button>
                 </x-buttons>
@@ -52,7 +52,7 @@
             </div>
           </li>
           <li class="x-comment-more" *ngIf="node.count > node.children?.length">
-            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" icon-right>查看更多评论</x-link>
+            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>查看更多评论</x-link>
           </li>
         </ul>
       </div>

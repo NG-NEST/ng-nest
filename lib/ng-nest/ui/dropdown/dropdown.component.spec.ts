@@ -34,10 +34,10 @@ describe(XDropdownPrefix, () => {
   template: `
     <div class="row">
       <x-dropdown [data]="data">
-        <x-link type="primary" icon="fto-chevron-down" icon-right> 下拉菜单 </x-link>
+        <x-link type="primary" icon="fto-chevron-down" iconRight> 下拉菜单 </x-link>
       </x-dropdown>
       <x-dropdown [data]="data" trigger="click">
-        <x-link type="primary" icon="fto-chevron-down" icon-right> 下拉菜单(点击触发) </x-link>
+        <x-link type="primary" icon="fto-chevron-down" iconRight> 下拉菜单(点击触发) </x-link>
       </x-dropdown>
     </div>
     <div class="row">

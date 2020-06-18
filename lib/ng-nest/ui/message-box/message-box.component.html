@@ -10,12 +10,12 @@
     [content]="contentTpl"
     [type]="messageBox.input?.type"
     [effect]="messageBox.input?.effect"
-    [hide-close]="messageBox.input?.hideClose"
-    [close-text]="messageBox.input?.closeText"
-    show-icon="false"
+    [hideClose]="messageBox.input?.hideClose"
+    [closeText]="messageBox.input?.closeText"
+    showIcon="false"
     duration="0"
     manual
-    disabled-animation
+    disabledAnimation
   ></x-alert>
   <ng-template #contentTpl let-iconTpl="$iconTpl">
     <div class="x-message-box-inner">

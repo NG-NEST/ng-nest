@@ -24,7 +24,7 @@ export class XBackTopProperty extends XProperty {
   /**
    * 滚动的多少高度后显示
    */
-  @Input('visibility-height') visibilityHeight: XNumber = 200;
+  @Input() visibilityHeight: XNumber = 200;
   /**
    * 内容模板
    */

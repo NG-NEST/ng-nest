@@ -28,7 +28,7 @@ export class XStepsProperty extends XProperty {
   /**
    * 步骤开始序号
    */
-  @Input('start-index') @XInputNumber() startIndex: XNumber = 0;
+  @Input() @XInputNumber() startIndex: XNumber = 0;
   /**
    * 当前激活节点状态
    */

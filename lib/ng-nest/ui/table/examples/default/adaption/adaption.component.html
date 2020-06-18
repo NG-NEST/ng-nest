@@ -3,7 +3,7 @@
   title="表格高度自适应， 缩放浏览器窗口查看效果"
   width="90%"
   height="90%"
-  class-name="ex-adaption"
+  className="ex-adaption"
   [visible]="visible"
   (close)="close()"
   (cancel)="close()"
@@ -14,13 +14,13 @@
     [actions]="actions"
     [service]="service"
     [size]="10000"
-    [header-column-tpl]="{ name: nameHeaderTemp }"
-    [body-column-tpl]="{ name: nameBodyTemp }"
-    [adaption-height]="104"
-    [doc-percent]="0.9"
-    search-show
-    allow-select-row
-    virtual-scroll
+    [headerColumnTpl]="{ name: nameHeaderTemp }"
+    [bodyColumnTpl]="{ name: nameBodyTemp }"
+    [adaptionHeight]="104"
+    [docPercent]="0.9"
+    searchShow
+    allowSelectRow
+    virtualScroll
   ></x-table>
 </x-dialog>
 <ng-template #nameHeaderTemp let-column="$column">

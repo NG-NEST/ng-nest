@@ -58,7 +58,7 @@
     > .x-icon {
       font-size: 1rem;
     }
-    &.#{$--x-steps}-only-icon {
+    &.#{$--x-steps}-onlyIcon {
       border: none;
       .x-icon {
         font-size: 1.5rem;
@@ -99,7 +99,7 @@
   @include status(error, $--x-danger, $--x-danger, '', $--x-danger, '', '');
 }
 
-@mixin status($status, $color, $icon-color, $icon-background-color, $icon-border-color, $line-color, $font-weight) {
+@mixin status($status, $color, $iconColor, $icon-background-color, $icon-border-color, $line-color, $font-weight) {
   &-#{$status} {
     .#{$--x-steps} {
       &-label {
@@ -107,11 +107,11 @@
         font-weight: $font-weight;
       }
       &-icon {
-        color: $icon-color;
+        color: $iconColor;
         background-color: $icon-background-color;
         border-color: $icon-border-color;
         @if $status == process {
-          &.#{$--x-steps}-only-icon {
+          &.#{$--x-steps}-onlyIcon {
             color: $--x-primary;
             background-color: inherit;
           }

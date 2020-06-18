@@ -244,7 +244,7 @@ class TestXButtonTextComponent {}
   selector: 'test-x-icon-button',
   template: `
     <div class="row">
-      <x-button icon="fto-edit-3" only-icon></x-button>
+      <x-button icon="fto-edit-3" onlyIcon></x-button>
       <x-button icon="fto-edit-3" type="primary"></x-button>
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-trash-2" type="primary"></x-button>
@@ -381,12 +381,12 @@ class TestXButtonIconComponent {}
       </x-buttons>
     </div>
     <div class="row">
-      <x-buttons space="0.5" hidden-border>
-        <x-button icon="fto-edit-3" only-icon></x-button>
-        <x-button icon="fto-share" only-icon></x-button>
-        <x-button icon="fto-trash-2" only-icon></x-button>
-        <x-button icon="fto-search" only-icon></x-button>
-        <x-button icon="fto-upload-cloud" only-icon></x-button>
+      <x-buttons space="0.5" hiddenBorder>
+        <x-button icon="fto-edit-3" onlyIcon></x-button>
+        <x-button icon="fto-share" onlyIcon></x-button>
+        <x-button icon="fto-trash-2" onlyIcon></x-button>
+        <x-button icon="fto-search" onlyIcon></x-button>
+        <x-button icon="fto-upload-cloud" onlyIcon></x-button>
       </x-buttons>
     </div>
   `,

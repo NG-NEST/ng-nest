@@ -3,12 +3,12 @@
     <x-tree
       [data]="data"
       (activatedChange)="catalogChange($event)"
-      node-open
-      [expanded-all]="expandedAll"
-      [expanded-level]="expandedLevel"
+      nodeOpen
+      [expandedAll]="expandedAll"
+      [expandedLevel]="expandedLevel"
       [expanded]="expanded"
       [spacing]="spacing"
-      [activated-id]="activatedId"
+      [activatedId]="activatedId"
     ></x-tree>
   </div>
   <div class="x-tree-file-body" [x-loading]="loading">
@@ -25,7 +25,7 @@
         *ngSwitchCase="'code'"
         [type]="activatedNode?.type"
         [data]="activatedNode?.content"
-        [highlight-lines]="activatedNode?.highlightLines"
+        [highlightLines]="activatedNode?.highlightLines"
       ></x-highlight>
     </div>
   </div>

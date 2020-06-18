@@ -145,7 +145,7 @@ class TreeServiceTest {
         <x-tree [data]="service.data"> </x-tree>
       </x-col>
       <x-col span="8">
-        <x-tree [data]="service.data" node-open> </x-tree>
+        <x-tree [data]="service.data" nodeOpen> </x-tree>
       </x-col>
       <x-col span="8">
         <x-tree [data]="service.data" checkbox> </x-tree>
@@ -293,7 +293,7 @@ class TestXTreeCustomComponent {
           [data]="service.data"
           [checked]="[15, 8]"
           (activatedChange)="activatedChange($event)"
-          [expanded-all]="expandedAll"
+          [expandedAll]="expandedAll"
         >
         </x-tree>
       </x-col>

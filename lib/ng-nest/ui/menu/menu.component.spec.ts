@@ -64,7 +64,7 @@ describe(XMenuPrefix, () => {
       <x-menu [data]="dataLeaf" (nodeClick)="nodeClick($event)"> </x-menu>
     </div>
     <div class="row">
-      <x-menu [data]="dataLeaf" layout="column" expanded-level="2"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" expandedLevel="2"> </x-menu>
     </div>
     <div class="row">
       <x-menu [data]="dataLeaf" layout="column" size="big"> </x-menu>
@@ -111,7 +111,7 @@ class TestXMenuComponent {
 @Component({
   template: `
     <div class="row" #scroll>
-      <x-menu [data]="dataLeaf" layout="column" activated-id="48" [target]="scroll"> </x-menu>
+      <x-menu [data]="dataLeaf" layout="column" activatedId="48" [target]="scroll"> </x-menu>
     </div>
   `,
   styles: [

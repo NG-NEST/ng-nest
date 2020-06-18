@@ -46,35 +46,35 @@ describe(XAlertPrefix, () => {
       <x-alert title="错误提示" type="error" effect="dark"> </x-alert>
     </div>
     <div class="row">
-      <x-alert title="成功提示" type="success" effect="white" show-icon> </x-alert>
-      <x-alert title="消息提示" type="info" effect="white" show-icon> </x-alert>
-      <x-alert title="警告提示" type="warning" effect="white" show-icon> </x-alert>
-      <x-alert title="错误提示" type="error" effect="white" show-icon> </x-alert>
+      <x-alert title="成功提示" type="success" effect="white" showIcon> </x-alert>
+      <x-alert title="消息提示" type="info" effect="white" showIcon> </x-alert>
+      <x-alert title="警告提示" type="warning" effect="white" showIcon> </x-alert>
+      <x-alert title="错误提示" type="error" effect="white" showIcon> </x-alert>
     </div>
     <div class="row">
-      <x-alert title="不可关闭" type="success" hide-close> </x-alert>
-      <x-alert title="自定义关闭内容" type="info" close-text="知道了"> </x-alert>
+      <x-alert title="不可关闭" type="success" hideClose> </x-alert>
+      <x-alert title="自定义关闭内容" type="info" closeText="知道了"> </x-alert>
       <x-alert title="关闭事件" type="warning" (close)="close()"> </x-alert>
-      <x-alert [title]="titleTpl" type="success" show-icon duration="10000" content="秒后关闭"></x-alert>
+      <x-alert [title]="titleTpl" type="success" showIcon duration="10000" content="秒后关闭"></x-alert>
       <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
     </div>
     <div class="row">
-      <x-alert title="成功提示" type="success" show-icon> </x-alert>
-      <x-alert title="消息提示" type="info" show-icon> </x-alert>
-      <x-alert title="警告提示" type="warning" show-icon> </x-alert>
-      <x-alert title="错误提示" type="error" show-icon> </x-alert>
+      <x-alert title="成功提示" type="success" showIcon> </x-alert>
+      <x-alert title="消息提示" type="info" showIcon> </x-alert>
+      <x-alert title="警告提示" type="warning" showIcon> </x-alert>
+      <x-alert title="错误提示" type="error" showIcon> </x-alert>
     </div>
     <div class="row">
       <x-alert title="提示信息" type="success" [content]="content"> </x-alert>
     </div>
     <div class="row">
-      <x-alert title="成功提示" type="success" [content]="content" show-icon> </x-alert>
-      <x-alert title="消息提示" type="info" [content]="content" show-icon> </x-alert>
-      <x-alert title="警告提示" type="warning" [content]="content" show-icon> </x-alert>
-      <x-alert title="错误提示" type="error" [content]="content" show-icon> </x-alert>
+      <x-alert title="成功提示" type="success" [content]="content" showIcon> </x-alert>
+      <x-alert title="消息提示" type="info" [content]="content" showIcon> </x-alert>
+      <x-alert title="警告提示" type="warning" [content]="content" showIcon> </x-alert>
+      <x-alert title="错误提示" type="error" [content]="content" showIcon> </x-alert>
     </div>
     <div class="row">
-      <x-alert title="控制关闭" type="success" [hide]="hide" (close)="close()" manual show-icon> </x-alert>
+      <x-alert title="控制关闭" type="success" [hide]="hide" (close)="close()" manual showIcon> </x-alert>
       <x-button (click)="toggle()">{{ hide ? '显示' : '隐藏' }}</x-button>
     </div>
   `,

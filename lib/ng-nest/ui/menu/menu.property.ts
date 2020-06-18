@@ -50,15 +50,15 @@ export class XMenuProperty extends XProperty {
   /**
    * 展开的所有层级，只对 layout 布局为 'column' 的生效
    */
-  @Input('expanded-all') @XInputBoolean() expandedAll: XBoolean;
+  @Input() @XInputBoolean() expandedAll: XBoolean;
   /**
    * 默认展开的层级，只对 layout 布局为 'column' 的生效
    */
-  @Input('expanded-level') @XInputNumber() expandedLevel: XNumber = -1;
+  @Input() @XInputNumber() expandedLevel: XNumber = -1;
   /**
    * 当前激活的节点 id
    */
-  @Input('activated-id') activatedId: any;
+  @Input() activatedId: any;
   /**
    * 滚动容器
    */

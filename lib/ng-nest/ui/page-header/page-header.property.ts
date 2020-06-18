@@ -15,11 +15,11 @@ export class XPageHeaderProperty {
   /**
    * 返回图标
    */
-  @Input('back-icon') backIcon: string = 'fto-arrow-left';
+  @Input() backIcon: string = 'fto-arrow-left';
   /**
    * 返回文字
    */
-  @Input('back-text') backText: string = '返回';
+  @Input() backText: string = '返回';
   /**
    * 标题
    */
@@ -27,7 +27,7 @@ export class XPageHeaderProperty {
   /**
    * 副标题
    */
-  @Input('sub-title') subTitle: string;
+  @Input() subTitle: string;
   /**
    * 点击返回的事件
    */

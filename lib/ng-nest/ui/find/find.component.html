@@ -18,7 +18,7 @@
   [title]="dialogTitle"
   [width]="dialogWidth"
   [height]="dialogHeight"
-  [buttons-center]="dialogButtonsCenter"
+  [buttonsCenter]="dialogButtonsCenter"
   [(visible)]="dialogVisible"
   (cancel)="closeModal()"
   (close)="closeModal()"
@@ -29,8 +29,8 @@
       <x-tree
         [data]="treeData"
         nodeHeight="1.8"
-        [activated-id]="treeActivatedId"
-        [expanded-level]="treeExpandedLevel"
+        [activatedId]="treeActivatedId"
+        [expandedLevel]="treeExpandedLevel"
         (activatedChange)="treeActivatedClick($event)"
       ></x-tree>
     </div>
@@ -40,10 +40,10 @@
         [columns]="tableColumns"
         [actions]="tableActions"
         [service]="tableService"
-        [search-show]="tableSearchShow"
-        [allow-select-row]="tableAllowSelectRow"
-        [activated-row]="tableActivatedRow"
-        [checked-row]="tableCheckedRow"
+        [searchShow]="tableSearchShow"
+        [allowSelectRow]="tableAllowSelectRow"
+        [activatedRow]="tableActivatedRow"
+        [checkedRow]="tableCheckedRow"
         (actionEmit)="tableActionClick($event)"
         (rowEmit)="tableRowClick($event)"
       ></x-table>

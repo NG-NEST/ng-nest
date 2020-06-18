@@ -12,7 +12,7 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
   @HostBinding('class.x-buttons-space') get getSpace() {
     return this.space;
   }
-  @HostBinding('class.x-buttons-hidden-border') get getHiddenBorder() {
+  @HostBinding('class.x-buttons-hiddenBorder') get getHiddenBorder() {
     return this.hiddenBorder;
   }
 

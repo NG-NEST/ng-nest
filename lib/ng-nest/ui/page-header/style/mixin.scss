@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   height: $--x-height-large;
-  &-back-icon {
+  &-backIcon {
     .x-button {
       font-size: 0.875rem;
     }
@@ -21,7 +21,7 @@
   &-title {
     font-size: 1rem;
   }
-  &-sub-title {
+  &-subTitle {
     font-size: 0.75rem;
     color: $--x-text-400;
     margin-left: 0.5rem;

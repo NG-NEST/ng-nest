@@ -3,11 +3,11 @@
   [actions]="actions"
   [service]="service"
   [size]="10000"
-  [body-height]="420"
-  [header-column-tpl]="{ name: nameHeaderTemp }"
-  [body-column-tpl]="{ name: nameBodyTemp }"
-  allow-select-row
-  virtual-scroll
+  [bodyHeight]="420"
+  [headerColumnTpl]="{ name: nameHeaderTemp }"
+  [bodyColumnTpl]="{ name: nameBodyTemp }"
+  allowSelectRow
+  virtualScroll
 ></x-table>
 <ng-template #nameHeaderTemp let-column="$column">
   <div class="header-name">

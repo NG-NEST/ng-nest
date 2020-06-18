@@ -179,9 +179,9 @@ interface User extends XId {
         [(size)]="size"
         (indexChange)="indexChange($event)"
         [columns]="columns"
-        [header-column-tpl]="{ name: nameHeaderTemp }"
-        [body-column-tpl]="{ name: nameBodyTemp }"
-        allow-select-row
+        [headerColumnTpl]="{ name: nameHeaderTemp }"
+        [bodyColumnTpl]="{ name: nameBodyTemp }"
+        allowSelectRow
       ></x-table>
     </div>
     <ng-template #nameHeaderTemp let-column="$column">
@@ -254,13 +254,13 @@ class TestXTableComponent {
         [actions]="actions"
         [service]="usersServiceTest"
         [size]="10000"
-        [item-size]="50"
-        [body-height]="420"
-        [header-column-tpl]="{ name: nameHeaderTemp }"
-        [body-column-tpl]="{ name: nameBodyTemp }"
-        allow-select-row
-        search-show
-        virtual-scroll
+        [itemSize]="50"
+        [bodyHeight]="420"
+        [headerColumnTpl]="{ name: nameHeaderTemp }"
+        [bodyColumnTpl]="{ name: nameBodyTemp }"
+        allowSelectRow
+        searchShow
+        virtualScroll
       ></x-table>
     </div>
     <ng-template #nameHeaderTemp let-column="$column">
@@ -358,14 +358,14 @@ class TestXTableScrollComponent {
         [actions]="actions"
         [service]="usersServiceTest"
         [size]="10000"
-        [body-height]="420"
-        [header-column-tpl]="{ name: nameHeaderTemp }"
-        [body-column-tpl]="{ name: nameBodyTemp }"
-        [adaption-height]="104"
-        [doc-percent]="0.9"
-        search-show
-        allow-select-row
-        virtual-scroll
+        [bodyHeight]="420"
+        [headerColumnTpl]="{ name: nameHeaderTemp }"
+        [bodyColumnTpl]="{ name: nameBodyTemp }"
+        [adaptionHeight]="104"
+        [docPercent]="0.9"
+        searchShow
+        allowSelectRow
+        virtualScroll
       ></x-table>
     </x-dialog>
     <ng-template #nameHeaderTemp let-column="$column">

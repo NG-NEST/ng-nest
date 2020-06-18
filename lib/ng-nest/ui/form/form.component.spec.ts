@@ -466,10 +466,10 @@ class TestXFormComponent {
       #form
       [controls]="controls"
       direction="row"
-      label-suffix=":"
+      labelSuffix=":"
       width="28rem"
-      label-width="8rem"
-      label-align="end"
+      labelWidth="8rem"
+      labelAlign="end"
       span="20"
     ></x-form>
     <x-button (click)="submit()">提交</x-button><x-button (click)="getMessages()">获取验证信息</x-button>`

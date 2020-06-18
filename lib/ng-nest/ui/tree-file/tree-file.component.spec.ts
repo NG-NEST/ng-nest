@@ -122,7 +122,7 @@ class TreeFileServiceTest {
 @Component({
   template: `
     <div class="row">
-      <x-tree-file [data]="service.data" activated-id="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
+      <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
     </div>
   `,
   styles: [

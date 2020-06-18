@@ -41,7 +41,7 @@ describe(XStepsPrefix, () => {
       <x-steps [data]="dataDefault" activatedIndex="1"> </x-steps>
     </div>
     <div class="row">
-      <x-steps [data]="dataDefault" activatedIndex="1" start-index="3"> </x-steps>
+      <x-steps [data]="dataDefault" activatedIndex="1" startIndex="3"> </x-steps>
     </div>
     <div class="row">
       <x-steps [data]="dataIcon" activatedIndex="2"> </x-steps>
@@ -51,7 +51,7 @@ describe(XStepsPrefix, () => {
       <x-steps [data]="data" [activatedIndex]="activatedTab"> </x-steps>
     </div>
     <div class="row">
-      <x-tabs slider-hidden [activatedIndex]="activatedTab">
+      <x-tabs sliderHidden [activatedIndex]="activatedTab">
         <x-tab> <div class="custom-steps-content">内容1</div></x-tab>
         <x-tab> <div class="custom-steps-content">内容2</div></x-tab>
         <x-tab> <div class="custom-steps-content">内容3</div></x-tab>

@@ -25,7 +25,7 @@ export class XTreeProperty extends XProperty {
   /**
    * 当前激活的节点 Id
    */
-  @Input('activated-id') activatedId: any;
+  @Input() activatedId: any;
   /**
    * 展开的节点
    */
@@ -37,15 +37,15 @@ export class XTreeProperty extends XProperty {
   /**
    * 展开所有节点
    */
-  @Input('expanded-all') @XInputBoolean() expandedAll: XBoolean;
+  @Input() @XInputBoolean() expandedAll: XBoolean;
   /**
    * 默认展开的层级
    */
-  @Input('expanded-level') @XInputNumber() expandedLevel: XNumber = -1;
+  @Input() @XInputNumber() expandedLevel: XNumber = -1;
   /**
    * 点击节点就触发展开/收起的操作，请确保节点上没有其它操作（checkbox、自定义的操作按钮）
    */
-  @Input('node-open') @XInputBoolean() nodeOpen: XBoolean;
+  @Input() @XInputBoolean() nodeOpen: XBoolean;
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */

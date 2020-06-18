@@ -36,7 +36,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 仅显示图标
    */
-  @Input('only-icon') @XInputBoolean() onlyIcon: XBoolean;
+  @Input() @XInputBoolean() onlyIcon: XBoolean;
   /**
    * 激活的按钮（样式差异）
    */
@@ -150,5 +150,5 @@ export class XButtonsProperty extends XProperty {
   /**
    * 隐藏边框
    */
-  @Input('hidden-border') @XInputBoolean() hiddenBorder?: XBoolean;
+  @Input() @XInputBoolean() hiddenBorder?: XBoolean;
 }

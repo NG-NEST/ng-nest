@@ -54,8 +54,8 @@
     padding: 0;
     width: 1.675rem;
   }
-  &-only-icon,
-  &-only-icon.#{$--x-button}-initial,
+  &-onlyIcon,
+  &-onlyIcon.#{$--x-button}-initial,
   &-text {
     border: none;
     background-color: transparent;
@@ -80,7 +80,7 @@
     }
   }
   &-disabled.#{$--x-button}-text,
-  &-disabled.#{$--x-button}-only-icon {
+  &-disabled.#{$--x-button}-onlyIcon {
     @include disabled($--x-button-disabled, transparent, transparent);
     &:hover,
     &:active {
@@ -227,7 +227,7 @@
       }
     }
   }
-  &-hidden-border {
+  &-hiddenBorder {
     > #{$--x-button} {
       .#{$--x-button} {
         border: 0;

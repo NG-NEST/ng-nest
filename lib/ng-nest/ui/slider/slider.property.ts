@@ -48,7 +48,7 @@ export class XSliderProperty extends XProperty {
   /**
    * 节点文字对齐方式
    */
-  @Input('node-justify') nodeJustify: XJustify = 'center';
+  @Input() nodeJustify: XJustify = 'center';
   /**
    * 节点自定义模板
    */

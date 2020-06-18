@@ -23,11 +23,11 @@ export class XFormProp extends XProperty {
   /**
    * 标签宽度
    */
-  @Input('label-width') labelWidth: string = '';
+  @Input() labelWidth: string = '';
   /**
    * 标签文字对齐方式
    */
-  @Input('label-align') labelAlign: XAlign = 'start';
+  @Input() labelAlign: XAlign = 'start';
   /**
    * flex 布局下的子元素水平排列方式
    */

@@ -20,7 +20,7 @@ export class XAnchorProperty extends XProperty {
   /**
    * 顶部距离
    */
-  @Input('affix-top') affixTop: string = '0';
+  @Input() affixTop: string = '0';
   /**
    * 导航相对内容位置
    */

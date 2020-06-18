@@ -36,7 +36,7 @@ export class XLoadingProperty extends XProperty {
   /**
    * 全屏显示
    */
-  @Input('full-screen') @XInputBoolean() fullScreen: XBoolean;
+  @Input() @XInputBoolean() fullScreen: XBoolean;
   /**
    * 背景样式
    */

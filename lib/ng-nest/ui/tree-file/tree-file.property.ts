@@ -27,23 +27,23 @@ export class XTreeFileProperty extends XTreeProperty {
   /**
    * 切换状态
    */
-  @Input('toggle') @XInputBoolean() toggle: XBoolean = true;
+  @Input() @XInputBoolean() toggle: XBoolean = true;
   /**
    * 显示切换按钮
    */
-  @Input('show-toggle') @XInputBoolean() showToggle: XBoolean = true;
+  @Input() @XInputBoolean() showToggle: XBoolean = true;
   /**
    * 显示树，为 true 的时候隐藏切换按钮
    */
-  @Input('show-tree') @XInputBoolean() showTree: XBoolean = true;
+  @Input() @XInputBoolean() showTree: XBoolean = true;
   /**
    * 显示面包屑
    */
-  @Input('show-crumb') @XInputBoolean() showCrumb: XBoolean = true;
+  @Input() @XInputBoolean() showCrumb: XBoolean = true;
   /**
    * 最大高度，单位 rem
    */
-  @Input('max-height') @XInputNumber() maxHeight: XNumber = 37.5;
+  @Input() @XInputNumber() maxHeight: XNumber = 37.5;
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */

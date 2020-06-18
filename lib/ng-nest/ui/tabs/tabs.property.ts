@@ -48,11 +48,11 @@ export class XTabsProperty extends XProperty {
   /**
    * 节点排列方式
    */
-  @Input('node-justify') nodeJustify: XJustify;
+  @Input() nodeJustify: XJustify;
   /**
    * 隐藏标签栏
    */
-  @Input('slider-hidden') @XInputBoolean() sliderHidden: XBoolean;
+  @Input() @XInputBoolean() sliderHidden: XBoolean;
   /**
    * 标签切换变化的事件
    */

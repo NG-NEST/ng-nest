@@ -4,9 +4,9 @@
   [(size)]="size"
   (indexChange)="indexChange($event)"
   [columns]="columns"
-  [header-column-tpl]="{ name: nameHeaderTemp }"
-  [body-column-tpl]="{ name: nameBodyTemp }"
-  allow-select-row
+  [headerColumnTpl]="{ name: nameHeaderTemp }"
+  [bodyColumnTpl]="{ name: nameBodyTemp }"
+  allowSelectRow
 ></x-table>
 <ng-template #nameHeaderTemp let-column="$column">
   <div class="header-name">

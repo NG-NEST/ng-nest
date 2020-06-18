@@ -25,7 +25,7 @@ export class XHighlightProperty extends XProperty {
   /**
    * 高亮行数据
    */
-  @Input('highlight-lines') highlightLines: XHighlightLines = {};
+  @Input() highlightLines: XHighlightLines = {};
 }
 
 /**

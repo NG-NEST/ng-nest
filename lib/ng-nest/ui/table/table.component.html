@@ -4,14 +4,14 @@
       [columns]="groupColumns"
       [query]="groupQuery"
       [service]="service"
-      header-hidden
-      footer-hidden
-      allow-select-row
-      first-row-selected
-      search-show
-      [row-primary]="groupQuery.group"
-      [activated-row]="groupActivatedRow"
-      [search-placeholder]="groupSearchPlaceholder"
+      headerHidden
+      footerHidden
+      allowSelectRow
+      firstRowSelected
+      searchShow
+      [rowPrimary]="groupQuery.group"
+      [activatedRow]="groupActivatedRow"
+      [searchPlaceholder]="groupSearchPlaceholder"
       (rowEmit)="groupRowClick($event)"
     ></x-table>
   </div>

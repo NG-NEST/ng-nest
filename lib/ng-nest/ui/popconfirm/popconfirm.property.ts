@@ -41,15 +41,15 @@ export class XPopconfirmProperty extends XProperty {
   /**
    * 图标颜色
    */
-  @Input('icon-color') iconColor: string = '#e6a23c';
+  @Input() iconColor: string = '#e6a23c';
   /**
    * 取消的文字
    */
-  @Input('cancel-text') cancelText: string = '取消';
+  @Input() cancelText: string = '取消';
   /**
    * 确认的文字
    */
-  @Input('confirm-text') confirmText: string = '确认';
+  @Input() confirmText: string = '确认';
   /**
    * 取消的点击事件
    */

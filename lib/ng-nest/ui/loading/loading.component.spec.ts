@@ -87,7 +87,7 @@ describe(XLoadingPrefix, () => {
     </ng-template>
 
     <div class="row">
-      <div [x-loading]="loading" full-screen>
+      <div [x-loading]="loading" fullScreen>
         <x-button (click)="onLoading()">整页加载</x-button>
       </div>
     </div>

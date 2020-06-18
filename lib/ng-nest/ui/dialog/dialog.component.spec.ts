@@ -71,7 +71,7 @@ describe(XDialogPrefix, () => {
       title="标题"
       [(visible)]="visible"
       [placement]="placement"
-      [before-close]="beforeClose"
+      [beforeClose]="beforeClose"
       (cancel)="refresh()"
       (confirm)="refresh()"
     >
@@ -116,7 +116,7 @@ describe(XDialogPrefix, () => {
 
     <div class="row">
       <x-button (click)="customForm()">自定义表单</x-button>
-      <x-dialog title="表单" [(visible)]="visibleForm" (close)="refresh()" (cancel)="refresh()" (confirm)="refresh()" buttons-center>
+      <x-dialog title="表单" [(visible)]="visibleForm" (close)="refresh()" (cancel)="refresh()" (confirm)="refresh()" buttonsCenter>
         <ul class="custom-form">
           <li><x-input label="账号" direction="row"></x-input></li>
           <li><x-input label="邮箱" direction="row"></x-input></li>

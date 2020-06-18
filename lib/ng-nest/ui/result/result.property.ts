@@ -28,7 +28,7 @@ export class XResultProperty extends XProperty {
   /**
    * 小标题，支持模板自定义
    */
-  @Input('sub-title') subTitle: XTemplate;
+  @Input() subTitle: XTemplate;
 }
 
 /**

@@ -46,7 +46,7 @@ describe(XBackTopPrefix, () => {
   template: `
     <div class="row">
       <x-back-top> </x-back-top>
-      <x-back-top [template]="templateTpl" bottom="6rem" visibility-height="100"> </x-back-top>
+      <x-back-top [template]="templateTpl" bottom="6rem" visibilityHeight="100"> </x-back-top>
       <ng-template #templateTpl>
         <div class="custom-template">UP</div>
       </ng-template>

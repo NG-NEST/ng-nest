@@ -45,7 +45,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 标签后缀
    */
-  @Input('label-suffix') labelSuffix: string = '';
+  @Input() labelSuffix: string = '';
   /**
    * 表单控件
    */

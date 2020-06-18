@@ -30,14 +30,14 @@
       border-bottom: 0.0625rem solid $--x-primary;
     }
   }
-  &-icon-right {
+  &-iconRight {
     flex-direction: row-reverse;
     > x-icon {
       margin-right: 0;
       margin-left: 0.125rem;
     }
   }
-  &-only-icon {
+  &-onlyIcon {
     > x-icon {
       margin-right: 0;
       margin-left: 0;

@@ -48,79 +48,79 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 隐藏表格列头
    */
-  @Input('header-hidden') @XInputBoolean() headerHidden: XBoolean;
+  @Input() @XInputBoolean() headerHidden: XBoolean;
   /**
    * 隐藏表格分页
    */
-  @Input('footer-hidden') @XInputBoolean() footerHidden: XBoolean;
+  @Input() @XInputBoolean() footerHidden: XBoolean;
   /**
    * 允许行点击选中
    */
-  @Input('allow-select-row') @XInputBoolean() allowSelectRow: XBoolean;
+  @Input() @XInputBoolean() allowSelectRow: XBoolean;
   /**
    * 选中第一行数据，触发选中事件
    */
-  @Input('first-row-selected') @XInputBoolean() firstRowSelected: XBoolean;
+  @Input() @XInputBoolean() firstRowSelected: XBoolean;
   /**
    * 行主键
    */
-  @Input('row-primary') rowPrimary: string = 'id';
+  @Input() rowPrimary: string = 'id';
   /**
    * 当前选中行数据
    */
-  @Input('activated-row') activatedRow?: any;
+  @Input() activatedRow?: any;
   /**
    * 显示搜索框
    */
-  @Input('search-show') @XInputBoolean() searchShow: XBoolean;
+  @Input() @XInputBoolean() searchShow: XBoolean;
   /**
    * 查找框提示信息
    */
-  @Input('search-placeholder') searchPlaceholder: string = '查找';
+  @Input() searchPlaceholder: string = '查找';
   /**
    * 列头自定义模板
    */
-  @Input('header-column-tpl') headerColumnTpl: XTableColumnTemplate = {};
+  @Input() headerColumnTpl: XTableColumnTemplate = {};
   /**
    * 列内容自定义模板
    */
-  @Input('body-column-tpl') bodyColumnTpl: XTableColumnTemplate = {};
+  @Input() bodyColumnTpl: XTableColumnTemplate = {};
   /**
    * 开启虚拟滚动
    */
-  @Input('virtual-scroll') @XInputBoolean() virtualScroll: XBoolean = false;
+  @Input() @XInputBoolean() virtualScroll: XBoolean = false;
   /**
    * 行高，对应 cdk scroll 中的参数
    */
-  @Input('item-size') itemSize: number = 42;
+  @Input() itemSize: number = 42;
   /**
    * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    */
-  @Input('min-buffer-px') minBufferPx: number = 100;
+  @Input() minBufferPx: number = 100;
   /**
    * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    */
-  @Input('max-buffer-px') maxBufferPx: number = 200;
+  @Input() maxBufferPx: number = 200;
   /**
    * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    */
-  @Input('adaption-height') @XInputNumber() adaptionHeight: XNumber;
+  @Input() @XInputNumber() adaptionHeight: XNumber;
   /**
    * 文档高度百分比，弹窗百分比高度用到
    */
-  @Input('doc-percent') @XInputNumber() docPercent: XNumber = 1;
+  @Input() @XInputNumber() docPercent: XNumber = 1;
   /**
    * body 数据高度
    */
-  @Input('body-height') @XInputNumber() bodyHeight: number;
+  @Input() @XInputNumber() bodyHeight: number;
   /**
    * 横向滚动条出现的最小宽度
    */
-  @Input('min-scroll-x') minScrollX: XNumber = '100%';
+  @Input() minScrollX: XNumber = '100%';
   /**
    * checkbox 列初始选中的数据
    */
-  @Input('checked-row') checkedRow: { [prop: string]: any[] } = {};
+  @Input() checkedRow: { [prop: string]: any[] } = {};
   /**
    * 操作按钮点击事件
    */

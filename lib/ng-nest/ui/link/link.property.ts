@@ -32,7 +32,7 @@ export class XLinkProperty extends XProperty {
   /**
    * 图标靠右对齐
    */
-  @Input('icon-right') @XInputBoolean() iconRight: XBoolean;
+  @Input() @XInputBoolean() iconRight: XBoolean;
   /**
    * 链接类型
    */
