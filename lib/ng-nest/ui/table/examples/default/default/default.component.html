@@ -1,22 +1,7 @@
-<x-table
-  [data]="data"
-  [(index)]="index"
-  [(size)]="size"
-  (indexChange)="indexChange($event)"
-  [columns]="columns"
-  [headerColumnTpl]="{ name: nameHeaderTemp }"
-  [bodyColumnTpl]="{ name: nameBodyTemp }"
-  allowSelectRow
-></x-table>
-<ng-template #nameHeaderTemp let-column="$column">
-  <div class="header-name">
-    <x-icon type="fto-user"></x-icon>
-    <span>{{ column.label }}</span>
-  </div>
-</ng-template>
-<ng-template #nameBodyTemp let-column="$column" let-item="$item">
-  <div class="body-name">
-    <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-    <span>{{ item[column.id] }}</span>
-  </div>
-</ng-template>
+<div class="row">
+  <x-table width="20rem">
+    <ul>
+      <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
+    </ul>
+  </x-table>
+</div>

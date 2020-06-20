@@ -1,40 +1,29 @@
 import { Component } from '@angular/core';
+import { DefaultService, User } from './default.service';
+import { XQuery, XSort } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
-import { ExDefaultService, User } from './default.service';
-import { XResultList } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
   templateUrl: './default.component.html',
-  styles: [
-    `
-      .header-name,
-      .body-name {
-        display: flex;
-        align-items: center;
-      }
-      .header-name > span,
-      .body-name > span {
-        margin-left: 0.25rem;
-      }
-    `
-  ],
-  providers: [ExDefaultService]
+  providers: [DefaultService]
 })
 export class ExDefaultComponent {
-  constructor(public service: ExDefaultService) {}
-
-  query = {};
+  query: XQuery = {};
   index = 1;
   size = 10;
-  data: XResultList<User>;
+  total = 0;
+  data: User[] = [];
   columns: XTableColumn[] = [
-    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true, action: true },
+    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
+    { id: 'name', label: '用户', flex: 1.5, sort: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
     { id: 'email', label: '邮箱', flex: 1 },
     { id: 'phone', label: '电话', flex: 1 },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
+
+  constructor(private service: DefaultService) {}
 
   ngOnInit() {
     this.getData();
@@ -42,12 +31,17 @@ export class ExDefaultComponent {
 
   getData() {
     this.service.getList(this.index, this.size, this.query).subscribe((x) => {
-      this.data = x;
+      [this.data, this.total] = [x.list as User[], Number(x.total)];
     });
   }
 
   indexChange(index: number) {
-    console.log(index);
+    this.index = index;
+    this.getData();
+  }
+
+  sortChange(sort: XSort[]) {
+    this.query.sort = sort;
     this.getData();
   }
 }

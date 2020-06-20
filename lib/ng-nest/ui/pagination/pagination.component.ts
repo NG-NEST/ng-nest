@@ -48,7 +48,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     return Number(this.index) === this.lastIndex;
   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
   }

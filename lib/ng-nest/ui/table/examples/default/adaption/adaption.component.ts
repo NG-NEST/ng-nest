@@ -1,64 +1,52 @@
 import { Component } from '@angular/core';
-import { XTableAction, XTableColumn } from '@ng-nest/ui/table';
-import { ExAdaptionService } from './adaption.service';
+import { AdaptionService, User } from './adaption.service';
+import { XQuery, XSort } from '@ng-nest/ui/core';
+import { XTableColumn } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-adaption',
   templateUrl: './adaption.component.html',
-  providers: [ExAdaptionService]
+  providers: [AdaptionService]
 })
 export class ExAdaptionComponent {
-  visible = false;
-
-  constructor(public service: ExAdaptionService) {}
-
+  query: XQuery = {};
+  index = 1;
+  size = 1000;
+  total = 0;
+  data: User[] = [];
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
-    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true },
-    { id: 'position', label: '职位', width: 200, sort: true },
-    { id: 'email', label: '邮箱', width: 200 },
-    { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', width: 150, sort: true }
-  ];
-  actions: XTableAction[] = [
-    { label: '新增', icon: 'fto-plus', type: 'primary' },
-    { label: '导出', icon: 'fto-download' },
-    { label: '批量操作', icon: 'fto-list' },
-    {
-      icon: 'fto-menu',
-      title: '列表视图',
-      activated: true,
-      actionLayoutType: 'top-right-icon'
-    },
-    {
-      icon: 'fto-disc',
-      title: '组织视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'organization'
-    },
-    {
-      icon: 'fto-briefcase',
-      title: '职位视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'position'
-    },
-    {
-      icon: 'fto-edit',
-      title: '编辑',
-      actionLayoutType: 'row-icon'
-    },
-    {
-      icon: 'fto-trash-2',
-      title: '删除',
-      actionLayoutType: 'row-icon'
-    }
+    { id: 'name', label: '用户', width: 200, sort: true },
+    { id: 'position', label: '职位', width: 300, sort: true },
+    { id: 'email', label: '邮箱', width: 300 },
+    { id: 'phone', label: '电话', width: 300 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  dialog() {
-    this.visible = true;
+  visible = false;
+
+  constructor(private service: AdaptionService) {}
+
+  ngOnInit() {}
+
+  getData() {
+    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      [this.data, this.total] = [x.list as User[], Number(x.total)];
+    });
   }
 
-  close() {
-    this.visible = false;
+  indexChange(index: number) {
+    this.index = index;
+    this.getData();
+  }
+
+  sortChange(sort: XSort[]) {
+    this.query.sort = sort;
+    this.getData();
+  }
+
+  dialog() {
+    this.getData();
+    this.visible = true;
   }
 }

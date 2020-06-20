@@ -6,8 +6,6 @@
 
 @mixin pagination {
   display: inline-flex;
-  flex: 1;
-  justify-content: space-between;
   > .x-buttons > x-button.x-button {
     min-width: 2rem;
     padding: 0.5rem;

@@ -4,85 +4,61 @@ import { XTableComponent } from './table.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTableModule } from '@ng-nest/ui/table';
-import { XTablePrefix, XTableColumn, XTableAction } from './table.property';
-import {
-  XId,
-  XRepositoryService,
-  XHttpService,
-  XQuery,
-  XResultList,
-  XRepositoryAbstract,
-  XFilter,
-  XGroupItem,
-  XSort
-} from '@ng-nest/ui/core';
-import { chunk, map, groupBy, orderBy } from 'lodash';
+import { FormsModule } from '@angular/forms';
+import { XTablePrefix, XTableColumn } from './table.property';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { map, orderBy } from 'lodash';
 
 describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
+      imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
       declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
-    let testComponent: TestXTableComponent;
-    let debugElement: DebugElement;
-    let element: Element;
+    let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XTableComponent));
-      element = debugElement.nativeElement;
+      table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(debugElement).toBeDefined();
+      expect(table).toBeDefined();
     });
   });
-  describe(`scroll`, () => {
+  describe(`scroll.`, () => {
     let fixture: ComponentFixture<TestXTableScrollComponent>;
-    let testComponent: TestXTableScrollComponent;
-    let debugElement: DebugElement;
-    let element: Element;
+    let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableScrollComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XTableComponent));
-      element = debugElement.nativeElement;
+      table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(debugElement).toBeDefined();
+      expect(table).toBeDefined();
     });
   });
-  describe(`adaption`, () => {
+  describe(`adaption.`, () => {
     let fixture: ComponentFixture<TestXTableAdaptionComponent>;
-    let testComponent: TestXTableAdaptionComponent;
+    let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableAdaptionComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
+      table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(true).toBe(true);
+      expect(table).toBeDefined();
     });
   });
 });
-
-@Injectable()
-class UsersService extends XRepositoryService<User> {
-  constructor(public http: XHttpService) {
-    super(http, { controller: { name: 'http://localhost:3000/users' } });
-  }
-}
 
 @Injectable()
 class UsersServiceTest extends XRepositoryAbstract {
@@ -170,61 +146,48 @@ interface User extends XId {
 }
 
 @Component({
-  selector: 'test-x-table',
   template: `
-    <div style="padding: 1rem;">
+    <div class="row">
       <x-table
+        [columns]="columns"
         [data]="data"
         [(index)]="index"
         [(size)]="size"
+        [total]="total"
         (indexChange)="indexChange($event)"
-        [columns]="columns"
-        [headerColumnTpl]="{ name: nameHeaderTemp }"
-        [bodyColumnTpl]="{ name: nameBodyTemp }"
-        allowSelectRow
-      ></x-table>
+        (sortChange)="sortChange($event)"
+      >
+      </x-table>
     </div>
-    <ng-template #nameHeaderTemp let-column="$column">
-      <div class="header-username">
-        <x-icon type="fto-user"></x-icon>
-        <span>{{ column.label }}</span>
-      </div>
-    </ng-template>
-    <ng-template #nameBodyTemp let-column="$column" let-item="$item">
-      <div class="body-username">
-        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-        <span>{{ item[column.id] }}</span>
-      </div>
-    </ng-template>
   `,
   styles: [
     `
-      .header-username,
-      .body-username {
-        display: flex;
-        align-items: center;
+      .row {
+        padding: 1rem;
       }
-      .header-username > span,
-      .body-username > span {
-        margin-left: 0.5rem;
+      .row:not(:first-child) {
+        margin-top: 1rem;
       }
     `
   ],
   providers: [UsersServiceTest]
 })
 class TestXTableComponent {
-  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
-  query = {};
+  query: XQuery = {};
   index = 1;
   size = 10;
-  data: XResultList<User>;
+  total = 0;
+  data: User[] = [];
   columns: XTableColumn[] = [
-    { id: 'name', label: '用户', flex: 1.5, search: true, sort: true, action: true },
+    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
+    { id: 'name', label: '用户', flex: 1.5, sort: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
     { id: 'email', label: '邮箱', flex: 1 },
     { id: 'phone', label: '电话', flex: 1 },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.getData();
@@ -235,119 +198,102 @@ class TestXTableComponent {
   }
 
   getData() {
-    this.usersServiceTest.getList(this.index, this.size, this.query).subscribe((x) => {
-      this.data = x;
+    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      [this.data, this.total] = [x.list as User[], Number(x.total)];
+      this.cdr.detectChanges();
     });
   }
 
   indexChange(index: number) {
+    this.index = index;
+    this.getData();
+  }
+
+  sortChange(sort: XSort[]) {
+    this.query.sort = sort;
     this.getData();
   }
 }
 
 @Component({
-  selector: 'test-x-table-scroll',
   template: `
-    <div style="padding: 1rem 2rem;">
+    <div class="row">
       <x-table
         [columns]="columns"
-        [actions]="actions"
-        [service]="usersServiceTest"
-        [size]="10000"
-        [itemSize]="50"
+        [data]="data"
+        [(index)]="index"
+        [(size)]="size"
+        [total]="total"
         [bodyHeight]="420"
-        [headerColumnTpl]="{ name: nameHeaderTemp }"
-        [bodyColumnTpl]="{ name: nameBodyTemp }"
-        allowSelectRow
-        searchShow
+        (indexChange)="indexChange($event)"
+        (sortChange)="sortChange($event)"
         virtualScroll
-      ></x-table>
+      >
+      </x-table>
     </div>
-    <ng-template #nameHeaderTemp let-column="$column">
-      <div class="header-username">
-        <x-icon type="fto-user"></x-icon>
-        <span>{{ column.label }}</span>
-      </div>
-    </ng-template>
-    <ng-template #nameBodyTemp let-column="$column" let-item="$item">
-      <div class="body-username">
-        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-        <span>{{ item[column.id] }}</span>
-      </div>
-    </ng-template>
   `,
   styles: [
     `
-      .header-username,
-      .body-username {
-        display: flex;
-        align-items: center;
+      .row {
+        padding: 1rem;
       }
-      .header-username > span,
-      .body-username > span {
-        margin-left: 0.5rem;
+      .row:not(:first-child) {
+        margin-top: 1rem;
       }
     `
   ],
   providers: [UsersServiceTest]
 })
 class TestXTableScrollComponent {
-  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  query: XQuery = {};
+  index = 1;
+  size = 1000;
+  total = 0;
+  data: User[] = [];
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
-    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true, action: true },
-    { id: 'position', label: '职位', width: 150, sort: true },
+    { id: 'name', label: '用户', width: 200, sort: true },
+    { id: 'position', label: '职位', width: 300, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
-    { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', width: 150, sort: true }
+    { id: 'phone', label: '电话', width: 300 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
-  actions: XTableAction[] = [
-    { label: '新增', icon: 'fto-plus', type: 'primary' },
-    { label: '导出', icon: 'fto-download' },
-    { label: '批量操作', icon: 'fto-list' },
-    {
-      icon: 'fto-menu',
-      title: '列表视图',
-      activated: true,
-      actionLayoutType: 'top-right-icon'
-    },
-    {
-      icon: 'fto-disc',
-      title: '组织视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'organization'
-    },
-    {
-      icon: 'fto-briefcase',
-      title: '职位视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'position'
-    },
-    {
-      icon: 'fto-edit',
-      title: '编辑',
-      actionLayoutType: 'row-icon'
-    },
-    {
-      icon: 'fto-trash-2',
-      title: '删除',
-      actionLayoutType: 'row-icon'
-    }
-  ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.getData();
+  }
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());
   }
+
+  getData() {
+    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      [this.data, this.total] = [x.list as User[], Number(x.total)];
+      this.cdr.detectChanges();
+    });
+  }
+
+  indexChange(index: number) {
+    this.index = index;
+    this.getData();
+  }
+
+  sortChange(sort: XSort[]) {
+    this.query.sort = sort;
+    this.getData();
+  }
 }
 
 @Component({
-  selector: 'test-x-table-adaption',
   template: `
     <x-button (click)="dialog()">弹框表格自适应</x-button>
     <x-dialog
       title="弹框表格自适应(缩放浏览器窗口查看效果)"
-      width="90%"
-      height="90%"
+      width="80%"
+      height="80%"
       [(visible)]="visible"
       (close)="close()"
       (cancel)="close()"
@@ -355,97 +301,76 @@ class TestXTableScrollComponent {
     >
       <x-table
         [columns]="columns"
-        [actions]="actions"
-        [service]="usersServiceTest"
-        [size]="10000"
+        [data]="data"
+        [(index)]="index"
+        [(size)]="size"
+        [total]="total"
         [bodyHeight]="420"
-        [headerColumnTpl]="{ name: nameHeaderTemp }"
-        [bodyColumnTpl]="{ name: nameBodyTemp }"
         [adaptionHeight]="104"
-        [docPercent]="0.9"
-        searchShow
-        allowSelectRow
+        [docPercent]="0.8"
+        (indexChange)="indexChange($event)"
+        (sortChange)="sortChange($event)"
         virtualScroll
-      ></x-table>
+      >
+      </x-table>
     </x-dialog>
-    <ng-template #nameHeaderTemp let-column="$column">
-      <div class="header-username">
-        <x-icon type="fto-user"></x-icon>
-        <span>{{ column.label }}</span>
-      </div>
-    </ng-template>
-    <ng-template #nameBodyTemp let-column="$column" let-item="$item">
-      <div class="body-username">
-        <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-        <span>{{ item[column.id] }}</span>
-      </div>
-    </ng-template>
   `,
   styles: [
     `
-      .header-username,
-      .body-username {
-        display: flex;
-        align-items: center;
+      .row {
+        padding: 1rem;
       }
-      .header-username > span,
-      .body-username > span {
-        margin-left: 0.5rem;
+      .row:not(:first-child) {
+        margin-top: 1rem;
       }
     `
   ],
   providers: [UsersServiceTest]
 })
 class TestXTableAdaptionComponent {
-  visible = false;
-  constructor(public usersServiceTest: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  query: XQuery = {};
+  index = 1;
+  size = 1000;
+  total = 0;
+  data: User[] = [];
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
-    { id: 'name', label: '用户', width: 150, left: 100, search: true, sort: true, action: true },
-    { id: 'position', label: '职位', width: 150, sort: true },
+    { id: 'name', label: '用户', width: 200, sort: true },
+    { id: 'position', label: '职位', width: 300, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
-    { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', width: 150, sort: true }
+    { id: 'phone', label: '电话', width: 300 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
-  actions: XTableAction[] = [
-    { label: '新增', icon: 'fto-plus', type: 'primary' },
-    { label: '导出', icon: 'fto-download' },
-    { label: '批量操作', icon: 'fto-list' },
-    {
-      icon: 'fto-menu',
-      title: '列表视图',
-      activated: true,
-      actionLayoutType: 'top-right-icon'
-    },
-    {
-      icon: 'fto-disc',
-      title: '组织视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'organization'
-    },
-    {
-      icon: 'fto-briefcase',
-      title: '职位视图',
-      actionLayoutType: 'top-right-icon',
-      group: 'position'
-    },
-    {
-      icon: 'fto-edit',
-      title: '编辑',
-      actionLayoutType: 'row-icon'
-    },
-    {
-      icon: 'fto-trash-2',
-      title: '删除',
-      actionLayoutType: 'row-icon'
-    }
-  ];
+
+  visible = false;
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {}
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());
   }
 
+  getData() {
+    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+      [this.data, this.total] = [x.list as User[], Number(x.total)];
+      this.cdr.detectChanges();
+    });
+  }
+
+  indexChange(index: number) {
+    this.index = index;
+    this.getData();
+  }
+
+  sortChange(sort: XSort[]) {
+    this.query.sort = sort;
+    this.getData();
+  }
+
   dialog() {
+    this.getData();
     this.visible = true;
     this.cdr.detectChanges();
   }

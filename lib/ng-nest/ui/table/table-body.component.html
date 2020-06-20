@@ -1,0 +1,54 @@
+<tbody #tbody>
+  <cdk-virtual-scroll-viewport
+    #virtualBody
+    *ngIf="virtualScroll; else bodyTpl"
+    [itemSize]="rowHeight"
+    [minBufferPx]="minBufferPx"
+    [maxBufferPx]="maxBufferPx"
+    [style.height.px]="bodyHeight"
+  >
+    <tr
+      *cdkVirtualFor="let row of data; index as i"
+      [class.x-table-activated]="activatedRow?.id === row.id"
+      [style.height.px]="rowHeight"
+      (click)="rowClick(row)"
+    >
+      <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
+    </tr>
+  </cdk-virtual-scroll-viewport>
+  <x-empty *ngIf="isEmpty"></x-empty>
+</tbody>
+
+<ng-template #bodyTpl>
+  <tr
+    *ngFor="let row of data; index as i"
+    [class.x-table-activated]="activatedRow?.id === row.id"
+    [style.height.px]="rowHeight"
+    (click)="rowClick(row)"
+  >
+    <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
+  </tr>
+</ng-template>
+
+<ng-template #rowTpl let-row="row" let-i="i">
+  <ng-container *ngFor="let column of columns; index as j">
+    <td
+      [style.width.px]="column.width"
+      [style.flex]="column.width ? 'none' : column.flex"
+      [title]="row[column.id] ? row[column.id] : ''"
+      [class.x-table-sticky]="table.getSticky(column)"
+      [style.left.px]="column.left"
+    >
+      <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'index'">
+          <div>{{ table.getIndex(i) }}</div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row }">
+            <div [innerHTML]="row[column.id]"></div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </td>
+  </ng-container>
+</ng-template>

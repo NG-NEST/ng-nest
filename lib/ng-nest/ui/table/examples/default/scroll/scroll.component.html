@@ -1,23 +1,12 @@
 <x-table
   [columns]="columns"
-  [actions]="actions"
-  [service]="service"
-  [size]="10000"
+  [data]="data"
+  [(index)]="index"
+  [(size)]="size"
+  [total]="total"
   [bodyHeight]="420"
-  [headerColumnTpl]="{ name: nameHeaderTemp }"
-  [bodyColumnTpl]="{ name: nameBodyTemp }"
-  allowSelectRow
+  (indexChange)="indexChange($event)"
+  (sortChange)="sortChange($event)"
   virtualScroll
-></x-table>
-<ng-template #nameHeaderTemp let-column="$column">
-  <div class="header-name">
-    <x-icon type="fto-user"></x-icon>
-    <span>{{ column.label }}</span>
-  </div>
-</ng-template>
-<ng-template #nameBodyTemp let-column="$column" let-item="$item">
-  <div class="body-name">
-    <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-    <span>{{ item[column.id] }}</span>
-  </div>
-</ng-template>
+>
+</x-table>

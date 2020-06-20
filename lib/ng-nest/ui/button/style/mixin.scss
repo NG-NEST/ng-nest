@@ -54,8 +54,8 @@
     padding: 0;
     width: 1.675rem;
   }
-  &-onlyIcon,
-  &-onlyIcon.#{$--x-button}-initial,
+  &-only-icon,
+  &-only-icon.#{$--x-button}-initial,
   &-text {
     border: none;
     background-color: transparent;
@@ -80,7 +80,7 @@
     }
   }
   &-disabled.#{$--x-button}-text,
-  &-disabled.#{$--x-button}-onlyIcon {
+  &-disabled.#{$--x-button}-only-icon {
     @include disabled($--x-button-disabled, transparent, transparent);
     &:hover,
     &:active {

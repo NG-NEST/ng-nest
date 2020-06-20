@@ -1,37 +1,17 @@
 <x-button (click)="dialog()">弹框表格自适应</x-button>
-<x-dialog
-  title="表格高度自适应， 缩放浏览器窗口查看效果"
-  width="90%"
-  height="90%"
-  className="ex-adaption"
-  [visible]="visible"
-  (close)="close()"
-  (cancel)="close()"
-  (confirm)="close()"
->
+<x-dialog title="弹框表格自适应(缩放浏览器窗口查看效果)" width="80%" height="80%" [(visible)]="visible">
   <x-table
     [columns]="columns"
-    [actions]="actions"
-    [service]="service"
-    [size]="10000"
-    [headerColumnTpl]="{ name: nameHeaderTemp }"
-    [bodyColumnTpl]="{ name: nameBodyTemp }"
+    [data]="data"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total"
+    [bodyHeight]="420"
     [adaptionHeight]="104"
-    [docPercent]="0.9"
-    searchShow
-    allowSelectRow
+    [docPercent]="0.8"
+    (indexChange)="indexChange($event)"
+    (sortChange)="sortChange($event)"
     virtualScroll
-  ></x-table>
+  >
+  </x-table>
 </x-dialog>
-<ng-template #nameHeaderTemp let-column="$column">
-  <div style="display: flex; align-items: center;">
-    <x-icon type="fto-user"></x-icon>
-    <span style="margin-left: 0.25rem;">{{ column.label }}</span>
-  </div>
-</ng-template>
-<ng-template #nameBodyTemp let-column="$column" let-item="$item">
-  <div style="display: flex; align-items: center;">
-    <x-avatar size="mini" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-    <span style="margin-left: 0.25rem;">{{ item[column.id] }}</span>
-  </div>
-</ng-template>

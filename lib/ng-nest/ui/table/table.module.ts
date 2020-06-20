@@ -1,35 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { XTableComponent } from './table.component';
-import { XButtonModule } from '@ng-nest/ui/button';
 import { XPaginationModule } from '@ng-nest/ui/pagination';
-import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
-import { FormsModule } from '@angular/forms';
-import { XLinkModule } from '@ng-nest/ui/link';
 import { XIconModule } from '@ng-nest/ui/icon';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XEmptyModule } from '@ng-nest/ui/empty';
-import { XTableProperty } from './table.property';
-import { XTableToolComponent } from './table-tool.component';
-import { XTableActionComponent } from './table-action.component';
+import { XTableProperty, XTableHeadProperty, XTableBodyProperty, XTableFootProperty } from './table.property';
+import { XTableComponent } from './table.component';
+import { XTableHeadComponent } from './table-head.component';
+import { XTableBodyComponent } from './table-body.component';
+import { XTableFootComponent } from './table-foot.component';
 
 @NgModule({
-  declarations: [XTableComponent, XTableToolComponent, XTableActionComponent, XTableProperty],
+  declarations: [
+    XTableComponent,
+    XTableProperty,
+    XTableHeadComponent,
+    XTableHeadProperty,
+    XTableBodyComponent,
+    XTableBodyProperty,
+    XTableFootComponent,
+    XTableFootProperty
+  ],
   exports: [XTableComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ScrollingModule,
-    XIconModule,
-    XInputModule,
-    XButtonModule,
-    XPaginationModule,
-    XOutletModule,
-    XLinkModule,
-    XCheckboxModule,
-    XEmptyModule
-  ]
+  imports: [CommonModule, XPaginationModule, XOutletModule, XIconModule, ScrollingModule, XEmptyModule]
 })
 export class XTableModule {}

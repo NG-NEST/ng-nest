@@ -5,188 +5,141 @@
 @import './param';
 
 @mixin table {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
   width: 100%;
-  height: 100%;
-  font-size: $--x-font-size;
-  background-color: $--x-white;
-  ul,
-  li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &-inner {
-    display: flex;
-  }
-
-  &-group {
-    margin-right: 1rem;
-    .#{$--x-table-prefix}-tool {
-      > .#{$--x-table-prefix}-tool-right {
-        flex: 1;
-        display: inline-block;
-      }
-    }
-  }
-
-  &-struct {
-    flex: 1;
-  }
-
-  &-header,
-  &-body {
-    .#{$--x-table-prefix}-row {
+  box-shadow: $--x-box-shadow $--x-border-100;
+  border: $--x-border-200-base;
+  > thead {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    background-color: $--x-background-300;
+    > tr {
+      position: absolute;
+      width: 100%;
       display: flex;
-      cursor: default;
-      > li {
+      border-bottom: $--x-border-200-base;
+      > th {
         display: flex;
         align-items: center;
         flex: 1;
         position: relative;
-        padding-right: 0.875rem;
-        background-color: $--x-white;
-        &:first-child {
-          padding-left: 0.875rem;
-        }
-        &.#{$--x-table-prefix}-sticky {
-          position: sticky;
-          z-index: 1;
-        }
-      }
-    }
-  }
-
-  &-tool {
-    display: flex;
-    justify-content: space-between;
-    height: 2.625rem;
-    > .#{$--x-table-prefix}-tool-right {
-      display: flex;
-      > x-input {
-        width: 10rem;
-      }
-      > #{$--x-table-prefix}-action {
-        margin-left: 0.5rem;
-      }
-    }
-  }
-
-  &-header {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    > ul {
-      position: absolute;
-      width: 100%;
-      > li {
+        padding-right: $--x-font-size;
+        font-weight: 500;
+        background-color: $--x-background-300;
         > a {
           display: inline-flex;
           align-items: center;
-          cursor: default;
           color: $--x-text-400;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
-          &.#{$--x-table-prefix}-header-sort {
-            cursor: pointer;
-            transition: transform 0.2s;
-            &:hover {
-              color: $--x-text-500;
-            }
-            &:active {
-              transform: translate(1px, 1px);
-            }
-            > .#{$--x-table-prefix}-header-sort-icon {
-              margin-left: 0.25rem;
-              display: none;
-              font-size: 1rem;
-              transform: rotate(90deg) rotateY(180deg);
-              transition: 0.3s;
-              &.#{$--x-table-prefix}-icon-up,
-              &.#{$--x-table-prefix}-icon-down {
-                display: inherit;
-              }
-              &.#{$--x-table-prefix}-icon-down {
-                transform: rotate(90deg);
-              }
-            }
-          }
+        }
+        &.#{$--x-table}-sticky {
+          position: sticky;
+          z-index: 1;
+        }
+        &:first-child {
+          padding-left: $--x-font-size;
         }
       }
     }
   }
-
-  &-body {
-    .#{$--x-table-prefix}-row {
-      > li {
+  > tbody {
+    display: block;
+    border-top: none;
+    tr {
+      display: flex;
+      border-bottom: $--x-border-200-base;
+      > td {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-right: 0.875rem;
         justify-content: space-between;
         overflow: hidden;
+        background-color: $--x-white;
         > div {
           flex: 1;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
         }
-        > #{$--x-table-prefix}-action {
-          margin-left: 0.5rem;
-          display: none;
-          > x-button .x-button {
-            color: $--x-text-300;
-            &:hover {
-              color: $--x-primary;
-            }
-          }
+        &.#{$--x-table}-sticky {
+          position: sticky;
+          z-index: 1;
+        }
+        &:first-child {
+          padding-left: 0.875rem;
         }
       }
-      &:hover,
-      &.x-table-row-activated {
-        > li {
+      &.#{$--x-table}-activated {
+        > td {
           background-color: $--x-background;
-          > #{$--x-table-prefix}-action {
-            display: inline-block;
-          }
+          color: $--x-primary;
         }
       }
-      &.x-table-row-activated {
-        color: $--x-primary;
+      &:hover {
+        > td {
+          background-color: $--x-background;
+        }
+      }
+      &:last-child {
+        box-shadow: none;
       }
     }
   }
-
-  &-footer {
+  > tfoot {
     display: flex;
-    justify-content: space-between;
-    padding-top: 1rem;
+    flex-direction: column;
+    justify-content: center;
   }
-
-  &-has-group {
-    .#{$--x-table-prefix}-tool {
-      margin-left: -1rem;
-      margin-right: -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
+  &-sort {
+    cursor: pointer;
+    transition: transform 0.2s;
+    &:hover {
+      color: $--x-text-500;
+    }
+    &:active {
+      transform: translate(1px, 1px);
     }
   }
-
+  &-sort-icon.x-icon {
+    margin-left: 0.25rem;
+    display: none;
+    font-size: 1rem;
+    transform: rotate(90deg) rotateY(180deg);
+    transition: 0.3s;
+    &.#{$--x-table}-icon-up,
+    &.#{$--x-table}-icon-down {
+      display: inherit;
+    }
+    &.#{$--x-table}-icon-down {
+      transform: rotate(90deg);
+    }
+  }
   &-scroll-top {
-    .#{$--x-table-prefix}-header {
+    > thead {
       box-shadow: $--x-box-shadow-light-bottom;
       z-index: 1;
     }
   }
-
   &-scroll-left {
-    .#{$--x-table-prefix}-header {
-      .#{$--x-table-prefix}-sticky {
-        box-shadow: $--x-box-shadow-light-right;
+    > thead {
+      .#{$--x-table}-sticky {
+        box-shadow: $--x-box-shadow-base-right;
       }
     }
-    .#{$--x-table-prefix}-body {
-      .#{$--x-table-prefix}-sticky {
-        box-shadow: $--x-box-shadow-light-right;
+    > tbody {
+      .#{$--x-table}-sticky {
+        box-shadow: $--x-box-shadow-base-right;
       }
     }
   }
+}
+
+@mixin pagination {
+  padding-top: $--x-font-size;
 }

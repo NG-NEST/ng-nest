@@ -1,17 +1,6 @@
-import {
-  XData,
-  XQuery,
-  XRepositoryAbstract,
-  XIdentityProperty,
-  XInputBoolean,
-  XBoolean,
-  XInputNumber,
-  XNumber,
-  XResultList
-} from '@ng-nest/ui/core';
-import { XButtonOption } from '@ng-nest/ui/button';
+import { XProperty, XNumber, XInputNumber, XIdentityProperty, XId, XSort, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
-import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Table
@@ -26,73 +15,45 @@ export const XTablePrefix = 'x-table';
 @Component({ template: '' })
 export class XTableProperty extends XPaginationProperty implements XTableOption {
   /**
-   * 数据
+   * 行数据
    */
-  @Input() data: XResultList<any>;
+  @Input() data: XTableRow[] = [];
   /**
    * 列集合
    */
   @Input() columns: XTableColumn[] = [];
   /**
-   * 操作集合
+   * 表头和行高，单位 px
    */
-  @Input() actions: XTableAction[] = [];
-  /**
-   * 数据服务
-   */
-  @Input() service?: XRepositoryAbstract;
-  /**
-   * 查询条件
-   */
-  @Input() query: XQuery = {};
-  /**
-   * 隐藏表格列头
-   */
-  @Input() @XInputBoolean() headerHidden: XBoolean;
-  /**
-   * 隐藏表格分页
-   */
-  @Input() @XInputBoolean() footerHidden: XBoolean;
-  /**
-   * 允许行点击选中
-   */
-  @Input() @XInputBoolean() allowSelectRow: XBoolean;
-  /**
-   * 选中第一行数据，触发选中事件
-   */
-  @Input() @XInputBoolean() firstRowSelected: XBoolean;
-  /**
-   * 行主键
-   */
-  @Input() rowPrimary: string = 'id';
+  @Input() @XInputNumber() rowHeight: number = 42;
   /**
    * 当前选中行数据
    */
-  @Input() activatedRow?: any;
+  @Input() activatedRow?: XTableRow;
   /**
-   * 显示搜索框
+   * 当前选中行改变
    */
-  @Input() @XInputBoolean() searchShow: XBoolean;
-  /**
-   * 查找框提示信息
-   */
-  @Input() searchPlaceholder: string = '查找';
+  @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
    * 列头自定义模板
    */
-  @Input() headerColumnTpl: XTableColumnTemplate = {};
+  @Input() headColumnTpl: XTableTemplate = {};
   /**
    * 列内容自定义模板
    */
-  @Input() bodyColumnTpl: XTableColumnTemplate = {};
+  @Input() bodyColumnTpl: XTableTemplate = {};
+  /**
+   * 排序点击的事件
+   */
+  @Output() sortChange = new EventEmitter<XSort[]>();
   /**
    * 开启虚拟滚动
    */
-  @Input() @XInputBoolean() virtualScroll: XBoolean = false;
+  @Input() @XInputBoolean() virtualScroll: boolean = false;
   /**
-   * 行高，对应 cdk scroll 中的参数
+   * body 数据高度
    */
-  @Input() itemSize: number = 42;
+  @Input() @XInputNumber() bodyHeight: number;
   /**
    * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    */
@@ -109,26 +70,6 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * 文档高度百分比，弹窗百分比高度用到
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
-  /**
-   * body 数据高度
-   */
-  @Input() @XInputNumber() bodyHeight: number;
-  /**
-   * 横向滚动条出现的最小宽度
-   */
-  @Input() minScrollX: XNumber = '100%';
-  /**
-   * checkbox 列初始选中的数据
-   */
-  @Input() checkedRow: { [prop: string]: any[] } = {};
-  /**
-   * 操作按钮点击事件
-   */
-  @Output() actionEmit = new EventEmitter<XTableAction>();
-  /**
-   * 行点击事件
-   */
-  @Output() rowEmit = new EventEmitter<any>();
 }
 
 /**
@@ -137,73 +78,37 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
  */
 export interface XTableOption extends XPaginationOption {
   /**
-   * 数据
+   * 行数据
    */
-  data?: XResultList<any>;
+  data?: XTableRow[];
   /**
    * 列集合
    */
   columns?: XTableColumn[];
   /**
-   * 操作集合
+   * 表头和行高，单位 px
    */
-  actions?: XTableAction[];
-  /**
-   * 数据服务
-   */
-  service?: XRepositoryAbstract;
-  /**
-   * 查询条件
-   */
-  query?: XQuery;
-  /**
-   * 隐藏表格列头
-   */
-  headerHidden?: XBoolean;
-  /**
-   * 隐藏表格分页
-   */
-  footerHidden?: XBoolean;
-  /**
-   * 允许行点击选中
-   */
-  allowSelectRow?: XBoolean;
-  /**
-   * 选中第一行数据，触发选中事件
-   */
-  firstRowSelected?: XBoolean;
-  /**
-   * 行主键
-   */
-  rowPrimary?: string;
+  rowHeight?: number;
   /**
    * 当前选中行数据
    */
-  activatedRow?: any;
-  /**
-   * 显示搜索框
-   */
-  searchShow?: XBoolean;
-  /**
-   * 查找框提示信息
-   */
-  searchPlaceholder?: string;
+  activatedRow?: XTableRow;
   /**
    * 列头自定义模板
    */
-  headerColumnTpl?: XTableColumnTemplate;
+  headColumnTpl?: XTableTemplate;
   /**
    * 列内容自定义模板
    */
-  bodyColumnTpl?: XTableColumnTemplate;
+  bodyColumnTpl?: XTableTemplate;
   /**
    * 开启虚拟滚动
    */
-  virtualScroll?: XBoolean;
+  virtualScroll?: boolean;
   /**
-   * 行高，对应 cdk scroll 中的参数
+   * body 数据高度
    */
-  itemSize?: number;
+  bodyHeight?: number;
   /**
    * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    */
@@ -220,26 +125,13 @@ export interface XTableOption extends XPaginationOption {
    * 文档高度百分比，弹窗百分比高度用到
    */
   docPercent?: XNumber;
-  /**
-   * body 数据高度
-   */
-  bodyHeight?: number;
-  /**
-   * 横向滚动条出现的最小宽度
-   */
-  minScrollX?: XNumber;
-  /**
-   * checkbox 列初始选中的数据
-   */
-  checkedRow?: { [prop: string]: any[] };
-  /**
-   * 操作按钮点击事件
-   */
-  actionClick?: (action: XTableAction) => void;
-  /**
-   * 行点击事件
-   */
-  rowClick?: (row: any) => void;
+}
+
+/**
+ * 数据
+ */
+export interface XTableRow extends XId {
+  [property: string]: any;
 }
 
 /**
@@ -282,53 +174,120 @@ export interface XTableColumn extends XIdentityProperty {
 }
 
 /**
- * 操作参数
- */
-export interface XTableAction extends XButtonOption {
-  /**
-   * 按钮名称
-   */
-  label?: string;
-  /**
-   * 操作按钮位置
-   */
-  actionLayoutType?: XTableActionLayoutType;
-  /**
-   * 事件
-   * 触发的时候自动赋值返回
-   */
-  event?: Event;
-  /**
-   * 触发分组的功能
-   */
-  group?: string;
-  /**
-   * 操作类型
-   */
-  action?: XTableActionType;
-  /**
-   * 自定义数据
-   */
-  data?: { [prop: string]: any };
-}
-
-/**
  * 列类型
  */
 export type XColumnType = 'label' | 'index' | 'checkbox';
 
 /**
- * 表格操作类型
+ * 模板
  */
-export type XTableActionType = 'add' | 'edit' | 'delete';
+export type XTableTemplate = { [property: string]: TemplateRef<any> };
 
 /**
- * 操作按钮位置
- * @value "top-left" 顶部靠左（默认）
- * @value "top-right" 顶部靠右
- * @value "top-right-icon" 顶部靠右图标
- * @value "row-icon" 行中的操作按钮
+ * Table Head
+ * @selector x-table-head
+ * @decorator component
  */
-export type XTableActionLayoutType = 'top-left' | 'top-right' | 'top-right-icon' | 'row-icon';
+export const XTableHeadPrefix = 'x-table-head';
 
-export type XTableColumnTemplate = { [property: string]: TemplateRef<any> };
+/**
+ * Table Head Property
+ */
+@Component({ template: '' })
+export class XTableHeadProperty extends XProperty {
+  /**
+   * 列集合
+   */
+  @Input() columns: XTableColumn[] = [];
+  /**
+   * 高度，单位 px
+   */
+  @Input() @XInputNumber() rowHeight: XNumber = 42;
+  /**
+   * 自定义模板
+   */
+  @Input() columnTpl: XTableTemplate = {};
+  /**
+   * 竖向滚动条宽度
+   */
+  @Input() scrollYWidth: number;
+  /**
+   * 横向滚动条宽度
+   */
+  @Input() scrollXWidth: number | null;
+}
+
+/**
+ * Table Body
+ * @selector x-table-body
+ * @decorator component
+ */
+export const XTableBodyPrefix = 'x-table-body';
+
+/**
+ * Table Body Property
+ */
+@Component({ template: '' })
+export class XTableBodyProperty extends XProperty {
+  /**
+   * 行数据
+   */
+  @Input() data: XTableRow[] = [];
+  /**
+   * 列集合
+   */
+  @Input() columns: XTableColumn[] = [];
+  /**
+   * 自定义模板
+   */
+  @Input() columnTpl: XTableTemplate = {};
+  /**
+   * 当前选中行数据
+   */
+  @Input() activatedRow?: XTableRow;
+  /**
+   * 当前选中行改变
+   */
+  @Output() activatedRowChange = new EventEmitter<XTableRow>();
+  /**
+   * 高度，单位 px
+   */
+  @Input() @XInputNumber() rowHeight: XNumber = 42;
+  /**
+   * body 数据高度
+   */
+  @Input() @XInputNumber() bodyHeight: number;
+  /**
+   * 开启虚拟滚动
+   */
+  @Input() @XInputBoolean() virtualScroll: boolean = false;
+  /**
+   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   */
+  @Input() minBufferPx: number = 100;
+  /**
+   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   */
+  @Input() maxBufferPx: number = 200;
+  /**
+   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   */
+  @Input() @XInputNumber() adaptionHeight: XNumber;
+  /**
+   * 文档高度百分比，弹窗百分比高度用到
+   */
+  @Input() @XInputNumber() docPercent: XNumber = 1;
+}
+
+/**
+ * Table Foot
+ * @selector x-table-foot
+ * @decorator component
+ */
+export const XTableFootPrefix = 'x-table-foot';
+
+/**
+ * Table Foot Property
+ */
+@Component({ template: '' })
+export class XTableFootProperty extends XPaginationProperty {}

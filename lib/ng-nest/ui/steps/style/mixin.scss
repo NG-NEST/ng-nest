@@ -58,7 +58,7 @@
     > .x-icon {
       font-size: 1rem;
     }
-    &.#{$--x-steps}-onlyIcon {
+    &.#{$--x-steps}-only-icon {
       border: none;
       .x-icon {
         font-size: 1.5rem;
@@ -111,7 +111,7 @@
         background-color: $icon-background-color;
         border-color: $icon-border-color;
         @if $status == process {
-          &.#{$--x-steps}-onlyIcon {
+          &.#{$--x-steps}-only-icon {
             color: $--x-primary;
             background-color: inherit;
           }

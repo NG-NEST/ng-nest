@@ -1,14 +1,17 @@
-// Find
+// Table
 
 @import '../style/themes/default';
 @import '../style/mixins/index';
 @import './style/mixin';
 
-.#{$--x-find-prefix} {
+.#{$--x-table} {
   @include reset-component();
-  @include find();
+  @include table();
 }
 
-.#{$--x-find-prefix}-dialog {
-  @include find-dialog();
+#{$--x-table} {
+  width: 100%;
+  .x-pagination {
+    @include pagination();
+  }
 }

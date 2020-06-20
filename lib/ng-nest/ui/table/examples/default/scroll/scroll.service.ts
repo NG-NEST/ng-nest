@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { XId, XGroupItem, XSort, XFilter, XQuery, XResultList, XRepositoryAbstract } from '@ng-nest/ui/core';
-import { chunk, map, orderBy, groupBy } from 'lodash';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
+import { Observable } from 'rxjs';
+import { map, orderBy } from 'lodash';
 
 @Injectable()
-export class ExScrollService extends XRepositoryAbstract {
+export class ScrollService extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {

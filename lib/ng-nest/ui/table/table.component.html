@@ -1,140 +1,24 @@
-<div class="x-table-inner" [class.x-table-has-group]="groupQuery.group">
-  <div class="x-table-group" *ngIf="groupQuery.group">
-    <x-table
-      [columns]="groupColumns"
-      [query]="groupQuery"
-      [service]="service"
-      headerHidden
-      footerHidden
-      allowSelectRow
-      firstRowSelected
-      searchShow
-      [rowPrimary]="groupQuery.group"
-      [activatedRow]="groupActivatedRow"
-      [searchPlaceholder]="groupSearchPlaceholder"
-      (rowEmit)="groupRowClick($event)"
-    ></x-table>
-  </div>
-  <div class="x-table-struct">
-    <x-table-tool
-      #tool
-      [actions]="actions"
-      [searchShow]="searchShow"
-      [searchPlaceholder]="searchPlaceholder"
-      [searchInput]="searchInput"
-      (searchChange)="searchSub.next($event)"
-      *ngIf="actions?.length > 0 || this.searchShow"
-    ></x-table-tool>
-    <div #header class="x-table-header" *ngIf="!headerHidden" [style.height.px]="itemSize">
-      <ul
-        #headerRow
-        class="x-table-row"
-        [style.height.px]="itemSize"
-        [style.padding-right.px]="scrollYWidth"
-        [style.width.px]="scrollXWidth"
-      >
-        <li
-          *ngFor="let column of columns"
-          [class.x-table-sticky]="getSticky(column)"
-          [style.width.px]="column.width"
-          [style.left.px]="column.left"
-          [style.flex]="column.width ? 'none' : column.flex"
-        >
-          <ng-container [ngSwitch]="column.type">
-            <ng-container *ngSwitchCase="'checkbox'">
-              <span>{{ column.label }}</span>
-              <!-- <x-checkbox [data]="[{ id: true, label: '全选' }]" [(ngModel)]="checkAll"></x-checkbox> -->
-            </ng-container>
-            <ng-container *ngSwitchCase="'index'">
-              <span>{{ column.label }}</span>
-            </ng-container>
-            <ng-container *ngSwitchDefault>
-              <a [class.x-table-header-sort]="column.sort" (click)="onSort(column)">
-                <ng-container *xOutlet="headerColumnTpl[column.id]; context: { $column: column }">
-                  {{ column.label }}
-                </ng-container>
-                <x-icon
-                  class="x-table-header-sort-icon"
-                  *ngIf="column.sort"
-                  [class.x-table-icon-up]="sortStr === column.id + ' desc'"
-                  [class.x-table-icon-down]="sortStr === column.id + ' asc'"
-                  type="fto-bar-chart"
-                ></x-icon>
-              </a>
-            </ng-container>
-          </ng-container>
-        </li>
-      </ul>
-    </div>
-    <div class="x-table-body">
-      <cdk-virtual-scroll-viewport
-        #virtualBody
-        *ngIf="virtualScroll; else bodyTpl"
-        class="x-table-virtual-body"
-        [itemSize]="itemSize"
-        [minBufferPx]="minBufferPx"
-        [maxBufferPx]="maxBufferPx"
-        [style.height.px]="bodyHeight"
-      >
-        <ul
-          *cdkVirtualFor="let item of tableData; index as i"
-          class="x-table-row"
-          [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
-          [style.height.px]="itemSize"
-          (click)="rowOnClick(item, $event)"
-        >
-          <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
-        </ul>
-      </cdk-virtual-scroll-viewport>
-      <x-empty *ngIf="isEmpty"></x-empty>
-    </div>
-    <div #footer class="x-table-footer" *ngIf="!footerHidden">
-      <x-pagination [(index)]="index" [(size)]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
-    </div>
-  </div>
-</div>
-
-<ng-template #bodyTpl>
-  <ul
-    *ngFor="let item of tableData; index as i"
-    class="x-table-row"
-    [class.x-table-row-activated]="allowSelectRow && activatedRow && activatedRow[rowPrimary] === item[rowPrimary]"
-    [style.height.px]="itemSize"
-    (click)="rowOnClick(item, $event)"
-  >
-    <ng-container *ngTemplateOutlet="bodyRows; context: { item: item, i: i }"></ng-container>
-  </ul>
-</ng-template>
-
-<ng-template #bodyRows let-item="item" let-i="i">
-  <ng-container *ngFor="let column of columns; index as j">
-    <li
-      [style.width.px]="column.width"
-      [style.flex]="column.width ? 'none' : column.flex"
-      [title]="item[column.id] ? item[column.id] : ''"
-      [class.x-table-sticky]="getSticky(column)"
-      [style.left.px]="column.left"
-    >
-      <ng-container [ngSwitch]="column.type">
-        <ng-container *ngSwitchCase="'checkbox'">
-          <x-checkbox [data]="[{ id: true, label: '' }]" [(ngModel)]="item[column.id]"></x-checkbox>
-        </ng-container>
-        <ng-container *ngSwitchCase="'index'">
-          <div>{{ getIndex(i) }}</div>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <ng-container *xOutlet="bodyColumnTpl[column.id]; context: { $column: column, $item: item }">
-            <div [innerHTML]="item[column.id]"></div>
-          </ng-container>
-          <ng-container *ngIf="column.action && rowIconActions.length > 0">
-            <ng-container *ngTemplateOutlet="buttonsTpl; context: { actions: rowIconActions, hiddenBorder: true }"></ng-container>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-    </li>
-  </ng-container>
-</ng-template>
-
-<ng-template #buttonsTpl let-space="space" let-hiddenBorder="hiddenBorder" let-actions="actions">
-  <x-table-action [space]="space" [hiddenBorder]="hiddenBorder" [actions]="actions"></x-table-action>
-</ng-template>
+<table #table class="x-table" [class.x-table-scroll-left]="getScrollLeft" [class.x-table-scroll-top]="getScrollTop">
+  <x-table-head
+    [columns]="columns"
+    [rowHeight]="rowHeight"
+    [columnTpl]="headColumnTpl"
+    [scrollYWidth]="scrollYWidth"
+    [scrollXWidth]="scrollXWidth"
+  ></x-table-head>
+  <x-table-body
+    [data]="data"
+    [columns]="columns"
+    [rowHeight]="rowHeight"
+    [bodyHeight]="bodyHeight"
+    [columnTpl]="bodyColumnTpl"
+    [virtualScroll]="virtualScroll"
+    [minBufferPx]="minBufferPx"
+    [maxBufferPx]="maxBufferPx"
+    [adaptionHeight]="adaptionHeight"
+    [docPercent]="docPercent"
+    [(activatedRow)]="activatedRow"
+  ></x-table-body>
+  <x-table-foot></x-table-foot>
+</table>
+<x-pagination #pagination [(index)]="index" [(size)]="size" [total]="total" (indexChange)="change($event)"></x-pagination>

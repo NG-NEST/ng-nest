@@ -1,3 +1,6 @@
 // Table style paramters
 
-$--x-table-prefix: $--x-prefix + '-table';
+$--x-table: $--x-prefix + '-table';
+$--x-table-head: $--x-prefix + '-table-head';
+$--x-table-body: $--x-prefix + '-table-body';
+$--x-table-foot: $--x-prefix + '-table-foot';
