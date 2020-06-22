@@ -95,6 +95,14 @@ export class XDialogProperty extends XAlertProperty {
    * 显示/隐藏改变事件
    */
   @Output() visibleChange = new EventEmitter<boolean>();
+  /**
+   * 弹出完成动画加载
+   */
+  @Output() showDone = new EventEmitter<any>();
+  /**
+   * 关闭完成动画
+   */
+  @Output() closeDone = new EventEmitter<any>();
 }
 
 export interface XDialogOption extends XAlertOption {

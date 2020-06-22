@@ -18,8 +18,7 @@ import { XTableComponent } from './table.component';
 @Component({
   selector: `${XTableHeadPrefix}`,
   templateUrl: './table-head.component.html',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None
 })
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort: XSort[] = [];
@@ -40,14 +39,15 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
-    this.setClassMap();
   }
 
   ngAfterViewInit() {
     this.table.thead = this.thead;
   }
 
-  setClassMap() {}
+  getSticky(column: XTableColumn) {
+    return Number(column.left) >= 0;
+  }
 
   onSort(column: XTableColumn) {
     if (!column.sort) return;
@@ -65,6 +65,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       this.sort = [sort];
     }
     if (!XIsEmpty(this.sort)) this.sortStr = `${sort.field} ${sort.value}`;
+    this.table.checkSort(this.sort);
     this.table.sortChange.emit(this.sort);
     this.table.resetScroll(false, true);
     this.cdr.detectChanges();

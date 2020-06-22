@@ -84,6 +84,50 @@ describe(XTagPrefix, () => {
     <div class="row">
       <x-tag *ngFor="let tag of tags" type="primary" closable (close)="close(tag)">{{ tag }}</x-tag>
     </div>
+
+    <div class="row">
+      <x-tag disabled>标签</x-tag>
+      <x-tag type="primary" disabled>标签</x-tag>
+      <x-tag type="success" disabled>标签</x-tag>
+      <x-tag type="warning" disabled>标签</x-tag>
+      <x-tag type="danger" disabled>标签</x-tag>
+      <x-tag type="info" disabled>标签</x-tag>
+    </div>
+    <div class="row">
+      <x-tag dark disabled>标签</x-tag>
+      <x-tag type="primary" dark disabled>标签</x-tag>
+      <x-tag type="success" dark disabled>标签</x-tag>
+      <x-tag type="warning" dark disabled>标签</x-tag>
+      <x-tag type="danger" dark disabled>标签</x-tag>
+      <x-tag type="info" dark disabled>标签</x-tag>
+    </div>
+
+    <div class="row">
+      <x-tag closable disabled>标签</x-tag>
+      <x-tag type="primary" closable disabled>标签</x-tag>
+      <x-tag type="success" closable disabled>标签</x-tag>
+      <x-tag type="warning" closable disabled>标签</x-tag>
+      <x-tag type="danger" closable disabled>标签</x-tag>
+      <x-tag type="info" closable disabled>标签</x-tag>
+    </div>
+    <div class="row">
+      <x-tag dark closable disabled>标签</x-tag>
+      <x-tag type="primary" dark closable disabled>标签</x-tag>
+      <x-tag type="success" dark closable disabled>标签</x-tag>
+      <x-tag type="warning" dark closable disabled>标签</x-tag>
+      <x-tag type="danger" dark closable disabled>标签</x-tag>
+      <x-tag type="info" dark closable disabled>标签</x-tag>
+    </div>
+    <div class="row">
+      <x-tag size="large" closable disabled>标签</x-tag>
+      <x-tag size="medium" closable disabled>标签</x-tag>
+      <x-tag closable disabled>标签</x-tag>
+      <x-tag size="small" closable disabled>标签</x-tag>
+      <x-tag size="mini" closable disabled>标签</x-tag>
+    </div>
+    <div class="row">
+      <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{ tag }}</x-tag>
+    </div>
   `,
   styles: [
     `

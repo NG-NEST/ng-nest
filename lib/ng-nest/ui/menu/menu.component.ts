@@ -93,7 +93,6 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   onToggle(event: Event | null, node: XMenuNode, isDropdown = false) {
-    console.log(node);
     if ((this.collapsed && !isDropdown) || node.categoryNode) return;
     if (!node.leaf) {
       this.activated = node;

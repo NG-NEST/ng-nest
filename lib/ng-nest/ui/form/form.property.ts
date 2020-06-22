@@ -13,6 +13,7 @@ import { XRateOption, XRateComponent } from '@ng-nest/ui/rate';
 import { XSliderSelectOption, XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker';
+import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
 
 /**
  * Form
@@ -213,7 +214,8 @@ export type XFormControlOption =
   | XRateControlOption
   | XSliderSelectControlOption
   | XSwitchControlOption
-  | XTimePickerControlOption;
+  | XTimePickerControlOption
+  | XFindControlOption;
 
 export type XFormControlComponent =
   | XInputComponent
@@ -227,7 +229,8 @@ export type XFormControlComponent =
   | XRateComponent
   | XSliderSelectComponent
   | XSwitchComponent
-  | XTimePickerComponent;
+  | XTimePickerComponent
+  | XFindComponent;
 
 export type XFormControlType =
   | XInputControl
@@ -241,7 +244,8 @@ export type XFormControlType =
   | XRateControl
   | XSliderSelectControl
   | XSwitchControl
-  | XTimePickerControl;
+  | XTimePickerControl
+  | XFindControl;
 
 export type XControlType =
   | 'input'
@@ -255,7 +259,8 @@ export type XControlType =
   | 'rate'
   | 'slider-select'
   | 'switch'
-  | 'time-picker';
+  | 'time-picker'
+  | 'find';
 
 /**
  * Input Control
@@ -373,6 +378,16 @@ export class XSwitchControl extends XControl {
 export interface XTimePickerControlOption extends XControlOption, XTimePickerOption {}
 export class XTimePickerControl extends XControl {
   constructor(option: XTimePickerControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
+ * Find Control
+ */
+export interface XFindControlOption extends XControlOption, XFindOption {}
+export class XFindControl extends XControl {
+  constructor(option: XFindControlOption = {}) {
     super(option);
   }
 }

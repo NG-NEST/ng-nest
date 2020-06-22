@@ -1,6 +1,5 @@
-import { XProperty, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XNumber, XQuery } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { Interface } from 'readline';
 
 /**
  * Pagination
@@ -26,6 +25,14 @@ export class XPaginationProperty extends XProperty {
    * 总数
    */
   @Input() @XInputNumber() total: XNumber = 0;
+  /**
+   * 查询条件
+   */
+  @Input() query: XQuery = {};
+  /**
+   * 页码变化的事件
+   */
+  @Output() queryChange = new EventEmitter<XQuery>();
   /**
    * 页码变化的事件
    */

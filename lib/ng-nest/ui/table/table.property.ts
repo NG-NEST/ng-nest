@@ -1,4 +1,4 @@
-import { XProperty, XNumber, XInputNumber, XIdentityProperty, XId, XSort, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XNumber, XInputNumber, XIdentityProperty, XId, XSort, XInputBoolean, XBoolean, XData } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
 
@@ -17,7 +17,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 行数据
    */
-  @Input() data: XTableRow[] = [];
+  @Input() data: XData<XTableRow> = [];
   /**
    * 列集合
    */
@@ -47,9 +47,13 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Output() sortChange = new EventEmitter<XSort[]>();
   /**
+   * 允许行点击选中
+   */
+  @Input() @XInputBoolean() allowSelectRow: XBoolean = true;
+  /**
    * 开启虚拟滚动
    */
-  @Input() @XInputBoolean() virtualScroll: boolean = false;
+  @Input() @XInputBoolean() virtualScroll: XBoolean;
   /**
    * body 数据高度
    */
@@ -70,6 +74,18 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * 文档高度百分比，弹窗百分比高度用到
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
+  /**
+   * checkbox 列初始选中的数据，列中激活 checkbox
+   */
+  @Input() checkedRow: { [prop: string]: any[] } = {};
+  /**
+   * 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
+   */
+  @Input() @XInputBoolean() manual: boolean = true;
+  /**
+   * 参数控制请求改变事件
+   */
+  @Output() manualChange = new EventEmitter<boolean>();
 }
 
 /**
@@ -80,7 +96,7 @@ export interface XTableOption extends XPaginationOption {
   /**
    * 行数据
    */
-  data?: XTableRow[];
+  data?: XData<XTableRow>;
   /**
    * 列集合
    */
@@ -104,7 +120,7 @@ export interface XTableOption extends XPaginationOption {
   /**
    * 开启虚拟滚动
    */
-  virtualScroll?: boolean;
+  virtualScroll?: XBoolean;
   /**
    * body 数据高度
    */
@@ -131,6 +147,9 @@ export interface XTableOption extends XPaginationOption {
  * 数据
  */
 export interface XTableRow extends XId {
+  /**
+   * 自定义属性
+   */
   [property: string]: any;
 }
 
@@ -164,7 +183,7 @@ export interface XTableColumn extends XIdentityProperty {
    */
   action?: boolean;
   /**
-   * type 为 checkbox 时绑定行点击事件
+   * type 为 checkbox 时绑定行点击选中事件
    */
   rowChecked?: boolean;
   /**
@@ -258,6 +277,10 @@ export class XTableBodyProperty extends XProperty {
    */
   @Input() @XInputNumber() bodyHeight: number;
   /**
+   * 允许行点击选中
+   */
+  @Input() @XInputBoolean() allowSelectRow: XBoolean = true;
+  /**
    * 开启虚拟滚动
    */
   @Input() @XInputBoolean() virtualScroll: boolean = false;
@@ -290,4 +313,4 @@ export const XTableFootPrefix = 'x-table-foot';
  * Table Foot Property
  */
 @Component({ template: '' })
-export class XTableFootProperty extends XPaginationProperty {}
+export class XTableFootProperty {}

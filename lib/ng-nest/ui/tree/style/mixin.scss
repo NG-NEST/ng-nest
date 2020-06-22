@@ -18,6 +18,7 @@
       padding: 0.125rem;
       color: $--x-text-400;
       font-size: 1rem;
+      margin-right: 0.125rem;
       transition: $--x-animation-duration-base;
       &.is-leaf {
         visibility: hidden;

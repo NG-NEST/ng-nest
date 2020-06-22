@@ -7,18 +7,20 @@
     [scrollXWidth]="scrollXWidth"
   ></x-table-head>
   <x-table-body
-    [data]="data"
+    [data]="tableData"
     [columns]="columns"
     [rowHeight]="rowHeight"
     [bodyHeight]="bodyHeight"
     [columnTpl]="bodyColumnTpl"
+    [allowSelectRow]="allowSelectRow"
     [virtualScroll]="virtualScroll"
     [minBufferPx]="minBufferPx"
     [maxBufferPx]="maxBufferPx"
     [adaptionHeight]="adaptionHeight"
     [docPercent]="docPercent"
     [(activatedRow)]="activatedRow"
+    (activatedRowChange)="activatedRowChange.emit($event)"
   ></x-table-body>
   <x-table-foot></x-table-foot>
 </table>
-<x-pagination #pagination [(index)]="index" [(size)]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
+<x-pagination #pagination [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)"></x-pagination>

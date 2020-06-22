@@ -19,7 +19,10 @@ export interface XQuery {
 export interface XFilter {
   field: string;
   value: string;
+  operation?: XOperation;
 }
+
+export type XOperation = '%' | '=' | '>' | '>=' | '<' | '<=';
 
 export interface XSort extends XFilter {}
 

@@ -2,7 +2,7 @@
   <tr [style.height.px]="rowHeight" [style.padding-right.px]="scrollYWidth" [style.width.px]="scrollXWidth">
     <th
       *ngFor="let column of columns"
-      [class.x-table-sticky]="table.getSticky(column)"
+      [class.x-table-sticky]="getSticky(column)"
       [style.width.px]="column.width"
       [style.left.px]="column.left"
       [style.flex]="column.width ? 'none' : column.flex"

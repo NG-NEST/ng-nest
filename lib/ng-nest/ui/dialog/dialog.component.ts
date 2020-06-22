@@ -17,6 +17,7 @@ import { XDialogPrefix, XDialogOverlayRef, XDialogPortal, XDialogProperty } from
 import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription } from 'rxjs';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
+import { emit } from 'process';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -115,7 +116,10 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
 
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
+      this.closeDone.emit($event);
       this.dialogRef?.overlayRef?.dispose();
+    } else {
+      this.showDone.emit($event);
     }
   }
 }

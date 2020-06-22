@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType } from '@ng-nest/ui/core';
 
 /**
  * Button
@@ -129,7 +129,7 @@ export interface XButtonOption {
 /**
  * 按钮类型
  */
-export type XButtonType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
+export type XButtonType = XType;
 
 /**
  * Buttons

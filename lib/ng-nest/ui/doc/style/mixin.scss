@@ -119,31 +119,6 @@
       }
     }
   }
-
-  table {
-    width: 100%;
-    background: white;
-    border-collapse: collapse;
-    border: $--x-border-100-base;
-    tr > th,
-    tr > td {
-      border-bottom: $--x-border-100-base;
-      text-align: left;
-      padding: 0.5rem 1rem;
-    }
-    tr {
-      &:last-child {
-        > th,
-        > td {
-          border-width: 0px;
-        }
-      }
-      th {
-        white-space: nowrap;
-        color: $--x-text-500;
-      }
-    }
-  }
 }
 
 @mixin code($type, $color, $backgroundColor, $border-color, $border-left-color) {

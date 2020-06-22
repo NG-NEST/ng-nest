@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { XFormRow } from '@ng-nest/ui/form';
-import { XData } from '@ng-nest/ui/core';
+import { XData, XQuery } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
+import { UsersServiceTest, TreeServiceTest } from './default.service';
 
 const DATA_CASCADE: XData<XCalendarNode> = [
   { id: 1, label: 'AAAA' },
@@ -51,9 +52,12 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html'
+  templateUrl: './default.component.html',
+  providers: [UsersServiceTest, TreeServiceTest]
 })
 export class ExDefaultComponent {
+  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest) {}
+
   controls: XFormRow[] = [
     {
       title: 'Cascade 级联选择器',
@@ -393,6 +397,100 @@ export class ExDefaultComponent {
         {
           control: 'time-picker',
           id: 'timePickerRequired',
+          label: '必填',
+          span: 8,
+          required: true
+        }
+      ]
+    },
+    {
+      title: 'Find 查找带回',
+      icon: 'fto-list',
+      controls: [
+        {
+          control: 'find',
+          id: 'find',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          label: '表格单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findMultiple',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          multiple: true,
+          label: '表格多选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTree',
+          treeData: this.treeService.getTreeList,
+          label: '树单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTreeTable',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          treeData: this.treeService.getTreeList,
+          treeTableConnect: 'organizationId',
+          label: '树+表格单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTreeTable',
+          dialogWidth: '65rem',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          treeData: this.treeService.getTreeList,
+          treeTableConnect: 'organizationId',
+          multiple: true,
+          label: '树+表格多选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findDisabled',
+          label: '禁用',
+          value: { id: 1, label: '姓名1' },
+          span: 8,
+          disabled: true
+        },
+        {
+          control: 'find',
+          id: 'findRequired',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
           label: '必填',
           span: 8,
           required: true

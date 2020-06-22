@@ -14,13 +14,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow } from './table.property';
-import { removeNgTag, XIsChange, XResize, XIsUndefined } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
-import { BlockScrollStrategy } from '@angular/cdk/overlay';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { takeUntil, debounceTime } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -58,6 +57,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   ngAfterViewInit() {
     this.table.virtualBody = this.virtualBody;
+    this.table.bodyChange = () => this.cdr.detectChanges();
     this.setSubject();
   }
 
@@ -151,6 +151,11 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   rowClick(row: XTableRow) {
     this.activatedRow = row;
+    if (this.table.rowChecked) {
+      if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
+        row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
+      }
+    }
     this.activatedRowChange.emit(row);
     this.cdr.detectChanges();
   }

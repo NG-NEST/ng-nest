@@ -1,17 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XFormComponent } from './form.component';
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { Component, DebugElement, ViewChild, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XData } from '@ng-nest/ui/core';
+import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { map, orderBy } from 'lodash';
+import { XTreeNode } from '@ng-nest/ui/tree';
 
 describe(XFormPrefix, () => {
   beforeEach(async(() => {
@@ -64,6 +66,157 @@ describe(XFormPrefix, () => {
   });
 });
 
+@Injectable()
+class UsersServiceTest extends XRepositoryAbstract {
+  organizations = [
+    '雷浩集团',
+    '企业发展事业群',
+    '社交网络事业群',
+    '互动娱乐事业群',
+    '移动互联网事业群',
+    '网络媒体事业群',
+    '人事部',
+    '行政部',
+    '财务部'
+  ];
+  positions = ['技术员', '销售', '经理', '总监', '生产员'];
+  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+    i++;
+    let positionId = Math.floor(Math.random() * 5 + 1);
+    let organizationId = Math.floor(Math.random() * 9 + 1);
+    return {
+      id: i,
+      label: '姓名' + i,
+      positionId: positionId,
+      position: this.positions[positionId - 1],
+      email: '邮箱' + i,
+      phone: '手机' + i,
+      organizationId: organizationId,
+      organization: this.organizations[organizationId - 1]
+    };
+  });
+
+  getList(index: number, size: number, query?: XQuery): Observable<XResultList<User | XGroupItem>> {
+    return new Observable((x) => {
+      let data: User[] | XGroupItem[] = [];
+      data = this.setFilter(this.users, query?.filter as XFilter[]);
+      if (query?.group) {
+        console.log(data, index, size, query);
+      }
+      if (query?.sort) {
+        data = this.setSort(data, query.sort);
+      }
+      let chunks = chunk(data, size);
+      let result = { total: 0, list: [] };
+      if ((index as number) <= chunks.length) {
+        result.total = data.length;
+        result.list = chunks[index - 1] as [];
+      } else {
+        result.total = data.length;
+      }
+      setTimeout(() => {
+        x.next(result);
+        x.complete();
+      }, 10);
+    });
+  }
+  get(id: number | string): Observable<User> {
+    return new Observable();
+  }
+  post(entity: User): Observable<User> {
+    return new Observable();
+  }
+  put(entity: User): Observable<User> {
+    return new Observable();
+  }
+  delete(id: number | string): Observable<boolean> {
+    return new Observable();
+  }
+
+  private setFilter(data: User[], filters: XFilter[]): User[] {
+    let result = data;
+    if (filters && filters.length > 0) {
+      filters.forEach((x) => {
+        switch (x.operation) {
+          case '=':
+            result = result.filter((y) => y[x.field] === x.value);
+            break;
+          case '>':
+            result = result.filter((y) => y[x.field] > x.value);
+            break;
+          case '>=':
+            result = result.filter((y) => y[x.field] >= x.value);
+            break;
+          case '<':
+            result = result.filter((y) => y[x.field] < x.value);
+            break;
+          case '<=':
+            result = result.filter((y) => y[x.field] <= x.value);
+            break;
+          default:
+            // '%'
+            result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+            break;
+        }
+      });
+    }
+    return result;
+  }
+
+  private setGroup(data: User[], group: string): XGroupItem[] {
+    return map(groupBy(data, group), (value, key) => {
+      let groupItem: XGroupItem = { id: key, count: value.length };
+      groupItem[group] = key;
+      return groupItem;
+    });
+  }
+
+  private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
+    return orderBy(
+      data,
+      map(sort, (x) => x.field),
+      map(sort, (x) => x.value) as ('desc' | 'asc')[]
+    ) as User[] | XGroupItem[];
+  }
+}
+
+@Injectable()
+class TreeServiceTest {
+  data: XTreeNode[] = [
+    { id: 1, label: '雷浩集团' },
+    { id: 2, label: '企业发展事业群', pid: 1 },
+    { id: 3, label: '社交网络事业群', pid: 1 },
+    { id: 4, label: '互动娱乐事业群', pid: 1 },
+    { id: 5, label: '移动互联网事业群', pid: 1 },
+    { id: 6, label: '网络媒体事业群', pid: 1 },
+    { id: 7, label: '人事部', pid: 4 },
+    { id: 8, label: '行政部', pid: 4 },
+    { id: 9, label: '财务部', pid: 4 }
+  ];
+
+  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+    return new Observable((x) => {
+      setTimeout(() => {
+        x.next(this.data);
+        x.complete();
+      }, 10);
+    });
+  };
+}
+
+interface User extends XId {
+  name?: string;
+  account?: string;
+  password?: string;
+  email?: string;
+  phone?: string;
+  position?: string;
+  positionId?: number;
+  organization?: string;
+  organizationId?: number;
+  [prop: string]: any;
+}
+
 const DATA_CASCADE: XData<XCalendarNode> = [
   { id: 1, label: 'AAAA' },
   { id: 2, label: 'BBBB' },
@@ -109,10 +262,99 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 
 @Component({
   selector: 'test-x-form',
-  template: `<x-form [controls]="controls"></x-form>`
+  template: `<x-form [controls]="controls"></x-form>`,
+  providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFormComponent {
+  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest) {}
+
   controls: XFormRow[] = [
+    {
+      title: 'Find 查找带回',
+      icon: 'fto-list',
+      controls: [
+        {
+          control: 'find',
+          id: 'find',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          label: '表格单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findMultiple',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          multiple: true,
+          label: '表格多选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTree',
+          treeData: this.treeService.getTreeList,
+          label: '树单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTreeTable',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          treeData: this.treeService.getTreeList,
+          treeTableConnect: 'organizationId',
+          label: '树+表格单选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findTreeTable',
+          dialogWidth: '65rem',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
+          treeData: this.treeService.getTreeList,
+          treeTableConnect: 'organizationId',
+          multiple: true,
+          label: '树+表格多选',
+          span: 8
+        },
+        {
+          control: 'find',
+          id: 'findDisabled',
+          label: '禁用',
+          span: 8,
+          disabled: true
+        },
+        {
+          control: 'find',
+          id: 'findRequired',
+          label: '必填',
+          span: 8,
+          required: true
+        }
+      ]
+    },
     {
       title: 'Cascade 级联选择器',
       icon: 'fto-list',

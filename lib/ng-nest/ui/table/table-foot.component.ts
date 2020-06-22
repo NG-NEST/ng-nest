@@ -33,13 +33,9 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
-    this.setClassMap();
   }
 
   ngAfterViewInit() {
     this.table.tfoot = this.tfoot;
-    console.log(this.tfoot);
   }
-
-  setClassMap() {}
 }

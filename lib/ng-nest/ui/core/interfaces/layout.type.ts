@@ -6,7 +6,7 @@ export type XPosition = 'top' | 'right' | 'bottom' | 'left';
 /**
  * 颜色类型
  */
-export type XType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
+export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
  * 状态类型

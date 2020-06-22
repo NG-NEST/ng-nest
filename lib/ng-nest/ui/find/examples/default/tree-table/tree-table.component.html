@@ -1,0 +1,28 @@
+<x-row
+  ><x-find
+    label="树加表格单选"
+    [(ngModel)]="model"
+    [tableColumns]="table.columns"
+    [tableData]="table.data"
+    [tableSize]="1000"
+    [tableVirtualScroll]="true"
+    [tableBodyHeight]="420"
+    [treeData]="treeService.getTreeList"
+    treeTableConnect="organizationId"
+  ></x-find>
+</x-row>
+<x-row [style.margin-top.rem]="1"
+  ><x-find
+    label="树加表格多选"
+    dialogWidth="65rem"
+    [(ngModel)]="modelMultiple"
+    [tableColumns]="table.columns"
+    [tableData]="table.data"
+    [tableSize]="1000"
+    [tableVirtualScroll]="true"
+    [tableBodyHeight]="420"
+    [treeData]="treeService.getTreeList"
+    treeTableConnect="organizationId"
+    multiple
+  ></x-find>
+</x-row>

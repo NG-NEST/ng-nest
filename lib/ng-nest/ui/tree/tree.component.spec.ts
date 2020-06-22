@@ -169,10 +169,10 @@ class TestXTreeComponent {
   template: `
     <x-row space="1">
       <x-col span="8">
-        <x-tree [data]="service.getTreeList"> </x-tree>
+        <x-tree [data]="service.getTreeList" lazy> </x-tree>
       </x-col>
       <x-col span="8">
-        <x-tree [data]="service.getTreeList" checkbox> </x-tree>
+        <x-tree [data]="service.getTreeList" checkbox lazy> </x-tree>
       </x-col>
     </x-row>
   `,

@@ -9,7 +9,7 @@
   >
     <tr
       *cdkVirtualFor="let row of data; index as i"
-      [class.x-table-activated]="activatedRow?.id === row.id"
+      [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
       [style.height.px]="rowHeight"
       (click)="rowClick(row)"
     >
@@ -22,7 +22,7 @@
 <ng-template #bodyTpl>
   <tr
     *ngFor="let row of data; index as i"
-    [class.x-table-activated]="activatedRow?.id === row.id"
+    [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
     [style.height.px]="rowHeight"
     (click)="rowClick(row)"
   >
@@ -40,6 +40,9 @@
       [style.left.px]="column.left"
     >
       <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'checkbox'">
+          <x-checkbox [data]="[{ id: true, label: '' }]" [(ngModel)]="row[column.id]"></x-checkbox>
+        </ng-container>
         <ng-container *ngSwitchCase="'index'">
           <div>{{ table.getIndex(i) }}</div>
         </ng-container>

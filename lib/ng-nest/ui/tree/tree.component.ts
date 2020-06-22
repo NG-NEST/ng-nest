@@ -24,7 +24,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   @ViewChild('tree', { static: true }) tree: ElementRef;
   nodes: XTreeNode[] = [];
   activatedNode: XTreeNode;
-  lazy: boolean = false;
+  dataIsFunc = false;
+  getting = false;
   private _unSubject = new Subject<void>();
   private _data: XTreeNode[] = [];
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
@@ -36,6 +37,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.activatedId) && this.setActivatedNode(this._data);
     XIsChange(changes.checked) && this.setCheckedKeys(this.checked);
+    XIsChange(changes.manual) && this.setManual();
   }
 
   ngOnDestroy(): void {
@@ -43,20 +45,30 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     this._unSubject.unsubscribe();
   }
 
-  private setData() {
+  setData() {
     if (typeof this.data === 'undefined') return;
+    this.dataIsFunc = false;
     if (XIsObservable(this.data)) {
       XSetData<XTreeNode>(this.data, this._unSubject).subscribe((x) => {
         this.setDataChange(x);
       });
     } else if (XIsFunction(this.data)) {
-      this.lazy = true;
-      XSetData<XTreeNode>((this.data as Function)(), this._unSubject).subscribe((x) => {
-        this.setDataChange(x);
-      });
+      this.dataIsFunc = true;
+      this.getDataByFunc();
     } else {
       this.setDataChange(this.data as XTreeNode[]);
     }
+  }
+
+  private setManual() {
+    if (this.dataIsFunc) this.getDataByFunc();
+  }
+
+  private getDataByFunc() {
+    if (!this.manual) return;
+    XSetData<XTreeNode>((this.data as Function)(), this._unSubject).subscribe((x) => {
+      this.setDataChange(x);
+    });
   }
 
   private setDataChange(value: XTreeNode[]) {
@@ -124,7 +136,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (this.activatedNode) {
       this.setParentOpen(nodes, this.activatedNode);
       this.activatedChange.emit(this.activatedNode);
-    } else if (before) {
+    }
+    if (before) {
       before.change && before.change();
     }
   }
@@ -135,6 +148,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       const parent = nodes.find((x) => x.id === child.pid) as XTreeNode;
       if (!XIsEmpty(parent)) {
         this.expanded = [...this.expanded, parent.id];
+        parent.open = true;
+        parent.change && parent.change();
         getParent(parent);
       }
     };

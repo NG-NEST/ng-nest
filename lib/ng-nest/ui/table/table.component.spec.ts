@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { XTablePrefix, XTableColumn } from './table.property';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
+import { map as rxjsMap } from 'rxjs/operators';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { XDialogModule } from '@ng-nest/ui/dialog';
@@ -19,7 +20,7 @@ describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
-      declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent]
+      declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent, TestXTableFunctionComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -51,6 +52,18 @@ describe(XTablePrefix, () => {
     let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableAdaptionComponent);
+      fixture.detectChanges();
+      table = fixture.debugElement.query(By.directive(XTableComponent));
+    });
+    it('should create.', () => {
+      expect(table).toBeDefined();
+    });
+  });
+  describe(`observable.`, () => {
+    let fixture: ComponentFixture<TestXTableFunctionComponent>;
+    let table: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTableFunctionComponent);
       fixture.detectChanges();
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
@@ -379,4 +392,72 @@ class TestXTableAdaptionComponent {
     this.visible = false;
     this.cdr.detectChanges();
   }
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-table [columns]="columns" [data]="data"> </x-table>
+    </div>
+  `,
+  styles: [
+    `
+      .row {
+        padding: 1rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTableFunctionComponent {
+  // query: XQuery = {};
+  // index = 1;
+  // size = 10;
+  // total = 0;
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(
+      rxjsMap((x) => {
+        console.log(x);
+        return x;
+      })
+    );
+
+  columns: XTableColumn[] = [
+    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
+    { id: 'name', label: '用户', flex: 1.5, sort: true },
+    { id: 'position', label: '职位', flex: 0.5, sort: true },
+    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'phone', label: '电话', flex: 1 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+  ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    // this.getData();
+  }
+
+  ngAfterViewInit() {
+    interval(10).subscribe(() => this.cdr.detectChanges());
+  }
+
+  // getData() {
+  //   this.service.getList(this.index, this.size, this.query).subscribe((x) => {
+  //     [this.data, this.total] = [x.list as User[], Number(x.total)];
+  //     this.cdr.detectChanges();
+  //   });
+  // }
+
+  // indexChange(index: number) {
+  //   this.index = index;
+  //   this.getData();
+  // }
+
+  // sortChange(sort: XSort[]) {
+  //   this.query.sort = sort;
+  //   this.getData();
+  // }
 }

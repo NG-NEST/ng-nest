@@ -3,8 +3,8 @@ import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'ex-fullScreen',
-  templateUrl: './fullScreen.component.html'
+  selector: 'ex-full-screen',
+  templateUrl: './full-screen.component.html'
 })
 export class ExFullScreenComponent {
   loading = false;

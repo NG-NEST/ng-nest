@@ -16,7 +16,7 @@ export class XTagProperty extends XProperty {
   /**
    * 标签样式类型
    */
-  @Input() type: XType;
+  @Input() type: XType = 'initial';
   /**
    * 尺寸
    */
@@ -29,6 +29,10 @@ export class XTagProperty extends XProperty {
    * 深色主题
    */
   @Input() @XInputBoolean() dark: XBoolean;
+  /**
+   * 禁用
+   */
+  @Input() @XInputBoolean() disabled?: XBoolean;
   /**
    * 点击关闭的事件
    */

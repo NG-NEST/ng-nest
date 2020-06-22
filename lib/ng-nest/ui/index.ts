@@ -63,6 +63,7 @@ export * from '@ng-nest/ui/checkbox';
 export * from '@ng-nest/ui/color-picker';
 export * from '@ng-nest/ui/date-picker';
 export * from '@ng-nest/ui/form';
+export * from '@ng-nest/ui/find';
 export * from '@ng-nest/ui/input';
 export * from '@ng-nest/ui/input-number';
 export * from '@ng-nest/ui/list';

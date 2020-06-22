@@ -23,7 +23,7 @@ export class XCollapseComponent extends XCollapseProperty implements OnInit {
 
   change(num: number, add = true) {
     this.active = this.active as number[];
-    let i = this.active.indexOf(num);
+    const i = this.active.indexOf(num);
     if (i === -1) {
       if (add) {
         this.active = [...this.active, num];
@@ -34,7 +34,8 @@ export class XCollapseComponent extends XCollapseProperty implements OnInit {
       }
     }
     if (this.accordion && this.active.length === 2) {
-      this.panelChanges[this.active[0] as number] && this.panelChanges[this.active[0] as number]();
+      const panel = this.panelChanges[this.active[0] as number];
+      panel && panel();
       return;
     }
     this.activeChange.emit(this.active);

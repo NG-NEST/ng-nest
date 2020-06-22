@@ -13,8 +13,7 @@
   line-height: 1.625rem;
   padding: 0 0.65rem;
   white-space: nowrap;
-  border: $--x-border-base;
-  background-color: $--x-white;
+  border: $--x-border-width $--x-border-style;
   > .x-icon {
     position: relative;
     right: -0.25rem;
@@ -41,14 +40,92 @@
   @include size('small', $--x-height-small, $--x-padding-small);
   @include size('mini', $--x-height-mini, $--x-padding-mini);
 
-  @include type('primary', $--x-primary, $--x-primary-600, $--x-primary-900);
-  @include type('success', $--x-success, $--x-success-600, $--x-success-900);
-  @include type('warning', $--x-warning, $--x-warning-600, $--x-warning-900);
-  @include type('danger', $--x-danger, $--x-danger-600, $--x-danger-900);
-  @include type('info', $--x-info, $--x-info-600, $--x-info-900);
+  @include type(
+    'initial',
+    $--x-text,
+    $--x-border,
+    $--x-white,
+    $--x-text-300,
+    $--x-white,
+    $--x-border-200,
+    $--x-white,
+    $--x-info-500,
+    $--x-info-500
+  );
+  @include type(
+    'primary',
+    $--x-primary,
+    $--x-primary-600,
+    $--x-primary-900,
+    $--x-primary-400,
+    $--x-primary-900,
+    $--x-primary-800,
+    $--x-white,
+    $--x-primary-500,
+    $--x-primary-500
+  );
+  @include type(
+    'success',
+    $--x-success,
+    $--x-success-600,
+    $--x-success-900,
+    $--x-success-400,
+    $--x-success-900,
+    $--x-success-800,
+    $--x-white,
+    $--x-success-500,
+    $--x-success-500
+  );
+  @include type(
+    'warning',
+    $--x-warning,
+    $--x-warning-600,
+    $--x-warning-900,
+    $--x-warning-400,
+    $--x-warning-900,
+    $--x-warning-800,
+    $--x-white,
+    $--x-warning-500,
+    $--x-warning-500
+  );
+  @include type(
+    'danger',
+    $--x-danger,
+    $--x-danger-600,
+    $--x-danger-900,
+    $--x-danger-400,
+    $--x-danger-900,
+    $--x-danger-800,
+    $--x-white,
+    $--x-danger-500,
+    $--x-danger-500
+  );
+  @include type(
+    'info',
+    $--x-info,
+    $--x-info-600,
+    $--x-info-900,
+    $--x-info-400,
+    $--x-info-900,
+    $--x-info-800,
+    $--x-white,
+    $--x-info-500,
+    $--x-info-500
+  );
 }
 
-@mixin type($type, $color, $border-color, $background-color) {
+@mixin type(
+  $type,
+  $color,
+  $border-color,
+  $background-color,
+  $disabled-color,
+  $disabled-background,
+  $disabled-border,
+  $dark-disabled-color,
+  $dark-disabled-background,
+  $dark-disabled-border
+) {
   &-#{$type} {
     border-color: $border-color;
     color: $color;
@@ -56,12 +133,26 @@
     > .x-icon:hover {
       background-color: $color;
     }
+    &.x-disabled {
+      @include disabled($disabled-color, $disabled-background, $disabled-border);
+      &:hover,
+      &:active {
+        @include disabled($disabled-color, $disabled-background, $disabled-border);
+      }
+    }
     &.#{$--x-tag-prefix}-dark {
       border-color: $color;
       color: $--x-white;
       background-color: $color;
       > .x-icon:hover {
         background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+    &.#{$--x-tag-prefix}-dark.x-disabled {
+      @include disabled($dark-disabled-color, $dark-disabled-background, $dark-disabled-border);
+      &:hover,
+      &:active {
+        @include disabled($dark-disabled-color, $dark-disabled-background, $dark-disabled-border);
       }
     }
   }
@@ -75,5 +166,25 @@
     > .x-icon {
       right: -$padding/2;
     }
+  }
+}
+
+@mixin disabled($color, $bg-color, $border-color) {
+  color: $color;
+  cursor: not-allowed;
+  background-image: none;
+  background-color: $bg-color;
+  border-color: $border-color;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color;
+    background-color: $bg-color;
+    border-color: $border-color;
+  }
+  > .x-icon:hover {
+    cursor: inherit;
+    color: $color;
+    background-color: $bg-color;
   }
 }

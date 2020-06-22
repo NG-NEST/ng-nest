@@ -20,7 +20,7 @@ export class XCollapseProperty extends XProperty {
   /**
    * 当前激活的面板序号
    */
-  @Input() active: XNumber | XNumber[];
+  @Input() active: XNumber | XNumber[] = [];
   /**
    * 激活的面板发生变化的事件
    */

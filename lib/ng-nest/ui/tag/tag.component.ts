@@ -27,6 +27,7 @@ export class XTagComponent extends XTagProperty implements OnInit {
   }
 
   onClose() {
+    if (this.disabled) return;
     this.close.emit();
   }
 }

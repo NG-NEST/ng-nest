@@ -23,6 +23,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() checkbox: XBoolean;
   /**
+   * 开启懒加载节点，data 必须设置成函数类型
+   */
+  @Input() @XInputBoolean() lazy: XBoolean;
+  /**
    * 当前激活的节点 Id
    */
   @Input() activatedId: any;
@@ -66,6 +70,14 @@ export class XTreeProperty extends XProperty {
    * 使用 checkedbox 选中变化的事件
    */
   @Output() selectedChange = new EventEmitter<XTreeNode[]>();
+  /**
+   * 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
+   */
+  @Input() @XInputBoolean() manual: boolean = true;
+  /**
+   * 参数控制请求改变事件
+   */
+  @Output() manualChange = new EventEmitter<boolean>();
 }
 
 /**

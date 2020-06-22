@@ -1,7 +1,10 @@
-<div class="row">
-  <x-table width="20rem">
-    <ul>
-      <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
-    </ul>
-  </x-table>
-</div>
+<x-table
+  [columns]="columns"
+  [data]="data"
+  [(index)]="index"
+  [(size)]="size"
+  [total]="total"
+  (indexChange)="indexChange($event)"
+  (sortChange)="sortChange($event)"
+>
+</x-table>
