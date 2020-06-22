@@ -1,3 +1,23 @@
+# [1.2.0](https://github.com/NG-NEST/ng-nest/compare/1.1.2...1.2.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **module:*:** input property override ([edafab9](https://github.com/NG-NEST/ng-nest/commit/edafab96f9aae34de60a0246375e98ef8892bae4))
+* **module:dialog:** visiable bind ([ebf4d0b](https://github.com/NG-NEST/ng-nest/commit/ebf4d0b00dc1c535b947bb1ace5488592e25581b))
+* **module:find:** tree multiple ([0921e78](https://github.com/NG-NEST/ng-nest/commit/0921e784b9d168fbba7bd16de19ddef13c0e1410))
+* **module:table:** perfect data param function ([4dce2cf](https://github.com/NG-NEST/ng-nest/commit/4dce2cfada8973e57c008bd4bf8d48b092514273))
+
+
+### Features
+
+* **module:find:** add find component ([e9310b6](https://github.com/NG-NEST/ng-nest/commit/e9310b679daebde460eb091817dee7ea2c06e053))
+* **module:find:** add multiple ([83d5a05](https://github.com/NG-NEST/ng-nest/commit/83d5a0511f4879cf14c79fe15386300dc9f64142))
+* **module:find:** add tree select ([b1f97f2](https://github.com/NG-NEST/ng-nest/commit/b1f97f238a2a1e1c2da5122c85dd1ae7c2ebd574))
+* **module:find:** Add tree table mode to form ([15a6f9a](https://github.com/NG-NEST/ng-nest/commit/15a6f9aafdf558c881060c6399f6399520e829b4))
+
+
+
 ## [1.1.2](https://github.com/NG-NEST/ng-nest/compare/1.1.1...1.1.2) (2020-06-10)
 
 
