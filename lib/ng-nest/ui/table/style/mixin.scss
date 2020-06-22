@@ -50,6 +50,7 @@
   > tbody {
     display: block;
     border-top: none;
+    position: relative;
     tr {
       display: flex;
       border-bottom: $--x-border-200-base;
@@ -89,6 +90,12 @@
       &:last-child {
         border-bottom: none;
       }
+    }
+    x-empty {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: $--x-font-size * 2;
     }
   }
   > tfoot {

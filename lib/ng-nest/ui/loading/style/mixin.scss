@@ -12,10 +12,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  transition: opacity 0.3s;
+  //transition: opacity 0.3s;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
   &-spinner {
     color: $--x-primary;
     text-align: center;

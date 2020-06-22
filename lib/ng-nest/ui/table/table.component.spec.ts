@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { XTablePrefix, XTableColumn } from './table.property';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
-import { map as rxjsMap } from 'rxjs/operators';
+import { map as rxjsMap, delay, tap } from 'rxjs/operators';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { XDialogModule } from '@ng-nest/ui/dialog';
@@ -77,7 +77,7 @@ describe(XTablePrefix, () => {
 class UsersServiceTest extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+  users: User[] = Array.from({ length: 10000 }).map((x, i) => {
     i++;
     return {
       id: i,
@@ -231,18 +231,7 @@ class TestXTableComponent {
 @Component({
   template: `
     <div class="row">
-      <x-table
-        [columns]="columns"
-        [data]="data"
-        [(index)]="index"
-        [(size)]="size"
-        [total]="total"
-        [bodyHeight]="420"
-        (indexChange)="indexChange($event)"
-        (sortChange)="sortChange($event)"
-        virtualScroll
-      >
-      </x-table>
+      <x-table [columns]="columns" [data]="data" [size]="1000" [bodyHeight]="420" [adaptionHeight]="200" virtualScroll loading> </x-table>
     </div>
   `,
   styles: [
@@ -258,11 +247,7 @@ class TestXTableComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableScrollComponent {
-  query: XQuery = {};
-  index = 1;
-  size = 1000;
-  total = 0;
-  data: User[] = [];
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 200, sort: true },
@@ -274,30 +259,7 @@ class TestXTableScrollComponent {
 
   constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  ngAfterViewInit() {
-    interval(10).subscribe(() => this.cdr.detectChanges());
-  }
-
-  getData() {
-    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
-      [this.data, this.total] = [x.list as User[], Number(x.total)];
-      this.cdr.detectChanges();
-    });
-  }
-
-  indexChange(index: number) {
-    this.index = index;
-    this.getData();
-  }
-
-  sortChange(sort: XSort[]) {
-    this.query.sort = sort;
-    this.getData();
-  }
+  ngOnInit() {}
 }
 
 @Component({

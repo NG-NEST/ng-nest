@@ -27,6 +27,10 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XInputNumber() rowHeight: number = 42;
   /**
+   * 是否启用加载 loading
+   */
+  @Input() @XInputBoolean() loading: XBoolean = false;
+  /**
    * 当前选中行数据
    */
   @Input() activatedRow?: XTableRow;
@@ -81,7 +85,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
    */
-  @Input() @XInputBoolean() manual: boolean = true;
+  @Input() @XInputBoolean() manual: XBoolean = true;
   /**
    * 参数控制请求改变事件
    */
@@ -105,6 +109,10 @@ export interface XTableOption extends XPaginationOption {
    * 表头和行高，单位 px
    */
   rowHeight?: number;
+  /**
+   * 是否启用加载 loading
+   */
+  loading?: XBoolean;
   /**
    * 当前选中行数据
    */

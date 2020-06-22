@@ -5,7 +5,7 @@
 </ng-container>
 
 <ng-template #loadingTpl>
-  <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" @x-fade-animation *ngIf="loading">
+  <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" *ngIf="loading">
     <div class="x-loading-spinner" [style.color]="color">
       <ng-container *ngIf="icon; else circularTpl">
         <div class="x-loading-icon">

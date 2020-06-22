@@ -7,12 +7,15 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableRow } from './table.property';
 import { XIsChange, XIsEmpty, XResultList, XNumber, XSort } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -21,7 +24,7 @@ import { XPaginationComponent } from '@ng-nest/ui/pagination';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTableComponent extends XTableProperty implements OnInit {
+export class XTableComponent extends XTableProperty implements OnInit, OnDestroy {
   get getScrollLeft() {
     return this.scrollLeft > 0;
   }
@@ -46,6 +49,7 @@ export class XTableComponent extends XTableProperty implements OnInit {
   tableData: XTableRow[] = [];
   @ViewChild('table') table: ElementRef;
   @ViewChild('pagination') pagination: XPaginationComponent;
+  private _unSubject = new Subject();
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
   }
@@ -58,6 +62,11 @@ export class XTableComponent extends XTableProperty implements OnInit {
     XIsChange(simples.data, simples.checkedRow) && this.setData();
     XIsChange(simples.columns, simples.activatedRow) && this.cdr.detectChanges();
     XIsChange(simples.manual) && this.setManual();
+  }
+
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.complete();
   }
 
   getSticky(column: XTableColumn) {
@@ -80,18 +89,23 @@ export class XTableComponent extends XTableProperty implements OnInit {
   }
 
   getDataByFunc() {
-    if (!this.manual || this.getting) return;
+    if (!this.manual) return;
     this.getting = true;
-    (this.data as Function)(this.index, this.size, this.query).subscribe((x: XResultList<XTableRow>) => {
-      [this.tableData, this.total] = [x.list as XTableRow[], x.total as XNumber];
-      if (this.virtualBody) {
-        this.virtualBody.scrollToIndex(0);
-        this.virtualBody.checkViewportSize();
-      }
-      this.getting = false;
-      this.setChecked();
-      this.bodyChange && this.bodyChange();
-    });
+    this.cdr.detectChanges();
+    this._unSubject.next();
+    (this.data as Function)(this.index, this.size, this.query)
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((x: XResultList<XTableRow>) => {
+        [this.tableData, this.total] = [x.list as XTableRow[], x.total as XNumber];
+        if (this.virtualBody) {
+          this.virtualBody.scrollToIndex(0);
+          this.virtualBody.checkViewportSize();
+        }
+        this.getting = false;
+        this.setChecked();
+        this.bodyChange && this.bodyChange();
+        this.cdr.detectChanges();
+      });
   }
 
   setManual() {
