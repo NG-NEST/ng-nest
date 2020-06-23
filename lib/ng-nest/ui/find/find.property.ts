@@ -108,6 +108,10 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    */
   @Input() tableCheckedRow: { [prop: string]: any[] } = {};
   /**
+   * 是否启用加载 loading
+   */
+  @Input() @XInputBoolean() tableLoading: XBoolean = false;
+  /**
    * 表格开启虚拟滚动
    */
   @Input() @XInputBoolean() tableVirtualScroll: boolean = false;
@@ -248,6 +252,10 @@ export interface XFindOption extends XFormOption {
    * 表格行点击事件
    */
   tableCheckedRow?: { [prop: string]: any[] };
+  /**
+   * 是否启用加载 loading
+   */
+  tableLoading?: XBoolean;
   /**
    * 表格开启虚拟滚动
    */

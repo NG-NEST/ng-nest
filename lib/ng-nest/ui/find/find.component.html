@@ -58,6 +58,7 @@
         [total]="tableTotal"
         [allowSelectRow]="!multiple"
         [checkedRow]="tableCheckedRow"
+        [loading]="tableLoading"
         (indexChange)="tableIndexChange.emit($event)"
         (sortChange)="tableSortChange.emit($event)"
         [(activatedRow)]="tableActivatedRow"
