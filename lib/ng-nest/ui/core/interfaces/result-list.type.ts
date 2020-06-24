@@ -1,5 +1,5 @@
 export interface XId {
-  id: string | number;
+  id?: string | number;
 }
 
 export interface XResultList<Entity extends XId> {

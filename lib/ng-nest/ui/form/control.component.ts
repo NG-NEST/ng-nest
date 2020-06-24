@@ -46,7 +46,7 @@ import { XFormComponent } from './form.component';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-control',
@@ -72,7 +72,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
     this._formControl = new FormControl(this._control.value);
-    if (this._control.disabled) {
+    if (this._control.disabled || this.form.disabled) {
       this._formControl.disable();
     }
     if (this._control.required) {
@@ -90,7 +90,9 @@ export class XControlComponent extends XControlProperty implements OnInit, After
 
   ngAfterViewInit() {
     Object.assign(this.control.valueAccessor, this._control);
-    (this.control.valueAccessor as XFormControlComponent).formControlChanges();
+    this.form.controlTypes[this._control.id] = this._control;
+    this.form.controlComponents[this._control.id] = this.control.valueAccessor as XFormControlComponent;
+    this.form.controlComponents[this._control.id].formControlChanges();
   }
 
   ngOnDestroy() {

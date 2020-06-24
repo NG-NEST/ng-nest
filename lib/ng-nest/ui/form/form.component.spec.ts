@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XFormComponent } from './form.component';
-import { Component, DebugElement, ViewChild, Injectable } from '@angular/core';
+import { Component, DebugElement, ViewChild, Injectable, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
@@ -262,11 +262,20 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 
 @Component({
   selector: 'test-x-form',
-  template: `<x-form [controls]="controls"></x-form>`,
+  template: `
+    <x-button (click)="onDisabled()">禁用整个表单</x-button>
+    <x-form [controls]="controls" [disabled]="disabled"></x-form>
+  `,
   providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFormComponent {
-  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest) {}
+  disabled = false;
+  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {}
+
+  onDisabled() {
+    this.disabled = !this.disabled;
+    this.cdr.detectChanges();
+  }
 
   controls: XFormRow[] = [
     {
@@ -324,7 +333,7 @@ class TestXFormComponent {
         },
         {
           control: 'find',
-          id: 'findTreeTable',
+          id: 'findTreeTableMultiple',
           dialogWidth: '65rem',
           tableColumns: [
             { id: 'index', label: '序号', type: 'index', width: 80 },
@@ -349,6 +358,13 @@ class TestXFormComponent {
         {
           control: 'find',
           id: 'findRequired',
+          tableColumns: [
+            { id: 'index', label: '序号', type: 'index', width: 80 },
+            { id: 'label', label: '用户', flex: 1, sort: true },
+            { id: 'position', label: '职位', flex: 1, sort: true },
+            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+          ],
+          tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
           label: '必填',
           span: 8,
           required: true
@@ -485,7 +501,7 @@ class TestXFormComponent {
         },
         {
           control: 'input',
-          id: 'inputRequired',
+          id: 'inputRequiredRegExp',
           label: '必填+正则验证',
           span: 8,
           value: 0.1,
@@ -822,7 +838,7 @@ class TestXFormRowComponent {
 })
 class TestXFormTitleComponent {
   controls: XControl[] = [
-    { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10 },
+    { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10, hidden: true },
     { control: 'input', id: 'id', label: '编码', disabled: true, value: '001001001', required: true },
     {
       control: 'input',

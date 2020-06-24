@@ -458,7 +458,7 @@ export class ExDefaultComponent {
         },
         {
           control: 'find',
-          id: 'findTreeTable',
+          id: 'findTreeTableMultiple',
           dialogWidth: '65rem',
           tableColumns: [
             { id: 'index', label: '序号', type: 'index', width: 80 },

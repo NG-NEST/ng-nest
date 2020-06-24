@@ -29,7 +29,7 @@
       class="x-checkbox-item"
       *ngFor="let item of nodes"
       [class.x-checked]="getChecked(item.id)"
-      [class.x-disabled]="item.disabled"
+      [class.x-disabled]="disabled || item.disabled"
       [class.x-indeterminate]="indeterminate"
       (click)="checkboxClick($event, item)"
     >

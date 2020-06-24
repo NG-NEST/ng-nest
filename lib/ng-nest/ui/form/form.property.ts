@@ -1,4 +1,4 @@
-import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XFormProp, XNumber, XInputNumber } from '@ng-nest/ui/core';
+import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XFormProp, XNumber, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
@@ -55,6 +55,10 @@ export class XFormProperty extends XFormProp {
    * 表单宽度
    */
   @Input() width: string = '100%';
+  /**
+   * 表单禁用
+   */
+  @Input() @XInputBoolean() disabled: XBoolean;
 }
 
 /**

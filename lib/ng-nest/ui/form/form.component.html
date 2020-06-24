@@ -11,7 +11,7 @@
 
 <ng-template #rowsTemp let-rows="rows">
   <ng-container *ngFor="let row of rows">
-    <x-row *ngIf="!row.hidden">
+    <x-row [hidden]="row.hidden">
       <ng-container *ngTemplateOutlet="titleTemp; context: { row: row }"></ng-container>
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: row.controls }"></ng-container>
     </x-row>
@@ -20,7 +20,12 @@
 
 <ng-template #controlsTemp let-controls="controls">
   <x-row [space]="space">
-    <x-col [style.padding-top.rem]="space" [span]="!control.span ? span : control.span" *ngFor="let control of controls">
+    <x-col
+      [style.padding-top.rem]="space"
+      [span]="!control.span ? span : control.span"
+      *ngFor="let control of controls"
+      [hidden]="control.hidden"
+    >
       <x-control [option]="control"></x-control>
     </x-col>
   </x-row>

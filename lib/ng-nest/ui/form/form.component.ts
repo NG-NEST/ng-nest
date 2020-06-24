@@ -1,6 +1,14 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { XFormProperty, XFormRow, XFormPrefix, XFormControlOption, XFormControl } from './form.property';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import {
+  XFormProperty,
+  XFormRow,
+  XFormPrefix,
+  XFormControlOption,
+  XFormControl,
+  XFormControlComponent,
+  XFormControlType
+} from './form.property';
+import { XIsChange, XBoolean } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XFormPrefix}`,
@@ -11,9 +19,15 @@ import { FormGroup } from '@angular/forms';
 })
 export class XFormComponent extends XFormProperty implements OnInit {
   controlsType: 'controls' | 'rows';
+  controlComponents: { [property: string]: XFormControlComponent } = {};
+  controlTypes: { [property: string]: XFormControlType } = {};
 
   constructor(public cdr: ChangeDetectorRef) {
     super();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    XIsChange(changes.disabled) && this.setDisabled();
   }
 
   ngOnInit() {
@@ -31,6 +45,27 @@ export class XFormComponent extends XFormProperty implements OnInit {
 
   setClassMap() {
     this.classMap[`${XFormPrefix}-${this.controlsType}`] = true;
+  }
+
+  setDisabled() {
+    if (Object.keys(this.controlComponents).length === 0) return;
+    if (this.disabled) {
+      for (let key in this.controlComponents) {
+        let control = this.controlComponents[key];
+        control.disabled = true;
+        control.required = false;
+        delete control.pattern;
+        control.formControlChanges();
+      }
+    } else {
+      for (let key in this.controlComponents) {
+        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
+        control.disabled = type.disabled as XBoolean;
+        control.required = type.required as XBoolean;
+        control.pattern = type.pattern as RegExp | RegExp[];
+        control.formControlChanges();
+      }
+    }
   }
 
   getValidatorMessages(): string[] {
