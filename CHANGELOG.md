@@ -1,3 +1,14 @@
+## [1.2.2](https://github.com/NG-NEST/ng-nest/compare/1.2.1...1.2.2) (2020-06-24)
+
+
+### Features
+
+* **module:find:** add tableLoading ([b47db94](https://github.com/NG-NEST/ng-nest/commit/b47db9408764d0cc6dd8332e51f570ca2c3929f7))
+* **module:form:** add disabled entire form ([80af50a](https://github.com/NG-NEST/ng-nest/commit/80af50abd5002b5295fab865d0c959f201ca6929))
+* **module:table:** add loading ([5a29086](https://github.com/NG-NEST/ng-nest/commit/5a29086ca653b6161a5425899a0c9f5d311edbbc))
+
+
+
 ## [1.2.1](https://github.com/NG-NEST/ng-nest/compare/1.2.0...1.2.1) (2020-06-22)
 
 
