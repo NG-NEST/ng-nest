@@ -35,7 +35,9 @@ export class XFormComponent extends XFormProperty implements OnInit {
     this.setClassMap();
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.setDisabled();
+  }
 
   setControls() {
     if (this.controls && this.controls.length > 0) {

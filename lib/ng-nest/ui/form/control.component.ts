@@ -40,7 +40,9 @@ import {
   XTimePickerControlOption,
   XColorPickerControl,
   XColorPickerControlOption,
-  XFormControl
+  XFormControl,
+  XFindControl,
+  XFindControlOption
 } from './form.property';
 import { XFormComponent } from './form.component';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
@@ -57,7 +59,7 @@ import { takeUntil } from 'rxjs/operators';
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   @Input() option: XFormControlOption;
   @ViewChild(FormControlName, { static: false }) control: FormControlName;
-  private _sharedProps = ['span', 'disabled', 'required', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
+  private _sharedProps = ['span', 'required', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _control: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject();
@@ -165,6 +167,8 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         return new XCascadeControl(option as XCascadeControlOption);
       case 'color-picker':
         return new XColorPickerControl(option as XColorPickerControlOption);
+      case 'find':
+        return new XFindControl(option as XFindControlOption);
       default:
         return new XInputControl(option as XInputControlOption);
     }

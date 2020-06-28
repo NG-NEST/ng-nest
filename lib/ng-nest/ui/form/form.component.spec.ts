@@ -269,7 +269,7 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
   providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFormComponent {
-  disabled = false;
+  disabled = true;
   constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {}
 
   onDisabled() {
