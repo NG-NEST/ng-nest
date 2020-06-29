@@ -4,23 +4,31 @@ import { XTreeComponent } from './tree.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeModule } from '@ng-nest/ui/tree';
-import { XTreePrefix, XTreeNode } from './tree.property';
+import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { XFormModule, XFormRow } from '@ng-nest/ui/form';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormGroup } from '@angular/forms';
+import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
+import { map } from 'rxjs/operators';
+import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
+import { notEqual } from 'assert';
 
 describe(XTreePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTreeModule, XLayoutModule, XButtonModule, XLinkModule],
+      imports: [BrowserAnimationsModule, XTreeModule, XLayoutModule, XButtonModule, XLinkModule, XFormModule, XLinkModule, XMessageModule],
       declarations: [
         TestXTreeComponent,
         TestXTreeLazyComponent,
         TestXTreeCheckedComponent,
         TestXTreeDiabledComponent,
         TestXTreeCustomComponent,
-        TestXTreeEventComponent
+        TestXTreeEventComponent,
+        TestXTreeOperationComponent
       ]
     }).compileComponents();
   }));
@@ -89,6 +97,18 @@ describe(XTreePrefix, () => {
     let tree: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTreeEventComponent);
+      fixture.detectChanges();
+      tree = fixture.debugElement.query(By.directive(XTreeComponent));
+    });
+    it('should create.', () => {
+      expect(tree).toBeDefined();
+    });
+  });
+  describe(`operation.`, () => {
+    let fixture: ComponentFixture<TestXTreeOperationComponent>;
+    let tree: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTreeOperationComponent);
       fixture.detectChanges();
       tree = fixture.debugElement.query(By.directive(XTreeComponent));
     });
@@ -336,5 +356,215 @@ class TestXTreeEventComponent {
   setExpandedAll() {
     this.expandedAll = !this.expandedAll;
     this.cdr.detectChanges();
+  }
+}
+
+@Injectable()
+class OrganizationService extends XRepositoryService<Organization> {
+  constructor(public http: XHttpService) {
+    super(http, { api: 'http://localhost:3000/', controller: { name: 'organization' } });
+  }
+}
+
+interface Organization extends XTreeNode {
+  label?: string;
+  type?: string;
+  icon?: string;
+  pid?: string;
+  path?: string;
+}
+
+@Component({
+  template: `
+    <x-row space="1">
+      <x-col span="8">
+        <x-tree
+          #treeCom
+          [data]="data"
+          expandedLevel="0"
+          [activatedId]="activatedId"
+          [nodeHeight]="1.875"
+          [actions]="actions"
+          (activatedChange)="action('info', $event)"
+        >
+        </x-tree>
+      </x-col>
+      <x-col span="8">
+        <x-form
+          [formGroup]="formGroup"
+          [controls]="controls"
+          [disabled]="disabled"
+          direction="row"
+          labelSuffix=":"
+          labelWidth="6rem"
+          width="20rem"
+          labelAlign="end"
+          span="24"
+          space="2"
+        ></x-form>
+        <div [style.margin-top.rem]="2" [style.padding-left]="'6rem'">
+          <x-buttons [space]="1">
+            <x-button
+              type="primary"
+              (click)="!formGroup.invalid && !disabled && action('save', selected)"
+              [disabled]="formGroup.invalid || disabled"
+            >
+              确 认
+            </x-button>
+            <x-button (click)="action('cancel', selected)">取 消</x-button>
+          </x-buttons>
+        </div>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .operations > li:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ],
+  providers: [OrganizationService]
+})
+class TestXTreeOperationComponent {
+  @ViewChild('treeCom') treeCom: XTreeComponent;
+  formGroup = new FormGroup({});
+
+  get disabled() {
+    return !['edit', 'add'].includes(this.type);
+  }
+
+  type = 'info';
+
+  selected: Organization;
+
+  activatedId: string;
+
+  data = () => this.service.getList(1, Number.MAX_SAFE_INTEGER).pipe(map((x) => x.list));
+
+  actions: XTreeAction[] = [
+    {
+      id: 'add',
+      label: '新增',
+      icon: 'fto-plus-square',
+      handler: (node: Organization) => {
+        this.action('add', node);
+      }
+    },
+    {
+      id: 'edit',
+      label: '修改',
+      icon: 'fto-edit',
+      handler: (node: Organization) => {
+        this.action('edit', node);
+      }
+    },
+    {
+      id: 'delete',
+      label: '删除',
+      icon: 'fto-trash-2',
+      handler: (node: Organization) => {
+        this.action('delete', node);
+      }
+    }
+  ];
+
+  controls: XFormRow[] = [
+    {
+      controls: [
+        {
+          control: 'input',
+          id: 'label',
+          label: '名称',
+          required: true
+        },
+        { control: 'input', id: 'icon', label: '图标' },
+        {
+          control: 'select',
+          id: 'type',
+          label: '类型',
+          data: [
+            { id: 'group', label: '事业部' },
+            { id: 'subsidiary', label: '子公司' },
+            { id: 'department', label: '部门' }
+          ],
+          value: 'department'
+        }
+      ]
+    },
+    {
+      hidden: true,
+      controls: [
+        {
+          control: 'input',
+          id: 'id'
+        },
+        {
+          control: 'input',
+          id: 'pid'
+        }
+      ]
+    }
+  ];
+  constructor(private service: OrganizationService, private message: XMessageService, private cdr: ChangeDetectorRef) {}
+
+  action(type: string, node: Organization) {
+    switch (type) {
+      case 'info':
+        this.type = type;
+        this.selected = node;
+        this.service.get(node?.id).subscribe((x) => {
+          this.formGroup.patchValue(x);
+          this.cdr.detectChanges();
+        });
+        break;
+      case 'add':
+        this.type = type;
+        this.selected = node;
+        this.formGroup.reset();
+        this.formGroup.patchValue({
+          id: guid(),
+          pid: node.id,
+          type: 'department'
+        });
+        this.cdr.detectChanges();
+        break;
+      case 'edit':
+        this.type = type;
+        this.service.get(node?.id).subscribe((x) => {
+          this.formGroup.patchValue(x);
+          this.cdr.detectChanges();
+        });
+        break;
+      case 'delete':
+        this.service.delete(node.id).subscribe((x) => {
+          this.treeCom.removeNode(node);
+          this.formGroup.reset();
+          this.message.success('删除成功！');
+        });
+        break;
+      case 'save':
+        if (this.type === 'add') {
+          this.service.post(this.formGroup.value).subscribe((x) => {
+            this.type = 'info';
+            this.treeCom.addNode(x);
+            this.cdr.detectChanges();
+            this.message.success('新增成功！');
+          });
+        } else if (this.type === 'edit') {
+          this.service.put(this.formGroup.value).subscribe((x) => {
+            this.type = 'info';
+            this.treeCom.updateNode(node, this.formGroup.value);
+            this.cdr.detectChanges();
+            this.message.success('修改成功！');
+          });
+        }
+        break;
+      case 'cancel':
+        break;
+    }
   }
 }

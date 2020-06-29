@@ -1,4 +1,14 @@
-import { XDataConvert, XProperty, XData, XInputBoolean, XParentIdentityProperty, XNumber, XBoolean, XInputNumber } from '@ng-nest/ui/core';
+import {
+  XDataConvert,
+  XProperty,
+  XData,
+  XInputBoolean,
+  XParentIdentityProperty,
+  XNumber,
+  XBoolean,
+  XInputNumber,
+  XIdentityProperty
+} from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -75,6 +85,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() manual: boolean = true;
   /**
+   * 树节点操作按钮
+   */
+  @Input() actions: XTreeAction[] = [];
+  /**
    * 参数控制请求改变事件
    */
   @Output() manualChange = new EventEmitter<boolean>();
@@ -112,6 +126,20 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    * checkbox 子节点是否有选中的状态
    */
   indeterminate?: boolean;
+}
+
+/**
+ * Tree 节点操作
+ */
+export interface XTreeAction extends XIdentityProperty {
+  /**
+   * 操作
+   */
+  handler?: Function;
+  /**
+   * 图标
+   */
+  icon?: string;
 }
 
 /**

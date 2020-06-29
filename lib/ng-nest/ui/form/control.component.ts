@@ -59,7 +59,7 @@ import { takeUntil } from 'rxjs/operators';
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   @Input() option: XFormControlOption;
   @ViewChild(FormControlName, { static: false }) control: FormControlName;
-  private _sharedProps = ['span', 'required', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
+  private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _control: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject();
@@ -74,19 +74,11 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
     this._formControl = new FormControl(this._control.value);
-    if (this._control.disabled || this.form.disabled) {
-      this._formControl.disable();
-    }
-    if (this._control.required) {
-      this._validatorFns = [...this._validatorFns, Validators.required];
-    }
-    if (this._control.pattern) {
-      this.setPattern();
-    }
-    this._formControl.setValidators(this._validatorFns);
+    this.setValidators();
     this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.setMessages(x);
     });
+    this._control.setValidators = () => this.setValidators();
     this.form.formGroup.addControl(this._control.id, this._formControl);
   }
 
@@ -100,6 +92,23 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setValidators() {
+    this._validatorFns = [];
+    if (this._control.disabled || this.form.disabled) {
+      this._formControl.disable();
+    } else {
+      this._formControl.enable();
+    }
+    if (this._control.required && !this.form.disabled) {
+      this._validatorFns = [...this._validatorFns, Validators.required];
+    }
+    if (this._control.pattern) {
+      this.setPattern();
+    }
+    this._formControl.setValidators(this._validatorFns);
+    this._formControl.updateValueAndValidity();
   }
 
   setProps() {

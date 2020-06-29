@@ -53,10 +53,11 @@ export class XFormComponent extends XFormProperty implements OnInit {
     if (Object.keys(this.controlComponents).length === 0) return;
     if (this.disabled) {
       for (let key in this.controlComponents) {
-        let control = this.controlComponents[key];
+        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
         control.disabled = true;
         control.required = false;
         delete control.pattern;
+        type.setValidators();
         control.formControlChanges();
       }
     } else {
@@ -65,9 +66,11 @@ export class XFormComponent extends XFormProperty implements OnInit {
         control.disabled = type.disabled as XBoolean;
         control.required = type.required as XBoolean;
         control.pattern = type.pattern as RegExp | RegExp[];
+        type.setValidators();
         control.formControlChanges();
       }
     }
+    this.formGroup.updateValueAndValidity();
   }
 
   getValidatorMessages(): string[] {

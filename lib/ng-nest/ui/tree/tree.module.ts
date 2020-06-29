@@ -6,11 +6,12 @@ import { XTreeNodeComponent } from './tree-node.component';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XLinkModule } from '@ng-nest/ui/link';
 import { XTreeProperty, XTreeNodeProperty } from './tree.property';
 
 @NgModule({
   declarations: [XTreeComponent, XTreeNodeComponent, XTreeProperty, XTreeNodeProperty],
   exports: [XTreeComponent, XTreeNodeComponent],
-  imports: [CommonModule, FormsModule, XIconModule, XCheckboxModule, XOutletModule]
+  imports: [CommonModule, FormsModule, XIconModule, XCheckboxModule, XOutletModule, XLinkModule]
 })
 export class XTreeModule {}

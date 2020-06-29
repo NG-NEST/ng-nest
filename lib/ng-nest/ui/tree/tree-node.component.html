@@ -26,6 +26,14 @@
   <ng-template #labelTpl>
     <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
   </ng-template>
+  <span class="x-tree-node-operations">
+    <x-link
+      *ngFor="let action of tree.actions"
+      [icon]="action.icon"
+      [title]="action.label"
+      (click)="onAction($event, action, node)"
+    ></x-link>
+  </span>
 </div>
 <ul *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
   <li

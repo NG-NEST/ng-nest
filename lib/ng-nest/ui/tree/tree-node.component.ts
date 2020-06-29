@@ -10,7 +10,7 @@ import {
   Optional,
   Input
 } from '@angular/core';
-import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty } from './tree.property';
+import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XTreeComponent } from './tree.component';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
@@ -96,6 +96,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     this.tree.activatedNode = node;
     this.tree.activatedChange.emit(node);
     change && change();
+    event.stopPropagation();
     this.cdr.detectChanges();
   }
 
@@ -143,5 +144,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     };
     getChildren(node.children as XTreeNode[]);
     this.cdr.detectChanges();
+  }
+
+  onAction(event: Event, action: XTreeAction, node: XTreeNode) {
+    action.handler && action.handler(node);
+    event.stopPropagation();
   }
 }

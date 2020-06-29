@@ -13,7 +13,7 @@
     align-items: center;
     height: 1.625rem;
     cursor: pointer;
-    transition: $--x-animation-duration-base;
+    // transition: $--x-animation-duration-base;
     x-icon {
       padding: 0.125rem;
       color: $--x-text-400;
@@ -36,6 +36,18 @@
     &:hover,
     &.x-activated {
       background-color: $--x-background;
+    }
+    &:hover {
+      .#{$--x-tree-node-prefix}-operations {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  &-operations {
+    display: none;
+    .x-link {
+      padding: 0 0.125rem;
     }
   }
   &-label {

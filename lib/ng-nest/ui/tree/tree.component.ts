@@ -155,4 +155,37 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     };
     getParent(node);
   }
+
+  addNode(node: XTreeNode) {
+    let parent = this._data.find((x) => x.id === node.pid);
+    if (parent) {
+      if (!parent.children) parent.children = [];
+      this.expanded = [...this.expanded, parent.id];
+      this.activatedId = node.id;
+      node.level = Number(parent.level) + 1;
+      node.pid = parent.id;
+      this._data.push(node);
+      this.setActivatedNode(this._data);
+      parent.open = true;
+      parent.leaf = true;
+      parent.children = [...parent.children, node];
+      parent.change && parent.change();
+    }
+  }
+
+  removeNode(node: XTreeNode) {
+    let parent = this._data.find((x) => x.id === node.pid);
+    if (parent) {
+      if (!parent.children) parent.children = [];
+      parent.children.splice(parent.children.indexOf(node), 1);
+      parent.leaf = parent.children.length > 0;
+      if (!parent.leaf) this.activatedId = parent.id;
+      parent.change && parent.change();
+    }
+  }
+
+  updateNode(node: XTreeNode, nowNode: XTreeNode) {
+    Object.assign(node, nowNode);
+    node.change && node.change();
+  }
 }
