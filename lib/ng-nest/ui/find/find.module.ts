@@ -9,6 +9,7 @@ import { XTableModule } from '@ng-nest/ui/table';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { XEmptyModule } from '@ng-nest/ui/empty';
 import { XTreeModule } from '@ng-nest/ui/tree';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 @NgModule({
   declarations: [XFindComponent, XFindProperty],
@@ -22,6 +23,7 @@ import { XTreeModule } from '@ng-nest/ui/tree';
     XDialogModule,
     XTableModule,
     XTreeModule,
+    XIconModule,
     XEmptyModule
   ]
 })

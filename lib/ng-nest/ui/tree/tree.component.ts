@@ -26,8 +26,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   activatedNode: XTreeNode;
   dataIsFunc = false;
   getting = false;
+  treeData: XTreeNode[] = [];
   private _unSubject = new Subject<void>();
-  private _data: XTreeNode[] = [];
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
     super();
   }
@@ -35,7 +35,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.expandedAll) && this.setExpandedAll();
     XIsChange(changes.data) && this.setData();
-    XIsChange(changes.activatedId) && this.setActivatedNode(this._data);
+    XIsChange(changes.activatedId) && this.setActivatedNode(this.treeData);
     XIsChange(changes.checked) && this.setCheckedKeys(this.checked);
     XIsChange(changes.manual) && this.setManual();
   }
@@ -83,7 +83,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));
       return node;
     };
-    this._data = value;
+    this.treeData = value;
     this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
     this.cdr.detectChanges();
   }
@@ -157,15 +157,15 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   addNode(node: XTreeNode) {
-    let parent = this._data.find((x) => x.id === node.pid);
+    let parent = this.treeData.find((x) => x.id === node.pid);
     if (parent) {
       if (!parent.children) parent.children = [];
       this.expanded = [...this.expanded, parent.id];
       this.activatedId = node.id;
       node.level = Number(parent.level) + 1;
       node.pid = parent.id;
-      this._data.push(node);
-      this.setActivatedNode(this._data);
+      this.treeData.push(node);
+      this.setActivatedNode(this.treeData);
       parent.open = true;
       parent.leaf = true;
       parent.children = [...parent.children, node];
@@ -174,7 +174,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   removeNode(node: XTreeNode) {
-    let parent = this._data.find((x) => x.id === node.pid);
+    let parent = this.treeData.find((x) => x.id === node.pid);
     if (parent) {
       if (!parent.children) parent.children = [];
       parent.children.splice(parent.children.indexOf(node), 1);

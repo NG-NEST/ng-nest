@@ -35,7 +35,7 @@
   (confirm)="sure()"
 >
   <div class="x-find-dialog" [class.x-find-dialog-tree-table]="hasTable && hasTree">
-    <div class="x-find-dialog-tree" *ngIf="hasTree" #treeRef [style.height.px]="multiple && height">
+    <div class="x-find-dialog-tree" *ngIf="hasTree" #treeRef [style.height.px]="hasTreeTable && multiple && height">
       <x-tree
         #treeCom
         [data]="treeData"
@@ -44,6 +44,8 @@
         [activatedId]="treeActivatedId"
         [expandedLevel]="treeExpandedLevel"
         (activatedChange)="treeActivatedClick($event)"
+        [allowManyActivated]="!hasTreeTable && multiple"
+        [labelTpl]="treeLabelTpl"
       ></x-tree>
     </div>
     <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>
@@ -82,3 +84,10 @@
     </div>
   </div>
 </x-dialog>
+
+<ng-template #treeLabelTpl let-node="$node">
+  <div class="x-find-dialog-tree-node">
+    <span>{{ node.label }} </span>
+    <x-icon type="fto-check" *ngIf="node.$checked"></x-icon>
+  </div>
+</ng-template>

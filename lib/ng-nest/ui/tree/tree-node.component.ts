@@ -91,7 +91,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     const change: Function = this.tree.activatedNode?.change as Function;
     this.tree.nodeOpen && node.leaf && this.onToggle(event, node);
     if (this.tree.activatedNode) {
-      if (this.tree.activatedNode.id === node.id) return;
+      if (this.tree.activatedNode.id === node.id && !this.tree.allowManyActivated) return;
     }
     this.tree.activatedNode = node;
     this.tree.activatedChange.emit(node);

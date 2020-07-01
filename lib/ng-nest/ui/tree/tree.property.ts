@@ -73,6 +73,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputNumber() nodeHeight: XNumber = 1.625;
   /**
+   * 是否允许多次点击一个节点触发多次事件
+   */
+  @Input() @XInputBoolean() allowManyActivated: XBoolean;
+  /**
    * 当前点击选中的节点变化的事件
    */
   @Output() activatedChange = new EventEmitter<XTreeNode>();
@@ -126,6 +130,10 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    * checkbox 子节点是否有选中的状态
    */
   indeterminate?: boolean;
+  /**
+   * 自定义属性
+   */
+  [property: string]: any;
 }
 
 /**

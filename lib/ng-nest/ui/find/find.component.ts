@@ -46,7 +46,17 @@ export class XFindComponent extends XFindProperty implements OnInit {
     }
   }
 
-  @ViewChild('treeRef') treeRef: ElementRef;
+  private _treeRef: ElementRef;
+  public get treeRef(): ElementRef {
+    return this._treeRef;
+  }
+  @ViewChild('treeRef')
+  public set treeRef(value: ElementRef) {
+    this._treeRef = value;
+    if (value && this.multiple) {
+      this.setSubscribe();
+    }
+  }
 
   get getEmpty() {
     return !this.temp || this.temp.length === 0;
@@ -68,7 +78,6 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   temp: any;
   height = 100;
-  isListenSize = false;
 
   private _unSubject = new Subject<void>();
   private _resizeObserver: ResizeObserver;
@@ -108,13 +117,22 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   setSubscribe() {
-    if (this.tableRef) this.isListenSize = true;
-    XResize(this.tableRef?.nativeElement)
+    let resizeRef: Element[] = [];
+    if (this.hasTable) {
+      resizeRef = [this.tableRef?.nativeElement];
+    }
+    if (this.hasTree && !this.hasTreeTable) {
+      resizeRef.push(this.treeRef?.nativeElement);
+    }
+    this._unSubject.next();
+    XResize(...resizeRef)
       .pipe(debounceTime(30), takeUntil(this._unSubject))
       .subscribe((x) => {
         this._resizeObserver = x.resizeObserver;
         if (this.tableRef) {
           this.height = this.tableRef.nativeElement.clientHeight;
+        } else if (this.hasTree) {
+          this.height = this.treeRef?.nativeElement.clientHeight;
         }
         this.cdr.detectChanges();
       });
@@ -153,6 +171,8 @@ export class XFindComponent extends XFindProperty implements OnInit {
           this.treeActivatedId = this.value.id;
         }
       }
+    } else {
+      this.temp = this.multiple ? [] : null;
     }
     if (this.hasTable) {
       this.tableCom.virtualBody?.scrollToIndex(0);
@@ -181,16 +201,27 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   dialogCloseDone() {
-    if (this.hasTree) this.treeActivatedId = null;
+    if (this.hasTree) {
+      this.treeActivatedId = null;
+    }
   }
 
   tempClose(index: number, item: any) {
     this.temp.splice(index, 1);
-    let it = this.tableCom?.tableData.find((x) => item.id === x.id);
-    if (it) {
-      it.$checked = false;
-      this.tableCom?.bodyChange();
+    if (this.hasTable) {
+      let it = this.tableCom?.tableData.find((x) => item.id === x.id);
+      if (it) {
+        it.$checked = false;
+        this.tableCom?.bodyChange();
+      }
+    } else if (this.hasTree) {
+      let it = this.treeCom?.treeData.find((x) => item.id === x.id);
+      if (it) {
+        it.$checked = false;
+        this.treeCom?.cdr.detectChanges();
+      }
     }
+
     this.cdr.detectChanges();
   }
 
@@ -228,9 +259,27 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
+  treeMultiple(node: XTreeNode) {
+    if (typeof this.temp === 'undefined') this.temp = [];
+    node.$checked = !node.$checked;
+    if (node.$checked) {
+      this.temp = [...this.temp, node];
+    } else {
+      this.temp.splice(
+        (this.temp as Array<any>).findIndex((x) => x.id === node.id),
+        1
+      );
+    }
+    this.cdr.detectChanges();
+  }
+
   treeActivatedClick(node: XTreeNode) {
     if (!this.hasTreeTable && this.hasTree) {
-      this.temp = node;
+      if (this.multiple) {
+        this.treeMultiple(node);
+      } else {
+        this.temp = node;
+      }
     } else if (this.hasTreeTable && this.treeTableConnect) {
       if (!this.tableQuery) this.tableQuery = {};
       if (!this.tableQuery.filter) this.tableQuery.filter = [];
@@ -242,8 +291,8 @@ export class XFindComponent extends XFindProperty implements OnInit {
         this.tableQuery.filter = [...this.tableQuery.filter, { field: this.treeTableConnect, value: node.id, operation: '=' }];
       }
       this.tableCom.change(1);
+      this.treeActivatedId = node.id;
     }
-    this.treeActivatedId = node.id;
     this.treeActivatedChange.emit(node);
     this.cdr.detectChanges();
   }

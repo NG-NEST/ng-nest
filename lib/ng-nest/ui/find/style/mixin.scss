@@ -34,7 +34,7 @@
       color: $--x-danger;
     }
   }
-  
+
   &.x-direction {
     &-row {
       > label {
@@ -70,6 +70,19 @@
     overflow-y: auto;
     .x-tree-node-content.x-activated {
       color: $--x-primary;
+    }
+  }
+  &-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > span {
+      flex: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      user-select: none;
     }
   }
   &-tree-table {

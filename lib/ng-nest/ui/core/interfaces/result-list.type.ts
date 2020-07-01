@@ -20,6 +20,7 @@ export interface XFilter {
   field: string;
   value: string;
   operation?: XOperation;
+  relation?: string;
 }
 
 export type XOperation = '%' | '=' | '>' | '>=' | '<' | '<=';

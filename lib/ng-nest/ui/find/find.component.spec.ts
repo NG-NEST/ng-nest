@@ -12,7 +12,7 @@ import { XDialogOption } from '@ng-nest/ui/dialog';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { map as rxjsMap, delay } from 'rxjs/operators';
-import { orderBy, map } from 'lodash';
+import { orderBy, map, cloneDeep } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 
 describe(XFindPrefix, () => {
@@ -197,13 +197,22 @@ class TreeServiceTest {
     { id: 6, label: '网络媒体事业群', pid: 1 },
     { id: 7, label: '人事部', pid: 4 },
     { id: 8, label: '行政部', pid: 4 },
-    { id: 9, label: '财务部', pid: 4 }
+    { id: 9, label: '财务部', pid: 4 },
+    { id: 10, label: '人事部', pid: 4 },
+    { id: 11, label: '行政部', pid: 4 },
+    { id: 12, label: '财务部', pid: 4 },
+    { id: 13, label: '人事部', pid: 4 },
+    { id: 14, label: '行政部', pid: 4 },
+    { id: 15, label: '财务部', pid: 4 },
+    { id: 16, label: '人事部', pid: 4 },
+    { id: 17, label: '行政部', pid: 4 },
+    { id: 18, label: '财务部', pid: 4 }
   ];
 
   getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
-        x.next(this.data);
+        x.next(cloneDeep(this.data));
         x.complete();
       }, 10);
     });
@@ -364,6 +373,9 @@ class TestXFindComponent {
     <!-- <x-row>
       <x-find label="树单选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.getTreeList"></x-find>
     </x-row> -->
+    <x-row>
+      <x-find label="树多选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.getTreeList" multiple></x-find>
+    </x-row>
     <!-- <x-row>
       <x-find
         label="树加表格多选"
@@ -379,7 +391,7 @@ class TestXFindComponent {
         multiple
       ></x-find>
     </x-row> -->
-    <x-row>
+    <!-- <x-row>
       <x-find
         label="树加表格单选选"
         [(ngModel)]="model4"
@@ -391,7 +403,7 @@ class TestXFindComponent {
         [treeData]="treeService.getTreeList"
         treeTableConnect="organizationId"
       ></x-find>
-    </x-row>
+    </x-row> -->
   `,
   styles: [
     `
