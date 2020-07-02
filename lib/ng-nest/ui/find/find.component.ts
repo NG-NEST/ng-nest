@@ -11,7 +11,7 @@ import {
   NgZone
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XValueAccessor, XClearClass, XResize, XIsUndefined, XResultList, XIsChange } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass, XResize, XIsUndefined, XIsChange } from '@ng-nest/ui/core';
 import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -144,7 +144,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
   setMultiple() {
     if (!this.multiple) return;
     if (this.hasTable) {
-      this.tableColumns = [{ id: '$checked', label: '选择', rowChecked: true, type: 'checkbox', width: 60 }, ...this.tableColumns];
+      if (!this.tableColumns.find((x) => x.rowChecked)) {
+        this.tableColumns = [{ id: '$checked', label: '选择', rowChecked: true, type: 'checkbox', width: 60 }, ...this.tableColumns];
+      }
     }
   }
 

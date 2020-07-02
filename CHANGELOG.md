@@ -1,11 +1,15 @@
-## [1.2.2](https://github.com/NG-NEST/ng-nest/compare/1.2.1...1.2.2) (2020-06-24)
+## [1.2.4](https://github.com/NG-NEST/ng-nest/compare/1.2.1...1.2.4) (2020-07-02)
 
 
 ### Features
 
+* **module:find:** add multiple tree options ([1f670b0](https://github.com/NG-NEST/ng-nest/commit/1f670b08eb81422c6880f45f29811665dd06cb82))
 * **module:find:** add tableLoading ([b47db94](https://github.com/NG-NEST/ng-nest/commit/b47db9408764d0cc6dd8332e51f570ca2c3929f7))
+* **module:find:** tree checkbox multiple ([9ba110a](https://github.com/NG-NEST/ng-nest/commit/9ba110a9863b76560e6502b88626702a8926a166))
 * **module:form:** add disabled entire form ([80af50a](https://github.com/NG-NEST/ng-nest/commit/80af50abd5002b5295fab865d0c959f201ca6929))
+* **module:form:** disabled default ([78d96d9](https://github.com/NG-NEST/ng-nest/commit/78d96d9d8a4fd2a065883bd03ba8ccc0d3b87002))
 * **module:table:** add loading ([5a29086](https://github.com/NG-NEST/ng-nest/commit/5a29086ca653b6161a5425899a0c9f5d311edbbc))
+* **module:tree:** add actions property ([fd2cdd0](https://github.com/NG-NEST/ng-nest/commit/fd2cdd01263eba4cf6af530bb2e9096c526f3abc))
 
 
 

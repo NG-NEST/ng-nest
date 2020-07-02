@@ -20,7 +20,7 @@ export class LayoutService {
 
   menus: Menu[] = menus;
 
-  versions = ['0.2.0', '0.2.1', '0.2.2', '1.0.0', '1.1.2', '1.2.0', '1.2.1', '1.2.2'];
+  versions = ['0.2.0', '0.2.1', '0.2.2', '1.0.0', '1.1.2', '1.2.0', '1.2.1', '1.2.2', '1.2.4'];
 
   getCurrentMenu(url: string): Menu {
     return this.menus.find((x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.router}`) === 0) as Menu;

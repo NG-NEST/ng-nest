@@ -8,5 +8,6 @@ import { TreeServiceTest } from './tree.service';
 })
 export class ExTreeComponent {
   model: any;
+  modelMultiple: any = [];
   constructor(public treeService: TreeServiceTest) {}
 }

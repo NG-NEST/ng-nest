@@ -1,1 +1,4 @@
-<x-find label="树单选" [(ngModel)]="model" [treeData]="treeService.getTreeList"></x-find>
+<x-row><x-find label="树单选" [(ngModel)]="model" [treeData]="treeService.getTreeList"></x-find></x-row>
+<x-row [style.margin-top.rem]="1"
+  ><x-find label="树多选" [(ngModel)]="modelMultiple" [treeData]="treeService.getTreeList" multiple></x-find
+></x-row>
