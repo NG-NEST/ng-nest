@@ -49,11 +49,12 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
 
   ngOnInit() {
     this.node.change = (check: boolean) => {
-      if (check) this.onCheckboxChange();
+      if (check) this.setCheckbox();
       this.cdr.detectChanges();
     };
     this.level = this.node?.level ? this.node.level : 0;
-    if (this.node.checked) this.onCheckboxChange();
+    if (!this.tree.levelCheck) return;
+    if (this.node.checked) this.setCheckbox();
     this.setIndeterminate(this.node);
   }
 
@@ -101,6 +102,12 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   onCheckboxChange() {
+    this.setCheckbox();
+    this.tree.checkboxChange.emit(this.node);
+  }
+
+  setCheckbox() {
+    if (!this.tree.levelCheck) return;
     this.node.indeterminate = this.node.checked;
     this.node.children && this.setChildrenCheckbox(this.node.checked as boolean);
     this.parent?.setParentCheckbox();

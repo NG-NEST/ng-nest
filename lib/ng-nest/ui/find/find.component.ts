@@ -76,6 +76,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     return this.hasTable && this.hasTree;
   }
 
+  get hasTreeMultiple() {
+    return this.hasTree && !this.hasTreeTable && this.multiple;
+  }
+
   temp: any;
   height = 100;
 
@@ -108,7 +112,6 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   ngOnDestroy(): void {
     this._resizeObserver?.disconnect();
-    this.temp = null;
   }
 
   setClassMap() {
@@ -165,6 +168,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
       if (this.multiple) {
         this.temp = (this.value as Array<any>).map((x) => Object.assign({}, x));
         this.setTableCheckedRow();
+        this.setTreeChecked();
       } else {
         this.tableActivatedRow = this.value;
         if (!this.hasTreeTable && this.hasTree) {
@@ -190,6 +194,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     };
   }
 
+  setTreeChecked() {
+    if (this.hasTreeMultiple) this.treeChecked = this.temp.map((x: any) => x.id);
+  }
+
   sure() {
     this.value = this.temp;
     this.onChange(this.value);
@@ -203,6 +211,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
   dialogCloseDone() {
     if (this.hasTree) {
       this.treeActivatedId = null;
+      this.temp = null;
     }
   }
 
@@ -217,7 +226,8 @@ export class XFindComponent extends XFindProperty implements OnInit {
     } else if (this.hasTree) {
       let it = this.treeCom?.treeData.find((x) => item.id === x.id);
       if (it) {
-        it.$checked = false;
+        it.checked = false;
+        it.change && it.change();
         this.treeCom?.cdr.detectChanges();
       }
     }
@@ -261,8 +271,8 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   treeMultiple(node: XTreeNode) {
     if (typeof this.temp === 'undefined') this.temp = [];
-    node.$checked = !node.$checked;
-    if (node.$checked) {
+    // node.$checked = !node.$checked;
+    if (node.checked) {
       this.temp = [...this.temp, node];
     } else {
       this.temp.splice(
@@ -276,7 +286,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
   treeActivatedClick(node: XTreeNode) {
     if (!this.hasTreeTable && this.hasTree) {
       if (this.multiple) {
-        this.treeMultiple(node);
+        // this.treeMultiple(node);
       } else {
         this.temp = node;
       }
@@ -295,6 +305,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     }
     this.treeActivatedChange.emit(node);
     this.cdr.detectChanges();
+  }
+
+  treeCheckboxChange(node: XTreeNode) {
+    this.treeMultiple(node);
   }
 
   formControlChanges() {

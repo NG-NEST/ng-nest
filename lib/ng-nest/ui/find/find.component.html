@@ -44,8 +44,10 @@
         [activatedId]="treeActivatedId"
         [expandedLevel]="treeExpandedLevel"
         (activatedChange)="treeActivatedClick($event)"
-        [allowManyActivated]="!hasTreeTable && multiple"
-        [labelTpl]="treeLabelTpl"
+        [checkbox]="hasTreeMultiple"
+        [checked]="treeChecked"
+        (checkboxChange)="treeCheckboxChange($event)"
+        [levelCheck]="!hasTreeMultiple"
       ></x-tree>
     </div>
     <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>

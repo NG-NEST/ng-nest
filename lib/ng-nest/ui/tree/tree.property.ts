@@ -83,11 +83,15 @@ export class XTreeProperty extends XProperty {
   /**
    * 使用 checkedbox 选中变化的事件
    */
-  @Output() selectedChange = new EventEmitter<XTreeNode[]>();
+  @Output() checkboxChange = new EventEmitter<XTreeNode>();
   /**
    * 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
    */
   @Input() @XInputBoolean() manual: boolean = true;
+  /**
+   * checkbox 状态改变触发层级检查
+   */
+  @Input() @XInputBoolean() levelCheck: XBoolean = true;
   /**
    * 树节点操作按钮
    */

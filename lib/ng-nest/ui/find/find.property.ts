@@ -139,7 +139,6 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * 表格行高度，单位 px
    */
   @Input() @XInputNumber() tableRowHeight: XNumber = 42;
-
   /**
    * 树节点数据
    */

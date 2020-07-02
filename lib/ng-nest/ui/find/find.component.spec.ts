@@ -431,7 +431,10 @@ class TestXFindFunctionComponent {
     { id: 2, label: '姓名2' }
   ];
 
-  model3: any;
+  model3 = [
+    { id: 3, label: '姓名1' },
+    { id: 4, label: '姓名2' }
+  ];
   model4 = { id: 1, label: '姓名1' };
 
   treeData4 = JSON.parse(JSON.stringify(this.treeService.data));
