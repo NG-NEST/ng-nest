@@ -29,4 +29,11 @@
   ></x-table-body>
   <x-table-foot></x-table-foot>
 </table>
-<x-pagination #pagination [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)"></x-pagination>
+<x-pagination 
+  #pagination 
+  [(index)]="index" 
+  [(size)]="size" 
+  [(query)]="query" 
+  [total]="total" 
+  (indexChange)="change($event)">
+</x-pagination>

@@ -170,6 +170,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       parent.leaf = true;
       parent.children = [...parent.children, node];
       parent.change && parent.change();
+    } else if (node.pid == null) {
+      this.activatedId = node.id;
+      node.level = 0;
+      this.treeData = [...this.treeData, node];
+      this.nodes = [...this.nodes, node];
+      this.setActivatedNode(this.treeData);
+      this.cdr.detectChanges();
     }
   }
 
@@ -181,6 +188,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       parent.leaf = parent.children.length > 0;
       if (!parent.leaf) this.activatedId = parent.id;
       parent.change && parent.change();
+    } else if (node.pid == null) {
+      this.treeData.splice(this.treeData.indexOf(node), 1);
+      this.nodes.splice(this.nodes.indexOf(node), 1);
+      this.cdr.detectChanges();
     }
   }
 

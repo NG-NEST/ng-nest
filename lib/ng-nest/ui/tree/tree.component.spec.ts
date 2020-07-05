@@ -378,6 +378,7 @@ interface Organization extends XTreeNode {
   template: `
     <x-row space="1">
       <x-col span="8">
+        <x-button (click)="action('add-root', selected)">添加根节点</x-button>
         <x-tree
           #treeCom
           [data]="data"
@@ -434,7 +435,7 @@ class TestXTreeOperationComponent {
   formGroup = new FormGroup({});
 
   get disabled() {
-    return !['edit', 'add'].includes(this.type);
+    return !['edit', 'add', 'add-root'].includes(this.type);
   }
 
   type = 'info';
@@ -532,6 +533,16 @@ class TestXTreeOperationComponent {
         });
         this.cdr.detectChanges();
         break;
+      case 'add-root':
+        this.type = type;
+        this.formGroup.reset();
+        this.formGroup.patchValue({
+          id: guid(),
+          pid: null,
+          type: ''
+        });
+        this.cdr.detectChanges();
+        break;
       case 'edit':
         this.type = type;
         this.service.get(node?.id).subscribe((x) => {
@@ -547,7 +558,7 @@ class TestXTreeOperationComponent {
         });
         break;
       case 'save':
-        if (this.type === 'add') {
+        if (this.type === 'add' || this.type === 'add-root') {
           this.service.post(this.formGroup.value).subscribe((x) => {
             this.type = 'info';
             this.treeCom.addNode(x);

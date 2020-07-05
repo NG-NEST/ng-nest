@@ -1,4 +1,12 @@
-<form #form class="x-form" (ngSubmit)="submit()" [formGroup]="formGroup" [style.width]="width" [ngClass]="classMap">
+<form
+  #form
+  class="x-form"
+  (ngSubmit)="submit()"
+  [formGroup]="formGroup"
+  [style.width]="width"
+  [style.padding-bottom.rem]="controlsType === 'controls' ? this.space : 0"
+  [ngClass]="classMap"
+>
   <ng-container [ngSwitch]="controlsType">
     <ng-container *ngSwitchCase="'controls'">
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls }"> </ng-container>
