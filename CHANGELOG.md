@@ -1,3 +1,12 @@
+## [1.2.5](https://github.com/NG-NEST/ng-nest/compare/1.2.4...1.2.5) (2020-07-05)
+
+
+### Bug Fixes
+
+* **module:tree:** add/remove root node ([f8f9477](https://github.com/NG-NEST/ng-nest/commit/f8f947737d7ff87ecabc484731876f3dbf593e6a))
+
+
+
 ## [1.2.4](https://github.com/NG-NEST/ng-nest/compare/1.2.1...1.2.4) (2020-07-02)
 
 
