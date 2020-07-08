@@ -15,7 +15,6 @@ import { FormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
-import { notEqual } from 'assert';
 
 describe(XTreePrefix, () => {
   beforeEach(async(() => {
@@ -27,8 +26,8 @@ describe(XTreePrefix, () => {
         TestXTreeCheckedComponent,
         TestXTreeDiabledComponent,
         TestXTreeCustomComponent,
-        TestXTreeEventComponent,
-        TestXTreeOperationComponent
+        TestXTreeEventComponent
+        // TestXTreeOperationComponent
       ]
     }).compileComponents();
   }));
@@ -104,18 +103,18 @@ describe(XTreePrefix, () => {
       expect(tree).toBeDefined();
     });
   });
-  describe(`operation.`, () => {
-    let fixture: ComponentFixture<TestXTreeOperationComponent>;
-    let tree: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTreeOperationComponent);
-      fixture.detectChanges();
-      tree = fixture.debugElement.query(By.directive(XTreeComponent));
-    });
-    it('should create.', () => {
-      expect(tree).toBeDefined();
-    });
-  });
+  // describe(`operation.`, () => {
+  //   let fixture: ComponentFixture<TestXTreeOperationComponent>;
+  //   let tree: DebugElement;
+  //   beforeEach(() => {
+  //     fixture = TestBed.createComponent(TestXTreeOperationComponent);
+  //     fixture.detectChanges();
+  //     tree = fixture.debugElement.query(By.directive(XTreeComponent));
+  //   });
+  //   it('should create.', () => {
+  //     expect(tree).toBeDefined();
+  //   });
+  // });
 });
 
 @Injectable()

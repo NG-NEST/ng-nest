@@ -23,11 +23,20 @@ export function generateProps(...types: NcProp[]) {
           let outputTable = '';
 
           x.properties.forEach((y) => {
+            let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
+            if (x.name == 'XButtonProperty') {
+              // console.log(y);
+            }
+            if (withConfig && !y.default) {
+              y.default = withConfig.match(/\((\S*)\)/)[1];
+              console.log(y.default);
+            }
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
+              <td>${y.label}<span>${y.description}</span></td>
               <td><code [innerHTML]="'${y.type}'"></code></td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
-              <td>${y.label}<span>${y.description}</span></td>
+              <td>${withConfig ? '✅' : ''}</td>
             </tr>`;
             switch (y.propType) {
               case 'Input':
@@ -49,13 +58,14 @@ export function generateProps(...types: NcProp[]) {
           if (inputTable !== '') {
             inputTable = `<table class="x-api-interface">
               <tr>
-                <th colspan="4">Input</th>
+                <th colspan="5">Input</th>
               </tr>
               <tr>
                 <th>参数</th>
+                <th>说明</th>
                 <th>输入类型</th>
                 <th>默认值</th>
-                <th>说明</th>
+                <th>全局设置</th>
               </tr>
               ${inputTable}
             </table>`;
@@ -63,13 +73,13 @@ export function generateProps(...types: NcProp[]) {
           if (outputTable !== '') {
             outputTable = `<table class="x-api-interface">
               <tr>
-                <th colspan="4">Output</th>
+                <th colspan="5">Output</th>
               </tr>
               <tr>
                 <th>参数</th>
+                <th>说明</th>
                 <th>输出类型</th>
                 <th>默认值</th>
-                <th>说明</th>
               </tr>
               ${outputTable}
             </table>`;
@@ -78,9 +88,9 @@ export function generateProps(...types: NcProp[]) {
             table = `<table class="x-api-interface">
               <tr>
                 <th>参数</th>
+                <th>说明</th>
                 <th>类型</th>
                 <th>默认值</th>
-                <th>说明</th>
               </tr>
               ${table}
             </table>`;
@@ -91,8 +101,8 @@ export function generateProps(...types: NcProp[]) {
         case NcPropType.Type:
           typeTable += `<tr>
             <td><code [innerHTML]="'${x.name}'"></code></td>
-            <td><code [innerHTML]="'${replaceEscape(x.value as string)}'"></code></td>
             <td>${x.label}</td>
+            <td><code [innerHTML]="'${replaceEscape(x.value as string)}'"></code></td>
           </tr>`;
           break;
       }
@@ -102,8 +112,8 @@ export function generateProps(...types: NcProp[]) {
       <table class="x-api-type">
         <tr>
           <th>类型</th>
-          <th>值</th>
           <th>说明</th>
+          <th>值</th>
         </tr>
         ${typeTable}
       </table>`;

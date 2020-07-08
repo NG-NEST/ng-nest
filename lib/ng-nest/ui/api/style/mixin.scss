@@ -26,19 +26,18 @@
     > tr {
       > td {
         &:nth-child(1) {
-          color: navy;
-          width: 10rem;
+          width: 20%;
           > span {
             color: teal;
           }
         }
-        &:nth-child(2) {
-          color: navy;
-          width: 10rem;
-        }
         &:nth-child(3) {
+          color: navy;
+          width: 22%;
+        }
+        &:nth-child(4) {
           color: #d14;
-          width: 15rem;
+          width: 16%;
         }
       }
     }
@@ -48,11 +47,11 @@
       > td {
         &:nth-child(1) {
           color: navy;
-          width: 10rem;
+          width: 20%;
         }
-        &:nth-child(2) {
+        &:nth-child(3) {
           color: #d14;
-          width: 50%;
+          width: 35%;
         }
       }
     }

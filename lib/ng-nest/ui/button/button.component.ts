@@ -11,7 +11,7 @@ import {
   ElementRef,
   Renderer2
 } from '@angular/core';
-import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
 import { XButtonsComponent } from './buttons.component';
 
@@ -27,7 +27,8 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     @Optional() @Host() public buttons: XButtonsComponent,
     public cdr: ChangeDetectorRef,
     public elementRef: ElementRef,
-    public renderer: Renderer2
+    public renderer: Renderer2,
+    public configService: XConfigService
   ) {
     super();
   }

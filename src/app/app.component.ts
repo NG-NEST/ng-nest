@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/services/config.service';
+import { XThemeService } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ns-root',
@@ -9,7 +10,7 @@ import { ConfigService } from 'src/services/config.service';
 })
 export class AppComponent {
   title = 'ng-nest';
-  constructor(private config: ConfigService) {
+  constructor(private config: ConfigService, private themeService: XThemeService) {
     this.config.init();
   }
 }

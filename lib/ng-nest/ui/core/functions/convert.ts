@@ -8,8 +8,6 @@ import {
   XIsObject,
   XIsObservable,
   XParentIdentityProperty,
-  XIsBoolean,
-  XIsString,
   XBoolean,
   XClassMap
 } from '../interfaces';

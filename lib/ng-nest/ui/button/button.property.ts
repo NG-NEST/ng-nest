@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType } from '@ng-nest/ui/core';
+import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * Button
@@ -16,7 +16,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 类型
    */
-  @Input() type: XButtonType = 'initial';
+  @Input() @XWithConfig<XButtonType>('initial') type: XButtonType;
   /**
    * 图标
    */
@@ -32,7 +32,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 仅显示图标
    */
@@ -48,11 +48,11 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 朴素按钮
    */
-  @Input() @XInputBoolean() plain: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() plain: XBoolean;
   /**
    * 圆角按钮
    */
-  @Input() @XInputBoolean() round: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() round: XBoolean;
   /**
    * 圆型按钮（配合图标来使用）
    */
