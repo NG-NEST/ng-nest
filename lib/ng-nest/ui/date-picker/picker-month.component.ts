@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { chunk, XIsChange } from '@ng-nest/ui/core';
+import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XPickerMonthProperty } from './date-picker.property';
 
 @Component({
@@ -21,7 +21,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
   now = new Date();
   dates: Date[][] = [];
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

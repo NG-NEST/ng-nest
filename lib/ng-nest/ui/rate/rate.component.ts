@@ -8,7 +8,7 @@ import {
   Input,
   ViewChild
 } from '@angular/core';
-import { XValueAccessor, XIsEmpty, XNumber, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
 
 @Component({
@@ -33,7 +33,12 @@ export class XRateComponent extends XRateProperty {
   }
 
   rateNodes: any = [];
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

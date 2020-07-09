@@ -9,7 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
-import { XValueAccessor, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XSwitchPrefix}`,
@@ -27,7 +27,7 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

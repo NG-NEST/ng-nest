@@ -13,7 +13,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XDrawerPrefix, XDrawerProperty } from './drawer.property';
-import { XIsChange, XIsEmpty, XSlideAnimation } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XSlideAnimation, XConfigService } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
@@ -37,7 +37,8 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
     public cdr: ChangeDetectorRef,
     public overlay: Overlay,
     public portalService: XPortalService,
-    public viewContainerRef: ViewContainerRef
+    public viewContainerRef: ViewContainerRef,
+    public configService: XConfigService
   ) {
     super();
   }

@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { chunk, XIsChange } from '@ng-nest/ui/core';
+import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XPickerYearProperty } from './date-picker.property';
 import { DatePipe } from '@angular/common';
 
@@ -25,7 +25,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   start: number;
   end: number;
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe) {
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe, public configService: XConfigService) {
     super();
   }
 

@@ -11,7 +11,7 @@ import {
   NgZone
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XValueAccessor, XClearClass, XResize, XIsUndefined, XIsChange } from '@ng-nest/ui/core';
+import { XValueAccessor, XClearClass, XResize, XIsUndefined, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -91,7 +91,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
@@ -32,7 +32,12 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   nodes: XCheckboxNode[] = [];
   single: boolean = false;
   private _unSubject = new Subject<void>();
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

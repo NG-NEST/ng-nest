@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import { XIsChange, XIsEmpty, XSetData, XGetChildren } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XSetData, XGetChildren, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
@@ -37,7 +37,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    public configService: XConfigService
   ) {
     super();
   }

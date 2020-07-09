@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
-import { XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { XFadeAnimation, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ import { delay, takeUntil } from 'rxjs/operators';
 export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
   private _unSubject = new Subject();
 
-  constructor(public cdr: ChangeDetectorRef) {
+  constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

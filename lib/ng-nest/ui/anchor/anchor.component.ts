@@ -6,15 +6,13 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   ViewChild,
   AfterViewInit,
   Inject,
   OnDestroy
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
-import { computedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
+import { computedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -42,7 +40,8 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any
+    @Inject(DOCUMENT) private doc: any,
+    public configService: XConfigService
   ) {
     super();
   }

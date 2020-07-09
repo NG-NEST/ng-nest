@@ -11,7 +11,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XValueAccessor, XIsChange, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -50,7 +50,12 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

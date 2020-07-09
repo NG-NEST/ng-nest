@@ -9,7 +9,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
-import { XIsChange } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -26,7 +26,13 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges {
   activatedDate: Date = new Date();
   monthData: { [prop: string]: XCalendarNode[] } = {};
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef, public datePipe: DatePipe) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public datePipe: DatePipe,
+    public configService: XConfigService
+  ) {
     super();
   }
 

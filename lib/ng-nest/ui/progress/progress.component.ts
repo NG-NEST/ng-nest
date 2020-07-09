@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XProgressPrefix, XProgressProperty } from './progress.property';
-import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber } from '@ng-nest/ui/core';
+import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XProgressPrefix}`,
@@ -22,7 +22,12 @@ import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber } 
 export class XProgressComponent extends XProgressProperty implements OnInit, OnChanges {
   currentColor: string;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

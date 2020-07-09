@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsNumber, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -22,7 +22,12 @@ import { XIsNumber, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
   displayValue: string = '';
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

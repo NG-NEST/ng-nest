@@ -8,7 +8,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XCrumbPrefix, XCrumbNode, XCrumbProperty } from './crumb.property';
-import { XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -22,7 +22,7 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
   nodes: XCrumbNode[] = [];
   private _unSubject = new Subject<void>();
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

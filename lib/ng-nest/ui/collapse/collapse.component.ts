@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XCollapsePrefix, XCollapseProperty } from './collapse.property';
-import { XIsArray } from '@ng-nest/ui/core';
+import { XIsArray, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
@@ -13,7 +13,12 @@ export class XCollapseComponent extends XCollapseProperty implements OnInit {
   start: number = 0;
   panelChanges: Function[] = [];
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
-import { XIsObservable, XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XIsObservable, XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -28,7 +28,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   getting = false;
   treeData: XTreeNode[] = [];
   private _unSubject = new Subject<void>();
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

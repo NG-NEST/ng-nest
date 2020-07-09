@@ -1,13 +1,11 @@
 import { XClassMap, XJustify, XAlign, XDirection, XBoolean, XSize } from '../interfaces';
-import { Input, Optional } from '@angular/core';
+import { Input } from '@angular/core';
 import { XInputBoolean } from './convert';
-import { XConfigService } from '../config';
 
 /**
  * 组件公共属性
  */
 export class XProperty {
-  constructor(@Optional() configService?: XConfigService) {}
   /**
    * 样式映射属性
    */

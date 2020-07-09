@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XTextRetractPrefix, XTextRetractProperty } from './text-retract.property';
-import { XIsChange } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
@@ -24,7 +24,12 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   retract: boolean = false;
   unfold: boolean = true;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

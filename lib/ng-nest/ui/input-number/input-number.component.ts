@@ -10,7 +10,7 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XIsEmpty, XValueAccessor, XNumber, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 
 @Component({
@@ -40,7 +40,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     this.up(event);
   }
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

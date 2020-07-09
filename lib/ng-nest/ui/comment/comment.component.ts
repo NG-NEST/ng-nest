@@ -9,7 +9,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XCommentPrefix, XCommentNode, XCommentProperty } from './comment.property';
-import { XIsEmpty, XIsChange, XSetData, XGetChildren } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XSetData, XGetChildren, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -23,7 +23,12 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
   nodes: XCommentNode[] = [];
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
-import { XClassMap, reqAnimFrame } from '@ng-nest/ui/core';
+import { XClassMap, reqAnimFrame, XConfigService } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
@@ -67,7 +67,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
     public cdr: ChangeDetectorRef,
     public portal: XPortalService,
     public viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private doc: any
+    @Inject(DOCUMENT) private doc: any,
+    public configService: XConfigService
   ) {
     super();
   }

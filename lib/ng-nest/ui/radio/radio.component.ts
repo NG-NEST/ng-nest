@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData, XClearClass, XIsEmpty } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRadioPrefix}`,
@@ -26,7 +26,12 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

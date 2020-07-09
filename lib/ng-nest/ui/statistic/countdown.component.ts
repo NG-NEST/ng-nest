@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
 import { interval, Subscription } from 'rxjs';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCountdownPrefix}`,
@@ -27,7 +28,7 @@ export class XCountdownComponent extends XCountdownProperty implements OnInit, O
   private _target: number;
   private _updater: Subscription | null;
 
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, public configService: XConfigService) {
     super();
   }
 

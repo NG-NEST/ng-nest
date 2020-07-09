@@ -10,7 +10,7 @@ import {
   Optional
 } from '@angular/core';
 import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.property';
-import { XDropAnimation } from '@ng-nest/ui/core';
+import { XDropAnimation, XConfigService } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -40,7 +40,8 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public sanitizer: DomSanitizer,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
   ) {
     super();
   }

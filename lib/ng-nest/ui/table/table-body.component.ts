@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow } from './table.property';
-import { removeNgTag, XIsChange, XResize } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize, XConfigService } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
@@ -43,7 +43,8 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) public doc: any
+    @Inject(DOCUMENT) public doc: any,
+    public configService: XConfigService
   ) {
     super();
   }

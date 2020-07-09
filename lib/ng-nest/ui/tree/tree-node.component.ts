@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XTreeComponent } from './tree.component';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -42,7 +42,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     @Optional() public tree: XTreeComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
   ) {
     super();
   }

@@ -12,7 +12,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XStepsPrefix, XStepsNode, XStepsProperty } from './steps.property';
-import { XIsChange, XIsUndefined, XIsNumber, XSetData, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XIsUndefined, XIsNumber, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -27,7 +27,12 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
   nodes: XStepsNode[] = [];
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

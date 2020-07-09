@@ -11,7 +11,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XTablePrefix, XTableProperty, XTableColumn, XTableRow } from './table.property';
-import { XIsChange, XIsEmpty, XResultList, XNumber, XSort } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XResultList, XNumber, XSort, XConfigService } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { takeUntil } from 'rxjs/operators';
@@ -50,7 +50,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   @ViewChild('table') table: ElementRef;
   @ViewChild('pagination') pagination: XPaginationComponent;
   private _unSubject = new Subject();
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

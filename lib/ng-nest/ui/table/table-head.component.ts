@@ -12,7 +12,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange } from '@ng-nest/ui/core';
+import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 
 @Component({
@@ -28,7 +28,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     @Host() @Optional() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
   ) {
     super();
   }

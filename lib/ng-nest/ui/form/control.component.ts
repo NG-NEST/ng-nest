@@ -46,7 +46,7 @@ import {
 } from './form.property';
 import { XFormComponent } from './form.component';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -65,7 +65,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   private _unSubject = new Subject();
   private _formControl: FormControl;
 
-  constructor(@Host() @Optional() public form: XFormComponent, public cdr: ChangeDetectorRef) {
+  constructor(@Host() @Optional() public form: XFormComponent, public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

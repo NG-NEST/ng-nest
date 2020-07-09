@@ -9,6 +9,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XLinkPrefix, XLinkProperty } from './link.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XLinkPrefix}`,
@@ -30,7 +31,12 @@ export class XLinkComponent extends XLinkProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

@@ -1,12 +1,9 @@
 ---
 label: 'Theme 主题'
 category: 'Basic'
+hidden: true
 ---
 
 # Theme 主题
 
 。
-
-## 主题设置
-
-{{ __examples }}

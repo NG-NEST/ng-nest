@@ -14,7 +14,7 @@ import {
   SimpleChange
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
-import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData } from '@ng-nest/ui/core';
+import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 
@@ -60,7 +60,12 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   private _unSubject = new Subject<void>();
   private _resizeObserver: ResizeObserver;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

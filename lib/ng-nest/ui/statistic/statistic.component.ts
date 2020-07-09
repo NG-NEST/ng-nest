@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
 import { XStatisticPrefix, XStatisticProperty } from './statistic.property';
-import { XIsChange } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XStatisticPrefix}`,
@@ -13,7 +13,7 @@ export class XStatisticComponent extends XStatisticProperty implements OnChanges
   displayInt = '';
   displayDecimal = '';
 
-  constructor() {
+  constructor(public configService: XConfigService) {
     super();
   }
 

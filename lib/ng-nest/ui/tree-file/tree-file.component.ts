@@ -1,10 +1,9 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from './tree-file.property';
 import { HttpClient } from '@angular/common/http';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
-import { delay, delayWhen } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
@@ -27,7 +26,13 @@ export class XTreeFileComponent extends XTreeFileProperty {
     return Number(this.maxHeight) - (Boolean(this.showCrumb) ? 1.5 : 0);
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef, public http: HttpClient) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public http: HttpClient,
+    public configService: XConfigService
+  ) {
     super();
   }
 

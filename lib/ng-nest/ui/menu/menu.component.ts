@@ -14,7 +14,7 @@ import {
   Inject
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
-import { XClassMap, XIsChange, XIsEmpty, XSetData, groupBy } from '@ng-nest/ui/core';
+import { XClassMap, XIsChange, XIsEmpty, XSetData, groupBy, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 
@@ -43,7 +43,13 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   private _unSubject = new Subject<void>();
   private _target: HTMLElement;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef, @Inject(DOCUMENT) public doc: any) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) public doc: any,
+    public configService: XConfigService
+  ) {
     super();
   }
 

@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
@@ -36,7 +36,8 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     public portal: XPortalService,
-    public viewContainerRef: ViewContainerRef
+    public viewContainerRef: ViewContainerRef,
+    public configService: XConfigService
   ) {
     super();
   }

@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize } from '@ng-nest/ui/core';
+import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService } from '@ng-nest/ui/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 
@@ -32,7 +32,12 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   private _unSubject = new Subject<void>();
   private _resizeObserver: ResizeObserver;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

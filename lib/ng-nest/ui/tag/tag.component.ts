@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTagPrefix}`,
@@ -10,7 +10,12 @@ import { XIsEmpty } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTagComponent extends XTagProperty implements OnInit {
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

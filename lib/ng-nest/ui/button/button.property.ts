@@ -1,5 +1,16 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XDirection,
+  XSize,
+  XInputBoolean,
+  XInputNumber,
+  XNumber,
+  XBoolean,
+  XType,
+  XWithConfig,
+  XConfigService
+} from '@ng-nest/ui/core';
 
 /**
  * Button

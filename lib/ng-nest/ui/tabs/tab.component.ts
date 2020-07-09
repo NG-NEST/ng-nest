@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, Input, ViewEncapsulation } from '@angular/core';
 import { XTabPrefix, XTabProperty } from './tabs.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTabPrefix}`,
@@ -10,7 +11,7 @@ import { XTabPrefix, XTabProperty } from './tabs.property';
 export class XTabComponent extends XTabProperty {
   @ViewChild(TemplateRef, { static: true }) content: TemplateRef<void>;
 
-  constructor() {
+  constructor(public configService: XConfigService) {
     super();
   }
 }

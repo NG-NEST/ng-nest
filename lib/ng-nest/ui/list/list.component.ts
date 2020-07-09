@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XValueAccessor, XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -33,7 +33,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

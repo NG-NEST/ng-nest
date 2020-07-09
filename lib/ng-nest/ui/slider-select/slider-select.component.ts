@@ -12,7 +12,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
-import { XIsEmpty, XValueAccessor, XIsUndefined, XResize, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XValueAccessor, XIsUndefined, XResize, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -51,7 +51,12 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.setDisplayValue();
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

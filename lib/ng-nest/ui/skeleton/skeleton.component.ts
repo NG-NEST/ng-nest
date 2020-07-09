@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XSkeletonPrefix, XSkeletonProperty } from './skeleton.property';
-import { XIsChange } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XSkeletonPrefix}`,
@@ -20,7 +20,12 @@ import { XIsChange } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSkeletonComponent extends XSkeletonProperty implements OnInit, OnChanges {
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAvatarPrefix}`,
@@ -12,7 +12,12 @@ import { XIsEmpty } from '@ng-nest/ui/core';
 export class XAvatarComponent extends XAvatarProperty implements OnInit {
   isImgError: boolean = false;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

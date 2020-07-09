@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { XPageHeaderPrefix, XPageHeaderProperty } from './page-header.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
@@ -9,7 +10,7 @@ import { XPageHeaderPrefix, XPageHeaderProperty } from './page-header.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPageHeaderComponent extends XPageHeaderProperty {
-  constructor() {
+  constructor(public configService: XConfigService) {
     super();
   }
 }

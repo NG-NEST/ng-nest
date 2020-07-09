@@ -1,5 +1,6 @@
 import { Renderer2, ElementRef, ChangeDetectorRef, Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XPopconfirmPrefix}`,
@@ -11,7 +12,12 @@ import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
 export class XPopconfirmComponent extends XPopconfirmProperty {
   visible: boolean;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

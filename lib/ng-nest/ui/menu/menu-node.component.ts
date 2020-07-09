@@ -1,14 +1,7 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Host,
-  Optional,
-  ElementRef
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Host, Optional, ElementRef } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
 import { XMenuComponent } from './menu.component';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
@@ -17,7 +10,12 @@ import { XMenuComponent } from './menu.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMenuNodeComponent extends XMenuNodeProperty {
-  constructor(@Host() @Optional() public menu: XMenuComponent, public cdr: ChangeDetectorRef, public elementRef: ElementRef) {
+  constructor(
+    @Host() @Optional() public menu: XMenuComponent,
+    public cdr: ChangeDetectorRef,
+    public elementRef: ElementRef,
+    public configService: XConfigService
+  ) {
     super();
   }
   ngOnInit() {

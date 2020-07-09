@@ -11,7 +11,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty } from './transfer.property';
-import { XValueAccessor, XIsChange, XIsEmpty, XSetData } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
@@ -46,7 +46,12 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setList();
   }
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

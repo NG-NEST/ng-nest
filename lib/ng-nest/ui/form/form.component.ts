@@ -8,7 +8,7 @@ import {
   XFormControlComponent,
   XFormControlType
 } from './form.property';
-import { XIsChange, XBoolean } from '@ng-nest/ui/core';
+import { XIsChange, XBoolean, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XFormPrefix}`,
@@ -22,7 +22,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
   controlComponents: { [property: string]: XFormControlComponent } = {};
   controlTypes: { [property: string]: XFormControlType } = {};
 
-  constructor(public cdr: ChangeDetectorRef) {
+  constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

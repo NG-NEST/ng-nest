@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XTimelinePrefix, XTimelineNode, XTimelineProperty } from './timeline.property';
-import { XIsChange, XSetData } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -23,7 +23,12 @@ import { Subject } from 'rxjs';
 export class XTimelineComponent extends XTimelineProperty implements OnInit, OnChanges {
   nodes: XTimelineNode[] = [];
   private _unSubject = new Subject<void>();
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

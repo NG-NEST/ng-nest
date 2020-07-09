@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XCommentReplyPrefix, XCommentReplyProperty } from './comment.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCommentReplyPrefix}`,
@@ -11,7 +12,12 @@ import { XCommentReplyPrefix, XCommentReplyProperty } from './comment.property';
 export class XCommentReplyComponent extends XCommentReplyProperty {
   inputValue: string;
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

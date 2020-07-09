@@ -13,7 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -61,7 +61,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
+    private overlay: Overlay,
+    public configService: XConfigService
   ) {
     super();
   }

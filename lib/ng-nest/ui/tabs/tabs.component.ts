@@ -12,7 +12,7 @@ import {
   QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
@@ -37,7 +37,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
 
   @ViewChild(XSliderComponent, { static: false }) slider: XSliderComponent;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 
