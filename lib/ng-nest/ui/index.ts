@@ -13,6 +13,7 @@ export * from '@ng-nest/ui/container';
 export * from '@ng-nest/ui/layout';
 export * from '@ng-nest/ui/icon';
 export * from '@ng-nest/ui/link';
+export * from '@ng-nest/ui/theme';
 export * from '@ng-nest/ui/typography';
 
 /**

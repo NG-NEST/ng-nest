@@ -40,7 +40,7 @@
         &.cdk-drag-placeholder {
           border-color: $--x-border;
           color: $--x-text-400;
-          background-color: $--x-white;
+          background-color: $--x-background-100;
           opacity: 0.9;
         }
         &:not(.cdk-drag-placeholder) {

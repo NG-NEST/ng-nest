@@ -108,7 +108,7 @@
                   z-index: 1;
                   > li {
                     border: $--x-border-base;
-                    background-color: $--x-white;
+                    background-color: $--x-background-100;
                     &:first-child {
                       border-#{$border-radio-first}: 0.125rem;
                     }
@@ -122,7 +122,7 @@
                       display: none;
                     }
                     &.x-slider-activated {
-                      border-#{$border-activated}-color: $--x-white;
+                      border-#{$border-activated}-color: $--x-background-100;
                     }
                   }
                 }
@@ -180,11 +180,11 @@
                     &.x-slider-highlight {
                       border-#{$border-li-first}: $--x-border-200-base;
                       border-#{$border-li-second}: $--x-border-200-base;
-                      border-#{$border}-color: $--x-white;
-                      background-color: $--x-white;
+                      border-#{$border}-color: $--x-background-100;
+                      background-color: $--x-background-100;
                     }
                     &.x-slider-activated {
-                      border-#{$border}-color: $--x-white;
+                      border-#{$border}-color: $--x-background-100;
                     }
                   }
                 }

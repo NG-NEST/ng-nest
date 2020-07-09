@@ -18,7 +18,7 @@
 
 @mixin collapse-panel {
   box-sizing: border-box;
-  background-color: $--x-white;
+  background-color: $--x-background-100;
   &-header {
     display: flex;
     align-items: center;

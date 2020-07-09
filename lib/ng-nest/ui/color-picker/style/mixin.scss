@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    background-color: $--x-white;
+    background-color: $--x-background-100;
     > x-input {
       flex: 1;
       position: relative;
@@ -102,7 +102,7 @@
   border: $--x-color-picker-border;
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-base;
-  background-color: $--x-white;
+  background-color: $--x-background-100;
   width: 15rem;
   overflow: hidden;
   &-panel {
@@ -136,7 +136,7 @@
     height: 0.75rem;
     display: inline-block;
     border-radius: 50%;
-    border: 0.0625rem solid $--x-white;
+    border: 0.0625rem solid $--x-background-100;
   }
   &-tool {
     padding: 0.4rem;

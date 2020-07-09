@@ -18,7 +18,7 @@ $--x-input-color: $--x-primary-900;
 $--x-input-placeholder-color: $--x-placeholder-color;
 
 /* 背景颜色 */
-$--x-input-background-color: #ffffff;
+$--x-input-background-color: $--x-border-900;
 
 /* 边框样式 */
 $--x-input-border: $--x-border-width $--x-border-style $--x-border;
@@ -27,7 +27,7 @@ $--x-input-border: $--x-border-width $--x-border-style $--x-border;
 $--x-input-border-radius: $--x-border-radius;
 
 /* 阴影 */
-$--x-input-box-shadow: $--x-box-shadow $--x-border-300;
+$--x-input-box-shadow: $--x-box-shadow none;
 
 /* 禁用颜色 */
 $--x-input-disabled-color: $--x-text-500;

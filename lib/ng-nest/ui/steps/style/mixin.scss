@@ -49,7 +49,7 @@
     height: 2rem;
     width: 2rem;
     border: $--x-border-base;
-    background-color: $--x-white;
+    background-color: $--x-background-100;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -94,7 +94,7 @@
   }
 
   @include status(wait, $--x-text-400, $--x-text-400, '', '', '', '');
-  @include status(process, $--x-text-300, $--x-white, $--x-primary, $--x-primary, '', bold);
+  @include status(process, $--x-text-300, $--x-background-100, $--x-primary, $--x-primary, '', bold);
   @include status(finish, $--x-text-400, $--x-primary, '', '', $--x-primary, '');
   @include status(error, $--x-danger, $--x-danger, '', $--x-danger, '', '');
 }

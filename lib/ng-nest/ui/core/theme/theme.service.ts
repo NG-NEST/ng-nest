@@ -8,17 +8,25 @@ import { DOCUMENT } from '@angular/common';
 export class XThemeService {
   private rootKey = '--x-';
   private merge: string = '#ffffff';
-  private amounts: number[] = [0, -0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+  private amounts: number[] = [0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
   private colorsProp: { [prop: string]: string } = {};
   private colorsStyleEle: HTMLStyleElement;
   private renderer2: Renderer2;
+  private declaration: CSSStyleDeclaration;
 
   constructor(@Inject(DOCUMENT) private doc: any, private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);
+    this.declaration = getComputedStyle(this.doc.documentElement);
   }
 
   setTheme(theme?: XTheme) {
     this.setColors(theme?.colors);
+  }
+
+  getTheme(): XTheme {
+    return {
+      colors: this.getColors()
+    };
   }
 
   setColors(colors?: XColorsTheme) {
@@ -27,6 +35,14 @@ export class XThemeService {
     for (let key in colors) {
       this.setRoot(key, colors[key]);
     }
+  }
+
+  getColors(colors?: XColorsTheme): XColorsTheme {
+    if (typeof colors === 'undefined') colors = X_THEME_COLORS;
+    else colors = Object.assign(X_THEME_COLORS, colors);
+    let result: XColorsTheme = {};
+    Object.keys(colors).forEach((x) => (result[x] = this.declaration.getPropertyValue(`${this.rootKey}${x}`).trim()));
+    return result;
   }
 
   setRoot(color: string, value: string) {

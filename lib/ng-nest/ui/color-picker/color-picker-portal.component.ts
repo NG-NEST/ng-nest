@@ -71,9 +71,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     public cdr: ChangeDetectorRef,
     public decimal: DecimalPipe,
     public percent: PercentPipe
-  ) {
-    this.init();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: string) => {
@@ -91,6 +89,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
           if (!this.drag) this.closePortal();
         }))
     );
+    this.init();
   }
 
   ngOnDestroy(): void {

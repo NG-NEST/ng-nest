@@ -99,6 +99,14 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
+    "id": "3-0-73",
+    "pid": "3-0",
+    "name": "theme",
+    "router": "docs/ui/components/theme",
+    "label": "Theme 主题",
+    "category": "Basic"
+  },
+  {
     "id": "3-0-87",
     "pid": "3-0",
     "name": "typography",

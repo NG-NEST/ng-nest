@@ -27,7 +27,7 @@ export const X_THEME_COLORS: XColorsTheme = {
   info: '#909399',
   text: '#303133',
   border: '#dcdfe6',
-  background: '#f5f7fa'
+  background: '#e3e3e3'
 };
 
 export const X_THEME_COLOR_KEYS = Object.keys(X_THEME_COLORS);

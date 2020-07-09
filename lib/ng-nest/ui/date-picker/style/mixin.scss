@@ -79,7 +79,7 @@
   border: $--x-date-picker-border;
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-base;
-  background-color: $--x-white;
+  background-color: $--x-background-100;
   width: 16rem;
   display: flex;
   flex-direction: column;
@@ -127,10 +127,10 @@
           background-color: $--x-primary-900;
         }
         &-activated {
-          color: $--x-white;
+          color: $--x-background-100;
           background-color: $--x-primary;
           &:hover {
-            color: $--x-white;
+            color: $--x-background-100;
             background-color: $--x-primary;
           }
         }
@@ -162,10 +162,10 @@
           background-color: $--x-primary-900;
         }
         &-activated {
-          color: $--x-white;
+          color: $--x-background-100;
           background-color: $--x-primary;
           &:hover {
-            color: $--x-white;
+            color: $--x-background-100;
             background-color: $--x-primary;
           }
         }
@@ -197,10 +197,10 @@
           background-color: $--x-primary-900;
         }
         &-activated {
-          color: $--x-white;
+          color: $--x-background-100;
           background-color: $--x-primary;
           &:hover {
-            color: $--x-white;
+            color: $--x-background-100;
             background-color: $--x-primary;
           }
         }

@@ -10,7 +10,7 @@
   position: relative;
   border: $--x-border-base;
   border-radius: $--x-border-radius;
-  background-color: $--x-white;
+  background-color: $--x-background-100;
   transition: box-shadow 0.3s;
   &-always {
     box-shadow: $--x-card-box-shadow;

@@ -79,7 +79,7 @@
   border: $--x-cascade-border;
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-base;
-  background-color: $--x-white;
+  background-color: $--x-background-100;
   display: flex;
   > x-list:not(:first-child) {
     border-left: $--x-border-width solid $--x-border-200;

@@ -208,7 +208,7 @@ ns-home {
     @include flex-center();
     flex-direction: column;
     width: 100%;
-    background-color: #fafafa;
+    background-color: $--x-background-100;
     > .panel {
       width: 100%;
       &:nth-child(even) {

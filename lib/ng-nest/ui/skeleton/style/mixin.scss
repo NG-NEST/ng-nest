@@ -10,7 +10,7 @@
     min-height: 1rem;
   }
   x-row {
-    background-color: $--x-white;
+    background-color: $--x-background-100;
   }
   x-row:not(:first-child) {
     margin-top: 1rem;
@@ -70,7 +70,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background: $--x-white;
+          background: $--x-background-100;
           border-radius: $--x-border-radius;
           opacity: 0;
           animation: skeleton-active 1.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
