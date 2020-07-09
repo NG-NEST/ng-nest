@@ -11,7 +11,7 @@
     display: inline-block;
     height: $--x-date-picker-height;
     line-height: $--x-date-picker-height;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -136,7 +136,7 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-300;
+        color: $--x-text-500;
       }
       &.x-date-now x-button .x-button {
         background-color: $--x-info-600;
@@ -171,7 +171,7 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-300;
+        color: $--x-text-500;
       }
       &.x-date-now x-button .x-button {
         background-color: $--x-info-600;
@@ -206,7 +206,7 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-300;
+        color: $--x-text-500;
       }
       &.x-date-now x-button .x-button {
         background-color: $--x-info-600;

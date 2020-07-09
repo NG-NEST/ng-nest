@@ -121,7 +121,7 @@ describe(XCarouselPrefix, () => {
         text-align: center;
         line-height: 12rem;
         margin: 0;
-        color: var(--x-text-500);
+        color: var(--x-text-300);
       }
     `
   ]
@@ -161,7 +161,7 @@ class TestXCarouselComponent {
         text-align: center;
         line-height: 15rem;
         margin: 0;
-        color: var(--x-text-500);
+        color: var(--x-text-300);
       }
     `
   ]
@@ -201,7 +201,7 @@ class TestXCarouselCardComponent {
         text-align: center;
         line-height: 15rem;
         margin: 0;
-        color: var(--x-text-500);
+        color: var(--x-text-300);
       }
     `
   ]
@@ -252,7 +252,7 @@ class TestXCarouselDirectionComponent {
         text-align: center;
         line-height: 15rem;
         margin: 0;
-        color: var(--x-text-500);
+        color: var(--x-text-300);
       }
     `
   ]

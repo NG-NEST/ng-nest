@@ -1,0 +1,10 @@
+// Theme
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './mixin';
+
+.#{$--x-theme-prefix} {
+  @include reset-component();
+  @include theme();
+}

@@ -9,7 +9,7 @@
   flex-direction: column;
   border-collapse: collapse;
   width: 100%;
-  box-shadow: $--x-box-shadow $--x-border-100;
+  box-shadow: $--x-box-shadow $--x-border-300;
   border: $--x-border-200-base;
   > thead {
     position: relative;
@@ -107,7 +107,7 @@
     cursor: pointer;
     transition: transform 0.2s;
     &:hover {
-      color: $--x-text-500;
+      color: $--x-text-300;
     }
     &:active {
       transform: translate(1px, 1px);

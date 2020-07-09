@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, HostBinding } from '@angular/core';
 import { XButtonsPrefix, XButtonsProperty } from './button.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XButtonsPrefix}`,
@@ -16,7 +17,7 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
     return this.hiddenBorder;
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XButtonsPrefix);
   }

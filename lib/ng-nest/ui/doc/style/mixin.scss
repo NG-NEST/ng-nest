@@ -106,7 +106,7 @@
     width: 100%;
     code {
       &.language- {
-        @include code(bash, $--x-white, $--x-text-500, $--x-text-500, $--x-text-500);
+        @include code(bash, $--x-white, $--x-text-300, $--x-text-300, $--x-text-300);
         @each $state, $value in $--x-doc-states {
           @include code(
             $state,

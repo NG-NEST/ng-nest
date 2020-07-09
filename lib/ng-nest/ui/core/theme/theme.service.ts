@@ -1,12 +1,11 @@
-import { Injectable, Optional, Inject, RendererFactory2, Renderer2 } from '@angular/core';
-import { XTheme, X_THEME, XColorsTheme, X_THEME_COLORS, X_THEME_COLOR_KEYS } from './theme';
+import { Injectable, Inject, RendererFactory2, Renderer2 } from '@angular/core';
+import { XTheme, XColorsTheme, X_THEME_COLORS, X_THEME_COLOR_KEYS } from './theme';
 import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class XThemeService {
-  private theme: XTheme;
   private rootKey = '--x-';
   private merge: string = '#ffffff';
   private amounts: number[] = [0, -0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
@@ -14,10 +13,8 @@ export class XThemeService {
   private colorsStyleEle: HTMLStyleElement;
   private renderer2: Renderer2;
 
-  constructor(@Inject(DOCUMENT) private doc: any, private factory: RendererFactory2, @Optional() @Inject(X_THEME) defaultTheme?: XTheme) {
-    this.theme = defaultTheme || {};
+  constructor(@Inject(DOCUMENT) private doc: any, private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);
-    this.setTheme(this.theme);
   }
 
   setTheme(theme?: XTheme) {
@@ -69,23 +66,15 @@ export function mixColors(color1: string, color2: string, weight: number) {
   let weight2 = 1 - weight;
   let result: { r: number; g: number; b: number };
 
-  if (weight < 0) {
-    result = {
-      r: Math.floor(rgb2.r * (1 - weight)),
-      g: Math.floor(rgb2.g * (1 - weight)),
-      b: Math.floor(rgb2.b * (1 - weight))
-    };
-  } else {
-    result = {
-      r: Math.round(rgb1.r * weight1 + rgb2.r * weight2),
-      g: Math.round(rgb1.g * weight1 + rgb2.g * weight2),
-      b: Math.round(rgb1.b * weight1 + rgb2.b * weight2)
-    };
-  }
+  const inRange = (num: number) => {
+    return num > 255 ? 255 : num < 0 ? 0 : num;
+  };
 
-  if (result.r > 255) result.r = 255;
-  if (result.g > 255) result.g = 255;
-  if (result.b > 255) result.b = 255;
+  result = {
+    r: inRange(Math.round(rgb1.r * weight1 + rgb2.r * weight2)),
+    g: inRange(Math.round(rgb1.g * weight1 + rgb2.g * weight2)),
+    b: inRange(Math.round(rgb1.b * weight1 + rgb2.b * weight2))
+  };
 
   return result;
 }

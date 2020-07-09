@@ -41,7 +41,7 @@
           left: 0;
           width: 100%;
           margin-top: -0.5rem;
-          border-top: $--x-border-100-base;
+          border-top: $--x-border-300-base;
         }
       }
       &.x-selected {
@@ -52,13 +52,13 @@
         }
       }
       &.x-disabled {
-        color: var(--x-text-300);
+        color: var(--x-text-500);
         cursor: not-allowed;
         &:hover {
           background-color: inherit;
         }
         > span x-icon {
-          color: var(--x-text-300);
+          color: var(--x-text-500);
         }
       }
     }
@@ -86,7 +86,7 @@
     color: $--x-text-400;
   }
   &-icon > span x-icon {
-    color: $--x-text-500;
+    color: $--x-text-300;
     margin-right: 0.25rem;
   }
 }

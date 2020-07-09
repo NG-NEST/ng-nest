@@ -13,7 +13,7 @@
     height: $--x-radio-height;
     line-height: $--x-radio-height;
     position: relative;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -120,13 +120,13 @@
 }
 
 @mixin disabled {
-  color: var(--x-text-300);
+  color: var(--x-text-500);
   cursor: not-allowed;
   .#{$--x-radio-prefix}-box {
-    border-color: var(--x-border-300);
-    background-color: var(--x-border-100);
+    border-color: var(--x-border-100);
+    background-color: var(--x-border-300);
     &::after {
-      background-color: var(--x-text-300);
+      background-color: var(--x-text-500);
     }
   }
 }

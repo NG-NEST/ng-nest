@@ -36,7 +36,7 @@ export function generateProps(...types: NcProp[]) {
               <td>${y.label}<span>${y.description}</span></td>
               <td><code [innerHTML]="'${y.type}'"></code></td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
-              <td>${withConfig ? '✅' : ''}</td>
+              <td>${withConfig ? '✔' : ''}</td>
             </tr>`;
             switch (y.propType) {
               case 'Input':

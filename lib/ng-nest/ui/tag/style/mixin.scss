@@ -23,7 +23,7 @@
     font-size: $--x-font-size-small + 0.0625rem;
     transition: 0.3s;
     &:hover {
-      background-color: var(--x-text-300);
+      background-color: var(--x-text-500);
       color: var(--x-white);
     }
   }
@@ -45,7 +45,7 @@
     $--x-text,
     $--x-border,
     $--x-white,
-    $--x-text-300,
+    $--x-text-500,
     $--x-white,
     $--x-border-200,
     $--x-white,

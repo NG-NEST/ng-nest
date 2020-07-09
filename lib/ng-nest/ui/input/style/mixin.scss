@@ -13,7 +13,7 @@
     height: $--x-input-height;
     line-height: $--x-input-height;
     position: relative;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -76,12 +76,12 @@
   &.x-disabled {
     > .#{$--x-input-prefix}-row {
       > #{$--x-prefix}-icon {
-        color: $--x-text-300;
+        color: $--x-text-500;
       }
       > input {
         color: $--x-text-400;
         cursor: not-allowed;
-        border-color: $--x-border-300;
+        border-color: $--x-border-100;
         background-color: $--x-background-300;
       }
     }
@@ -98,7 +98,7 @@
         opacity: 0;
         cursor: pointer;
         &:hover {
-          color: $--x-text-500;
+          color: $--x-text-300;
         }
       }
       > input {
@@ -122,7 +122,7 @@
   &-max-length {
     position: absolute;
     font-size: $--x-font-size-small;
-    color: $--x-text-300;
+    color: $--x-text-500;
     padding: 0 $--x-input-icon-padding;
     right: 0;
   }

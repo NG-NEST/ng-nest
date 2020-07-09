@@ -12,7 +12,7 @@
     white-space: nowrap;
     height: $--x-slider-select-height;
     line-height: $--x-slider-select-height;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -26,7 +26,7 @@
       position: absolute;
       margin-left: $--x-slider-select-button-size/2;
       width: calc(100% - #{$--x-slider-select-button-size});
-      background-color: $--x-border-300;
+      background-color: $--x-border-100;
       height: $--x-slider-select-track-height;
       border-radius: $--x-slider-select-border-radius;
       > div {
@@ -89,7 +89,7 @@
   &.x-disabled {
     > .#{$--x-slider-select-prefix}-inner {
       > .#{$--x-slider-select-prefix}-rail {
-        background-color: $--x-border-100;
+        background-color: $--x-border-300;
       }
       > .#{$--x-slider-select-prefix}-track {
         > .#{$--x-slider-select-prefix}-process {
@@ -128,7 +128,7 @@
   &-max-length {
     position: absolute;
     font-size: $--x-font-size-small;
-    color: $--x-text-300;
+    color: $--x-text-500;
     padding: $--x-slider-select-padding;
     right: 0;
   }

@@ -1,12 +1,12 @@
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { XButtonModule, XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
-import { X_THEME, XTheme } from './theme';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XConfig, X_CONFIG } from '../config';
 
 @Component({
   template: `<div class="row">
@@ -64,9 +64,11 @@ describe('x-theme', () => {
   let button: DebugElement;
   let buttonEl: HTMLButtonElement;
   let buttonInner: HTMLButtonElement | null;
-  let theme: XTheme = {
-    colors: {
-      primary: '#6435c9'
+  let config: XConfig = {
+    theme: {
+      colors: {
+        primary: '#6435c9'
+      }
     }
   };
   beforeEach(async(() => {
@@ -75,8 +77,8 @@ describe('x-theme', () => {
       declarations: [NzGlobalThemeTestBasicComponent],
       providers: [
         {
-          provide: X_THEME,
-          useValue: theme
+          provide: X_CONFIG,
+          useValue: config
         }
       ]
     }).compileComponents();

@@ -24,7 +24,7 @@
           padding: 0.5rem 0;
           > p {
             > span {
-              color: $--x-text-500;
+              color: $--x-text-300;
             }
           }
           > .x-comment-action {
@@ -37,7 +37,7 @@
           }
         }
         &:not(:last-child) > div {
-          border-bottom: 0.0625rem solid $--x-border-300;
+          border-bottom: 0.0625rem solid $--x-border-100;
         }
         &.x-comment-more {
           padding: 0.875rem;
@@ -56,7 +56,7 @@
     margin: 0.25rem 0;
     display: inline-flex;
     align-items: center;
-    color: $--x-text-500;
+    color: $--x-text-300;
     > .x-button {
       padding: 0;
     }
@@ -82,7 +82,7 @@
   &-item {
     display: flex;
     padding: 1rem 0;
-    border-bottom: 0.0625rem solid $--x-border-300;
+    border-bottom: 0.0625rem solid $--x-border-100;
     &:first-child {
       padding-top: 0;
     }

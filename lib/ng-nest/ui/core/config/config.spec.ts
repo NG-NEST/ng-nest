@@ -22,11 +22,13 @@ describe('x-config', () => {
   let buttonEl: HTMLButtonElement;
   let buttonInner: HTMLButtonElement | null;
   let config: XConfig = {
-    button: {
-      size: 'large',
-      type: 'primary',
-      plain: true,
-      round: true
+    components: {
+      button: {
+        size: 'large',
+        type: 'primary',
+        plain: true,
+        round: true
+      }
     }
   };
   beforeEach(async(() => {

@@ -9,7 +9,7 @@
   background-color: $--x-background;
   border-radius: $--x-border-radius;
   border: $--x-border-200-base;
-  color: $--x-text-500;
+  color: $--x-text-300;
   &-catalog {
     width: 0;
     overflow: auto;
@@ -37,7 +37,7 @@
     position: relative;
   }
   &-crumb {
-    background-color: $--x-border-300;
+    background-color: $--x-border-100;
     display: flex;
     > x-link {
       line-height: 1.5rem;

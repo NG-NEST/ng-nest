@@ -94,7 +94,7 @@
   }
 
   @include status(wait, $--x-text-400, $--x-text-400, '', '', '', '');
-  @include status(process, $--x-text-500, $--x-white, $--x-primary, $--x-primary, '', bold);
+  @include status(process, $--x-text-300, $--x-white, $--x-primary, $--x-primary, '', bold);
   @include status(finish, $--x-text-400, $--x-primary, '', '', $--x-primary, '');
   @include status(error, $--x-danger, $--x-danger, '', $--x-danger, '', '');
 }

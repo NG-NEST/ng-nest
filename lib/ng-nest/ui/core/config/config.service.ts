@@ -1,8 +1,8 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { XConfig, X_CONFIG, XConfigKey } from './config';
+import { XConfig, X_CONFIG, XConfigKey, XComponentConfigKey, XComponentConfig } from './config';
+import { XThemeService, XTheme } from '../theme';
 import { filter, mapTo } from 'rxjs/operators';
-import { XThemeService } from '../theme';
 
 const isDefined = function (value?: any): boolean {
   return value !== undefined;
@@ -12,27 +12,41 @@ const isDefined = function (value?: any): boolean {
   providedIn: 'root'
 })
 export class XConfigService {
-  private configUpdated$ = new Subject<keyof XConfig>();
+  private componentConfigUpdated$ = new Subject<keyof XComponentConfig>();
   private config: XConfig;
+  private themeService: XThemeService;
 
-  constructor(@Optional() @Inject(X_CONFIG) defaultConfig?: XConfig) {
+  constructor(@Optional() themeService?: XThemeService, @Optional() @Inject(X_CONFIG) defaultConfig?: XConfig) {
     this.config = defaultConfig || {};
+    if (themeService) {
+      this.themeService = themeService;
+    }
+    this.setTheme(this.config.theme);
+    console.log('config');
   }
 
-  getConfigForComponent<T extends XConfigKey>(componentName: T): XConfig[T] {
-    return this.config[componentName];
+  getConfigForComponent<T extends XComponentConfigKey>(componentName: T): XComponentConfig[T] {
+    return this.config?.components ? this.config.components[componentName] : undefined;
   }
 
-  getConfigChangeEventForComponent(componentName: XConfigKey): Observable<void> {
-    return this.configUpdated$.pipe(
+  getConfigChangeEventForComponent(componentName: XComponentConfigKey): Observable<void> {
+    return this.componentConfigUpdated$.pipe(
       filter((n) => n === componentName),
       mapTo(undefined)
     );
   }
 
-  set<T extends XConfigKey>(componentName: T, value: XConfig[T]): void {
-    this.config[componentName] = { ...this.config[componentName], ...value };
-    this.configUpdated$.next(componentName);
+  set<T extends XComponentConfigKey>(componentName: T, value: XComponentConfig[T]): void {
+    if (this.config?.components) {
+      this.config.components[componentName] = { ...this.config.components[componentName], ...value };
+      this.componentConfigUpdated$.next(componentName);
+    }
+  }
+
+  setTheme(theme?: XTheme) {
+    if (this.themeService) {
+      this.themeService.setTheme(theme);
+    }
   }
 }
 

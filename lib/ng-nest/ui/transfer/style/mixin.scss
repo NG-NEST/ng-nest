@@ -19,7 +19,7 @@
     justify-content: space-between;
     border-bottom: 0.0625rem solid $--x-border-200;
     background-color: $--x-background;
-    color: $--x-text-500;
+    color: $--x-text-300;
     > span {
       margin-left: 0.325rem;
     }
@@ -59,7 +59,7 @@
   }
   &-search {
     padding: 0.5rem;
-    border-bottom: 0.0625rem solid $--x-border-100;
+    border-bottom: 0.0625rem solid $--x-border-300;
   }
 }
 

@@ -58,7 +58,7 @@ export class ExLabelRowComponent {
         { id: 7, pid: 1, label: '荆州市' }
       ]
     },
-    { control: 'color-picker', id: 'color', label: '喜欢的颜色' },
+    { control: 'color-picker', id: 'color', label: '喜欢颜色' },
     {
       control: 'color-picker',
       id: 'createDate',

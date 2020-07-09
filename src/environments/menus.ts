@@ -1,7 +1,7 @@
 import { Menu } from './routes';
 export const menus: Menu[] = [
   {
-    "id": "3-4",
+    "id": "3-5",
     "pid": "3",
     "name": "introduction",
     "router": "docs/ui/introduction",
@@ -9,12 +9,20 @@ export const menus: Menu[] = [
     "label": "简介"
   },
   {
-    "id": "3-2",
+    "id": "3-3",
     "pid": "3",
     "name": "getting-started",
     "router": "docs/ui/getting-started",
     "order": 2,
     "label": "快速上手"
+  },
+  {
+    "id": "3-2",
+    "pid": "3",
+    "name": "customize-theme",
+    "router": "docs/ui/customize-theme",
+    "order": 3,
+    "label": "定制主题"
   },
   {
     "id": "3-1",
@@ -91,7 +99,15 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "3-0-86",
+    "id": "3-0-73",
+    "pid": "3-0",
+    "name": "theme",
+    "router": "docs/ui/components/theme",
+    "label": "Theme 主题",
+    "category": "Basic"
+  },
+  {
+    "id": "3-0-87",
     "pid": "3-0",
     "name": "typography",
     "router": "docs/ui/components/typography",
@@ -219,7 +235,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-73",
+    "id": "3-0-74",
     "pid": "3-0",
     "name": "time-ago",
     "router": "docs/ui/components/time-ago",
@@ -227,7 +243,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-75",
+    "id": "3-0-76",
     "pid": "3-0",
     "name": "time-range",
     "router": "docs/ui/components/time-range",
@@ -235,7 +251,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-76",
+    "id": "3-0-77",
     "pid": "3-0",
     "name": "timeline",
     "router": "docs/ui/components/timeline",
@@ -243,7 +259,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-79",
+    "id": "3-0-80",
     "pid": "3-0",
     "name": "tree",
     "router": "docs/ui/components/tree",
@@ -251,7 +267,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "3-0-80",
+    "id": "3-0-81",
     "pid": "3-0",
     "name": "tree-file",
     "router": "docs/ui/components/tree-file",
@@ -347,7 +363,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "3-0-77",
+    "id": "3-0-78",
     "pid": "3-0",
     "name": "tooltip",
     "router": "docs/ui/components/tooltip",
@@ -467,7 +483,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-74",
+    "id": "3-0-75",
     "pid": "3-0",
     "name": "time-picker",
     "router": "docs/ui/components/time-picker",
@@ -475,7 +491,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-78",
+    "id": "3-0-79",
     "pid": "3-0",
     "name": "transfer",
     "router": "docs/ui/components/transfer",
@@ -483,7 +499,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "3-0-87",
+    "id": "3-0-88",
     "pid": "3-0",
     "name": "upload",
     "router": "docs/ui/components/upload",

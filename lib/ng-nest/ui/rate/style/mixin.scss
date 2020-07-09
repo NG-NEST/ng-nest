@@ -13,14 +13,14 @@
     height: $--x-rate-height;
     line-height: $--x-rate-height;
     position: relative;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
   > .x-buttons {
     > x-button > .x-button {
       padding: 0 0.2rem;
-      color: $--x-text-300;
+      color: $--x-text-500;
       .x-icon {
         font-size: $--x-font-size-large;
       }

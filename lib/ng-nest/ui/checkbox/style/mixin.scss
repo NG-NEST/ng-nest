@@ -13,7 +13,7 @@
     height: $--x-checkbox-height;
     line-height: $--x-checkbox-height;
     position: relative;
-    color: $--x-text-500;
+    color: $--x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -120,7 +120,7 @@
     .#{$--x-checkbox-prefix}-item {
       &.x-indeterminate {
         .#{$--x-checkbox-prefix}-box::after {
-          background-color: $--x-text-300;
+          background-color: $--x-text-500;
         }
       }
       &.x-checked {
@@ -158,13 +158,13 @@
 }
 
 @mixin disabled {
-  color: $--x-text-300;
+  color: $--x-text-500;
   cursor: not-allowed;
   .#{$--x-checkbox-prefix}-box {
-    border-color: $--x-border-300;
-    background-color: $--x-border-100;
+    border-color: $--x-border-100;
+    background-color: $--x-border-300;
     &::after {
-      border-color: $--x-text-300;
+      border-color: $--x-text-500;
       background-color: transparent;
     }
   }
