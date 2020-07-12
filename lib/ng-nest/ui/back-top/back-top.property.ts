@@ -1,4 +1,4 @@
-import { XProperty, XNumber } from '@ng-nest/ui/core';
+import { XProperty, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -16,15 +16,15 @@ export class XBackTopProperty extends XProperty {
   /**
    * 距离右边的距离
    */
-  @Input() right: string = '2.5rem';
+  @Input() @XWithConfig<string>('2.5rem') right: string;
   /**
    * 距离底部的距离
    */
-  @Input() bottom: string = '2.5rem';
+  @Input() @XWithConfig<string>('2.5rem') bottom: string;
   /**
    * 滚动的多少高度后显示
    */
-  @Input() visibilityHeight: XNumber = 200;
+  @Input() @XWithConfig<XNumber>(200) visibilityHeight: XNumber;
   /**
    * 内容模板
    */

@@ -1,4 +1,4 @@
-import { XTemplate, XProperty, XNumber } from '@ng-nest/ui/core';
+import { XTemplate, XProperty, XNumber, XShadow, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -28,10 +28,10 @@ export class XCardProperty extends XProperty {
   /**
    * 阴影显示方式
    */
-  @Input() shadow: XCardShadow = 'always';
+  @Input() @XWithConfig<XCardShadow>('always') shadow: XCardShadow;
 }
 
 /**
  * 阴影显示配置
  */
-export type XCardShadow = 'always' | 'hover' | 'never';
+export type XCardShadow = XShadow;

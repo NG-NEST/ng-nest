@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { XAffixPrefix, XAffixProperty } from './affix.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAffixPrefix}`,
@@ -8,4 +9,11 @@ import { XAffixPrefix, XAffixProperty } from './affix.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAffixComponent extends XAffixProperty {}
+export class XAffixComponent extends XAffixProperty {
+  constructor(public configService: XConfigService) {
+    super();
+  }
+  ngOnInit() {
+    console.log(this.left, this.top);
+  }
+}

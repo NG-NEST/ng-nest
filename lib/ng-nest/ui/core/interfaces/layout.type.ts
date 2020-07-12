@@ -1,7 +1,15 @@
 /**
+ * 方位 左右
+ */
+export type XPositionLeftRight = 'left' | 'right';
+/**
+ * 方位 上下
+ */
+export type XPositionTopBottom = 'top' | 'bottom';
+/**
  * 方位
  */
-export type XPosition = 'top' | 'right' | 'bottom' | 'left';
+export type XPosition = XPositionTopBottom | XPositionLeftRight;
 
 /**
  * 颜色类型
@@ -67,3 +75,28 @@ export type XCorner = 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';
  * 九宫格方位
  */
 export type XPlace = XPosition | XCorner | 'center';
+
+/**
+ * 形状
+ */
+export type XShape = 'circle' | 'square';
+
+/**
+ * 适应方式
+ */
+export type XFit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+
+/**
+ * 阴影显示配置
+ */
+export type XShadow = 'always' | 'hover' | 'never';
+
+/**
+ * 切换方式
+ */
+export type XTrigger = 'hover' | 'click';
+
+/**
+ * 展示的方向
+ */
+export type XDisplayDirection = 'horizontal' | 'vertical';

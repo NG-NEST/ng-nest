@@ -1,4 +1,4 @@
-import { XSize, XTemplate, XProperty } from '@ng-nest/ui/core';
+import { XSize, XTemplate, XProperty, XWithConfig, XShape, XFit } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XAvatarProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 显示图标
    */
@@ -28,7 +28,7 @@ export class XAvatarProperty extends XProperty {
   /**
    * 形状
    */
-  @Input() shape: XAvatarShape = 'circle';
+  @Input() @XWithConfig<XAvatarShape>('circle') shape: XAvatarShape;
   /**
    * 图片地址
    */
@@ -36,15 +36,15 @@ export class XAvatarProperty extends XProperty {
   /**
    * 图片适应方式
    */
-  @Input() fit: XAvatarFit = 'cover';
+  @Input() @XWithConfig<XAvatarFit>('cover') fit: XAvatarFit;
 }
 
 /**
  * 头像形状
  */
-export type XAvatarShape = 'circle' | 'square';
+export type XAvatarShape = XShape;
 
 /**
  * 当展示类型为图片的时候，设置图片如何适应容器框
  */
-export type XAvatarFit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+export type XAvatarFit = XFit;

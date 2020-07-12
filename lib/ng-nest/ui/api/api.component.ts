@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
 import { XApiPrefix } from './api.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XApiPrefix}`,
@@ -9,7 +10,7 @@ import { XApiPrefix } from './api.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XApiComponent {
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     this.renderer.addClass(this.elementRef.nativeElement, XApiPrefix);
   }
 }

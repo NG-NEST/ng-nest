@@ -157,9 +157,9 @@ export class XButtonsProperty extends XProperty {
   /**
    * 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
    */
-  @Input() @XInputNumber() space: XNumber = 0;
+  @Input() @XWithConfig<XNumber>(0) @XInputNumber() space: XNumber;
   /**
    * 隐藏边框
    */
-  @Input() @XInputBoolean() hiddenBorder?: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() hiddenBorder: XBoolean;
 }

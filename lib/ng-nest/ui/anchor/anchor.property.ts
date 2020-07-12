@@ -1,4 +1,4 @@
-import { XIdentityProperty, XProperty, XJustify } from '@ng-nest/ui/core';
+import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPosition, XPositionLeftRight } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XAnchorProperty extends XProperty {
   /**
    * 顶部距离
    */
-  @Input() affixTop: string = '0';
+  @Input() @XWithConfig<string>('0') affixTop: string;
   /**
    * 导航相对内容位置
    */
-  @Input() layout: XAnchorLayout = 'right';
+  @Input() @XWithConfig<XAnchorLayout>('right') layout: XAnchorLayout;
   /**
    * 对齐方式
    */
-  @Input() justify: XJustify = 'start';
+  @Input() @XWithConfig<XJustify>('start') justify: XJustify;
 }
 
 /**
@@ -52,4 +52,4 @@ export interface XAnchorNode extends XIdentityProperty {
 /**
  * 布局方式，相对内容的位置
  */
-export type XAnchorLayout = 'left' | 'right';
+export type XAnchorLayout = XPositionLeftRight;

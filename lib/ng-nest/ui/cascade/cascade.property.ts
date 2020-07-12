@@ -1,4 +1,4 @@
-import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor, XCorner, XFormOption } from '@ng-nest/ui/core';
+import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
   /**
    * 展示方位
    */
-  @Input() placement: XCorner = 'bottom-start';
+  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

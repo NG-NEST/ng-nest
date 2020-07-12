@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XProperty, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,9 +16,9 @@ export class XAffixProperty extends XProperty {
   /**
    * 距离顶部距离
    */
-  @Input() top: string;
+  @Input() @XWithConfig<string>() top: string;
   /**
    * 距离左边距离
    */
-  @Input() left: string;
+  @Input() @XWithConfig<string>() left: string;
 }

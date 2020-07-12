@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XBadgeProperty extends XProperty {
   /**
    * 背景颜色
    */
-  @Input() type: XBadgeType = 'danger';
+  @Input() @XWithConfig<XBadgeType>('danger') type: XBadgeType;
   /**
    * 最大值
    */
@@ -34,4 +34,4 @@ export class XBadgeProperty extends XProperty {
 /**
  * 标记类型
  */
-export type XBadgeType = 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
+export type XBadgeType = XType;

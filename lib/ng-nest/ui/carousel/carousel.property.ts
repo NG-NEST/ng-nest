@@ -1,4 +1,14 @@
-import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XInputNumber,
+  XInputBoolean,
+  XNumber,
+  XBoolean,
+  XWithConfig,
+  XShadow,
+  XDisplayDirection,
+  XTrigger
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,19 +30,19 @@ export class XCarouselProperty extends XProperty {
   /**
    * 幻灯片高度
    */
-  @Input() height: string = '15rem';
+  @Input() @XWithConfig<string>('15rem') height: string;
   /**
    * 切换器触发方式
    */
-  @Input() trigger: XCarouselTrigger = 'hover';
+  @Input() @XWithConfig<XCarouselTrigger>('hover') trigger: XCarouselTrigger;
   /**
    * 箭头显示影藏方式
    */
-  @Input() arrow: XCarouselArrow = 'hover';
+  @Input() @XWithConfig<XCarouselArrow>('hover') arrow: XCarouselArrow;
   /**
    * 幻灯片轮播方向
    */
-  @Input() direction: XCarouselDirection = 'horizontal';
+  @Input() @XWithConfig<XCarouselDirection>('horizontal') direction: XCarouselDirection;
   /**
    * 自动切换
    */
@@ -58,17 +68,17 @@ export class XCarouselProperty extends XProperty {
 /**
  * 指示器切换方式
  */
-export type XCarouselTrigger = 'hover' | 'click';
+export type XCarouselTrigger = XTrigger;
 
 /**
  * 切换箭头显示方式
  */
-export type XCarouselArrow = 'always' | 'hover' | 'never';
+export type XCarouselArrow = XShadow;
 
 /**
  * 走马灯展示的方向
  */
-export type XCarouselDirection = 'horizontal' | 'vertical';
+export type XCarouselDirection = XDisplayDirection;
 
 /**
  * Carousel Panel

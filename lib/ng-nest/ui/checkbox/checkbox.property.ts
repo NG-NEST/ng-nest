@@ -7,7 +7,8 @@ import {
   XInputBoolean,
   XSize,
   XBoolean,
-  XFormOption
+  XFormOption,
+  XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
@@ -42,7 +43,7 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
 }
 
 /**

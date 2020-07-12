@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XCorner, XFormOption } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
 import { Component, Input } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ export class XColorPickerProperty extends XControlValueAccessor<string> implemen
   /**
    * 展示方位
    */
-  @Input() placement: XCorner = 'bottom-start';
+  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
 }
 
 /**
