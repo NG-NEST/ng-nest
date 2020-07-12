@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { XFooterPrefix, XFooterProperty } from './container.property';
 import { XContainerComponent } from './container.component';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XFooterPrefix}`,
@@ -23,7 +24,12 @@ export class XFooterComponent extends XFooterProperty implements OnInit {
   @HostBinding(`style.height.rem`) get getHeight() {
     return this.height;
   }
-  constructor(@Optional() @Host() public container: XContainerComponent, private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(
+    @Optional() @Host() public container: XContainerComponent,
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    public configService: XConfigService
+  ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XFooterPrefix);
   }

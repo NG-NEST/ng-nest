@@ -1,4 +1,4 @@
-import { XDataConvert, XData, XInputBoolean, XBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XDataConvert, XData, XInputBoolean, XBoolean, XInputNumber, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Component, Input } from '@angular/core';
 import { XTreeNode, XTreeProperty } from '@ng-nest/ui/tree';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
@@ -43,11 +43,11 @@ export class XTreeFileProperty extends XTreeProperty {
   /**
    * 最大高度，单位 rem
    */
-  @Input() @XInputNumber() maxHeight: XNumber = 37.5;
+  @Input() @XWithConfig<XNumber>(37.5) @XInputNumber() maxHeight: XNumber;
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */
-  @Input() @XInputNumber() spacing: XNumber = 0.5;
+  @Input() @XWithConfig<XNumber>(0.5) @XInputNumber() spacing: XNumber;
 }
 
 /**

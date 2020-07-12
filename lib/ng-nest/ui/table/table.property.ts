@@ -1,4 +1,15 @@
-import { XProperty, XNumber, XInputNumber, XIdentityProperty, XId, XSort, XInputBoolean, XBoolean, XData } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XNumber,
+  XInputNumber,
+  XIdentityProperty,
+  XId,
+  XSort,
+  XInputBoolean,
+  XBoolean,
+  XData,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
 
@@ -25,11 +36,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 表头和行高，单位 px
    */
-  @Input() @XInputNumber() rowHeight: number = 42;
+  @Input() @XWithConfig<number>(42) @XInputNumber() rowHeight: number;
   /**
    * 是否启用加载 loading
    */
-  @Input() @XInputBoolean() loading: XBoolean = false;
+  @Input() @XWithConfig<XBoolean>(false) @XInputBoolean() loading: XBoolean;
   /**
    * 当前选中行数据
    */
@@ -53,11 +64,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 允许行点击选中
    */
-  @Input() @XInputBoolean() allowSelectRow: XBoolean = true;
+  @Input() @XWithConfig<XBoolean>(true) @XInputBoolean() allowSelectRow: XBoolean;
   /**
    * 开启虚拟滚动
    */
-  @Input() @XInputBoolean() virtualScroll: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() virtualScroll: XBoolean;
   /**
    * body 数据高度
    */

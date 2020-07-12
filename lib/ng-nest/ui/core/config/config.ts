@@ -11,7 +11,11 @@ import {
   XShadow,
   XTrigger,
   XDisplayDirection,
-  XCorner
+  XCorner,
+  XDirection,
+  XPlace,
+  XPosition,
+  XPlacement
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -46,6 +50,9 @@ export interface XComponentConfig {
   colorPicker?: XColorPickerConfig;
   comment?: XCommentConfig;
   container?: XContainerConfig;
+  header?: XHeaderConfig;
+  aside?: XAsideConfig;
+  footer?: XFooterConfig;
   crumb?: XCrumbComfig;
   datePicker?: XDatePickerConfig;
   dialog?: XDialogConfig;
@@ -186,31 +193,93 @@ export interface XCommentConfig {
   contentMax?: number;
 }
 
-export interface XContainerConfig {}
+export interface XContainerConfig {
+  direction?: XDirection;
+}
 
-export interface XCrumbComfig {}
+export interface XHeaderConfig {
+  height?: number;
+}
 
-export interface XDatePickerConfig {}
+export interface XAsideConfig {
+  width?: number;
+}
 
-export interface XDialogConfig {}
+export interface XFooterConfig {
+  height?: number;
+}
 
-export interface XDrawerConfig {}
+export interface XCrumbComfig {
+  separator?: string;
+}
 
-export interface XDropdownConfig {}
+export interface XDatePickerConfig {
+  format?: string;
+  clearable?: XBoolean;
+  placement?: XCorner;
+}
 
-export interface XEmptyConfig {}
+export interface XDialogConfig {
+  placement?: XPlace;
+  offset?: string;
+  width?: string;
+  effect?: XEffect;
+  showCancel?: XBoolean;
+  cancelText?: string;
+  showConfirm?: XBoolean;
+  confirmText?: string;
+  backdropClose?: XBoolean;
+  hasBackdrop?: XBoolean;
+  className?: string;
+  buttonsCenter?: XBoolean;
+}
 
-export interface XFindConfig {}
+export interface XDrawerConfig {
+  placement?: XPosition;
+  size?: string;
+}
 
-export interface XFormConfig {}
+export interface XDropdownConfig {
+  trigger?: XTrigger;
+  placement?: XPlacement;
+}
+
+export interface XEmptyConfig {
+  content?: string;
+}
+
+export interface XFindConfig {
+  columnLabel?: string;
+  dialogTitle?: string;
+  dialogButtonsCenter?: XBoolean;
+  tableIndex?: number;
+  tableSize?: number;
+  tableLoading?: XBoolean;
+  tableVirtualScroll?: boolean;
+  tableRowHeight?: XNumber;
+  treeExpandedLevel?: XNumber;
+}
+
+export interface XFormConfig {
+  space?: XNumber;
+  labelSuffix?: string;
+  width?: string;
+}
 
 export interface XHighlightConfig {}
 
-export interface XIconConfig {}
+export interface XIconConfig {
+  href?: string;
+}
 
-export interface XInnerConfig {}
+export interface XInnerConfig {
+  padding?: string;
+}
 
-export interface XInputConfig {}
+export interface XInputConfig {
+  clearable?: XBoolean;
+  iconLayout?: XPositionLeftRight;
+}
 
 export interface XInputNumberConfig {}
 
@@ -218,13 +287,25 @@ export interface XColConfig {}
 
 export interface XRowConfig {}
 
-export interface XLinkConfig {}
+export interface XLinkConfig {
+  underline?: XBoolean;
+  iconRight?: XBoolean;
+}
 
 export interface XListConfig {}
 
-export interface XLoadingConfig {}
+export interface XLoadingConfig {
+  size?: XSize;
+  text?: string;
+  icon?: string;
+  color?: string;
+  background?: string;
+}
 
-export interface XMenuConfig {}
+export interface XMenuConfig {
+  size?: XSize;
+  trigger?: XTrigger;
+}
 
 export interface XMessageConfig {}
 
@@ -234,64 +315,124 @@ export interface XNotificationConfig {}
 
 export interface XOutletConfig {}
 
-export interface XPageHeaderConfig {}
+export interface XPageHeaderConfig {
+  backIcon?: string;
+  backText?: string;
+}
 
-export interface XPaginationConfig {}
+export interface XPaginationConfig {
+  index?: XNumber;
+  size?: XNumber;
+}
 
 export interface XPatternConfig {}
 
-export interface XPopconfirmConfig {}
+export interface XPopconfirmConfig {
+  placement?: XPlacement;
+  trigger?: XTrigger;
+  width?: string;
+  icon?: string;
+  iconColor?: string;
+  cancelText?: string;
+  confirmText?: string;
+}
 
-export interface XPopoverConfig {}
+export interface XPopoverConfig {
+  placement?: XPlacement;
+  trigger?: XTrigger;
+  width?: string;
+}
 
 export interface XPortalConfig {}
 
-export interface XProgressConfing {}
+export interface XProgressConfing {
+  height?: string;
+}
 
-export interface XRadioConfig {}
+export interface XRadioConfig {
+  size?: XSize;
+}
 
 export interface XRateConfig {}
 
 export interface XResultConfig {}
 
-export interface XSelectConfig {}
+export interface XSelectConfig {
+  placement?: XCorner;
+}
 
 export interface XSkeletonConfig {}
 
-export interface XSliderConfig {}
+export interface XSliderConfig {
+  animated?: XBoolean;
+  size?: XSize;
+}
 
 export interface XSliderSelectConfig {}
 
 export interface XStatisticConfig {}
 
-export interface XCountdownConfig {}
+export interface XCountdownConfig {
+  format?: string;
+}
 
 export interface XStepsConfig {}
 
 export interface XSwitchConfig {}
 
-export interface XTableConfig {}
+export interface XTableConfig {
+  index?: number;
+  size?: number;
+  loading?: XBoolean;
+  virtualScroll?: boolean;
+  rowHeight?: XNumber;
+  allowSelectRow?: XBoolean;
+}
 
-export interface XTabsConfig {}
+export interface XTabsConfig {
+  size?: XSize;
+}
 
-export interface XTagConfig {}
+export interface XTagConfig {
+  size?: XSize;
+  closable?: XBoolean;
+  dark?: XBoolean;
+}
 
-export interface XTextRetarctConfig {}
+export interface XTextRetarctConfig {
+  max?: XNumber;
+}
 
 export interface XTimeAgoConfig {}
 
-export interface XTimePickerConfig {}
+export interface XTimePickerConfig {
+  format?: string;
+  placement?: XCorner;
+}
 
 export interface XTimeRangeConfig {}
 
-export interface XTimelineConfig {}
+export interface XTimelineConfig {
+  size?: XSize;
+}
 
-export interface XTooltipConfig {}
+export interface XTooltipConfig {
+  placement?: XPlacement;
+}
 
-export interface XTransferConfig {}
+export interface XTransferConfig {
+  titles?: string[];
+  drag?: XBoolean;
+}
 
-export interface XTreeConfig {}
+export interface XTreeConfig {
+  spacing?: XNumber;
+  nodeHeight?: XNumber;
+}
 
-export interface XTreeFileConfig {}
+export interface XTreeFileConfig {
+  maxHeight?: XNumber;
+  spacing?: XNumber;
+}
 
 export interface XUploadConfig {}

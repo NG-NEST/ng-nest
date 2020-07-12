@@ -1,4 +1,12 @@
-import { XData, XControlValueAccessor, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean } from '@ng-nest/ui/core';
+import {
+  XData,
+  XControlValueAccessor,
+  XDataConvert,
+  XInputBoolean,
+  XParentIdentityProperty,
+  XBoolean,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
 
 /**
@@ -20,13 +28,13 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
    * 标题
    */
-  @Input() titles: string[] = ['列表 1', '列表 2'];
+  @Input() @XWithConfig<string[]>(['列表 1', '列表 2']) titles: string[];
   /**
    * 是否能拖动
    */
-  @Input() @XInputBoolean() drag: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() drag: XBoolean;
   /**
-   * 是否显示搜索
+   * 是否显示搜索（暂未实现）
    */
   @Input() @XInputBoolean() search: XBoolean;
   /**

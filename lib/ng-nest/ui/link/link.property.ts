@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -24,7 +24,7 @@ export class XLinkProperty extends XProperty {
   /**
    * 下划线
    */
-  @Input() @XInputBoolean() underline: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() underline: XBoolean;
   /**
    * 禁用
    */
@@ -32,7 +32,7 @@ export class XLinkProperty extends XProperty {
   /**
    * 图标靠右对齐
    */
-  @Input() @XInputBoolean() iconRight: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() iconRight: XBoolean;
   /**
    * 链接类型
    */

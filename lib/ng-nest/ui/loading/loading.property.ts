@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,19 +20,19 @@ export class XLoadingProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 显示文字，支持自定义模板
    */
-  @Input() text: XTemplate;
+  @Input() @XWithConfig<XTemplate>() text: XTemplate;
   /**
    * 显示的图标
    */
-  @Input() icon: string;
+  @Input() @XWithConfig<string>() icon: string;
   /**
    * 颜色
    */
-  @Input() color: string;
+  @Input() @XWithConfig<string>() color: string;
   /**
    * 全屏显示
    */
@@ -40,5 +40,5 @@ export class XLoadingProperty extends XProperty {
   /**
    * 背景样式
    */
-  @Input() background: string;
+  @Input() @XWithConfig<string>() background: string;
 }

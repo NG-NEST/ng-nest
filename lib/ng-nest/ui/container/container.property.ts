@@ -1,4 +1,4 @@
-import { XDirection, XProperty, XNumber } from '@ng-nest/ui/core';
+import { XDirection, XProperty, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -17,7 +17,7 @@ export class XContainerProperty extends XProperty {
    * flex 布局下的子元素排列方向
    * @description 子元素中有 x-header 或 x-footer 时为 column
    */
-  @Input() direction: XDirection;
+  @Input() @XWithConfig<XDirection>() direction: XDirection;
 }
 
 /**
@@ -35,7 +35,7 @@ export class XHeaderProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height: XNumber = 3;
+  @Input() @XWithConfig<number>(3) height: number;
 }
 
 /**
@@ -53,7 +53,7 @@ export class XAsideProperty extends XProperty {
   /**
    * 宽度，rem
    */
-  @Input() width: XNumber = 12;
+  @Input() @XWithConfig<number>(12) width: number;
 }
 
 /**
@@ -78,5 +78,5 @@ export class XFooterProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() height: XNumber = 3;
+  @Input() @XWithConfig<number>(3) height: XNumber = 3;
 }

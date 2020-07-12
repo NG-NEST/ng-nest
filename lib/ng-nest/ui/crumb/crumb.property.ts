@@ -1,4 +1,4 @@
-import { XData, XProperty, XDataConvert, XIdentityProperty, XTemplate } from '@ng-nest/ui/core';
+import { XData, XProperty, XDataConvert, XIdentityProperty, XTemplate, XWithConfig } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -24,7 +24,7 @@ export class XCrumbProperty extends XProperty {
   /**
    * 分隔符
    */
-  @Input() separator: XTemplate = '/';
+  @Input() @XWithConfig<XTemplate>('/') separator: XTemplate;
   /**
    * 节点点击事件
    */

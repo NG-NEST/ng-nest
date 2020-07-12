@@ -1,4 +1,4 @@
-import { XTemplate } from '@ng-nest/ui/core';
+import { XTemplate, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -20,5 +20,5 @@ export class XEmptyProperty {
   /**
    * 内容或自定义模板
    */
-  @Input() content?: XTemplate;
+  @Input() @XWithConfig<XTemplate>() content?: XTemplate;
 }

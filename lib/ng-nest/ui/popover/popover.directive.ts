@@ -5,7 +5,7 @@ import { XPopoverPrefix, XPopoverProperty } from './popover.property';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, Overlay } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
-import { XPlacement, XIsChange } from '@ng-nest/ui/core';
+import { XPlacement, XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverDirective extends XPopoverProperty implements OnInit, OnChanges {
@@ -21,7 +21,8 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
     private elementRef: ElementRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
+    private overlay: Overlay,
+    public configService: XConfigService
   ) {
     super();
   }

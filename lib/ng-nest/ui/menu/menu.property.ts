@@ -7,7 +7,9 @@ import {
   XInputNumber,
   XNumber,
   XInputBoolean,
-  XBoolean
+  XBoolean,
+  XWithConfig,
+  XTrigger
 } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
 
@@ -34,7 +36,7 @@ export class XMenuProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 缩起菜单
    */
@@ -42,7 +44,7 @@ export class XMenuProperty extends XProperty {
   /**
    * 触发方式，只针对横向布局
    */
-  @Input() trigger: XMenuTrigger = 'hover';
+  @Input() @XWithConfig<XMenuTrigger>('hover') trigger: XMenuTrigger;
   /**
    * 节点模板
    */
@@ -104,7 +106,7 @@ export type XMenuLayout = 'row' | 'column';
 /**
  * 触发方式
  */
-export type XMenuTrigger = 'hover' | 'click';
+export type XMenuTrigger = XTrigger;
 
 /**
  * Menu Node

@@ -1,4 +1,4 @@
-import { XData, XProperty, XDataConvert, XInputBoolean, XBoolean, XPlacement } from '@ng-nest/ui/core';
+import { XData, XProperty, XDataConvert, XInputBoolean, XBoolean, XPlacement, XWithConfig, XTrigger } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
@@ -21,11 +21,11 @@ export class XDropdownProperty extends XProperty {
   /**
    * 触发方式
    */
-  @Input() trigger: XDropdownTrigger = 'hover';
+  @Input() @XWithConfig<XDropdownTrigger>('hover') trigger: XDropdownTrigger;
   /**
    * 展示位置
    */
-  @Input() placement: XPlacement = 'bottom-start';
+  @Input() @XWithConfig<XPlacement>('bottom-start') placement: XPlacement;
   /**
    * 禁用
    */
@@ -48,7 +48,7 @@ export interface XDropdownNode extends XListNode {}
 /**
  * 显示方式
  */
-export type XDropdownTrigger = 'hover' | 'click';
+export type XDropdownTrigger = XTrigger;
 
 /**
  * Dropdown Portal

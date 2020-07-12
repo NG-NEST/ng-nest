@@ -1,4 +1,4 @@
-import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -24,11 +24,11 @@ export class XDrawerProperty extends XProperty {
   /**
    * 展示方向
    */
-  @Input() placement: XPosition = 'right';
+  @Input() @XWithConfig<XPosition>('right') placement: XPosition;
   /**
    * 尺寸，支持固定值
    */
-  @Input() size: string = '30%';
+  @Input() @XWithConfig<string>('30%') size: string;
   /**
    * 关闭的事件
    */

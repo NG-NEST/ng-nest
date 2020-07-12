@@ -1,4 +1,4 @@
-import { XPlacement, XInputBoolean, XBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XPlacement, XInputBoolean, XBoolean, XInputNumber, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Directive } from '@angular/core';
 
 /**
@@ -20,7 +20,7 @@ export class XTooltipProperty {
   /**
    * 显示位置
    */
-  @Input() placement: XPlacement = 'bottom';
+  @Input() @XWithConfig<XPlacement>('bottom') placement: XPlacement;
   /**
    * 显示/隐藏
    */

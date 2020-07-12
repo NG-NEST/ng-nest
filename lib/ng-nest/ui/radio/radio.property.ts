@@ -6,7 +6,8 @@ import {
   XInputBoolean,
   XSize,
   XBoolean,
-  XFormOption
+  XFormOption,
+  XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
@@ -38,7 +39,7 @@ export class XRadioProperty extends XControlValueAccessor<any> implements XRadio
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 按钮样式时生效
    */

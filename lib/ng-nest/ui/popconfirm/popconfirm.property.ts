@@ -1,6 +1,6 @@
-import { XPlacement, XTemplate, XProperty } from '@ng-nest/ui/core';
+import { XPlacement, XTemplate, XProperty, XWithConfig } from '@ng-nest/ui/core';
 import { XPopoverTrigger } from '@ng-nest/ui/popover';
-import { Input, Output, EventEmitter, Component, Directive } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
  * Popconfirm
@@ -25,31 +25,31 @@ export class XPopconfirmProperty extends XProperty {
   /**
    * 弹出的位置
    */
-  @Input() placement: XPlacement = 'bottom';
+  @Input() @XWithConfig<XPlacement>('bottom') placement: XPlacement;
   /**
    * 激活方式
    */
-  @Input() trigger: XPopoverTrigger = 'click';
+  @Input() @XWithConfig<XPopoverTrigger>('click') trigger: XPopoverTrigger;
   /**
    * 宽度
    */
-  @Input() width: string = '10rem';
+  @Input() @XWithConfig<string>('10rem') width: string;
   /**
    * 图标
    */
-  @Input() icon: string = 'fto-help-circle';
+  @Input() @XWithConfig<string>('fto-help-circle') icon: string;
   /**
    * 图标颜色
    */
-  @Input() iconColor: string = '#e6a23c';
+  @Input() @XWithConfig<string>('#e6a23c') iconColor: string;
   /**
    * 取消的文字
    */
-  @Input() cancelText: string = '取消';
+  @Input() @XWithConfig<string>('取消') cancelText: string;
   /**
    * 确认的文字
    */
-  @Input() confirmText: string = '确认';
+  @Input() @XWithConfig<string>('确认') confirmText: string;
   /**
    * 取消的点击事件
    */

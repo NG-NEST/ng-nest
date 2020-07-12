@@ -6,7 +6,8 @@ import {
   XData,
   XBoolean,
   XCorner,
-  XFormOption
+  XFormOption,
+  XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
@@ -33,7 +34,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * 展示方位
    */
-  @Input() placement: XCorner = 'bottom-start';
+  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
 }
 
 /**

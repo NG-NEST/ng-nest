@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, SimpleChanges } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
-import { XDirection } from '@ng-nest/ui/core';
+import { XDirection, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
@@ -21,7 +21,7 @@ export class XContainerComponent extends XContainerProperty implements OnInit {
     }
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
   }

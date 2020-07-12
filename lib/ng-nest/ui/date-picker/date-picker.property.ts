@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner, XFormOption } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -20,15 +20,15 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
   /**
    * 格式化类型
    */
-  @Input() format: string = 'yyyy-MM-dd';
+  @Input() @XWithConfig<string>('yyyy-MM-dd') format: string;
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: XBoolean = true;
+  @Input() @XWithConfig<XBoolean>(true) @XInputBoolean() clearable: XBoolean;
   /**
    * 展示方位
    */
-  @Input() placement: XCorner = 'bottom-start';
+  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

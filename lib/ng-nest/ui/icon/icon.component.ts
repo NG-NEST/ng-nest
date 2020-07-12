@@ -15,7 +15,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 // 来源路径对应
 export const XSouceUrl: { [prop: string]: string } = {
@@ -57,9 +57,11 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     private renderer: Renderer2,
     public iconService: XIconService,
     private cdr: ChangeDetectorRef,
-    @Optional() @Inject(DOCUMENT) private document: any
+    @Optional() @Inject(DOCUMENT) private document: any,
+    public configService: XConfigService
   ) {
     super();
+    this.iconService.rootUrl = this.href;
     this.renderer.addClass(this.elementRef.nativeElement, XIconPrefix);
   }
 

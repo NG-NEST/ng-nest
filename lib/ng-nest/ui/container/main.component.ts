@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef } from '@angular/core';
 import { XMainPrefix } from './container.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XMainPrefix}`,
@@ -9,7 +10,7 @@ import { XMainPrefix } from './container.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMainComponent {
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     this.renderer.addClass(this.elementRef.nativeElement, XMainPrefix);
   }
 }

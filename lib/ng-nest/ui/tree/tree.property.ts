@@ -7,7 +7,8 @@ import {
   XNumber,
   XBoolean,
   XInputNumber,
-  XIdentityProperty
+  XIdentityProperty,
+  XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -63,7 +64,7 @@ export class XTreeProperty extends XProperty {
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */
-  @Input() @XInputNumber() spacing: XNumber = 0.875;
+  @Input() @XWithConfig<XNumber>(0.875) @XInputNumber() spacing: XNumber;
   /**
    * 标签自定义模板
    */
@@ -71,7 +72,7 @@ export class XTreeProperty extends XProperty {
   /**
    * 节点的高度，单位 rem
    */
-  @Input() @XInputNumber() nodeHeight: XNumber = 1.625;
+  @Input() @XWithConfig<XNumber>(1.625) @XInputNumber() nodeHeight: XNumber;
   /**
    * 是否允许多次点击一个节点触发多次事件
    */

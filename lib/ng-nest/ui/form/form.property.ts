@@ -1,4 +1,14 @@
-import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XFormProp, XNumber, XInputNumber, XInputBoolean } from '@ng-nest/ui/core';
+import {
+  XIdentity,
+  XIdentityProperty,
+  XBoolean,
+  XIsEmpty,
+  XFormProp,
+  XNumber,
+  XInputNumber,
+  XInputBoolean,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
@@ -38,7 +48,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 控件间距，单位rem
    */
-  @Input() @XInputNumber() space: XNumber = 1;
+  @Input() @XWithConfig<XNumber>(1) @XInputNumber() space: XNumber;
   /**
    * 控件宽度，24栅格
    */
@@ -46,7 +56,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 标签后缀
    */
-  @Input() labelSuffix: string = '';
+  @Input() @XWithConfig<XNumber>('') labelSuffix: string;
   /**
    * 表单控件
    */
@@ -54,7 +64,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 表单宽度
    */
-  @Input() width: string = '100%';
+  @Input() @XWithConfig<string>('100%') width: string = '100%';
   /**
    * 表单禁用
    */

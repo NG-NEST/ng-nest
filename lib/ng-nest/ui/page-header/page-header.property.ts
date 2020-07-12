@@ -1,4 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * PageHeader
@@ -15,11 +16,11 @@ export class XPageHeaderProperty {
   /**
    * 返回图标
    */
-  @Input() backIcon: string = 'fto-arrow-left';
+  @Input() @XWithConfig<string>('fto-arrow-left') backIcon: string;
   /**
    * 返回文字
    */
-  @Input() backText: string = '返回';
+  @Input() @XWithConfig<string>('返回') backText: string;
   /**
    * 标题
    */

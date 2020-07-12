@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XProperty, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -16,5 +16,5 @@ export class XInnerProperty extends XProperty {
   /**
    * 内边距
    */
-  @Input() padding: string = '1rem';
+  @Input() @XWithConfig<string>('1rem') padding: string;
 }

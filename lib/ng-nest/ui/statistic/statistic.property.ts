@@ -1,4 +1,4 @@
-import { XTemplate, XStyle } from '@ng-nest/ui/core';
+import { XTemplate, XStyle, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -50,7 +50,7 @@ export class XCountdownProperty extends XStatisticProperty {
   /**
    * 格式化
    */
-  @Input() format: string = 'HH:mm:ss';
+  @Input() @XWithConfig<string>('HH:mm:ss') format: string;
   /**
    * 倒计时结束的事件
    */

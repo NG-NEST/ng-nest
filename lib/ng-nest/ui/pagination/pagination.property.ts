@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XNumber, XQuery } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -16,11 +16,11 @@ export class XPaginationProperty extends XProperty {
   /**
    * 当前页码
    */
-  @Input() @XInputNumber() index: XNumber = 1;
+  @Input() @XWithConfig<XNumber>(1) @XInputNumber() index: XNumber;
   /**
    * 每页显示条数
    */
-  @Input() @XInputNumber() size: XNumber = 10;
+  @Input() @XWithConfig<XNumber>(10) @XInputNumber() size: XNumber;
   /**
    * 总数
    */

@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -13,6 +13,10 @@ export const XIconPrefix = 'x-icon';
  */
 @Component({ template: '' })
 export class XIconProperty extends XProperty {
+  /**
+   * SVG 图标根路劲地址，可以通过全局只配置一次，所有图标资源在 github 上的 ng-nest-icon 中
+   */
+  @Input() @XWithConfig<string>('https://ngnest.com/static/icons/') href: string;
   /**
    * 图标类型
    */

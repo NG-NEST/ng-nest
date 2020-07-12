@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * Progress
@@ -20,7 +20,7 @@ export class XProgressProperty extends XProperty {
   /**
    * 进度条高度
    */
-  @Input() height: string = '0.5rem';
+  @Input() @XWithConfig<string>('0.5rem') height: string;
   /**
    * 状态
    */

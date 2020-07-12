@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { XHeaderPrefix, XHeaderProperty } from './container.property';
 import { XContainerComponent } from './container.component';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XHeaderPrefix}`,
@@ -24,7 +25,12 @@ export class XHeaderComponent extends XHeaderProperty implements OnInit {
     return this.height;
   }
 
-  constructor(@Optional() @Host() public container: XContainerComponent, private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(
+    @Optional() @Host() public container: XContainerComponent,
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    public configService: XConfigService
+  ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XHeaderPrefix);
   }

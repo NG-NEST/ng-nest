@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, HostBinding } from '@angular/core';
 import { XAsidePrefix, XAsideProperty } from './container.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAsidePrefix}`,
@@ -13,7 +14,7 @@ export class XAsideComponent extends XAsideProperty {
     return this.width;
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XAsidePrefix);
   }

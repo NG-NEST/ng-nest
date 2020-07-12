@@ -1,4 +1,14 @@
-import { XControlValueAccessor, XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XFormOption } from '@ng-nest/ui/core';
+import {
+  XControlValueAccessor,
+  XInputBoolean,
+  XInputNumber,
+  XSize,
+  XNumber,
+  XBoolean,
+  XFormOption,
+  XWithConfig,
+  XPositionLeftRight
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,7 +30,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
   /**
    * 清除按钮
    */
-  @Input() @XInputBoolean() clearable: XBoolean = false;
+  @Input() @XWithConfig<XBoolean>(false) @XInputBoolean() clearable: XBoolean;
   /**
    * 只读
    */
@@ -32,7 +42,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
   /**
    * 图标布局方式
    */
-  @Input() iconLayout: XInputIconLayoutType = 'right';
+  @Input() @XWithConfig<XInputIconLayoutType>('right') iconLayout: XInputIconLayoutType = 'right';
   /**
    * 图标动画
    */
@@ -103,4 +113,4 @@ export type XInputType = 'text' | 'password' | 'number';
  * @value "left" 靠左
  * @value "right" 靠右
  */
-export type XInputIconLayoutType = 'left' | 'right';
+export type XInputIconLayoutType = XPositionLeftRight;

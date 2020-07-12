@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XCorner, XFormOption } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -20,11 +20,11 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
   /**
    * 格式化
    */
-  @Input() format: string = 'HH:mm:ss';
+  @Input() @XWithConfig<string>('HH:mm:ss') format: string;
   /**
    * 展示方位
    */
-  @Input() placement: XCorner = 'bottom-start';
+  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

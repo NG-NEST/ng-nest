@@ -1,4 +1,4 @@
-import { XData, XJustify, XProperty, XInputBoolean, XSize, XIdentityProperty, XTemplate, XInputNumber, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XData, XJustify, XProperty, XInputBoolean, XSize, XIdentityProperty, XTemplate, XInputNumber, XNumber, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -44,7 +44,7 @@ export class XTabsProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() @XWithConfig<XSize>('medium') size: XSize;
   /**
    * 节点排列方式
    */

@@ -8,7 +8,8 @@ import {
   XInputNumber,
   XNumber,
   XSort,
-  XQuery
+  XQuery,
+  XWithConfig
 } from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
@@ -33,11 +34,11 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 选中 label 名称字段
    */
-  @Input() columnLabel: string = 'label';
+  @Input() @XWithConfig<string>('label') columnLabel: string;
   /**
    * 弹框标题
    */
-  @Input() dialogTitle: string = '查找选择';
+  @Input() @XWithConfig<string>('查找选择') dialogTitle: string;
   /**
    * 弹框宽度
    */
@@ -57,7 +58,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 按钮居中
    */
-  @Input() @XInputBoolean() dialogButtonsCenter: XBoolean;
+  @Input() @XWithConfig<XBoolean>() @XInputBoolean() dialogButtonsCenter: XBoolean;
 
   /**
    * 表格行数据
@@ -66,11 +67,11 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 表格页码
    */
-  @Input() tableIndex: number = 1;
+  @Input() @XWithConfig<number>(1) tableIndex: number;
   /**
    * 表每页数据条数
    */
-  @Input() tableSize: number = 10;
+  @Input() @XWithConfig<number>(10) tableSize: number;
   /**
    * 表每页数据条数
    */
@@ -110,11 +111,11 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 是否启用加载 loading
    */
-  @Input() @XInputBoolean() tableLoading: XBoolean = false;
+  @Input() @XWithConfig<XBoolean>(false) @XInputBoolean() tableLoading: XBoolean;
   /**
    * 表格开启虚拟滚动
    */
-  @Input() @XInputBoolean() tableVirtualScroll: boolean = false;
+  @Input() @XWithConfig<boolean>(false) @XInputBoolean() tableVirtualScroll: boolean;
   /**
    * 表格 body 数据高度
    */
@@ -138,7 +139,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 表格行高度，单位 px
    */
-  @Input() @XInputNumber() tableRowHeight: XNumber = 42;
+  @Input() @XWithConfig<XNumber>(42) @XInputNumber() tableRowHeight: XNumber;
   /**
    * 树节点数据
    */
@@ -154,7 +155,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
   /**
    * 树默认展开的层级
    */
-  @Input() @XInputNumber() treeExpandedLevel: XNumber = 0;
+  @Input() @XWithConfig<XNumber>(0) @XInputNumber() treeExpandedLevel: XNumber;
   /**
    * 树 checkbox 选中的节点
    */

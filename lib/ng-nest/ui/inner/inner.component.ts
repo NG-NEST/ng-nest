@@ -9,6 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XInnerPrefix, XInnerProperty } from './inner.property';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XInnerPrefix}`,
@@ -20,7 +21,7 @@ import { XInnerPrefix, XInnerProperty } from './inner.property';
 export class XInnerComponent extends XInnerProperty implements OnInit, OnChanges {
   private _ele: HTMLElement;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XInnerPrefix);
     this._ele = this.elementRef.nativeElement;
