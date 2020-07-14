@@ -9,7 +9,27 @@ export class XThemeService {
   private rootKey = '--x-';
   private merge: string = '#ffffff';
   private amounts: number[] = [0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
-  private colorsProp: { [prop: string]: string } = {};
+  private backgrounds: number[] = [-0.2, -0.3, -0.4];
+  private texts: number[][] = [
+    [-0.5, 0],
+    [-0.6, 0.2],
+    [-0.7, 0.4]
+  ];
+  private borders: number[][] = [
+    [-0.8, 0],
+    [-0.9, 0.2]
+  ];
+  private exchanges: number[][] = [
+    [0.1, -0.1],
+    [0.3, 0],
+    [0.4, -0.4],
+    [0.5, -0.2],
+    [0.6, 0],
+    [0.7, -0.4],
+    [0.8, -0.4],
+    [0.9, -0.2]
+  ];
+  private colorsProp: XColorsTheme = {};
   private colorsStyleEle: HTMLStyleElement;
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
@@ -30,37 +50,92 @@ export class XThemeService {
   }
 
   setColors(colors?: XColorsTheme) {
-    if (typeof colors === 'undefined') colors = X_THEME_COLORS;
-    else colors = Object.assign(X_THEME_COLORS, colors);
+    colors = this.getColorsTheme(colors);
     for (let key in colors) {
-      this.setRoot(key, colors[key]);
+      Object.assign(this.colorsProp, this.setRoot(key, colors[key]));
     }
+    this.createColorsStyle();
   }
 
-  getColors(colors?: XColorsTheme): XColorsTheme {
-    if (typeof colors === 'undefined') colors = X_THEME_COLORS;
-    else colors = Object.assign(X_THEME_COLORS, colors);
+  getColors(colors?: XColorsTheme, prefix = this.rootKey): XColorsTheme {
     let result: XColorsTheme = {};
-    Object.keys(colors).forEach((x) => (result[x] = this.declaration.getPropertyValue(`${this.rootKey}${x}`).trim()));
+    Object.keys(this.colorsProp).forEach((x) => {
+      result[x.replace(prefix, '')] = this.declaration.getPropertyValue(`${x}`).trim();
+    });
+
     return result;
   }
 
-  setRoot(color: string, value: string) {
+  getColorsTheme(colors?: XColorsTheme) {
+    if (typeof colors === 'undefined') colors = X_THEME_COLORS;
+    else colors = Object.assign({}, X_THEME_COLORS, colors);
+    return colors;
+  }
+
+  setRoot(color: string, value: string, prefix = this.rootKey) {
+    let result: XColorsTheme = {};
     if (X_THEME_COLOR_KEYS.includes(color)) {
       for (let amount of this.amounts) {
         if (amount === 0) {
-          this.colorsProp[`${this.rootKey}${color}`] = value;
+          result[`${prefix}${color}`] = value;
         } else if (amount < 0) {
-          this.colorsProp[`${this.rootKey}${color}-a${Math.abs(amount * 1000)}`] = toHex(mixColors(this.merge, value, amount));
+          result[`${prefix}${color}-a${Math.abs(amount * 1000)}`] = toHex(mixColors(this.merge, value, amount));
         } else if (amount > 0) {
-          this.colorsProp[`${this.rootKey}${color}-${amount * 1000}`] = toHex(mixColors(this.merge, value, amount));
+          result[`${prefix}${color}-${amount * 1000}`] = toHex(mixColors(this.merge, value, amount));
         }
       }
     } else {
-      this.colorsProp[`${this.rootKey}${color}`] = value;
+      result[`${prefix}${color}`] = value;
     }
+    return result;
+  }
 
-    this.createColorsStyle();
+  getDefineColors(colors?: XColorsTheme, prefix = this.rootKey, darken = false): XColorsTheme {
+    let result: XColorsTheme = {};
+    colors = this.getColorsTheme(colors);
+    for (let key in colors) {
+      Object.assign(result, this.setRoot(key, colors[key], prefix));
+    }
+    if (darken) {
+      const colorsFunc = (nums: number[] | number[][], callback: Function) => {
+        for (let num of nums) {
+          for (let color in colors) {
+            if (X_THEME_COLOR_KEYS.includes(color) && !['background'].includes(color)) {
+              callback(num, color);
+            }
+          }
+        }
+      };
+      colorsFunc(this.backgrounds, (background: number, color: string) => {
+        const theme = this.getSuffix(background);
+        result[`${prefix}${color}${theme}`] = result[`${prefix}background${theme.replace('a', '')}`];
+      });
+      colorsFunc(this.texts, (text: number[], color: string) => {
+        const curr = this.getSuffix(text[0]);
+        const next = this.getSuffix(text[1]);
+        result[`${prefix}${color}${curr}`] = result[`${prefix}text${next}`];
+      });
+      colorsFunc(this.borders, (border: number[], color: string) => {
+        const curr = this.getSuffix(border[0]);
+        const next = this.getSuffix(border[1]);
+        result[`${prefix}${color}${curr}`] = result[`${prefix}border${next}`];
+      });
+      colorsFunc(this.exchanges, (exchange: number[], color: string) => {
+        const curr = this.getSuffix(exchange[0]);
+        const next = this.getSuffix(exchange[1]);
+        result[`${prefix}${color}${curr}`] = result[`${prefix}${color}${next}`];
+      });
+    }
+    return result;
+  }
+
+  getSuffix(num: number): string {
+    if (num > 0) {
+      return `-${Math.abs(num * 1000)}`;
+    } else if (num < 0) {
+      return `-a${Math.abs(num * 1000)}`;
+    }
+    return '';
   }
 
   createColorsStyle() {

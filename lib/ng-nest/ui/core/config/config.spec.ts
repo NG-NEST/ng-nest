@@ -5,13 +5,18 @@ import { X_CONFIG, XConfig } from './config';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSize } from '../interfaces';
+import { XDropdownModule } from '@ng-nest/ui/dropdown';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 @Component({
-  template: ` <x-button [size]="size">全局配置</x-button> `
+  template: ` <x-button [size]="size">全局配置</x-button>
+    <x-dropdown [data]="data">
+      <x-link type="primary" icon="fto-chevron-down" iconRight> 下拉菜单 </x-link>
+    </x-dropdown>`
 })
 class NzGlobalConfigTestBasicComponent {
   size?: XSize;
-
+  data = ['用户管理', '角色管理', '组织管理', '模块管理', '日志管理'];
   constructor(public configService: XConfigService) {}
 }
 
@@ -28,12 +33,15 @@ describe('x-config', () => {
         type: 'primary',
         plain: true,
         round: true
+      },
+      dropdown: {
+        trigger: 'click'
       }
     }
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule],
+      imports: [XButtonModule, XDropdownModule, XLinkModule],
       declarations: [NzGlobalConfigTestBasicComponent],
       providers: [
         {

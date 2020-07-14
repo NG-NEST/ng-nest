@@ -10,6 +10,9 @@ export interface XColorsTheme {
   warning?: string;
   danger?: string;
   info?: string;
+  text?: string;
+  border?: string;
+  background?: string;
   [prop: string]: any;
 }
 
@@ -26,8 +29,8 @@ export const X_THEME_COLORS: XColorsTheme = {
   danger: '#f56c6c',
   info: '#909399',
   text: '#303133',
-  border: '#dcdfe6',
-  background: '#e3e3e3'
+  border: '#e6e6e6',
+  background: '#f6f6f6'
 };
 
 export const X_THEME_COLOR_KEYS = Object.keys(X_THEME_COLORS);
