@@ -82,6 +82,6 @@
   background-color: $--x-background-100;
   display: flex;
   > x-list:not(:first-child) {
-    border-left: $--x-border-width solid $--x-border-200;
+    border-left: $--x-border-width solid $--x-border;
   }
 }

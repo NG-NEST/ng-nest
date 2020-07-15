@@ -9,11 +9,13 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XJustify } from '@ng-nest/ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTabsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTabsModule, XRadioModule, XIconModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTabsModule, XRadioModule, XIconModule],
       declarations: [TestXTabsComponent]
     }).compileComponents();
   }));
@@ -38,6 +40,7 @@ describe(XTabsPrefix, () => {
 @Component({
   selector: 'test-x-tabs',
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-tabs>
         <x-tab *ngFor="let label of labels" [label]="label">
@@ -114,6 +117,11 @@ describe(XTabsPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

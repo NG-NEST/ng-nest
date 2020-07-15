@@ -10,11 +10,22 @@ import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XProgressPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XProgressModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XProgressModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXProgressComponent]
     }).compileComponents();
   }));
@@ -34,6 +45,7 @@ describe(XProgressPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-progress percent="30"></x-progress>
       <x-progress percent="50" status="active"></x-progress>
@@ -65,6 +77,11 @@ describe(XProgressPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding: 1rem;
       }

@@ -6,10 +6,10 @@
       text-align: center;
       border-radius: 0.125rem;
       &:nth-child(odd) {
-        background-color: var(--x-info-600);
+        background-color: var(--x-info-400);
       }
       &:nth-child(even) {
-        background-color: var(--x-info-800);
+        background-color: var(--x-info-500);
       }
     }
     &:first-child {

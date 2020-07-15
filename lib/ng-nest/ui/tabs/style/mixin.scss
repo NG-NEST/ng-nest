@@ -108,7 +108,7 @@
                   z-index: 1;
                   > li {
                     border: $--x-border-base;
-                    background-color: $--x-background-100;
+                    background-color: $--x-background;
                     &:first-child {
                       border-#{$border-radio-first}: 0.125rem;
                     }
@@ -122,7 +122,7 @@
                       display: none;
                     }
                     &.x-slider-activated {
-                      border-#{$border-activated}-color: $--x-background-100;
+                      border-#{$border-activated}-color: $--x-background;
                     }
                   }
                 }
@@ -151,7 +151,7 @@
   &-card {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
-        border: $--x-border-200-base;
+        border: $--x-border-base;
         border-#{$layout}: none;
         box-shadow: $--x-box-shadow-base;
         .#{$--x-tabs-prefix}-list {
@@ -166,7 +166,7 @@
                   content: ' ';
                   position: absolute;
                   #{$border-size}: 100%;
-                  border-#{$border}: $--x-border-200-base;
+                  border-#{$border}: $--x-border-base;
                 }
                 &::after {
                   #{$border-position-first}: 0;
@@ -178,23 +178,23 @@
                   z-index: 1;
                   > li {
                     &.x-slider-highlight {
-                      border-#{$border-li-first}: $--x-border-200-base;
-                      border-#{$border-li-second}: $--x-border-200-base;
-                      border-#{$border}-color: $--x-background-100;
-                      background-color: $--x-background-100;
+                      border-#{$border-li-first}: $--x-border-base;
+                      border-#{$border-li-second}: $--x-border-base;
+                      border-#{$border}-color: $--x-background;
+                      background-color: $--x-background;
                     }
                     &.x-slider-activated {
-                      border-#{$border}-color: $--x-background-100;
+                      border-#{$border}-color: $--x-background;
                     }
                   }
                 }
               }
               &-arrow-left {
-                border: $--x-border-200-base;
+                border: $--x-border-base;
                 border-#{$border-li-first}: 0;
               }
               &-arrow-right {
-                border-#{$border-li-first}: $--x-border-200-base;
+                border-#{$border-li-first}: $--x-border-base;
               }
             }
           }
@@ -211,12 +211,12 @@
                   }
                   &.x-justify-center ul li {
                     &.x-slider-highlight {
-                      border-#{$sort-border-first}: $--x-border-200-base;
+                      border-#{$sort-border-first}: $--x-border-base;
                     }
                   }
                   &.x-justify-end ul li {
                     &.x-slider-highlight {
-                      border-#{$sort-border-first}: $--x-border-200-base;
+                      border-#{$sort-border-first}: $--x-border-base;
                     }
                   }
                 }
@@ -231,12 +231,12 @@
                 &-scroll {
                   &.x-justify-start ul li {
                     &.x-slider-highlight {
-                      border-#{$sort-border-second}: $--x-border-200-base;
+                      border-#{$sort-border-second}: $--x-border-base;
                     }
                   }
                   &.x-justify-center ul li {
                     &.x-slider-highlight {
-                      border-#{$sort-border-second}: $--x-border-200-base;
+                      border-#{$sort-border-second}: $--x-border-base;
                     }
                   }
                   &.x-justify-end ul li {

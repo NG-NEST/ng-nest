@@ -12,13 +12,13 @@ $--x-input-number-height: 1.75rem;
 $--x-input-number-padding: 0 $--x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-input-number-color: $--x-primary-900;
+$--x-input-number-color: $--x-text;
 
 /* 提示文字颜色 */
 $--x-input-number-placeholder-color: $--x-placeholder-color;
 
 /* 背景颜色 */
-$--x-input-number-background-color: #ffffff;
+$--x-input-number-background-color: $--x-background-100;
 
 /* 边框样式 */
 $--x-input-number-border: $--x-border-width $--x-border-style $--x-border;

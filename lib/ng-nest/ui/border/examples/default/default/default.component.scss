@@ -1,7 +1,7 @@
 :host {
   table {
     width: 100%;
-    background: white;
+    background: var(--x-background);
     border-collapse: collapse;
     border: 0.0625rem solid var(--x-border-200);
     tr > th,

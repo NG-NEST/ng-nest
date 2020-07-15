@@ -6,11 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XMenuPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XMenuModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule],
       declarations: [TestXMenuComponent, TestXMenuExpandedComponent, TestXMenuCollapsedComponent]
     }).compileComponents();
   }));
@@ -54,6 +56,7 @@ describe(XMenuPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-menu [data]="data"> </x-menu>
     </div>
@@ -76,6 +79,11 @@ describe(XMenuPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row x-menu:not(:first-child) {
         margin-top: 1rem;
       }
@@ -110,12 +118,18 @@ class TestXMenuComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row" #scroll>
       <x-menu [data]="dataLeaf" layout="column" activatedId="48" [target]="scroll"> </x-menu>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         height: 30rem;
         overflow: hidden;
@@ -197,6 +211,7 @@ class TestXMenuExpandedComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
       <x-menu [data]="dataLeaf" layout="column" [collapsed]="collapsed"> </x-menu>
@@ -204,6 +219,11 @@ class TestXMenuExpandedComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row x-menu:not(:first-child) {
         margin-top: 1rem;
       }

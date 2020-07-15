@@ -11,11 +11,21 @@ import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTreeFilePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, BrowserAnimationsModule, XTreeFileModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        FormsModule,
+        XThemeModule,
+        BrowserAnimationsModule,
+        XTreeFileModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXTreeFileComponent]
     }).compileComponents();
   }));
@@ -121,12 +131,18 @@ class TreeFileServiceTest {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

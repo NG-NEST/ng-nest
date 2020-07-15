@@ -10,7 +10,7 @@
     min-height: 1rem;
   }
   x-row {
-    background-color: $--x-background-100;
+    background-color: $--x-background;
   }
   x-row:not(:first-child) {
     margin-top: 1rem;
@@ -19,7 +19,7 @@
     > div {
       width: 100%;
       height: 1rem;
-      background-color: $--x-info-900;
+      background-color: $--x-info-800;
       border-radius: $--x-border-radius;
       position: relative;
     }
@@ -37,7 +37,7 @@
     &.title > div,
     &.avatar > div,
     &.img > div {
-      background-color: $--x-info-800;
+      background-color: $--x-info-700;
     }
     &.transparent {
       padding: 0 !important;
@@ -50,14 +50,14 @@
     x-row {
       margin: 0 !important;
       x-col {
-        border-left: 0.0625rem solid $--x-border-200;
-        border-bottom: 0.0625rem solid $--x-border-200;
+        border-left: 0.0625rem solid $--x-border;
+        border-bottom: 0.0625rem solid $--x-border;
       }
       x-col:last-child {
-        border-right: 0.0625rem solid $--x-border-200;
+        border-right: 0.0625rem solid $--x-border;
       }
       &:first-child x-col {
-        border-top: 0.0625rem solid $--x-border-200;
+        border-top: 0.0625rem solid $--x-border;
       }
     }
   }

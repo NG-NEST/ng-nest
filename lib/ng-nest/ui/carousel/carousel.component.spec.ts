@@ -11,11 +11,23 @@ import { XCarouselPrefix } from './carousel.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCarouselPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCarouselModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule, XTabsModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XCarouselModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule,
+        XTabsModule
+      ],
       declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]
     }).compileComponents();
   }));
@@ -71,6 +83,7 @@ describe(XCarouselPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel height="12rem">
         <x-carousel-panel *ngFor="let item of list">
@@ -102,11 +115,16 @@ describe(XCarouselPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         width: 24rem;
         padding: 1.625rem 1rem;
-        border: 0.0625rem solid #dcdfe6;
-        background-color: white;
+        border: 0.0625rem solid var(--x-border);
+        background-color: var(--x-background);
       }
       .row:not(:first-child) {
         margin-top: 2rem;
@@ -132,6 +150,7 @@ class TestXCarouselComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel height="15rem" card>
         <x-carousel-panel *ngFor="let item of list">
@@ -142,11 +161,16 @@ class TestXCarouselComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         width: 100%;
         padding: 1.625rem 1rem;
-        border: 0.0625rem solid #dcdfe6;
-        background-color: white;
+        border: 0.0625rem solid var(--x-border);
+        background-color: var(--x-background);
       }
       .row:not(:first-child) {
         margin-top: 2rem;
@@ -172,6 +196,7 @@ class TestXCarouselCardComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel height="15rem" direction="vertical">
         <x-carousel-panel *ngFor="let item of list">
@@ -182,11 +207,16 @@ class TestXCarouselCardComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         width: 100%;
         padding: 1.625rem 1rem;
-        border: 0.0625rem solid #dcdfe6;
-        background-color: white;
+        border: 0.0625rem solid var(--x-border);
+        background-color: var(--x-background);
       }
       .row:not(:first-child) {
         margin-top: 2rem;
@@ -212,6 +242,7 @@ class TestXCarouselDirectionComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-tabs>
         <x-tab label="1111">
@@ -233,11 +264,16 @@ class TestXCarouselDirectionComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         width: 100%;
         padding: 1.625rem 1rem;
-        border: 0.0625rem solid #dcdfe6;
-        background-color: white;
+        border: 0.0625rem solid var(--x-border);
+        background-color: var(--x-background);
       }
       .row:not(:first-child) {
         margin-top: 2rem;

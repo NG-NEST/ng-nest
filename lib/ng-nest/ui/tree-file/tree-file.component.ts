@@ -16,7 +16,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
   activatedNode: XTreeFileNode;
   loading: boolean = false;
   time: number;
-  timeout: number = 500;
+  timeout: number = 200;
 
   get catalogHeight() {
     return Number(this.maxHeight);

@@ -21,7 +21,7 @@ export class XConfigService {
     if (themeService) {
       this.themeService = themeService;
     }
-    this.setTheme(this.config.theme);
+    this.setInitialTheme(this.config.theme);
   }
 
   getConfigForComponent<T extends XComponentConfigKey>(componentName: T): XComponentConfig[T] {
@@ -44,6 +44,10 @@ export class XConfigService {
 
   setTheme(theme?: XTheme) {
     this.themeService.setTheme(theme);
+  }
+
+  setInitialTheme(theme?: XTheme){
+    this.themeService.setInitialTheme(theme);
   }
 
   getTheme(): XTheme {

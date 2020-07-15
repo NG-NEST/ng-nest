@@ -8,11 +8,13 @@ import { XDropdownPrefix, XDropdownNode } from './dropdown.property';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XDropdownPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XDropdownModule, XButtonModule, XLinkModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XDropdownModule, XButtonModule, XLinkModule, XLayoutModule],
       declarations: [TestXDropdownComponent]
     }).compileComponents();
   }));
@@ -32,6 +34,7 @@ describe(XDropdownPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-dropdown [data]="data">
         <x-link type="primary" icon="fto-chevron-down" iconRight> 下拉菜单 </x-link>
@@ -58,6 +61,11 @@ describe(XDropdownPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

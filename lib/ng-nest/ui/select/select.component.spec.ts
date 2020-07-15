@@ -10,11 +10,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,
@@ -90,6 +91,7 @@ const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF'
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1"></x-select>
@@ -105,6 +107,9 @@ const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF'
     `
       :host {
         height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
       }
       x-row:not(:first-child) {
         margin-top: 1rem;
@@ -124,6 +129,7 @@ class TestXSelectComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-select label="方式" [data]="data" [(ngModel)]="model"></x-select>
@@ -147,6 +153,11 @@ class TestXSelectComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -164,6 +175,7 @@ class TestXSelectLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-select [data]="data" disabled></x-select>
@@ -177,6 +189,11 @@ class TestXSelectLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -194,6 +211,7 @@ class TestXSelectDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-select [data]="data" [(ngModel)]="model1" required></x-select>
@@ -207,6 +225,11 @@ class TestXSelectDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -224,6 +247,7 @@ class TestXSelectRequiredComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change()" async></x-select>
@@ -232,6 +256,11 @@ class TestXSelectRequiredComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }

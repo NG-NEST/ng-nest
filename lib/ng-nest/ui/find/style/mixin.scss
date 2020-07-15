@@ -93,14 +93,14 @@
       width: 14rem;
       margin-right: 1rem;
       padding-right: 1rem;
-      border-right: $--x-border-200-base;
+      border-right: $--x-border-base;
     }
     .#{$--x-find-prefix}-dialog-table {
     }
   }
   &-checked {
     margin-left: 1rem;
-    border-left: $--x-border-200-base;
+    border-left: $--x-border-base;
     padding-left: 1rem;
     width: 10rem;
     overflow-y: auto;

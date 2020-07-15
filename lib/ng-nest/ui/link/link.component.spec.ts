@@ -8,11 +8,13 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XLinkPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XLinkModule, XLayoutModule, XIconModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XLinkModule, XLayoutModule, XIconModule],
       declarations: [TestXLinkComponent]
     }).compileComponents();
   }));
@@ -32,6 +34,7 @@ describe(XLinkPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-link href="https://www.ngnest.com" target="_blank">默认链接</x-link>
@@ -61,6 +64,11 @@ describe(XLinkPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

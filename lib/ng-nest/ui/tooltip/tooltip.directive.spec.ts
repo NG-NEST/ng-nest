@@ -8,11 +8,12 @@ import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTooltipPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XTooltipModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonModule],
       declarations: [TestXTooltipComponent]
     }).compileComponents();
   }));
@@ -35,6 +36,7 @@ describe(XTooltipPrefix, () => {
 @Component({
   selector: 'test-x-tooltip',
   template: `
+    <x-theme showDark></x-theme>
     <div class="box">
       <div class="top">
         <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
@@ -63,6 +65,11 @@ describe(XTooltipPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .box {
         padding: 5rem 10rem;
         width: 45rem;

@@ -43,6 +43,11 @@
     width: 12rem;
     transition: $--x-animation-duration-base;
   }
+  &-row {
+    .#{$--x-menu}-text {
+      margin-left: 0.25rem;
+    }
+  }
   &-nodes {
     .#{$--x-menu}-node {
       cursor: pointer;
@@ -63,7 +68,7 @@
         text-overflow: ellipsis;
       }
       &:hover {
-        background-color: $--x-background;
+        color: $--x-primary;
       }
       #{$--x-menu}-node {
         flex: 1;
@@ -74,7 +79,7 @@
       }
       &.x-activated {
         color: $--x-primary;
-        background-color: $--x-background;
+        background-color: $--x-background-100;
         &::after {
           content: '';
           position: absolute;

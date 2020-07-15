@@ -9,9 +9,9 @@
     margin-bottom: 0;
   }
   x-color.border {
-    border: 1px solid var(--x-border);
+    border: 0.0625rem solid var(--x-border);
   }
   x-color.black {
-    color: var(--x-text);
+    color: var(--x-text-a300);
   }
 }

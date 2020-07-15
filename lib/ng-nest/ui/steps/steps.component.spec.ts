@@ -7,11 +7,13 @@ import { XStepsModule } from '@ng-nest/ui/steps';
 import { XStepsPrefix } from './steps.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XStepsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XStepsModule, XButtonModule, XTabsModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonModule, XTabsModule],
       declarations: [TestXStepsComponent]
     }).compileComponents();
   }));
@@ -31,6 +33,7 @@ describe(XStepsPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-steps [data]="data" [activatedIndex]="activatedIndex"> </x-steps>
     </div>
@@ -73,6 +76,11 @@ describe(XStepsPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         margin-top: 2rem;
       }

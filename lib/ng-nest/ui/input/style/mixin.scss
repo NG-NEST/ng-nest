@@ -82,7 +82,7 @@
         color: $--x-text-400;
         cursor: not-allowed;
         border-color: $--x-border-100;
-        background-color: $--x-background-300;
+        background-color: $--x-background-200;
       }
     }
   }
@@ -122,7 +122,7 @@
   &-max-length {
     position: absolute;
     font-size: $--x-font-size-small;
-    color: $--x-text-500;
+    color: $--x-text-400;
     padding: 0 $--x-input-icon-padding;
     right: 0;
   }

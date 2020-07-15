@@ -7,11 +7,13 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XBorderModule } from '@ng-nest/ui/border';
 import { XBorderPrefix } from './border.property';
+import { XThemeModule } from '@ng-nest/ui/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XBorderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XBorderModule, XLayoutModule, XDocModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XBorderModule, XLayoutModule, XDocModule],
       declarations: [TestXBorderComponent]
     }).compileComponents();
   }));
@@ -34,6 +36,7 @@ describe(XBorderPrefix, () => {
 @Component({
   selector: 'test-x-border',
   template: `
+    <x-theme showDark></x-theme>
     <x-border></x-border>
     <x-doc>
       <x-row space="1">
@@ -125,6 +128,11 @@ describe(XBorderPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       table.radio > tr > td > div {
         width: 100%;
       }
@@ -139,6 +147,8 @@ describe(XBorderPrefix, () => {
         width: 100%;
         height: 3rem;
         border: 0.0625rem solid var(--x-border);
+      }
+      .box-shadow {
       }
     `
   ]

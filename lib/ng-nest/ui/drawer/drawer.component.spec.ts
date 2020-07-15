@@ -12,25 +12,13 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XDrawerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        XDrawerModule,
-        FormsModule,
-        XInputModule,
-        XIconModule,
-        XRadioModule,
-        XButtonModule
-      ],
-      declarations: [
-        TestXDrawerComponent,
-        TestXDrawerTitleComponent,
-        TestXDrawerCustomComponent,
-        TestXDrawerMultipleComponent
-      ]
+      imports: [BrowserAnimationsModule, XThemeModule, XDrawerModule, FormsModule, XInputModule, XIconModule, XRadioModule, XButtonModule],
+      declarations: [TestXDrawerComponent, TestXDrawerTitleComponent, TestXDrawerCustomComponent, TestXDrawerMultipleComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -85,6 +73,7 @@ describe(XDrawerPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-radio [data]="data" [(ngModel)]="value"></x-radio>
       <x-button (click)="open()">打开</x-button>
@@ -95,6 +84,11 @@ describe(XDrawerPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         display: flex;
         align-items: center;
@@ -130,13 +124,23 @@ class TestXDrawerComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button (click)="open()">不包含标题</x-button>
       <x-drawer [visible]="visible" (close)="close()">
         <span>内容区域</span>
       </x-drawer>
     </div>
-  `
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+    `
+  ]
 })
 class TestXDrawerTitleComponent {
   visible: boolean;
@@ -156,6 +160,7 @@ class TestXDrawerTitleComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button (click)="open()">自定义标题</x-button>
       <x-button (click)="openTable()">表格内容</x-button>
@@ -212,6 +217,11 @@ class TestXDrawerTitleComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         display: flex;
         align-items: center;
@@ -278,6 +288,7 @@ class TestXDrawerCustomComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button (click)="open()">嵌套多个</x-button>
 
@@ -293,7 +304,16 @@ class TestXDrawerCustomComponent {
         <span>这是第三个</span>
       </x-drawer>
     </div>
-  `
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+    `
+  ]
 })
 class TestXDrawerMultipleComponent {
   visible: boolean;

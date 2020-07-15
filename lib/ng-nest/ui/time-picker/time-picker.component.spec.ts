@@ -9,11 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXTimePickerComponent,
         TestXTimePickerLabelComponent,
@@ -87,6 +88,7 @@ describe(XTimePickerPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-time-picker [(ngModel)]="model1"></x-time-picker>
@@ -100,6 +102,11 @@ describe(XTimePickerPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -118,6 +125,7 @@ class TestXTimePickerComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-time-picker label="方式" [(ngModel)]="model"></x-time-picker>
@@ -141,6 +149,11 @@ class TestXTimePickerComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -158,6 +171,7 @@ class TestXTimePickerLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-time-picker disabled></x-time-picker>
@@ -171,6 +185,11 @@ class TestXTimePickerLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -183,6 +202,7 @@ class TestXTimePickerDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-time-picker [(ngModel)]="model" required></x-time-picker>
@@ -196,6 +216,11 @@ class TestXTimePickerDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -213,6 +238,7 @@ class TestXTimePickerRequiredComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-time-picker [(ngModel)]="model" label="小时" type="hour"></x-time-picker>
@@ -226,6 +252,11 @@ class TestXTimePickerRequiredComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

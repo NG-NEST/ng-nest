@@ -12,11 +12,23 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XCardModule } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XStatisticPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XStatisticModule, XButtonModule, XCardModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XStatisticModule,
+        XButtonModule,
+        XCardModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXStatisticComponent]
     }).compileComponents();
   }));
@@ -36,6 +48,7 @@ describe(XStatisticPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12">
         <x-card>
@@ -92,6 +105,11 @@ describe(XStatisticPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

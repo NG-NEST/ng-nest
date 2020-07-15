@@ -44,13 +44,13 @@
     'initial',
     $--x-text,
     $--x-border,
-    $--x-background-100,
-    $--x-text-500,
-    $--x-background-100,
-    $--x-border-200,
-    $--x-background-100,
-    $--x-info-500,
-    $--x-info-500
+    $--x-background-200,
+    $--x-text-400,
+    $--x-background-200,
+    $--x-border,
+    $--x-text-400,
+    $--x-background-200,
+    $--x-border
   );
   @include type(
     'primary',
@@ -60,7 +60,7 @@
     $--x-primary-400,
     $--x-primary-900,
     $--x-primary-800,
-    $--x-background-100,
+    $--x-primary-800,
     $--x-primary-500,
     $--x-primary-500
   );
@@ -72,7 +72,7 @@
     $--x-success-400,
     $--x-success-900,
     $--x-success-800,
-    $--x-background-100,
+    $--x-success-800,
     $--x-success-500,
     $--x-success-500
   );
@@ -84,7 +84,7 @@
     $--x-warning-400,
     $--x-warning-900,
     $--x-warning-800,
-    $--x-background-100,
+    $--x-warning-800,
     $--x-warning-500,
     $--x-warning-500
   );
@@ -96,7 +96,7 @@
     $--x-danger-400,
     $--x-danger-900,
     $--x-danger-800,
-    $--x-background-100,
+    $--x-danger-800,
     $--x-danger-500,
     $--x-danger-500
   );
@@ -108,7 +108,7 @@
     $--x-info-400,
     $--x-info-900,
     $--x-info-800,
-    $--x-background-100,
+    $--x-info-800,
     $--x-info-500,
     $--x-info-500
   );
@@ -142,7 +142,7 @@
     }
     &.#{$--x-tag-prefix}-dark {
       border-color: $color;
-      color: $--x-background-100;
+      color: $--x-white;
       background-color: $color;
       > .x-icon:hover {
         background-color: rgba(255, 255, 255, 0.3);

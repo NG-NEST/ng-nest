@@ -5,11 +5,13 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XContainerPrefix } from './container.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XContainerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XContainerModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XContainerModule],
       declarations: [TestXContainerComponent]
     }).compileComponents();
   }));
@@ -32,6 +34,7 @@ describe(XContainerPrefix, () => {
 @Component({
   selector: 'test-x-container',
   template: `
+    <x-theme showDark></x-theme>
     <x-container>
       <x-header>Header</x-header>
       <x-main>Main</x-main>
@@ -80,6 +83,11 @@ describe(XContainerPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       :host > x-container:not(first-child) {
         margin-top: 1rem;
       }
@@ -87,25 +95,22 @@ describe(XContainerPrefix, () => {
       x-footer {
         line-height: 3rem;
         text-align: center;
-        border-radius: 0.125rem;
       }
       x-header {
-        background-color: var(--x-info-400);
+        background-color: var(--x-info-200);
       }
       x-footer {
-        background-color: var(--x-info-800);
+        background-color: var(--x-info-300);
       }
       x-main {
         line-height: 12rem;
         text-align: center;
-        border-radius: 0.125rem;
-        background-color: var(--x-info-900);
+        background-color: var(--x-info-400);
       }
       x-aside {
         line-height: 14rem;
         text-align: center;
-        border-radius: 0.125rem;
-        background-color: var(--x-info-600);
+        background-color: var(--x-info-500);
       }
     `
   ]

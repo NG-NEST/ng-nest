@@ -110,6 +110,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   hexChange() {
+    if (this.drag || !/(^#[0-9A-F]{6}$)/i.test(this.hex)) return;
     this.rgba = this.hexToRgba(this.hex);
     this.hsla = this.rgbaToHsla(this.rgba);
     this.setHslaPercent();

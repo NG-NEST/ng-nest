@@ -1,4 +1,11 @@
 <div class="x-theme">
-  <x-switch direction="row" label="暗黑模式" [(ngModel)]="dark" (ngModelChange)="darkChange($event)"></x-switch>
-  <x-form [formGroup]="formGroup" [controls]="controls" width="45rem" span="2" space="1"></x-form>
+  <x-row>
+    <x-col [style.width.rem]="8" *ngIf="showDark">
+      <x-switch direction="row" label="暗黑模式" [(ngModel)]="dark" (ngModelChange)="darkChanges($event)"></x-switch>
+    </x-col>
+    <x-col [style.width.rem]="8">
+      <x-button (click)="default()">初始化为默认值</x-button>
+    </x-col>
+  </x-row>
+  <x-form [formGroup]="formGroup" [controls]="controls" [width]="width" span="2" space="1"></x-form>
 </div>

@@ -6,11 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XAffixModule } from '@ng-nest/ui/affix';
 import { XAffixPrefix } from './affix.property';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XThemeModule } from '@ng-nest/ui/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XAffixPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XAffixModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XAffixModule, XButtonModule, XThemeModule],
       declarations: [TestXAffixComponent]
     }).compileComponents();
   }));
@@ -30,6 +32,7 @@ describe(XAffixPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row scroll">
       <x-affix top="0">
         <x-button>滚动条下滑，我将固定到顶部</x-button>
@@ -62,6 +65,11 @@ describe(XAffixPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         height: 50rem;
       }

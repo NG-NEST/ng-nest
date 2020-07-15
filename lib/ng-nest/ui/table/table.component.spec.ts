@@ -15,11 +15,12 @@ import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
       declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent, TestXTableFunctionComponent]
     }).compileComponents();
   }));
@@ -160,6 +161,7 @@ interface User extends XId {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-table
         [columns]="columns"
@@ -175,6 +177,11 @@ interface User extends XId {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding: 1rem;
       }
@@ -230,12 +237,18 @@ class TestXTableComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-table [columns]="columns" [data]="data" [size]="1000" [bodyHeight]="420" [adaptionHeight]="200" virtualScroll loading> </x-table>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding: 1rem;
       }
@@ -264,6 +277,7 @@ class TestXTableScrollComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-button (click)="dialog()">弹框表格自适应</x-button>
     <x-dialog
       title="弹框表格自适应(缩放浏览器窗口查看效果)"
@@ -292,6 +306,11 @@ class TestXTableScrollComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding: 1rem;
       }
@@ -358,12 +377,18 @@ class TestXTableAdaptionComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-table [columns]="columns" [data]="data"> </x-table>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding: 1rem;
       }

@@ -9,11 +9,12 @@ import { XPopoverPrefix } from './popover.property';
 import { interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XPopoverPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XPopoverModule, XButtonModule, XIconModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XPopoverModule, XButtonModule, XIconModule],
       declarations: [TestXPopoverComponent]
     }).compileComponents();
   }));
@@ -36,6 +37,7 @@ describe(XPopoverPrefix, () => {
 @Component({
   selector: 'test-x-popover',
   template: `
+    <x-theme showDark></x-theme>
     <div class="box">
       <div class="top">
         <x-button x-popover content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
@@ -78,6 +80,11 @@ describe(XPopoverPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .box {
         padding: 5rem 10rem;
         width: 45rem;

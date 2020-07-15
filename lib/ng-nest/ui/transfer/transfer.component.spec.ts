@@ -10,11 +10,22 @@ import { FormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTransferPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTransferModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XTransferModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXTransferComponent]
     }).compileComponents();
   }));
@@ -34,6 +45,7 @@ describe(XTransferPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-transfer
         [data]="data"
@@ -58,6 +70,11 @@ describe(XTransferPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

@@ -9,30 +9,30 @@
   flex-direction: column;
   border-collapse: collapse;
   width: 100%;
-  box-shadow: $--x-box-shadow $--x-border-300;
-  border: $--x-border-200-base;
+  box-shadow: $--x-box-shadow-base;
+  border: $--x-border-base;
   > thead {
     position: relative;
     overflow: hidden;
     display: block;
-    background-color: $--x-background-300;
+    background-color: $--x-background-100;
     > tr {
       position: absolute;
       width: 100%;
       display: flex;
-      border-bottom: $--x-border-200-base;
       > th {
         display: flex;
         align-items: center;
         flex: 1;
         position: relative;
         padding-right: $--x-font-size;
-        font-weight: 500;
-        background-color: $--x-background-300;
+        font-weight: 600;
+        background-color: $--x-background-100;
+        border-bottom: $--x-border-base;
         > a {
           display: inline-flex;
           align-items: center;
-          color: $--x-text-400;
+          color: $--x-text-300;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -53,7 +53,6 @@
     position: relative;
     tr {
       display: flex;
-      border-bottom: $--x-border-200-base;
       > td {
         display: flex;
         align-items: center;
@@ -62,6 +61,7 @@
         justify-content: space-between;
         overflow: hidden;
         background-color: $--x-background-100;
+        border-bottom: $--x-border-base;
         > div {
           flex: 1;
           white-space: nowrap;
@@ -136,12 +136,14 @@
   &-scroll-left {
     > thead {
       .#{$--x-table}-sticky {
-        box-shadow: $--x-box-shadow-base-right;
+        box-shadow: $--x-box-shadow-light-right;
+        border-right: $--x-border-base;
       }
     }
     > tbody {
       .#{$--x-table}-sticky {
-        box-shadow: $--x-box-shadow-base-right;
+        box-shadow: $--x-box-shadow-light-right;
+        border-right: $--x-border-base;
       }
     }
   }

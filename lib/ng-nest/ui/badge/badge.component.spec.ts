@@ -9,11 +9,13 @@ import { XBadgeModule } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.property';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XBadgePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XBadgeModule, XButtonModule, XLayoutModule, XIconModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XBadgeModule, XButtonModule, XLayoutModule, XIconModule],
       declarations: [TestXBadgeComponent]
     }).compileComponents();
   }));
@@ -33,6 +35,7 @@ describe(XBadgePrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-badge value="12">
         <x-button>评论</x-button>
@@ -88,6 +91,11 @@ describe(XBadgePrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         display: flex;
         align-items: center;

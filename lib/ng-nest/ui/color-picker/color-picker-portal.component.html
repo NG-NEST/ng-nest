@@ -53,23 +53,23 @@
       <x-tabs animated="false" justify="center">
         <x-tab label="HEX">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="hex"></x-input>
+            <x-input [(ngModel)]="hex" (ngModelChange)="hexChange()"></x-input>
           </div>
         </x-tab>
         <x-tab label="RGBA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="rgba.r"></x-input>
-            <x-input [(ngModel)]="rgba.g"></x-input>
-            <x-input [(ngModel)]="rgba.b"></x-input>
-            <x-input [(ngModel)]="rgba.a"></x-input>
+            <x-input [(ngModel)]="rgba.r" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="rgba.g" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="rgba.b" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="rgba.a" [disabled]="true"></x-input>
           </div>
         </x-tab>
         <x-tab label="HSLA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="hsla.h"></x-input>
-            <x-input [(ngModel)]="hsla.sp"></x-input>
-            <x-input [(ngModel)]="hsla.lp"></x-input>
-            <x-input [(ngModel)]="hsla.a"></x-input>
+            <x-input [(ngModel)]="hsla.h" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="hsla.sp" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="hsla.lp" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="hsla.a" [disabled]="true"></x-input>
           </div>
         </x-tab>
       </x-tabs>

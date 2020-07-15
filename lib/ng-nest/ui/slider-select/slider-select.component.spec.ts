@@ -9,11 +9,12 @@ import { XSliderSelectPrefix } from './slider-select.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
       declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,
@@ -100,6 +101,7 @@ describe(XSliderSelectPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select></x-slider-select>
@@ -113,6 +115,11 @@ describe(XSliderSelectPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -125,6 +132,7 @@ class TestXSliderSelectComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select max="10" [(ngModel)]="model1"></x-slider-select>
@@ -143,6 +151,11 @@ class TestXSliderSelectComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -157,6 +170,7 @@ class TestXSliderSelectLimitComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
@@ -170,6 +184,11 @@ class TestXSliderSelectLimitComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -180,6 +199,7 @@ class TestXSliderSelectPrecisionComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select label="数量" [(ngModel)]="model"></x-slider-select>
@@ -203,6 +223,11 @@ class TestXSliderSelectPrecisionComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -215,6 +240,7 @@ class TestXSliderSelectLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select disabled></x-slider-select>
@@ -228,6 +254,11 @@ class TestXSliderSelectLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -240,6 +271,7 @@ class TestXSliderSelectDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-tabs>
       <x-tab label="1111">
         <x-row>
@@ -269,6 +301,11 @@ class TestXSliderSelectDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

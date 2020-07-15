@@ -10,11 +10,22 @@ import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCardPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCardModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XCardModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXCardComponent]
     }).compileComponents();
   }));
@@ -34,6 +45,7 @@ describe(XCardPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-card width="20rem">
         <ul>
@@ -86,6 +98,11 @@ describe(XCardPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -109,7 +126,7 @@ describe(XCardPrefix, () => {
         justify-content: space-between;
       }
       .row .card .bottom > .time > span {
-        color: gray;
+        color: var(--x-text-400);
       }
     `
   ]

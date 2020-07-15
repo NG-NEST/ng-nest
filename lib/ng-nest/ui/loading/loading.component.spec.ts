@@ -13,11 +13,22 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XLoadingPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, BrowserAnimationsModule, XLoadingModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        XLoadingModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXLoadingComponent]
     }).compileComponents();
   }));
@@ -37,6 +48,7 @@ describe(XLoadingPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <div x-loading="true" size="big">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
@@ -94,6 +106,11 @@ describe(XLoadingPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

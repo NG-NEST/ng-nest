@@ -7,11 +7,13 @@ import { XSwitchModule } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSwitchPrefix } from './switch.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSwitchPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
     }).compileComponents();
   }));
@@ -55,6 +57,7 @@ describe(XSwitchPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-switch [(ngModel)]="model1" (ngModelChange)="change($event)"></x-switch>
@@ -70,6 +73,9 @@ describe(XSwitchPrefix, () => {
     `
       :host {
         height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
       }
       x-row:not(:first-child) {
         margin-top: 1rem;
@@ -88,6 +94,7 @@ class TestXSwitchComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-switch label="方式"></x-switch>
@@ -111,6 +118,11 @@ class TestXSwitchComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -123,6 +135,7 @@ class TestXSwitchLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-switch disabled></x-switch>
@@ -136,6 +149,11 @@ class TestXSwitchLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

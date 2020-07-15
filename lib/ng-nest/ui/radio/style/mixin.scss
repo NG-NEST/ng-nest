@@ -58,7 +58,7 @@
     }
   }
   &-box {
-    border: 1px solid var(--x-border);
+    border: 0.0625rem solid var(--x-border);
     border-radius: 100%;
     width: 1rem;
     height: 1rem;
@@ -120,13 +120,13 @@
 }
 
 @mixin disabled {
-  color: var(--x-text-500);
+  color: var(--x-text-400);
   cursor: not-allowed;
   .#{$--x-radio-prefix}-box {
     border-color: var(--x-border-100);
     background-color: var(--x-border-300);
     &::after {
-      background-color: var(--x-text-500);
+      background-color: var(--x-text-400);
     }
   }
 }

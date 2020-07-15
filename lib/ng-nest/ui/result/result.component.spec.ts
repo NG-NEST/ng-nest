@@ -10,11 +10,22 @@ import { FormsModule } from '@angular/forms';
 import { XResultPrefix } from './result.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XResultPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XResultModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XResultModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXResultComponent]
     }).compileComponents();
   }));
@@ -34,12 +45,9 @@ describe(XResultPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
-      <x-result
-        status="success"
-        title="成功购买云服务器！"
-        subTitle="订单号：2020031413092700001，云服务器配置需要1-5分钟，请稍候。"
-      >
+      <x-result status="success" title="成功购买云服务器！" subTitle="订单号：2020031413092700001，云服务器配置需要1-5分钟，请稍候。">
         <x-buttons space="2">
           <x-button type="primary">返回列表</x-button>
           <x-button>再次购买</x-button>
@@ -86,15 +94,17 @@ describe(XResultPrefix, () => {
         <x-button type="primary">返回列表</x-button>
       </x-result>
       <ng-template #iconTpl>
-        <img
-          [style.width.rem]="18"
-          src="https://ngnest.com/assets/img/logo/logo-144x144.png"
-        />
+        <img [style.width.rem]="18" src="https://ngnest.com/assets/img/logo/logo-144x144.png" />
       </ng-template>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 2rem;
       }

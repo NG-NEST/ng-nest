@@ -81,13 +81,13 @@
 }
 
 @mixin disabled {
-  color: var(--x-text-500);
+  color: var(--x-text-400);
   cursor: not-allowed;
   .#{$--x-upload-prefix}-box {
     border-color: var(--x-border-100);
     background-color: var(--x-border-300);
     &::after {
-      background-color: var(--x-text-500);
+      background-color: var(--x-text-400);
     }
   }
 }

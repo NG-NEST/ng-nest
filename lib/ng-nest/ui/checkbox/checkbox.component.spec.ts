@@ -10,11 +10,13 @@ import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCheckboxPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XCheckboxModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XCheckboxModule, XButtonModule, XLayoutModule],
       declarations: [
         TestXCheckboxComponent,
         TestXCheckboxDisabledComponent,
@@ -134,6 +136,7 @@ const iconData: XData<XCheckboxNode> = [
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="['一个选项']" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-checkbox>
@@ -148,6 +151,11 @@ const iconData: XData<XCheckboxNode> = [
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -165,6 +173,7 @@ class TestXCheckboxComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" disabled></x-checkbox>
@@ -179,6 +188,11 @@ class TestXCheckboxComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -193,6 +207,7 @@ class TestXCheckboxDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" button></x-checkbox>
@@ -213,6 +228,11 @@ class TestXCheckboxDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -231,6 +251,7 @@ class TestXCheckboxButtonComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" icon></x-checkbox>
@@ -251,6 +272,11 @@ class TestXCheckboxButtonComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -275,6 +301,7 @@ class TestXCheckboxIconComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
@@ -289,6 +316,11 @@ class TestXCheckboxIconComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -318,6 +350,7 @@ class TestXCheckboxAsyncComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-checkbox
@@ -334,6 +367,11 @@ class TestXCheckboxAsyncComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

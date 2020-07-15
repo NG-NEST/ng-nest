@@ -14,13 +14,14 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
-import { interval } from 'rxjs';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XDialogPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        XThemeModule,
         FormsModule,
         XInputModule,
         XRadioModule,
@@ -49,6 +50,7 @@ describe(XDialogPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="box">
       <div class="row">
         <x-button (click)="dialog('top-start')">上左</x-button>
@@ -149,11 +151,16 @@ describe(XDialogPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .box {
         width: 16rem;
         height: 10rem;
         padding: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.03);
+        border: 0.0625rem solid var(--x-border);
       }
       .row {
         height: 3rem;

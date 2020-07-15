@@ -6,11 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XIconPrefix } from './icon.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XIconPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XIconModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XIconModule, XLayoutModule],
       declarations: [TestXIconComponent]
     }).compileComponents();
   }));
@@ -35,6 +37,7 @@ describe(XIconPrefix, () => {
 @Component({
   selector: 'test-x-icon',
   template: `
+    <x-theme showDark></x-theme>
     <div style="height: 2000px">
       <x-icon type="ado-plus-123123" to="ado-pause"></x-icon>
       <x-icon type="adf-account-book"></x-icon>
@@ -59,7 +62,16 @@ describe(XIconPrefix, () => {
         <x-icon type="adf-alert"></x-icon>
       </div>
     </div>
-  `
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+    `
+  ]
 })
 class TestXIconComponent {
   type: string;

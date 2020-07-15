@@ -11,11 +11,22 @@ import { XPopconfirmPrefix } from './popconfirm.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XPopconfirmPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XPopconfirmModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XPopconfirmModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXPopconfirmComponent]
     }).compileComponents();
   }));
@@ -35,6 +46,7 @@ describe(XPopconfirmPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-popconfirm title="确定删除吗？" (confirm)="confirm()" (cancel)="cancel()">
         <x-button icon="fto-trash-2">删除</x-button>
@@ -43,6 +55,11 @@ describe(XPopconfirmPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         padding-left: 5rem;
       }
@@ -54,7 +71,7 @@ describe(XPopconfirmPrefix, () => {
 })
 class TestXPopconfirmComponent {
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(x => {
+    interval(1).subscribe((x) => {
       this.cdr.detectChanges();
     });
   }

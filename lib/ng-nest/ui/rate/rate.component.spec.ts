@@ -8,11 +8,13 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XRatePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XRateModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XRateModule, XButtonModule, XLayoutModule],
       declarations: [TestXRateComponent, TestXRateDisabledComponent]
     }).compileComponents();
   }));
@@ -44,6 +46,7 @@ describe(XRatePrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-rate></x-rate>
@@ -57,6 +60,11 @@ describe(XRatePrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -72,6 +80,7 @@ class TestXRateComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-rate disabled></x-rate>
@@ -85,6 +94,11 @@ class TestXRateComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

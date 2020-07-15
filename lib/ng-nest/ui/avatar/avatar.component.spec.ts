@@ -8,11 +8,13 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.property';
+import { XThemeModule } from '@ng-nest/ui/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XAvatarPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XAvatarModule, XLayoutModule, XIconModule],
+      imports: [BrowserAnimationsModule, FormsModule, XAvatarModule, XLayoutModule, XIconModule, XThemeModule],
       declarations: [TestXAvatarComponent]
     }).compileComponents();
   }));
@@ -32,6 +34,7 @@ describe(XAvatarPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-avatar size="big" [src]="src"></x-avatar>
       <x-avatar size="large" [src]="src"></x-avatar>
@@ -73,6 +76,11 @@ describe(XAvatarPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         display: flex;
         align-items: center;

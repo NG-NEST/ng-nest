@@ -68,7 +68,7 @@
           height: 100%;
           top: 0;
           left: 0;
-          background-color: #fff;
+          background-color: $--x-background;
           opacity: 0.24;
           transition: 0.2s;
         }
@@ -120,9 +120,12 @@
       align-items: center;
       justify-content: center;
       > li {
+        > x-button .x-button {
+          background-color: $--x-text-700;
+        }
         &.x-activated {
           > x-button .x-button {
-            background-color: rgba(31, 45, 61, 0.35);
+            background-color: $--x-white;
           }
         }
       }

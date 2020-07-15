@@ -11,14 +11,15 @@
   border-bottom: $--x-border-base;
   x-collapse-panel:last-child {
     .x-collapse-panel {
-      margin-bottom: -0.0625rem;
+      &-header {
+        border-bottom-color: transparent;
+      }
     }
   }
 }
 
 @mixin collapse-panel {
   box-sizing: border-box;
-  background-color: $--x-background-100;
   &-header {
     display: flex;
     align-items: center;

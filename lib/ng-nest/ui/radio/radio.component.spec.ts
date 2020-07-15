@@ -10,11 +10,13 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XRadioPrefix, XRadioNode } from './radio.property';
 import { XData } from '@ng-nest/ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XRadioPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XRadioModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XRadioModule, XButtonModule, XLayoutModule],
       declarations: [
         TestXRadioComponent,
         TestXRadioDisabledComponent,
@@ -117,6 +119,7 @@ const iconData: XData<XRadioNode> = [
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-radio [data]="data"></x-radio>
@@ -128,6 +131,11 @@ const iconData: XData<XRadioNode> = [
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -141,6 +149,7 @@ class TestXRadioComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" disabled></x-radio>
@@ -155,6 +164,11 @@ class TestXRadioComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -169,6 +183,7 @@ class TestXRadioDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" button></x-radio>
@@ -189,6 +204,11 @@ class TestXRadioDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -203,6 +223,7 @@ class TestXRadioButtonComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" icon></x-radio>
@@ -223,6 +244,11 @@ class TestXRadioButtonComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -242,6 +268,7 @@ class TestXRadioIconComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
@@ -256,6 +283,11 @@ class TestXRadioIconComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

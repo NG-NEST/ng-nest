@@ -8,8 +8,8 @@
   display: flex;
   background-color: $--x-background;
   border-radius: $--x-border-radius;
-  border: $--x-border-200-base;
-  color: $--x-text-300;
+  border: $--x-border-base;
+  color: $--x-text;
   &-catalog {
     width: 0;
     overflow: auto;
@@ -21,7 +21,7 @@
       &-node-content {
         height: 1.375rem;
         &:hover {
-          background-color: $--x-border-200;
+          background-color: $--x-border;
         }
         &.x-activated {
           background-color: $--x-border;
@@ -37,12 +37,11 @@
     position: relative;
   }
   &-crumb {
-    background-color: $--x-border-100;
+    background-color: $--x-background;
     display: flex;
     > x-link {
       line-height: 1.5rem;
       height: 1.5rem;
-      border-right: $--x-border-base;
       transition: $--x-animation-duration-base;
       &:hover {
         background-color: $--x-border;
@@ -55,7 +54,7 @@
       flex: 1;
       > .x-crumb {
         padding: 0 0.5rem;
-        color: $--x-text-400;
+        color: $--x-text-300;
         .x-crumb-separator {
           margin: 0 0.125rem;
         }
@@ -68,8 +67,12 @@
     transition: $--x-animation-duration-slow;
     display: flex;
     min-height: 3.5rem;
-    > x-highlight > pre {
-      overflow: inherit;
+    > x-highlight {
+      border: none;
+      > pre {
+        overflow: inherit;
+        background-color: $--x-background-100;
+      }
     }
     > .#{$--x-tree-file}-img {
       margin: auto;
@@ -90,7 +93,7 @@
     > .#{$--x-tree-file}-catalog {
       width: 16rem;
       opacity: 1;
-      border-right: $--x-border-200-base;
+      border-right: $--x-border-base;
     }
   }
 }

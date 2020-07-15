@@ -6,11 +6,13 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XColorModule } from '@ng-nest/ui/color';
 import { XColorPrefix } from './color.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XColorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XColorModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XColorModule, XLayoutModule],
       declarations: [TestXColorComponent]
     }).compileComponents();
   }));
@@ -33,6 +35,7 @@ describe(XColorPrefix, () => {
 @Component({
   selector: 'test-x-color',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12"><x-color label="Primary"></x-color></x-col>
       <x-col span="12"><x-color class="black" label="Background" hex="#f5f7fa" [amounts]="[0.3, 0.6, 0.9]"></x-color></x-col>
@@ -64,6 +67,11 @@ describe(XColorPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
@@ -74,10 +82,10 @@ describe(XColorPrefix, () => {
         margin-bottom: 0;
       }
       x-color.border {
-        border: 1px solid var(--x-border);
+        border: 0.0625rem solid var(--x-border);
       }
       x-color.black {
-        color: var(--x-text);
+        color: var(--x-text-a300);
       }
     `
   ]

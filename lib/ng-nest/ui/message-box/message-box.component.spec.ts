@@ -10,11 +10,12 @@ import { XMessageBoxService } from './message-box.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XMessageBoxModule, XButtonModule, XMessageModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonModule, XMessageModule],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
   }));
@@ -34,6 +35,7 @@ describe(XMessageBoxPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="box">
       <div class="row">
         <x-button (click)="alert('top-start', '上左')">上左</x-button>
@@ -90,6 +92,11 @@ describe(XMessageBoxPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .box {
         width: 16rem;
         height: 10rem;

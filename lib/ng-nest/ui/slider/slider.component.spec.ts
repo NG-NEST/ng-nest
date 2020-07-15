@@ -9,11 +9,12 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSliderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderModule, BrowserAnimationsModule, XIconModule, XTabsModule],
+      imports: [XSliderModule, XThemeModule, BrowserAnimationsModule, XIconModule, XTabsModule],
       declarations: [TestXSliderComponent]
     }).compileComponents();
   }));
@@ -33,6 +34,7 @@ describe(XSliderPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-slider [data]="data"> </x-slider>
     </div>
@@ -81,6 +83,11 @@ describe(XSliderPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

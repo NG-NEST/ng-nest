@@ -8,11 +8,12 @@ import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XBackTopPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XBackTopModule, XButtonModule, BrowserAnimationsModule, XTabsModule],
+      imports: [BrowserAnimationsModule, XBackTopModule, XButtonModule, BrowserAnimationsModule, XTabsModule, XThemeModule],
       declarations: [TestXBackTopComponent, TestXBackTopTabsComponent]
     }).compileComponents();
   }));
@@ -44,6 +45,7 @@ describe(XBackTopPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-back-top> </x-back-top>
       <x-back-top [template]="templateTpl" bottom="6rem" visibilityHeight="100"> </x-back-top>
@@ -60,6 +62,11 @@ describe(XBackTopPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         height: 100rem;
       }
@@ -88,7 +95,7 @@ describe(XBackTopPrefix, () => {
         line-height: 2.5rem;
         text-align: center;
         border-radius: 0.125rem;
-        background-color: var(--x-white);
+        background-color: var(--x-background);
         color: var(--x-primary);
         font-size: 1.25rem;
         cursor: pointer;
@@ -107,6 +114,7 @@ class TestXBackTopComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-tabs>
         <x-tab label="1111">
@@ -123,6 +131,11 @@ class TestXBackTopComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         height: 100rem;
       }

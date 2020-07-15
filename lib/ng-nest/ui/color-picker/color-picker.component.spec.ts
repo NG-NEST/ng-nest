@@ -9,11 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix } from './color-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XColorPickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,
@@ -74,6 +75,7 @@ describe(XColorPickerPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-color-picker [(ngModel)]="model1"></x-color-picker>
@@ -97,6 +99,11 @@ describe(XColorPickerPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -116,6 +123,7 @@ class TestXColorPickerComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-color-picker label="颜色" [(ngModel)]="model"></x-color-picker>
@@ -139,6 +147,11 @@ class TestXColorPickerComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -159,6 +172,7 @@ class TestXColorPickerLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-color-picker disabled></x-color-picker>
@@ -172,6 +186,11 @@ class TestXColorPickerLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -187,6 +206,7 @@ class TestXColorPickerDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-color-picker [(ngModel)]="model" required></x-color-picker>
@@ -200,6 +220,11 @@ class TestXColorPickerDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

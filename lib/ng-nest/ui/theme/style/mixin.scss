@@ -8,22 +8,6 @@
   display: block;
   x-color-picker {
     width: 3rem;
-    .x-color-picker-value {
-      width: calc(100% - 0.25rem);
-      height: calc(100% - 0.25rem);
-      top: 0.125rem;
-      left: 0.125rem;
-    }
-    x-input {
-      x-icon {
-        display: none;
-      }
-      .x-input-row {
-        > input {
-          padding: 0 !important;
-        }
-      }
-    }
     &:not(:first-child) {
       margin-left: 0.125rem;
     }

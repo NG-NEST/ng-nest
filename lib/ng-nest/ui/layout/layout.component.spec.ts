@@ -5,11 +5,13 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XRowPrefix } from './layout.property';
 import { XRowComponent } from './row.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(`${XRowPrefix}`, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XLayoutModule],
       declarations: [
         TestLayoutComponent,
         TestSpaceLayoutComponent,
@@ -124,6 +126,7 @@ describe(`${XRowPrefix}`, () => {
 @Component({
   selector: 'test-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">col-12</x-col>
       <x-col span="12">col-12</x-col>
@@ -142,20 +145,25 @@ describe(`${XRowPrefix}`, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -165,6 +173,7 @@ class TestLayoutComponent {}
 @Component({
   selector: 'test-space-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12"><div>col-12</div></x-col>
       <x-col span="12"><div>col-12</div></x-col>
@@ -183,20 +192,25 @@ class TestLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -206,6 +220,7 @@ class TestSpaceLayoutComponent {}
 @Component({
   selector: 'test-blend-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12"><div>col-12</div></x-col>
       <x-col span="6"><div>col-6</div></x-col>
@@ -224,20 +239,25 @@ class TestSpaceLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -247,6 +267,7 @@ class TestBlendLayoutComponent {}
 @Component({
   selector: 'test-offset-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="6"><div>col-6</div></x-col>
       <x-col span="6" offset="6"><div>col-6</div></x-col>
@@ -261,20 +282,25 @@ class TestBlendLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -284,6 +310,7 @@ class TestOffsetLayoutComponent {}
 @Component({
   selector: 'test-flex-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row justify="start">
       <x-col span="6"><div>col-6</div></x-col>
       <x-col span="6"><div>col-6</div></x-col>
@@ -312,20 +339,25 @@ class TestOffsetLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -335,6 +367,7 @@ class TestFlexLayoutComponent {}
 @Component({
   selector: 'test-layout-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col xs="8" sm="6" md="4" lg="3" xl="1">
         <div></div>
@@ -352,20 +385,25 @@ class TestFlexLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]
@@ -375,6 +413,7 @@ class TestLayoutLayoutComponent {}
 @Component({
   selector: 'test-hidden-x-layout',
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="6" x-hidden-sm-only>
         <div>hidden-xs-only</div>
@@ -421,20 +460,25 @@ class TestLayoutLayoutComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row {
         margin: 1rem 0;
       }
       x-row > x-col > div {
-        color: #848181;
+        color: var(--x-text);
         padding: 1rem;
         text-align: center;
         border-radius: 0.125rem;
       }
       x-row > x-col:nth-child(odd) > div {
-        background-color: #e5e9f2;
+        background-color: var(--x-info-400);
       }
       x-row > x-col:nth-child(even) > div {
-        background-color: #d3dce6;
+        background-color: var(--x-info-500);
       }
     `
   ]

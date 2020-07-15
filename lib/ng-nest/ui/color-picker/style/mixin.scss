@@ -24,6 +24,9 @@
     > x-input {
       flex: 1;
       position: relative;
+      x-icon {
+        display: none;
+      }
       > .x-input {
         color: transparent;
         > .x-input-row {
@@ -31,6 +34,7 @@
             cursor: pointer;
             background-color: transparent;
             color: transparent;
+            padding: 0 !important;
           }
         }
       }
@@ -38,10 +42,10 @@
   }
   &-value {
     position: absolute;
-    top: 0.3rem;
-    left: 0.3rem;
-    width: calc(100% - 2rem);
-    height: 1.125rem;
+    width: calc(100% - 0.25rem);
+    height: calc(100% - 0.25rem);
+    top: 0.125rem;
+    left: 0.125rem;
     background-image: $--x-color-picker-transparent;
     cursor: pointer;
     > div {
@@ -58,7 +62,8 @@
   }
   &.x-disabled {
     > .#{$--x-color-picker-prefix}-row {
-      background-color: $--x-background-300;
+      background-color: $--x-background-200;
+      border-radius: $--x-color-picker-border-radius;
       > x-input {
         > .x-input {
           > .x-input-row {

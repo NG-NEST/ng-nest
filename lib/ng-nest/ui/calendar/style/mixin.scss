@@ -5,7 +5,6 @@
 @import './param';
 
 @mixin calendar {
-  font-size: $--x-font-size;
   box-sizing: border-box;
   &-header {
     display: flex;
@@ -79,14 +78,14 @@
               }
             }
             &.x-activated {
-              background-color: $--x-primary-900;
+              background-color: $--x-background-300;
             }
           }
           &:hover {
-            background-color: $--x-primary-900;
+            background-color: $--x-background-300;
           }
           &.x-date-last-or-next {
-            color: $--x-text-500;
+            color: $--x-text-400;
           }
           &.x-date-now {
             color: $--x-primary;

@@ -9,11 +9,12 @@ import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XMessagePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XMessageModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
       declarations: [TestXMessageComponent, TestXMessageTypeComponent]
     }).compileComponents();
   }));
@@ -45,6 +46,7 @@ describe(XMessagePrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="box">
       <div class="row">
         <x-button (click)="open('top-start', '上左')">上左</x-button>
@@ -65,6 +67,11 @@ describe(XMessagePrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .box {
         width: 16rem;
         height: 10rem;
@@ -95,6 +102,7 @@ class TestXMessageComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button (click)="message.success('成功提示')">成功提示</x-button>
       <x-button (click)="message.info('消息提示')">消息提示</x-button>
@@ -122,6 +130,11 @@ class TestXMessageComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

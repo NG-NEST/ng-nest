@@ -5,11 +5,13 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPageHeaderModule } from '@ng-nest/ui/page-header';
 import { XPageHeaderPrefix } from './page-header.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XPageHeaderPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XPageHeaderModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XPageHeaderModule],
       declarations: [TestXPageHeaderComponent]
     }).compileComponents();
   }));
@@ -29,12 +31,18 @@ describe(XPageHeaderPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-page-header title="标题" subTitle="小标题"> </x-page-header>
     </div>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

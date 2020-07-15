@@ -20,7 +20,9 @@ export class XThemeService {
     [-0.9, 0.2]
   ];
   private exchanges: number[][] = [
+    [-0.1, -0.1],
     [0.1, -0.1],
+    [0.2, 0.2],
     [0.3, 0],
     [0.4, -0.4],
     [0.5, -0.2],
@@ -37,6 +39,11 @@ export class XThemeService {
   constructor(@Inject(DOCUMENT) private doc: any, private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);
     this.declaration = getComputedStyle(this.doc.documentElement);
+  }
+
+  setInitialTheme(theme?: XTheme) {
+    this.setColors(theme?.colors);
+    if (theme?.colors) Object.assign(X_THEME_COLORS, theme.colors);
   }
 
   setTheme(theme?: XTheme) {
@@ -66,6 +73,15 @@ export class XThemeService {
     return result;
   }
 
+  getColorsInProperty(colors?: XColorsTheme, prefix = this.rootKey): XColorsTheme {
+    let result: XColorsTheme = {};
+    Object.keys(colors as XColorsTheme).forEach((x) => {
+      result[x] = this.declaration.getPropertyValue(`${prefix}${x}`).trim();
+    });
+
+    return result;
+  }
+
   getColorsTheme(colors?: XColorsTheme) {
     if (typeof colors === 'undefined') colors = X_THEME_COLORS;
     else colors = Object.assign({}, X_THEME_COLORS, colors);
@@ -78,14 +94,30 @@ export class XThemeService {
       for (let amount of this.amounts) {
         if (amount === 0) {
           result[`${prefix}${color}`] = value;
-        } else if (amount < 0) {
-          result[`${prefix}${color}-a${Math.abs(amount * 1000)}`] = toHex(mixColors(this.merge, value, amount));
-        } else if (amount > 0) {
-          result[`${prefix}${color}-${amount * 1000}`] = toHex(mixColors(this.merge, value, amount));
+        } else {
+          result[`${prefix}${color}${this.getSuffix(amount)}`] = toHex(mixColors(this.merge, value, amount));
         }
       }
     } else {
       result[`${prefix}${color}`] = value;
+    }
+    return result;
+  }
+
+  setDarkRoot(color: string, value: string, prefix = this.rootKey) {
+    let result: XColorsTheme = {};
+    const allColors = this.setRoot(color, value, '');
+    if (X_THEME_COLOR_KEYS.includes(color) && !['background'].includes(color)) {
+      const allColors = this.setRoot(color, value, prefix);
+      this.exchanges.forEach((x) => {
+        if (x[1] >= -0.1) {
+          const curr = this.getSuffix(x[0]);
+          const next = this.getSuffix(x[1]);
+          result[`${prefix}${color}${curr}`] = allColors[`${prefix}${color}${next}`];
+        }
+      });
+    } else if (['background'].includes(color)) {
+      result = this.getDefineColors(Object.assign({}, this.getColorsInProperty(X_THEME_COLORS), allColors), '', true);
     }
     return result;
   }

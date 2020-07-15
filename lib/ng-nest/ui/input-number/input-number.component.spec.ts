@@ -7,11 +7,13 @@ import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputNumberPrefix } from './input-number.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XInputNumberPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXInputNumberComponent,
         TestXInputNumberLabelComponent,
@@ -98,6 +100,7 @@ describe(XInputNumberPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number></x-input-number>
@@ -106,6 +109,11 @@ describe(XInputNumberPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -116,6 +124,7 @@ class TestXInputNumberComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number label="数量"></x-input-number>
@@ -139,6 +148,11 @@ class TestXInputNumberComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -152,6 +166,7 @@ class TestXInputNumberLabelComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number max="10"></x-input-number>
@@ -170,6 +185,11 @@ class TestXInputNumberLabelComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -183,6 +203,7 @@ class TestXInputNumberLimitComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number precision="2" step="0.1"></x-input-number>
@@ -191,6 +212,11 @@ class TestXInputNumberLimitComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -204,6 +230,7 @@ class TestXInputNumberPrecisionComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number disabled></x-input-number>
@@ -215,6 +242,11 @@ class TestXInputNumberPrecisionComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }
@@ -230,6 +262,7 @@ class TestXInputNumberDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-input-number required></x-input-number>
@@ -241,6 +274,11 @@ class TestXInputNumberDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col {
         width: 10rem;
       }

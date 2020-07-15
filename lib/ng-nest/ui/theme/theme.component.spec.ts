@@ -6,12 +6,11 @@ import { By } from '@angular/platform-browser';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XThemePrefix } from './theme.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XFormModule, XControl } from '@ng-nest/ui/form';
-import { XConfigService, XTheme, XColorsTheme } from '@ng-nest/ui/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { XFormModule } from '@ng-nest/ui/form';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XSwitchModule } from '@ng-nest/ui/switch';
+import { interval } from 'rxjs';
 
 describe(XThemePrefix, () => {
   beforeEach(async(() => {
@@ -37,7 +36,7 @@ describe(XThemePrefix, () => {
 @Component({
   selector: 'test-x-theme',
   template: `
-    <x-theme [(ngModel)]="model"></x-theme>
+    <x-theme [(ngModel)]="model" showDark></x-theme>
     <div class="row">
       <x-button>默认按钮</x-button>
       <x-button type="primary">主要按钮</x-button>
@@ -276,7 +275,7 @@ describe(XThemePrefix, () => {
       :host {
         background-color: var(--x-background);
         padding: 1rem;
-        border: 1px solid var(--x-border);
+        border: 0.0625rem solid var(--x-border);
       }
       .row {
         margin: 1rem 0;
@@ -289,6 +288,8 @@ describe(XThemePrefix, () => {
   ]
 })
 class TestXThemeComponent {
+  model: any;
+  dark = true;
   loading: boolean = false;
   save() {
     if (this.loading) return;
@@ -300,6 +301,10 @@ class TestXThemeComponent {
     }, 3000);
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(1000).subscribe(() => {
+      this.cdr.detectChanges();
+    });
+  }
   ngOnInit() {}
 }

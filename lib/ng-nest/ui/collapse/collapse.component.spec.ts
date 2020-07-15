@@ -11,11 +11,21 @@ import { XCollapsePrefix } from './collapse.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCollapsePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, BrowserAnimationsModule, XCollapseModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        XThemeModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        XCollapseModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXCollapseComponent]
     }).compileComponents();
   }));
@@ -35,6 +45,7 @@ describe(XCollapsePrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-collapse>
         <x-collapse-panel label="一致性 Consistency" active>
@@ -103,11 +114,14 @@ describe(XCollapsePrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row {
         width: 24rem;
         padding: 1.625rem 1rem;
-        border: 0.0625rem solid #dcdfe6;
-        background-color: white;
       }
       .row:not(:first-child) {
         margin-top: 2rem;

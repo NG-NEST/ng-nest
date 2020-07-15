@@ -95,7 +95,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.4rem;
-    border-bottom: $--x-border-width solid $--x-border-200;
+    border-bottom: $--x-border-width solid $--x-border;
   }
   &-year-month {
     flex: 1;
@@ -123,6 +123,7 @@
         width: 1.625rem;
         height: 1.4rem;
         margin: 0 auto;
+        border: 0.0625rem solid transparent;
         &:hover {
           background-color: $--x-primary-900;
         }
@@ -136,10 +137,12 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-500;
+        color: $--x-text-400;
       }
       &.x-date-now x-button .x-button {
-        background-color: $--x-info-600;
+        color: $--x-primary;
+        background-color: transparent;
+        border-color: $--x-primary;
       }
     }
   }
@@ -158,6 +161,7 @@
         width: 2.6rem;
         height: 1.6rem;
         margin: 0 auto;
+        border: 0.0625rem solid transparent;
         &:hover {
           background-color: $--x-primary-900;
         }
@@ -171,10 +175,12 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-500;
+        color: $--x-text-400;
       }
       &.x-date-now x-button .x-button {
-        background-color: $--x-info-600;
+        color: $--x-primary;
+        background-color: transparent;
+        border-color: $--x-primary;
       }
     }
   }
@@ -193,6 +199,7 @@
         width: 2.6rem;
         height: 1.6rem;
         margin: 0 auto;
+        border: 0.0625rem solid transparent;
         &:hover {
           background-color: $--x-primary-900;
         }
@@ -206,10 +213,12 @@
         }
       }
       &.x-date-last-or-next x-button .x-button {
-        color: $--x-text-500;
+        color: $--x-text-400;
       }
       &.x-date-now x-button .x-button {
-        background-color: $--x-info-600;
+        color: $--x-primary;
+        background-color: transparent;
+        border-color: $--x-primary;
       }
     }
   }

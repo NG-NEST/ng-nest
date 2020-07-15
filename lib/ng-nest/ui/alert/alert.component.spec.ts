@@ -9,11 +9,12 @@ import { XAlertPrefix } from './alert.property';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XAlertPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule],
+      imports: [BrowserAnimationsModule, FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule, XThemeModule],
       declarations: [TestXAlertComponent]
     }).compileComponents();
   }));
@@ -33,6 +34,7 @@ describe(XAlertPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-alert title="成功提示" type="success"> </x-alert>
       <x-alert title="消息提示" type="info"> </x-alert>
@@ -80,6 +82,11 @@ describe(XAlertPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

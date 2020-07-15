@@ -10,11 +10,22 @@ import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XEmptyPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XEmptyModule, XButtonModule, XContainerModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XEmptyModule,
+        XButtonModule,
+        XContainerModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXEmptyComponent]
     }).compileComponents();
   }));
@@ -34,13 +45,12 @@ describe(XEmptyPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-empty></x-empty>
     </div>
     <div class="row">
-      <x-empty
-        img="https://ngnest.com/assets/img/logo/logo-144x144.png"
-      ></x-empty>
+      <x-empty img="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-empty>
     </div>
     <div class="row">
       <x-empty content="没有数据了"></x-empty>
@@ -61,6 +71,11 @@ describe(XEmptyPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 2rem;
       }

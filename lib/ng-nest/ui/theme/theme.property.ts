@@ -1,5 +1,6 @@
-import { XProperty, XWithConfig, XNumber, XControlValueAccessor, XColorsTheme } from '@ng-nest/ui/core';
-import { Component, Input } from '@angular/core';
+import { XProperty, XWithConfig, XNumber, XControlValueAccessor, XColorsTheme, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { emit } from 'process';
 
 /**
  * Theme
@@ -23,4 +24,24 @@ export class XThemeProperty extends XControlValueAccessor<XColorsTheme> {
    * 混合的颜色占比
    */
   @Input() @XWithConfig<XNumber[]>(XThemeAmounts) amounts: XNumber[];
+  /**
+   * 显示暗黑模式的设置
+   */
+  @Input() @XInputBoolean() showDark: XBoolean;
+  /**
+   * 详细设置
+   */
+  @Input() @XInputBoolean() showDetail: XBoolean;
+  /**
+   * 暗黑模式
+   */
+  @Input() @XInputBoolean() dark: XBoolean = false;
+  /**
+   * 初始化默认值事件
+   */
+  @Output() defaultClick = new EventEmitter<XColorsTheme>();
+  /**
+   * 暗黑模式改变事件
+   */
+  @Output() darkChange = new EventEmitter<XBoolean>();
 }

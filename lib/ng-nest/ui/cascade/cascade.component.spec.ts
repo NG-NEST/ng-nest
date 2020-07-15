@@ -9,11 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCascadePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXCascadeComponent, TestXCascadeLabelComponent, TestXCascadeDisabledComponent, TestXCascadeRequiredComponent]
     }).compileComponents();
   }));
@@ -108,6 +109,7 @@ const data: XCascadeNode[] = [
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data1" [(ngModel)]="model1"></x-cascade>
@@ -128,6 +130,9 @@ const data: XCascadeNode[] = [
     `
       :host {
         height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
       }
       x-row:not(:first-child) {
         margin-top: 1rem;
@@ -151,6 +156,7 @@ class TestXCascadeComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade label="方式" [data]="data" [(ngModel)]="model"></x-cascade>
@@ -174,6 +180,11 @@ class TestXCascadeComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -192,6 +203,7 @@ class TestXCascadeLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data" disabled></x-cascade>
@@ -205,6 +217,11 @@ class TestXCascadeLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -218,6 +235,7 @@ class TestXCascadeDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data" [(ngModel)]="model1" required></x-cascade>
@@ -231,6 +249,11 @@ class TestXCascadeDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

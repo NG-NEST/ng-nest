@@ -5,12 +5,14 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
+import { XThemeModule } from '@ng-nest/ui/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XAnchorPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XAnchorModule],
-      declarations: [TestXAnchorComponent],
+      imports: [BrowserAnimationsModule, XAnchorModule, XThemeModule],
+      declarations: [TestXAnchorComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -174,6 +176,7 @@ const htmlTemplate = `
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div #scroll class="row scroll">
       <x-anchor [scroll]="scroll" layout="left">
         ${htmlTemplate}
@@ -182,6 +185,11 @@ const htmlTemplate = `
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row.scroll {
         height: 20rem;
         width: 100%;
@@ -189,7 +197,7 @@ const htmlTemplate = `
         border-radius: 0.125rem;
         background: rgba(0, 0, 0, 0.02);
       }
-    `,
-  ],
+    `
+  ]
 })
 class TestXAnchorComponent {}

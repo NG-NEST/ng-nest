@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.0625rem solid $--x-border-200;
+    border-bottom: 0.0625rem solid $--x-border;
     background-color: $--x-background;
     color: $--x-text-300;
     > span {
@@ -37,6 +37,9 @@
     }
     &.cdk-drop-list-dragging {
       > li {
+        &:hover {
+          background-color: transparent;
+        }
         &.cdk-drag-placeholder {
           border-color: $--x-border;
           color: $--x-text-400;
@@ -59,7 +62,7 @@
   }
   &-search {
     padding: 0.5rem;
-    border-bottom: 0.0625rem solid $--x-border-300;
+    border-bottom: 0.0625rem solid $--x-border;
   }
 }
 

@@ -8,11 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputPrefix } from './input.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXInputComponent,
         TestXInputLabelComponent,
@@ -125,6 +127,7 @@ describe(XInputPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-input></x-input>
@@ -136,6 +139,11 @@ describe(XInputPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -152,6 +160,7 @@ class TestXInputComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-input label="用户名"></x-input>
@@ -169,6 +178,11 @@ class TestXInputComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -179,6 +193,7 @@ class TestXInputLabelComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-input icon="ado-user"></x-input>
@@ -190,6 +205,11 @@ class TestXInputLabelComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -200,6 +220,7 @@ class TestXInputIconComponent {}
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-input clearable [(ngModel)]="model" (ngModelChange)="change()"></x-input>
@@ -223,6 +244,11 @@ class TestXInputIconComponent {}
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -241,6 +267,7 @@ class TestXInputClearableComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-input disabled></x-input>
@@ -264,6 +291,11 @@ class TestXInputClearableComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -277,6 +309,7 @@ class TestXInputDisabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-input required [(ngModel)]="value" (ngModelChange)="change()"></x-input>
@@ -295,6 +328,11 @@ class TestXInputDisabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -311,6 +349,7 @@ class TestXInputRequiredComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-input [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-input>
@@ -331,6 +370,11 @@ class TestXInputRequiredComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -347,6 +391,7 @@ class TestXInputLengthComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-input [(ngModel)]="value" (ngModelChange)="change()" size="big"></x-input>
@@ -367,6 +412,11 @@ class TestXInputLengthComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

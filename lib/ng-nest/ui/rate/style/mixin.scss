@@ -20,7 +20,7 @@
   > .x-buttons {
     > x-button > .x-button {
       padding: 0 0.2rem;
-      color: $--x-text-500;
+      color: $--x-text-400;
       .x-icon {
         font-size: $--x-font-size-large;
       }
@@ -28,11 +28,15 @@
         color: $--x-warning;
         background-color: transparent;
       }
-      &.x-button-activated.x-button-disabled {
-        color: $--x-warning-500;
+      &.x-button-initial.x-button-disabled {
+        color: $--x-text-500;
+        background-color: transparent;
+      }
+      &.x-button-initial.x-button-disabled.x-button-activated {
+        color: $--x-warning-400;
         background-color: transparent;
         &:hover {
-          color: $--x-warning-500;
+          color: $--x-warning-400;
           background-color: transparent;
         }
       }

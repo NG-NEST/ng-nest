@@ -9,11 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
+import { XThemeModule } from '@ng-nest/ui/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XListPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XListModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XListModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXListComponent]
     }).compileComponents();
   }));
@@ -35,6 +37,7 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="6">
         <x-list [data]="data1" [(ngModel)]="model1" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
@@ -66,6 +69,11 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

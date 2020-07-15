@@ -14,11 +14,12 @@ import { Observable } from 'rxjs';
 import { map as rxjsMap, delay } from 'rxjs/operators';
 import { orderBy, map, cloneDeep } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XFindPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXFindComponent, TestXFindLabelComponent, TestXFindDisabledComponent, TestXFindFunctionComponent]
     }).compileComponents();
   }));
@@ -234,6 +235,7 @@ interface User extends XId {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <!-- <x-row>
       <x-find
         label="表格单选"
@@ -291,6 +293,11 @@ interface User extends XId {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -358,6 +365,7 @@ class TestXFindComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <!-- <x-row>
       <x-find label="表格单选" [(ngModel)]="model1" [tableColumns]="table.columns" [tableData]="table.data"></x-find>
     </x-row> -->
@@ -373,9 +381,9 @@ class TestXFindComponent {
     <!-- <x-row>
       <x-find label="树单选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.getTreeList"></x-find>
     </x-row> -->
-    <x-row>
+    <!-- <x-row>
       <x-find label="树多选" [(ngModel)]="model3" (ngModelChange)="change($event)" [treeData]="treeService.getTreeList" multiple></x-find>
-    </x-row>
+    </x-row> -->
     <!-- <x-row>
       <x-find
         label="树加表格多选"
@@ -391,7 +399,7 @@ class TestXFindComponent {
         multiple
       ></x-find>
     </x-row> -->
-    <!-- <x-row>
+    <x-row>
       <x-find
         label="树加表格单选选"
         [(ngModel)]="model4"
@@ -403,10 +411,15 @@ class TestXFindComponent {
         [treeData]="treeService.getTreeList"
         treeTableConnect="organizationId"
       ></x-find>
-    </x-row> -->
+    </x-row>
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -448,6 +461,7 @@ class TestXFindFunctionComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-find label="方式"></x-find>
@@ -471,6 +485,11 @@ class TestXFindFunctionComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -483,6 +502,7 @@ class TestXFindLabelComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-find disabled></x-find>
@@ -496,6 +516,11 @@ class TestXFindLabelComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row:not(:first-child) {
         margin-top: 1rem;
       }

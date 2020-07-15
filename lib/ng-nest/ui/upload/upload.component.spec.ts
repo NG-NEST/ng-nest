@@ -8,11 +8,13 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XUploadPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XUploadModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XUploadModule, XButtonModule, XLayoutModule],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent]
     }).compileComponents();
   }));
@@ -52,6 +54,7 @@ describe(XUploadPrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-upload action="http://localhost:3000/upload" multiple></x-upload>
@@ -60,6 +63,11 @@ describe(XUploadPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -75,6 +83,7 @@ class TestXUploadComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-upload disabled></x-upload>
@@ -83,6 +92,11 @@ class TestXUploadComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }

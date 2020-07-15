@@ -8,11 +8,13 @@ import { XTimelinePrefix, XTimelineNode } from './timeline.property';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 import { XCardModule } from '@ng-nest/ui/card';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTimelinePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XTimelineModule, XCardModule, XTimeAgoModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XTimelineModule, XCardModule, XTimeAgoModule],
       declarations: [TestXTimelineComponent]
     }).compileComponents();
   }));
@@ -32,6 +34,7 @@ describe(XTimelinePrefix, () => {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-card>
         <x-timeline [data]="data"></x-timeline>
@@ -72,6 +75,11 @@ describe(XTimelinePrefix, () => {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }

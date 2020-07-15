@@ -15,11 +15,22 @@ import { FormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTreePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XTreeModule, XLayoutModule, XButtonModule, XLinkModule, XFormModule, XLinkModule, XMessageModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XTreeModule,
+        XLayoutModule,
+        XButtonModule,
+        XLinkModule,
+        XFormModule,
+        XLinkModule,
+        XMessageModule
+      ],
       declarations: [
         TestXTreeComponent,
         TestXTreeLazyComponent,
@@ -159,6 +170,7 @@ class TreeServiceTest {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data"> </x-tree>
@@ -173,6 +185,11 @@ class TreeServiceTest {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -186,6 +203,7 @@ class TestXTreeComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.getTreeList" lazy> </x-tree>
@@ -197,6 +215,11 @@ class TestXTreeComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -210,6 +233,7 @@ class TestXTreeLazyComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
@@ -218,6 +242,11 @@ class TestXTreeLazyComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -231,6 +260,7 @@ class TestXTreeCheckedComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
@@ -239,6 +269,11 @@ class TestXTreeCheckedComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -252,6 +287,7 @@ class TestXTreeDiabledComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12">
         <x-tree [data]="service.data" checkbox [labelTemp]="labelTpl"> </x-tree>
@@ -270,6 +306,11 @@ class TestXTreeDiabledComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -293,6 +334,7 @@ class TestXTreeCustomComponent {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <ul class="operations">
@@ -320,6 +362,11 @@ class TestXTreeCustomComponent {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
@@ -375,6 +422,7 @@ interface Organization extends XTreeNode {
 
 @Component({
   template: `
+    <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
         <x-button (click)="action('add-root', selected)">添加根节点</x-button>
@@ -419,6 +467,11 @@ interface Organization extends XTreeNode {
   `,
   styles: [
     `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
       .row:not(:first-child) {
         margin-top: 1rem;
       }
