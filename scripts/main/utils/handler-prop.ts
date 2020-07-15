@@ -91,7 +91,8 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
       }
       if (!isReadDoc && isReadProp && line != '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end == index - 1);
-        let ix = line.indexOf(':');
+        let ix = line.indexOf(': ');
+
         if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
         const lf = line.slice(0, ix).trim();
         const rt = line.slice(ix + 1, line.length).trim();

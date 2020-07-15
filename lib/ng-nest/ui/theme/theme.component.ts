@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional } from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import { XConfigService, XThemeService, XValueAccessor, XColorsTheme, XTheme, X_THEME_COLOR_KEYS, X_THEME_COLORS } from '@ng-nest/ui/core';
 import { FormGroup } from '@angular/forms';
@@ -41,6 +41,8 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
 
   value: XColorsTheme = {};
 
+  themeService: XThemeService;
+
   writeValue(value: XColorsTheme) {
     this.value = value;
     if (this.value && Object.keys(this.value).length > 0) {
@@ -50,8 +52,9 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public configService: XConfigService, public themeService: XThemeService, public cdr: ChangeDetectorRef) {
+  constructor(public configService: XConfigService, public cdr: ChangeDetectorRef) {
     super();
+    this.themeService = this.configService.themeService;
   }
   ngOnInit() {
     this.theme = this.configService.getTheme();

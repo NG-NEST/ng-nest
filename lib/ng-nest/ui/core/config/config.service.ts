@@ -1,3 +1,5 @@
+// tslint:disable no-any
+
 import { Injectable, Optional, Inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { XConfig, X_CONFIG, XConfigKey, XComponentConfigKey, XComponentConfig } from './config';
@@ -14,7 +16,7 @@ const isDefined = function (value?: any): boolean {
 export class XConfigService {
   private componentConfigUpdated$ = new Subject<keyof XComponentConfig>();
   private config: XConfig;
-  private themeService: XThemeService;
+  public themeService: XThemeService;
 
   constructor(@Optional() themeService?: XThemeService, @Optional() @Inject(X_CONFIG) defaultConfig?: XConfig) {
     this.config = defaultConfig || {};
@@ -46,7 +48,7 @@ export class XConfigService {
     this.themeService.setTheme(theme);
   }
 
-  setInitialTheme(theme?: XTheme){
+  setInitialTheme(theme?: XTheme) {
     this.themeService.setInitialTheme(theme);
   }
 
@@ -54,6 +56,9 @@ export class XConfigService {
     return this.themeService.getTheme();
   }
 }
+
+// tslint:disable:no-invalid-this
+// tslint:disable:no-any
 
 const lowercaseFirstLetter = (s: string): string => {
   return s.charAt(0).toLowerCase() + s.slice(1);
@@ -68,6 +73,7 @@ export const trimComponentName = (componentName: string): XConfigKey => {
   ) as XConfigKey;
 };
 
+// tslint:disable-next-line:typedef
 export function XWithConfig<T>(innerDefaultValue?: T) {
   return function ConfigDecorator(target: any, propName: any, originalDescriptor?: TypedPropertyDescriptor<T>): any {
     const privatePropName = `$$__assignedValue__${propName}`;

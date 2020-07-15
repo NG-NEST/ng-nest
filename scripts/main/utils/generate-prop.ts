@@ -24,12 +24,8 @@ export function generateProps(...types: NcProp[]) {
 
           x.properties.forEach((y) => {
             let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
-            if (x.name == 'XButtonProperty') {
-              // console.log(y);
-            }
             if (withConfig && !y.default) {
               y.default = withConfig.match(/\((\S*)\)/)[1];
-              console.log(y.default);
             }
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
@@ -80,6 +76,7 @@ export function generateProps(...types: NcProp[]) {
                 <th>说明</th>
                 <th>输出类型</th>
                 <th>默认值</th>
+                <th>全局设置</th>
               </tr>
               ${outputTable}
             </table>`;

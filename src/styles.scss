@@ -34,10 +34,11 @@ html {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: $--x-background;
   height: 100%;
-  @include scrollbar();
 }
+
+@include scrollbar();
 
 span,
 label,

@@ -8,6 +8,8 @@ import { Input, Component } from '@angular/core';
  */
 export const XColorPrefix = 'x-color';
 
+export const XAmounts = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+
 /**
  * Color Property
  */
@@ -28,5 +30,5 @@ export class XColorProperty extends XProperty {
   /**
    * 混合的颜色占比
    */
-  @Input() @XWithConfig<XNumber[]>([-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]) amounts: XNumber[];
+  @Input() @XWithConfig<XNumber[]>(XAmounts) amounts: XNumber[];
 }

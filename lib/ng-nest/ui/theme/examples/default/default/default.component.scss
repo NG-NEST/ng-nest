@@ -1,5 +1,10 @@
 :host {
-  x-color.black {
-    color: var(--x-text);
+  .row {
+    margin-top: 1rem;
+    x-button {
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
   }
 }
