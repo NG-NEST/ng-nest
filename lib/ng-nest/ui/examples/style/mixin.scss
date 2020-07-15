@@ -6,7 +6,6 @@
 
 @mixin examples {
   display: block;
-  background-color: $--x-background;
   border: $--x-border-base;
   .#{$prefix}-html,
   .#{$prefix}-code {

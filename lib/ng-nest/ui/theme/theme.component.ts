@@ -1,6 +1,15 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional } from '@angular/core';
 import { XThemeProperty } from './theme.property';
-import { XConfigService, XThemeService, XValueAccessor, XColorsTheme, XTheme, X_THEME_COLOR_KEYS, X_THEME_COLORS } from '@ng-nest/ui/core';
+import {
+  XConfigService,
+  XThemeService,
+  XValueAccessor,
+  XColorsTheme,
+  XTheme,
+  X_THEME_COLOR_KEYS,
+  X_THEME_COLORS,
+  X_THEME_DARK_COLORS
+} from '@ng-nest/ui/core';
 import { FormGroup } from '@angular/forms';
 import { XControl } from '@ng-nest/ui/form';
 import { debounceTime } from 'rxjs/operators';
@@ -23,11 +32,6 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
   beforeColors: XColorsTheme = {};
   currentColors: XColorsTheme = {};
   darkBeforeColors: XColorsTheme = {};
-  darkColors = {
-    text: '#d1d1d1',
-    border: '#474747',
-    background: '#0d0d0d'
-  };
   controls: XControl[] = [
     { control: 'color-picker', id: 'primary', label: '主色', span: 5 },
     { control: 'color-picker', id: 'success', label: '成功', span: 5 },
@@ -57,7 +61,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
     this.themeService = this.configService.themeService;
   }
   ngOnInit() {
-    this.theme = this.configService.getTheme();
+    this.theme = this.configService.getTheme(true);
     this.setControls();
     this.setDefaultColors();
     this.controls.map((x: XControl) => {
@@ -140,7 +144,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
       this.beforeColors = this.formGroup.value;
       this.darkBeforeColors = this.formGroup.value;
       colors = this.themeService.getDefineColors(
-        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), this.darkColors),
+        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), X_THEME_DARK_COLORS),
         '',
         this.dark as boolean
       );

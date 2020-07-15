@@ -3,7 +3,7 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { XConfig, X_CONFIG, XConfigKey, XComponentConfigKey, XComponentConfig } from './config';
-import { XThemeService, XTheme } from '../theme';
+import { XThemeService, XTheme, X_THEME_COLORS, X_THEME_DARK_COLORS, XColorsTheme } from '../theme';
 import { filter, mapTo } from 'rxjs/operators';
 
 const isDefined = function (value?: any): boolean {
@@ -44,6 +44,22 @@ export class XConfigService {
     }
   }
 
+  setDarkTheme(theme?: XTheme) {
+    let colors = theme?.colors;
+    if (!colors) colors = X_THEME_DARK_COLORS;
+    this.setTheme({
+      colors: this.themeService.getDefineColors(Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors), '', true)
+    });
+  }
+
+  setLightTheme(theme?: XTheme) {
+    let colors = theme?.colors;
+    if (!colors) colors = X_THEME_COLORS;
+    this.setTheme({
+      colors: this.themeService.getDefineColors(Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors), '', false)
+    });
+  }
+
   setTheme(theme?: XTheme) {
     this.themeService.setTheme(theme);
   }
@@ -52,8 +68,8 @@ export class XConfigService {
     this.themeService.setInitialTheme(theme);
   }
 
-  getTheme(): XTheme {
-    return this.themeService.getTheme();
+  getTheme(includesAll = false): XTheme {
+    return this.themeService.getTheme(includesAll);
   }
 }
 
