@@ -7,7 +7,10 @@ import { X_CONFIG, XConfig } from '@ng-nest/ui/core';
 const ngNestConfig: XConfig = {
   components: {
     button: { size: 'large', round: true },
-    tag: { dark: true }
+    tag: { dark: true },
+    icon: {
+      href: 'http://localhost:8081/icons/'
+    }
   },
   theme: {
     colors: { primary: '#4a19d2' }

@@ -168,8 +168,8 @@ export class XThemeService {
       .join('');
     this.colorsStyleEle = this.renderer2.createElement('style');
     this.colorsStyleEle.innerHTML = `.x-theme-colors{${styles}}`;
-    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
     this.renderer2.addClass(this.doc.documentElement, 'x-theme-colors');
+    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
   }
 }
 

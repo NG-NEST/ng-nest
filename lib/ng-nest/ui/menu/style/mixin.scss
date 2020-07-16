@@ -7,10 +7,10 @@
 @mixin menu {
   &-icon.x-icon {
     font-size: 1rem;
-    transition: $--x-animation-duration-base;
+    transition: opacity $--x-animation-duration-base;
   }
   &-arrow.x-icon {
-    transition: $--x-animation-duration-base;
+    transition: opacity $--x-animation-duration-base;
     &.is-open {
       transform: rotate(180deg);
     }
@@ -54,7 +54,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: width $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+      transition: width $--x-animation-duration-base, background-color $--x-animation-duration-base;
       border-right: 0.125rem solid $--x-border;
       position: relative;
       user-select: none;
@@ -62,7 +62,7 @@
       .#{$--x-menu}-text {
         flex: 1;
         margin: 0 0.25rem;
-        transition: $--x-animation-duration-base;
+        transition: background-color $--x-animation-duration-base, opacity $--x-animation-duration-base;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -121,7 +121,6 @@
         .#{$--x-menu}-text {
           opacity: 0;
           width: 0;
-          visibility: hidden;
         }
       }
       .#{$--x-menu}-nodes {
@@ -131,7 +130,6 @@
     .#{$--x-menu}-arrow.x-icon {
       opacity: 0;
       width: 0;
-      visibility: hidden;
     }
   }
 }

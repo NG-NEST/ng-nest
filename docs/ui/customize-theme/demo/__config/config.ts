@@ -9,8 +9,8 @@ const ngNestConfig: XConfig = {
       danger: '#f56c6c',
       info: '#909399',
       text: '#333333',
-      border: '#dcdfe6',
-      background: '#f6f6f6'
+      border: '#dddddd',
+      background: '#fafafa'
     }
   }
 };

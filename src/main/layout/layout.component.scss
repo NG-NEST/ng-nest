@@ -53,14 +53,15 @@ ns-logo {
 
 ns-sider {
   height: 100%;
-  width: $sider-width;
-  background-color: $--x-background-a100;
+  width: $sider-width + 0.0625rem;
+  background-color: $--x-background;
   margin-left: -#{$sider-width};
   opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9;
+  border-right: 0.0625rem solid $--x-border;
   // box-shadow: $box-shadow;
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
   > section {
