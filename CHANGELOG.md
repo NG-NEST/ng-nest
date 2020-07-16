@@ -1,3 +1,25 @@
+# [1.3.0](https://github.com/NG-NEST/ng-nest/compare/1.2.5...1.3.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **module:*:** adjust the color ([1381145](https://github.com/NG-NEST/ng-nest/commit/138114585712a94241fb82bef2d6123682f749d1))
+* **module:anchor:** activted color error ([d44ec9f](https://github.com/NG-NEST/ng-nest/commit/d44ec9fa874a589d08ba5fe3e9c283ee15e2a3f7))
+
+
+### Features
+
+* add config service ([b9ffa03](https://github.com/NG-NEST/ng-nest/commit/b9ffa0308636b72f543d3388bd244f398350759c))
+* **config:** add dark and light function ([58da79f](https://github.com/NG-NEST/ng-nest/commit/58da79f59b726600f9316e10bd48bb1bf2f97990))
+* **config:** add global config ([0d3ebc2](https://github.com/NG-NEST/ng-nest/commit/0d3ebc2c93caf9e3b289fc44959f73684e1d2d8f))
+* **config:** add global config ([5a6d076](https://github.com/NG-NEST/ng-nest/commit/5a6d0769b8a42fb568f2e25e290724585f03af8d))
+* **module:*:** add theme setting ([1d542c0](https://github.com/NG-NEST/ng-nest/commit/1d542c0f74123708c76fa866f29e07e09cbfb4a0))
+* **module:button:** add custom colors ([68abcdc](https://github.com/NG-NEST/ng-nest/commit/68abcdc5d366e0cb825a94ce3e5219a7c114879b))
+* **module:theme:** add dark theme ([fcff89e](https://github.com/NG-NEST/ng-nest/commit/fcff89ea6fd286c11c2c94c086e8cd4c4a896719))
+* **moulde:*:** add global config ([7c4555d](https://github.com/NG-NEST/ng-nest/commit/7c4555dbcfe5536fa608f7b4df66531fb51b6d64))
+
+
+
 ## [1.2.5](https://github.com/NG-NEST/ng-nest/compare/1.2.4...1.2.5) (2020-07-05)
 
 
