@@ -71,7 +71,7 @@
       border: none;
       > pre {
         overflow: inherit;
-        background-color: $--x-background-100;
+        background-color: $--x-background-a100;
       }
     }
     > .#{$--x-tree-file}-img {
@@ -83,9 +83,9 @@
         max-width: 100%;
         height: auto;
         margin: auto;
-        box-shadow: $--x-box-shadow-base;
+        box-shadow: $--x-box-shadow-light;
         border-radius: $--x-border-radius;
-        background-color: $--x-background-100;
+        background-color: $--x-background-a100;
       }
     }
   }

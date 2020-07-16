@@ -26,6 +26,8 @@ export const X_THEME_PREFIX = '--x-';
 
 export const X_THEME_MERGE = '#ffffff';
 
+export const X_THEME_BLACK_MERGE = '#cccccc';
+
 export const X_THEME_AMOUNTS = [0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
 export const X_THEME_BACKGROUNDS = [-0.2, -0.3, -0.4];
@@ -60,15 +62,15 @@ export const X_THEME_COLORS: XColorsTheme = {
   warning: '#e6a23c',
   danger: '#f56c6c',
   info: '#909399',
-  text: '#303133',
-  border: '#e6e6e6',
-  background: '#f6f6f6'
+  text: '#333333',
+  border: '#dddddd',
+  background: '#fafafa'
 };
 
 export const X_THEME_DARK_COLORS: XColorsTheme = {
-  text: '#d1d1d1',
-  border: '#474747',
-  background: '#0d0d0d'
+  text: '#dddddd',
+  border: '#424242',
+  background: '#1e1e1f'
 };
 
 export const X_THEME_COLOR_KEYS = Object.keys(X_THEME_COLORS);

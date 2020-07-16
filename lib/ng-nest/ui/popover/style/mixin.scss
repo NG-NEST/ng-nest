@@ -15,12 +15,12 @@
   align-items: center;
   > .#{$--x-popover-portal-prefix}-inner {
     font-size: $--x-font-size;
-    background-color: $--x-background-100;
+    background-color: $--x-background;
     color: $--x-text;
     padding: $--x-font-size;
     border: 0.0625rem solid $--x-border;
     border-radius: $--x-border-radius;
-    box-shadow: $--x-box-shadow-base;
+    box-shadow: $--x-box-shadow-light;
   }
   .#{$--x-popover-portal-prefix}-title {
     margin-bottom: $--x-font-size - 0.5rem;

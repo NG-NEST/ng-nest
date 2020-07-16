@@ -79,9 +79,9 @@
   border: $--x-select-border;
   width: 100%;
   border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-base;
+  box-shadow: $--x-box-shadow-light;
   display: flex;
-  background-color: $--x-background-100;
+  background-color: $--x-background;
   overflow-y: auto;
   max-height: $--x-select-height * 6 + $--x-border-width * 7;
 }

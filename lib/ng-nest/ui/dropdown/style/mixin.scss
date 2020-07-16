@@ -13,8 +13,8 @@
 
 @mixin dropdown-portal {
   padding: 0.325rem 0;
-  background-color: $--x-background-100;
+  background-color: $--x-background;
   border: $--x-border-base;
   border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-base;
+  box-shadow: $--x-box-shadow-light;
 }

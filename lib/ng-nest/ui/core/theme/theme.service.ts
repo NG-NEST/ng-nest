@@ -7,6 +7,7 @@ import {
   X_THEME_PREFIX,
   X_THEME_AMOUNTS,
   X_THEME_MERGE,
+  X_THEME_BLACK_MERGE,
   X_THEME_EXCHANGES,
   X_THEME_BACKGROUNDS,
   X_THEME_TEXTS,
@@ -83,7 +84,9 @@ export class XThemeService {
         if (amount === 0) {
           result[`${prefix}${color}`] = value;
         } else {
-          result[`${prefix}${color}${this.getSuffix(amount)}`] = toHex(mixColors(X_THEME_MERGE, value, amount));
+          result[`${prefix}${color}${this.getSuffix(amount)}`] = toHex(
+            mixColors(amount > 0 ? X_THEME_MERGE : X_THEME_BLACK_MERGE, value, Math.abs(amount))
+          );
         }
       }
     } else {

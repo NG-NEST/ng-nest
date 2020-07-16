@@ -9,13 +9,13 @@
   flex-direction: column;
   border-collapse: collapse;
   width: 100%;
-  box-shadow: $--x-box-shadow-base;
+  box-shadow: $--x-box-shadow-light;
   border: $--x-border-base;
   > thead {
     position: relative;
     overflow: hidden;
     display: block;
-    background-color: $--x-background-100;
+    background-color: $--x-background-a100;
     > tr {
       position: absolute;
       width: 100%;
@@ -27,7 +27,7 @@
         position: relative;
         padding-right: $--x-font-size;
         font-weight: 600;
-        background-color: $--x-background-100;
+        background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
         > a {
           display: inline-flex;
@@ -60,7 +60,7 @@
         padding-right: 0.875rem;
         justify-content: space-between;
         overflow: hidden;
-        background-color: $--x-background-100;
+        background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
         > div {
           flex: 1;

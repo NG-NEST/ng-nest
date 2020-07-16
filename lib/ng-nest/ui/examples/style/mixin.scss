@@ -24,10 +24,10 @@
   }
   .#{$prefix}-info {
     padding: 1rem;
-    border: $--x-border-100-base;
+    border: $--x-border-base;
     border-radius: 0.125rem;
     margin: 0 1rem;
-    background-color: $--x-background-100;
+    background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;
       &:first-of-type {

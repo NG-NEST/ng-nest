@@ -30,7 +30,7 @@
         margin-top: $--x-border-width;
       }
       &:hover {
-        background-color: $--x-background;
+        background-color: $--x-background-a100;
         color: $--x-primary;
       }
       &.x-list-divided {
@@ -47,7 +47,7 @@
       }
       &.x-selected {
         color: $--x-primary;
-        background-color: $--x-primary-900;
+        background-color: $--x-background-a100;
         > x-icon {
           color: $--x-primary;
         }
@@ -71,7 +71,7 @@
         &.cdk-drag-placeholder {
           border-color: $--x-border;
           color: $--x-text-400;
-          background-color: $--x-background-100;
+          background-color: $--x-background-a100;
           opacity: 0.9;
         }
         &:not(.cdk-drag-placeholder) {

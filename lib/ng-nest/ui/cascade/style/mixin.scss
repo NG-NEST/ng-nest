@@ -78,8 +78,8 @@
   color: $--x-text;
   border: $--x-cascade-border;
   border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-base;
-  background-color: $--x-background-100;
+  box-shadow: $--x-box-shadow-light;
+  background-color: $--x-background;
   display: flex;
   > x-list:not(:first-child) {
     border-left: $--x-border-width solid $--x-border;

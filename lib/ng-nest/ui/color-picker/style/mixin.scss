@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    background-color: $--x-background-100;
+    background-color: $--x-background-a100;
     > x-input {
       flex: 1;
       position: relative;
@@ -105,8 +105,8 @@
   color: $--x-text;
   border: $--x-color-picker-border;
   border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-base;
-  background-color: $--x-background-100;
+  box-shadow: $--x-box-shadow-light;
+  background-color: $--x-background;
   width: 15rem;
   overflow: hidden;
   &-panel {
@@ -177,7 +177,7 @@
       }
       > .x-slider-select-drags > .x-slider-select-drag > .x-slider-select-button {
         border-color: $--x-border;
-        box-shadow: $--x-box-shadow-base;
+        box-shadow: $--x-box-shadow-light;
       }
     }
   }

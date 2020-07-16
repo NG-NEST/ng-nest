@@ -7,9 +7,9 @@
 @mixin drawer {
   height: 100%;
   width: 100%;
-  background-color: $--x-background-100;
+  background-color: $--x-background;
   position: relative;
-  box-shadow: $--x-box-shadow-base;
+  box-shadow: $--x-box-shadow-light;
   &-header {
     padding: 0.5rem 1rem;
   }

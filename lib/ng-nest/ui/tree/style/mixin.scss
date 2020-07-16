@@ -35,7 +35,7 @@
     }
     &:hover,
     &.x-activated {
-      background-color: $--x-background;
+      background-color: $--x-background-a100;
     }
     &:hover {
       .#{$--x-tree-node-prefix}-operations {

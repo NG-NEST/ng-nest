@@ -1,7 +1,7 @@
 import { Menu } from './routes';
 export const menus: Menu[] = [
   {
-    "id": "3-5",
+    "id": "3-6",
     "pid": "3",
     "name": "introduction",
     "router": "docs/ui/introduction",
@@ -23,6 +23,14 @@ export const menus: Menu[] = [
     "router": "docs/ui/customize-theme",
     "order": 3,
     "label": "定制主题"
+  },
+  {
+    "id": "3-4",
+    "pid": "3",
+    "name": "global-config",
+    "router": "docs/ui/global-config",
+    "order": 4,
+    "label": "全局配置"
   },
   {
     "id": "3-1",
