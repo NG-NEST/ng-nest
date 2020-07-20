@@ -41,4 +41,6 @@ npm 1.3.0
 
 ## 交流群号
 
-<img src="assets/img/tim.jpg" width="250" />
+| <img src="assets/img/tim.jpg" width="250" /> | <img src="assets/img/weixin.jpg" width="250" /> |
+| -------------------------------------------- | ----------------------------------------------- |
+| QQ                                           | 微信                                            |

@@ -56,7 +56,7 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
   }
 
   unsubscribe() {
-    this.back$ && this.back$.unsubscribe();
+    this.back$?.unsubscribe();
   }
 
   setClassMap() {
