@@ -1,5 +1,6 @@
 ---
 label: '内部'
+hidden: true
 ---
 
 # 内部 Inner

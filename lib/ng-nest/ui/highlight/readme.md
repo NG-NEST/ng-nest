@@ -1,8 +1,8 @@
 ---
-label: '代码高亮'
+label: 'Highlight 代码高亮'
 ---
 
-# 代码高亮 Highlight
+# Highlight 代码高亮
 
 Web 代码突出显示，封装 `highlight.js` 为 `angular` 组件。
 

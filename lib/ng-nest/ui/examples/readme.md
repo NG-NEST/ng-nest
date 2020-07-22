@@ -1,5 +1,6 @@
 ---
 label: '示例'
+hidden: true
 ---
 
 # 文档示例 Examples

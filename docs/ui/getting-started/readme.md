@@ -57,7 +57,7 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 {{ __3\__bash:1.bash:false:false }}
 
-然后你会看到默认浏览器打开了 http://localhost:4200/ 页面，并显示如下。
+然后你会看到默认浏览器打开了 http://localhost:4200/ 页面，并显示如下：
 
 {{ __3\__img:1.png:false:false }}
 

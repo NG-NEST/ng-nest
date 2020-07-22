@@ -1,5 +1,6 @@
 ---
 label: 'API 参数'
+hidden: true
 ---
 
 # API 参数

@@ -1,5 +1,6 @@
 ---
 label: '样式参数'
+hidden: true
 ---
 
 # 样式参数 Pattern

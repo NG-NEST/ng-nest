@@ -1,5 +1,6 @@
 ---
 label: '文档'
+hidden: true
 ---
 
 # 文档 Doc

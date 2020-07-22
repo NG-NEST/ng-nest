@@ -3,7 +3,7 @@
   <x-menu
     [data]="option"
     layout="column"
-    expandedLevel="3"
+    [expandedLevel]="0"
     [target]="scroll"
     [activatedId]="layoutService.defaultActivatedId"
     (nodeClick)="nodeClick($event)"
