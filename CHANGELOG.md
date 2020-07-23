@@ -1,3 +1,5 @@
+# [1.3.1](https://github.com/NG-NEST/ng-nest/compare/1.2.0...1.3.1) (2020-07-23)
+
 # [1.3.0](https://github.com/NG-NEST/ng-nest/compare/1.2.5...1.3.0) (2020-07-16)
 
 
