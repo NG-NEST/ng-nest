@@ -57,4 +57,4 @@ Nestjs CLI 会安装必要的依赖包。这可能要花几分钟的时间，CLI
 
 ## 下一步
 
-搭建前端的基本框架：前端基本布局框架
+搭建前端的基本框架：[前端框架页](index/docs/course/rbac/3-ui-frame)

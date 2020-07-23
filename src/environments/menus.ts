@@ -26,6 +26,14 @@ export const menus: Menu[] = [
     "label": "2. 创建项目"
   },
   {
+    "id": "1-0-2",
+    "pid": "1-0",
+    "name": "3-ui-frame",
+    "router": "docs/course/rbac/3-ui-frame",
+    "order": 3,
+    "label": "3. 前端框架页"
+  },
+  {
     "id": "4-5",
     "pid": "4",
     "name": "introduction",

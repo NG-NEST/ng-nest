@@ -1,0 +1,46 @@
+$sider-width: 15rem;
+$sider-background-color: #f5f5f5;
+$header-height: 3.25rem;
+$tabs-height: 2.25rem;
+$tabs-width: calc(100% - #{$sider-width});
+$tabs-background-color: #f5f5f5;
+$border: 1px solid #dddddd;
+
+app-index {
+  > app-sider {
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    height: 100%;
+    width: $sider-width;
+    background-color: $sider-background-color;
+    border-right: $border;
+    > app-header {
+      height: $header-height;
+      display: block;
+    }
+  }
+  > app-tabs {
+    position: fixed;
+    top: 0;
+    left: $sider-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+    background-color: $tabs-background-color;
+  }
+  > app-crumb {
+    position: fixed;
+    top: $tabs-height;
+    left: $sider-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+  }
+  > app-content {
+    padding-top: $tabs-height * 2;
+    padding-left: $sider-width;
+    display: block;
+    height: 100%;
+  }
+}
