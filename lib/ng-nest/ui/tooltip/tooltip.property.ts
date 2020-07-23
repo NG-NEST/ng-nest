@@ -7,6 +7,7 @@ import { Input, Directive } from '@angular/core';
  * @decorator directive
  */
 export const XTooltipPrefix = 'x-tooltip';
+const X_CONFIG_NAME = 'tooltip';
 
 /**
  * Tooltip Property
@@ -20,7 +21,7 @@ export class XTooltipProperty {
   /**
    * 显示位置
    */
-  @Input() @XWithConfig<XPlacement>('bottom') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
    * 显示/隐藏
    */

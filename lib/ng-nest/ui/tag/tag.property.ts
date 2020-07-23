@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XTagPrefix = 'x-tag';
+const X_CONFIG_NAME = 'tag';
 
 /**
  * Tag Property
@@ -20,15 +21,15 @@ export class XTagProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 显示关闭按钮
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() closable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() closable: XBoolean;
   /**
    * 深色主题
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() dark: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dark: XBoolean;
   /**
    * 禁用
    */

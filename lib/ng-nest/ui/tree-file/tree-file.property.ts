@@ -10,6 +10,7 @@ import { XHighlightLines } from '@ng-nest/ui/highlight';
  * @decorator component
  */
 export const XTreeFilePrefix = 'x-tree-file';
+const X_CONFIG_NAME = 'treeFile';
 
 /**
  * TreeFile Property
@@ -43,11 +44,11 @@ export class XTreeFileProperty extends XTreeProperty {
   /**
    * 最大高度，单位 rem
    */
-  @Input() @XWithConfig<XNumber>(37.5) @XInputNumber() maxHeight: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 37.5) @XInputNumber() maxHeight: XNumber;
   /**
    * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    */
-  @Input() @XWithConfig<XNumber>(0.5) @XInputNumber() spacing: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.5) @XInputNumber() spacing: XNumber;
 }
 
 /**

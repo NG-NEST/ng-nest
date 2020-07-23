@@ -11,6 +11,8 @@ import { XDialogComponent } from './dialog.component';
  */
 export const XDialogPrefix = 'x-dialog';
 
+const X_CONFIG_NAME = 'dialog';
+
 export const XDialogPortal = 'x-dialog-portal';
 
 /**
@@ -22,11 +24,11 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 方位，九宫格
    */
-  @Input() @XWithConfig<XPlace>('center') placement: XPlace;
+  @Input() @XWithConfig<XPlace>(X_CONFIG_NAME, 'center') placement: XPlace;
   /**
    * 偏移距离
    */
-  @Input() @XWithConfig<string>('1rem') offset: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') offset: string;
   /**
    * 类型
    */
@@ -34,7 +36,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 宽度
    */
-  @Input() @XWithConfig<string>('40%') width: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '40%') width: string;
   /**
    * 高度
    */
@@ -42,7 +44,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 样式主题
    */
-  @Input() @XWithConfig<XEffect>('white') effect: XEffect;
+  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') effect: XEffect;
   /**
    * 底部自定义模板
    */
@@ -50,35 +52,35 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * 显示取消按钮
    */
-  @Input() @XWithConfig<XBoolean>(true) showCancel: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showCancel: XBoolean;
   /**
    * 取消按钮文字
    */
-  @Input() @XWithConfig<string>('取消') cancelText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
   /**
    * 显示确认按钮
    */
-  @Input() @XWithConfig<XBoolean>(true) showConfirm: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showConfirm: XBoolean;
   /**
    * 确认按钮文字
    */
-  @Input() @XWithConfig<string>('确认') confirmText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
   /**
    * 点击遮罩关闭
    */
-  @Input() @XWithConfig<XBoolean>(true) backdropClose: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) backdropClose: XBoolean;
   /**
    * 是否显示背景遮罩
    */
-  @Input() @XWithConfig<XBoolean>(true) hasBackdrop: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) hasBackdrop: XBoolean;
   /**
    * 自定义样式名
    */
-  @Input() @XWithConfig<string>('') className: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '') className: string;
   /**
    * 按钮居中
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() buttonsCenter: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter: XBoolean;
   /**
    * 关闭前处理函数
    */

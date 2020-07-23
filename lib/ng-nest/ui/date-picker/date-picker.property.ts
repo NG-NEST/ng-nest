@@ -7,6 +7,7 @@ import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/co
  * @decorator component
  */
 export const XDatePickerPrefix = 'x-date-picker';
+const X_CONFIG_NAME = 'datePicker';
 
 /**
  * DatePicker Property
@@ -20,15 +21,15 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
   /**
    * 格式化类型
    */
-  @Input() @XWithConfig<string>('yyyy-MM-dd') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'yyyy-MM-dd') format: string;
   /**
    * 清除按钮
    */
-  @Input() @XWithConfig<XBoolean>(true) @XInputBoolean() clearable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable: XBoolean;
   /**
    * 展示方位
    */
-  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

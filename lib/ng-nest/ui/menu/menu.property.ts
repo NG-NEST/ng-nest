@@ -19,6 +19,7 @@ import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/co
  * @decorator component
  */
 export const XMenuPrefix = 'x-menu';
+const X_CONFIG_NAME = 'menu';
 
 /**
  * Menu Property
@@ -36,7 +37,7 @@ export class XMenuProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 缩起菜单
    */
@@ -44,7 +45,7 @@ export class XMenuProperty extends XProperty {
   /**
    * 触发方式，只针对横向布局
    */
-  @Input() @XWithConfig<XMenuTrigger>('hover') trigger: XMenuTrigger;
+  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger: XMenuTrigger;
   /**
    * 节点模板
    */

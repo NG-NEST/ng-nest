@@ -7,6 +7,7 @@ import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean, XWithConfig 
  * @decorator component
  */
 export const XProgressPrefix = 'x-progress';
+const X_CONFIG_NAME = 'progress';
 
 /**
  * Progress Property
@@ -20,7 +21,7 @@ export class XProgressProperty extends XProperty {
   /**
    * 进度条高度
    */
-  @Input() @XWithConfig<string>('0.5rem') height: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0.5rem') height: string;
   /**
    * 状态
    */

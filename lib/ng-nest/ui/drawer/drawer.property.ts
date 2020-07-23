@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XDrawerPrefix = 'x-drawer';
+const X_CONFIG_NAME = 'drawer';
 
 /**
  * Drawer Property
@@ -24,11 +25,11 @@ export class XDrawerProperty extends XProperty {
   /**
    * 展示方向
    */
-  @Input() @XWithConfig<XPosition>('right') placement: XPosition;
+  @Input() @XWithConfig<XPosition>(X_CONFIG_NAME, 'right') placement: XPosition;
   /**
    * 尺寸，支持固定值
    */
-  @Input() @XWithConfig<string>('30%') size: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '30%') size: string;
   /**
    * 关闭的事件
    */

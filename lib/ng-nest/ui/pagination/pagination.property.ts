@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XPaginationPrefix = 'x-pagination';
+const X_CONFIG_NAME = 'pagination';
 
 /**
  * Pagination Property
@@ -16,11 +17,11 @@ export class XPaginationProperty extends XProperty {
   /**
    * 当前页码
    */
-  @Input() @XWithConfig<XNumber>(1) @XInputNumber() index: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() index: XNumber;
   /**
    * 每页显示条数
    */
-  @Input() @XWithConfig<XNumber>(10) @XInputNumber() size: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) @XInputNumber() size: XNumber;
   /**
    * 总数
    */

@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAnchorPrefix = 'x-anchor';
+const X_CONFIG_NAME = 'anchor';
 
 /**
  * Anchor Property
@@ -20,15 +21,15 @@ export class XAnchorProperty extends XProperty {
   /**
    * 顶部距离
    */
-  @Input() @XWithConfig<string>('0') affixTop: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop: string;
   /**
    * 导航相对内容位置
    */
-  @Input() @XWithConfig<XAnchorLayout>('right') layout: XAnchorLayout;
+  @Input() @XWithConfig<XAnchorLayout>(X_CONFIG_NAME, 'right') layout: XAnchorLayout;
   /**
    * 对齐方式
    */
-  @Input() @XWithConfig<XJustify>('start') justify: XJustify;
+  @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify: XJustify;
 }
 
 /**

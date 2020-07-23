@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAffixPrefix = 'x-affix';
+const X_CONFIG_NAME = 'affix';
 
 /**
  * Affix Property
@@ -16,9 +17,9 @@ export class XAffixProperty extends XProperty {
   /**
    * 距离顶部距离
    */
-  @Input() @XWithConfig<string>() top: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) top: string;
   /**
    * 距离左边距离
    */
-  @Input() @XWithConfig<string>() left: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) left: string;
 }

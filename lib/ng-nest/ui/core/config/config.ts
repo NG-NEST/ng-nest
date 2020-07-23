@@ -91,13 +91,14 @@ export interface XComponentConfig {
   slider?: XSliderConfig;
   sliderSelect?: XSliderSelectConfig;
   statistic?: XStatisticConfig;
-  counntdown?: XCountdownConfig;
+  countdown?: XCountdownConfig;
   steps?: XStepsConfig;
   switch?: XSwitchConfig;
   table?: XTableConfig;
   tabs?: XTabsConfig;
   tag?: XTagConfig;
-  textRetarct?: XTextRetarctConfig;
+  textRetract?: XTextRetractConfig;
+  theme?: XThemeConfig;
   timeAgo?: XTimeAgoConfig;
   timePicker?: XTimePickerConfig;
   timeRange?: XTimeRangeConfig;
@@ -399,8 +400,12 @@ export interface XTagConfig {
   dark?: XBoolean;
 }
 
-export interface XTextRetarctConfig {
+export interface XTextRetractConfig {
   max?: XNumber;
+}
+
+export interface XThemeConfig {
+  amounts?: XNumber[];
 }
 
 export interface XTimeAgoConfig {}

@@ -18,6 +18,7 @@ import { XButtonType } from '@ng-nest/ui/button';
  * @decorator component
  */
 export const XRadioPrefix = 'x-radio';
+const X_CONFIG_NAME = 'radio';
 
 /**
  * Radio Property
@@ -39,7 +40,7 @@ export class XRadioProperty extends XControlValueAccessor<any> implements XRadio
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 按钮样式时生效
    */

@@ -18,6 +18,7 @@ import {
  * @decorator component
  */
 export const XButtonPrefix = 'x-button';
+const X_CONFIG_NAME = 'button';
 
 /**
  * Button Property
@@ -27,7 +28,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 类型
    */
-  @Input() @XWithConfig<XButtonType>('initial') type: XButtonType;
+  @Input() @XWithConfig<XButtonType>(X_CONFIG_NAME, 'initial') type: XButtonType;
   /**
    * 图标
    */
@@ -43,7 +44,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 仅显示图标
    */
@@ -59,11 +60,11 @@ export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * 朴素按钮
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() plain: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() plain: XBoolean;
   /**
    * 圆角按钮
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() round: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() round: XBoolean;
   /**
    * 圆型按钮（配合图标来使用）
    */
@@ -148,6 +149,7 @@ export type XButtonType = XType;
  * @decorator component
  */
 export const XButtonsPrefix = 'x-buttons';
+const X_CONFIG_NAME_BUTTONS = 'buttons';
 
 /**
  * Buttons Property
@@ -157,9 +159,9 @@ export class XButtonsProperty extends XProperty {
   /**
    * 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
    */
-  @Input() @XWithConfig<XNumber>(0) @XInputNumber() space: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME_BUTTONS, 0) @XInputNumber() space: XNumber;
   /**
    * 隐藏边框
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() hiddenBorder: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS) @XInputBoolean() hiddenBorder: XBoolean;
 }

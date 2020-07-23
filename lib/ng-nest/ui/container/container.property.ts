@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XContainerPrefix = 'x-container';
+const X_CONFIG_NAME = 'container';
 
 /**
  * Container Property
@@ -17,7 +18,7 @@ export class XContainerProperty extends XProperty {
    * flex 布局下的子元素排列方向
    * @description 子元素中有 x-header 或 x-footer 时为 column
    */
-  @Input() @XWithConfig<XDirection>() direction: XDirection;
+  @Input() @XWithConfig<XDirection>(X_CONFIG_NAME) direction: XDirection;
 }
 
 /**
@@ -26,6 +27,7 @@ export class XContainerProperty extends XProperty {
  * @decorator component
  */
 export const XHeaderPrefix = 'x-header';
+const X_CONFIG_NAME_HEADER = 'header';
 
 /**
  * Header Property
@@ -35,7 +37,7 @@ export class XHeaderProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() @XWithConfig<number>(3) height: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME_HEADER, 3) height: number;
 }
 
 /**
@@ -44,6 +46,7 @@ export class XHeaderProperty extends XProperty {
  * @decorator component
  */
 export const XAsidePrefix = 'x-aside';
+const X_CONFIG_NAME_ASIDE = 'aside';
 
 /**
  * Aside Property
@@ -53,7 +56,7 @@ export class XAsideProperty extends XProperty {
   /**
    * 宽度，rem
    */
-  @Input() @XWithConfig<number>(12) width: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME_ASIDE, 12) width: number;
 }
 
 /**
@@ -69,6 +72,7 @@ export const XMainPrefix = 'x-main';
  * @decorator component
  */
 export const XFooterPrefix = 'x-footer';
+const X_CONFIG_NAME_FOOTER = 'footer';
 
 /**
  * Footer Property
@@ -78,5 +82,5 @@ export class XFooterProperty extends XProperty {
   /**
    * 高度，rem
    */
-  @Input() @XWithConfig<number>(3) height: XNumber = 3;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME_FOOTER, 3) height: XNumber = 3;
 }

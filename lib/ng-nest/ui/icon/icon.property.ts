@@ -8,6 +8,8 @@ import { Input, Component } from '@angular/core';
  */
 export const XIconPrefix = 'x-icon';
 
+const X_CONFIG_NAME = 'icon';
+
 export const XIconHref = 'https://ngnest.com/static/icons/';
 
 /**
@@ -18,7 +20,7 @@ export class XIconProperty extends XProperty {
   /**
    * SVG 图标根路劲地址，可以通过全局只配置一次，所有图标资源在 github 上的 ng-nest-icon 中
    */
-  @Input() @XWithConfig<string>(XIconHref) href: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, XIconHref) href: string;
   /**
    * 图标类型
    */

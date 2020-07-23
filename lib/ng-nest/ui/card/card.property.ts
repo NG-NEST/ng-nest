@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XCardPrefix = 'x-card';
+const X_CONFIG_NAME = 'card';
 
 /**
  * Card Property
@@ -28,7 +29,7 @@ export class XCardProperty extends XProperty {
   /**
    * 阴影显示方式
    */
-  @Input() @XWithConfig<XCardShadow>('always') shadow: XCardShadow;
+  @Input() @XWithConfig<XCardShadow>(X_CONFIG_NAME, 'always') shadow: XCardShadow;
 }
 
 /**

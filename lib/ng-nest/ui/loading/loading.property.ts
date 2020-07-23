@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XLoadingPrefix = 'x-loading';
+const X_CONFIG_NAME = 'loading';
 
 /**
  * Loading Property
@@ -20,19 +21,19 @@ export class XLoadingProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 显示文字，支持自定义模板
    */
-  @Input() @XWithConfig<XTemplate>() text: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) text: XTemplate;
   /**
    * 显示的图标
    */
-  @Input() @XWithConfig<string>() icon: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) icon: string;
   /**
    * 颜色
    */
-  @Input() @XWithConfig<string>() color: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) color: string;
   /**
    * 全屏显示
    */
@@ -40,5 +41,5 @@ export class XLoadingProperty extends XProperty {
   /**
    * 背景样式
    */
-  @Input() @XWithConfig<string>() background: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) background: string;
 }

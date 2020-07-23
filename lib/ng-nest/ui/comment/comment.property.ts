@@ -7,6 +7,7 @@ import { Input, EventEmitter, Output, Component } from '@angular/core';
  * @decorator component
  */
 export const XCommentPrefix = 'x-comment';
+const X_CONFIG_NAME = 'comment';
 
 /**
  * Comment Property
@@ -20,7 +21,7 @@ export class XCommentProperty extends XProperty {
   /**
    * 评论最大字数
    */
-  @Input() @XWithConfig(512) contentMax: number;
+  @Input() @XWithConfig(X_CONFIG_NAME, 512) contentMax: number;
   /**
    * 点赞的事件
    */

@@ -20,6 +20,7 @@ import { TemplateRef, Input, EventEmitter, Output, Component } from '@angular/co
  * @decorator component
  */
 export const XSliderPrefix = 'x-slider';
+const X_CONFIG_NAME = 'slider';
 
 /**
  * Slider Property
@@ -33,7 +34,7 @@ export class XSliderProperty extends XProperty {
   /**
    * 滑动动画
    */
-  @Input() @XWithConfig<XBoolean>(true) @XInputBoolean() animated: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() animated: XBoolean;
   /**
    * 当前激活的索引
    */
@@ -57,7 +58,7 @@ export class XSliderProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 激活索引变化事件
    */

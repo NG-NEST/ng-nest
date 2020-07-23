@@ -17,6 +17,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XInputPrefix = 'x-input';
+const X_CONFIG_NAME = 'input';
 
 /**
  * Input Property
@@ -30,7 +31,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
   /**
    * 清除按钮
    */
-  @Input() @XWithConfig<XBoolean>(false) @XInputBoolean() clearable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable: XBoolean;
   /**
    * 只读
    */
@@ -42,7 +43,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
   /**
    * 图标布局方式
    */
-  @Input() @XWithConfig<XInputIconLayoutType>('right') iconLayout: XInputIconLayoutType = 'right';
+  @Input() @XWithConfig<XInputIconLayoutType>(X_CONFIG_NAME, 'right') iconLayout: XInputIconLayoutType = 'right';
   /**
    * 图标动画
    */

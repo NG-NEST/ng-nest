@@ -8,6 +8,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XDropdownPrefix = 'x-dropdown';
+const X_CONFIG_NAME = 'dropdown';
 
 /**
  * Dropdown Property
@@ -21,11 +22,11 @@ export class XDropdownProperty extends XProperty {
   /**
    * 触发方式
    */
-  @Input() @XWithConfig<XDropdownTrigger>('hover') trigger: XDropdownTrigger;
+  @Input() @XWithConfig<XDropdownTrigger>(X_CONFIG_NAME, 'hover') trigger: XDropdownTrigger;
   /**
    * 展示位置
    */
-  @Input() @XWithConfig<XPlacement>('bottom-start') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom-start') placement: XPlacement;
   /**
    * 禁用
    */

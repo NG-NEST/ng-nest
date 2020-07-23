@@ -7,6 +7,7 @@ import { XInputNumber, XNumber, XWithConfig } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XTextRetractPrefix = 'x-text-retract';
+const X_CONFIG_NAME = 'textRetract';
 
 /**
  * TextRetract Property
@@ -20,5 +21,5 @@ export class XTextRetractProperty {
   /**
    * 默认最大显示字符数
    */
-  @Input() @XWithConfig<XNumber>(256) @XInputNumber() max: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 256) @XInputNumber() max: XNumber;
 }

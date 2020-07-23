@@ -7,6 +7,7 @@ import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/co
  * @decorator component
  */
 export const XCrumbPrefix = 'x-crumb';
+const X_CONFIG_NAME = 'crumb';
 
 /**
  * Crumb Property
@@ -24,7 +25,7 @@ export class XCrumbProperty extends XProperty {
   /**
    * 分隔符
    */
-  @Input() @XWithConfig<XTemplate>('/') separator: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME, '/') separator: XTemplate;
   /**
    * 节点点击事件
    */

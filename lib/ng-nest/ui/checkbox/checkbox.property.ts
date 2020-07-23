@@ -18,6 +18,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XCheckboxPrefix = 'x-checkbox';
+const X_CONFIG_NAME = 'checkbox';
 
 /**
  * Checkbox Property
@@ -43,7 +44,7 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
 }
 
 /**

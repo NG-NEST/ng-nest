@@ -31,6 +31,7 @@ import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
  * @decorator component
  */
 export const XFormPrefix = 'x-form';
+const X_CONFIG_NAME = 'form';
 
 /**
  * Form Property
@@ -48,7 +49,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 控件间距，单位rem
    */
-  @Input() @XWithConfig<XNumber>(1) @XInputNumber() space: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() space: XNumber;
   /**
    * 控件宽度，24栅格
    */
@@ -56,7 +57,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 标签后缀
    */
-  @Input() @XWithConfig<XNumber>('') labelSuffix: string;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix: string;
   /**
    * 表单控件
    */
@@ -64,7 +65,7 @@ export class XFormProperty extends XFormProp {
   /**
    * 表单宽度
    */
-  @Input() @XWithConfig<string>('100%') width: string = '100%';
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '100%') width: string = '100%';
   /**
    * 表单禁用
    */

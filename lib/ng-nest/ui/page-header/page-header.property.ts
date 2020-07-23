@@ -7,6 +7,7 @@ import { XWithConfig } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XPageHeaderPrefix = 'x-page-header';
+const X_CONFIG_NAME = 'header';
 
 /**
  * PageHeader Property
@@ -16,11 +17,11 @@ export class XPageHeaderProperty {
   /**
    * 返回图标
    */
-  @Input() @XWithConfig<string>('fto-arrow-left') backIcon: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-arrow-left') backIcon: string;
   /**
    * 返回文字
    */
-  @Input() @XWithConfig<string>('返回') backText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '返回') backText: string;
   /**
    * 标题
    */

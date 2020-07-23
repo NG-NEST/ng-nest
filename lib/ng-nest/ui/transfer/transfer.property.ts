@@ -16,6 +16,8 @@ import { TemplateRef, Input, Component } from '@angular/core';
  */
 export const XTransferPrefix = 'x-transfer';
 
+const X_CONFIG_NAME = 'transfer';
+
 export const XTransferTitles = ['列表 1', '列表 2'];
 
 /**
@@ -30,11 +32,11 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
    * 标题
    */
-  @Input() @XWithConfig<string[]>(XTransferTitles) titles: string[];
+  @Input() @XWithConfig<string[]>(X_CONFIG_NAME, XTransferTitles) titles: string[];
   /**
    * 是否能拖动
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() drag: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() drag: XBoolean;
   /**
    * 是否显示搜索（暂未实现）
    */

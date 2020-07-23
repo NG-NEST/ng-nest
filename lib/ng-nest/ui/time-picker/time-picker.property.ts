@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XTimePickerPrefix = 'x-time-picker';
+const X_CONFIG_NAME = 'timePicker';
 
 /**
  * TimePicker Property
@@ -20,11 +21,11 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
   /**
    * 格式化
    */
-  @Input() @XWithConfig<string>('HH:mm:ss') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
   /**
    * 展示方位
    */
-  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

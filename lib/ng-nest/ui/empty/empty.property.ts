@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XEmptyPrefix = 'x-empty';
+const X_CONFIG_NAME = 'empty';
 
 /**
  * Empty Property
@@ -20,5 +21,5 @@ export class XEmptyProperty {
   /**
    * 内容或自定义模板
    */
-  @Input() @XWithConfig<XTemplate>() content?: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) content?: XTemplate;
 }

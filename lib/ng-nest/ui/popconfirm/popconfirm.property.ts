@@ -8,6 +8,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XPopconfirmPrefix = 'x-popconfirm';
+const X_CONFIG_NAME = 'popconfirm';
 
 /**
  * Popconfirm Property
@@ -25,31 +26,31 @@ export class XPopconfirmProperty extends XProperty {
   /**
    * 弹出的位置
    */
-  @Input() @XWithConfig<XPlacement>('bottom') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
    * 激活方式
    */
-  @Input() @XWithConfig<XPopoverTrigger>('click') trigger: XPopoverTrigger;
+  @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'click') trigger: XPopoverTrigger;
   /**
    * 宽度
    */
-  @Input() @XWithConfig<string>('10rem') width: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width: string;
   /**
    * 图标
    */
-  @Input() @XWithConfig<string>('fto-help-circle') icon: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-help-circle') icon: string;
   /**
    * 图标颜色
    */
-  @Input() @XWithConfig<string>('#e6a23c') iconColor: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#e6a23c') iconColor: string;
   /**
    * 取消的文字
    */
-  @Input() @XWithConfig<string>('取消') cancelText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
   /**
    * 确认的文字
    */
-  @Input() @XWithConfig<string>('确认') confirmText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
   /**
    * 取消的点击事件
    */

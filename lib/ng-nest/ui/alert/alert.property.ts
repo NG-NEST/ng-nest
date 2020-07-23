@@ -7,6 +7,7 @@ import { Input, EventEmitter, Output, Component } from '@angular/core';
  * @decorator component
  */
 export const XAlertPrefix = 'x-alert';
+const X_CONFIG_NAME = 'alert';
 
 /**
  * Alert Property
@@ -32,11 +33,11 @@ export class XAlertProperty extends XProperty {
   /**
    * 主题
    */
-  @Input() @XWithConfig<XEffect>('light') effect: XEffect;
+  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'light') effect: XEffect;
   /**
    * 隐藏关闭按钮
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() hideClose: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() hideClose: XBoolean;
   /**
    * 关闭按钮文字替换
    */
@@ -44,15 +45,15 @@ export class XAlertProperty extends XProperty {
   /**
    * 显示图标
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() showIcon: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() showIcon: XBoolean;
   /**
    * 禁用动画
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() disabledAnimation: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() disabledAnimation: XBoolean;
   /**
    * 延迟关闭，默认 0 表示不关闭
    */
-  @Input() @XWithConfig<XNumber>(0) @XInputNumber() duration: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() duration: XNumber;
   /**
    * 手动处理关闭事件
    */

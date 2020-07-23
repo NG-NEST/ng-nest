@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XTimelinePrefix = 'x-timeline';
+const X_CONFIG_NAME = 'timeline';
 
 /**
  * Timeline Property
@@ -24,7 +25,7 @@ export class XTimelineProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 内容模板
    */

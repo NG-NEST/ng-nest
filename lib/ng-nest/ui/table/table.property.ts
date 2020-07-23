@@ -19,6 +19,7 @@ import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
  * @decorator component
  */
 export const XTablePrefix = 'x-table';
+const X_CONFIG_NAME = 'table';
 
 /**
  * Table Property
@@ -36,11 +37,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 表头和行高，单位 px
    */
-  @Input() @XWithConfig<number>(42) @XInputNumber() rowHeight: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() rowHeight: number;
   /**
    * 是否启用加载 loading
    */
-  @Input() @XWithConfig<XBoolean>(false) @XInputBoolean() loading: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() loading: XBoolean;
   /**
    * 当前选中行数据
    */
@@ -64,11 +65,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
   /**
    * 允许行点击选中
    */
-  @Input() @XWithConfig<XBoolean>(true) @XInputBoolean() allowSelectRow: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowSelectRow: XBoolean;
   /**
    * 开启虚拟滚动
    */
-  @Input() @XWithConfig<XBoolean>() @XInputBoolean() virtualScroll: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll: XBoolean;
   /**
    * body 数据高度
    */

@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
  */
 export const XColorPickerPrefix = 'x-color-picker';
 
+const X_CONFIG_NAME = 'colorPicker';
+
 /**
  * ColorPicker Property
  */
@@ -16,7 +18,7 @@ export class XColorPickerProperty extends XControlValueAccessor<string> implemen
   /**
    * 展示方位
    */
-  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
 }
 
 /**

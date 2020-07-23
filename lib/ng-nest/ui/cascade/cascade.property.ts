@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XCascadePrefix = 'x-cascade';
+const X_CONFIG_NAME = 'cascade';
 
 /**
  * Cascade Property
@@ -20,7 +21,7 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
   /**
    * 展示方位
    */
-  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
   /**
    * 节点点击的事件
    */

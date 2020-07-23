@@ -17,6 +17,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XSelectPrefix = 'x-select';
+const X_CONFIG_NAME = 'select';
 
 /**
  * Select Property
@@ -34,7 +35,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * 展示方位
    */
-  @Input() @XWithConfig<XCorner>('bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
 }
 
 /**

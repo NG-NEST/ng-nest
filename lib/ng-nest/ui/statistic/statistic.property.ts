@@ -41,6 +41,7 @@ export class XStatisticProperty {
  * @decorator component
  */
 export const XCountdownPrefix = 'x-countdown';
+const X_CONFIG_NAME = 'countdown';
 
 /**
  * Countdown Property
@@ -50,7 +51,7 @@ export class XCountdownProperty extends XStatisticProperty {
   /**
    * 格式化
    */
-  @Input() @XWithConfig<string>('HH:mm:ss') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
   /**
    * 倒计时结束的事件
    */

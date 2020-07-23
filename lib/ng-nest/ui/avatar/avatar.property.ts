@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAvatarPrefix = 'x-avatar';
+const X_CONFIG_NAME = 'avatar';
 
 /**
  * Avatar Property
@@ -20,7 +21,7 @@ export class XAvatarProperty extends XProperty {
   /**
    * 尺寸
    */
-  @Input() @XWithConfig<XSize>('medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
    * 显示图标
    */
@@ -28,7 +29,7 @@ export class XAvatarProperty extends XProperty {
   /**
    * 形状
    */
-  @Input() @XWithConfig<XAvatarShape>('circle') shape: XAvatarShape;
+  @Input() @XWithConfig<XAvatarShape>(X_CONFIG_NAME, 'circle') shape: XAvatarShape;
   /**
    * 图片地址
    */
@@ -36,7 +37,7 @@ export class XAvatarProperty extends XProperty {
   /**
    * 图片适应方式
    */
-  @Input() @XWithConfig<XAvatarFit>('cover') fit: XAvatarFit;
+  @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit: XAvatarFit;
 }
 
 /**

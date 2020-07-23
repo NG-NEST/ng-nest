@@ -73,31 +73,10 @@ export class XConfigService {
   }
 }
 
-// tslint:disable:no-invalid-this
-// tslint:disable:no-any
-
-const lowercaseFirstLetter = (s: string): string => {
-  return s.charAt(0).toLowerCase() + s.slice(1);
-};
-
-export const trimComponentName = (componentName: string): XConfigKey => {
-  return lowercaseFirstLetter(
-    componentName
-      .replace('X', '')
-      .replace(/(Component|Directive|Service|Property)$/g, '')
-      .toLowerCase()
-  ) as XConfigKey;
-};
-
 // tslint:disable-next-line:typedef
-export function XWithConfig<T>(innerDefaultValue?: T) {
+export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultValue?: T) {
   return function ConfigDecorator(target: any, propName: any, originalDescriptor?: TypedPropertyDescriptor<T>): any {
     const privatePropName = `$$__assignedValue__${propName}`;
-    const componentName = trimComponentName(target.constructor.name) as XConfigKey;
-
-    if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-      console.warn(`The prop "${privatePropName}" is already exist, it will be override by ${componentName} decorator.`);
-    }
 
     Object.defineProperty(target, privatePropName, {
       configurable: true,

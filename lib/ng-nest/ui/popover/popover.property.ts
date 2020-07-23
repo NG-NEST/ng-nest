@@ -7,6 +7,7 @@ import { Input, Output, EventEmitter, Directive } from '@angular/core';
  * @decorator directive
  */
 export const XPopoverPrefix = 'x-popover';
+const X_CONFIG_NAME = 'popover';
 
 /**
  * Popover Property
@@ -28,15 +29,15 @@ export class XPopoverProperty extends XProperty {
   /**
    * 弹出的位置
    */
-  @Input() @XWithConfig<XPlacement>('bottom') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
    * 激活方式
    */
-  @Input() @XWithConfig<XPopoverTrigger>('hover') trigger: XPopoverTrigger;
+  @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'hover') trigger: XPopoverTrigger;
   /**
    * 宽度
    */
-  @Input() @XWithConfig<string>('10rem') width: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width: string;
   /**
    * 显示/隐藏控制
    */

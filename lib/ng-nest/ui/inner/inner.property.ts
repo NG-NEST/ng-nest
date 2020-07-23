@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XInnerPrefix = 'x-inner';
+const X_CONFIG_NAME = 'inner';
 
 /**
  * Inner Property
@@ -16,5 +17,5 @@ export class XInnerProperty extends XProperty {
   /**
    * 内边距
    */
-  @Input() @XWithConfig<string>('1rem') padding: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') padding: string;
 }

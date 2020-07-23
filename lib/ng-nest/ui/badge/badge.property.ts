@@ -7,6 +7,7 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XBadgePrefix = 'x-badge';
+const X_CONFIG_NAME = 'badge';
 
 /**
  * Badge Property
@@ -16,7 +17,7 @@ export class XBadgeProperty extends XProperty {
   /**
    * 背景颜色
    */
-  @Input() @XWithConfig<XBadgeType>('danger') type: XBadgeType;
+  @Input() @XWithConfig<XBadgeType>(X_CONFIG_NAME, 'danger') type: XBadgeType;
   /**
    * 最大值
    */

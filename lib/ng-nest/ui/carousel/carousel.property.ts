@@ -17,6 +17,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XCarouselPrefix = 'x-carousel';
+const X_CONFIG_NAME = 'carousel';
 
 /**
  * Carousel Property
@@ -30,19 +31,19 @@ export class XCarouselProperty extends XProperty {
   /**
    * 幻灯片高度
    */
-  @Input() @XWithConfig<string>('15rem') height: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') height: string;
   /**
    * 切换器触发方式
    */
-  @Input() @XWithConfig<XCarouselTrigger>('hover') trigger: XCarouselTrigger;
+  @Input() @XWithConfig<XCarouselTrigger>(X_CONFIG_NAME, 'hover') trigger: XCarouselTrigger;
   /**
    * 箭头显示影藏方式
    */
-  @Input() @XWithConfig<XCarouselArrow>('hover') arrow: XCarouselArrow;
+  @Input() @XWithConfig<XCarouselArrow>(X_CONFIG_NAME, 'hover') arrow: XCarouselArrow;
   /**
    * 幻灯片轮播方向
    */
-  @Input() @XWithConfig<XCarouselDirection>('horizontal') direction: XCarouselDirection;
+  @Input() @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal') direction: XCarouselDirection;
   /**
    * 自动切换
    */
