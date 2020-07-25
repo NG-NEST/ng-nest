@@ -14,10 +14,12 @@
         </p>
         <div class="x-comment-action">
           <x-buttons>
-            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" onlyIcon>{{
-              '评论' + (node.count ? node.count : '')
-            }}</x-button>
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>{{ '点赞' + (node.likes ? node.likes : '') }}</x-button>
+            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" onlyIcon>
+              {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}</x-button
+            >
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon
+              >{{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}</x-button
+            >
           </x-buttons>
         </div>
         <x-comment-reply *ngIf="node.commentShow" [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
@@ -27,7 +29,7 @@
               <p>
                 <x-link>{{ child.author }}</x-link>
                 <ng-container *ngIf="child.replyAuthor">
-                  <span class="x-comment-reply">回复</span> <x-link>{{ child.replyAuthor }}</x-link></ng-container
+                  <span class="x-comment-reply">{{ 'comment.reply' | xI18n }}</span> <x-link>{{ child.replyAuthor }}</x-link></ng-container
                 >：
                 <span>
                   <x-text-retract [content]="child.content"></x-text-retract>
@@ -36,12 +38,12 @@
               <div class="x-comment-action">
                 <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                 <x-buttons>
-                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" onlyIcon
-                    >回复</x-button
-                  >
-                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>{{
-                    '点赞' + (child.likes ? child.likes : '')
+                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" onlyIcon>{{
+                    'comment.reply' | xI18n
                   }}</x-button>
+                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>
+                    {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
+                  >
                 </x-buttons>
               </div>
               <x-comment-reply
@@ -52,7 +54,7 @@
             </div>
           </li>
           <li class="x-comment-more" *ngIf="node.count > node.children?.length">
-            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>查看更多评论</x-link>
+            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>{{ 'comment.more' | xI18n }} </x-link>
           </li>
         </ul>
       </div>
