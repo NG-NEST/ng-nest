@@ -26,7 +26,7 @@ export const X_THEME_PREFIX = '--x-';
 
 export const X_THEME_MERGE = '#ffffff';
 
-export const X_THEME_BLACK_MERGE = '#cccccc';
+export const X_THEME_BLACK_MERGE = '#666666';
 
 export const X_THEME_AMOUNTS = [0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
