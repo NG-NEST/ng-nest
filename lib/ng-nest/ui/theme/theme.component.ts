@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional, OnDestroy } from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import {
   XConfigService,
@@ -12,7 +12,8 @@ import {
 } from '@ng-nest/ui/core';
 import { FormGroup } from '@angular/forms';
 import { XControl } from '@ng-nest/ui/form';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'x-theme',
@@ -22,7 +23,7 @@ import { debounceTime } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XThemeComponent)]
 })
-export class XThemeComponent extends XThemeProperty implements OnInit {
+export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy {
   formGroup = new FormGroup({});
 
   theme: XTheme = {
@@ -47,6 +48,8 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
 
   themeService: XThemeService;
 
+  private _unSubject = new Subject<void>();
+
   writeValue(value: XColorsTheme) {
     this.value = value;
     if (this.value && Object.keys(this.value).length > 0) {
@@ -60,6 +63,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
     super();
     this.themeService = this.configService.themeService;
   }
+
   ngOnInit() {
     this.theme = this.configService.getTheme(true);
     this.setControls();
@@ -69,14 +73,8 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
     });
   }
 
-  setDefaultColors() {
-    this.beforeColors = this.theme.colors as XColorsTheme;
-    this.currentColors = this.beforeColors;
-    this.darkBeforeColors = this.beforeColors;
-  }
-
   ngAfterViewInit() {
-    this.formGroup.valueChanges.pipe(debounceTime(100)).subscribe((x: XColorsTheme) => {
+    this.formGroup.valueChanges.pipe(debounceTime(100), takeUntil(this._unSubject)).subscribe((x: XColorsTheme) => {
       this.beforeColors = this.currentColors;
       let changes = this.getChanges(x);
       if (this.isOneAndInColorKeys(changes)) {
@@ -91,6 +89,17 @@ export class XThemeComponent extends XThemeProperty implements OnInit {
         this.configService.setTheme({ colors: x });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
+  }
+
+  setDefaultColors() {
+    this.beforeColors = this.theme.colors as XColorsTheme;
+    this.currentColors = this.beforeColors;
+    this.darkBeforeColors = this.beforeColors;
   }
 
   setControls() {
