@@ -11,6 +11,8 @@ import {
 import { XCommentPrefix, XCommentNode, XCommentProperty } from './comment.property';
 import { XIsEmpty, XIsChange, XSetData, XGetChildren, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
+import { XI18nService } from '@ng-nest/ui/i18n';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XCommentPrefix}`,
@@ -27,9 +29,16 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
+    public i18n: XI18nService,
     public configService: XConfigService
   ) {
     super();
+  }
+
+  ngOnInit() {
+    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => {
+      this.cdr.markForCheck();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

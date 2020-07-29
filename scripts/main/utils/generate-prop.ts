@@ -57,11 +57,11 @@ export function generateProps(...types: NcProp[]) {
                 <th colspan="5">Input</th>
               </tr>
               <tr>
-                <th>参数</th>
-                <th>说明</th>
-                <th>输入类型</th>
-                <th>默认值</th>
-                <th>全局设置</th>
+                <th>{{ "api.property" | xI18n }}</th>
+                <th>{{ "api.description" | xI18n }}</th>
+                <th>{{ "api.inputType" | xI18n }}</th>
+                <th>{{ "api.default" | xI18n }}</th>
+                <th>{{ "api.globalConfig" | xI18n }}</th>
               </tr>
               ${inputTable}
             </table>`;
@@ -72,11 +72,11 @@ export function generateProps(...types: NcProp[]) {
                 <th colspan="5">Output</th>
               </tr>
               <tr>
-                <th>参数</th>
-                <th>说明</th>
-                <th>输出类型</th>
-                <th>默认值</th>
-                <th>全局设置</th>
+                <th>{{ "api.property" | xI18n }}</th>
+                <th>{{ "api.description" | xI18n }}</th>
+                <th>{{ "api.outputType" | xI18n }}</th>
+                <th>{{ "api.default" | xI18n }}</th>
+                <th>{{ "api.globalConfig" | xI18n }}</th>
               </tr>
               ${outputTable}
             </table>`;
@@ -84,10 +84,10 @@ export function generateProps(...types: NcProp[]) {
           if (table !== '') {
             table = `<table class="x-api-interface">
               <tr>
-                <th>参数</th>
-                <th>说明</th>
-                <th>类型</th>
-                <th>默认值</th>
+                <th>{{ "api.property" | xI18n }}</th>
+                <th>{{ "api.description" | xI18n }}</th>
+                <th>{{ "api.type" | xI18n }}</th>
+                <th>{{ "api.default" | xI18n }}</th>
               </tr>
               ${table}
             </table>`;

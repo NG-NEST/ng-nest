@@ -44,9 +44,8 @@ ns-logo {
         font-weight: 500;
       }
     }
-    .github svg {
-      vertical-align: middle;
-      align-self: flex-end;
+    .github {
+      font-size: 1.25rem;
     }
   }
 }
@@ -130,8 +129,19 @@ ns-content {
 
 ns-affix {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   bottom: 2rem;
   right: 2rem;
+  z-index: 11;
+  > x-button {
+    &:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+    .x-button.x-size-big {
+      width: 2.25rem;
+    }
+  }
 }
 
 ns-layout {

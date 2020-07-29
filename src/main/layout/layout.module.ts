@@ -6,6 +6,7 @@ import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
 import { XAffixModule } from '@ng-nest/ui/affix';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 import { LayoutModule as CdkLayoutModule } from '@angular/cdk/layout';
 import { LayoutComponent } from './layout.component';
 import { LayoutRoutesModule } from './layout-routes.module';
@@ -27,6 +28,7 @@ const components = [LayoutComponent, HeaderComponent, LogoComponent, SiderCompon
     XDropdownModule,
     XDrawerModule,
     XAffixModule,
+    XI18nModule,
     CdkLayoutModule,
     LayoutRoutesModule
   ],

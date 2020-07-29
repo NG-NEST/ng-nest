@@ -8,7 +8,7 @@
 /bazel-out
 
 # generate files
-/src/main/docs
+/src/main/docs/*/
 /scripts/build
 
 # dependencies

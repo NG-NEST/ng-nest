@@ -9,6 +9,7 @@ import { XApiModule } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 const modules = [
   CommonModule,
@@ -21,7 +22,8 @@ const modules = [
   XApiModule,
   XTabsModule,
   XHighlightModule,
-  XPatternModule
+  XPatternModule,
+  XI18nModule
 ];
 
 @NgModule({

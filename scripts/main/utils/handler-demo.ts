@@ -3,13 +3,14 @@ import { NcPage } from '../interfaces/page';
 import * as fs from 'fs-extra';
 import { NcDemoTreeNode } from '../interfaces/demo';
 import { randomString, replaceKey, parseMdDoc } from '.';
-import _ = require('lodash');
+import { orderBy } from 'lodash';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
 export function handlerDemo(page: NcPage, docDir: string, router: string) {
   const demoPath = path.join(docDir, 'demo');
   const children = fs.readdirSync(path.join(docDir, 'demo'));
+  router = router.replace(`/${page.lang}/`, '/');
   let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
   if (temp !== null) {
     temp.syswords.imports += `import { environment } from 'src/environments/environment';\n`;
@@ -64,7 +65,7 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
         ];
       }
     }
-    sortNodes = _.orderBy(sortNodes, [(x) => x.leaf, (x) => x.label.toLowerCase()]);
+    sortNodes = orderBy(sortNodes, [(x) => x.leaf, (x) => x.label.toLowerCase()]);
     nodes = [...nodes, ...sortNodes];
   };
   getChildren(root, demo);

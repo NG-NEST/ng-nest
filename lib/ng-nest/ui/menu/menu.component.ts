@@ -85,7 +85,10 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   onNodeClick(node: XMenuNode) {
     if (!this.collapsed) {
       this.rootIndex = this.nodes.indexOf(this.getRoot(node));
+      this.activatedId = node.id;
+      this.activated = node;
       this.nodeClick.emit(node);
+      this.activatedIdChange.emit(node.id);
       this.cdr.detectChanges();
     } else {
       this.onToggle(null, node, true);
@@ -94,7 +97,11 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
 
   rootIndexChange(index: number) {
     this.rootIndex = index;
-    this.nodeClick.emit(this.nodes[index]);
+    let node = this.nodes[index];
+    this.activatedId = node.id;
+    this.activated = node;
+    this.nodeClick.emit(node);
+    this.activatedIdChange.emit(node.id);
     this.cdr.detectChanges();
   }
 

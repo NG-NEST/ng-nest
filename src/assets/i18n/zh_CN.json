@@ -1,0 +1,26 @@
+{
+  "locale": "zh_CN",
+  "comment": {
+    "comments": "评论",
+    "giveALike": "点赞",
+    "reply": "回复",
+    "more": "查看更多",
+    "sure": "发布",
+    "placeholder": "请输入评论"
+  },
+  "api": {
+    "property": "属性",
+    "description": "参数",
+    "type": "类型",
+    "inputType": "输入类型",
+    "outputType": "输出类型",
+    "default": "默认值",
+    "globalConfig": "全局设置"
+  },
+  "footer": {
+    "allRightsReserved": "版权所有"
+  },
+  "meta": {
+    "description": "基于 Angular 和 Nest 的Web应用程序框架，遵循最佳实践和约定，为您提供可靠的开发经验"
+  }
+}

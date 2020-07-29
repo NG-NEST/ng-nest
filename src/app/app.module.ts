@@ -4,26 +4,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MainRoutesModule } from 'src/main/routes.module';
-import { X_CONFIG } from '@ng-nest/ui/core';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MainRoutesModule],
-  providers: [
-    {
-      provide: X_CONFIG,
-      useValue: {
-        components: {
-          button: {
-            size: 'large'
-          },
-          icon: {
-            href: 'http://locahost:3000/'
-          }
-        }
-      }
-    }
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, MainRoutesModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

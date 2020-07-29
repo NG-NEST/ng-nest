@@ -9,8 +9,9 @@ import { map } from 'lodash';
  *
  * @export
  * @param {string} fsPath
+ * @param {string} lang
  */
-export function hanlderType(fsPath: string): Promise<NcType[]> {
+export function hanlderType(fsPath: string, lang = ''): Promise<NcType[]> {
   return new Promise((res, rej) => {
     if (!fs.existsSync(fsPath)) {
       res([]);
@@ -53,7 +54,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
           type.object = object.slice(0, object.indexOf(' ')) as NcObjectType;
           let name = object.replace(type.object, '').trim();
           type.name = name.slice(0, name.indexOf(' '));
-          type.label = docItem[docItem.start + 1];
+          type.label = getDoc(docItem, lang) as string;
           type.description = getDoc(docItem, 'description') as string;
           type.properties = [];
           switch (type.object) {
@@ -102,7 +103,7 @@ export function hanlderType(fsPath: string): Promise<NcType[]> {
           let property: NcProperty = {
             name: spt[0].replace('?', '').trim(),
             type: spt[1].replace(';', '').trim(),
-            label: docItem[docItem.start + 1],
+            label: getDoc(docItem, lang) as string,
             defalut: getDoc(docItem, 'default') as string,
             description: getDoc(docItem, 'description') as string
           };

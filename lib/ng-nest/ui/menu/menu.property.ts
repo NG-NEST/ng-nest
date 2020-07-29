@@ -70,6 +70,10 @@ export class XMenuProperty extends XProperty {
    * 节点点击的事件
    */
   @Output() nodeClick = new EventEmitter<XMenuNode>();
+  /**
+   * 节点点击的事件
+   */
+  @Output() activatedIdChange = new EventEmitter<any>();
 }
 
 export interface XMenuNode extends XParentIdentityProperty<XMenuNode> {

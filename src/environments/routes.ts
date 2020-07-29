@@ -14,10 +14,10 @@ export const shareRoutes: Routes = [
 
 export const mainRoutes: Routes = [
   {
-    path: environment.layout,
+    path: `${environment.layout}`,
     loadChildren: () => import('../main/layout/layout.module').then((x) => x.LayoutModule)
   },
-  { path: '', redirectTo: environment.layout, pathMatch: 'full' },
+  { path: '', redirectTo: `${environment.layout}`, pathMatch: 'full' },
 
   ...shareRoutes
 ];

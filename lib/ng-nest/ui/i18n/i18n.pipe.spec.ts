@@ -8,7 +8,6 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService } from './i18n.service';
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
-import { HttpClientModule } from '@angular/common/http';
 
 describe(XI18nPrefix, () => {
   beforeEach(async(() => {
@@ -35,8 +34,9 @@ describe(XI18nPrefix, () => {
       <x-button (click)="english()">切换为英文</x-button>
       <x-button (click)="chinese()">切换为中文</x-button>
       <x-button>{{ 'comment.comments' | xI18n }}</x-button>
-
       <p x-i18n="comment.comments"></p>
+
+      <x-comment [data]="data"></x-comment>
     </div>
   `
 })
@@ -138,8 +138,7 @@ class TestXI18nComponent {
   english() {
     this.i18nService.setLocale(
       {
-        ...en_US,
-        ...{ comment: { comments: `comment${this.index++}`, giveALike: 'like', reply: 'reply', more: 'more' } }
+        ...en_US
       },
       true
     );

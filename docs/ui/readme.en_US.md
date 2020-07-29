@@ -1,5 +1,5 @@
 ---
 order: 1
-label: 'UI库'
+label: 'UI Components'
 type: 'router'
 ---

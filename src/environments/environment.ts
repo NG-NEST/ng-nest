@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   layout: 'index',
   defaultPage: 'docs',
-  static: 'http://localhost:9494/'
+  static: 'http://localhost:9494'
 };
 
 /*

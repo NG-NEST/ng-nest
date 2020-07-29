@@ -36,7 +36,7 @@ describe(XThemePrefix, () => {
 @Component({
   selector: 'test-x-theme',
   template: `
-    <x-theme [(ngModel)]="model" showDark></x-theme>
+    <x-theme [(ngModel)]="model" showDark showDetail></x-theme>
     <div class="row">
       <x-button>默认按钮</x-button>
       <x-button type="primary">主要按钮</x-button>

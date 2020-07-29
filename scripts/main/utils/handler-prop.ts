@@ -8,8 +8,9 @@ import { NcProp, NcPropType, NcDecorator, NcPrope } from '../interfaces/prop';
  *
  * @export
  * @param {string} fsPath
+ * @param {string} lang
  */
-export function hanlderProp(fsPath: string): Promise<NcProp[]> {
+export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
   return new Promise((res, rej) => {
     if (!fs.existsSync(fsPath)) {
       res([]);
@@ -113,11 +114,12 @@ export function hanlderProp(fsPath: string): Promise<NcProp[]> {
         }
         if (docItem) {
           let def = getDocs(docItem, 'default') as string;
+          const lag = getDocs(docItem, lang) as string;
           const description = getDocs(docItem, 'description') as string;
           const property: NcPrope = {
             name: name,
             type: type,
-            label: docItem[docItem.start + 1],
+            label: lag,
             default: def ? def : val,
             description: description,
             decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],

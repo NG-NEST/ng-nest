@@ -15,11 +15,13 @@ const X_CONFIG_NAME = 'affix';
 @Component({ template: '' })
 export class XAffixProperty extends XProperty {
   /**
-   * 距离顶部距离
+   * @zh_CN 距离顶部距离
+   * @en_US distance from the top
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) top: string;
   /**
-   * 距离左边距离
+   * @zh_CN 距离左边距离
+   * @en_US distance from the left
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) left: string;
 }

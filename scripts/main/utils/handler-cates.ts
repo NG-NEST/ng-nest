@@ -29,7 +29,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
         handlerCodeBoxes(cate, readme);
         if (cate.className) {
           mod.syswords.declarations += `, ${cate.className}`;
-          mod.syswords.imports += `import { ${cate.className} } from '${cate.rootPath}';\n`;
+          mod.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(`/${page.lang}/`, '/')}';\n`;
         }
         cates.list.push(cate);
         cates.list = sortBy(cates.list, 'order');

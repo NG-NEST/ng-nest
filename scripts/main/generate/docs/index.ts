@@ -20,6 +20,7 @@ export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui
 export const genDir = path.resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = path.resolve(__dirname, '../../../../src/environments');
 export const docsPrefix = 'docs';
+export const languages = ['zh_CN', 'en_US'];
 
 export class NcDocs {
   page: NcPage;
@@ -27,21 +28,22 @@ export class NcDocs {
   menus: NcMenu[] = [];
 
   constructor() {
-    this.genPages();
+    languages.forEach(async (lang) => {
+      await this.genPages(lang, docsPrefix);
+    });
   }
 
-  async genPages() {
-    await getThemes();
-    this.page = createRouterOutlet(docsPrefix);
-    this.page.genDir = genDir;
+  async genPages(lang: string, outPath: string) {
+    this.page = createRouterOutlet(`${outPath}-${lang}`);
+    this.page.genDir = path.join(genDir, lang);
     handlerPage(this.page);
-    this.addChildren(this.page, docsDir, `${docsPrefix}`);
+    this.addChildren(this.page, docsDir, `${outPath}/${lang}`, lang);
     generatePage(this.page);
-    this.menus = sortBy(this.menus, ['pid', 'category', 'order', 'label']);
+    this.menus = sortBy(this.menus, ['lang', 'pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
   }
 
-  addChildren(page: NcPage, docDir: string, router: string, index?: string, level?: number) {
+  addChildren(page: NcPage, docDir: string, router: string, lang: string, index?: string, level?: number, isComponent = false) {
     let children = fs.readdirSync(docDir);
     if (typeof level !== 'undefined') level--;
     children.forEach(async (x, i) => {
@@ -51,24 +53,26 @@ export class NcDocs {
         const dir = path.join(docDir, x);
         const stat = fs.statSync(dir);
         if (stat.isDirectory()) {
-          const read = parseMdDoc(path.join(dir, 'readme.md'));
+          const read = parseMdDoc(path.join(dir, `${isComponent ? 'docs/' : ''}readme.${lang}.md`));
           if (read && !read.meta.hidden) {
             const folder = path.join(page.genDir, x);
-            const child = this.createChild(read, x, folder);
+            const child = this.createChild(read, x, folder, lang);
             child.genDir = folder;
             child.path = dir;
+            child.lang = lang;
             page.children = [...page.children, child];
             const thisRouter = `${router}/${x}`;
-            const menu = this.createMenu(read, x, index, i, thisRouter);
+            const menu = this.createMenu(read, x, index, i, thisRouter, lang);
             if (x === 'components') {
               child.path = componentsDir;
-              this.addChildren(child, componentsDir, menu.router, menu.id, 1);
+              this.addChildren(child, componentsDir, menu.router, lang, menu.id, 1, true);
             } else if (level !== 0) {
-              this.addChildren(child, dir, menu.router, menu.id, level);
+              this.addChildren(child, dir, menu.router, lang, menu.id, level);
             }
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
             }
+
             generatePage(child);
           }
         }
@@ -78,7 +82,7 @@ export class NcDocs {
     pageAddChildren(page, page.children);
   }
 
-  createChild(read: { meta: any; content: any }, dirName: string, folder: string) {
+  createChild(read: { meta: any; content: any }, dirName: string, folder: string, lang: string) {
     let child =
       read.meta.type == 'router'
         ? createRouterOutlet(dirName)
@@ -95,10 +99,10 @@ export class NcDocs {
     return child;
   }
 
-  createMenu(read: { meta: any; content?: string }, dirName: string, index: string, i: number, router: string): NcMenu {
+  createMenu(read: { meta: any; content?: string }, dirName: string, index: string, i: number, router: string, lang: string): NcMenu {
     const id = index == null ? `${i}` : `${index}-${i}`;
-    const pid = index == null ? null : `${index}`;
-    const menu: NcMenu = Object.assign({ id: id, pid: pid, name: dirName, router: router }, read.meta);
+    const pid = index == null || languages.includes(index) ? null : `${index}`;
+    const menu: NcMenu = Object.assign({ id: id, pid: pid, name: dirName, router: router, lang: lang }, read.meta);
     this.menus = [...this.menus, menu];
     return menu;
   }

@@ -1,9 +1,11 @@
 export default {
-  locale: 'en_us',
+  locale: 'en_US',
   comment: {
     comments: 'Comments',
     giveALike: 'Like',
     reply: 'Reply',
-    more: 'See more'
+    more: 'See more',
+    sure: 'Comments',
+    placeholder: 'Please enter comments'
   }
 };

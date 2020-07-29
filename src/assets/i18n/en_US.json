@@ -1,0 +1,26 @@
+{
+  "locale": "en_US",
+  "comment": {
+    "comments": "Comments",
+    "giveALike": "Like",
+    "reply": "Reply",
+    "more": "See more",
+    "sure": "Comments",
+    "placeholder": "Please enter comments"
+  },
+  "api": {
+    "property": "Property",
+    "description": "Description",
+    "type": "Type",
+    "inputType": "Input Type",
+    "outputType": "Output Type",
+    "default": "Default",
+    "globalConfig": "Global Config"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  },
+  "meta": {
+    "description": "Angular and Nest based Web application frameworks follow best practices and conventions to give you a solid development experience"
+  }
+}
