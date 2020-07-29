@@ -56,7 +56,8 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           prop.type = type.slice(0, type.indexOf(' ')) as NcPropType;
           let name = type.replace(prop.type, '').trim();
           prop.name = name.slice(0, name.indexOf(' '));
-          prop.label = docItem[docItem.start + 1];
+          const labelLang = getDocs(docItem, lang) as string;
+          prop.label = labelLang ? labelLang : docItem[docItem.start + 1];
           prop.description = getDocs(docItem, 'description') as string;
           prop.properties = [];
           switch (prop.type) {
@@ -97,7 +98,8 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
         const lf = line.slice(0, ix).trim();
         const rt = line.slice(ix + 1, line.length).trim();
-        const propd = lf.split(' ');
+
+        const propd = lf.replace(/, /g, ',').split(' ');
         const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
         let name = propd[propd.length - 1].replace('?', '').trim();
         let type = '',
@@ -114,12 +116,12 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         }
         if (docItem) {
           let def = getDocs(docItem, 'default') as string;
-          const lag = getDocs(docItem, lang) as string;
+          const label = getDocs(docItem, lang) as string;
           const description = getDocs(docItem, 'description') as string;
           const property: NcPrope = {
             name: name,
             type: type,
-            label: lag,
+            label: label ? label : docItem[docItem.start + 1],
             default: def ? def : val,
             description: description,
             decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],

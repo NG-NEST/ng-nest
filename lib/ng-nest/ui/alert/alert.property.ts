@@ -15,57 +15,70 @@ const X_CONFIG_NAME = 'alert';
 @Component({ template: '' })
 export class XAlertProperty extends XProperty {
   /**
-   * 隐藏
+   * @zh_CN 隐藏
+   * @en_US hide
    */
   @Input() @XInputBoolean() hide: XBoolean;
   /**
-   * 标题
+   * @zh_CN 标题
+   * @en_US title
    */
   @Input() title: XTemplate;
   /**
-   * 内容
+   * @zh_CN 内容
+   * @en_US content
    */
   @Input() content: XTemplate;
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US alert type
    */
   @Input() type: XAlertType = 'info';
   /**
-   * 主题
+   * @zh_CN 主题
+   * @en_US theme
    */
   @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'light') effect: XEffect;
   /**
-   * 隐藏关闭按钮
+   * @zh_CN 隐藏关闭按钮
+   * @en_US hide close button
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() hideClose: XBoolean;
   /**
-   * 关闭按钮文字替换
+   * @zh_CN 使用文本关闭按钮
+   * @en_US use the text to close button
    */
   @Input() closeText: string;
   /**
-   * 显示图标
+   * @zh_CN 显示图标
+   * @en_US show icon
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() showIcon: XBoolean;
   /**
-   * 禁用动画
+   * @zh_CN 禁用动画
+   * @en_US disable animation
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() disabledAnimation: XBoolean;
   /**
-   * 延迟关闭，默认 0 表示不关闭
+   * @zh_CN 延迟关闭，默认 0 表示不关闭
+   * @en_US delay close, the default value of 0 means do not close
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() duration: XNumber;
   /**
-   * 手动处理关闭事件
+   * @zh_CN 手动处理关闭事件
+   * @en_US manually handle close events
    */
   @Input() @XInputBoolean() manual: XBoolean;
   /**
-   * 关闭的事件
+   * @zh_CN 关闭的事件
+   * @en_US closed events
    */
   @Output() close = new EventEmitter();
 }
 
 /**
  * Alert Option
+ * @undocument true
  */
 export interface XAlertOption {
   /**
@@ -115,7 +128,8 @@ export interface XAlertOption {
 }
 
 /**
- * 类型
+ * @zh_CN 类型
+ * @en_US type
  * @value "success"
  * @value "info"
  * @value "warning"

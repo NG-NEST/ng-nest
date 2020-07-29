@@ -20,6 +20,15 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
+    "id": "4-0-1",
+    "pid": "4-0",
+    "name": "alert",
+    "router": "docs/en_US/ui/components/alert",
+    "lang": "en_US",
+    "label": "Alert",
+    "category": "Feedback"
+  },
+  {
     "id": "4-0-0",
     "pid": "4-0",
     "name": "affix",
@@ -66,6 +75,15 @@ export const menus: Menu[] = [
     "order": 10,
     "label": "组件 (69)",
     "type": "router"
+  },
+  {
+    "id": "4-0-1",
+    "pid": "4-0",
+    "name": "alert",
+    "router": "docs/zh_CN/ui/components/alert",
+    "lang": "zh_CN",
+    "label": "Alert 警告提示",
+    "category": "Feedback"
   },
   {
     "id": "4-0-0",

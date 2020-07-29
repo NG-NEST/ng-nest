@@ -12,6 +12,7 @@
     "property": "属性",
     "description": "参数",
     "type": "类型",
+    "value": "值",
     "inputType": "输入类型",
     "outputType": "输出类型",
     "default": "默认值",

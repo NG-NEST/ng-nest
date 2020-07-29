@@ -25,7 +25,10 @@ export function generateProps(...types: NcProp[]) {
           x.properties.forEach((y) => {
             let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
             if (withConfig && !y.default) {
-              y.default = withConfig.match(/\((\S*)\)/)[1];
+              const st = withConfig.match(/\((\S*)\)/)[1].split(',');
+              if (st.length >= 2) {
+                y.default = st[st.length - 1];
+              }
             }
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
@@ -108,9 +111,9 @@ export function generateProps(...types: NcProp[]) {
       typeTable = `<h3>Type</h3>
       <table class="x-api-type">
         <tr>
-          <th>类型</th>
-          <th>说明</th>
-          <th>值</th>
+          <th>{{ "api.type" | xI18n }}</th>
+          <th>{{ "api.description" | xI18n }}</th>
+          <th>{{ "api.value" | xI18n }}</th>
         </tr>
         ${typeTable}
       </table>`;

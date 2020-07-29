@@ -12,6 +12,7 @@
     "property": "Property",
     "description": "Description",
     "type": "Type",
+    "value": "Value",
     "inputType": "Input Type",
     "outputType": "Output Type",
     "default": "Default",

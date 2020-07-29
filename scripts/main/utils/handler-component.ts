@@ -10,8 +10,6 @@ import {
   handlerTabs,
   hanlderCates,
   generateCates,
-  hanlderType,
-  generateTypes,
   hanlderPattern,
   generatePatterns,
   hanlderSpec,
@@ -77,13 +75,9 @@ export function handlerExamples(page: NcPage) {
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf('__api') === -1) return;
   const propertyPath = path.join(page.path, `${page.name}.property.ts`);
-  const typePath = path.join(page.path, `${page.name}.type.ts`);
   if (fs.existsSync(propertyPath)) {
     let props = await hanlderProp(propertyPath, page.lang);
     page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...props)}</x-api>`);
-  } else {
-    let types = await hanlderType(typePath, page.lang);
-    page.custom = replaceKey(page.custom, '__api', `<x-api>${generateTypes(...types)}</x-api>`);
   }
 }
 
