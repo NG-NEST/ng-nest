@@ -1,0 +1,20 @@
+:host {
+  .news li {
+    padding-bottom: 1rem;
+  }
+  .news li:not(:first-child) {
+    padding-top: 1rem;
+    border-top: 0.0625rem solid var(--x-border);
+  }
+  .news h3 {
+    margin: 0;
+  }
+  .news p {
+    margin: 0.5rem 0;
+  }
+  .news .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

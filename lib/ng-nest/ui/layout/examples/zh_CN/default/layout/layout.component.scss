@@ -1,0 +1,24 @@
+:host {
+  x-row {
+    margin: 1rem 0;
+    > x-col {
+      > div {
+        padding: 1rem;
+        text-align: center;
+        border-radius: 0.125rem;
+      }
+      &:nth-child(odd) > div {
+        background-color: var(--x-info-400);
+      }
+      &:nth-child(even) > div {
+        background-color: var(--x-info-500);
+      }
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

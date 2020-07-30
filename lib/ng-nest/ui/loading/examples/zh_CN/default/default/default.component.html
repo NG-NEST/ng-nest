@@ -1,0 +1,42 @@
+<div class="row">
+  <div [x-loading]="true" size="big">
+    <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
+  </div>
+  <div [x-loading]="true" size="large">
+    <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
+  </div>
+  <div [x-loading]="true">
+    <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
+  </div>
+  <div [x-loading]="true" size="small">
+    <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
+  </div>
+  <div [x-loading]="true" size="mini">
+    <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
+  </div>
+</div>
+
+<ng-template #tableTpl>
+  <table class="custom-table">
+    <tr>
+      <th>用户</th>
+      <th>邮箱</th>
+      <th>状态</th>
+    </tr>
+    <tr>
+      <td>admin</td>
+      <td>admin@admin.com</td>
+      <td>启用</td>
+    </tr>
+    <tr>
+      <td>john</td>
+      <td>john@john.com</td>
+      <td>禁用</td>
+    </tr>
+    <tr>
+      <td>jack</td>
+      <td>jack@jack.com</td>
+      <td>启用</td>
+    </tr>
+  </table>
+</ng-template>

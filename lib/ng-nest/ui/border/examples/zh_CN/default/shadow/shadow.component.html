@@ -1,0 +1,25 @@
+<x-row>
+  <x-col span="24">
+    <table>
+      <tr>
+        <th width="100">名称</th>
+        <th width="250">样式名</th>
+        <th>显示</th>
+      </tr>
+      <tr>
+        <td>基础投影</td>
+        <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06);</td>
+        <td>
+          <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.06)'"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>浅色投影</td>
+        <td>box-shadow: 0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04);</td>
+        <td>
+          <div [style.box-shadow]="'0 0 0.125rem 0.0625rem rgba(0, 0, 0, 0.04)'"></div>
+        </td>
+      </tr>
+    </table>
+  </x-col>
+</x-row>

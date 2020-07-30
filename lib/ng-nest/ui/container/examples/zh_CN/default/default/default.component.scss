@@ -1,0 +1,26 @@
+:host {
+  > x-container:not(first-child) {
+    margin-top: 1rem;
+  }
+  x-header,
+  x-footer {
+    line-height: 3rem;
+    text-align: center;
+  }
+  x-header {
+    background-color: var(--x-info-200);
+  }
+  x-footer {
+    background-color: var(--x-info-300);
+  }
+  x-main {
+    line-height: 12rem;
+    text-align: center;
+    background-color: var(--x-info-400);
+  }
+  x-aside {
+    line-height: 14rem;
+    text-align: center;
+    background-color: var(--x-info-500);
+  }
+}

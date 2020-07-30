@@ -1,0 +1,17 @@
+<x-row>
+  <x-col span="24">
+    <x-checkbox [data]="data" icon></x-checkbox>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="data" [(ngModel)]="model" icon></x-checkbox>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="data" icon disabled></x-checkbox>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="data" [(ngModel)]="model" icon disabled></x-checkbox>
+  </x-col>
+  <x-col span="24">
+    <x-checkbox [data]="dataDisabled" icon></x-checkbox>
+  </x-col>
+</x-row>

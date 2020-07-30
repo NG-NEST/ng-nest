@@ -1,0 +1,17 @@
+<div class="row">
+  <x-steps [data]="data" [activatedIndex]="activated"> </x-steps>
+</div>
+<div class="row">
+  <x-tabs sliderHidden [activatedIndex]="activated">
+    <x-tab> <div class="custom-steps-content">内容1</div></x-tab>
+    <x-tab> <div class="custom-steps-content">内容2</div></x-tab>
+    <x-tab> <div class="custom-steps-content">内容3</div></x-tab>
+  </x-tabs>
+</div>
+<div class="row">
+  <x-buttons space="1">
+    <x-button (click)="pre()" *ngIf="activated > 0">上一步</x-button>
+    <x-button (click)="next()" *ngIf="activated < 2">下一步</x-button>
+    <x-button type="primary" (click)="done()" *ngIf="activated === 2">提交</x-button>
+  </x-buttons>
+</div>

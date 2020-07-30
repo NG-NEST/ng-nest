@@ -1,0 +1,10 @@
+:host {
+  .row {
+    margin-top: 1rem;
+    x-button {
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

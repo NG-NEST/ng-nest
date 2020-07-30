@@ -1,0 +1,6 @@
+<div class="row">
+  <x-button (click)="open()">不包含标题</x-button>
+  <x-drawer [visible]="visible" (close)="close()">
+    <span>内容区域</span>
+  </x-drawer>
+</div>

@@ -1,0 +1,9 @@
+:host {
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  .row x-button {
+    margin-left: 1rem;
+  }
+}

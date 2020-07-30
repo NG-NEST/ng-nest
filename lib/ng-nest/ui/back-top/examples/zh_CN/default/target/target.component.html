@@ -1,0 +1,6 @@
+<div #scroll class="scroll">
+  <div class="box">
+    <x-back-top right="6rem" [target]="scroll"> </x-back-top>
+    <x-button *ngFor="let button of buttons">{{ button }}</x-button>
+  </div>
+</div>

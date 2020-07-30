@@ -1,0 +1,19 @@
+<x-transfer
+  [data]="data"
+  [(ngModel)]="value"
+  (ngModelChange)="change($event)"
+  [nodeTpl]="nodeTpl"
+  [titleTpl]="titleTpl"
+  [titles]="['用户列表', '已选用户']"
+  drag
+>
+</x-transfer>
+<ng-template #nodeTpl let-item="$node">
+  <x-icon [type]="item.node.icon" class="custom-icon"></x-icon>{{ item.node?.label }}
+</ng-template>
+<ng-template #titleTpl let-title="$title" let-count="$count" let-checkedCount="$checkedCount">
+  <div class="custom-title">
+    <span>{{ checkedCount <= 0 ? '' : checkedCount + ' /' }} {{ count }} 项</span>
+    <span>{{ title }}</span>
+  </div>
+</ng-template>

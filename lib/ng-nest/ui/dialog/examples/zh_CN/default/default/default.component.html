@@ -1,0 +1,26 @@
+<div class="box">
+  <div class="row">
+    <x-button (click)="dialog('top-start')">上左</x-button>
+    <x-button (click)="dialog('top')">上</x-button>
+    <x-button (click)="dialog('top-end')">上右</x-button>
+  </div>
+  <div class="row">
+    <x-button (click)="dialog('left')">左</x-button>
+    <x-button (click)="dialog('center')">中(默认)</x-button>
+    <x-button (click)="dialog('right')">右</x-button>
+  </div>
+  <div class="row">
+    <x-button (click)="dialog('bottom-start')">下左</x-button>
+    <x-button (click)="dialog('bottom')">下</x-button>
+    <x-button (click)="dialog('bottom-end')">下右</x-button>
+  </div>
+</div>
+
+<x-dialog
+  title="标题"
+  [(visible)]="visible"
+  [placement]="placement"
+  [beforeClose]="beforeClose"
+>
+  <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
+</x-dialog>

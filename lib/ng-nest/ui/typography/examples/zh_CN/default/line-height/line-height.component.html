@@ -1,0 +1,31 @@
+<x-row space="1">
+  <x-col span="24">
+    <table>
+      <tr>
+        <th width="80">行高</th>
+        <th width="140">值</th>
+        <th>显示</th>
+      </tr>
+      <tr>
+        <td>无行高</td>
+        <td>line-height: 1rem</td>
+        <td [style.line-height.rem]="1" [innerHtml]="text"></td>
+      </tr>
+      <tr>
+        <td>紧凑</td>
+        <td>line-height: 1.3rem</td>
+        <td [style.line-height.rem]="1.3" [innerHtml]="text"></td>
+      </tr>
+      <tr>
+        <td>常规</td>
+        <td>line-height: 1.5rem</td>
+        <td [style.line-height.rem]="1.5" [innerHtml]="text"></td>
+      </tr>
+      <tr>
+        <td>加大</td>
+        <td>line-height: 1.75rem</td>
+        <td [style.line-height.rem]="1.75" [innerHtml]="text"></td>
+      </tr>
+    </table>
+  </x-col>
+</x-row>

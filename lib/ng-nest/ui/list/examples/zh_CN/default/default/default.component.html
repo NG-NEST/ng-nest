@@ -1,0 +1,28 @@
+<x-row space="1">
+  <x-col span="8">
+    <div><x-list [data]="data1" [(ngModel)]="model1"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data2" [(ngModel)]="model2"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data3" [(ngModel)]="model3" multiple></x-list></div>
+  </x-col>
+</x-row>
+<x-row space="1">
+  <x-col span="8">
+    <div><x-list [data]="data4" [(ngModel)]="model4" multiple></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data5" [(ngModel)]="model5" multiple="2"></x-list></div>
+  </x-col>
+  <x-col span="8">
+    <div><x-list [data]="data6" [(ngModel)]="model6" multiple="2"></x-list></div>
+  </x-col>
+</x-row>
+<x-row space="1">
+  <x-col span="8">
+    <h6>上下拖动</h6>
+    <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
+  </x-col>
+</x-row>

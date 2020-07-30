@@ -1,0 +1,12 @@
+<x-tabs [layout]="'top'">
+  <x-tab *ngFor="let tab of tabs" [label]="tab.name">
+    <x-row>
+      <x-col *ngFor="let icon of tab.icons" [span]="4">
+        <div class="box">
+          <x-icon [type]="tab.type + '-' + icon"></x-icon>
+          <span>{{ icon }}</span>
+        </div>
+      </x-col>
+    </x-row>
+  </x-tab>
+</x-tabs>

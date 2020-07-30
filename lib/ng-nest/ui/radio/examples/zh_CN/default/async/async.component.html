@@ -1,0 +1,11 @@
+<x-row>
+  <x-col span="24">
+    <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="data"></x-radio>
+  </x-col>
+  <x-col span="24">
+    <x-radio [data]="data" [(ngModel)]="model"></x-radio>
+  </x-col>
+</x-row>

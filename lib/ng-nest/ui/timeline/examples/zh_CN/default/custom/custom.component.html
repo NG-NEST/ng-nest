@@ -1,0 +1,12 @@
+<div class="row">
+  <x-timeline [data]="data" [wrapper]="wrapperTpl"></x-timeline>
+  <ng-template #wrapperTpl let-node="$node">
+    <div class="custom-wrapper">
+      <span>{{ node.time | xTimeAgo }}</span>
+      <x-card>
+        <h4>{{ node.label }}</h4>
+        <p>{{ node.content }}</p>
+      </x-card>
+    </div>
+  </ng-template>
+</div>

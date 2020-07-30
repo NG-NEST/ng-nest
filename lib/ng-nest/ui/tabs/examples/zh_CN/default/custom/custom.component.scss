@@ -1,0 +1,8 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  .tab-content {
+    padding: 0.625rem;
+  }
+}

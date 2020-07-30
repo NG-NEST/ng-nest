@@ -1,0 +1,11 @@
+<div class="row">
+  <x-result [icon]="iconTpl" title="404" subTitle="抱歉，访问的页面不存在。">
+    <x-button type="primary">返回列表</x-button>
+  </x-result>
+  <ng-template #iconTpl>
+    <img
+      [style.width.rem]="18"
+      src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+    />
+  </ng-template>
+</div>

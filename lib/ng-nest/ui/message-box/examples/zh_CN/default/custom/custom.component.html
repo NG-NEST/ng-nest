@@ -1,0 +1,27 @@
+<div class="row">
+  <x-button (click)="alertCustom()">自定义弹框内容</x-button>
+  <ng-template #contentTpl>
+    <table class="custom-table">
+      <tr>
+        <th>用户</th>
+        <th>邮箱</th>
+        <th>状态</th>
+      </tr>
+      <tr>
+        <td>admin</td>
+        <td>admin@admin.com</td>
+        <td>启用</td>
+      </tr>
+      <tr>
+        <td>john</td>
+        <td>john@john.com</td>
+        <td>禁用</td>
+      </tr>
+      <tr>
+        <td>jack</td>
+        <td>jack@jack.com</td>
+        <td>启用</td>
+      </tr>
+    </table>
+  </ng-template>
+</div>

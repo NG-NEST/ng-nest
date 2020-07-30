@@ -1,0 +1,47 @@
+<x-switch [(ngModel)]="loading"></x-switch>
+<ul class="news">
+  <li *ngFor="let item of list; let i = index">
+    <x-skeleton [loading]="loading" [data]="data" active>
+      <x-row justify="start" space="1">
+        <x-col inherit class="content">
+          <x-avatar
+            src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+            size="medium"
+          ></x-avatar>
+        </x-col>
+        <x-col class="content">
+          <x-row>
+            <x-col>
+              <h3>生于忧患，死于安乐 {{ i + 1 }}</h3>
+              <p>
+                舜发于畎亩之中，傅说举于版筑之间，胶鬲举于鱼盐之中，管夷吾举于士，孙叔敖举于海，百里奚举于市。故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。
+              </p>
+            </x-col>
+          </x-row>
+          <x-row justify="start" space="1">
+            <x-col inherit>
+              <x-link icon="fto-star">18</x-link>
+            </x-col>
+            <x-col inherit>
+              <x-link icon="fto-thumbs-up">50</x-link>
+            </x-col>
+            <x-col inherit>
+              <x-link icon="fto-info">100</x-link>
+            </x-col>
+            <x-col></x-col>
+            <x-col inherit>
+              <div [ngStyle]="{ 'white-space': 'nowrap' }">2020-03-17 22:22</div>
+            </x-col>
+          </x-row>
+        </x-col>
+        <x-col inherit class="content">
+          <img
+            src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+            [style.width]="'10rem'"
+            [style.height]="'9rem'"
+          />
+        </x-col>
+      </x-row>
+    </x-skeleton>
+  </li>
+</ul>

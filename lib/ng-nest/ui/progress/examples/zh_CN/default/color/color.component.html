@@ -1,0 +1,9 @@
+<div class="row">
+  <x-progress [percent]="percent" [color]="color"></x-progress>
+  <x-progress [percent]="percent" [color]="colors"></x-progress>
+  <x-progress [percent]="percent" [color]="colorFunc"></x-progress>
+  <x-buttons>
+    <x-button icon="fto-minus" (click)="plus(-10)"></x-button>
+    <x-button icon="fto-plus" (click)="plus(10)"></x-button>
+  </x-buttons>
+</div>
