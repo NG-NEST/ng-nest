@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-- 默认显示样式。
+- The default display style.

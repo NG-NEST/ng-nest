@@ -1,11 +1,11 @@
 ---
-label: '样式参数'
+label: 'Pattern'
 hidden: true
 ---
 
-# 样式参数 Pattern
+# Pattern
 
-定义样式参数显示的样式。
+Defines the style of the style parameter display.
 
 ## API
 

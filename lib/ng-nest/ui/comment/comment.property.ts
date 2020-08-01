@@ -15,73 +15,90 @@ const X_CONFIG_NAME = 'comment';
 @Component({ template: '' })
 export class XCommentProperty extends XProperty {
   /**
-   * 评论数据
+   * @zh_CN 评论数据
+   * @en_US Comment data
    */
   @Input() @XDataConvert() data: XData<XCommentNode> = [];
   /**
-   * 评论最大字数
+   * @zh_CN 评论最大字数
+   * @en_US Maximum number of comments
    */
   @Input() @XWithConfig(X_CONFIG_NAME, 512) contentMax: number;
   /**
-   * 点赞的事件
+   * @zh_CN 点赞的事件
+   * @en_US Like events
    */
   @Output() likeClick = new EventEmitter<XCommentNode>();
   /**
-   * 评论的事件
+   * @zh_CN 评论的事件
+   * @en_US Commented event
    */
   @Output() commentClick = new EventEmitter<XCommentNode>();
   /**
-   * 回复的事件
+   * @zh_CN 回复的事件
+   * @en_US Reply event
    */
   @Output() replyClick = new EventEmitter<XCommentNode>();
   /**
-   * 确认提交的事件
+   * @zh_CN 确认提交的事件
+   * @en_US Confirm the submitted event
    */
   @Output() sureClick = new EventEmitter<XCommentNode>();
   /**
-   * 更多的事件
+   * @zh_CN 更多的事件
+   * @en_US More events
    */
   @Output() moreClick = new EventEmitter<XCommentNode>();
 }
 
 /**
- * Comment 数据对象
+ * @zh_CN Comment 数据对象
+ * @en_US Comment data object
  */
 export interface XCommentNode extends XParentIdentityProperty<XCommentNode> {
   /**
-   * 作者
+   * @zh_CN 作者
+   * @en_US Author
    */
   author?: string;
   /**
-   * 作者头像地址
+   * @zh_CN 作者头像地址
+   * @en_US Author avatar address
    */
   src?: string;
   /**
-   * 发布时间
+   * @zh_CN 发布时间
+   * @en_US release time
    */
   datetime?: XDate;
   /**
-   * 发布内容
+   * @zh_CN 发布内容
+   * @en_US Publish content
    */
   content?: string;
   /**
-   * 点赞数量
+   * @zh_CN 点赞数量
+   * @en_US Like number
    */
   likes?: number;
   /**
-   * 评论数量
+   * @zh_CN 评论数量
+   * @en_US Number of comments
    */
   count?: number;
   /**
-   * 回复作者
+   * @zh_CN 回复作者
+   * @en_US Reply to author
    */
   replyAuthor?: string;
   /**
-   * 点击评论/回复提交的内容
+   * @zh_CN 点击评论/回复提交的内容
+   * @en_US Click to comment/reply to submitted content
    */
   replyContent?: string;
   /**
-   * 显示评论/回复框
+   * @zh_CN 显示评论/回复框
+   * @en_US Show comment/reply box
    */
   commentShow?: boolean;
 }
@@ -99,11 +116,13 @@ export const XCommentReplyPrefix = 'x-comment-reply';
 @Component({ template: '' })
 export class XCommentReplyProperty extends XProperty {
   /**
-   * 回复的最大字数
+   * @zh_CN 回复的最大字数
+   * @en_US Maximum number of words to reply
    */
   @Input() @XInputNumber() maxlength: XNumber = 512;
   /**
-   * 回复确认的事件
+   * @zh_CN 回复确认的事件
+   * @en_US Reply to confirmed event
    */
   @Output() sureClick = new EventEmitter<string>();
 }

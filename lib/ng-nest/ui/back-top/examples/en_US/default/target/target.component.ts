@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./target.component.scss']
 })
 export class ExTargetComponent {
-  buttons = Array.from({ length: 20 }).map((x, i) => '按钮' + (i + 1));
+  buttons = Array.from({ length: 20 }).map((x, i) => 'Button' + (i + 1));
 }

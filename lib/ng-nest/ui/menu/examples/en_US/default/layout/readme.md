@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '布局'
+label: 'layout'
 ---
 
-使用 `layout` 属性设置菜单的布局样式。
+Use the `layout` property to set the layout style of the menu.

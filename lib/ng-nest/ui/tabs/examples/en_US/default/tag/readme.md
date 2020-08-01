@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '选项卡'
+label: 'Tab'
 ---
 
-设置 `type` 属性为 `tag` 显示卡片风格的样式。
+Set the `type` attribute to `tag` to display the card style.

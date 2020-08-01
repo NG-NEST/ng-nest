@@ -1,11 +1,11 @@
 ---
-label: 'Upload 上传'
+label: 'Upload'
 category: 'Form'
 ---
 
-# Upload 上传
+# Upload
 
-通过点击或者拖拽上传文件。
+Upload the file by clicking or dragging.
 
 ## Used alone
 

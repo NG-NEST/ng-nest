@@ -15,8 +15,8 @@ const X_CONFIG_NAME = 'container';
 @Component({ template: '' })
 export class XContainerProperty extends XProperty {
   /**
-   * flex 布局下的子元素排列方向
-   * @description 子元素中有 x-header 或 x-footer 时为 column
+   * @zh_CN flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column
+   * @en_US The arrangement direction of the sub-elements under the flex layout. When the sub-elements have x-header or x-footer, it is column
    */
   @Input() @XWithConfig<XDirection>(X_CONFIG_NAME) direction: XDirection;
 }
@@ -35,7 +35,8 @@ const X_CONFIG_NAME_HEADER = 'header';
 @Component({ template: '' })
 export class XHeaderProperty extends XProperty {
   /**
-   * 高度，rem
+   * @zh_CN 高度，rem
+   * @en_US Height, rem
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME_HEADER, 3) height: number;
 }
@@ -54,7 +55,8 @@ const X_CONFIG_NAME_ASIDE = 'aside';
 @Component({ template: '' })
 export class XAsideProperty extends XProperty {
   /**
-   * 宽度，rem
+   * @zh_CN 宽度，rem
+   * @en_US Width, rem
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME_ASIDE, 12) width: number;
 }
@@ -80,7 +82,8 @@ const X_CONFIG_NAME_FOOTER = 'footer';
 @Component({ template: '' })
 export class XFooterProperty extends XProperty {
   /**
-   * 高度，rem
+   * @zh_CN 高度，rem
+   * @en_US Height, rem
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME_FOOTER, 3) height: XNumber = 3;
 }

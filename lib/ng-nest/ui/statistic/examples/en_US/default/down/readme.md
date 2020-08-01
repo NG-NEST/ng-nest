@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '倒计时'
+label: 'Countdown'
 ---
 
-使用 `x-countdown` 组件可以显示倒计时。
+Use the `x-countdown` component to display the countdown.

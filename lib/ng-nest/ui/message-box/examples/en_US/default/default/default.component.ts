@@ -12,8 +12,8 @@ export class ExDefaultComponent {
   constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
   alert(place: XPlace, title: string) {
     this.msgBox.alert({
-      title: '弹框 ' + title,
-      content: '这是一段内容',
+      title: 'Bullet frame ' + title,
+      content: 'This is a piece of content',
       placement: place,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });

@@ -46,7 +46,7 @@ const DATA_CASCADE: XData<XCalendarNode> = [
   { id: 36, label: 'AAAA-4-4', pid: 8 }
 ];
 
-const DATA_CHECKBOX: XData<XCheckboxNode> = ['QQ', '微信', '钉钉', '微博'];
+const DATA_CHECKBOX: XData<XCheckboxNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
 
 const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
@@ -60,42 +60,42 @@ export class ExDefaultComponent {
 
   controls: XFormRow[] = [
     {
-      title: 'Cascade 级联选择器',
+      title: 'Cascade',
       icon: 'fto-list',
       controls: [
-        { id: 'cascade', control: 'cascade', label: '默认', span: 8, data: DATA_CASCADE },
-        { id: 'cascadeDisabled', control: 'cascade', label: '禁用', span: 8, data: DATA_CASCADE, value: 22, disabled: true },
-        { id: 'cascadeRequired', control: 'cascade', label: '必填', span: 8, data: DATA_CASCADE, required: true },
-        { id: 'cascadePlaceholder', control: 'cascade', label: '提示选择', span: 8, data: DATA_CASCADE, placeholder: '请选择城市' }
+        { id: 'cascade', control: 'cascade', label: 'defalut', span: 8, data: DATA_CASCADE },
+        { id: 'cascadeDisabled', control: 'cascade', label: 'disabled', span: 8, data: DATA_CASCADE, value: 22, disabled: true },
+        { id: 'cascadeRequired', control: 'cascade', label: 'required', span: 8, data: DATA_CASCADE, required: true },
+        { id: 'cascadePlaceholder', control: 'cascade', label: 'prompt select', span: 8, data: DATA_CASCADE, placeholder: '请选择城市' }
       ]
     },
     {
-      controls: [{ control: 'cascade', id: 'cascadeRow', label: '标签位置', direction: 'row', span: 8, data: DATA_CASCADE }]
+      controls: [{ control: 'cascade', id: 'cascadeRow', label: 'label position', direction: 'row', span: 8, data: DATA_CASCADE }]
     },
     {
-      title: 'Checkbox 多选框',
+      title: 'Checkbox',
       icon: 'fto-list',
       controls: [
         {
           control: 'checkbox',
           id: 'checkbox',
-          label: '默认',
+          label: 'defalut',
           span: 8,
           data: DATA_CHECKBOX
         },
         {
           control: 'checkbox',
           id: 'checkboxDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           data: DATA_CHECKBOX,
-          value: ['QQ', '钉钉'],
+          value: ['QQ', 'DingTalk'],
           disabled: true
         },
         {
           control: 'checkbox',
           id: 'checkboxRequired',
-          label: '必选',
+          label: 'will choose',
           span: 8,
           data: DATA_CHECKBOX,
           required: true
@@ -103,7 +103,7 @@ export class ExDefaultComponent {
         {
           control: 'checkbox',
           id: 'checkboxButton',
-          label: '按钮样式',
+          label: 'button style',
           span: 8,
           data: DATA_CHECKBOX,
           button: true
@@ -111,17 +111,17 @@ export class ExDefaultComponent {
         {
           control: 'checkbox',
           id: 'checkboxButtonDisabled',
-          label: '按钮禁用',
+          label: 'button disabled',
           span: 8,
           data: DATA_CHECKBOX,
           button: true,
-          value: ['QQ', '钉钉'],
+          value: ['QQ', 'DingTalk'],
           disabled: true
         },
         {
           control: 'checkbox',
           id: 'checkboxButtonRequired',
-          label: '按钮必选',
+          label: 'button will choose',
           span: 8,
           data: DATA_CHECKBOX,
           button: true,
@@ -130,52 +130,52 @@ export class ExDefaultComponent {
       ]
     },
     {
-      title: 'ColorPicker 颜色选择器',
+      title: 'ColorPicker',
       icon: 'fto-list',
       controls: [
-        { control: 'color-picker', id: 'colorPicker', label: '默认', span: 8 },
-        { control: 'color-picker', id: 'colorPickerDisabled', label: '禁用', span: 8, value: '#1976d2', disabled: true },
-        { control: 'color-picker', id: 'colorPickerRequired', label: '必填', span: 8, required: true },
-        { control: 'color-picker', id: 'colorPickerPlaceholder', label: '提示选择', span: 8, placeholder: '请选择颜色' }
+        { control: 'color-picker', id: 'colorPicker', label: 'defalut', span: 8 },
+        { control: 'color-picker', id: 'colorPickerDisabled', label: 'disabled', span: 8, value: '#1976d2', disabled: true },
+        { control: 'color-picker', id: 'colorPickerRequired', label: 'required', span: 8, required: true },
+        { control: 'color-picker', id: 'colorPickerPlaceholder', label: 'prompt select', span: 8, placeholder: '请选择颜色' }
       ]
     },
     {
-      title: 'DatePicker 日期选择器',
+      title: 'DatePicker',
       icon: 'fto-list',
       controls: [
-        { control: 'date-picker', id: 'datePicker', label: '默认', span: 8 },
-        { control: 'date-picker', id: 'datePickerDisabled', label: '禁用', span: 8, value: '2020-05-19', disabled: true },
-        { control: 'date-picker', id: 'datePickerRequired', label: '必填', span: 8, required: true },
-        { control: 'date-picker', id: 'datePickerPlaceholder', label: '提示选择', span: 8, placeholder: '请选择日期' },
-        { control: 'date-picker', id: 'datePickerYear', label: '选年', span: 8, type: 'year' },
-        { control: 'date-picker', id: 'datePickerMonth', label: '选月', span: 8, type: 'month' }
+        { control: 'date-picker', id: 'datePicker', label: 'defalut', span: 8 },
+        { control: 'date-picker', id: 'datePickerDisabled', label: 'disabled', span: 8, value: '2020-05-19', disabled: true },
+        { control: 'date-picker', id: 'datePickerRequired', label: 'required', span: 8, required: true },
+        { control: 'date-picker', id: 'datePickerPlaceholder', label: 'prompt select', span: 8, placeholder: '请选择日期' },
+        { control: 'date-picker', id: 'datePickerYear', label: 'select year', span: 8, type: 'year' },
+        { control: 'date-picker', id: 'datePickerMonth', label: 'select month', span: 8, type: 'month' }
       ]
     },
     {
-      title: 'InputNumber 计数器',
+      title: 'InputNumber',
       icon: 'fto-list',
       controls: [
-        { control: 'input-number', id: 'inputNumber', label: '默认', span: 8 },
-        { control: 'input-number', id: 'inputNumberDisabled', label: '禁用', span: 8, value: 20, disabled: true },
-        { control: 'input-number', id: 'inputNumberRequired', label: '必填', span: 8, required: true },
-        { control: 'input-number', id: 'inputNumberMinMax', label: '限制大小( -10 至 10 )', span: 8, min: -10, max: 10 },
-        { control: 'input-number', id: 'inputNumberPrecision', label: '精度', span: 8, precision: 2, step: 0.1 }
+        { control: 'input-number', id: 'inputNumber', label: 'defalut', span: 8 },
+        { control: 'input-number', id: 'inputNumberDisabled', label: 'disabled', span: 8, value: 20, disabled: true },
+        { control: 'input-number', id: 'inputNumberRequired', label: 'required', span: 8, required: true },
+        { control: 'input-number', id: 'inputNumberMinMax', label: 'restricted size (-10 to 10)', span: 8, min: -10, max: 10 },
+        { control: 'input-number', id: 'inputNumberPrecision', label: 'precision', span: 8, precision: 2, step: 0.1 }
       ]
     },
     {
-      title: 'Input 输入框',
+      title: 'Input',
       icon: 'fto-list',
       controls: [
         {
           control: 'input',
           id: 'input',
-          label: '默认',
+          label: 'defalut',
           span: 8
         },
         {
           control: 'input',
           id: 'inputDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           value: 'ngnest.com',
           disabled: true
@@ -183,46 +183,46 @@ export class ExDefaultComponent {
         {
           control: 'input',
           id: 'inputRequired',
-          label: '必填',
+          label: 'required',
           span: 8,
           required: true
         },
         {
           control: 'input',
           id: 'inputRequired',
-          label: '必填+正则验证',
+          label: 'required + regular validation',
           span: 8,
           value: 0.1,
           required: true,
           pattern: /^-?\d+$/,
-          message: '整数'
+          message: 'integer'
         },
         {
           control: 'input',
           id: 'inputPlaceholder',
-          label: '提示输入',
+          label: 'placeholder',
           span: 8,
-          placeholder: '请输入用户名'
+          placeholder: 'please enter the user name'
         },
         {
           control: 'input',
           id: 'inputClearable',
-          label: '清除按钮',
+          label: 'clear button',
           span: 8,
-          value: '清除按钮',
+          value: 'clear button',
           clearable: true
         },
         {
           control: 'input',
           id: 'inputIcon',
-          label: '图标',
+          label: 'icon',
           span: 8,
           icon: 'fto-user'
         },
         {
           control: 'input',
           id: 'inputLength',
-          label: '长度限制',
+          label: 'lenght',
           span: 8,
           maxlength: 10
         }
@@ -233,47 +233,47 @@ export class ExDefaultComponent {
         {
           control: 'input',
           id: 'inputRow',
-          label: '标签位置',
+          label: 'label position',
           direction: 'row',
           span: 8
         }
       ]
     },
     {
-      title: 'Radio 单选框',
+      title: 'Radio',
       icon: 'fto-list',
       controls: [
-        { control: 'radio', id: 'radio', label: '默认', span: 8, data: DATA_CHECKBOX },
-        { control: 'radio', id: 'radioDisabled', label: '禁用', span: 8, data: DATA_CHECKBOX, value: 'QQ', disabled: true },
-        { control: 'radio', id: 'radioRequired', label: '必选', span: 8, data: DATA_CHECKBOX, required: true },
-        { control: 'radio', id: 'radioButton', label: '按钮样式', span: 8, data: DATA_CHECKBOX, button: true },
+        { control: 'radio', id: 'radio', label: 'defalut', span: 8, data: DATA_CHECKBOX },
+        { control: 'radio', id: 'radioDisabled', label: 'disabled', span: 8, data: DATA_CHECKBOX, value: 'QQ', disabled: true },
+        { control: 'radio', id: 'radioRequired', label: 'will choose', span: 8, data: DATA_CHECKBOX, required: true },
+        { control: 'radio', id: 'radioButton', label: 'button style', span: 8, data: DATA_CHECKBOX, button: true },
         {
           control: 'radio',
           id: 'radioButtonDisabled',
-          label: '按钮禁用',
+          label: 'button disabled',
           span: 8,
           data: DATA_CHECKBOX,
           button: true,
           value: 'QQ',
           disabled: true
         },
-        { control: 'radio', id: 'radioButtonRequired', label: '按钮必选', span: 8, data: DATA_CHECKBOX, button: true, required: true }
+        { control: 'radio', id: 'radioButtonRequired', label: 'button will choose', span: 8, data: DATA_CHECKBOX, button: true, required: true }
       ]
     },
     {
-      title: 'Rate 评分',
+      title: 'Rate',
       icon: 'fto-list',
       controls: [
         {
           control: 'rate',
           id: 'rate',
-          label: '默认',
+          label: 'defalut',
           span: 8
         },
         {
           control: 'rate',
           id: 'rateDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           value: 4,
           disabled: true
@@ -281,24 +281,24 @@ export class ExDefaultComponent {
         {
           control: 'rate',
           id: 'rateRequired',
-          label: '必选',
+          label: 'will choose',
           span: 8,
           required: true
         }
       ]
     },
     {
-      title: 'Select 选择器',
+      title: 'Select',
       icon: 'fto-list',
       controls: [
-        { control: 'select', id: 'select', label: '默认', span: 8, data: DATA_SELECT },
-        { control: 'select', id: 'selectDisabled', label: '禁用', span: 8, data: DATA_SELECT, value: 'BBBB', disabled: true },
-        { control: 'select', id: 'selectRequired', label: '必填', span: 8, data: DATA_SELECT, required: true },
-        { control: 'select', id: 'selectPlaceholder', label: '提示选择', span: 8, data: DATA_SELECT, placeholder: '请选择城市' },
+        { control: 'select', id: 'select', label: 'defalut', span: 8, data: DATA_SELECT },
+        { control: 'select', id: 'selectDisabled', label: 'disabled', span: 8, data: DATA_SELECT, value: 'BBBB', disabled: true },
+        { control: 'select', id: 'selectRequired', label: 'required', span: 8, data: DATA_SELECT, required: true },
+        { control: 'select', id: 'selectPlaceholder', label: 'prompt select', span: 8, data: DATA_SELECT, placeholder: 'select city' },
         {
           control: 'select',
           id: 'selectAsync',
-          label: '异步获取数据',
+          label: 'async data',
           span: 8,
           data: new Observable<string[]>((x) => {
             setTimeout(() => {
@@ -311,19 +311,19 @@ export class ExDefaultComponent {
       ]
     },
     {
-      title: 'SliderSelect 滑动选择',
+      title: 'SliderSelect',
       icon: 'fto-list',
       controls: [
         {
           control: 'slider-select',
           id: 'sliderSelect',
-          label: '默认',
+          label: 'defalut',
           span: 8
         },
         {
           control: 'slider-select',
           id: 'sliderSelectDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           value: 50,
           disabled: true
@@ -331,14 +331,14 @@ export class ExDefaultComponent {
         {
           control: 'slider-select',
           id: 'sliderSelectRequired',
-          label: '必选',
+          label: 'will choose',
           span: 8,
           required: true
         },
         {
           control: 'slider-select',
           id: 'sliderSelectMinMax',
-          label: '限制',
+          label: 'limit',
           span: 8,
           value: 0,
           min: -10,
@@ -347,7 +347,7 @@ export class ExDefaultComponent {
         {
           control: 'slider-select',
           id: 'sliderSelectStep',
-          label: '精度',
+          label: 'precision',
           span: 8,
           value: 0,
           min: 0,
@@ -357,19 +357,19 @@ export class ExDefaultComponent {
       ]
     },
     {
-      title: 'Switch 开关',
+      title: 'Switch',
       icon: 'fto-list',
       controls: [
         {
           control: 'switch',
           id: 'switch',
-          label: '默认',
+          label: 'defalut',
           span: 8
         },
         {
           control: 'switch',
           id: 'switchDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           value: true,
           disabled: true
@@ -377,19 +377,19 @@ export class ExDefaultComponent {
       ]
     },
     {
-      title: 'TimePicker 时间选择器',
+      title: 'TimePicker',
       icon: 'fto-list',
       controls: [
         {
           control: 'time-picker',
           id: 'timePicker',
-          label: '默认',
+          label: 'defalut',
           span: 8
         },
         {
           control: 'time-picker',
           id: 'timePickerDisabled',
-          label: '禁用',
+          label: 'disabled',
           span: 8,
           value: new Date(),
           disabled: true
@@ -397,63 +397,63 @@ export class ExDefaultComponent {
         {
           control: 'time-picker',
           id: 'timePickerRequired',
-          label: '必填',
+          label: 'required',
           span: 8,
           required: true
         }
       ]
     },
     {
-      title: 'Find 查找带回',
+      title: 'Find',
       icon: 'fto-list',
       controls: [
         {
           control: 'find',
           id: 'find',
           tableColumns: [
-            { id: 'index', label: '序号', type: 'index', width: 80 },
-            { id: 'label', label: '用户', flex: 1, sort: true },
-            { id: 'position', label: '职位', flex: 1, sort: true },
-            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+            { id: 'index', label: 'serial no', type: 'index', width: 80 },
+            { id: 'label', label: 'user', flex: 1, sort: true },
+            { id: 'position', label: 'position', flex: 1, sort: true },
+            { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
           tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
-          label: '表格单选',
+          label: 'table single select',
           span: 8
         },
         {
           control: 'find',
           id: 'findMultiple',
           tableColumns: [
-            { id: 'index', label: '序号', type: 'index', width: 80 },
-            { id: 'label', label: '用户', flex: 1, sort: true },
-            { id: 'position', label: '职位', flex: 1, sort: true },
-            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+            { id: 'index', label: 'serial no', type: 'index', width: 80 },
+            { id: 'label', label: 'user', flex: 1, sort: true },
+            { id: 'position', label: 'position', flex: 1, sort: true },
+            { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
           tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
           multiple: true,
-          label: '表格多选',
+          label: 'table multiple select',
           span: 8
         },
         {
           control: 'find',
           id: 'findTree',
           treeData: this.treeService.getTreeList,
-          label: '树单选',
+          label: 'tree single select',
           span: 8
         },
         {
           control: 'find',
           id: 'findTreeTable',
           tableColumns: [
-            { id: 'index', label: '序号', type: 'index', width: 80 },
-            { id: 'label', label: '用户', flex: 1, sort: true },
-            { id: 'position', label: '职位', flex: 1, sort: true },
-            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+            { id: 'index', label: 'serial no', type: 'index', width: 80 },
+            { id: 'label', label: 'user', flex: 1, sort: true },
+            { id: 'position', label: 'position', flex: 1, sort: true },
+            { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
           tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
-          label: '树+表格单选',
+          label: 'tree table single select',
           span: 8
         },
         {
@@ -461,23 +461,23 @@ export class ExDefaultComponent {
           id: 'findTreeTableMultiple',
           dialogWidth: '65rem',
           tableColumns: [
-            { id: 'index', label: '序号', type: 'index', width: 80 },
-            { id: 'label', label: '用户', flex: 1, sort: true },
-            { id: 'position', label: '职位', flex: 1, sort: true },
-            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+            { id: 'index', label: 'serial no', type: 'index', width: 80 },
+            { id: 'label', label: 'user', flex: 1, sort: true },
+            { id: 'position', label: 'position', flex: 1, sort: true },
+            { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
           tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           multiple: true,
-          label: '树+表格多选',
+          label: 'tree talbe multiple select',
           span: 8
         },
         {
           control: 'find',
           id: 'findDisabled',
-          label: '禁用',
-          value: { id: 1, label: '姓名1' },
+          label: 'disabled',
+          value: { id: 1, label: 'name1' },
           span: 8,
           disabled: true
         },
@@ -485,13 +485,13 @@ export class ExDefaultComponent {
           control: 'find',
           id: 'findRequired',
           tableColumns: [
-            { id: 'index', label: '序号', type: 'index', width: 80 },
-            { id: 'label', label: '用户', flex: 1, sort: true },
-            { id: 'position', label: '职位', flex: 1, sort: true },
-            { id: 'organization', label: '组织机构', flex: 1, sort: true }
+            { id: 'index', label: 'serial no', type: 'index', width: 80 },
+            { id: 'label', label: 'user', flex: 1, sort: true },
+            { id: 'position', label: 'position', flex: 1, sort: true },
+            { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
           tableData: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query),
-          label: '必填',
+          label: 'required',
           span: 8,
           required: true
         }

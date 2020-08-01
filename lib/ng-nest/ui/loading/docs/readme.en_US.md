@@ -1,11 +1,11 @@
 ---
-label: 'Loading 加载中'
+label: 'Loading'
 category: 'Feedback'
 ---
 
-# Loading 加载中
+# Loading
 
-加载数据时显示动效。
+Displays dynamic effects when loading data.
 
 ## Used alone
 

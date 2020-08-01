@@ -1,7 +1,7 @@
 ---
 order: 1
-label: '默认'
+label: 'Defalut'
 ---
 
-- 使用 `data` 属性来配置下拉的选项。
-- `width` 根据父元素宽度自动撑开到 100% 。
+- Use the `data` attribute to configure the drop-down options.
+- `width` automatically expands to 100% according to the width of the parent element.

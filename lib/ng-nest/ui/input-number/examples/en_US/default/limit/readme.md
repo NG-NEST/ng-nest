@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '限制'
+label: 'Limit'
 ---
 
-使用 `min` 或 `max` 属性来限制最小最大值。
+Use the `min` or `max` attribute to limit the minimum.

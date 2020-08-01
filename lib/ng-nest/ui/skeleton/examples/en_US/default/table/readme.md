@@ -1,6 +1,6 @@
 ---
 order: 6
-label: '表格'
+label: 'Table'
 ---
 
-使用 `border` 属性来启用边框。
+Use the `border` property to enable borders.

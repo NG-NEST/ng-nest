@@ -1,11 +1,11 @@
 ---
-label: 'TreeFile 树形文件'
+label: 'TreeFile'
 category: 'Data'
 ---
 
-# TreeFile 树形文件
+# TreeFile
 
-树形目录展示文件内容。
+The tree directory displays the file contents.
 
 ## Used alone
 

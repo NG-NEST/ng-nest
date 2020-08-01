@@ -1,11 +1,11 @@
 ---
-label: 'Popover 气泡卡片'
+label: 'Popover'
 category: 'Feedback'
 ---
 
-# Popover 气泡卡片
+# Popover
 
-点击/鼠标移入元素，弹出气泡式的卡片浮层。
+click/mouse on the element to pop up a bubbling card float.
 
 ## Used alone
 

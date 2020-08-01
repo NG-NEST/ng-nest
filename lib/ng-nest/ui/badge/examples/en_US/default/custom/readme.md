@@ -1,7 +1,7 @@
 ---
 order: 3
-label: '自定义'
+label: 'Custom'
 ---
 
-- 可以显示数字以外的文本内容。
-- 定义 `value` 为 `string` 类型是时可以用于显示自定义文本。
+- Can display text content other than Numbers.
+- Define `value` to be of type `string` to be used to display custom text.

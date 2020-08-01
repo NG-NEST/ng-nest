@@ -8,6 +8,6 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data: XData<XRadioNode> = ['QQ', '微信', '钉钉', '微博'];
-  model = '微信';
+  data: XData<XRadioNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
+  model = 'WeChat';
 }

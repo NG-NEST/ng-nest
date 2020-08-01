@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '分隔符'
+label: 'Separator'
 ---
 
-使用 `separator` 来设置节点与节点之间的分隔符。
+Use `separator` to set the separator between nodes.

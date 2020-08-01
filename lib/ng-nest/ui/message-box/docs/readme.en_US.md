@@ -1,11 +1,11 @@
 ---
-label: 'MessageBox 弹框'
+label: 'MessageBox'
 category: 'Feedback'
 ---
 
-# MessageBox 弹框
+# MessageBox
 
-模拟系统的消息提示框而实现的一套模态对话框组件，用于消息提示、确认消息和提交内容。
+A set of modal dialog components implemented by simulating the system's message prompt box for message prompt, confirmation message and submission content.
 
 ## Used alone
 

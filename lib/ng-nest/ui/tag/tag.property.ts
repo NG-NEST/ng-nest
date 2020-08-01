@@ -15,27 +15,33 @@ const X_CONFIG_NAME = 'tag';
 @Component({ template: '' })
 export class XTagProperty extends XProperty {
   /**
-   * 标签样式类型
+   * @zh_CN 标签样式类型
+   * @en_US Label style type
    */
   @Input() type: XType = 'initial';
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 显示关闭按钮
+   * @zh_CN 显示关闭按钮
+   * @en_US Show close button
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() closable: XBoolean;
   /**
-   * 深色主题
+   * @zh_CN 深色主题
+   * @en_US Dark theme
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dark: XBoolean;
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
   @Input() @XInputBoolean() disabled?: XBoolean;
   /**
-   * 点击关闭的事件
+   * @zh_CN 点击关闭的事件
+   * @en_US Click to close the event
    */
   @Output() close = new EventEmitter<void>();
 }

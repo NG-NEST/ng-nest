@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `type` 属性来设置标签的风格。
+Use the `type` attribute to set the style of the label.

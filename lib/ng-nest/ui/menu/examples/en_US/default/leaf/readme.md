@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '子节点'
+label: 'Child node'
 ---
 
-使用数据对象中的 `id` 和 `pid` 属性构建父子关系来显示子节点。
+Use the `id` and `pid` attributes in the data object to construct a parent-child relationship to display child nodes.

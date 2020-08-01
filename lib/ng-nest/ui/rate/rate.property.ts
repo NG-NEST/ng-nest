@@ -14,7 +14,8 @@ export const XRatePrefix = 'x-rate';
 @Component({ template: '' })
 export class XRateProperty extends XControlValueAccessor<any> implements XRateOption {
   /**
-   * 评分个数
+   * @zh_CN 评分个数
+   * @en_US Number of ratings
    */
   @Input() @XInputNumber() count: XNumber = 5;
 }
@@ -25,7 +26,8 @@ export class XRateProperty extends XControlValueAccessor<any> implements XRateOp
  */
 export interface XRateOption extends XFormOption {
   /**
-   * 评分个数
+   * @zh_CN 评分个数
+   * @en_US Number of ratings
    */
   count?: XNumber;
 }

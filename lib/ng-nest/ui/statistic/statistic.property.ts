@@ -14,23 +14,28 @@ export const XStatisticPrefix = 'x-statistic';
 @Component({ template: '' })
 export class XStatisticProperty {
   /**
-   * 显示值
+   * @zh_CN 显示值
+   * @en_US Display value
    */
   @Input() value?: XTemplate;
   /**
-   * 标题
+   * @zh_CN 标题
+   * @en_US Title
    */
   @Input() label?: XTemplate;
   /**
-   * 前缀
+   * @zh_CN 前缀
+   * @en_US Prefix
    */
   @Input() prefix?: XTemplate;
   /**
-   * 后缀
+   * @zh_CN 后缀
+   * @en_US Suffix
    */
   @Input() suffix?: XTemplate;
   /**
-   * 显示值样式
+   * @zh_CN 显示值样式
+   * @en_US Display value style
    */
   @Input() valueStyle: XStyle = {};
 }
@@ -49,11 +54,13 @@ const X_CONFIG_NAME = 'countdown';
 @Component({ template: '' })
 export class XCountdownProperty extends XStatisticProperty {
   /**
-   * 格式化
+   * @zh_CN 格式化
+   * @en_US Format
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
   /**
-   * 倒计时结束的事件
+   * @zh_CN 倒计时结束的事件
+   * @en_US Event at the end of the countdown
    */
   @Output() finish = new EventEmitter<void>();
 }

@@ -8,7 +8,7 @@ default: true
 
 NG-NEST 是一个开源的 Web 应用程序框架，基于 Angular 和 Nest ，主要用于研发企业级中后台产品。
 
-- [Angular](https://angular.io/docs) 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。
+- [Angular](https://angular.cn/docs) 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。
 - [Nest](https://docs.nestjs.com/) 是构建高效、可扩展的 Node.js 服务器端应用程序的框架。
 
 ## 特性
@@ -37,7 +37,7 @@ npm 1.3.1
 
 ## 基本假设
 
-本文档假设你已经熟悉了 [Angular](https://angular.io/docs) 和 [Nest](https://docs.nestjs.com/) 的一些基础知识。文档中的代码范例都是使用最新版本的 [TypeScript](https://www.typescriptlang.org/) ,它会用 [类型](https://www.typescriptlang.org/docs/handbook/classes.html) 实现依赖注入，还会用 [装饰器](https://www.typescriptlang.org/docs/handbook/decorators.html) 来提供元数据。
+本文档假设你已经熟悉了 [Angular](https://angular.cn/docs) 和 [Nest](https://docs.nestjs.com/) 的一些基础知识。文档中的代码范例都是使用最新版本的 [TypeScript](https://www.typescriptlang.org/) ,它会用 [类型](https://www.typescriptlang.org/docs/handbook/classes.html) 实现依赖注入，还会用 [装饰器](https://www.typescriptlang.org/docs/handbook/decorators.html) 来提供元数据。
 
 ## 交流群号
 

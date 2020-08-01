@@ -27,79 +27,98 @@ const X_CONFIG_NAME = 'table';
 @Component({ template: '' })
 export class XTableProperty extends XPaginationProperty implements XTableOption {
   /**
-   * 行数据
+   * @zh_CN 行数据
+   * @en_US Row data
    */
   @Input() data: XData<XTableRow> = [];
   /**
-   * 列集合
+   * @zh_CN 列集合
+   * @en_US Column set
    */
   @Input() columns: XTableColumn[] = [];
   /**
-   * 表头和行高，单位 px
+   * @zh_CN 表头和行高，单位 px
+   * @en_US Header and row height, unit px
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() rowHeight: number;
   /**
-   * 是否启用加载 loading
+   * @zh_CN 是否启用加载 loading
+   * @en_US Whether to enable loading
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() loading: XBoolean;
   /**
-   * 当前选中行数据
+   * @zh_CN 当前选中行数据
+   * @en_US Currently selected row data
    */
   @Input() activatedRow?: XTableRow;
   /**
-   * 当前选中行改变
+   * @zh_CN 当前选中行改变
+   * @en_US The currently selected row changes
    */
   @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
-   * 列头自定义模板
+   * @zh_CN 列头自定义模板
+   * @en_US Column header custom template
    */
   @Input() headColumnTpl: XTableTemplate = {};
   /**
-   * 列内容自定义模板
+   * @zh_CN 列内容自定义模板
+   * @en_US Column content custom template
    */
   @Input() bodyColumnTpl: XTableTemplate = {};
   /**
-   * 排序点击的事件
+   * @zh_CN 排序点击的事件
+   * @en_US Sort click events
    */
   @Output() sortChange = new EventEmitter<XSort[]>();
   /**
-   * 允许行点击选中
+   * @zh_CN 允许行点击选中
+   * @en_US Allow row click to select
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowSelectRow: XBoolean;
   /**
-   * 开启虚拟滚动
+   * @zh_CN 开启虚拟滚动
+   * @en_US Turn on virtual scrolling
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll: XBoolean;
   /**
-   * body 数据高度
+   * @zh_CN body 数据高度
+   * @en_US body data height
    */
   @Input() @XInputNumber() bodyHeight: number;
   /**
-   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
   @Input() minBufferPx: number = 100;
   /**
-   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
   @Input() maxBufferPx: number = 200;
   /**
-   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
   @Input() @XInputNumber() adaptionHeight: XNumber;
   /**
-   * 文档高度百分比，弹窗百分比高度用到
+   * @zh_CN 文档高度百分比，弹窗百分比高度用到
+   * @en_US Document height percentage, used by pop-up window percentage height
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
   /**
-   * checkbox 列初始选中的数据，列中激活 checkbox
+   * @zh_CN checkbox 列初始选中的数据，列中激活 checkbox
+   * @en_US Checkbox column initially selected data, checkbox is activated in column
    */
   @Input() checkedRow: { [prop: string]: any[] } = {};
   /**
-   * 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
+   * @zh_CN 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
+   * @en_US If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up
    */
   @Input() @XInputBoolean() manual: XBoolean = true;
   /**
-   * 参数控制请求改变事件
+   * @zh_CN 参数控制请求改变事件
+   * @en_US Parameter control request change event
    */
   @Output() manualChange = new EventEmitter<boolean>();
 }
@@ -110,115 +129,145 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
  */
 export interface XTableOption extends XPaginationOption {
   /**
-   * 行数据
+   * @zh_CN 行数据
+   * @en_US Row data
    */
   data?: XData<XTableRow>;
   /**
-   * 列集合
+   * @zh_CN 列集合
+   * @en_US Column set
    */
   columns?: XTableColumn[];
   /**
-   * 表头和行高，单位 px
+   * @zh_CN 表头和行高，单位 px
+   * @en_US Header and row height, unit px
    */
   rowHeight?: number;
   /**
-   * 是否启用加载 loading
+   * @zh_CN 是否启用加载 loading
+   * @en_US Whether to enable loading
    */
   loading?: XBoolean;
   /**
-   * 当前选中行数据
+   * @zh_CN 当前选中行数据
+   * @en_US Currently selected row data
    */
   activatedRow?: XTableRow;
   /**
-   * 列头自定义模板
+   * @zh_CN 列头自定义模板
+   * @en_US Column header custom template
    */
   headColumnTpl?: XTableTemplate;
   /**
-   * 列内容自定义模板
+   * @zh_CN 列内容自定义模板
+   * @en_US Column content custom template
    */
   bodyColumnTpl?: XTableTemplate;
   /**
-   * 开启虚拟滚动
+   * @zh_CN 开启虚拟滚动
+   * @en_US Turn on virtual scrolling
    */
   virtualScroll?: XBoolean;
   /**
-   * body 数据高度
+   * @zh_CN body 数据高度
+   * @en_US body data height
    */
   bodyHeight?: number;
   /**
-   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
   minBufferPx?: number;
   /**
-   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
   maxBufferPx?: number;
   /**
-   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
   adaptionHeight?: XNumber;
   /**
-   * 文档高度百分比，弹窗百分比高度用到
+   * @zh_CN 文档高度百分比，弹窗百分比高度用到
+   * @en_US Document height percentage, used by pop-up window percentage height
    */
   docPercent?: XNumber;
 }
 
 /**
- * 数据
+ * @zh_CN 数据
+ * @en_US Data
  */
 export interface XTableRow extends XId {
   /**
-   * 自定义属性
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
    */
   [property: string]: any;
 }
 
 /**
- * 列参数
+ * @zh_CN 列参数
+ * @en_US Column parameter
  */
 export interface XTableColumn extends XIdentityProperty {
+  /**
+   * @zh_CN 类型
+   * @en_US Types of
+   */
   type?: XColumnType;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   width?: number;
   /**
-   * flex 布局宽度
+   * @zh_CN flex 布局宽度
+   * @en_US Flex layout width
    */
   flex?: number;
   /**
-   * 查询字段
+   * @zh_CN 查询字段
+   * @en_US Query field
    */
   search?: boolean;
   /**
-   * 排序字段
+   * @zh_CN 排序字段
+   * @en_US Sort field
    */
   sort?: boolean;
   /**
-   * 固定列，距离左边的距离
+   * @zh_CN 固定列，距离左边的距离
+   * @en_US Fixed column, distance from left
    */
   left?: number;
   /**
-   * 操作按钮
+   * @zh_CN 操作按钮
+   * @en_US Operation button
    */
   action?: boolean;
   /**
-   * type 为 checkbox 时绑定行点击选中事件
+   * @zh_CN type 为 checkbox 时绑定行点击选中事件
+   * @en_US Bind row click selection event when type is checkbox
    */
   rowChecked?: boolean;
   /**
-   * 自定义属性
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
    */
   [prop: string]: any;
 }
 
 /**
- * 列类型
+ * @zh_CN 列类型
+ * @en_US Column type
  */
 export type XColumnType = 'label' | 'index' | 'checkbox';
 
 /**
- * 模板
+ * @zh_CN 模板
+ * @en_US Template
  */
 export type XTableTemplate = { [property: string]: TemplateRef<any> };
 
@@ -235,23 +284,28 @@ export const XTableHeadPrefix = 'x-table-head';
 @Component({ template: '' })
 export class XTableHeadProperty extends XProperty {
   /**
-   * 列集合
+   * @zh_CN 列集合
+   * @en_US Column set
    */
   @Input() columns: XTableColumn[] = [];
   /**
-   * 高度，单位 px
+   * @zh_CN 高度，单位 px
+   * @en_US Height in px
    */
   @Input() @XInputNumber() rowHeight: XNumber = 42;
   /**
-   * 自定义模板
+   * @zh_CN 自定义模板
+   * @en_US Custom template
    */
   @Input() columnTpl: XTableTemplate = {};
   /**
-   * 竖向滚动条宽度
+   * @zh_CN 竖向滚动条宽度
+   * @en_US Vertical scroll bar width
    */
   @Input() scrollYWidth: number;
   /**
-   * 横向滚动条宽度
+   * @zh_CN 横向滚动条宽度
+   * @en_US Horizontal scroll bar width
    */
   @Input() scrollXWidth: number | null;
 }
@@ -269,55 +323,68 @@ export const XTableBodyPrefix = 'x-table-body';
 @Component({ template: '' })
 export class XTableBodyProperty extends XProperty {
   /**
-   * 行数据
+   * @zh_CN 行数据
+   * @en_US Row data
    */
   @Input() data: XTableRow[] = [];
   /**
-   * 列集合
+   * @zh_CN 列集合
+   * @en_US Column set
    */
   @Input() columns: XTableColumn[] = [];
   /**
-   * 自定义模板
+   * @zh_CN 自定义模板
+   * @en_US Custom template
    */
   @Input() columnTpl: XTableTemplate = {};
   /**
-   * 当前选中行数据
+   * @zh_CN 当前选中行数据
+   * @en_US Currently selected row data
    */
   @Input() activatedRow?: XTableRow;
   /**
-   * 当前选中行改变
+   * @zh_CN 当前选中行改变
+   * @en_US The currently selected row changes
    */
   @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
-   * 高度，单位 px
+   * @zh_CN 高度，单位 px
+   * @en_US Height in px
    */
   @Input() @XInputNumber() rowHeight: XNumber = 42;
   /**
-   * body 数据高度
+   * @zh_CN body 数据高度
+   * @en_US body data height
    */
   @Input() @XInputNumber() bodyHeight: number;
   /**
-   * 允许行点击选中
+   * @zh_CN 允许行点击选中
+   * @en_US Allow row click to select
    */
   @Input() @XInputBoolean() allowSelectRow: XBoolean = true;
   /**
-   * 开启虚拟滚动
+   * @zh_CN 开启虚拟滚动
+   * @en_US Turn on virtual scrolling
    */
   @Input() @XInputBoolean() virtualScroll: boolean = false;
   /**
-   * 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
   @Input() minBufferPx: number = 100;
   /**
-   * 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
   @Input() maxBufferPx: number = 200;
   /**
-   * 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
   @Input() @XInputNumber() adaptionHeight: XNumber;
   /**
-   * 文档高度百分比，弹窗百分比高度用到
+   * @zh_CN 文档高度百分比，弹窗百分比高度用到
+   * @en_US Document height percentage, used by pop-up window percentage height
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
 }

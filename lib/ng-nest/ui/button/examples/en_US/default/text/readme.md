@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '文字按钮'
+label: 'Text button'
 ---
 
-没有边框和背景色的纯文字按钮。
+Plain text buttons with no border or background color.

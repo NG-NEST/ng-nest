@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `ngModel` 属性做双向绑定值。
+Use the `ngModel` property for two-way binding values.

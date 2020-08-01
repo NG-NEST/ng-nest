@@ -1,11 +1,11 @@
 ---
-label: 'Link 文字链接'
+label: 'Link'
 category: 'Basic'
 ---
 
-# Link 文字链接
+# Link
 
-文字超链接。
+Text hyperlinks.
 
 ## Used alone
 

@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './tag.component.html'
 })
 export class ExTagComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
+  labels = ['User Management', 'Configuration Management', 'Role Management', 'Tasks'];
 }

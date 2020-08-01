@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '选择时分'
+label: 'Select time'
 ---
 
-使用 `type` 属性来设置选择小时或分钟。
+Use the `type` attribute to set the selected hour or minute.

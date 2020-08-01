@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `data` 配置下拉菜单的数据。
+Use `data` to configure the data in the dropdown menu.

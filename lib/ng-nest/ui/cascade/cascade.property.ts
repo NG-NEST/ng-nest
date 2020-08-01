@@ -15,15 +15,18 @@ const X_CONFIG_NAME = 'cascade';
 @Component({ template: '' })
 export class XCascadeProperty extends XControlValueAccessor<any> implements XCascadeOption {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XCascadeNode> = [];
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   @Output() nodeEmit = new EventEmitter<XCascadeNode>();
 }
@@ -34,21 +37,25 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
  */
 export interface XCascadeOption extends XFormOption {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   data?: XData<XCascadeNode>;
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   placement?: XCorner;
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   nodeClick?: (node: XCascadeNode) => void;
 }
 
 /**
- * Cascade 数据对象
+ * @zh_CN Cascade 数据对象
+ * @en_US Cascade data object
  */
 export interface XCascadeNode extends XParentIdentityProperty<XCascadeNode> {}
 

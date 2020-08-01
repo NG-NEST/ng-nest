@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-可同时展开多个面板，面板之间不影响。
+Multiple panels can be expanded at the same time, with no influence between panels.

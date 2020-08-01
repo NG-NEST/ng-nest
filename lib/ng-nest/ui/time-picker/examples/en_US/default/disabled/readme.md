@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '禁用'
+label: 'Disabled'
 ---
 
-使用 `disabled` 属性来禁用选择器。
+Use the `disabled` property to disable the selector.

@@ -8,9 +8,9 @@ import { XStepsNode } from '@ng-nest/ui/steps';
 })
 export class ExIconComponent {
   data: XData<XStepsNode> = [
-    { label: '登录', icon: 'fto-user' },
-    { label: '验证', icon: 'fto-user-check' },
-    { label: '付款', icon: 'fto-credit-card' },
-    { label: '完成', icon: 'fto-smile' }
+    { label: 'log in', icon: 'fto-user' },
+    { label: 'verification', icon: 'fto-user-check' },
+    { label: 'payment', icon: 'fto-credit-card' },
+    { label: 'carry out', icon: 'fto-smile' }
   ];
 }

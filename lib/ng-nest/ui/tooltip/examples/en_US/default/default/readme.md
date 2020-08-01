@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `placement` 属性来设置显示的位置。
+Use the `placement` property to set the display position.

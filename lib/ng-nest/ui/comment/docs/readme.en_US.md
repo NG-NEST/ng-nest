@@ -1,11 +1,11 @@
 ---
-label: 'Comment 评论'
+label: 'Comment'
 category: 'Data'
 ---
 
-# Comment 评论
+# Comment
 
-对网站内容的反馈、评价和讨论。
+Feedback, evaluation and discussion of site content.
 
 ## Used alone
 

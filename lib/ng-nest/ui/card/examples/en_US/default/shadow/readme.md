@@ -1,7 +1,7 @@
 ---
 order: 4
-label: '卡片阴影'
+label: 'Shadow'
 ---
 
-- 可对阴影的显示进行配置。
-- 通过 `shadow` 属性设置卡片阴影出现的时机： `always` 、 `hover` 或 `never` 。
+- The display of shadows can be configured.
+- Sets the timing of card shadows with the `shadow` property: `always`, `hover`, or `never`.

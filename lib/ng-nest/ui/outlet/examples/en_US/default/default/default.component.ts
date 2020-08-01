@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  label = '字符串';
+  label = 'String';
 }

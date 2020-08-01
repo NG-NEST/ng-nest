@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `x-popconfirm` 标签包裹需要弹出确认框的元素。
+Use the `x-popconfirm` tag to wrap the elements that need to pop up the confirmation box.

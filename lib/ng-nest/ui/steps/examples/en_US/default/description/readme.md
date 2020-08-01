@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '添加描述'
+label: 'Description'
 ---
 
-使用 `data` 数据对象中的 `description` 属性来设置描述文本。
+Use the `description` attribute in the `data` data object to set the description text.

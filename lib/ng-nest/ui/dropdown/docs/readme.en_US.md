@@ -1,11 +1,11 @@
 ---
-label: 'Dropdown 下拉菜单'
+label: 'Dropdown'
 category: 'Navigation'
 ---
 
-# Dropdown 下拉菜单
+# Dropdown
 
-向下弹出的列表。
+The list that pops down.
 
 ## Used alone
 

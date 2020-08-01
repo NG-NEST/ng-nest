@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `percent` 属性设置当前进度，`status` 设置当前状态。
+Use the `percent` property to set the current progress, and `status` to set the current status.

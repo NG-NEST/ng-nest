@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '文字自定义'
+label: 'Custome Text'
 ---
 
-使用 `format` 来自定义显示文字。
+Use `format` to customize the display text.

@@ -15,19 +15,23 @@ const X_CONFIG_NAME = 'tooltip';
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipProperty {
   /**
-   * 内容
+   * @zh_CN 内容
+   * @en_US Content
    */
   @Input() content: string;
   /**
-   * 显示位置
+   * @zh_CN 显示位置
+   * @en_US Display position
    */
   @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
-   * 显示/隐藏
+   * @zh_CN 显示/隐藏
+   * @en_US Show/hide
    */
   @Input() @XInputBoolean() visible: XBoolean;
   /**
-   * 手动处理关闭事件
+   * @zh_CN 手动处理关闭事件
+   * @en_US Manually handle the shutdown event
    */
   @Input() @XInputBoolean() manual: XBoolean;
 }

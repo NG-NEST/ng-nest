@@ -1,7 +1,7 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-- 通过 `src` 来设置头像图片的链接地址。
-- 通过 `shape` 和 `size` 设置头像的形状和大小。
+- Set the link address of the avatar image by `src`.
+- Set the shape and size of the avatar by `shape` and `size`.

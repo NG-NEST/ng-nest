@@ -1,11 +1,11 @@
 ---
-label: 'Anchor 锚点'
+label: 'Anchor'
 category: 'Navigation'
 ---
 
-# Anchor 锚点
+# Anchor
 
-用于跳转到页面指定位置，自动识别组件中的一级标题标签，根据层级自动生成导航树。
+Used to jump to a specified location on a page, automatically identify a level 1 header label in a component, and automatically generate a navigation tree based on the hierarchy.
 
 ## Used alone
 

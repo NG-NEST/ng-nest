@@ -1,8 +1,8 @@
 ---
-label: '文档'
+label: 'Doc'
 hidden: true
 ---
 
-# 文档 Doc
+# Doc
 
-定义文档显示的样式，指定文档中标题、行、分类、表格等标签的样式。
+Defines the style of the document display, specifying the style of labels in the document, such as headings, rows, categories, tables, and so on.

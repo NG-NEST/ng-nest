@@ -14,80 +14,98 @@ export const XSkeletonPrefix = 'x-skeleton';
 @Component({ template: '' })
 export class XSkeletonProperty extends XProperty {
   /**
-   * 骨架数据
+   * @zh_CN 骨架数据
+   * @en_US Skeleton data
    */
   @Input() data: XSkeletonRow[] = [{ cols: [{ width: '10rem', type: 'title' }] }, { cols: [{}] }, { cols: [{}] }, { cols: [{ span: 16 }] }];
   /**
-   * 加载中
+   * @zh_CN 加载中
+   * @en_US Loading
    */
   @Input() @XInputBoolean() loading: XBoolean = true;
   /**
-   * 激活动画
+   * @zh_CN 激活动画
+   * @en_US Activate animation
    */
   @Input() @XInputBoolean() active: XBoolean;
   /**
-   * 显示边框
+   * @zh_CN 显示边框
+   * @en_US Show border
    */
   @Input() @XInputBoolean() border: XBoolean;
 }
 
 /**
- * 行
+ * @zh_CN 行
+ * @en_US Row
  */
 export interface XSkeletonRow {
   /**
-   * 列
+   * @zh_CN 列
+   * @en_US Column
    */
   cols?: XSkeletonCol[];
   /**
-   * flex 布局
+   * @zh_CN flex 布局
+   * @en_US flex layout
    */
   flex?: boolean;
   /**
-   * 列间距
+   * @zh_CN 列间距
+   * @en_US Column spacing
    */
   space?: number;
   /**
-   * 外边距
+   * @zh_CN 外边距
+   * @en_US Margin
    */
   margin?: string;
   /**
-   * 样式
+   * @zh_CN 样式
+   * @en_US Style
    */
   style?: XStyle;
 }
 
 /**
- * 列
+ * @zh_CN 列
+ * @en_US Column
  */
 export interface XSkeletonCol {
   /**
-   * 24栅格布局，列占的宽度
+   * @zh_CN 24栅格布局，列占的宽度
+   * @en_US 24 grid layout, column width
    */
   span?: number;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   width?: string;
   /**
-   * 高度
+   * @zh_CN 高度
+   * @en_US Height
    */
   height?: string;
   /**
-   * 列类型
+   * @zh_CN 列类型
+   * @en_US Column type
    */
   type?: XSkeletonType;
   /**
-   * 子集
+   * @zh_CN 子集
+   * @en_US Rows
    */
   rows?: XSkeletonRow[];
   /**
-   * 样式
+   * @zh_CN 样式
+   * @en_US Style
    */
   style?: XStyle;
 }
 
 /**
- * 列类型
+ * @zh_CN 列类型
+ * @en_US Column type
  */
 export type XSkeletonType = 'title' | 'img' | 'avatar' | 'transparent';

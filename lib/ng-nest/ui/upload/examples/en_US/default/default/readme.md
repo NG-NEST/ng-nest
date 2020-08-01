@@ -1,9 +1,9 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-由于选项默认可见，不宜过多，若选项过多，建议使用 `Select` 选择器。
+Since the options are visible by default, it should not be too many. If there are too many options, it is recommended to use the `Select` selector.
 
-- 使用 `data` 属性来设置 `upload` 个数。
-- 使用 `ngModel` 属性做双向绑定值。
+- Use the `data` attribute to set the number of `upload`.
+- Use the `ngModel` property for two-way binding values.

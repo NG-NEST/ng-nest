@@ -1,10 +1,10 @@
 ---
 order: 1
-label: '常见页面布局'
+label: 'Common page layouts'
 ---
 
-使用单一分栏创建基础的栅格布局。
+Use a single column to create the underlying grid layout.
 
-- 通过指定列 `x-col` 的跨度参数 `[span]` 来设定每列的占比。
-- `x-row` 行宽度 `width` 根据父元素宽度自动撑开到 100%。
-- `x-col` 必须包含在 `x-row` 里面。
+- Set the proportion of each column by specifying the span parameter `span` of column `x-col`.
+- `x-row` row width `width` automatically expands to 100% based on parent element width.
+- `x-col` must be included in `x-row`.

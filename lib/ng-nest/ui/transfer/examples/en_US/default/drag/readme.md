@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '拖动调整'
+label: 'Drag'
 ---
 
-使用 `drag` 属性来启用拖动操作。
+Use the `drag` attribute to enable drag operations.

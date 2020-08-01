@@ -1,11 +1,11 @@
 ---
-label: '内部'
+label: 'Inner'
 hidden: true
 ---
 
-# 内部 Inner
+# Inner
 
-定义内容中的样式。
+Define the style in the content.
 
 ## API
 

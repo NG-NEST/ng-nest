@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class ExAsyncComponent {
   data: Observable<string[]>;
-  model = ['钉钉'];
+  model = ['DingTalk'];
   loading = false;
   getData() {
     this.loading = true;
     this.data = new Observable((x) => {
-      // 替换成http请求，或者data直接定义成 Observable 对象
+      // Instead of an HTTP request, or data is directly defined as an Observable object
       setTimeout(() => {
-        this.model = ['微博'];
+        this.model = ['Weibo'];
         this.loading = false;
-        x.next(['QQ', '微信', '钉钉', '微博']);
+        x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
         x.complete();
       }, 2000);
     });

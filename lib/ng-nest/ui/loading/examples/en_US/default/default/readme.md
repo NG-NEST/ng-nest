@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `x-loading` 属性显示/隐藏加载中。
+Use the `x-loading` property to show/hide the loading.

@@ -1,13 +1,13 @@
 ---
-label: '示例'
+label: 'Examples'
 hidden: true
 ---
 
-# 文档示例 Examples
+# Examples
 
-定义示例代码，分类以及子类，代码块的样式。
+Defines the style of sample code, categories, and subclasses of code blocks.
 
-## 用到的组件
+## Components used
 
-- `x-tabs` 选项卡组件用来做分类和子类。
-- `x-highlight` 代码高亮组件。
+- `x-tabs` The tab component is used for categorizing and subclassing.
+- `x-highlight` The code highlights the component.

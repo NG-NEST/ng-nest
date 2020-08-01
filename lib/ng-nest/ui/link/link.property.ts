@@ -15,36 +15,44 @@ const X_CONFIG_NAME = 'link';
 @Component({ template: '' })
 export class XLinkProperty extends XProperty {
   /**
-   * 链接
+   * @zh_CN 链接
+   * @en_US Link
    */
   @Input() href?: string;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   @Input() icon?: string;
   /**
-   * 下划线
+   * @zh_CN 下划线
+   * @en_US Underscore
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() underline: XBoolean;
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
   @Input() @XInputBoolean() disabled: XBoolean;
   /**
-   * 图标靠右对齐
+   * @zh_CN 图标靠右对齐
+   * @en_US Icons are aligned to the right
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() iconRight: XBoolean;
   /**
-   * 链接类型
+   * @zh_CN 链接类型
+   * @en_US Link type
    */
   @Input() type?: XLinkType;
   /**
-   * 打开方式
+   * @zh_CN 打开方式
+   * @en_US Open method
    */
   @Input() target?: string;
 }
 
 /**
- * 链接类型
+ * @zh_CN 链接类型
+ * @en_US Link type
  */
 export type XLinkType = 'primary' | 'success' | 'info' | 'warning' | 'danger';

@@ -17,88 +17,107 @@ export const XMessageBoxPortal = 'x-message-box-portal';
  */
 export interface XMessageBoxOption extends XAlertOption {
   /**
-   * 方位，九宫格
+   * @zh_CN 方位，九宫格
+   * @en_US Direction, nine grid
    * @default 'top'
    */
   placement?: XPlace;
   /**
-   * 偏移距离
+   * @zh_CN 偏移距离
+   * @en_US Offset distance
    * @default '2rem'
    */
   offset?: string | string[];
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Types of
    * @default 'info'
    */
   type?: XMessageBoxType;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    * @default '16rem'
    */
   width?: string;
   /**
-   * 高度
+   * @zh_CN 高度
+   * @en_US Height
    */
   height?: string;
   /**
-   * 隐藏关闭按钮
+   * @zh_CN 隐藏关闭按钮
+   * @en_US Hide close button
    * @default true
    */
   hideClose?: boolean;
   /**
-   * 显示图标
+   * @zh_CN 显示图标
+   * @en_US Show icon
    * @default true
    */
   showIcon?: boolean;
   /**
-   * 显示取消按钮
+   * @zh_CN 显示取消按钮
+   * @en_US Show cancel button
    */
   showCancel?: boolean;
   /**
-   * 关闭事件
+   * @zh_CN 关闭事件
+   * @en_US Close event
    */
   callback?: XMessageBoxCallback;
   /**
-   * 点击遮罩关闭
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
    * @default false
    */
   backdropClose?: boolean;
   /**
-   * 确认按钮文字
+   * @zh_CN 确认按钮文字
+   * @en_US Confirm button text
    * @default '确定'
    */
   confirmText?: string;
   /**
-   * 取消按钮文字
+   * @zh_CN 取消按钮文字
+   * @en_US Cancel button text
    * @default '取消'
    */
   cancelText?: string;
   /**
-   * 是否显示输入框
+   * @zh_CN 是否显示输入框
+   * @en_US Whether to show the input box
    */
   showInput?: boolean;
   /**
-   * 匹配规则
+   * @zh_CN 匹配规则
+   * @en_US Matching rules
    */
   inputPattern?: RegExp;
   /**
-   * 匹配失败的信息提示
+   * @zh_CN 匹配失败的信息提示
+   * @en_US Information prompt for matching failure
    */
   inputInvalidMessage?: string;
   /**
-   * 输入框的占位符
+   * @zh_CN 输入框的占位符
+   * @en_US Placeholder for input box
    */
   inputPlaceholder?: string;
   /**
-   * 输入框的类型
+   * @zh_CN 输入框的类型
+   * @en_US Type of input box
    */
   inputType?: string;
   /**
-   * 输入框的类型
+   * @zh_CN 输入框的值
+   * @en_US Value of input box
    */
   inputValue?: string;
   /**
-   * 输入框的验证函数
+   * @zh_CN 输入框的验证函数
+   * @en_US Validation function of input box
    */
   inputValidator?: Function;
 }
@@ -110,7 +129,8 @@ export interface XMessageBoxCallback {
 export type XMessageBoxAction = 'confirm' | 'cancel';
 
 /**
- * 创建的消息对象
+ * @zh_CN 创建的消息对象
+ * @en_US Message object created
  */
 export interface XMessageBoxOverlayRef extends XPortalOverlayRef<XMessageBoxComponent> {}
 
@@ -120,6 +140,7 @@ export interface XMessageBoxRef {
 }
 
 /**
- * 类型
+ * @zh_CN 类型
+ * @en_US Types of
  */
 export type XMessageBoxType = XStatus;

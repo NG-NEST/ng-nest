@@ -1,11 +1,11 @@
 ---
-label: 'Outlet 自定义模板'
+label: 'Outlet'
 category: 'Data'
 ---
 
-# Outlet 自定义模板
+# Outlet
 
-扩展 `ngTemplateOutlet` 指令，支持多种数据格式。
+Extends the `ngTemplateOutlet` directive to support multiple data formats.
 
 ## Used alone
 

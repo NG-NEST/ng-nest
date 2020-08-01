@@ -1,6 +1,6 @@
 ---
 order: 6
-label: '布局'
+label: 'Layout'
 ---
 
-使用 `layout` 属性来设置布局方式。
+Use the `layout` property to set the layout.

@@ -1,11 +1,11 @@
 ---
-label: 'Slider 滑动菜单'
+label: 'Slider'
 category: 'Navigation'
 ---
 
-# Slider 滑动菜单
+# Slider
 
-通过点击滑动到选定菜单。
+Slide to the selected menu by clicking.
 
 ## Used alone
 

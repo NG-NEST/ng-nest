@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '箭头滑动'
+label: 'Arrow slide'
 ---
 
-自动根据父元素的宽度来显示左右/上下滚动的箭头。
+Automatically display the left and right/up and down scroll arrows according to the width of the parent element.

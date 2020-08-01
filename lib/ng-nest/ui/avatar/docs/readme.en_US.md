@@ -1,11 +1,11 @@
 ---
-label: 'Avatar 头像'
+label: 'Avatar'
 category: 'Data'
 ---
 
-# Avatar 头像
+# Avatar
 
-用图标、图片或者字符的形式展示用户或事物信息。
+Display user or item information in the form of icons, pictures, or characters.
 
 ## Used alone
 

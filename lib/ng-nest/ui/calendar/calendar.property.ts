@@ -14,25 +14,30 @@ export const XCalendarPrefix = 'x-calendar';
 @Component({ template: '' })
 export class XCalendarProperty extends XProperty {
   /**
-   * 事务数据对象
+   * @zh_CN 事务数据对象
+   * @en_US Transaction data object
    */
   @Input() data: XCalendarData;
   /**
-   * 显示模式
+   * @zh_CN 显示模式
+   * @en_US Display mode
    */
   @Input() model: XCalendarModel = 'month';
   /**
-   * 选择日期变化的事件
+   * @zh_CN 选择日期变化的事件
+   * @en_US Select the event of the date change
    */
   @Output() dateChange = new EventEmitter<Date>();
   /**
-   * 日期范围变化的事件
+   * @zh_CN 日期范围变化的事件
+   * @en_US Date range change event
    */
   @Output() rangeChange = new EventEmitter<Date[]>();
 }
 
 /**
- * Calendar 数据对象
+ * @zh_CN Calendar 数据对象
+ * @en_US Calendar data object
  */
 export interface XCalendarData {
   /**
@@ -43,11 +48,13 @@ export interface XCalendarData {
 }
 
 /**
- * Calendar 数据对象
+ * @zh_CN Calendar 数据对象
+ * @en_US Calendar data object
  */
 export interface XCalendarNode extends XIdentityProperty {}
 
 /**
- * 显示模式
+ * @zh_CN 显示模式
+ * @en_US Display mode
  */
 export type XCalendarModel = 'month' | 'year';

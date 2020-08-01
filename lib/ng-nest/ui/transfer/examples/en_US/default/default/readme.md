@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `data` 属性设置数据集，`ngModel` 绑定右边选择的数据。
+Use the `data` property to set the data set, and `ngModel` to bind the data selected on the right.

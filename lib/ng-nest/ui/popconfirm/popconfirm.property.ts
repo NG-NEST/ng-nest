@@ -16,47 +16,58 @@ const X_CONFIG_NAME = 'popconfirm';
 @Component({ template: '' })
 export class XPopconfirmProperty extends XProperty {
   /**
-   * 标题，支持自定义模板
+   * @zh_CN 标题，支持自定义模板
+   * @en_US Title, support custom template
    */
   @Input() title?: XTemplate;
   /**
-   * 内容，支持自定义模板
+   * @zh_CN 内容，支持自定义模板
+   * @en_US Content, support custom templates
    */
   @Input() content?: XTemplate;
   /**
-   * 弹出的位置
+   * @zh_CN 弹出的位置
+   * @en_US Pop-up position
    */
   @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
-   * 激活方式
+   * @zh_CN 激活方式
+   * @en_US Activation method
    */
   @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'click') trigger: XPopoverTrigger;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width: string;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-help-circle') icon: string;
   /**
-   * 图标颜色
+   * @zh_CN 图标颜色
+   * @en_US Icon color
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '#e6a23c') iconColor: string;
   /**
-   * 取消的文字
+   * @zh_CN 取消的文字
+   * @en_US Canceled text
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
   /**
-   * 确认的文字
+   * @zh_CN 确认的文字
+   * @en_US Confirmed text
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
   /**
-   * 取消的点击事件
+   * @zh_CN 取消的点击事件
+   * @en_US Cancelled click event
    */
   @Output() cancel = new EventEmitter();
   /**
-   * 确认的点击事件
+   * @zh_CN 确认的点击事件
+   * @en_US Confirmed click event
    */
   @Output() confirm = new EventEmitter();
 }

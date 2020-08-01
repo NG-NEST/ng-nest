@@ -10,17 +10,17 @@ import { XData } from '@ng-nest/ui/core';
 export class ExIconComponent implements OnInit {
   data: XData<XCheckboxNode> = [
     { id: 'QQ', icon: 'ado-qq' },
-    { id: '微信', icon: 'ado-wechat' },
-    { id: '钉钉', icon: 'ado-dingding' },
-    { id: '微博', icon: 'ado-weibo' }
+    { id: 'WeChat', icon: 'ado-wechat' },
+    { id: 'DingTalk', icon: 'ado-dingding' },
+    { id: 'Weibo', icon: 'ado-weibo' }
   ];
   dataDisabled: XData<XCheckboxNode> = [
     { id: 'QQ', icon: 'ado-qq' },
-    { id: '微信', icon: 'ado-wechat' },
-    { id: '钉钉', disabled: true, icon: 'ado-dingding' },
-    { id: '微博', icon: 'ado-weibo' }
+    { id: 'WeChat', icon: 'ado-wechat' },
+    { id: 'DingTalk', disabled: true, icon: 'ado-dingding' },
+    { id: 'Weibo', icon: 'ado-weibo' }
   ];
-  model = ['钉钉'];
+  model = ['DingTalk'];
   constructor() {}
 
   ngOnInit() {}

@@ -1,11 +1,11 @@
 ---
-label: 'Empty 空状态'
+label: 'Empty'
 category: 'Data'
 ---
 
-# Empty 空状态
+# Empty
 
-空状态时的展示占位图。
+Display placeholder map in empty state.
 
 ## Used alone
 

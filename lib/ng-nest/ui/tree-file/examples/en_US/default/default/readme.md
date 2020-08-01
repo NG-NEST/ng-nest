@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `data` 属性来设置树形数据。
+Use the `data` attribute to set the tree data.

@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '投影样式'
+label: 'Shadow style'
 ---
 
-默认使用基础投影。
+Base shadow is used by default.

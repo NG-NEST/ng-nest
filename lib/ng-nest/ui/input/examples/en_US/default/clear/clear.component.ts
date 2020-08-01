@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clear.component.scss']
 })
 export class ExClearComponent implements OnInit {
-  model = '清除数据';
+  model = 'clear data';
   constructor() {}
 
   ngOnInit() {}

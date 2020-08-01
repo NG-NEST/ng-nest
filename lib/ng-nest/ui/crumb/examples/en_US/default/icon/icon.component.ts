@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {
-  data = [{ icon: 'fto-home' }, { label: '用户管理', icon: 'fto-user' }, '用户列表', '用户详情'];
+  data = [{ icon: 'fto-home' }, { label: 'User Manager', icon: 'fto-user' }, 'User List', 'User Detail'];
 }

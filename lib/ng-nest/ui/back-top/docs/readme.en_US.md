@@ -1,11 +1,11 @@
 ---
-label: 'BackTop 回到顶部'
+label: 'BackTop'
 category: 'Navigation'
 ---
 
-# BackTop 回到顶部
+# BackTop
 
-返回页面顶部的操作按钮。
+Return to the action button at the top of the page.
 
 ## Used alone
 

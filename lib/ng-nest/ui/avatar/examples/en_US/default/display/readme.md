@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '展示类型'
+label: 'Display type'
 ---
 
-除了显示图片，还支持使用 `icon` 来设置图标， `label` 来设置文字显示。
+In addition to displaying images, you can also use `icon` to set icons and `label` to set text display.

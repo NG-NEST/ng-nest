@@ -7,5 +7,14 @@ import { XSliderNode } from '@ng-nest/ui/slider';
   templateUrl: './activated.component.html'
 })
 export class ExActivatedComponent {
-  data: XData<XSliderNode> = ['用户管理', '配置管理', '角色管理', '任务', '工作', '消息', '流程', '新闻'];
+  data: XData<XSliderNode> = [
+    'User Management',
+    'Configuration Management',
+    'Role Management',
+    'Tasks',
+    'Work',
+    'Messages',
+    'Processes',
+    'News'
+  ];
 }

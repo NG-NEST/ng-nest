@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '自定义'
+label: 'Custom'
 ---
 
-自定义各种弹出窗口。
+Custom various pop-up Windows.

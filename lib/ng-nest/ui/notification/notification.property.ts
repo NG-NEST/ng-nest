@@ -20,61 +20,73 @@ export const XNotificationPortal = 'x-notification-portal';
  */
 export interface XNotificationOption extends XAlertOption {
   /**
-   * 方位
+   * @zh_CN 方位
+   * @en_US Placement
    * @default 'top-end'
    */
   placement?: XCorner;
   /**
-   * 偏移距离
+   * @zh_CN 偏移距离
+   * @en_US Offset distance
    * @default '0.5rem'
    */
   offset?: string | string[];
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Types of
    * @default 'info'
    */
   type?: XNotificationType;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    * @default '20rem'
    */
   width?: string;
   /**
-   * 高度
+   * @zh_CN 高度
+   * @en_US Height
    */
   height?: string;
   /**
-   * 延迟关闭时间
+   * @zh_CN 延迟关闭时间
+   * @en_US Delay off time
    * @default 4500
    */
   duration?: number;
   /**
-   * 隐藏关闭按钮
+   * @zh_CN 隐藏关闭按钮
+   * @en_US Hide close button
    * @default true
    */
   hideClose?: boolean;
   /**
-   * 显示图标
+   * @zh_CN 显示图标
+   * @en_US Show icon
    * @default true
    */
   showIcon?: boolean;
   /**
-   * 延迟关闭订阅后的对象，用来释放或取消
+   * @zh_CN 延迟关闭订阅后的对象，用来释放或取消
+   * @en_US Delayed closing the subscribed object, used to release or cancel
    */
   duration$?: Subscription | null;
   /**
-   * 延迟关闭订阅对象
+   * @zh_CN 延迟关闭订阅对象
+   * @en_US Delay in closing the subscription object
    */
   durationSub?: Subject<any>;
 }
 
 /**
- * 创建的消息对象
+ * @zh_CN 创建的消息对象
+ * @en_US Message object created
  */
 export interface XNotificationOverlayRef extends XPortalOverlayRef<XNotificationComponent> {}
 
 /**
- * 九宫格中的消息对象
+ * @zh_CN 九宫格中的消息对象
+ * @en_US Message object in nine grid
  */
 export interface XNotificationPlacement {
   [prototype: string]: XNotificationRef;
@@ -86,6 +98,7 @@ export interface XNotificationRef {
 }
 
 /**
- * 类型
+ * @zh_CN 类型
+ * @en_US Types of
  */
 export type XNotificationType = XStatus;

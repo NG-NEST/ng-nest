@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '自定义内容'
+label: 'Custom content'
 ---
 
-使用 `content` 参数来接收一个内容自定义模板。
+Use the `content` property to receive a content custom template.

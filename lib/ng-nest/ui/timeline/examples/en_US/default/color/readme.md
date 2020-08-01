@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '颜色'
+label: 'Color'
 ---
 
-使用 `data` 数据对象中的 `color` 属性来定义背景颜色。
+Use the `color` attribute in the `data` data object to define the background color.

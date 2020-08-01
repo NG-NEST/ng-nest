@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '自定义'
+label: 'Custom'
 ---
 
-使用 `nodeTpl` 属性来自定义节点显示模板。
+Customize the node display template using the `nodeTpl` property.

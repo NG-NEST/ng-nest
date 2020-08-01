@@ -15,23 +15,28 @@ const X_CONFIG_NAME = 'drawer';
 @Component({ template: '' })
 export class XDrawerProperty extends XProperty {
   /**
-   * 标题
+   * @zh_CN 标题
+   * @en_US Title
    */
   @Input() title?: XTemplate;
   /**
-   * 显示/隐藏
+   * @zh_CN 显示/隐藏
+   * @en_US Show/hide
    */
   @Input() @XInputBoolean() visible: XBoolean;
   /**
-   * 展示方向
+   * @zh_CN 展示方向
+   * @en_US Display direction
    */
   @Input() @XWithConfig<XPosition>(X_CONFIG_NAME, 'right') placement: XPosition;
   /**
-   * 尺寸，支持固定值
+   * @zh_CN 尺寸，支持固定值
+   * @en_US Size, supports fixed value
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '30%') size: string;
   /**
-   * 关闭的事件
+   * @zh_CN 关闭的事件
+   * @en_US Closed event
    */
   @Output() close = new EventEmitter();
 }

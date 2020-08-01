@@ -9,10 +9,10 @@ import { XPosition } from '@ng-nest/ui/core';
 export class ExDefaultComponent {
   value: XPosition = 'right';
   data: { id: XPosition; label: string }[] = [
-    { id: 'left', label: '左边' },
-    { id: 'right', label: '右边' },
-    { id: 'top', label: '上边' },
-    { id: 'bottom', label: '下边' }
+    { id: 'left', label: 'left' },
+    { id: 'right', label: 'right' },
+    { id: 'top', label: 'top' },
+    { id: 'bottom', label: 'bottom' }
   ];
   visible: boolean;
 

@@ -1,6 +1,6 @@
 ---
 order: 7
-label: '节点状态'
+label: 'Node status'
 ---
 
-使用 `status` 来设置当前激活节点的状态。
+Use `status` to set the status of the currently active node.

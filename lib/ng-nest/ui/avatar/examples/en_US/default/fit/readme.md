@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '适应方式'
+label: 'To adapt to the way'
 ---
 
-当展示类型为图片的时候，使用 `fit` 属性定义图片如何适应容器框，同 `CSS3` 中的 `object-fit`。
+When the display type is an image, use the `fit` property to define how the image fits into the container box, as in `object-fit` in `CSS3`.

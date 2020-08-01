@@ -1,11 +1,11 @@
 ---
-label: 'Message 全局提示'
+label: 'Message'
 category: 'Feedback'
 ---
 
-# Message 全局提示
+# Message
 
-全局展示操作反馈信息。
+Display operational feedback globally.
 
 ## Used alone
 

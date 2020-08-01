@@ -1,11 +1,11 @@
 ---
-label: 'Steps 步骤条'
+label: 'Steps'
 category: 'Navigation'
 ---
 
-# Steps 步骤条
+# Steps
 
-引导用户按照流程完成任务的导航条。
+A navigation bar that guides the user through a process.
 
 ## Used alone
 

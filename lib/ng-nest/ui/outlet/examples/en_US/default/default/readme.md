@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-- 使用方法与 `ngTemplateOutlet` 一样，除了可以传递模板类型参数外，还能传其它任意类型数据。
+- The usage method is the same as that of `ngTemplateOutlet`, in addition to passing template type parameters, it can also pass any other types of data.

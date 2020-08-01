@@ -1,11 +1,11 @@
 ---
-label: 'Collapse 折叠面板'
+label: 'Collapse'
 category: 'Data'
 ---
 
-# Collapse 折叠面板
+# Collapse
 
-可以折叠/展开的内容区域。
+A content area that can be collapsed/expanded.
 
 ## Used alone
 

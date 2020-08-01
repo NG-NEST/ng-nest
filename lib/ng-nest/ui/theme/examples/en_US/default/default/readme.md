@@ -1,8 +1,8 @@
 ---
 order: 1
-label: '主色'
+label: 'Primary'
 ---
 
-主题设置。
+Theme settings.
 
-- 通过颜色选择器来指定颜色，实时查看变化。
+- Specify the color through the color selector, and view the changes in real time.

@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '加载失败'
+label: 'Load failed'
 ---
 
-当展示类型为图片的时候，图片加载失败的 `fallback` 行为。
+The `fallback` behavior that the image failed to load when the display type was an image.

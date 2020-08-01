@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `title` 和 `subTitle` 设置标题以及小标题。
+Use `title` and `subTitle` to set the title and subtitle.

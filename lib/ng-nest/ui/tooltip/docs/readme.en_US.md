@@ -1,11 +1,11 @@
 ---
-label: 'Tooltip 文字提示'
+label: 'Tooltip'
 category: 'Feedback'
 ---
 
-# Tooltip 文字提示
+# Tooltip
 
-常用于展示鼠标 hover 时的提示信息。
+It is often used to display a prompt message for the hover mouse.
 
 ## Used alone
 

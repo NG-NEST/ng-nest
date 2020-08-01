@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '图标样式'
+label: 'Icon'
 ---
 
-使用 `icon` 属性切换成图标样式的单选组合。
+Use the `icon` property to switch to a radio combination of icon styles.

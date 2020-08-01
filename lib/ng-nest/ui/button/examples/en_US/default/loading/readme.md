@@ -1,8 +1,8 @@
 ---
 order: 6
-label: '加载中'
+label: 'Loading'
 ---
 
-点击按钮后进行数据加载操作，在按钮上显示加载状态。
+After clicking the button, the data loading operation is carried out, and the loading status is displayed on the button.
 
-- 要设置为 `loading` 状态，只要设置 `loading` 属性为 `true` 即可。
+- To set `loading` state, simply set `loading` property to `true`.

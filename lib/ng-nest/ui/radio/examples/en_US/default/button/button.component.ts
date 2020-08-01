@@ -8,7 +8,7 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./button.component.scss']
 })
 export class ExButtonComponent {
-  data: XData<XRadioNode> = ['QQ', '微信', '钉钉', '微博'];
-  dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
-  model = '钉钉';
+  data: XData<XRadioNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
+  dataDisabled: XData<XRadioNode> = ['QQ', 'WeChat', { label: 'DingTalk', disabled: true }, 'Weibo'];
+  model = 'DingTalk';
 }

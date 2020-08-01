@@ -1,11 +1,11 @@
 ---
-label: 'Button 按钮'
+label: 'Button'
 category: 'Basic'
 ---
 
-# Button 按钮
+# Button
 
-定义按钮和按钮组的样式。
+Defines the styles for buttons and button groups.
 
 ## Used alone
 

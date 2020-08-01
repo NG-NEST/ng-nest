@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-日历中显示对应的事项，通过配置 `data` 数据实现。
+The calendar displays the corresponding items by configuring `data` data.

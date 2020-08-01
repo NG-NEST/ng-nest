@@ -14,48 +14,58 @@ export const XStepsPrefix = 'x-steps';
 @Component({ template: '' })
 export class XStepsProperty extends XProperty {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XStepsNode> = [];
   /**
-   * 布局方式
+   * @zh_CN 布局方式
+   * @en_US Layout
    */
   @Input() layout: XStepsLayout = 'row';
   /**
-   * 当前激活节点
+   * @zh_CN 当前激活节点
+   * @en_US Currently active node
    */
   @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
-   * 步骤开始序号
+   * @zh_CN 步骤开始序号
+   * @en_US Step start number
    */
   @Input() @XInputNumber() startIndex: XNumber = 0;
   /**
-   * 当前激活节点状态
+   * @zh_CN 当前激活节点状态
+   * @en_US Current active node status
    */
   @Input() status: XStepsStatus;
 }
 
 export interface XStepsNode extends XParentIdentityProperty<XStepsNode> {
   /**
-   * 状态
+   * @zh_CN 状态
+   * @en_US Status
    */
   status?: XStepsStatus;
   /**
-   * 描述
+   * @zh_CN 描述
+   * @en_US Description
    */
   description?: string;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
 }
 
 /**
- * 布局方式
+ * @zh_CN 布局方式
+ * @en_US Layout
  */
 export type XStepsLayout = 'row' | 'column';
 
 /**
- * 节点状态
+ * @zh_CN 节点状态
+ * @en_US Node status
  */
 export type XStepsStatus = 'wait' | 'process' | 'finish' | 'error';

@@ -1,8 +1,8 @@
 ---
 order: 2
-label: '禁用状态'
+label: 'Disabled'
 ---
 
-按钮不可用状态。
+The button is not available.
 
-- 使用 `disabled` 属性来定义按钮是否可用，它接受一个 `boolean` 值。
+- Use the `disabled` property to define whether a button is available, which accepts a `boolean` value.

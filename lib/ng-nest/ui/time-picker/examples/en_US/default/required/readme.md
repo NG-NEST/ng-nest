@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '必填'
+label: 'Required'
 ---
 
-使用 `required` 属性设置选择器必填。
+Use the `required` attribute to set the selector required.

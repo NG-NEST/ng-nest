@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class ExDisplayComponent {
   src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
   icon = 'fto-user';
-  label = '王';
+  label = 'Lee';
 }

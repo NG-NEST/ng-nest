@@ -1,8 +1,8 @@
 ---
-label: '动态组件'
+label: 'Portal'
 hidden: true
 ---
 
-# 动态组件 Portal
+# Portal
 
-通过服务创建的动态组件。
+Dynamic components created through services.

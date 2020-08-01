@@ -1,7 +1,7 @@
 ---
 order: 2
-label: '手风琴'
+label: 'Accordion'
 ---
 
-- 每次只能展开一个面板。
-- 通过 `accordion` 属性来设置是否以手风琴模式显示。
+- Only one panel can be expanded at a time.
+- The `accordion` attribute is used to set whether or not the accordion mode is displayed.

@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '自定义'
+label: 'Custom'
 ---
 
-`x-collapse-panel` 中的 `label` 可以接收一个模板参数来实现自定义内容。
+`label` in `x-collapse-panel` can receive a template parameter to implement custom content.

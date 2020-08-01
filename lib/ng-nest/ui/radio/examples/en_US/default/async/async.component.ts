@@ -15,11 +15,11 @@ export class ExAsyncComponent implements OnInit {
   getData() {
     this.loading = true;
     this.data = new Observable((x) => {
-      // 替换成http请求，或者data直接定义成 Observable 对象
+      // Replace with http request, or directly define data as Observable object
       setTimeout(() => {
-        this.model = '微信';
+        this.model = 'WeChat';
         this.loading = false;
-        x.next(['QQ', '微信', '钉钉', '微博']);
+        x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
         x.complete();
       }, 2000);
     });

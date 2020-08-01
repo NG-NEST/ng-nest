@@ -18,83 +18,102 @@ const X_CONFIG_NAME = 'treeFile';
 @Component({ template: '' })
 export class XTreeFileProperty extends XTreeProperty {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XTreeFileNode> = [];
   /**
-   * 文件绝对路径地址前缀，为空表示取当前运行的地址
+   * @zh_CN 文件绝对路径地址前缀，为空表示取当前运行的地址
+   * @en_US File absolute path address prefix, empty means to take the address of the current operation
    */
   @Input() domain: string = '';
   /**
-   * 切换状态
+   * @zh_CN 切换状态
+   * @en_US Switch state
    */
   @Input() @XInputBoolean() toggle: XBoolean = true;
   /**
-   * 显示切换按钮
+   * @zh_CN 显示切换按钮
+   * @en_US Show toggle button
    */
   @Input() @XInputBoolean() showToggle: XBoolean = true;
   /**
-   * 显示树，为 true 的时候隐藏切换按钮
+   * @zh_CN 显示树，为 true 的时候隐藏切换按钮
+   * @en_US Show the tree, hide the toggle button when true
    */
   @Input() @XInputBoolean() showTree: XBoolean = true;
   /**
-   * 显示面包屑
+   * @zh_CN 显示面包屑
+   * @en_US Show breadcrumbs
    */
   @Input() @XInputBoolean() showCrumb: XBoolean = true;
   /**
-   * 最大高度，单位 rem
+   * @zh_CN 最大高度，单位 rem
+   * @en_US Maximum height, unit rem
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 37.5) @XInputNumber() maxHeight: XNumber;
   /**
-   * 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
+   * @zh_CN 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
+   * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.5) @XInputNumber() spacing: XNumber;
 }
 
 /**
- * TreeFile 数据对象
+ * @zh_CN TreeFile 数据对象
+ * @en_US TreeFile data object
  */
 export interface XTreeFileNode extends XTreeNode {
   /**
-   * 子节点
+   * @zh_CN 子节点
+   * @en_US Child node
    */
   children?: XTreeFileNode[];
   /**
-   * 文件内容
+   * @zh_CN 文件内容
+   * @en_US Document content
    */
   content?: string;
   /**
-   * 文件类型
+   * @zh_CN 文件类型
+   * @en_US File type
    */
   type?: string;
   /**
-   * 文件分类
+   * @zh_CN 文件分类
+   * @en_US File classification
    */
   fileType?: XTreeFileType;
   /**
-   * 文件地址，配置了地址将从 url 中加载文件内容
+   * @zh_CN 文件地址，配置了地址将从 url 中加载文件内容
+   * @en_US File address, the configured address will load the file content from url
    */
   url?: string;
   /**
-   * 文件的面包屑数据
+   * @zh_CN 文件的面包屑数据
+   * @en_US Breadcrumb data
    */
   crumbData?: XCrumbNode[];
   /**
-   * 文件内容已经加载过
+   * @zh_CN 文件内容已经加载过
+   * @en_US File content has been loaded
    */
   contentLoaded?: boolean;
   /**
-   * 行高亮着色
+   * @zh_CN 行高亮着色
+   * @en_US Line highlight coloring
    */
   highlightLines?: XHighlightLines;
 }
 
 /**
- * 文件分类
+ * @zh_CN 文件分类
+ * @en_US File classification
  */
 export type XTreeFileType = 'code' | 'img';
 
 /**
- * 支持显示的图片格式
+ * @zh_CN 支持显示的图片格式
+ * @en_US Supported picture format
  */
 export const XTreeFileImgs = ['webp', 'png', 'jpg', 'gif', 'jpeg', 'ico'];

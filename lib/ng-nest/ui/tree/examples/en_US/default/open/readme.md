@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '点击节点展开'
+label: 'Click expand'
 ---
 
-点击节点直接展开/收起子节点，不需要点击箭头。
+Click on the node to directly expand/collapse the child nodes without clicking the arrow.

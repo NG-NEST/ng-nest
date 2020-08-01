@@ -1,7 +1,7 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-- 使用 `data` 属性来配置下拉的选项。
-- `width` 根据父元素宽度自动撑开到 100% 。
+- Use the `data'` property to configure drop-down options.
+- `width` automatically expands to 100% based on parent element width.

@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '自定义'
+label: 'Custom'
 ---
 
-`label` 属性除了可以使用字符串外，可以设置成自定义模板。
+In addition to using strings, the `label` attribute can be set as a custom template.

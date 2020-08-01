@@ -15,24 +15,29 @@ const X_CONFIG_NAME = 'card';
 @Component({ template: '' })
 export class XCardProperty extends XProperty {
   /**
-   * 卡片宽度
+   * @zh_CN 卡片宽度
+   * @en_US Card width
    */
   @Input() width?: string;
   /**
-   * 内容样式
+   * @zh_CN 内容样式
+   * @en_US Content style
    */
   @Input() bodyStyle: { [prop: string]: XNumber } = {};
   /**
-   * 头部模板
+   * @zh_CN 头部模板
+   * @en_US Head template
    */
   @Input() header?: XTemplate;
   /**
-   * 阴影显示方式
+   * @zh_CN 阴影显示方式
+   * @en_US Shadow display method
    */
   @Input() @XWithConfig<XCardShadow>(X_CONFIG_NAME, 'always') shadow: XCardShadow;
 }
 
 /**
- * 阴影显示配置
+ * @zh_CN 阴影显示配置
+ * @en_US Shadow display configuration
  */
 export type XCardShadow = XShadow;

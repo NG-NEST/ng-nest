@@ -18,19 +18,23 @@ export const XAmounts = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 @Component({ template: '' })
 export class XColorProperty extends XProperty {
   /**
-   * 颜色名称
+   * @zh_CN 颜色名称
+   * @en_US Color name
    */
   @Input() label: string = 'color';
   /**
-   * 十六进制颜色码，此处默认读取 css 变量中的主色
+   * @zh_CN 十六进制颜色码，此处默认读取 css 变量中的主色
+   * @en_US Hexadecimal color code, here the main color in the css variable is read by default
    */
   @Input() hex: string = 'var(--x-primary)';
   /**
-   * 混合的颜色
+   * @zh_CN 混合的颜色
+   * @en_US Mixed colors
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '#ffffff') merge: string;
   /**
-   * 混合的颜色占比
+   * @zh_CN 混合的颜色占比
+   * @en_US Proportion of mixed colors
    */
   @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XAmounts) amounts: XNumber[];
 }

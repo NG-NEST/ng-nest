@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-默认选中第一个选项，使用参数 `activatedIndex` 来调整默认选中项。
+The first option is selected by default. Use the parameter `activatedIndex` to adjust the default selected item.

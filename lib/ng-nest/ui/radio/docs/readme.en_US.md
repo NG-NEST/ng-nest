@@ -1,11 +1,11 @@
 ---
-label: 'Radio 单选框'
+label: 'Radio'
 category: 'Form'
 ---
 
-# Radio 单选框
+# Radio
 
-在一组可选项中进行单项选择。
+Make a single choice from a set of options.
 
 ## Used alone
 

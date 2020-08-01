@@ -1,7 +1,7 @@
 ---
 order: 4
-label: '小红点'
+label: 'Little red dot'
 ---
 
-- 以红点的形式标注需要关注的内容。
-- 设置 `dot` 属性，它接受一个 `boolean` 。
+- The content to be concerned should be marked in red dots.
+- Sets the `dot` property, which accepts a `boolean`.

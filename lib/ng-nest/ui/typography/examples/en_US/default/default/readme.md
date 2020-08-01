@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '字体'
+label: 'Font'
 ---
 
-基本字体标准。
+Basic font standard.

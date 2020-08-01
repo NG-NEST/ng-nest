@@ -1,7 +1,7 @@
 ---
 order: 1
-label: '默认'
+label: 'Base'
 ---
 
-- 配置列、操作按钮、数据服务等自动生成表格。
-- 使用 `headColumnTpl` 和 `bodyColumnTpl` 属性可以自定义列头和列显示数据的方式。
+- Automatically generate tables for configuration columns, operation buttons, data services, etc.
+- Use the `headColumnTpl` and `bodyColumnTpl` properties to customize the column header and the way the column displays data.

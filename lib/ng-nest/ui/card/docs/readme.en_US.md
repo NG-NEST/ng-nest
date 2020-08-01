@@ -1,11 +1,11 @@
 ---
-label: 'Card 卡片'
+label: 'Card'
 category: 'Data'
 ---
 
-# Card 卡片
+# Card
 
-将信息聚合在卡片容器中展示。
+The information is aggregated and displayed in a card container.
 
 ## Used alone
 

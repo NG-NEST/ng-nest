@@ -1,11 +1,11 @@
 ---
-label: 'Timeline 时间线'
+label: 'Timeline'
 category: 'Data'
 ---
 
-# Timeline 时间线
+# Timeline
 
-可视化地呈现时间流信息。
+Visually present time flow information.
 
 ## Used alone
 

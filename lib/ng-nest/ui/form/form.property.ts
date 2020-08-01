@@ -39,127 +39,157 @@ const X_CONFIG_NAME = 'form';
 @Component({ template: '' })
 export class XFormProperty extends XFormProp {
   /**
-   * 表单FormGroup
+   * @zh_CN 表单 FormGroup
+   * @en_US Form FormGroup
    */
   @Input() formGroup: FormGroup = new FormGroup({});
   /**
-   * 表单名称
+   * @zh_CN 表单名称
+   * @en_US Form name
    */
   @Input() title: string;
   /**
-   * 控件间距，单位rem
+   * @zh_CN 控件间距，单位rem
+   * @en_US Control spacing, unit rem
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() space: XNumber;
   /**
-   * 控件宽度，24栅格
+   * @zh_CN 控件宽度，24栅格
+   * @en_US Control width, 24 grid
    */
   @Input() @XInputNumber() span: XNumber;
   /**
-   * 标签后缀
+   * @zh_CN 标签后缀
+   * @en_US Label suffix
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix: string;
   /**
-   * 表单控件
+   * @zh_CN 表单控件
+   * @en_US Form control
    */
   @Input() controls: XFormControlOption[] | XFormRow[] = [];
   /**
-   * 表单宽度
+   * @zh_CN 表单宽度
+   * @en_US Form width
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '100%') width: string = '100%';
   /**
-   * 表单禁用
+   * @zh_CN 表单禁用
+   * @en_US Form disabled
    */
   @Input() @XInputBoolean() disabled: XBoolean;
 }
 
 /**
- * 控件对象
+ * @zh_CN 控件对象
+ * @en_US Control object
  */
 export interface XControlOption extends XIdentityProperty {
   /**
-   * 值
+   * @zh_CN 值
+   * @en_US Value
    */
   value?: any;
   /**
-   * 控件类型
+   * @zh_CN 控件类型
+   * @en_US Control type
    */
   control?: XControlType;
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
   disabled?: XBoolean;
   /**
-   * 只读
+   * @zh_CN 只读
+   * @en_US Read only
    */
   readonly?: XBoolean;
   /**
-   * 必填
+   * @zh_CN 必填
+   * @en_US Required
    */
   required?: XBoolean;
   /**
-   * 隐藏
+   * @zh_CN 隐藏
+   * @en_US Hide
    */
   hidden?: XBoolean;
   /**
-   * 列宽
+   * @zh_CN 列宽
+   * @en_US Column width
    */
   span?: number;
   /**
-   * 正则验证规则
+   * @zh_CN 正则验证规则
+   * @en_US Regular validation rules
    */
   pattern?: RegExp | RegExp[];
   /**
-   * 验证不通过提示文字
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verification failed prompt text
    */
   message?: string | string[];
   /**
-   * 自定义属性
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
    */
   [prop: string]: any;
 }
 
 /**
- * 控件对象
+ * @zh_CN 控件对象
+ * @en_US Control object
  */
 export class XControl extends XIdentity implements XControlOption {
   /**
-   * 值
+   * @zh_CN 值
+   * @en_US Value
    */
   value?: any;
   /**
-   * 控件类型
+   * @zh_CN 控件类型
+   * @en_US Control type
    */
   control?: XControlType;
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
   disabled?: XBoolean;
   /**
-   * 只读
+   * @zh_CN 只读
+   * @en_US Read only
    */
   readonly?: XBoolean;
   /**
-   * 必填
+   * @zh_CN 必填
+   * @en_US Required
    */
   required?: XBoolean;
   /**
-   * 隐藏
+   * @zh_CN 隐藏
+   * @en_US Hide
    */
   hidden?: XBoolean;
   /**
-   * 列宽
+   * @zh_CN 列宽
+   * @en_US Column width
    */
   span?: number;
   /**
-   * 正则验证规则
+   * @zh_CN 正则验证规则
+   * @en_US Regular validation rules
    */
   pattern?: RegExp | RegExp[];
   /**
-   * 验证不通过提示文字
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verification failed prompt text
    */
   message?: string | string[];
   /**
-   * 自定义属性
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
    */
   [prop: string]: any;
 
@@ -171,23 +201,28 @@ export class XControl extends XIdentity implements XControlOption {
 }
 
 /**
- * 表单行对象
+ * @zh_CN 表单行对象
+ * @en_US Form row object
  */
 export interface XFormRow {
   /**
-   * 行标题
+   * @zh_CN 行标题
+   * @en_US Row header
    */
   title?: string;
   /**
-   * 行图标
+   * @zh_CN 行图标
+   * @en_US Row icon
    */
   icon?: string;
   /**
-   * 行中的控件
+   * @zh_CN 行中的控件
+   * @en_US Control in row
    */
   controls: XFormControlOption[];
   /**
-   * 隐藏
+   * @zh_CN 隐藏
+   * @en_US Hidden
    */
   hidden?: XBoolean;
 }
@@ -205,14 +240,16 @@ export const XControlPrefix = 'x-control';
 @Component({ template: '' })
 export class XControlProperty {
   /**
-   * 控件对象
+   * @zh_CN 控件对象
+   * @en_US Control object
    */
   @Input() option: XControlOption;
 }
 
 export class XFormControl extends FormControl {
   /**
-   * 提示信息
+   * @zh_CN 提示信息
+   * @en_US Prompt information
    */
   messages?: string[] = [];
 }

@@ -1,9 +1,9 @@
 ---
 order: 4
-label: '图标按钮'
+label: 'Icon button'
 ---
 
-带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
+A button with an icon enhances legibility (with text) or saves space (without text).
 
-- 使用 `icon` 属性设置图标，`icon` 属性值可以参考 `icon` 组件。
-- 使用 `direction` 属性可以设置文字与图标的相对位置。
+- Set the icon using the `icon` property. The value of the `icon` property can be referred to the `icon` component.
+- Use the `direction` property to set the position of text relative to the icon.

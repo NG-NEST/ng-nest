@@ -15,41 +15,50 @@ const X_CONFIG_NAME = 'popover';
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverProperty extends XProperty {
   /**
-   * 标题，支持自定义模板
+   * @zh_CN 标题，支持自定义模板
+   * @en_US Title, support custom template
    */
   @Input() title?: XTemplate;
   /**
-   * 内容，支持自定义模板
+   * @zh_CN 内容，支持自定义模板
+   * @en_US Content, support custom templates
    */
   @Input() content?: XTemplate;
   /**
-   * 底部，支持自定义模板
+   * @zh_CN 底部，支持自定义模板
+   * @en_US At the bottom, support custom templates
    */
   @Input() footer?: XTemplate;
   /**
-   * 弹出的位置
+   * @zh_CN 弹出的位置
+   * @en_US Pop-up position
    */
   @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
   /**
-   * 激活方式
+   * @zh_CN 激活方式
+   * @en_US Activation method
    */
   @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'hover') trigger: XPopoverTrigger;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width: string;
   /**
-   * 显示/隐藏控制
+   * @zh_CN 显示/隐藏控制
+   * @en_US Show/hide control
    */
   @Input() @XInputBoolean() visible: XBoolean;
   /**
-   * 显示/隐藏改变的事件
+   * @zh_CN 显示/隐藏改变的事件
+   * @en_US Show/hide changed events
    */
   @Output() visibleChange = new EventEmitter<XBoolean>();
 }
 
 /**
- * 激活方式
+ * @zh_CN 激活方式
+ * @en_US Activation method
  * @value "hover"
  * @value "click"
  */

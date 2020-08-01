@@ -1,7 +1,7 @@
 ---
 order: 3
-label: '卡片化'
+label: 'Card'
 ---
 
-- 当页面宽度方向空间空余，但高度方向空间匮乏时，可使用卡片风格。
-- 将 `card` 设置为 `true` 即可启用卡片模式。从交互上来说，卡片模式和一般模式的最大区别在于，可以通过直接点击两侧的幻灯片进行切换。
+- Use card style when page width directional space is free but height directional space is scarce.
+- Set `card` to `true` to enable card mode. Interactively, the biggest difference between card mode and normal mode is that you can switch between them by directly clicking on the slide on either side.

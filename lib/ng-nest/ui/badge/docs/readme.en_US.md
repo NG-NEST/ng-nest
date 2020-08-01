@@ -1,11 +1,11 @@
 ---
-label: 'Badge 标记'
+label: 'Badge'
 category: 'Data'
 ---
 
-# Badge 标记
+# Badge
 
-出现在按钮、图标旁的数字或状态标记。
+A number or status marker that appears next to a button or icon.
 
 ## Used alone
 

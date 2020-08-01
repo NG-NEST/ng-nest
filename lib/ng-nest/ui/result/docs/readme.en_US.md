@@ -1,11 +1,11 @@
 ---
-label: 'Result 结果'
+label: 'Result'
 category: 'Feedback'
 ---
 
-# Result 结果
+# Result
 
-用于反馈一系列操作任务的处理结果。
+Used to feedback the processing results of a series of operational tasks.
 
 ## Used alone
 

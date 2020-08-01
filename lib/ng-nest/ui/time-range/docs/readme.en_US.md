@@ -1,11 +1,11 @@
 ---
-label: 'Time Range 时间间隔 '
+label: 'Time Range '
 category: 'Data'
 ---
 
-# Time Range 时间间隔
+# Time Range
 
-显示时间间隔。
+Displays the time interval.
 
 ## Used alone
 

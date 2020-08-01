@@ -20,10 +20,10 @@ export class ExDefaultComponent {
     while (true) {
       let rd = Math.floor(Math.random() * (last - first + 1)) + first;
       dt[this.pipeDate.transform(rd, 'yyyy-MM-dd') as string] = [
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容1，处理内容1' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容2，处理内容2' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容3，处理内容3' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容4，处理内容4' }
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: 'Deal with content 1' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: 'Deal with content 2' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: 'Deal with content 3' },
+        { id: this.pipeDate.transform(rd, 'HH:mm '), label: 'Deal with content 4' }
       ];
       i++;
       if (i === 10) break;

@@ -1,11 +1,11 @@
 ---
-label: 'Dialog 对话框'
+label: 'Dialog'
 category: 'Feedback'
 ---
 
-# Dialog 对话框
+# Dialog
 
-在保留当前页面状态的情况下，告知用户并承载相关操作。
+Notifies the user and hosts the relevant actions while retaining the current page state.
 
 ## Used alone
 

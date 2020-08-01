@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '清除'
+label: 'Clearable'
 ---
 
-使用 `clearable` 属性来启用清除按钮。
+Use the `clearable` property to enable the clear button.

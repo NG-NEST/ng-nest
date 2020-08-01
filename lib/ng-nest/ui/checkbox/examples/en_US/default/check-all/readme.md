@@ -1,6 +1,6 @@
 ---
 order: 6
-label: '全选效果'
+label: 'Check all'
 ---
 
-`indeterminate` 属性用以表示 `checkbox` 的不确定状态，一般用于实现全选的效果。
+The `indeterminate` attribute is used to denote the uncertain state of `checkbox` and is generally used to achieve the effect of total selection.

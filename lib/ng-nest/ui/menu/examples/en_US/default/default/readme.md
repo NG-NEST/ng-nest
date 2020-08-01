@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基本用法'
+label: 'Base'
 ---
 
-使用 `data` 设置菜单数据。
+Use `data` to set the menu data.

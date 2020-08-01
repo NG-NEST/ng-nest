@@ -1,11 +1,11 @@
 ---
-label: 'Drawer 抽屉'
+label: 'Drawer'
 category: 'Feedback'
 ---
 
-# Drawer 抽屉
+# Drawer
 
-抽屉从父窗体边缘滑入，覆盖住部分父窗体内容。用户在抽屉内操作时不必离开当前任务，操作完成后，可以平滑地回到到原任务。
+The drawer slides in from the edge of the parent form to cover part of the parent form content. The user does not have to leave the current task while operating in the drawer. After the operation is completed, the user can smoothly return to the original task.
 
 ## Used alone
 

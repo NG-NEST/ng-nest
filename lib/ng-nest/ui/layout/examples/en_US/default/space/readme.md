@@ -1,9 +1,9 @@
 ---
 order: 2
-label: '分栏间隔'
+label: 'Column spacing'
 ---
 
-分栏之间存在间隔。
+There is a gap between columns.
 
-- 使用 `x-row` 的 `space` 来设定列的左右间隔。
-- 注意： `space` 的单位是 `rem` 。
+- Use `space` of `x-row` to set the left and right space between columns.
+- Note: the unit of `space` is `rem`.

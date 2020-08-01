@@ -1,10 +1,10 @@
 ---
 order: 5
-label: '按钮组'
+label: 'Button group'
 ---
 
-以按钮组的方式出现，常用于多项类似操作。
+Appear in the form of button group, often used in a number of similar operations.
 
-- 使用 `<x-buttons>` 标签来嵌套你的按钮标签。
-- 使用 `space` 属性来设置按钮间距，单位 `rem` , 默认为 0 。
-- 使用 `hiddenBorder` 属性来隐藏边框，常用于显示一组图标按钮。
+- Use the `<x-buttons>` label to nest your button labels.
+- Use the `space` property to set the button spacing, in unit `rem`, which defaults to `0`.
+- Use the `hiddenBorder` property to hide the border, often used to display a set of icon buttons.

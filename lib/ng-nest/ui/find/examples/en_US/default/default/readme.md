@@ -1,10 +1,10 @@
 ---
 order: 1
-label: '表格选择'
+label: 'Table select'
 ---
 
-- `ngModel` 属性来绑定数据对象。
-- `table` 开头的属性参考 表格组件 的设置方式。
-- `tree` 开头的属性参考 树组件 的设置方式。
-- `dialog` 开头的属性参考 弹框组件 的设置方式。
-- 支持以上组件的部分功能，可以参考 API 中说明的配置。
+- `ngModel` property to bind the data object.
+- The properties at the beginning of `table` refer to how the table component is set.
+- The properties at the beginning of `tree` refer to how the tree component is set.
+- The properties at the beginning of `dialog` refers to how the dialog component is set.
+- Support some of the functions of the above components and refer to the configuration described in the API.

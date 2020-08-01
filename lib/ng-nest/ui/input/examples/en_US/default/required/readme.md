@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '必填'
+label: 'Required'
 ---
 
-使用 `required` 属性设置输入框必填。
+Use the `required` attribute to set the required input field.

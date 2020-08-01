@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '图标'
+label: 'Icon'
 ---
 
-带图标的文字链接可增强辨识度。
+Text links with icons enhance recognition.

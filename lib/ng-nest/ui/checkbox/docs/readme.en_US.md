@@ -1,11 +1,11 @@
 ---
-label: 'Checkbox 多选框'
+label: 'Checkbox'
 category: 'Form'
 ---
 
-# Checkbox 多选框
+# Checkbox
 
-在一组可选项中进行多项选择。
+Make multiple choices from a set of options.
 
 ## Used alone
 

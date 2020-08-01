@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `data` 属性来设置显示的数据， `activatedIndex` 属性设置当前激活的节点。
+Use the `data` property to set the displayed data, and the `activatedIndex` property to set the currently activated node.

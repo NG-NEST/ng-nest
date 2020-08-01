@@ -1,11 +1,11 @@
 ---
-label: 'Theme 主题'
+label: 'Theme'
 category: 'Basic'
 ---
 
-# Theme 主题
+# Theme
 
-系统主题设置组件，可以通过此组件自由配置系统的颜色主题。
+System theme setting component, through which you can freely configure the system color theme.
 
 ## Used alone
 

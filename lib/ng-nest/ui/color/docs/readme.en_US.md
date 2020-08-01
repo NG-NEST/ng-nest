@@ -1,17 +1,17 @@
 ---
-label: 'Color 色彩'
+label: 'Color'
 category: 'Basic'
 ---
 
-# Color 色彩
+# Color
 
-为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
+To avoid visual communication differences, use a specific palette of colors to provide a consistent look and feel for your products.
 
-## 单独引入此组件
+## Used alone
 
 {{ __component }}
 
-## 颜色类别
+## Color categories
 
 {{ __examples }}
 

@@ -26,23 +26,28 @@ const X_CONFIG_NAME = 'radio';
 @Component({ template: '' })
 export class XRadioProperty extends XControlValueAccessor<any> implements XRadioOption {
   /**
-   * 单选框数据
+   * @zh_CN 单选框数据
+   * @en_US Radio data
    */
   @Input() @XDataConvert() data: XData<XRadioNode> = [];
   /**
-   * 按钮样式
+   * @zh_CN 按钮样式
+   * @en_US Button style
    */
   @Input() @XInputBoolean() button: XBoolean;
   /**
-   * 图标样式
+   * @zh_CN 图标样式
+   * @en_US Icon style
    */
   @Input() @XInputBoolean() icon: XBoolean;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 按钮样式时生效
+   * @zh_CN 按钮样式时生效
+   * @en_US Take effect when button style
    */
   @Input() type: XButtonType = 'initial';
 }
@@ -53,41 +58,50 @@ export class XRadioProperty extends XControlValueAccessor<any> implements XRadio
  */
 export interface XRadioOption extends XFormOption {
   /**
-   * 单选框数据
+   * @zh_CN 单选框数据
+   * @en_US Radio data
    */
   data?: XData<XRadioNode>;
   /**
-   * 按钮样式
+   * @zh_CN 按钮样式
+   * @en_US Button style
    */
   button?: XBoolean;
   /**
-   * 图标样式
+   * @zh_CN 图标样式
+   * @en_US Icon style
    */
   icon?: XBoolean;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   size?: XSize;
   /**
-   * 按钮样式时生效
+   * @zh_CN 按钮样式时生效
+   * @en_US Take effect when button style
    */
   type?: XButtonType;
 }
 
 /**
- * Radio 数据对象
+ * @zh_CN Radio 数据对象
+ * @en_US Radio data object
  */
 export interface XRadioNode extends XIdentityProperty {
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
   disabled?: boolean;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
   /**
-   * 图标的提示信息
+   * @zh_CN 图标的提示信息
+   * @en_US Icon message
    */
   title?: string;
 }

@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-上下左右四个方向展示抽屉。
+up, down, left, right show the drawer.

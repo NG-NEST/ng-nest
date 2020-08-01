@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-`width` 根据父元素宽度自动撑开到 100%
+`width` automatically expands to 100% based on parent element width.

@@ -1,11 +1,11 @@
 ---
-label: 'DatePicker 日期选择器'
+label: 'DatePicker'
 category: 'Form'
 ---
 
-# DatePicker 日期选择器
+# DatePicker
 
-用于选择或输入日期。
+Used to select or enter a date.
 
 ## Used alone
 

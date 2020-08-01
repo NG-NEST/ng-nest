@@ -1,8 +1,8 @@
 ---
 order: 7
-label: '不同尺寸'
+label: 'Size'
 ---
 
-`Button` 组件提供除了默认值以外的其他四种尺寸，可以在不同场景下选择合适的按钮尺寸。
+The `Button` component provides four sizes in addition to the default, allowing you to select the appropriate Button size for different scenarios.
 
-- 使用 `size` 属性来设置不同的尺寸，所有尺寸：`big`、`large`、`medium`、`small`、`mini`， 默认 `medium`。
+- Use the `size` property to set different sizes, all sizes: `big`, `large`, `medium`, `small`, `mini`, default `medium`.

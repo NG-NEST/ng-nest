@@ -1,11 +1,11 @@
 ---
-label: 'Find 查找带回'
+label: 'Find'
 category: 'Form'
 ---
 
-# Find 查找带回
+# Find
 
-通过弹框选择一条或多条数据。
+Select one or more data from the pop-up box.
 
 ## Used alone
 

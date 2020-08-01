@@ -1,11 +1,11 @@
 ---
-label: 'Tag 标签'
+label: 'Tag'
 category: 'Data'
 ---
 
-# Tag 标签
+# Tag
 
-用于标记和选择。
+Used for marking and selection.
 
 ## Used alone
 

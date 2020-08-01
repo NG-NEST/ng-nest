@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `label` 属性显示标签，`value` 属性设置数值。
+Use the `label` attribute to display the label, and the `value` attribute to set the value.

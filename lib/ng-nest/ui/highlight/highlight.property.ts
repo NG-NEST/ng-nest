@@ -15,21 +15,25 @@ export const XHighlightPrefix = 'x-highlight';
 @Component({ template: '' })
 export class XHighlightProperty extends XProperty {
   /**
-   * 代码类型
+   * @zh_CN 代码类型
+   * @en_US Code type
    */
   @Input() type: string;
   /**
-   * 数据
+   * @zh_CN 数据
+   * @en_US Data
    */
   @Input() data: string;
   /**
-   * 高亮行数据
+   * @zh_CN 高亮行数据
+   * @en_US Highlight row data
    */
   @Input() highlightLines: XHighlightLines = {};
 }
 
 /**
- * 高亮行数据
+ * @zh_CN 高亮行数据
+ * @en_US Highlight row data
  * @description {'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
  */
 export type XHighlightLines = { [prop: string]: string };

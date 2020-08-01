@@ -25,15 +25,18 @@ const X_CONFIG_NAME = 'select';
 @Component({ template: '' })
 export class XSelectProperty extends XControlValueAccessor<any> {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XSelectNode> = [];
   /**
-   * 异步加载
+   * @zh_CN 异步加载
+   * @en_US Asynchronous loading
    */
   @Input() @XInputBoolean() async: XBoolean;
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
 }
@@ -44,21 +47,25 @@ export class XSelectProperty extends XControlValueAccessor<any> {
  */
 export interface XSelectOption extends XFormOption {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   data?: XData<XSelectNode>;
   /**
-   * 异步加载
+   * @zh_CN 异步加载
+   * @en_US Asynchronous loading
    */
   async?: XBoolean;
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   placement?: XCorner;
 }
 
 /**
- * Select 数据对象
+ * @zh_CN Select 数据对象
+ * @en_US Select data object
  */
 export interface XSelectNode extends XParentIdentityProperty<XSelectNode> {}
 

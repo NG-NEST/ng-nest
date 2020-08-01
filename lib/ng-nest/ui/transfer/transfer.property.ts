@@ -26,76 +26,95 @@ export const XTransferTitles = ['列表 1', '列表 2'];
 @Component({ template: '' })
 export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
-   * 数据对象
+   * @zh_CN 数据对象
+   * @en_US Data object
    */
   @Input() @XDataConvert() data: XData<XTransferNode> = [];
   /**
-   * 标题
+   * @zh_CN 标题
+   * @en_US Title
    */
   @Input() @XWithConfig<string[]>(X_CONFIG_NAME, XTransferTitles) titles: string[];
   /**
-   * 是否能拖动
+   * @zh_CN 是否能拖动
+   * @en_US Can drag
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() drag: XBoolean;
   /**
-   * 是否显示搜索（暂未实现）
+   * @zh_CN 是否显示搜索（暂未实现）
+   * @en_US Whether to display search (not implemented yet)
    */
   @Input() @XInputBoolean() search: XBoolean;
   /**
-   * 数据自定义模板
+   * @zh_CN 数据自定义模板
+   * @en_US Data customization template
    */
   @Input() nodeTpl: TemplateRef<any>;
   /**
-   * 标题自定义模板
+   * @zh_CN 标题自定义模板
+   * @en_US Title custom template
    */
   @Input() titleTpl: TemplateRef<any>;
 }
 
 /**
- * Transfer
+ * Transfer Node
  */
 export interface XTransferNode extends XParentIdentityProperty<XTransferNode> {
   /**
-   * checkbox 是否选中
+   * @zh_CN checkbox 是否选中
+   * @en_US whether checkbox is selected
    */
   checked?: boolean;
   /**
-   * 序号
+   * @zh_CN 序号
+   * @en_US Serial number
    */
   index?: number;
 }
 
+/**
+ * Transfer Source
+ */
 export interface XTransferSource {
   /**
-   * 标题
+   * @zh_CN 标题
+   * @en_US Title
    */
   title?: string;
   /**
-   * 搜索的数据
+   * @zh_CN 搜索的数据
+   * @en_US Searched data
    */
   searchInput?: string;
   /**
-   * 全选
+   * @zh_CN 全选
+   * @en_US Select all
    */
   checkedAll?: boolean;
   /**
-   * 选中的数量
+   * @zh_CN 选中的数量
+   * @en_US Selected quantity
    */
   checkedCount?: number;
   /**
-   * 不确定状态的样式
+   * @zh_CN 不确定状态的样式
+   * @en_US Uncertain state style
    */
   indeterminate?: boolean;
   /**
-   * 列表数据
+   * @zh_CN 列表数据
+   * @en_US List data
    */
   list?: XTransferNode[];
   /**
-   * 搜索数据，用来还原
+   * @zh_CN 搜索数据，用来还原
+   * @en_US Search data to restore
    */
   searchList?: XTransferNode[];
   /**
-   * 按钮禁用
+   * @zh_CN 按钮禁用
+   * @en_US Button disabled
    */
   disabledButton?: boolean;
 }

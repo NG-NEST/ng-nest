@@ -14,15 +14,18 @@ export const XCollapsePrefix = 'x-collapse';
 @Component({ template: '' })
 export class XCollapseProperty extends XProperty {
   /**
-   * 是否以手风琴的方式展示，只展开一个面板
+   * @zh_CN 是否以手风琴的方式展示，只展开一个面板
+   * @en_US Whether to display as an accordion, only expand one panel
    */
   @Input() @XInputBoolean() accordion: XBoolean;
   /**
-   * 当前激活的面板序号
+   * @zh_CN 当前激活的面板序号
+   * @en_US The serial number of the currently active panel
    */
   @Input() active: XNumber | XNumber[] = [];
   /**
-   * 激活的面板发生变化的事件
+   * @zh_CN 激活的面板发生变化的事件
+   * @en_US The event that the activated panel changes
    */
   @Output() activeChange = new EventEmitter<XNumber | XNumber[]>();
 }
@@ -40,11 +43,13 @@ export const XCollapsePanelPrefix = 'x-collapse-panel';
 @Component({ template: '' })
 export class XCollapsePanelProperty extends XProperty {
   /**
-   * 标题，支持模板自定义
+   * @zh_CN 标题，支持模板自定义
+   * @en_US Title, support template customization
    */
   @Input() label: XTemplate;
   /**
-   * 激活当前面板
+   * @zh_CN 激活当前面板
+   * @en_US Activate the current panel
    */
   @Input() @XInputBoolean() active: XBoolean;
 }

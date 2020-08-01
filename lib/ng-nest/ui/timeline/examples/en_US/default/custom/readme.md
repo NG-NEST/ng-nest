@@ -1,6 +1,6 @@
 ---
 order: 6
-label: '自定义'
+label: 'Custom'
 ---
 
-使用 `wrapper` 来自定义显示的内容。
+Use `wrapper` to customize the displayed content.

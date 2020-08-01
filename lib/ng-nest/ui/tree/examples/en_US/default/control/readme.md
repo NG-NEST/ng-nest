@@ -1,6 +1,6 @@
 ---
 order: 6
-label: '节点操作'
+label: 'Node operation'
 ---
 
-通过 `@ViewChild()` 来获取树组件，组件中提供了公共函数来操作树节点。
+Get the tree component through `@ViewChild()`, which provides public functions to manipulate tree nodes.

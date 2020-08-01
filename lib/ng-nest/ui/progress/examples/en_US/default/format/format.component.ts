@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ExFormatComponent {
   format(percent: number) {
-    return percent === 100 ? '已完成' : '加载中' + percent + '%';
+    return percent === 100 ? 'completed' : 'loading' + percent + '%';
   }
 }

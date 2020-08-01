@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '禁用'
+label: 'Disabled'
 ---
 
-使用 `disabled` 属性来禁用开关。
+Use the `disabled` property to disable the selection.

@@ -1,7 +1,7 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-- 展示新消息数量。
-- 定义 `value` 属性，它接受 `number` 或者 `string`。
+- Show the number of new messages.
+- Defines the `value` attribute, which takes `number` or `string`.

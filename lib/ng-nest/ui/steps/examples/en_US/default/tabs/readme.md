@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '结合标签页'
+label: 'Tabs'
 ---
 
-结合 `x-tabs` 组件实现分步切换内容。
+Combine the `x-tabs` component to switch content step by step.

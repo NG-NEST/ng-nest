@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '长度'
+label: 'length'
 ---
 
-使用 `maxlength` 属性限制输入字符长度。
+Use the `maxlength` attribute to limit the length of the input character.

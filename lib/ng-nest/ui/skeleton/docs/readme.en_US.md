@@ -1,11 +1,11 @@
 ---
-label: 'Skeleton 骨架屏'
+label: 'Skeleton'
 category: 'Feedback'
 ---
 
-# Skeleton 骨架屏
+# Skeleton
 
-用于页面和区块的加载中状态。
+Used for in-load states of pages and blocks.
 
 ## Used alone
 

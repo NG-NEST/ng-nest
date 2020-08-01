@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `xTimeRange` 管道
+Use the `xTimeRange` pipeline.

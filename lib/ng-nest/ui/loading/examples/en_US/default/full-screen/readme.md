@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '整页加载'
+label: 'Full screen'
 ---
 
-使用 `fullScreen` 属性设置覆盖全屏的加载中。
+Use the `fullScreen` attribute setting to override the full screen load.

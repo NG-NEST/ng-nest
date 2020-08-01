@@ -1,11 +1,11 @@
 ---
-label: 'Switch 开关'
+label: 'Switch'
 category: 'Form'
 ---
 
-# Switch 开关
+# Switch
 
-表示两种相互对立的状态间的切换，多用于触发「开/关」。
+A switch between two opposing states, often used to trigger "on/off".
 
 ## Used alone
 

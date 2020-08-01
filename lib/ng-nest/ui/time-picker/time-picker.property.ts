@@ -15,19 +15,23 @@ const X_CONFIG_NAME = 'timePicker';
 @Component({ template: '' })
 export class XTimePickerProperty extends XControlValueAccessor<any> {
   /**
-   * 时间类型
+   * @zh_CN 时间类型
+   * @en_US Time type
    */
   @Input() type: XTimePickerType = 'time';
   /**
-   * 格式化
+   * @zh_CN 格式化
+   * @en_US Format
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   @Output() nodeEmit = new EventEmitter<number>();
 }
@@ -38,25 +42,30 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
  */
 export interface XTimePickerOption extends XFormOption {
   /**
-   * 时间类型
+   * @zh_CN 时间类型
+   * @en_US Time type
    */
   type?: XTimePickerType;
   /**
-   * 格式化
+   * @zh_CN 格式化
+   * @en_US Format
    */
   format?: string;
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   placement?: XCorner;
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   nodeClick?: (date: number) => void;
 }
 
 /**
- * 时间选择
+ * @zh_CN 时间选择
+ * @en_US Time selection
  */
 export type XTimePickerType = 'time' | 'hour' | 'minute';
 

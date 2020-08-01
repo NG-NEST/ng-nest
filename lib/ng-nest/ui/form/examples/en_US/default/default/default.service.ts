@@ -7,28 +7,28 @@ import { XTreeNode } from '@ng-nest/ui/tree';
 @Injectable()
 export class UsersServiceTest extends XRepositoryAbstract {
   organizations = [
-    '雷浩集团',
-    '企业发展事业群',
-    '社交网络事业群',
-    '互动娱乐事业群',
-    '移动互联网事业群',
-    '网络媒体事业群',
-    '人事部',
-    '行政部',
-    '财务部'
+    'LeiHao group',
+    'Enterprises develop',
+    'Social networking',
+    'Interactive entertainment',
+    'Mobile Internet',
+    'Network media',
+    'Personnel department',
+    'Administration department',
+    'Accounting department'
   ];
-  positions = ['技术员', '销售', '经理', '总监', '生产员'];
+  positions = ['Technician', 'Sales', 'Manager', 'Director', 'Production'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {
     i++;
     let positionId = Math.floor(Math.random() * 5 + 1);
     let organizationId = Math.floor(Math.random() * 9 + 1);
     return {
       id: i,
-      label: '姓名' + i,
+      label: 'name' + i,
       positionId: positionId,
       position: this.positions[positionId - 1],
-      email: '邮箱' + i,
-      phone: '手机' + i,
+      email: 'email' + i,
+      phone: 'phone' + i,
       organizationId: organizationId,
       organization: this.organizations[organizationId - 1]
     };
@@ -121,15 +121,15 @@ export class UsersServiceTest extends XRepositoryAbstract {
 @Injectable()
 export class TreeServiceTest {
   data: XTreeNode[] = [
-    { id: 1, label: '雷浩集团' },
-    { id: 2, label: '企业发展事业群', pid: 1 },
-    { id: 3, label: '社交网络事业群', pid: 1 },
-    { id: 4, label: '互动娱乐事业群', pid: 1 },
-    { id: 5, label: '移动互联网事业群', pid: 1 },
-    { id: 6, label: '网络媒体事业群', pid: 1 },
-    { id: 7, label: '人事部', pid: 4 },
-    { id: 8, label: '行政部', pid: 4 },
-    { id: 9, label: '财务部', pid: 4 }
+    { id: 1, label: 'LeiHao group' },
+    { id: 2, label: 'Enterprises develop', pid: 1 },
+    { id: 3, label: 'Social networking', pid: 1 },
+    { id: 4, label: 'Interactive entertainment', pid: 1 },
+    { id: 5, label: 'Mobile Internet', pid: 1 },
+    { id: 6, label: 'Network media', pid: 1 },
+    { id: 7, label: 'Personnel department', pid: 4 },
+    { id: 8, label: 'Administration department', pid: 4 },
+    { id: 9, label: 'Accounting department', pid: 4 }
   ];
 
   getTreeList = (pid = undefined): Observable<XTreeNode[]> => {

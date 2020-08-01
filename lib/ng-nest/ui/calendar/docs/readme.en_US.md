@@ -1,11 +1,11 @@
 ---
-label: 'Calendar 日历'
+label: 'Calendar'
 category: 'Data'
 ---
 
-# Calendar 日历
+# Calendar
 
-按照日历形式展示数据的容器。
+A container for displaying data in calendar form.
 
 ## Used alone
 

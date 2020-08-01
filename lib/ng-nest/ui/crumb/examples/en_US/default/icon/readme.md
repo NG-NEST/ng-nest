@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '图标'
+label: 'Icon'
 ---
 
-设置节点对象中的 `icon` 的图标属性。
+Set the icon property of the `icon` in the node object.

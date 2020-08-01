@@ -15,31 +15,38 @@ export const XSliderSelectPrefix = 'x-slider-select';
 @Component({ template: '' })
 export class XSliderSelectProperty extends XControlValueAccessor<number> implements XSliderSelectOption {
   /**
-   * 最小值
+   * @zh_CN 最小值
+   * @en_US Minimum
    */
   @Input() @XInputNumber() min: XNumber = 0;
   /**
-   * 最大值
+   * @zh_CN 最大值
+   * @en_US Max
    */
   @Input() @XInputNumber() max: XNumber = 100;
   /**
-   * 步数
+   * @zh_CN 步数
+   * @en_US Step count
    */
   @Input() @XInputNumber() step: XNumber = 1;
   /**
-   * 精度，默认根据步数来计算
+   * @zh_CN 精度，默认根据步数来计算
+   * @en_US Precision, calculated based on the number of steps by default
    */
   @Input() @XInputNumber() precision: XNumber;
   /**
-   * 开始拖动的事件
+   * @zh_CN 开始拖动的事件
+   * @en_US Start drag event
    */
   @Output() dragStartEmit = new EventEmitter<CdkDragStart>();
   /**
-   * 按住移动中的事件
+   * @zh_CN 按住移动中的事件
+   * @en_US Hold down the moving event
    */
   @Output() dragMoveEmit = new EventEmitter<CdkDragMove>();
   /**
-   * 移动结束的事件
+   * @zh_CN 移动结束的事件
+   * @en_US Mobile end event
    */
   @Output() dragEndEmit = new EventEmitter<CdkDragEnd>();
 }
@@ -50,31 +57,38 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
  */
 export interface XSliderSelectOption extends XFormOption {
   /**
-   * 最小值
+   * @zh_CN 最小值
+   * @en_US Minimum
    */
   min?: XNumber;
   /**
-   * 最大值
+   * @zh_CN 最大值
+   * @en_US Max
    */
   max?: XNumber;
   /**
-   * 步数
+   * @zh_CN 步数
+   * @en_US Step count
    */
   step?: XNumber;
   /**
-   * 精度，默认根据步数来计算
+   * @zh_CN 精度，默认根据步数来计算
+   * @en_US Precision, calculated based on the number of steps by default
    */
   precision?: XNumber;
   /**
-   * 开始拖动的事件
+   * @zh_CN 开始拖动的事件
+   * @en_US Start drag event
    */
   dragStart?: (dragStart: CdkDragStart) => void;
   /**
-   * 按住移动中的事件
+   * @zh_CN 按住移动中的事件
+   * @en_US Hold down the moving event
    */
   dragMove?: (dragMove: CdkDragMove) => void;
   /**
-   * 移动结束的事件
+   * @zh_CN 移动结束的事件
+   * @en_US Mobile end event
    */
   dragEnd?: (dragEnd: CdkDragEnd) => void;
 }

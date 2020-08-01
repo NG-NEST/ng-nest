@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '多级菜单'
+label: 'Multilevel'
 ---
 
-`data` 数据中使用 `id` 和 `pid` 来确定树状结构的数据。
+`data` data use `id` and `pid` to determine the tree-structured data.

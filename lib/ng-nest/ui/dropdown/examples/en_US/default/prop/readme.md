@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '节点属性'
+label: 'Node property'
 ---
 
-节点中可配置图标、禁用、分割线等属性。
+Configurable properties in nodes such as icon, disable, divider, etc.

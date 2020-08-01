@@ -22,87 +22,108 @@ export const XDialogPortal = 'x-dialog-portal';
 export class XDialogProperty extends XAlertProperty {
   @Input() @XInputBoolean() visible: boolean = false;
   /**
-   * 方位，九宫格
+   * @zh_CN 方位，九宫格
+   * @en_US Direction, nine grid
    */
   @Input() @XWithConfig<XPlace>(X_CONFIG_NAME, 'center') placement: XPlace;
   /**
-   * 偏移距离
+   * @zh_CN 偏移距离
+   * @en_US Offset distance
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') offset: string;
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Types of
    */
   @Input() type: XDialogType = 'info';
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '40%') width: string;
   /**
-   * 高度
+   * @zh_CN 高度
+   * @en_US Height
    */
   @Input() height: string;
   /**
-   * 样式主题
+   * @zh_CN 样式主题
+   * @en_US Style theme
    */
   @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') effect: XEffect;
   /**
-   * 底部自定义模板
+   * @zh_CN 底部自定义模板
+   * @en_US Custom template at the bottom
    */
   @Input() footer: XTemplate;
   /**
-   * 显示取消按钮
+   * @zh_CN 显示取消按钮
+   * @en_US Show cancel button
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showCancel: XBoolean;
   /**
-   * 取消按钮文字
+   * @zh_CN 取消按钮文字
+   * @en_US Cancel button text
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
   /**
-   * 显示确认按钮
+   * @zh_CN 显示确认按钮
+   * @en_US Show confirmation button
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showConfirm: XBoolean;
   /**
-   * 确认按钮文字
+   * @zh_CN 确认按钮文字
+   * @en_US Confirm button text
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
   /**
-   * 点击遮罩关闭
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) backdropClose: XBoolean;
   /**
-   * 是否显示背景遮罩
+   * @zh_CN 是否显示背景遮罩
+   * @en_US Whether to display the background mask
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) hasBackdrop: XBoolean;
   /**
-   * 自定义样式名
+   * @zh_CN 自定义样式名
+   * @en_US Custom style name
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '') className: string;
   /**
-   * 按钮居中
+   * @zh_CN 按钮居中
+   * @en_US Button center
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter: XBoolean;
   /**
-   * 关闭前处理函数
+   * @zh_CN 关闭前处理函数
+   * @en_US Processing function before closing
    */
   @Input() beforeClose: Function;
   /**
-   * 取消按钮的事件
+   * @zh_CN 取消按钮的事件
+   * @en_US Cancel button event
    */
   @Output() cancel = new EventEmitter();
   /**
-   * 确认按钮的事件
+   * @zh_CN 确认按钮的事件
+   * @en_US Confirm button event
    */
   @Output() confirm = new EventEmitter();
   /**
-   * 显示/隐藏改变事件
+   * @zh_CN 显示/隐藏改变事件
+   * @en_US Show/hide change events
    */
   @Output() visibleChange = new EventEmitter<boolean>();
   /**
-   * 弹出完成动画加载
+   * @zh_CN 弹出完成动画加载
+   * @en_US Pop up complete animation loading
    */
   @Output() showDone = new EventEmitter<any>();
   /**
-   * 关闭完成动画
+   * @zh_CN 关闭完成动画
+   * @en_US Close complete animation
    */
   @Output() closeDone = new EventEmitter<any>();
 }
@@ -110,67 +131,83 @@ export class XDialogProperty extends XAlertProperty {
 export interface XDialogOption extends XAlertOption {
   visible?: boolean;
   /**
-   * 方位，九宫格
+   * @zh_CN 方位，九宫格
+   * @en_US Direction, nine grid
    */
   placement?: XPlace;
   /**
-   * 偏移距离
+   * @zh_CN 偏移距离
+   * @en_US Offset distance
    */
   offset?: string;
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Types of
    */
   type?: XDialogType;
   /**
-   * 宽度
+   * @zh_CN 宽度
+   * @en_US Width
    */
   width?: string;
   /**
-   * 高度
+   * @zh_CN 高度
+   * @en_US Height
    */
   height?: string;
   /**
-   * 样式主题
+   * @zh_CN 样式主题
+   * @en_US Style theme
    */
   effect?: XEffect;
   /**
-   * 底部自定义模板
+   * @zh_CN 底部自定义模板
+   * @en_US Custom template at the bottom
    */
   footer?: XTemplate;
   /**
-   * 显示取消按钮
+   * @zh_CN 显示取消按钮
+   * @en_US Show cancel button
    */
   showCancel?: XBoolean;
   /**
-   * 取消按钮文字
+   * @zh_CN 取消按钮文字
+   * @en_US Cancel button text
    */
   cancelText?: string;
   /**
-   * 显示确认按钮
+   * @zh_CN 显示确认按钮
+   * @en_US Show confirmation button
    */
   showConfirm?: XBoolean;
   /**
-   * 确认按钮文字
+   * @zh_CN 确认按钮文字
+   * @en_US Confirm button text
    */
   confirmText?: string;
   /**
-   * 点击遮罩关闭
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
    */
   backdropClose?: XBoolean;
   /**
-   * 是否显示背景遮罩
+   * @zh_CN 是否显示背景遮罩
+   * @en_US Whether to display the background mask
    */
   hasBackdrop?: XBoolean;
   /**
-   * 自定义样式名
+   * @zh_CN 自定义样式名
+   * @en_US Custom style name
    */
   className?: string;
   /**
-   * 按钮居中
+   * @zh_CN 按钮居中
+   * @en_US Button center
    */
   buttonsCenter?: XBoolean;
   /**
-   * 关闭前处理函数
+   * @zh_CN 关闭前处理函数
+   * @en_US Processing function before closing
    */
   beforeClose?: Function;
 }
@@ -182,7 +219,8 @@ export interface XDialogCallback {
 export type XDialogAction = 'confirm' | 'cancel';
 
 /**
- * 创建的消息对象
+ * @zh_CN 创建的消息对象
+ * @en_US Message object created
  */
 export interface XDialogOverlayRef extends XPortalOverlayRef<XDialogComponent> {}
 
@@ -192,6 +230,7 @@ export interface XDialogRef {
 }
 
 /**
- * 类型
+ * @zh_CN 类型
+ * @en_US Types of
  */
 export type XDialogType = XStatus;

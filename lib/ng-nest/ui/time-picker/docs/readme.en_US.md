@@ -1,11 +1,11 @@
 ---
-label: 'TimePicker 时间选择器'
+label: 'TimePicker'
 category: 'Form'
 ---
 
-# TimePicker 时间选择器
+# TimePicker
 
-用于选择或输入时间。
+Used to select or enter time.
 
 ## Used alone
 

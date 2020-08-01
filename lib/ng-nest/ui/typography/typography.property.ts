@@ -14,11 +14,13 @@ export const XTypographyPrefix = 'x-typography';
 @Component({ template: '' })
 export class XTypographyProperty extends XProperty {
   /**
-   * 字体
+   * @zh_CN 字体
+   * @en_US Font
    */
   @Input() font: string = 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif';
   /**
-   * 显示文字
+   * @zh_CN 显示文字
+   * @en_US Display text
    */
   @Input() text: string;
 }

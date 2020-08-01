@@ -1,11 +1,11 @@
 ---
-label: 'Menu 导航菜单'
+label: 'Menu'
 category: 'Navigation'
 ---
 
-# Menu 导航菜单
+# Menu
 
-为页面和功能提供导航的菜单列表。
+A list of menus that provide navigation for pages and functions.
 
 ## Used alone
 

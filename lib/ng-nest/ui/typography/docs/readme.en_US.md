@@ -1,11 +1,11 @@
 ---
-label: 'Typography 字体'
+label: 'Typography'
 category: 'Basic'
 ---
 
-# Typography 字体
+# Typography
 
-我们对字体进行统一规范，力求在各个操作系统下都有最佳展示效果。
+We standardize the font, and strive to have the best display effect in each operating system.
 
 ## Used alone
 

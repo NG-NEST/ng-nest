@@ -1,11 +1,11 @@
 ---
-label: 'InputNumber 计数器'
+label: 'InputNumber'
 category: 'Form'
 ---
 
-# InputNumber 计数器
+# InputNumber
 
-允许输入标准的数字值，可定义范围。
+Allows standard numeric values to be entered, with a definable range.
 
 ## Used alone
 

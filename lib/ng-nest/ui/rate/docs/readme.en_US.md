@@ -1,11 +1,11 @@
 ---
-label: 'Rate 评分'
+label: 'Rate'
 category: 'Form'
 ---
 
-# Rate 评分
+# Rate
 
-评分组件。
+Score components.
 
 ## Used alone
 

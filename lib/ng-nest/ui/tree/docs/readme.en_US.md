@@ -1,11 +1,11 @@
 ---
-label: 'Tree 树形控件'
+label: 'Tree'
 category: 'Data'
 ---
 
-# Tree 树形控件
+# Tree
 
-用清晰的层级结构展示信息，可展开或折叠。
+Present information in a clear hierarchy that can be expanded or folded.
 
 ## Used alone
 

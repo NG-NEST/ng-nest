@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '按钮样式'
+label: 'Button style'
 ---
 
-使用 `button` 属性切换成按钮样式的单选组合。
+Use the `button` property to switch to a button-style radio combination.

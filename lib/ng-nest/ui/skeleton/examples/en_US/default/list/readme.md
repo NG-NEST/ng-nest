@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '列表'
+label: 'List'
 ---
 
-列表样式。
+List style.

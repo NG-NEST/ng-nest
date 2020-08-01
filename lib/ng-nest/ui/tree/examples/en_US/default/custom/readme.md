@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '节点自定义'
+label: 'Custom node'
 ---
 
-使用 `labelTpl` 属性自定义节点显示模板。
+Use the `labelTpl` attribute to customize the node display template.

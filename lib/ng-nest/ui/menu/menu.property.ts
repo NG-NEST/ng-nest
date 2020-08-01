@@ -27,89 +27,113 @@ const X_CONFIG_NAME = 'menu';
 @Component({ template: '' })
 export class XMenuProperty extends XProperty {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XMenuNode> = [];
   /**
-   * 布局方向
+   * @zh_CN 布局方向
+   * @en_US Layout direction
    */
   @Input() layout: XMenuLayout = 'row';
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 缩起菜单
+   * @zh_CN 缩起菜单
+   * @en_US Shrink menu
    */
   @Input() @XInputBoolean() collapsed: XBoolean = false;
   /**
-   * 触发方式，只针对横向布局
+   * @zh_CN 触发方式，只针对横向布局
+   * @en_US Trigger mode, only for horizontal layout
    */
   @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger: XMenuTrigger;
   /**
-   * 节点模板
+   * @zh_CN 节点模板
+   * @en_US Node template
    */
   @Input() nodeTpl: TemplateRef<any>;
   /**
-   * 展开的所有层级，只对 layout 布局为 'column' 的生效
+   * @zh_CN 展开的所有层级，只对 layout 布局为 'column' 的生效
+   * @en_US All expanded levels are only effective for the layout of'column'
    */
   @Input() @XInputBoolean() expandedAll: XBoolean;
   /**
-   * 默认展开的层级，只对 layout 布局为 'column' 的生效
+   * @zh_CN 默认展开的层级，只对 layout 布局为 'column' 的生效
+   * @en_US The level expanded by default is only valid for the layout of'column'
    */
   @Input() @XInputNumber() expandedLevel: XNumber = -1;
   /**
-   * 当前激活的节点 id
+   * @zh_CN 当前激活的节点 id
+   * @en_US Currently active node id
    */
   @Input() activatedId: any;
   /**
-   * 滚动容器
+   * @zh_CN 滚动容器
+   * @en_US Rolling container
    */
   @Input() target: string | HTMLElement;
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   @Output() nodeClick = new EventEmitter<XMenuNode>();
   /**
-   * 节点点击的事件
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
    */
   @Output() activatedIdChange = new EventEmitter<any>();
 }
 
+/**
+ * @zh_CN MenuNode 节点数据
+ * @en_US MenuNode node data
+ */
 export interface XMenuNode extends XParentIdentityProperty<XMenuNode> {
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
   /**
-   * 展开
+   * @zh_CN 展开
+   * @en_US Unfold
    */
   open?: boolean;
   /**
-   * 子节点已加载过
+   * @zh_CN 子节点已加载过
+   * @en_US Child node has been loaded
    */
   childrenLoaded?: boolean;
   /**
-   * 分类显示，设置值后节点显示成分类样式
+   * @zh_CN 分类显示，设置值后节点显示成分类样式
+   * @en_US Category display, after setting the value, the node is displayed in a category style
    */
   category?: string;
   /**
-   * 分类节点，通过内部计算
+   * @zh_CN 分类节点，通过内部计算
+   * @en_US Classification node, through internal calculation
    */
   categoryNode?: boolean;
   /**
-   * 检查更新
+   * @zh_CN 检查更新
+   * @en_US Check for updates
    */
   change?: Function;
 }
 
 /**
- * 布局方式
+ * @zh_CN 布局方式
+ * @en_US Layout
  */
 export type XMenuLayout = 'row' | 'column';
 
 /**
- * 触发方式
+ * @zh_CN 触发方式
+ * @en_US Trigger method
  */
 export type XMenuTrigger = XTrigger;
 
@@ -126,7 +150,8 @@ export const XMenuNodePrefix = 'x-menu-node';
 @Component({ template: '' })
 export class XMenuNodeProperty {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() node: XMenuNode;
 }

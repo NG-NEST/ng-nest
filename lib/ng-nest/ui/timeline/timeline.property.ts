@@ -15,49 +15,60 @@ const X_CONFIG_NAME = 'timeline';
 @Component({ template: '' })
 export class XTimelineProperty extends XProperty {
   /**
-   * 数据
+   * @zh_CN 数据
+   * @en_US Date
    */
   @Input() @XDataConvert() data: XData<XTimelineNode> = [];
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Type
    */
   @Input() type: XType;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 内容模板
+   * @zh_CN 内容模板
+   * @en_US Content template
    */
   @Input() wrapper: XTemplate;
 }
 
 /**
- * Timeline 数据对象
+ * @zh_CN Timeline 数据对象
+ * @en_US Timeline 数据对象
  */
 export interface XTimelineNode extends XIdentityProperty {
   /**
-   * 时间
+   * @zh_CN 时间
+   * @en_US Time
    */
   time?: string | Date;
   /**
-   * 内容
+   * @zh_CN 内容
+   * @en_US Content
    */
   content?: string;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   size?: XSize;
   /**
-   * 类型
+   * @zh_CN 类型
+   * @en_US Type
    */
   type?: XType;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
   /**
-   * 颜色
+   * @zh_CN 颜色
+   * @en_US Color
    */
   color?: string;
 }

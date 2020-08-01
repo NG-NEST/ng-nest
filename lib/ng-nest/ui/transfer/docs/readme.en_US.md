@@ -1,9 +1,9 @@
 ---
-label: 'Transfer 穿梭框'
+label: 'Transfer'
 category: 'Form'
 ---
 
-# Transfer 穿梭框
+# Transfer
 
 ## Used alone
 

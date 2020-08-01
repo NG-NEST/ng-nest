@@ -27,58 +27,71 @@ const X_CONFIG_NAME = 'tabs';
 @Component({ template: '' })
 export class XTabsProperty extends XProperty {
   /**
-   * Data 数据
+   * @zh_CN Data 数据
+   * @en_US Data
    */
   @Input() data: XData<XTabsNode> = [];
   /**
-   * 对齐方式
+   * @zh_CN 对齐方式
+   * @en_US Alignment
    */
   @Input() justify: XJustify = 'start';
   /**
-   * 样式
+   * @zh_CN 样式
+   * @en_US Style
    */
   @Input() type?: XTabsType = 'block';
   /**
-   * 布局方式
+   * @zh_CN 布局方式
+   * @en_US Layout
    */
   @Input() layout: XTabsLayout = 'top';
   /**
-   * 激活的序号
+   * @zh_CN 激活的序号
+   * @en_US Activation number
    */
   @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
-   * 动画
+   * @zh_CN 动画
+   * @en_US Animation
    */
   @Input() @XInputBoolean() animated: XBoolean = true;
   /**
-   * 节点模板
+   * @zh_CN 节点模板
+   * @en_US Node template
    */
   @Input() nodeTpl: TemplateRef<any>;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 节点排列方式
+   * @zh_CN 节点排列方式
+   * @en_US Node arrangement
    */
   @Input() nodeJustify: XJustify;
   /**
-   * 隐藏标签栏
+   * @zh_CN 隐藏标签栏
+   * @en_US Hide tab bar
    */
   @Input() @XInputBoolean() sliderHidden: XBoolean;
   /**
-   * 标签切换变化的事件
+   * @zh_CN 标签切换变化的事件
+   * @en_US Label switching event
    */
   @Output() indexChange = new EventEmitter<XActivatedTab>();
 }
 
 /**
- * Tabs 数据对象
+ * @zh_CN Tabs 数据对象
+ * @en_US Tabs data object
  */
 export interface XTabsNode extends XIdentityProperty {}
 
 /**
- * 激活的tab
+ * @zh_CN 激活的tab
+ * @en_US Active tab
  */
 export interface XActivatedTab {
   activatedIndex?: number;
@@ -86,12 +99,14 @@ export interface XActivatedTab {
 }
 
 /**
- * 样式类型
+ * @zh_CN 样式类型
+ * @en_US Style type
  */
 export type XTabsType = 'block' | 'tag' | 'card';
 
 /**
- * 布局方式
+ * @zh_CN 布局方式
+ * @en_US Layout
  */
 export type XTabsLayout = 'top' | 'right' | 'bottom' | 'left';
 
@@ -108,7 +123,8 @@ export const XTabPrefix = 'x-tab';
 @Component({ template: '' })
 export class XTabProperty {
   /**
-   * 标签名称，支持自定义模板
+   * @zh_CN 标签名称，支持自定义模板
+   * @en_US Label name, support custom template
    */
   @Input() label: XTemplate;
 }

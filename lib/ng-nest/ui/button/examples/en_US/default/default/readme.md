@@ -1,8 +1,8 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-基础的按钮用法。
+Basic button usage.
 
-- 使用 `type` 、 `plain`、 `round` 和 `circle` 属性来定义 Button 的样式。
+- Define the style of the Button using the `type`, `plain`, `round`, and `circle` attributes.

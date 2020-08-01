@@ -8,8 +8,8 @@ import { XStepsNode } from '@ng-nest/ui/steps';
 })
 export class ExDescriptionComponent {
   data: XData<XStepsNode> = [
-    { label: '完成', description: '这是描述内容。' },
-    { label: '进行中', description: '这是描述内容。' },
-    { label: '等待', description: '这是描述内容。' }
+    { label: 'carry out', description: 'This is the description.' },
+    { label: 'processing', description: 'This is the description.' },
+    { label: 'wait', description: 'This is the description.' }
   ];
 }

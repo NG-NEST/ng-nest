@@ -16,7 +16,8 @@ const X_CONFIG_NAME = 'colorPicker';
 @Component({ template: '' })
 export class XColorPickerProperty extends XControlValueAccessor<string> implements XColorPickerOption {
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
 }
@@ -27,13 +28,15 @@ export class XColorPickerProperty extends XControlValueAccessor<string> implemen
  */
 export interface XColorPickerOption extends XFormOption {
   /**
-   * 展示方位
+   * @zh_CN 展示方位
+   * @en_US Display position
    */
   placement?: XCorner;
 }
 
 /**
- * 颜色种类
+ * @zh_CN 颜色种类
+ * @en_US Color type
  */
 export type XColorType = 'hex' | 'rgba' | 'hsla';
 

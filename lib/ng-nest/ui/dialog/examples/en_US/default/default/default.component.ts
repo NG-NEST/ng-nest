@@ -23,8 +23,8 @@ export class ExDefaultComponent {
 
   beforeClose = () => {
     this.msgBox.confirm({
-      title: '提示',
-      content: '有未保存的数据，确认关闭吗？',
+      title: 'prompt',
+      content: 'There is unsaved data. Do you want to close it?',
       type: 'warning',
       callback: (action: XMessageBoxAction) => {
         action === 'confirm' && this.close();

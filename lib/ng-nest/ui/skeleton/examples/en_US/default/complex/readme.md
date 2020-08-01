@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '复杂样式'
+label: 'Complex style'
 ---
 
-使用 `data` 的嵌套结构来构建复杂样式。
+Use the nested structure of `data` to build complex styles.

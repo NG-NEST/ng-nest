@@ -1,11 +1,11 @@
 ---
-label: 'Popconfirm 气泡确认框'
+label: 'Popconfirm'
 category: 'Feedback'
 ---
 
-# Popconfirm 气泡确认框
+# Popconfirm
 
-点击元素，弹出气泡式的确认框。
+Click on the element to pop up a bubble-like confirmation box.
 
 ## Used alone
 

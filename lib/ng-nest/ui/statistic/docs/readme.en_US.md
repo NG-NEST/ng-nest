@@ -1,11 +1,11 @@
 ---
-label: 'Statistic 统计'
+label: 'Statistic'
 category: 'Data'
 ---
 
-# Statistic 统计
+# Statistic
 
-展示统计数字。
+Show the statistics.
 
 ## Used alone
 

@@ -1,11 +1,11 @@
 ---
-label: 'Progress 进度条'
+label: 'Progress'
 category: 'Data'
 ---
 
-# Progress 进度条
+# Progress
 
-用于展示操作进度，告知用户当前状态和预期。
+Used to show the progress of the operation and inform the user of the current status and expectations.
 
 ## Used alone
 

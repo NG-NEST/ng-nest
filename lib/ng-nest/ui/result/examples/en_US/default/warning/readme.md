@@ -1,4 +1,4 @@
 ---
 order: 3
-label: 'warning'
+label: 'Warning'
 ---

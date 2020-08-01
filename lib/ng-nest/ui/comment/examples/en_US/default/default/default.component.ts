@@ -9,19 +9,18 @@ import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 export class ExDefaultComponent {
   now = new Date();
   src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
-  content = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。`;
+  content = `The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  The more you learn, the more you don't know. The more you learn, the more you don't know.`;
   data: XCommentNode[] = [
     {
       id: '1',
       src: this.src,
-      author: '张琪峰',
+      author: 'Qifeng Zhang',
       datetime: XAddMinutes(this.now, -40),
       content: this.content,
       count: 23,
@@ -31,7 +30,7 @@ export class ExDefaultComponent {
           id: '1-1',
           pid: '1',
           src: this.src,
-          author: '刘三',
+          author: 'San Liu',
           datetime: XAddMinutes(this.now, -30),
           content: this.content,
           likes: 2
@@ -40,7 +39,7 @@ export class ExDefaultComponent {
           id: '1-2',
           pid: '1',
           src: this.src,
-          author: '刘四',
+          author: 'Si Liu',
           datetime: XAddMinutes(this.now, -35),
           content: this.content,
           likes: 0
@@ -49,7 +48,7 @@ export class ExDefaultComponent {
           id: '1-2',
           pid: '1',
           src: this.src,
-          author: '刘五',
+          author: 'Wu Liu',
           datetime: XAddMinutes(this.now, -38),
           content: this.content,
           likes: 0
@@ -59,7 +58,7 @@ export class ExDefaultComponent {
     {
       id: '2',
       src: this.src,
-      author: '李牧云',
+      author: 'Muyun Li',
       datetime: XAddMinutes(this.now, -50),
       content: this.content,
       count: 2,
@@ -69,7 +68,7 @@ export class ExDefaultComponent {
           id: '1-1',
           pid: '1',
           src: this.src,
-          author: '刘三',
+          author: 'San Liu',
           datetime: XAddMinutes(this.now, -30),
           content: this.content,
           likes: 2
@@ -78,7 +77,7 @@ export class ExDefaultComponent {
           id: '1-2',
           pid: '1',
           src: this.src,
-          author: '刘四',
+          author: 'Si Liu',
           datetime: XAddMinutes(this.now, -35),
           content: this.content,
           likes: 0
@@ -88,7 +87,7 @@ export class ExDefaultComponent {
     {
       id: '3',
       src: this.src,
-      author: '刘芸',
+      author: 'Yun Liu',
       datetime: XAddHours(this.now, -5),
       content: this.content,
       count: 0,
@@ -103,7 +102,7 @@ export class ExDefaultComponent {
     return {
       id: pid + '-' + Math.floor(Math.random() * 100),
       pid: pid,
-      author: '用户' + index,
+      author: 'User' + index,
       datetime: XAddMinutes(new Date(), index),
       content: content,
       children: []

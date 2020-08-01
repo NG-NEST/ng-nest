@@ -1,11 +1,11 @@
 <x-row space="1">
   <x-col span="8">
     <ul class="operations">
-      <li>当前激活的节点：{{ activatedNode?.label }}</li>
-      <li><x-button (click)="setCheckedKeys([9, 11, 21, 23])">通过 Key 值设置选中的节点</x-button></li>
-      <li><x-button (click)="getCheckedKeys()">获取选中的节点的 Key 值</x-button></li>
+      <li>Currently active node:{{ activatedNode?.label }}</li>
+      <li><x-button (click)="setCheckedKeys([9, 11, 21, 23])">Set the selected node by Key value</x-button></li>
+      <li><x-button (click)="getCheckedKeys()">Get the Key value of the selected node</x-button></li>
       <li>
-        <x-button (click)="setExpandedAll()">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button>
+        <x-button (click)="setExpandedAll()">{{ expandedAll ? 'Collapse all' : 'Expand all' }}</x-button>
       </li>
       <li>{{ content | json }}</li>
     </ul>

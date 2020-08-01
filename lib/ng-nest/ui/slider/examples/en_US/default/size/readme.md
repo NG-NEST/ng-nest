@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '尺寸'
+label: 'Size'
 ---
 
-使用 `size` 属性来设置显示尺寸。
+Use the `size` property to set the display size.

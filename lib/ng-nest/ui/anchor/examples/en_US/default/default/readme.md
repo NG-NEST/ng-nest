@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-使用 `scroll` 来指定可滚动的元素，默认使用当前文档。
+Use `scroll` to specify scrollable elements, and default to the current document.

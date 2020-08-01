@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '中性色'
+label: 'Neutral'
 ---
 
-中性色用于文本、背景和边框颜色。通过运用不同的中性色，来表现层次结构。
+Neutral colors are used for text, background, and border colors. The hierarchy is represented by different neutral colors.

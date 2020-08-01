@@ -15,7 +15,8 @@ const X_CONFIG_NAME = 'inner';
 @Component({ template: '' })
 export class XInnerProperty extends XProperty {
   /**
-   * 内边距
+   * @zh_CN 内边距
+   * @en_US Inner padding
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') padding: string;
 }

@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './card.component.html'
 })
 export class ExCardComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
+  labels = ['User Management', 'Configuration Management', 'Role Management', 'Tasks'];
 }

@@ -5,5 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './line-height.component.html'
 })
 export class ExLineHeightComponent {
-  text = '天将降大任于是人也，<br/>必先苦其心志，劳其筋骨<br/>，饿其体肤';
+  text = `The more you learn, the more you don't know. <br/>
+  The more you learn, the more you don't know. <br/>
+  The more you learn, the more you don't know. <br/>`;
 }

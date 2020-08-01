@@ -29,144 +29,179 @@ const X_CONFIG_NAME = 'find';
 @Component({ template: '' })
 export class XFindProperty extends XControlValueAccessor<any | any[]> implements XFindOption {
   /**
-   * 多选
+   * @zh_CN 多选
+   * @en_US Multiple choice
    */
   @Input() @XInputBoolean() multiple: XBoolean = false;
   /**
-   * 选中 label 名称字段
+   * @zh_CN 选中 label 名称字段
+   * @en_US Check the label name field
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, 'label') columnLabel: string;
   /**
-   * 弹框标题
+   * @zh_CN 弹框标题
+   * @en_US Bullet title
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '查找选择') dialogTitle: string;
   /**
-   * 弹框宽度
+   * @zh_CN 弹框宽度
+   * @en_US Bullet frame width
    */
   @Input() dialogWidth: string;
   /**
-   * 弹框高度
+   * @zh_CN 弹框高度
+   * @en_US Height of bullet frame
    */
   @Input() dialogHeight: string;
   /**
-   * 弹框显示，隐藏
+   * @zh_CN 弹框显示，隐藏
+   * @en_US Bullet box display, hide
    */
   @Input() @XInputBoolean() dialogVisible: boolean = false;
   /**
-   * 弹框显示，隐藏
+   * @zh_CN 弹框显示，隐藏
+   * @en_US Bullet box display, hide
    */
   @Output() dialogVisibleChange = new EventEmitter<boolean>();
   /**
-   * 按钮居中
+   * @zh_CN 按钮居中
+   * @en_US Button centered
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dialogButtonsCenter: XBoolean;
 
   /**
-   * 表格行数据
+   * @zh_CN 表格行数据
+   * @en_US Table row data
    */
   @Input() tableData: XData<XTableRow> = [];
   /**
-   * 表格页码
+   * @zh_CN 表格页码
+   * @en_US Table page number
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex: number;
   /**
-   * 表每页数据条数
+   * @zh_CN 表每页数据条数
+   * @en_US Number of data items per page
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize: number;
   /**
-   * 表每页数据条数
+   * @zh_CN 表每页数据条数
+   * @en_US Number of data items per page
    */
   @Input() tableQuery: XQuery = {};
   /**
-   * 表格数据总条数
+   * @zh_CN 表格数据总条数
+   * @en_US Total number of table data
    */
   @Input() tableTotal: number = 0;
   /**
-   * 页码变化的事件
+   * @zh_CN 页码变化的事件
+   * @en_US Page number change event
    */
   @Output() tableIndexChange = new EventEmitter<number>();
   /**
-   * 每页显示条数变化的事件
+   * @zh_CN 每页显示条数变化的事件
+   * @en_US Show the number of events on each page
    */
   @Output() tableSizeChange = new EventEmitter<number>();
   /**
-   * 排序点击的事件
+   * @zh_CN 排序点击的事件
+   * @en_US Sort click events
    */
   @Output() tableSortChange = new EventEmitter<XSort[]>();
   /**
-   * 表格列参数
+   * @zh_CN 表格列参数
+   * @en_US Table column parameters
    */
   @Input() tableColumns: XTableColumn[] = [];
   /**
-   * 当前选中行数据
+   * @zh_CN 当前选中行数据
+   * @en_US Currently selected row data
    */
   @Input() tableActivatedRow?: any;
   /**
-   * 表格行点击事件
+   * @zh_CN 表格行点击事件
+   * @en_US Table row click event
    */
   @Output() tableRowEmit = new EventEmitter<any>();
   /**
-   * 表格行点击事件
+   * @zh_CN 表格行点击事件
+   * @en_US Table row click event
    */
   @Input() tableCheckedRow: { [prop: string]: any[] } = {};
   /**
-   * 是否启用加载 loading
+   * @zh_CN 是否启用加载 loading
+   * @en_US Whether to enable loading loading
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() tableLoading: XBoolean;
   /**
-   * 表格开启虚拟滚动
+   * @zh_CN 表格开启虚拟滚动
+   * @en_US Table opens virtual scrolling
    */
   @Input() @XWithConfig<boolean>(X_CONFIG_NAME, false) @XInputBoolean() tableVirtualScroll: boolean;
   /**
-   * 表格 body 数据高度
+   * @zh_CN 表格 body 数据高度
+   * @en_US Table body data height
    */
   @Input() @XInputNumber() tableBodyHeight: number;
   /**
-   * 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @zh_CN 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
   @Input() tableMinBufferPx: number = 100;
   /**
-   * 表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @zh_CN 表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US The pixels of the new data buffer for the table rendering, corresponding to the parameters in cdk scroll
    */
   @Input() tableMaxBufferPx: number = 200;
   /**
-   * 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @zh_CN 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @en_US Table adaptive height, table height is equal to the screen height minus the value set here
    */
   @Input() @XInputNumber() tableAdaptionHeight: XNumber;
   /**
-   * 表格文档高度百分比，弹窗百分比高度用到
+   * @zh_CN 表格文档高度百分比，弹窗百分比高度用到
+   * @en_US Table document height percentage, used for pop-up window percentage height
    */
   @Input() @XInputNumber() tableDocPercent: XNumber = 1;
   /**
-   * 表格行高度，单位 px
+   * @zh_CN 表格行高度，单位 px
+   * @en_US Table row height, unit px
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight: XNumber;
   /**
-   * 树节点数据
+   * @zh_CN 树节点数据
+   * @en_US Tree node data
    */
   @Input() @XDataConvert() treeData: XData<XTreeNode> = [];
   /**
-   * 树当前点击选中的节点变化的事件
+   * @zh_CN 树当前点击选中的节点变化的事件
+   * @en_US The event of the tree currently clicked on the selected node change
    */
   @Output() treeActivatedChange = new EventEmitter<XTreeNode>();
   /**
-   * 树当前激活的节点 Id
+   * @zh_CN 树当前激活的节点 Id
+   * @en_US Id of the currently active node of the tree
    */
   @Input() treeActivatedId: any;
   /**
-   * 树默认展开的层级
+   * @zh_CN 树默认展开的层级
+   * @en_US The level of the tree expanded by default
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() treeExpandedLevel: XNumber;
   /**
-   * 树 checkbox 选中的节点
+   * @zh_CN 树 checkbox 选中的节点
+   * @en_US Tree checkbox selected node
    */
   @Input() treeChecked: any[] = [];
   /**
-   * 树显示多选框
+   * @zh_CN 树显示多选框
+   * @en_US Tree display checkbox
    */
   @Input() @XInputBoolean() treeCheckbox: XBoolean;
   /**
-   * 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
+   * @zh_CN 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
+   * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
   @Input() treeTableConnect: any;
 }
@@ -177,141 +212,175 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
  */
 export interface XFindOption extends XFormOption {
   /**
-   * 多选
+   * @zh_CN 多选
+   * @en_US Multiple select
    */
   multiple?: XBoolean;
   /**
-   * 选中 label 名称字段
+   * @zh_CN 选中 label 名称字段
+   * @en_US Check the label name field
    */
   columnLabel?: string;
   /**
-   * 弹框标题
+   * @zh_CN 弹框标题
+   * @en_US Bullet title
    */
   dialogTitle?: string;
   /**
-   * 弹框宽度
+   * @zh_CN 弹框宽度
+   * @en_US Bullet frame width
    */
   dialogWidth?: string;
   /**
-   * 弹框高度
+   * @zh_CN 弹框高度
+   * @en_US Height of bullet frame
    */
   dialogHeight?: string;
   /**
-   * 弹框显示，隐藏
+   * @zh_CN 弹框显示，隐藏
+   * @en_US Bullet box show, hide
    */
   dialogVisible?: boolean;
   /**
-   * 弹框显示，隐藏
+   * @zh_CN 弹框显示，隐藏
+   * @en_US Bullet box show, hide
    */
   // dialogVisibleChange = new EventEmitter<boolean>();
   /**
-   * 按钮居中
+   * @zh_CN 按钮居中
+   * @en_US Button center
    */
   dialogButtonsCenter?: XBoolean;
 
   /**
-   * 表格行数据
+   * @zh_CN 表格行数据
+   * @en_US Table row data
    */
   tableData?: XData<XTableRow>;
   /**
-   * 表格页码
+   * @zh_CN 表格页码
+   * @en_US Table page number
    */
   tableIndex?: number;
   /**
-   * 表每页数据条数
+   * @zh_CN 表每页数据条数
+   * @en_US Number of data items per page
    */
   tableSize?: number;
   /**
-   * 表格数据总条数
+   * @zh_CN 表格数据总条数
+   * @en_US Total number of table data
    */
   tableTotal?: number;
   /**
-   * 页码变化的事件
+   * @zh_CN 页码变化的事件
+   * @en_US Page number change event
    */
   // tableIndexChange = new EventEmitter<number>();
   /**
-   * 每页显示条数变化的事件
+   * @zh_CN 每页显示条数变化的事件
+   * @en_US Show the number of events on each page
    */
   // tableSizeChange = new EventEmitter<number>();
   /**
-   * 排序点击的事件
+   * @zh_CN 排序点击的事件
+   * @en_US Sort click events
    */
   // tableSortChange = new EventEmitter<XSort[]>();
   /**
-   * 表格列参数
+   * @zh_CN 表格列参数
+   * @en_US Table column parameters
    */
   tableColumns?: XTableColumn[];
   /**
-   * 当前选中行数据
+   * @zh_CN 当前选中行数据
+   * @en_US Currently selected row data
    */
   tableActivatedRow?: any;
   /**
-   * 表格行点击事件
+   * @zh_CN 表格行点击事件
+   * @en_US Table row click event
    */
   // tableRowEmit = new EventEmitter<any>();
   /**
-   * 表格行点击事件
+   * @zh_CN 表格行点击事件
+   * @en_US Table row click event
    */
   tableCheckedRow?: { [prop: string]: any[] };
   /**
-   * 是否启用加载 loading
+   * @zh_CN 是否启用加载 loading
+   * @en_US Whether to enable loading
    */
   tableLoading?: XBoolean;
   /**
-   * 表格开启虚拟滚动
+   * @zh_CN 表格开启虚拟滚动
+   * @en_US Table opens virtual scrolling
    */
   tableVirtualScroll?: boolean;
   /**
-   * 表格 body 数据高度
+   * @zh_CN 表格 body 数据高度
+   * @en_US Table body data height
    */
   tableBodyHeight?: number;
   /**
-   * 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @zh_CN 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
   tableMinBufferPx?: number;
   /**
-   * 表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @zh_CN 表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US The pixels of the new data buffer for the table rendering, corresponding to the parameters in cdk scroll
    */
   tableMaxBufferPx?: number;
   /**
-   * 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @zh_CN 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
+   * @en_US Table adaptive height, table height is equal to the screen height minus the value set here
    */
   tableAdaptionHeight?: XNumber;
   /**
-   * 表格文档高度百分比，弹窗百分比高度用到
+   * @zh_CN 表格文档高度百分比，弹窗百分比高度用到
+   * @en_US Table document height percentage, used for pop-up window percentage height
    */
   tableDocPercent?: XNumber;
   /**
-   * 表格行高度，单位 px
+   * @zh_CN 表格行高度，单位 px
+   * @en_US Table row height, unit px
    */
   tableRowHeight?: XNumber;
 
   /**
-   * 树节点数据
+   * @zh_CN 树节点数据
+   * @en_US Tree node data
    */
   treeData?: XData<XTreeNode>;
   /**
-   * 树当前点击选中的节点变化的事件
+   * @zh_CN 树当前点击选中的节点变化的事件
+   * @en_US The event of the tree currently clicked on the selected node change
    */
   // treeActivatedChange = new EventEmitter<XTreeNode>();
   /**
-   * 树当前激活的节点 Id
+   * @zh_CN 树当前激活的节点 Id
+   * @en_US Id of the currently active node of the tree
    */
   treeActivatedId?: any;
   /**
-   * 树默认展开的层级
+   * @zh_CN 树默认展开的层级
+   * @en_US The level of the tree expanded by default
    */
   treeExpandedLevel?: XNumber;
   /**
-   * 树 checkbox 选中的节点
+   * @zh_CN 树 checkbox 选中的节点
+   * @en_US Tree checkbox selected node
    */
   treeChecked?: any[];
   /**
-   * 树显示多选框
+   * @zh_CN 树显示多选框
+   * @en_US Tree display checkbox
    */
   treeCheckbox?: XBoolean;
   /**
-   * 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
+   * @zh_CN 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
+   * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
   treeTableConnect?: any;
 }

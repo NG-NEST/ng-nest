@@ -1,6 +1,6 @@
 ---
 order: 5
-label: '颜色'
+label: 'Color'
 ---
 
-设置 `type` 属性显示不同的背景色。
+Set the `type` attribute to display different background colors.

@@ -1,11 +1,11 @@
 ---
-label: 'Pagination 分页'
+label: 'Pagination'
 category: 'Data'
 ---
 
-# Pagination 分页
+# Pagination
 
-分页组件，通常用来做表格或列表数据的分页读取。
+A paging component, typically used to do paging reading of table or list data.
 
 ## Used alone
 

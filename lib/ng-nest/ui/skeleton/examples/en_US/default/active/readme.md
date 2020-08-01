@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '动画效果'
+label: 'Active'
 ---
 
-使用 `active` 属性来启用动画。
+Use the `active` property to enable animation.

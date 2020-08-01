@@ -1,16 +1,12 @@
 ---
-label: 'Highlight 代码高亮'
+label: 'Highlight'
 ---
 
-# Highlight 代码高亮
+# Highlight
 
-Web 代码突出显示，封装 `highlight.js` 为 `angular` 组件。
+Web code highlighted, encapsulating `prismjs` as angular components.
 
-## 使用场景
-
-文章中需要显示代码，并用颜色来区分代码。
-
-- `x-examples` 示例组件中展示代码。
+> The component does not rely directly on `prismjs`, and the corresponding dependency needs to be added manually in `angular.json` when used.
 
 ## Used alone
 

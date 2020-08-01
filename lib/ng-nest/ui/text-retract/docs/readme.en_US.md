@@ -1,11 +1,11 @@
 ---
-label: 'Text Retract 文字收起'
+label: 'Text Retract'
 category: 'Data'
 ---
 
-# Text Retract 文字收起
+# Text Retract
 
-文字过多，通过展开收起来显示文字。
+Too much text. Display text by unwrapping it.
 
 ## Used alone
 

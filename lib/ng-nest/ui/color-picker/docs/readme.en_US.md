@@ -1,11 +1,11 @@
 ---
-label: 'ColorPicker 颜色选择器'
+label: 'ColorPicker'
 category: 'Form'
 ---
 
-# ColorPicker 颜色选择器
+# ColorPicker
 
-用于颜色选择，支持多种格式。
+For color selection, support for a variety of formats.
 
 ## Used alone
 

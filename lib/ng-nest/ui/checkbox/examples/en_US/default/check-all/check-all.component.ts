@@ -8,10 +8,10 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./check-all.component.scss']
 })
 export class ExCheckAllComponent implements OnInit {
-  checkAllData: XData<XCheckboxNode> = ['全选'];
+  checkAllData: XData<XCheckboxNode> = ['checkAll'];
   checkAll = false;
   indeterminate = true;
-  data: string[] = ['QQ', '微信', '钉钉', '微博'];
+  data: string[] = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
   model: any = ['QQ'];
   change(value: boolean) {
     this.model = value ? this.data.map((x) => x) : [];

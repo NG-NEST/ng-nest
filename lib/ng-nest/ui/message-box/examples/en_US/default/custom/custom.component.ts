@@ -12,7 +12,7 @@ export class ExCustomComponent {
   constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
   alertCustom() {
     this.msgBox.alert({
-      title: '自定义内容',
+      title: 'Custom content',
       content: this.contentTpl,
       backdropClose: true,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)

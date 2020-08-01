@@ -9,13 +9,13 @@ import { XSliderNode } from '@ng-nest/ui/slider';
 })
 export class ExCustomComponent {
   data: XData<XSliderNode> = [
-    { label: '用户管理', icon: 'fto-box' },
-    { label: '配置管理', icon: 'fto-settings' },
-    '角色管理',
-    '任务',
-    '工作',
-    '消息',
-    '流程',
-    '新闻'
+    { label: 'User Management', icon: 'fto-box' },
+    { label: 'Configuration management', icon: 'fto-settings' },
+    'Role management',
+    'Task',
+    'Jobs',
+    'News',
+    'Process',
+    'News'
   ];
 }

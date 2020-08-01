@@ -1,12 +1,12 @@
 ---
-label: 'Border 边框'
+label: 'Border'
 category: 'Basic'
 ---
 
-# Border 边框
+# Border
 
-我们对边框进行统一规范，可用于按钮、卡片、弹窗等组件里。
+We standardized the border, which can be used in buttons, cards, popovers and other components.
 
-## 示例代码
+## Simple Code
 
 {{ __examples }}

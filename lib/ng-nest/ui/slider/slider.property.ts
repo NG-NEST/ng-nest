@@ -28,54 +28,66 @@ const X_CONFIG_NAME = 'slider';
 @Component({ template: '' })
 export class XSliderProperty extends XProperty {
   /**
-   * 节点数据
+   * @zh_CN 节点数据
+   * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XSliderNode> = [];
   /**
-   * 滑动动画
+   * @zh_CN 滑动动画
+   * @en_US Sliding animation
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() animated: XBoolean;
   /**
-   * 当前激活的索引
+   * @zh_CN 当前激活的索引
+   * @en_US Currently active index
    */
   @Input() @XInputNumber() activatedIndex: XNumber = 0;
   /**
-   * 排列方式
+   * @zh_CN 排列方式
+   * @en_US Arrangement
    */
   @Input() layout: XSliderLayout = 'row';
   /**
-   * 对齐方式
+   * @zh_CN 对齐方式
+   * @en_US Alignment
    */
   @Input() justify: XJustify = 'start';
   /**
-   * 节点文字对齐方式
+   * @zh_CN 节点文字对齐方式
+   * @en_US Node text alignment
    */
   @Input() nodeJustify: XJustify = 'center';
   /**
-   * 节点自定义模板
+   * @zh_CN 节点自定义模板
+   * @en_US Node custom template
    */
   @Input() nodeTpl?: TemplateRef<any>;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
   /**
-   * 激活索引变化事件
+   * @zh_CN 激活索引变化事件
+   * @en_US Activate index change event
    */
   @Output() indexChange = new EventEmitter<number>();
 }
 
 /**
- * Slider 数据对象
+ * @zh_CN Slider 数据对象
+ * @en_US Slider data object
  */
 export interface XSliderNode extends XIdentityProperty {
   /**
-   * 标题，支持模板
+   * @zh_CN 标题，支持模板
+   * @en_US Title, support template
    */
   label?: XTemplate;
 }
 
 /**
- * 布局方式
+ * @zh_CN 布局方式
+ * @en_US Layout
  */
 export type XSliderLayout = 'row' | 'column';

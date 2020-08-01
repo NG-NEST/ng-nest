@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '选中展开禁用'
+label: 'Check expand disable'
 ---
 
-展开、默认选中和禁用设置。
+Expand, select and disable settings by default.

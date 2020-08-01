@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '圆角样式'
+label: 'Radius style'
 ---
 
-默认使用小圆角样式。
+The default is to use the small radius style.

@@ -1,11 +1,11 @@
 ---
-label: 'PageHeader 页头'
+label: 'PageHeader'
 category: 'Navigation'
 ---
 
-# PageHeader 页头
+# PageHeader
 
-页头用来声明页面的主题，包含了用户所关注的最重要的信息。
+The header is used to declare the theme of the page and contains the most important information the user is interested in.
 
 ## Used alone
 

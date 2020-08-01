@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '辅助色'
+label: 'Assist'
 ---
 
-除了主色外的场景色，需要在不同的场景中使用（例如危险色表示危险的操作）。
+Field views other than the main color need to be used in different scenarios (for example, dangerous colors represent dangerous operations).

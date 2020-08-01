@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '行高'
+label: 'Row height'
 ---
 
-基本行高标准。
+Basic high standards.

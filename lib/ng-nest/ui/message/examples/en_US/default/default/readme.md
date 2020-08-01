@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-九宫格消息显示位置。
+Nine grid message display position.

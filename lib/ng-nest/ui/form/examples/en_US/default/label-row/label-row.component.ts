@@ -10,7 +10,7 @@ export class ExLabelRowComponent {
     {
       control: 'input',
       id: 'id',
-      label: '编码',
+      label: 'code',
       maxlength: 10,
       required: true,
       value: 909090
@@ -18,17 +18,17 @@ export class ExLabelRowComponent {
     {
       control: 'input',
       id: 'name',
-      label: '姓名',
+      label: 'name',
       disabled: true
     },
     {
       control: 'input',
       id: 'account',
-      label: '账号',
+      label: 'user',
       clearable: true,
       required: true,
       pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
-      message: ['整数', '正整数'],
+      message: ['integer', 'positive integer'],
       clearClick: (value: any) => {
         console.log(value);
       }
@@ -36,62 +36,62 @@ export class ExLabelRowComponent {
     {
       control: 'input',
       id: 'password',
-      label: '密码'
+      label: 'password'
     },
     {
       control: 'input',
       id: 'file',
-      label: '文件'
+      label: 'file'
     },
-    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员' },
+    { control: 'select', id: 'type', label: 'role', data: ['ordinary user', 'administrator', 'sales'], value: 'administrator' },
     {
       control: 'cascade',
       id: 'city',
-      label: '城市',
+      label: 'city',
       data: [
-        { id: 1, label: '湖北省' },
-        { id: 2, label: '浙江省' },
-        { id: 3, label: '河南省' },
-        { id: 4, label: '河北省' },
-        { id: 5, pid: 1, label: '武汉市' },
-        { id: 6, pid: 1, label: '宜昌市' },
-        { id: 7, pid: 1, label: '荆州市' }
+        { id: 1, label: 'Hubei Province' },
+        { id: 2, label: 'Zhejiang Province' },
+        { id: 3, label: 'Henan Province' },
+        { id: 4, label: 'Hebei Province' },
+        { id: 5, pid: 1, label: 'Wuhan city' },
+        { id: 6, pid: 1, label: 'Yichang city' },
+        { id: 7, pid: 1, label: 'Jingzhou city' }
       ]
     },
-    { control: 'color-picker', id: 'color', label: '喜欢颜色' },
+    { control: 'color-picker', id: 'color', label: 'like color' },
     {
       control: 'color-picker',
       id: 'createDate',
-      label: '创建日期'
+      label: 'creation date'
     },
-    { control: 'input-number', id: 'age', label: '年龄' },
-    { control: 'radio', id: 'gender', label: '性别', data: ['男', '女'] },
+    { control: 'input-number', id: 'age', label: 'age' },
+    { control: 'radio', id: 'gender', label: 'gender', data: ['man', 'women'] },
     {
       control: 'rate',
       id: 'level',
-      label: '级别',
+      label: 'level',
       count: 6
     },
     {
       control: 'switch',
       id: 'disabled',
-      label: '禁用'
+      label: 'disabled'
     },
     {
       control: 'time-picker',
       id: 'time',
-      label: '时间'
+      label: 'time'
     },
     {
       control: 'slider-select',
       id: 'process',
-      label: '进度'
+      label: 'process'
     },
     {
       control: 'checkbox',
-      id: 'active',
-      label: '爱好',
-      data: ['乒乓球', '篮球', '足球']
+      id: 'hobby',
+      label: 'hobby',
+      data: ['table tennis', 'basketball', 'football']
     }
   ];
 }

@@ -10,17 +10,17 @@ export class ExPromptComponent {
   constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
   prompt() {
     this.msgBox.prompt({
-      title: '提交内容',
-      content: '请输入邮箱',
+      title: 'Submit content',
+      content: 'Please enter email',
       inputValue: 'ngnest@163',
       inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-      inputInvalidMessage: '邮箱格式不正确',
+      inputInvalidMessage: 'Incorrect email format',
       callback: (action: XMessageBoxAction, msg) => {
         if (action === 'confirm') {
-          // 业务处理......
-          this.message.success('邮箱：' + msg);
+          // Business processing......
+          this.message.success('email：' + msg);
         } else {
-          this.message.info('已取消提交内容！');
+          this.message.info('Submission has been cancelled!');
         }
       }
     });

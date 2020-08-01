@@ -1,11 +1,11 @@
 ---
-label: 'Cascade 级联选择器'
+label: 'Cascade'
 category: 'Form'
 ---
 
-# Cascade 级联选择器
+# Cascade
 
-当一个数据集合有清晰的层级结构时，可通过级联选择器逐级查看并选择。
+When a data set has a clear hierarchy, it can be viewed and selected step by step through a cascade selector.
 
 ## Used alone
 

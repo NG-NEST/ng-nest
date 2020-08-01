@@ -15,23 +15,28 @@ const X_CONFIG_NAME = 'backTop';
 @Component({ template: '' })
 export class XBackTopProperty extends XProperty {
   /**
-   * 距离右边的距离
+   * @zh_CN 距离右边的距离
+   * @en_US Distance to the right
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '2.5rem') right: string;
   /**
-   * 距离底部的距离
+   * @zh_CN 距离底部的距离
+   * @en_US Distance from bottom
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '2.5rem') bottom: string;
   /**
-   * 滚动的多少高度后显示
+   * @zh_CN 滚动多少高度后显示
+   * @en_US Display after scrolling how much height
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 200) visibilityHeight: XNumber;
   /**
-   * 内容模板
+   * @zh_CN 内容模板
+   * @en_US Content template
    */
   @Input() template: TemplateRef<any>;
   /**
-   * 滚动的元素
+   * @zh_CN 滚动的元素
+   * @en_US Scroll element
    */
   @Input() target: string | HTMLElement;
 }

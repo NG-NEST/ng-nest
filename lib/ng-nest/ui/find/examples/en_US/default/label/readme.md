@@ -1,7 +1,7 @@
 ---
 order: 4
-label: '标签'
+label: 'Label'
 ---
 
-- 使用 `label` 属性设置显示文本标签。
-- 使用 `direction` 属性设置排版方式。
+- Use the `label` property to display text label.
+- Use the `direction` property to set the layout.

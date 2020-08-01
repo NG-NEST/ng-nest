@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '自定义'
+label: 'Custom'
 ---
 
-使用 `nodeTpl` 、 `titleTpl` 和 `titles` 属性自定义显示模板和标题。
+Use the `nodeTpl`, `titleTpl` and `titles` properties to customize the display template and title.

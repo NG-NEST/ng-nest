@@ -1,11 +1,11 @@
 ---
-label: 'Select 选择器'
+label: 'Select'
 category: 'Form'
 ---
 
-# Select 选择器
+# Select
 
-下拉选择器。
+Drop down selector.
 
 ## Used alone
 

@@ -15,11 +15,13 @@ const X_CONFIG_NAME = 'textRetract';
 @Component({ template: '' })
 export class XTextRetractProperty {
   /**
-   * 文本
+   * @zh_CN 文本
+   * @en_US text
    */
   @Input() content: string;
   /**
-   * 默认最大显示字符数
+   * @zh_CN 默认最大显示字符数
+   * @en_US Default maximum number of characters displayed
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 256) @XInputNumber() max: XNumber;
 }

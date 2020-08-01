@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-九宫格的位置展示。
+The position of the nine grids is displayed.

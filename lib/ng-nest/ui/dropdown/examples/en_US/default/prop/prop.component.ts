@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
 })
 export class ExPropComponent {
   data = [
-    { label: '用户管理', icon: 'fto-user' },
-    { label: '角色管理', icon: 'fto-users' },
-    '组织管理',
-    { label: '模块管理', divided: true },
-    { label: '日志管理', disabled: true }
+    { label: 'User manage', icon: 'fto-user' },
+    { label: 'Role manage', icon: 'fto-users' },
+    'Organization manage',
+    { label: 'Module manage', divided: true },
+    { label: 'Log manage', disabled: true }
   ];
 }

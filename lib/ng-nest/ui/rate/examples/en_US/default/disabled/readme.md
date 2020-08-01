@@ -1,8 +1,8 @@
 ---
 order: 2
-label: '禁用状态'
+label: 'Disabled'
 ---
 
-不可用的状态。
+Unavailable state.
 
-- 使用 `disabled` 属性来禁用评分组。
+- Use the `disabled` attribute to disable the scoring group.

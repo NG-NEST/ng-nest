@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '懒加载节点'
+label: 'Lazy node'
 ---
 
-`data` 属性定义成可订阅的函数来启用懒加载。
+The `data` attribute is defined as a subscribeable function to enable lazy loading.

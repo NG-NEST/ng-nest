@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '自定义内容'
+label: 'Custom content'
 ---
 
-自定义表格、表单的抽屉。
+Custome table, form drawers.

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  model = { id: 10, label: '姓名1' };
+  model = { id: 10, label: 'name1' };
 }

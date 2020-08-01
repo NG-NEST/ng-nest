@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '自定义'
+label: 'Custom'
 ---
 
-通过 `img` 和 `content` 来自定义相关内容。
+Related content is customised through `img` and `content`.

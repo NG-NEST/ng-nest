@@ -15,24 +15,29 @@ const X_CONFIG_NAME = 'badge';
 @Component({ template: '' })
 export class XBadgeProperty extends XProperty {
   /**
-   * 背景颜色
+   * @zh_CN 背景颜色
+   * @en_US Background color
    */
   @Input() @XWithConfig<XBadgeType>(X_CONFIG_NAME, 'danger') type: XBadgeType;
   /**
-   * 最大值
+   * @zh_CN 最大值
+   * @en_US Max
    */
   @Input() @XInputNumber() max: XNumber;
   /**
-   * 显示值
+   * @zh_CN 显示值
+   * @en_US Display value
    */
   @Input() value: XNumber = '';
   /**
-   * 是否显示小红点
+   * @zh_CN 是否显示小红点
+   * @en_US Whether to show the small red dot
    */
   @Input() @XInputBoolean() dot: XBoolean;
 }
 
 /**
- * 标记类型
+ * @zh_CN 标记类型
+ * @en_US Mark type
  */
 export type XBadgeType = XType;

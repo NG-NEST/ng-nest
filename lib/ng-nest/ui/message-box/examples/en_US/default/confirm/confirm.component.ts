@@ -10,15 +10,15 @@ export class ExConfirmComponent {
   constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
   confirm() {
     this.msgBox.confirm({
-      title: '提示',
-      content: '此操作将永久删除此条数据, 是否继续？',
+      title: 'prompt',
+      content: 'This operation will permanently delete this piece of data, do you want to continue?',
       type: 'warning',
       callback: (action: XMessageBoxAction) => {
         if (action === 'confirm') {
-          // 业务处理......
-          this.message.success('删除成功！');
+          // Business processing......
+          this.message.success('successfully deleted!');
         } else {
-          this.message.info('已取消删除！');
+          this.message.info('Undeleted!');
         }
       }
     });

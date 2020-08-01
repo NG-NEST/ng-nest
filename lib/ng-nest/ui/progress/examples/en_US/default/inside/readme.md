@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '百分比内显'
+label: 'Percentage display'
 ---
 
-使用 `inside` 属性调整文字显示在进度条中，使用 `height` 属性来调整合适的高度。
+Use the `inside` property to adjust the text displayed in the progress bar, and use the `height` property to adjust the appropriate height.

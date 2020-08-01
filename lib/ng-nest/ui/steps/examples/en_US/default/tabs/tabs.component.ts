@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ExTabsComponent {
   activated = 0;
-  data = ['步骤 1', '步骤 2', '步骤 3'];
+  data = ['Step 1', 'Step 2', 'Step 3'];
 
   pre() {
     this.activated -= 1;
@@ -18,6 +18,6 @@ export class ExTabsComponent {
   }
 
   done() {
-    console.log('提交');
+    console.log('Submit');
   }
 }

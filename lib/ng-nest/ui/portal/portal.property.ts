@@ -32,50 +32,61 @@ export const XPortalConnectedPosition: Map<ConnectedPosition, string> = XInvertK
  */
 export interface XPortalProperty {
   /**
-   * 内容，模板/组件
+   * @zh_CN 内容，模板/组件
+   * @en_US Content, template/component
    */
   content?: TemplateRef<any> | ComponentType<any>;
   /**
-   * 视图容器
+   * @zh_CN 视图容器
+   * @en_US View container
    */
   viewContainerRef?: ViewContainerRef;
   /**
-   * 上下文
+   * @zh_CN 上下文
+   * @en_US Context
    */
   context?: any;
   /**
-   * 注入器
+   * @zh_CN 注入器
+   * @en_US Injector
    */
   injector?: any;
   /**
-   * 组件解析器
+   * @zh_CN 组件解析器
+   * @en_US Component parser
    */
   componentFactoryResolver?: ComponentFactoryResolver;
   /**
-   * 覆盖视图层配置
+   * @zh_CN 覆盖视图层配置
+   * @en_US Overlay view layer configuration
    */
   overlayConfig?: OverlayConfig;
 }
 
 export interface XPortalOverlayRef<T> {
   /**
-   * cdk 创建的覆盖视图层
+   * @zh_CN cdk 创建的覆盖视图层
+   * @en_US Overlay view layer created by cdk
    */
   overlayRef?: OverlayRef;
   /**
-   * cdk 模板视图
+   * @zh_CN cdk 模板视图
+   * @en_US Cdk template view
    */
   templatePortal?: TemplatePortal<any>;
   /**
-   * cdk 组件视图
+   * @zh_CN cdk 组件视图
+   * @en_US Cdk component view
    */
   componentPortal?: ComponentPortal<T>;
   /**
-   * 组件视图
+   * @zh_CN 组件视图
+   * @en_US Component view
    */
   componentRef?: ComponentRef<T>;
   /**
-   * 模板视图
+   * @zh_CN 模板视图
+   * @en_US Template view
    */
   embeddedViewRef?: EmbeddedViewRef<any>;
 }

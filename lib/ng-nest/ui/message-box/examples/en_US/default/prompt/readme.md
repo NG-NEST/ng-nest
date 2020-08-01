@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '提交内容'
+label: 'Submit content'
 ---
 
-使用 `XMessageBoxService` 中的 `prompt` 方法来弹出可输入的消息框。
+Use the `prompt` method in `XMessageBoxService` to pop up an inputable message box.

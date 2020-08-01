@@ -25,35 +25,43 @@ const X_CONFIG_NAME = 'input';
 @Component({ template: '' })
 export class XInputProperty extends XControlValueAccessor<any> implements XInputOption {
   /**
-   * 输入类型
+   * @zh_CN 输入类型
+   * @en_US Input type
    */
   @Input() type: XInputType = 'text';
   /**
-   * 清除按钮
+   * @zh_CN 清除按钮
+   * @en_US Clear button
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable: XBoolean;
   /**
-   * 只读
+   * @zh_CN 只读
+   * @en_US Read only
    */
   @Input() @XInputBoolean() readonly: XBoolean = false;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   @Input() icon: string;
   /**
-   * 图标布局方式
+   * @zh_CN 图标布局方式
+   * @en_US Icon layout
    */
   @Input() @XWithConfig<XInputIconLayoutType>(X_CONFIG_NAME, 'right') iconLayout: XInputIconLayoutType = 'right';
   /**
-   * 图标动画
+   * @zh_CN 图标动画
+   * @en_US Icon animation
    */
   @Input() @XInputBoolean() iconSpin: XBoolean = false;
   /**
-   * 输入最大长度
+   * @zh_CN 输入最大长度
+   * @en_US Enter the maximum length
    */
   @Input() @XInputNumber() maxlength: XNumber = 0;
   /**
-   * 清除按钮的事件
+   * @zh_CN 清除按钮的事件
+   * @en_US Clear button event
    */
   @Output() clearEmit = new EventEmitter<any>();
 }
@@ -64,45 +72,55 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
  */
 export interface XInputOption extends XFormOption {
   /**
-   * 输入类型
+   * @zh_CN 输入类型
+   * @en_US Input type
    */
   type?: XInputType;
   /**
-   * 清除按钮
+   * @zh_CN 清除按钮
+   * @en_US Clear button
    */
   clearable?: XBoolean;
   /**
-   * 只读
+   * @zh_CN 只读
+   * @en_US Read only
    */
   readonly?: XBoolean;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
   /**
-   * 图标布局方式
+   * @zh_CN 图标布局方式
+   * @en_US Icon layout
    */
   iconLayout?: XInputIconLayoutType;
   /**
-   * 图标动画
+   * @zh_CN 图标动画
+   * @en_US Icon animation
    */
   iconSpin?: XBoolean;
   /**
-   * 输入最大长度
+   * @zh_CN 输入最大长度
+   * @en_US Enter the maximum length
    */
   maxlength?: XNumber;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   size?: XSize;
   /**
-   * 清除按钮的事件
+   * @zh_CN 清除按钮的事件
+   * @en_US Clear button event
    */
   clearClick?: (value: any) => void;
 }
 
 /**
- * 输入框类型
+ * @zh_CN 输入框类型
+ * @en_US Input box type
  * @value "text" 文本
  * @value "password" 密码
  * @value "number" 数字
@@ -110,7 +128,8 @@ export interface XInputOption extends XFormOption {
 export type XInputType = 'text' | 'password' | 'number';
 
 /**
- * 图标布局方式，指在输入框中的位置
+ * @zh_CN 图标布局方式，指在输入框中的位置
+ * @en_US Icon layout, refers to the position in the input box
  * @value "left" 靠左
  * @value "right" 靠右
  */

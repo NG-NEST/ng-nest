@@ -1,7 +1,7 @@
 ---
 order: 2
-label: '切换箭头'
+label: 'Arrow'
 ---
 
-- 可以设置切换箭头的显示时机。
-- `arrow` 属性定义了切换箭头的显示时机。默认情况下，切换箭头只有在鼠标 `hover` 到走马灯上时才会显示；若将 `arrow` 设置为 `always` ，则会一直显示；设置为 `never` ，则会一直隐藏。
+- The display time of toggle arrows can be set.
+- The `arrow` attribute defines when to display the toggle arrow. By default, the toggle arrow is displayed only if the mouse `hover` is over the lantern; If `arrow` is set to `always`, it will always be displayed; Set to `never` and it will always be hidden.

@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '颜色自定义'
+label: 'Custom color'
 ---
 
-使用 `color` 属性来自定义颜色，支持固定颜色、数组范围以及通过函数来判断显示。
+Use the `color` attribute to customize colors, support fixed colors, array ranges, and use functions to determine the display.

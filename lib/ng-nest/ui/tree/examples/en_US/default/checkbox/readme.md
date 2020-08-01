@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '选择框'
+label: 'Checkbox'
 ---
 
-使用 `checkbox` 来启用多选框。
+Use `checkbox` to enable checkbox.

@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '嵌套多个'
+label: 'Nested multiple'
 ---
 
-使用事件嵌套多个抽屉。
+Use events to nest multiple drawers.

@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '去掉标题'
+label: 'No title'
 ---
 
-不设置 `title` 属性，标题将不显示。
+Do not set the `title` property and the title will not be displayed.

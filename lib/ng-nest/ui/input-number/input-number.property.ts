@@ -14,23 +14,28 @@ export const XInputNumberPrefix = 'x-input-number';
 @Component({ template: '' })
 export class XInputNumberProperty extends XControlValueAccessor<any> implements XInputNumberOption {
   /**
-   * 最小值
+   * @zh_CN 最小值
+   * @en_US Minimum
    */
   @Input() @XInputNumber() min: XNumber = Number.MIN_SAFE_INTEGER;
   /**
-   * 最大值
+   * @zh_CN 最大值
+   * @en_US Max
    */
   @Input() @XInputNumber() max: XNumber = Number.MAX_SAFE_INTEGER;
   /**
-   * 步数
+   * @zh_CN 步数
+   * @en_US Step count
    */
   @Input() @XInputNumber() step: XNumber = 1;
   /**
-   * 按住后步进速度
+   * @zh_CN 按住后步进速度
+   * @en_US Stepping speed after pressing
    */
   @Input() @XInputNumber() debounce: XNumber = 40;
   /**
-   * 精度
+   * @zh_CN 精度
+   * @en_US Precision
    */
   @Input() @XInputNumber() precision: XNumber = 0;
 }
@@ -41,23 +46,28 @@ export class XInputNumberProperty extends XControlValueAccessor<any> implements 
  */
 export interface XInputNumberOption extends XFormOption {
   /**
-   * 最小值
+   * @zh_CN 最小值
+   * @en_US Minimum
    */
   min?: XNumber;
   /**
-   * 最大值
+   * @zh_CN 最大值
+   * @en_US Max
    */
   max?: XNumber;
   /**
-   * 步数
+   * @zh_CN 步数
+   * @en_US Step count
    */
   step?: XNumber;
   /**
-   * 按住后步进速度
+   * @zh_CN 按住后步进速度
+   * @en_US Stepping speed after pressing
    */
   debounce?: XNumber;
   /**
-   * 精度
+   * @zh_CN 精度
+   * @en_US Precision
    */
   precision?: XNumber;
 }

@@ -3,9 +3,9 @@ order: 1
 label: 'Eva'
 ---
 
-- 官方提供了两种主题风格，对应到 `x-icon` 写法如下：
+- Two theme styles are officially provided, corresponding to `x-icon` written as follows:
 
-| 主题     | 对应关键字 | 写法         |
-| -------- | ---------- | ------------ |
-| Outlined | eao        | eao-activity |
-| Filled   | eaf        | eaf-activity |
+| theme    | keyword | writing      |
+| -------- | ------- | ------------ |
+| Outlined | eao     | eao-activity |
+| Filled   | eaf     | eaf-activity |

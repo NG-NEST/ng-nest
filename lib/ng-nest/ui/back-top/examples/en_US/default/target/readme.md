@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '滚动容器'
+label: 'Scroll container'
 ---
 
-- 使用属性 `target` 设置滚动的容器，默认使用当前文档。
+- The scroll container is set using the property `target`, and the current document is used by default.

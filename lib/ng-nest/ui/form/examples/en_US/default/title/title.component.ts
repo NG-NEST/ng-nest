@@ -7,44 +7,51 @@ import { XControl } from '@ng-nest/ui/form';
 })
 export class ExTitleComponent {
   controls: XControl[] = [
-    { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10 },
-    { control: 'input', id: 'id', label: '编码', disabled: true, value: '001001001', required: true },
+    { control: 'input', id: 'name', label: 'name', required: true, maxlength: 10 },
+    { control: 'input', id: 'id', label: 'code', disabled: true, value: '001001001', required: true },
     {
       control: 'input',
       id: 'account',
-      label: '账号',
+      label: 'user',
       clearable: true,
       clearClick: (value: any) => {
         console.log(value);
       },
       required: true
     },
-    { control: 'input', id: 'password', label: '密码', type: 'password', required: true },
-    { control: 'input', id: 'file', label: '文件', required: true },
-    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true },
+    { control: 'input', id: 'password', label: 'password', type: 'password', required: true },
+    { control: 'input', id: 'file', label: 'file', required: true },
+    {
+      control: 'select',
+      id: 'type',
+      label: 'role',
+      data: ['ordinary user', 'administrator', 'sales'],
+      value: 'administrator',
+      required: true
+    },
     {
       control: 'cascade',
       id: 'city',
-      label: '城市',
+      label: 'city',
       data: [
-        { id: 1, label: '湖北省' },
-        { id: 2, label: '浙江省' },
-        { id: 3, label: '河南省' },
-        { id: 4, label: '河北省' },
-        { id: 5, pid: 1, label: '武汉市' },
-        { id: 6, pid: 1, label: '宜昌市' },
-        { id: 7, pid: 1, label: '荆州市' }
+        { id: 1, label: 'Hubei Province' },
+        { id: 2, label: 'Zhejiang Province' },
+        { id: 3, label: 'Henan Province' },
+        { id: 4, label: 'Hebei Province' },
+        { id: 5, pid: 1, label: 'Wuhan city' },
+        { id: 6, pid: 1, label: 'Yichang city' },
+        { id: 7, pid: 1, label: 'Jingzhou city' }
       ],
       required: true
     },
-    { control: 'color-picker', id: 'color', label: '喜欢颜色', required: true },
-    { control: 'date-picker', id: 'createDate', label: '创建日期', required: true },
-    { control: 'input-number', id: 'age', label: '年龄', required: true },
-    { control: 'radio', id: 'gender', label: '性别', data: ['男', '女'], required: true },
-    { control: 'rate', id: 'level', label: '级别', count: 6, required: true },
-    { control: 'switch', id: 'disabled', label: '禁用' },
-    { control: 'time-picker', id: 'time', label: '时间', required: true },
-    { control: 'slider-select', id: 'process', label: '进度', required: true },
-    { control: 'checkbox', id: 'active', label: '爱好', data: ['乒乓球', '篮球', '足球'], required: true }
+    { control: 'color-picker', id: 'color', label: 'like color', required: true },
+    { control: 'date-picker', id: 'createDate', label: 'creation date', required: true },
+    { control: 'input-number', id: 'age', label: 'age', required: true },
+    { control: 'radio', id: 'gender', label: 'gender', data: ['men', 'women'], required: true },
+    { control: 'rate', id: 'level', label: 'level', count: 6, required: true },
+    { control: 'switch', id: 'disabled', label: 'disabled' },
+    { control: 'time-picker', id: 'time', label: 'time', required: true },
+    { control: 'slider-select', id: 'process', label: 'process', required: true },
+    { control: 'checkbox', id: 'hobby', label: 'hobby', data: ['table tennis', 'basketball', 'football'], required: true }
   ];
 }

@@ -1,16 +1,11 @@
 ---
-label: 'Layout 栅格布局'
+label: 'Layout'
 category: 'Basic'
 ---
 
-# Layout 栅格布局
+# Layout
 
-通过基础的 24 分栏，迅速简便地创建布局。布局的栅格系统是基于行 `x-row` 和列 `x-col` 来定义内容区域的框架。
-
-## 应用组件
-
-- `x-form` 表单控件布局。
-- `x-table` 表格行列布局。
+Create layouts quickly and easily with the basic 24-column layout. The grid system for the layout is a framework for defining content areas based on rows `x-row` and columns `x-col`.
 
 ## Used alone
 

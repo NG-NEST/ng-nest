@@ -1,11 +1,11 @@
 ---
-label: 'Carousel 走马灯'
+label: 'Carousel'
 category: 'Data'
 ---
 
-# Carousel 走马灯
+# Carousel
 
-在有限空间内，循环播放同一类型的图片、文字等内容。
+In a limited space, the same type of images, text, etc.
 
 ## Used alone
 

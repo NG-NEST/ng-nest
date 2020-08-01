@@ -3,5 +3,5 @@ order: 2
 label: '图标'
 ---
 
-- 使用 `icon` 属性设置输入框中的图标。
-- 使用 `iconLayout` 属性设置图标位置。
+- Use the `icon` property to set the icon in the input box.
+- Use the `iconLayout` property to set the icon location.

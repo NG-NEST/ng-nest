@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '默认选中'
+label: 'Selected'
 ---
 
-使用 `activatedIndex` 属性设置当前激活的序号。
+Use the `activatedIndex` property to set the currently activated index.

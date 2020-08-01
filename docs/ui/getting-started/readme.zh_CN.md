@@ -7,7 +7,7 @@ label: '快速上手'
 
 > 开始前请搭建好环境，如何搭建环境请查看 [angular](https://angular.io/guide/setup-local) 官方教程。
 
-运行 `ng --version` 来检查当前版本，最好不要低于以下版本号。
+运行 `ng --version` 来检查当前版本，请不要低于以下版本号。
 
 {{ ____bash:1.bash:false:false }}
 
@@ -67,4 +67,4 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 要继续探索 `ng-nest` ，请选择以下选项之一：
 
-- [教程：RBAC 权限系统](index/docs/ui/course/guide)，在本教程中，你将构建一个应用，用来管理用户和权限。
+- [教程：RBAC 权限系统](index/docs/zh_CN/ui/course/rbac)，在本教程中，你将构建一个应用，用来管理用户和权限。

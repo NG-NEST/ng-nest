@@ -1,8 +1,8 @@
 ---
 order: 1
-label: '主色'
+label: 'Primary'
 ---
 
-主要品牌颜色。
+Main brand colors.
 
-- 通过指定 `hex` 来设定主色调，自动生成对应的 `10` 种渐变色。
+- Set the dominant tone by specifying `hex`, automatically generating the corresponding `10` gradients.

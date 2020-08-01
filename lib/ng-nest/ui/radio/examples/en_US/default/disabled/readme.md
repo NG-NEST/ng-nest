@@ -1,9 +1,9 @@
 ---
 order: 2
-label: '禁用状态'
+label: 'Disabled'
 ---
 
-单选框不可用的状态。
+The state that the radio button is not available.
 
-- 使用 `disabled` 属性来禁用整个单选框组。
-- 使用 `data` 中的 `disabled` 属性来禁用单个单选框。
+- Use the `disabled` attribute to disable the entire radio group.
+- Use the `disabled` attribute in `data` to disable a single radio button.

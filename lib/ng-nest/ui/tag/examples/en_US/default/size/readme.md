@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '尺寸'
+label: 'Size'
 ---
 
-使用 `size` 属性来设置标签的尺寸。
+Use the `size` attribute to set the size of the label.

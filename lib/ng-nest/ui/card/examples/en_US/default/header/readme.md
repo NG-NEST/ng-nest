@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '标题操作'
+label: 'Title action'
 ---
 
-包含标题，内容和操作。
+Contains the title, content, and action.

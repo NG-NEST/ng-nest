@@ -26,23 +26,28 @@ const X_CONFIG_NAME = 'checkbox';
 @Component({ template: '' })
 export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> implements XCheckboxOption {
   /**
-   * 多选框数据
+   * @zh_CN 多选框数据
+   * @en_US Checkbox data
    */
   @Input() @XDataConvert() data: XData<XCheckboxNode> = [];
   /**
-   * 按钮样式
+   * @zh_CN 按钮样式
+   * @en_US Button style
    */
   @Input() @XInputBoolean() button: XBoolean;
   /**
-   * 图标样式
+   * @zh_CN 图标样式
+   * @en_US Icon style
    */
   @Input() @XInputBoolean() icon: XBoolean;
   /**
-   * 不确定状态的样式
+   * @zh_CN 不确定状态的样式
+   * @en_US Uncertain state style
    */
   @Input() @XInputBoolean() indeterminate: XBoolean;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
 }
@@ -53,45 +58,55 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
  */
 export interface XCheckboxOption extends XFormOption {
   /**
-   * 单选框数据
+   * @zh_CN 单选框数据
+   * @en_US Radio data
    */
   data?: XData<XCheckboxNode>;
   /**
-   * 按钮样式
+   * @zh_CN 按钮样式
+   * @en_US Button style
    */
   button?: XBoolean;
   /**
-   * 图标样式
+   * @zh_CN 图标样式
+   * @en_US Icon style
    */
   icon?: XBoolean;
   /**
-   * 不确定状态的样式
+   * @zh_CN 不确定状态的样式
+   * @en_US Uncertain state style
    */
   indeterminate?: XBoolean;
   /**
-   * 尺寸
+   * @zh_CN 尺寸
+   * @en_US Size
    */
   size?: XSize;
 }
 
 /**
- * Checkbox 数据对象
+ * @zh_CN Checkbox 数据对象
+ * @en_US Checkbox data object
  */
 export interface XCheckboxNode extends XIdentityProperty {
   /**
-   * 禁用
+   * @zh_CN 禁用
+   * @en_US Disable
    */
   disabled?: boolean;
   /**
-   * 图标
+   * @zh_CN 图标
+   * @en_US Icon
    */
   icon?: string;
   /**
-   * 图标的提示信息
+   * @zh_CN 图标的提示信息
+   * @en_US Icon message
    */
   title?: string;
   /**
-   * 标签文字
+   * @zh_CN 标签文字
+   * @en_US Label text
    */
   label?: XTemplate;
 }

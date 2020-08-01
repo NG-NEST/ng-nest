@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './custom.component.html'
 })
 export class ExCustomComponent {
-  data = ['首页', '用户管理', '用户列表', '用户详情'];
+  data = ['Home', 'User Manager', 'User List', 'User Detail'];
 }

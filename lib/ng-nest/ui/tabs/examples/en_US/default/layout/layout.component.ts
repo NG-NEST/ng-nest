@@ -8,7 +8,7 @@ import { XJustify } from '@ng-nest/ui/core';
   styleUrls: ['./layout.component.scss']
 })
 export class ExLayoutComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
+  labels = ['User Management', 'Configuration Management', 'Role Management', 'Tasks'];
   layoutRadios = ['top', 'right', 'bottom', 'left'];
   layout: XTabsLayout = 'top';
   justifyRadios = ['start', 'center', 'end'];

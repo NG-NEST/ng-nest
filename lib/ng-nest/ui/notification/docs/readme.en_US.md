@@ -1,11 +1,11 @@
 ---
-label: 'Notification 通知提醒框'
+label: 'Notification'
 category: 'Feedback'
 ---
 
-# Notification 通知提醒框
+# Notification
 
-全局展示通知提醒信息。
+Global display of notification reminders.
 
 ## Used alone
 

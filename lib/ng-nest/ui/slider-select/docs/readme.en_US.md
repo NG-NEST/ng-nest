@@ -1,11 +1,11 @@
 ---
-label: 'SliderSelect 滑动选择'
+label: 'SliderSelect'
 category: 'Form'
 ---
 
-# SliderSelect 滑动选择
+# SliderSelect
 
-通过拖动滑块在一个固定区间内进行选择。
+Drag the slider to select within a fixed interval.
 
 ## Used alone
 

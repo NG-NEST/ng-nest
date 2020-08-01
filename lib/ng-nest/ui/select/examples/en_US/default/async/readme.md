@@ -1,7 +1,7 @@
 ---
 order: 2
-label: '异步'
+label: 'Async'
 ---
 
-- `data` 属性支持设置成 `rxjs` 中的 `Observable` 可订阅对象。
-- 使用 `async` 属性启用点击后异步获取数据（只设置 `data` 属性为可订阅对象，将在生命周期函数中获取数据）。
+- The `data` attribute can be set to the subscribeable object of `Observable` in `rxjs`.
+- Use the `async` attribute to enable asynchronous retrieval of data after clicking (just set the `data` attribute as a subscribeable object, and the data will be retrieved in the lifecycle function).

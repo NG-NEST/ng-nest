@@ -1,7 +1,7 @@
 ---
 order: 3
-label: '精度'
+label: 'Precision'
 ---
 
-- 使用 `precision` 属性设置小数位置。
-- 使用 `step` 属性设置步数。
+- Use the `precision` attribute to set the decimal position.
+- Use the `step` property to set the number of steps.

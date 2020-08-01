@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '混合布局'
+label: 'Blend'
 ---
 
-通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。
+Through the basic 1/24 sub-column arbitrary extension combination to form a more complex hybrid layout.

@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '树节点选择'
+label: 'Tree select'
 ---
 
-- 树节点只支持单选 。
+- Tree node selection.

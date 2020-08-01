@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '包含图片'
+label: 'Img'
 ---
 
-可配置定义更丰富的内容展示，比如图片。
+Configurable definition of richer content displays, such as images.

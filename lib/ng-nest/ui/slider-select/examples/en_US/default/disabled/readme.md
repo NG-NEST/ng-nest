@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '禁用'
+label: 'Disabled'
 ---
 
-使用 `disabled` 属性来禁用输入框。
+Use the `disabled` property to disable the input box.
