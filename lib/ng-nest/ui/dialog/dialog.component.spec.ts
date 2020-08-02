@@ -15,6 +15,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XDialogPrefix, () => {
   beforeEach(async(() => {
@@ -50,6 +51,8 @@ describe(XDialogPrefix, () => {
 
 @Component({
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme showDark></x-theme>
     <div class="box">
       <div class="row">
@@ -203,7 +206,7 @@ class TestXDialogComponent {
   visibleForm: boolean;
   visibleCustom: boolean;
 
-  constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService) {
+  constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService, private i18nService: XI18nService) {
     // interval(1000).subscribe((x) => {
     //   console.log(this.visibleForm);
     //   this.cdr.detectChanges();
@@ -251,6 +254,16 @@ class TestXDialogComponent {
 
   customClose() {
     this.visibleCustom = false;
+    this.cdr.detectChanges();
+  }
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
     this.cdr.detectChanges();
   }
 }

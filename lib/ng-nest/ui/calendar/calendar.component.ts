@@ -6,11 +6,15 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  OnDestroy
 } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe } from '@angular/common';
+import { XI18nService, XI18nCalendar } from '@ng-nest/ui/i18n';
+import { takeUntil, map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XCalendarPrefix}`,
@@ -18,26 +22,53 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./calendar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DatePipe]
+  providers: [DatePipe, LowerCasePipe]
 })
-export class XCalendarComponent extends XCalendarProperty implements OnChanges {
+export class XCalendarComponent extends XCalendarProperty implements OnChanges, OnDestroy {
   now: Date = new Date();
   datetime: Date = new Date();
   activatedDate: Date = new Date();
   monthData: { [prop: string]: XCalendarNode[] } = {};
+  locale: XI18nCalendar = {};
+  radioData = [
+    { label: '月', id: 'month' },
+    { label: '年', id: 'year' }
+  ];
+
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     public datePipe: DatePipe,
-    public configService: XConfigService
+    public lowerCasePipe: LowerCasePipe,
+    public configService: XConfigService,
+    public i18n: XI18nService
   ) {
     super();
   }
 
+  ngOnInit() {
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.calendar as XI18nCalendar),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.setLocal();
+        this.cdr.markForCheck();
+      });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setMonthData();
+  }
+
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   action(next: number) {
@@ -49,6 +80,13 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges {
     }
     this.datetime = datetime;
     this.cdr.markForCheck();
+  }
+
+  setLocal() {
+    this.radioData = this.radioData.map((x) => {
+      x.label = (this.locale as any)[x.id];
+      return x;
+    });
   }
 
   setMonthData() {
@@ -68,6 +106,10 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges {
     }
 
     this.monthData = dt;
+  }
+
+  getLocaleMonth(date: Date) {
+    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
 
   dateOnChange(date: Date) {

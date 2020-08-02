@@ -10,10 +10,10 @@
           <x-button
             *ngIf="!monthTemp"
             type="text"
-            [title]="month | date: 'yyyy年MM月'"
+            [title]="month | date: 'yyyy-MM'"
             [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
             (click)="monthClick(month)"
-            >{{ month | date: 'M月' }}</x-button
+            >{{ getLocaleMonth(month) }}</x-button
           >
           <ng-container *ngIf="monthTemp">
             <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month }"></ng-container>

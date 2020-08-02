@@ -10,18 +10,21 @@ import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XI18nService, en_US, zh_CN, X_I18N, zh_TW } from '@ng-nest/ui/i18n';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XButtonModule],
       declarations: [
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,
         TestXDatePickerDisabledComponent,
         TestXDatePickerRequiredComponent,
         TestXDatePickerYearOrMonthComponent
-      ]
+      ],
+      providers: [{ provide: X_I18N, useValue: zh_TW }]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -88,6 +91,8 @@ describe(XDatePickerPrefix, () => {
 
 @Component({
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
@@ -116,10 +121,20 @@ describe(XDatePickerPrefix, () => {
 class TestXDatePickerComponent {
   model1: any;
   model2 = new Date();
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
+  }
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
   }
 }
 

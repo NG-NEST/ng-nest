@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMessageBoxComponent } from './message-box.component';
-import { Component, DebugElement, ViewChild, TemplateRef } from '@angular/core';
+import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { XButtonModule } from '@ng-nest/ui/button';
@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(async(() => {
@@ -35,6 +36,8 @@ describe(XMessageBoxPrefix, () => {
 
 @Component({
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme showDark></x-theme>
     <div class="box">
       <div class="row">
@@ -132,7 +135,12 @@ describe(XMessageBoxPrefix, () => {
 })
 class TestXMessageBoxComponent {
   @ViewChild('contentTpl', { static: true }) contentTpl: TemplateRef<void>;
-  constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
+  constructor(
+    private msgBox: XMessageBoxService,
+    private message: XMessageService,
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
   alert(place: XPlace, title: string) {
     this.msgBox.alert({
       title: '弹框 ' + title,
@@ -180,5 +188,15 @@ class TestXMessageBoxComponent {
       backdropClose: true,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });
+  }
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
   }
 }

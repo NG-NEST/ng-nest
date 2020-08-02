@@ -4,7 +4,7 @@ import { XConfigService } from './config.service';
 import { X_CONFIG, XConfig } from './config';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSize } from '../interfaces';
+import { XSize } from '@ng-nest/ui/core';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XLinkModule } from '@ng-nest/ui/link';
 

@@ -1,6 +1,6 @@
 ---
 order: 3
-label: '起始序号'
+label: 'Starting sequence'
 ---
 
-使用 `startIndex` 属性来设置起始序号。
+Use the `startIndex` property to set the starting index.

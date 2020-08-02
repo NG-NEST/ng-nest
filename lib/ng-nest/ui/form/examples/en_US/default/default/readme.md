@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基本样式'
+label: 'Base'
 ---
 
-默认样式。
+The default style.

@@ -9,7 +9,10 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
-import { XIsChange } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { XI18nService } from '@ng-nest/ui/i18n';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XPaginationPrefix}`,
@@ -23,6 +26,8 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   indexes: number[] = [];
   indexFirst: number = 1;
   indexLast: number = 1;
+
+  private _unSubject = new Subject<void>();
 
   get leftDisabled() {
     return Number(this.index) === 1 || Number(this.total) === 0;
@@ -48,13 +53,28 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     return Number(this.index) === this.lastIndex;
   }
 
-  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef) {
+  constructor(
+    public configService: XConfigService,
+    public elementRef: ElementRef,
+    public renderer: Renderer2,
+    public cdr: ChangeDetectorRef,
+    public i18n: XI18nService
+  ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
   }
 
+  ngOnInit() {
+    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.total, changes.size, changes.index) && this.setIndexes();
+  }
+
+  ngOnDestory() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   setIndexes() {

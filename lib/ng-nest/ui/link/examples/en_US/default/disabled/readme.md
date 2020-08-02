@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '禁用状态'
+label: 'Disabled'
 ---
 
 The state of being unavailable.

@@ -2,7 +2,9 @@ import { HttpClient, HttpEventType, HttpRequest, HttpEvent } from '@angular/comm
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty } from './upload.property';
 import { XValueAccessor } from '@ng-nest/ui/core';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XUploadPrefix}`,
@@ -16,15 +18,32 @@ export class XUploadComponent extends XUploadProperty {
   @ViewChild('file', { static: true }) file: ElementRef;
   files: XUploadNode[] = [];
   showUpload = false;
+  uploadNodes: XUploadNode[] = [];
+
+  private _unSubject = new Subject<void>();
 
   writeValue(value: XUploadNode[]) {
     this.value = value;
     this.cdr.detectChanges();
   }
 
-  uploadNodes: XUploadNode[] = [];
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public http: HttpClient, public cdr: ChangeDetectorRef) {
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef,
+    public http: HttpClient,
+    public cdr: ChangeDetectorRef,
+    public i18n: XI18nService
+  ) {
     super();
+  }
+
+  ngOnInit() {
+    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+  }
+
+  ngOnDestory() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   change(event: Event) {

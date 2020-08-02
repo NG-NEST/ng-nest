@@ -1,15 +1,8 @@
 <div #upload class="x-upload" [class.x-disabled]="disabled">
   <div class="x-upload-buttons">
-    <x-button icon="fto-upload" [disabled]="disabled" (click)="uploadClick()" type="primary">上传文件</x-button>
+    <x-button icon="fto-upload" [disabled]="disabled" (click)="uploadClick()" type="primary">{{ 'upload.uploadText' | xI18n }}</x-button>
   </div>
-  <input
-    type="file"
-    #file
-    (change)="change($event)"
-    [attr.accept]="accept"
-    [multiple]="multiple"
-    style="display: none;"
-  />
+  <input type="file" #file (change)="change($event)" [attr.accept]="accept" [multiple]="multiple" style="display: none;" />
   <ul class="x-upload-files">
     <li *ngFor="let file of files; index as i">
       <a [href]="file.url" target="_blank" [title]="file.name">

@@ -10,7 +10,7 @@ import { XFormModule } from '@ng-nest/ui/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XSwitchModule } from '@ng-nest/ui/switch';
-import { interval } from 'rxjs';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XThemePrefix, () => {
   beforeEach(async(() => {
@@ -36,6 +36,8 @@ describe(XThemePrefix, () => {
 @Component({
   selector: 'test-x-theme',
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme [(ngModel)]="model" showDark showDetail></x-theme>
     <div class="row">
       <x-button>默认按钮</x-button>
@@ -301,10 +303,16 @@ class TestXThemeComponent {
     }, 3000);
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(1000).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
   ngOnInit() {}
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
+  }
 }

@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
+import { Subject } from 'rxjs';
+import { XI18nService } from '@ng-nest/ui/i18n';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XPickerDatePrefix}`,
@@ -18,16 +21,34 @@ import { XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPickerDateComponent extends XPickerDateProperty implements OnChanges {
-  titles = ['一', '二', '三', '四', '五', '六', '日'];
+  titles = [
+    'datePicker.monday',
+    'datePicker.tuesday',
+    'datePicker.wednesday',
+    'datePicker.thursday',
+    'datePicker.friday',
+    'datePicker.saturday',
+    'datePicker.sunday'
+  ];
   now = new Date();
   dates: Date[][] = [];
+  private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public configService: XConfigService, public i18n: XI18nService) {
     super();
+  }
+
+  ngOnInit() {
+    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
   }
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.display) && this.init();
+  }
+
+  ngOnDestory() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   init() {

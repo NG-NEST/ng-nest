@@ -23,7 +23,7 @@ export class XPageHeaderProperty {
    * @zh_CN 返回文字
    * @en_US Return text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '返回') backText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) backText: string;
   /**
    * @zh_CN 标题
    * @en_US Title

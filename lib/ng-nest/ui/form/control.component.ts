@@ -60,6 +60,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   @Input() option: XFormControlOption;
   @ViewChild(FormControlName, { static: false }) control: FormControlName;
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
+  private _changeProps = ['label', ...this._sharedProps];
   private _control: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject();
@@ -80,6 +81,14 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     });
     this._control.setValidators = () => this.setValidators();
     this.form.formGroup.addControl(this._control.id, this._formControl);
+    this.option.change = () => {
+      this._changeProps.forEach((x: string) => {
+        if (this.control.valueAccessor && this.option[x]) {
+          (this.control.valueAccessor as any)[x] = this.option[x];
+        }
+      });
+      this.form.controlComponents[this._control.id].formControlChanges();
+    };
   }
 
   ngAfterViewInit() {

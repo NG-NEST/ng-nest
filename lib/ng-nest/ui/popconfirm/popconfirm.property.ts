@@ -39,7 +39,7 @@ export class XPopconfirmProperty extends XProperty {
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width: string;
   /**
    * @zh_CN 图标
    * @en_US Icon
@@ -54,12 +54,12 @@ export class XPopconfirmProperty extends XProperty {
    * @zh_CN 取消的文字
    * @en_US Canceled text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText: string;
   /**
    * @zh_CN 确认的文字
    * @en_US Confirmed text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText: string;
   /**
    * @zh_CN 取消的点击事件
    * @en_US Cancelled click event

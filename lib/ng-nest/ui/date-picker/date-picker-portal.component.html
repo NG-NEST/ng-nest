@@ -4,8 +4,8 @@
       <x-button icon="fto-chevrons-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
       <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextMonth(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy年' }}</x-button>
-        <x-button type="text" size="mini" (click)="typeChange('month')">{{ display | date: 'M月' }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('month')">{{ getLocaleMonth(display) }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextMonth(1)"></x-button>
       <x-button icon="fto-chevrons-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
@@ -13,7 +13,7 @@
     <ng-container *ngSwitchCase="'month'">
       <x-button icon="fto-chevron-left" size="mini" onlyIcon (click)="nextYear(-1)"></x-button>
       <div class="x-date-picker-portal-year-month">
-        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy年' }}</x-button>
+        <x-button type="text" size="mini" (click)="typeChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
       </div>
       <x-button icon="fto-chevron-right" size="mini" onlyIcon (click)="nextYear(1)"></x-button>
     </ng-container>
@@ -27,18 +27,8 @@
     </ng-container>
   </div>
   <div class="x-date-picker-portal-body" [ngSwitch]="type">
-    <x-picker-date
-      *ngSwitchCase="'date'"
-      [display]="display"
-      [model]="model"
-      (modelChange)="dateChange($event)"
-    ></x-picker-date>
-    <x-picker-month
-      *ngSwitchCase="'month'"
-      [display]="display"
-      [model]="model"
-      (modelChange)="monthChange($event)"
-    ></x-picker-month>
+    <x-picker-date *ngSwitchCase="'date'" [display]="display" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
+    <x-picker-month *ngSwitchCase="'month'" [display]="display" [model]="model" (modelChange)="monthChange($event)"></x-picker-month>
     <x-picker-year
       *ngSwitchCase="'year'"
       [display]="display"

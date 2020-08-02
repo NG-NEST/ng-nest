@@ -13,7 +13,9 @@ import {
 import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
 import { XIsEmpty, XConnectAnimation, XCorner } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, map } from 'rxjs/operators';
+import { DatePipe, LowerCasePipe } from '@angular/common';
+import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
@@ -21,7 +23,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation]
+  animations: [XConnectAnimation],
+  providers: [DatePipe, LowerCasePipe]
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostBinding('@x-connect-animation') public placement: XCorner;
@@ -40,10 +43,17 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   destroyPortal: Function;
   nodeEmit: Function;
   docClickFunction: Function;
+  locale: XI18nDatePicker = {};
   private _type: XDatePickerType;
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  constructor(
+    public renderer: Renderer2,
+    public datePipe: DatePipe,
+    public lowerCasePipe: LowerCasePipe,
+    public cdr: ChangeDetectorRef,
+    public i18n: XI18nService
+  ) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -60,6 +70,15 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
           this.closePortal();
         }))
     );
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.datePicker as XI18nDatePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngAfterViewInit() {
@@ -155,5 +174,9 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     date.setFullYear(this.startYear);
     this.setDisplay(date);
     this.cdr.detectChanges();
+  }
+
+  getLocaleMonth(date: Date) {
+    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
 }

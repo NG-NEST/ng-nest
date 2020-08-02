@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '不同状态'
+label: 'Different state'
 ---
 
-`XMessageService` 服务中提供 `success` 、 `info` 、 `warning` 和 `error` 方法来创建不同类型的消息显示 。
+The `XMessageService` service provides `success`, `info`, `warning` and `error` methods to create different types of message displays.

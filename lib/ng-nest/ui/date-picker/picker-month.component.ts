@@ -9,20 +9,47 @@ import {
 } from '@angular/core';
 import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XPickerMonthProperty } from './date-picker.property';
+import { DatePipe, LowerCasePipe } from '@angular/common';
+import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
+import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-picker-month',
   templateUrl: './picker-month.component.html',
   styleUrls: ['./picker-month.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe, LowerCasePipe]
 })
 export class XPickerMonthComponent extends XPickerMonthProperty implements OnChanges {
   now = new Date();
   dates: Date[][] = [];
+  locale: XI18nDatePicker = {};
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public configService: XConfigService) {
+  private _unSubject = new Subject<void>();
+
+  constructor(
+    public renderer: Renderer2,
+    public datePipe: DatePipe,
+    public lowerCasePipe: LowerCasePipe,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService,
+    public i18n: XI18nService
+  ) {
     super();
+  }
+
+  ngOnInit() {
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.datePicker as XI18nDatePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnChanges(simples: SimpleChanges) {
@@ -49,5 +76,9 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     this.model = date;
     this.modelChange.emit(date);
     this.cdr.markForCheck();
+  }
+
+  getLocaleMonth(date: Date) {
+    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
 }

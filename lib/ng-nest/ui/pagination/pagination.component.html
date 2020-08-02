@@ -1,10 +1,15 @@
 <x-buttons>
-  <x-button [icon]="'fto-chevron-left'" [title]="'上一页'" [disabled]="leftDisabled" (click)="jump(-1, true)"></x-button>
+  <x-button
+    [icon]="'fto-chevron-left'"
+    [title]="'pagination.previous' | xI18n"
+    [disabled]="leftDisabled"
+    (click)="jump(-1, true)"
+  ></x-button>
   <x-button [activated]="firstActivated" (click)="jump(1)">1</x-button>
   <x-button *ngIf="leftJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(-5, true)"></x-button>
   <x-button *ngFor="let item of indexes" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
   <x-button *ngIf="rightJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(5, true)"></x-button>
   <x-button *ngIf="lastIndex > indexFirst" [activated]="lastActivated" (click)="jump(lastIndex)">{{ lastIndex }}</x-button>
-  <x-button [icon]="'fto-chevron-right'" [title]="'下一页'" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>
+  <x-button [icon]="'fto-chevron-right'" [title]="'pagination.next' | xI18n" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>
 </x-buttons>
-<x-button class="x-pagination-total">{{ '共 ' + total + ' 条' }}</x-button>
+<x-button class="x-pagination-total">{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button>

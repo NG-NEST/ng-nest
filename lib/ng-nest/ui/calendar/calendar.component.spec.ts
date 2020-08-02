@@ -13,6 +13,7 @@ import { interval } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XCalendarPrefix, () => {
   beforeEach(async(() => {
@@ -46,6 +47,8 @@ describe(XCalendarPrefix, () => {
 
 @Component({
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme showDark></x-theme>
     <div class="row">
       <x-calendar [data]="data" (rangeChange)="rangeChange($event)"></x-calendar>
@@ -67,7 +70,7 @@ describe(XCalendarPrefix, () => {
 })
 class TestXCalendarComponent {
   data: XCalendarData = {};
-  constructor(private cdr: ChangeDetectorRef, private pipeDate: DatePipe) {
+  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef, private pipeDate: DatePipe) {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
@@ -91,5 +94,15 @@ class TestXCalendarComponent {
     }
 
     this.data = dt;
+  }
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
   }
 }

@@ -131,6 +131,11 @@ export interface XControlOption extends XIdentityProperty {
    */
   message?: string | string[];
   /**
+   * @zh_CN 外部改变事件
+   * @en_US External change event
+   */
+  change?: () => void;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
@@ -187,6 +192,11 @@ export class XControl extends XIdentity implements XControlOption {
    * @en_US Verification failed prompt text
    */
   message?: string | string[];
+  /**
+   * @zh_CN 外部改变事件
+   * @en_US External change event
+   */
+  change?: () => void;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes

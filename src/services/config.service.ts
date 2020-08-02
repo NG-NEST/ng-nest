@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XI18nService, XI18nProperty } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nProperty, zh_CN, en_US } from '@ng-nest/ui/i18n';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
@@ -46,10 +46,20 @@ export class ConfigService {
     } else {
       this.http.get(`/assets/i18n/${lang}.json`).subscribe((x: XI18nProperty) => {
         this.lang = lang as string;
-        this.i18n.setLocale(x, true);
+        this.i18n.setLocale(this.setLocaleProps(x, this.lang), true);
         this.setMeta();
         this.cacheLangs[this.lang] = x;
       });
+    }
+  }
+
+  setLocaleProps(locale: XI18nProperty, lang: string): XI18nProperty {
+    if (lang === 'zh_CN') {
+      return { ...zh_CN, ...locale };
+    } else if (lang === 'en_US') {
+      return { ...en_US, ...locale };
+    } else {
+      return locale;
     }
   }
 

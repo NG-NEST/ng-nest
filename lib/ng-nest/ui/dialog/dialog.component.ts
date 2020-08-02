@@ -15,9 +15,10 @@ import {
 import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
 import { XDialogPrefix, XDialogOverlayRef, XDialogPortal, XDialogProperty } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
-import { emit } from 'process';
+import { XI18nDialog, XI18nService } from '@ng-nest/ui/i18n';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -32,16 +33,40 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   dialogRef: XDialogOverlayRef;
   backdropClick$: Subscription;
   scrollStrategy: BlockScrollStrategy;
+  locale: XI18nDialog = {};
+
+  private _unSubject = new Subject<void>();
+
+  get getCancelText() {
+    return this.cancelText || this.locale.cancelText;
+  }
+
+  get getConfirmText() {
+    return this.confirmText || this.locale.confirmText;
+  }
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     public viewContainerRef: ViewContainerRef,
-    public protalService: XPortalService
+    public protalService: XPortalService,
+    public i18n: XI18nService
   ) {
     super();
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
+  }
+
+  ngOnInit() {
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.dialog as XI18nDialog),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -50,6 +75,8 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
 
   ngOnDestroy(): void {
     this.unsubscribe();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   unsubscribe() {

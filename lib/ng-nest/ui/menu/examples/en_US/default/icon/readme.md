@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '图标'
+label: 'Icon'
 ---
 
-使用数据对象中的 `icon` 属性来设置显示图标。
+Use the icon property in the data object to set the display icon.

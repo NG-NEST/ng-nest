@@ -2,7 +2,7 @@
   <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
-        <th *ngFor="let title of titles">{{ title }}</th>
+        <th *ngFor="let title of titles">{{ title | xI18n }}</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
               *ngIf="!dateTemp"
               type="text"
               size="mini"
-              [title]="week | date: 'yyyy年MM月dd日'"
+              [title]="week | date: 'yyyy-MM-dd'"
               [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
               (click)="dateClick(week)"
               >{{ week | date: 'd' }}</x-button

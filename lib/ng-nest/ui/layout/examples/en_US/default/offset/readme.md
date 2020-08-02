@@ -1,8 +1,8 @@
 ---
 order: 4
-label: '分栏偏移'
+label: 'Column offset'
 ---
 
-支持偏移指定的栏数。
+Support offset the specified number of columns.
 
-- 使用 `x-col` 的 `offset` 属性可以指定分栏偏移的栏数。
+- Use the `offset` attribute of `x-col` to specify the number of columns to be offset.

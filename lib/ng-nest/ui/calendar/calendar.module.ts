@@ -8,10 +8,11 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { XCalendarProperty } from './calendar.property';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 @NgModule({
   declarations: [XCalendarComponent, XCalendarProperty],
   exports: [XCalendarComponent],
-  imports: [CommonModule, FormsModule, XLinkModule, XTooltipModule, XRadioModule, XDatePickerModule, XButtonModule]
+  imports: [CommonModule, FormsModule, XLinkModule, XTooltipModule, XRadioModule, XDatePickerModule, XButtonModule, XI18nModule]
 })
 export class XCalendarModule {}

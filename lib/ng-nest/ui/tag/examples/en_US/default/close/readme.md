@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '关闭按钮'
+label: 'Close button'
 ---
 
-使用 `closable` 属性来显示关闭按钮。
+Use the `closable` property to display the close button.

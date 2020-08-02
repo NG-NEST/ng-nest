@@ -65,7 +65,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 取消按钮文字
    * @en_US Cancel button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '取消') cancelText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText: string;
   /**
    * @zh_CN 显示确认按钮
    * @en_US Show confirmation button
@@ -75,7 +75,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 确认按钮文字
    * @en_US Confirm button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '确认') confirmText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText: string;
   /**
    * @zh_CN 点击遮罩关闭
    * @en_US Click the mask to close

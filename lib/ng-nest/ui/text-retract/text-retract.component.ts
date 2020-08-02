@@ -11,6 +11,9 @@ import {
 } from '@angular/core';
 import { XTextRetractPrefix, XTextRetractProperty } from './text-retract.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XI18nService } from '@ng-nest/ui/i18n';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
@@ -24,21 +27,30 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   retract: boolean = false;
   unfold: boolean = true;
 
+  private _unSubject = new Subject<void>();
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public i18n: XI18nService
   ) {
     super();
   }
 
   ngOnInit() {
     this.setDisplayValue();
+    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
   }
 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.content) && this.setDisplayValue();
+  }
+
+  ngOnDestory() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   setDisplayValue() {

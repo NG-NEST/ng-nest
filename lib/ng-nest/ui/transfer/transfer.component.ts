@@ -39,6 +39,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     disabledButton: true
   };
   searchInput: string = '';
+  private _titles = ['List', 'Selected'];
   private _unSubject = new Subject<void>();
 
   writeValue(value: any): void {
@@ -188,10 +189,11 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setTitles() {
-    if (!XIsEmpty(this.titles)) {
-      this.left.title = this.titles[0];
-      if (this.titles.length > 1) this.right.title = this.titles[1];
+    if (XIsEmpty(this.titles)) {
+      this.titles = this._titles;
     }
+    this.left.title = this.titles[0];
+    if (this.titles.length > 1) this.right.title = this.titles[1];
     this.cdr.detectChanges();
   }
 }

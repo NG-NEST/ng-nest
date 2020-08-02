@@ -11,6 +11,7 @@ import { XPickerDateComponent } from './picker-date.component';
 import { XPickerMonthComponent } from './picker-month.component';
 import { XPickerYearComponent } from './picker-year.component';
 import { XDatePickerProperty, XPickerDateProperty, XPickerMonthProperty, XPickerYearProperty } from './date-picker.property';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,6 @@ import { XDatePickerProperty, XPickerDateProperty, XPickerMonthProperty, XPicker
     XPickerYearProperty
   ],
   exports: [XDatePickerComponent, XDatePickerPortalComponent, XPickerDateComponent, XPickerMonthComponent, XPickerYearComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XButtonModule, XIconModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XButtonModule, XIconModule, XI18nModule]
 })
 export class XDatePickerModule {}

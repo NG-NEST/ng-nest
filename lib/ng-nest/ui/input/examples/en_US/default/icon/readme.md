@@ -1,6 +1,6 @@
 ---
 order: 2
-label: '图标'
+label: 'Icon'
 ---
 
 - Use the `icon` property to set the icon in the input box.

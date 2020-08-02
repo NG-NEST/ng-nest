@@ -3,6 +3,7 @@ import { XTemplate, XIsXTemplate, fillDefault, XIsString } from '@ng-nest/ui/cor
 import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalService } from '@ng-nest/ui/portal';
+import { XI18nService } from '@ng-nest/ui/i18n';
 
 @Injectable()
 export class XMessageBoxService {
@@ -22,7 +23,7 @@ export class XMessageBoxService {
     hide: false
   };
 
-  constructor(public portal: XPortalService) {}
+  constructor(public portal: XPortalService, public i18n: XI18nService) {}
 
   alert(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: false, showInput: false });
@@ -55,6 +56,7 @@ export class XMessageBoxService {
     } else {
       opt = option as XMessageBoxOption;
     }
+    this.setLocal();
     fillDefault(opt, Object.assign(this.default, def));
     return this.createMessageBoxPlacement(opt);
   }
@@ -64,5 +66,11 @@ export class XMessageBoxService {
     (result.ref?.componentRef?.instance as any).messageBox = result;
     if (option.backdropClose) result.ref?.overlayRef?.backdropClick().subscribe(() => result.ref?.componentRef?.instance.onClose());
     return result;
+  }
+
+  private setLocal() {
+    const messageBoxLocale = this.i18n.getLocale().messageBox;
+    this.default = { ...this.default, ...messageBoxLocale };
+    console.log(messageBoxLocale, this.default);
   }
 }

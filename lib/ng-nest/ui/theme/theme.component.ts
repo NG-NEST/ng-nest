@@ -12,8 +12,9 @@ import {
 } from '@ng-nest/ui/core';
 import { FormGroup } from '@angular/forms';
 import { XControl } from '@ng-nest/ui/form';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: 'x-theme',
@@ -48,6 +49,8 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
 
   themeService: XThemeService;
 
+  locale: XI18nTheme = {};
+
   private _unSubject = new Subject<void>();
 
   writeValue(value: XColorsTheme) {
@@ -59,7 +62,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     this.cdr.detectChanges();
   }
 
-  constructor(public configService: XConfigService, public cdr: ChangeDetectorRef) {
+  constructor(public configService: XConfigService, public i18n: XI18nService, public cdr: ChangeDetectorRef) {
     super();
     this.themeService = this.configService.themeService;
   }
@@ -71,6 +74,16 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     this.controls.map((x: XControl) => {
       x.value = (this.theme.colors as XColorsTheme)[x.id];
     });
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.theme as XI18nTheme),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.setControlsLabel();
+        this.cdr.detectChanges();
+      });
   }
 
   ngAfterViewInit() {
@@ -94,6 +107,16 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setControlsLabel() {
+    Object.keys(this.locale).forEach((x) => {
+      let control = this.controls.find((y) => y.id === x);
+      if (control) {
+        control.label = (this.locale as any)[x];
+        control.change && control.change();
+      }
+    });
   }
 
   setDefaultColors() {

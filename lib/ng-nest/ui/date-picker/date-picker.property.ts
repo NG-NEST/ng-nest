@@ -147,7 +147,7 @@ export class XPickerMonthProperty extends XProperty {
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
-  @Input() display = new Date();
+  @Input() display: Date = new Date();
   /**
    * @zh_CN 选中的日期
    * @en_US Selected date
@@ -186,7 +186,7 @@ export class XPickerYearProperty extends XProperty {
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
-  @Input() display = new Date();
+  @Input() display: Date = new Date();
   /**
    * @zh_CN 选中的日期
    * @en_US Selected date

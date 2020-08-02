@@ -2,7 +2,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XEmptyComponent } from './empty.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XEmptyModule } from '@ng-nest/ui/empty';
@@ -12,6 +12,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XEmptyPrefix, () => {
   beforeEach(async(() => {
@@ -45,6 +46,8 @@ describe(XEmptyPrefix, () => {
 
 @Component({
   template: `
+    <x-button (click)="english()">切换为英文</x-button>
+    <x-button (click)="chinese()">切换为中文</x-button>
     <x-theme showDark></x-theme>
     <div class="row">
       <x-empty></x-empty>
@@ -85,4 +88,15 @@ describe(XEmptyPrefix, () => {
     `
   ]
 })
-class TestXEmptyComponent {}
+class TestXEmptyComponent {
+  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
+  }
+}
