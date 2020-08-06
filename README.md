@@ -1,6 +1,6 @@
 # NG-NEST
 
-NG-NEST is an open source Web application framework based on Angular and NEST, mainly used for research and development of enterprise-level background products.[https://ngnest.com/](https://angular.io/docs)
+NG-NEST is an open source Web application framework based on Angular and NEST, mainly used for research and development of enterprise-level background products.[https://ngnest.com/](https://ngnest.com/)
 
 - [Angular](https://angular.io/docs) is an application design framework and development platform for creating efficient, complex, sophisticated, single-page applications.
 - [Nest](https://docs.nestjs.com/) is a framework for building efficient, scalable Node.js server-side applications.
