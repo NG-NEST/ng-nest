@@ -47,4 +47,4 @@ angular ^9.0.0 | nestjs ^7.0.0
 
 ## 下一步
 
-开始项目的搭建：[创建项目](index/docs/course/rbac/2-create-project)
+开始项目的搭建：[创建项目](index/docs/zh_CN/course/rbac/2-create-project)

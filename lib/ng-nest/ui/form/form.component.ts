@@ -95,6 +95,4 @@ export class XFormComponent extends XFormProperty implements OnInit {
     }
     return result;
   }
-
-  submit() {}
 }

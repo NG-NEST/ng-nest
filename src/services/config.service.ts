@@ -46,9 +46,10 @@ export class ConfigService {
     } else {
       this.http.get(`/assets/i18n/${lang}.json`).subscribe((x: XI18nProperty) => {
         this.lang = lang as string;
-        this.i18n.setLocale(this.setLocaleProps(x, this.lang), true);
+        const localeProps = this.setLocaleProps(x, this.lang);
+        this.i18n.setLocale(localeProps, true);
         this.setMeta();
-        this.cacheLangs[this.lang] = x;
+        this.cacheLangs[this.lang] = localeProps;
       });
     }
   }
