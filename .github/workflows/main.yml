@@ -26,7 +26,10 @@ jobs:
       with: 
         node-version: 13.12.0 
     
-    - name: test:ng-nest-ui
+    - name: build
       run: |
         npm install
-        npm run test:ng-nest-ui --configuration=ci
+        npm run test:ng-nest-ui -- --configuration=ci
+        npm run build:ng-nest-ui
+        npm run test -- --configuration=ci
+        npm run build
