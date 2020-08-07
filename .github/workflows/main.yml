@@ -29,4 +29,4 @@ jobs:
     - name: test:ng-nest-ui
       run: |
         npm install
-        npm run test:ng-nest-ui
+        npm run test:ng-nest-ui --configuration=ci
