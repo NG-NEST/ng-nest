@@ -13,7 +13,7 @@ import {
   Inject,
   ViewChild
 } from '@angular/core';
-import { XTableBodyPrefix, XTableBodyProperty, XTableRow } from './table.property';
+import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn } from './table.property';
 import { removeNgTag, XIsChange, XResize, XConfigService } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 import { Subject, fromEvent } from 'rxjs';
@@ -159,5 +159,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     }
     this.activatedRowChange.emit(row);
     this.cdr.detectChanges();
+  }
+
+  trackByItem(index: number, item: XTableRow | XTableColumn) {
+    return item.id;
   }
 }

@@ -81,4 +81,8 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
   getLocaleMonth(date: Date) {
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
+
+  trackByMonth(index: number, item: Date) {
+    return item;
+  }
 }

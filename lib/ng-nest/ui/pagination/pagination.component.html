@@ -7,7 +7,7 @@
   ></x-button>
   <x-button [activated]="firstActivated" (click)="jump(1)">1</x-button>
   <x-button *ngIf="leftJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(-5, true)"></x-button>
-  <x-button *ngFor="let item of indexes" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
+  <x-button *ngFor="let item of indexes; trackBy: trackByItem" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
   <x-button *ngIf="rightJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(5, true)"></x-button>
   <x-button *ngIf="lastIndex > indexFirst" [activated]="lastActivated" (click)="jump(lastIndex)">{{ lastIndex }}</x-button>
   <x-button [icon]="'fto-chevron-right'" [title]="'pagination.next' | xI18n" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>

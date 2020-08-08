@@ -103,4 +103,8 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.modelChange.emit(date);
     this.cdr.markForCheck();
   }
+
+  trackByNode(index: number, item: string | Date) {
+    return item;
+  }
 }

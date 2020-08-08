@@ -2,7 +2,7 @@
   <ul cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag">
     <li
       class="x-list-item"
-      *ngFor="let node of nodes"
+      *ngFor="let node of nodes; trackBy: trackByNode"
       [class.x-selected]="node.selected"
       [class.x-disabled]="node.disabled"
       [class.x-list-icon]="node.icon"

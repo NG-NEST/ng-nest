@@ -40,4 +40,8 @@ export class XMessageComponent {
         .subscribe(() => this.onClose(item));
     }
   }
+
+  trackByNode(index: number, item: XMessageOption) {
+    return `${item.title}-${item.content}`;
+  }
 }

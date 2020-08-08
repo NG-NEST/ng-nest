@@ -1,6 +1,6 @@
 <div #timeline class="x-timeline" [ngClass]="classMap">
   <ul>
-    <li *ngFor="let node of nodes">
+    <li *ngFor="let node of nodes; trackBy: trackByNode">
       <div class="x-timeline-tail"></div>
       <div
         class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }} {{

@@ -78,6 +78,10 @@ export class XRateComponent extends XRateProperty {
     if (this.onChange) this.onChange(this.value);
   }
 
+  trackByItem(index: number, item: number) {
+    return item;
+  }
+
   formControlChanges() {
     this.ngOnInit();
     this.cdr.detectChanges();

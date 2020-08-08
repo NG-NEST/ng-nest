@@ -71,4 +71,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.table.resetScroll(false, true);
     this.cdr.detectChanges();
   }
+
+  trackByItem(index: number, item: XTableColumn) {
+    return item.id;
+  }
 }

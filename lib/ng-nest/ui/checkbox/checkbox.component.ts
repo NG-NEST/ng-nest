@@ -91,6 +91,10 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     });
   }
 
+  trackByItem(index: number, item: XCheckboxNode) {
+    return item.id;
+  }
+
   formControlChanges() {
     this.setData();
     this.ngOnInit();

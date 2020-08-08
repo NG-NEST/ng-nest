@@ -28,7 +28,7 @@
   </ng-template>
   <span class="x-tree-node-operations">
     <x-link
-      *ngFor="let action of tree.actions"
+      *ngFor="let action of tree.actions; trackBy: trackByItem"
       [icon]="action.icon"
       [title]="action.label"
       (click)="onAction($event, action, node)"
@@ -38,7 +38,7 @@
 <ul *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
   <li
     x-tree-node
-    *ngFor="let child of node.children"
+    *ngFor="let child of node.children; trackBy: trackByItem"
     [node]="child"
     [parent]="this"
     [lazy]="lazy"

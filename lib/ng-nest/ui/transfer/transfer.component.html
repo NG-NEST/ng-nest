@@ -9,7 +9,7 @@
       [cdkDropListDisabled]="!drag"
       [cdkDropListEnterPredicate]="predicate"
     >
-      <li class="x-transfer-item" *ngFor="let node of left.list" cdkDrag [cdkDragData]="node">
+      <li class="x-transfer-item" *ngFor="let node of left.list; trackBy: trackByNode" cdkDrag [cdkDragData]="node">
         <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left }"></ng-container>
       </li>
     </ul>
@@ -28,7 +28,7 @@
       [cdkDropListDisabled]="!drag"
       [cdkDropListEnterPredicate]="predicate"
     >
-      <li class="x-transfer-item" *ngFor="let node of right.list" cdkDrag [cdkDragData]="node">
+      <li class="x-transfer-item" *ngFor="let node of right.list; trackBy: trackByNode" cdkDrag [cdkDragData]="node">
         <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
       </li>
     </ul>

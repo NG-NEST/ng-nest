@@ -10,7 +10,7 @@
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
-        *ngFor="let item of nodes"
+        *ngFor="let item of nodes; trackBy: trackByItem"
         [icon]="item.icon"
         [title]="item.title"
         [size]="size"
@@ -27,7 +27,7 @@
   <div class="x-checkbox-row">
     <div
       class="x-checkbox-item"
-      *ngFor="let item of nodes"
+      *ngFor="let item of nodes; trackBy: trackByItem"
       [class.x-checked]="getChecked(item.id)"
       [class.x-disabled]="disabled || item.disabled"
       [class.x-indeterminate]="indeterminate"

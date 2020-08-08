@@ -35,4 +35,8 @@ export class XColorComponent extends XColorProperty implements OnInit {
     }
     this.colors = colors;
   }
+
+  trackByColor(index: number, item: string) {
+    return item;
+  }
 }

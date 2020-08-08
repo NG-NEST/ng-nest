@@ -135,4 +135,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
     this.cdr.detectChanges();
   }
+
+  trackByNode(index: number, item: XListNode) {
+    return item.id;
+  }
 }

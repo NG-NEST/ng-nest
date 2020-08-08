@@ -204,4 +204,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     Object.assign(node, nowNode);
     node.change && node.change();
   }
+
+  trackByItem(index: number, item: XTreeNode) {
+    return item.id;
+  }
 }

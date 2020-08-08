@@ -87,4 +87,8 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
     this.nodes = this.setStatus(this.nodes);
     this.cdr.detectChanges();
   }
+
+  trackByNode(index: number, item: XStepsNode) {
+    return item.id;
+  }
 }

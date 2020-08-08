@@ -4,7 +4,7 @@
   </div>
   <input type="file" #file (change)="change($event)" [attr.accept]="accept" [multiple]="multiple" style="display: none;" />
   <ul class="x-upload-files">
-    <li *ngFor="let file of files; index as i">
+    <li *ngFor="let file of files; index as i; trackBy: trackByItem">
       <a [href]="file.url" target="_blank" [title]="file.name">
         <x-icon type="fto-file-text"></x-icon>
         <span class="x-upload-filename">{{ file.name }}</span>

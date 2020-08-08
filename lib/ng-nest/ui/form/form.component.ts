@@ -95,4 +95,8 @@ export class XFormComponent extends XFormProperty implements OnInit {
     }
     return result;
   }
+
+  trackByControl(index: number, item: XFormControlOption) {
+    return item.id;
+  }
 }

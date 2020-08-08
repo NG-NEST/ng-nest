@@ -127,4 +127,8 @@ export class XUploadComponent extends XUploadProperty {
     }
     return;
   }
+
+  trackByItem(index: number, item: XUploadNode) {
+    return `${item.name}-${item.lastModified}`;
+  }
 }
