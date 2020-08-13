@@ -19,7 +19,7 @@ label: '1. 简介'
 
 完成本教程的所有步骤之后，最终的应用会是这样的：<a href="http://adminui.ngnest.com/" target="_blank">在线例子</a> | <a href="https://github.com/NG-NEST/ng-nest-admin" target="_blank">Github 地址</a>。
 
-{{ __1\__ng-nest-admin:system.gif }}
+{{ __1\__ng-nest-admin:light.png }}
 
 ## 当前环境
 
