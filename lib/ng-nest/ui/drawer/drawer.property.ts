@@ -39,4 +39,9 @@ export class XDrawerProperty extends XProperty {
    * @en_US Closed event
    */
   @Output() close = new EventEmitter();
+  /**
+   * @zh_CN 显示/隐藏的事件
+   * @en_US Show/hide event
+   */
+  @Output() visibleChange = new EventEmitter<boolean>();
 }
