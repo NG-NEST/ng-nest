@@ -97,6 +97,7 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
       this.unsubscribe();
+      this.visibleChange.emit(this.visible as boolean);
       this.close.emit();
       return true;
     }

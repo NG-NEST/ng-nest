@@ -135,4 +135,12 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   getMonth(date: Date): XCalendarNode[] {
     return this.monthData?.[this.datePipe.transform(date, 'yyyy-MM') as string];
   }
+
+  trackByDate(index: number, item: XCalendarNode) {
+    return `${item.id}-${item.label}`;
+  }
+
+  trackByMonth(index: number, item: XCalendarNode) {
+    return item.id;
+  }
 }

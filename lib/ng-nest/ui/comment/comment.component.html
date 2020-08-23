@@ -1,6 +1,6 @@
 <div #comment class="x-comment">
   <div class="x-comment-list">
-    <div class="x-comment-item" *ngFor="let node of nodes">
+    <div class="x-comment-item" *ngFor="let node of nodes; trackBy: trackByNode">
       <div class="x-comment-avatar">
         <x-avatar [src]="node.src"></x-avatar>
       </div>
@@ -24,7 +24,7 @@
         </div>
         <x-comment-reply *ngIf="node.commentShow" [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
         <ul>
-          <li *ngFor="let child of node.children">
+          <li *ngFor="let child of node.children; trackBy: trackByNode">
             <div>
               <p>
                 <x-link>{{ child.author }}</x-link>

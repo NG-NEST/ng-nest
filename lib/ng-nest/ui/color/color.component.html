@@ -4,6 +4,6 @@
     <span class="x-color-hex">{{ hex }}</span>
   </div>
   <div class="x-color-gradual">
-    <div class="x-color-item" *ngFor="let color of colors; index as i" [style.background-color]="color"></div>
+    <div class="x-color-item" *ngFor="let color of colors; index as i; trackBy: trackByColor" [style.background-color]="color"></div>
   </div>
 </div>

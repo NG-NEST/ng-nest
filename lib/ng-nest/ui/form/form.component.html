@@ -1,7 +1,6 @@
 <form
   #form
   class="x-form"
-  (ngSubmit)="submit()"
   [formGroup]="formGroup"
   [style.width]="width"
   [style.padding-bottom.rem]="controlsType === 'controls' ? this.space : 0"
@@ -31,7 +30,7 @@
     <x-col
       [style.padding-top.rem]="space"
       [span]="!control.span ? span : control.span"
-      *ngFor="let control of controls"
+      *ngFor="let control of controls; trackBy: trackByControl"
       [hidden]="control.hidden"
     >
       <x-control [option]="control"></x-control>

@@ -205,4 +205,8 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     };
     getParent(node);
   }
+
+  trackByNode(index: number, item: XMenuNode) {
+    return item.id;
+  }
 }

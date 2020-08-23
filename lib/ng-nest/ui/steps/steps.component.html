@@ -1,5 +1,5 @@
 <div #steps class="x-steps" [ngClass]="classMap">
-  <div class="x-steps-node x-steps-{{ node.status }}" *ngFor="let node of nodes; index as i">
+  <div class="x-steps-node x-steps-{{ node.status }}" *ngFor="let node of nodes; index as i; trackBy: trackByNode">
     <div class="x-steps-header">
       <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
         <x-icon *ngIf="node.icon; else iconTpl" [type]="node.icon"></x-icon>

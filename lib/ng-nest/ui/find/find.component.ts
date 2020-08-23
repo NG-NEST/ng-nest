@@ -313,6 +313,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.treeMultiple(node);
   }
 
+  trackByItem(index: number, item: any) {
+    return item.id;
+  }
+
   formControlChanges() {
     this.ngOnInit();
     this.ngAfterViewInit();

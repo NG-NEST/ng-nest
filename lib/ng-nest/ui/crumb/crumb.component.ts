@@ -46,6 +46,10 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
     }
   }
 
+  trackByNode(index: number, item: XCrumbNode) {
+    return item.id;
+  }
+
   private setData() {
     XSetData<XCrumbNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;

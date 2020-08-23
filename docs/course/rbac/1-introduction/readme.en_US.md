@@ -19,7 +19,7 @@ This entry-level app uses most of the components and will be implemented in a gr
 
 After completing all the steps in this tutorial, the final application will look like this:<a href="http://adminui.ngnest.com/" target="_blank">Online example</a> | <a href="https://github.com/NG-NEST/ng-nest-admin" target="_blank">Github address</a>。
 
-{{ __1\__ng-nest-admin:system.gif }}
+{{ __1\__ng-nest-admin:light.png }}
 
 ## Current environment
 

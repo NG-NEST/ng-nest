@@ -1,6 +1,6 @@
 <div #menu class="x-menu" [ngClass]="classMap">
   <div class="x-menu-nodes" *ngIf="layout === 'column'">
-    <ng-container *ngFor="let node of nodes">
+    <ng-container *ngFor="let node of nodes; trackBy: trackByNode">
       <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>
     </ng-container>
   </div>
@@ -50,7 +50,7 @@
     <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
   </div>
   <div class="x-menu-nodes" *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
-    <ng-container *ngFor="let child of node.children">
+    <ng-container *ngFor="let child of node.children; trackBy: trackByNode">
       <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: child }"></ng-container>
     </ng-container>
   </div>

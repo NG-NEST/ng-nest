@@ -128,4 +128,8 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   getActivated(index: number) {
     return Number(this.index) === index;
   }
+
+  trackByItem(index: number, item: number) {
+    return item;
+  }
 }

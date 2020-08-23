@@ -9,7 +9,7 @@
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <x-buttons (mouseleave)="leaveRates()">
     <x-button
-      *ngFor="let rate of rates"
+      *ngFor="let rate of rates; trackBy: trackByItem"
       onlyIcon
       [activated]="rate <= hoverActivated"
       [disabled]="disabled"

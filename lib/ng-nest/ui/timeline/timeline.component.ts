@@ -43,6 +43,10 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
     this._unSubject.unsubscribe();
   }
 
+  trackByNode(index: number, item: XTimelineNode) {
+    return item.id;
+  }
+
   private setData() {
     XSetData<XTimelineNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;

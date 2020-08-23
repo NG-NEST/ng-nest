@@ -1,5 +1,5 @@
 <ul #crumbs class="x-crumb">
-  <li *ngFor="let node of nodes; index as i">
+  <li *ngFor="let node of nodes; index as i; trackBy: trackByNode">
     <x-link
       [title]="nodeTpl ? node.label : ''"
       [icon]="node.icon"

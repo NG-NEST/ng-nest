@@ -12,7 +12,9 @@
     <x-button #buttonCom icon="fto-search" [disabled]="disabled" (click)="showModal()"></x-button>
     <div class="x-find-tags">
       <ng-container *ngIf="multiple; else singleTpl">
-        <x-tag *ngFor="let item of value; index as i" closable [disabled]="disabled" (close)="tagClose(i)">{{ item[columnLabel] }}</x-tag>
+        <x-tag *ngFor="let item of value; index as i; trackBy: trackByItem" closable [disabled]="disabled" (close)="tagClose(i)">{{
+          item[columnLabel]
+        }}</x-tag>
       </ng-container>
       <ng-template #singleTpl>
         <x-tag *ngIf="value" closable [disabled]="disabled" (close)="tagClose()">{{ value[columnLabel] }}</x-tag>
@@ -79,7 +81,7 @@
     <div *ngIf="multiple" class="x-find-dialog-checked" [class.x-find-empty]="getEmpty" [style.height.px]="height">
       <x-empty *ngIf="getEmpty" content="请选择数据"></x-empty>
       <div class="x-find-dialog-tags">
-        <x-tag *ngFor="let item of temp; index as i" closable (close)="tempClose(i, item)">
+        <x-tag *ngFor="let item of temp; index as i; trackBy: trackByItem" closable (close)="tempClose(i, item)">
           <span>{{ item[columnLabel] }}</span>
         </x-tag>
       </div>

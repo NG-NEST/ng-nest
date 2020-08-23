@@ -231,4 +231,8 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   getActivated(index: number) {
     return Number(this.activatedIndex) === index;
   }
+
+  trackByNode(index: number, item: XSliderNode) {
+    return item.id;
+  }
 }

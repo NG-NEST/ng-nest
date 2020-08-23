@@ -1,7 +1,7 @@
 <div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
   <table class="x-picker-month-table" cellspacing="0" cellpadding="0">
     <tr *ngFor="let months of dates">
-      <ng-container *ngFor="let month of months">
+      <ng-container *ngFor="let month of months; trackBy: trackByMonth">
         <td
           [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
           [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"

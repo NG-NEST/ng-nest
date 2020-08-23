@@ -42,4 +42,8 @@ export class XNotificationComponent {
         });
     }
   }
+
+  trackByItem(index: number, item: XNotificationOption) {
+    return `${item.title}-${item.content}`;
+  }
 }

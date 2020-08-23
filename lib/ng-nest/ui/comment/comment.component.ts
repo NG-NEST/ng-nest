@@ -75,6 +75,10 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
     this.moreClick.emit(node);
   }
 
+  trackByNode(index: number, item: XCommentNode) {
+    return item.id;
+  }
+
   private setData() {
     XSetData<XCommentNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XCommentNode>(x, y, 0));

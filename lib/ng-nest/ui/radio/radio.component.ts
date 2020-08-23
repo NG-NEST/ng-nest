@@ -74,6 +74,10 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
     });
   }
 
+  trackByItem(index: number, item: XRadioNode) {
+    return item.id;
+  }
+
   formControlChanges() {
     this.setData();
     this.ngOnInit();

@@ -1,5 +1,5 @@
 <div class="x-message">
-  <ng-container *ngFor="let item of message.list">
+  <ng-container *ngFor="let item of message.list; trackBy: trackByNode">
     <x-alert
       [@x-move-animation]="item.placement"
       (@x-move-animation.done)="moveDone($event)"

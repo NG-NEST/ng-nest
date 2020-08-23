@@ -1,7 +1,7 @@
 <div class="x-picker-year">
   <table class="x-picker-year-table" cellspacing="0" cellpadding="0">
     <tr *ngFor="let years of dates">
-      <ng-container *ngFor="let year of years">
+      <ng-container *ngFor="let year of years; trackBy: trackByYear">
         <td [class.x-date-last-or-next]="lastOrNext(year)" [class.x-date-now]="equalYear(year, now)">
           <x-button type="text" [activated]="equalYear(year, now)" (click)="yearClick(year)">{{ year | date: 'yyyy' }}</x-button>
         </td>

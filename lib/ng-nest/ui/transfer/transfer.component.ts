@@ -130,6 +130,10 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     return !item.data.disabled;
   }
 
+  trackByNode(index: number, item: XTransferNode) {
+    return item.id;
+  }
+
   private setCheckedAll(...sources: XTransferSource[]) {
     for (let source of sources) {
       if ((source.checkedCount as number) > 0) {

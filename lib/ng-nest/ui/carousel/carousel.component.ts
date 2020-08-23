@@ -98,4 +98,8 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   getActivated(index: number) {
     return Number(this.active) === index;
   }
+
+  trackByPanel(index: number, item: any) {
+    return index;
+  }
 }

@@ -30,7 +30,7 @@
     <span [title]="date | date: 'yyyy-MM-dd'">{{ date | date: 'd' }}</span>
     <div class="x-calendar-date-content">
       <ul *ngIf="getDate(date)">
-        <li *ngFor="let item of getDate(date)">
+        <li *ngFor="let item of getDate(date); trackBy: trackByDate">
           <span [title]="item.id + item.label">{{ item.id }}{{ item.label }}</span>
         </li>
       </ul>
@@ -43,7 +43,7 @@
     <span [title]="date | date: 'yyyy-MM'">{{ getLocaleMonth(date) }}</span>
     <div class="x-calendar-month-content">
       <ul *ngIf="getMonth(date)">
-        <li *ngFor="let item of getMonth(date)">
+        <li *ngFor="let item of getMonth(date); trackBy: trackByMonth">
           <x-link x-tooltip [content]="item.label" placement="top">{{ item.id }}</x-link>
         </li>
       </ul>

@@ -8,7 +8,7 @@
     [style.height.px]="bodyHeight"
   >
     <tr
-      *cdkVirtualFor="let row of data; index as i"
+      *cdkVirtualFor="let row of data; index as i; trackBy: trackByItem"
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
       [style.height.px]="rowHeight"
       (click)="rowClick(row)"
@@ -21,7 +21,7 @@
 
 <ng-template #bodyTpl>
   <tr
-    *ngFor="let row of data; index as i"
+    *ngFor="let row of data; index as i; trackBy: trackByItem"
     [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
     [style.height.px]="rowHeight"
     (click)="rowClick(row)"
@@ -31,7 +31,7 @@
 </ng-template>
 
 <ng-template #rowTpl let-row="row" let-i="i">
-  <ng-container *ngFor="let column of columns; index as j">
+  <ng-container *ngFor="let column of columns; index as j; trackBy: trackByItem">
     <td
       [style.width.px]="column.width"
       [style.flex]="column.width ? 'none' : column.flex"

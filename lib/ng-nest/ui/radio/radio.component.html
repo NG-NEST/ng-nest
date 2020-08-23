@@ -10,7 +10,7 @@
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
-        *ngFor="let item of nodes"
+        *ngFor="let item of nodes; trackBy: trackByItem"
         [icon]="item.icon"
         [size]="size"
         [type]="type"
@@ -27,7 +27,7 @@
   <div class="x-radio-row">
     <div
       class="x-radio-item"
-      *ngFor="let item of nodes"
+      *ngFor="let item of nodes; trackBy: trackByItem"
       [class.x-checked]="item.id === value"
       [class.x-disabled]="item.disabled"
       (click)="radioClick($event, item)"

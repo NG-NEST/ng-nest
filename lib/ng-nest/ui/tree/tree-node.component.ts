@@ -158,4 +158,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     action.handler && action.handler(node);
     event.stopPropagation();
   }
+
+  trackByItem(index: number, item: XTreeAction | XTreeNode) {
+    return item.id;
+  }
 }
