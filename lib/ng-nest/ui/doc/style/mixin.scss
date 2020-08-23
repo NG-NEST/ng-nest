@@ -71,7 +71,7 @@
       position: absolute;
       top: -$--x-border-width;
       left: -$--x-border-width;
-      height: calc(100% + #{$--x-border-width * 2});
+      height: calc(100% + calc(#{$--x-border-width} * 2));
       width: 0.25rem;
       border-top-left-radius: $--x-border-radius;
       border-bottom-left-radius: $--x-border-radius;
@@ -164,9 +164,9 @@
     &:before {
       content: ' ';
       position: absolute;
-      top: -$--x-border-width;
-      left: -$--x-border-width;
-      height: calc(100% + #{$--x-border-width * 2});
+      top: calc(#{$--x-border-width} * -1);
+      left: calc(#{$--x-border-width} * -1);
+      height: calc(100% + calc(#{$--x-border-width} * 2));
       width: 0.25rem;
       border-top-left-radius: $--x-border-radius;
       border-bottom-left-radius: $--x-border-radius;

@@ -2,5 +2,5 @@
 
 $--x-alert: $--x-prefix + '-alert';
 
-$--x-alert-content-font-size: $--x-font-size - 0.0625rem;
-$--x-alert-icon-font-size: $--x-font-size + 0.25rem;
+$--x-alert-content-font-size: calc(#{$--x-font-size} - 0.0625rem);
+$--x-alert-icon-font-size: calc(#{$--x-font-size} + 0.25rem);

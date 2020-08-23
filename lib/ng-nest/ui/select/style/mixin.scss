@@ -83,5 +83,5 @@
   display: flex;
   background-color: $--x-background;
   overflow-y: auto;
-  max-height: $--x-select-height * 6 + $--x-border-width * 7;
+  max-height: calc(calc(#{$--x-select-height} * 6) + calc(#{$--x-border-width} * 7));
 }

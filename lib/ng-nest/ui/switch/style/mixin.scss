@@ -27,7 +27,7 @@
   }
   &-slider {
     position: relative;
-    margin: ($--x-switch-height - $--x-switch-slider-height)/2 0;
+    margin: calc(calc(#{$--x-switch-height} - #{$--x-switch-slider-height}) / 2) 0;
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -40,12 +40,12 @@
     transition: border-color 0.3s, background-color 0.3s;
     &::after {
       position: absolute;
-      box-shadow: 0 $--x-border-width * 2 $--x-border-width * 4 0 rgba(0, 35, 11, 0.2);
-      width: $--x-switch-slider-height - $--x-border-width * 4;
-      height: $--x-switch-slider-height - $--x-border-width * 4;
-      margin: 0 $--x-border-width * 2;
+      box-shadow: 0 calc(#{$--x-border-width} * 2) calc(#{$--x-border-width} * 4) 0 rgba(0, 35, 11, 0.2);
+      width: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
+      height: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
+      margin: 0 calc(#{$--x-border-width} * 2);
       background-color: $--x-background-a100;
-      border-radius: $--x-switch-slider-height - $--x-border-width * 4;
+      border-radius: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
       cursor: pointer;
       left: 0;
       transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -57,7 +57,7 @@
       background-color: $--x-primary;
       border-color: $--x-primary;
       &::after {
-        left: ($--x-switch-slider-height - $--x-border-width * 2);
+        left: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 2));
       }
     }
   }

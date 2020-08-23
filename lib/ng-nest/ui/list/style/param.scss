@@ -6,7 +6,7 @@ $--x-list-prefix: $--x-prefix + '-list';
 $--x-list-font-size: $--x-font-size;
 
 /* 高度 */
-$--x-list-height: $--x-font-size + 1rem;
+$--x-list-height: calc(#{$--x-font-size} + 1rem);
 
 /* 内边距 */
 $--x-list-padding: 0 $--x-control-padding-horizontal;

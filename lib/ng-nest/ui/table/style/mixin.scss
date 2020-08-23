@@ -95,7 +95,7 @@
       position: absolute;
       top: 0;
       width: 100%;
-      padding: $--x-font-size * 2;
+      padding: calc(#{$--x-font-size} * 2);
     }
   }
   > tfoot {

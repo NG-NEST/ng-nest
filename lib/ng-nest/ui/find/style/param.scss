@@ -6,7 +6,7 @@ $--x-find-prefix: $--x-prefix + '-find';
 $--x-find-font-size: $--x-font-size;
 
 /* 高度 */
-$--x-find-height: $--x-font-size + 0.875rem;
+$--x-find-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 滑块高度 */
 $--x-find-slider-height: 1.25rem;

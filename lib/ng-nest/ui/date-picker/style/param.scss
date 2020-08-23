@@ -6,7 +6,7 @@ $--x-date-picker-prefix: $--x-prefix + '-date-picker';
 $--x-date-picker-font-size: $--x-font-size;
 
 /* 高度 */
-$--x-date-picker-height: $--x-font-size + 0.875rem;
+$--x-date-picker-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 内边距 */
 $--x-date-picker-padding: 0 $--x-control-padding-horizontal;

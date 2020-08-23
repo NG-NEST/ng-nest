@@ -6,7 +6,7 @@ $--x-switch-prefix: $--x-prefix + '-switch';
 $--x-switch-font-size: $--x-font-size;
 
 /* 高度 */
-$--x-switch-height: $--x-font-size + 0.875rem;
+$--x-switch-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 滑块高度 */
 $--x-switch-slider-height: 1.25rem;

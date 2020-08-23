@@ -6,7 +6,7 @@ $--x-cascade-prefix: $--x-prefix + '-cascade';
 $--x-cascade-font-size: $--x-font-size;
 
 /* 高度 */
-$--x-cascade-height: $--x-font-size + 0.875rem;
+$--x-cascade-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 内边距 */
 $--x-cascade-padding: 0 $--x-control-padding-horizontal;

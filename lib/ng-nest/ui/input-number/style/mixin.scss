@@ -133,7 +133,7 @@
   &-icon-left {
     > .#{$--x-input-number-prefix}-row {
       > input {
-        padding-left: $--x-input-number-icon-font-size + $--x-input-number-icon-padding * 2;
+        padding-left: calc(#{$--x-input-number-icon-font-size} + calc(#{$--x-input-number-icon-padding} * 2));
       }
       > #{$--x-prefix}-icon {
         left: 0;
@@ -143,7 +143,7 @@
   &-iconRight {
     > .#{$--x-input-number-prefix}-row {
       > input {
-        padding-right: $--x-input-number-icon-font-size + $--x-input-number-icon-padding * 2;
+        padding-right: calc(#{$--x-input-number-icon-font-size} + calc(#{$--x-input-number-icon-padding} * 2));
       }
       > #{$--x-prefix}-icon {
         right: 0;

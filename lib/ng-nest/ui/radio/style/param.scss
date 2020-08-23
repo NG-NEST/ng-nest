@@ -3,4 +3,4 @@
 $--x-radio-prefix: $--x-prefix + '-radio';
 $--x-radios-prefix: $--x-prefix + '-radios';
 
-$--x-radio-height: $--x-font-size + 0.875rem;
+$--x-radio-height: calc(#{$--x-font-size} + 0.875rem);

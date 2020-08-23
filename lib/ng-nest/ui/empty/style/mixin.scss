@@ -10,10 +10,10 @@
   flex-direction: column;
   color: $--x-text-400;
   > .x-icon {
-    font-size: $--x-font-size + 1.125rem;
+    font-size: calc(#{$--x-font-size} + 1.125rem);
   }
   > span {
-    line-height: $--x-font-size + 1rem;
+    line-height: calc(#{$--x-font-size} + 1rem);
   }
   &-img {
     height: 5rem;

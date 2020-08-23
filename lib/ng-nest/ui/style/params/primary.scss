@@ -157,59 +157,63 @@ $--x-background-800: var(--x-background-800);
 $--x-background-900: var(--x-background-900);
 
 // Font
-$--x-font-size: 0.875rem;
-$--x-font-variant: tabular-nums;
-$--x-font-family: ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
-$--x-font-code-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-$--x-font-size-small: $--x-font-size - 0.125rem;
-$--x-font-size-medium: $--x-font-size + 0.125rem;
-$--x-font-size-large: $--x-font-size-medium + 0.125rem;
-$--x-font-size-big: $--x-font-size-large + 0.125rem;
-$--x-line-height: 1.5rem;
+$--x-font-size: var(--x-font-size);
+$--x-font-variant: var(--x-font-variant);
+$--x-font-family: var(--x-font-family);
+$--x-font-code-family: var(--x-font-code-family);
+$--x-font-size-small: var(--x-font-size-small);
+$--x-font-size-medium: var(--x-font-size-medium);
+$--x-font-size-large: var(--x-font-size-large);
+$--x-font-size-big: var(--x-font-size-big);
+$--x-line-height: var(--x-line-height);
 $--x-placeholder-color: $--x-text-700;
 
 // Height
-$--x-height-big: 2.25rem;
-$--x-height-large: 2rem;
-$--x-height-medium: 1.75rem;
-$--x-height-small: 1.5rem;
-$--x-height-mini: 1.375rem;
+$--x-height-big: var(--x-height-big);
+$--x-height-large: var(--x-height-large);
+$--x-height-medium: var(--x-height-medium);
+$--x-height-small: var(--x-height-small);
+$--x-height-mini: var(--x--height-mini);
 
 // Paddings
-$--x-padding-big: 1rem;
-$--x-padding-large: 0.875rem;
-$--x-padding-medium: 0.625rem;
-$--x-padding-small: 0.375rem;
-$--x-padding-mini: 0.25rem;
+$--x-padding-big: var(--x-padding-big);
+$--x-padding-large: var(--x-padding-large);
+$--x-padding-medium: var(--x-padding-medium);
+$--x-padding-small: var(--x-padding-small);
+$--x-padding-mini: var(--x-padding-mini);
 
 // Border
-$--x-border-style: solid;
-$--x-border-radius: 0.125rem;
-$--x-border-width: 0.0625rem;
+$--x-border-style: var(--x-border-style);
+$--x-border-radius: var(--x-border-radius);
+$--x-border-width: var(--x-border-width);
 $--x-border-base: $--x-border-width $--x-border-style $--x-border;
 $--x-border-300-base: $--x-border-width $--x-border-style $--x-border-300;
 $--x-border-200-base: $--x-border-width $--x-border-style $--x-border-200;
 $--x-border-100-base: $--x-border-width $--x-border-style $--x-border-100;
 
 // box-shadow
-$--x-box-shadow: 0 0 0.125rem 0.0625rem;
+$--x-box-shadow: var(--x-box-shadow);
+$--x-box-shadow-base-width: var(--x-box-shadow-base-width);
+$--x-box-shadow-base-width-minus: var(--x-box-shadow-base-width-minus);
 $--x-box-shadow-base-color: $--x-background-a200;
 $--x-box-shadow-base: $--x-box-shadow $--x-box-shadow-base-color;
-$--x-box-shadow-base-right: 0.125rem 0 0.125rem $--x-box-shadow-base-color;
-$--x-box-shadow-base-left: -0.125rem 0 0.125rem $--x-box-shadow-base-color;
-$--x-box-shadow-base-top: 0 -0.125rem 0.125rem $--x-box-shadow-base-color;
-$--x-box-shadow-base-bottom: 0 0.125rem 0.125rem $--x-box-shadow-base-color;
+$--x-box-shadow-base-right: $--x-box-shadow-base-width 0 $--x-box-shadow-base-width $--x-box-shadow-base-color;
+$--x-box-shadow-base-left: $--x-box-shadow-base-width-minus 0 $--x-box-shadow-base-width $--x-box-shadow-base-color;
+$--x-box-shadow-base-top: 0 $--x-box-shadow-base-width-minus $--x-box-shadow-base-width $--x-box-shadow-base-color;
+$--x-box-shadow-base-bottom: 0 $--x-box-shadow-base-width $--x-box-shadow-base-width $--x-box-shadow-base-color;
+$--x-box-shadow-light-width: var(--x-box-shadow-light-width);
+$--x-box-shadow-light-width-minus: var(--x-box-shadow-light-width-minus);
 $--x-box-shadow-light-color: $--x-background-a100;
 $--x-box-shadow-light: $--x-box-shadow $--x-box-shadow-light-color;
-$--x-box-shadow-light-right: 0.0625rem 0.0625rem 0.0625rem $--x-box-shadow-light-color;
-$--x-box-shadow-light-left: -0.0625rem 0.0625rem 0.0625rem $--x-box-shadow-light-color;
-$--x-box-shadow-light-top: 0 -0.0625rem 0.0625rem $--x-box-shadow-light-color;
-$--x-box-shadow-light-bottom: 0 0.0625rem 0.0625rem $--x-box-shadow-light-color;
+$--x-box-shadow-light-right: $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
+$--x-box-shadow-light-left: $--x-box-shadow-light-width-minus $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
+$--x-box-shadow-light-top: 0 $--x-box-shadow-light-width-minus $--x-box-shadow-light-width $--x-box-shadow-light-color;
+$--x-box-shadow-light-bottom: 0 $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
 
 // Animation
-$--x-animation-duration-slow: 0.3s;
-$--x-animation-duration-base: 0.2s;
-$--x-animation-duration-fast: 0.1s;
+$--x-animation-duration-slow: var(--x-animation-duration-slow);
+$--x-animation-duration-base: var(--x-animation-duration-base);
+$--x-animation-duration-fast: var(--x-animation-duration-fast);
 
 // Controls
 $--x-control-padding-horizontal: $--x-padding-medium;

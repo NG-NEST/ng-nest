@@ -10,12 +10,12 @@
   align-items: center;
   padding: 3rem 2rem;
   &-icon {
-    font-size: $--x-font-size * 5;
+    font-size: calc(#{$--x-font-size} * 5);
     margin-bottom: $--x-font-size-large;
   }
   &-title {
     font-size: $--x-font-size-large;
-    line-height: $--x-font-size-large * 1.5;
+    line-height: calc(#{$--x-font-size-large} * 1.5);
   }
   &-subTitle {
     color: $--x-text-400;
