@@ -136,19 +136,19 @@
 
 @mixin size($size, $height, $padding) {
   @if $size != small and $size != mini {
-    $padding: $padding + 0.25rem;
-    $height: $height + 0.75rem;
+    $padding: calc(#{$padding} + 0.25rem);
+    $height: calc(#{$height} + 0.75rem);
   } @else {
-    $height: $height + 0.5rem;
+    $height: calc(#{$height} + 0.5rem);
   }
   &-#{$size} {
     padding: 0 $padding;
     height: $height;
     line-height: $height;
     &.#{$--x-menu}-category {
-      height: $height + $height/3;
+      height: calc(#{$height} + calc(#{$height} / 3));
       > #{$--x-menu}-node {
-        margin-bottom: $height/3;
+        margin-bottom: calc(#{$height} / 3);
       }
     }
   }
