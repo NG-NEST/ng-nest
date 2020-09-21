@@ -123,6 +123,11 @@ export interface XMenuNode extends XParentIdentityProperty<XMenuNode> {
    * @en_US Check for updates
    */
   change?: Function;
+  /**
+   * @zh_CN 路由
+   * @en_US Router
+   */
+  routerLink?: string | any[];
 }
 
 /**

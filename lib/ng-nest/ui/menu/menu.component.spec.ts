@@ -1,19 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMenuComponent } from './menu.component';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, NgModule } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { RouterModule, Routes } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe(XMenuPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule],
-      declarations: [TestXMenuComponent, TestXMenuExpandedComponent, TestXMenuCollapsedComponent]
+      imports: [BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule, TestMenuRoutesModule],
+      declarations: [
+        TestXMenuComponent,
+        TestXMenuExpandedComponent,
+        TestXMenuCollapsedComponent,
+        TestXMenuTestOneCollapsedComponent,
+        TestXMenuTestTwoCollapsedComponent,
+        TestXMenuTestThreeCollapsedComponent
+      ],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -216,6 +226,7 @@ class TestXMenuExpandedComponent {
       <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
       <x-menu [data]="dataLeaf" layout="column" [collapsed]="collapsed"> </x-menu>
     </div>
+    <router-outlet> </router-outlet>
   `,
   styles: [
     `
@@ -235,9 +246,9 @@ class TestXMenuExpandedComponent {
 })
 class TestXMenuCollapsedComponent {
   dataLeaf: XMenuNode[] = [
-    { id: 1, label: '最新活动', icon: 'fto-gift' },
-    { id: 2, label: '产品', icon: 'fto-package' },
-    { id: 3, label: '解决方案', icon: 'fto-layers' },
+    { id: 1, label: '最新活动', icon: 'fto-gift', routerLink: '/test-one' },
+    { id: 2, label: '产品', icon: 'fto-package', routerLink: '/test-two' },
+    { id: 3, label: '解决方案', icon: 'fto-layers', routerLink: '/test-three' },
     { id: 4, label: '帮助和支持', icon: 'fto-phone' },
     { id: 5, pid: 2, label: '云基础' },
     { id: 6, pid: 2, label: '智能大数据' },
@@ -264,3 +275,50 @@ class TestXMenuCollapsedComponent {
     this.cdr.detectChanges();
   }
 }
+
+@Component({
+  template: ` <h1>test-one</h1> `
+})
+class TestXMenuTestOneCollapsedComponent {
+  constructor() {}
+}
+
+@Component({
+  template: ` <h1>test-two</h1> `
+})
+class TestXMenuTestTwoCollapsedComponent {
+  constructor() {}
+}
+
+@Component({
+  template: ` <h1>test-three</h1> `
+})
+class TestXMenuTestThreeCollapsedComponent {
+  constructor() {}
+}
+
+const mainRoutes: Routes = [
+  { path: '', redirectTo: 'test-one', pathMatch: 'full' },
+  {
+    path: 'test-one',
+    component: TestXMenuTestOneCollapsedComponent
+  },
+  {
+    path: 'test-two',
+    component: TestXMenuTestTwoCollapsedComponent
+  },
+  {
+    path: 'test-three',
+    component: TestXMenuTestThreeCollapsedComponent
+  }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(mainRoutes, {
+      enableTracing: false
+    })
+  ],
+  exports: [RouterModule]
+})
+export class TestMenuRoutesModule {}
