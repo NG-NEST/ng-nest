@@ -222,11 +222,13 @@ class TestXMenuExpandedComponent {
 @Component({
   template: `
     <x-theme showDark></x-theme>
-    <div class="row">
-      <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
-      <x-menu [data]="dataLeaf" layout="column" [collapsed]="collapsed"> </x-menu>
+    <div class="layout">
+      <div class="nav">
+        <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
+        <x-menu [data]="dataLeaf" layout="column" [collapsed]="collapsed"> </x-menu>
+      </div>
+      <div class="main"><router-outlet> </router-outlet></div>
     </div>
-    <router-outlet> </router-outlet>
   `,
   styles: [
     `
@@ -235,10 +237,16 @@ class TestXMenuExpandedComponent {
         padding: 1rem;
         border: 0.0625rem solid var(--x-border);
       }
-      .row x-menu:not(:first-child) {
+      .layout {
+        display: flex;
+      }
+      .main {
+        padding: 1rem;
+      }
+      .nav x-menu:not(:first-child) {
         margin-top: 1rem;
       }
-      .row:not(:first-child) {
+      .nav:not(:first-child) {
         margin-top: 1rem;
       }
     `
@@ -247,11 +255,11 @@ class TestXMenuExpandedComponent {
 class TestXMenuCollapsedComponent {
   dataLeaf: XMenuNode[] = [
     { id: 1, label: '最新活动', icon: 'fto-gift', routerLink: '/test-one' },
-    { id: 2, label: '产品', icon: 'fto-package', routerLink: '/test-two' },
-    { id: 3, label: '解决方案', icon: 'fto-layers', routerLink: '/test-three' },
+    { id: 2, label: '产品', icon: 'fto-package' },
+    { id: 3, label: '解决方案', icon: 'fto-layers' },
     { id: 4, label: '帮助和支持', icon: 'fto-phone' },
-    { id: 5, pid: 2, label: '云基础' },
-    { id: 6, pid: 2, label: '智能大数据' },
+    { id: 5, pid: 2, label: '云基础', routerLink: '/test-two' },
+    { id: 6, pid: 2, label: '智能大数据', routerLink: '/test-three' },
     { id: 7, pid: 2, label: '行业应用' },
     { id: 8, pid: 2, label: '区块链' },
     { id: 9, pid: 2, label: '专有云' },

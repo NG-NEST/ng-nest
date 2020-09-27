@@ -77,6 +77,13 @@
         align-items: center;
         justify-content: space-between;
         overflow: hidden;
+        > a {
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          text-decoration: none;
+        }
       }
       &.x-activated {
         color: $--x-primary;
