@@ -1,6 +1,45 @@
-# [1.4.0](https://github.com/NG-NEST/ng-nest/compare/1.3.1...1.4.0) (2020-07-23)
+## [1.4.1](https://github.com/NG-NEST/ng-nest/compare/1.4.0...1.4.1) (2020-09-27)
 
-# [1.3.1](https://github.com/NG-NEST/ng-nest/compare/1.2.0...1.3.1) (2020-07-23)
+
+### Bug Fixes
+
+* update weixin img ([9d0a682](https://github.com/NG-NEST/ng-nest/commit/9d0a682fd063532c5bf88dce42be30842b08b164))
+* **config:** language switch ([186770d](https://github.com/NG-NEST/ng-nest/commit/186770dc33763a092504f4e17e53786169bc9d7d))
+
+
+### Features
+
+* **module: menu:** add router param ([41dcfb2](https://github.com/NG-NEST/ng-nest/commit/41dcfb293e878ea8f62de32df430f2b3f4160d9f))
+* **module: menu:** add routerLink property ([1996084](https://github.com/NG-NEST/ng-nest/commit/199608448f3bbf3d38024953378bbf47c531449b))
+* add style var ([34d2eb7](https://github.com/NG-NEST/ng-nest/commit/34d2eb766481c868846a64b1381a9f324761ccf9))
+* **module: drawer:** add visibleChange event ([cc0d305](https://github.com/NG-NEST/ng-nest/commit/cc0d305d69560135985827dcb3b00a5225d90f15))
+* **module:*:** *ngFor add trackBy ([7933fe0](https://github.com/NG-NEST/ng-nest/commit/7933fe00a7dbb40ad40121fa1ac98c103bec420c))
+
+
+
+# [1.4.0](https://github.com/NG-NEST/ng-nest/compare/1.3.1...1.4.0) (2020-08-02)
+
+
+### Bug Fixes
+
+* **module:theme:** add destroy subscription ([ed77025](https://github.com/NG-NEST/ng-nest/commit/ed770259c8aa344cfcd977ad9bf3c85d4b913309))
+
+
+### Features
+
+* **i18n:** add i18n module ([6d0c2bb](https://github.com/NG-NEST/ng-nest/commit/6d0c2bba6a2bb27af144c2931c86b115d0e75219))
+* **module: *:** component locale ([2d1969d](https://github.com/NG-NEST/ng-nest/commit/2d1969d82edb59796ea568d6c59e3719efc02eb9))
+
+
+
+## [1.3.1](https://github.com/NG-NEST/ng-nest/compare/1.3.0...1.3.1) (2020-07-23)
+
+
+### Bug Fixes
+
+* **config:** invalid after build -- prod ([dc4a98c](https://github.com/NG-NEST/ng-nest/commit/dc4a98c05c2a829e933f4186fc53f83c2d20daed))
+
+
 
 # [1.3.0](https://github.com/NG-NEST/ng-nest/compare/1.2.5...1.3.0) (2020-07-16)
 
