@@ -69,8 +69,8 @@
     &:before {
       content: ' ';
       position: absolute;
-      top: -$--x-border-width;
-      left: -$--x-border-width;
+      top: calc(#{$--x-border-width} * -1);
+      left: calc(#{$--x-border-width} * -1);
       height: calc(100% + calc(#{$--x-border-width} * 2));
       width: 0.25rem;
       border-top-left-radius: $--x-border-radius;
