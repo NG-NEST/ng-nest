@@ -12,7 +12,7 @@ export class ExDefaultComponent {
   modelMultiple: any;
   constructor(private tableService: TableServiceTest) {}
 
-  table: { [prop: string]: any } = {
+  table: { [property: string]: any } = {
     columns: [
       { id: 'index', label: '序号', type: 'index', width: 80 },
       { id: 'label', label: '用户', flex: 1, sort: true },

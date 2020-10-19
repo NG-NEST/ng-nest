@@ -128,7 +128,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
    */
-  @Input() tableCheckedRow: { [prop: string]: any[] } = {};
+  @Input() tableCheckedRow: { [property: string]: any[] } = {};
   /**
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading loading
@@ -306,7 +306,7 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
    */
-  tableCheckedRow?: { [prop: string]: any[] };
+  tableCheckedRow?: { [property: string]: any[] };
   /**
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading

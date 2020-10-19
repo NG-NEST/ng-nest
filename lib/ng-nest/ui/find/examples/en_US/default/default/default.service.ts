@@ -153,5 +153,5 @@ interface User extends XId {
   positionId?: number;
   organization?: string;
   organizationId?: number;
-  [prop: string]: any;
+  [property: string]: any;
 }

@@ -230,7 +230,7 @@ interface User extends XId {
   positionId?: number;
   organization?: string;
   organizationId?: number;
-  [prop: string]: any;
+  [property: string]: any;
 }
 
 @Component({
@@ -316,7 +316,7 @@ class TestXFindComponent {
       this.table.getData();
     }
   };
-  table: { query: XQuery; [prop: string]: any } = {
+  table: { query: XQuery; [property: string]: any } = {
     index: 1,
     size: 1000,
     total: 0,
@@ -428,7 +428,7 @@ class TestXFindComponent {
   providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFindFunctionComponent {
-  table: { [prop: string]: any } = {
+  table: { [property: string]: any } = {
     columns: [
       { id: 'index', label: '序号', type: 'index', width: 80 },
       { id: 'label', label: '用户', flex: 1, sort: true },

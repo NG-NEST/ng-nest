@@ -28,7 +28,7 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   now: Date = new Date();
   datetime: Date = new Date();
   activatedDate: Date = new Date();
-  monthData: { [prop: string]: XCalendarNode[] } = {};
+  monthData: { [property: string]: XCalendarNode[] } = {};
   locale: XI18nCalendar = {};
   radioData = [
     { label: '月', id: 'month' },
@@ -90,7 +90,7 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   }
 
   setMonthData() {
-    let dt: { [prop: string]: XCalendarNode[] } = {};
+    let dt: { [property: string]: XCalendarNode[] } = {};
     for (let key in this.data) {
       let month = this.datePipe.transform(key, 'yyyy-MM') as string;
       let value = '';

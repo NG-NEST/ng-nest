@@ -10,9 +10,12 @@ export interface NcProp {
    */
   name?: string;
   /**
-   *
+   * 
    */
   label?: string;
+  /**
+   * 描述
+   */
   description?: string;
   /**
    * 对象类型

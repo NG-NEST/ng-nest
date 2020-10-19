@@ -110,7 +110,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN checkbox 列初始选中的数据，列中激活 checkbox
    * @en_US Checkbox column initially selected data, checkbox is activated in column
    */
-  @Input() checkedRow: { [prop: string]: any[] } = {};
+  @Input() checkedRow: { [property: string]: any[] } = {};
   /**
    * @zh_CN 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
    * @en_US If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up
@@ -256,7 +256,7 @@ export interface XTableColumn extends XIdentityProperty {
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
-  [prop: string]: any;
+  [property: string]: any;
 }
 
 /**

@@ -15,7 +15,7 @@ export class ExDefaultComponent {
   rangeChange(range: Date[]) {
     let first = range[0].getTime();
     let last = range[1].getTime();
-    let dt: { [prop: string]: { id: string | null; label: string }[] } = {};
+    let dt: { [property: string]: { id: string | null; label: string }[] } = {};
     let i = 0;
     while (true) {
       let rd = Math.floor(Math.random() * (last - first + 1)) + first;

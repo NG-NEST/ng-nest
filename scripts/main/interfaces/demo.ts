@@ -29,5 +29,5 @@ export interface NcDemoTreeNode {
   /**
    *
    */
-  highlightLines?: { [prop: string]: string };
+  highlightLines?: { [property: string]: string };
 }

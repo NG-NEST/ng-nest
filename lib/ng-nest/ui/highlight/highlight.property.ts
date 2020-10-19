@@ -36,4 +36,4 @@ export class XHighlightProperty extends XProperty {
  * @en_US Highlight row data
  * @description {'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
  */
-export type XHighlightLines = { [prop: string]: string };
+export type XHighlightLines = { [property: string]: string };

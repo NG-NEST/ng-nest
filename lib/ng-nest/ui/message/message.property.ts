@@ -87,7 +87,7 @@ export interface XMessageOverlayRef extends XPortalOverlayRef<XMessageComponent>
  * @en_US Message object in Jiugongge
  */
 export interface XMessagePlacement {
-  [prop: string]: XMessageRef;
+  [property: string]: XMessageRef;
 }
 
 export interface XMessageRef {

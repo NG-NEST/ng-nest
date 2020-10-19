@@ -139,7 +139,7 @@ export interface XControlOption extends XIdentityProperty {
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
-  [prop: string]: any;
+  [property: string]: any;
 }
 
 /**
@@ -201,7 +201,7 @@ export class XControl extends XIdentity implements XControlOption {
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
-  [prop: string]: any;
+  [property: string]: any;
 
   constructor(option: XControlOption = {}) {
     super();

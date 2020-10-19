@@ -34,7 +34,7 @@ export type XEffect = 'light' | 'dark' | 'white';
 /**
  * 样式属性
  */
-export type XStyle = { [prop: string]: any };
+export type XStyle = { [property: string]: any };
 
 /**
  * 尺寸

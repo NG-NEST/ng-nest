@@ -18,7 +18,7 @@ import { XIconService } from './icon.service';
 import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 // 来源路径对应
-export const XSouceUrl: { [prop: string]: string } = {
+export const XSouceUrl: { [property: string]: string } = {
   adf: `ant-design/fill/`,
   ado: `ant-design/outline/`,
   adt: `ant-design/twotone/`,

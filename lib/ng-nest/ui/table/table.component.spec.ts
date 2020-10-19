@@ -156,7 +156,7 @@ interface User extends XId {
   email?: string;
   phone?: string;
   organization?: string;
-  [prop: string]: any;
+  [property: string]: any;
 }
 
 @Component({

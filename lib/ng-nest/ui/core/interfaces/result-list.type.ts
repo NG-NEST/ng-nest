@@ -28,6 +28,6 @@ export type XOperation = '%' | '=' | '>' | '>=' | '<' | '<=';
 export interface XSort extends XFilter {}
 
 export interface XGroupItem extends XId {
-  [prototype: string]: any;
+  [property: string]: any;
   count?: number;
 }

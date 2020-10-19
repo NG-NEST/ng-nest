@@ -12,7 +12,7 @@ export class ExTreeTableComponent {
   modelMultiple: any;
   constructor(public tableService: TableServiceTest, public treeService: TreeServiceTest) {}
 
-  table: { [prop: string]: any } = {
+  table: { [property: string]: any } = {
     columns: [
       { id: 'index', label: 'serial no', type: 'index', width: 80 },
       { id: 'label', label: 'user', flex: 1, sort: true },

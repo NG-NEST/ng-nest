@@ -86,7 +86,7 @@ export function getKeys(content: string, demo: string) {
 }
 
 export function getHighlightLines(filePath: string) {
-  let result: { [prop: string]: string } = {};
+  let result: { [property: string]: string } = {};
   const md = parseMdDoc(filePath);
   if (md) {
     result = md.meta;

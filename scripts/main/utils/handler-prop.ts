@@ -94,12 +94,20 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       if (!isReadDoc && isReadProp && line != '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end == index - 1);
         let ix = line.indexOf(': ');
-
+        if (line.startsWith('[')) {
+          ix = line.indexOf(': ', line.indexOf(': ') + ': '.length);
+        }
         if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
         const lf = line.slice(0, ix).trim();
         const rt = line.slice(ix + 1, line.length).trim();
 
-        const propd = lf.replace(/, /g, ',').split(' ');
+        let propd: string[] = [];
+        if (lf.startsWith('[')) {
+          propd = [lf];
+        } else {
+          propd = lf.replace(/, /g, ',').split(' ');
+        }
+
         const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
         let name = propd[propd.length - 1].replace('?', '').trim();
         let type = '',

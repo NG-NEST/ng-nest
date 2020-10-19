@@ -2,7 +2,7 @@
   "locale": "zh_CN",
   "api": {
     "property": "属性",
-    "description": "参数",
+    "description": "描述",
     "type": "类型",
     "value": "值",
     "inputType": "输入类型",

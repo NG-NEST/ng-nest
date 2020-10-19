@@ -11,35 +11,35 @@ export class XHttpService {
   /**
    * get请求
    */
-  get(url: string, params?: { [prop: string]: any }) {
+  get(url: string, params?: { [property: string]: any }) {
     return this.request('GET', url, params);
   }
 
   /**
    * get请求
    */
-  post(url: string, params?: { [prop: string]: any }): Observable<any> {
+  post(url: string, params?: { [property: string]: any }): Observable<any> {
     return this.request('POST', url, params);
   }
 
   /**
    * put请求
    */
-  put(url: string, params?: { [prop: string]: any }): Observable<any> {
+  put(url: string, params?: { [property: string]: any }): Observable<any> {
     return this.request('PUT', url, params);
   }
 
   /**
    * delete请求
    */
-  delete(url: string, params?: { [prop: string]: any }): Observable<any> {
+  delete(url: string, params?: { [property: string]: any }): Observable<any> {
     return this.request('DELETE', url, params);
   }
 
   /**
    * request通用请求
    */
-  request(method: string, url: string, params?: { [prop: string]: any }, option?: { [prop: string]: any }): Observable<any> {
+  request(method: string, url: string, params?: { [property: string]: any }, option?: { [property: string]: any }): Observable<any> {
     if (!option) option = {};
     let opt = {};
     url = `${this.api}${url}`;
@@ -78,7 +78,7 @@ export class XHttpService {
   /**
    * 添加头部信息
    */
-  private addHeader(option: { [prop: string]: any }) {
+  private addHeader(option: { [property: string]: any }) {
     // let auth = this.setting.getSession("Auth");
     // if (auth && auth["token"]) {
     //   option["headers"] = { Authorization: `Bearer ${auth["token"]}` };

@@ -13,7 +13,7 @@ export interface XColorsTheme {
   text?: string;
   border?: string;
   background?: string;
-  [prop: string]: any;
+  [property: string]: any;
 }
 
 export type XThemeKey = keyof XTheme;

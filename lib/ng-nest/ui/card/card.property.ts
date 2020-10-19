@@ -23,7 +23,7 @@ export class XCardProperty extends XProperty {
    * @zh_CN 内容样式
    * @en_US Content style
    */
-  @Input() bodyStyle: { [prop: string]: XNumber } = {};
+  @Input() bodyStyle: { [property: string]: XNumber } = {};
   /**
    * @zh_CN 头部模板
    * @en_US Head template

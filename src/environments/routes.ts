@@ -46,5 +46,5 @@ export interface Menu {
   type?: string;
   order?: number;
   category?: string;
-  [prop: string]: any;
+  [property: string]: any;
 }

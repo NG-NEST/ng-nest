@@ -15,7 +15,7 @@ export class NcTemplate {
     custom: '',
     declarations: ''
   };
-  keywords?: { [prop: string]: string } = {};
+  keywords?: { [property: string]: string } = {};
   constructor(param: NcTemplate) {
     Object.assign(this, param);
     if (!param.extension) {

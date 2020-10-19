@@ -89,7 +89,7 @@ export interface XNotificationOverlayRef extends XPortalOverlayRef<XNotification
  * @en_US Message object in nine grid
  */
 export interface XNotificationPlacement {
-  [prototype: string]: XNotificationRef;
+  [property: string]: XNotificationRef;
 }
 
 export interface XNotificationRef {
