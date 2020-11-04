@@ -107,6 +107,7 @@ export interface XComponentConfig {
   transfer?: XTransferConfig;
   tree?: XTreeConfig;
   treeFile?: XTreeFileConfig;
+  textarea?: XTextareaConfig;
   upload?: XUploadConfig;
 }
 
@@ -433,6 +434,11 @@ export interface XTransferConfig {
 export interface XTreeConfig {
   spacing?: XNumber;
   nodeHeight?: XNumber;
+}
+
+export interface XTextareaConfig {
+  clearable?: XBoolean;
+  iconLayout?: XPositionLeftRight;
 }
 
 export interface XTreeFileConfig {

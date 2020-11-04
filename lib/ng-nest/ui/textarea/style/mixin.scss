@@ -1,0 +1,187 @@
+// Input
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin textarea {
+  width: 100%;
+  @include flex();
+  > label {
+    display: inline-block;
+    white-space: nowrap;
+    height: $--x-textarea-height;
+    line-height: $--x-textarea-height;
+    position: relative;
+    color: $--x-text-300;
+    font-weight: 600;
+    @include text-align();
+  }
+  > .#{$--x-textarea-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > textarea {
+      flex: 1;
+      width: 100%;
+      font-size: $--x-textarea-font-size;
+      background-color: $--x-textarea-background-color;
+      background-image: none;
+      border: $--x-textarea-border;
+      border-radius: $--x-textarea-border-radius;
+      box-shadow: $--x-textarea-box-shadow;
+      transition: all $--x-animation-duration-slow;
+      line-height: $--x-textarea-line-height;
+      padding: $--x-textarea-padding;
+      @include placeholder();
+      &:hover {
+        @include hover();
+      }
+      &:focus {
+        @include focus();
+        outline: 0;
+      }
+      &[disabled] {
+        color: $--x-textarea-disabled-color;
+      }
+    }
+    > #{$--x-prefix}-icon {
+      color: $--x-text-400;
+      transition: all $--x-animation-duration-base;
+    }
+  }
+  &-error-message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: $--x-textarea-font-size - 0.125rem;
+    color: $--x-danger;
+    margin-bottom: -($--x-textarea-font-size + 0.45rem);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &.x-invalid,
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+    > .#{$--x-textarea-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-danger;
+      }
+      @include border-error();
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-textarea-prefix}-row {
+      > #{$--x-prefix}-icon {
+        color: $--x-text-400;
+      }
+      > textarea {
+        color: $--x-text-400;
+        cursor: not-allowed;
+        border-color: $--x-border-100;
+        background-color: $--x-background-200;
+      }
+    }
+  }
+  &.x-clearable {
+    > .#{$--x-textarea-prefix}-row {
+      > .#{$--x-textarea-prefix}-clear {
+        position: absolute;
+        color: $--x-text-400;
+        font-size: $--x-textarea-icon-font-size;
+        padding: $--x-textarea-icon-padding;
+        top: 0;
+        right: 0;
+        left: inherit;
+        opacity: 0;
+        cursor: pointer;
+        &:hover {
+          color: $--x-text-300;
+        }
+      }
+      > textarea {
+        &:hover + .#{$--x-textarea-prefix}-clear,
+        &:focus + .#{$--x-textarea-prefix}-clear {
+          opacity: 1;
+        }
+      }
+    }
+    &.x-clear-show {
+      > .#{$--x-textarea-prefix}-row {
+        > .#{$--x-textarea-prefix}-clear {
+          opacity: 1;
+        }
+        > textarea {
+          padding-right: $--x-textarea-icon-font-size + $--x-textarea-icon-padding * 2 !important;
+        }
+      }
+    }
+  }
+  &-max-length {
+    position: absolute;
+    font-size: $--x-font-size-small;
+    color: $--x-text-400;
+    padding: 0 $--x-textarea-icon-padding;
+    right: 0.25rem;
+    bottom: 0.25rem;
+  }
+  &.x-direction {
+    &-row {
+      > label {
+        padding: 0 0.5rem 0 0;
+      }
+    }
+    &-row-reverse {
+      > label {
+        padding: 0 0 0 0.5rem;
+      }
+    }
+    &-column {
+      align-items: inherit;
+    }
+    &-column-reverse {
+      align-items: inherit;
+    }
+  }
+  &-icon {
+    > .#{$--x-textarea-prefix}-row {
+      > #{$--x-prefix}-icon {
+        position: absolute;
+        font-size: $--x-textarea-icon-font-size;
+        padding: $--x-textarea-icon-padding;
+      }
+    }
+  }
+  &-icon-left {
+    > .#{$--x-textarea-prefix}-row {
+      > textarea {
+        padding-left: $--x-textarea-icon-font-size + $--x-textarea-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  &-icon-right {
+    > .#{$--x-textarea-prefix}-row {
+      > textarea {
+        padding-right: $--x-textarea-icon-font-size + $--x-textarea-icon-padding * 2;
+      }
+      > #{$--x-prefix}-icon {
+        right: 0;
+        top: 0;
+      }
+      > .#{$--x-textarea-prefix}-max-length {
+        right: inherit;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

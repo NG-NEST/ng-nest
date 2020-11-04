@@ -1,0 +1,13 @@
+// Textarea
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './mixin';
+
+#{$--x-textarea-prefix} {
+  width: 100%;
+}
+.#{$--x-textarea-prefix} {
+  @include textarea();
+  @include reset-component();
+}
