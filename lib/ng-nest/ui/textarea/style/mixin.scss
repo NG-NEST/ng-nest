@@ -57,7 +57,7 @@
     left: 0;
     font-size: $--x-textarea-font-size - 0.125rem;
     color: $--x-danger;
-    margin-bottom: -($--x-textarea-font-size + 0.45rem);
+    margin-bottom: calc(calc(#{$--x-textarea-font-size} + 0.45rem) * -1);
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

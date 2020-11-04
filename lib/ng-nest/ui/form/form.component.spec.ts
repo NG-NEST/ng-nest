@@ -714,7 +714,73 @@ class TestXFormComponent {
           required: true
         }
       ]
-    }
+    },
+    {
+      title: 'Textarea 多行输入框',
+      icon: 'fto-list',
+      controls: [
+        {
+          control: 'textarea',
+          id: 'textarea',
+          label: '默认',
+          span: 8
+        },
+        {
+          control: 'textarea',
+          id: 'textareaDisabled',
+          label: '禁用',
+          span: 8,
+          value: 'ngnest.com',
+          disabled: true
+        },
+        {
+          control: 'textarea',
+          id: 'textareaRequired',
+          label: '必填',
+          span: 8,
+          required: true
+        },
+        {
+          control: 'textarea',
+          id: 'textareaRequiredRegExp',
+          label: '必填+正则验证',
+          span: 8,
+          value: 0.1,
+          required: true,
+          pattern: /^-?\d+$/,
+          message: '整数'
+        },
+        {
+          control: 'textarea',
+          id: 'textareaPlaceholder',
+          label: '提示输入',
+          span: 8,
+          placeholder: '请输入用户名'
+        },
+        {
+          control: 'textarea',
+          id: 'textareaClearable',
+          label: '清除按钮',
+          span: 8,
+          value: '清除按钮',
+          clearable: true
+        },
+        {
+          control: 'textarea',
+          id: 'textareaIcon',
+          label: '图标',
+          span: 8,
+          icon: 'fto-user'
+        },
+        {
+          control: 'textarea',
+          id: 'textareaLength',
+          label: '长度限制',
+          span: 8,
+          maxlength: 10
+        }
+      ]
+    },
   ];
 }
 

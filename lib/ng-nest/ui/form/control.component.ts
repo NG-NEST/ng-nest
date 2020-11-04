@@ -42,7 +42,9 @@ import {
   XColorPickerControlOption,
   XFormControl,
   XFindControl,
-  XFindControlOption
+  XFindControlOption,
+  XTextareaControlOption,
+  XTextareaControl
 } from './form.property';
 import { XFormComponent } from './form.component';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
@@ -185,6 +187,8 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         return new XCascadeControl(option as XCascadeControlOption);
       case 'color-picker':
         return new XColorPickerControl(option as XColorPickerControlOption);
+      case 'textarea':
+        return new XTextareaControl(option as XTextareaControlOption);
       case 'find':
         return new XFindControl(option as XFindControlOption);
       default:

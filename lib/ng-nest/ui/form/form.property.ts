@@ -23,6 +23,7 @@ import { XRateOption, XRateComponent } from '@ng-nest/ui/rate';
 import { XSliderSelectOption, XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker';
+import { XTextareaOption, XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
 
 /**
@@ -292,6 +293,7 @@ export type XFormControlComponent =
   | XSliderSelectComponent
   | XSwitchComponent
   | XTimePickerComponent
+  | XTextareaComponent
   | XFindComponent;
 
 export type XFormControlType =
@@ -307,6 +309,7 @@ export type XFormControlType =
   | XSliderSelectControl
   | XSwitchControl
   | XTimePickerControl
+  | XTextareaControl
   | XFindControl;
 
 export type XControlType =
@@ -322,6 +325,7 @@ export type XControlType =
   | 'slider-select'
   | 'switch'
   | 'time-picker'
+  | 'textarea'
   | 'find';
 
 /**
@@ -440,6 +444,16 @@ export class XSwitchControl extends XControl {
 export interface XTimePickerControlOption extends XControlOption, XTimePickerOption {}
 export class XTimePickerControl extends XControl {
   constructor(option: XTimePickerControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
+ * Textarea Control
+ */
+export interface XTextareaControlOption extends XControlOption, XTextareaOption {}
+export class XTextareaControl extends XControl {
+  constructor(option: XTextareaControlOption = {}) {
     super(option);
   }
 }

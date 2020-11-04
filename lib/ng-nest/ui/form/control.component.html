@@ -36,6 +36,9 @@
     <ng-container *ngSwitchCase="'time-picker'">
       <x-time-picker [formControlName]="option.id"></x-time-picker>
     </ng-container>
+    <ng-container *ngSwitchCase="'textarea'">
+      <x-textarea [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-textarea>
+    </ng-container>
     <ng-container *ngSwitchCase="'find'">
       <x-find [formControlName]="option.id"></x-find>
     </ng-container>
