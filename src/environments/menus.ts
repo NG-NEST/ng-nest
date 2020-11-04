@@ -156,7 +156,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/en_US/ui/components/theme",
@@ -165,7 +165,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-88",
+    "id": "4-0-89",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/en_US/ui/components/typography",
@@ -309,7 +309,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/en_US/ui/components/time-ago",
@@ -318,7 +318,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/en_US/ui/components/time-range",
@@ -327,7 +327,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/en_US/ui/components/timeline",
@@ -336,7 +336,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/en_US/ui/components/tree",
@@ -345,7 +345,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/en_US/ui/components/tree-file",
@@ -453,7 +453,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/en_US/ui/components/tooltip",
@@ -588,7 +588,16 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-74",
+    "pid": "4-0",
+    "name": "textarea",
+    "router": "docs/en_US/ui/components/textarea",
+    "lang": "en_US",
+    "label": "Textarea",
+    "category": "Form"
+  },
+  {
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/en_US/ui/components/time-picker",
@@ -597,7 +606,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/en_US/ui/components/transfer",
@@ -606,7 +615,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-89",
+    "id": "4-0-90",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/en_US/ui/components/upload",
@@ -898,7 +907,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/zh_CN/ui/components/theme",
@@ -907,7 +916,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-88",
+    "id": "4-0-89",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/zh_CN/ui/components/typography",
@@ -1051,7 +1060,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/zh_CN/ui/components/time-ago",
@@ -1060,7 +1069,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/zh_CN/ui/components/time-range",
@@ -1069,7 +1078,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/zh_CN/ui/components/timeline",
@@ -1078,7 +1087,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/zh_CN/ui/components/tree",
@@ -1087,7 +1096,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/zh_CN/ui/components/tree-file",
@@ -1195,7 +1204,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/zh_CN/ui/components/tooltip",
@@ -1330,7 +1339,16 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-74",
+    "pid": "4-0",
+    "name": "textarea",
+    "router": "docs/zh_CN/ui/components/textarea",
+    "lang": "zh_CN",
+    "label": "Textarea 多行输入框",
+    "category": "Form"
+  },
+  {
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/zh_CN/ui/components/time-picker",
@@ -1339,7 +1357,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/zh_CN/ui/components/transfer",
@@ -1348,7 +1366,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-89",
+    "id": "4-0-90",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/zh_CN/ui/components/upload",

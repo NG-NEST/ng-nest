@@ -1,4 +1,20 @@
-## [1.4.1](https://github.com/NG-NEST/ng-nest/compare/1.4.0...1.4.1) (2020-09-27)
+## [1.4.2](https://github.com/NG-NEST/ng-nest/compare/1.4.1...1.4.2) (2020-11-04)
+
+
+### Bug Fixes
+
+* **module:*:** custom attribute adjustment ([9784b5c](https://github.com/NG-NEST/ng-nest/commit/9784b5ce3ad25295768484d5b13c56a3f44af7d7))
+* **module:doc:** repair blockquote style ([42a95d8](https://github.com/NG-NEST/ng-nest/commit/42a95d8274bcb643f520abd3c95f2ec582311edf))
+
+
+### Features
+
+* **module:form:** add textarea component ([f57646d](https://github.com/NG-NEST/ng-nest/commit/f57646d8aa744d8ccf5e62dd98ef4608ba2dc5f3))
+* **module:textarea:** add multiline text box ([dd6db66](https://github.com/NG-NEST/ng-nest/commit/dd6db66c12c05698eea2e49e855bc7d8e09be249))
+
+
+
+## [1.4.1](https://github.com/NG-NEST/ng-nest/compare/1.4.0...1.4.1) (2020-10-10)
 
 
 ### Bug Fixes

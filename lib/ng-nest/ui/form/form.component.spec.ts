@@ -780,7 +780,7 @@ class TestXFormComponent {
           maxlength: 10
         }
       ]
-    },
+    }
   ];
 }
 
