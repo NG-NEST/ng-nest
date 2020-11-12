@@ -21,7 +21,8 @@ describe(XSelectPrefix, () => {
         TestXSelectAsyncComponent,
         TestXSelectLabelComponent,
         TestXSelectDisabledComponent,
-        TestXSelectRequiredComponent
+        TestXSelectRequiredComponent,
+        TestXSelectMultipleComponent
       ]
     }).compileComponents();
   }));
@@ -80,6 +81,18 @@ describe(XSelectPrefix, () => {
       fixture = TestBed.createComponent(TestXSelectRequiredComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXSelectRequiredComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`multiple.`, () => {
+    let fixture: ComponentFixture<TestXSelectMultipleComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectMultipleComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXSelectMultipleComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -283,5 +296,38 @@ class TestXSelectAsyncComponent {
   constructor(private cdr: ChangeDetectorRef) {}
   change() {
     this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="8">
+        <x-select [data]="data1" [(ngModel)]="model1" multiple></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXSelectMultipleComponent {
+  data1 = data;
+  data2 = JSON.parse(JSON.stringify(data));
+  model1: any;
+  model2: any = 'BBBB';
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => this.cdr.detectChanges());
   }
 }

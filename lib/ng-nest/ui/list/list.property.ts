@@ -43,6 +43,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() drag: XBoolean;
   /**
+   * @zh_CN 当开启多选的时候，ngModel 的值为对象数组
+   * @en_US When multiple selection is enabled, the value of ngmodel is an array of objects
+   */
+  @Input() @XInputBoolean() objectArray: XBoolean;
+  /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event
    */

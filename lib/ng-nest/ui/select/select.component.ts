@@ -13,7 +13,17 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import { XValueAccessor, XIsEmpty, XIsObservable, XIsChange, XSetData, XCorner, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import {
+  XValueAccessor,
+  XIsEmpty,
+  XIsObservable,
+  XIsChange,
+  XSetData,
+  XCorner,
+  XClearClass,
+  XConfigService,
+  XIsArray
+} from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -205,6 +215,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       data: this.nodes,
       value: this.value,
       placement: this.placement,
+      multiple: this.multiple,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
       closePortal: () => this.closePortal(),
@@ -214,11 +225,16 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  nodeClick(node: XSelectNode) {
-    if (node.disabled) return;
-    this.displayValue = node.label;
-    this.value = node.id;
-    this.closePortal();
+  nodeClick(node: XSelectNode | XSelectNode[]) {
+    if (this.multiple && XIsArray(node)) {
+      node = node as XSelectNode[];
+      this.value = node;
+    } else {
+      node = node as XSelectNode;
+      this.displayValue = node.label;
+      this.value = node.id;
+      this.closePortal();
+    }
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }

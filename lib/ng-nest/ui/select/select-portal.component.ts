@@ -36,6 +36,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   closePortal: Function;
   destroyPortal: Function;
   nodeEmit: Function;
+  multiple: boolean = false;
   show: boolean = false;
   private _unSubject = new Subject<void>();
 
@@ -56,6 +57,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
           this.closePortal();
         }))
     );
+    console.log(this.value);
   }
 
   ngOnDestroy(): void {
@@ -69,6 +71,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XSelectNode) {
-    this.nodeEmit(node);
+    if (this.multiple) this.nodeEmit(this.value);
+    else this.nodeEmit(node);
   }
 }

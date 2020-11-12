@@ -39,6 +39,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  /**
+   * @zh_CN 多选功能
+   * @en_US Multiple choice
+   */
+  @Input() @XInputBoolean() multiple: XBoolean;
 }
 
 /**
