@@ -1,3 +1,17 @@
+## [1.4.3](https://github.com/NG-NEST/ng-nest/compare/1.4.2...1.4.3) (2020-11-18)
+
+
+### Bug Fixes
+
+* **module:textarea:** height is not valid ([83ccec0](https://github.com/NG-NEST/ng-nest/commit/83ccec0eceb083a3adf506d3f1338609efad5c06))
+
+
+### Features
+
+* **module:select:** add multiple param ([4ea074b](https://github.com/NG-NEST/ng-nest/commit/4ea074b825d7b9d5efebf0b2526b5a475940e523))
+
+
+
 ## [1.4.2](https://github.com/NG-NEST/ng-nest/compare/1.4.1...1.4.2) (2020-11-04)
 
 
