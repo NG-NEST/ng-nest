@@ -28,7 +28,8 @@ export const XSouceUrl: { [property: string]: string } = {
   fab: `font-awesome/brands/`,
   far: `font-awesome/regular/`,
   fas: `font-awesome/solid/`,
-  md: `material-design/`
+  mdf: `material-design/fill/`,
+  mdo: `material-design/outline/`
 };
 
 export const XViewBox = [

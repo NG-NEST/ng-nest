@@ -39,7 +39,7 @@ describe(XIconPrefix, () => {
   template: `
     <x-theme showDark></x-theme>
     <div style="height: 2000px">
-      <x-icon type="ado-plus-123123" to="ado-pause"></x-icon>
+      <x-icon type="ado-plus-123123"></x-icon>
       <x-icon type="adf-account-book"></x-icon>
       <x-icon type="ado-account-book"></x-icon>
       <x-icon type="adt-account-book"></x-icon>
@@ -56,7 +56,9 @@ describe(XIconPrefix, () => {
       <x-icon type="ado-loading" [spin]="spin"></x-icon>
       <x-icon type="ado-loading-3-quarters" spin></x-icon>
       <br />
-      <x-icon type="ado-plus" to="ado-pause"></x-icon>
+      <x-icon type="ado-plus"></x-icon>
+      <br />
+      <x-icon type="mdf-action-3d-rotation"></x-icon>
 
       <div style="margin-top: 1000px">
         <x-icon type="adf-alert"></x-icon>
