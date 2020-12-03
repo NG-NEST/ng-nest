@@ -8,7 +8,8 @@ import {
   XBoolean,
   XInputNumber,
   XIdentityProperty,
-  XWithConfig
+  XWithConfig,
+  XAlign
 } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -82,10 +83,10 @@ export class XTreeProperty extends XProperty {
    */
   @Input() labelTpl: TemplateRef<void>;
   /**
-   * @zh_CN 节点的高度，单位 rem
+   * @zh_CN 节点的高度，单位 rem, 默认 0 是自适应高度
    * @en_US The height of the node in rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.625) @XInputNumber() nodeHeight: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() nodeHeight: XNumber;
   /**
    * @zh_CN 是否允许多次点击一个节点触发多次事件
    * @en_US Whether to allow multiple clicks on a node to trigger multiple events
@@ -111,6 +112,16 @@ export class XTreeProperty extends XProperty {
    * @en_US Checkbox status changes trigger level checks
    */
   @Input() @XInputBoolean() levelCheck: XBoolean = true;
+  /**
+   * @zh_CN 节点内容不换行显示省略号
+   * @en_US Show ellipsis without wrapping
+   */
+  @Input() @XInputBoolean() nodeNowrap: XBoolean = true;
+  /**
+   * @zh_CN 节点垂直对齐方式
+   * @en_US Show ellipsis without wrapping
+   */
+  @Input() @XWithConfig<XAlign>(X_CONFIG_NAME, 'center') nodeAlignItems: XAlign;
   /**
    * @zh_CN 树节点操作按钮
    * @en_US Tree node operation buttons
@@ -163,6 +174,21 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    * @en_US Whether the child node of checkbox is selected
    */
   indeterminate?: boolean;
+  /**
+   * @zh_CN 节点高度，优先级高于 tree 参数，单位 rem
+   * @en_US Node height in rem, highest priority
+   */
+  height?: number;
+  /**
+   * @zh_CN 节点内容不换行显示省略号，优先级高于 tree 参数
+   * @en_US Show ellipsis without wrapping, highest priority
+   */
+  nowrap?: boolean;
+  /**
+   * @zh_CN 节点垂直对齐方式，优先级高于 tree 参数
+   * @en_US Show ellipsis without wrapping, highest priority
+   */
+  alignItems?: XAlign;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
@@ -218,7 +244,17 @@ export class XTreeNodeProperty {
    * @zh_CN 节点的高度，单位 rem
    * @en_US The height of the node in rem
    */
-  @Input() @XInputNumber() nodeHeight: XNumber = 1.625;
+  @Input() @XInputNumber() nodeHeight: XNumber = 0;
+  /**
+   * @zh_CN 节点内容不换行显示省略号
+   * @en_US Show ellipsis without wrapping
+   */
+  @Input() @XInputBoolean() nodeNowrap: XBoolean = true;
+  /**
+   * @zh_CN 节点垂直对齐方式
+   * @en_US Show ellipsis without wrapping
+   */
+  @Input() nodeAlignItems: XAlign = 'center';
   /**
    * @zh_CN 懒加载函数
    * @en_US Lazy loading function

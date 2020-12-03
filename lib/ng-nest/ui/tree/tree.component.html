@@ -1,6 +1,15 @@
 <div #tree class="x-tree">
   <ul>
-    <li x-tree-node *ngFor="let node of nodes; trackBy: trackByItem" [node]="node" [lazy]="lazy" [lazyData]="data" [nodeHeight]="nodeHeight"></li>
+    <li
+      x-tree-node
+      *ngFor="let node of nodes; trackBy: trackByItem"
+      [node]="node"
+      [lazy]="lazy"
+      [lazyData]="data"
+      [nodeHeight]="nodeHeight"
+      [nodeNowrap]="nodeNowrap"
+      [nodeAlignItems]="nodeAlignItems"
+    ></li>
   </ul>
 </div>
 

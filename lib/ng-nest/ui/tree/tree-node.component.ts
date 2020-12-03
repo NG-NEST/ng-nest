@@ -49,6 +49,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.node.alignItems);
+    console.log(this.nodeAlignItems);
     this.node.change = (check: boolean) => {
       if (check) this.setCheckbox();
       this.cdr.detectChanges();
