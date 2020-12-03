@@ -1,3 +1,17 @@
+# [9.1.0](https://github.com/NG-NEST/ng-nest/compare/9.0.0...9.1.0) (2020-12-03)
+
+
+### Bug Fixes
+
+* **module:link:** icon right class ([10a0b72](https://github.com/NG-NEST/ng-nest/commit/10a0b7229549688975518a2b5f917d5a47354d11))
+
+
+### Features
+
+* **module:icon:** add material design icons ([6762757](https://github.com/NG-NEST/ng-nest/commit/6762757b24a4c6f0f0795063774071fd5bc3d3fe))
+
+
+
 # [9.0.0](https://github.com/NG-NEST/ng-nest/compare/1.4.3...9.0.0) (2020-11-24)
 
 
