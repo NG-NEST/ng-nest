@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ConfigService } from '../../../services/config.service';
 import { LayoutService } from '../layout.service';
 
 @Component({
@@ -7,5 +8,6 @@ import { LayoutService } from '../layout.service';
   encapsulation: ViewEncapsulation.None
 })
 export class LogoComponent {
-  constructor(public layoutService: LayoutService) {}
+  versions = [];
+  constructor(public layoutService: LayoutService, public config: ConfigService) {}
 }

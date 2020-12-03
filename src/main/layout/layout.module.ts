@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
+import { XLinkModule } from '@ng-nest/ui/link';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
 import { XAffixModule } from '@ng-nest/ui/affix';
@@ -29,6 +30,7 @@ const components = [LayoutComponent, HeaderComponent, LogoComponent, SiderCompon
     XDrawerModule,
     XAffixModule,
     XI18nModule,
+    XLinkModule,
     CdkLayoutModule,
     LayoutRoutesModule
   ],

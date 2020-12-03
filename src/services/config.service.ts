@@ -9,6 +9,7 @@ export class ConfigService {
   defaultLang: string;
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
+  versions = [];
 
   get lang() {
     let lg = localStorage.getItem('Lang');
@@ -28,6 +29,7 @@ export class ConfigService {
 
   init() {
     this.setLocale(this.checkPath());
+    this.getVersions();
   }
 
   checkPath() {
@@ -68,5 +70,11 @@ export class ConfigService {
     const locale = this.i18n.getLocale();
     const description = this.meta.getTag("name='description'");
     description?.setAttribute('content', locale.meta.description);
+  }
+
+  getVersions() {
+    this.http.get('https://ngnest.com/static/json/version.json').subscribe((x: { versions: [] }) => {
+      this.versions = x.versions;
+    });
   }
 }

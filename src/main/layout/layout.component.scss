@@ -31,7 +31,11 @@ ns-logo {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    > .logo {
+    .logo-version {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
       display: flex;
       align-items: center;
     }
