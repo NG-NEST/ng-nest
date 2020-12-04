@@ -1,3 +1,12 @@
+## [9.1.1](https://github.com/NG-NEST/ng-nest/compare/9.1.0...9.1.1) (2020-12-04)
+
+
+### Features
+
+* **module:tree:** add height and align param ([e383901](https://github.com/NG-NEST/ng-nest/commit/e383901b0518471539f5c9423011d291a49968f8))
+
+
+
 # [9.1.0](https://github.com/NG-NEST/ng-nest/compare/9.0.0...9.1.0) (2020-12-03)
 
 
