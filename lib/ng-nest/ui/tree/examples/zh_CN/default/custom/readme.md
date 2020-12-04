@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 label: '节点自定义'
 ---
 

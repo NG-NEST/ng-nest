@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 3
 label: '点击节点展开'
 ---
 

@@ -25,7 +25,7 @@
   ></x-checkbox>
   <span
     class="x-tree-node-label"
-    [class.nowrap]="[true, false].includes(node.nowrap) ? node.nowrap : nodeNowrap"
+    [class.nowrap]="node.nowrap === false || node.nowrap === true ? node.nowrap : nodeNowrap"
     [title]="node.label"
     *ngIf="!tree.labelTpl; else labelTpl"
     >{{ node.label }}</span

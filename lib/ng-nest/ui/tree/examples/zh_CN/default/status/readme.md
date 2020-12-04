@@ -1,5 +1,5 @@
 ---
-order: 4
+order: 5
 label: '选中展开禁用'
 ---
 

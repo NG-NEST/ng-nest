@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 label: 'Custom node'
 ---
 

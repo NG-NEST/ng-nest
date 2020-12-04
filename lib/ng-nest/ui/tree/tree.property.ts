@@ -249,7 +249,7 @@ export class XTreeNodeProperty {
    * @zh_CN 节点内容不换行显示省略号
    * @en_US Show ellipsis without wrapping
    */
-  @Input() @XInputBoolean() nodeNowrap: XBoolean = true;
+  @Input() @XInputBoolean() nodeNowrap: XBoolean;
   /**
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
