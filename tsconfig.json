@@ -15,15 +15,24 @@
     "alwaysStrict": true,
     "emitDecoratorMetadata": true,
     "inlineSources": true,
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "@ng-nest/ui": ["./dist/ng-nest/ui/"],
-      "@ng-nest/ui/*": ["./dist/ng-nest/ui/*"]
+      "@ng-nest/ui": [
+        "./dist/ng-nest/ui/"
+      ],
+      "@ng-nest/ui/*": [
+        "./dist/ng-nest/ui/*"
+      ]
     }
   },
   "angularCompilerOptions": {

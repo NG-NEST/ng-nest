@@ -1,4 +1,4 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { XButtonModule, XButtonComponent } from '@ng-nest/ui/button';
 import { XConfigService } from './config.service';
 import { X_CONFIG, XConfig } from './config';
@@ -39,18 +39,20 @@ describe('x-config', () => {
       }
     }
   };
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [XButtonModule, XDropdownModule, XLinkModule],
-      declarations: [NzGlobalConfigTestBasicComponent],
-      providers: [
-        {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [XButtonModule, XDropdownModule, XLinkModule],
+        declarations: [NzGlobalConfigTestBasicComponent],
+        providers: [
+          {
+            provide: X_CONFIG,
+            useValue: config
+          }
+        ]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);

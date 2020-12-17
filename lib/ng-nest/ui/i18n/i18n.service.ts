@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class XI18nService {
   private _locale: XI18nProperty;
-  private _change = new BehaviorSubject<XI18nProperty>(this._locale);
+  private _change = new BehaviorSubject<XI18nProperty>(zh_CN);
 
   get localeChange(): Observable<XI18nProperty> {
     return this._change.asObservable();

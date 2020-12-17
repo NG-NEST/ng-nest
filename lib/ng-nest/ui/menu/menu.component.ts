@@ -27,9 +27,6 @@ import { DOCUMENT } from '@angular/common';
 })
 export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   showCategory = false;
-  @Input() set target(ele: string | HTMLElement) {
-    this._target = typeof ele === 'string' ? this.doc.querySelector(ele) : ele;
-  }
   get scroll(): HTMLElement {
     return this._target;
   }
@@ -60,6 +57,9 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   ngOnChanges(changes: SimpleChanges) {
     XIsChange(changes.data) && this.setData();
     XIsChange(changes.collapsed) && this.setClassMap();
+    if (XIsChange(changes.target)) {
+      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
+    }
   }
 
   ngOnDestroy(): void {

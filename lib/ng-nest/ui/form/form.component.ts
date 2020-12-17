@@ -56,7 +56,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
         let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
         control.disabled = true;
         control.required = false;
-        delete control.pattern;
+        delete (control as any).pattern;
         type.setValidators();
         control.formControlChanges();
       }

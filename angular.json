@@ -61,66 +61,6 @@
                   "maximumError": "10kb"
                 }
               ]
-            },
-            "production-en": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "outputPath": "dist/ng-nest/site/en/",
-              "i18nFile": "src/locale/messages.en.xlf",
-              "baseHref": "/en/",
-              "i18nFormat": "xlf",
-              "i18nLocale": "en"
-            },
-            "en": {
-              "aot": true,
-              "outputPath": "dist/ng-nest/site/en/",
-              "baseHref": "/en/",
-              "i18nFile": "src/locale/messages.en.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "en"
-            },
-            "production-zh": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "outputPath": "dist/ng-nest/site/zh/",
-              "baseHref": "/zh/",
-              "i18nFile": "src/locale/messages.zh.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "zh"
-            },
-            "zh": {
-              "aot": true,
-              "outputPath": "dist/ng-nest/site/zh/",
-              "baseHref": "/zh/",
-              "i18nFile": "src/locale/messages.zh.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "zh"
             }
           }
         },
@@ -132,12 +72,6 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-nest-site:build:production"
-            },
-            "en": {
-              "browserTarget": "ng-nest-site:build:en"
-            },
-            "zh": {
-              "browserTarget": "ng-nest-site:build:zh"
             }
           }
         },
