@@ -13,14 +13,14 @@
     "url": "https://github.com/NG-NEST/ng-nest"
   },
   "dependencies": {
-    "@angular/cdk": "^9.2.0"
+    "@angular/cdk": "^10.2.7"
   },
   "peerDependencies": {
-    "@angular/animations": "^9.1.0",
-    "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "@angular/forms": "^9.1.0",
-    "tslib": "^1.10.0",
+    "@angular/animations": "^10.2.0",
+    "@angular/common": "^10.2.0",
+    "@angular/core": "^10.2.0",  
+    "@angular/forms": "^10.2.0",
+    "tslib": "^2.0.0",
     "resize-observer-polyfill": "^1.5.1"
   }
 }

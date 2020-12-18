@@ -1,8 +1,14 @@
-## [9.1.1](https://github.com/NG-NEST/ng-nest/compare/9.1.0...9.1.1) (2020-12-04)
+# [10.0.0](https://github.com/NG-NEST/ng-nest/compare/9.1.0...10.0.0) (2020-12-18)
+
+
+### Bug Fixes
+
+* **module:container:** solve direction invalid ([a3f1a3b](https://github.com/NG-NEST/ng-nest/commit/a3f1a3bb8e1430c9e7048e0d09695ba1f4d38504))
 
 
 ### Features
 
+* update angular to 10.2.0 ([4f6d7cc](https://github.com/NG-NEST/ng-nest/commit/4f6d7cc01ea1df798c2874bf67600d030c0432de))
 * **module:tree:** add height and align param ([e383901](https://github.com/NG-NEST/ng-nest/commit/e383901b0518471539f5c9423011d291a49968f8))
 
 
