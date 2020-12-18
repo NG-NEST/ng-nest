@@ -41,5 +41,6 @@ export class XFooterComponent extends XFooterProperty implements OnInit {
   setDirection() {
     if (!this.container || this.container.direction) return;
     this.container.direction = 'column';
+    this.container.setDirection();
   }
 }
