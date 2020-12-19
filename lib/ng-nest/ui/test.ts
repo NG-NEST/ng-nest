@@ -19,5 +19,9 @@ declare const require: {
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
+const files = ['./input/input.component.spec.ts'];
 // And load the modules.
-context.keys().map(context);
+context
+  .keys()
+  .filter((name) => !!files.includes(name))
+  .map(context);
