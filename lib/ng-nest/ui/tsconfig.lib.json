@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "outDir": "../../../out-tsc/lib",
     "alwaysStrict": true,
+    "declarationMap": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
