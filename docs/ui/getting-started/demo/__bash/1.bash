@@ -8,7 +8,7 @@ $ ng --version
                 |___/
 
 
-Angular CLI: 9.1.0
+Angular CLI: 11.0.5
 Node: 13.12.0
 OS: win32 x64
 
@@ -18,9 +18,8 @@ Ivy Workspace:
 
 Package                      Version
 ------------------------------------------------------
-@angular-devkit/architect    0.901.0
-@angular-devkit/core         9.1.0
-@angular-devkit/schematics   9.1.0
-@schematics/angular          9.1.0
-@schematics/update           0.901.0
-rxjs                         6.5.4
+@angular-devkit/architect    0.1100.5 (cli-only)
+@angular-devkit/core         11.0.5 (cli-only)
+@angular-devkit/schematics   11.0.5 (cli-only)
+@schematics/angular          11.0.5 (cli-only)
+@schematics/update           0.1100.5 (cli-only)
