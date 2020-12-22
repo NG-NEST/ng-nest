@@ -23,6 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": ["lodash"],
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": ["node_modules/prismjs/themes/prism.css", "dist/ng-nest/ui/style/core/index.scss", "src/styles.scss"],
             "scripts": [
