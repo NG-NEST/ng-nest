@@ -239,7 +239,17 @@ class TestXTableComponent {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="1000" [bodyHeight]="420" [adaptionHeight]="200" virtualScroll loading> </x-table>
+      <x-table
+        [rowHeight]="0"
+        [columns]="columns"
+        [data]="data"
+        [size]="1000"
+        [bodyHeight]="420"
+        [adaptionHeight]="200"
+        virtualScroll
+        loading
+      >
+      </x-table>
     </div>
   `,
   styles: [
