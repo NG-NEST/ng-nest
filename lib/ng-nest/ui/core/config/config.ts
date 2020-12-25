@@ -389,6 +389,7 @@ export interface XTableConfig {
   virtualScroll?: boolean;
   rowHeight?: XNumber;
   itemSize?: XNumber;
+  bordered?: XNumber;
   allowSelectRow?: XBoolean;
 }
 

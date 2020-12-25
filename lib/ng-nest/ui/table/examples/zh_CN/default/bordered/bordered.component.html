@@ -1,0 +1,13 @@
+<x-table
+  [columns]="columns"
+  [data]="data"
+  [(index)]="index"
+  [(size)]="size"
+  [total]="total"
+  [scroll]="{ x: 1500, y: 600 }"
+  (indexChange)="indexChange($event)"
+  (sortChange)="sortChange($event)"
+  [virtualScroll]="true"
+  bordered
+>
+</x-table>

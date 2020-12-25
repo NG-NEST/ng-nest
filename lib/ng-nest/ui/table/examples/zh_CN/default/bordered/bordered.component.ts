@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { ScrollService, User } from './scroll.service';
+import { BorderedService, User } from './bordered.service';
 import { XQuery, XSort } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 
 @Component({
-  selector: 'ex-scroll',
-  templateUrl: './scroll.component.html',
-  providers: [ScrollService]
+  selector: 'ex-bordered',
+  templateUrl: './Bordered.component.html',
+  providers: [BorderedService]
 })
-export class ExScrollComponent {
+export class ExBorderedComponent {
   query: XQuery = {};
   index = 1;
   size = 1000;
@@ -20,10 +20,10 @@ export class ExScrollComponent {
     { id: 'position', label: '职位', width: 300, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', width: 300 },
-    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+    { id: 'organization', label: '组织机构', width: 300, sort: true }
   ];
 
-  constructor(private service: ScrollService) {}
+  constructor(private service: BorderedService) {}
 
   ngOnInit() {
     this.getData();

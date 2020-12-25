@@ -47,6 +47,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() loading: XBoolean;
   /**
+   * @zh_CN 是否展示列边框
+   * @en_US Whether to show column borders
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() bordered: XBoolean;
+  /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */

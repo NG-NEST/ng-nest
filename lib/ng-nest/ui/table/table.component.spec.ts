@@ -21,7 +21,13 @@ describe(XTablePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
-      declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent, TestXTableFunctionComponent]
+      declarations: [
+        TestXTableComponent,
+        TestXTableScrollComponent,
+        TestXTableAdaptionComponent,
+        TestXTableBorderedComponent,
+        TestXTableFunctionComponent
+      ]
     }).compileComponents();
   }));
   // describe(`default.`, () => {
@@ -36,18 +42,18 @@ describe(XTablePrefix, () => {
   //     expect(table).toBeDefined();
   //   });
   // });
-  describe(`scroll.`, () => {
-    let fixture: ComponentFixture<TestXTableScrollComponent>;
-    let table: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTableScrollComponent);
-      fixture.detectChanges();
-      table = fixture.debugElement.query(By.directive(XTableComponent));
-    });
-    it('should create.', () => {
-      expect(table).toBeDefined();
-    });
-  });
+  // describe(`scroll.`, () => {
+  //   let fixture: ComponentFixture<TestXTableScrollComponent>;
+  //   let table: DebugElement;
+  //   beforeEach(() => {
+  //     fixture = TestBed.createComponent(TestXTableScrollComponent);
+  //     fixture.detectChanges();
+  //     table = fixture.debugElement.query(By.directive(XTableComponent));
+  //   });
+  //   it('should create.', () => {
+  //     expect(table).toBeDefined();
+  //   });
+  // });
   // describe(`adaption.`, () => {
   //   let fixture: ComponentFixture<TestXTableAdaptionComponent>;
   //   let table: DebugElement;
@@ -60,6 +66,18 @@ describe(XTablePrefix, () => {
   //     expect(table).toBeDefined();
   //   });
   // });
+  describe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXTableScrollComponent>;
+    let table: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTableScrollComponent);
+      fixture.detectChanges();
+      table = fixture.debugElement.query(By.directive(XTableComponent));
+    });
+    it('should create.', () => {
+      expect(table).toBeDefined();
+    });
+  });
   // describe(`observable.`, () => {
   //   let fixture: ComponentFixture<TestXTableFunctionComponent>;
   //   let table: DebugElement;
@@ -239,7 +257,16 @@ class TestXTableComponent {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-table [rowHeight]="0" [columns]="columns" [data]="data" [size]="1000" [scroll]="{ x: 1500, y: 600 }" virtualScroll loading>
+      <x-table
+        [rowHeight]="0"
+        [columns]="columns"
+        [data]="data"
+        [size]="1000"
+        [scroll]="{ x: 1500, y: 600 }"
+        virtualScroll
+        loading
+        bordered
+      >
       </x-table>
     </div>
   `,
@@ -261,6 +288,47 @@ class TestXTableComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableScrollComponent {
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  columns: XTableColumn[] = [
+    { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
+    { id: 'name', label: '用户', width: 200, sort: true },
+    { id: 'position', label: '职位', width: 300, sort: true },
+    { id: 'email', label: '邮箱', width: 300 },
+    { id: 'phone', label: '电话', width: 300 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+  ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {}
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <div class="row">
+      <x-table [rowHeight]="0" [columns]="columns" [data]="data" [size]="1000" [scroll]="{ x: 1500, y: 600 }" virtualScroll loading>
+      </x-table>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .row {
+        padding: 1rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTableBorderedComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
