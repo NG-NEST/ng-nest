@@ -54,6 +54,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
+    if (this.scroll?.y && !this.bodyHeight) {
+      this.bodyHeight = this.scroll.y;
+    }
   }
 
   ngAfterViewInit() {
@@ -73,6 +76,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
       this.table.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector(
         '.cdk-virtual-scroll-content-wrapper'
       ) as HTMLElement;
+      if (this.scroll?.x) {
+        this.renderer.setStyle(this.table.scrollContentEle, 'width', `${this.scroll.x}px`);
+      }
       XResize(this.table.table.nativeElement, this.table.scrollContentEle)
         .pipe(takeUntil(this._unSubject))
         .subscribe((x) => {
@@ -128,6 +134,11 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     }
 
     this.table.cdr.detectChanges();
+  }
+
+  getIndex(index: number, item: XTableRow) {
+    if (!isNaN(index)) return index;
+    return this.data.indexOf(item);
   }
 
   setAdaptionHeight() {

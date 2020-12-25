@@ -20,7 +20,7 @@ export class ExScrollComponent {
     { id: 'position', label: '职位', width: 300, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', width: 300 },
-    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+    { id: 'organization', label: '组织机构', width: 300, sort: true }
   ];
 
   constructor(private service: ScrollService) {}

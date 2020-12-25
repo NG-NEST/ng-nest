@@ -8,12 +8,13 @@
     [style.height.px]="bodyHeight"
   >
     <tr
-      *cdkVirtualFor="let row of data; index as i; trackBy: trackByItem"
+      *cdkVirtualFor="let row of data; let index = index; trackBy: trackByItem"
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-      [style.height.px]="rowHeight"
+      [style.height.px]="rowHeight == 0 ? '' : rowHeight"
       (click)="rowClick(row)"
     >
-      <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
+      <!-- rowHeight 为 0 的时候，index 下标获取不到 -->
+      <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: getIndex(index, row) }"></ng-container>
     </tr>
   </cdk-virtual-scroll-viewport>
   <x-empty *ngIf="isEmpty"></x-empty>
@@ -23,7 +24,6 @@
   <tr
     *ngFor="let row of data; index as i; trackBy: trackByItem"
     [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-    [style.height.px]="rowHeight"
     (click)="rowClick(row)"
   >
     <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>

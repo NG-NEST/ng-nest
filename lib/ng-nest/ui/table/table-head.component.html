@@ -1,5 +1,5 @@
-<thead #thead [style.height.px]="rowHeight">
-  <tr [style.height.px]="rowHeight" [style.padding-right.px]="scrollYWidth" [style.width.px]="scrollXWidth">
+<thead #thead [style.height.px]="rowHeight == 0 ? '' : rowHeight">
+  <tr [style.height.px]="rowHeight == 0 ? '' : rowHeight" [style.padding-right.px]="scrollYWidth" [style.width.px]="scrollXWidth">
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
       [class.x-table-sticky]="getSticky(column)"

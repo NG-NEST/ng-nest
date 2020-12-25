@@ -117,6 +117,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XInputBoolean() manual: XBoolean = true;
   /**
+   * @zh_CN 滚动区域高宽
+   * @en_US Height and width of rolling area
+   */
+  @Input() scroll: { x: number; y: number };
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */
@@ -348,8 +353,8 @@ export class XTableBodyProperty extends XProperty {
    */
   @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
-   * @zh_CN 高度，单位 px
-   * @en_US Height in px
+   * @zh_CN 高度，单位 px。设置为 0 表示行高自适应内容高度。
+   * @en_US Height in px. set to 0 means that the row height is adaptive to the content height
    */
   @Input() @XInputNumber() rowHeight: XNumber = 42;
   /**
@@ -387,6 +392,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Document height percentage, used by pop-up window percentage height
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
+  /**
+   * @zh_CN 滚动区域高宽
+   * @en_US Height and width of rolling area
+   */
+  @Input() scroll: { x: number; y: number };
 }
 
 /**

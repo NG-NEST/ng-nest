@@ -11,7 +11,7 @@ export class ScrollService extends XRepositoryAbstract {
     i++;
     return {
       id: i,
-      name: '姓名' + i,
+      name: '我的姓名是张三' + i + '，我的姓名是张三' + i,
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: '邮箱' + i,
       phone: '手机' + i,

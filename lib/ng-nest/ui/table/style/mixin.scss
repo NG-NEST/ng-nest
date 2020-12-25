@@ -16,10 +16,12 @@
     overflow: hidden;
     display: block;
     background-color: $--x-background-a100;
+    min-height: 42px;
     > tr {
       position: absolute;
       width: 100%;
       display: flex;
+      min-height: 42px;
       > th {
         display: flex;
         align-items: center;
@@ -53,6 +55,7 @@
     position: relative;
     tr {
       display: flex;
+      min-height: 42px;
       > td {
         display: flex;
         align-items: center;
@@ -144,6 +147,20 @@
       .#{$--x-table}-sticky {
         box-shadow: $--x-box-shadow-light-right;
         border-right: $--x-border-base;
+      }
+    }
+  }
+  &-td-adaption-height {
+    > tbody {
+      tr {
+        > td {
+          overflow: inherit;
+          > div {
+            white-space: inherit;
+            text-overflow: inherit;
+            overflow: inherit;
+          }
+        }
       }
     }
   }

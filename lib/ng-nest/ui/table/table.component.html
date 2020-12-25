@@ -4,6 +4,7 @@
   [x-loading]="loading && getting"
   [class.x-table-scroll-left]="getScrollLeft"
   [class.x-table-scroll-top]="getScrollTop"
+  [class.x-table-td-adaption-height]="rowHeight == 0"
 >
   <x-table-head
     [columns]="columns"
@@ -24,16 +25,11 @@
     [maxBufferPx]="maxBufferPx"
     [adaptionHeight]="adaptionHeight"
     [docPercent]="docPercent"
+    [scroll]="scroll"
     [(activatedRow)]="activatedRow"
     (activatedRowChange)="activatedRowChange.emit($event)"
   ></x-table-body>
   <x-table-foot></x-table-foot>
 </table>
-<x-pagination 
-  #pagination 
-  [(index)]="index" 
-  [(size)]="size" 
-  [(query)]="query" 
-  [total]="total" 
-  (indexChange)="change($event)">
+<x-pagination #pagination [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
 </x-pagination>

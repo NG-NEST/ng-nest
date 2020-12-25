@@ -5,13 +5,13 @@ import { map, orderBy } from 'lodash';
 
 @Injectable()
 export class ScrollService extends XRepositoryAbstract {
-  organizations = ['Manufacturing Center','R&D Center','Finance Center','Marketing Center','Administrative Center'];
+  organizations = ['Manufacturing Center', 'R&D Center', 'Finance Center', 'Marketing Center', 'Administrative Center'];
   positions = ['Technician', 'Sales', 'Manager', 'Director', 'Production'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {
     i++;
     return {
       id: i,
-      name: 'name' + i,
+      name: 'My name is Zhang San ' + i + '. My name is Zhang San ' + i + '.',
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: 'email' + i,
       phone: 'phone' + i,
