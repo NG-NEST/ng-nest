@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
