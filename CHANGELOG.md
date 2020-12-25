@@ -1,3 +1,13 @@
+## [11.0.1](https://github.com/NG-NEST/ng-nest/compare/11.0.0...11.0.1) (2020-12-25)
+
+
+### Features
+
+* **module:table:** add row height adaptation ([6c504a7](https://github.com/NG-NEST/ng-nest/commit/6c504a76c8f8bc5f7449e79672300c56f1246b8f))
+* **module:table:** add scroll param ([f868d84](https://github.com/NG-NEST/ng-nest/commit/f868d84304ff9720b1a8b476dcd0cf4ab74d2a79))
+
+
+
 # [11.0.0](https://github.com/NG-NEST/ng-nest/compare/10.0.0...11.0.0) (2020-12-20)
 
 
