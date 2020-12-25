@@ -154,6 +154,7 @@
     > tbody {
       tr {
         > td {
+          overflow: inherit;
           > div {
             white-space: inherit;
             text-overflow: inherit;

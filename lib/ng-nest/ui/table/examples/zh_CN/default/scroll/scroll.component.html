@@ -1,10 +1,11 @@
 <x-table
   [columns]="columns"
   [data]="data"
+  [rowHeight]="0"
   [(index)]="index"
   [(size)]="size"
   [total]="total"
-  [bodyHeight]="420"
+  [scroll]="{ x: 1500, y: 600 }"
   (indexChange)="indexChange($event)"
   (sortChange)="sortChange($event)"
   [virtualScroll]="true"
