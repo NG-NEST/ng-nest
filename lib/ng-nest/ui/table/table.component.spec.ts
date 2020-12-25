@@ -24,18 +24,18 @@ describe(XTablePrefix, () => {
       declarations: [TestXTableComponent, TestXTableScrollComponent, TestXTableAdaptionComponent, TestXTableFunctionComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXTableComponent>;
-    let table: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTableComponent);
-      fixture.detectChanges();
-      table = fixture.debugElement.query(By.directive(XTableComponent));
-    });
-    it('should create.', () => {
-      expect(table).toBeDefined();
-    });
-  });
+  // describe(`default.`, () => {
+  //   let fixture: ComponentFixture<TestXTableComponent>;
+  //   let table: DebugElement;
+  //   beforeEach(() => {
+  //     fixture = TestBed.createComponent(TestXTableComponent);
+  //     fixture.detectChanges();
+  //     table = fixture.debugElement.query(By.directive(XTableComponent));
+  //   });
+  //   it('should create.', () => {
+  //     expect(table).toBeDefined();
+  //   });
+  // });
   describe(`scroll.`, () => {
     let fixture: ComponentFixture<TestXTableScrollComponent>;
     let table: DebugElement;
@@ -48,30 +48,30 @@ describe(XTablePrefix, () => {
       expect(table).toBeDefined();
     });
   });
-  describe(`adaption.`, () => {
-    let fixture: ComponentFixture<TestXTableAdaptionComponent>;
-    let table: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTableAdaptionComponent);
-      fixture.detectChanges();
-      table = fixture.debugElement.query(By.directive(XTableComponent));
-    });
-    it('should create.', () => {
-      expect(table).toBeDefined();
-    });
-  });
-  describe(`observable.`, () => {
-    let fixture: ComponentFixture<TestXTableFunctionComponent>;
-    let table: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTableFunctionComponent);
-      fixture.detectChanges();
-      table = fixture.debugElement.query(By.directive(XTableComponent));
-    });
-    it('should create.', () => {
-      expect(table).toBeDefined();
-    });
-  });
+  // describe(`adaption.`, () => {
+  //   let fixture: ComponentFixture<TestXTableAdaptionComponent>;
+  //   let table: DebugElement;
+  //   beforeEach(() => {
+  //     fixture = TestBed.createComponent(TestXTableAdaptionComponent);
+  //     fixture.detectChanges();
+  //     table = fixture.debugElement.query(By.directive(XTableComponent));
+  //   });
+  //   it('should create.', () => {
+  //     expect(table).toBeDefined();
+  //   });
+  // });
+  // describe(`observable.`, () => {
+  //   let fixture: ComponentFixture<TestXTableFunctionComponent>;
+  //   let table: DebugElement;
+  //   beforeEach(() => {
+  //     fixture = TestBed.createComponent(TestXTableFunctionComponent);
+  //     fixture.detectChanges();
+  //     table = fixture.debugElement.query(By.directive(XTableComponent));
+  //   });
+  //   it('should create.', () => {
+  //     expect(table).toBeDefined();
+  //   });
+  // });
 });
 
 @Injectable()

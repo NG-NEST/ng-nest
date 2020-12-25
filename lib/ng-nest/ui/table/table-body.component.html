@@ -2,7 +2,7 @@
   <cdk-virtual-scroll-viewport
     #virtualBody
     *ngIf="virtualScroll; else bodyTpl"
-    [itemSize]="rowHeight"
+    [itemSize]="itemSize"
     [minBufferPx]="minBufferPx"
     [maxBufferPx]="maxBufferPx"
     [style.height.px]="bodyHeight"
@@ -24,6 +24,7 @@
   <tr
     *ngFor="let row of data; index as i; trackBy: trackByItem"
     [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
+    [style.height.px]="rowHeight == 0 ? '' : rowHeight"
     (click)="rowClick(row)"
   >
     <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
