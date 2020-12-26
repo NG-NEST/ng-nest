@@ -388,6 +388,8 @@ export interface XTableConfig {
   loading?: XBoolean;
   virtualScroll?: boolean;
   rowHeight?: XNumber;
+  itemSize?: XNumber;
+  bordered?: XNumber;
   allowSelectRow?: XBoolean;
 }
 

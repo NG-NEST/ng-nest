@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { ScrollService } from './scroll.service';
+import { BorderedService } from './bordered.service';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'ex-scroll',
-  templateUrl: './scroll.component.html',
-  providers: [ScrollService]
+  selector: 'ex-bordered',
+  templateUrl: './Bordered.component.html',
+  providers: [BorderedService]
 })
-export class ExScrollComponent {
+export class ExBorderedComponent {
   size = 1000;
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
@@ -21,7 +21,7 @@ export class ExScrollComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: ScrollService) {}
+  constructor(private service: BorderedService) {}
 
   ngOnInit() {}
 }

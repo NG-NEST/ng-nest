@@ -63,6 +63,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     this.table.virtualBody = this.virtualBody;
     this.table.bodyChange = () => this.cdr.detectChanges();
     this.setSubject();
+    this.setScroll();
   }
 
   ngOnDestroy(): void {
