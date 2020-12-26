@@ -1,4 +1,4 @@
-## [10.0.1](https://github.com/NG-NEST/ng-nest/compare/10.0.0...10.0.1) (2020-12-25)
+## [10.0.2](https://github.com/NG-NEST/ng-nest/compare/10.0.0...10.0.2) (2020-12-26)
 
 
 
