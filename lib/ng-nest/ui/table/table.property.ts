@@ -47,6 +47,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() loading: XBoolean;
   /**
+   * @zh_CN 是否展示列边框
+   * @en_US Whether to show column borders
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() bordered: XBoolean;
+  /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
@@ -87,6 +92,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XInputNumber() bodyHeight: number;
   /**
+   * @zh_CN itemSize，对应 cdk scroll 中的参数
+   * @en_US itemSize，corresponding to the parameters in cdk scroll
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() itemSize: number;
+  /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
@@ -116,6 +126,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up
    */
   @Input() @XInputBoolean() manual: XBoolean = true;
+  /**
+   * @zh_CN 滚动区域高宽
+   * @en_US Height and width of rolling area
+   */
+  @Input() scroll: { x: number; y: number };
   /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
@@ -348,8 +363,8 @@ export class XTableBodyProperty extends XProperty {
    */
   @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
-   * @zh_CN 高度，单位 px
-   * @en_US Height in px
+   * @zh_CN 高度，单位 px。设置为 0 表示行高自适应内容高度。
+   * @en_US Height in px. set to 0 means that the row height is adaptive to the content height
    */
   @Input() @XInputNumber() rowHeight: XNumber = 42;
   /**
@@ -367,6 +382,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Turn on virtual scrolling
    */
   @Input() @XInputBoolean() virtualScroll: boolean = false;
+  /**
+   * @zh_CN itemSize，对应 cdk scroll 中的参数
+   * @en_US itemSize，corresponding to the parameters in cdk scroll
+   */
+  @Input() @XInputNumber() itemSize: number = 42;
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
@@ -387,6 +407,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Document height percentage, used by pop-up window percentage height
    */
   @Input() @XInputNumber() docPercent: XNumber = 1;
+  /**
+   * @zh_CN 滚动区域高宽
+   * @en_US Height and width of rolling area
+   */
+  @Input() scroll: { x: number; y: number };
 }
 
 /**

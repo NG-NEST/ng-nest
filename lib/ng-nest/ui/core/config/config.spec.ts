@@ -39,18 +39,20 @@ describe('x-config', () => {
       }
     }
   };
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [XButtonModule, XDropdownModule, XLinkModule],
-      declarations: [NzGlobalConfigTestBasicComponent],
-      providers: [
-        {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [XButtonModule, XDropdownModule, XLinkModule],
+        declarations: [NzGlobalConfigTestBasicComponent],
+        providers: [
+          {
+            provide: X_CONFIG,
+            useValue: config
+          }
+        ]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);

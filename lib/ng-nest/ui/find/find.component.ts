@@ -7,8 +7,7 @@ import {
   Renderer2,
   ElementRef,
   ViewChild,
-  SimpleChanges,
-  NgZone
+  SimpleChanges
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
 import { XValueAccessor, XClearClass, XResize, XIsUndefined, XIsChange, XConfigService } from '@ng-nest/ui/core';

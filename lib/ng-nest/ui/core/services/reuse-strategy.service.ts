@@ -1,5 +1,4 @@
 import { RouteReuseStrategy, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
-import { remove, find } from 'lodash';
 
 export interface XRouteReuseStorage {
   id: string;
@@ -37,7 +36,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
    * 若 path 在缓存中有的都认为允许还原路由
    */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return !!find(XReuseStrategyService.storages, (x) => x.id == this.getRouteUrl(route));
+    return !!XReuseStrategyService.storages.find((x) => x.id == this.getRouteUrl(route));
   }
 
   /**
@@ -47,7 +46,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
     if (!route.routeConfig) {
       return {};
     }
-    let stroage = find(XReuseStrategyService.storages, (x) => x.id == this.getRouteUrl(route));
+    let stroage = XReuseStrategyService.storages.find((x) => x.id == this.getRouteUrl(route));
     return stroage ? stroage.handle : {};
   }
 
@@ -73,7 +72,10 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   public static deleteRouteSnapshot(name?: string): void {
     if (name) {
       let id = name.replace(/\//g, '_');
-      remove(XReuseStrategyService.storages, (x) => x.id.indexOf(id) === 0);
+      XReuseStrategyService.storages.splice(
+        XReuseStrategyService.storages.findIndex((x) => x.id.indexOf(id) === 0),
+        1
+      );
       XReuseStrategyService.waitDelete = id;
     } else {
       XReuseStrategyService.storages = [];
@@ -81,7 +83,10 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   }
 
   private add(id: string, handle: DetachedRouteHandle) {
-    remove(XReuseStrategyService.storages, (x) => x.id == id);
+    XReuseStrategyService.storages.splice(
+      XReuseStrategyService.storages.findIndex((x) => x.id == id),
+      1
+    );
     XReuseStrategyService.storages = [...XReuseStrategyService.storages, { id: id, handle: handle }];
   }
 }

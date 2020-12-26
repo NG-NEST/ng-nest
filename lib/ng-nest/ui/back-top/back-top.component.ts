@@ -11,10 +11,12 @@ import {
   OnDestroy,
   ViewChild,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
-import { XClassMap, reqAnimFrame, XConfigService } from '@ng-nest/ui/core';
+import { XClassMap, reqAnimFrame, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
@@ -27,11 +29,7 @@ import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDestroy {
-  @Input() set target(el: string | HTMLElement) {
-    this._target = typeof el === 'string' ? this.doc.querySelector(el) : el;
-    this.setScrollEvent();
-  }
+export class XBackTopComponent extends XBackTopProperty implements OnInit, OnChanges, OnDestroy {
   @ViewChild('backTopTpl') backTopTpl: TemplateRef<void>;
 
   get scroll(): HTMLElement | Window {
@@ -71,6 +69,12 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnDes
     public configService: XConfigService
   ) {
     super();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (XIsChange(changes.target)) {
+      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
+      this.setScrollEvent();
+    }
   }
 
   ngOnInit() {

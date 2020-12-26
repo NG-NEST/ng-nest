@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { map, orderBy } from 'lodash';
 
 @Injectable()
-export class ScrollService extends XRepositoryAbstract {
+export class BorderedService extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
   users: User[] = Array.from({ length: 123456 }).map((x, i) => {
     i++;
     return {
       id: i,
-      name: '我的姓名是张三' + i + '，我的姓名是张三' + i,
+      name: '姓名' + i,
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: '邮箱' + i,
       phone: '手机' + i,

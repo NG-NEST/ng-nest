@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, SimpleChanges } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
-import { XDirection, XConfigService } from '@ng-nest/ui/core';
+import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
@@ -10,17 +10,6 @@ import { XDirection, XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty implements OnInit {
-  private _direction: XDirection;
-  public get direction(): XDirection {
-    return this._direction;
-  }
-  public set direction(value: XDirection) {
-    if (this._direction !== value) {
-      this._direction = value;
-      this.setDirection();
-    }
-  }
-
   constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);

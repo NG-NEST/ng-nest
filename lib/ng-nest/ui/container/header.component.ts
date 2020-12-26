@@ -42,5 +42,6 @@ export class XHeaderComponent extends XHeaderProperty implements OnInit {
   setDirection() {
     if (!this.container || this.container.direction) return;
     this.container.direction = 'column';
+    this.container.setDirection()
   }
 }

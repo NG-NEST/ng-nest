@@ -16,19 +16,21 @@
     overflow: hidden;
     display: block;
     background-color: $--x-background-a100;
+    min-height: 42px;
     > tr {
       position: absolute;
       width: 100%;
       display: flex;
+      min-height: 42px;
       > th {
         display: flex;
         align-items: center;
         flex: 1;
         position: relative;
-        padding-right: $--x-font-size;
         font-weight: 600;
         background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
+        padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > a {
           display: inline-flex;
           align-items: center;
@@ -53,15 +55,16 @@
     position: relative;
     tr {
       display: flex;
+      min-height: 42px;
       > td {
         display: flex;
         align-items: center;
         position: relative;
-        padding-right: 0.875rem;
         justify-content: space-between;
         overflow: hidden;
         background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
+        padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > div {
           flex: 1;
           white-space: nowrap;
@@ -73,7 +76,7 @@
           z-index: 1;
         }
         &:first-child {
-          padding-left: 0.875rem;
+          padding-left: $--x-font-size;
         }
       }
       &.#{$--x-table}-activated {
@@ -144,6 +147,30 @@
       .#{$--x-table}-sticky {
         box-shadow: $--x-box-shadow-light-right;
         border-right: $--x-border-base;
+      }
+    }
+  }
+  &-td-adaption-height {
+    > tbody {
+      tr {
+        > td {
+          overflow: inherit;
+          > div {
+            white-space: inherit;
+            text-overflow: inherit;
+            overflow: inherit;
+          }
+        }
+      }
+    }
+  }
+  &-bordered {
+    > thead > tr > th,
+    > tbody tr > td {
+      border-right: $--x-border-base;
+      padding-left: $--x-font-size;
+      &:last-child {
+        border-right: none;
       }
     }
   }
