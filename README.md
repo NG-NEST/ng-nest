@@ -20,11 +20,11 @@ NG-NEST 是一个开源的 Web 应用程序框架，基于 Angular 和 Nest ，�
 
 ## 当前版本
 
-npm 11.0.1
+npm 11.0.2
 
 ## 支持 Angular 版本
 
-`@ng-nest/ui` 目前支持 Angular ^11.0.1
+`@ng-nest/ui` 目前支持 Angular ^11.0.0
 ## 支持环境
 
 - Modern browsers

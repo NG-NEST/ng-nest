@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { BorderedService, User } from './bordered.service';
-import { XQuery, XSort } from '@ng-nest/ui/core';
+import { BorderedService } from './bordered.service';
+import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-bordered',
@@ -9,39 +10,18 @@ import { XTableColumn } from '@ng-nest/ui/table';
   providers: [BorderedService]
 })
 export class ExBorderedComponent {
-  query: XQuery = {};
-  index = 1;
   size = 1000;
-  total = 0;
-  data: User[] = [];
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 200, sort: true },
     { id: 'position', label: '职位', width: 300, sort: true },
     { id: 'email', label: '邮箱', width: 300 },
     { id: 'phone', label: '电话', width: 300 },
-    { id: 'organization', label: '组织机构', width: 300, sort: true }
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
   constructor(private service: BorderedService) {}
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
-    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
-      [this.data, this.total] = [x.list as User[], Number(x.total)];
-    });
-  }
-
-  indexChange(index: number) {
-    this.index = index;
-    this.getData();
-  }
-
-  sortChange(sort: XSort[]) {
-    this.query.sort = sort;
-    this.getData();
-  }
+  ngOnInit() {}
 }

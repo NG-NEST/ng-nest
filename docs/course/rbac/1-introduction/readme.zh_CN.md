@@ -23,7 +23,7 @@ label: '1. 简介'
 
 ## 当前环境
 
-angular ^11.0.1 | nestjs ^7.0.0
+angular ^11.0.0 | nestjs ^7.0.0
 
 环境安装参考以下地址：<a href="https://angular.cn/guide/setup-local" target="_blank">Angular</a> | <a href="https://docs.nestjs.com/" target="_blank">Nestjs</a>
 

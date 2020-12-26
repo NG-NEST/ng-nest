@@ -44,7 +44,8 @@ export class LayoutService {
     '9.1.0',
     '10.0.0',
     '11.0.0',
-    '11.0.1'
+    '11.0.1',
+    '11.0.2'
   ];
 
   getCurrentMenu(url: string): Menu {

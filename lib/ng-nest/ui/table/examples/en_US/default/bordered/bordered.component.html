@@ -1,14 +1,2 @@
-<x-table
-  [columns]="columns"
-  [data]="data"
-  [rowHeight]="0"
-  [(index)]="index"
-  [(size)]="size"
-  [total]="total"
-  [scroll]="{ x: 1500, y: 600 }"
-  (indexChange)="indexChange($event)"
-  (sortChange)="sortChange($event)"
-  [virtualScroll]="true"
-  bordered
->
+<x-table [(size)]="size" [columns]="columns" [data]="data" [rowHeight]="0" [scroll]="{ x: 1500, y: 600 }" virtualScroll bordered loading>
 </x-table>

@@ -1,3 +1,17 @@
+## [11.0.2](https://github.com/NG-NEST/ng-nest/compare/11.0.1...11.0.2) (2020-12-25)
+
+
+### Bug Fixes
+
+* **module:table:** virtual scroll fail at height 0 ([9c58c0f](https://github.com/NG-NEST/ng-nest/commit/9c58c0f860dad1887af351a2ff28a6ab1ada05e1))
+
+
+### Features
+
+* **module:table:** add bordered param ([7c7c8b1](https://github.com/NG-NEST/ng-nest/commit/7c7c8b18bf5a965e64805b823b90cf37fa662ad6))
+
+
+
 ## [11.0.1](https://github.com/NG-NEST/ng-nest/compare/11.0.0...11.0.1) (2020-12-25)
 
 
