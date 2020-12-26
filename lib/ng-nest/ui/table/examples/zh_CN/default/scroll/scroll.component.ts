@@ -10,7 +10,7 @@ import { delay } from 'rxjs/operators';
   providers: [ScrollService]
 })
 export class ExScrollComponent {
-  qsize = 1000;
+  size = 1000;
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
