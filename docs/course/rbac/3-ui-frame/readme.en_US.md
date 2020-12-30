@@ -76,13 +76,13 @@ The following code has also been modified here:
 - Add the children property to the routing configuration in index.module.ts, and add the routing configuration for home and dashboard
 - Add the exit for the secondary route in content.component.html
 
-Let's add a little feature to switch between the home and dashboard pages by clicking on the link. Open the sider.component.html file and modify it as follows:
+Let's add a little feature to switch between the home and dashboard pages by clicking on the link. Open the sidebar.component.html file and modify it as follows:
 
-{{ __7\__ui:src/layout/index/sider/sider.component.html:false:false }}
+{{ __7\__ui:src/layout/index/sidebar/sidebar.component.html:false:false }}
 
 You'll then get the following interface, and you'll be able to switch content with a link.
 
-{{ __8\__gif:sider.gif:false:false }}
+{{ __8\__gif:sidebar.gif:false:false }}
 
 ## Function optimization
 

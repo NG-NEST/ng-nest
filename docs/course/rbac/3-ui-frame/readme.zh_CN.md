@@ -51,7 +51,7 @@ label: '3. 前端框架页'
 - content 内容页
 - crumb 面包屑
 - header 头部 logo
-- sider 导航菜单
+- sidebar 导航菜单
 - tabs 标签页
 
 新增修改文件如下：
@@ -76,13 +76,13 @@ label: '3. 前端框架页'
 - 在 index.module.ts 中的路由配置中添加 children 属性，并添加 home 和 dashboard 的路由配置
 - 在 content.component.html 中添加二级路由的出口
 
-接下来我们再加个小功能，通过点击链接切换 home 和 dashboard 页面。打开 sider.component.html 文件修改如下：
+接下来我们再加个小功能，通过点击链接切换 home 和 dashboard 页面。打开 sidebar.component.html 文件修改如下：
 
-{{ __7\__ui:src/layout/index/sider/sider.component.html:false:false }}
+{{ __7\__ui:src/layout/index/sidebar/sidebar.component.html:false:false }}
 
 然后你会得到如下的界面，并且通过链接可以切换 content 中的内容。
 
-{{ __8\__gif:sider.gif:false:false }}
+{{ __8\__gif:sidebar.gif:false:false }}
 
 ## 功能优化
 
