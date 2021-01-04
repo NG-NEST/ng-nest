@@ -92,4 +92,4 @@ The function of this section has been basically realized, and the configuration 
 
 ## Next step
 
-In this section, we set up the basic framework of the front end and realized the route jump configuration. Let's add a variety of features to this basic framework: Sidebar Navigation.
+In this section, we set up the basic framework of the front end and realized the route jump configuration. Let's add a variety of features to this basic framework: Navigation.

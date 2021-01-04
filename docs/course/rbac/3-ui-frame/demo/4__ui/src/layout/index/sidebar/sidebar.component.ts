@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-sider',
-  templateUrl: './sider.component.html',
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class SiderComponent implements OnInit {
+export class SidebarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
