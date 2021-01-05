@@ -19,11 +19,11 @@ label: '4. 导航栏'
 
 ## 添加 x-menu 组件
 
-打开 ui/src/layout/sidebar/sidebar.component.html 文件，修改如下：
+打开 ui/src/layout/index/sidebar/sidebar.component.html 文件，修改如下：
 
 {{ __1\__ui:src/layout/index/sidebar/sidebar.component.html:false:false }}
 
-对应的 ui/src/layout/sidebar/sidebar.component.ts 中 data 配置为可订阅的对象（菜单可从服务中获取）
+对应的 ui/src/layout/index/sidebar/sidebar.component.ts 中 data 配置为可订阅的对象（菜单可从服务中获取）
 
 {{ __2\__ui:src/layout/index/sidebar/sidebar.component.ts:false:false }}
 
@@ -35,4 +35,3 @@ label: '4. 导航栏'
 - menus 菜单管理
 
 {{ __3\__ui:src/environments/routes.ts:true:true }}
-
