@@ -38,6 +38,15 @@ export const menus: Menu[] = [
     "label": "3. UI Framework Page"
   },
   {
+    "id": "1-0-3",
+    "pid": "1-0",
+    "name": "4-ui-navigation",
+    "router": "docs/en_US/course/rbac/4-ui-navigation",
+    "lang": "en_US",
+    "order": 4,
+    "label": "4. UI Navigation"
+  },
+  {
     "id": "4-5",
     "pid": "4",
     "name": "introduction",
@@ -787,6 +796,15 @@ export const menus: Menu[] = [
     "lang": "zh_CN",
     "order": 3,
     "label": "3. 前端框架页"
+  },
+  {
+    "id": "1-0-3",
+    "pid": "1-0",
+    "name": "4-ui-navigation",
+    "router": "docs/zh_CN/course/rbac/4-ui-navigation",
+    "lang": "zh_CN",
+    "order": 4,
+    "label": "4. 导航栏"
   },
   {
     "id": "4-5",

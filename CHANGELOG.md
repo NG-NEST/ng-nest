@@ -1,4 +1,8 @@
-## [11.0.2](https://github.com/NG-NEST/ng-nest/compare/11.0.1...11.0.2) (2020-12-25)
+## [11.0.3](https://github.com/NG-NEST/ng-nest/compare/11.0.2...11.0.3) (2021-01-05)
+
+
+
+## [11.0.2](https://github.com/NG-NEST/ng-nest/compare/11.0.1...11.0.2) (2020-12-26)
 
 
 ### Bug Fixes
