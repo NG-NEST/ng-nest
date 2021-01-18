@@ -38,9 +38,6 @@ export class TableServiceTest extends XRepositoryAbstract {
     return new Observable((x) => {
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query?.filter as XFilter[]);
-      if (query?.group) {
-        console.log(data, index, size, query);
-      }
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }

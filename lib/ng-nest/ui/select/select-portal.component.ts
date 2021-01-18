@@ -57,7 +57,6 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
           this.closePortal();
         }))
     );
-    console.log(this.value);
   }
 
   ngOnDestroy(): void {

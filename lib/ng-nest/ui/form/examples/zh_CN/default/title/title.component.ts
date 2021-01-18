@@ -14,9 +14,7 @@ export class ExTitleComponent {
       id: 'account',
       label: '账号',
       clearable: true,
-      clearClick: (value: any) => {
-        console.log(value);
-      },
+      clearClick: (value: any) => {},
       required: true
     },
     { control: 'input', id: 'password', label: '密码', type: 'password', required: true },

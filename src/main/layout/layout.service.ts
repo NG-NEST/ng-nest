@@ -55,10 +55,7 @@ export class LayoutService {
 
   constructor(private router: Router, private config: ConfigService, private location: Location, private title: Title) {
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
-      // this.shrink = x.url.indexOf(`/${environment.layout}/docs`) == 0;
-      // console.log(this.shrink);
       const route = this.getCurrentMenu(x.url);
-
       if (route) this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
     });
     const route = this.getCurrentMenu(this.location.path());

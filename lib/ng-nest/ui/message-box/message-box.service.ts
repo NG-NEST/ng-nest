@@ -71,6 +71,5 @@ export class XMessageBoxService {
   private setLocal() {
     const messageBoxLocale = this.i18n.getLocale().messageBox;
     this.default = { ...this.default, ...messageBoxLocale };
-    console.log(messageBoxLocale, this.default);
   }
 }

@@ -8,7 +8,5 @@ import { XAddSeconds } from '@ng-nest/ui/core';
 })
 export class ExCustomComponent {
   deadline = XAddSeconds(new Date(), 10).getTime();
-  close() {
-    console.log('关闭事件');
-  }
+  close() {}
 }

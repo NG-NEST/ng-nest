@@ -11,7 +11,5 @@ export class ExCustomComponent {
   data: XTransferNode[] = Array.from({ length: 15 }).map((x, i) => {
     return { id: i + 1, label: '用户 ' + (i + 1), icon: 'fto-user', disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
   });
-  change(data: any[]) {
-    console.log(data);
-  }
+  change(data: any[]) {}
 }
