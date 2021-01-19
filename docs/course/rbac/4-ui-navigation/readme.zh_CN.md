@@ -31,7 +31,7 @@ label: '4. 导航栏'
 
 对应创建一个 `index.service.ts` 服务来定义菜单数据
 
-{{ __3\__ui:src/layout/index/index.service.ts:false:false }}
+{{ __3\__ui:src/layout/index/index.service.ts:false:true }}
 
 此处还配置了系统管理中的模块路由，对应在 `ui/src/main/system` 下面建立对应的模块文件：
 
@@ -50,3 +50,29 @@ label: '4. 导航栏'
 
 打开 `ui/src/layout/index/tabs/tabs.component.html` 文件，修改如下：
 
+{{ __6\__ui:src/layout/index/tabs/tabs.component.html:false:false }}
+
+此处使用 `slider` 组件提供的模板自定义功能来显示菜单内容。对应的 `tabs.component.ts` 文件修改如下：
+
+{{ __7\__ui:src/layout/index/tabs/tabs.component.ts:false:false }}
+
+- `activatedIndex` 对应当前激活的标签页
+- `showClose` 显示标签页的关系按钮
+- `indexChange()` 标签页变化事件，点击标签页的时候跳转路由
+- `close()` 关闭标签页的事件
+
+对应的 IndexService 服务修改如下：
+
+{{ __8\__ui:src/layout/index/index.service.ts:false:true }}
+
+- 添加 `tabs` 来存储标签页数据
+- 添加 `session` 来存储当前页面、子页面和参数数据
+- 在构造函数中使用 `Router` 提供的 `events` 事件来监听路由跳转结束事件，用来设置标签页数据
+- `setTabs()` 根据当前地址栏数据对比 `menus` 数据来构建标签页数据
+- `getUrl()` 地址栏字符串数据转化成对象
+
+此处修改的还有样式文件，以及对应的模块引入文件：
+
+{{ __9\__ui:src/layout/index/index.component.scss.ts:true:true }}
+
+{{ __10\__gif:tabs.gif:false:false }}
