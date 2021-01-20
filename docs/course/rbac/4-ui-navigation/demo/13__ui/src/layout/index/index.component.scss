@@ -1,0 +1,127 @@
+@import '~@ng-nest/ui/style/params/primary';
+
+$sidebar-width: 15rem;
+$sidebar-background-color: #f5f5f5;
+$header-height: 3.25rem;
+$tabs-height: 2.25rem;
+$tabs-width: calc(100% - #{$sidebar-width});
+$tabs-background-color: #f5f5f5;
+$border: 1px solid #dddddd;
+$transition-duration: 0.3s;
+
+app-index {
+  > app-sidebar {
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    height: 100%;
+    width: $sidebar-width;
+    background-color: $sidebar-background-color;
+    border-right: $border;
+    > app-header {
+      height: $header-height;
+      display: block;
+    }
+    > x-menu {
+      height: calc(100% - #{$header-height});
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+      .x-menu-column {
+        width: initial;
+      }
+      .x-menu-nodes .x-menu-node {
+        border-right: none;
+      }
+    }
+  }
+  > app-tabs {
+    position: fixed;
+    top: 0;
+    left: $sidebar-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+    background-color: $tabs-background-color;
+    .x-slider-scroll > ul > li x-link.x-size-big {
+      padding: 0;
+    }
+    .x-slider-scroll > ul > li.x-slider-highlight {
+      border: none;
+      border-radius: 0;
+    }
+    .tab {
+      min-width: 5.625rem;
+      max-width: 11.25rem;
+      padding: 0 1.875rem 0 0.875rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      box-sizing: border-box;
+      user-select: none;
+      position: relative;
+      transition: background-color $transition-duration;
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-left: 0.375rem;
+        flex: 1;
+      }
+      .close {
+        margin-right: 0.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        .x-icon {
+          font-weight: bold;
+          opacity: 0;
+          transition: color $transition-duration;
+          padding: 0.125rem;
+        }
+      }
+      &.active {
+        background-color: $--x-background;
+        span {
+          color: $--x-text;
+        }
+      }
+      &.active,
+      &:hover {
+        .close {
+          .x-icon {
+            color: $--x-text-100;
+            opacity: 1;
+            &:hover {
+              color: $--x-text;
+            }
+          }
+        }
+      }
+    }
+  }
+  > app-crumb {
+    position: fixed;
+    top: $tabs-height;
+    left: $sidebar-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+    display: flex;
+    align-items: center;
+    .x-crumb {
+      margin-left: 1rem;
+    }
+  }
+  > app-content {
+    padding-top: $tabs-height * 2;
+    padding-left: $sidebar-width;
+    display: block;
+    height: 100%;
+  }
+}

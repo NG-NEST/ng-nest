@@ -61,7 +61,7 @@ label: '4. 导航栏'
 - `indexChange()` 标签页变化事件，点击标签页的时候跳转路由
 - `close()` 关闭标签页的事件
 
-对应的 IndexService 服务修改如下：
+对应的 `index.service.ts` 服务修改如下：
 
 {{ __8\__ui:src/layout/index/index.service.ts:false:true }}
 
@@ -76,3 +76,19 @@ label: '4. 导航栏'
 {{ __9\__ui:src/layout/index/index.component.scss.ts:true:true }}
 
 {{ __10\__gif:tabs.gif:false:false }}
+
+## 添加面包屑导航
+
+面包屑导航的数据一样使用监听路由的方式创建，打开 `index.service.ts` 文件：
+
+{{ __11\__ui:src/layout/index/index.service.ts:false:true }}
+
+对应面包屑导航中添加 `x-crumb` 组件：
+
+{{ __12\__ui:src/layout/index/tabs/tabs.component.html:true:true }}
+
+此处修改的还有样式文件，以及对应的模块引入文件：
+
+{{ __13\__ui:src/layout/index/index.component.scss.ts:true:true }}
+
+{{ __14\__gif:crumb.gif:false:false }}
