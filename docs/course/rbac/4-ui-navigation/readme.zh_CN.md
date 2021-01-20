@@ -21,13 +21,13 @@ label: '4. 导航栏'
 
 此处使用菜单 <a href="https://ngnest.com/index/docs/zh_CN/ui/components/menu" target="_blank">x-menu</a> 组件来创建侧边导航，布局方式使用 column。
 
-打开 `ui/src/layout/index/sidebar/sidebar.component.html` 文件，修改如下：
+打开 `sidebar.component.html` 文件，修改如下：
 
-{{ __1\__ui:src/layout/index/sidebar/sidebar.component.html:false:false }}
+{{ __1\__ui:src/layout/index/sidebar/sidebar.component.html:false:true }}
 
-对应的 `ui/src/layout/index/sidebar/sidebar.component.ts` 中 `data` 配置为可订阅的对象
+对应的 `sidebar.component.ts` 中 `data` 配置为可订阅的对象
 
-{{ __2\__ui:src/layout/index/sidebar/sidebar.component.ts:false:false }}
+{{ __2\__ui:src/layout/index/sidebar/sidebar.component.ts:false:true }}
 
 对应创建一个 `index.service.ts` 服务来定义菜单数据
 
@@ -48,13 +48,13 @@ label: '4. 导航栏'
 
 顶部的标签页 `tabs` 可以用监听路由的方式创建，此处用滑动菜单 <a href="https://ngnest.com/index/docs/zh_CN/ui/components/menu" target="_blank">x-slider</a> 组件来创建。
 
-打开 `ui/src/layout/index/tabs/tabs.component.html` 文件，修改如下：
+打开 `tabs.component.html` 文件，修改如下：
 
-{{ __6\__ui:src/layout/index/tabs/tabs.component.html:false:false }}
+{{ __6\__ui:src/layout/index/tabs/tabs.component.html:false:true }}
 
 此处使用 `slider` 组件提供的模板自定义功能来显示菜单内容。对应的 `tabs.component.ts` 文件修改如下：
 
-{{ __7\__ui:src/layout/index/tabs/tabs.component.ts:false:false }}
+{{ __7\__ui:src/layout/index/tabs/tabs.component.ts:false:true }}
 
 - `activatedIndex` 对应当前激活的标签页
 - `showClose` 显示标签页的关系按钮
@@ -73,7 +73,7 @@ label: '4. 导航栏'
 
 此处修改的还有样式文件，以及对应的模块引入文件：
 
-{{ __9\__ui:src/layout/index/index.component.scss.ts:true:true }}
+{{ __9\__ui:src/layout/index/index.component.scss:true:true }}
 
 {{ __10\__gif:tabs.gif:false:false }}
 
@@ -85,10 +85,14 @@ label: '4. 导航栏'
 
 对应面包屑导航中添加 `x-crumb` 组件：
 
-{{ __12\__ui:src/layout/index/tabs/tabs.component.html:true:true }}
+{{ __12\__ui:src/layout/index/crumb/crumb.component.html:true:true }}
 
 此处修改的还有样式文件，以及对应的模块引入文件：
 
-{{ __13\__ui:src/layout/index/index.component.scss.ts:true:true }}
+{{ __13\__ui:src/layout/index/index.component.scss:true:true }}
 
 {{ __14\__gif:crumb.gif:false:false }}
+
+## 下一步
+
+在本节我们搭建起了前端页面的导航方式，接下来我们来进一步添加具体的功能：用户管理
