@@ -33,7 +33,9 @@
       *ngFor="let control of controls; trackBy: trackByControl"
       [hidden]="control.hidden"
     >
-      <x-control [option]="control"></x-control>
+      <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
+        <x-control [option]="control"></x-control>
+      </ng-container>      
     </x-col>
   </x-row>
 </ng-template>
