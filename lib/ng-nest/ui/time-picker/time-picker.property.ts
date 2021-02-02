@@ -70,8 +70,15 @@ export interface XTimePickerOption extends XFormOption {
 export type XTimePickerType = 'time' | 'hour' | 'minute';
 
 /**
- * TimePicker-Portal
+ * TimePickerPortal
  * @selector x-time-picker-portal
  * @decorator component
  */
 export const XTimePickerPortalPrefix = 'x-time-picker-portal';
+
+/**
+ * TimePickerFrame
+ * @selector x-time-picker-frame
+ * @decorator component
+ */
+export const XTimePickerFramePrefix = 'x-time-picker-frame';

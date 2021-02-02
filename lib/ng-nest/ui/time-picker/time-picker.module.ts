@@ -9,10 +9,11 @@ import { XListModule } from '@ng-nest/ui/list';
 import { XTimePickerComponent } from './time-picker.component';
 import { XTimePickerPortalComponent } from './time-picker-portal.component';
 import { XTimePickerProperty } from './time-picker.property';
+import { XTimePickerFrameComponent } from './time-picker-frame.component';
 
 @NgModule({
-  declarations: [XTimePickerComponent, XTimePickerPortalComponent, XTimePickerProperty],
-  exports: [XTimePickerComponent, XTimePickerPortalComponent],
+  declarations: [XTimePickerComponent, XTimePickerPortalComponent, XTimePickerFrameComponent, XTimePickerProperty],
+  exports: [XTimePickerComponent, XTimePickerPortalComponent, XTimePickerFrameComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XButtonModule, XIconModule]
 })
 export class XTimePickerModule {}
