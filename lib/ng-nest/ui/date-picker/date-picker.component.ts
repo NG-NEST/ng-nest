@@ -15,7 +15,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -47,6 +47,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     } else if (XIsNumber(value)) {
       this.modelType = 'number';
       this.numberValue = value;
+    } else if (XIsString(value)) {
+      this.modelType = 'string';
+      const valueTime = new Date(value).getTime();
+      this.numberValue = !isNaN(valueTime) ? valueTime : '';
     } else if (XIsEmpty(value)) {
       this.numberValue = '';
     }
@@ -111,7 +115,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.format = 'yyyy-MM-dd';
     } else if (this.type === 'year') {
       this.format = 'yyyy';
-    } else if ((this.type = 'month')) {
+    } else if (this.type === 'month') {
       this.format = 'yyyy-MM';
     }
   }
