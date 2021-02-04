@@ -67,6 +67,7 @@ export interface XI18nCalendar {
 }
 
 export interface XI18nDatePicker {
+  sure?: string;
   month?: string;
   year?: string;
   january?: string;

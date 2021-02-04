@@ -41,6 +41,7 @@ export default {
     december: '12月'
   },
   datePicker: {
+    sure: '確認',
     month: '月',
     year: '年',
     january: '1月',

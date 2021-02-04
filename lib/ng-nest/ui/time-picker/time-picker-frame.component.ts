@@ -66,7 +66,6 @@ export class XTimePickerFrameComponent implements OnInit, OnDestroy {
     } else {
       this.model = new Date(0, 0, 0, this.now.getHours(), this.now.getMinutes(), this.now.getSeconds());
     }
-    this.type = this.type;
     this.setTime(this.model);
     this.cdr.detectChanges();
   }

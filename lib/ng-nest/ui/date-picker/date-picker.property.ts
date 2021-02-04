@@ -77,7 +77,7 @@ export interface XDatePickerOption extends XFormOption {
  * @zh_CN 日期选择类型
  * @en_US Date selection type
  */
-export type XDatePickerType = 'date' | 'month' | 'year';
+export type XDatePickerType = 'date' | 'month' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
 
 /**
  * @zh_CN 日期数据类型

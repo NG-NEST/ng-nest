@@ -51,7 +51,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   icon: string = 'fto-clock';
   box: DOMRect;
   protalHeight: number;
-  maxNodes: number = 6;
+  maxNodes: number = 8;
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();

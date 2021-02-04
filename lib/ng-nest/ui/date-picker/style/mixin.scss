@@ -84,11 +84,17 @@
   display: flex;
   flex-direction: column;
   font-size: $--x-font-size-small;
-  x-button .x-button {
-    color: $--x-text;
-    &:hover {
-      color: $--x-primary;
-    }
+  &.date-time {
+    width: 27rem;
+  }
+  &.date-hour {
+    width: 19.75rem;
+  }
+  &.date-minute {
+    width: 23.375rem;
+  }
+  &-content {
+    display: flex;
   }
   &-header {
     display: flex;
@@ -103,6 +109,28 @@
   }
   &-body {
     padding: 0.4rem;
+  }
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: $--x-date-picker-border;
+    padding: 0.5rem;
+  }
+  &-date {
+    flex: 1;
+  }
+  &-time {
+    display: flex;
+    flex-direction: column;
+    &-label {
+      padding: 0.4rem;
+      text-align: center;
+      border-left: $--x-date-picker-border;
+    }
+    .x-time-picker-frame {
+      border-width: $--x-border-width 0 0 $--x-border-width;
+      box-shadow: none;
+    }
   }
 }
 
