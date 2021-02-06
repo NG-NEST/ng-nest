@@ -8,12 +8,13 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
 import { XListNode } from '@ng-nest/ui/list';
-import { reqAnimFrame, XIsEmpty } from '@ng-nest/ui/core';
+import { reqAnimFrame, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTimePickerFramePrefix}`,
@@ -22,7 +23,7 @@ import { reqAnimFrame, XIsEmpty } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTimePickerFrameComponent implements OnInit, OnDestroy {
+export class XTimePickerFrameComponent {
   @Input() type: XTimePickerType = 'time';
   @Input() value: number;
   @Output() nodeEmit = new EventEmitter<Date>();
@@ -52,11 +53,11 @@ export class XTimePickerFrameComponent implements OnInit, OnDestroy {
       id: i
     };
   });
-  ngOnInit(): void {}
-  ngOnDestroy(): void {}
-  ngAfterViewInit() {
-    this.init();
-    this.setScrollTop();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (XIsChange(changes.value)) {
+      this.init();
+      this.setScrollTop();
+    }
   }
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -103,6 +104,7 @@ export class XTimePickerFrameComponent implements OnInit, OnDestroy {
     this.model.setHours(this.hour);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();
+    console.log(this.hourRef);
     this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 

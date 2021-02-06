@@ -125,7 +125,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
       this.model = date;
       this.nodeEmit(date);
     } else {
-      this.type = 'date';
+      this.type = this._type;
     }
     this.cdr.detectChanges();
   }
