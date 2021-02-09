@@ -136,6 +136,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Parameter control request change event
    */
   @Output() manualChange = new EventEmitter<boolean>();
+  /**
+   * @zh_CN 单元格合并规则
+   * @en_US Cell merge rules
+   */
+  @Input() cellMerge: XTableCellMerge;
 }
 
 /**
@@ -208,6 +213,11 @@ export interface XTableOption extends XPaginationOption {
    * @en_US Document height percentage, used by pop-up window percentage height
    */
   docPercent?: XNumber;
+  /**
+   * @zh_CN 单元格合并规则
+   * @en_US Cell merge rules
+   */
+  cellMerge?: XTableCellMerge;
 }
 
 /**
@@ -275,6 +285,55 @@ export interface XTableColumn extends XIdentityProperty {
 }
 
 /**
+ * @zh_CN 单元格合并规则
+ * @en_US Cell merge rules
+ */
+export interface XTableCellMerge {
+  /**
+   * @zh_CN grid 布局下定义列宽度
+   * @en_US Define column width under grid layout
+   */
+  gridTemplateColumns?: string;
+  /**
+   * @zh_CN 列单元格合并规则
+   * @en_US Column cell merge rules
+   */
+  thead?: XTableCell[];
+  /**
+   * @zh_CN 行单元格合并规则
+   * @en_US Row cell merge rules
+   */
+  tbody?: XTableCell[];
+}
+
+/**
+ * @zh_CN 单元格合并配置
+ * @en_US Cell merge rules
+ */
+export interface XTableCell {
+  /**
+   * @zh_CN 使用 grid 布局来合并单元格
+   * @en_US Use grid layout to merge cells
+   */
+  gridArea?: string;
+  /**
+   * @zh_CN 名称
+   * @en_US Name
+   */
+  label?: string;
+  /**
+   * @zh_CN 宽度
+   * @en_US Width
+   */
+  width?: string;
+  /**
+   * @zh_CN 对应列的 id
+   * @en_US The id of the corresponding column
+   */
+  id?: string;
+}
+
+/**
  * @zh_CN 列类型
  * @en_US Column type
  */
@@ -323,6 +382,11 @@ export class XTableHeadProperty extends XProperty {
    * @en_US Horizontal scroll bar width
    */
   @Input() scrollXWidth: number | null;
+  /**
+   * @zh_CN 单元格合并规则
+   * @en_US Cell merge rules
+   */
+  @Input() cellMerge: XTableCellMerge;
 }
 
 /**
@@ -412,6 +476,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Height and width of rolling area
    */
   @Input() scroll: { x: number; y: number };
+  /**
+   * @zh_CN 单元格合并规则
+   * @en_US Cell merge rules
+   */
+  @Input() cellMerge: XTableCellMerge;
 }
 
 /**

@@ -86,7 +86,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`hour minute second.`, () => {
+  describe(`hour minute second.`, () => {
     let fixture: ComponentFixture<TestXDatePickerHourMinuteSecondComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -303,17 +303,6 @@ class TestXDatePickerYearOrMonthComponent {
         <x-date-picker [(ngModel)]="model1" label="时" type="date-hour"></x-date-picker>
       </x-col>
     </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model2" label="年" type="year"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model2" label="月" type="month"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-date-picker label="方式" [(ngModel)]="model3"></x-date-picker>
   `,
   styles: [
     `

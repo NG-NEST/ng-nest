@@ -12,7 +12,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 
 @Component({
@@ -23,6 +23,7 @@ import { XTableComponent } from './table.component';
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort: XSort[] = [];
   sortStr = '';
+  theadStyle: { [property: string]: any } = {};
   @ViewChild('thead') thead: ElementRef;
   constructor(
     @Host() @Optional() public table: XTableComponent,
@@ -40,6 +41,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
+    this.setStyle();
   }
 
   ngAfterViewInit() {
@@ -48,6 +50,20 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   getSticky(column: XTableColumn) {
     return Number(column.left) >= 0;
+  }
+
+  setStyle() {
+    let height = this.rowHeight == 0 ? '' : this.rowHeight;
+    if (this.cellMerge?.thead) {
+      const spt = this.cellMerge.thead.map((x) => {
+        const gridAreaSpt = x.gridArea?.split('/');
+        return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
+      });
+      height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
+    }
+    this.theadStyle = {
+      height: `${height}px`
+    };
   }
 
   onSort(column: XTableColumn) {

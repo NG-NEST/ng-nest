@@ -1,4 +1,14 @@
-<thead #thead [style.height.px]="rowHeight == 0 ? '' : rowHeight">
+<thead #thead [ngStyle]="theadStyle" [style.height.px]="rowHeight == 0 ? '' : rowHeight">
+  <ng-container *ngIf="cellMerge; else columnsTpl">
+    <tr [style.gridTemplateColumns]="cellMerge.gridTemplateColumns">
+      <th *ngFor="let column of cellMerge.thead" [style.grid-area]="column.gridArea">
+        <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
+      </th>
+    </tr>
+  </ng-container>
+</thead>
+
+<ng-template #columnsTpl>
   <tr [style.height.px]="rowHeight == 0 ? '' : rowHeight" [style.padding-right.px]="scrollYWidth" [style.width.px]="scrollXWidth">
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
@@ -7,24 +17,28 @@
       [style.left.px]="column.left"
       [style.flex]="column.width ? 'none' : column.flex"
     >
-      <ng-container [ngSwitch]="column.type">
-        <ng-container *ngSwitchCase="'index'">
-          <a>{{ column.label }}</a>
-        </ng-container>
-        <ng-container *ngSwitchDefault
-          ><a [class.x-table-sort]="column.sort" (click)="onSort(column)">
-            <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
-              {{ column.label }}
-            </ng-container>
-            <x-icon
-              *ngIf="column.sort"
-              type="fto-bar-chart"
-              class="x-table-sort-icon"
-              [class.x-table-icon-up]="sortStr === column.id + ' desc'"
-              [class.x-table-icon-down]="sortStr === column.id + ' asc'"
-            ></x-icon> </a
-        ></ng-container>
-      </ng-container>
+      <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
     </th>
   </tr>
-</thead>
+</ng-template>
+
+<ng-template #columnTpl let-column="column">
+  <ng-container [ngSwitch]="column.type">
+    <ng-container *ngSwitchCase="'index'">
+      <a>{{ column.label }}</a>
+    </ng-container>
+    <ng-container *ngSwitchDefault
+      ><a [class.x-table-sort]="column.sort" (click)="onSort(column)">
+        <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
+          {{ column.label }}
+        </ng-container>
+        <x-icon
+          *ngIf="column.sort"
+          type="fto-bar-chart"
+          class="x-table-sort-icon"
+          [class.x-table-icon-up]="sortStr === column.id + ' desc'"
+          [class.x-table-icon-down]="sortStr === column.id + ' asc'"
+        ></x-icon> </a
+    ></ng-container>
+  </ng-container>
+</ng-template>
