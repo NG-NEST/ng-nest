@@ -137,10 +137,10 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Output() manualChange = new EventEmitter<boolean>();
   /**
-   * @zh_CN 单元格合并规则
-   * @en_US Cell merge rules
+   * @zh_CN 单元格配置
+   * @en_US Cell config
    */
-  @Input() cellMerge: XTableCellMerge;
+  @Input() cellConfig: XTableCellConfig;
 }
 
 /**
@@ -214,10 +214,10 @@ export interface XTableOption extends XPaginationOption {
    */
   docPercent?: XNumber;
   /**
-   * @zh_CN 单元格合并规则
-   * @en_US Cell merge rules
+   * @zh_CN 单元格配置
+   * @en_US Cell config
    */
-  cellMerge?: XTableCellMerge;
+  cellConfig?: XTableCellConfig;
 }
 
 /**
@@ -285,25 +285,37 @@ export interface XTableColumn extends XIdentityProperty {
 }
 
 /**
- * @zh_CN 单元格合并规则
- * @en_US Cell merge rules
+ * @zh_CN 单元格配置
+ * @en_US Cell config
  */
-export interface XTableCellMerge {
+export interface XTableCellConfig {
+  /**
+   * @zh_CN 列单元格配置
+   * @en_US Column cell config
+   */
+  thead?: XTableCellConfigRule;
+  /**
+   * @zh_CN 行单元格配置
+   * @en_US Row config
+   */
+  tbody?: XTableCellConfigRule;
+}
+
+/**
+ * @zh_CN 单元格配置规则
+ * @en_US Cell config rules
+ */
+export interface XTableCellConfigRule {
   /**
    * @zh_CN grid 布局下定义列宽度
    * @en_US Define column width under grid layout
    */
   gridTemplateColumns?: string;
   /**
-   * @zh_CN 列单元格合并规则
-   * @en_US Column cell merge rules
+   * @zh_CN 单元格配置
+   * @en_US Cell merge rules
    */
-  thead?: XTableCell[];
-  /**
-   * @zh_CN 行单元格合并规则
-   * @en_US Row cell merge rules
-   */
-  tbody?: XTableCell[];
+  cells?: XTableCell[];
 }
 
 /**
@@ -383,10 +395,10 @@ export class XTableHeadProperty extends XProperty {
    */
   @Input() scrollXWidth: number | null;
   /**
-   * @zh_CN 单元格合并规则
+   * @zh_CN 单元格配置
    * @en_US Cell merge rules
    */
-  @Input() cellMerge: XTableCellMerge;
+  @Input() cellConfig: XTableCellConfigRule;
 }
 
 /**
@@ -477,10 +489,10 @@ export class XTableBodyProperty extends XProperty {
    */
   @Input() scroll: { x: number; y: number };
   /**
-   * @zh_CN 单元格合并规则
-   * @en_US Cell merge rules
+   * @zh_CN 单元格配置规则
+   * @en_US Cell config rules
    */
-  @Input() cellMerge: XTableCellMerge;
+  @Input() cellConfig: XTableCellConfigRule;
 }
 
 /**

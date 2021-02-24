@@ -1,7 +1,7 @@
-<thead #thead [ngStyle]="theadStyle" [style.height.px]="rowHeight == 0 ? '' : rowHeight">
-  <ng-container *ngIf="cellMerge; else columnsTpl">
-    <tr [style.gridTemplateColumns]="cellMerge.gridTemplateColumns">
-      <th *ngFor="let column of cellMerge.thead" [style.grid-area]="column.gridArea">
+<thead #thead [ngStyle]="theadStyle">
+  <ng-container *ngIf="cellConfig; else columnsTpl">
+    <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
+      <th *ngFor="let column of cellConfig.cells" [style.grid-area]="column.gridArea">
         <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
       </th>
     </tr>

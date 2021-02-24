@@ -10,7 +10,7 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
-import { XTablePrefix, XTableProperty, XTableColumn, XTableRow, XTableCell } from './table.property';
+import { XTablePrefix, XTableProperty, XTableColumn, XTableRow, XTableCell, XTableCellConfigRule } from './table.property';
 import { XIsChange, XIsEmpty, XResultList, XNumber, XSort, XConfigService } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
@@ -123,25 +123,32 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   setMerge() {
-    if (!this.cellMerge) return;
-    if (!this.cellMerge.gridTemplateColumns) {
-      this.cellMerge.gridTemplateColumns = `${this.columns
-        .map((x) => {
-          if (x.width) return x.width;
-          if (x.flex) return `${x.flex}fr`;
-          return '1fr';
-        })
-        .join(' ')}`;
-    }
-    if (this.cellMerge.thead) {
-      this.cellMerge.thead = this.cellMerge.thead.map((y) => {
+    if (!this.cellConfig) return;
+    const setRule = (rule?: XTableCellConfigRule) => {
+      if (!rule) return;
+      let gridTemplateColumns = '',
+        cells = [];
+      if (!rule.gridTemplateColumns) {
+        gridTemplateColumns = `${this.columns
+          .map((x) => {
+            if (x.width) return x.width;
+            if (x.flex) return `${x.flex}fr`;
+            return '1fr';
+          })
+          .join(' ')}`;
+      }
+      if (!rule.cells) return;
+      cells = rule.cells.map((y) => {
         const col = this.columns.find((z) => z.id === y.id);
         if (col) {
           return { ...col, ...y } as XTableCell;
         }
         return y;
       });
-    }
+      return { gridTemplateColumns, cells };
+    };
+    this.cellConfig.thead = setRule(this.cellConfig.thead);
+    this.cellConfig.tbody = setRule(this.cellConfig.tbody);
   }
 
   change(index: number) {

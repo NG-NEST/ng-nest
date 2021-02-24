@@ -36,7 +36,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.columns, simples.scrollYWidth, simples.scrollXWidth) && this.cdr.detectChanges();
+    XIsChange(simples.columns, simples.scrollYWidth, simples.scrollXWidth, simples.cellConfig) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
@@ -54,8 +54,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   setStyle() {
     let height = this.rowHeight == 0 ? '' : this.rowHeight;
-    if (this.cellMerge?.thead) {
-      const spt = this.cellMerge.thead.map((x) => {
+    if (this.cellConfig && this.cellConfig.cells) {
+      const spt = this.cellConfig.cells.map((x) => {
         const gridAreaSpt = x.gridArea?.split('/');
         return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
       });

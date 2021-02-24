@@ -174,11 +174,16 @@
       }
     }
   }
-  &-cell-merge {
+  &-cell-config {
     > thead tr,
     > tbody tr {
       display: grid;
       grid-auto-flow: row;
+      height: 100%;
+    }
+    > thead > tr > th,
+    > tbody tr > td {
+      padding-left: $--x-font-size;
     }
   }
 }

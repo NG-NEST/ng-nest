@@ -6,7 +6,7 @@
   [class.x-table-scroll-top]="getScrollTop"
   [class.x-table-bordered]="bordered"
   [class.x-table-td-adaption-height]="rowHeight == 0"
-  [class.x-table-cell-merge]="cellMerge"
+  [class.x-table-cell-config]="cellConfig"
 >
   <x-table-head
     [columns]="columns"
@@ -14,7 +14,7 @@
     [columnTpl]="headColumnTpl"
     [scrollYWidth]="scrollYWidth"
     [scrollXWidth]="scrollXWidth"
-    [cellMerge]="cellMerge"
+    [cellConfig]="cellConfig?.thead"
   ></x-table-head>
   <x-table-body
     [data]="tableData"
@@ -30,7 +30,7 @@
     [adaptionHeight]="adaptionHeight"
     [docPercent]="docPercent"
     [scroll]="scroll"
-    [cellMerge]="cellMerge"
+    [cellConfig]="cellConfig?.tbody"
     [(activatedRow)]="activatedRow"
     (activatedRowChange)="activatedRowChange.emit($event)"
   ></x-table-body>

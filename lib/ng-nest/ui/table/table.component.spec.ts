@@ -5,7 +5,7 @@ import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular
 import { By } from '@angular/platform-browser';
 import { XTableModule } from '@ng-nest/ui/table';
 import { FormsModule } from '@angular/forms';
-import { XTablePrefix, XTableColumn, XTableCellMerge } from './table.property';
+import { XTablePrefix, XTableColumn, XTableCellConfig } from './table.property';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
 import { map as rxjsMap, delay } from 'rxjs/operators';
@@ -503,7 +503,7 @@ class TestXTableFunctionComponent {
 @Component({
   template: `
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [cellMerge]="cellMerge"> </x-table>
+      <x-table [columns]="columns" [data]="data" [cellConfig]="cellConfig"> </x-table>
     </div>
   `,
   styles: [
@@ -541,16 +541,28 @@ class TestXTableMergeColumnComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  cellMerge: XTableCellMerge = {
-    thead: [
-      { gridArea: '1 / 1 / 3 / 2', id: 'index' },
-      { gridArea: '1 / 2 / 2 / 5', label: '详细信息' },
-      { gridArea: '2 / 2 / 3 / 3', id: 'name' },
-      { gridArea: '2 / 3 / 3 / 4', id: 'position' },
-      { gridArea: '2 / 4 / 3 / 5', id: 'email' },
-      { gridArea: '1 / 5 / 3 / 6', id: 'phone' },
-      { gridArea: '1 / 6 / 3 / 7', id: 'organization' }
-    ]
+  cellConfig: XTableCellConfig = {
+    thead: {
+      cells: [
+        { gridArea: '1 / 1 / 3 / 2', id: 'index' },
+        { gridArea: '1 / 2 / 2 / 5', label: '详细信息' },
+        { gridArea: '2 / 2 / 3 / 3', id: 'name' },
+        { gridArea: '2 / 3 / 3 / 4', id: 'position' },
+        { gridArea: '2 / 4 / 3 / 5', id: 'email' },
+        { gridArea: '1 / 5 / 3 / 6', id: 'phone' },
+        { gridArea: '1 / 6 / 3 / 7', id: 'organization' }
+      ]
+    },
+    tbody: {
+      cells: [
+        { gridArea: '1 / 1', id: 'index' },
+        { gridArea: '1 / 2', id: 'name' },
+        { gridArea: '1 / 3', id: 'position' },
+        { gridArea: '1 / 4', id: 'email' },
+        { gridArea: '1 / 5', id: 'phone' },
+        { gridArea: '1 / 6', id: 'organization' }
+      ]
+    }
   };
 
   constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
