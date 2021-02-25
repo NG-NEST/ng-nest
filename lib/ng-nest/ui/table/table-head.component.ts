@@ -5,7 +5,6 @@ import {
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
-  ChangeDetectionStrategy,
   Optional,
   Host,
   SimpleChanges,

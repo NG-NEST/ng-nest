@@ -1,7 +1,13 @@
 <tbody #tbody>
   <ng-container *ngIf="cellConfig; else virtualScrollTpl">
     <tr *ngFor="let row of data; index as i; trackBy: trackByItem" [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
-      <td *ngFor="let column of cellConfig.cells; index as j" [style.grid-area]="column.gridArea">
+      <td
+        *ngFor="let column of cellConfig.cells; index as j"
+        [title]="row[column.id] ? row[column.id] : ''"
+        [class.x-table-sticky]="table.getSticky(column)"
+        [style.left.px]="column.left"
+        [style.grid-area]="column.gridArea"
+      >
         <ng-container *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-container>
       </td>
     </tr>
@@ -65,7 +71,7 @@
     </ng-container>
     <ng-container *ngSwitchDefault>
       <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row }">
-        <div [innerHTML]="row[column.id]"></div>
+        <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
       </ng-container>
     </ng-container>
   </ng-container>

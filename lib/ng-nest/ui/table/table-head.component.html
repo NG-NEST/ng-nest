@@ -1,7 +1,13 @@
 <thead #thead [ngStyle]="theadStyle">
   <ng-container *ngIf="cellConfig; else columnsTpl">
     <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
-      <th *ngFor="let column of cellConfig.cells" [style.grid-area]="column.gridArea">
+      <th
+        *ngFor="let column of cellConfig.cells"
+        [class.x-table-sticky]="getSticky(column)"
+        [style.grid-area]="column.gridArea"
+        [style.left.px]="column.left"
+        [title]="column?.label"
+      >
         <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
       </th>
     </tr>
@@ -28,7 +34,7 @@
       <a>{{ column.label }}</a>
     </ng-container>
     <ng-container *ngSwitchDefault
-      ><a [class.x-table-sort]="column.sort" (click)="onSort(column)">
+      ><a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
         <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
           {{ column.label }}
         </ng-container>

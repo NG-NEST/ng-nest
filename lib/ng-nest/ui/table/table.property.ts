@@ -278,6 +278,11 @@ export interface XTableColumn extends XIdentityProperty {
    */
   rowChecked?: boolean;
   /**
+   * @zh_CN 文字对齐方式
+   * @en_US Text alignment
+   */
+  textAlign?: 'left' | 'center' | 'right';
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
@@ -339,10 +344,20 @@ export interface XTableCell {
    */
   width?: string;
   /**
+   * @zh_CN 固定列，距离左边的距离
+   * @en_US Fixed column, distance from left
+   */
+  left?: number;
+  /**
    * @zh_CN 对应列的 id
    * @en_US The id of the corresponding column
    */
   id?: string;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
+   */
+  [property: string]: any;
 }
 
 /**

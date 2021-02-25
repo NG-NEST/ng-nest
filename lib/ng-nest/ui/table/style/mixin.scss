@@ -183,7 +183,11 @@
     }
     > thead > tr > th,
     > tbody tr > td {
+      border-right: $--x-border-base;
       padding-left: $--x-font-size;
+      &:last-child {
+        border-right: none;
+      }
     }
   }
 }

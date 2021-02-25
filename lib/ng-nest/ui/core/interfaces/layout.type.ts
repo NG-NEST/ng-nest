@@ -52,6 +52,11 @@ export type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
 export type XJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
 /**
+ * flex 布局下的子元素水平排列方式
+ */
+export type XJustifyContent = 'flex-start' | 'flex-end' | 'center' | 'space-around' | 'space-between';
+
+/**
  * flex 布局下的子元素垂直排列方式
  */
 export type XAlign = 'start' | 'center' | 'end';
