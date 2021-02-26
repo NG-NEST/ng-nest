@@ -48,7 +48,7 @@ export class XUploadComponent extends XUploadProperty {
 
   change(event: Event) {
     let input = event.target as HTMLInputElement;
-    if (typeof input === 'undefined') return;
+    if (typeof input === 'undefined' || input.files?.length === 0) return;
     let files: XUploadNode[] = [];
     for (let i = 0; i < (input.files as FileList).length; i++) {
       let file: XUploadNode = (input.files as FileList).item(i) as XUploadNode;
@@ -58,11 +58,13 @@ export class XUploadComponent extends XUploadProperty {
     if (files.length > 0) this.showUpload = true;
     this.files = files;
     this.uploading();
+    input.value = '';
     this.cdr.detectChanges();
   }
 
   remove(file: XUploadNode, index: number) {
     this.files.splice(index, 1);
+    if (this.files.length === 0) this.file.nativeElement.value = '';
     this.showUpload = this.files.find((x) => x.state === 'ready') != null;
     this.removeClick.emit({ file: file, index: index });
     this.cdr.detectChanges();

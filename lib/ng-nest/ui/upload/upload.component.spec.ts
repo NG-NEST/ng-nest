@@ -18,7 +18,7 @@ describe(XUploadPrefix, () => {
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXUploadComponent>;
     let upload: DebugElement;
     let testComponent: TestXUploadComponent;
