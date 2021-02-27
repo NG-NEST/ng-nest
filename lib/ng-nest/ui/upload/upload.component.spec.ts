@@ -9,12 +9,11 @@ import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XUploadPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XUploadModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, FormsModule, XUploadModule, XButtonModule, XLayoutModule],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent]
     }).compileComponents();
   }));
@@ -54,7 +53,6 @@ describe(XUploadPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-upload action="http://localhost:3000/upload" multiple></x-upload>

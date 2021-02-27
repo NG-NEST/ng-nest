@@ -24,6 +24,11 @@ export class XUploadProperty extends XControlValueAccessor<any> {
    */
   @Input() accept: string;
   /**
+   * @zh_CN 文件显示类型
+   * @en_US File display type
+   */
+  @Input() type: XUploadType = 'list';
+  /**
    * @zh_CN 多文件上传
    * @en_US Multiple file upload
    */
@@ -62,3 +67,9 @@ export interface XUploadNode extends File {
  * @en_US File status
  */
 export type XStateType = 'ready' | 'uploading' | 'success' | 'error';
+
+/**
+ * @zh_CN 文件显示类型
+ * @en_US File display type
+ */
+export type XUploadType = 'list' | 'img';
