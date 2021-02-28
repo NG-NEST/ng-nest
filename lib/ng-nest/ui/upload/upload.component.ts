@@ -56,6 +56,7 @@ export class XUploadComponent extends XUploadProperty {
         this.locale = x;
         this.cdr.markForCheck();
       });
+    if (this.type === 'img') this.accept = 'image/*';
   }
 
   ngOnDestory() {
