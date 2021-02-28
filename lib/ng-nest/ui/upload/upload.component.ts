@@ -1,10 +1,21 @@
 import { HttpClient, HttpEventType, HttpRequest, HttpEvent } from '@angular/common/http';
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { XUploadPrefix, XUploadNode, XUploadProperty } from './upload.property';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
 import { XIsTemplateRef, XValueAccessor } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
+import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
+import { XUploadPortalComponent } from './upload-portal.component';
 
 @Component({
   selector: `${XUploadPrefix}`,
@@ -20,6 +31,7 @@ export class XUploadComponent extends XUploadProperty {
   showUpload = false;
   uploadNodes: XUploadNode[] = [];
   locale: XI18nUpload = {};
+  portal: XPortalOverlayRef<XUploadPortalComponent>;
 
   get getLabel() {
     return this.label || this.locale.uploadText;
@@ -33,6 +45,7 @@ export class XUploadComponent extends XUploadProperty {
 
   writeValue(value: XUploadNode[]) {
     this.value = value;
+    this.setFiles();
     this.cdr.detectChanges();
   }
 
@@ -41,6 +54,8 @@ export class XUploadComponent extends XUploadProperty {
     public elementRef: ElementRef,
     public http: HttpClient,
     public cdr: ChangeDetectorRef,
+    public portalService: XPortalService,
+    public viewContainerRef: ViewContainerRef,
     public i18n: XI18nService
   ) {
     super();
@@ -64,6 +79,14 @@ export class XUploadComponent extends XUploadProperty {
     this._unSubject.unsubscribe();
   }
 
+  setFiles() {
+    if (!Array.isArray(this.value)) return;
+    this.files = this.value.map((x) => {
+      if (!x.state) x.state = 'success';
+      return x;
+    });
+  }
+
   change(event: Event) {
     let input = event.target as HTMLInputElement;
     if (typeof input === 'undefined' || input.files?.length === 0) return;
@@ -75,6 +98,7 @@ export class XUploadComponent extends XUploadProperty {
     }
     if (files.length > 0) this.showUpload = true;
     this.files = files;
+    this.value = [];
     this.uploading();
     input.value = '';
     this.cdr.detectChanges();
@@ -113,6 +137,7 @@ export class XUploadComponent extends XUploadProperty {
               reader.readAsText(blob, 'utf-8');
               reader.onload = () => {
                 x.url = JSON.parse(reader.result as string)[0];
+                this.value.push(x);
                 this.cdr.detectChanges();
               };
             })
@@ -150,5 +175,46 @@ export class XUploadComponent extends XUploadProperty {
 
   trackByItem(index: number, item: XUploadNode) {
     return `${item.name}-${item.lastModified}`;
+  }
+
+  onImgCut(file: XUploadNode, index: number) {
+    this.portal = this.portalService.attach({
+      content: XUploadPortalComponent,
+      viewContainerRef: this.viewContainerRef,
+      overlayConfig: {
+        panelClass: [XUploadPortalPrefix],
+        hasBackdrop: true,
+        positionStrategy: this.portalService.setPlace('center')
+      }
+    });
+    this.setInstance(file);
+  }
+
+  setInstance(file: XUploadNode) {
+    let componentRef = this.portal?.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      file: file,
+      closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal()
+    });
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
+  portalAttached() {
+    return this.portal?.overlayRef?.hasAttached();
+  }
+
+  closePortal() {
+    if (this.portalAttached()) {
+      this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
+      return true;
+    }
+    return false;
+  }
+
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
   }
 }

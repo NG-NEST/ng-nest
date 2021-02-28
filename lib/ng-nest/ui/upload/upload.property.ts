@@ -12,7 +12,7 @@ export const XUploadPrefix = 'x-upload';
  * Upload Property
  */
 @Component({ template: '' })
-export class XUploadProperty extends XControlValueAccessor<any> {
+export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
   /**
    * @zh_CN 显示文字
    * @en_US Display text
@@ -33,6 +33,11 @@ export class XUploadProperty extends XControlValueAccessor<any> {
    * @en_US File display type
    */
   @Input() type: XUploadType = 'list';
+  /**
+   * @zh_CN 图片剪裁
+   * @en_US Picture cropping
+   */
+  @Input() @XInputBoolean() imgCut: XBoolean;
   /**
    * @zh_CN 多文件上传
    * @en_US Multiple file upload
@@ -78,3 +83,10 @@ export type XStateType = 'ready' | 'uploading' | 'success' | 'error';
  * @en_US File display type
  */
 export type XUploadType = 'list' | 'img';
+
+/**
+ * Upload Portal
+ * @selector x-upload-portal
+ * @decorator component
+ */
+export const XUploadPortalPrefix = 'x-upload-portal';

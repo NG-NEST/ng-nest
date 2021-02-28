@@ -7,10 +7,12 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XUploadProperty } from './upload.property';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XPortalModule } from '@ng-nest/ui/portal';
+import { XUploadPortalComponent } from './upload-portal.component';
 
 @NgModule({
-  declarations: [XUploadComponent, XUploadProperty],
+  declarations: [XUploadComponent, XUploadPortalComponent, XUploadProperty],
   exports: [XUploadComponent],
-  imports: [CommonModule, FormsModule, XOutletModule, XButtonModule, XIconModule, XI18nModule]
+  imports: [CommonModule, FormsModule, XPortalModule, XOutletModule, XButtonModule, XIconModule, XI18nModule]
 })
 export class XUploadModule {}
