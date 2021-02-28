@@ -1,10 +1,10 @@
 import { HttpClient, HttpEventType, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty } from './upload.property';
-import { XValueAccessor } from '@ng-nest/ui/core';
+import { XIsTemplateRef, XValueAccessor } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XUploadPrefix}`,
@@ -19,6 +19,15 @@ export class XUploadComponent extends XUploadProperty {
   files: XUploadNode[] = [];
   showUpload = false;
   uploadNodes: XUploadNode[] = [];
+  locale: XI18nUpload = {};
+
+  get getLabel() {
+    return this.label || this.locale.uploadText;
+  }
+
+  get isTemplateLabel() {
+    return XIsTemplateRef(this.getLabel);
+  }
 
   private _unSubject = new Subject<void>();
 
@@ -38,7 +47,15 @@ export class XUploadComponent extends XUploadProperty {
   }
 
   ngOnInit() {
-    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.upload as XI18nUpload),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnDestory() {

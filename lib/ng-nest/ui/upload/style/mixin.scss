@@ -8,8 +8,12 @@
   color: $--x-text;
   font-size: $--x-font-size;
   &-buttons {
+    display: inline-flex;
     > .x-button:not(:first-child) {
       margin-left: 0.4rem;
+    }
+    &-template {
+      cursor: pointer;
     }
   }
   &-files {
@@ -77,6 +81,87 @@
     }
   }
   &.x-disabled {
+  }
+  &-img {
+    display: flex;
+    flex-wrap: wrap;
+    .#{$--x-upload-prefix} {
+      &-buttons {
+        &-template {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 6.25rem;
+          height: 6.25rem;
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          border: $--x-border-width dashed $--x-border;
+          background: $--x-background;
+          border-radius: $--x-border-radius;
+          transition: border-color $--x-animation-duration-base;
+          &:hover {
+            border-color: $--x-primary;
+          }
+        }
+      }
+    }
+    &-item {
+      height: 6.25rem;
+      width: 6.25rem;
+      padding: 0.325rem;
+      border: $--x-border-width $--x-border-style $--x-border;
+      border-radius: $--x-border-radius;
+      transition: border-color $--x-animation-duration-base;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .x-upload-img-inner {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        > img {
+          width: 100%;
+          border-radius: $--x-border-radius;
+        }
+      }
+      &:hover {
+        .x-upload-img-btns {
+          background-color: rgba(0, 0, 0, 0.45);
+          &-inner {
+            display: initial;
+          }
+        }
+      }
+    }
+    &-btns {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $--x-border-radius;
+      background-color: rgba(0, 0, 0, 0);
+      transition: all $--x-animation-duration-base;
+      x-icon {
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        &:hover {
+          color: white;
+        }
+      }
+      &-inner {
+        display: none;
+      }
+    }
   }
 }
 

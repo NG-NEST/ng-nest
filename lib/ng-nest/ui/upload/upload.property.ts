@@ -14,6 +14,11 @@ export const XUploadPrefix = 'x-upload';
 @Component({ template: '' })
 export class XUploadProperty extends XControlValueAccessor<any> {
   /**
+   * @zh_CN 显示文字
+   * @en_US Display text
+   */
+  @Input() label: string;
+  /**
    * @zh_CN 请求地址
    * @en_US Request address
    */
