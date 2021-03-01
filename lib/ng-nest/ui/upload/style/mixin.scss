@@ -178,5 +178,52 @@
 }
 
 @mixin upload-portal {
-  
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  &-tools {
+    position: absolute;
+    width: 100%;
+    height: 3.25rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    > x-icon {
+      font-size: 1.25rem;
+    }
+    > span {
+      margin-left: 0.5rem;
+    }
+  }
+  &-close {
+    font-size: 1.25rem;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color $--x-animation-duration-base;
+    cursor: pointer;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  > img {
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
 }

@@ -1,3 +1,10 @@
 <div class="x-upload-portal">
+  <div class="x-upload-portal-tools">
+    <div class="x-upload-portal-title">
+      <x-icon type="fto-image"></x-icon>
+      <span>{{ file?.name }}</span>
+    </div>
+    <x-icon class="x-upload-portal-close" type="fto-x" (click)="closePortal()"></x-icon>
+  </div>
   <img [src]="file?.url" />
 </div>
