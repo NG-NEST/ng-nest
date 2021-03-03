@@ -1,4 +1,4 @@
-<div class="x-upload-portal">
+<div class="x-upload-portal" [class.x-upload-portal-ready]="ready">
   <div class="x-upload-portal-tools">
     <div class="x-upload-portal-title">
       <x-icon type="fto-image"></x-icon>
@@ -6,5 +6,17 @@
     </div>
     <x-icon class="x-upload-portal-close" type="fto-x" (click)="closePortal()"></x-icon>
   </div>
-  <img [src]="file?.url" />
+  <div class="x-upload-portal-img">
+    <img #imgRef [src]="file?.url" />
+    <div #cutRef class="x-upload-portal-cut">
+      <div class="x-upload-portal-cut-top-start"></div>
+      <div class="x-upload-portal-cut-top"></div>
+      <div class="x-upload-portal-cut-top-end"></div>
+      <div class="x-upload-portal-cut-left"></div>
+      <div class="x-upload-portal-cut-right"></div>
+      <div class="x-upload-portal-cut-bottom-start"></div>
+      <div class="x-upload-portal-cut-bottom"></div>
+      <div class="x-upload-portal-cut-bottom-end"></div>
+    </div>
+  </div>
 </div>
