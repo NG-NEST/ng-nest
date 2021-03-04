@@ -8,15 +8,17 @@
   </div>
   <div class="x-upload-portal-img">
     <img #imgRef [src]="file?.url" />
-    <div #cutRef class="x-upload-portal-cut">
-      <div class="x-upload-portal-cut-top-start"></div>
-      <div class="x-upload-portal-cut-top"></div>
-      <div class="x-upload-portal-cut-top-end"></div>
-      <div class="x-upload-portal-cut-left"></div>
-      <div class="x-upload-portal-cut-right"></div>
-      <div class="x-upload-portal-cut-bottom-start"></div>
-      <div class="x-upload-portal-cut-bottom"></div>
-      <div class="x-upload-portal-cut-bottom-end"></div>
+    <div #boundaryRef class="x-upload-portal-boundary">
+      <div #cutRef class="x-upload-portal-cut" cdkDragBoundary=".x-upload-portal-boundary" [cdkDragDisabled]="cutChange" cdkDrag>
+        <div class="x-upload-portal-cut-top-start"></div>
+        <div class="x-upload-portal-cut-top"></div>
+        <div class="x-upload-portal-cut-top-end"></div>
+        <div class="x-upload-portal-cut-left"></div>
+        <div class="x-upload-portal-cut-right"></div>
+        <div class="x-upload-portal-cut-bottom-start"></div>
+        <div class="x-upload-portal-cut-bottom"></div>
+        <div class="x-upload-portal-cut-bottom-end"></div>
+      </div>
     </div>
   </div>
 </div>

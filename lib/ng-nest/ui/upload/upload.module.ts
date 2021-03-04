@@ -9,10 +9,11 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XPortalModule } from '@ng-nest/ui/portal';
 import { XUploadPortalComponent } from './upload-portal.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [XUploadComponent, XUploadPortalComponent, XUploadProperty],
   exports: [XUploadComponent],
-  imports: [CommonModule, FormsModule, XPortalModule, XOutletModule, XButtonModule, XIconModule, XI18nModule]
+  imports: [CommonModule, FormsModule, DragDropModule, XPortalModule, XOutletModule, XButtonModule, XIconModule, XI18nModule]
 })
 export class XUploadModule {}

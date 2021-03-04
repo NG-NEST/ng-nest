@@ -221,6 +221,7 @@
     > img {
       max-width: 80%;
       max-height: 80%;
+      border: 0.125rem $--x-border-style transparent;
       width: auto;
       height: auto;
       position: absolute;
@@ -239,18 +240,22 @@
       }
     }
   }
+  &-boundary {
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    position: relative;
+  }
   &-cut {
     width: 0;
     height: 0;
     border: 0.125rem $--x-border-style rgba(255, 255, 255, 0.8);
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: content-box;
+    position: relative;
     cursor: move;
     &-top-start,
     &-top,
@@ -260,8 +265,8 @@
     &-bottom-start,
     &-bottom,
     &-bottom-end {
-      width: 1rem;
-      height: 1rem;
+      width: 0.825rem;
+      height: 0.825rem;
       background: rgba(255, 255, 255, 1);
       position: absolute;
       border: $--x-border-width $--x-border-style $--x-border;
@@ -269,39 +274,39 @@
     }
 
     &-top-start {
-      top: -0.5rem;
-      left: -0.5rem;
+      top: -0.4125rem;
+      left: -0.4125rem;
       cursor: se-resize;
     }
     &-top {
-      top: -0.5rem;
+      top: -0.4125rem;
       cursor: s-resize;
     }
     &-top-end {
-      top: -0.5rem;
-      right: -0.5rem;
+      top: -0.4125rem;
+      right: -0.4125rem;
       cursor: ne-resize;
     }
     &-left {
-      left: -0.5rem;
+      left: -0.4125rem;
       cursor: w-resize;
     }
     &-right {
-      right: -0.5rem;
+      right: -0.4125rem;
       cursor: w-resize;
     }
     &-bottom-start {
-      left: -0.5rem;
-      bottom: -0.5rem;
+      left: -0.4125rem;
+      bottom: -0.4125rem;
       cursor: ne-resize;
     }
     &-bottom {
-      bottom: -0.5rem;
+      bottom: -0.4125rem;
       cursor: s-resize;
     }
     &-bottom-end {
-      right: -0.5rem;
-      bottom: -0.5rem;
+      right: -0.4125rem;
+      bottom: -0.4125rem;
       cursor: se-resize;
     }
   }
