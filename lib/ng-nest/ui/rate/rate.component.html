@@ -7,15 +7,15 @@
   [class.x-invalid]="invalid"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <x-buttons (mouseleave)="leaveRates()">
-    <x-button
-      *ngFor="let rate of rates; trackBy: trackByItem"
-      onlyIcon
-      [activated]="rate <= hoverActivated"
-      [disabled]="disabled"
-      icon="adf-star"
-      (mouseover)="hoverRate(rate)"
-      (click)="rateClick(rate)"
-    ></x-button>
-  </x-buttons>
+  <div class="x-rate-icons" (mouseleave)="leaveRates()">
+    <div class="x-rate-icon" [class.activated]="rate <= hoverActivated" *ngFor="let rate of rates; trackBy: trackByItem">
+      <div class="x-rate-half">
+        <x-icon class="x-rate-back" type="adf-star"></x-icon>
+      </div>
+      <x-icon class="x-rate-front" type="adf-star" (mouseover)="hoverRate(rate)" (click)="rateClick(rate)"></x-icon>
+      <div class="x-rate-half">
+        <x-icon class="x-rate-back" type="adf-star"></x-icon>
+      </div>
+    </div>
+  </div>
 </div>

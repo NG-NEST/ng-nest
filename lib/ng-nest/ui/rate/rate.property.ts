@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputNumber, XNumber, XFormOption } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputNumber, XNumber, XFormOption, XInputBoolean } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -18,6 +18,11 @@ export class XRateProperty extends XControlValueAccessor<any> implements XRateOp
    * @en_US Number of ratings
    */
   @Input() @XInputNumber() count: XNumber = 5;
+  /**
+   * @zh_CN 半星模式
+   * @en_US Number of ratings
+   */
+  @Input() @XInputBoolean() half: boolean;
 }
 
 /**
@@ -30,4 +35,9 @@ export interface XRateOption extends XFormOption {
    * @en_US Number of ratings
    */
   count?: XNumber;
+  /**
+   * @zh_CN 半星模式
+   * @en_US Number of ratings
+   */
+  half?: boolean;
 }

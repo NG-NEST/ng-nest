@@ -9,13 +9,12 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XRatePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XRateModule, XButtonModule, XLayoutModule],
-      declarations: [TestXRateComponent, TestXRateDisabledComponent]
+      imports: [BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule],
+      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -23,6 +22,18 @@ describe(XRatePrefix, () => {
     let rate: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRateComponent);
+      fixture.detectChanges();
+      rate = fixture.debugElement.query(By.directive(XRateComponent));
+    });
+    it('should create.', () => {
+      expect(rate).toBeDefined();
+    });
+  });
+  fdescribe(`half.`, () => {
+    let fixture: ComponentFixture<TestXRateHalfComponent>;
+    let rate: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXRateHalfComponent);
       fixture.detectChanges();
       rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
@@ -46,7 +57,6 @@ describe(XRatePrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
         <x-rate></x-rate>
@@ -80,7 +90,39 @@ class TestXRateComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="24">
+        <x-rate half></x-rate>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="24">
+        <x-rate [(ngModel)]="model" half></x-rate>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+      x-row > x-col {
+        width: 14rem;
+      }
+    `
+  ]
+})
+class TestXRateHalfComponent {
+  model = 3.5;
+}
+
+@Component({
+  template: `
     <x-row>
       <x-col span="24">
         <x-rate disabled></x-rate>
