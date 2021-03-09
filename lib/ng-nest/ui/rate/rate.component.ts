@@ -21,14 +21,16 @@ import { XRatePrefix, XRateProperty } from './rate.property';
 })
 export class XRateComponent extends XRateProperty {
   @ViewChild('rate', { static: true }) rate: ElementRef;
-  rates: XNumber[] = [];
+  rates: number[] = [];
 
   hoverActivated = 0;
+  hoverHalfActivated = 0;
 
   writeValue(value: any) {
     if (XIsEmpty(value)) value = 0;
     this.value = value;
     this.hoverActivated = value;
+    this.hoverHalfActivated = Math.ceil(value);
     this.cdr.detectChanges();
   }
 
@@ -59,7 +61,7 @@ export class XRateComponent extends XRateProperty {
       .map((_, i) => i + 1);
   }
 
-  hoverRate(rate: number) {
+  rateHover(rate: number, event: MouseEvent) {
     if (this.disabled) return;
     this.hoverActivated = rate;
     this.cdr.detectChanges();
@@ -69,12 +71,26 @@ export class XRateComponent extends XRateProperty {
     if (this.disabled) return;
     const activited = this.value;
     this.hoverActivated = activited;
+    this.hoverHalfActivated = Math.ceil(activited);
     this.cdr.detectChanges();
   }
 
-  rateClick(rate: number) {
+  rateClick(rate: number, event: MouseEvent) {
     if (this.disabled) return;
     this.value = this.value === rate ? 0 : rate;
+    if (this.onChange) this.onChange(this.value);
+  }
+
+  rateHalfHover(rate: number, event: MouseEvent) {
+    if (this.disabled) return;
+    this.hoverActivated = rate - 1;
+    this.hoverHalfActivated = rate;
+    this.cdr.detectChanges();
+  }
+
+  rateHalfClick(rate: number, event: MouseEvent) {
+    if (this.disabled) return;
+    this.value = rate - 0.5;
     if (this.onChange) this.onChange(this.value);
   }
 

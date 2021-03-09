@@ -1,5 +1,5 @@
 import { XButtonModule } from '@ng-nest/ui/button';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 import { XRateComponent } from './rate.component';
 import { Component, DebugElement } from '@angular/core';
@@ -92,12 +92,12 @@ class TestXRateComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-rate half></x-rate>
+        <x-rate></x-rate>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="24">
-        <x-rate [(ngModel)]="model" half></x-rate>
+        <x-rate [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
       </x-col>
     </x-row>
   `,
@@ -119,6 +119,9 @@ class TestXRateComponent {
 })
 class TestXRateHalfComponent {
   model = 3.5;
+  chang(event: number) {
+    console.log(event);
+  }
 }
 
 @Component({
