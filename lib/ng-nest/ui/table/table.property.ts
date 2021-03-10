@@ -283,6 +283,11 @@ export interface XTableColumn extends XIdentityProperty {
    */
   textAlign?: 'left' | 'center' | 'right';
   /**
+   * @zh_CN 拖动列宽，需要设置列的初始宽度 width
+   * @en_US Drag the column width, you need to set the initial width of the column width
+   */
+  dragWidth?: boolean;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
@@ -413,7 +418,7 @@ export class XTableHeadProperty extends XProperty {
    * @zh_CN 单元格配置
    * @en_US Cell merge rules
    */
-  @Input() cellConfig: XTableCellConfigRule;
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**
@@ -472,7 +477,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XInputBoolean() virtualScroll: boolean = false;
+  @Input() @XInputBoolean() virtualScroll?: XBoolean = false;
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
@@ -507,7 +512,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 单元格配置规则
    * @en_US Cell config rules
    */
-  @Input() cellConfig: XTableCellConfigRule;
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**

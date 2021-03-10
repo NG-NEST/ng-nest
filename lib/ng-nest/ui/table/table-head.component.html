@@ -4,11 +4,13 @@
       <th
         *ngFor="let column of cellConfig.cells"
         [class.x-table-sticky]="getSticky(column)"
+        [class.x-table-width-drag]="column.widthDrag"
         [style.grid-area]="column.gridArea"
         [style.left.px]="column.left"
         [title]="column?.label"
       >
         <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
+        <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
       </th>
     </tr>
   </ng-container>
@@ -24,6 +26,7 @@
       [style.flex]="column.width ? 'none' : column.flex"
     >
       <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
+      <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
     </th>
   </tr>
 </ng-template>

@@ -43,6 +43,18 @@
           position: sticky;
           z-index: 1;
         }
+        .#{$--x-table}-drag-width {
+          position: absolute;
+          height: 100%;
+          width: 0.1875rem;
+          right: -0.125rem;
+          cursor: ew-resize;
+          transition: background-color var(--x-animation-duration-fast);
+          z-index: 1;
+          &:hover {
+            background-color: $--x-primary;
+          }
+        }
         &:first-child {
           padding-left: $--x-font-size;
         }

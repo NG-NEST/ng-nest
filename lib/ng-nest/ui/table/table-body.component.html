@@ -56,7 +56,7 @@
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"
     >
-      <ng-template *ngTemplateOutlet="columnTpl; context: { column: column, row: row, i: i }"></ng-template>
+      <ng-template *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-template>
     </td>
   </ng-container>
 </ng-template>

@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { XTableHeadPrefix, XTableHeadProperty, XTableColumn } from './table.property';
+import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell } from './table.property';
 import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 
@@ -47,7 +47,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.table.thead = this.thead;
   }
 
-  getSticky(column: XTableColumn) {
+  getSticky(column: XTableColumn | XTableCell) {
     return Number(column.left) >= 0;
   }
 
@@ -85,6 +85,15 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.table.sortChange.emit(this.sort);
     this.table.resetScroll(false, true);
     this.cdr.detectChanges();
+  }
+
+  dragWidth(dis: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    if (column.width) {
+      (column.width as number) += dis.x;
+      if (column.width < 60) column.width = 60;
+      this.cdr.detectChanges();
+      this.table.bodyChange();
+    }
   }
 
   trackByItem(index: number, item: XTableColumn) {

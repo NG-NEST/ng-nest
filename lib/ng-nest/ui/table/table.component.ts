@@ -75,7 +75,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this._unSubject.complete();
   }
 
-  getSticky(column: XTableColumn) {
+  getSticky(column: XTableColumn | XTableCell) {
     return Number(column.left) >= 0;
   }
 
