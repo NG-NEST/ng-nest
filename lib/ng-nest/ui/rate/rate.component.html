@@ -15,9 +15,19 @@
       *ngFor="let rate of rates; index as i; trackBy: trackByItem"
     >
       <div *ngIf="half" class="x-rate-half" (mouseenter)="rateHalfHover(rate, $event)" (click)="rateHalfClick(rate, $event)">
-        <x-icon type="adf-star"></x-icon>
+        <ng-container *ngIf="customTemp; else iconTpl">
+          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+        </ng-container>
       </div>
-      <x-icon class="x-rate-back" type="adf-star" (mouseenter)="rateHover(rate, $event)" (click)="rateClick(rate, $event)"></x-icon>
+      <div class="x-rate-back" (mouseenter)="rateHover(rate, $event)" (click)="rateClick(rate, $event)">
+        <ng-container *ngIf="customTemp; else iconTpl">
+          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #iconTpl>
+  <x-icon type="adf-star"></x-icon>
+</ng-template>

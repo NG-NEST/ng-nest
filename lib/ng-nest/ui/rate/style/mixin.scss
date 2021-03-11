@@ -19,21 +19,23 @@
   }
   &-icons {
     display: inline-flex;
+    align-items: center;
+    height: $--x-rate-height;
+    cursor: pointer;
   }
   &-icon {
     margin: 0 0.2rem;
     display: flex;
     align-items: center;
     position: relative;
-    color: $--x-text-400;
-    transition: transform $--x-animation-duration-base;
+    color: $--x-info;
+    transition: transform $--x-animation-duration-base, color $--x-animation-duration-base;
+    font-size: $--x-rate-icon-font-size;
+    .x-icon {
+      vertical-align: 0;
+    }
     &:hover {
       transform: scale(1.1);
-    }
-    .x-icon {
-      font-size: $--x-font-size-big;
-      vertical-align: 0;
-      transition: color $--x-animation-duration-base;
     }
     &.activated {
       color: $--x-warning;
@@ -51,19 +53,41 @@
     width: 50%;
     height: 100%;
     overflow: hidden;
-
+    display: flex;
+    align-items: center;
     &:hover {
-      > .x-icon {
-        opacity: 1;
-      }
+      opacity: 1;
     }
-    > .x-icon {
-    }
+  }
+  &-back {
+    display: flex;
+    align-items: center;
   }
   &.x-invalid,
   &.x-required {
     > label {
       color: $--x-danger;
+    }
+  }
+  &.x-disabled {
+    .#{$--x-rate-prefix} {
+      &-icons {
+        cursor: not-allowed;
+      }
+      &-icon {
+        color: $--x-info-500;
+        &:hover {
+          transform: scale(1);
+        }
+        &.activated {
+          color: $--x-warning-500;
+        }
+        &.half-activated {
+          .x-rate-half {
+            color: $--x-warning-500;
+          }
+        }
+      }
     }
   }
   &.x-direction {

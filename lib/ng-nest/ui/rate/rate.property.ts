@@ -1,5 +1,5 @@
 import { XControlValueAccessor, XInputNumber, XNumber, XFormOption, XInputBoolean } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Input, Component, TemplateRef } from '@angular/core';
 
 /**
  * Rate
@@ -23,6 +23,11 @@ export class XRateProperty extends XControlValueAccessor<any> implements XRateOp
    * @en_US Number of ratings
    */
   @Input() @XInputBoolean() half: boolean;
+  /**
+   * @zh_CN 自定义模板
+   * @en_US Custom template
+   */
+  @Input() customTemp: TemplateRef<void>;
 }
 
 /**

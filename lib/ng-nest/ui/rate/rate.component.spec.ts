@@ -9,12 +9,13 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XRatePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule],
-      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent]
+      imports: [BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule, XIconModule],
+      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -29,11 +30,23 @@ describe(XRatePrefix, () => {
       expect(rate).toBeDefined();
     });
   });
-  fdescribe(`half.`, () => {
+  describe(`half.`, () => {
     let fixture: ComponentFixture<TestXRateHalfComponent>;
     let rate: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRateHalfComponent);
+      fixture.detectChanges();
+      rate = fixture.debugElement.query(By.directive(XRateComponent));
+    });
+    it('should create.', () => {
+      expect(rate).toBeDefined();
+    });
+  });
+  fdescribe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXRateCustomComponent>;
+    let rate: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXRateCustomComponent);
       fixture.detectChanges();
       rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
@@ -92,12 +105,12 @@ class TestXRateComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-rate></x-rate>
+        <x-rate half></x-rate>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="24">
-        <x-rate [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
+        <x-rate label="评级" direction="row" [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
       </x-col>
     </x-row>
   `,
@@ -118,6 +131,50 @@ class TestXRateComponent {
   ]
 })
 class TestXRateHalfComponent {
+  model = 3.5;
+  chang(event: number) {
+    console.log(event);
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-rate half [customTemp]="iconTpl"></x-rate>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="24">
+        <x-rate half [customTemp]="letterTpl"></x-rate>
+      </x-col>
+    </x-row>
+    <x-row>
+      <x-col span="24">
+        <x-rate half [(ngModel)]="model" [customTemp]="chineseTpl"></x-rate>
+      </x-col>
+    </x-row>
+    <ng-template #iconTpl><x-icon type="fto-eye"></x-icon></ng-template>
+    <ng-template #letterTpl>X</ng-template>
+    <ng-template #chineseTpl>田</ng-template>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+      x-row > x-col {
+        width: 14rem;
+      }
+    `
+  ]
+})
+class TestXRateCustomComponent {
   model = 3.5;
   chang(event: number) {
     console.log(event);
