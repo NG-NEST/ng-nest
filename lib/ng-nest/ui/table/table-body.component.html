@@ -64,7 +64,11 @@
 <ng-template #cellTpl let-column="column" let-row="row" let-i="i">
   <ng-container [ngSwitch]="column.type">
     <ng-container *ngSwitchCase="'checkbox'">
-      <x-checkbox [data]="[{ id: true, label: '' }]" [(ngModel)]="row[column.id]"></x-checkbox>
+      <x-checkbox
+        [data]="[{ id: true, label: '' }]"
+        [(ngModel)]="row[column.id]"
+        (ngModelChange)="table.bodyChecked($event, column)"
+      ></x-checkbox>
     </ng-container>
     <ng-container *ngSwitchCase="'index'">
       <div>{{ table.getIndex(i) }}</div>

@@ -182,6 +182,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     if (this.table.rowChecked) {
       if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
         row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
+        this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked);
       }
     }
     this.activatedRowChange.emit(row);

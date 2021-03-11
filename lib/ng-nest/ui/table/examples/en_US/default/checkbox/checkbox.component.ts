@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { DefaultService } from './default.service';
+import { CheckboxService } from './checkbox.service';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'ex-default',
-  templateUrl: './default.component.html',
-  providers: [DefaultService]
+  selector: 'ex-checkbox',
+  templateUrl: './checkbox.component.html',
+  providers: [CheckboxService]
 })
-export class ExDefaultComponent {
+export class ExCheckboxComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
   columns: XTableColumn[] = [
+    { id: 'checked', label: '', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
     { id: 'index', label: 'serial', flex: 0.5, left: 0, type: 'index' },
     { id: 'name', label: 'user', flex: 1.5, sort: true },
     { id: 'position', label: 'position', flex: 0.5, sort: true },
@@ -20,7 +21,7 @@ export class ExDefaultComponent {
     { id: 'organization', label: 'organization', flex: 1, sort: true }
   ];
 
-  constructor(private service: DefaultService) {}
+  constructor(private service: CheckboxService) {}
 
   ngOnInit() {}
 }

@@ -9,7 +9,7 @@
         [style.left.px]="column.left"
         [title]="column?.label"
       >
-        <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
+        <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
         <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
       </th>
     </tr>
@@ -25,29 +25,46 @@
       [style.left.px]="column.left"
       [style.flex]="column.width ? 'none' : column.flex"
     >
-      <ng-container *ngTemplateOutlet="columnTpl; context: { column: column }"></ng-container>
+      <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
       <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
     </th>
   </tr>
 </ng-template>
 
-<ng-template #columnTpl let-column="column">
+<ng-template #columnBaseTpl let-column="column">
   <ng-container [ngSwitch]="column.type">
+    <ng-container *ngSwitchCase="'checkbox'">
+      <x-checkbox
+        *ngIf="column.headChecked"
+        [data]="[{ id: true, label: column.label }]"
+        [(ngModel)]="table.checkedValues[column.id]"
+        (ngModelChange)="table.headChecked($event, column)"
+        [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
+      ></x-checkbox>
+      <ng-container *ngIf="!column.headChecked">
+        <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+      </ng-container>
+    </ng-container>
     <ng-container *ngSwitchCase="'index'">
       <a>{{ column.label }}</a>
     </ng-container>
-    <ng-container *ngSwitchDefault
-      ><a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
-        <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
-          {{ column.label }}
-        </ng-container>
-        <x-icon
-          *ngIf="column.sort"
-          type="fto-bar-chart"
-          class="x-table-sort-icon"
-          [class.x-table-icon-up]="sortStr === column.id + ' desc'"
-          [class.x-table-icon-down]="sortStr === column.id + ' asc'"
-        ></x-icon> </a
-    ></ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+    </ng-container>
   </ng-container>
+</ng-template>
+
+<ng-template #cloumnDefaultTpl let-column="column">
+  <a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
+    <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
+      {{ column.label }}
+    </ng-container>
+    <x-icon
+      *ngIf="column.sort"
+      type="fto-bar-chart"
+      class="x-table-sort-icon"
+      [class.x-table-icon-up]="sortStr === column.id + ' desc'"
+      [class.x-table-icon-down]="sortStr === column.id + ' asc'"
+    ></x-icon>
+  </a>
 </ng-template>

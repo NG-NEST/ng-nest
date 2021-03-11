@@ -34,7 +34,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   thead: ElementRef;
   tfoot: ElementRef;
   virtualBody: CdkVirtualScrollViewport;
-  bodyChange: Function;
+  headChange: () => void;
+  bodyChange: () => void;
   scrollContentEle: HTMLElement;
   hasScrollY = false;
   scrollYWidth = 0;
@@ -44,9 +45,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   scrollLeft = 0;
   scrollTop = 0;
   rowChecked: XTableColumn;
+  headCheckboxList: XTableColumn[];
   dataIsFunc = false;
   getting = false;
   tableData: XTableRow[] = [];
+  checkedValues: { [prop: string]: boolean } = {};
+  indeterminate = '$$indeterminate';
   @ViewChild('table') table: ElementRef;
   @ViewChild('pagination') pagination: XPaginationComponent;
   private _unSubject = new Subject();
@@ -88,6 +92,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       this.dataIsFunc = false;
       this.tableData = this.data;
       this.setChecked();
+      this.setHeadCheckboxList();
     } else if (this.data instanceof Function) {
       this.dataIsFunc = true;
       this.getDataByFunc();
@@ -109,8 +114,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
         }
         this.getting = false;
         this.setChecked();
-        this.bodyChange && this.bodyChange();
-        this.cdr.detectChanges();
+        this.setHeadCheckboxList();
+        this.detectChanges();
       });
   }
 
@@ -120,6 +125,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
 
   setRowChecked() {
     this.rowChecked = this.columns.find((x) => x.rowChecked) as XTableColumn;
+    this.headCheckboxList = this.columns.filter((x) => x.type === 'checkbox' && x.headChecked);
   }
 
   setMerge() {
@@ -174,7 +180,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       }
     }
     if (result.length > 0) this.tableData = [...result];
-    this.cdr.detectChanges();
+    this.detectChanges();
+  }
+
+  setHeadCheckboxList() {
+    if (XIsEmpty(this.tableData) || !this.headCheckboxList) return;
+    for (let column of this.headCheckboxList) {
+      this.setCheckedValues(column);
+    }
   }
 
   checkSort(sort: XSort[]) {
@@ -183,5 +196,31 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.query.sort = sort;
     this.queryChange.emit(this.query);
     this.getDataByFunc();
+  }
+
+  headChecked(checked: boolean, column: XTableColumn) {
+    this.tableData.forEach((x) => {
+      x[column.id] = checked;
+    });
+    this.setCheckedValues(column);
+    this.detectChanges();
+  }
+
+  bodyChecked(checked: boolean, column: XTableColumn) {
+    this.setCheckedValues(column);
+    this.detectChanges();
+  }
+
+  setCheckedValues(column: XTableColumn) {
+    const count = this.tableData.length;
+    const checkedLen = this.tableData.filter((x) => x[column.id]).length;
+    this.checkedValues[column.id] = count === checkedLen;
+    this.checkedValues[column.id + this.indeterminate] = checkedLen > 0 && checkedLen < count;
+  }
+
+  detectChanges() {
+    this.bodyChange && this.bodyChange();
+    this.headChange && this.headChange();
+    this.cdr.detectChanges();
   }
 }
