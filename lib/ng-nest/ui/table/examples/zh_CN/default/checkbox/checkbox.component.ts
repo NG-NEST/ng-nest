@@ -9,7 +9,7 @@ import { delay } from 'rxjs/operators';
   templateUrl: './checkbox.component.html',
   providers: [CheckboxService]
 })
-export class ExDefaultComponent {
+export class ExCheckboxComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
   columns: XTableColumn[] = [
     { id: 'checked', label: '', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },

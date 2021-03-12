@@ -6,5 +6,5 @@
     "entryFile": "./index.ts",
     "styleIncludePaths": ["./style"]
   },
-  "whitelistedNonPeerDependencies": ["tslib", "angular"]
+  "allowedNonPeerDependencies": ["tslib", "angular"]
 }

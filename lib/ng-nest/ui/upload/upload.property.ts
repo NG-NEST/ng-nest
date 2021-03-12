@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XBoolean, XTemplate } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -17,7 +17,7 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @zh_CN 显示文字
    * @en_US Display text
    */
-  @Input() label: string;
+  @Input() text: XTemplate;
   /**
    * @zh_CN 请求地址
    * @en_US Request address
@@ -34,7 +34,7 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    */
   @Input() type: XUploadType = 'list';
   /**
-   * @zh_CN 图片剪裁
+   * @zh_CN 图片剪裁(暂时未实现)
    * @en_US Picture cropping
    */
   @Input() @XInputBoolean() imgCut: XBoolean;

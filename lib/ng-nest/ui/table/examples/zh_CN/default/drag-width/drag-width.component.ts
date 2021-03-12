@@ -9,7 +9,7 @@ import { delay } from 'rxjs/operators';
   templateUrl: './drag-width.component.html',
   providers: [DragWidthService]
 })
-export class ExBorderedComponent {
+export class ExDragWidthComponent {
   size = 1000;
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [

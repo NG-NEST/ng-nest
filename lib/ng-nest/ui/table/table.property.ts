@@ -8,7 +8,8 @@ import {
   XInputBoolean,
   XBoolean,
   XData,
-  XWithConfig
+  XWithConfig,
+  XTextAlign
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
@@ -281,7 +282,7 @@ export interface XTableColumn extends XIdentityProperty {
    * @zh_CN 文字对齐方式
    * @en_US Text alignment
    */
-  textAlign?: 'left' | 'center' | 'right';
+  textAlign?: XTextAlign;
   /**
    * @zh_CN 拖动列宽，需要设置列的初始宽度 width
    * @en_US Drag the column width, you need to set the initial width of the column width

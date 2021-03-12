@@ -50,23 +50,23 @@ export class XUploadPortalComponent {
     this.ready = true;
     this.cdr.detectChanges();
 
-    fromEvent(this.cutRef.nativeElement, 'mousedown')
-      .pipe(
-        map((mouse: MouseEvent) => {
-          let className = (mouse.target as HTMLDivElement).className;
-          let position = '';
-          const spt = `${XUploadPortalPrefix}-cut-`;
-          if (className.includes(spt)) position = className.replace(spt, '');
-          return { startX: mouse.clientX, startY: mouse.clientY, position: position };
-        }),
-        tap((x) => {
-          if (x.position) return;
-        }),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        console.log(x);
-      });
+    // fromEvent(this.cutRef.nativeElement, 'mousedown')
+    //   .pipe(
+    //     map((mouse: MouseEvent) => {
+    //       let className = (mouse.target as HTMLDivElement).className;
+    //       let position = '';
+    //       const spt = `${XUploadPortalPrefix}-cut-`;
+    //       if (className.includes(spt)) position = className.replace(spt, '');
+    //       return { startX: mouse.clientX, startY: mouse.clientY, position: position };
+    //     }),
+    //     tap((x) => {
+    //       if (x.position) return;
+    //     }),
+    //     takeUntil(this._unSubject)
+    //   )
+    //   .subscribe((x) => {
+    //     console.log(x);
+    //   });
   }
 
   down(event: MouseEvent, type: XPosition | XCorner) {

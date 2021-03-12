@@ -33,12 +33,12 @@ export class XUploadComponent extends XUploadProperty {
   locale: XI18nUpload = {};
   portal: XPortalOverlayRef<XUploadPortalComponent>;
 
-  get getLabel() {
-    return this.label || this.locale.uploadText;
+  get getText() {
+    return this.text || this.locale.uploadText;
   }
 
-  get isTemplateLabel() {
-    return XIsTemplateRef(this.getLabel);
+  get isTemplateText() {
+    return XIsTemplateRef(this.getText);
   }
 
   private _unSubject = new Subject<void>();

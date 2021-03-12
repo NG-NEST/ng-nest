@@ -105,3 +105,8 @@ export type XTrigger = 'hover' | 'click';
  * 展示的方向
  */
 export type XDisplayDirection = 'horizontal' | 'vertical';
+
+/**
+ * 文字对齐方向
+ */
+export type XTextAlign = 'left' | 'center' | 'right';

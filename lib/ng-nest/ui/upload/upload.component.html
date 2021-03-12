@@ -1,8 +1,8 @@
 <div #upload class="x-upload x-upload-{{ type }}" [class.x-disabled]="disabled">
   <input type="file" #file (change)="change($event)" [attr.accept]="accept" [multiple]="multiple" style="display: none" />
-  <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateLabel" (click)="uploadClick()">
-    <ng-container *xOutlet="getLabel">
-      <x-button icon="fto-upload" [disabled]="disabled" type="primary">{{ getLabel }}</x-button>
+  <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText" (click)="uploadClick()">
+    <ng-container *xOutlet="getText">
+      <x-button icon="fto-upload" [disabled]="disabled" type="primary">{{ getText }}</x-button>
     </ng-container>
   </div>
   <ng-container [ngSwitch]="type">
