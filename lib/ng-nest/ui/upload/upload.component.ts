@@ -81,6 +81,7 @@ export class XUploadComponent extends XUploadProperty {
 
   setFiles() {
     if (!Array.isArray(this.value)) return;
+    if (this.type !== 'img') return;
     this.files = this.value.map((x) => {
       if (!x.state) x.state = 'success';
       return x;
@@ -216,5 +217,15 @@ export class XUploadComponent extends XUploadProperty {
 
   destroyPortal() {
     this.portal?.overlayRef?.dispose();
+  }
+
+  imgError(event: Event, file: XUploadNode) {
+    file.state = 'error';
+    this.cdr.detectChanges();
+  }
+
+  imgLoad(event: Event, file: XUploadNode) {
+    file.state = 'success';
+    this.cdr.detectChanges();
   }
 }

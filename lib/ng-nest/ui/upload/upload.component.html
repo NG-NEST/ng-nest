@@ -24,21 +24,22 @@
       </ul>
     </ng-container>
     <ng-container *ngSwitchCase="'img'">
-      <div class="x-upload-img-item" *ngFor="let file of files; index as i; trackBy: trackByItem" [title]="file.name">
+      <div class="x-upload-img-item {{ file.state }}" *ngFor="let file of files; index as i; trackBy: trackByItem" [title]="file.name">
         <div class="x-upload-img-inner">
-          <img [src]="file.url" />
+          <img [src]="file.url" (load)="imgLoad($event, file)" (error)="imgError($event, file)" />
+          <x-icon type="fto-image"></x-icon>
+          <span *ngIf="file.state == 'uploading'">{{ file.percent }}%</span>
         </div>
         <div class="x-upload-img-btns">
           <div class="x-upload-img-btns-inner">
             <ng-container [ngSwitch]="file.state">
               <x-icon class="x-upload-state" *ngSwitchCase="'ready'" type="fto-clock"></x-icon>
-              <span class="x-upload-percent" *ngSwitchCase="'uploading'">{{ file.percent }}%</span>
               <x-icon class="x-upload-state error" *ngSwitchCase="'error'" type="fto-info"></x-icon>
               <a [href]="file.url" target="_blank" *ngSwitchCase="'success'">
                 <x-icon type="fto-eye"></x-icon>
               </a>
             </ng-container>
-            <x-icon *ngIf="imgCut" type="fto-crop" (click)="onImgCut(file, i)"></x-icon>
+            <!-- <x-icon *ngIf="imgCut" type="fto-crop" (click)="onImgCut(file, i)"></x-icon> -->
             <x-icon *ngIf="file.state !== 'uploading'" type="fto-trash-2" (click)="remove(file, i)"></x-icon>
           </div>
         </div>

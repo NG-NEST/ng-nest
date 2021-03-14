@@ -123,9 +123,27 @@
         overflow: hidden;
         display: flex;
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
         > img {
           width: 100%;
           border-radius: $--x-border-radius;
+        }
+        > x-icon {
+          display: none;
+          font-size: 3rem;
+          color: $--x-danger;
+        }
+      }
+      &.error {
+        border-color: $--x-danger;
+        .x-upload-img-inner {
+          > img {
+            display: none;
+          }
+          > x-icon {
+            display: inherit;
+          }
         }
       }
       &:hover {

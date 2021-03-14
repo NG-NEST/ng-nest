@@ -141,9 +141,9 @@ class TestXUploadDisabledComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-upload action="http://localhost:3000/upload" [label]="labelTpl" type="img" multiple></x-upload>
+        <x-upload action="http://localhost:3000/upload" [text]="textTpl" type="img" multiple></x-upload>
 
-        <ng-template #labelTpl>
+        <ng-template #textTpl>
           <x-icon class="upload-icon" type="fto-upload"></x-icon>
           <span>选择图片</span>
         </ng-template>
@@ -177,9 +177,9 @@ class TestXUploadImgComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-upload action="http://localhost:3000/upload" [label]="labelTpl" type="img" [(ngModel)]="files" multiple imgCut></x-upload>
+        <x-upload action="http://localhost:3000/upload" [text]="textTpl" type="img" [(ngModel)]="files" multiple imgCut></x-upload>
 
-        <ng-template #labelTpl>
+        <ng-template #textTpl>
           <x-icon class="upload-icon" type="fto-upload"></x-icon>
           <span>选择图片</span>
         </ng-template>
@@ -206,7 +206,7 @@ class TestXUploadImgCutComponent {
   files = [
     {
       name: '3.png',
-      url: 'http://127.0.0.1:3000/upload/1614515464461-3.png'
+      url: 'http://127.0.0.1:3000/upload/1614515464461-56.png'
     },
     {
       name: '2.png',
