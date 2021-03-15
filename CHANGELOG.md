@@ -1,4 +1,37 @@
-## [11.0.3](https://github.com/NG-NEST/ng-nest/compare/11.0.2...11.0.3) (2021-01-05)
+# [11.2.0](https://github.com/NG-NEST/ng-nest/compare/11.0.3...11.2.0) (2021-03-15)
+
+
+### Bug Fixes
+
+* **module: date-picker:** invalid string date ([63797ad](https://github.com/NG-NEST/ng-nest/commit/63797adb37ce0e95b0d3596b27caf0da823ba028)), closes [#13](https://github.com/NG-NEST/ng-nest/issues/13)
+* **module:date-picker:** no time after month selection ([fd38cfe](https://github.com/NG-NEST/ng-nest/commit/fd38cfe649342a63cf844a213f120b61b91cdb52))
+* **module:upload:** accept by default in picture mode ([9f24f95](https://github.com/NG-NEST/ng-nest/commit/9f24f95c51891d38eb9dcea19b3dbb48bb424b53))
+* **module:upload:** multiple selection of the same file ([49634ad](https://github.com/NG-NEST/ng-nest/commit/49634add70686d07e80ccb812f01e07e9d15fb7e)), closes [#8](https://github.com/NG-NEST/ng-nest/issues/8)
+* **module:upload:** uploading and error state display ([c27ed35](https://github.com/NG-NEST/ng-nest/commit/c27ed35524918be51cf8a27e46dabe8761e4c5fc))
+
+
+### Features
+
+* **deps:** add stackblitz ([5a019fb](https://github.com/NG-NEST/ng-nest/commit/5a019fbe12ad72281cf990c5bee9a635c845be6e))
+* **module: date-picker:** add time-picker ([e91dd30](https://github.com/NG-NEST/ng-nest/commit/e91dd30830880f0cdd03451f2efda6276ae95b51)), closes [#6](https://github.com/NG-NEST/ng-nest/issues/6)
+* **module:rate:** add custom temp ([a1ef6c2](https://github.com/NG-NEST/ng-nest/commit/a1ef6c2884f0ff257b69be90de8587305e1e70f0)), closes [#11](https://github.com/NG-NEST/ng-nest/issues/11)
+* **module:rate:** add half param definition ([b11c9f7](https://github.com/NG-NEST/ng-nest/commit/b11c9f73b1371530554baa28f2bdb5a9eaa76bcd)), closes [#11](https://github.com/NG-NEST/ng-nest/issues/11)
+* **module:rate:** add half rate support ([db8455f](https://github.com/NG-NEST/ng-nest/commit/db8455fb906459eeff11d9bca3c3fbb777452529)), closes [#11](https://github.com/NG-NEST/ng-nest/issues/11)
+* **module:table:** add body cell config ([14d0c81](https://github.com/NG-NEST/ng-nest/commit/14d0c815cd26cc86980b8f00a6878199c0f1bdb2)), closes [#7](https://github.com/NG-NEST/ng-nest/issues/7)
+* **module:table:** add cellMerge input ([85b7b67](https://github.com/NG-NEST/ng-nest/commit/85b7b671d23b02a5e8642fc74f460a4ea1233667)), closes [#7](https://github.com/NG-NEST/ng-nest/issues/7)
+* **module:table:** add select all function to column header ([1334f16](https://github.com/NG-NEST/ng-nest/commit/1334f1630b98d279d73847d0c3706b3c9c14598b)), closes [#14](https://github.com/NG-NEST/ng-nest/issues/14)
+* **module:table:** adjust style ([f44b107](https://github.com/NG-NEST/ng-nest/commit/f44b107da7a0529bf898c341406383ac7ac70f26)), closes [#7](https://github.com/NG-NEST/ng-nest/issues/7)
+* **module:table:** table column add drag width ([c3ed3d7](https://github.com/NG-NEST/ng-nest/commit/c3ed3d7f573365422d3c22671333356f9a35533e)), closes [#15](https://github.com/NG-NEST/ng-nest/issues/15)
+* **module:upload:** add imgCut attribute ([32734e8](https://github.com/NG-NEST/ng-nest/commit/32734e8642b50ce179bcd1617452f19802d17a84)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **module:upload:** add imgCut style ([f198f25](https://github.com/NG-NEST/ng-nest/commit/f198f25eb41f8231179904132f04b9e15219d2a0)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **module:upload:** add picture preview ([7c7e40d](https://github.com/NG-NEST/ng-nest/commit/7c7e40d15b8c2d55ce066f63b4b7dd6ab1d6d7c9)), closes [#9](https://github.com/NG-NEST/ng-nest/issues/9)
+* **module:upload:** add pop-up layer to display picture ([d0d6845](https://github.com/NG-NEST/ng-nest/commit/d0d6845b1ae360f3d37d802476e4f929762194fd)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **module:upload:** add upload type attribute ([b8a03fd](https://github.com/NG-NEST/ng-nest/commit/b8a03fdaa52e58ec02044b7cf59443b0d5a5fc99)), closes [#9](https://github.com/NG-NEST/ng-nest/issues/9)
+* **module:upload:** clip box add drag ([213242b](https://github.com/NG-NEST/ng-nest/commit/213242ba0622a1177085895131d534e799ac8ead)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+
+
+
+## [11.0.3](https://github.com/NG-NEST/ng-nest/compare/11.0.2...11.0.3) (2021-01-04)
 
 
 
