@@ -1,4 +1,4 @@
-import { XControlValueAccessor, XInputBoolean, XBoolean, XTemplate } from '@ng-nest/ui/core';
+import { XControlValueAccessor, XInputBoolean, XBoolean, XTemplate, XPosition, XCorner } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 /**
@@ -83,6 +83,12 @@ export type XStateType = 'ready' | 'uploading' | 'success' | 'error';
  * @en_US File display type
  */
 export type XUploadType = 'list' | 'img';
+
+/**
+ * @zh_CN 剪裁的方位
+ * @en_US Tailored orientation
+ */
+export type XUploadCutType = XPosition | XCorner | '';
 
 /**
  * Upload Portal

@@ -1,4 +1,4 @@
-<div class="x-upload-portal" [class.x-upload-portal-ready]="ready">
+<div class="x-upload-portal {{ cutType }}" [class.x-upload-portal-ready]="ready">
   <div class="x-upload-portal-tools">
     <div class="x-upload-portal-title">
       <x-icon type="fto-image"></x-icon>
@@ -9,7 +9,7 @@
   <div class="x-upload-portal-img">
     <img #imgRef [src]="file?.url" />
     <div #boundaryRef class="x-upload-portal-boundary">
-      <div #cutRef class="x-upload-portal-cut" cdkDragBoundary=".x-upload-portal-boundary" [cdkDragDisabled]="cutChange" cdkDrag>
+      <div #cutRef class="x-upload-portal-cut">
         <div class="x-upload-portal-cut-top-start"></div>
         <div class="x-upload-portal-cut-top"></div>
         <div class="x-upload-portal-cut-top-end"></div>

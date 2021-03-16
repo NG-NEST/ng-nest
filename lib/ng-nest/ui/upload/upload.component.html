@@ -39,7 +39,7 @@
                 <x-icon type="fto-eye"></x-icon>
               </a>
             </ng-container>
-            <!-- <x-icon *ngIf="imgCut" type="fto-crop" (click)="onImgCut(file, i)"></x-icon> -->
+            <x-icon *ngIf="imgCut" type="fto-crop" (click)="onImgCut(file, i)"></x-icon>
             <x-icon *ngIf="file.state !== 'uploading'" type="fto-trash-2" (click)="remove(file, i)"></x-icon>
           </div>
         </div>

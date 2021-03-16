@@ -328,4 +328,28 @@
       cursor: se-resize;
     }
   }
+  &-top-start {
+    cursor: se-resize;
+  }
+  &-top {
+    cursor: s-resize;
+  }
+  &-top-end {
+    cursor: ne-resize;
+  }
+  &-left {
+    cursor: w-resize;
+  }
+  &-right {
+    cursor: w-resize;
+  }
+  &-bottom-start {
+    cursor: ne-resize;
+  }
+  &-bottom {
+    cursor: s-resize;
+  }
+  &-bottom-end {
+    cursor: se-resize;
+  }
 }
