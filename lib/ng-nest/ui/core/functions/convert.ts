@@ -132,3 +132,7 @@ export function XInputNumber(): any {
 export function XDataConvert(): any {
   return propDecoratorFactory('XDataConvert', XToDataConvert);
 }
+
+export function XClamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
+}

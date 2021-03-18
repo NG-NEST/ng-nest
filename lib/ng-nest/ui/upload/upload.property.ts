@@ -34,7 +34,7 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    */
   @Input() type: XUploadType = 'list';
   /**
-   * @zh_CN 图片剪裁(暂时未实现)
+   * @zh_CN 图片剪裁
    * @en_US Picture cropping
    */
   @Input() @XInputBoolean() imgCut: XBoolean;

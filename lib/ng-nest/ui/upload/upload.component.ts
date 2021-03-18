@@ -122,39 +122,48 @@ export class XUploadComponent extends XUploadProperty {
     if (!this.action) return;
     let readyFiles = this.files.filter((x) => x.state === 'ready');
     readyFiles.forEach((x) => {
-      let formData = new FormData();
-      formData.append('file', x);
-      const req = new HttpRequest('POST', this.action, formData, {
-        reportProgress: true,
-        responseType: 'arraybuffer'
-      });
-      this.http
-        .request(req)
-        .pipe(
-          map((event) =>
-            this.getEventMessage(event, x, (body: BlobPart) => {
-              let blob = new Blob([body]);
-              let reader = new FileReader();
-              reader.readAsText(blob, 'utf-8');
-              reader.onload = () => {
-                x.url = JSON.parse(reader.result as string)[0];
-                this.value.push(x);
-                this.cdr.detectChanges();
-              };
-            })
-          )
-        )
-        .subscribe(
-          () => {
-            this.showUpload = this.files.find((y) => y.state === 'ready') != null;
-            this.cdr.detectChanges();
-          },
-          () => {
-            x.state = 'error';
-            this.cdr.detectChanges();
-          }
-        );
+      this.uploadFile(x);
     });
+  }
+
+  uploadFile(file: XUploadNode, index = -1) {
+    let formData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('POST', this.action, formData, {
+      reportProgress: true,
+      responseType: 'arraybuffer'
+    });
+    this.http
+      .request(req)
+      .pipe(
+        map((event) =>
+          this.getEventMessage(event, file, (body: BlobPart) => {
+            let blob = new Blob([body]);
+            let reader = new FileReader();
+            reader.readAsText(blob, 'utf-8');
+            reader.onload = () => {
+              file.url = JSON.parse(reader.result as string)[0];
+              if (index === -1) {
+                this.value.push(file);
+              } else {
+                this.value[index] = file;
+                this.files[index] = file;
+              }
+              this.cdr.detectChanges();
+            };
+          })
+        )
+      )
+      .subscribe(
+        () => {
+          this.showUpload = this.files.find((y) => y.state === 'ready') != null;
+          this.cdr.detectChanges();
+        },
+        () => {
+          file.state = 'error';
+          this.cdr.detectChanges();
+        }
+      );
   }
 
   getEventMessage(event: HttpEvent<any>, file: XUploadNode, fun: Function) {
@@ -188,16 +197,22 @@ export class XUploadComponent extends XUploadProperty {
         positionStrategy: this.portalService.setPlace('center')
       }
     });
-    this.setInstance(file);
+    this.setInstance(file, index);
   }
 
-  setInstance(file: XUploadNode) {
+  setInstance(file: XUploadNode, index: number) {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
+    console.log(file);
     Object.assign(componentRef.instance, {
       file: file,
       closePortal: () => this.closePortal(),
-      destroyPortal: () => this.destroyPortal()
+      destroyPortal: () => this.destroyPortal(),
+      surePortal: (blob: Blob) => {
+        const fl = new File([blob], file.name, { type: blob.type }) as XUploadNode;
+        fl.state = 'ready';
+        this.uploadFile(fl, index);
+      }
     });
     componentRef.changeDetectorRef.detectChanges();
   }

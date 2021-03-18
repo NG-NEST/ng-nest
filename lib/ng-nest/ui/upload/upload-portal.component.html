@@ -7,8 +7,9 @@
     <x-icon class="x-upload-portal-close" type="fto-x" (click)="closePortal()"></x-icon>
   </div>
   <div class="x-upload-portal-img">
-    <img #imgRef [src]="file?.url" />
+    <img #imgRef class="x-upload-portal-full-img" [src]="file.url" />
     <div #boundaryRef class="x-upload-portal-boundary">
+      <img #imgClipRef class="x-upload-portal-clip-img" [src]="file.url" />
       <div #cutRef class="x-upload-portal-cut">
         <div class="x-upload-portal-cut-top-start"></div>
         <div class="x-upload-portal-cut-top"></div>
@@ -20,5 +21,8 @@
         <div class="x-upload-portal-cut-bottom-end"></div>
       </div>
     </div>
+  </div>
+  <div class="x-upload-portal-bottom-tools">
+    <x-icon class="x-upload-portal-close" type="fto-check" (click)="sure()"></x-icon>
   </div>
 </div>

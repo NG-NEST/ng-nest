@@ -204,11 +204,23 @@
   &-tools {
     width: 100%;
     height: 3.25rem;
-    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: absolute;
+    z-index: 1;
     color: white;
+  }
+  &-bottom-tools {
+    width: 100%;
+    height: 3.25rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    color: white;
+    bottom: 0;
   }
   &-title {
     display: flex;
@@ -222,8 +234,8 @@
     }
   }
   &-close {
-    font-size: 1.25rem;
-    padding: 1rem;
+    font-size: 1.75rem;
+    padding: 0 1rem;
     color: rgba(255, 255, 255, 0.8);
     transition: color $--x-animation-duration-base;
     cursor: pointer;
@@ -236,25 +248,25 @@
     width: 100%;
     position: relative;
     overflow: auto;
-    > img {
-      max-width: 80%;
-      max-height: 80%;
-      border: 0.125rem $--x-border-style transparent;
-      width: auto;
-      height: auto;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate3d(-50%, -50%, 0);
-    }
+  }
+  &-full-img {
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  &-clip-img {
+    position: absolute;
   }
   &-ready {
     .#{$--x-upload-portal-prefix} {
-      &-img {
-        > img {
-          max-width: inherit;
-          max-height: inherit;
-        }
+      &-full-img {
+        max-width: inherit;
+        max-height: inherit;
       }
     }
   }
@@ -265,6 +277,7 @@
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
     position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
   }
   &-cut {
     width: 0;
