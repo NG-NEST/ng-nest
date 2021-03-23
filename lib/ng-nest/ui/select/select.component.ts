@@ -28,7 +28,7 @@ import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -66,8 +66,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;
+  animating = false;
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -84,6 +86,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   ngOnInit() {
     this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setSubject();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -111,6 +114,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.setDisplayValue();
       this.setPortal();
       this.cdr.detectChanges();
+    });
+  }
+
+  setSubject() {
+    this.closeSubject.pipe(throttleTime(100), takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
     });
   }
 
@@ -178,7 +187,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   showPortal() {
     if (this.disabled || this.iconSpin) return;
-    if (this.closePortal()) return;
+    if (this.animating) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
@@ -216,7 +225,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       .pipe(takeUntil(this._unSubject))
       .subscribe(() => {
         this.setDisplayValue();
-        this.closePortal();
+        this.closeSubject.next();
       });
     this.setInstance();
   }
@@ -239,9 +248,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       multiple: this.multiple === true ? 0 : 1,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XSelectNode) => this.nodeClick(node)
+      nodeEmit: (node: XSelectNode) => this.nodeClick(node),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -255,7 +265,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       node = node as XSelectNode;
       this.displayValue = node.label;
       this.value = node.id;
-      this.closePortal();
+      this.closeSubject.next();
     }
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();

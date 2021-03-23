@@ -25,13 +25,18 @@ import { takeUntil } from 'rxjs/operators';
 export class XSelectPortalComponent implements OnInit, OnDestroy {
   @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
   }
 
   data: XSelectNode[];
   value: any;
   valueChange: Subject<any>;
   positionChange: Subject<any>;
+  animating: Function;
   closePortal: Function;
   destroyPortal: Function;
   nodeEmit: Function;
