@@ -22,7 +22,7 @@ import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from
   providers: [XValueAccessor(XInputComponent)]
 })
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
-  @ViewChild('input', { static: true }) input: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
 
   writeValue(value: any) {
@@ -61,12 +61,16 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(this.input.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.clearable) && this.setClearable();
+  }
+
+  onInput(event: Event) {
+    this.input.emit(event);
   }
 
   change(value: any) {

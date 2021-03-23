@@ -5,9 +5,11 @@ import {
   XInputBoolean,
   XData,
   XBoolean,
-  XCorner,
   XFormOption,
-  XWithConfig
+  XWithConfig,
+  XPositionTopBottom,
+  XNumber,
+  XInputNumber
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
@@ -38,7 +40,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement: XPositionTopBottom;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
@@ -65,7 +67,7 @@ export interface XSelectOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPositionTopBottom;
 }
 
 /**

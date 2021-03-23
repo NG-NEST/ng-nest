@@ -64,6 +64,26 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Clear button event
    */
   @Output() clearEmit = new EventEmitter<any>();
+  /**
+   * @zh_CN 获取焦点的事件
+   * @en_US Focus event
+   */
+  @Output() focus = new EventEmitter<any>();
+  /**
+   * @zh_CN 失去焦点的事件
+   * @en_US Blur event
+   */
+  @Output() blur = new EventEmitter<any>();
+  /**
+   * @zh_CN Input
+   * @en_US Input event
+   */
+  @Output() input = new EventEmitter<any>();
+  /**
+   * @zh_CN Keydown
+   * @en_US Keydown event
+   */
+  @Output() keydown = new EventEmitter<any>();
 }
 
 /**

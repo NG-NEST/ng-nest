@@ -124,7 +124,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.dropdown, this.placement, 'bottom-start', 'top-start', 'bottom-end', 'top-end');
+    return this.portalService.setPlacement({
+      elementRef: this.dropdown,
+      placement: [this.placement, 'bottom-start', 'top-start', 'bottom-end', 'top-end']
+    });
   }
 
   private setData() {

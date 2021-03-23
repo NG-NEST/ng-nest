@@ -175,7 +175,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement({
+      elementRef: this.inputCom.inputElement,
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end']
+    });
   }
 
   setPortal() {

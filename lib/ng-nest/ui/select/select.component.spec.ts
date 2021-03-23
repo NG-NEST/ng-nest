@@ -26,7 +26,7 @@ describe(XSelectPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -56,7 +56,7 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectLabelComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectLabelComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -68,7 +68,7 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectDisabledComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectDisabledComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -80,19 +80,19 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectRequiredComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectRequiredComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`multiple.`, () => {
+  fdescribe(`multiple.`, () => {
     let fixture: ComponentFixture<TestXSelectMultipleComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectMultipleComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectMultipleComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -100,7 +100,7 @@ describe(XSelectPrefix, () => {
   });
 });
 
-const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
 @Component({
   template: `
@@ -306,6 +306,9 @@ class TestXSelectAsyncComponent {
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1" multiple></x-select>
       </x-col>
+      <x-col span="8">
+        <x-select [data]="data2" [(ngModel)]="model2" multiple></x-select>
+      </x-col>
     </x-row>
   `,
   styles: [
@@ -324,9 +327,12 @@ class TestXSelectAsyncComponent {
 })
 class TestXSelectMultipleComponent {
   data1 = data;
-  data2 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2: any = 'BBBB';
+  data2 = JSON.parse(JSON.stringify(data));
+  model2 = [
+    { id: 'AAAA', label: 'AAAA' },
+    { id: 'BBBB', label: 'BBBB' }
+  ];
   constructor(public cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => this.cdr.detectChanges());
   }

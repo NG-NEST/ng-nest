@@ -2,9 +2,9 @@ import { AnimationTriggerMetadata, trigger, style, animate, transition } from '@
 import { XDuration } from './consts';
 
 // 进场动画
-const XDURATION_BASE_EASE_IN = `${XDuration.Base} ease-in`;
+const XDURATION_BASE_EASE_IN = `${XDuration.Fast} ease-in`;
 // 移除动画
-const XDURATION_BASE_EASE_OUT = `${XDuration.Base} ease-out`;
+const XDURATION_BASE_EASE_OUT = `${XDuration.Fast} ease-out`;
 
 export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-animation', [
   transition('void => top-start, void => top, void => top-end, void => center', [
@@ -123,4 +123,9 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
       })
     )
   ])
+]);
+
+export const XConnectBaseAnimation: AnimationTriggerMetadata = trigger('x-connect-base-animation', [
+  transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_BASE_EASE_IN)]),
+  transition(':leave', [animate(XDURATION_BASE_EASE_OUT, style({ opacity: 0 }))])
 ]);

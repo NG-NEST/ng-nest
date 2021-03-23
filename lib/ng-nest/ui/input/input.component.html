@@ -1,5 +1,5 @@
 <div
-  #input
+  #inputElement
   class="x-input"
   [class.x-flex]="justify || align || direction"
   [class.x-disabled]="disabled"
@@ -26,6 +26,10 @@
       (ngModelChange)="change($event)"
       [style.padding-left.rem]="paddingLeft"
       [style.padding-right.rem]="paddingRight"
+      (focus)="focus.emit($event)"
+      (blur)="blur.emit($event)"
+      (input)="onInput($event)"
+      (keydown)="keydown.emit($event)"
     />
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
     <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>

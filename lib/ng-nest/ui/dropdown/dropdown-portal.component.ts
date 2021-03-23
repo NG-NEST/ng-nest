@@ -112,7 +112,10 @@ export class XDropdownPortalComponent implements OnDestroy {
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(new ElementRef(this.node?.event?.target), 'right-start', 'right-end', 'left-start', 'left-end');
+    return this.portalService.setPlacement({
+      elementRef: new ElementRef(this.node?.event?.target),
+      placement: ['right-start', 'right-end', 'left-start', 'left-end']
+    });
   }
 
   onEnter(node: XDropdownNode) {

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
-import { XCorner, XConnectAnimation } from '@ng-nest/ui/core';
+import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -20,15 +20,14 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation]
+  animations: [XConnectBaseAnimation]
 })
 export class XSelectPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     event.toState === 'void' && this.destroyPortal();
   }
 
-  docClickFunction: Function;
   data: XSelectNode[];
   value: any;
   valueChange: Subject<any>;
@@ -36,7 +35,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   closePortal: Function;
   destroyPortal: Function;
   nodeEmit: Function;
-  multiple: boolean = false;
+  multiple: XNumber = 1;
   show: boolean = false;
   private _unSubject = new Subject<void>();
 
@@ -51,18 +50,11 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
-    setTimeout(
-      () =>
-        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.closePortal();
-        }))
-    );
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   stopPropagation(event: Event): void {
@@ -70,7 +62,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XSelectNode) {
-    if (this.multiple) this.nodeEmit(this.value);
+    if (this.multiple === 0) this.nodeEmit(this.value);
     else this.nodeEmit(node);
   }
 }

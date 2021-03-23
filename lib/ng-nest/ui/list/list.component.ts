@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XValueAccessor, XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
+import { XValueAccessor, XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -69,12 +69,21 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
         .map((x) => {
           x.selected = false;
         });
-      this.selectedNodes = this.nodes
-        .filter((x) => valArry.indexOf(x.id) > -1)
-        .map((x) => {
-          x.selected = true;
-          return x;
-        });
+      if (this.objectArray) {
+        this.selectedNodes = this.nodes
+          .filter((x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id)))
+          .map((x) => {
+            x.selected = true;
+            return x;
+          });
+      } else {
+        this.selectedNodes = this.nodes
+          .filter((x) => valArry.indexOf(x.id) > -1)
+          .map((x) => {
+            x.selected = true;
+            return x;
+          });
+      }
     }
   }
 
@@ -104,9 +113,9 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       );
     }
     if (this.multiple === 1 && this.selectedNodes.length === 1) {
-      this.value = this.selectedNodes[0].id;
+      this.value = this.objectArray ? this.selectedNodes[0] : this.selectedNodes[0].id;
     } else {
-      this.value = this.selectedNodes.map((x) => x.id);
+      this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
     }
     if (this.onChange) this.onChange(this.value);
     node.event = event;

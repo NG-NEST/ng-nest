@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, map, takeUntil, tap } from 'rxjs/operators';
-import { XClamp } from '../core';
+import { XClamp } from '@ng-nest/ui/core';
 import { XUploadCutType, XUploadNode, XUploadPortalPrefix } from './upload.property';
 
 @Component({
@@ -222,8 +222,8 @@ export class XUploadPortalComponent {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       context.drawImage(img, -this.cutBox.x / this.proportion, -this.cutBox.y / this.proportion);
-      canvas.toBlob((blob: Blob) => {
-        this.surePortal(blob);
+      canvas.toBlob((blob) => {
+        this.surePortal(blob as Blob);
         this.closePortal();
       });
     };
