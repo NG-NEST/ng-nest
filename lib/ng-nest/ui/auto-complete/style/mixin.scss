@@ -1,0 +1,88 @@
+// AutoComplete
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './param';
+
+@mixin auto-complete {
+  flex: 1;
+  width: 100%;
+  @include flex();
+  > label {
+    display: inline-block;
+    white-space: nowrap;
+    height: $--x-auto-complete-height;
+    line-height: $--x-auto-complete-height;
+    color: $--x-text-300;
+    font-weight: 600;
+    @include text-align();
+  }
+  > .#{$--x-auto-complete-prefix}-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    > x-input {
+      > .x-input {
+        > .x-input-row {
+          > input {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  &.x-invalid,
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+  }
+  &.x-disabled {
+    > .#{$--x-auto-complete-prefix}-row {
+      > x-input {
+        > .x-input {
+          > .x-input-row {
+            > input {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.x-flex {
+    &.x-direction {
+      &-row {
+        > label {
+          padding: 0 0.5rem 0 0;
+        }
+      }
+      &-row-reverse {
+        > label {
+          padding: 0 0 0 0.5rem;
+        }
+      }
+      &-column {
+        align-items: inherit;
+      }
+      &-column-reverse {
+        align-items: inherit;
+      }
+    }
+  }
+}
+
+@mixin auto-complete-portal {
+  margin: 0.0625rem 0;
+  font-size: $--x-auto-complete-font-size;
+  color: $--x-text;
+  border: $--x-auto-complete-border;
+  width: 100%;
+  border-radius: $--x-border-radius;
+  box-shadow: $--x-box-shadow-light;
+  display: flex;
+  background-color: $--x-background;
+  overflow-y: auto;
+  max-height: calc(calc(#{$--x-auto-complete-height} * 6) + calc(#{$--x-border-width} * 7));
+}

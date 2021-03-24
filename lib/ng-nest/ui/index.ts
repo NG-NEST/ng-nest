@@ -60,6 +60,7 @@ export * from '@ng-nest/ui/tooltip';
 /**
  * Form
  */
+export * from '@ng-nest/ui/auto-complete';
 export * from '@ng-nest/ui/cascade';
 export * from '@ng-nest/ui/checkbox';
 export * from '@ng-nest/ui/color-picker';

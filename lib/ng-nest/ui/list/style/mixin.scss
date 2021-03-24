@@ -6,6 +6,8 @@
 
 @mixin list {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   flex: 1;
   > ul {
@@ -79,6 +81,9 @@
         }
       }
     }
+  }
+  > x-empty {
+    margin: 1rem;
   }
   &-leaf,
   &-checked {

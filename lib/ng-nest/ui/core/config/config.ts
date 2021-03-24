@@ -15,7 +15,8 @@ import {
   XDirection,
   XPlace,
   XPosition,
-  XPlacement
+  XPlacement,
+  XPositionTopBottom
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -36,6 +37,7 @@ export interface XComponentConfig {
   alert?: XAlertConfig;
   anchor?: XAnchorConfig;
   avatar?: XAvatarConfig;
+  autoComplete?: XAutoCompleteConfig;
   backTop?: XBackTopConfig;
   badge?: XBadgeConfgig;
   button?: XButtonConfig;
@@ -134,6 +136,10 @@ export interface XAvatarConfig {
   size?: XSize;
   shape?: XShape;
   fit?: XFit;
+}
+
+export interface XAutoCompleteConfig {
+  placement?: XPositionTopBottom;
 }
 
 export interface XBackTopConfig {
@@ -360,7 +366,7 @@ export interface XRateConfig {}
 export interface XResultConfig {}
 
 export interface XSelectConfig {
-  placement?: XCorner;
+  placement?: XPositionTopBottom;
 }
 
 export interface XSkeletonConfig {}

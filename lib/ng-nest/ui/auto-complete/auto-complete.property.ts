@@ -14,23 +14,23 @@ import {
 import { Input, Component } from '@angular/core';
 
 /**
- * Select
- * @selector x-select
+ * AutoComplete
+ * @selector x-auto-complete
  * @decorator component
  */
-export const XSelectPrefix = 'x-select';
-const X_CONFIG_NAME = 'select';
+export const XAutoCompletePrefix = 'x-auto-complete';
+const X_CONFIG_NAME = 'autoComplete';
 
 /**
- * Select Property
+ * AutoComplete Property
  */
 @Component({ template: '' })
-export class XSelectProperty extends XControlValueAccessor<any> {
+export class XAutoCompleteProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XSelectNode> = [];
+  @Input() @XDataConvert() data: XData<XAutoCompleteNode> = [];
   /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
@@ -41,23 +41,18 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Display position
    */
   @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement: XPositionTopBottom;
-  /**
-   * @zh_CN 多选功能
-   * @en_US Multiple choice
-   */
-  @Input() @XInputBoolean() multiple: XBoolean;
 }
 
 /**
- * Select Option
+ * AutoComplete Option
  * @undocument true
  */
-export interface XSelectOption extends XFormOption {
+export interface XAutoCompleteOption extends XFormOption {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  data?: XData<XSelectNode>;
+  data?: XData<XAutoCompleteNode>;
   /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
@@ -68,22 +63,17 @@ export interface XSelectOption extends XFormOption {
    * @en_US Display position
    */
   placement?: XPositionTopBottom;
-  /**
-   * @zh_CN 多选功能
-   * @en_US Multiple choice
-   */
-  multiple?: XBoolean;
 }
 
 /**
- * @zh_CN Select 数据对象
- * @en_US Select data object
+ * @zh_CN AutoComplete 数据对象
+ * @en_US AutoComplete data object
  */
-export interface XSelectNode extends XParentIdentityProperty<XSelectNode> {}
+export interface XAutoCompleteNode extends XParentIdentityProperty<XAutoCompleteNode> {}
 
 /**
- * Select Portal
- * @selector x-select-portal
+ * AutoComplete Portal
+ * @selector x-auto-complete-portal
  * @decorator component
  */
-export const XSelectPortalPrefix = 'x-select-portal';
+export const XAutoCompletePortalPrefix = 'x-auto-complete-portal';

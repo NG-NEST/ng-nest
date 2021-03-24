@@ -25,6 +25,10 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
 
+  get isEmpty() {
+    return XIsEmpty(this.nodes);
+  }
+
   writeValue(value: any): void {
     this.value = value;
     this.setSelected();

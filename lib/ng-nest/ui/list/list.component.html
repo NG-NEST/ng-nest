@@ -1,5 +1,5 @@
 <div class="x-list">
-  <ul cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag">
+  <ul *ngIf="!isEmpty" cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag">
     <li
       class="x-list-item"
       *ngFor="let node of nodes; trackBy: trackByNode"
@@ -17,4 +17,5 @@
       <x-icon class="x-list-checked" type="fto-check" *ngIf="checked && !node.leaf && node.selected"></x-icon>
     </li>
   </ul>
+  <x-empty *ngIf="isEmpty"></x-empty>
 </div>
