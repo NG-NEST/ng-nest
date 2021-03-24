@@ -25,7 +25,7 @@ describe(XAutoCompletePrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -37,7 +37,7 @@ describe(XAutoCompletePrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`async.`, () => {
+  fdescribe(`async.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteAsyncComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -269,7 +269,7 @@ class TestXAutoCompleteRequiredComponent {
   ]
 })
 class TestXAutoCompleteAsyncComponent {
-  model = 'QQ';
+  model = '';
   data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {

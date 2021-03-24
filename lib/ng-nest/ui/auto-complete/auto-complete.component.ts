@@ -43,6 +43,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   @ViewChild('autoComplete', { static: true }) autoComplete!: ElementRef;
 
   writeValue(value: any) {
+    this.isWriteValue = true;
     this.value = value;
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
@@ -64,6 +65,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
+  isWriteValue = false;
 
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
@@ -116,7 +118,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   setSubject() {
-    this.closeSubject.pipe(throttleTime(100), takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
   }
@@ -124,7 +126,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   menter() {
     if (this.disabled) return;
     this.enter = true;
-    if (!XIsEmpty(this.displayValue)) {
+    if (!XIsEmpty(this.value)) {
       this.icon = '';
       this.clearable = true;
       this.cdr.detectChanges();
@@ -142,8 +144,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   clearEmit() {
+    if (this.value !== '') {
+      this.isWriteValue = true;
+    }
     this.value = '';
-    this.displayValue = '';
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -239,6 +243,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   nodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
+    if (this.value !== node.id) {
+      this.isWriteValue = true;
+    }
     this.value = node.id;
     this.closeSubject.next();
     if (this.onChange) this.onChange(this.value);
@@ -258,14 +265,18 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   inputChange() {
+    if (this.isWriteValue) {
+      this.isWriteValue = false;
+      return;
+    }
     if (this.nodes) {
       if (!this.portalAttached()) {
         this.showPortal();
       } else {
-        this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
         if (XIsEmpty(this.value)) {
           this.closePortal();
         } else {
+          this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
           this.dataChange.next(this.searchNodes);
         }
       }

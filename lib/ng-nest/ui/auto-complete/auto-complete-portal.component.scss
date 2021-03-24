@@ -8,6 +8,5 @@
   width: 100%;
 }
 .#{$--x-auto-complete-portal-prefix} {
-  @include reset-component();
   @include auto-complete-portal();
 }

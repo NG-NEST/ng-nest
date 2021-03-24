@@ -19,8 +19,8 @@
       [disabled]="disabled"
       [clearable]="clearable"
       [(ngModel)]="value"
+      (ngModelChange)="inputChange()"
       (clearEmit)="clearEmit()"
-      (input)="inputChange()"
     ></x-input>
   </div>
 </div>
