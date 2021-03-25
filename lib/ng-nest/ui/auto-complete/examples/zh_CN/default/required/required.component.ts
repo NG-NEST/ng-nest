@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { XSelectNode } from '@ng-nest/ui/select';
-import { XData } from '@ng-nest/ui/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-required',
@@ -8,6 +7,10 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./required.component.scss']
 })
 export class ExRequiredComponent {
-  data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
-  model: number;
+  model = '';
+  data = (str: string) =>
+    new Observable<string[]>((x) => {
+      x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+      x.complete();
+    });
 }

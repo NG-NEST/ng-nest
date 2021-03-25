@@ -31,12 +31,6 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    * @en_US Node data
    */
   @Input() @XDataConvert() data: XData<XAutoCompleteNode> = [];
-  
-  /**
-   * @zh_CN 异步加载
-   * @en_US Asynchronous loading
-   */
-  @Input() @XInputBoolean() async: XBoolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position

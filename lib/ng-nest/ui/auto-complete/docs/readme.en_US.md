@@ -1,11 +1,11 @@
 ---
-label: 'Select'
+label: 'AutoComplete'
 category: 'Form'
 ---
 
-# Select
+# AutoComplete
 
-Drop down selector.
+Enter Automatically complete match related information.
 
 ## Used alone
 

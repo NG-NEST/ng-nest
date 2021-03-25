@@ -1,7 +1,7 @@
 ---
-order: 1
+order: 2
 label: 'Label'
 ---
 
-- Use the `label` property to display text label.
-- Use the `direction` property to set the layout.
+- Set the display text tab using the `label` property.
+- Use the `Direction` property set the typesetting.

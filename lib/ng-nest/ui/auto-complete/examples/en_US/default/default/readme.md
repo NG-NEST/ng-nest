@@ -1,7 +1,6 @@
 ---
 order: 1
-label: 'Defalut'
+label: 'Default'
 ---
 
-- Use the `data` attribute to configure the drop-down options.
-- `width` automatically expands to 100% according to the width of the parent element.
+- Use the `Data` property to configure the drop-down data.

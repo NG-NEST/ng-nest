@@ -21,14 +21,14 @@ import {
   XSetData,
   XClearClass,
   XConfigService,
-  XIsArray,
-  XPositionTopBottom
+  XPositionTopBottom,
+  XIsFunction
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAutoCompletePortalComponent } from './auto-complete-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,
@@ -70,6 +70,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   dataChange: Subject<XAutoCompleteNode[]> = new Subject();
+  inputChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
@@ -109,7 +110,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   setData() {
-    if (this.async) return;
+    if (XIsObservable(this.data) || XIsFunction(this.data)) return;
     XSetData<XAutoCompleteNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
       this.setPortal();
@@ -121,36 +122,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-  }
-
-  menter() {
-    if (this.disabled) return;
-    this.enter = true;
-    if (!XIsEmpty(this.value)) {
-      this.icon = '';
-      this.clearable = true;
-      this.cdr.detectChanges();
-    }
-  }
-
-  mleave() {
-    if (this.disabled) return;
-    this.enter = false;
-    if (this.clearable) {
-      this.icon = '';
-      this.clearable = false;
-      this.cdr.detectChanges();
-    }
-  }
-
-  clearEmit() {
-    if (this.value !== '') {
-      this.isWriteValue = true;
-    }
-    this.value = '';
-    this.mleave();
-    this.valueChange.next(this.value);
-    if (this.onChange) this.onChange(this.value);
+    this.inputChange.pipe(debounceTime(200), takeUntil(this._unSubject)).subscribe((x) => {
+      this.modelChange();
+    });
   }
 
   portalAttached() {
@@ -172,11 +146,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   showPortal() {
     if (XIsEmpty(this.value) || this.disabled || this.iconSpin || this.animating) return;
-    if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
+    if ((XIsObservable(this.data) && this.nodes.length === 0) || XIsFunction(this.data)) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
       this.cdr.detectChanges();
-      XSetData<XAutoCompleteNode>(this.data, this._unSubject).subscribe((x) => {
+      XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
         this.nodes = x;
         this.createPortal();
         this.icon = '';
@@ -243,11 +217,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   nodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
+    this.closeSubject.next();
     if (this.value !== node.id) {
       this.isWriteValue = true;
+    } else {
+      return;
     }
     this.value = node.id;
-    this.closeSubject.next();
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }
@@ -264,9 +240,27 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 
-  inputChange() {
+  modelChange() {
     if (this.isWriteValue) {
       this.isWriteValue = false;
+      return;
+    }
+    if (this.onChange) this.onChange(this.value);
+    if (XIsFunction(this.data)) {
+      if (!this.portalAttached()) {
+        this.showPortal();
+      } else {
+        this.icon = 'fto-loader';
+        this.iconSpin = true;
+        this.cdr.detectChanges();
+        XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
+          this.nodes = x;
+          this.icon = '';
+          this.iconSpin = false;
+          this.dataChange.next(this.nodes);
+          this.cdr.detectChanges();
+        });
+      }
       return;
     }
     if (this.nodes) {

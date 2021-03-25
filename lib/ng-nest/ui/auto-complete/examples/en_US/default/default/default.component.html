@@ -1,10 +1,20 @@
 <x-row>
   <x-col>
-    <x-select [data]="data1" [(ngModel)]="model1"></x-select>
+    <x-auto-complete [data]="data" [(ngModel)]="model" placeholder="Manual match"></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
-    <x-select [data]="data2" [(ngModel)]="model2"></x-select>
+    <x-auto-complete [data]="dataAsync" [(ngModel)]="modelAsync" placeholder="Manual match, load"></x-auto-complete>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col>
+    <x-auto-complete [data]="dataArray" [(ngModel)]="modelArray" placeholder="Fixed option match"></x-auto-complete>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col>
+    <x-auto-complete [data]="dataObservable" [(ngModel)]="modelObservable" placeholder="Fixed options match, only request once"></x-auto-complete>
   </x-col>
 </x-row>

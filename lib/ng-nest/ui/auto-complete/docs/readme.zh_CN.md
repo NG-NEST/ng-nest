@@ -1,11 +1,11 @@
 ---
-label: 'Select 选择器'
+label: 'AutoComplete 自动完成'
 category: 'Form'
 ---
 
-# Select 选择器
+# AutoComplete 自动完成
 
-下拉选择器。
+输入自动完成匹配相关信息。
 
 ## 单独引入此组件
 

@@ -1,6 +1,6 @@
 ---
-order: 2
+order: 3
 label: '必填'
 ---
 
-使用 `required` 属性设置选择器必填。
+使用 `required` 属性设置必填。

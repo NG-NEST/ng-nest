@@ -248,7 +248,13 @@ class TestXAutoCompleteRequiredComponent {
     <x-theme showDark></x-theme>
     <x-row>
       <x-col>
-        <x-auto-complete [data]="data" [(ngModel)]="model" (ngModelChange)="change()" async></x-auto-complete>
+        <x-auto-complete [data]="data" [(ngModel)]="model" (ngModelChange)="change()"></x-auto-complete>
+      </x-col>
+      <x-col>
+        <x-auto-complete [data]="data" [(ngModel)]="model1" (ngModelChange)="change()"></x-auto-complete>
+      </x-col>
+      <x-col>
+        <x-auto-complete [data]="data1" [(ngModel)]="model2"></x-auto-complete>
       </x-col>
     </x-row>
   `,
@@ -270,16 +276,26 @@ class TestXAutoCompleteRequiredComponent {
 })
 class TestXAutoCompleteAsyncComponent {
   model = '';
+  model1 = 'QQ';
   data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      this.model = '钉钉';
       x.next(['QQ', '微信', '钉钉', '微博']);
       x.complete();
-    }, 2000);
+    }, 500);
   });
+
+  data1 = (str: string) =>
+    new Observable<string[]>((x) => {
+      // 替换成http请求
+      setTimeout(() => {
+        x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+        x.complete();
+      }, 500);
+    });
   constructor(private cdr: ChangeDetectorRef) {}
   change() {
+    console.log(this.model, this.model1);
     this.cdr.detectChanges();
   }
 }

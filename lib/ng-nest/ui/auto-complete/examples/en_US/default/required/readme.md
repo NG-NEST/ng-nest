@@ -1,6 +1,6 @@
 ---
-order: 2
+order: 3
 label: 'Required'
 ---
 
-Use the `required` attribute to set the selector required.
+Set the required feature to use `Required` property.

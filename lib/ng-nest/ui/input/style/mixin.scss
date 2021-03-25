@@ -150,6 +150,10 @@
         position: absolute;
         font-size: $--x-input-icon-font-size;
         padding: $--x-input-icon-padding;
+        &.#{$--x-prefix}-icon-spin {
+          padding: 0;
+          margin: $--x-input-icon-padding;
+        }
       }
     }
   }
