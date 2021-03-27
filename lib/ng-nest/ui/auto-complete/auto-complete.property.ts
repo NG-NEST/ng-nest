@@ -32,6 +32,11 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    */
   @Input() @XDataConvert() data: XData<XAutoCompleteNode> = [];
   /**
+   * @zh_CN 输入延迟执行时间，ms
+   * @en_US Enter a delay execution time, ms
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime: number;
+  /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
@@ -49,10 +54,10 @@ export interface XAutoCompleteOption extends XFormOption {
    */
   data?: XData<XAutoCompleteNode>;
   /**
-   * @zh_CN 异步加载
-   * @en_US Asynchronous loading
+   * @zh_CN 输入延迟执行时间，ms
+   * @en_US Enter a delay execution time, ms
    */
-  async?: XBoolean;
+  debounceTime?: number;
   /**
    * @zh_CN 展示方位
    * @en_US Display position

@@ -140,6 +140,7 @@ export interface XAvatarConfig {
 
 export interface XAutoCompleteConfig {
   placement?: XPositionTopBottom;
+  debounceTime?: number;
 }
 
 export interface XBackTopConfig {

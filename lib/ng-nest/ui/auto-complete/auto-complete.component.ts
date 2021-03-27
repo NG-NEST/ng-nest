@@ -122,7 +122,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(200), takeUntil(this._unSubject)).subscribe((x) => {
+    this.inputChange.pipe(debounceTime(this.debounceTime), takeUntil(this._unSubject)).subscribe((x) => {
       this.modelChange();
     });
   }
@@ -250,16 +250,20 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       if (!this.portalAttached()) {
         this.showPortal();
       } else {
-        this.icon = 'fto-loader';
-        this.iconSpin = true;
-        this.cdr.detectChanges();
-        XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
-          this.nodes = x;
-          this.icon = '';
-          this.iconSpin = false;
-          this.dataChange.next(this.nodes);
+        if (XIsEmpty(this.value)) {
+          this.closePortal();
+        } else {
+          this.icon = 'fto-loader';
+          this.iconSpin = true;
           this.cdr.detectChanges();
-        });
+          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
+            this.nodes = x;
+            this.icon = '';
+            this.iconSpin = false;
+            this.dataChange.next(this.nodes);
+            this.cdr.detectChanges();
+          });
+        }
       }
       return;
     }
