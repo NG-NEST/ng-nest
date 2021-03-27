@@ -15,10 +15,6 @@ label: '快速上手'
 
 打开命令行窗口程序，使用 `ng new my-app` 命令创建项目， `my-app` 为项目名称 。
 
-```primary
-此处请选择 SCSS 来做样式语言，暂不支持其它语言。
-```
-
 {{ __1\__bash:1.bash:false:false }}
 
 Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CLI 会在当前目录中创建一个工作区。
