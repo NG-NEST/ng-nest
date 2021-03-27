@@ -89,11 +89,12 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
  * ts文件中特殊字符处理
  */
 export function handlerContent(content: string) {
-  let special = [`\``];
+  let special = ['${', `\``];
   special.forEach((x) => {
     if (content.indexOf(x) > -1) {
-      let rep = `\\${x}`;
-      content = content.replace(new RegExp(x, 'g'), `${rep}`);
+      let rep = '\\' + x;
+      x = x === '${' ? '\\${' : x;
+      content = content.replace(new RegExp(x, 'g'), rep);
     }
   });
   return content;

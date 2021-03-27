@@ -102,7 +102,7 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "4-0-7",
+    "id": "4-0-8",
     "pid": "4-0",
     "name": "border",
     "router": "docs/en_US/ui/components/border",
@@ -111,7 +111,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-8",
+    "id": "4-0-9",
     "pid": "4-0",
     "name": "button",
     "router": "docs/en_US/ui/components/button",
@@ -120,7 +120,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-15",
+    "id": "4-0-16",
     "pid": "4-0",
     "name": "color",
     "router": "docs/en_US/ui/components/color",
@@ -129,7 +129,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-18",
+    "id": "4-0-19",
     "pid": "4-0",
     "name": "container",
     "router": "docs/en_US/ui/components/container",
@@ -138,7 +138,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-33",
+    "id": "4-0-34",
     "pid": "4-0",
     "name": "icon",
     "router": "docs/en_US/ui/components/icon",
@@ -147,7 +147,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-39",
+    "id": "4-0-40",
     "pid": "4-0",
     "name": "layout",
     "router": "docs/en_US/ui/components/layout",
@@ -156,7 +156,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-40",
+    "id": "4-0-41",
     "pid": "4-0",
     "name": "link",
     "router": "docs/en_US/ui/components/link",
@@ -165,7 +165,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/en_US/ui/components/theme",
@@ -174,7 +174,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-89",
+    "id": "4-0-90",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/en_US/ui/components/typography",
@@ -183,7 +183,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-4",
+    "id": "4-0-5",
     "pid": "4-0",
     "name": "avatar",
     "router": "docs/en_US/ui/components/avatar",
@@ -192,7 +192,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-6",
+    "id": "4-0-7",
     "pid": "4-0",
     "name": "badge",
     "router": "docs/en_US/ui/components/badge",
@@ -201,7 +201,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-9",
+    "id": "4-0-10",
     "pid": "4-0",
     "name": "calendar",
     "router": "docs/en_US/ui/components/calendar",
@@ -210,7 +210,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-10",
+    "id": "4-0-11",
     "pid": "4-0",
     "name": "card",
     "router": "docs/en_US/ui/components/card",
@@ -219,7 +219,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-11",
+    "id": "4-0-12",
     "pid": "4-0",
     "name": "carousel",
     "router": "docs/en_US/ui/components/carousel",
@@ -228,7 +228,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-14",
+    "id": "4-0-15",
     "pid": "4-0",
     "name": "collapse",
     "router": "docs/en_US/ui/components/collapse",
@@ -237,7 +237,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-17",
+    "id": "4-0-18",
     "pid": "4-0",
     "name": "comment",
     "router": "docs/en_US/ui/components/comment",
@@ -246,7 +246,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-27",
+    "id": "4-0-28",
     "pid": "4-0",
     "name": "empty",
     "router": "docs/en_US/ui/components/empty",
@@ -255,7 +255,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-48",
+    "id": "4-0-49",
     "pid": "4-0",
     "name": "outlet",
     "router": "docs/en_US/ui/components/outlet",
@@ -264,7 +264,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-51",
+    "id": "4-0-52",
     "pid": "4-0",
     "name": "pagination",
     "router": "docs/en_US/ui/components/pagination",
@@ -273,7 +273,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-56",
+    "id": "4-0-57",
     "pid": "4-0",
     "name": "progress",
     "router": "docs/en_US/ui/components/progress",
@@ -282,7 +282,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-65",
+    "id": "4-0-66",
     "pid": "4-0",
     "name": "statistic",
     "router": "docs/en_US/ui/components/statistic",
@@ -291,7 +291,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-69",
+    "id": "4-0-70",
     "pid": "4-0",
     "name": "table",
     "router": "docs/en_US/ui/components/table",
@@ -300,7 +300,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-71",
+    "id": "4-0-72",
     "pid": "4-0",
     "name": "tag",
     "router": "docs/en_US/ui/components/tag",
@@ -309,7 +309,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-73",
+    "id": "4-0-74",
     "pid": "4-0",
     "name": "text-retract",
     "router": "docs/en_US/ui/components/text-retract",
@@ -318,7 +318,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/en_US/ui/components/time-ago",
@@ -327,7 +327,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/en_US/ui/components/time-range",
@@ -336,7 +336,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/en_US/ui/components/timeline",
@@ -345,7 +345,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/en_US/ui/components/tree",
@@ -354,7 +354,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-83",
+    "id": "4-0-84",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/en_US/ui/components/tree-file",
@@ -372,7 +372,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-22",
+    "id": "4-0-23",
     "pid": "4-0",
     "name": "dialog",
     "router": "docs/en_US/ui/components/dialog",
@@ -381,7 +381,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-25",
+    "id": "4-0-26",
     "pid": "4-0",
     "name": "drawer",
     "router": "docs/en_US/ui/components/drawer",
@@ -390,7 +390,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-42",
+    "id": "4-0-43",
     "pid": "4-0",
     "name": "loading",
     "router": "docs/en_US/ui/components/loading",
@@ -399,7 +399,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-44",
+    "id": "4-0-45",
     "pid": "4-0",
     "name": "message",
     "router": "docs/en_US/ui/components/message",
@@ -408,7 +408,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-45",
+    "id": "4-0-46",
     "pid": "4-0",
     "name": "message-box",
     "router": "docs/en_US/ui/components/message-box",
@@ -417,7 +417,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-47",
+    "id": "4-0-48",
     "pid": "4-0",
     "name": "notification",
     "router": "docs/en_US/ui/components/notification",
@@ -426,7 +426,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-53",
+    "id": "4-0-54",
     "pid": "4-0",
     "name": "popconfirm",
     "router": "docs/en_US/ui/components/popconfirm",
@@ -435,7 +435,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-54",
+    "id": "4-0-55",
     "pid": "4-0",
     "name": "popover",
     "router": "docs/en_US/ui/components/popover",
@@ -444,7 +444,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-60",
+    "id": "4-0-61",
     "pid": "4-0",
     "name": "result",
     "router": "docs/en_US/ui/components/result",
@@ -453,7 +453,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-62",
+    "id": "4-0-63",
     "pid": "4-0",
     "name": "skeleton",
     "router": "docs/en_US/ui/components/skeleton",
@@ -462,7 +462,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/en_US/ui/components/tooltip",
@@ -471,7 +471,16 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-12",
+    "id": "4-0-4",
+    "pid": "4-0",
+    "name": "auto-complete",
+    "router": "docs/en_US/ui/components/auto-complete",
+    "lang": "en_US",
+    "label": "AutoComplete",
+    "category": "Form"
+  },
+  {
+    "id": "4-0-13",
     "pid": "4-0",
     "name": "cascade",
     "router": "docs/en_US/ui/components/cascade",
@@ -480,7 +489,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-13",
+    "id": "4-0-14",
     "pid": "4-0",
     "name": "checkbox",
     "router": "docs/en_US/ui/components/checkbox",
@@ -489,7 +498,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-16",
+    "id": "4-0-17",
     "pid": "4-0",
     "name": "color-picker",
     "router": "docs/en_US/ui/components/color-picker",
@@ -498,7 +507,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-21",
+    "id": "4-0-22",
     "pid": "4-0",
     "name": "date-picker",
     "router": "docs/en_US/ui/components/date-picker",
@@ -507,7 +516,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-29",
+    "id": "4-0-30",
     "pid": "4-0",
     "name": "find",
     "router": "docs/en_US/ui/components/find",
@@ -516,7 +525,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-30",
+    "id": "4-0-31",
     "pid": "4-0",
     "name": "form",
     "router": "docs/en_US/ui/components/form",
@@ -525,7 +534,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-36",
+    "id": "4-0-37",
     "pid": "4-0",
     "name": "input",
     "router": "docs/en_US/ui/components/input",
@@ -534,7 +543,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-37",
+    "id": "4-0-38",
     "pid": "4-0",
     "name": "input-number",
     "router": "docs/en_US/ui/components/input-number",
@@ -543,7 +552,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-41",
+    "id": "4-0-42",
     "pid": "4-0",
     "name": "list",
     "router": "docs/en_US/ui/components/list",
@@ -552,7 +561,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-57",
+    "id": "4-0-58",
     "pid": "4-0",
     "name": "radio",
     "router": "docs/en_US/ui/components/radio",
@@ -561,7 +570,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-58",
+    "id": "4-0-59",
     "pid": "4-0",
     "name": "rate",
     "router": "docs/en_US/ui/components/rate",
@@ -570,7 +579,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-61",
+    "id": "4-0-62",
     "pid": "4-0",
     "name": "select",
     "router": "docs/en_US/ui/components/select",
@@ -579,7 +588,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-64",
+    "id": "4-0-65",
     "pid": "4-0",
     "name": "slider-select",
     "router": "docs/en_US/ui/components/slider-select",
@@ -588,7 +597,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-68",
+    "id": "4-0-69",
     "pid": "4-0",
     "name": "switch",
     "router": "docs/en_US/ui/components/switch",
@@ -597,7 +606,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "textarea",
     "router": "docs/en_US/ui/components/textarea",
@@ -606,7 +615,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/en_US/ui/components/time-picker",
@@ -615,7 +624,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/en_US/ui/components/transfer",
@@ -624,7 +633,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-90",
+    "id": "4-0-91",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/en_US/ui/components/upload",
@@ -651,7 +660,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-5",
+    "id": "4-0-6",
     "pid": "4-0",
     "name": "back-top",
     "router": "docs/en_US/ui/components/back-top",
@@ -660,7 +669,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-20",
+    "id": "4-0-21",
     "pid": "4-0",
     "name": "crumb",
     "router": "docs/en_US/ui/components/crumb",
@@ -669,7 +678,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-26",
+    "id": "4-0-27",
     "pid": "4-0",
     "name": "dropdown",
     "router": "docs/en_US/ui/components/dropdown",
@@ -678,7 +687,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-43",
+    "id": "4-0-44",
     "pid": "4-0",
     "name": "menu",
     "router": "docs/en_US/ui/components/menu",
@@ -687,7 +696,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-50",
+    "id": "4-0-51",
     "pid": "4-0",
     "name": "page-header",
     "router": "docs/en_US/ui/components/page-header",
@@ -696,7 +705,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-63",
+    "id": "4-0-64",
     "pid": "4-0",
     "name": "slider",
     "router": "docs/en_US/ui/components/slider",
@@ -705,7 +714,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-66",
+    "id": "4-0-67",
     "pid": "4-0",
     "name": "steps",
     "router": "docs/en_US/ui/components/steps",
@@ -714,7 +723,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-70",
+    "id": "4-0-71",
     "pid": "4-0",
     "name": "tabs",
     "router": "docs/en_US/ui/components/tabs",
@@ -723,7 +732,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-31",
+    "id": "4-0-32",
     "pid": "4-0",
     "name": "highlight",
     "router": "docs/en_US/ui/components/highlight",
@@ -862,7 +871,7 @@ export const menus: Menu[] = [
     "type": "router"
   },
   {
-    "id": "4-0-7",
+    "id": "4-0-8",
     "pid": "4-0",
     "name": "border",
     "router": "docs/zh_CN/ui/components/border",
@@ -871,7 +880,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-8",
+    "id": "4-0-9",
     "pid": "4-0",
     "name": "button",
     "router": "docs/zh_CN/ui/components/button",
@@ -880,7 +889,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-15",
+    "id": "4-0-16",
     "pid": "4-0",
     "name": "color",
     "router": "docs/zh_CN/ui/components/color",
@@ -889,7 +898,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-18",
+    "id": "4-0-19",
     "pid": "4-0",
     "name": "container",
     "router": "docs/zh_CN/ui/components/container",
@@ -898,7 +907,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-33",
+    "id": "4-0-34",
     "pid": "4-0",
     "name": "icon",
     "router": "docs/zh_CN/ui/components/icon",
@@ -907,7 +916,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-39",
+    "id": "4-0-40",
     "pid": "4-0",
     "name": "layout",
     "router": "docs/zh_CN/ui/components/layout",
@@ -916,7 +925,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-40",
+    "id": "4-0-41",
     "pid": "4-0",
     "name": "link",
     "router": "docs/zh_CN/ui/components/link",
@@ -925,7 +934,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/zh_CN/ui/components/theme",
@@ -934,7 +943,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-89",
+    "id": "4-0-90",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/zh_CN/ui/components/typography",
@@ -943,7 +952,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-4",
+    "id": "4-0-5",
     "pid": "4-0",
     "name": "avatar",
     "router": "docs/zh_CN/ui/components/avatar",
@@ -952,7 +961,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-6",
+    "id": "4-0-7",
     "pid": "4-0",
     "name": "badge",
     "router": "docs/zh_CN/ui/components/badge",
@@ -961,7 +970,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-9",
+    "id": "4-0-10",
     "pid": "4-0",
     "name": "calendar",
     "router": "docs/zh_CN/ui/components/calendar",
@@ -970,7 +979,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-10",
+    "id": "4-0-11",
     "pid": "4-0",
     "name": "card",
     "router": "docs/zh_CN/ui/components/card",
@@ -979,7 +988,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-11",
+    "id": "4-0-12",
     "pid": "4-0",
     "name": "carousel",
     "router": "docs/zh_CN/ui/components/carousel",
@@ -988,7 +997,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-14",
+    "id": "4-0-15",
     "pid": "4-0",
     "name": "collapse",
     "router": "docs/zh_CN/ui/components/collapse",
@@ -997,7 +1006,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-17",
+    "id": "4-0-18",
     "pid": "4-0",
     "name": "comment",
     "router": "docs/zh_CN/ui/components/comment",
@@ -1006,7 +1015,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-27",
+    "id": "4-0-28",
     "pid": "4-0",
     "name": "empty",
     "router": "docs/zh_CN/ui/components/empty",
@@ -1015,7 +1024,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-48",
+    "id": "4-0-49",
     "pid": "4-0",
     "name": "outlet",
     "router": "docs/zh_CN/ui/components/outlet",
@@ -1024,7 +1033,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-51",
+    "id": "4-0-52",
     "pid": "4-0",
     "name": "pagination",
     "router": "docs/zh_CN/ui/components/pagination",
@@ -1033,7 +1042,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-56",
+    "id": "4-0-57",
     "pid": "4-0",
     "name": "progress",
     "router": "docs/zh_CN/ui/components/progress",
@@ -1042,7 +1051,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-65",
+    "id": "4-0-66",
     "pid": "4-0",
     "name": "statistic",
     "router": "docs/zh_CN/ui/components/statistic",
@@ -1051,7 +1060,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-69",
+    "id": "4-0-70",
     "pid": "4-0",
     "name": "table",
     "router": "docs/zh_CN/ui/components/table",
@@ -1060,7 +1069,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-71",
+    "id": "4-0-72",
     "pid": "4-0",
     "name": "tag",
     "router": "docs/zh_CN/ui/components/tag",
@@ -1069,7 +1078,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-73",
+    "id": "4-0-74",
     "pid": "4-0",
     "name": "text-retract",
     "router": "docs/zh_CN/ui/components/text-retract",
@@ -1078,7 +1087,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/zh_CN/ui/components/time-ago",
@@ -1087,7 +1096,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/zh_CN/ui/components/time-range",
@@ -1096,7 +1105,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/zh_CN/ui/components/timeline",
@@ -1105,7 +1114,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/zh_CN/ui/components/tree",
@@ -1114,7 +1123,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-83",
+    "id": "4-0-84",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/zh_CN/ui/components/tree-file",
@@ -1132,7 +1141,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-22",
+    "id": "4-0-23",
     "pid": "4-0",
     "name": "dialog",
     "router": "docs/zh_CN/ui/components/dialog",
@@ -1141,7 +1150,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-25",
+    "id": "4-0-26",
     "pid": "4-0",
     "name": "drawer",
     "router": "docs/zh_CN/ui/components/drawer",
@@ -1150,7 +1159,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-42",
+    "id": "4-0-43",
     "pid": "4-0",
     "name": "loading",
     "router": "docs/zh_CN/ui/components/loading",
@@ -1159,7 +1168,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-44",
+    "id": "4-0-45",
     "pid": "4-0",
     "name": "message",
     "router": "docs/zh_CN/ui/components/message",
@@ -1168,7 +1177,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-45",
+    "id": "4-0-46",
     "pid": "4-0",
     "name": "message-box",
     "router": "docs/zh_CN/ui/components/message-box",
@@ -1177,7 +1186,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-47",
+    "id": "4-0-48",
     "pid": "4-0",
     "name": "notification",
     "router": "docs/zh_CN/ui/components/notification",
@@ -1186,7 +1195,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-53",
+    "id": "4-0-54",
     "pid": "4-0",
     "name": "popconfirm",
     "router": "docs/zh_CN/ui/components/popconfirm",
@@ -1195,7 +1204,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-54",
+    "id": "4-0-55",
     "pid": "4-0",
     "name": "popover",
     "router": "docs/zh_CN/ui/components/popover",
@@ -1204,7 +1213,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-60",
+    "id": "4-0-61",
     "pid": "4-0",
     "name": "result",
     "router": "docs/zh_CN/ui/components/result",
@@ -1213,7 +1222,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-62",
+    "id": "4-0-63",
     "pid": "4-0",
     "name": "skeleton",
     "router": "docs/zh_CN/ui/components/skeleton",
@@ -1222,7 +1231,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/zh_CN/ui/components/tooltip",
@@ -1231,7 +1240,16 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-12",
+    "id": "4-0-4",
+    "pid": "4-0",
+    "name": "auto-complete",
+    "router": "docs/zh_CN/ui/components/auto-complete",
+    "lang": "zh_CN",
+    "label": "AutoComplete 自动完成",
+    "category": "Form"
+  },
+  {
+    "id": "4-0-13",
     "pid": "4-0",
     "name": "cascade",
     "router": "docs/zh_CN/ui/components/cascade",
@@ -1240,7 +1258,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-13",
+    "id": "4-0-14",
     "pid": "4-0",
     "name": "checkbox",
     "router": "docs/zh_CN/ui/components/checkbox",
@@ -1249,7 +1267,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-16",
+    "id": "4-0-17",
     "pid": "4-0",
     "name": "color-picker",
     "router": "docs/zh_CN/ui/components/color-picker",
@@ -1258,7 +1276,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-21",
+    "id": "4-0-22",
     "pid": "4-0",
     "name": "date-picker",
     "router": "docs/zh_CN/ui/components/date-picker",
@@ -1267,7 +1285,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-29",
+    "id": "4-0-30",
     "pid": "4-0",
     "name": "find",
     "router": "docs/zh_CN/ui/components/find",
@@ -1276,7 +1294,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-30",
+    "id": "4-0-31",
     "pid": "4-0",
     "name": "form",
     "router": "docs/zh_CN/ui/components/form",
@@ -1285,7 +1303,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-36",
+    "id": "4-0-37",
     "pid": "4-0",
     "name": "input",
     "router": "docs/zh_CN/ui/components/input",
@@ -1294,7 +1312,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-37",
+    "id": "4-0-38",
     "pid": "4-0",
     "name": "input-number",
     "router": "docs/zh_CN/ui/components/input-number",
@@ -1303,7 +1321,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-41",
+    "id": "4-0-42",
     "pid": "4-0",
     "name": "list",
     "router": "docs/zh_CN/ui/components/list",
@@ -1312,7 +1330,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-57",
+    "id": "4-0-58",
     "pid": "4-0",
     "name": "radio",
     "router": "docs/zh_CN/ui/components/radio",
@@ -1321,7 +1339,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-58",
+    "id": "4-0-59",
     "pid": "4-0",
     "name": "rate",
     "router": "docs/zh_CN/ui/components/rate",
@@ -1330,7 +1348,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-61",
+    "id": "4-0-62",
     "pid": "4-0",
     "name": "select",
     "router": "docs/zh_CN/ui/components/select",
@@ -1339,7 +1357,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-64",
+    "id": "4-0-65",
     "pid": "4-0",
     "name": "slider-select",
     "router": "docs/zh_CN/ui/components/slider-select",
@@ -1348,7 +1366,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-68",
+    "id": "4-0-69",
     "pid": "4-0",
     "name": "switch",
     "router": "docs/zh_CN/ui/components/switch",
@@ -1357,7 +1375,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "textarea",
     "router": "docs/zh_CN/ui/components/textarea",
@@ -1366,7 +1384,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/zh_CN/ui/components/time-picker",
@@ -1375,7 +1393,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/zh_CN/ui/components/transfer",
@@ -1384,7 +1402,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-90",
+    "id": "4-0-91",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/zh_CN/ui/components/upload",
@@ -1411,7 +1429,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-5",
+    "id": "4-0-6",
     "pid": "4-0",
     "name": "back-top",
     "router": "docs/zh_CN/ui/components/back-top",
@@ -1420,7 +1438,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-20",
+    "id": "4-0-21",
     "pid": "4-0",
     "name": "crumb",
     "router": "docs/zh_CN/ui/components/crumb",
@@ -1429,7 +1447,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-26",
+    "id": "4-0-27",
     "pid": "4-0",
     "name": "dropdown",
     "router": "docs/zh_CN/ui/components/dropdown",
@@ -1438,7 +1456,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-43",
+    "id": "4-0-44",
     "pid": "4-0",
     "name": "menu",
     "router": "docs/zh_CN/ui/components/menu",
@@ -1447,7 +1465,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-50",
+    "id": "4-0-51",
     "pid": "4-0",
     "name": "page-header",
     "router": "docs/zh_CN/ui/components/page-header",
@@ -1456,7 +1474,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-63",
+    "id": "4-0-64",
     "pid": "4-0",
     "name": "slider",
     "router": "docs/zh_CN/ui/components/slider",
@@ -1465,7 +1483,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-66",
+    "id": "4-0-67",
     "pid": "4-0",
     "name": "steps",
     "router": "docs/zh_CN/ui/components/steps",
@@ -1474,7 +1492,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-70",
+    "id": "4-0-71",
     "pid": "4-0",
     "name": "tabs",
     "router": "docs/zh_CN/ui/components/tabs",
@@ -1483,7 +1501,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-31",
+    "id": "4-0-32",
     "pid": "4-0",
     "name": "highlight",
     "router": "docs/zh_CN/ui/components/highlight",
