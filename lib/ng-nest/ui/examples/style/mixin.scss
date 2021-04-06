@@ -6,27 +6,25 @@
 
 @mixin examples {
   display: block;
-  border: $--x-border-base;
   .#{$prefix}-html,
   .#{$prefix}-code {
-    padding: 1rem;
+    padding: 1rem 0;
   }
   .#{$prefix}-code {
     > x-tabs > .x-tabs {
       border-radius: 0.125rem;
-      > .x-tabs-list {
-        border: none;
-        > x-slider > .x-slider-row > .x-slider-scroll > ul > li.x-slider-highlight {
-          border-color: $--x-border;
-        }
-      }
+      // > .x-tabs-list {
+      //   border: none;
+      //   > x-slider > .x-slider-row > .x-slider-scroll > ul > li.x-slider-highlight {
+      //     border-color: $--x-border;
+      //   }
+      // }
     }
   }
   .#{$prefix}-info {
     padding: 1rem;
     border: $--x-border-base;
     border-radius: 0.125rem;
-    margin: 0 1rem;
     background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;
@@ -58,7 +56,7 @@
         }
         &-top {
           > .x-tabs-list {
-            padding: 1rem 1rem 0 1rem;
+            padding: 1rem 0 0 0;
           }
         }
       }
@@ -73,11 +71,6 @@
         > x-slider > .x-slider > .x-slider-scroll > ul {
           min-width: 6rem;
         }
-      }
-    }
-    &-top {
-      > .x-tabs-list {
-        padding: 1rem 1rem 0 1rem;
       }
     }
   }

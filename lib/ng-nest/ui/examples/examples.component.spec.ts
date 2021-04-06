@@ -34,7 +34,7 @@ describe(XExamplesPrefix, () => {
   selector: 'test-x-examples',
   template: `
     <x-examples>
-      <x-tabs [layout]="'left'" nodeJustify="start">
+      <x-tabs nodeJustify="start">
         <x-tab label="基础用法"
           ><x-tabs [layout]="'top'">
             <x-tab label="默认">
@@ -50,7 +50,7 @@ describe(XExamplesPrefix, () => {
               </div>
 
               <div class="x-examples-code">
-                <x-tabs [layout]="'top'">
+                <x-tabs [layout]="'top'" type="card">
                   <x-tab label="default.component.html">456 </x-tab>
                   <x-tab label="default.component.scss">789 </x-tab>
                   <x-tab label="default.component.ts">101112 </x-tab>
@@ -70,7 +70,7 @@ describe(XExamplesPrefix, () => {
               </div>
 
               <div class="x-examples-code">
-                <x-tabs [layout]="'top'">
+                <x-tabs [layout]="'top'" type="card">
                   <x-tab label="default.component.html">456 </x-tab>
                   <x-tab label="default.component.scss">789 </x-tab>
                   <x-tab label="default.component.ts">101112 </x-tab>

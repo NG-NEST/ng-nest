@@ -1,4 +1,4 @@
-import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum } from './../interfaces/tabs';
+import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum, NcTabsTypeEnum } from './../interfaces/tabs';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcPage } from '../interfaces/page';
@@ -52,6 +52,7 @@ export function handlerExamples(page: NcPage) {
     layout: NcTabsLayoutEnum.Left,
     nodeJustify: NcTabsNodeJustifyEnum.Start,
     size: NcTabsSizeEnum.Large,
+    tabsType: NcTabsTypeEnum.Block,
     folderPath: `${examples.path}/${page.lang}`
   });
   tabs.tabs.forEach((x) => {
