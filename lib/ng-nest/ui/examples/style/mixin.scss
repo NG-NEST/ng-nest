@@ -11,6 +11,20 @@
     margin: 1rem 0;
     border: $--x-border-base;
     border-radius: 0.125rem;
+    position: relative;
+  }
+  .#{$prefix}-tools {
+    position: absolute;
+    position: absolute;
+    bottom: -0.875rem;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .x-buttons {
+      background-color: $--x-background;
+      padding: 0 0.25rem;
+    }
   }
   .#{$prefix}-code {
     padding: 1rem 0;
@@ -66,10 +80,22 @@
     }
     &-left {
       > .x-tabs-list {
-        padding: 1rem 0 1rem 1rem;
+        padding: 0;
         > x-slider > .x-slider > .x-slider-scroll > ul {
           min-width: 6rem;
         }
+      }
+      .#{$prefix}-html {
+        margin: 0 0 0 1rem;
+        border: 0;
+        padding: 0;
+      }
+      .#{$prefix}-info {
+        margin: 1rem 0 0 1rem;
+      }
+      .#{$prefix}-code {
+        margin: 1rem 0 0 1rem;
+        padding: 0;
       }
     }
   }
