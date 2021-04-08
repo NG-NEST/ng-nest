@@ -63,6 +63,9 @@
     > x-icon {
       margin-right: 0;
     }
+    .x-link {
+      padding: 0.5rem;
+    }
   }
   &-show-arrow {
     > .#{$--x-slider}-scroll {
