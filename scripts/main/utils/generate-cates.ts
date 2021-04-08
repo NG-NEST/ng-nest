@@ -26,7 +26,7 @@ export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
       nodeJustify: NcTabsNodeJustifyEnum.Center,
       size: NcTabsSizeEnum.Big,
       tabsType: NcTabsTypeEnum.Block,
-      tabsAnimated: true,
+      tabsAnimated: false,
       folderPath: cates.folderPath
     });
     catesTabs.tabs.forEach((x) => {
