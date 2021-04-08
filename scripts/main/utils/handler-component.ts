@@ -53,6 +53,7 @@ export function handlerExamples(page: NcPage) {
     nodeJustify: NcTabsNodeJustifyEnum.Start,
     size: NcTabsSizeEnum.Large,
     tabsType: NcTabsTypeEnum.Block,
+    tabsAnimated: true,
     folderPath: `${examples.path}/${page.lang}`
   });
   tabs.tabs.forEach((x) => {

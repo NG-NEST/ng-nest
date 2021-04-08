@@ -28,12 +28,19 @@ export interface NcTabs {
    */
   size?: NcTabsSizeEnum;
   /**
-   * 尺寸
+   * 类型
    *
    * @type {NcTabsTypeEnum}
    * @memberof NcTabs
    */
   tabsType?: NcTabsTypeEnum;
+  /**
+   * 动画
+   *
+   * @type {NcTabsTypeEnum}
+   * @memberof NcTabs
+   */
+  tabsAnimated?: boolean;
   /**
    * 编码
    *

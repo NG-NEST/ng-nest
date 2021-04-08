@@ -24,8 +24,9 @@ export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
       nodeJustify: NcTabsNodeJustifyEnum.Center,
-      size: NcTabsSizeEnum.Large,
+      size: NcTabsSizeEnum.Big,
       tabsType: NcTabsTypeEnum.Block,
+      tabsAnimated: true,
       folderPath: cates.folderPath
     });
     catesTabs.tabs.forEach((x) => {
@@ -56,6 +57,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     nodeJustify: NcTabsNodeJustifyEnum.Center,
     size: NcTabsSizeEnum.Medium,
     tabsType: NcTabsTypeEnum.Tag,
+    tabsAnimated: false,
     folderPath: folderPath,
     id: func
   });

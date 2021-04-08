@@ -19,6 +19,7 @@ export function generateTabs(tabs: NcTabs): NcTabs {
   tpl = replaceKey(tpl, '__nodeJustify', tabs.nodeJustify);
   tpl = replaceKey(tpl, '__size', tabs.size);
   tpl = replaceKey(tpl, '__tabsType', tabs.tabsType);
+  tpl = replaceKey(tpl, '__tabsAnimated', `${tabs.tabsAnimated}`);
   tpl = replaceKey(tpl, '__content', content);
   tabs.content = tpl;
 
