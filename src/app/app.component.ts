@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/services/config.service';
 
 @Component({

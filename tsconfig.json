@@ -32,6 +32,9 @@
       ],
       "@ng-nest/ui/*": [
         "./dist/ng-nest/ui/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
       ]
     }
   },

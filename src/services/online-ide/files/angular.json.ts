@@ -23,7 +23,7 @@ export default {
             polyfills: 'src/polyfills.ts',
             tsConfig: 'src/tsconfig.app.json',
             assets: ['src/favicon.ico', 'src/assets'],
-            styles: ['node_modules/@ng-nest/ui/style/core/index.scss', 'src/styles.css']
+            styles: ['node_modules/@ng-nest/ui/style/core/index.css', 'src/styles.scss']
           }
         }
       }
