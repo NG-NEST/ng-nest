@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
 import { NcSpec } from '../interfaces/spec';
@@ -17,7 +16,7 @@ export function hanlderSpec(fsPath: string): Promise<NcSpec[]> {
       return;
     }
     let lines = readline.createInterface({
-      input: fs.createReadStream(fsPath),
+      input: fs.createReadStream(fsPath)
     });
     let specs: NcSpec[] = [];
     lines.on('line', (line: string) => {
@@ -27,7 +26,8 @@ export function hanlderSpec(fsPath: string): Promise<NcSpec[]> {
         let mod = line.slice(0, line.indexOf('Module') + 6);
         mod = mod.slice(mod.lastIndexOf(' ') + 1, mod.length);
         spec.module = mod;
-        const impt = line.slice(line.indexOf('@ng-nest/ui/'), line.length);
+        let impt = line.slice(line.indexOf('@ng-nest/ui/'), line.length);
+        spec.name = impt.slice(12, impt.indexOf("'"));
         spec.import = `import { ${mod} } from '${impt}`;
         specs.push(spec);
       }

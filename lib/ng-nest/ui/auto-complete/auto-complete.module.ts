@@ -11,6 +11,7 @@ import { XAutoCompleteProperty } from './auto-complete.property';
 @NgModule({
   declarations: [XAutoCompleteComponent, XAutoCompletePortalComponent, XAutoCompleteProperty],
   exports: [XAutoCompleteComponent, XAutoCompletePortalComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule],
+  entryComponents: [XAutoCompletePortalComponent]
 })
 export class XAutoCompleteModule {}

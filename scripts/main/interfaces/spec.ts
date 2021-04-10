@@ -7,6 +7,10 @@
  */
 export interface NcSpec {
   /**
+   * 名称
+   */
+  name?: string;
+  /**
    * 导入路径
    */
   import?: string;

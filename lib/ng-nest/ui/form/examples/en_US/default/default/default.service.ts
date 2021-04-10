@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { map, orderBy } from 'lodash';
-import { XTreeNode } from '@ng-nest/ui/tree';
 
 @Injectable()
-export class UsersServiceTest extends XRepositoryAbstract {
+export class DefaultService extends XRepositoryAbstract {
   organizations = [
     'LeiHao group',
     'Enterprises develop',
@@ -113,30 +112,6 @@ export class UsersServiceTest extends XRepositoryAbstract {
       map(sort, (x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
-}
-
-@Injectable()
-export class TreeServiceTest {
-  data: XTreeNode[] = [
-    { id: 1, label: 'LeiHao group' },
-    { id: 2, label: 'Enterprises develop', pid: 1 },
-    { id: 3, label: 'Social networking', pid: 1 },
-    { id: 4, label: 'Interactive entertainment', pid: 1 },
-    { id: 5, label: 'Mobile Internet', pid: 1 },
-    { id: 6, label: 'Network media', pid: 1 },
-    { id: 7, label: 'Personnel department', pid: 4 },
-    { id: 8, label: 'Administration department', pid: 4 },
-    { id: 9, label: 'Accounting department', pid: 4 }
-  ];
-
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
-    return new Observable((x) => {
-      setTimeout(() => {
-        x.next(this.data);
-        x.complete();
-      }, 10);
-    });
-  };
 }
 
 export interface User extends XId {

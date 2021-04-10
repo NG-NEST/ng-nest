@@ -1,6 +1,6 @@
-import { XTreeNode } from '@ng-nest/ui/tree';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { XTreeNode } from "@ng-nest/ui/tree";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class TreeService {

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { TreeServiceTest } from './tree.service';
+import { TreeService } from './tree.service';
 
 @Component({
   selector: 'ex-tree',
   templateUrl: './tree.component.html',
-  providers: [TreeServiceTest]
+  providers: [TreeService]
 })
 export class ExTreeComponent {
   model: any;
   modelMultiple: any = [];
-  constructor(public treeService: TreeServiceTest) {}
+  constructor(public treeService: TreeService) {}
 }
