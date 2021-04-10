@@ -1,4 +1,4 @@
-## [11.2.1](https://github.com/NG-NEST/ng-nest/compare/11.2.0...11.2.1) (2021-04-10)
+## [11.2.2](https://github.com/NG-NEST/ng-nest/compare/11.2.0...11.2.2) (2021-04-10)
 
 
 ### Bug Fixes
@@ -19,6 +19,7 @@
 * **module:examples:** update style ([1f6d796](https://github.com/NG-NEST/ng-nest/commit/1f6d796abf77ff34c50880253fb5b6af8c43fa10))
 * **module:upload:** adjust the size of the cutting box ([13c9510](https://github.com/NG-NEST/ng-nest/commit/13c9510758c0859ce44cbc94a2341213c8f7c665)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
 * **module:upload:** clip image upload ([83919d2](https://github.com/NG-NEST/ng-nest/commit/83919d2506329de574b044a3c772f79b560388d6)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **stackblitz:** add code mapping ([8de104d](https://github.com/NG-NEST/ng-nest/commit/8de104de5644b2321016cceef22c9f045dde6d23)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
 * **stackblitz:** add files ([6684fd7](https://github.com/NG-NEST/ng-nest/commit/6684fd75049f5f88082260382413de62a4d3887e)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
 * add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
 
