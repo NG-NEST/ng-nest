@@ -1,3 +1,29 @@
+## [11.2.1](https://github.com/NG-NEST/ng-nest/compare/11.2.0...11.2.1) (2021-04-10)
+
+
+### Bug Fixes
+
+* **input:module:** clear style optimization ([e325c39](https://github.com/NG-NEST/ng-nest/commit/e325c39b453b387f815f67ef659a4404cc2daa8b))
+* **module:select:** animating frozen operation ([73400d3](https://github.com/NG-NEST/ng-nest/commit/73400d301b37b51a8d1ff17ea83c220943df8d46))
+* **module:select:** multiple optimization ([dfdebb3](https://github.com/NG-NEST/ng-nest/commit/dfdebb341074e03fefcfd85ffddf79e1a418c7e3))
+* **module:slider:** update arrow style ([e20ce14](https://github.com/NG-NEST/ng-nest/commit/e20ce14bc42b1f28e23daaeb0a4bab004781d2d4))
+* **script:** generate cates include `${ ([1e1859b](https://github.com/NG-NEST/ng-nest/commit/1e1859b9576871cd20596a7624fbd89c2213eafa))
+
+
+### Features
+
+* **module:auto-complete:** add async param ([194566e](https://github.com/NG-NEST/ng-nest/commit/194566e809b4adb83db785894de2b19f3850a546))
+* **module:auto-complete:** add debounceTime param ([3fc6feb](https://github.com/NG-NEST/ng-nest/commit/3fc6febfb1ea1f435a99e76390953f82a3d381c0))
+* **module:auto-complete:** add query param ([5004911](https://github.com/NG-NEST/ng-nest/commit/50049110ecfb444b58f63b3fc23c7e46ee035110)), closes [#12](https://github.com/NG-NEST/ng-nest/issues/12)
+* **module:examples:** update style ([2c25f8c](https://github.com/NG-NEST/ng-nest/commit/2c25f8c7d4e155c5c3f28fcd2e32456f8c029ca1))
+* **module:examples:** update style ([1f6d796](https://github.com/NG-NEST/ng-nest/commit/1f6d796abf77ff34c50880253fb5b6af8c43fa10))
+* **module:upload:** adjust the size of the cutting box ([13c9510](https://github.com/NG-NEST/ng-nest/commit/13c9510758c0859ce44cbc94a2341213c8f7c665)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **module:upload:** clip image upload ([83919d2](https://github.com/NG-NEST/ng-nest/commit/83919d2506329de574b044a3c772f79b560388d6)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
+* **stackblitz:** add files ([6684fd7](https://github.com/NG-NEST/ng-nest/commit/6684fd75049f5f88082260382413de62a4d3887e)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
+* add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
+
+
+
 # [11.2.0](https://github.com/NG-NEST/ng-nest/compare/11.0.3...11.2.0) (2021-03-15)
 
 
