@@ -10,7 +10,7 @@ const ngNestConfig: XConfig = {
       info: '#909399',
       text: '#333333',
       border: '#dddddd',
-      background: '#fafafa'
+      background: '#ffffff'
     }
   }
 };

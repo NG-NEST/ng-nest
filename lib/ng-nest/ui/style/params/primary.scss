@@ -195,7 +195,7 @@ $--x-border-100-base: $--x-border-width $--x-border-style $--x-border-100;
 $--x-box-shadow: var(--x-box-shadow);
 $--x-box-shadow-base-width: var(--x-box-shadow-base-width);
 $--x-box-shadow-base-width-minus: var(--x-box-shadow-base-width-minus);
-$--x-box-shadow-base-color: $--x-background-a200;
+$--x-box-shadow-base-color: var(--x-box-shadow-base-color);
 $--x-box-shadow-base: $--x-box-shadow $--x-box-shadow-base-color;
 $--x-box-shadow-base-right: $--x-box-shadow-base-width 0 $--x-box-shadow-base-width $--x-box-shadow-base-color;
 $--x-box-shadow-base-left: $--x-box-shadow-base-width-minus 0 $--x-box-shadow-base-width $--x-box-shadow-base-color;
@@ -203,10 +203,11 @@ $--x-box-shadow-base-top: 0 $--x-box-shadow-base-width-minus $--x-box-shadow-bas
 $--x-box-shadow-base-bottom: 0 $--x-box-shadow-base-width $--x-box-shadow-base-width $--x-box-shadow-base-color;
 $--x-box-shadow-light-width: var(--x-box-shadow-light-width);
 $--x-box-shadow-light-width-minus: var(--x-box-shadow-light-width-minus);
-$--x-box-shadow-light-color: $--x-background-a100;
+$--x-box-shadow-light-color: var(--x-box-shadow-light-color);
 $--x-box-shadow-light: $--x-box-shadow $--x-box-shadow-light-color;
 $--x-box-shadow-light-right: $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
-$--x-box-shadow-light-left: $--x-box-shadow-light-width-minus $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
+$--x-box-shadow-light-left: $--x-box-shadow-light-width-minus $--x-box-shadow-light-width $--x-box-shadow-light-width
+  $--x-box-shadow-light-color;
 $--x-box-shadow-light-top: 0 $--x-box-shadow-light-width-minus $--x-box-shadow-light-width $--x-box-shadow-light-color;
 $--x-box-shadow-light-bottom: 0 $--x-box-shadow-light-width $--x-box-shadow-light-width $--x-box-shadow-light-color;
 
