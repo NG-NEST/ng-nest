@@ -231,7 +231,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom', 'top'],
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-auto-complete-portal'
     });
   }

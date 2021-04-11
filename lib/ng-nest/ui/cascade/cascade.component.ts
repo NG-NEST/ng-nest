@@ -235,7 +235,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom', 'top'],
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-cascade-portal'
     });
   }

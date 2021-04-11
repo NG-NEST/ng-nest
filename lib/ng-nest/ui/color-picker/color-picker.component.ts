@@ -44,6 +44,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
+  animating = false;
   displayValue: string = '';
   portal: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon: string = 'fto-chevron-down';
@@ -54,6 +55,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -65,12 +67,12 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     private overlay: Overlay
   ) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XColorPickerPrefix);
   }
 
   ngOnInit() {
     this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setSubject();
   }
 
   ngAfterViewInit() {
@@ -80,6 +82,12 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setSubject() {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
   }
 
   menter() {
@@ -128,8 +136,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   showPortal() {
-    if (this.disabled) return;
-    if (this.closePortal()) return;
+    if (this.disabled || this.animating) return;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -141,6 +148,12 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    this.portal.overlayRef
+      ?.outsidePointerEvents()
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.closeSubject.next();
+      });
     this.setInstance();
   }
 
@@ -160,9 +173,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (color: string) => this.onNodeClick(color)
+      nodeEmit: (color: string) => this.onNodeClick(color),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -177,7 +191,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end']
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      transformOriginOn: 'x-color-picker-portal'
     });
   }
 

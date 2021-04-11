@@ -5,6 +5,5 @@
 @import './style/mixin';
 
 .#{$--x-color-picker-portal-prefix} {
-  @include reset-component();
   @include color-picker-portal();
 }

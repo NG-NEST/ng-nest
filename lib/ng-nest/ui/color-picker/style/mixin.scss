@@ -101,6 +101,7 @@
 }
 
 @mixin color-picker-portal {
+  margin: 0.0625rem 0;
   font-size: $--x-color-picker-font-size;
   color: $--x-text;
   border: $--x-color-picker-border;

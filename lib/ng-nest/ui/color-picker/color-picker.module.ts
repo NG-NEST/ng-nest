@@ -13,6 +13,7 @@ import { XColorPickerProperty } from './color-picker.property';
 @NgModule({
   declarations: [XColorPickerComponent, XColorPickerPortalComponent, XColorPickerProperty],
   exports: [XColorPickerComponent, XColorPickerPortalComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DragDropModule, XPortalModule, XSliderSelectModule, XTabsModule, XInputModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DragDropModule, XPortalModule, XSliderSelectModule, XTabsModule, XInputModule],
+  entryComponents: [XColorPickerPortalComponent]
 })
 export class XColorPickerModule {}
