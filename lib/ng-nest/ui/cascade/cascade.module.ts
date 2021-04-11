@@ -11,6 +11,7 @@ import { XCascadeProperty } from './cascade.property';
 @NgModule({
   declarations: [XCascadeComponent, XCascadePortalComponent, XCascadeProperty],
   exports: [XCascadeComponent, XCascadePortalComponent],
-  imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule]
+  imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule],
+  entryComponents: [XCascadePortalComponent]
 })
 export class XCascadeModule {}

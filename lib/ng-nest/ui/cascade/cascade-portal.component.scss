@@ -5,6 +5,5 @@
 @import './style/mixin';
 
 .#{$--x-cascade-portal-prefix} {
-  @include reset-component();
   @include cascade-portal();
 }

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
 import { Subject } from 'rxjs';
-import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
