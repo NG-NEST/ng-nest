@@ -1,3 +1,21 @@
+## [11.2.3](https://github.com/NG-NEST/ng-nest/compare/11.2.2...11.2.3) (2021-04-11)
+
+
+### Bug Fixes
+
+* **module:cascade:** update animation and outsidePointerEvents ([04ede20](https://github.com/NG-NEST/ng-nest/commit/04ede209d0b4021cd99fb6d22c79097d9b7d42de))
+* **module:color-picker:** update animation and outsidePointerEvents ([984ef1c](https://github.com/NG-NEST/ng-nest/commit/984ef1c54b058b40d045212dadf8296c424682e6))
+* **module:date-picker:** update animation and outsidePointerEvents ([5021a3e](https://github.com/NG-NEST/ng-nest/commit/5021a3e9c4fad9929b150e1709210d113e251953))
+* **module:dropdown:** update animation and outsidePointerEvents ([fe08a22](https://github.com/NG-NEST/ng-nest/commit/fe08a22be477dc174d40ee8cdd2917fa67d10d4b))
+* **module:portal:** update animation ([30e4872](https://github.com/NG-NEST/ng-nest/commit/30e487249c4bab5f35bee4e34b2b963d5ecc5c38))
+
+
+### Features
+
+* **style:** update params ([4994e4f](https://github.com/NG-NEST/ng-nest/commit/4994e4f51edadcd2925246a1900c3b272f3405cd))
+
+
+
 ## [11.2.2](https://github.com/NG-NEST/ng-nest/compare/11.2.0...11.2.2) (2021-04-10)
 
 
