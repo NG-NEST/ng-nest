@@ -37,6 +37,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     XButtonModule,
     XIconModule,
     XI18nModule
-  ]
+  ],
+  entryComponents: [XDatePickerPortalComponent]
 })
 export class XDatePickerModule {}

@@ -63,6 +63,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   readonly: boolean = true;
   enter: boolean = false;
   inputClearable: boolean = false;
+  animating = false;
   displayValue: any = '';
   portal: XPortalOverlayRef<XDatePickerPortalComponent>;
   icon: string = 'fto-calendar';
@@ -73,6 +74,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -85,13 +87,13 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     private overlay: Overlay
   ) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XDatePickerPrefix);
   }
 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
     this.setClassMap();
+    this.setSubject();
   }
 
   ngAfterViewInit() {
@@ -108,6 +110,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setSubject() {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
   }
 
   setFormat() {
@@ -187,8 +195,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   showPortal() {
-    if (this.disabled) return;
-    if (this.closePortal()) return;
+    if (this.disabled || this.animating) return;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -205,7 +212,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       .pipe(takeUntil(this._unSubject))
       .subscribe(() => {
         this.setDisplayValue(this.numberValue);
-        this.closePortal();
+        this.closeSubject.next();
       });
     this.setInstance();
   }
@@ -227,9 +234,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure)
+      nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -239,7 +247,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.numberValue = date.getTime();
       this.value = this.getValue();
       this.setDisplayValue(this.numberValue);
-      this.closePortal();
+      this.closeSubject.next();
       this.modelChange();
       this.nodeEmit.emit(this.numberValue);
     } else {
@@ -255,7 +263,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end']
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      transformOriginOn: 'x-date-picker-portal'
     });
   }
 

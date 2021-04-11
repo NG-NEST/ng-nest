@@ -74,6 +74,7 @@
 
 @mixin date-picker-portal {
   $prefix: $--x-date-picker-portal-prefix;
+  margin: 0.0625rem 0;
   font-size: $--x-date-picker-font-size;
   color: $--x-text;
   border: $--x-date-picker-border;

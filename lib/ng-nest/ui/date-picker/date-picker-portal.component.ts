@@ -11,7 +11,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectAnimation, XCorner } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -23,13 +23,17 @@ import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation],
+  animations: [XConnectBaseAnimation],
   providers: [DatePipe, LowerCasePipe]
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
   }
 
   type: XDatePickerType = 'date';
@@ -39,6 +43,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   value: any;
   valueChange: Subject<any>;
   positionChange: Subject<any>;
+  animating: Function;
   closePortal: Function;
   destroyPortal: Function;
   nodeEmit: (date: Date, sure?: boolean) => void;

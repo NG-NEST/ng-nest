@@ -251,7 +251,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         this.showPortal();
       } else {
         if (XIsEmpty(this.value)) {
-          this.closePortal();
+          this.closeSubject.next();
         } else {
           this.icon = 'fto-loader';
           this.iconSpin = true;
@@ -272,7 +272,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         this.showPortal();
       } else {
         if (XIsEmpty(this.value)) {
-          this.closePortal();
+          this.closeSubject.next();
         } else {
           this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
           this.dataChange.next(this.searchNodes);
