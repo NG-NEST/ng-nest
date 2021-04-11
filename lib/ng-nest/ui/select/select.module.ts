@@ -11,6 +11,7 @@ import { XSelectProperty } from './select.property';
 @NgModule({
   declarations: [XSelectComponent, XSelectPortalComponent, XSelectProperty],
   exports: [XSelectComponent, XSelectPortalComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule],
+  entryComponents: [XSelectPortalComponent]
 })
 export class XSelectModule {}

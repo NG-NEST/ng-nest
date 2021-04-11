@@ -74,6 +74,7 @@
 }
 
 @mixin select-portal {
+  margin: 0.0625rem 0;
   font-size: $--x-select-font-size;
   color: $--x-text;
   border: $--x-select-border;

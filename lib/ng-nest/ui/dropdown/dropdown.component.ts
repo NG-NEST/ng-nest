@@ -127,12 +127,14 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
-    this.portal.overlayRef
-      ?.outsidePointerEvents()
-      .pipe(debounceTime(30), takeUntil(this._unSubject))
-      .subscribe(() => {
-        this.trigger === 'click' && this.closeSubject.next();
-      });
+    if (this.trigger === 'click') {
+      this.portal.overlayRef
+        ?.outsidePointerEvents()
+        .pipe(debounceTime(30), takeUntil(this._unSubject))
+        .subscribe(() => {
+          this.closeSubject.next();
+        });
+    }
     this.setInstance();
   }
 

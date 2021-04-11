@@ -9,13 +9,10 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  Input,
   ViewContainerRef,
   ViewChild,
-  EventEmitter,
-  Output
 } from '@angular/core';
-import { XTimePickerPrefix, XTimePickerType, XTimePickerProperty } from './time-picker.property';
+import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
 import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
@@ -46,6 +43,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
+  animating = false;
   displayValue: any = '';
   portal: XPortalOverlayRef<XTimePickerPortalComponent>;
   icon: string = 'fto-clock';
@@ -56,6 +54,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -68,13 +67,13 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     private overlay: Overlay
   ) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XTimePickerPrefix);
   }
 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
     this.setClassMap();
+    this.setSubject();
   }
 
   ngAfterViewInit() {
@@ -99,6 +98,12 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
         this.format = 'HH:mm';
       }
     }
+  }
+
+  setSubject() {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
   }
 
   menter() {
@@ -147,8 +152,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   showPortal() {
-    if (this.disabled) return;
-    if (this.closePortal()) return;
+    if (this.disabled || this.animating) return;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -160,6 +164,12 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    this.portal.overlayRef
+      ?.outsidePointerEvents()
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.closeSubject.next();
+      });
     this.setInstance();
   }
 
@@ -180,9 +190,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: Date) => this.onNodeClick(node)
+      nodeEmit: (node: Date) => this.onNodeClick(node),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -202,7 +213,8 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end']
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      transformOriginOn: 'x-time-picker-portal'
     });
   }
 

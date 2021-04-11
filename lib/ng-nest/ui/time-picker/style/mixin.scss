@@ -79,6 +79,7 @@
 
 @mixin time-picker-frame {
   $prefix: $--x-time-picker-frame-prefix;
+  margin: 0.0625rem 0;
   font-size: $--x-time-picker-font-size;
   color: $--x-text;
   border: $--x-time-picker-border;
@@ -105,6 +106,7 @@
     }
     > x-list {
       > .x-list {
+        width: 3.625rem;
         > ul {
           min-width: 3.625rem;
           > li {

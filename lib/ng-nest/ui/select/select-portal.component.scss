@@ -8,6 +8,5 @@
   width: 100%;
 }
 .#{$--x-select-portal-prefix} {
-  @include reset-component();
   @include select-portal();
 }

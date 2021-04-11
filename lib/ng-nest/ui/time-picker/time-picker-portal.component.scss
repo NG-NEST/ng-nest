@@ -5,6 +5,5 @@
 @import './style/mixin';
 
 .#{$--x-time-picker-portal-prefix} {
-  @include reset-component();
   @include time-picker-portal();
 }

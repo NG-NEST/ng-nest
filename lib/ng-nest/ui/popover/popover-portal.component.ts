@@ -46,7 +46,7 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   box: DOMRect;
   portalBox: DOMRect;
   arrowBox: DOMRect;
-  docClickFunction: Function;
+  // docClickFunction: Function;
   title: XTemplate;
   content: XTemplate;
   footer: XTemplate;
@@ -74,14 +74,6 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
       setTimeout(() => this.setArrow());
       this.cdr.detectChanges();
     });
-    if (this.trigger === 'click') {
-      setTimeout(
-        () =>
-          (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-            this.closePortal();
-          }))
-      );
-    }
     this.setClassMap();
   }
 
@@ -100,7 +92,6 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   setClassMap() {

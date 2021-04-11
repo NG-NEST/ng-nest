@@ -14,6 +14,7 @@ import { XTimePickerFrameComponent } from './time-picker-frame.component';
 @NgModule({
   declarations: [XTimePickerComponent, XTimePickerPortalComponent, XTimePickerFrameComponent, XTimePickerProperty],
   exports: [XTimePickerComponent, XTimePickerPortalComponent, XTimePickerFrameComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XButtonModule, XIconModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XButtonModule, XIconModule],
+  entryComponents: [XTimePickerPortalComponent]
 })
 export class XTimePickerModule {}
