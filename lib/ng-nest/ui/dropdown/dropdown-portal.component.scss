@@ -5,6 +5,9 @@
 @import './style/mixin';
 
 .#{$--x-dropdown-portal} {
-  @include reset-component();
   @include dropdown-portal();
+}
+
+.#{$--x-dropdown-portal}-child {
+  @include dropdown-portal-child();
 }

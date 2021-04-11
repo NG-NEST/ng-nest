@@ -12,9 +12,14 @@
 }
 
 @mixin dropdown-portal {
+  margin: 0.0625rem 0;
   padding: 0.325rem 0;
   background-color: $--x-background;
   border: $--x-border-base;
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-light;
+}
+
+@mixin dropdown-portal-child {
+  margin-top: -0.3875rem;
 }
