@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "allowedCommonJsDependencies": ["lodash"],
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"],
             "styles": ["node_modules/prismjs/themes/prism.css", "dist/ng-nest/ui/style/core/index.css", "src/styles.scss"],
             "scripts": [
               "node_modules/prismjs/prism.js",
@@ -60,7 +60,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -90,7 +92,7 @@
             "karmaConfig": "karma.conf.js",
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"]
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"]
           }
         },
         "lint": {
