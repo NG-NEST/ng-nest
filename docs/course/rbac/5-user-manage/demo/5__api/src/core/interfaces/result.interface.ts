@@ -13,6 +13,8 @@ export interface XResultList<Entity extends XId> {
  * 查询过滤条件
  */
 export interface XQuery {
+  index?: number,
+  size?: number,
   sort?: XSort[];
   filter?: XFilter[];
   group?: string;
