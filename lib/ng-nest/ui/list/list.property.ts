@@ -8,7 +8,7 @@ import {
   XNumber,
   XBoolean
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 
 /**
  * List
@@ -47,6 +47,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US When multiple selection is enabled, the value of ngmodel is an array of objects
    */
   @Input() @XInputBoolean() objectArray: XBoolean;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+   @Input() nodeTpl: TemplateRef<any>;
   /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event

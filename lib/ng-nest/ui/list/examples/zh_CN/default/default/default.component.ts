@@ -14,6 +14,7 @@ export class ExDefaultComponent implements OnInit {
   data5 = JSON.parse(JSON.stringify(this.data));
   data6 = JSON.parse(JSON.stringify(this.data));
   data7 = JSON.parse(JSON.stringify(this.data));
+  data8 = JSON.parse(JSON.stringify(this.data));
   model1: any;
   model2 = 'AAAA';
   model3: any;
@@ -21,6 +22,7 @@ export class ExDefaultComponent implements OnInit {
   model5: any;
   model6 = ['BBBB', 'CCCC'];
   model7 = 'BBBB';
+  model8: any;
   constructor() {}
 
   ngOnInit() {}

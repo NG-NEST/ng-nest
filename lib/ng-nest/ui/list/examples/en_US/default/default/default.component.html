@@ -25,4 +25,9 @@
     <h6>Drag the up and down</h6>
     <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
   </x-col>
+  <x-col span="8">
+    <h6>Template</h6>
+    <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
+    <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
+  </x-col>
 </x-row>
