@@ -9,7 +9,7 @@ import {
   XWithConfig,
   XPositionLeftRight
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 
 /**
  * Input
@@ -59,6 +59,16 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Enter the maximum length
    */
   @Input() @XInputNumber() maxlength: XNumber = 0;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  @Input() valueTpl: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  @Input() valueTplContext: any;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
