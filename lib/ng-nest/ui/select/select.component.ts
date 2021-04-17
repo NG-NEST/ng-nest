@@ -67,6 +67,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
+  selectedNode: any = null;
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
@@ -146,6 +147,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   clearEmit() {
     this.value = '';
     this.displayValue = '';
+    this.selectedNode = null;
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -156,13 +158,21 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       if (this.multiple) {
         if (XIsEmpty(this.value)) {
           this.displayValue = '';
+          this.selectedNode = null;
         } else {
           let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
           this.displayValue = nodes.map((x) => x.label).join(',');
+          this.selectedNode = [...nodes];
         }
       } else {
         let node = this.nodes.find((x) => x.id === this.value);
-        this.displayValue = node ? node.label : '';
+        if (node) {
+          this.displayValue = node.label;
+          this.selectedNode = node;
+        } else {
+          this.displayValue = '';
+          this.selectedNode = null;
+        }
       }
       this.cdr.detectChanges();
     }
@@ -246,6 +256,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       value: this.value,
       placement: this.placement,
       multiple: this.multiple === true ? 0 : 1,
+      nodeTpl: this.nodeTpl,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
       closePortal: () => this.closeSubject.next(),
@@ -257,6 +268,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSelectNode | XSelectNode[]) {
+    this.selectedNode = node;
     if (this.multiple && XIsArray(node)) {
       node = node as XSelectNode[];
       this.value = node;

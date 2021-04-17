@@ -22,11 +22,12 @@ describe(XSelectPrefix, () => {
         TestXSelectLabelComponent,
         TestXSelectDisabledComponent,
         TestXSelectRequiredComponent,
-        TestXSelectMultipleComponent
+        TestXSelectMultipleComponent,
+        TestXSelectCustomNodeComponent
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -86,11 +87,23 @@ describe(XSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`multiple.`, () => {
+  describe(`multiple.`, () => {
     let fixture: ComponentFixture<TestXSelectMultipleComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectMultipleComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXSelectCustomNodeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectCustomNodeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
@@ -335,5 +348,45 @@ class TestXSelectMultipleComponent {
   ];
   constructor(public cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => this.cdr.detectChanges());
+  }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="8">
+        <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)" [nodeTpl]="nodeTpl"></x-select>
+      </x-col>
+      <ng-template #nodeTpl let-node="$node">
+        <span *ngIf="node" style="line-height: 1.25rem;"> {{ node?.label }}<sup>2</sup> </span>
+      </ng-template>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXSelectCustomNodeComponent {
+  data1 = data;
+  model1: any;
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => {
+      this.cdr.detectChanges();
+    });
+  }
+
+  change(value: any) {
+    console.log(value);
   }
 }

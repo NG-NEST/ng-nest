@@ -1,0 +1,9 @@
+<x-row>
+  <x-col>
+    <x-select [data]="data" [(ngModel)]="model" [nodeTpl]="nodeTpl"></x-select>
+  </x-col>
+</x-row>
+
+<ng-template #nodeTpl let-node="$node">
+  <span *ngIf="node" style="line-height: 1.25rem"> {{ node?.label }}<sup>2</sup> </span>
+</ng-template>

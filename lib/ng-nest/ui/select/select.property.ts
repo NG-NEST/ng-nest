@@ -7,11 +7,9 @@ import {
   XBoolean,
   XFormOption,
   XWithConfig,
-  XPositionTopBottom,
-  XNumber,
-  XInputNumber
+  XPositionTopBottom
 } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Input, Component, TemplateRef } from '@angular/core';
 
 /**
  * Select
@@ -46,6 +44,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Multiple choice
    */
   @Input() @XInputBoolean() multiple: XBoolean;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  @Input() nodeTpl: TemplateRef<any>;
 }
 
 /**

@@ -20,6 +20,8 @@
       [readonly]="readonly"
       [clearable]="clearable"
       [(ngModel)]="displayValue"
+      [valueTpl]="nodeTpl"
+      [valueTplContext]="{ $node: selectedNode }"
       (clearEmit)="clearEmit()"
     ></x-input>
   </div>

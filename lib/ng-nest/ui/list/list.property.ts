@@ -51,7 +51,7 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @zh_CN 节点模板
    * @en_US Node template
    */
-   @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl: TemplateRef<any>;
   /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event

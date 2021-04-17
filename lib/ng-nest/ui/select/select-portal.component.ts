@@ -7,7 +7,8 @@ import {
   OnDestroy,
   Renderer2,
   HostBinding,
-  HostListener
+  HostListener,
+  TemplateRef
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
@@ -41,6 +42,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   destroyPortal: Function;
   nodeEmit: Function;
   multiple: XNumber = 1;
+  nodeTpl: TemplateRef<any>;
   show: boolean = false;
   private _unSubject = new Subject<void>();
 

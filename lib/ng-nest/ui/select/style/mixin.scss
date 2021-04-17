@@ -25,7 +25,8 @@
     > x-input {
       > .x-input {
         > .x-input-row {
-          > input {
+          > input,
+          > .x-input-value-template-value {
             cursor: pointer;
           }
         }
