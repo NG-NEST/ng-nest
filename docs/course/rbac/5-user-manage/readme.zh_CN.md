@@ -1,6 +1,7 @@
 ---
 order: 5
 label: '5. 用户管理'
+hidden: true
 ---
 
 # 用户管理

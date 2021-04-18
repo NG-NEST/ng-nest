@@ -1,3 +1,20 @@
+## [11.2.4](https://github.com/NG-NEST/ng-nest/compare/11.2.3...11.2.4) (2021-04-18)
+
+
+### Bug Fixes
+
+* **module:select:** multiple node template ([9d4453b](https://github.com/NG-NEST/ng-nest/commit/9d4453b3e6c9dfde71fa1c3024c9baf63230a72b))
+
+
+### Features
+
+* **module:input:** add value tamplate ([8fd5081](https://github.com/NG-NEST/ng-nest/commit/8fd5081573fec4d85b26adcbdbef90229147659f))
+* **module:list:** add node template ([a8621db](https://github.com/NG-NEST/ng-nest/commit/a8621db1c795a31118662e9534e63f85a388bb0f))
+* **module.select:** add node template ([0f0222b](https://github.com/NG-NEST/ng-nest/commit/0f0222b2c8994d6d52a7d3b19e0aa3d2d9cd9275)), closes [#19](https://github.com/NG-NEST/ng-nest/issues/19)
+* **style:** update box-shadow color ([dc5e558](https://github.com/NG-NEST/ng-nest/commit/dc5e55895f3020388450fba1ebf93319d0d65c12))
+
+
+
 ## [11.2.3](https://github.com/NG-NEST/ng-nest/compare/11.2.2...11.2.3) (2021-04-11)
 
 

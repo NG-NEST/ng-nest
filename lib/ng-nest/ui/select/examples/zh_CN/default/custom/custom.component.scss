@@ -10,3 +10,6 @@
 .select-item {
   line-height: 1.25rem;
 }
+.select-item:not(:first-child):before {
+  content: ',';
+}
