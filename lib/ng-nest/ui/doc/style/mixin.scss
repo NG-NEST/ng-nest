@@ -5,141 +5,154 @@
 @import './param';
 
 @mixin doc {
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   display: block;
   font-size: 0.875rem;
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 2.25rem 0 1rem;
-    &:first-of-type {
-      margin-top: 0;
-    }
-  }
+  > x-anchor > .x-anchor {
+    justify-content: center;
+    > .x-anchor-content {
+      width: calc(100% - 15rem);
+      max-width: 55rem;
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 2.25rem 0 1rem;
+      }
 
-  h2 {
-    font-size: 1.375rem;
-    font-weight: 500;
-    margin: 2.25rem 0 1rem;
-    clear: both;
-  }
+      h2 {
+        font-size: 1.375rem;
+        font-weight: 500;
+        margin: 2rem 0 1rem;
+        clear: both;
+      }
 
-  h3 {
-    font-size: 1.125rem;
-    font-weight: 500;
-    margin: 1.5rem 0 1rem;
-    clear: both;
-  }
+      h3 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin: 1.5rem 0 1rem;
+        clear: both;
+      }
 
-  h4 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 1.125rem 0 0.875rem;
-    clear: both;
-  }
+      h4 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 1.125rem 0 0.875rem;
+        clear: both;
+      }
 
-  h5 {
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin: 1rem 0 0.625rem;
-    clear: both;
-  }
+      h5 {
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin: 1rem 0 0.625rem;
+        clear: both;
+      }
 
-  > p {
-    font-weight: 400;
-    margin: 0.875rem 0 0;
-  }
+      > p {
+        font-weight: 400;
+        margin: 0.875rem 0 0;
+      }
 
-  > ul {
-    margin: 0.875rem 0;
-    > li {
-      list-style-type: circle;
-      margin-left: 1.25rem;
-      line-height: 1.75rem;
-    }
-  }
+      > ul {
+        margin: 0.875rem 0;
+        > li {
+          list-style-type: circle;
+          margin-left: 1.25rem;
+          line-height: 1.75rem;
+        }
+      }
 
-  blockquote {
-    margin: 0;
-    position: relative;
-    padding: 0.5rem 0.5rem 0.5rem 0.875rem;
-    > p {
-      margin: 0;
-    }
-    &:before {
-      content: ' ';
-      position: absolute;
-      top: calc(#{$--x-border-width} * -1);
-      left: calc(#{$--x-border-width} * -1);
-      height: calc(100% + calc(#{$--x-border-width} * 2));
-      width: 0.25rem;
-      border-top-left-radius: $--x-border-radius;
-      border-bottom-left-radius: $--x-border-radius;
-      background-color: $--x-border;
-    }
-  }
+      blockquote {
+        margin: 0;
+        position: relative;
+        padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+        > p {
+          margin: 0;
+        }
+        &:before {
+          content: ' ';
+          position: absolute;
+          top: calc(#{$--x-border-width} * -1);
+          left: calc(#{$--x-border-width} * -1);
+          height: calc(100% + calc(#{$--x-border-width} * 2));
+          width: 0.25rem;
+          border-top-left-radius: $--x-border-radius;
+          border-bottom-left-radius: $--x-border-radius;
+          background-color: $--x-border;
+        }
+      }
 
-  > blockquote {
-    margin-top: 0.875rem;
-    background-color: $--x-background;
-    border-radius: $--x-border-radius;
-    border: $--x-border-200-base;
-    color: $--x-text-400;
-  }
+      > blockquote {
+        margin-top: 0.875rem;
+        background-color: $--x-background;
+        border-radius: $--x-border-radius;
+        border: $--x-border-200-base;
+        color: $--x-text-400;
+      }
 
-  li > code,
-  p > code {
-    background-color: $--x-primary-900;
-    border: $--x-border-width solid $--x-primary-800;
-    padding: 0 0.25rem;
-    border-radius: $--x-border-radius;
-  }
+      li > code,
+      p > code {
+        background-color: $--x-primary-900;
+        border: $--x-border-width solid $--x-primary-800;
+        padding: 0 0.25rem;
+        border-radius: $--x-border-radius;
+      }
 
-  > p > x-tree-file {
-    font-family: Segoe WPC, Segoe UI, Microsoft YaHei, sans-serif;
-  }
+      > p > x-tree-file {
+        font-family: Segoe WPC, Segoe UI, Microsoft YaHei, sans-serif;
+      }
 
-  > pre {
-    display: flex;
-    overflow: auto;
-    width: 100%;
-    code {
-      &.language- {
-        @include code(bash, $--x-background-100, $--x-text-300, $--x-text-300, $--x-text-300);
-        @each $state, $value in $--x-doc-states {
-          @include code(
-            $state,
-            map-get($value, color),
-            map-get($value, background-color),
-            map-get($value, border-color),
-            map-get($value, border-left-color)
-          );
+      > pre {
+        display: flex;
+        overflow: auto;
+        width: 100%;
+        code {
+          &.language- {
+            @include code(bash, $--x-background-100, $--x-text-300, $--x-text-300, $--x-text-300);
+            @each $state, $value in $--x-doc-states {
+              @include code(
+                $state,
+                map-get($value, color),
+                map-get($value, background-color),
+                map-get($value, border-color),
+                map-get($value, border-left-color)
+              );
+            }
+          }
+        }
+      }
+
+      > table {
+        width: 100%;
+        background: $--x-background;
+        border-collapse: collapse;
+        border: $--x-border-base;
+        tr > th,
+        tr > td {
+          border-bottom: $--x-border-base;
+          text-align: left;
+          padding: 0.5rem 1rem;
+        }
+        tr {
+          &:last-child {
+            > th,
+            > td {
+              border-width: 0px;
+            }
+          }
+          th {
+            white-space: nowrap;
+            color: $--x-text;
+          }
         }
       }
     }
-  }
-
-  > table {
-    width: 100%;
-    background: $--x-background;
-    border-collapse: collapse;
-    border: $--x-border-base;
-    tr > th,
-    tr > td {
-      border-bottom: $--x-border-base;
-      text-align: left;
-      padding: 0.5rem 1rem;
-    }
-    tr {
-      &:last-child {
-        > th,
-        > td {
-          border-width: 0px;
-        }
-      }
-      th {
+    > .x-anchor-affix {
+      padding-left: 1.5rem;
+      .x-link > span {
+        width: 12rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
-        color: $--x-text;
       }
     }
   }

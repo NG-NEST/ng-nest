@@ -50,7 +50,7 @@ Nestjs CLI 会安装必要的依赖包。这可能要花几分钟的时间，CLI
 
 {{ __2.2\__img:api.png:false:false }}
 
-### 本节 CLI 命令的详细说明
+## 本节 CLI 命令的详细说明
 
 - <a href="https://angular.cn/cli" target="_blank">Angular CLI</a>
 - <a href="https://docs.nestjs.com/cli/overview" target="_blank">Nestjs CLI</a>

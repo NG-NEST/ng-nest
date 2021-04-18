@@ -31,9 +31,12 @@ npm 11.2.4
 
 - 现代浏览器
 
-| Chrome        | Microsoft Edge | Firefox       | Safari        |
-| ------------- | -------------- | ------------- | ------------- |
-| 最新 2 个版本 | 最新 2 个版本  | 最新 2 个版本 | 最新 2 个版本 |
+| 浏览器         | 版本          |
+| -------------- | ------------- |
+| Chrome         | 最新 2 个版本 |
+| Microsoft Edge | 最新 2 个版本 |
+| Firefox        | 最新 2 个版本 |
+| Safari         | 最新 2 个版本 |
 
 ## 基本假设
 
@@ -41,6 +44,9 @@ npm 11.2.4
 
 ## 交流群号
 
-| <img src="assets/img/tim.jpg" width="250" /> | <img src="assets/img/weixin.jpg" width="250" /> |
-| -------------------------------------------- | ----------------------------------------------- |
-| QQ                                           | 微信                                            |
+- QQ 群：689736453
+
+<img src="assets/img/tim.jpg" width="250" height="320" />
+
+- 微信群
+  <img src="assets/img/weixin.jpg" width="250" height="320" />

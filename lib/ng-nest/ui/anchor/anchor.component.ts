@@ -65,7 +65,9 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     if (XIsEmpty(this.hElements) || XIsUndefined(this.scroll)) return;
     this._scrolling = true;
     const hElement = this.hElements[index];
-    const scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
+    let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
+    let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
+    if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 

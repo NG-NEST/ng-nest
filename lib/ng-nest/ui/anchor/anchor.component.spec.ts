@@ -158,20 +158,6 @@ const htmlTemplate = `
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
-  <p>This is a branch and a description.</p>
   <p>This is a branch and a description.</p>`;
 
 @Component({
@@ -191,7 +177,7 @@ const htmlTemplate = `
         border: 0.0625rem solid var(--x-border);
       }
       .row.scroll {
-        height: 20rem;
+        height: 30rem;
         width: 100%;
         overflow: auto;
         border-radius: 0.125rem;

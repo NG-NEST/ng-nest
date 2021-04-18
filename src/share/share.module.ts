@@ -12,6 +12,7 @@ import { XPatternModule } from '@ng-nest/ui/pattern';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { XAnchorModule } from '@ng-nest/ui/anchor';
 
 const modules = [
   CommonModule,
@@ -21,6 +22,7 @@ const modules = [
   ReactiveFormsModule,
   XDocModule,
   XExamplesModule,
+  XAnchorModule,
   XApiModule,
   XTabsModule,
   XHighlightModule,

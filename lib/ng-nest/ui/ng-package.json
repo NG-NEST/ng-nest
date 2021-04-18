@@ -6,5 +6,5 @@
     "entryFile": "./index.ts",
     "styleIncludePaths": ["./style"]
   },
-  "allowedNonPeerDependencies": ["tslib", "angular"]
+  "allowedNonPeerDependencies": ["tslib", "angular", "resize-observer-polyfill"]
 }

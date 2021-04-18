@@ -31,9 +31,12 @@ Angular ^11.0.0 is currently supported by `@ng-nest/UI`.
 
 - Modern browsers
 
-| Chrome            | Microsoft Edge    | Firefox           | Safari            |
-| ----------------- | ----------------- | ----------------- | ----------------- |
-| Latest 2 versions | Latest 2 versions | Latest 2 versions | Latest 2 versions |
+| Browser        | version           |
+| -------------- | ----------------- |
+| Chrome         | Latest 2 versions |
+| Microsoft Edge | Latest 2 versions |
+| Firefox        | Latest 2 versions |
+| Safari         | Latest 2 versions |
 
 ## Basic assumptions
 
@@ -41,6 +44,10 @@ This document assumes that you are already familiar with the basics of [Angular]
 
 ## Communication group
 
-| <img src="assets/img/tim.jpg" width="250" /> | <img src="assets/img/weixin.jpg" width="250" /> |
-| -------------------------------------------- | ----------------------------------------------- |
-| QQ                                           | WeChat                                          |
+- QQ: 689736453
+
+<img src="assets/img/tim.jpg" width="250" height="320" />
+
+- WeChat
+
+<img src="assets/img/weixin.jpg" width="250" height="320" />

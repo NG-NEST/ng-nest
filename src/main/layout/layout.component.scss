@@ -177,5 +177,13 @@ ns-layout {
       padding-left: 0;
       padding-top: $header-height;
     }
+    .x-doc > x-anchor > .x-anchor > {
+      .x-anchor-content {
+        width: 100%;
+      }
+      .x-anchor-affix {
+        display: none;
+      }
+    }
   }
 }
