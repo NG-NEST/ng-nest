@@ -1,4 +1,4 @@
-## [11.2.4](https://github.com/NG-NEST/ng-nest/compare/11.2.3...11.2.4) (2021-04-18)
+## [11.2.5](https://github.com/NG-NEST/ng-nest/compare/11.2.3...11.2.5) (2021-04-18)
 
 
 ### Bug Fixes
