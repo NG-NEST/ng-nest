@@ -93,6 +93,6 @@ The style files and the corresponding module import files are also modified here
 
 {{ __14\__gif:crumb.gif:false:false }}
 
-## 下一步
+## Next step
 
 In this section, we set up the navigation method of the front-end page, and then we will further add specific functions: user management
