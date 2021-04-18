@@ -67,7 +67,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
-  selectedNode: any = null;
+  valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
@@ -147,7 +147,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   clearEmit() {
     this.value = '';
     this.displayValue = '';
-    this.selectedNode = null;
+    this.valueTplContext.$node = null;
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -158,20 +158,20 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       if (this.multiple) {
         if (XIsEmpty(this.value)) {
           this.displayValue = '';
-          this.selectedNode = null;
+          this.valueTplContext.$node = null;
         } else {
           let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
           this.displayValue = nodes.map((x) => x.label).join(',');
-          this.selectedNode = [...nodes];
+          this.valueTplContext.$node = [...nodes];
         }
       } else {
         let node = this.nodes.find((x) => x.id === this.value);
         if (node) {
           this.displayValue = node.label;
-          this.selectedNode = node;
+          this.valueTplContext.$node = node;
         } else {
           this.displayValue = '';
-          this.selectedNode = null;
+          this.valueTplContext.$node = null;
         }
       }
       this.cdr.detectChanges();
@@ -268,7 +268,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSelectNode | XSelectNode[]) {
-    this.selectedNode = node;
     if (this.multiple && XIsArray(node)) {
       node = node as XSelectNode[];
       this.value = node;
@@ -276,6 +275,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     } else {
       node = node as XSelectNode;
       this.displayValue = node.label;
+      this.valueTplContext.$node = node;
       this.value = node.id;
       this.closeSubject.next();
     }

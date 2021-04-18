@@ -359,7 +359,16 @@ class TestXSelectMultipleComponent {
         <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)" [nodeTpl]="nodeTpl"></x-select>
       </x-col>
       <ng-template #nodeTpl let-node="$node">
-        <span *ngIf="node" style="line-height: 1.25rem;"> {{ node?.label }}<sup>2</sup> </span>
+        <span *ngIf="node" class="select-item"> {{ node?.label }}<sup>2</sup> </span>
+      </ng-template>
+      <x-col span="8">
+        <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change($event)" [nodeTpl]="multipleNodeTpl" multiple></x-select>
+      </x-col>
+      <ng-template #multipleNodeTpl let-node="$node" let-isValue="$isValue">
+        <span *ngIf="node && !isValue" class="select-item"> {{ node?.label }} <sup>2</sup> </span>
+        <span *ngIf="node && isValue">
+          <span class="select-item" *ngFor="let item of node"> {{ item.label }} <sup>2</sup> </span>
+        </span>
       </ng-template>
     </x-row>
   `,
@@ -374,12 +383,20 @@ class TestXSelectMultipleComponent {
       x-row:not(:first-child) {
         margin-top: 1rem;
       }
+      .select-item {
+        line-height: 1.25rem;
+      }
+      .select-item:not(:first-child):before {
+        content: ',';
+      }
     `
   ]
 })
 class TestXSelectCustomNodeComponent {
   data1 = data;
   model1: any;
+  data2 = JSON.parse(JSON.stringify(data));
+  model2: any;
   constructor(public cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => {
       this.cdr.detectChanges();

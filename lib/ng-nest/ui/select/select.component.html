@@ -21,7 +21,7 @@
       [clearable]="clearable"
       [(ngModel)]="displayValue"
       [valueTpl]="nodeTpl"
-      [valueTplContext]="{ $node: selectedNode }"
+      [valueTplContext]="valueTplContext"
       (clearEmit)="clearEmit()"
     ></x-input>
   </div>
