@@ -49,4 +49,5 @@ npm 11.2.5
 <img src="assets/img/tim.jpg" width="250" height="320" />
 
 - 微信群
-  <img src="assets/img/weixin.jpg" width="250" height="320" />
+
+<img src="assets/img/weixin.jpg" width="250" height="320" />
