@@ -95,4 +95,4 @@ The style files and the corresponding module import files are also modified here
 
 ## Next step
 
-In this section, we set up the navigation method of the front-end page, and then we will further add specific functions: user management
+In this section, we set up the navigation method of the front-end page, and then we will further add specific functions: [user management](index/docs/en_US/course/rbac/5-user-manage)

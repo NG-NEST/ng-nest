@@ -47,6 +47,15 @@ export const menus: Menu[] = [
     "label": "4. UI Navigation"
   },
   {
+    "id": "1-0-4",
+    "pid": "1-0",
+    "name": "5-user-manage",
+    "router": "docs/en_US/course/rbac/5-user-manage",
+    "lang": "en_US",
+    "order": 5,
+    "label": "5. User Management"
+  },
+  {
     "id": "4-5",
     "pid": "4",
     "name": "introduction",
@@ -814,6 +823,15 @@ export const menus: Menu[] = [
     "lang": "zh_CN",
     "order": 4,
     "label": "4. 导航栏"
+  },
+  {
+    "id": "1-0-4",
+    "pid": "1-0",
+    "name": "5-user-manage",
+    "router": "docs/zh_CN/course/rbac/5-user-manage",
+    "lang": "zh_CN",
+    "order": 5,
+    "label": "5. 用户管理"
   },
   {
     "id": "4-5",

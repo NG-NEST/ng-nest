@@ -1,14 +1,15 @@
 ---
 order: 5
 label: '5. 用户管理'
-hidden: true
 ---
 
 # 用户管理
 
 上一节我们完成了前端导航栏的创建，在教程的这个部分，你将完成下列工作：
 
-- 使用 `nestjs` 对接 `mysql` 数据库，开发用户管理的 `api` 接口
+- 使用 `nestjs` 对接 `mysql` 数据库
+- 开发用户管理的 `api` 接口
+- 开发用户管理的前端界面
 
 完成本节后的代码：<a href="https://github.com/NG-NEST/ng-nest-examples/tree/master/RBAC/5-user-manage" target="_blank">Github 地址</a>。
 
@@ -37,15 +38,15 @@ hidden: true
 
 还是在 `api` 项目中，我们添加以下文件，通过文件夹来划分模块：
 
-{{ __4\__api:src/system/users/user.module.ts:false:true }}
+{{ __4\__api:src/system/users/user.module.ts:true:true }}
 
-- core 公共的类型定义、服务等
-- system 系统管理里面的模块
-- users 指用户管理的模块
-- user.controller.ts 控制器，处理请求并响应客户端
-- user.entity.ts 映射到数据库中的实体
-- user.module.ts 模块，用来组织应用程序结构
-- user.service.ts 服务
+- `core` 公共的类型定义、服务等
+- `system` 系统管理里面的模块
+- `users` 指用户管理的模块
+- `user.controller.ts` 控制器，处理请求并响应客户端
+- `user.entity.ts` 映射到数据库中的实体
+- `user.module.ts` 模块，用来组织应用程序结构
+- `user.service.ts` 服务
 
 > 创建好的 `user.entity.ts` 后，可执行 `npm run start:dev` 来启动项目，在 `mysql` 中会自动生成对应的数据库表
 
@@ -53,14 +54,14 @@ hidden: true
 
 在 `api/src/core/interfaces` 中创建以下文件：
 
-{{ __5\__api:src/core/interfaces/result.interface.ts:false:true }}
+{{ __5\__api:src/core/interfaces/result.interface.ts:true:true }}
 
 - result.interface.ts 增删改查定义的通用结构
 - id.interface.ts `id` 属性定义
 
 在根目录下面的 `tsconfig.json` 添加一个 `paths` 的路径映射，方便引入对应的文件：
 
-{{ __6\__api:tsconfig.ts:false:true }}
+{{ __6\__api:tsconfig.json:false:true }}
 
 ## 添加用户管理的 api 接口
 
@@ -123,7 +124,7 @@ DTO 用于展示层与服务层之间的数据传输，我们在 `users` 中定�
 
 打开前端项目，这里我们使用 `table` 组件来创建我们的用户列表：
 
-{{ __17\__ui:src/main/system/users/user.component.ts:false:true }}
+{{ __17\__ui:src/main/system/users/user.component.ts:true:true }}
 
 - 在 `user.module.ts` 中添加 `XTableModule` 模块的引入
 - 在 `user.component.html` 和 `uesr.component.ts` 中使用 `table` 组件
@@ -132,7 +133,7 @@ DTO 用于展示层与服务层之间的数据传输，我们在 `users` 中定�
 
 现在基本的 `table` 列表有了，我们接下来对接后台的接口，我们创建一个 `user.service.ts` 的服务：
 
-{{ __18\__ui:src/main/system/users/user.service.ts:false:true }}
+{{ __18\__ui:src/main/system/users/user.service.ts:true:true }}
 
 - 定义了用户管理中需要的基本请求服务
 - 定义 `User` 的类型声明
@@ -149,7 +150,7 @@ DTO 用于展示层与服务层之间的数据传输，我们在 `users` 中定�
 
 此处发生一个请求的 404 的错误，我们把请求代理到 `api` 对应的地址：
 
-{{ __21\__ui:proxy.conf.json:false:true }}
+{{ __21\__ui:proxy.conf.json:true:true }}
 
 - 添加 `proxy.conf.json` 配置文件，把 `/api` 代理到我们 `api` 对应的 `http://localhost:3000`
 - 更新 `package.json` 中的 `scripts > start` 为 `ng serve --proxy-config proxy.conf.json`
@@ -160,18 +161,32 @@ DTO 用于展示层与服务层之间的数据传输，我们在 `users` 中定�
 
 在 `users` 目录下面添加用户详情页面：
 
-{{ __22\__ui:src/main/system/users/user.module.ts:false:true }}
+{{ __22\__ui:src/main/system/users/user.module.ts:true:true }}
 
 - 路由配置中的 `type` 用来区分详情页面的类型，查看、新增和修改
 
 在列表页面中我们添加一个新增的按钮，跳转到详情页新增：
 
-{{ __23\__ui:src/main/system/users/user.component.html:false:true }}
+{{ __23\__ui:src/main/system/users/user.component.html:true:true }}
 
 接下来更新我们的详情页：
 
+{{ __24\__ui:src/main/system/users/user-detail/user-detail.component.ts:true:true }}
 
+- 使用 `Form` 组件来构建我们的表单
+- 使用 `Message` 组件来弹出我们的消息框
+
+最后我们更新我们的列表页面，添加查看、修改和删除的功能：
+
+{{ __25\__ui:src/main/system/users/user.component.ts:true:true }}
+
+- 使用模板的方式自定义我们 `table` 的操作列
+- 使用 `MessageBox` 组件来做确认框
+
+至此我们就完成用户管理最基本的增删改查功能：
+
+{{ __26\__gif:26.gif:false:false }}
 
 ## 下一步
 
-在本节我们搭建起了前端页面的导航方式，接下来我们来进一步添加具体的功能：用户管理
+在本节我们完成了用户管理的基本功能，接下来我们进一步完善它：提取公共功能

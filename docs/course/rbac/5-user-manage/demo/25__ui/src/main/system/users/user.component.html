@@ -1,0 +1,18 @@
+<div class="app-header">
+  <x-button type="primary" (click)="pageTo('./add')">新增</x-button>
+</div>
+<x-table
+  #table
+  [columns]="columns"
+  [data]="data"
+  [(index)]="index"
+  [bodyColumnTpl]="{ actions: actionsTpl }"
+  loading
+>
+</x-table>
+
+<ng-template #actionsTpl let-column="$column" let-row="$row">
+  <x-link icon="fto-eye" (click)="action('info', row)" title="查看"></x-link>
+  <x-link icon="fto-edit" (click)="action('edit', row)" title="修改"></x-link>
+  <x-link icon="fto-trash-2" (click)="action('delete', row)" title="删除"></x-link>
+</ng-template>

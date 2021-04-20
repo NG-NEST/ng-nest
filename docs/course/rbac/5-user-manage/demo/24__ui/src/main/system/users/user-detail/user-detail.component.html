@@ -1,0 +1,24 @@
+<h3>{{ title }}</h3>
+<x-form
+  #form
+  [disabled]="disabled"
+  [controls]="controls"
+  direction="row"
+  labelSuffix=":"
+  labelWidth="6rem"
+  width="30rem"
+  labelAlign="end"
+  span="20"
+  space="2"
+></x-form>
+<div class="app-footer">
+  <x-buttons space="0.5">
+    <x-button (click)="action('cancel')">取消</x-button>
+    <x-button
+      type="primary"
+      (click)="!formInvalid && action('save')"
+      [disabled]="formInvalid || disabled"
+      >保存</x-button
+    >
+  </x-buttons>
+</div>
