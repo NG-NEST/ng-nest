@@ -32,18 +32,21 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   sliderData: XSliderNode[] = [];
   activatedIndex: number = 0;
   sliderHeight?: number;
+  document: Document;
   private _scrolling = false;
-  private _fontSize: number = parseFloat(computedStyle(this.doc.documentElement, 'font-size'));
+  private _fontSize: number;
   private _unSubject = new Subject();
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private doc: any,
+    @Inject(DOCUMENT) doc: any,
     public configService: XConfigService
   ) {
     super();
+    this.document = doc;
+    this._fontSize = parseFloat(computedStyle(this.document.documentElement, 'font-size'));
   }
 
   ngOnInit() {
@@ -63,6 +66,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   activatedChange(index: number) {
     if (XIsEmpty(this.hElements) || XIsUndefined(this.scroll)) return;
+
     this._scrolling = true;
     const hElement = this.hElements[index];
     let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
@@ -76,13 +80,15 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   private setScroll() {
-    if (!this.scroll) this.scroll = this.doc.documentElement;
-    fromEvent(this.scroll, 'scroll')
+    fromEvent(this.scroll ? this.scroll : window, 'scroll')
       .pipe(throttleTime(10), takeUntil(this._unSubject))
       .subscribe((x) => {
         if (this._scrolling) return;
         this.setActivatedByScroll();
       });
+    if (!this.scroll) {
+      this.scroll = this.document.documentElement;
+    }
   }
 
   private setActivatedByScroll() {
