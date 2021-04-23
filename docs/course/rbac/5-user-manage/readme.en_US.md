@@ -189,4 +189,4 @@ To this end, we will complete the user management of the most basic increase in 
 
 ## Next step
 
-In this section, we have completed the basic functions of user management, followed by further improve it: extract public features
+In this section, we have completed the basic functions of user management, followed by further improve it: Public function package
