@@ -15,7 +15,7 @@
     flex: 1;
     flex-direction: column;
     // overflow-y: auto;
-    min-width: 7rem;
+    // min-width: 7rem;
     cursor: pointer;
     > li {
       @include list-li();
