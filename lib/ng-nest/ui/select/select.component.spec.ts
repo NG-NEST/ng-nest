@@ -27,7 +27,7 @@ describe(XSelectPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -99,7 +99,7 @@ describe(XSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`custom.`, () => {
+  describe(`custom.`, () => {
     let fixture: ComponentFixture<TestXSelectCustomNodeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
