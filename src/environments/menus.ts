@@ -56,6 +56,15 @@ export const menus: Menu[] = [
     "label": "5. User Management"
   },
   {
+    "id": "1-0-5",
+    "pid": "1-0",
+    "name": "6-service-optimize",
+    "router": "docs/en_US/course/rbac/6-service-optimize",
+    "lang": "en_US",
+    "order": 6,
+    "label": "6. Service Optimize"
+  },
+  {
     "id": "4-5",
     "pid": "4",
     "name": "introduction",
@@ -832,6 +841,15 @@ export const menus: Menu[] = [
     "lang": "zh_CN",
     "order": 5,
     "label": "5. 用户管理"
+  },
+  {
+    "id": "1-0-5",
+    "pid": "1-0",
+    "name": "6-service-optimize",
+    "router": "docs/zh_CN/course/rbac/6-service-optimize",
+    "lang": "zh_CN",
+    "order": 6,
+    "label": "6. 服务优化"
   },
   {
     "id": "4-5",
