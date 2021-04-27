@@ -27,7 +27,7 @@ label: '6. 服务优化'
 
 然后我们就可以替换我们之前的 `user.service.ts`：
 
-{{ __3\__api:src/core/services/repository.service.ts:false:true }}
+{{ __3\__api:src/system/users/user.service.ts:false:true }}
 
 - 通过 `extends` 来继承我们的抽象类
 - 通过 `super` 初始化构造函数

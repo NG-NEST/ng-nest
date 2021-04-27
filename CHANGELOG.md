@@ -1,3 +1,15 @@
+## [11.2.6](https://github.com/NG-NEST/ng-nest/compare/11.2.5...11.2.6) (2021-04-27)
+
+
+### Bug Fixes
+
+* **module:anchor:** update window scroll ([b5332ce](https://github.com/NG-NEST/ng-nest/commit/b5332ce2c3f23611e064a70528c69a88a7e244ca)), closes [#21](https://github.com/NG-NEST/ng-nest/issues/21)
+* **module:list:** update min width ([3fd2ca9](https://github.com/NG-NEST/ng-nest/commit/3fd2ca9d4600199db0fbe45e3bde3456d135504f))
+* **module:select:** hidden portal overflow-x ([c1b40ec](https://github.com/NG-NEST/ng-nest/commit/c1b40ec1b29410ee2fda6393bf427e1d92b870c8))
+* **module:tree-file:** update content min-height ([c4937b4](https://github.com/NG-NEST/ng-nest/commit/c4937b42e2e974e5eadfc91a6fb60ae3a0b1cde6))
+
+
+
 ## [11.2.5](https://github.com/NG-NEST/ng-nest/compare/11.2.3...11.2.5) (2021-04-18)
 
 

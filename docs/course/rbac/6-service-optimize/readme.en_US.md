@@ -27,7 +27,7 @@ First ignore the specific implementation in the method, for each entity object, 
 
 Then we can replace our previous `user.service.ts`:
 
-{{ __3\__api:src/core/services/repository.service.ts:false:true }}
+{{ __3\__api:src/system/users/user.service.ts:false:true }}
 
 - Inheriting our abstract class by `extends`
 - Initialization constructor via `super`
