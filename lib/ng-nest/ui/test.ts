@@ -19,7 +19,7 @@ declare const require: {
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
-const files = ['./upload/upload.component.spec.ts'];
+const files = ['./ripple/ripple.directive.spec.ts'];
 // And load the modules.
 context
   .keys()
