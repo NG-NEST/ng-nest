@@ -17,6 +17,9 @@
   user-select: none;
   white-space: nowrap;
   transition: all $--x-animation-duration-base ease-in-out;
+  &:focus {
+    outline: none;
+  }
   > .x-icon {
     font-size: 0.925rem;
   }
@@ -39,9 +42,6 @@
       margin-right: 0;
       margin-left: 0;
     }
-  }
-  &:active {
-    transform: translate(1px, 1px);
   }
   &-disabled {
     transform: none !important;
@@ -132,24 +132,30 @@
 ) {
   &-#{$type} {
     @include button-color($color, $background, $border);
-    box-shadow: $--x-box-shadow $box-shadow-color;
     &:hover {
       @include button-color($hover, $hover-background, $hover-border);
     }
     &:active {
       @include button-color($active, $active-background, $active-border);
     }
+    &:focus {
+      @include button-color($active, $active-background, $active-border);
+      box-shadow: 0 0 0 0.125rem $plain-background;
+    }
     &.#{$--x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
     }
     &-plain {
       @include button-color($plain-color, $plain-background, $plain-border);
-      box-shadow: $--x-box-shadow $plain-box-shadow-color;
       &:hover {
         @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
       }
       &:active {
         @include button-color($plain-active, $plain-active-background, $plain-active-border);
+      }
+      &:focus {
+        @include button-color($plain-active, $plain-active-background, $plain-active-border);
+        box-shadow: 0 0 0 0.125rem $plain-background;
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);

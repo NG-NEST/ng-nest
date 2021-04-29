@@ -5,11 +5,12 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XButtonPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule],
+      imports: [XButtonModule, XThemeModule],
       declarations: [
         TestXButtonComponent,
         TestXButtonDiabledComponent,
@@ -21,7 +22,7 @@ describe(XButtonPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXButtonComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -124,6 +125,7 @@ describe(XButtonPrefix, () => {
 @Component({
   selector: 'test-x-button',
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button>默认按钮</x-button>
       <x-button type="primary">主要按钮</x-button>
