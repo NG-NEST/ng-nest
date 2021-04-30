@@ -64,7 +64,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`icon.`, () => {
+  fdescribe(`icon.`, () => {
     let fixture: ComponentFixture<TestXButtonIconComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -92,7 +92,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`loading.`, () => {
+  describe(`loading.`, () => {
     let fixture: ComponentFixture<TestXButtonLoadingComponent>;
     let debugElement: DebugElement;
     let element: Element;

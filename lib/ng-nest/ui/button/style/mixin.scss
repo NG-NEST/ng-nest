@@ -60,9 +60,13 @@
     border: none;
     background-color: transparent;
     box-shadow: none;
+    &:focus {
+      box-shadow: none;
+      background-color: transparent;
+    }
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, transparent, transparent);
+      @include button-color($--x-button-hover, rgba(0, 0, 0, 0.1), transparent);
     }
   }
   &-closable {
