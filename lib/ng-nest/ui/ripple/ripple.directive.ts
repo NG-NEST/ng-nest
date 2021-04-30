@@ -1,5 +1,5 @@
 import { OnInit, Renderer2, ElementRef, Directive } from '@angular/core';
-import { empty, fromEvent, of } from 'rxjs';
+import { fromEvent, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 
@@ -7,10 +7,9 @@ import { XRipplePrefix, XRippleProperty } from './ripple.property';
   selector: '[x-ripple]'
 })
 export class XRippleDirective extends XRippleProperty implements OnInit {
-  duration = 400;
+  duration = 500;
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XRipplePrefix);
   }
 
   ngOnInit() {
@@ -43,9 +42,12 @@ export class XRippleDirective extends XRippleProperty implements OnInit {
         )
         .subscribe();
     });
-    // fromEvent(this.elementRef.nativeElement, 'mouseup').subscribe((event: MouseEvent) => {
-    //   console.log(x);
-    // });
+    this.setClassMap();
+  }
+
+  setClassMap() {
+    this.renderer.addClass(this.elementRef.nativeElement, XRipplePrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, `${XRipplePrefix}-${this.type}`);
   }
 
   distanceToFurthestCorner(x: number, y: number, rect: ClientRect) {

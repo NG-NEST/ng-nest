@@ -70,6 +70,7 @@ export interface XComponentConfig {
   inputNumber?: XInputNumberConfig;
   col?: XColConfig;
   row?: XRowConfig;
+  ripple?: XRippleConfig;
   link?: XLinkConfig;
   list?: XListConfig;
   loading?: XLoadingConfig;
@@ -296,6 +297,10 @@ export interface XInputNumberConfig {}
 export interface XColConfig {}
 
 export interface XRowConfig {}
+
+export interface XRippleConfig {
+  type?: XType;
+}
 
 export interface XLinkConfig {
   underline?: XBoolean;

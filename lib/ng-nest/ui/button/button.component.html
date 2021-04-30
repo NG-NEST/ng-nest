@@ -10,6 +10,8 @@
   [class.x-button-icon]="icon && !content.innerHTML.trim()"
   [class.x-button-closable]="closable"
   [title]="title"
+  x-ripple
+  [type]="type"
 >
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
