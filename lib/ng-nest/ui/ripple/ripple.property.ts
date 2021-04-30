@@ -1,4 +1,11 @@
-import { XProperty, XType, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XBoolean,
+  XInputBoolean,
+  XIsBoolean,
+  XProperty,
+  XType,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Directive } from '@angular/core';
 
 /**
@@ -19,6 +26,11 @@ export class XRippleProperty extends XProperty {
    * @en_US Types of
    */
   @Input() @XWithConfig<XRippleType>(X_CONFIG_NAME, 'initial') type: XRippleType;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disable
+   */
+  @Input() @XInputBoolean() disabled: XBoolean;
 }
 
 /**

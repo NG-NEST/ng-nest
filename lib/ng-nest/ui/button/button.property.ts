@@ -1,5 +1,15 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XDirection,
+  XSize,
+  XInputBoolean,
+  XInputNumber,
+  XNumber,
+  XBoolean,
+  XType,
+  XWithConfig
+} from '@ng-nest/ui/core';
 
 /**
  * Button
@@ -34,6 +44,11 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @en_US Layout
    */
   @Input() direction: XDirection = 'row';
+  /**
+   * @zh_CN tab 键控制次序
+   * @en_US Tab key control order
+   */
+  @Input() tabindex: number = 0;
   /**
    * @zh_CN 尺寸
    * @en_US Size

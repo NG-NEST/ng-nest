@@ -8,11 +8,13 @@ import { XRipplePrefix, XRippleProperty } from './ripple.property';
 })
 export class XRippleDirective extends XRippleProperty implements OnInit {
   duration = 500;
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     super();
   }
 
   ngOnInit() {
+    if (this.disabled) return;
     fromEvent(this.elementRef.nativeElement, 'mousedown').subscribe((event: MouseEvent) => {
       const eleRect = this.elementRef.nativeElement.getBoundingClientRect();
       const radius = this.distanceToFurthestCorner(event.x, event.y, eleRect);
