@@ -8,7 +8,7 @@ import {
   XNumber,
   XBoolean
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef, ElementRef } from '@angular/core';
 
 /**
  * List
@@ -53,6 +53,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() nodeTpl: TemplateRef<any>;
   /**
+   * @zh_CN 滚动区域元素
+   * @en_US Rolling area element
+   */
+  @Input() scrollElement: HTMLElement;
+  /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event
    */
@@ -67,6 +72,16 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US Node click event
    */
   @Output() nodeClick = new EventEmitter<XListNode>();
+  /**
+   * @zh_CN Tab out 事件
+   * @en_US Tab Out event
+   */
+  @Output() keyManagerTabOut = new EventEmitter<void>();
+  /**
+   * @zh_CN Tab out 事件
+   * @en_US Tab Out event
+   */
+  @Output() keyManagerChange = new EventEmitter<number>();
 }
 
 /**
@@ -90,7 +105,42 @@ export interface XListNode extends XParentIdentityProperty<any> {
    */
   event?: Event;
   /**
-   * hover
+   * @zh_CN 悬停
+   * @en_US Hover
    */
   hover?: boolean;
+  /**
+   * @zh_CN 激活
+   * @en_US Active
+   */
+  active?: boolean;
+}
+
+/**
+ * List Option
+ * @selector x-list-option
+ * @decorator component
+ */
+export const XListOptionPrefix = 'x-list-option';
+
+/**
+ * List Option Property
+ */
+@Component({ template: '' })
+export class XListOptionProperty {
+  /**
+   * @zh_CN 节点参数
+   * @en_US Node param
+   */
+  @Input() node: XListNode;
+  /**
+   * @zh_CN 选中
+   * @en_US Selected
+   */
+  @Input() @XInputBoolean() checked: XBoolean;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  @Input() nodeTpl: TemplateRef<any>;
 }

@@ -1,0 +1,14 @@
+<span>
+  <ng-container *ngIf="!nodeTpl"
+    ><x-icon [type]="node.icon" *ngIf="node.icon"></x-icon> {{ node.label }}</ng-container
+  >
+  <ng-container *ngIf="nodeTpl">
+    <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
+  </ng-container>
+</span>
+<x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="node.leaf"></x-icon>
+<x-icon
+  class="x-list-checked"
+  type="fto-check"
+  *ngIf="checked && !node.leaf && node.selected"
+></x-icon>

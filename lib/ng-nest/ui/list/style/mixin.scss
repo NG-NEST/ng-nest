@@ -19,8 +19,8 @@
     cursor: pointer;
     > li {
       @include list-li();
-      transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base,
-        color $--x-animation-duration-base;
+      transition: border-color $--x-animation-duration-base,
+        background-color $--x-animation-duration-base, color $--x-animation-duration-base;
       > span {
         overflow: hidden;
         white-space: nowrap;
@@ -31,7 +31,8 @@
       &:not(:first-child) {
         margin-top: $--x-border-width;
       }
-      &:hover {
+      &:hover,
+      &.x-active {
         background-color: $--x-background-a100;
         color: $--x-primary;
       }
@@ -64,6 +65,9 @@
           color: var(--x-text-500);
         }
       }
+    }
+    &:focus {
+      outline: none;
     }
     &.cdk-drop-list-dragging {
       > li {
@@ -101,7 +105,6 @@
   padding: 0 0.4rem;
   height: $--x-list-height;
   line-height: $--x-list-height;
-  position: relative;
   border-radius: $--x-border-radius;
   display: flex;
   align-items: center;

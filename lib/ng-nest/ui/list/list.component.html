@@ -1,10 +1,16 @@
 <div class="x-list">
-  <ul *ngIf="!isEmpty" cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag">
+  <ul
+    [hidden]="isEmpty"
+    cdkDropList
+    (cdkDropListDropped)="dropCdk($event)"
+    [cdkDropListDisabled]="!drag"
+  >
     <li
       class="x-list-item"
       *ngFor="let node of nodes; trackBy: trackByNode"
       [class.x-selected]="node.selected"
       [class.x-disabled]="node.disabled"
+      [class.x-active]="node.active"
       [class.x-list-icon]="node.icon"
       [class.x-list-divided]="node.divided"
       (click)="onNodeClick($event, node)"
@@ -12,14 +18,7 @@
       (mouseleave)="onMouseleave($event, node)"
       cdkDrag
     >
-      <span>
-        <ng-container *ngIf="!nodeTpl"><x-icon [type]="node.icon" *ngIf="node.icon"></x-icon> {{ node.label }}</ng-container>
-        <ng-container *ngIf="nodeTpl">
-          <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
-        </ng-container>
-      </span>
-      <x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="node.leaf"></x-icon>
-      <x-icon class="x-list-checked" type="fto-check" *ngIf="checked && !node.leaf && node.selected"></x-icon>
+      <x-list-option [node]="node" [checked]="checked" [nodeTpl]="nodeTpl"></x-list-option>
     </li>
   </ul>
   <x-empty *ngIf="isEmpty"></x-empty>

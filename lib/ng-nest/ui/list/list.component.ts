@@ -7,16 +7,36 @@ import {
   ChangeDetectorRef,
   Renderer2,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ContentChild,
+  ContentChildren,
+  QueryList,
+  ElementRef,
+  ViewChild,
+  HostBinding,
+  HostListener,
+  ViewChildren
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XValueAccessor, XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull } from '@ng-nest/ui/core';
+import {
+  XValueAccessor,
+  XIsChange,
+  XSetData,
+  XConfigService,
+  XIsEmpty,
+  XIsUndefined,
+  XIsNull
+} from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { XListOptionComponent } from './list-option.component';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ENTER, ESCAPE } from '@angular/cdk/keycodes';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XListPrefix}`,
   templateUrl: './list.component.html',
-  styleUrls: ['./style/index.scss'],
+  styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XListComponent)]
@@ -24,6 +44,22 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
+  @ViewChild('listItems') listItems: ElementRef;
+  @ViewChildren(XListOptionComponent)
+  options: QueryList<XListOptionComponent>;
+  keyManager: ActiveDescendantKeyManager<XListOptionComponent>;
+
+  @HostBinding('attr.role') role = 'listbox';
+  @HostBinding('attr.tabindex') tabindex = -1;
+
+  @HostListener('keydown', ['$event']) keydown($event: KeyboardEvent) {
+    this.keyManager.onKeydown($event);
+    const activeIndex = this.keyManager.activeItemIndex as number;
+    if ($event.keyCode === ENTER && !XIsUndefined(activeIndex)) {
+      this.setUnActive(activeIndex);
+      this.onNodeClick($event, this.nodes[activeIndex]);
+    }
+  }
 
   get isEmpty() {
     return XIsEmpty(this.nodes);
@@ -37,7 +73,12 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(
+    public renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 
@@ -45,6 +86,11 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.data) && this.setData();
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.focus();
+    this.initKeyManager();
   }
 
   ngOnDestroy(): void {
@@ -57,6 +103,32 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       this.nodes = x;
       this.setSelected();
       this.cdr.detectChanges();
+    });
+  }
+
+  private initKeyManager() {
+    this.keyManager = new ActiveDescendantKeyManager<XListOptionComponent>(this.options).withWrap();
+
+    this.keyManager.tabOut.pipe(takeUntil(this._unSubject)).subscribe(() => {
+      this.setUnActive(this.keyManager.activeItemIndex as number);
+      this.keyManagerTabOut.emit();
+    });
+
+    this.keyManager.change.pipe(takeUntil(this._unSubject)).subscribe((num: number) => {
+      if (this.scrollElement) {
+        let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
+        let list = this.scrollElement;
+        let min = list.scrollTop;
+        let max = list.scrollTop + list.clientHeight;
+        if (ele.offsetTop + ele.clientHeight > max) {
+          let scrollTop = ele.offsetTop + ele.clientHeight - list.clientHeight;
+          list.scrollTop = scrollTop;
+        }
+        if (ele.offsetTop < min) {
+          list.scrollTop = ele.offsetTop;
+        }
+      }
+      this.keyManagerChange.emit(num);
     });
   }
 
@@ -75,7 +147,9 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
         });
       if (this.objectArray) {
         this.selectedNodes = this.nodes
-          .filter((x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id)))
+          .filter(
+            (x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id))
+          )
           .map((x) => {
             x.selected = true;
             return x;
@@ -151,5 +225,9 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   trackByNode(index: number, item: XListNode) {
     return item.id;
+  }
+
+  setUnActive(num: number) {
+    if (num > -1) this.nodes[num].active = false;
   }
 }
