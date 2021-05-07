@@ -34,7 +34,16 @@ import {
   OverlayConfig
 } from '@angular/cdk/overlay';
 import { delay, takeUntil, throttleTime } from 'rxjs/operators';
-import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE } from '@angular/cdk/keycodes';
+import {
+  DOWN_ARROW,
+  UP_ARROW,
+  ENTER,
+  MAC_ENTER,
+  TAB,
+  ESCAPE,
+  LEFT_ARROW,
+  RIGHT_ARROW
+} from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -139,7 +148,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       });
     this.keydownSubject.pipe(throttleTime(50), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
-      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
+      if (
+        !this.portalAttached() &&
+        [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)
+      ) {
         this.showPortal();
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
