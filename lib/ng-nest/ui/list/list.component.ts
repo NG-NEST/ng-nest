@@ -164,7 +164,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   onNodeClick(event: Event, node: XListNode) {
-    if (node.disabled) {
+    if (XIsUndefined(node) || node.disabled) {
       event.stopPropagation();
       return;
     }
