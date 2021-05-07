@@ -144,7 +144,7 @@
     }
     &:focus {
       @include button-color($active, $active-background, $active-border);
-      box-shadow: 0 0 0 0.125rem rgba(0, 0, 0, 0.1);
+      box-shadow: $--x-box-shadow-focus;
     }
     &.#{$--x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
@@ -159,7 +159,7 @@
       }
       &:focus {
         @include button-color($plain-active, $plain-active-background, $plain-active-border);
-        box-shadow: 0 0 0 0.125rem rgba(0, 0, 0, 0.1);
+        box-shadow: $--x-box-shadow-focus;
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);

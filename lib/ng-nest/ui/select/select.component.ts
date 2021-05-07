@@ -27,8 +27,14 @@ import {
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
-import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import {
+  Overlay,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  OverlayConfig
+} from '@angular/cdk/overlay';
+import { delay, takeUntil, throttleTime } from 'rxjs/operators';
+import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -70,7 +76,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
+  keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -85,7 +92,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   ngOnInit() {
-    this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.select.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setClassMap();
     this.setSubject();
   }
@@ -119,8 +132,16 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setSubject() {
-    this.closeSubject.pipe(throttleTime(100), takeUntil(this._unSubject)).subscribe((x) => {
-      this.closePortal();
+    this.closeSubject
+      .pipe(throttleTime(50), delay(50), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.closePortal();
+      });
+    this.keydownSubject.pipe(throttleTime(50), takeUntil(this._unSubject)).subscribe((x) => {
+      const keyCode = x.keyCode;
+      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
+        this.showPortal();
+      }
     });
   }
 
@@ -160,7 +181,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayValue = '';
           this.valueTplContext.$node = null;
         } else {
-          let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
+          let nodes = this.nodes.filter(
+            (x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id))
+          );
           this.displayValue = nodes.map((x) => x.label).join(',');
           this.valueTplContext.$node = [...nodes];
         }
@@ -213,6 +236,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     } else {
       this.createPortal();
     }
+    this.inputCom.inputFocus();
   }
 
   createPortal() {
@@ -242,10 +266,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {
@@ -259,7 +285,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       nodeTpl: this.nodeTpl,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closeSubject.next(),
+      closeSubject: this.closeSubject,
+      keydownSubject: this.keydownSubject,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
@@ -299,5 +326,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setData();
     this.ngOnInit();
     this.cdr.detectChanges();
+  }
+
+  onKeydown($event: KeyboardEvent) {
+    this.keydownSubject.next($event);
+    if ($event.keyCode !== TAB) $event.preventDefault();
+  }
+
+  onFocus($event: Event) {
+    this.inputCom.inputFocus();
   }
 }

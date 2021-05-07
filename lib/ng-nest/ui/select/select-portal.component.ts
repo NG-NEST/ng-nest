@@ -8,12 +8,14 @@ import {
   Renderer2,
   HostBinding,
   HostListener,
-  TemplateRef
+  TemplateRef,
+  ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
 import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
+import { XListComponent } from '../list';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
@@ -33,17 +35,22 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.animating(true);
   }
 
+  @ViewChild('list') list: XListComponent;
+
   data: XSelectNode[];
   value: any;
   valueChange: Subject<any>;
   positionChange: Subject<any>;
   animating: Function;
-  closePortal: Function;
+  activeChange: Function;
   destroyPortal: Function;
+  closeSubject: Subject<void>;
+  keydownSubject: Subject<KeyboardEvent>;
   nodeEmit: Function;
   multiple: XNumber = 1;
   nodeTpl: TemplateRef<any>;
   show: boolean = false;
+  active: number = -1;
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
@@ -56,6 +63,12 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.placement = x;
       this.cdr.detectChanges();
+    });
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.list.setUnActive(this.active);
+    });
+    this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.list.keydown(x);
     });
   }
 
@@ -71,5 +84,13 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   nodeClick(node: XSelectNode) {
     if (this.multiple === 0) this.nodeEmit(this.value);
     else this.nodeEmit(node);
+  }
+
+  onActive(num: number) {
+    this.active = num;
+  }
+
+  onTabOut() {
+    this.closeSubject.next();
   }
 }

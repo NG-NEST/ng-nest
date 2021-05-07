@@ -23,6 +23,8 @@
       [valueTpl]="nodeTpl"
       [valueTplContext]="valueTplContext"
       (clearEmit)="clearEmit()"
+      (keydown)="onKeydown($event)"
+      (focus)="onFocus($event)"
     ></x-input>
   </div>
 </div>

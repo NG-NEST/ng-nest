@@ -61,7 +61,13 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.inputElement.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setClassMap();
   }
 
@@ -71,6 +77,22 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   onInput(event: Event) {
     this.input.emit(event);
+    event.stopPropagation();
+  }
+
+  onKeydown(event: Event) {
+    this.keydown.emit(event);
+    event.stopPropagation();
+  }
+
+  onFocus(event: Event) {
+    this.focus.emit(event);
+    event.stopPropagation();
+  }
+
+  onBlur(event: Event) {
+    this.blur.emit(event);
+    event.stopPropagation();
   }
 
   change(value: any) {
@@ -118,6 +140,10 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         : this.maxlength && !this.icon
         ? (this.lengthTotal.length + 2) * 0.385
         : 0.4;
+  }
+
+  inputFocus() {
+    this.inputRef.nativeElement.focus();
   }
 
   setClassMap() {

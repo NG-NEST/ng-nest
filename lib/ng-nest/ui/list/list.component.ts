@@ -8,8 +8,6 @@ import {
   Renderer2,
   SimpleChanges,
   OnChanges,
-  ContentChild,
-  ContentChildren,
   QueryList,
   ElementRef,
   ViewChild,
@@ -30,7 +28,7 @@ import {
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { ENTER, ESCAPE } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

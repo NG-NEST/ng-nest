@@ -7,7 +7,8 @@ $--x-colors: (
   'font-size-large': 1.125rem,
   'font-size-big': 1.25rem,
   'font-variant': tabular-nums,
-  'font-family': 'ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif',
+  'font-family':
+    'ubuntu, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif',
   'font-code-family': 'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace',
   'line-height': 1.5rem,
   'height-big': 2.25rem,
@@ -30,6 +31,7 @@ $--x-colors: (
   'box-shadow-light-color': rgba(0, 0, 0, 0.14),
   'box-shadow-light-width': 0.0625rem,
   'box-shadow-light-width-minus': -0.0625rem,
+  'box-shadow-focus': 0 0 0 0.125rem rgba(0, 0, 0, 0.1),
   'animation-duration-slow': 0.3s,
   'animation-duration-base': 0.2s,
   'animation-duration-fast': 0.1s
