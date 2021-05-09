@@ -1,6 +1,6 @@
 import { XDatePickerPortalComponent } from './date-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -14,11 +14,29 @@ import {
   ViewChild,
   SimpleChanges
 } from '@angular/core';
-import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
+import {
+  XDatePickerPrefix,
+  XDatePickerProperty,
+  XDatePickerModelType
+} from './date-picker.property';
+import {
+  XValueAccessor,
+  XIsEmpty,
+  XIsDate,
+  XIsNumber,
+  XIsChange,
+  XCorner,
+  XClearClass,
+  XIsString
+} from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -35,6 +53,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   modelType: XDatePickerModelType = 'date';
   numberValue: number | string;
+  isInput = false;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -60,7 +79,6 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     this.cdr.detectChanges();
   }
 
-  readonly: boolean = true;
   enter: boolean = false;
   inputClearable: boolean = false;
   animating = false;
@@ -90,7 +108,13 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   ngOnInit() {
-    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.datePicker.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setFormat();
     this.setClassMap();
     this.setSubject();
@@ -219,10 +243,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {
@@ -243,6 +269,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   onNodeClick(date: Date, sure = true) {
+    this.isInput = false;
     if (sure) {
       this.numberValue = date.getTime();
       this.value = this.getValue();
@@ -256,8 +283,20 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     }
   }
 
+  onInput() {
+    this.isInput = true;
+  }
+
   setDisplayValue(dateNumber: number | string) {
-    this.displayValue = this.datePipe.transform(dateNumber, this.format);
+    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue))) {
+      this.displayValue = this.datePipe.transform(this.displayValue, this.format);
+      this.numberValue = new Date(this.displayValue).getTime();
+      this.value = this.getValue();
+      this.modelChange();
+      this.isInput = false;
+    } else {
+      this.displayValue = this.datePipe.transform(dateNumber, this.format);
+    }
   }
 
   setPlacement() {

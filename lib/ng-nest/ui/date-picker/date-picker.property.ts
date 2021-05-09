@@ -1,4 +1,12 @@
-import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XControlValueAccessor,
+  XInputBoolean,
+  XProperty,
+  XBoolean,
+  XCorner,
+  XFormOption,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 
 /**
@@ -34,6 +42,11 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  @Input() @XInputBoolean() readonly: XBoolean;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

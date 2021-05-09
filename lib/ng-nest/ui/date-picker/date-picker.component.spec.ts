@@ -26,7 +26,7 @@ describe(XDatePickerPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

@@ -7,7 +7,12 @@
   [class.x-required-show]="getRequired"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <div class="x-date-picker-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+  <div
+    class="x-date-picker-row"
+    (click)="showPortal()"
+    (mouseenter)="menter()"
+    (mouseleave)="mleave()"
+  >
     <x-input
       #inputCom
       type="text"
@@ -19,6 +24,7 @@
       [clearable]="clearable && inputClearable"
       [(ngModel)]="displayValue"
       (clearEmit)="clearEmit()"
+      (xInput)="onInput()"
     ></x-input>
   </div>
 </div>
