@@ -116,21 +116,24 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     });
 
     this.keyManager.change.pipe(takeUntil(this._unSubject)).subscribe((num: number) => {
-      if (this.scrollElement) {
-        let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
-        let list = this.scrollElement;
-        let min = list.scrollTop;
-        let max = list.scrollTop + list.clientHeight;
-        if (ele.offsetTop + ele.clientHeight > max) {
-          let scrollTop = ele.offsetTop + ele.clientHeight - list.clientHeight;
-          list.scrollTop = scrollTop;
-        }
-        if (ele.offsetTop < min) {
-          list.scrollTop = ele.offsetTop;
-        }
-      }
+      this.setScorllTop(num);
       this.keyManagerChange.emit(num);
     });
+  }
+
+  setScorllTop(num: number) {
+    if (!this.scrollElement) return;
+    let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
+    let list = this.scrollElement;
+    let min = list.scrollTop;
+    let max = list.scrollTop + list.clientHeight;
+    if (ele.offsetTop + ele.clientHeight > max) {
+      let scrollTop = ele.offsetTop + ele.clientHeight - list.clientHeight;
+      list.scrollTop = scrollTop;
+    }
+    if (ele.offsetTop < min) {
+      list.scrollTop = ele.offsetTop;
+    }
   }
 
   setSelected() {
@@ -170,9 +173,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0)
       return;
     let activeIndex = 0;
-    console.log(this.value)
-    if (XIsUndefined(this.value)) {
-      this.keyManager.setActiveItem(activeIndex);
+    if (XIsUndefined(this.value) || this.value.length === 0) {
+      this.keyManager.updateActiveItem(activeIndex);
       return;
     }
     let valArry: any[] = [];
@@ -187,8 +189,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     } else {
       activeIndex = this.nodes.findIndex((x) => x.id === last);
     }
-    console.log(activeIndex);
-    this.keyManager.setActiveItem(activeIndex);
+    this.keyManager.updateActiveItem(activeIndex);
+    this.setScorllTop(activeIndex);
   }
 
   onNodeClick(event: Event, node: XListNode) {

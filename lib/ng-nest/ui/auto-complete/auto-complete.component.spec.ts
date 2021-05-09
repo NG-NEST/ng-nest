@@ -15,7 +15,14 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 describe(XAutoCompletePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XAutoCompleteModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XAutoCompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule
+      ],
       declarations: [
         TestXAutoCompleteComponent,
         TestXAutoCompleteAsyncComponent,
@@ -87,7 +94,19 @@ describe(XAutoCompletePrefix, () => {
   });
 });
 
-const data: XData<XAutoCompleteNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XAutoCompleteNode> = [
+  'AAAA',
+  'AAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   template: `
@@ -135,17 +154,32 @@ class TestXAutoCompleteComponent {
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-auto-complete>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="row"
+        ></x-auto-complete>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="row-reverse"
+        ></x-auto-complete>
       </x-col>
     </x-row>
   `,
@@ -248,10 +282,14 @@ class TestXAutoCompleteRequiredComponent {
     <x-theme showDark></x-theme>
     <x-row>
       <x-col>
-        <x-auto-complete [data]="data" [(ngModel)]="model" (ngModelChange)="change()"></x-auto-complete>
+        <x-auto-complete [data]="data" [(ngModel)]="model"></x-auto-complete>
       </x-col>
       <x-col>
-        <x-auto-complete [data]="data" [(ngModel)]="model1" (ngModelChange)="change()"></x-auto-complete>
+        <x-auto-complete
+          [data]="data"
+          [(ngModel)]="model1"
+          (ngModelChange)="change()"
+        ></x-auto-complete>
       </x-col>
       <x-col>
         <x-auto-complete [data]="data1" [(ngModel)]="model2"></x-auto-complete>
@@ -275,12 +313,23 @@ class TestXAutoCompleteRequiredComponent {
   ]
 })
 class TestXAutoCompleteAsyncComponent {
-  model = '';
+  model: string;
   model1 = 'QQ';
   data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      x.next(['QQ', '微信', '钉钉', '微博']);
+      x.next([
+        'qqq',
+        'qqqq',
+        'qqqqq',
+        'qqqqqq',
+        'qqqqqqqq',
+        'qqqqqqqqqqq',
+        'qqqqqqqqqqqqqq',
+        '微信',
+        '钉钉',
+        '微博'
+      ]);
       x.complete();
     }, 500);
   });

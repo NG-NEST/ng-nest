@@ -104,7 +104,6 @@ export class XTimePickerFrameComponent {
     this.model.setHours(this.hour);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();
-    console.log(this.hourRef);
     this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 

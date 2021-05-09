@@ -107,9 +107,9 @@
     > x-list {
       > .x-list {
         width: 3.625rem;
-        > ul {
+        > x-list-option {
           min-width: 3.625rem;
-          > li {
+          > .x-list-option {
             padding-left: 0.6rem;
             &:not(:first-child) {
               margin-top: 0;

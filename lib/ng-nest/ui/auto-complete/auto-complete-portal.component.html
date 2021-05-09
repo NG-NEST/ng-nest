@@ -1,6 +1,11 @@
-<div class="x-auto-complete-portal" (click)="stopPropagation($event)">
+<div #autoCompletePortal class="x-auto-complete-portal" (click)="stopPropagation($event)">
   <x-list
+    #list
     [data]="data"
     (nodeClick)="nodeClick($event)"
+    (keyManagerChange)="onActive($event)"
+    (keyManagerTabOut)="onTabOut()"
+    [nodeTpl]="nodeTpl"
+    [scrollElement]="autoCompletePortal"
   ></x-list>
 </div>

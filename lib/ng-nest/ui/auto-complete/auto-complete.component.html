@@ -18,7 +18,10 @@
       [required]="required"
       [disabled]="disabled"
       [(ngModel)]="value"
-      (ngModelChange)="inputChange.next()"
+      (xInput)="onInput($event)"
+      (xKeydown)="onKeydown($event)"
+      (xFocus)="onFocus($event)"
+      (xBlur)="onBlur($event)"
     ></x-input>
   </div>
 </div>

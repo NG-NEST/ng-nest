@@ -55,8 +55,7 @@
   }
   &:hover,
   &.x-active {
-    background-color: $--x-background-a100;
-    color: $--x-primary;
+    background-color: $--x-background-a300;
   }
   &.x-list-divided {
     margin-top: 0.8125rem;
@@ -71,8 +70,8 @@
     }
   }
   &.x-selected {
+    background-color: $--x-background-a300;
     color: $--x-primary;
-    background-color: $--x-background-a100;
     > x-icon {
       color: $--x-primary;
     }

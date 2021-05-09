@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostBinding,
@@ -17,16 +18,18 @@ import { Highlightable } from '@angular/cdk/a11y';
 })
 export class XListOptionComponent extends XListOptionProperty implements Highlightable {
   @HostBinding('attr.role') role = 'option';
-  constructor(public elementRef: ElementRef) {
+  constructor(public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
     super();
   }
   setActiveStyles(): void {
     this.active = true;
     this.activeChange.emit(this.active);
+    this.cdr.detectChanges();
   }
   setInactiveStyles(): void {
     this.active = false;
     this.activeChange.emit(this.active);
+    this.cdr.detectChanges();
   }
 
   getLabel() {

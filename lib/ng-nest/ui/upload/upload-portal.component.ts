@@ -69,7 +69,6 @@ export class XUploadPortalComponent {
   }
 
   ngOnDestroy() {
-    console.log(11111);
     this._unSubject.next();
     this._unSubject.complete();
   }

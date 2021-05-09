@@ -120,8 +120,6 @@ export class XDropdownPortalComponent implements OnDestroy {
     position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
       place !== this.portalPlacement && this.portalPositionChange.next(place);
-
-      console.log(place);
     });
   }
 

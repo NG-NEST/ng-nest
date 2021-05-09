@@ -203,7 +203,6 @@ export class XUploadComponent extends XUploadProperty {
   setInstance(file: XUploadNode, index: number) {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
-    console.log(file);
     Object.assign(componentRef.instance, {
       file: file,
       closePortal: () => this.closePortal(),
