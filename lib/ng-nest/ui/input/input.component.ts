@@ -12,6 +12,8 @@ import {
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { fromEvent, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -31,12 +33,13 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
-  private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = '';
   paddingLeft: number = 0.4;
   paddingRight: number = 0.4;
   clearShow: boolean = false;
+  private _required: boolean = false;
+  private _unSubject = new Subject();
 
   get getIcon() {
     return !XIsEmpty(this.icon);
@@ -75,24 +78,9 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     XIsChange(changes.clearable) && this.setClearable();
   }
 
-  onInput(event: Event) {
-    this.input.emit(event);
-    event.stopPropagation();
-  }
-
-  onKeydown(event: Event) {
-    this.keydown.emit(event);
-    event.stopPropagation();
-  }
-
-  onFocus(event: Event) {
-    this.focus.emit(event);
-    event.stopPropagation();
-  }
-
-  onBlur(event: Event) {
-    this.blur.emit(event);
-    event.stopPropagation();
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   change(value: any) {

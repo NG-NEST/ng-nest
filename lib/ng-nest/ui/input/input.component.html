@@ -37,10 +37,10 @@
       (ngModelChange)="change($event)"
       [style.padding-left.rem]="paddingLeft"
       [style.padding-right.rem]="paddingRight"
-      (focus)="onFocus($event)"
-      (blur)="onBlur($event)"
-      (input)="onInput($event)"
-      (keydown)="onKeydown($event)"
+      (focus)="xFocus.emit($event)"
+      (blur)="xBlur.emit($event)"
+      (input)="xInput.emit($event)"
+      (keydown)="xKeydown.emit($event)"
     />
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
     <x-icon
