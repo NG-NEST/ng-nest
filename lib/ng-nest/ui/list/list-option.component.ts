@@ -21,16 +21,15 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
     super();
   }
   setActiveStyles(): void {
-    this.node.active = true;
+    this.active = true;
+    this.activeChange.emit(this.active);
   }
   setInactiveStyles(): void {
-    this.node.active = false;
-  }
-  get disabled() {
-    return this.node.disabled;
+    this.active = false;
+    this.activeChange.emit(this.active);
   }
 
   getLabel() {
-    return this.node.label;
+    return this.label as string;
   }
 }

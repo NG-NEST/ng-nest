@@ -27,7 +27,7 @@ import {
 } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager, FocusKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { takeUntil } from 'rxjs/operators';
 
@@ -66,6 +66,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   writeValue(value: any): void {
     this.value = value;
     this.setSelected();
+    this.setKeyManager();
     this.cdr.detectChanges();
   }
 
@@ -73,8 +74,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   constructor(
     public renderer: Renderer2,
-    private cdr: ChangeDetectorRef,
-    private elementRef: ElementRef,
+    public cdr: ChangeDetectorRef,
+    public elementRef: ElementRef,
     public configService: XConfigService
   ) {
     super();
@@ -87,9 +88,10 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    this.elementRef.nativeElement.focus();
     this.initKeyManager();
   }
+
+  ngAfterViewChecked() {}
 
   ngOnDestroy(): void {
     this._unSubject.next();
@@ -100,6 +102,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     XSetData<XListNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
       this.setSelected();
+      this.setKeyManager();
       this.cdr.detectChanges();
     });
   }
@@ -132,17 +135,17 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   setSelected() {
     if (this.nodes.length > 0) {
+      this.nodes
+        .filter((x) => x.selected)
+        .map((x) => {
+          x.selected = false;
+        });
       let valArry: any[] = [];
       if (this.value instanceof Array) {
         valArry = this.value;
       } else {
         valArry = [this.value];
       }
-      this.nodes
-        .filter((x) => x.selected)
-        .map((x) => {
-          x.selected = false;
-        });
       if (this.objectArray) {
         this.selectedNodes = this.nodes
           .filter(
@@ -163,6 +166,31 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     }
   }
 
+  setKeyManager() {
+    if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0)
+      return;
+    let activeIndex = 0;
+    console.log(this.value)
+    if (XIsUndefined(this.value)) {
+      this.keyManager.setActiveItem(activeIndex);
+      return;
+    }
+    let valArry: any[] = [];
+    if (this.value instanceof Array) {
+      valArry = this.value;
+    } else {
+      valArry = [this.value];
+    }
+    const last = valArry[valArry.length - 1];
+    if (this.objectArray) {
+      activeIndex = this.nodes.findIndex((x) => x.id === last.id);
+    } else {
+      activeIndex = this.nodes.findIndex((x) => x.id === last);
+    }
+    console.log(activeIndex);
+    this.keyManager.setActiveItem(activeIndex);
+  }
+
   onNodeClick(event: Event, node: XListNode) {
     if (XIsUndefined(node) || node.disabled) {
       event.stopPropagation();
@@ -174,10 +202,12 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       if (this.selectedNodes.length < this.multiple || this.multiple === 0) {
         node.selected = selected;
         this.selectedNodes = [...this.selectedNodes, node];
+        this.cdr.detectChanges();
       } else if (this.multiple === 1 && this.selectedNodes.length === 1) {
         node.selected = selected;
         this.selectedNodes[0].selected = false;
         this.selectedNodes[0] = node;
+        this.cdr.detectChanges();
       } else {
         return;
       }
@@ -194,6 +224,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
     }
     if (this.onChange) this.onChange(this.value);
+    this.cdr.detectChanges();
     node.event = event;
     this.nodeClick.emit(node);
   }

@@ -1,25 +1,25 @@
-<div class="x-list">
-  <ul
-    [hidden]="isEmpty"
-    cdkDropList
-    (cdkDropListDropped)="dropCdk($event)"
-    [cdkDropListDisabled]="!drag"
-  >
-    <li
-      class="x-list-item"
-      *ngFor="let node of nodes; trackBy: trackByNode"
-      [class.x-selected]="node.selected"
-      [class.x-disabled]="node.disabled"
-      [class.x-active]="node.active"
-      [class.x-list-icon]="node.icon"
-      [class.x-list-divided]="node.divided"
-      (click)="onNodeClick($event, node)"
-      (mouseenter)="onMouseenter($event, node)"
-      (mouseleave)="onMouseleave($event, node)"
-      cdkDrag
-    >
-      <x-list-option [node]="node" [checked]="checked" [nodeTpl]="nodeTpl"></x-list-option>
-    </li>
-  </ul>
-  <x-empty *ngIf="isEmpty"></x-empty>
+<div
+  class="x-list"
+  cdkDropList
+  (cdkDropListDropped)="dropCdk($event)"
+  [cdkDropListDisabled]="!drag"
+  [hidden]="isEmpty"
+>
+  <x-list-option
+    cdkDrag
+    *ngFor="let node of nodes; trackBy: trackByNode"
+    [node]="node"
+    [checked]="checked"
+    [nodeTpl]="nodeTpl"
+    [selected]="node.selected"
+    [disabled]="node.disabled"
+    [(active)]="node.active"
+    [icon]="node.icon"
+    [label]="node.label"
+    [leaf]="node.leaf"
+    (click)="onNodeClick($event, node)"
+    (mouseenter)="onMouseenter($event, node)"
+    (mouseleave)="onMouseleave($event, node)"
+  ></x-list-option>
 </div>
+<x-empty *ngIf="isEmpty"></x-empty>

@@ -1,14 +1,19 @@
-<span>
-  <ng-container *ngIf="!nodeTpl"
-    ><x-icon [type]="node.icon" *ngIf="node.icon"></x-icon> {{ node.label }}</ng-container
-  >
-  <ng-container *ngIf="nodeTpl">
-    <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
-  </ng-container>
-</span>
-<x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="node.leaf"></x-icon>
-<x-icon
-  class="x-list-checked"
-  type="fto-check"
-  *ngIf="checked && !node.leaf && node.selected"
-></x-icon>
+<div
+  class="x-list-option"
+  [class.x-selected]="selected"
+  [class.x-disabled]="disabled"
+  [class.x-active]="active"
+  [class.x-list-icon]="icon"
+  [class.x-list-divided]="divided"
+>
+  <span>
+    <ng-container *ngIf="!nodeTpl"
+      ><x-icon [type]="icon" *ngIf="icon"></x-icon> {{ label }}</ng-container
+    >
+    <ng-container *ngIf="nodeTpl">
+      <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
+    </ng-container>
+  </span>
+  <x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="leaf"></x-icon>
+  <x-icon class="x-list-checked" type="fto-check" *ngIf="checked && !leaf && selected"></x-icon>
+</div>

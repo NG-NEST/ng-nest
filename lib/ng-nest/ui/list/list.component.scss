@@ -9,12 +9,12 @@
   &:focus {
     outline: none;
   }
+  > x-empty {
+    margin: 1rem;
+  }
 }
+
 .#{$--x-list-prefix} {
   @include reset-component();
   @include list();
-}
-
-body > li.#{$--x-list-prefix}-item {
-  @include list-item();
 }

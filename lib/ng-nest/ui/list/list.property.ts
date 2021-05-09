@@ -143,4 +143,44 @@ export class XListOptionProperty {
    * @en_US Node template
    */
   @Input() nodeTpl: TemplateRef<any>;
+  /**
+   * @zh_CN 选中
+   * @en_US selected
+   */
+  @Input() @XInputBoolean() selected?: boolean;
+  /**
+   * @zh_CN 禁用
+   * @en_US disabled
+   */
+  @Input() @XInputBoolean() disabled?: boolean;
+  /**
+   * @zh_CN 激活
+   * @en_US active
+   */
+  @Input() @XInputBoolean() active?: boolean;
+  /**
+   * @zh_CN 图标
+   * @en_US icon
+   */
+  @Input() icon?: string;
+  /**
+   * @zh_CN 分割线
+   * @en_US Split line
+   */
+  @Input() divided?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US label
+   */
+  @Input() label?: string;
+  /**
+   * @zh_CN 有子节点
+   * @en_US leaf
+   */
+  @Input() @XInputBoolean() leaf?: boolean;
+  /**
+   * @zh_CN 有子节点
+   * @en_US leaf
+   */
+  @Output() activeChange = new EventEmitter<boolean>();
 }
