@@ -84,5 +84,8 @@
   display: flex;
   > x-list:not(:first-child) {
     border-left: $--x-border-width solid $--x-border;
+    .x-list-option {
+      min-width: 8rem;
+    }
   }
 }
