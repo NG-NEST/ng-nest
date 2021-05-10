@@ -7,7 +7,7 @@ import { XRipplePrefix, XRippleProperty } from './ripple.property';
   selector: '[x-ripple]'
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
-  duration = 1000;
+  duration = 800;
   private _unSub = new Subject();
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {

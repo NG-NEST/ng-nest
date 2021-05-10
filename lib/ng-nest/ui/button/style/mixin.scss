@@ -62,11 +62,11 @@
     box-shadow: none;
     &:focus {
       box-shadow: none;
-      background-color: transparent;
+      background-color: rgba(0, 0, 0, 0.15);
     }
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, rgba(0, 0, 0, 0.1), transparent);
+      @include button-color($--x-button-hover, rgba(0, 0, 0, 0.15), transparent);
     }
   }
   &-closable {
