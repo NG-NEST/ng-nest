@@ -183,7 +183,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/en_US/ui/components/theme",
@@ -192,7 +192,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-90",
+    "id": "4-0-91",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/en_US/ui/components/typography",
@@ -300,7 +300,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-66",
+    "id": "4-0-67",
     "pid": "4-0",
     "name": "statistic",
     "router": "docs/en_US/ui/components/statistic",
@@ -309,7 +309,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-70",
+    "id": "4-0-71",
     "pid": "4-0",
     "name": "table",
     "router": "docs/en_US/ui/components/table",
@@ -318,7 +318,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-72",
+    "id": "4-0-73",
     "pid": "4-0",
     "name": "tag",
     "router": "docs/en_US/ui/components/tag",
@@ -327,7 +327,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "text-retract",
     "router": "docs/en_US/ui/components/text-retract",
@@ -336,7 +336,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/en_US/ui/components/time-ago",
@@ -345,7 +345,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/en_US/ui/components/time-range",
@@ -354,7 +354,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/en_US/ui/components/timeline",
@@ -363,7 +363,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-83",
+    "id": "4-0-84",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/en_US/ui/components/tree",
@@ -372,7 +372,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-84",
+    "id": "4-0-85",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/en_US/ui/components/tree-file",
@@ -471,7 +471,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-63",
+    "id": "4-0-64",
     "pid": "4-0",
     "name": "skeleton",
     "router": "docs/en_US/ui/components/skeleton",
@@ -480,7 +480,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/en_US/ui/components/tooltip",
@@ -597,7 +597,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-62",
+    "id": "4-0-63",
     "pid": "4-0",
     "name": "select",
     "router": "docs/en_US/ui/components/select",
@@ -606,7 +606,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-65",
+    "id": "4-0-66",
     "pid": "4-0",
     "name": "slider-select",
     "router": "docs/en_US/ui/components/slider-select",
@@ -615,7 +615,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-69",
+    "id": "4-0-70",
     "pid": "4-0",
     "name": "switch",
     "router": "docs/en_US/ui/components/switch",
@@ -624,7 +624,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "textarea",
     "router": "docs/en_US/ui/components/textarea",
@@ -633,7 +633,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/en_US/ui/components/time-picker",
@@ -642,7 +642,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/en_US/ui/components/transfer",
@@ -651,7 +651,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-91",
+    "id": "4-0-92",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/en_US/ui/components/upload",
@@ -723,7 +723,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-64",
+    "id": "4-0-65",
     "pid": "4-0",
     "name": "slider",
     "router": "docs/en_US/ui/components/slider",
@@ -732,7 +732,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-67",
+    "id": "4-0-68",
     "pid": "4-0",
     "name": "steps",
     "router": "docs/en_US/ui/components/steps",
@@ -741,7 +741,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-71",
+    "id": "4-0-72",
     "pid": "4-0",
     "name": "tabs",
     "router": "docs/en_US/ui/components/tabs",
@@ -970,7 +970,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-76",
+    "id": "4-0-77",
     "pid": "4-0",
     "name": "theme",
     "router": "docs/zh_CN/ui/components/theme",
@@ -979,7 +979,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "4-0-90",
+    "id": "4-0-91",
     "pid": "4-0",
     "name": "typography",
     "router": "docs/zh_CN/ui/components/typography",
@@ -1087,7 +1087,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-66",
+    "id": "4-0-67",
     "pid": "4-0",
     "name": "statistic",
     "router": "docs/zh_CN/ui/components/statistic",
@@ -1096,7 +1096,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-70",
+    "id": "4-0-71",
     "pid": "4-0",
     "name": "table",
     "router": "docs/zh_CN/ui/components/table",
@@ -1105,7 +1105,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-72",
+    "id": "4-0-73",
     "pid": "4-0",
     "name": "tag",
     "router": "docs/zh_CN/ui/components/tag",
@@ -1114,7 +1114,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-74",
+    "id": "4-0-75",
     "pid": "4-0",
     "name": "text-retract",
     "router": "docs/zh_CN/ui/components/text-retract",
@@ -1123,7 +1123,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-77",
+    "id": "4-0-78",
     "pid": "4-0",
     "name": "time-ago",
     "router": "docs/zh_CN/ui/components/time-ago",
@@ -1132,7 +1132,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-79",
+    "id": "4-0-80",
     "pid": "4-0",
     "name": "time-range",
     "router": "docs/zh_CN/ui/components/time-range",
@@ -1141,7 +1141,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-80",
+    "id": "4-0-81",
     "pid": "4-0",
     "name": "timeline",
     "router": "docs/zh_CN/ui/components/timeline",
@@ -1150,7 +1150,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-83",
+    "id": "4-0-84",
     "pid": "4-0",
     "name": "tree",
     "router": "docs/zh_CN/ui/components/tree",
@@ -1159,7 +1159,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "4-0-84",
+    "id": "4-0-85",
     "pid": "4-0",
     "name": "tree-file",
     "router": "docs/zh_CN/ui/components/tree-file",
@@ -1258,7 +1258,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-63",
+    "id": "4-0-64",
     "pid": "4-0",
     "name": "skeleton",
     "router": "docs/zh_CN/ui/components/skeleton",
@@ -1267,7 +1267,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "4-0-81",
+    "id": "4-0-82",
     "pid": "4-0",
     "name": "tooltip",
     "router": "docs/zh_CN/ui/components/tooltip",
@@ -1384,7 +1384,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-62",
+    "id": "4-0-63",
     "pid": "4-0",
     "name": "select",
     "router": "docs/zh_CN/ui/components/select",
@@ -1393,7 +1393,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-65",
+    "id": "4-0-66",
     "pid": "4-0",
     "name": "slider-select",
     "router": "docs/zh_CN/ui/components/slider-select",
@@ -1402,7 +1402,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-69",
+    "id": "4-0-70",
     "pid": "4-0",
     "name": "switch",
     "router": "docs/zh_CN/ui/components/switch",
@@ -1411,7 +1411,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-75",
+    "id": "4-0-76",
     "pid": "4-0",
     "name": "textarea",
     "router": "docs/zh_CN/ui/components/textarea",
@@ -1420,7 +1420,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-78",
+    "id": "4-0-79",
     "pid": "4-0",
     "name": "time-picker",
     "router": "docs/zh_CN/ui/components/time-picker",
@@ -1429,7 +1429,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-82",
+    "id": "4-0-83",
     "pid": "4-0",
     "name": "transfer",
     "router": "docs/zh_CN/ui/components/transfer",
@@ -1438,7 +1438,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "4-0-91",
+    "id": "4-0-92",
     "pid": "4-0",
     "name": "upload",
     "router": "docs/zh_CN/ui/components/upload",
@@ -1510,7 +1510,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-64",
+    "id": "4-0-65",
     "pid": "4-0",
     "name": "slider",
     "router": "docs/zh_CN/ui/components/slider",
@@ -1519,7 +1519,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-67",
+    "id": "4-0-68",
     "pid": "4-0",
     "name": "steps",
     "router": "docs/zh_CN/ui/components/steps",
@@ -1528,7 +1528,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "4-0-71",
+    "id": "4-0-72",
     "pid": "4-0",
     "name": "tabs",
     "router": "docs/zh_CN/ui/components/tabs",

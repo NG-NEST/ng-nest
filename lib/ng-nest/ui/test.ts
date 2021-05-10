@@ -2,7 +2,10 @@
 import 'zone.js/dist/zone';
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting
+} from '@angular/platform-browser-dynamic/testing';
 
 declare const require: {
   context(
@@ -19,7 +22,7 @@ declare const require: {
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
-const files = ['./ripple/ripple.directive.spec.ts'];
+const files = ['./date-picker/date-picker.component.spec.ts'];
 // And load the modules.
 context
   .keys()

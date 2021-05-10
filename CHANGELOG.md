@@ -1,3 +1,35 @@
+## [11.2.7](https://github.com/NG-NEST/ng-nest/compare/11.2.6...11.2.7) (2021-05-10)
+
+
+### Bug Fixes
+
+* **module:button:** update ripple ([8be1d54](https://github.com/NG-NEST/ng-nest/commit/8be1d54db276cbe31de649d9ad2bdf68c9c6eca3))
+* **module:button:** update text style ([d2981ad](https://github.com/NG-NEST/ng-nest/commit/d2981ad376760128ae6dc100ab688879aed66477))
+* **module:cascade:** update list min-width ([e20663b](https://github.com/NG-NEST/ng-nest/commit/e20663b9066d192b6cc6d54fa0330b95f8a8bb3e))
+* **module:input:** resolve event conflicts ([e5f9255](https://github.com/NG-NEST/ng-nest/commit/e5f92551ed920fea05d7b4c3f0236237b1070179))
+* **module:list:** resolved node is undefined ([72fb73d](https://github.com/NG-NEST/ng-nest/commit/72fb73de0bb2c5ea3e5bdc60badc4570f37b1d06))
+* **module:ripple:** update event type ([9b55a33](https://github.com/NG-NEST/ng-nest/commit/9b55a33ae753ca24d9ea557b8edff60b266cb05a))
+* **mudule:button:** update only icon mini ([1268bc6](https://github.com/NG-NEST/ng-nest/commit/1268bc6b756857436d5adcd9684cc9651c8afeab))
+
+
+### Features
+
+* **module:auto-complete:** add keyboard selection ([0e3b521](https://github.com/NG-NEST/ng-nest/commit/0e3b5215daae93d290fe96aa4da4c031fb86b8cf)), closes [#24](https://github.com/NG-NEST/ng-nest/issues/24)
+* **module:button:** update button ripple ([47d01eb](https://github.com/NG-NEST/ng-nest/commit/47d01eb5eac7718127ce8b7b5fa02c70e1f1c85c))
+* **module:button:** update click effect ([0cd93f8](https://github.com/NG-NEST/ng-nest/commit/0cd93f82eafcb5e48f183798ef0bd099584830a9))
+* **module:date-picker:** add keyboard entry ([0aa2201](https://github.com/NG-NEST/ng-nest/commit/0aa22012492efce8b8566d9f91dc4f8f1e1313ea)), closes [#23](https://github.com/NG-NEST/ng-nest/issues/23)
+* **module:link:** update click style ([7a60c43](https://github.com/NG-NEST/ng-nest/commit/7a60c43762d04696f92152bae26d1a9a38f6232d))
+* **module:list:** add list-option component ([c286d87](https://github.com/NG-NEST/ng-nest/commit/c286d87a787fc04dfab6d5633d8fbb93f5f8765e)), closes [#23](https://github.com/NG-NEST/ng-nest/issues/23) [#24](https://github.com/NG-NEST/ng-nest/issues/24)
+* **module:list:** update html structure ([95a5a34](https://github.com/NG-NEST/ng-nest/commit/95a5a3461be8daa02ac2c6db63244901e34416f6))
+* **module:ripple:** add ripple directive ([18ead93](https://github.com/NG-NEST/ng-nest/commit/18ead930f8ac10baa92799a4295aad080b546416))
+* **module:select:** add esc close portal ([526ac8f](https://github.com/NG-NEST/ng-nest/commit/526ac8ffbecdee11a066f8bb52c586dd0df55de1))
+* **module:select:** add keydown selection ([205c5f6](https://github.com/NG-NEST/ng-nest/commit/205c5f62037ac927cf9a8a8898eac637a7af48aa))
+* **module:select:** add more keyboard ([863ba5e](https://github.com/NG-NEST/ng-nest/commit/863ba5e9cd05099dd13d9caf1a320c089c3a2e3e))
+* **module:select:** update selected key position ([a4da41b](https://github.com/NG-NEST/ng-nest/commit/a4da41b2d2bebcd57f2fb4a066e3ff47a8d83952))
+* **style:** box-shadow-focus ([749f1f3](https://github.com/NG-NEST/ng-nest/commit/749f1f3886ac0647f770cd1c1744d5e1a5ba2444))
+
+
+
 ## [11.2.6](https://github.com/NG-NEST/ng-nest/compare/11.2.5...11.2.6) (2021-04-27)
 
 

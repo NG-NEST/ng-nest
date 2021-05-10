@@ -142,17 +142,15 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       .subscribe(() => {
         this.modelChange();
       });
-    this.keydownSubject
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((x) => {
-        const keyCode = x.keyCode;
-        if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
-          this.inputChange.next();
-        }
-        if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
-          this.closeSubject.next();
-        }
-      });
+    this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      const keyCode = x.keyCode;
+      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
+        this.inputChange.next();
+      }
+      if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
+        this.closeSubject.next();
+      }
+    });
   }
 
   portalAttached() {
@@ -316,25 +314,14 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   onKeydown($event: KeyboardEvent) {
-    console.log('keydown');
-    console.log(this.nodes);
     this.keydownSubject.next($event);
-    // if ($event.keyCode !== TAB) $event.preventDefault();
-    // else {
-
-    // }
   }
 
-  onFocus($event: Event) {
-    console.log('onFocus');
-    // this.inputCom.inputFocus();
-  }
+  onFocus($event: Event) {}
 
   onInput($event: Event) {
     this.inputChange.next();
   }
 
-  onBlur($event: Event) {
-    console.log('onBlur');
-  }
+  onBlur($event: Event) {}
 }

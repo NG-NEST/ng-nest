@@ -63,4 +63,4 @@ Congratulations! You have successfully integrated the components of `ng-nest` in
 
 To continue exploring `ng-nest`, select one of the following options:
 
-- [Tutorial：RBAC System](index/docs/en_US/ui/course/rbac)，In this tutorial, you will build an application that manages users and permissions.
+- [Tutorial：RBAC System](index/docs/en_US/ui/course/rbac/1-introduction)，In this tutorial, you will build an application that manages users and permissions.
