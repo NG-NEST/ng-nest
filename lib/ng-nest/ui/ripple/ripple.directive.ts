@@ -16,9 +16,9 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
 
   ngOnInit() {
     if (this.disabled) return;
-    fromEvent(this.elementRef.nativeElement, 'mousedown')
+    fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
       .pipe(takeUntil(this._unSub))
-      .subscribe((event: MouseEvent) => {
+      .subscribe((event) => {
         const eleRect = this.elementRef.nativeElement.getBoundingClientRect();
         const radius = this.distanceToFurthestCorner(event.x, event.y, eleRect);
         const offsetX = event.x - eleRect.left;

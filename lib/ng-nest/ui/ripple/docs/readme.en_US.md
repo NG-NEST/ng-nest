@@ -1,20 +1,9 @@
 ---
 label: 'Ripple'
-category: 'Basic'
+category: 'Animation'
+hidden: true
 ---
 
 # Ripple
 
-We standardize the font, and strive to have the best display effect in each operating system.
-
-## Used alone
-
-{{ __component }}
-
-## Sample code
-
-{{ __examples }}
-
-## API
-
-{{ __api }}
+Click on water ripple animation effect

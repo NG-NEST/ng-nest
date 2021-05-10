@@ -1,20 +1,9 @@
 ---
-label: 'Ripple 字体'
-category: 'Basic'
+label: 'Ripple 波纹动画'
+category: 'Animation'
+hidden: true
 ---
 
-# Ripple 字体
+# Ripple 波纹动画
 
-我们对字体进行统一规范，力求在各个操作系统下都有最佳展示效果。
-
-## 单独引入此组件
-
-{{ __component }}
-
-## 示例代码
-
-{{ __examples }}
-
-## API
-
-{{ __api }}
+点击水波纹动画效果
