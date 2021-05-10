@@ -1,8 +1,8 @@
 <section class="main">
   <h1>404</h1>
-  <p class="text" >抱歉，请求的页面地址在服务器中不存在</p>
+  <p class="text">{{ 'exception.description' | xI18n }}</p>
   <p class="link">
-    <a routerLink="/index/home">Home</a>
-    <a (click)="back()">Back</a>
+    <a routerLink="/index/docs">{{ 'exception.home' | xI18n }}</a>
+    <a (click)="back()">{{ 'exception.back' | xI18n }}</a>
   </p>
 </section>

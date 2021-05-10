@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Exception404Component } from './404.component';
 import { Exception404RoutesModule } from './404-routes.module';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 @NgModule({
-  imports: [CommonModule, Exception404RoutesModule],
+  imports: [CommonModule, XI18nModule, Exception404RoutesModule],
   declarations: [Exception404Component],
   exports: [Exception404Component]
 })
