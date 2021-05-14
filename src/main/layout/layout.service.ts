@@ -12,10 +12,12 @@ import { ConfigService } from 'src/services/config.service';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
+  headerRef: ElementRef;
   contentRef: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
-  shrink = true;
+  shrink = false;
   small = false;
+  xsmall = false;
   drawerVisible = false;
   defaultActivatedId: any;
 
@@ -68,6 +70,7 @@ export class LayoutService {
     });
     const route = this.getCurrentMenu(this.location.path());
     if (route) {
+      console.log(this.defaultActivatedId)
       this.defaultActivatedId = route.id;
     }
   }

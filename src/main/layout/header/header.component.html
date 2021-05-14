@@ -1,7 +1,7 @@
-<x-button class="menu" *ngIf="layoutService.small" icon="fto-list" (click)="layoutService.drawerVisible = true" onlyIcon></x-button>
+<x-button class="menu" *ngIf="layout.small || layout.xsmall" icon="fto-list" (click)="layout.drawerVisible = true" onlyIcon></x-button>
 <ns-logo> </ns-logo>
 
-<x-drawer [visible]="layoutService.drawerVisible" placement="left" (close)="layoutService.drawerVisible = false" size="16.25rem">
+<x-drawer [visible]="layout.drawerVisible" placement="left" (close)="layout.drawerVisible = false" size="16.25rem">
   <ns-sider class="drawer"></ns-sider>
 </x-drawer>
 

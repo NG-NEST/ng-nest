@@ -2,18 +2,17 @@
 
 ns-header {
   height: $header-height;
-  background-color: $--x-background-a100;
+  background-color: $--x-background-100;
   width: 100%;
-  top: 0;
-  left: 0;
   z-index: 10;
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  position: fixed;
   opacity: 1;
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  box-shadow: $--x-box-shadow-light;
   > x-button.menu {
     margin-left: 0.875rem;
     .x-button .x-icon {
@@ -106,11 +105,11 @@ ns-sider {
 ns-content {
   width: 100%;
   display: block;
-  background-color: $--x-background;
   transition: padding-left $transition-duration-slow, padding-top $transition-duration-slow;
   > ns-footer {
     width: 100%;
     display: block;
+    background-color: $--x-background;
     > section {
       display: flex;
       flex-direction: column;
@@ -149,41 +148,42 @@ ns-affix {
 }
 
 ns-layout {
-  &.shrink {
-    > ns-header {
-      position: fixed;
-      margin-top: -$header-height;
-      opacity: 0;
-    }
-    > ns-sider {
-      margin-left: 0;
-      opacity: 1;
-    }
-    > ns-content {
-      padding-left: $sider-width;
-      padding-top: 0;
-    }
-  }
-  &.shrink.small {
-    > ns-header {
-      margin-top: 0;
-      opacity: 1;
-    }
-    > ns-sider {
-      margin-left: -$sider-width;
-      opacity: 0;
-    }
-    > ns-content {
-      padding-left: 0;
-      padding-top: $header-height;
-    }
-    .x-doc > x-anchor > .x-anchor > {
-      .x-anchor-content {
-        width: 100%;
-      }
-      .x-anchor-affix {
-        display: none;
-      }
-    }
-  }
+  // &.shrink {
+  //   > ns-header {
+  //     position: fixed;
+  //     margin-top: -$header-height;
+  //     opacity: 0;
+  //   }
+  //   > ns-sider {
+  //     margin-left: 0;
+  //     opacity: 1;
+  //   }
+  //   > ns-content {
+  //     padding-left: $sider-width;
+  //     padding-top: 0;
+  //   }
+  // }
+  // &.shrink.small,
+  // &.shrink.xsmall {
+  //   > ns-header {
+  //     margin-top: 0;
+  //     opacity: 1;
+  //   }
+  //   > ns-sider {
+  //     margin-left: -$sider-width;
+  //     opacity: 0;
+  //   }
+  //   > ns-content {
+  //     padding-left: 0;
+  //     padding-top: $header-height;
+  //   }
+  //   .x-doc > x-anchor > .x-anchor > {
+  //     .x-anchor-content {
+  //       width: 100%;
+  //     }
+  //     .x-anchor-affix {
+  //       display: none;
+  //     }
+  //   }
+  // }
 }

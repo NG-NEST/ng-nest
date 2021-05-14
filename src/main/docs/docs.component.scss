@@ -1,0 +1,68 @@
+@import 'src/styles/index';
+
+ns-docs {
+  position: relative;
+  .docs-left {
+    height: 100%;
+    width: $sider-width + 0.0625rem;
+    background-color: $--x-background;
+    position: fixed;
+    top: $header-height;
+    transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+    box-shadow: $--x-box-shadow-light;
+    > section {
+      position: relative;
+      height: 100%;
+      width: $sider-width;
+      padding: 2rem 0;
+      float: left;
+      overflow: hidden;
+      &:hover {
+        overflow-y: auto;
+      }
+    }
+    x-menu {
+      .x-menu.x-menu-column {
+        width: $sider-width;
+      }
+      .x-menu-nodes > .x-menu-node {
+        border-right: none;
+        margin: 0 0.5rem;
+        &.x-activated::after {
+          border-right: none;
+        }
+        // &.x-menu-category > x-menu-node {
+        // border-color: rgba(0, 0, 0, 0.1);
+        // }
+      }
+    }
+    &.drawer {
+      margin-left: 0;
+      opacity: 1;
+      > section {
+        overflow-y: auto;
+      }
+    }
+  }
+  .docs-right {
+    padding-top: $header-height;
+    padding-left: $sider-width;
+    transition: padding $transition-duration-slow;
+  }
+}
+
+.small ns-docs,
+.xsmall ns-docs {
+  .docs-left {
+    opacity: 0;
+    margin-left: -($sider-width + 0.0625rem);
+  }
+  .docs-right {
+    padding-left: 0;
+  }
+}
+.xsmall ns-docs {
+  .x-anchor-affix {
+    display: none;
+  }
+}
