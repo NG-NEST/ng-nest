@@ -61,7 +61,7 @@
   }
   &.x-disabled {
     > .#{$--x-color-picker-prefix}-row {
-      background-color: $--x-background-200;
+      background-color: $--x-background-a100;
       border-radius: $--x-color-picker-border-radius;
       > x-input {
         > .x-input {
