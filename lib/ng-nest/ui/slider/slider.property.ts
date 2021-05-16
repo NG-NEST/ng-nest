@@ -72,6 +72,11 @@ export class XSliderProperty extends XProperty {
    * @en_US Activate index change event
    */
   @Output() indexChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 激活节点改变事件
+   * @en_US Activate index change event
+   */
+  @Output() nodeChange = new EventEmitter<XSliderNode>();
 }
 
 /**
