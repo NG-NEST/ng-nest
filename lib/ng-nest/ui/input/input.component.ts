@@ -12,8 +12,7 @@ import {
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
-import { fromEvent, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XInputPrefix}`,

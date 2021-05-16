@@ -27,23 +27,9 @@ import {
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
-import {
-  Overlay,
-  FlexibleConnectedPositionStrategy,
-  ConnectedOverlayPositionChange,
-  OverlayConfig
-} from '@angular/cdk/overlay';
+import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
 import { delay, takeUntil, throttleTime } from 'rxjs/operators';
-import {
-  DOWN_ARROW,
-  UP_ARROW,
-  ENTER,
-  MAC_ENTER,
-  TAB,
-  ESCAPE,
-  LEFT_ARROW,
-  RIGHT_ARROW
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE, LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -68,8 +54,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   readonly = true;
-  clearable: boolean = false;
   enter: boolean = false;
+  showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
   cloneNodes: XSelectNode[];
@@ -101,13 +87,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   ngOnInit() {
-    this.setFlex(
-      this.select.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
   }
@@ -141,17 +121,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setSubject() {
-    this.closeSubject
-      .pipe(throttleTime(50), delay(50), takeUntil(this._unSubject))
-      .subscribe((x) => {
-        this.closePortal();
-      });
+    this.closeSubject.pipe(throttleTime(50), delay(50), takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
     this.keydownSubject.pipe(throttleTime(50), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
-      if (
-        !this.portalAttached() &&
-        [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)
-      ) {
+      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
         this.showPortal();
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
@@ -161,21 +136,21 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   menter() {
-    if (this.disabled) return;
+    if (this.disabled || !this.clearable) return;
     this.enter = true;
     if (!XIsEmpty(this.displayValue)) {
       this.icon = '';
-      this.clearable = true;
+      this.showClearable = true;
       this.cdr.detectChanges();
     }
   }
 
   mleave() {
-    if (this.disabled) return;
+    if (this.disabled || !this.clearable) return;
     this.enter = false;
     if (this.clearable) {
       this.icon = 'fto-chevron-down';
-      this.clearable = false;
+      this.showClearable = false;
       this.cdr.detectChanges();
     }
   }
@@ -196,9 +171,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayValue = '';
           this.valueTplContext.$node = null;
         } else {
-          let nodes = this.nodes.filter(
-            (x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id))
-          );
+          let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
           this.displayValue = nodes.map((x) => x.label).join(',');
           this.valueTplContext.$node = [...nodes];
         }
@@ -281,12 +254,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {

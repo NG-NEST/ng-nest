@@ -374,6 +374,7 @@ export interface XResultConfig {}
 
 export interface XSelectConfig {
   placement?: XPositionTopBottom;
+  clearable?: XBoolean;
 }
 
 export interface XSkeletonConfig {}

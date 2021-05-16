@@ -30,6 +30,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    */
   @Input() @XDataConvert() data: XData<XSelectNode> = [];
   /**
+   * @zh_CN 清除按钮
+   * @en_US Clear button
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable: XBoolean;
+  /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
    */
