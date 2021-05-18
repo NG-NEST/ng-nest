@@ -20,65 +20,86 @@ export class LayoutService {
   xsmall = false;
   drawerVisible = false;
   defaultActivatedId: any;
-
-  menus: Menu[] = menus.filter((x) => x.lang === this.config.lang);
-
+  menus: Menu[] = [];
   menusChange: () => void;
-
-  versions = [
-    '0.2.0',
-    '0.2.1',
-    '0.2.2',
-    '1.0.0',
-    '1.1.2',
-    '1.2.0',
-    '1.2.1',
-    '1.2.2',
-    '1.2.4',
-    '1.2.5',
-    '1.3.0',
-    '1.3.1',
-    '1.4.0',
-    '1.4.1',
-    '1.4.2',
-    '1.4.3',
-    '9.0.0',
-    '9.1.0',
-    '10.0.0',
-    '11.0.0',
-    '11.0.1',
-    '11.0.2',
-    '11.0.3',
-    '11.2.0',
-    '11.2.1',
-    '11.2.2',
-    '11.2.3',
-    '11.2.4',
-    '11.2.5',
-    '11.2.6',
-    '11.2.7'
-  ];
+  menusLang: { [lang: string]: Menu[] } = {};
+  navs: Menu[] = [];
+  navActive: Menu;
+  navChildrenCatch: { [lang: string]: { [key: string]: Menu[] } } = {
+    zh_CN: {},
+    en_US: {}
+  };
 
   getCurrentMenu(url: string): Menu {
-    return this.menus.find((x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.router}`) === 0) as Menu;
+    let route = menus.find((x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.router}`) === 0) as Menu;
+    if (route) {
+      this.defaultActivatedId = route.id;
+    }
+    return route;
   }
 
   constructor(private router: Router, private config: ConfigService, private location: Location, private title: Title) {
+    this.setMenusLang();
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
-      const route = this.getCurrentMenu(x.url);
+      const route = this.getCurrentMenu(x.urlAfterRedirects);
       if (route) this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
     });
-    const route = this.getCurrentMenu(this.location.path());
-    if (route) {
-      console.log(this.defaultActivatedId)
-      this.defaultActivatedId = route.id;
+    this.getCurrentMenu(this.location.path());
+    this.setNav();
+  }
+
+  setMenusLang() {
+    for (const lang of this.config.langs) {
+      this.menusLang[lang] = menus.filter((x) => x.lang === lang);
     }
   }
 
   setLocale(lang: string) {
     const beforeLang = this.config.lang;
-    this.config.setLocale(lang);
-    this.menus = menus.filter((x) => x.lang === lang);
-    this.router.navigateByUrl(this.location.path().replace(`/${beforeLang}/`, `/${lang}/`));
+    this.config.setLocale(lang, () => {
+      this.navs = this.menusLang[lang].filter((x) => x.pid === null);
+      this.setNavActive(this.navs.find((x) => x.id === this.navActive.id) as Menu);
+      this.router.navigateByUrl(this.location.path().replace(`/${beforeLang}/`, `/${lang}/`));
+    });
+  }
+
+  setNav() {
+    this.navs = this.menusLang[this.config.lang].filter((x) => x.pid === null);
+    let navActive = this.navs.find((x) => this.location.path().indexOf(`/${environment.layout}/${x.router}`) === 0) as Menu;
+    this.setNavActive(navActive);
+  }
+
+  setNavActive(menu: Menu) {
+    if (!menu) {
+      window.location.href = '/';
+      return;
+    }
+    this.navActive = menu;
+    let childrenMenus = this.navChildrenCatch[this.config.lang][menu.id as string];
+    if (childrenMenus) {
+      this.menus = childrenMenus;
+    } else {
+      const langMenus = this.menusLang[this.config.lang];
+      childrenMenus = langMenus
+        .filter((x) => x.pid === menu.id)
+        .map((x) => {
+          const nav = { ...x };
+          nav.pid = null;
+          return nav;
+        });
+      const getChildren = (data: Menu[]) => {
+        data.forEach((item) => {
+          const children = langMenus.filter((x) => x.pid === item.id);
+          if (children.length > 0) {
+            childrenMenus.push(...children);
+            getChildren(children);
+          }
+        });
+      };
+      getChildren(childrenMenus);
+
+      this.menus = childrenMenus;
+      this.navChildrenCatch[this.config.lang][menu.id as string] = this.menus;
+    }
   }
 }

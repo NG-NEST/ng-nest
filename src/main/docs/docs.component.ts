@@ -1,10 +1,11 @@
-import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ConfigService } from 'src/services/config.service';
 import { environment } from 'src/environments/environment.prod';
 import { LayoutService } from '../layout/layout.service';
 import { Menu } from 'src/environments/routes';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'ns-docs',
@@ -31,13 +32,12 @@ export class NsDocsComponent {
   }
 
   nodeClick(menu: Menu) {
-    if (menu.type != 'router') {
-      let router = menu.router as string;
-      if (router.startsWith('docs/')) {
-        router = router.replace('docs/', '');
-      }
-      this.router.navigate([router], { relativeTo: this.activatedRoute });
-      this.layout.defaultActivatedId = menu.id;
+    if (menu.type === 'router') return;
+    let router = menu.router as string;
+    if (router.startsWith('docs/')) {
+      router = router.replace('docs/', '');
     }
+    this.router.navigate([router], { relativeTo: this.activatedRoute });
+    this.layout.defaultActivatedId = menu.id;
   }
 }

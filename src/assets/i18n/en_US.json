@@ -10,6 +10,14 @@
     "default": "Default",
     "globalConfig": "Global Config"
   },
+  "header": {
+    "components": "Components",
+    "version": "version",
+    "chinese": "中文",
+    "english": "English",
+    "dark": "Dark",
+    "light": "Light"
+  },
   "footer": {
     "allRightsReserved": "All rights reserved"
   },

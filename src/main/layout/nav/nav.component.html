@@ -1,0 +1,25 @@
+<section>
+  <div class="item">
+    <x-slider [data]="layout.navs" (nodeChange)="action('page', $event)" [activatedIndex]="getActivatedIndex"> </x-slider>
+  </div>
+  <!-- <div class="item">
+    <x-button (click)="action('components')" type="text">{{ 'header.components' | xI18n }}</x-button>
+  </div>
+  <div class="item">
+    <x-button (click)="action('course')" type="text">{{ 'header.course' | xI18n }}</x-button>
+  </div> -->
+  <div class="item version">
+    <x-select [data]="config.versions" [(ngModel)]="config.version" clearable="false" title="{{ 'header.version' | xI18n }}"></x-select>
+  </div>
+  <div class="item lang">
+    <x-button (click)="action('en_US')" *ngIf="config.lang === 'zh_CN'">{{ 'header.english' | xI18n }}</x-button>
+    <x-button (click)="action('zh_CN')" *ngIf="config.lang === 'en_US'">{{ 'header.chinese' | xI18n }}</x-button>
+  </div>
+  <div class="item theme">
+    <x-button (click)="action('dark')" *ngIf="theme === 'light'" title="{{ 'header.dark' | xI18n }}" icon="fto-moon"></x-button>
+    <x-button (click)="action('light')" *ngIf="theme === 'dark'" title="{{ 'header.light' | xI18n }}" icon="fto-sun"></x-button>
+  </div>
+  <div class="item github">
+    <x-button (click)="action('github')" icon="ado-github" onlyIcon></x-button>
+  </div>
+</section>

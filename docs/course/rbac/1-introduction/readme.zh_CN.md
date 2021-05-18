@@ -1,6 +1,7 @@
 ---
 order: 1
 label: '1. 简介'
+default: true
 ---
 
 # RBAC 简介

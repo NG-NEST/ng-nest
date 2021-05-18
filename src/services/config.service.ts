@@ -10,6 +10,8 @@ export class ConfigService {
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions = [];
+  version = '11.2.7';
+  navName = 'NG-NEST';
 
   get lang() {
     let lg = localStorage.getItem('Lang');
@@ -38,13 +40,14 @@ export class ConfigService {
     return lang;
   }
 
-  setLocale(locale?: string) {
+  setLocale(locale?: string, callback?: () => void) {
     let lang = locale;
     if (!lang) lang = this.lang;
     if (this.cacheLangs[lang]) {
       this.lang = lang as string;
       this.i18n.setLocale(this.cacheLangs[lang], true);
       this.setMeta();
+      callback && callback();
     } else {
       this.http.get(`/assets/i18n/${lang}.json`).subscribe((x: XI18nProperty) => {
         this.lang = lang as string;
@@ -52,6 +55,7 @@ export class ConfigService {
         this.i18n.setLocale(localeProps, true);
         this.setMeta();
         this.cacheLangs[this.lang] = localeProps;
+        callback && callback();
       });
     }
   }

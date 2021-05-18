@@ -1,5 +1,5 @@
 ---
-order: 9
+order: 3
 label: 'Tutorial'
 type: 'router'
 ---

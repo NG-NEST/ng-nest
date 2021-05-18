@@ -54,7 +54,7 @@ export function pageAddChildren(page: NcPage, children: NcPage[]) {
         if (x.default) {
           route = `      {
         path: '',
-        redirectTo: 'ng-nest',
+        redirectTo: '${x.name}',
         pathMatch: 'full'
       },\n${route}`;
         }

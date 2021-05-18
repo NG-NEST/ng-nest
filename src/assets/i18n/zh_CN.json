@@ -10,6 +10,14 @@
     "default": "默认值",
     "globalConfig": "全局设置"
   },
+  "header": {
+    "components": "组件",
+    "version": "版本",
+    "chinese": "Chinese",
+    "english": "English",
+    "dark": "暗黑风格",
+    "light": "明亮风格"
+  },
   "footer": {
     "allRightsReserved": "版权所有"
   },

@@ -1,6 +1,7 @@
 ---
 order: 1
 label: '1. Introduction'
+default: true
 ---
 
 # RBAC Introduction

@@ -30,7 +30,7 @@ ns-logo {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .logo-version {
+    .inner {
       display: flex;
       align-items: center;
     }
@@ -47,8 +47,34 @@ ns-logo {
         font-weight: 500;
       }
     }
-    .github {
-      font-size: 1.25rem;
+  }
+}
+
+ns-nav {
+  padding: 1rem;
+  > section {
+    display: flex;
+    align-items: center;
+    > .item {
+      .x-button {
+        font-size: 0.925rem;
+      }
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+      &.version {
+        width: 6rem;
+      }
+      &.github {
+        .x-button > .x-icon {
+          font-size: 1.25rem;
+        }
+      }
+      &.lang {
+        .x-button {
+          width: 4.625rem;
+        }
+      }
     }
   }
 }
@@ -68,12 +94,11 @@ ns-sider {
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
   > section {
     position: relative;
-    height: calc(100% - #{$header-height});
+    height: 100%;
     width: $sider-width;
-    padding: 0.5rem 0;
+    padding: 2rem 0;
     float: left;
     overflow: hidden;
-
     &:hover {
       overflow-y: auto;
     }
@@ -106,6 +131,7 @@ ns-content {
   width: 100%;
   display: block;
   transition: padding-left $transition-duration-slow, padding-top $transition-duration-slow;
+  padding-bottom: $header-height;
   > ns-footer {
     width: 100%;
     display: block;
@@ -145,45 +171,4 @@ ns-affix {
       width: 2.25rem;
     }
   }
-}
-
-ns-layout {
-  // &.shrink {
-  //   > ns-header {
-  //     position: fixed;
-  //     margin-top: -$header-height;
-  //     opacity: 0;
-  //   }
-  //   > ns-sider {
-  //     margin-left: 0;
-  //     opacity: 1;
-  //   }
-  //   > ns-content {
-  //     padding-left: $sider-width;
-  //     padding-top: 0;
-  //   }
-  // }
-  // &.shrink.small,
-  // &.shrink.xsmall {
-  //   > ns-header {
-  //     margin-top: 0;
-  //     opacity: 1;
-  //   }
-  //   > ns-sider {
-  //     margin-left: -$sider-width;
-  //     opacity: 0;
-  //   }
-  //   > ns-content {
-  //     padding-left: 0;
-  //     padding-top: $header-height;
-  //   }
-  //   .x-doc > x-anchor > .x-anchor > {
-  //     .x-anchor-content {
-  //       width: 100%;
-  //     }
-  //     .x-anchor-affix {
-  //       display: none;
-  //     }
-  //   }
-  // }
 }

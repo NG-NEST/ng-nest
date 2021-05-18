@@ -64,7 +64,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`icon.`, () => {
+  fdescribe(`icon.`, () => {
     let fixture: ComponentFixture<TestXButtonIconComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -78,7 +78,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`group.`, () => {
+  describe(`group.`, () => {
     let fixture: ComponentFixture<TestXButtonGroupComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -338,9 +338,7 @@ class TestXButtonIconComponent {}
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" plain>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain
-          >下一页</x-button
-        >
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" plain></x-button>
@@ -374,9 +372,7 @@ class TestXButtonIconComponent {}
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" round>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round
-          >下一页</x-button
-        >
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" round></x-button>
