@@ -11,7 +11,7 @@ import {
   XNumber,
   XInputNumber
 } from '@ng-nest/ui/core';
-import { Input, Component, TemplateRef } from '@angular/core';
+import { Input, Component, TemplateRef, EventEmitter, Output } from '@angular/core';
 
 /**
  * AutoComplete
@@ -46,6 +46,11 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    * @en_US Node template
    */
   @Input() nodeTpl: TemplateRef<any>;
+  /**
+   * @zh_CN 选择节点事件
+   * @en_US Node click event
+   */
+  @Output() nodeClick = new EventEmitter();
 }
 
 /**

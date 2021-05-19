@@ -12,11 +12,7 @@ import {
   ViewContainerRef,
   ViewChild
 } from '@angular/core';
-import {
-  XAutoCompleteNode,
-  XAutoCompleteProperty,
-  XAutoCompletePrefix
-} from './auto-complete.property';
+import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
   XValueAccessor,
   XIsEmpty,
@@ -31,12 +27,7 @@ import {
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAutoCompletePortalComponent } from './auto-complete-portal.component';
-import {
-  Overlay,
-  FlexibleConnectedPositionStrategy,
-  ConnectedOverlayPositionChange,
-  OverlayConfig
-} from '@angular/cdk/overlay';
+import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
 import { debounceTime, delay, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 
@@ -95,13 +86,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   ngOnInit() {
-    this.setFlex(
-      this.autoComplete.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.autoComplete.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
   }
@@ -137,11 +122,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.inputChange
-      .pipe(debounceTime(this.debounceTime), takeUntil(this._unSubject))
-      .subscribe(() => {
-        this.modelChange();
-      });
+    this.inputChange.pipe(debounceTime(this.debounceTime), takeUntil(this._unSubject)).subscribe(() => {
+      this.modelChange();
+    });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
       if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
@@ -217,12 +200,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -239,13 +220,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XAutoCompleteNode) => this.nodeClick(node),
+      nodeEmit: (node: XAutoCompleteNode) => this.onNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  nodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
+  onNodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
     this.closeSubject.next();
     if (this.value === node.id) {
@@ -253,6 +234,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     }
     this.value = node.id;
     if (this.onChange) this.onChange(this.value);
+    this.nodeClick.emit(node);
     this.cdr.detectChanges();
   }
 
@@ -280,15 +262,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
           this.icon = 'fto-loader';
           this.iconSpin = true;
           this.cdr.detectChanges();
-          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe(
-            (x) => {
-              this.nodes = x;
-              this.icon = '';
-              this.iconSpin = false;
-              this.dataChange.next(this.nodes);
-              this.cdr.detectChanges();
-            }
-          );
+          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
+            this.nodes = x;
+            this.icon = '';
+            this.iconSpin = false;
+            this.dataChange.next(this.nodes);
+            this.cdr.detectChanges();
+          });
         }
       }
       return;
