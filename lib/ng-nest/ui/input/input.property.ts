@@ -1,15 +1,14 @@
 import {
-  XControlValueAccessor,
   XInputBoolean,
   XInputNumber,
   XSize,
   XNumber,
   XBoolean,
-  XFormOption,
   XWithConfig,
   XPositionLeftRight
 } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Input

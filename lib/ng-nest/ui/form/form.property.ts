@@ -3,12 +3,10 @@ import {
   XIdentityProperty,
   XBoolean,
   XIsEmpty,
-  XFormProp,
   XNumber,
   XInputNumber,
   XInputBoolean,
   XWithConfig,
-  XFormOption
 } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -26,6 +24,7 @@ import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker';
 import { XTextareaOption, XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
+import { XFormOption, XFormProp } from '@ng-nest/ui/base-form';
 
 /**
  * Form

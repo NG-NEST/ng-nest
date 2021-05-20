@@ -1,5 +1,6 @@
-import { XControlValueAccessor, XInputNumber, XNumber, XFormOption, XInputBoolean, XBoolean, XTemplate } from '@ng-nest/ui/core';
+import { XInputNumber, XNumber, XInputBoolean, XBoolean, XTemplate } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Rate

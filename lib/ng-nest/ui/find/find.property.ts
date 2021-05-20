@@ -1,6 +1,4 @@
 import {
-  XControlValueAccessor,
-  XFormOption,
   XInputBoolean,
   XBoolean,
   XDataConvert,
@@ -14,6 +12,7 @@ import {
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { XTreeNode } from '@ng-nest/ui/tree';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Find

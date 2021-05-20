@@ -21,6 +21,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 const modules = [
   XLayoutModule,
@@ -39,7 +40,8 @@ const modules = [
   XTimePickerModule,
   XTextareaModule,
   XFindModule,
-  XOutletModule
+  XOutletModule,
+  XBaseFormModule
 ];
 
 @NgModule({

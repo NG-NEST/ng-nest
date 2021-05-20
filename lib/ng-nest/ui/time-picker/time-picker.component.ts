@@ -13,11 +13,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XTimePickerPrefix}`,

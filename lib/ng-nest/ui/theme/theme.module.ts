@@ -8,10 +8,21 @@ import { XFormModule } from '@ng-nest/ui/form';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XThemeComponent, XThemeProperty],
   exports: [XThemeComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XSwitchModule, XButtonModule, XLayoutModule, XFormModule, XI18nModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XSwitchModule,
+    XButtonModule,
+    XLayoutModule,
+    XFormModule,
+    XI18nModule,
+    XBaseFormModule
+  ]
 })
 export class XThemeModule {}

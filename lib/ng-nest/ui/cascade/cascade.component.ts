@@ -14,11 +14,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.property';
-import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: 'x-cascade',

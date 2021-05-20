@@ -22,15 +22,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    > x-input {
-      > .x-input {
-        > .x-input-row {
-          > input {
-            cursor: pointer;
-          }
-        }
-      }
-    }
   }
   &.x-invalid,
   &.x-required {

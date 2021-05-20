@@ -9,7 +9,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
-import { XValueAccessor, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XSwitchPrefix}`,

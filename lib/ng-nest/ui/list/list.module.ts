@@ -8,6 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XListOptionProperty, XListProperty } from './list.property';
 import { XEmptyModule } from '@ng-nest/ui/empty';
 import { A11yModule } from '@angular/cdk/a11y';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XListComponent, XListOptionComponent, XListProperty, XListOptionProperty],
@@ -19,7 +20,8 @@ import { A11yModule } from '@angular/cdk/a11y';
     DragDropModule,
     A11yModule,
     XIconModule,
-    XEmptyModule
+    XEmptyModule,
+    XBaseFormModule
   ]
 })
 export class XListModule {}

@@ -3,7 +3,6 @@ import { XThemeProperty } from './theme.property';
 import {
   XConfigService,
   XThemeService,
-  XValueAccessor,
   XColorsTheme,
   XTheme,
   X_THEME_COLOR_KEYS,
@@ -15,6 +14,7 @@ import { XControl } from '@ng-nest/ui/form';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: 'x-theme',

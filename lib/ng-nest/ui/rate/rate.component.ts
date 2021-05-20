@@ -8,8 +8,9 @@ import {
   Input,
   ViewChild
 } from '@angular/core';
-import { XValueAccessor, XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XRatePrefix}`,

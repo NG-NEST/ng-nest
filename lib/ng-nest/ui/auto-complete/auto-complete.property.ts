@@ -1,17 +1,6 @@
-import {
-  XControlValueAccessor,
-  XParentIdentityProperty,
-  XDataConvert,
-  XInputBoolean,
-  XData,
-  XBoolean,
-  XFormOption,
-  XWithConfig,
-  XPositionTopBottom,
-  XNumber,
-  XInputNumber
-} from '@ng-nest/ui/core';
+import { XParentIdentityProperty, XDataConvert, XData, XWithConfig, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef, EventEmitter, Output } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * AutoComplete

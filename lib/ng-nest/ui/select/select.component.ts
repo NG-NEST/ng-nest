@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
-  XValueAccessor,
   XIsEmpty,
   XIsObservable,
   XIsChange,
@@ -30,6 +29,7 @@ import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
 import { delay, takeUntil, throttleTime } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE, LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XSelectPrefix}`,

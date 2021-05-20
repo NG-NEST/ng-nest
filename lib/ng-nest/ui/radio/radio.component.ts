@@ -11,7 +11,8 @@ import {
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
-import { XValueAccessor, XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XRadioPrefix}`,

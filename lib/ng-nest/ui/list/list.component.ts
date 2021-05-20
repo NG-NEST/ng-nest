@@ -17,7 +17,6 @@ import {
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
 import {
-  XValueAccessor,
   XIsChange,
   XSetData,
   XConfigService,
@@ -30,6 +29,7 @@ import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager, FocusKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XListPrefix}`,

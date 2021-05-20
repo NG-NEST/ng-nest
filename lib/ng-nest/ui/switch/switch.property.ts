@@ -1,5 +1,5 @@
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/core';
 import { Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Switch

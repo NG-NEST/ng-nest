@@ -1,7 +1,6 @@
 import {
   XData,
   XParentIdentityProperty,
-  XControlValueAccessor,
   XDataConvert,
   XInputNumber,
   XInputBoolean,
@@ -9,6 +8,7 @@ import {
   XBoolean
 } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef, ElementRef } from '@angular/core';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 /**
  * List

@@ -1,13 +1,12 @@
 import {
-  XControlValueAccessor,
   XInputBoolean,
   XProperty,
   XBoolean,
   XCorner,
-  XFormOption,
   XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * DatePicker

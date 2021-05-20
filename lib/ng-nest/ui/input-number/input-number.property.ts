@@ -1,5 +1,6 @@
-import { XControlValueAccessor, XInputNumber, XNumber, XFormOption } from '@ng-nest/ui/core';
+import { XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * InputNumber

@@ -13,10 +13,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
-import { XValueAccessor, XIsEmpty, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: 'x-color-picker',

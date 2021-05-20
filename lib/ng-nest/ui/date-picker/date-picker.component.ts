@@ -14,30 +14,13 @@ import {
   ViewChild,
   SimpleChanges
 } from '@angular/core';
-import {
-  XDatePickerPrefix,
-  XDatePickerProperty,
-  XDatePickerModelType
-} from './date-picker.property';
-import {
-  XValueAccessor,
-  XIsEmpty,
-  XIsDate,
-  XIsNumber,
-  XIsChange,
-  XCorner,
-  XClearClass,
-  XIsString
-} from '@ng-nest/ui/core';
+import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
+import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
-import {
-  Overlay,
-  OverlayConfig,
-  FlexibleConnectedPositionStrategy,
-  ConnectedOverlayPositionChange
-} from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
@@ -108,13 +91,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   ngOnInit() {
-    this.setFlex(
-      this.datePicker.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
     this.setClassMap();
     this.setSubject();
@@ -243,12 +220,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {

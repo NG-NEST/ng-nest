@@ -11,10 +11,11 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty } from './transfer.property';
-import { XValueAccessor, XIsChange, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XTransferPrefix}`,

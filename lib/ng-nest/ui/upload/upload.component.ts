@@ -10,12 +10,13 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
-import { XIsTemplateRef, XValueAccessor } from '@ng-nest/ui/core';
+import { XIsTemplateRef } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
 import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XUploadPortalComponent } from './upload-portal.component';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XUploadPrefix}`,

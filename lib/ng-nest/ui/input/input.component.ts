@@ -8,11 +8,13 @@ import {
   ElementRef,
   ViewChild,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Input
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -63,13 +65,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(
-      this.inputElement.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
   }
 

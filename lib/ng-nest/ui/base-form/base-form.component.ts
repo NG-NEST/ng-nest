@@ -1,9 +1,10 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap } from '../interfaces';
-import { XFormProp } from './property';
+import { Component, forwardRef, Renderer2, Type } from '@angular/core';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap } from '@ng-nest/ui/core';
+import { XFormProp } from './base-form.property';
 
-export abstract class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
+@Component({ template: '' })
+export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
   get invalid() {
     return !XIsEmpty(this.value) && this.invalidPattern;
   }

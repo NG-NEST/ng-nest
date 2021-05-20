@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
-  XValueAccessor,
   XIsEmpty,
   XIsObservable,
   XIsChange,
@@ -28,8 +27,9 @@ import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAutoCompletePortalComponent } from './auto-complete-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { debounceTime, delay, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,

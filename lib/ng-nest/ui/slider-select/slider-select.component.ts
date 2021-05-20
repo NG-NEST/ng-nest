@@ -12,10 +12,11 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
-import { XIsEmpty, XValueAccessor, XIsUndefined, XResize, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XResize, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XSliderSelectPrefix}`,

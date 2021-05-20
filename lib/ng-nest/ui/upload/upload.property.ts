@@ -1,5 +1,6 @@
-import { XControlValueAccessor, XInputBoolean, XBoolean, XTemplate, XPosition, XCorner } from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 /**
  * Upload

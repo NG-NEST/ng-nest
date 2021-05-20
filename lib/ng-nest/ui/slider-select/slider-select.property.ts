@@ -1,6 +1,7 @@
-import { XControlValueAccessor, XInputNumber, XNumber, XFormOption } from '@ng-nest/ui/core';
+import { XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * SliderSelect
