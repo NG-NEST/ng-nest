@@ -56,7 +56,8 @@ export class LayoutComponent implements OnInit {
     this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe((res) => {
       this.layoutService.small = res.breakpoints[Breakpoints.Small];
       this.layoutService.xsmall = res.breakpoints[Breakpoints.XSmall];
-      if (!res.matches && this.layoutService.drawerVisible) this.layoutService.drawerVisible = false;
+      if (!res.matches && this.layoutService.leftDrawerVisible) this.layoutService.leftDrawerVisible = false;
+      if (!res.matches && this.layoutService.rightDrawerVisible) this.layoutService.rightDrawerVisible = false;
     });
     this.breakpointObserver;
   }

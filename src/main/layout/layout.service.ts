@@ -18,7 +18,8 @@ export class LayoutService {
   shrink = false;
   small = false;
   xsmall = false;
-  drawerVisible = false;
+  leftDrawerVisible = false;
+  rightDrawerVisible = false;
   defaultActivatedId: any;
   menus: Menu[] = [];
   menusChange: () => void;

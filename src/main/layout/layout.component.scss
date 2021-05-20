@@ -8,15 +8,18 @@ ns-header {
   display: flex;
   position: fixed;
   align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
   opacity: 1;
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
   box-shadow: $--x-box-shadow-light;
   > x-button.menu {
-    margin-left: 0.875rem;
+    margin: 0 0.875rem;
     .x-button .x-icon {
       font-size: 1.25rem;
+    }
+    &.right {
+      position: absolute;
+      right: 0;
     }
   }
 }
@@ -39,6 +42,7 @@ ns-logo {
     }
     h1 {
       margin: 0.875rem;
+      white-space: nowrap;
       span {
         font-size: 0.75rem;
         margin-left: 0.5rem;
@@ -88,6 +92,18 @@ ns-nav {
             border-color: $--x-primary;
             background-color: transparent;
           }
+        }
+      }
+    }
+  }
+  &.drawer {
+    padding: 0;
+    > section {
+      flex-direction: column;
+      > .item {
+        &:not(:first-child) {
+          margin-left: 0;
+          margin-top: 1rem;
         }
       }
     }
@@ -195,5 +211,19 @@ ns-affix {
     .x-button.x-size-big {
       width: 2.25rem;
     }
+  }
+}
+
+.small {
+  ns-search {
+    display: none;
+  }
+}
+.xsmall {
+  ns-search {
+    display: none;
+  }
+  ns-nav {
+    display: none;
   }
 }

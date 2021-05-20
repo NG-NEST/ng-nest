@@ -15,7 +15,7 @@ export class SiderComponent {
   nodeClick(menu: Menu) {
     if (menu.type != 'router') {
       this.router.navigate([menu.router], { relativeTo: this.activated });
-      this.layout.drawerVisible = false;
+      this.layout.leftDrawerVisible = false;
       this.layout.defaultActivatedId = menu.id;
     }
   }

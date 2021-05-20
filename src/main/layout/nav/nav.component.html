@@ -1,6 +1,12 @@
 <section>
   <div class="item slider">
-    <x-slider [data]="layout.navs" (nodeChange)="action('page', $event)" [activatedIndex]="getActivatedIndex" layout="row"> </x-slider>
+    <x-slider
+      [data]="layout.navs"
+      (nodeChange)="action('page', $event)"
+      [activatedIndex]="getActivatedIndex"
+      [layout]="layout.xsmall ? 'column' : 'row'"
+    >
+    </x-slider>
   </div>
   <div class="item version">
     <x-select [data]="config.versions" [(ngModel)]="config.version" clearable="false" title="{{ 'header.version' | xI18n }}"></x-select>
