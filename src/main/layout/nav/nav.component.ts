@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { Menu } from 'src/environments/routes';
 import { LayoutService } from '../layout.service';
-import { Observable } from 'rxjs';
-import { XMenuNode } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-nav',
@@ -14,7 +13,6 @@ import { XMenuNode } from '@ng-nest/ui/menu';
   encapsulation: ViewEncapsulation.None
 })
 export class NavComponent {
-  versions = [];
   theme: 'dark' | 'light' = 'light';
   get getActivatedIndex() {
     return this.layout.navs.map((x) => x.id).indexOf(this.layout.navActive?.id);
@@ -25,10 +23,11 @@ export class NavComponent {
     public config: ConfigService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public location: Location
   ) {}
 
-  action(type: string, param?: Menu | XSliderNode) {
+  action(type: string, param?: Menu | XSliderNode | string) {
     switch (type) {
       case 'dark':
         this.theme = type;
@@ -54,6 +53,14 @@ export class NavComponent {
         this.layout.setNavActive(menu);
         this.router.navigate([menu.router], { relativeTo: this.activatedRoute });
         this.cdr.detectChanges();
+        break;
+      case 'version':
+        let index = this.config.versions.findIndex((x) => x === param);
+        if (index <= 0) {
+          window.location.href = window.location.origin;
+        } else {
+          window.location.href = window.location.origin + `/version/${param}`;
+        }
         break;
     }
   }

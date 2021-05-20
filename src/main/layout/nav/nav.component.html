@@ -9,7 +9,13 @@
     </x-slider>
   </div>
   <div class="item version">
-    <x-select [data]="config.versions" [(ngModel)]="config.version" clearable="false" title="{{ 'header.version' | xI18n }}"></x-select>
+    <x-select
+      [data]="config.versions"
+      [(ngModel)]="config.version"
+      (ngModelChange)="action('version', $event)"
+      clearable="false"
+      title="{{ 'header.version' | xI18n }}"
+    ></x-select>
   </div>
   <div class="item lang">
     <x-button (click)="action('en_US')" *ngIf="config.lang === 'zh_CN'">{{ 'header.english' | xI18n }}</x-button>
