@@ -42,7 +42,10 @@ export class LayoutService {
     this.setMenusLang();
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
       const route = this.getCurrentMenu(x.urlAfterRedirects);
-      if (route) this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
+      if (route) {
+        this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
+        this.setNav();
+      }
     });
     this.getCurrentMenu(this.location.path());
     this.setNav();
@@ -71,7 +74,6 @@ export class LayoutService {
 
   setNavActive(menu: Menu) {
     if (!menu) {
-      window.location.href = '/';
       return;
     }
     this.navActive = menu;

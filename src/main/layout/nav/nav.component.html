@@ -1,13 +1,7 @@
 <section>
-  <div class="item">
-    <x-slider [data]="layout.navs" (nodeChange)="action('page', $event)" [activatedIndex]="getActivatedIndex"> </x-slider>
+  <div class="item slider">
+    <x-slider [data]="layout.navs" (nodeChange)="action('page', $event)" [activatedIndex]="getActivatedIndex" layout="row"> </x-slider>
   </div>
-  <!-- <div class="item">
-    <x-button (click)="action('components')" type="text">{{ 'header.components' | xI18n }}</x-button>
-  </div>
-  <div class="item">
-    <x-button (click)="action('course')" type="text">{{ 'header.course' | xI18n }}</x-button>
-  </div> -->
   <div class="item version">
     <x-select [data]="config.versions" [(ngModel)]="config.version" clearable="false" title="{{ 'header.version' | xI18n }}"></x-select>
   </div>

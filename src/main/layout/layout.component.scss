@@ -22,8 +22,7 @@ ns-header {
 }
 
 ns-logo {
-  width: 100%;
-  min-width: $sider-width;
+  width: $sider-width;
   > section {
     position: relative;
     padding: 0 1rem;
@@ -51,10 +50,12 @@ ns-logo {
 }
 
 ns-nav {
-  padding: 1rem;
+  padding: 0 1rem;
+  flex: 1;
   > section {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     > .item {
       .x-button {
         font-size: 0.925rem;
@@ -75,6 +76,30 @@ ns-nav {
           width: 4.625rem;
         }
       }
+      &.slider {
+        font-size: 0.925rem;
+        .x-slider-scroll > ul > li {
+          > x-link {
+            height: $header-height - 1rem;
+          }
+          &.x-slider-highlight {
+            border: 0;
+            border-bottom: 0.125rem solid $--x-border;
+            border-color: $--x-primary;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+ns-search {
+  > section {
+    width: $sider-width;
+    .x-auto-complete > .x-auto-complete-row > x-input > .x-input > .x-input-row > input {
+      border-color: transparent;
+      border-bottom: 0.0625rem solid $--x-border;
     }
   }
 }

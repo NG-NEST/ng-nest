@@ -16,7 +16,8 @@
     "chinese": "中文",
     "english": "English",
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "search": "Search in ngnest.com"
   },
   "footer": {
     "allRightsReserved": "All rights reserved"

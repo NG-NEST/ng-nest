@@ -5,6 +5,8 @@ import { ConfigService } from '@services/config.service';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { Menu } from 'src/environments/routes';
 import { LayoutService } from '../layout.service';
+import { Observable } from 'rxjs';
+import { XMenuNode } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-nav',
@@ -15,7 +17,7 @@ export class NavComponent {
   versions = [];
   theme: 'dark' | 'light' = 'light';
   get getActivatedIndex() {
-    return this.layout.navs.map((x) => x.id).indexOf(this.layout.navActive.id);
+    return this.layout.navs.map((x) => x.id).indexOf(this.layout.navActive?.id);
   }
   constructor(
     public layout: LayoutService,
