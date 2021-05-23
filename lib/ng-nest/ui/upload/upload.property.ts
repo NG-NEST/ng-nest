@@ -1,5 +1,6 @@
-import { XControlValueAccessor, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 /**
  * Upload
@@ -12,7 +13,12 @@ export const XUploadPrefix = 'x-upload';
  * Upload Property
  */
 @Component({ template: '' })
-export class XUploadProperty extends XControlValueAccessor<any> {
+export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
+  /**
+   * @zh_CN 显示文字
+   * @en_US Display text
+   */
+  @Input() text: XTemplate;
   /**
    * @zh_CN 请求地址
    * @en_US Request address
@@ -23,6 +29,16 @@ export class XUploadProperty extends XControlValueAccessor<any> {
    * @en_US Upload file type, consistent with native input file component
    */
   @Input() accept: string;
+  /**
+   * @zh_CN 文件显示类型
+   * @en_US File display type
+   */
+  @Input() type: XUploadType = 'list';
+  /**
+   * @zh_CN 图片剪裁
+   * @en_US Picture cropping
+   */
+  @Input() @XInputBoolean() imgCut: XBoolean;
   /**
    * @zh_CN 多文件上传
    * @en_US Multiple file upload
@@ -62,3 +78,22 @@ export interface XUploadNode extends File {
  * @en_US File status
  */
 export type XStateType = 'ready' | 'uploading' | 'success' | 'error';
+
+/**
+ * @zh_CN 文件显示类型
+ * @en_US File display type
+ */
+export type XUploadType = 'list' | 'img';
+
+/**
+ * @zh_CN 剪裁的方位
+ * @en_US Tailored orientation
+ */
+export type XUploadCutType = XPosition | XCorner | '';
+
+/**
+ * Upload Portal
+ * @selector x-upload-portal
+ * @decorator component
+ */
+export const XUploadPortalPrefix = 'x-upload-portal';

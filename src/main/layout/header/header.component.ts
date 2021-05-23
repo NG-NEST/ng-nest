@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
 
 @Component({
@@ -16,9 +16,11 @@ export class HeaderComponent implements OnInit {
 
   lang = localStorage.getItem('Lang');
 
-  constructor(public layoutService: LayoutService) {}
+  constructor(public ele: ElementRef, public layout: LayoutService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.layout.headerRef = this.ele;
+  }
 
   push(page: string) {
     localStorage.setItem('Lang', page);

@@ -74,6 +74,7 @@
 }
 
 @mixin cascade-portal {
+  margin: 0.0625rem 0;
   font-size: $--x-cascade-font-size;
   color: $--x-text;
   border: $--x-cascade-border;
@@ -83,5 +84,8 @@
   display: flex;
   > x-list:not(:first-child) {
     border-left: $--x-border-width solid $--x-border;
+    .x-list-option {
+      min-width: 8rem;
+    }
   }
 }

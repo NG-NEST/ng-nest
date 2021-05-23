@@ -1,0 +1,20 @@
+// List
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-list-prefix} {
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  > x-empty {
+    margin: 1rem;
+  }
+}
+
+.#{$--x-list-prefix} {
+  @include reset-component();
+  @include list();
+}

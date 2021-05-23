@@ -24,7 +24,7 @@ describe(XTimePickerPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

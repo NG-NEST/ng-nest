@@ -11,7 +11,8 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XTextareaPrefix, XTextareaProperty } from './textarea.property';
-import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XTextareaPrefix}`,

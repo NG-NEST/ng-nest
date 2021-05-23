@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { DefaultService, User } from './default.service';
-import { XQuery, XSort } from '@ng-nest/ui/core';
+import { DefaultService } from './default.service';
+import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-default',
@@ -9,11 +10,7 @@ import { XTableColumn } from '@ng-nest/ui/table';
   providers: [DefaultService]
 })
 export class ExDefaultComponent {
-  query: XQuery = {};
-  index = 1;
-  size = 10;
-  total = 0;
-  data: User[] = [];
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
     { id: 'name', label: '用户', flex: 1.5, sort: true },
@@ -25,23 +22,5 @@ export class ExDefaultComponent {
 
   constructor(private service: DefaultService) {}
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
-    this.service.getList(this.index, this.size, this.query).subscribe((x) => {
-      [this.data, this.total] = [x.list as User[], Number(x.total)];
-    });
-  }
-
-  indexChange(index: number) {
-    this.index = index;
-    this.getData();
-  }
-
-  sortChange(sort: XSort[]) {
-    this.query.sort = sort;
-    this.getData();
-  }
+  ngOnInit() {}
 }

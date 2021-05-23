@@ -153,10 +153,7 @@
     height: $height;
     line-height: $height;
     &.#{$--x-menu}-category {
-      height: calc(#{$height} + calc(#{$height} / 3));
-      > #{$--x-menu}-node {
-        margin-bottom: calc(#{$height} / 3);
-      }
+      height: calc(#{$height} * 1.5);
     }
   }
 }

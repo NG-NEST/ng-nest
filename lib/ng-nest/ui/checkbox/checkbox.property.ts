@@ -2,15 +2,14 @@ import {
   XData,
   XTemplate,
   XIdentityProperty,
-  XControlValueAccessor,
   XDataConvert,
   XInputBoolean,
   XSize,
   XBoolean,
-  XFormOption,
   XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Checkbox

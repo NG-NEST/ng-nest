@@ -15,10 +15,6 @@ Run `ng --version` to check the current version, please do not go below the vers
 
 Open the command line window and create the project using the `ng new My-app` command, `my-app` for the project name.
 
-```primary
-Please select SCSS to be the style language. Other languages are not supported.
-```
-
 {{ __1\__bash:1.bash:false:false }}
 
 The Angular CLI installs the necessary dependency packages. This may take a few minutes, and the CLI will create a workspace in the current directory.
@@ -67,4 +63,4 @@ Congratulations! You have successfully integrated the components of `ng-nest` in
 
 To continue exploring `ng-nest`, select one of the following options:
 
-- [Tutorial：RBAC System](index/docs/en_US/ui/course/rbac)，In this tutorial, you will build an application that manages users and permissions.
+- [Tutorial：RBAC System](index/docs/en_US/course/rbac/1-introduction)，In this tutorial, you will build an application that manages users and permissions.

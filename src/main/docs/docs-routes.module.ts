@@ -7,6 +7,7 @@ const routes: Routes = [
     path: '',
     component: NsDocsComponent,
     children: [
+      { path: '', redirectTo: 'zh_CN', pathMatch: 'full' },
       {
         path: 'zh_CN',
         loadChildren: () => import('./zh_CN/docs-zh_CN.module').then((x) => x.NsDocsZhCNModule)

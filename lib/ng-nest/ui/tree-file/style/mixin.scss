@@ -66,12 +66,11 @@
     overflow: auto;
     transition: $--x-animation-duration-slow;
     display: flex;
-    min-height: 3.5rem;
+    min-height: 3rem;
     > x-highlight {
       border: none;
       > pre {
         overflow: inherit;
-        background-color: $--x-background-a100;
       }
     }
     > .#{$--x-tree-file}-img {

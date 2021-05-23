@@ -14,11 +14,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.property';
-import { XValueAccessor, XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: 'x-cascade',
@@ -46,6 +47,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
+  animating = false;
   displayValue: any = '';
   datas: XCascadeNode[] = [];
   nodes: XCascadeNode[] = [];
@@ -58,6 +60,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -75,6 +78,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   ngOnInit() {
     this.setFlex(this.cascade.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setSubject();
   }
 
   ngAfterViewInit() {
@@ -101,6 +105,12 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XCascadeNode>(x, y, 0));
       this.setPortal();
       this.cdr.detectChanges();
+    });
+  }
+
+  setSubject() {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
     });
   }
 
@@ -150,8 +160,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   showPortal() {
-    if (this.disabled) return;
-    if (this.closePortal()) return;
+    if (this.disabled || this.animating) return;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -163,6 +172,12 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    this.portal.overlayRef
+      ?.outsidePointerEvents()
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.closeSubject.next();
+      });
     this.setInstance();
   }
 
@@ -187,9 +202,10 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: { node: XCascadeNode; label: string }) => this.onNodeClick(node)
+      nodeEmit: (node: { node: XCascadeNode; label: string }) => this.onNodeClick(node),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -197,7 +213,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   onNodeClick(selected: { node: XCascadeNode; label: string }) {
     this.value = selected.node.id;
     this.displayValue = selected.label;
-    this.closePortal();
+    this.closeSubject.next();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(selected);
   }
@@ -218,7 +234,11 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement({
+      elementRef: this.inputCom.inputElement,
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      transformOriginOn: 'x-cascade-portal'
+    });
   }
 
   setPortal() {

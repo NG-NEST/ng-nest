@@ -1,5 +1,12 @@
-import { XControlValueAccessor, XInputBoolean, XProperty, XBoolean, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XProperty,
+  XBoolean,
+  XCorner,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * DatePicker
@@ -34,6 +41,11 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  @Input() @XInputBoolean() readonly: XBoolean;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -77,7 +89,7 @@ export interface XDatePickerOption extends XFormOption {
  * @zh_CN 日期选择类型
  * @en_US Date selection type
  */
-export type XDatePickerType = 'date' | 'month' | 'year';
+export type XDatePickerType = 'date' | 'month' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
 
 /**
  * @zh_CN 日期数据类型

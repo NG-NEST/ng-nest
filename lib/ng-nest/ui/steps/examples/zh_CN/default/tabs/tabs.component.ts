@@ -17,7 +17,5 @@ export class ExTabsComponent {
     this.activated += 1;
   }
 
-  done() {
-    console.log('提交');
-  }
+  done() {}
 }

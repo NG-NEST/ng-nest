@@ -48,7 +48,8 @@
     &.x-light {
       color: $color;
       background-color: $background;
-      border-color: $border-color;
+      border-color: transparent;
+      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
       x-button.#{$--x-alert}-close .x-button {
         color: $close-color;
         &:hover {
@@ -59,7 +60,8 @@
     &.x-dark {
       color: $background;
       background-color: $color;
-      border-color: $border-color;
+      border-color: transparent;
+      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
       x-button.#{$--x-alert}-close .x-button {
         color: $background;
         &:hover {
@@ -70,7 +72,8 @@
     &.x-white {
       color: $--x-text-300;
       background-color: $--x-background;
-      border-color: $--x-border;
+      border-color: transparent;
+      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
       .#{$--x-alert}-icon.x-icon {
         color: $color;
       }

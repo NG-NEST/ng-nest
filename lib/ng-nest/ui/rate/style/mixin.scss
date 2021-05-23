@@ -17,35 +17,77 @@
     font-weight: 600;
     @include text-align();
   }
-  > .x-buttons {
-    > x-button > .x-button {
-      padding: 0 0.2rem;
-      color: $--x-text-400;
-      .x-icon {
-        font-size: $--x-font-size-large;
-      }
-      &.x-button-activated {
+  &-icons {
+    display: inline-flex;
+    align-items: center;
+    height: $--x-rate-height;
+    cursor: pointer;
+  }
+  &-icon {
+    margin: 0 0.2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: $--x-info;
+    transition: transform $--x-animation-duration-base, color $--x-animation-duration-base;
+    font-size: $--x-rate-icon-font-size;
+    .x-icon {
+      vertical-align: 0;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+    &.activated {
+      color: $--x-warning;
+    }
+    &.half-activated {
+      .x-rate-half {
         color: $--x-warning;
-        background-color: transparent;
-      }
-      &.x-button-initial.x-button-disabled {
-        color: $--x-text-500;
-        background-color: transparent;
-      }
-      &.x-button-initial.x-button-disabled.x-button-activated {
-        color: $--x-warning-400;
-        background-color: transparent;
-        &:hover {
-          color: $--x-warning-400;
-          background-color: transparent;
-        }
       }
     }
+  }
+  &-half {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &-back {
+    display: flex;
+    align-items: center;
   }
   &.x-invalid,
   &.x-required {
     > label {
       color: $--x-danger;
+    }
+  }
+  &.x-disabled {
+    .#{$--x-rate-prefix} {
+      &-icons {
+        cursor: not-allowed;
+      }
+      &-icon {
+        color: $--x-info-500;
+        &:hover {
+          transform: scale(1);
+        }
+        &.activated {
+          color: $--x-warning-500;
+        }
+        &.half-activated {
+          .x-rate-half {
+            color: $--x-warning-500;
+          }
+        }
+      }
     }
   }
   &.x-direction {

@@ -7,15 +7,27 @@
   [class.x-invalid]="invalid"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <x-buttons (mouseleave)="leaveRates()">
-    <x-button
-      *ngFor="let rate of rates; trackBy: trackByItem"
-      onlyIcon
-      [activated]="rate <= hoverActivated"
-      [disabled]="disabled"
-      icon="adf-star"
-      (mouseover)="hoverRate(rate)"
-      (click)="rateClick(rate)"
-    ></x-button>
-  </x-buttons>
+  <div class="x-rate-icons" (mouseleave)="leaveRates()">
+    <div
+      class="x-rate-icon"
+      [class.activated]="rate <= hoverActivated"
+      [class.half-activated]="rate <= hoverHalfActivated"
+      *ngFor="let rate of rates; index as i; trackBy: trackByItem"
+    >
+      <div *ngIf="half" class="x-rate-half" (mouseenter)="rateHalfHover(rate, $event)" (click)="rateHalfClick(rate, $event)">
+        <ng-container *ngIf="customTemp; else iconTpl">
+          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+        </ng-container>
+      </div>
+      <div class="x-rate-back" (mouseenter)="rateHover(rate, $event)" (click)="rateClick(rate, $event)">
+        <ng-container *ngIf="customTemp; else iconTpl">
+          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
+
+<ng-template #iconTpl>
+  <x-icon type="adf-star"></x-icon>
+</ng-template>

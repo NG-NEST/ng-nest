@@ -1,10 +1,22 @@
 import { HttpClient, HttpEventType, HttpRequest, HttpEvent } from '@angular/common/http';
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { XUploadPrefix, XUploadNode, XUploadProperty } from './upload.property';
-import { XValueAccessor } from '@ng-nest/ui/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
+import { XIsTemplateRef } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
+import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
+import { XUploadPortalComponent } from './upload-portal.component';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XUploadPrefix}`,
@@ -19,11 +31,22 @@ export class XUploadComponent extends XUploadProperty {
   files: XUploadNode[] = [];
   showUpload = false;
   uploadNodes: XUploadNode[] = [];
+  locale: XI18nUpload = {};
+  portal: XPortalOverlayRef<XUploadPortalComponent>;
+
+  get getText() {
+    return this.text || this.locale.uploadText;
+  }
+
+  get isTemplateText() {
+    return XIsTemplateRef(this.getText);
+  }
 
   private _unSubject = new Subject<void>();
 
   writeValue(value: XUploadNode[]) {
     this.value = value;
+    this.setFiles();
     this.cdr.detectChanges();
   }
 
@@ -32,13 +55,24 @@ export class XUploadComponent extends XUploadProperty {
     public elementRef: ElementRef,
     public http: HttpClient,
     public cdr: ChangeDetectorRef,
+    public portalService: XPortalService,
+    public viewContainerRef: ViewContainerRef,
     public i18n: XI18nService
   ) {
     super();
   }
 
   ngOnInit() {
-    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.upload as XI18nUpload),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
+    if (this.type === 'img') this.accept = 'image/*';
   }
 
   ngOnDestory() {
@@ -46,9 +80,18 @@ export class XUploadComponent extends XUploadProperty {
     this._unSubject.unsubscribe();
   }
 
+  setFiles() {
+    if (!Array.isArray(this.value)) return;
+    if (this.type !== 'img') return;
+    this.files = this.value.map((x) => {
+      if (!x.state) x.state = 'success';
+      return x;
+    });
+  }
+
   change(event: Event) {
     let input = event.target as HTMLInputElement;
-    if (typeof input === 'undefined') return;
+    if (typeof input === 'undefined' || input.files?.length === 0) return;
     let files: XUploadNode[] = [];
     for (let i = 0; i < (input.files as FileList).length; i++) {
       let file: XUploadNode = (input.files as FileList).item(i) as XUploadNode;
@@ -57,12 +100,15 @@ export class XUploadComponent extends XUploadProperty {
     }
     if (files.length > 0) this.showUpload = true;
     this.files = files;
+    this.value = [];
     this.uploading();
+    input.value = '';
     this.cdr.detectChanges();
   }
 
   remove(file: XUploadNode, index: number) {
     this.files.splice(index, 1);
+    if (this.files.length === 0) this.file.nativeElement.value = '';
     this.showUpload = this.files.find((x) => x.state === 'ready') != null;
     this.removeClick.emit({ file: file, index: index });
     this.cdr.detectChanges();
@@ -77,38 +123,48 @@ export class XUploadComponent extends XUploadProperty {
     if (!this.action) return;
     let readyFiles = this.files.filter((x) => x.state === 'ready');
     readyFiles.forEach((x) => {
-      let formData = new FormData();
-      formData.append('file', x);
-      const req = new HttpRequest('POST', this.action, formData, {
-        reportProgress: true,
-        responseType: 'arraybuffer'
-      });
-      this.http
-        .request(req)
-        .pipe(
-          map((event) =>
-            this.getEventMessage(event, x, (body: BlobPart) => {
-              let blob = new Blob([body]);
-              let reader = new FileReader();
-              reader.readAsText(blob, 'utf-8');
-              reader.onload = () => {
-                x.url = JSON.parse(reader.result as string)[0];
-                this.cdr.detectChanges();
-              };
-            })
-          )
-        )
-        .subscribe(
-          () => {
-            this.showUpload = this.files.find((y) => y.state === 'ready') != null;
-            this.cdr.detectChanges();
-          },
-          () => {
-            x.state = 'error';
-            this.cdr.detectChanges();
-          }
-        );
+      this.uploadFile(x);
     });
+  }
+
+  uploadFile(file: XUploadNode, index = -1) {
+    let formData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('POST', this.action, formData, {
+      reportProgress: true,
+      responseType: 'arraybuffer'
+    });
+    this.http
+      .request(req)
+      .pipe(
+        map((event) =>
+          this.getEventMessage(event, file, (body: BlobPart) => {
+            let blob = new Blob([body]);
+            let reader = new FileReader();
+            reader.readAsText(blob, 'utf-8');
+            reader.onload = () => {
+              file.url = JSON.parse(reader.result as string)[0];
+              if (index === -1) {
+                this.value.push(file);
+              } else {
+                this.value[index] = file;
+                this.files[index] = file;
+              }
+              this.cdr.detectChanges();
+            };
+          })
+        )
+      )
+      .subscribe(
+        () => {
+          this.showUpload = this.files.find((y) => y.state === 'ready') != null;
+          this.cdr.detectChanges();
+        },
+        () => {
+          file.state = 'error';
+          this.cdr.detectChanges();
+        }
+      );
   }
 
   getEventMessage(event: HttpEvent<any>, file: XUploadNode, fun: Function) {
@@ -130,5 +186,61 @@ export class XUploadComponent extends XUploadProperty {
 
   trackByItem(index: number, item: XUploadNode) {
     return `${item.name}-${item.lastModified}`;
+  }
+
+  onImgCut(file: XUploadNode, index: number) {
+    this.portal = this.portalService.attach({
+      content: XUploadPortalComponent,
+      viewContainerRef: this.viewContainerRef,
+      overlayConfig: {
+        panelClass: [XUploadPortalPrefix],
+        hasBackdrop: true,
+        positionStrategy: this.portalService.setPlace('center')
+      }
+    });
+    this.setInstance(file, index);
+  }
+
+  setInstance(file: XUploadNode, index: number) {
+    let componentRef = this.portal?.componentRef;
+    if (!componentRef) return;
+    Object.assign(componentRef.instance, {
+      file: file,
+      closePortal: () => this.closePortal(),
+      destroyPortal: () => this.destroyPortal(),
+      surePortal: (blob: Blob) => {
+        const fl = new File([blob], file.name, { type: blob.type }) as XUploadNode;
+        fl.state = 'ready';
+        this.uploadFile(fl, index);
+      }
+    });
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
+  portalAttached() {
+    return this.portal?.overlayRef?.hasAttached();
+  }
+
+  closePortal() {
+    if (this.portalAttached()) {
+      this.portal?.overlayRef?.detach();
+      this.cdr.detectChanges();
+      return true;
+    }
+    return false;
+  }
+
+  destroyPortal() {
+    this.portal?.overlayRef?.dispose();
+  }
+
+  imgError(event: Event, file: XUploadNode) {
+    file.state = 'error';
+    this.cdr.detectChanges();
+  }
+
+  imgLoad(event: Event, file: XUploadNode) {
+    file.state = 'success';
+    this.cdr.detectChanges();
   }
 }

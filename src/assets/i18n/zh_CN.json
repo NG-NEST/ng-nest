@@ -10,10 +10,24 @@
     "default": "默认值",
     "globalConfig": "全局设置"
   },
+  "header": {
+    "components": "组件",
+    "version": "版本",
+    "chinese": "Chinese",
+    "english": "English",
+    "dark": "暗黑风格",
+    "light": "明亮风格",
+    "search": "在 ngnest.com 中搜索"
+  },
   "footer": {
     "allRightsReserved": "版权所有"
   },
   "meta": {
     "description": "基于 Angular 和 Nest 的Web应用程序框架，遵循最佳实践和约定，为您提供可靠的开发经验"
+  },
+  "exception": {
+    "home": "首页",
+    "back": "返回",
+    "description": "抱歉，请求的页面地址在服务器中不存在"
   }
 }

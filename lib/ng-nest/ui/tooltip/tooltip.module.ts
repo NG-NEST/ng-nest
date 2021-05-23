@@ -8,6 +8,7 @@ import { XTooltipProperty } from './tooltip.property';
 @NgModule({
   declarations: [XTooltipDirective, XTooltipPortalComponent, XTooltipProperty],
   exports: [XTooltipDirective, XTooltipPortalComponent],
-  imports: [CommonModule, XPortalModule]
+  imports: [CommonModule, XPortalModule],
+  entryComponents: [XTooltipPortalComponent]
 })
 export class XTooltipModule {}

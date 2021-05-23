@@ -1,0 +1,15 @@
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-list-option-prefix} {
+  display: block;
+}
+
+.#{$--x-list-option-prefix} {
+  @include list-option();
+}
+
+body > #{$--x-list-option-prefix} {
+  @include body-list-option();
+}

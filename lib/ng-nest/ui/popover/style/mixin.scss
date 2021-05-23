@@ -18,7 +18,7 @@
     background-color: $--x-background;
     color: $--x-text;
     padding: $--x-font-size;
-    border: 0.0625rem solid $--x-border;
+    border: $--x-border-base;
     border-radius: $--x-border-radius;
     box-shadow: $--x-box-shadow-light;
   }

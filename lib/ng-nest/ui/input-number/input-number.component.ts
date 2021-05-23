@@ -10,8 +10,9 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XIsEmpty, XValueAccessor, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XInputNumberPrefix}`,

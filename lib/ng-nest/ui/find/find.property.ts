@@ -1,6 +1,4 @@
 import {
-  XControlValueAccessor,
-  XFormOption,
   XInputBoolean,
   XBoolean,
   XDataConvert,
@@ -14,6 +12,7 @@ import {
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { XTreeNode } from '@ng-nest/ui/tree';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Find
@@ -168,7 +167,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格行高度，单位 px
    * @en_US Table row height, unit px
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight: XNumber;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight: number;
   /**
    * @zh_CN 树节点数据
    * @en_US Tree node data

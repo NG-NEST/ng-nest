@@ -16,6 +16,9 @@ export class LayoutComponent implements OnInit {
   @HostBinding('class.small') get small() {
     return this.layoutService.small;
   }
+  @HostBinding('class.xsmall') get xsmall() {
+    return this.layoutService.xsmall;
+  }
   @ViewChild('content', { static: true }) content: ContentComponent;
 
   constructor(private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
@@ -46,13 +49,16 @@ export class LayoutComponent implements OnInit {
     // // 更大屏幕
     // let XLarge = Breakpoints.XLarge;
     // // 更小屏幕
-    // let XSmall = Breakpoints.XSmall;X
+    // let XSmall = Breakpoints.XSmall;
     // // 小屏幕
     // let Small = Breakpoints.Small;
 
     this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe((res) => {
-      this.layoutService.small = res.matches;
-      if (!res.matches && this.layoutService.drawerVisible) this.layoutService.drawerVisible = false;
+      this.layoutService.small = res.breakpoints[Breakpoints.Small];
+      this.layoutService.xsmall = res.breakpoints[Breakpoints.XSmall];
+      if (!res.matches && this.layoutService.leftDrawerVisible) this.layoutService.leftDrawerVisible = false;
+      if (!res.matches && this.layoutService.rightDrawerVisible) this.layoutService.rightDrawerVisible = false;
     });
+    this.breakpointObserver;
   }
 }

@@ -7,29 +7,49 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   HostListener,
-  ViewContainerRef
+  ViewContainerRef,
+  HostBinding
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
-import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
+import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
   templateUrl: './dropdown-portal.component.html',
   styleUrls: ['./dropdown-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XConnectBaseAnimation]
 })
 export class XDropdownPortalComponent implements OnDestroy {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
+    event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
+  }
   data: XDropdownNode[];
   trigger: XDropdownTrigger;
   close: Function;
   nodeEmit: Function;
-  docClickFunction: Function;
   portalHover: Function;
+  animating: Function;
+  destroyPortal: Function;
   portal: XPortalOverlayRef<XDropdownPortalComponent>;
+  positionChange: Subject<any>;
+  portalPositionChange: Subject<any> = new Subject();
   node: XDropdownNode;
   timeoutHide: any;
   timespan = 200;
+  portalPlacement: XPositionTopBottom;
+  childAnimating = false;
+  private _unSubject = new Subject<void>();
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover(true);
@@ -44,21 +64,22 @@ export class XDropdownPortalComponent implements OnDestroy {
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
     private portalService: XPortalService,
+    private overlay: Overlay,
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  ngAfterViewInit() {
-    this.trigger === 'click' &&
-      setTimeout(
-        () =>
-          (this.docClickFunction = this.renderer.listen(document, 'click', () => {
-            this.close();
-          }))
-      );
+  ngOnInit() {
+    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.placement = x;
+      this.cdr.detectChanges();
+    });
   }
 
+  ngAfterViewInit() {}
+
   ngOnDestroy(): void {
-    this.docClickFunction && this.docClickFunction();
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   nodeClick(node: XDropdownNode) {
@@ -79,15 +100,27 @@ export class XDropdownPortalComponent implements OnDestroy {
   }
 
   createPortal() {
+    const config: OverlayConfig = {
+      backdropClass: '',
+      panelClass: 'x-dropdown-portal-child',
+      positionStrategy: this.setPlacement(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    };
+    this.setPosition(config);
     this.portal = this.portalService.attach({
       content: XDropdownPortalComponent,
       viewContainerRef: this.viewContainerRef,
-      overlayConfig: {
-        backdropClass: '',
-        positionStrategy: this.setPlacement()
-      }
+      overlayConfig: config
     });
     this.setInstance();
+  }
+
+  setPosition(config: OverlayConfig) {
+    let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      place !== this.portalPlacement && this.portalPositionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -96,8 +129,11 @@ export class XDropdownPortalComponent implements OnDestroy {
     Object.assign(componentRef.instance, {
       data: this.node?.children,
       close: () => this.closePortal(),
+      placement: this.portalPlacement,
+      positionChange: this.portalPositionChange,
       nodeEmit: (node: XDropdownNode) => this.nodeClick(node),
-      portalHover: (hover: boolean) => this.hover(hover)
+      portalHover: (hover: boolean) => this.hover(hover),
+      animating: (ing: boolean) => (this.childAnimating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -112,11 +148,15 @@ export class XDropdownPortalComponent implements OnDestroy {
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(new ElementRef(this.node?.event?.target), 'right-start', 'right-end', 'left-start', 'left-end');
+    return this.portalService.setPlacement({
+      elementRef: new ElementRef(this.node?.event?.target),
+      placement: ['right-start', 'right-end', 'left-start', 'left-end'],
+      transformOriginOn: 'x-dropdown-portal'
+    });
   }
 
   onEnter(node: XDropdownNode) {
-    if (!node.leaf || node.disabled) return;
+    if (!node.leaf || node.disabled || this.childAnimating) return;
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.portalAttached() && this.node?.id !== node.id) {
       this.portal?.overlayRef?.dispose();

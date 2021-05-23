@@ -55,6 +55,8 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   }
 
   ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
     this.contentChange.unsubscribe();
   }
 
@@ -82,7 +84,10 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   createPortal() {
     const config: OverlayConfig = {
       backdropClass: '',
-      positionStrategy: this.portalService.setPlacement(this.elementRef, this.placement, 'bottom', 'top', 'left', 'right'),
+      positionStrategy: this.portalService.setPlacement({
+        elementRef: this.elementRef,
+        placement: [this.placement, 'bottom', 'top', 'left', 'right']
+      }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
     this.setPosition(config);
@@ -91,6 +96,14 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    if (this.trigger === 'click') {
+      this.portal.overlayRef
+        ?.outsidePointerEvents()
+        .pipe(takeUntil(this._unSubject))
+        .subscribe(() => {
+          this.hide();
+        });
+    }
     this.setInstance();
   }
 

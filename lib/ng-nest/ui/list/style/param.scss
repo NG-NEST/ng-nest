@@ -1,6 +1,7 @@
 // List style paramters
 
 $--x-list-prefix: $--x-prefix + '-list';
+$--x-list-option-prefix: $--x-prefix + '-list-option';
 
 /* 字体大小 */
 $--x-list-font-size: $--x-font-size;
@@ -18,7 +19,7 @@ $--x-list-color: $--x-primary-900;
 $--x-list-placeholder-color: $--x-placeholder-color;
 
 /* 背景颜色 */
-$--x-list-background-color: $--x-background-a100;
+$--x-list-background-color: $--x-background;
 
 /* 边框样式 */
 $--x-list-border: $--x-border-width $--x-border-style $--x-border;

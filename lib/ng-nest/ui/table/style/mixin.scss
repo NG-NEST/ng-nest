@@ -43,6 +43,18 @@
           position: sticky;
           z-index: 1;
         }
+        .#{$--x-table}-drag-width {
+          position: absolute;
+          height: 100%;
+          width: 0.1875rem;
+          right: -0.125rem;
+          cursor: ew-resize;
+          transition: background-color var(--x-animation-duration-fast);
+          z-index: 1;
+          &:hover {
+            background-color: $--x-primary;
+          }
+        }
         &:first-child {
           padding-left: $--x-font-size;
         }
@@ -53,6 +65,7 @@
     display: block;
     border-top: none;
     position: relative;
+    min-height: 7rem;
     tr {
       display: flex;
       min-height: 42px;
@@ -165,6 +178,22 @@
     }
   }
   &-bordered {
+    > thead > tr > th,
+    > tbody tr > td {
+      border-right: $--x-border-base;
+      padding-left: $--x-font-size;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  &-cell-config {
+    > thead tr,
+    > tbody tr {
+      display: grid;
+      grid-auto-flow: row;
+      height: 100%;
+    }
     > thead > tr > th,
     > tbody tr > td {
       border-right: $--x-border-base;

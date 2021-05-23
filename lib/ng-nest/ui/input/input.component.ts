@@ -8,10 +8,13 @@ import {
   ElementRef,
   ViewChild,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Input
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -22,7 +25,7 @@ import { XIsEmpty, XValueAccessor, XIsChange, XClearClass, XConfigService } from
   providers: [XValueAccessor(XInputComponent)]
 })
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
-  @ViewChild('input', { static: true }) input: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
 
   writeValue(value: any) {
@@ -31,12 +34,13 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
-  private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = '';
   paddingLeft: number = 0.4;
   paddingRight: number = 0.4;
   clearShow: boolean = false;
+  private _required: boolean = false;
+  private _unSubject = new Subject();
 
   get getIcon() {
     return !XIsEmpty(this.icon);
@@ -61,12 +65,17 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(this.input.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.clearable) && this.setClearable();
+  }
+
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.unsubscribe();
   }
 
   change(value: any) {
@@ -114,6 +123,10 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         : this.maxlength && !this.icon
         ? (this.lengthTotal.length + 2) * 0.385
         : 0.4;
+  }
+
+  inputFocus() {
+    this.inputRef.nativeElement.focus();
   }
 
   setClassMap() {

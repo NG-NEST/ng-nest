@@ -1,4 +1,4 @@
-import { Subject, of } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -14,21 +14,22 @@ import {
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
-  XValueAccessor,
   XIsEmpty,
   XIsObservable,
   XIsChange,
   XSetData,
-  XCorner,
   XClearClass,
   XConfigService,
-  XIsArray
+  XIsArray,
+  XPositionTopBottom
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, delay } from 'rxjs/operators';
+import { delay, takeUntil, throttleTime } from 'rxjs/operators';
+import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE, LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -43,17 +44,21 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   @ViewChild('select', { static: true }) select: ElementRef;
 
   writeValue(value: any) {
+    if (this.multiple && XIsEmpty(value)) {
+      value = [];
+    }
     this.value = value;
     this.setDisplayValue();
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
 
-  readonly: boolean = true;
-  clearable: boolean = false;
+  readonly = true;
   enter: boolean = false;
+  showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
+  cloneNodes: XSelectNode[];
   portal: XPortalOverlayRef<XSelectPortalComponent>;
   icon: string = 'fto-chevron-down';
   iconSpin: boolean = false;
@@ -62,8 +67,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;
+  animating = false;
+  valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
+  keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -80,6 +89,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   ngOnInit() {
     this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setSubject();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -110,22 +120,37 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     });
   }
 
+  setSubject() {
+    this.closeSubject.pipe(throttleTime(50), delay(50), takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
+    this.keydownSubject.pipe(throttleTime(50), takeUntil(this._unSubject)).subscribe((x) => {
+      const keyCode = x.keyCode;
+      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
+        this.showPortal();
+      }
+      if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
+        this.closeSubject.next();
+      }
+    });
+  }
+
   menter() {
-    if (this.disabled) return;
+    if (this.disabled || !this.clearable) return;
     this.enter = true;
     if (!XIsEmpty(this.displayValue)) {
       this.icon = '';
-      this.clearable = true;
+      this.showClearable = true;
       this.cdr.detectChanges();
     }
   }
 
   mleave() {
-    if (this.disabled) return;
+    if (this.disabled || !this.clearable) return;
     this.enter = false;
     if (this.clearable) {
       this.icon = 'fto-chevron-down';
-      this.clearable = false;
+      this.showClearable = false;
       this.cdr.detectChanges();
     }
   }
@@ -133,6 +158,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   clearEmit() {
     this.value = '';
     this.displayValue = '';
+    this.valueTplContext.$node = null;
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -140,8 +166,26 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setDisplayValue() {
     if (this.nodes.length > 0) {
-      let node = this.nodes.find((x) => x.id === this.value);
-      this.displayValue = node ? node.label : '';
+      if (this.multiple) {
+        if (XIsEmpty(this.value)) {
+          this.displayValue = '';
+          this.valueTplContext.$node = null;
+        } else {
+          let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
+          this.displayValue = nodes.map((x) => x.label).join(',');
+          this.valueTplContext.$node = [...nodes];
+        }
+      } else {
+        let node = this.nodes.find((x) => x.id === this.value);
+        if (node) {
+          this.displayValue = node.label;
+          this.valueTplContext.$node = node;
+        } else {
+          this.displayValue = '';
+          this.valueTplContext.$node = null;
+        }
+      }
+      this.cdr.detectChanges();
     }
   }
 
@@ -164,7 +208,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   showPortal() {
     if (this.disabled || this.iconSpin) return;
-    if (this.closePortal()) return;
+    if (this.animating) return;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
@@ -180,11 +224,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     } else {
       this.createPortal();
     }
+    this.inputCom.inputFocus();
   }
 
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
-    this.box = this.inputCom.input.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.inputElement.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.box.width,
@@ -197,13 +242,20 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    this.portal.overlayRef
+      ?.outsidePointerEvents()
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.setDisplayValue();
+        this.closeSubject.next();
+      });
     this.setInstance();
   }
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
       place !== this.placement && this.positionChange.next(place);
     });
   }
@@ -215,12 +267,15 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       data: this.nodes,
       value: this.value,
       placement: this.placement,
-      multiple: this.multiple,
+      multiple: this.multiple === true ? 0 : 1,
+      nodeTpl: this.nodeTpl,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closeSubject: this.closeSubject,
+      keydownSubject: this.keydownSubject,
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XSelectNode) => this.nodeClick(node)
+      nodeEmit: (node: XSelectNode) => this.nodeClick(node),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
@@ -229,18 +284,24 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.multiple && XIsArray(node)) {
       node = node as XSelectNode[];
       this.value = node;
+      this.setDisplayValue();
     } else {
       node = node as XSelectNode;
       this.displayValue = node.label;
+      this.valueTplContext.$node = node;
       this.value = node.id;
-      this.closePortal();
+      this.closeSubject.next();
     }
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement({
+      elementRef: this.inputCom.inputElement,
+      placement: [this.placement, 'bottom', 'top'],
+      transformOriginOn: 'x-select-portal'
+    });
   }
 
   setPortal() {
@@ -251,5 +312,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setData();
     this.ngOnInit();
     this.cdr.detectChanges();
+  }
+
+  onKeydown($event: KeyboardEvent) {
+    this.keydownSubject.next($event);
+    if ($event.keyCode !== TAB) $event.preventDefault();
+  }
+
+  onFocus($event: Event) {
+    this.inputCom.inputFocus();
   }
 }

@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-bordered',
-  templateUrl: './Bordered.component.html',
+  templateUrl: './bordered.component.html',
   providers: [BorderedService]
 })
 export class ExBorderedComponent {

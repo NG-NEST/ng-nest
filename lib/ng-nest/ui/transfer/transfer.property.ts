@@ -1,6 +1,5 @@
 import {
   XData,
-  XControlValueAccessor,
   XDataConvert,
   XInputBoolean,
   XParentIdentityProperty,
@@ -8,6 +7,7 @@ import {
   XWithConfig
 } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 /**
  * Transfer

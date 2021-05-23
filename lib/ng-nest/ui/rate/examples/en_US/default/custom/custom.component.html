@@ -1,0 +1,18 @@
+<x-row>
+  <x-col span="24">
+    <x-rate half [customTemp]="iconTpl"></x-rate>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col span="24">
+    <x-rate half [customTemp]="letterTpl"></x-rate>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col span="24">
+    <x-rate half [(ngModel)]="model" [customTemp]="chineseTpl"></x-rate>
+  </x-col>
+</x-row>
+<ng-template #iconTpl><x-icon type="fto-eye"></x-icon></ng-template>
+<ng-template #letterTpl>X</ng-template>
+<ng-template #chineseTpl>田</ng-template>

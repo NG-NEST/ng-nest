@@ -1,6 +1,7 @@
 ---
 label: 'Button'
 category: 'Basic'
+default: true
 ---
 
 # Button

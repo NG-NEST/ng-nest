@@ -1,5 +1,5 @@
 <div
-  #input
+  #inputElement
   class="x-input"
   [class.x-flex]="justify || align || direction"
   [class.x-disabled]="disabled"
@@ -10,10 +10,21 @@
   [class.x-input-icon]="getIcon"
   [class.x-input-icon-left]="getIconLayoutLeft"
   [class.x-input-icon-right]="getIconLayoutRight"
+  [class.x-input-value-template]="valueTpl"
   [ngClass]="classMap"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-input-row">
+    <div
+      class="x-input-value-template-value"
+      [style.padding-left.rem]="paddingLeft"
+      [style.padding-right.rem]="paddingRight"
+      *ngIf="valueTpl"
+    >
+      <ng-container
+        *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"
+      ></ng-container>
+    </div>
     <input
       #inputRef
       [type]="type"
@@ -26,9 +37,17 @@
       (ngModelChange)="change($event)"
       [style.padding-left.rem]="paddingLeft"
       [style.padding-right.rem]="paddingRight"
+      (focus)="xFocus.emit($event)"
+      (blur)="xBlur.emit($event)"
+      (input)="xInput.emit($event)"
+      (keydown)="xKeydown.emit($event)"
     />
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
-    <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
+    <x-icon
+      *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)"
+      [type]="icon"
+      [spin]="iconSpin"
+    ></x-icon>
     <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
     <span class="x-input-error-message" *ngIf="invalid">{{ invalidMessage }}</span>
     <ng-container *ngIf="requiredIsEmpty || invalid">

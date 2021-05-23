@@ -13,9 +13,11 @@ import { XTableComponent } from './table.component';
 import { XTableHeadComponent } from './table-head.component';
 import { XTableBodyComponent } from './table-body.component';
 import { XTableFootComponent } from './table-foot.component';
+import { XDragDirective } from './drag.directive';
 
 @NgModule({
   declarations: [
+    XDragDirective,
     XTableComponent,
     XTableProperty,
     XTableHeadComponent,

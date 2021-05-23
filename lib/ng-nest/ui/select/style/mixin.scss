@@ -25,7 +25,8 @@
     > x-input {
       > .x-input {
         > .x-input-row {
-          > input {
+          > input,
+          > .x-input-value-template-value {
             cursor: pointer;
           }
         }
@@ -74,14 +75,16 @@
 }
 
 @mixin select-portal {
+  margin: 0.0625rem 0;
   font-size: $--x-select-font-size;
   color: $--x-text;
   border: $--x-select-border;
   width: 100%;
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-light;
+  position: relative;
   display: flex;
   background-color: $--x-background;
-  overflow-y: auto;
+  overflow: hidden auto;
   max-height: calc(calc(#{$--x-select-height} * 6) + calc(#{$--x-border-width} * 7));
 }

@@ -10,6 +10,10 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
 import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { XAnchorModule } from '@ng-nest/ui/anchor';
+import { NsAdaptionModule } from './adaption/adaption.module';
 
 const modules = [
   CommonModule,
@@ -17,13 +21,17 @@ const modules = [
   RouterModule,
   HttpClientModule,
   ReactiveFormsModule,
+  NsAdaptionModule,
   XDocModule,
   XExamplesModule,
+  XAnchorModule,
   XApiModule,
   XTabsModule,
   XHighlightModule,
   XPatternModule,
-  XI18nModule
+  XI18nModule,
+  XButtonModule,
+  XTooltipModule
 ];
 
 @NgModule({

@@ -15,7 +15,8 @@ import {
   XDirection,
   XPlace,
   XPosition,
-  XPlacement
+  XPlacement,
+  XPositionTopBottom
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -36,6 +37,7 @@ export interface XComponentConfig {
   alert?: XAlertConfig;
   anchor?: XAnchorConfig;
   avatar?: XAvatarConfig;
+  autoComplete?: XAutoCompleteConfig;
   backTop?: XBackTopConfig;
   badge?: XBadgeConfgig;
   button?: XButtonConfig;
@@ -68,6 +70,7 @@ export interface XComponentConfig {
   inputNumber?: XInputNumberConfig;
   col?: XColConfig;
   row?: XRowConfig;
+  ripple?: XRippleConfig;
   link?: XLinkConfig;
   list?: XListConfig;
   loading?: XLoadingConfig;
@@ -126,6 +129,7 @@ export interface XAlertConfig {
 
 export interface XAnchorConfig {
   affixTop?: string;
+  affixWidth?: string;
   layout?: XPositionLeftRight;
   justify?: XJustify;
 }
@@ -134,6 +138,11 @@ export interface XAvatarConfig {
   size?: XSize;
   shape?: XShape;
   fit?: XFit;
+}
+
+export interface XAutoCompleteConfig {
+  placement?: XPositionTopBottom;
+  debounceTime?: number;
 }
 
 export interface XBackTopConfig {
@@ -289,6 +298,10 @@ export interface XColConfig {}
 
 export interface XRowConfig {}
 
+export interface XRippleConfig {
+  type?: XType;
+}
+
 export interface XLinkConfig {
   underline?: XBoolean;
   iconRight?: XBoolean;
@@ -360,7 +373,8 @@ export interface XRateConfig {}
 export interface XResultConfig {}
 
 export interface XSelectConfig {
-  placement?: XCorner;
+  placement?: XPositionTopBottom;
+  clearable?: XBoolean;
 }
 
 export interface XSkeletonConfig {}

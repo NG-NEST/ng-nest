@@ -2,36 +2,37 @@
 
 ns-header {
   height: $header-height;
-  background-color: $--x-background-a100;
+  background-color: $--x-background-100;
   width: 100%;
-  top: 0;
-  left: 0;
   z-index: 10;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
   position: fixed;
+  align-items: center;
+  box-sizing: border-box;
   opacity: 1;
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  box-shadow: $--x-box-shadow-light;
   > x-button.menu {
-    margin-left: 0.875rem;
+    margin: 0 0.875rem;
     .x-button .x-icon {
       font-size: 1.25rem;
+    }
+    &.right {
+      position: absolute;
+      right: 0;
     }
   }
 }
 
 ns-logo {
-  width: 100%;
-  min-width: $sider-width;
+  width: $sider-width;
   > section {
     position: relative;
     padding: 0 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .logo-version {
+    .inner {
       display: flex;
       align-items: center;
     }
@@ -41,6 +42,7 @@ ns-logo {
     }
     h1 {
       margin: 0.875rem;
+      white-space: nowrap;
       span {
         font-size: 0.75rem;
         margin-left: 0.5rem;
@@ -48,8 +50,72 @@ ns-logo {
         font-weight: 500;
       }
     }
-    .github {
-      font-size: 1.25rem;
+  }
+}
+
+ns-nav {
+  padding: 0 1rem;
+  flex: 1;
+  > section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    > .item {
+      .x-button {
+        font-size: 0.925rem;
+      }
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+      &.version {
+        width: 6rem;
+      }
+      &.github {
+        .x-button > .x-icon {
+          font-size: 1.25rem;
+        }
+      }
+      &.lang {
+        .x-button {
+          width: 4.625rem;
+        }
+      }
+      &.slider {
+        font-size: 0.925rem;
+        .x-slider-scroll > ul > li {
+          > x-link {
+            height: $header-height - 1rem;
+          }
+          &.x-slider-highlight {
+            border: 0;
+            border-bottom: 0.125rem solid $--x-border;
+            border-color: $--x-primary;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  &.drawer {
+    padding: 0;
+    > section {
+      flex-direction: column;
+      > .item {
+        &:not(:first-child) {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}
+
+ns-search {
+  > section {
+    width: $sider-width;
+    .x-auto-complete > .x-auto-complete-row > x-input > .x-input > .x-input-row > input {
+      border-color: transparent;
+      border-bottom: 0.0625rem solid $--x-border;
     }
   }
 }
@@ -69,12 +135,11 @@ ns-sider {
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
   > section {
     position: relative;
-    height: calc(100% - #{$header-height});
+    height: 100%;
     width: $sider-width;
-    padding: 0.5rem 0;
+    padding: 2rem 0;
     float: left;
     overflow: hidden;
-
     &:hover {
       overflow-y: auto;
     }
@@ -106,11 +171,12 @@ ns-sider {
 ns-content {
   width: 100%;
   display: block;
-  background-color: $--x-background;
   transition: padding-left $transition-duration-slow, padding-top $transition-duration-slow;
+  padding-bottom: $header-height;
   > ns-footer {
     width: 100%;
     display: block;
+    background-color: $--x-background;
     > section {
       display: flex;
       flex-direction: column;
@@ -148,34 +214,16 @@ ns-affix {
   }
 }
 
-ns-layout {
-  &.shrink {
-    > ns-header {
-      position: fixed;
-      margin-top: -$header-height;
-      opacity: 0;
-    }
-    > ns-sider {
-      margin-left: 0;
-      opacity: 1;
-    }
-    > ns-content {
-      padding-left: $sider-width;
-      padding-top: 0;
-    }
+.small {
+  ns-search {
+    display: none;
   }
-  &.shrink.small {
-    > ns-header {
-      margin-top: 0;
-      opacity: 1;
-    }
-    > ns-sider {
-      margin-left: -$sider-width;
-      opacity: 0;
-    }
-    > ns-content {
-      padding-left: 0;
-      padding-top: $header-height;
-    }
+}
+.xsmall {
+  ns-search {
+    display: none;
+  }
+  ns-nav {
+    display: none;
   }
 }

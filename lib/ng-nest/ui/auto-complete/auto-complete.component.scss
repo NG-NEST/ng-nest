@@ -1,0 +1,14 @@
+// Auto complete
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-auto-complete-prefix} {
+  @include reset-component();
+  @include auto-complete();
+}
+
+.#{$--x-auto-complete-prefix}-portal {
+  @include auto-complete-portal();
+}

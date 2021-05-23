@@ -3,13 +3,12 @@ import {
   XIdentityProperty,
   XBoolean,
   XIsEmpty,
-  XFormProp,
   XNumber,
   XInputNumber,
   XInputBoolean,
-  XWithConfig
+  XWithConfig,
 } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Input, Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
@@ -25,6 +24,7 @@ import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker';
 import { XTextareaOption, XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
+import { XFormOption, XFormProp } from '@ng-nest/ui/base-form';
 
 /**
  * Form
@@ -34,6 +34,11 @@ import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
 export const XFormPrefix = 'x-form';
 const X_CONFIG_NAME = 'form';
 
+/**
+ * @zh_CN 模板
+ * @en_US Template
+ */
+export type XFormTemplate = { [property: string]: TemplateRef<any> };
 /**
  * Form Property
  */
@@ -79,6 +84,11 @@ export class XFormProperty extends XFormProp {
    * @en_US Form disabled
    */
   @Input() @XInputBoolean() disabled: XBoolean;
+  /**
+   * @zh_CN 自定义模板
+   * @en_US Custom template
+   */
+  @Input() controlTpl: XFormTemplate = {};
 }
 
 /**
@@ -278,7 +288,9 @@ export type XFormControlOption =
   | XSliderSelectControlOption
   | XSwitchControlOption
   | XTimePickerControlOption
-  | XFindControlOption;
+  | XFindControlOption
+  | XTemplateControlOption
+  ;
 
 export type XFormControlComponent =
   | XInputComponent
@@ -326,7 +338,8 @@ export type XControlType =
   | 'switch'
   | 'time-picker'
   | 'textarea'
-  | 'find';
+  | 'find'
+  | 'template';
 
 /**
  * Input Control
@@ -466,4 +479,10 @@ export class XFindControl extends XControl {
   constructor(option: XFindControlOption = {}) {
     super(option);
   }
+}
+
+/**
+ * Template Control
+ */
+export interface XTemplateControlOption extends XControlOption, XFormOption {
 }

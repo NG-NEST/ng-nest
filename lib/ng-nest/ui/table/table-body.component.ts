@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize, XConfigService, XNumber } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
@@ -28,6 +28,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableBodyComponent extends XTableBodyProperty implements OnInit, OnChanges {
+  tbodyStyle: { [property: string]: any } = {};
   get isEmpty() {
     return this.data?.length === 0;
   }
@@ -49,7 +50,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     super();
   }
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.data, simples.columns, simples.activatedRow) && this.cdr.detectChanges();
+    XIsChange(simples.data, simples.columns, simples.activatedRow, simples.mergeRule) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
@@ -137,6 +138,20 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     this.table.cdr.detectChanges();
   }
 
+  setStyle() {
+    let height = this.rowHeight == 0 ? '' : this.rowHeight;
+    if (this.cellConfig && this.cellConfig.cells) {
+      const spt = this.cellConfig.cells.map((x) => {
+        const gridAreaSpt = x.gridArea?.split('/');
+        return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
+      });
+      height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
+    }
+    this.tbodyStyle = {
+      height: `${height}px`
+    };
+  }
+
   getIndex(index: number, item: XTableRow) {
     if (!isNaN(index)) return index;
     return this.data.indexOf(item);
@@ -167,6 +182,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     if (this.table.rowChecked) {
       if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
         row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
+        this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked);
       }
     }
     this.activatedRowChange.emit(row);

@@ -5,81 +5,28 @@
 @import './param';
 
 @mixin list {
-  display: flex;
   width: 100%;
-  flex: 1;
-  > ul {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    // overflow-y: auto;
-    min-width: 7rem;
-    cursor: pointer;
-    > li {
-      @include list-li();
-      transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base,
-        color $--x-animation-duration-base;
-      > span {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        pointer-events: none;
-        user-select: none;
-      }
-      &:not(:first-child) {
-        margin-top: $--x-border-width;
-      }
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &.cdk-drop-list-dragging {
+    > x-list-option {
       &:hover {
+        background-color: transparent;
+      }
+      &.cdk-drag-placeholder {
+        border-color: $--x-border;
+        color: $--x-text-400;
         background-color: $--x-background-a100;
-        color: $--x-primary;
+        opacity: 0.9;
       }
-      &.x-list-divided {
-        margin-top: 0.8125rem;
-        &::before {
-          content: ' ';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          margin-top: -0.5rem;
-          border-top: $--x-border-base;
-        }
-      }
-      &.x-selected {
-        color: $--x-primary;
-        background-color: $--x-background-a100;
-        > x-icon {
-          color: $--x-primary;
-        }
-      }
-      &.x-disabled {
-        color: var(--x-text-500);
-        cursor: not-allowed;
-        &:hover {
-          background-color: inherit;
-        }
-        > span x-icon {
-          color: var(--x-text-500);
-        }
-      }
-    }
-    &.cdk-drop-list-dragging {
-      > li {
-        &:hover {
-          background-color: transparent;
-        }
-        &.cdk-drag-placeholder {
-          border-color: $--x-border;
-          color: $--x-text-400;
-          background-color: $--x-background-a100;
-          opacity: 0.9;
-        }
-        &:not(.cdk-drag-placeholder) {
-          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
-        }
+      &:not(.cdk-drag-placeholder) {
+        transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
       }
     }
   }
+
   &-leaf,
   &-checked {
     right: 0;
@@ -92,11 +39,59 @@
   }
 }
 
-@mixin list-li {
+@mixin list-option {
+  @include option();
+  transition: border-color $--x-animation-duration-base,
+    background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+  > span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    user-select: none;
+  }
+  &:not(:first-child) {
+    margin-top: $--x-border-width;
+  }
+  &:hover,
+  &.x-active {
+    background-color: $--x-background-a300;
+  }
+  &.x-list-divided {
+    margin-top: 0.8125rem;
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      margin-top: -0.5rem;
+      border-top: $--x-border-base;
+    }
+  }
+  &.x-selected {
+    background-color: $--x-background-a300;
+    color: $--x-primary;
+    > x-icon {
+      color: $--x-primary;
+    }
+  }
+  &.x-disabled {
+    color: var(--x-text-500);
+    cursor: not-allowed;
+    &:hover {
+      background-color: inherit;
+    }
+    > span x-icon {
+      color: var(--x-text-500);
+    }
+  }
+}
+
+@mixin option {
   padding: 0 0.4rem;
   height: $--x-list-height;
   line-height: $--x-list-height;
-  position: relative;
   border-radius: $--x-border-radius;
   display: flex;
   align-items: center;
@@ -104,13 +99,16 @@
   border: 0.0625rem dashed transparent;
 }
 
-@mixin list-item {
+@mixin body-list-option {
+  display: block;
   &.cdk-drag-preview {
-    @include list-li();
-    border-color: $--x-primary;
-    color: $--x-primary;
-    background-color: $--x-background;
-    opacity: 0.8;
+    .#{$--x-list-option-prefix} {
+      @include option();
+      border-color: $--x-primary;
+      color: $--x-primary;
+      background-color: $--x-background;
+      opacity: 0.8;
+    }
   }
   &.cdk-drag-animating {
     transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);

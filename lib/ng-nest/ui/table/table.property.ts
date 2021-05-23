@@ -8,7 +8,8 @@ import {
   XInputBoolean,
   XBoolean,
   XData,
-  XWithConfig
+  XWithConfig,
+  XTextAlign
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
@@ -136,6 +137,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Parameter control request change event
    */
   @Output() manualChange = new EventEmitter<boolean>();
+  /**
+   * @zh_CN 单元格配置
+   * @en_US Cell config
+   */
+  @Input() cellConfig: XTableCellConfig;
 }
 
 /**
@@ -208,6 +214,11 @@ export interface XTableOption extends XPaginationOption {
    * @en_US Document height percentage, used by pop-up window percentage height
    */
   docPercent?: XNumber;
+  /**
+   * @zh_CN 单元格配置
+   * @en_US Cell config
+   */
+  cellConfig?: XTableCellConfig;
 }
 
 /**
@@ -268,6 +279,87 @@ export interface XTableColumn extends XIdentityProperty {
    */
   rowChecked?: boolean;
   /**
+   * @zh_CN 文字对齐方式
+   * @en_US Text alignment
+   */
+  textAlign?: XTextAlign;
+  /**
+   * @zh_CN 拖动列宽，需要设置列的初始宽度 width
+   * @en_US Drag the column width, you need to set the initial width of the column width
+   */
+  dragWidth?: boolean;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
+   */
+  [property: string]: any;
+}
+
+/**
+ * @zh_CN 单元格配置
+ * @en_US Cell config
+ */
+export interface XTableCellConfig {
+  /**
+   * @zh_CN 列单元格配置
+   * @en_US Column cell config
+   */
+  thead?: XTableCellConfigRule;
+  /**
+   * @zh_CN 行单元格配置
+   * @en_US Row config
+   */
+  tbody?: XTableCellConfigRule;
+}
+
+/**
+ * @zh_CN 单元格配置规则
+ * @en_US Cell config rules
+ */
+export interface XTableCellConfigRule {
+  /**
+   * @zh_CN grid 布局下定义列宽度
+   * @en_US Define column width under grid layout
+   */
+  gridTemplateColumns?: string;
+  /**
+   * @zh_CN 单元格配置
+   * @en_US Cell merge rules
+   */
+  cells?: XTableCell[];
+}
+
+/**
+ * @zh_CN 单元格合并配置
+ * @en_US Cell merge rules
+ */
+export interface XTableCell {
+  /**
+   * @zh_CN 使用 grid 布局来合并单元格
+   * @en_US Use grid layout to merge cells
+   */
+  gridArea?: string;
+  /**
+   * @zh_CN 名称
+   * @en_US Name
+   */
+  label?: string;
+  /**
+   * @zh_CN 宽度
+   * @en_US Width
+   */
+  width?: string;
+  /**
+   * @zh_CN 固定列，距离左边的距离
+   * @en_US Fixed column, distance from left
+   */
+  left?: number;
+  /**
+   * @zh_CN 对应列的 id
+   * @en_US The id of the corresponding column
+   */
+  id?: string;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
@@ -323,6 +415,11 @@ export class XTableHeadProperty extends XProperty {
    * @en_US Horizontal scroll bar width
    */
   @Input() scrollXWidth: number | null;
+  /**
+   * @zh_CN 单元格配置
+   * @en_US Cell merge rules
+   */
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**
@@ -381,7 +478,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XInputBoolean() virtualScroll: boolean = false;
+  @Input() @XInputBoolean() virtualScroll?: XBoolean = false;
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
@@ -412,6 +509,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Height and width of rolling area
    */
   @Input() scroll: { x: number; y: number };
+  /**
+   * @zh_CN 单元格配置规则
+   * @en_US Cell config rules
+   */
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**

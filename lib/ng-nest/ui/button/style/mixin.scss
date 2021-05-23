@@ -17,6 +17,9 @@
   user-select: none;
   white-space: nowrap;
   transition: all $--x-animation-duration-base ease-in-out;
+  &:focus {
+    outline: none;
+  }
   > .x-icon {
     font-size: 0.925rem;
   }
@@ -40,9 +43,6 @@
       margin-left: 0;
     }
   }
-  &:active {
-    transform: translate(1px, 1px);
-  }
   &-disabled {
     transform: none !important;
   }
@@ -60,9 +60,10 @@
     border: none;
     background-color: transparent;
     box-shadow: none;
+    &:focus,
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, transparent, transparent);
+      @include button-color($--x-button-hover, rgba(0, 0, 0, 0.1), transparent);
     }
   }
   &-closable {
@@ -132,24 +133,30 @@
 ) {
   &-#{$type} {
     @include button-color($color, $background, $border);
-    box-shadow: $--x-box-shadow $box-shadow-color;
     &:hover {
       @include button-color($hover, $hover-background, $hover-border);
     }
     &:active {
       @include button-color($active, $active-background, $active-border);
     }
+    &:focus {
+      @include button-color($active, $active-background, $active-border);
+      box-shadow: $--x-box-shadow-focus;
+    }
     &.#{$--x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
     }
     &-plain {
       @include button-color($plain-color, $plain-background, $plain-border);
-      box-shadow: $--x-box-shadow $plain-box-shadow-color;
       &:hover {
         @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
       }
       &:active {
         @include button-color($plain-active, $plain-active-background, $plain-active-border);
+      }
+      &:focus {
+        @include button-color($plain-active, $plain-active-background, $plain-active-border);
+        box-shadow: $--x-box-shadow-focus;
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
@@ -168,6 +175,7 @@
   background-image: none;
   background-color: $bg-color;
   border-color: $border-color;
+  box-shadow: none;
   &:hover,
   &:active,
   &:focus {
@@ -194,6 +202,9 @@
         position: relative;
         &-round {
           border-radius: 0;
+        }
+        &:focus {
+          z-index: 1;
         }
       }
       &:not(:first-child) .#{$--x-button} {
@@ -240,7 +251,6 @@
           }
           &:hover {
             color: $--x-button-primary;
-            background-color: transparent;
           }
         }
       }

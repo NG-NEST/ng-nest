@@ -145,12 +145,13 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
         node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0;
         node.childrenLoaded = node.open;
         node.children.map((y) => getChildren(y, level + 1));
-        this.setCategory(node);
+        node.children = this.setCategory(node.children);
       }
       handlerDatas = [...handlerDatas, node];
       return node;
     };
-    this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
+
+    this.nodes = this.setCategory(value.filter((x) => XIsEmpty(x.pid))).map((x) => getChildren(x, 0));
     this.datas = handlerDatas;
     this.cdr.detectChanges();
   }
@@ -166,8 +167,8 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     return root;
   }
 
-  setCategory(value: XMenuNode) {
-    const group = groupBy(value.children as XMenuNode[], 'category');
+  setCategory(nodes: XMenuNode[]) {
+    const group = groupBy(nodes as XMenuNode[], 'category');
     for (let list of group) {
       const first = list[0];
       if (first.category) {
@@ -184,7 +185,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     group.map((x) => {
       con = con.concat(x);
     });
-    value.children = con;
+    return con;
   }
 
   setActivatedNode(nodes: XMenuNode[]) {

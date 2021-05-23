@@ -14,7 +14,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsEmpty, XCorner, XConnectAnimation } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
@@ -28,12 +28,16 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DecimalPipe, PercentPipe],
-  animations: [XConnectAnimation]
+  animations: [XConnectBaseAnimation]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
   }
 
   @ViewChild('panelRef', { static: true }) panelRef: ElementRef;
@@ -41,11 +45,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   @ViewChild('transparentCom', { static: true }) transparentCom: XSliderSelectComponent;
   value: string;
   transparentRail: HTMLElement;
-  docClickFunction: Function;
   valueChange: Subject<string>;
   positionChange: Subject<any>;
   closePortal: Function;
   destroyPortal: Function;
+  animating: Function;
   nodeEmit: Function;
 
   sliderColorNum = 0;
@@ -83,19 +87,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
-    setTimeout(
-      () =>
-        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          if (!this.drag) this.closePortal();
-        }))
-    );
     this.init();
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   ngAfterViewInit() {

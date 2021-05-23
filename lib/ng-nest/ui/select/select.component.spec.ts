@@ -22,11 +22,12 @@ describe(XSelectPrefix, () => {
         TestXSelectLabelComponent,
         TestXSelectDisabledComponent,
         TestXSelectRequiredComponent,
-        TestXSelectMultipleComponent
+        TestXSelectMultipleComponent,
+        TestXSelectCustomNodeComponent
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -56,7 +57,7 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectLabelComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectLabelComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -68,7 +69,7 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectDisabledComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectDisabledComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -80,7 +81,7 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectRequiredComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectRequiredComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -92,7 +93,19 @@ describe(XSelectPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectMultipleComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSelectMultipleComponent));
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXSelectCustomNodeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectCustomNodeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -100,7 +113,7 @@ describe(XSelectPrefix, () => {
   });
 });
 
-const data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
 @Component({
   template: `
@@ -306,6 +319,9 @@ class TestXSelectAsyncComponent {
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1" multiple></x-select>
       </x-col>
+      <x-col span="8">
+        <x-select [data]="data2" [(ngModel)]="model2" multiple></x-select>
+      </x-col>
     </x-row>
   `,
   styles: [
@@ -324,10 +340,70 @@ class TestXSelectAsyncComponent {
 })
 class TestXSelectMultipleComponent {
   data1 = data;
-  data2 = JSON.parse(JSON.stringify(data));
   model1: any;
-  model2: any = 'BBBB';
+  data2 = JSON.parse(JSON.stringify(data));
+  model2 = [
+    { id: 'AAAA', label: 'AAAA' },
+    { id: 'BBBB', label: 'BBBB' }
+  ];
   constructor(public cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => this.cdr.detectChanges());
+  }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="8">
+        <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)" [nodeTpl]="nodeTpl"></x-select>
+      </x-col>
+      <ng-template #nodeTpl let-node="$node">
+        <span *ngIf="node" class="select-item"> {{ node?.label }}<sup>2</sup> </span>
+      </ng-template>
+      <x-col span="8">
+        <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change($event)" [nodeTpl]="multipleNodeTpl" multiple></x-select>
+      </x-col>
+      <ng-template #multipleNodeTpl let-node="$node" let-isValue="$isValue">
+        <span *ngIf="node && !isValue" class="select-item"> {{ node?.label }} <sup>2</sup> </span>
+        <span *ngIf="node && isValue">
+          <span class="select-item" *ngFor="let item of node"> {{ item.label }} <sup>2</sup> </span>
+        </span>
+      </ng-template>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        height: 900px;
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .select-item {
+        line-height: 1.25rem;
+      }
+      .select-item:not(:first-child):before {
+        content: ',';
+      }
+    `
+  ]
+})
+class TestXSelectCustomNodeComponent {
+  data1 = data;
+  model1: any;
+  data2 = JSON.parse(JSON.stringify(data));
+  model2: any;
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => {
+      this.cdr.detectChanges();
+    });
+  }
+
+  change(value: any) {
+    console.log(value);
   }
 }

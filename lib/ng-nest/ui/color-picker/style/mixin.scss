@@ -34,7 +34,6 @@
             cursor: pointer;
             background-color: transparent;
             color: transparent;
-            padding: 0 !important;
           }
         }
       }
@@ -62,7 +61,7 @@
   }
   &.x-disabled {
     > .#{$--x-color-picker-prefix}-row {
-      background-color: $--x-background-200;
+      background-color: $--x-background-a100;
       border-radius: $--x-color-picker-border-radius;
       > x-input {
         > .x-input {
@@ -101,6 +100,7 @@
 }
 
 @mixin color-picker-portal {
+  margin: 0.0625rem 0;
   font-size: $--x-color-picker-font-size;
   color: $--x-text;
   border: $--x-color-picker-border;

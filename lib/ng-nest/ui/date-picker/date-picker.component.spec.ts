@@ -9,25 +9,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN, X_I18N, zh_TW } from '@ng-nest/ui/i18n';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XButtonModule],
       declarations: [
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,
         TestXDatePickerDisabledComponent,
         TestXDatePickerRequiredComponent,
-        TestXDatePickerYearOrMonthComponent
-      ],
-      providers: [{ provide: X_I18N, useValue: zh_TW }]
+        TestXDatePickerYearOrMonthComponent,
+        TestXDatePickerHourMinuteSecondComponent
+      ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -87,13 +86,24 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
+  describe(`hour minute second.`, () => {
+    let fixture: ComponentFixture<TestXDatePickerHourMinuteSecondComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDatePickerHourMinuteSecondComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerHourMinuteSecondComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
 });
 
 @Component({
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-date-picker [(ngModel)]="model1"></x-date-picker>
@@ -140,7 +150,6 @@ class TestXDatePickerComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-date-picker label="方式" [(ngModel)]="model"></x-date-picker>
@@ -182,7 +191,6 @@ class TestXDatePickerLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-date-picker disabled></x-date-picker>
@@ -213,7 +221,6 @@ class TestXDatePickerDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-date-picker [(ngModel)]="model" required></x-date-picker>
@@ -249,7 +256,6 @@ class TestXDatePickerRequiredComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-date-picker [(ngModel)]="model1" label="年" type="year"></x-date-picker>
@@ -277,6 +283,44 @@ class TestXDatePickerRequiredComponent {
 class TestXDatePickerYearOrMonthComponent {
   model1: any;
   model2: any;
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(0).subscribe((x) => {
+      this.cdr.detectChanges();
+    });
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="8">
+        <x-date-picker [(ngModel)]="model1" label="时分秒" type="date-time"></x-date-picker>
+      </x-col>
+      <x-col span="8">
+        <x-date-picker [(ngModel)]="model1" label="时分" type="date-minute"></x-date-picker>
+      </x-col>
+      <x-col span="8">
+        <x-date-picker [(ngModel)]="model1" label="时" type="date-hour"></x-date-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDatePickerHourMinuteSecondComponent {
+  model1 = '2011-10-1 13:10:57';
+  model2: any;
+  model3: any;
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();

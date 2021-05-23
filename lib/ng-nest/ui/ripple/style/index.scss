@@ -1,0 +1,6 @@
+// Ripple
+@import './mixin';
+
+.#{$--x-ripple-prefix} {
+  @include ripple();
+}

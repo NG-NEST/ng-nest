@@ -8,7 +8,5 @@ export class ExDefaultComponent {
   index = 5;
   size = 15;
   total = 80;
-  change(index: number) {
-    console.log(index);
-  }
+  change(index: number) {}
 }

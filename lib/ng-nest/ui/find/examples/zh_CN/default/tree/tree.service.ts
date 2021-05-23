@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class TreeServiceTest {
+export class TreeService {
   data: XTreeNode[] = [
     { id: 1, label: '雷浩集团' },
     { id: 2, label: '企业发展事业群', pid: 1 },

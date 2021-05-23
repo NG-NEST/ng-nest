@@ -29,9 +29,7 @@ export class ExLabelRowComponent {
       required: true,
       pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
       message: ['integer', 'positive integer'],
-      clearClick: (value: any) => {
-        console.log(value);
-      }
+      clearClick: (value: any) => {}
     },
     {
       control: 'input',

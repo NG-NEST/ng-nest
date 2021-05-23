@@ -61,9 +61,14 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
       </x-col>
     </x-row>
     <x-row space="1">
-      <x-col span="8">
+      <x-col span="6">
         <h6>上下拖动</h6>
         <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
+      </x-col>
+      <x-col span="6">
+        <h6>模板</h6>
+        <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
+        <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
       </x-col>
     </x-row>
   `,
@@ -88,6 +93,7 @@ class TestXListComponent {
   data5 = JSON.parse(JSON.stringify(data));
   data6 = JSON.parse(JSON.stringify(data));
   data7 = JSON.parse(JSON.stringify(data));
+  data8 = JSON.parse(JSON.stringify(data));
   model1: any;
   model2 = 'AAAA';
   model3: any;
@@ -95,6 +101,7 @@ class TestXListComponent {
   model5: any;
   model6 = ['BBBB', 'CCCC'];
   model7 = 'BBBB';
+  model8: any;
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => {
       this.cdr.detectChanges();

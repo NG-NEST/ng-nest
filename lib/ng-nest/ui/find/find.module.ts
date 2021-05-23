@@ -10,6 +10,7 @@ import { XTagModule } from '@ng-nest/ui/tag';
 import { XEmptyModule } from '@ng-nest/ui/empty';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XFindComponent, XFindProperty],
@@ -24,7 +25,8 @@ import { XIconModule } from '@ng-nest/ui/icon';
     XTableModule,
     XTreeModule,
     XIconModule,
-    XEmptyModule
+    XEmptyModule,
+    XBaseFormModule
   ]
 })
 export class XFindModule {}

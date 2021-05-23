@@ -1,9 +1,0 @@
-{
-  "bundlerOptions": {
-    "entryFile": "./a.scss",
-    "rootDir": "./",
-    "outFile": "./ng-nest-ui.scss",
-    "ignoreImports": ["~@angular/.*"],
-    "logLevel": "trace"
-  }
-}

@@ -13,7 +13,4 @@ export class XAffixComponent extends XAffixProperty {
   constructor(public configService: XConfigService) {
     super();
   }
-  ngOnInit() {
-    console.log(this.left, this.top);
-  }
 }

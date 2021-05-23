@@ -6,18 +6,34 @@
 
 @mixin examples {
   display: block;
-  border: $--x-border-base;
-  .#{$prefix}-html,
-  .#{$prefix}-code {
+  .#{$prefix}-html {
     padding: 1rem;
+    margin: 1rem 0;
+    border: $--x-border-base;
+    border-radius: 0.125rem;
+    position: relative;
+  }
+  .#{$prefix}-tools {
+    position: absolute;
+    position: absolute;
+    bottom: -0.875rem;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .x-buttons {
+      background-color: $--x-background;
+      padding: 0 0.25rem;
+    }
   }
   .#{$prefix}-code {
+    padding: 1rem 0;
     > x-tabs > .x-tabs {
       border-radius: 0.125rem;
-      > .x-tabs-list {
-        border: none;
-        > x-slider > .x-slider-row > .x-slider-scroll > ul > li.x-slider-highlight {
-          border-color: $--x-border;
+      > .x-tabs-contents > .x-tab-content > .x-highlight {
+        border-top: 0;
+        > pre {
+          background-color: transparent;
         }
       }
     }
@@ -26,7 +42,6 @@
     padding: 1rem;
     border: $--x-border-base;
     border-radius: 0.125rem;
-    margin: 0 1rem;
     background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;
@@ -47,19 +62,16 @@
     width: 100%;
     > .x-tabs-list {
       border: none;
+      
     }
     > .x-tabs-contents {
       > x-tab-content > x-tabs > .x-tabs {
         &-top {
           > .x-tabs-list {
             border: none;
+            background: rgba(0, 0, 0, 0.05);
           }
           @include tabs-list();
-        }
-        &-top {
-          > .x-tabs-list {
-            padding: 1rem 1rem 0 1rem;
-          }
         }
       }
     }
@@ -69,16 +81,23 @@
     }
     &-left {
       > .x-tabs-list {
-        padding: 1rem 0 1rem 1rem;
+        padding: 0;
         > x-slider > .x-slider > .x-slider-scroll > ul {
           min-width: 6rem;
         }
       }
-    }
-    &-top {
-      > .x-tabs-list {
-        padding: 1rem 1rem 0 1rem;
-      }
+      // .#{$prefix}-html {
+      //   margin: 0 0 0 1rem;
+      //   border: 0;
+      //   padding: 0;
+      // }
+      // .#{$prefix}-info {
+      //   margin: 1rem 0 0 1rem;
+      // }
+      // .#{$prefix}-code {
+      //   margin: 1rem 0 0 1rem;
+      //   padding: 0;
+      // }
     }
   }
 }

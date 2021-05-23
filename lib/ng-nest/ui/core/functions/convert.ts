@@ -9,7 +9,8 @@ import {
   XIsObservable,
   XParentIdentityProperty,
   XBoolean,
-  XClassMap
+  XClassMap,
+  XIsFunction
 } from '../interfaces';
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -44,7 +45,7 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
   return value;
 }
 
-export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true): Observable<T[]> {
+export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true, funcParam = null): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
     const result = (res: T[]) => {
       x.next(res);
@@ -55,6 +56,15 @@ export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert 
     } else {
       if (XIsObservable(data)) {
         (data as Observable<T[]>)
+          .pipe(
+            map((y) => (toConvert ? XToDataConvert(y) : y)),
+            takeUntil(unSubject)
+          )
+          .subscribe((y) => {
+            result(y as T[]);
+          });
+      } else if (XIsFunction(data)) {
+        (data as (param: any) => Observable<T[]>)(funcParam)
           .pipe(
             map((y) => (toConvert ? XToDataConvert(y) : y)),
             takeUntil(unSubject)
@@ -131,4 +141,8 @@ export function XInputNumber(): any {
 
 export function XDataConvert(): any {
   return propDecoratorFactory('XDataConvert', XToDataConvert);
+}
+
+export function XClamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
 }

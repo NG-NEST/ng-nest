@@ -1,0 +1,60 @@
+$sidebar-width: 15rem;
+$sidebar-background-color: #f5f5f5;
+$header-height: 3.25rem;
+$tabs-height: 2.25rem;
+$tabs-width: calc(100% - #{$sidebar-width});
+$tabs-background-color: #f5f5f5;
+$border: 1px solid #dddddd;
+
+app-index {
+  > app-sidebar {
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    height: 100%;
+    width: $sidebar-width;
+    background-color: $sidebar-background-color;
+    border-right: $border;
+    > app-header {
+      height: $header-height;
+      display: block;
+    }
+    > x-menu {
+      height: calc(100% - #{$header-height});
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+      .x-menu-column {
+        width: initial;
+      }
+      .x-menu-nodes .x-menu-node {
+        border-right: none;
+      }
+    }
+  }
+  > app-tabs {
+    position: fixed;
+    top: 0;
+    left: $sidebar-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+    background-color: $tabs-background-color;
+  }
+  > app-crumb {
+    position: fixed;
+    top: $tabs-height;
+    left: $sidebar-width;
+    z-index: 11;
+    height: $tabs-height;
+    width: $tabs-width;
+  }
+  > app-content {
+    padding-top: $tabs-height * 2;
+    padding-left: $sidebar-width;
+    display: block;
+    height: 100%;
+  }
+}

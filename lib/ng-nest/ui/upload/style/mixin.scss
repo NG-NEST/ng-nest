@@ -8,8 +8,12 @@
   color: $--x-text;
   font-size: $--x-font-size;
   &-buttons {
+    display: inline-flex;
     > .x-button:not(:first-child) {
       margin-left: 0.4rem;
+    }
+    &-template {
+      cursor: pointer;
     }
   }
   &-files {
@@ -76,6 +80,105 @@
       }
     }
   }
+  &-img {
+    display: flex;
+    flex-wrap: wrap;
+    .#{$--x-upload-prefix} {
+      &-buttons {
+        &-template {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 6.25rem;
+          height: 6.25rem;
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          border: $--x-border-width dashed $--x-border;
+          background: $--x-background;
+          border-radius: $--x-border-radius;
+          transition: border-color $--x-animation-duration-base;
+          &:hover {
+            border-color: $--x-primary;
+          }
+        }
+      }
+    }
+    &-item {
+      height: 6.25rem;
+      width: 6.25rem;
+      padding: 0.325rem;
+      border: $--x-border-width $--x-border-style $--x-border;
+      border-radius: $--x-border-radius;
+      transition: border-color $--x-animation-duration-base;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .x-upload-img-inner {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        > img {
+          width: 100%;
+          border-radius: $--x-border-radius;
+        }
+        > x-icon {
+          display: none;
+          font-size: 3rem;
+          color: $--x-danger;
+        }
+      }
+      &.error {
+        border-color: $--x-danger;
+        .x-upload-img-inner {
+          > img {
+            display: none;
+          }
+          > x-icon {
+            display: inherit;
+          }
+        }
+      }
+      &:hover {
+        .x-upload-img-btns {
+          background-color: rgba(0, 0, 0, 0.45);
+          &-inner {
+            display: initial;
+          }
+        }
+      }
+    }
+    &-btns {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $--x-border-radius;
+      background-color: rgba(0, 0, 0, 0);
+      transition: all $--x-animation-duration-base;
+      x-icon {
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        &:hover {
+          color: white;
+        }
+      }
+      &-inner {
+        display: none;
+      }
+    }
+  }
   &.x-disabled {
   }
 }
@@ -89,5 +192,177 @@
     &::after {
       background-color: var(--x-text-400);
     }
+  }
+}
+
+@mixin upload-portal {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  &-tools {
+    width: 100%;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 1;
+    color: white;
+  }
+  &-bottom-tools {
+    width: 100%;
+    height: 3.25rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    color: white;
+    bottom: 0;
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    > x-icon {
+      font-size: 1.25rem;
+    }
+    > span {
+      margin-left: 0.5rem;
+    }
+  }
+  &-close {
+    font-size: 1.75rem;
+    padding: 0 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color $--x-animation-duration-base;
+    cursor: pointer;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  &-img {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+  }
+  &-full-img {
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  &-clip-img {
+    position: absolute;
+  }
+  &-ready {
+    .#{$--x-upload-portal-prefix} {
+      &-full-img {
+        max-width: inherit;
+        max-height: inherit;
+      }
+    }
+  }
+  &-boundary {
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  &-cut {
+    width: 0;
+    height: 0;
+    border: 0.125rem $--x-border-style rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: move;
+    &-top-start,
+    &-top,
+    &-top-end,
+    &-left,
+    &-right,
+    &-bottom-start,
+    &-bottom,
+    &-bottom-end {
+      width: 0.825rem;
+      height: 0.825rem;
+      background: rgba(255, 255, 255, 1);
+      position: absolute;
+      border: $--x-border-width $--x-border-style $--x-border;
+      border-radius: $--x-border-radius;
+    }
+
+    &-top-start {
+      top: -0.4125rem;
+      left: -0.4125rem;
+      cursor: se-resize;
+    }
+    &-top {
+      top: -0.4125rem;
+      cursor: s-resize;
+    }
+    &-top-end {
+      top: -0.4125rem;
+      right: -0.4125rem;
+      cursor: ne-resize;
+    }
+    &-left {
+      left: -0.4125rem;
+      cursor: w-resize;
+    }
+    &-right {
+      right: -0.4125rem;
+      cursor: w-resize;
+    }
+    &-bottom-start {
+      left: -0.4125rem;
+      bottom: -0.4125rem;
+      cursor: ne-resize;
+    }
+    &-bottom {
+      bottom: -0.4125rem;
+      cursor: s-resize;
+    }
+    &-bottom-end {
+      right: -0.4125rem;
+      bottom: -0.4125rem;
+      cursor: se-resize;
+    }
+  }
+  &-top-start {
+    cursor: se-resize;
+  }
+  &-top {
+    cursor: s-resize;
+  }
+  &-top-end {
+    cursor: ne-resize;
+  }
+  &-left {
+    cursor: w-resize;
+  }
+  &-right {
+    cursor: w-resize;
+  }
+  &-bottom-start {
+    cursor: ne-resize;
+  }
+  &-bottom {
+    cursor: s-resize;
+  }
+  &-bottom-end {
+    cursor: se-resize;
   }
 }

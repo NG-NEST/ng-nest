@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { map, orderBy } from 'lodash';
-import { XTreeNode } from '@ng-nest/ui/tree';
 
 @Injectable()
-export class TableServiceTest extends XRepositoryAbstract {
+export class DefaultService extends XRepositoryAbstract {
   organizations = [
     '雷浩集团',
     '企业发展事业群',
@@ -38,9 +37,6 @@ export class TableServiceTest extends XRepositoryAbstract {
     return new Observable((x) => {
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query?.filter as XFilter[]);
-      if (query?.group) {
-        console.log(data, index, size, query);
-      }
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
@@ -111,36 +107,6 @@ export class TableServiceTest extends XRepositoryAbstract {
       map(sort, (x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
-}
-
-@Injectable()
-export class TreeServiceTest {
-  data: XTreeNode[] = [
-    { id: 1, label: '雷浩集团' },
-    { id: 2, label: '企业发展事业群', pid: 1 },
-    { id: 3, label: '社交网络事业群', pid: 1 },
-    { id: 4, label: '互动娱乐事业群', pid: 1 },
-    { id: 5, label: '移动互联网事业群', pid: 1 },
-    { id: 6, label: '网络媒体事业群', pid: 1 },
-    { id: 7, label: '人事部', pid: 4 },
-    { id: 8, label: '行政部', pid: 4 },
-    { id: 9, label: '财务部', pid: 4 }
-  ];
-
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
-    return new Observable((x) => {
-      let result = this.data
-        .filter((y) => y.pid === pid)
-        .map((x) => {
-          x.leaf = this.data.find((y) => y.pid === x.id) ? true : false;
-          return x;
-        });
-      setTimeout(() => {
-        x.next(result);
-        x.complete();
-      }, 500);
-    });
-  };
 }
 
 interface User extends XId {

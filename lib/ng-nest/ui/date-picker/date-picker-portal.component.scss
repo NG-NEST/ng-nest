@@ -5,6 +5,5 @@
 @import './style/mixin';
 
 .#{$--x-date-picker-portal-prefix} {
-  @include reset-component();
   @include date-picker-portal();
 }

@@ -76,7 +76,7 @@ ns-home {
     }
     > .logo {
       z-index: -2;
-      background: transparent url(/assets/img/logo-hollow.png) no-repeat top center;
+      background: transparent url(/assets/img/logo/logo-512x512.png) no-repeat top center;
       opacity: 0.15;
       width: 700px;
       height: 700px;
@@ -131,7 +131,7 @@ ns-home {
         }
         &.description {
           color: rgba(255, 255, 255, 0.6);
-          width: 32rem;
+          max-width: 33rem;
           text-align: center;
           margin: 2rem 0;
         }
@@ -173,7 +173,7 @@ ns-home {
     }
   }
   > section.nav {
-    background: #fff;
+    background: $--x-background-a100;
     position: absolute;
     overflow: hidden;
     border-radius: 2px;
@@ -181,24 +181,17 @@ ns-home {
     top: 38.5rem;
     font-weight: 600;
     z-index: 132123123;
-    box-shadow: 0 30px 80px 0 rgba(85, 85, 135, 0.13), 1px 1px 0 rgba(85, 85, 135, 0.05);
+    box-shadow: $--x-box-shadow;
     > ul {
       display: flex;
       > li {
         flex: 1;
         display: flex;
-        > a {
-          padding: 1rem 0;
+        > x-button {
           flex: 1;
-          text-align: center;
-          color: $--x-primary;
-          &:hover {
-            opacity: 0.9;
-            color: white;
-            background-color: $--x-primary;
-          }
-          &:active {
-            opacity: 1;
+          .x-button {
+            width: 100%;
+            font-size: 0.875rem;
           }
         }
       }
@@ -208,14 +201,11 @@ ns-home {
     @include flex-center();
     flex-direction: column;
     width: 100%;
-    background-color: $--x-background-a100;
+    background-color: $--x-background;
     > .panel {
       width: 100%;
-      &:nth-child(even) {
-        background-color: #f8f9fa;
-      }
       &:nth-child(odd) {
-        background-color: #fff;
+        background-color: $--x-background-a100;
       }
       > .box {
         padding: 7rem 0;
@@ -258,6 +248,24 @@ ns-home {
             }
           }
         }
+      }
+    }
+  }
+  &.small {
+    > section.content > .panel > .slides {
+      flex-wrap: wrap;
+      justify-content: center;
+      > .slide {
+        width: 50%;
+      }
+    }
+  }
+  &.xsmall {
+    > section.content > .panel > .slides {
+      flex-wrap: wrap;
+      justify-content: center;
+      > .slide {
+        width: 100%;
       }
     }
   }

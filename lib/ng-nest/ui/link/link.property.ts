@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XBoolean, XWithConfig, XType } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -55,4 +55,4 @@ export class XLinkProperty extends XProperty {
  * @zh_CN 链接类型
  * @en_US Link type
  */
-export type XLinkType = 'primary' | 'success' | 'info' | 'warning' | 'danger';
+export type XLinkType = XType;

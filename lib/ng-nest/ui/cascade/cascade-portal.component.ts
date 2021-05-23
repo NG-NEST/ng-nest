@@ -11,7 +11,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XCascadeNode } from './cascade.property';
-import { XIsEmpty, XCorner, XConnectAnimation } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -21,12 +21,16 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation]
+  animations: [XConnectBaseAnimation]
 })
 export class XCascadePortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
   }
 
   nodes: XCascadeNode[][] = [];
@@ -37,9 +41,9 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   positionChange: Subject<any>;
   closePortal: Function;
   destroyPortal: Function;
+  animating: Function;
   nodeEmit: Function;
   values: XCascadeNode[] = [];
-  docClickFunction: Function;
   private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
@@ -55,18 +59,11 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
-    setTimeout(
-      () =>
-        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.closePortal();
-        }))
-    );
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   init() {

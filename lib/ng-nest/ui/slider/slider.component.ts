@@ -126,6 +126,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     this.setHighlight();
     this.setTranslate();
     this.indexChange.emit(index);
+    this.nodeChange.emit(node);
   }
 
   scrollPrev() {

@@ -73,7 +73,13 @@
 }
 
 @mixin time-picker-portal {
-  $prefix: $--x-time-picker-portal-prefix;
+  display: block;
+  height: 100%;
+}
+
+@mixin time-picker-frame {
+  $prefix: $--x-time-picker-frame-prefix;
+  margin: 0.0625rem 0;
   font-size: $--x-time-picker-font-size;
   color: $--x-text;
   border: $--x-time-picker-border;
@@ -93,16 +99,17 @@
     float: left;
     overflow: hidden;
     width: 3.625rem;
-    max-height: 11.25rem;
-    padding-bottom: 9.375rem;
+    max-height: 15rem;
+    padding-bottom: 13.125rem;
     &:hover {
       overflow-y: auto;
     }
     > x-list {
       > .x-list {
-        > ul {
+        width: 3.625rem;
+        > x-list-option {
           min-width: 3.625rem;
-          > li {
+          > .x-list-option {
             padding-left: 0.6rem;
             &:not(:first-child) {
               margin-top: 0;

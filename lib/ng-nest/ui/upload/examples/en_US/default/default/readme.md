@@ -1,9 +1,8 @@
 ---
 order: 1
-label: 'Base'
+label: 'Basic usage'
 ---
 
-Since the options are visible by default, it should not be too many. If there are too many options, it is recommended to use the `Select` selector.
+The `action` attribute is used to configure the address of the uploaded file, which is required to return the download address of the file, for example ['http://xxx/down/123.png'].
 
-- Use the `data` attribute to set the number of `upload`.
-- Use the `ngModel` property for two-way binding values.
+For the upload/download interface, please refer to [ng-nest-admin](https://github.com/NG-NEST/ng-nest-admin/blob/master/api/src/system/demo/upload/upload.controller.ts).

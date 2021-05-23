@@ -5,11 +5,12 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
+import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XButtonPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule],
+      imports: [XButtonModule, XThemeModule],
       declarations: [
         TestXButtonComponent,
         TestXButtonDiabledComponent,
@@ -63,7 +64,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`icon.`, () => {
+  fdescribe(`icon.`, () => {
     let fixture: ComponentFixture<TestXButtonIconComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -124,6 +125,7 @@ describe(XButtonPrefix, () => {
 @Component({
   selector: 'test-x-button',
   template: `
+    <x-theme showDark></x-theme>
     <div class="row">
       <x-button>默认按钮</x-button>
       <x-button type="primary">主要按钮</x-button>
@@ -159,6 +161,10 @@ describe(XButtonPrefix, () => {
   `,
   styles: [
     `
+      :host {
+        padding: 1rem;
+        background: var(--x-background);
+      }
       .row:not(:last-child) {
         margin-bottom: 1rem;
       }
@@ -244,7 +250,11 @@ class TestXButtonTextComponent {}
   selector: 'test-x-icon-button',
   template: `
     <div class="row">
+      <x-button icon="fto-edit-3" size="large" onlyIcon></x-button>
+      <x-button icon="fto-edit-3" size="big" onlyIcon></x-button>
       <x-button icon="fto-edit-3" onlyIcon></x-button>
+      <x-button icon="fto-edit-3" size="small" onlyIcon></x-button>
+      <x-button icon="fto-edit-3" size="mini" onlyIcon></x-button>
       <x-button icon="fto-edit-3" type="primary"></x-button>
       <x-button icon="fto-share" type="primary"></x-button>
       <x-button icon="fto-trash-2" type="primary"></x-button>

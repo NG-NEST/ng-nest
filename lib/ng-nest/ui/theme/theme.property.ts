@@ -1,6 +1,6 @@
-import { XProperty, XWithConfig, XNumber, XControlValueAccessor, XColorsTheme, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import { XWithConfig, XNumber, XColorsTheme, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { emit } from 'process';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Theme

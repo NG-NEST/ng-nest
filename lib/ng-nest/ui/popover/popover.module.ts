@@ -9,6 +9,7 @@ import { XPopoverProperty } from './popover.property';
 @NgModule({
   declarations: [XPopoverDirective, XPopoverPortalComponent, XPopoverProperty],
   exports: [XPopoverDirective, XPopoverPortalComponent],
-  imports: [CommonModule, XPortalModule, XOutletModule]
+  imports: [CommonModule, XPortalModule, XOutletModule],
+  entryComponents: [XPopoverPortalComponent]
 })
 export class XPopoverModule {}

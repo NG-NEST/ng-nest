@@ -10,10 +10,24 @@
     "default": "Default",
     "globalConfig": "Global Config"
   },
+  "header": {
+    "components": "Components",
+    "version": "version",
+    "chinese": "中文",
+    "english": "English",
+    "dark": "Dark",
+    "light": "Light",
+    "search": "Search in ngnest.com"
+  },
   "footer": {
     "allRightsReserved": "All rights reserved"
   },
   "meta": {
     "description": "Angular and Nest based Web application frameworks follow best practices and conventions to give you a solid development experience"
+  },
+  "exception": {
+    "home": "Home",
+    "back": "Back",
+    "description": "Sorry, the requested page address does not exist in the server."
   }
 }

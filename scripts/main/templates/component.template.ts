@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, ViewChildren } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { OnlineIdeService } from '@services';
 {{ __imports }}
 @Component({
   selector: '{{ __comName }}',
@@ -6,5 +7,6 @@ import { Component, ViewEncapsulation, ViewChildren } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class {{ __capName }}Component {
+  constructor(public ois: OnlineIdeService) {}
   {{ __constant }}
 }

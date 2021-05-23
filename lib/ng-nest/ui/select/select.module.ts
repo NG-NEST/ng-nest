@@ -7,10 +7,12 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { XListModule } from '@ng-nest/ui/list';
 import { XSelectPortalComponent } from './select-portal.component';
 import { XSelectProperty } from './select.property';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XSelectComponent, XSelectPortalComponent, XSelectProperty],
   exports: [XSelectComponent, XSelectPortalComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XBaseFormModule],
+  entryComponents: [XSelectPortalComponent]
 })
 export class XSelectModule {}

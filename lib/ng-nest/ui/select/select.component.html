@@ -18,9 +18,13 @@
       [required]="required"
       [disabled]="disabled"
       [readonly]="readonly"
-      [clearable]="clearable"
+      [clearable]="showClearable"
       [(ngModel)]="displayValue"
+      [valueTpl]="nodeTpl"
+      [valueTplContext]="valueTplContext"
       (clearEmit)="clearEmit()"
+      (xKeydown)="onKeydown($event)"
+      (xFocus)="onFocus($event)"
     ></x-input>
   </div>
 </div>

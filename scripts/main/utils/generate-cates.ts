@@ -1,9 +1,8 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { NcCates, NcCate } from '../interfaces/examples';
-import { handlerTabs, handlerTabsByFiles, randomString } from '.';
-import { NcTabsLayoutEnum, NcTab, NcTabsSizeEnum, NcTabsNodeJustifyEnum } from '../interfaces/tabs';
-import { generateTabs } from '.';
+import { handlerTabs, handlerTabsByFiles, randomString, generateTabs } from '.';
+import { NcTabsLayoutEnum, NcTab, NcTabsSizeEnum, NcTabsNodeJustifyEnum, NcTabsTypeEnum } from '../interfaces/tabs';
 import { hasIn } from 'lodash';
 import { replaceKey } from './replace-key';
 import { NcTemplate } from '../interfaces/template';
@@ -17,18 +16,20 @@ const tplDir = path.resolve(__dirname, '../../main/templates');
  * @param {NcCates} cates
  * @returns
  */
-export function generateCates(cates: NcCates, comTpl: NcTemplate): NcCates {
+export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise<NcCates> {
   if (cates.list.length > 0) {
     let subFunc = '';
     while (subFunc == '' || hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
       nodeJustify: NcTabsNodeJustifyEnum.Center,
-      size: NcTabsSizeEnum.Large,
+      size: NcTabsSizeEnum.Big,
+      tabsType: NcTabsTypeEnum.Block,
+      tabsAnimated: false,
       folderPath: cates.folderPath
     });
-    catesTabs.tabs.forEach((x) => {
-      generateFiles(
+    catesTabs.tabs.forEach(async (x) => {
+      await generateFiles(
         x,
         cates.list.find((y) => y.name == x.name),
         comTpl,
@@ -54,22 +55,29 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     layout: NcTabsLayoutEnum.Top,
     nodeJustify: NcTabsNodeJustifyEnum.Center,
     size: NcTabsSizeEnum.Medium,
+    tabsType: NcTabsTypeEnum.Tag,
+    tabsAnimated: false,
     folderPath: folderPath,
     id: func
   });
   let html = '';
+  let files = [];
+  let providers = [];
   childTabs.tabs.forEach((x, index) => {
     let param = '';
     while (param == '' || hasIn(comTpl.syswords.constant, param)) param = randomString();
     let tpl = highlightTpl;
     let content = x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
-    let type = extToType[x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length)];
+    let ext = x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length);
+    let type = extToType[ext];
     tpl = replaceKey(tpl, '__type', type);
     tpl = replaceKey(tpl, '__data', param);
     if (type == extToType.ts) {
       content = handlerContent(content);
     }
     comTpl.syswords.constant += `${param}=\`${content}\`;\n`;
+    files.push(`'src/app/${tab.name}/${x.name}': ${param}`);
+    if (x.name.lastIndexOf('.service.ts') == x.name.length - 11) providers.push(`'${x.name.replace('.service.ts', '')}'`);
     if (childTabs.tabs.length - 1 !== index) comTpl.syswords.constant += `  `;
     if (x.name == `${tab.name}.component.ts`) {
       html = `<${cate.selector}></${cate.selector}>`;
@@ -77,7 +85,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     x.content = tpl;
   });
   tab.content = `
-  <div class="x-examples-html">${html}</div>\n
+  <div class="x-examples-html">${html}${generateTools(tab.name, providers, files)}</div>\n
   ${tab.content ? `<div class="x-examples-info">${tab.content}</div>\n` : ''}
   <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
@@ -85,15 +93,35 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   return tab;
 }
 
+export function generateTools(name: string, providers: string[], files: string[]) {
+  return `<div class="x-examples-tools">  
+  <x-buttons space="0.2" hiddenBorder>
+    <x-button
+      icon="fto-zap"
+      onlyIcon
+      x-tooltip
+      content="从 StackBlitz 打开"
+      placement="top"
+      (click)="
+        this.ois.openStackBlitz('${name}', [{{ __modules }}], [${providers.join(', ')}], {
+          ${files.join(', ')}
+        })
+      "
+    ></x-button>
+  </x-buttons>
+</div>`;
+}
+
 /**
  * ts文件中特殊字符处理
  */
 export function handlerContent(content: string) {
-  let special = [`\``];
+  let special = ['${', `\``];
   special.forEach((x) => {
     if (content.indexOf(x) > -1) {
-      let rep = `\\${x}`;
-      content = content.replace(new RegExp(x, 'g'), `${rep}`);
+      let rep = '\\' + x;
+      x = x === '${' ? '\\${' : x;
+      content = content.replace(new RegExp(x, 'g'), rep);
     }
   });
   return content;

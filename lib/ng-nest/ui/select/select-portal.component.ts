@@ -7,12 +7,15 @@ import {
   OnDestroy,
   Renderer2,
   HostBinding,
-  HostListener
+  HostListener,
+  TemplateRef,
+  ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
-import { XCorner, XConnectAnimation } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
+import { XListComponent } from '@ng-nest/ui/list';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
@@ -20,24 +23,34 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation]
+  animations: [XConnectBaseAnimation]
 })
 export class XSelectPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
+  }
 
-  docClickFunction: Function;
+  @ViewChild('list') list: XListComponent;
+
   data: XSelectNode[];
   value: any;
   valueChange: Subject<any>;
   positionChange: Subject<any>;
-  closePortal: Function;
+  animating: Function;
+  activeChange: Function;
   destroyPortal: Function;
+  closeSubject: Subject<void>;
+  keydownSubject: Subject<KeyboardEvent>;
   nodeEmit: Function;
-  multiple: boolean = false;
+  multiple: XNumber = 1;
+  nodeTpl: TemplateRef<any>;
   show: boolean = false;
+  active: number = -1;
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
@@ -51,19 +64,17 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
-    setTimeout(
-      () =>
-        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.closePortal();
-        }))
-    );
-    console.log(this.value);
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.list.setUnActive(this.active);
+    });
+    this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.list.keydown(x);
+    });
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   stopPropagation(event: Event): void {
@@ -71,7 +82,15 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XSelectNode) {
-    if (this.multiple) this.nodeEmit(this.value);
+    if (this.multiple === 0) this.nodeEmit(this.value);
     else this.nodeEmit(node);
+  }
+
+  onActive(num: number) {
+    this.active = num;
+  }
+
+  onTabOut() {
+    this.closeSubject.next();
   }
 }

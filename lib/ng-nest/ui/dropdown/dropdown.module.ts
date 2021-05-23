@@ -9,6 +9,7 @@ import { XDropdownProperty } from './dropdown.property';
 @NgModule({
   declarations: [XDropdownComponent, XDropdownPortalComponent, XDropdownProperty],
   exports: [XDropdownComponent, XDropdownPortalComponent],
-  imports: [CommonModule, XPortalModule, XListModule]
+  imports: [CommonModule, XPortalModule, XListModule],
+  entryComponents: [XDropdownPortalComponent]
 })
 export class XDropdownModule {}

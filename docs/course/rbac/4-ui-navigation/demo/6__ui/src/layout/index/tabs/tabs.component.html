@@ -1,0 +1,19 @@
+<div class="slider">
+  <x-slider
+    [data]="index.tabs"
+    size="big"
+    [nodeTpl]="nodeTpl"
+    (indexChange)="indexChange($event)"
+    [activatedIndex]="activatedIndex"
+  ></x-slider>
+</div>
+
+<ng-template #nodeTpl let-node="$node">
+  <div class="tab">
+    <x-icon *ngIf="node.icon" [type]="node.icon"></x-icon>
+    <span>{{ node.label }}</span>
+    <div class="close" (click)="close(node)" *ngIf="showClose">
+      <x-icon title="关闭" type="ado-close"></x-icon>
+    </div>
+  </div>
+</ng-template>

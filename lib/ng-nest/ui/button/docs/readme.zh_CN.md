@@ -1,6 +1,7 @@
 ---
 label: 'Button 按钮'
 category: 'Basic'
+default: true
 ---
 
 # Button 按钮

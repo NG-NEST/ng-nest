@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
-import { map as rxjsMap, delay } from 'rxjs/operators';
 import { orderBy, map, cloneDeep } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';

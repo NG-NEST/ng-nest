@@ -64,7 +64,7 @@ export const X_THEME_COLORS: XColorsTheme = {
   info: '#909399',
   text: '#333333',
   border: '#dddddd',
-  background: '#fafafa'
+  background: '#ffffff'
 };
 
 export const X_THEME_DARK_COLORS: XColorsTheme = {

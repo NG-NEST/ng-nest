@@ -1,15 +1,14 @@
 import {
-  XControlValueAccessor,
   XInputBoolean,
   XInputNumber,
   XSize,
   XNumber,
   XBoolean,
-  XFormOption,
   XWithConfig,
   XPositionLeftRight
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Input
@@ -60,10 +59,40 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() maxlength: XNumber = 0;
   /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  @Input() valueTpl: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  @Input() valueTplContext: any;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */
   @Output() clearEmit = new EventEmitter<any>();
+  /**
+   * @zh_CN 获取焦点的事件
+   * @en_US Focus event
+   */
+  @Output() xFocus = new EventEmitter<any>();
+  /**
+   * @zh_CN 失去焦点的事件
+   * @en_US Blur event
+   */
+  @Output() xBlur = new EventEmitter<any>();
+  /**
+   * @zh_CN Input
+   * @en_US Input event
+   */
+  @Output() xInput = new EventEmitter<any>();
+  /**
+   * @zh_CN Keydown
+   * @en_US Keydown event
+   */
+  @Output() xKeydown = new EventEmitter<any>();
 }
 
 /**

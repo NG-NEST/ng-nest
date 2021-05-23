@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { XQuery } from '@ng-nest/ui/core';
-import { TableServiceTest, TreeServiceTest } from './tree-table.service';
+import { TreeTableService } from './tree-table.service';
+import { TreeService } from './tree.service';
 
 @Component({
   selector: 'ex-tree-table',
   templateUrl: './tree-table.component.html',
-  providers: [TableServiceTest, TreeServiceTest]
+  providers: [TreeTableService, TreeService]
 })
 export class ExTreeTableComponent {
   model: any;
   modelMultiple: any;
-  constructor(public tableService: TableServiceTest, public treeService: TreeServiceTest) {}
+  constructor(public treeTableService: TreeTableService, public treeService: TreeService) {}
 
   table: { [property: string]: any } = {
     columns: [
@@ -19,6 +20,6 @@ export class ExTreeTableComponent {
       { id: 'position', label: '职位', flex: 1, sort: true },
       { id: 'organization', label: '组织机构', flex: 1, sort: true }
     ],
-    data: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query)
+    data: (index: number, size: number, query: XQuery) => this.treeTableService.getList(index, size, query)
   };
 }

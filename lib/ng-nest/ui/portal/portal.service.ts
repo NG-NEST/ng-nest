@@ -37,15 +37,18 @@ export class XPortalService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  setPlacement(elementRef?: ElementRef, ...placement: XPlace[] | XPlacement[]): PositionStrategy {
-    if (!elementRef) {
+  setPlacement(param?: { elementRef?: ElementRef; placement?: XPlace[] | XPlacement[]; transformOriginOn?: string }): PositionStrategy {
+    if (!param) {
       return this.overlay.position().global().centerHorizontally().centerVertically();
     } else {
       return this.overlay
         .position()
-        .flexibleConnectedTo(elementRef)
-        .withPositions(this.setConnectedPosition(...placement))
-        .withLockedPosition(true);
+        .flexibleConnectedTo(param.elementRef!)
+        // .withLockedPosition(true)
+        .withFlexibleDimensions(false)
+        .withPush(false)
+        .withPositions(this.setConnectedPosition(...param.placement))
+        .withTransformOriginOn(param.transformOriginOn!);
     }
   }
 

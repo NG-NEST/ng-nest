@@ -23,14 +23,28 @@ export interface NcTabs {
   /**
    * 尺寸
    *
-   * @type {NcTabsNodeJustifyEnum}
+   * @type {NcTabsSizeEnum}
    * @memberof NcTabs
    */
   size?: NcTabsSizeEnum;
   /**
+   * 类型
+   *
+   * @type {NcTabsTypeEnum}
+   * @memberof NcTabs
+   */
+  tabsType?: NcTabsTypeEnum;
+  /**
+   * 动画
+   *
+   * @type {NcTabsTypeEnum}
+   * @memberof NcTabs
+   */
+  tabsAnimated?: boolean;
+  /**
    * 编码
    *
-   * @type {NcTabsLayoutEnum}
+   * @type {string}
    * @memberof NcTabs
    */
   id?: string;
@@ -128,7 +142,7 @@ export enum NcTabsNodeJustifyEnum {
 
 /**
  * 标签页的尺寸
- *  
+ *
  * @export
  * @enum {string}
  */
@@ -138,4 +152,16 @@ export enum NcTabsSizeEnum {
   Medium = 'medium',
   Small = 'small',
   Mini = 'mini'
+}
+
+/**
+ * 标签页的类型
+ *
+ * @export
+ * @enum {string}
+ */
+export enum NcTabsTypeEnum {
+  Block = 'block',
+  Tag = 'tag',
+  Card = 'card'
 }

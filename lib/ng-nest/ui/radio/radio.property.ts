@@ -1,16 +1,15 @@
 import {
   XData,
-  XControlValueAccessor,
   XIdentityProperty,
   XDataConvert,
   XInputBoolean,
   XSize,
   XBoolean,
-  XFormOption,
   XWithConfig
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Radio

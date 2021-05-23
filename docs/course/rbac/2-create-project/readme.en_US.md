@@ -50,7 +50,7 @@ Then open http://localhost:3000/ in your browser and you will see the following 
 
 {{ __2.2\__img:api.png:false:false }}
 
-### A detailed description of the CLI command in this section
+## A detailed description of the CLI command in this section
 
 - <a href="https://angular.cn/cli" target="_blank">Angular CLI</a>
 - <a href="https://docs.nestjs.com/cli/overview" target="_blank">Nestjs CLI</a>

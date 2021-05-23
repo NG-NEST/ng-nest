@@ -52,6 +52,11 @@ export type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
 export type XJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
 /**
+ * flex 布局下的子元素水平排列方式
+ */
+export type XJustifyContent = 'flex-start' | 'flex-end' | 'center' | 'space-around' | 'space-between';
+
+/**
  * flex 布局下的子元素垂直排列方式
  */
 export type XAlign = 'start' | 'center' | 'end';
@@ -100,3 +105,8 @@ export type XTrigger = 'hover' | 'click';
  * 展示的方向
  */
 export type XDisplayDirection = 'horizontal' | 'vertical';
+
+/**
+ * 文字对齐方向
+ */
+export type XTextAlign = 'left' | 'center' | 'right';

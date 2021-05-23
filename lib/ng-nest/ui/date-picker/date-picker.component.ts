@@ -1,6 +1,6 @@
 import { XDatePickerPortalComponent } from './date-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -15,11 +15,12 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XValueAccessor, XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
@@ -35,6 +36,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   modelType: XDatePickerModelType = 'date';
   numberValue: number | string;
+  isInput = false;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -47,18 +49,22 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     } else if (XIsNumber(value)) {
       this.modelType = 'number';
       this.numberValue = value;
+    } else if (XIsString(value)) {
+      this.modelType = 'string';
+      const valueTime = new Date(value).getTime();
+      this.numberValue = !isNaN(valueTime) ? valueTime : '';
     } else if (XIsEmpty(value)) {
       this.numberValue = '';
     }
     this.value = value;
-    this.setDisplayValue();
+    this.setDisplayValue(this.numberValue);
     this.valueChange.next(this.numberValue);
     this.cdr.detectChanges();
   }
 
-  readonly: boolean = true;
   enter: boolean = false;
   inputClearable: boolean = false;
+  animating = false;
   displayValue: any = '';
   portal: XPortalOverlayRef<XDatePickerPortalComponent>;
   icon: string = 'fto-calendar';
@@ -69,6 +75,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -81,13 +88,13 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     private overlay: Overlay
   ) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XDatePickerPrefix);
   }
 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
     this.setClassMap();
+    this.setSubject();
   }
 
   ngAfterViewInit() {
@@ -97,7 +104,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   ngOnChanges(changes: SimpleChanges): void {
     if (XIsChange(changes.type)) {
       this.setFormat();
-      this.setDisplayValue();
+      this.setDisplayValue(this.numberValue);
     }
   }
 
@@ -106,13 +113,25 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     this._unSubject.unsubscribe();
   }
 
+  setSubject() {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.closePortal();
+    });
+  }
+
   setFormat() {
     if (this.type === 'date') {
       this.format = 'yyyy-MM-dd';
     } else if (this.type === 'year') {
       this.format = 'yyyy';
-    } else if ((this.type = 'month')) {
+    } else if (this.type === 'month') {
       this.format = 'yyyy-MM';
+    } else if (this.type === 'date-time') {
+      this.format = 'yyyy-MM-dd HH:mm:ss';
+    } else if (this.type === 'date-hour') {
+      this.format = 'yyyy-MM-dd HH';
+    } else if (this.type === 'date-minute') {
+      this.format = 'yyyy-MM-dd HH:mm';
     }
   }
 
@@ -177,8 +196,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   showPortal() {
-    if (this.disabled) return;
-    if (this.closePortal()) return;
+    if (this.disabled || this.animating) return;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -190,6 +208,13 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+    this.portal.overlayRef
+      ?.outsidePointerEvents()
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.setDisplayValue(this.numberValue);
+        this.closeSubject.next();
+      });
     this.setInstance();
   }
 
@@ -210,28 +235,51 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
-      closePortal: () => this.closePortal(),
+      closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: Date) => this.onNodeClick(node)
+      nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure),
+      animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  onNodeClick(date: Date) {
-    this.numberValue = date.getTime();
-    this.value = this.getValue();
-    this.setDisplayValue();
-    this.closePortal();
-    this.modelChange();
-    this.nodeEmit.emit(this.numberValue);
+  onNodeClick(date: Date, sure = true) {
+    this.isInput = false;
+    if (sure) {
+      this.numberValue = date.getTime();
+      this.value = this.getValue();
+      this.setDisplayValue(this.numberValue);
+      this.closeSubject.next();
+      this.modelChange();
+      this.nodeEmit.emit(this.numberValue);
+    } else {
+      this.setDisplayValue(date.getTime());
+      this.cdr.markForCheck();
+    }
   }
 
-  setDisplayValue() {
-    this.displayValue = this.datePipe.transform(this.numberValue, this.format);
+  onInput() {
+    this.isInput = true;
+  }
+
+  setDisplayValue(dateNumber: number | string) {
+    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue))) {
+      this.displayValue = this.datePipe.transform(this.displayValue, this.format);
+      this.numberValue = new Date(this.displayValue).getTime();
+      this.value = this.getValue();
+      this.modelChange();
+      this.isInput = false;
+    } else {
+      this.displayValue = this.datePipe.transform(dateNumber, this.format);
+    }
   }
 
   setPlacement() {
-    return this.portalService.setPlacement(this.inputCom.input, this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end');
+    return this.portalService.setPlacement({
+      elementRef: this.inputCom.inputElement,
+      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      transformOriginOn: 'x-date-picker-portal'
+    });
   }
 
   setPortal() {

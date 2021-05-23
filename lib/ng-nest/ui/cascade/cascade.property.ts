@@ -1,5 +1,6 @@
-import { XParentIdentityProperty, XDataConvert, XData, XControlValueAccessor, XCorner, XFormOption, XWithConfig } from '@ng-nest/ui/core';
+import { XParentIdentityProperty, XDataConvert, XData, XCorner, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Cascade

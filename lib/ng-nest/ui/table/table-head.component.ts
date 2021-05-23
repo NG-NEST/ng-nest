@@ -5,14 +5,13 @@ import {
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
-  ChangeDetectionStrategy,
   Optional,
   Host,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { XTableHeadPrefix, XTableHeadProperty, XTableColumn } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell } from './table.property';
+import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 
 @Component({
@@ -23,6 +22,7 @@ import { XTableComponent } from './table.component';
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort: XSort[] = [];
   sortStr = '';
+  theadStyle: { [property: string]: any } = {};
   @ViewChild('thead') thead: ElementRef;
   constructor(
     @Host() @Optional() public table: XTableComponent,
@@ -35,19 +35,35 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.columns, simples.scrollYWidth, simples.scrollXWidth) && this.cdr.detectChanges();
+    XIsChange(simples.columns, simples.scrollYWidth, simples.scrollXWidth, simples.cellConfig) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
+    this.setStyle();
   }
 
   ngAfterViewInit() {
     this.table.thead = this.thead;
+    this.table.headChange = () => this.cdr.detectChanges();
   }
 
-  getSticky(column: XTableColumn) {
+  getSticky(column: XTableColumn | XTableCell) {
     return Number(column.left) >= 0;
+  }
+
+  setStyle() {
+    let height = this.rowHeight == 0 ? '' : this.rowHeight;
+    if (this.cellConfig && this.cellConfig.cells) {
+      const spt = this.cellConfig.cells.map((x) => {
+        const gridAreaSpt = x.gridArea?.split('/');
+        return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
+      });
+      height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
+    }
+    this.theadStyle = {
+      height: `${height}px`
+    };
   }
 
   onSort(column: XTableColumn) {
@@ -70,6 +86,15 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.table.sortChange.emit(this.sort);
     this.table.resetScroll(false, true);
     this.cdr.detectChanges();
+  }
+
+  dragWidth(dis: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    if (column.width) {
+      (column.width as number) += dis.x;
+      if (column.width < 60) column.width = 60;
+      this.cdr.detectChanges();
+      this.table.bodyChange();
+    }
   }
 
   trackByItem(index: number, item: XTableColumn) {

@@ -1,4 +1,21 @@
 <tbody #tbody>
+  <ng-container *ngIf="cellConfig; else virtualScrollTpl">
+    <tr *ngFor="let row of data; index as i; trackBy: trackByItem" [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
+      <td
+        *ngFor="let column of cellConfig.cells; index as j"
+        [title]="row[column.id] ? row[column.id] : ''"
+        [class.x-table-sticky]="table.getSticky(column)"
+        [style.left.px]="column.left"
+        [style.grid-area]="column.gridArea"
+      >
+        <ng-container *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-container>
+      </td>
+    </tr>
+  </ng-container>
+  <x-empty *ngIf="isEmpty"></x-empty>
+</tbody>
+
+<ng-template #virtualScrollTpl>
   <cdk-virtual-scroll-viewport
     #virtualBody
     *ngIf="virtualScroll; else bodyTpl"
@@ -17,8 +34,7 @@
       <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: getIndex(index, row) }"></ng-container>
     </tr>
   </cdk-virtual-scroll-viewport>
-  <x-empty *ngIf="isEmpty"></x-empty>
-</tbody>
+</ng-template>
 
 <ng-template #bodyTpl>
   <tr
@@ -40,19 +56,27 @@
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"
     >
-      <ng-container [ngSwitch]="column.type">
-        <ng-container *ngSwitchCase="'checkbox'">
-          <x-checkbox [data]="[{ id: true, label: '' }]" [(ngModel)]="row[column.id]"></x-checkbox>
-        </ng-container>
-        <ng-container *ngSwitchCase="'index'">
-          <div>{{ table.getIndex(i) }}</div>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row }">
-            <div [innerHTML]="row[column.id]"></div>
-          </ng-container>
-        </ng-container>
-      </ng-container>
+      <ng-template *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-template>
     </td>
+  </ng-container>
+</ng-template>
+
+<ng-template #cellTpl let-column="column" let-row="row" let-i="i">
+  <ng-container [ngSwitch]="column.type">
+    <ng-container *ngSwitchCase="'checkbox'">
+      <x-checkbox
+        [data]="[{ id: true, label: '' }]"
+        [(ngModel)]="row[column.id]"
+        (ngModelChange)="table.bodyChecked($event, column)"
+      ></x-checkbox>
+    </ng-container>
+    <ng-container *ngSwitchCase="'index'">
+      <div>{{ table.getIndex(i) }}</div>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row }">
+        <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
+      </ng-container>
+    </ng-container>
   </ng-container>
 </ng-template>

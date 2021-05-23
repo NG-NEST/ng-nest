@@ -1,0 +1,12 @@
+:host {
+  padding: 1rem;
+  display: block;
+
+  > .app-footer,
+  > h3 {
+    padding-left: 6rem;
+  }
+  > h3 {
+    margin: 0;
+  }
+}

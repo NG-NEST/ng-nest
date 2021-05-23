@@ -1,15 +1,14 @@
 import {
-  XControlValueAccessor,
   XParentIdentityProperty,
   XDataConvert,
   XInputBoolean,
   XData,
   XBoolean,
-  XCorner,
-  XFormOption,
-  XWithConfig
+  XWithConfig,
+  XPositionTopBottom
 } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Input, Component, TemplateRef } from '@angular/core';
+import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Select
@@ -30,6 +29,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    */
   @Input() @XDataConvert() data: XData<XSelectNode> = [];
   /**
+   * @zh_CN 清除按钮
+   * @en_US Clear button
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable: XBoolean;
+  /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
    */
@@ -38,12 +42,17 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement: XPositionTopBottom;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
    */
   @Input() @XInputBoolean() multiple: XBoolean;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  @Input() nodeTpl: TemplateRef<any>;
 }
 
 /**
@@ -65,7 +74,12 @@ export interface XSelectOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPositionTopBottom;
+  /**
+   * @zh_CN 多选功能
+   * @en_US Multiple choice
+   */
+  multiple?: XBoolean;
 }
 
 /**

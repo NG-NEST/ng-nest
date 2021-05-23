@@ -4,7 +4,10 @@
   "deleteDestPath": true,
   "lib": {
     "entryFile": "./index.ts",
-    "styleIncludePaths": ["./style"]
+    "styleIncludePaths": ["./style"],
+    "umdModuleIds": {
+      "resize-observer-polyfill/ResizeObserver": "resize-observer-polyfill.ResizeObserver"
+    }
   },
-  "whitelistedNonPeerDependencies": ["tslib", "angular"]
+  "allowedNonPeerDependencies": ["tslib", "angular", "resize-observer-polyfill"]
 }

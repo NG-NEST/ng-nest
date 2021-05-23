@@ -39,5 +39,8 @@ export const XIsEmpty = (object: any) => typeof object === 'undefined' || object
 export const XIsValueArray = (object: any) => XIsArray(object) && object.length > 0 && !XIsObject(object[0]);
 export const XIsObjectArray = (object: any) => XIsArray(object) && object.length > 0 && XIsObject(object[0]);
 export const XIsObservable = (object: any) => isObservable(object);
-export const XIsTemplateRef = (object: any) => !XIsEmpty(object) && object.elementRef;
+export const XIsTemplateRef = (object: any) => {
+  if (!XIsEmpty(object) && object.elementRef) return true;
+  else return false;
+};
 export const XIsXTemplate = (object: any) => XIsString(object) || XIsNumber(object) || XIsDate(object) || XIsTemplateRef(object);

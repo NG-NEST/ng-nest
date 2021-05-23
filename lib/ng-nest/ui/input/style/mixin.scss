@@ -49,6 +49,25 @@
       transition: all $--x-animation-duration-base;
     }
   }
+  &-value-template {
+    > .#{$--x-input-prefix}-row {
+      > input {
+        color: transparent;
+      }
+    }
+    &-value {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      left: 0;
+      &:hover + input {
+        @include hover();
+      }
+    }
+  }
   &-error-message {
     position: absolute;
     bottom: 0;
@@ -78,11 +97,12 @@
       > #{$--x-prefix}-icon {
         color: $--x-text-400;
       }
-      > input {
+      > input,
+      > .#{$--x-input-prefix}-value-template-value {
         color: $--x-text-400;
         cursor: not-allowed;
         border-color: $--x-border-100;
-        background-color: $--x-background-200;
+        background-color: $--x-background-a100;
       }
     }
   }
@@ -101,7 +121,8 @@
           color: $--x-text-300;
         }
       }
-      > input {
+      > input,
+      > .#{$--x-input-prefix}-value-template-value {
         &:hover + .#{$--x-input-prefix}-clear,
         &:focus + .#{$--x-input-prefix}-clear {
           opacity: 1;
@@ -114,7 +135,7 @@
           opacity: 1;
         }
         > input {
-          padding-right: $--x-input-icon-font-size + $--x-input-icon-padding * 2 !important;
+          padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2) !important;
         }
       }
     }
@@ -150,13 +171,18 @@
         position: absolute;
         font-size: $--x-input-icon-font-size;
         padding: $--x-input-icon-padding;
+        &.#{$--x-prefix}-icon-spin {
+          padding: 0;
+          margin: $--x-input-icon-padding;
+        }
       }
     }
   }
   &-icon-left {
     > .#{$--x-input-prefix}-row {
-      > input {
-        padding-left: $--x-input-icon-font-size + $--x-input-icon-padding * 2;
+      > input,
+      > .#{$--x-input-prefix}-value-template-value {
+        padding-left: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
       }
       > #{$--x-prefix}-icon {
         left: 0;
@@ -165,8 +191,9 @@
   }
   &-icon-right {
     > .#{$--x-input-prefix}-row {
-      > input {
-        padding-right: $--x-input-icon-font-size + $--x-input-icon-padding * 2;
+      > input,
+      > .#{$--x-input-prefix}-value-template-value {
+        padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
       }
       > #{$--x-prefix}-icon {
         right: 0;
@@ -187,7 +214,8 @@
 @mixin size($size, $height, $padding) {
   &-#{$size} {
     > .#{$--x-input-prefix}-row {
-      > input {
+      > input,
+      > .#{$--x-input-prefix}-value-template-value {
         height: $height;
         line-height: $height;
         padding: $padding;

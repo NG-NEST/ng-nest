@@ -1,4 +1,4 @@
-import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum } from './../interfaces/tabs';
+import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum, NcTabsTypeEnum } from './../interfaces/tabs';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcPage } from '../interfaces/page';
@@ -39,7 +39,7 @@ export async function handlerComponent(page: NcPage) {
  * @export
  * @param {NcPage} page
  */
-export function handlerExamples(page: NcPage) {
+export function handlerExamples(page: NcPage): Promise<void> {
   if (page.custom.indexOf('__examples') <= -1) return;
   let examples: NcExamples = {};
   let comTpl = find(page.templates, (x) => x.name == 'component');
@@ -52,6 +52,8 @@ export function handlerExamples(page: NcPage) {
     layout: NcTabsLayoutEnum.Left,
     nodeJustify: NcTabsNodeJustifyEnum.Start,
     size: NcTabsSizeEnum.Large,
+    tabsType: NcTabsTypeEnum.Block,
+    tabsAnimated: false,
     folderPath: `${examples.path}/${page.lang}`
   });
   tabs.tabs.forEach((x) => {
@@ -96,7 +98,7 @@ export async function handlerSpec(page: NcPage) {
   }
   let specs = await hanlderSpec(fsPath);
   let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
-  specs.forEach(async (x) => {
+  specs.forEach((x) => {
     mod.syswords.imports += `${x.import}\n`;
     mod.syswords.modules += `, ${x.module}`;
     if (x.import.indexOf(`@ng-nest/ui/${page.name}`) !== -1) {
@@ -111,4 +113,9 @@ export async function handlerSpec(page: NcPage) {
       }
     }
   });
+
+  let htl = page.templates.find((x) => x.type === 'custom' && x.name === 'custom-component');
+  if (htl) {
+    htl.syswords.modules = specs.map((x) => `'${x.name}'`).join(', ');
+  }
 }

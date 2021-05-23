@@ -21,6 +21,7 @@ export default {
     text: 'Text'
   },
   calendar: {
+    sure: 'OK',
     month: 'Month',
     year: 'Year',
     lastMonth: 'Last month',

@@ -10,13 +10,14 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XValueAccessor, XClearClass, XResize, XIsUndefined, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XFindPrefix}`,

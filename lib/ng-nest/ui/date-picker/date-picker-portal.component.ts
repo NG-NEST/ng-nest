@@ -11,7 +11,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectAnimation, XCorner } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -23,13 +23,17 @@ import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectAnimation],
+  animations: [XConnectBaseAnimation],
   providers: [DatePipe, LowerCasePipe]
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
-  @HostBinding('@x-connect-animation') public placement: XCorner;
-  @HostListener('@x-connect-animation.done', ['$event']) done(event: { toState: any }) {
+  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    this.animating(false);
     event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    this.animating(true);
   }
 
   type: XDatePickerType = 'date';
@@ -39,21 +43,16 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   value: any;
   valueChange: Subject<any>;
   positionChange: Subject<any>;
+  animating: Function;
   closePortal: Function;
   destroyPortal: Function;
-  nodeEmit: Function;
-  docClickFunction: Function;
+  nodeEmit: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
+  time: number;
   private _type: XDatePickerType;
   private _unSubject = new Subject<void>();
 
-  constructor(
-    public renderer: Renderer2,
-    public datePipe: DatePipe,
-    public lowerCasePipe: LowerCasePipe,
-    public cdr: ChangeDetectorRef,
-    public i18n: XI18nService
-  ) {}
+  constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -64,12 +63,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
       this.placement = x;
       this.cdr.detectChanges();
     });
-    setTimeout(
-      () =>
-        (this.docClickFunction = this.renderer.listen('document', 'click', () => {
-          this.closePortal();
-        }))
-    );
     this.i18n.localeChange
       .pipe(
         map((x) => x.datePicker as XI18nDatePicker),
@@ -88,7 +81,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
-    this.docClickFunction && this.docClickFunction();
   }
 
   init() {
@@ -97,7 +89,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     } else {
       this.model = this.display;
     }
-    this.type = this.type;
+    this.time = this.model.getTime();
     this._type = this.type;
     this.setDisplay(this.model);
     this.cdr.detectChanges();
@@ -119,7 +111,12 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   dateChange(date: Date) {
     this.setDisplay(date);
     this.model = date;
-    this.nodeEmit(date);
+    this.setModel(this.model, new Date(this.time));
+    if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
+      this.nodeEmit(this.model, false);
+    } else {
+      this.nodeEmit(this.model);
+    }
   }
 
   typeChange(type: XDatePickerType) {
@@ -133,7 +130,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
       this.model = date;
       this.nodeEmit(date);
     } else {
-      this.type = 'date';
+      this.type = this._type;
     }
     this.cdr.detectChanges();
   }
@@ -178,5 +175,16 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   getLocaleMonth(date: Date) {
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+  }
+
+  selectTime(time: Date) {
+    this.time = time.getTime();
+    this.nodeEmit(this.setModel(this.model, time), false);
+    this.cdr.detectChanges();
+  }
+
+  setModel(date: Date, time: Date) {
+    this.model = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), time.getSeconds());
+    return this.model;
   }
 }
