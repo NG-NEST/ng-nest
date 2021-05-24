@@ -77,7 +77,7 @@ export class ConfigService {
   }
 
   getVersions() {
-    this.http.get('https://ngnest.com/static/json/version.json').subscribe((x: { versions: [] }) => {
+    this.http.get(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x: { versions: [] }) => {
       this.versions = x.versions;
     });
   }
