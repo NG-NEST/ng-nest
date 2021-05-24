@@ -10,7 +10,7 @@ export class ConfigService {
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions: string[] = [];
-  version = '11.2.7';
+  version = '10.2.0';
   navName = 'NG-NEST';
 
   get lang() {
@@ -77,7 +77,7 @@ export class ConfigService {
   }
 
   getVersions() {
-    this.http.get('https://ngnest.com/static/json/version.json').subscribe((x: { versions: [] }) => {
+    this.http.get(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x: { versions: [] }) => {
       this.versions = x.versions;
     });
   }
