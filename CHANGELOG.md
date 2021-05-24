@@ -1,3 +1,21 @@
+## [11.2.8](https://github.com/NG-NEST/ng-nest/compare/11.2.7...11.2.8) (2021-05-24)
+
+
+### Bug Fixes
+
+* **module:button:** update icon group button ([8d14bb9](https://github.com/NG-NEST/ng-nest/commit/8d14bb9fe4255c616ddfa0b534eba93bb323b0f9))
+
+
+### Features
+
+* **module:auto-complete:** add node click event ([1d4b6ec](https://github.com/NG-NEST/ng-nest/commit/1d4b6ecbcdc48f00ed3e3fcaa49911ae476971ad))
+* **module:base-form:** add base form module ([c4fb85f](https://github.com/NG-NEST/ng-nest/commit/c4fb85f18b67caca7dbcb39cc3199176ef03ff09))
+* **module:menu:** add root category ([3fbe0c4](https://github.com/NG-NEST/ng-nest/commit/3fbe0c4643b0dd220d42cb5d77354cb28ea257fd))
+* **module:select:** add clearable icon ([2d08161](https://github.com/NG-NEST/ng-nest/commit/2d08161b1b5b15ca5c011b47616bf0cafc6133a3))
+* **module:silder:** add node change event ([c8fa69a](https://github.com/NG-NEST/ng-nest/commit/c8fa69a4707df05bbe923063e9ba6d586de4b9ac))
+
+
+
 ## [11.2.7](https://github.com/NG-NEST/ng-nest/compare/11.2.6...11.2.7) (2021-05-10)
 
 
