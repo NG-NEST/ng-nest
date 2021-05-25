@@ -8,6 +8,9 @@
     >
     </x-slider>
   </div>
+  <div class="item">
+    <x-button (click)="action('admin')">Admin</x-button>
+  </div>
   <div class="item version">
     <x-select
       [data]="config.versions"
