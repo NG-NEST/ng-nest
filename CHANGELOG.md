@@ -1,3 +1,7 @@
+## [11.2.9](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.9) (2021-05-26)
+
+
+
 ## [11.2.8](https://github.com/NG-NEST/ng-nest/compare/11.2.7...11.2.8) (2021-05-24)
 
 
