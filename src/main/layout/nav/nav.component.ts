@@ -62,6 +62,9 @@ export class NavComponent {
           window.location.href = window.location.origin + `/version/${param}`;
         }
         break;
+      case 'admin':
+        window.open('http://adminui.ngnest.com/', '_blank');
+        break;
     }
   }
 }
