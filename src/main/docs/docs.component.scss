@@ -8,6 +8,7 @@ ns-docs {
     background-color: $--x-background;
     position: fixed;
     top: $header-height;
+    left: 0;
     transition: margin $transition-duration-slow, opacity $transition-duration-slow;
     box-shadow: $--x-box-shadow-light;
     > section {
