@@ -121,10 +121,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setSubject() {
-    this.closeSubject.pipe(throttleTime(50), delay(50), takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.keydownSubject.pipe(throttleTime(50), takeUntil(this._unSubject)).subscribe((x) => {
+    this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
       if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
         this.showPortal();
