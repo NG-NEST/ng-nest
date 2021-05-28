@@ -59,7 +59,7 @@ export class NavComponent {
         if (index <= 0) {
           window.location.href = window.location.origin;
         } else {
-          window.location.href = window.location.origin + `/version/${param}`;
+          window.location.href = window.location.origin + `/version/${param}/`;
         }
         break;
       case 'admin':
