@@ -1,3 +1,17 @@
+## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.9...11.2.10) (2021-05-28)
+
+
+### Bug Fixes
+
+* **module:select:** double click input ([049863f](https://github.com/NG-NEST/ng-nest/commit/049863f39b42e461cf276cc4a211b61d411d8d7f))
+
+
+### Features
+
+* **module:table:** update table styles ([3fd5fcc](https://github.com/NG-NEST/ng-nest/commit/3fd5fccd9c4e91ff827aba90780970d33bf6a242))
+
+
+
 ## [11.2.9](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.9) (2021-05-26)
 
 
