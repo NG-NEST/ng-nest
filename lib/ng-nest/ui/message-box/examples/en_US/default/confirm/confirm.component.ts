@@ -16,9 +16,11 @@ export class ExConfirmComponent {
       callback: (action: XMessageBoxAction) => {
         if (action === 'confirm') {
           // Business processing......
-          this.message.success('successfully deleted!');
-        } else {
-          this.message.info('Undeleted!');
+          this.message.success('successfully deleted.');
+        } else if (action === 'close') {
+          this.message.info('close.');
+        } else if (action === 'cancel') {
+          this.message.info('cancel.');
         }
       }
     });
