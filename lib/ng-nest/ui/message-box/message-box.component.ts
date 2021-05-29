@@ -13,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class XMessageBoxComponent implements OnInit {
   messageBox: XMessageBoxRef = {};
-  action: XMessageBoxAction = 'cancel';
+  action: XMessageBoxAction = 'close';
   formGroup: FormGroup = new FormGroup({});
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
@@ -22,19 +22,25 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   onClose() {
+    this.action = 'close';
+    this.hideBox();
+  }
+
+  onCancel() {
+    this.action = 'cancel';
+    this.hideBox();
+  }
+
+  hideBox() {
     if (this.messageBox.input?.hide && this.messageBox.input?.hide !== true) this.messageBox.input.hide = true;
     this.messageBox.ref?.overlayRef?.detach();
     this.cdr.detectChanges();
   }
 
-  onCancel() {
-    this.onClose();
-  }
-
   onConfirm() {
     if (!this.messageBox.input?.showInput || (this.messageBox.input.showInput && this.formGroup.valid)) {
       this.action = 'confirm';
-      this.onClose();
+      this.hideBox();
     }
   }
 

@@ -19,8 +19,10 @@ export class ExPromptComponent {
         if (action === 'confirm') {
           // Business processing......
           this.message.success('email：' + msg);
-        } else {
-          this.message.info('Submission has been cancelled!');
+        } else if (action === 'close') {
+          this.message.info('Submission has been closed.');
+        } else if (action === 'cancel') {
+          this.message.info('Submission has been canceled.');
         }
       }
     });

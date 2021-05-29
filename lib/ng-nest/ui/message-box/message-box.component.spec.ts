@@ -158,7 +158,9 @@ class TestXMessageBoxComponent {
         if (action === 'confirm') {
           // 业务处理......
           this.message.success('删除成功！');
-        } else {
+        } else if (action === 'close') {
+          this.message.info('已关闭窗口！');
+        } else if (action === 'cancel') {
           this.message.info('已取消删除！');
         }
       }
@@ -175,8 +177,10 @@ class TestXMessageBoxComponent {
         if (action === 'confirm') {
           // 业务处理......
           this.message.success('邮箱：' + msg);
-        } else {
-          this.message.info('已取消提交内容！');
+        } else if (action === 'close') {
+          this.message.info('已关闭窗口！');
+        } else if (action === 'cancel') {
+          this.message.info('已取消窗口！');
         }
       }
     });

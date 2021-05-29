@@ -126,7 +126,7 @@ export interface XMessageBoxCallback {
   (action: XMessageBoxAction, message?: string): void;
 }
 
-export type XMessageBoxAction = 'confirm' | 'cancel';
+export type XMessageBoxAction = 'confirm' | 'cancel' | 'close';
 
 /**
  * @zh_CN 创建的消息对象
