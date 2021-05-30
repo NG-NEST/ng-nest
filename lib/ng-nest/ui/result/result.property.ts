@@ -22,17 +22,17 @@ export class XResultProperty extends XProperty {
    * @zh_CN 标题，支持模板自定义
    * @en_US Title, support template customization
    */
-  @Input() title: XTemplate;
+  @Input() title!: XTemplate;
   /**
    * @zh_CN 图标，支持模板自定义
    * @en_US Icon, support template customization
    */
-  @Input() icon: XTemplate;
+  @Input() icon!: XTemplate;
   /**
    * @zh_CN 小标题，支持模板自定义
    * @en_US Subtitle, support template customization
    */
-  @Input() subTitle: XTemplate;
+  @Input() subTitle!: XTemplate;
 }
 
 /**

@@ -24,22 +24,22 @@ export class XDropdownProperty extends XProperty {
    * @zh_CN 触发方式
    * @en_US Trigger method
    */
-  @Input() @XWithConfig<XDropdownTrigger>(X_CONFIG_NAME, 'hover') trigger: XDropdownTrigger;
+  @Input() @XWithConfig<XDropdownTrigger>(X_CONFIG_NAME, 'hover') trigger!: XDropdownTrigger;
   /**
    * @zh_CN 展示位置
    * @en_US Placement
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom-start') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom-start') placement!: XPlacement;
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() disabled: XBoolean;
+  @Input() @XInputBoolean() disabled!: XBoolean;
   /**
    * @zh_CN 节点中已经包含子节点数据
    * @en_US The node already contains child node data
    */
-  @Input() @XInputBoolean() children: XBoolean;
+  @Input() @XInputBoolean() children!: XBoolean;
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event

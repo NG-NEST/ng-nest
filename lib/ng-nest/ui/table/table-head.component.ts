@@ -23,7 +23,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort: XSort[] = [];
   sortStr = '';
   theadStyle: { [property: string]: any } = {};
-  @ViewChild('thead') thead: ElementRef;
+  @ViewChild('thead') thead!: ElementRef;
   constructor(
     @Host() @Optional() public table: XTableComponent,
     public renderer: Renderer2,

@@ -27,7 +27,7 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable!: XBoolean;
   /**
    * @zh_CN 只读
    * @en_US Read only
@@ -37,7 +37,7 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    * @zh_CN 图标
    * @en_US Icon
    */
-  @Input() icon: string;
+  @Input() icon!: string;
   /**
    * @zh_CN 图标布局方式
    * @en_US Icon layout

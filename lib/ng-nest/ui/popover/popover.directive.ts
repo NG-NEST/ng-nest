@@ -9,13 +9,13 @@ import { XPlacement, XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverDirective extends XPopoverProperty implements OnInit, OnChanges {
-  portal: XPortalOverlayRef<XPopoverPortalComponent>;
-  box: DOMRect;
+  portal!: XPortalOverlayRef<XPopoverPortalComponent>;
+  box!: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   positionChange: Subject<any> = new Subject();
   timeoutHide: any;
   private _unSubject = new Subject();
-  private realPlacement: XPlacement;
+  private realPlacement!: XPlacement;
 
   constructor(
     private elementRef: ElementRef,

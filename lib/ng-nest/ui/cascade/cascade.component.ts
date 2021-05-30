@@ -30,8 +30,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XCascadeComponent)]
 })
 export class XCascadeComponent extends XCascadeProperty implements OnInit, OnChanges {
-  @ViewChild('cascade', { static: true }) cascade: ElementRef;
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
+  @ViewChild('cascade', { static: true }) cascade!: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -51,10 +51,10 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   displayValue: any = '';
   datas: XCascadeNode[] = [];
   nodes: XCascadeNode[] = [];
-  portal: XPortalOverlayRef<XCascadePortalComponent>;
+  portal!: XPortalOverlayRef<XCascadePortalComponent>;
   icon: string = 'fto-chevron-down';
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();

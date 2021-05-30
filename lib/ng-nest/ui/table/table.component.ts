@@ -31,28 +31,28 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   get getScrollTop() {
     return this.scrollTop > 0;
   }
-  thead: ElementRef;
-  tfoot: ElementRef;
-  virtualBody: CdkVirtualScrollViewport;
-  headChange: () => void;
-  bodyChange: () => void;
-  scrollContentEle: HTMLElement;
+  thead!: ElementRef;
+  tfoot!: ElementRef;
+  virtualBody!: CdkVirtualScrollViewport;
+  headChange!: () => void;
+  bodyChange!: () => void;
+  scrollContentEle!: HTMLElement;
   hasScrollY = false;
   scrollYWidth = 0;
   hasScrollX = false;
   scrollXHeight = 0;
-  scrollXWidth: number | null;
+  scrollXWidth!: number | null;
   scrollLeft = 0;
   scrollTop = 0;
-  rowChecked: XTableColumn;
-  headCheckboxList: XTableColumn[];
+  rowChecked!: XTableColumn;
+  headCheckboxList!: XTableColumn[];
   dataIsFunc = false;
   getting = false;
   tableData: XTableRow[] = [];
   checkedValues: { [prop: string]: boolean } = {};
   indeterminate = '$$indeterminate';
-  @ViewChild('table') table: ElementRef;
-  @ViewChild('pagination') pagination: XPaginationComponent;
+  @ViewChild('table') table!: ElementRef;
+  @ViewChild('pagination') pagination!: XPaginationComponent;
   private _unSubject = new Subject();
   constructor(
     public renderer: Renderer2,

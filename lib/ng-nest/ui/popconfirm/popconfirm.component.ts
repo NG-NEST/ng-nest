@@ -13,7 +13,7 @@ import { map, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPopconfirmComponent extends XPopconfirmProperty {
-  visible: boolean;
+  visible!: boolean;
   locale: XI18nPopconfirm = {};
 
   private _unSubject = new Subject<void>();

@@ -32,27 +32,27 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable!: XBoolean;
   /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
    */
-  @Input() @XInputBoolean() async: XBoolean;
+  @Input() @XInputBoolean() async!: XBoolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement: XPositionTopBottom;
+  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement!: XPositionTopBottom;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
    */
-  @Input() @XInputBoolean() multiple: XBoolean;
+  @Input() @XInputBoolean() multiple!: XBoolean;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
 }
 
 /**

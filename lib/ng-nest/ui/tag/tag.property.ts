@@ -23,22 +23,22 @@ export class XTagProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 显示关闭按钮
    * @en_US Show close button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() closable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() closable!: XBoolean;
   /**
    * @zh_CN 深色主题
    * @en_US Dark theme
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dark: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dark!: XBoolean;
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() disabled?: XBoolean;
+  @Input() @XInputBoolean() disabled!: XBoolean;
   /**
    * @zh_CN 点击关闭的事件
    * @en_US Click to close the event

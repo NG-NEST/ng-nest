@@ -23,7 +23,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XCheckboxComponent)]
 })
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
-  @ViewChild('checkbox', { static: true }) checkbox: ElementRef;
+  @ViewChild('checkbox', { static: true }) checkbox!: ElementRef;
 
   writeValue(value: boolean | Array<any>) {
     this.value = value;

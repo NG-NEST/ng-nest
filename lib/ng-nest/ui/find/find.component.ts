@@ -28,13 +28,13 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XFindComponent)]
 })
 export class XFindComponent extends XFindProperty implements OnInit {
-  @ViewChild('find', { static: true }) find: ElementRef;
-  @ViewChild('dialogCom') dialogCom: XDialogComponent;
-  @ViewChild('tableCom') tableCom: XTableComponent;
-  @ViewChild('treeCom') treeCom: XTreeComponent;
-  @ViewChild('buttonCom') buttonCom: XButtonComponent;
+  @ViewChild('find', { static: true }) find!: ElementRef;
+  @ViewChild('dialogCom') dialogCom!: XDialogComponent;
+  @ViewChild('tableCom') tableCom!: XTableComponent;
+  @ViewChild('treeCom') treeCom!: XTreeComponent;
+  @ViewChild('buttonCom') buttonCom!: XButtonComponent;
 
-  private _tableRef: ElementRef;
+  private _tableRef!: ElementRef;
   public get tableRef(): ElementRef {
     return this._tableRef;
   }
@@ -46,7 +46,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
     }
   }
 
-  private _treeRef: ElementRef;
+  private _treeRef!: ElementRef;
   public get treeRef(): ElementRef {
     return this._treeRef;
   }
@@ -84,7 +84,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
   height = 100;
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   writeValue(value: any) {
     this.value = value;

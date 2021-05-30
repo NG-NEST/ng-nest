@@ -37,9 +37,9 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
   }
   invalidIndex: number = 0;
   labelMap: XClassMap = {};
-  value: T;
-  onChange: (value: T) => void;
-  onTouched: () => void;
+  value!: T;
+  onChange!: (value: T) => void;
+  onTouched!: () => void;
   writeValue(value: T): void {
     this.value = value;
   }

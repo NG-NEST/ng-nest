@@ -23,7 +23,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XRadioComponent)]
 })
 export class XRadioComponent extends XRadioProperty implements OnChanges {
-  @ViewChild('radio', { static: true }) radio: ElementRef;
+  @ViewChild('radio', { static: true }) radio!: ElementRef;
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
 

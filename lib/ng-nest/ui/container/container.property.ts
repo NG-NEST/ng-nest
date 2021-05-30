@@ -18,7 +18,7 @@ export class XContainerProperty extends XProperty {
    * @zh_CN flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column
    * @en_US The arrangement direction of the sub-elements under the flex layout. When the sub-elements have x-header or x-footer, it is column
    */
-  @Input() @XWithConfig<XDirection>(X_CONFIG_NAME) direction: XDirection;
+  @Input() @XWithConfig<XDirection>(X_CONFIG_NAME) direction!: XDirection;
 }
 
 /**
@@ -38,7 +38,7 @@ export class XHeaderProperty extends XProperty {
    * @zh_CN 高度，rem
    * @en_US Height, rem
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME_HEADER, 3) height: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME_HEADER, 3) height!: number;
 }
 
 /**
@@ -58,7 +58,7 @@ export class XAsideProperty extends XProperty {
    * @zh_CN 宽度，rem
    * @en_US Width, rem
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME_ASIDE, 12) width: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME_ASIDE, 12) width!: number;
 }
 
 /**

@@ -26,7 +26,7 @@ import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Over
   animations: [XConnectBaseAnimation]
 })
 export class XDropdownPortalComponent implements OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -34,20 +34,20 @@ export class XDropdownPortalComponent implements OnDestroy {
   @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
     this.animating(true);
   }
-  data: XDropdownNode[];
-  trigger: XDropdownTrigger;
-  close: Function;
-  nodeEmit: Function;
-  portalHover: Function;
-  animating: Function;
-  destroyPortal: Function;
-  portal: XPortalOverlayRef<XDropdownPortalComponent>;
-  positionChange: Subject<any>;
+  data!: XDropdownNode[];
+  trigger!: XDropdownTrigger;
+  close!: Function;
+  nodeEmit!: Function;
+  portalHover!: Function;
+  animating!: Function;
+  destroyPortal!: Function;
+  portal!: XPortalOverlayRef<XDropdownPortalComponent>;
+  positionChange!: Subject<any>;
   portalPositionChange: Subject<any> = new Subject();
-  node: XDropdownNode;
+  node!: XDropdownNode;
   timeoutHide: any;
   timespan = 200;
-  portalPlacement: XPositionTopBottom;
+  portalPlacement!: XPositionTopBottom;
   childAnimating = false;
   private _unSubject = new Subject<void>();
 

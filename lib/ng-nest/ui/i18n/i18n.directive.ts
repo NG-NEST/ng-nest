@@ -8,7 +8,7 @@ import { XIsChange } from '@ng-nest/ui/core';
   selector: '[x-i18n]'
 })
 export class XI18nDirective implements OnChanges, OnDestroy {
-  @Input('x-i18n') path: string;
+  @Input('x-i18n') path!: string;
   private _unSubject = new Subject<void>();
   constructor(private locale: XI18nService, private elementRef: ElementRef) {
     this.locale.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.setLocale());

@@ -887,7 +887,7 @@ class TestXFormRowComponent {
       data: ['乒乓球', '篮球', '足球']
     }
   ];
-  @ViewChild('form') form: XFormComponent;
+  @ViewChild('form') form!: XFormComponent;
 
   submit() {
     console.log(this.form);

@@ -46,7 +46,7 @@ export const XViewBox = [
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
-  private _svgElement: SVGElement;
+  private _svgElement!: SVGElement;
   private _loaded: boolean = false;
 
   @HostBinding('class.x-icon-spin') get getSpin() {

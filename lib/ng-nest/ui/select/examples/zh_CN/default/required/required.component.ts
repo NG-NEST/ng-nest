@@ -9,5 +9,5 @@ import { XData } from '@ng-nest/ui/core';
 })
 export class ExRequiredComponent {
   data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
-  model: number;
+  model!: number;
 }

@@ -20,7 +20,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class XThemeService {
   private colorsProp: XColorsTheme = {};
-  private colorsStyleEle: HTMLStyleElement;
+  private colorsStyleEle!: HTMLStyleElement;
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
 

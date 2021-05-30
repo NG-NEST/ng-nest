@@ -13,9 +13,9 @@ import { delay } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeFileComponent extends XTreeFileProperty {
-  activatedNode: XTreeFileNode;
+  activatedNode!: XTreeFileNode;
   loading: boolean = false;
-  time: number;
+  time!: number;
   timeout: number = 200;
 
   get catalogHeight() {

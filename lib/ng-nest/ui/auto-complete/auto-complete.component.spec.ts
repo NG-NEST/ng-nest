@@ -313,7 +313,7 @@ class TestXAutoCompleteRequiredComponent {
   ]
 })
 class TestXAutoCompleteAsyncComponent {
-  model: string;
+  model!: string;
   model1 = 'QQ';
   data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象

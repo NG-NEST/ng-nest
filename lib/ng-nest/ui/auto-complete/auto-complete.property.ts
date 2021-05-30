@@ -24,17 +24,17 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    * @zh_CN 输入延迟执行时间，ms
    * @en_US Enter a delay execution time, ms
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime!: number;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement: XPositionTopBottom;
+  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement!: XPositionTopBottom;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
   /**
    * @zh_CN 选择节点事件
    * @en_US Node click event

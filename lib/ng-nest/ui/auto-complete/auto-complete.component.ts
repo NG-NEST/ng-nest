@@ -55,12 +55,12 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   displayValue: any = '';
   nodes: XAutoCompleteNode[] = [];
   searchNodes: XAutoCompleteNode[] = [];
-  cloneNodes: XAutoCompleteNode[];
-  portal: XPortalOverlayRef<XAutoCompletePortalComponent>;
+  cloneNodes!: XAutoCompleteNode[];
+  portal!: XPortalOverlayRef<XAutoCompletePortalComponent>;
   icon: string = '';
   iconSpin: boolean = false;
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;

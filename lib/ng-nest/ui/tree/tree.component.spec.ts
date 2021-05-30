@@ -378,8 +378,8 @@ class TestXTreeCustomComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeEventComponent {
-  @ViewChild('treeCom', { static: true }) treeCom: XTreeComponent;
-  activatedNode: XTreeNode;
+  @ViewChild('treeCom', { static: true }) treeCom!: XTreeComponent;
+  activatedNode!: XTreeNode;
   selectedNodes: XTreeNode[] = [];
   expandedAll: boolean = true;
   content: any;
@@ -483,7 +483,7 @@ interface Organization extends XTreeNode {
   providers: [OrganizationService]
 })
 class TestXTreeOperationComponent {
-  @ViewChild('treeCom') treeCom: XTreeComponent;
+  @ViewChild('treeCom') treeCom!: XTreeComponent;
   formGroup = new FormGroup({});
 
   get disabled() {
@@ -492,9 +492,9 @@ class TestXTreeOperationComponent {
 
   type = 'info';
 
-  selected: Organization;
+  selected!: Organization;
 
-  activatedId: string;
+  activatedId!: string;
 
   data = () => this.service.getList(1, Number.MAX_SAFE_INTEGER).pipe(map((x) => x.list));
 

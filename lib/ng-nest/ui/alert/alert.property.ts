@@ -18,17 +18,17 @@ export class XAlertProperty extends XProperty {
    * @zh_CN 隐藏
    * @en_US Hide
    */
-  @Input() @XInputBoolean() hide: XBoolean;
+  @Input() @XInputBoolean() hide!: XBoolean;
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() title: XTemplate;
+  @Input() title!: XTemplate;
   /**
    * @zh_CN 内容
    * @en_US Content
    */
-  @Input() content: XTemplate;
+  @Input() content!: XTemplate;
   /**
    * @zh_CN 类型
    * @en_US Alert type
@@ -38,37 +38,37 @@ export class XAlertProperty extends XProperty {
    * @zh_CN 主题
    * @en_US Theme
    */
-  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'light') effect: XEffect;
+  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'light') effect!: XEffect;
   /**
    * @zh_CN 隐藏关闭按钮
    * @en_US Hide close button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() hideClose: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() hideClose!: XBoolean;
   /**
    * @zh_CN 使用文本关闭按钮
    * @en_US Use the text to close button
    */
-  @Input() closeText: string;
+  @Input() closeText!: string;
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() showIcon: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() showIcon!: XBoolean;
   /**
    * @zh_CN 禁用动画
    * @en_US Disable animation
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() disabledAnimation: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() disabledAnimation!: XBoolean;
   /**
    * @zh_CN 延迟关闭，默认 0 表示不关闭
    * @en_US Delay close, the default value of 0 means do not close
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() duration: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() duration!: XNumber;
   /**
    * @zh_CN 手动处理关闭事件
    * @en_US Manually handle close events
    */
-  @Input() @XInputBoolean() manual: XBoolean;
+  @Input() @XInputBoolean() manual!: XBoolean;
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed events

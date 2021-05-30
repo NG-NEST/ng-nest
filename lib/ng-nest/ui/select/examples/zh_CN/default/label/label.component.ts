@@ -9,5 +9,5 @@ import { XData } from '@ng-nest/ui/core';
 })
 export class ExLabelComponent {
   data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
-  model: string;
+  model!: string;
 }

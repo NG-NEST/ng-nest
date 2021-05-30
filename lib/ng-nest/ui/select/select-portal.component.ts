@@ -26,7 +26,7 @@ import { XListComponent } from '@ng-nest/ui/list';
   animations: [XConnectBaseAnimation]
 })
 export class XSelectPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -35,20 +35,20 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.animating(true);
   }
 
-  @ViewChild('list') list: XListComponent;
+  @ViewChild('list') list!: XListComponent;
 
-  data: XSelectNode[];
+  data!: XSelectNode[];
   value: any;
-  valueChange: Subject<any>;
-  positionChange: Subject<any>;
-  animating: Function;
-  activeChange: Function;
-  destroyPortal: Function;
-  closeSubject: Subject<void>;
-  keydownSubject: Subject<KeyboardEvent>;
-  nodeEmit: Function;
+  valueChange!: Subject<any>;
+  positionChange!: Subject<any>;
+  animating!: Function;
+  activeChange!: Function;
+  destroyPortal!: Function;
+  closeSubject!: Subject<void>;
+  keydownSubject!: Subject<KeyboardEvent>;
+  nodeEmit!: Function;
   multiple: XNumber = 1;
-  nodeTpl: TemplateRef<any>;
+  nodeTpl!: TemplateRef<any>;
   show: boolean = false;
   active: number = -1;
   private _unSubject = new Subject<void>();

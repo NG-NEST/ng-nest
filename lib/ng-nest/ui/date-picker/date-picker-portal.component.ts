@@ -27,7 +27,7 @@ import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
   providers: [DatePipe, LowerCasePipe]
 })
 export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
-  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -38,18 +38,18 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   type: XDatePickerType = 'date';
   display = new Date();
-  model: Date;
-  startYear: number;
+  model!: Date;
+  startYear!: number;
   value: any;
-  valueChange: Subject<any>;
-  positionChange: Subject<any>;
-  animating: Function;
-  closePortal: Function;
-  destroyPortal: Function;
-  nodeEmit: (date: Date, sure?: boolean) => void;
+  valueChange!: Subject<any>;
+  positionChange!: Subject<any>;
+  animating!: Function;
+  closePortal!: Function;
+  destroyPortal!: Function;
+  nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
-  time: number;
-  private _type: XDatePickerType;
+  time!: number;
+  private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
   constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}

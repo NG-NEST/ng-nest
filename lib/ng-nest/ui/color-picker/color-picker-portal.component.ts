@@ -31,7 +31,7 @@ import { takeUntil } from 'rxjs/operators';
   animations: [XConnectBaseAnimation]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -40,30 +40,30 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.animating(true);
   }
 
-  @ViewChild('panelRef', { static: true }) panelRef: ElementRef;
-  @ViewChild('plateRef', { static: true }) plateRef: ElementRef;
-  @ViewChild('transparentCom', { static: true }) transparentCom: XSliderSelectComponent;
-  value: string;
-  transparentRail: HTMLElement;
-  valueChange: Subject<string>;
-  positionChange: Subject<any>;
-  closePortal: Function;
-  destroyPortal: Function;
-  animating: Function;
-  nodeEmit: Function;
+  @ViewChild('panelRef', { static: true }) panelRef!: ElementRef;
+  @ViewChild('plateRef', { static: true }) plateRef!: ElementRef;
+  @ViewChild('transparentCom', { static: true }) transparentCom!: XSliderSelectComponent;
+  value!: string;
+  transparentRail!: HTMLElement;
+  valueChange!: Subject<string>;
+  positionChange!: Subject<any>;
+  closePortal!: Function;
+  destroyPortal!: Function;
+  animating!: Function;
+  nodeEmit!: Function;
 
   sliderColorNum = 0;
-  type: XColorType;
+  type!: XColorType;
   offset = 0;
-  panel: DOMRect;
-  plate: DOMRect;
+  panel!: DOMRect;
+  plate!: DOMRect;
   transform = { x: 0, y: 0 };
   initTransform = { x: 0, y: 0 };
   drag = false;
 
   rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
   hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = { h: 0, a: 1 };
-  hex: string;
+  hex!: string;
 
   private _unSubject = new Subject<void>();
 

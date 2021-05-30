@@ -40,8 +40,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XSelectComponent)]
 })
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
-  @ViewChild('select', { static: true }) select: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
+  @ViewChild('select', { static: true }) select!: ElementRef;
 
   writeValue(value: any) {
     if (this.multiple && XIsEmpty(value)) {
@@ -58,12 +58,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
-  cloneNodes: XSelectNode[];
-  portal: XPortalOverlayRef<XSelectPortalComponent>;
+  cloneNodes!: XSelectNode[];
+  portal!: XPortalOverlayRef<XSelectPortalComponent>;
   icon: string = 'fto-chevron-down';
   iconSpin: boolean = false;
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;

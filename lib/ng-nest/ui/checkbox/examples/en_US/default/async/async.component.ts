@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./async.component.scss']
 })
 export class ExAsyncComponent {
-  data: Observable<string[]>;
+  data!: Observable<string[]>;
   model = ['DingTalk'];
   loading = false;
   getData() {

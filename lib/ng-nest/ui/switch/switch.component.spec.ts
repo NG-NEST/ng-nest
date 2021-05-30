@@ -84,7 +84,7 @@ describe(XSwitchPrefix, () => {
   ]
 })
 class TestXSwitchComponent {
-  model1: boolean;
+  model1!: boolean;
   model2 = true;
   constructor(private cdr: ChangeDetectorRef) {}
   change() {

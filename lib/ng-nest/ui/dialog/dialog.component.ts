@@ -29,9 +29,9 @@ import { map, takeUntil } from 'rxjs/operators';
   animations: [XMoveBoxAnimation]
 })
 export class XDialogComponent extends XDialogProperty implements OnChanges, OnDestroy {
-  @ViewChild('dialogTpl', { static: false }) dialogTpl: TemplateRef<void>;
-  dialogRef: XDialogOverlayRef;
-  backdropClick$: Subscription;
+  @ViewChild('dialogTpl', { static: false }) dialogTpl!: TemplateRef<void>;
+  dialogRef!: XDialogOverlayRef;
+  backdropClick$!: Subscription;
   scrollStrategy: BlockScrollStrategy;
   locale: XI18nDialog = {};
 

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExColorComponent implements OnInit {
   percent = 10;
-  color: '#3f51b5';
+  color!: '#3f51b5';
   colors = [
     { color: '#f56c6c', percent: 20 },
     { color: '#e6a23c', percent: 40 },

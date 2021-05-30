@@ -1,6 +1,6 @@
 {
   "name": "@ng-nest/ui",
-  "version": "11.2.10",
+  "version": "12.0.0",
   "homepage": "https://www.ngnest.com",
   "author": "ng-nest",
   "ng-update": {
@@ -13,14 +13,14 @@
     "url": "https://github.com/NG-NEST/ng-nest"
   },
   "dependencies": {
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "resize-observer-polyfill": "^1.5.1",
-    "@angular/cdk": "^11.2.3"
+    "@angular/cdk": "^12.0.2"
   },
   "peerDependencies": {
-    "@angular/animations": "~11.2.4",
-    "@angular/common": "~11.2.4",
-    "@angular/core": "~11.2.4",
-    "@angular/forms": "~11.2.4"
+    "@angular/animations": "^12.0.2",
+    "@angular/common": "^12.0.2",
+    "@angular/core": "^12.0.2",
+    "@angular/forms": "^12.0.2"
   }
 }

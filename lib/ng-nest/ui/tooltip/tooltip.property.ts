@@ -18,22 +18,22 @@ export class XTooltipProperty {
    * @zh_CN 内容
    * @en_US Content
    */
-  @Input() content: string;
+  @Input() content!: string;
   /**
    * @zh_CN 显示位置
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement!: XPlacement;
   /**
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  @Input() @XInputBoolean() visible: XBoolean;
+  @Input() @XInputBoolean() visible!: XBoolean;
   /**
    * @zh_CN 手动处理关闭事件
    * @en_US Manually handle the shutdown event
    */
-  @Input() @XInputBoolean() manual: XBoolean;
+  @Input() @XInputBoolean() manual!: XBoolean;
 }
 
 /**

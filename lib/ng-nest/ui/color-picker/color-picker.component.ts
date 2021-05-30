@@ -28,8 +28,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XColorPickerComponent)]
 })
 export class XColorPickerComponent extends XColorPickerProperty implements OnInit {
-  @ViewChild('colorPicker', { static: true }) colorPicker: ElementRef;
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
+  @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -47,10 +47,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   enter: boolean = false;
   animating = false;
   displayValue: string = '';
-  portal: XPortalOverlayRef<XColorPickerPortalComponent>;
+  portal!: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon: string = 'fto-chevron-down';
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();

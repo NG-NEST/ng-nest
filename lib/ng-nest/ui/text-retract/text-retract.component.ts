@@ -23,7 +23,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTextRetractComponent extends XTextRetractProperty implements OnInit, OnChanges {
-  displayValue: string;
+  displayValue!: string;
   retract: boolean = false;
   unfold: boolean = true;
 

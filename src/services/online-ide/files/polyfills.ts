@@ -1,2 +1,2 @@
-export default `import 'zone.js/dist/zone';
+export default `import 'zone.js';
 `;

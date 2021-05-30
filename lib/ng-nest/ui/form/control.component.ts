@@ -59,14 +59,14 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
-  @Input() option: XFormControlOption;
-  @ViewChild(FormControlName, { static: false }) control: FormControlName;
+  @Input() option!: XFormControlOption;
+  @ViewChild(FormControlName, { static: false }) control!: FormControlName;
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _changeProps = ['label', ...this._sharedProps];
-  private _control: XFormControlType;
+  private _control!: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject();
-  private _formControl: FormControl;
+  private _formControl!: FormControl;
 
   constructor(@Host() @Optional() public form: XFormComponent, public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();

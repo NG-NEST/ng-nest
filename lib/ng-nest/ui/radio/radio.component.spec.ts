@@ -296,7 +296,7 @@ class TestXRadioIconComponent {
 })
 class TestXRadioAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XRadioNode>;
+  data!: XData<XRadioNode>;
   model = 2;
   loading = false;
   getData() {

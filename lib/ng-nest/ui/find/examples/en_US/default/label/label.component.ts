@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./label.component.scss']
 })
 export class ExLabelComponent {
-  model: number;
+  model!: number;
 }

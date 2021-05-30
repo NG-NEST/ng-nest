@@ -24,16 +24,16 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCarouselPanelComponent extends XCarouselPanelProperty implements OnInit {
-  index: number;
-  width: number;
-  height: number;
-  animating: boolean;
-  preTranslate: number;
+  index!: number;
+  width!: number;
+  height!: number;
+  animating!: boolean;
+  preTranslate!: number;
   cardScale = 0.83;
   scale = 1;
   inStage = false;
   updateSub = new BehaviorSubject(false);
-  updateSub$: Subscription;
+  updateSub$!: Subscription;
 
   constructor(
     @Optional() @Host() public carousel: XCarouselComponent,

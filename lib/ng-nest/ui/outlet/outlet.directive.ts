@@ -4,7 +4,7 @@ import { Directive, TemplateRef, Input, ViewContainerRef, SimpleChanges, Embedde
 export class XOutletDirective implements OnChanges {
   @Input() xOutletContext: any;
   @Input() xOutlet: any | TemplateRef<any>;
-  private embeddedViewRef?: EmbeddedViewRef<any>;
+  private embeddedViewRef!: EmbeddedViewRef<any>;
   constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<any>) {}
 
   ngOnChanges(changes: SimpleChanges): void {

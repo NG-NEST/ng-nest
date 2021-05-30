@@ -329,7 +329,7 @@ class TestXCheckboxIconComponent {
 })
 class TestXCheckboxAsyncComponent {
   constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode>;
+  data!: XData<XCheckboxNode>;
   model = ['钉钉'];
   loading = false;
   getData() {

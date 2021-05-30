@@ -40,7 +40,8 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
             delay(this.duration),
             tap(() => {
               this.renderer.removeChild(this.elementRef.nativeElement, ripple);
-            })
+            }),
+            takeUntil(this._unSub)
           )
           .subscribe();
       });

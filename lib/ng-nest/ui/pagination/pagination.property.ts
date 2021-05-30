@@ -18,12 +18,12 @@ export class XPaginationProperty extends XProperty {
    * @zh_CN 当前页码
    * @en_US Current page number
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() index: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() index!: XNumber;
   /**
    * @zh_CN 每页显示条数
    * @en_US Number of items displayed per page
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) @XInputNumber() size: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) @XInputNumber() size!: XNumber;
   /**
    * @zh_CN 总数
    * @en_US Total

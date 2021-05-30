@@ -17,22 +17,22 @@ export class XStatisticProperty {
    * @zh_CN 显示值
    * @en_US Display value
    */
-  @Input() value?: XTemplate;
+  @Input() value!: XTemplate;
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() label?: XTemplate;
+  @Input() label!: XTemplate;
   /**
    * @zh_CN 前缀
    * @en_US Prefix
    */
-  @Input() prefix?: XTemplate;
+  @Input() prefix!: XTemplate;
   /**
    * @zh_CN 后缀
    * @en_US Suffix
    */
-  @Input() suffix?: XTemplate;
+  @Input() suffix!: XTemplate;
   /**
    * @zh_CN 显示值样式
    * @en_US Display value style
@@ -57,7 +57,7 @@ export class XCountdownProperty extends XStatisticProperty {
    * @zh_CN 格式化
    * @en_US Format
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format!: string;
   /**
    * @zh_CN 倒计时结束的事件
    * @en_US Event at the end of the countdown

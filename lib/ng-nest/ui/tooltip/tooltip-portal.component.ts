@@ -35,20 +35,20 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
 
   @HostBinding('@x-fade-animation') animation: any;
 
-  @ViewChild('tooltipPortal', { static: true }) tooltipPortal: ElementRef;
-  @ViewChild('tooltipArrow', { static: false }) tooltipArrow: ElementRef;
+  @ViewChild('tooltipPortal', { static: true }) tooltipPortal!: ElementRef;
+  @ViewChild('tooltipArrow', { static: false }) tooltipArrow!: ElementRef;
 
-  contentChange: BehaviorSubject<any>;
+  contentChange!: BehaviorSubject<any>;
   classMap: XClassMap = {};
-  box: DOMRect;
-  portalBox: DOMRect;
-  arrowBox: DOMRect;
-  portalHover: Function;
-  viewInit: Function;
-  destroy: Function;
-  placement: XPlacement;
-  previousPlacement: XPlacement;
-  content: string;
+  box!: DOMRect;
+  portalBox!: DOMRect;
+  arrowBox!: DOMRect;
+  portalHover!: Function;
+  viewInit!: Function;
+  destroy!: Function;
+  placement!: XPlacement;
+  previousPlacement!: XPlacement;
+  content!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 

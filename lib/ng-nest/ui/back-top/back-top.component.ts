@@ -30,7 +30,7 @@ import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XBackTopComponent extends XBackTopProperty implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('backTopTpl') backTopTpl: TemplateRef<void>;
+  @ViewChild('backTopTpl') backTopTpl!: TemplateRef<void>;
 
   get scroll(): HTMLElement | Window {
     return this._target || window;
@@ -55,7 +55,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
   classMap: XClassMap = {};
   visiable = false;
   scrolling = false;
-  portalRef: XPortalOverlayRef<any>;
+  portalRef!: XPortalOverlayRef<any>;
   private _unSubject = new Subject();
   private _target: HTMLElement | null = null;
 

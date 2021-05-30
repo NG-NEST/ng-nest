@@ -17,6 +17,7 @@
     "fullTemplateTypeCheck": true,
     "strictTemplates": true,
     "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
     "enableResourceInlining": true
   },
   "include": ["./**/*.ts"]

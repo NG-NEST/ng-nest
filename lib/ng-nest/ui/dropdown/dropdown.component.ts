@@ -26,10 +26,10 @@ import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Over
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDropdownComponent extends XDropdownProperty implements OnChanges {
-  @ViewChild('dropdown', { static: true }) dropdown: ElementRef;
+  @ViewChild('dropdown', { static: true }) dropdown!: ElementRef;
   datas: XDropdownNode[] = [];
   nodes: XDropdownNode[] = [];
-  portal: XPortalOverlayRef<XDropdownPortalComponent>;
+  portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   timeoutHide: any;
   visible: boolean = false;
   animating = false;

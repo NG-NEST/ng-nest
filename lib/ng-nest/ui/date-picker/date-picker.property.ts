@@ -30,22 +30,22 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @zh_CN 格式化类型
    * @en_US Format type
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'yyyy-MM-dd') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'yyyy-MM-dd') format!: string;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable!: XBoolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement!: XCorner;
   /**
    * @zh_CN 只读
    * @en_US Readonly
    */
-  @Input() @XInputBoolean() readonly: XBoolean;
+  @Input() @XInputBoolean() readonly!: XBoolean;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -125,12 +125,12 @@ export class XPickerDateProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model: Date;
+  @Input() model!: Date;
   /**
    * @zh_CN 日期显示模板
    * @en_US Date display template
    */
-  @Input() dateTemp: TemplateRef<any>;
+  @Input() dateTemp!: TemplateRef<any>;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -164,12 +164,12 @@ export class XPickerMonthProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model: Date;
+  @Input() model!: Date;
   /**
    * @zh_CN 月份显示模板
    * @en_US Month display template
    */
-  @Input() monthTemp: TemplateRef<any>;
+  @Input() monthTemp!: TemplateRef<any>;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -203,7 +203,7 @@ export class XPickerYearProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model: Date;
+  @Input() model!: Date;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event

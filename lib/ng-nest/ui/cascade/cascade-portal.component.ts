@@ -24,7 +24,7 @@ import { takeUntil } from 'rxjs/operators';
   animations: [XConnectBaseAnimation]
 })
 export class XCascadePortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -37,12 +37,12 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   datas: XCascadeNode[] = [];
   selecteds: XCascadeNode[] = [];
   value: any;
-  valueChange: Subject<any>;
-  positionChange: Subject<any>;
-  closePortal: Function;
-  destroyPortal: Function;
-  animating: Function;
-  nodeEmit: Function;
+  valueChange!: Subject<any>;
+  positionChange!: Subject<any>;
+  closePortal!: Function;
+  destroyPortal!: Function;
+  animating!: Function;
+  nodeEmit!: Function;
   values: XCascadeNode[] = [];
   private _unSubject = new Subject<void>();
 

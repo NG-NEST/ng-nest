@@ -21,7 +21,7 @@ import { XTableComponent } from './table.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
-  @ViewChild('tfoot') tfoot: ElementRef;
+  @ViewChild('tfoot') tfoot!: ElementRef;
   constructor(
     @Host() @Optional() public table: XTableComponent,
     public renderer: Renderer2,
@@ -36,6 +36,6 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.table.tfoot = this.tfoot;
+    this.table.tfoot = this.tfoot!;
   }
 }

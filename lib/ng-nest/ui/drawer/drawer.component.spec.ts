@@ -107,7 +107,7 @@ class TestXDrawerComponent {
     { id: 'top', label: '上边' },
     { id: 'bottom', label: '下边' }
   ];
-  visible: boolean;
+  visible!: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -143,7 +143,7 @@ class TestXDrawerComponent {
   ]
 })
 class TestXDrawerTitleComponent {
-  visible: boolean;
+  visible!: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -249,9 +249,9 @@ class TestXDrawerTitleComponent {
   ]
 })
 class TestXDrawerCustomComponent {
-  visible: boolean;
-  visibleTable: boolean;
-  visibleForm: boolean;
+  visible!: boolean;
+  visibleTable!: boolean;
+  visibleForm!: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -316,9 +316,9 @@ class TestXDrawerCustomComponent {
   ]
 })
 class TestXDrawerMultipleComponent {
-  visible: boolean;
-  visibleOne: boolean;
-  visibleTwo: boolean;
+  visible!: boolean;
+  visibleOne!: boolean;
+  visibleTwo!: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}
 

@@ -40,7 +40,7 @@ export class XTabsProperty extends XProperty {
    * @zh_CN 样式
    * @en_US Style
    */
-  @Input() type?: XTabsType = 'block';
+  @Input() type: XTabsType = 'block';
   /**
    * @zh_CN 布局方式
    * @en_US Layout
@@ -60,22 +60,22 @@ export class XTabsProperty extends XProperty {
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 节点排列方式
    * @en_US Node arrangement
    */
-  @Input() nodeJustify: XJustify;
+  @Input() nodeJustify!: XJustify;
   /**
    * @zh_CN 隐藏标签栏
    * @en_US Hide tab bar
    */
-  @Input() @XInputBoolean() sliderHidden: XBoolean;
+  @Input() @XInputBoolean() sliderHidden!: XBoolean;
   /**
    * @zh_CN 标签切换变化的事件
    * @en_US Label switching event
@@ -126,5 +126,5 @@ export class XTabProperty {
    * @zh_CN 标签名称，支持自定义模板
    * @en_US Label name, support custom template
    */
-  @Input() label: XTemplate;
+  @Input() label!: XTemplate;
 }

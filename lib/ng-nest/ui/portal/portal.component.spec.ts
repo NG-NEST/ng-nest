@@ -40,7 +40,7 @@ describe(PortalPrefix, () => {
   `
 })
 class TestXPortalComponent {
-  @ViewChild('temp', { static: false }) temp: TemplateRef<any>;
+  @ViewChild('temp', { static: false }) temp!: TemplateRef<any>;
   constructor(private portal: XPortalService, private viewContainerRef: ViewContainerRef, private overlay: Overlay) {}
   showPortal() {
     this.portal.attach({

@@ -25,12 +25,12 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 方位，九宫格
    * @en_US Direction, nine grid
    */
-  @Input() @XWithConfig<XPlace>(X_CONFIG_NAME, 'center') placement: XPlace;
+  @Input() @XWithConfig<XPlace>(X_CONFIG_NAME, 'center') placement!: XPlace;
   /**
    * @zh_CN 偏移距离
    * @en_US Offset distance
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') offset: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') offset!: string;
   /**
    * @zh_CN 类型
    * @en_US Types of
@@ -40,67 +40,67 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '40%') width: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '40%') width!: string;
   /**
    * @zh_CN 高度
    * @en_US Height
    */
-  @Input() height: string;
+  @Input() height!: string;
   /**
    * @zh_CN 样式主题
    * @en_US Style theme
    */
-  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') effect: XEffect;
+  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') effect!: XEffect;
   /**
    * @zh_CN 底部自定义模板
    * @en_US Custom template at the bottom
    */
-  @Input() footer: XTemplate;
+  @Input() footer!: XTemplate;
   /**
    * @zh_CN 显示取消按钮
    * @en_US Show cancel button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showCancel: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showCancel!: XBoolean;
   /**
    * @zh_CN 取消按钮文字
    * @en_US Cancel button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText!: string;
   /**
    * @zh_CN 显示确认按钮
    * @en_US Show confirmation button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showConfirm: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showConfirm!: XBoolean;
   /**
    * @zh_CN 确认按钮文字
    * @en_US Confirm button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText!: string;
   /**
    * @zh_CN 点击遮罩关闭
    * @en_US Click the mask to close
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) backdropClose: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) backdropClose!: XBoolean;
   /**
    * @zh_CN 是否显示背景遮罩
    * @en_US Whether to display the background mask
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) hasBackdrop: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) hasBackdrop!: XBoolean;
   /**
    * @zh_CN 自定义样式名
    * @en_US Custom style name
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '') className: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '') className!: string;
   /**
    * @zh_CN 按钮居中
    * @en_US Button center
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter!: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
    */
-  @Input() beforeClose: Function;
+  @Input() beforeClose!: Function;
   /**
    * @zh_CN 取消按钮的事件
    * @en_US Cancel button event

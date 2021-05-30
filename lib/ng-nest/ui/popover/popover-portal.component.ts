@@ -39,25 +39,25 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   @HostBinding('@x-fade-animation') animation: any;
 
-  @ViewChild('popoverPortal', { static: true }) popoverPortal: ElementRef;
-  @ViewChild('popoverArrow', { static: true }) popoverArrow: ElementRef;
+  @ViewChild('popoverPortal', { static: true }) popoverPortal!: ElementRef;
+  @ViewChild('popoverArrow', { static: true }) popoverArrow!: ElementRef;
 
   classMap: XClassMap = {};
-  box: DOMRect;
-  portalBox: DOMRect;
-  arrowBox: DOMRect;
+  box!: DOMRect;
+  portalBox!: DOMRect;
+  arrowBox!: DOMRect;
   // docClickFunction: Function;
-  title: XTemplate;
-  content: XTemplate;
-  footer: XTemplate;
-  contentChange: BehaviorSubject<any>;
-  trigger: XPopoverTrigger;
-  placement: XPlacement;
-  previousPlacement: XPlacement;
-  portalHover: Function;
-  closePortal: Function;
-  viewInit: Function;
-  width: string;
+  title!: XTemplate;
+  content!: XTemplate;
+  footer!: XTemplate;
+  contentChange!: BehaviorSubject<any>;
+  trigger!: XPopoverTrigger;
+  placement!: XPlacement;
+  previousPlacement!: XPlacement;
+  portalHover!: Function;
+  closePortal!: Function;
+  viewInit!: Function;
+  width!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 

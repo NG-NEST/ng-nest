@@ -40,7 +40,7 @@ export class XMenuProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 缩起菜单
    * @en_US Shrink menu
@@ -50,17 +50,17 @@ export class XMenuProperty extends XProperty {
    * @zh_CN 触发方式，只针对横向布局
    * @en_US Trigger mode, only for horizontal layout
    */
-  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger: XMenuTrigger;
+  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger!: XMenuTrigger;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
   /**
    * @zh_CN 展开的所有层级，只对 layout 布局为 'column' 的生效
    * @en_US All expanded levels are only effective for the layout of'column'
    */
-  @Input() @XInputBoolean() expandedAll: XBoolean;
+  @Input() @XInputBoolean() expandedAll!: XBoolean;
   /**
    * @zh_CN 默认展开的层级，只对 layout 布局为 'column' 的生效
    * @en_US The level expanded by default is only valid for the layout of'column'
@@ -75,7 +75,7 @@ export class XMenuProperty extends XProperty {
    * @zh_CN 滚动容器
    * @en_US Rolling container
    */
-  @Input() target: string | HTMLElement;
+  @Input() target!: string | HTMLElement;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -158,5 +158,5 @@ export class XMenuNodeProperty {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() node: XMenuNode;
+  @Input() node!: XMenuNode;
 }

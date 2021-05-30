@@ -33,11 +33,11 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.data?.length === 0;
   }
 
-  @ViewChild('tbody') tbody: ElementRef;
-  @ViewChild('virtualBody') virtualBody: CdkVirtualScrollViewport;
+  @ViewChild('tbody') tbody!: ElementRef;
+  @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   constructor(
     @Host() @Optional() public table: XTableComponent,

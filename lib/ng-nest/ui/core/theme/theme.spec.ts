@@ -50,8 +50,8 @@ import { XConfig, X_CONFIG } from '../config';
     `
   ]
 })
-class NzGlobalThemeTestBasicComponent {
-  color: string;
+class XGlobalThemeTestBasicComponent {
+  color!: string;
   constructor(public themeService: XThemeService) {}
   colorChange(color: string) {
     this.themeService.setTheme({ colors: { primary: color } });
@@ -59,8 +59,8 @@ class NzGlobalThemeTestBasicComponent {
 }
 
 describe('x-theme', () => {
-  let fixture: ComponentFixture<NzGlobalThemeTestBasicComponent>;
-  let testComponent: NzGlobalThemeTestBasicComponent;
+  let fixture: ComponentFixture<XGlobalThemeTestBasicComponent>;
+  let testComponent: XGlobalThemeTestBasicComponent;
   let button: DebugElement;
   let buttonEl: HTMLButtonElement;
   let buttonInner: HTMLButtonElement | null;
@@ -74,7 +74,7 @@ describe('x-theme', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [XButtonModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
-      declarations: [NzGlobalThemeTestBasicComponent],
+      declarations: [XGlobalThemeTestBasicComponent],
       providers: [
         {
           provide: X_CONFIG,
@@ -85,7 +85,7 @@ describe('x-theme', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NzGlobalThemeTestBasicComponent);
+    fixture = TestBed.createComponent(XGlobalThemeTestBasicComponent);
     testComponent = fixture.debugElement.componentInstance;
     button = fixture.debugElement.query(By.directive(XButtonComponent));
     buttonEl = button.nativeElement;

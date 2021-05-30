@@ -23,7 +23,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XInputNumberComponent)]
 })
 export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
-  @ViewChild('inputNumber', { static: true }) inputNumber: ElementRef;
+  @ViewChild('inputNumber', { static: true }) inputNumber!: ElementRef;
 
   writeValue(value: any) {
     this.value = value;
@@ -34,7 +34,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   displayValue: any = '';
   minDisabled: boolean = false;
   maxDisabled: boolean = false;
-  mousedown$: Subscription;
+  mousedown$!: Subscription;
   timer: any;
 
   @HostListener('document:mouseup', ['$event']) onMouseup(event: Event) {

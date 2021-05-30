@@ -21,9 +21,9 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeComponent extends XTreeProperty implements OnChanges {
-  @ViewChild('tree', { static: true }) tree: ElementRef;
+  @ViewChild('tree', { static: true }) tree!: ElementRef;
   nodes: XTreeNode[] = [];
-  activatedNode: XTreeNode;
+  activatedNode!: XTreeNode;
   dataIsFunc = false;
   getting = false;
   treeData: XTreeNode[] = [];

@@ -9,8 +9,8 @@ import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPosit
 
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
-  portal: XPortalOverlayRef<XTooltipPortalComponent>;
-  box: DOMRect;
+  portal!: XPortalOverlayRef<XTooltipPortalComponent>;
+  box!: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   positionChange: Subject<any> = new Subject();
   timeoutHide: any;

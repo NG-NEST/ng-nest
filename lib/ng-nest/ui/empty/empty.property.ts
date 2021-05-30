@@ -18,10 +18,10 @@ export class XEmptyProperty {
    * @zh_CN 图片地址或自定义模板
    * @en_US Picture address or custom template
    */
-  @Input() img?: XTemplate;
+  @Input() img!: XTemplate;
   /**
    * @zh_CN 内容或自定义模板
    * @en_US Content or custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) content?: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) content!: XTemplate;
 }

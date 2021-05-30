@@ -9,7 +9,7 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTabComponent extends XTabProperty {
-  @ViewChild(TemplateRef, { static: true }) content: TemplateRef<void>;
+  @ViewChild(TemplateRef, { static: true }) content!: TemplateRef<void>;
 
   constructor(public configService: XConfigService) {
     super();

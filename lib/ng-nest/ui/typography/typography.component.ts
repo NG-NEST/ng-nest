@@ -9,7 +9,7 @@ import { XTypographyPrefix, XTypographyProperty } from './typography.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTypographyComponent extends XTypographyProperty implements OnInit {
-  firstText: string;
+  firstText!: string;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     super();

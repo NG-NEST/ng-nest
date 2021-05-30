@@ -23,12 +23,12 @@ export class XCrumbProperty extends XProperty {
    * @zh_CN 节点自定义模板
    * @en_US Node custom template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
   /**
    * @zh_CN 分隔符
    * @en_US Separator
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME, '/') separator: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME, '/') separator!: XTemplate;
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event

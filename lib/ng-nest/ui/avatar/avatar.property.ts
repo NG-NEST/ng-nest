@@ -18,32 +18,32 @@ export class XAvatarProperty extends XProperty {
    * @zh_CN 显示字符
    * @en_US Display characters
    */
-  @Input() label: XTemplate;
+  @Input() label!: XTemplate;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
    */
-  @Input() icon: string;
+  @Input() icon!: string;
   /**
    * @zh_CN 形状
    * @en_US Shape
    */
-  @Input() @XWithConfig<XAvatarShape>(X_CONFIG_NAME, 'circle') shape: XAvatarShape;
+  @Input() @XWithConfig<XAvatarShape>(X_CONFIG_NAME, 'circle') shape!: XAvatarShape;
   /**
    * @zh_CN 图片地址
    * @en_US The map's address
    */
-  @Input() src: string;
+  @Input() src!: string;
   /**
    * @zh_CN 图片适应方式
    * @en_US Image adaptation method
    */
-  @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit: XAvatarFit;
+  @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit!: XAvatarFit;
 }
 
 /**

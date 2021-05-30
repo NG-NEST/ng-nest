@@ -36,7 +36,7 @@ export class XSliderProperty extends XProperty {
    * @zh_CN 滑动动画
    * @en_US Sliding animation
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() animated: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() animated!: XBoolean;
   /**
    * @zh_CN 当前激活的索引
    * @en_US Currently active index
@@ -66,7 +66,7 @@ export class XSliderProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 激活索引变化事件
    * @en_US Activate index change event

@@ -23,7 +23,7 @@ export class XProgressProperty extends XProperty {
    * @zh_CN 进度条高度
    * @en_US Height of progress bar
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0.5rem') height: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0.5rem') height!: string;
   /**
    * @zh_CN 状态
    * @en_US Status
@@ -38,17 +38,17 @@ export class XProgressProperty extends XProperty {
    * @zh_CN 百分比文本是否显示在进度条里面
    * @en_US Whether the percentage text is displayed in the progress bar
    */
-  @Input() @XInputBoolean() inside: XBoolean;
+  @Input() @XInputBoolean() inside!: XBoolean;
   /**
    * @zh_CN 自定义百分比文本内容
    * @en_US Custom percentage text content
    */
-  @Input() format?: Function;
+  @Input() format!: Function;
   /**
    * @zh_CN 自定义颜色
    * @en_US Custom color
    */
-  @Input() color?: string | { color: string; percent: number }[] | Function;
+  @Input() color!: string | { color: string; percent: number }[] | Function;
 }
 
 /**

@@ -18,10 +18,10 @@ export class XAffixProperty extends XProperty {
    * @zh_CN 距离顶部距离
    * @en_US Distance from top
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) top: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) top!: string;
   /**
    * @zh_CN 距离左边距离
    * @en_US Distance from left
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) left: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) left!: string;
 }

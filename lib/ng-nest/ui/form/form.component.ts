@@ -18,7 +18,7 @@ import { XIsChange, XBoolean, XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XFormComponent extends XFormProperty implements OnInit {
-  controlsType: 'controls' | 'rows';
+  controlsType!: 'controls' | 'rows';
   controlComponents: { [property: string]: XFormControlComponent } = {};
   controlTypes: { [property: string]: XFormControlType } = {};
 

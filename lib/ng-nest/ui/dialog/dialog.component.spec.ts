@@ -200,11 +200,11 @@ describe(XDialogPrefix, () => {
   ]
 })
 class TestXDialogComponent {
-  visible: boolean;
-  placement: XPlace;
-  visibleTable: boolean;
-  visibleForm: boolean;
-  visibleCustom: boolean;
+  visible!: boolean;
+  placement!: XPlace;
+  visibleTable!: boolean;
+  visibleForm!: boolean;
+  visibleCustom!: boolean;
 
   constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService, private i18nService: XI18nService) {
     // interval(1000).subscribe((x) => {

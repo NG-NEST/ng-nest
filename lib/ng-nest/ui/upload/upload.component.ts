@@ -27,12 +27,12 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XUploadComponent)]
 })
 export class XUploadComponent extends XUploadProperty {
-  @ViewChild('file', { static: true }) file: ElementRef;
+  @ViewChild('file', { static: true }) file!: ElementRef;
   files: XUploadNode[] = [];
   showUpload = false;
   uploadNodes: XUploadNode[] = [];
   locale: XI18nUpload = {};
-  portal: XPortalOverlayRef<XUploadPortalComponent>;
+  portal!: XPortalOverlayRef<XUploadPortalComponent>;
 
   get getText() {
     return this.text || this.locale.uploadText;

@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": ["lodash"],
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"],
             "styles": ["node_modules/prismjs/themes/prism.css", "dist/ng-nest/ui/style/core/index.css", "src/styles.scss"],
@@ -42,13 +42,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -62,20 +55,31 @@
                 }
               ],
               "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "ngswConfigPath": "ngsw-config.json",
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ng-nest-site:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "ng-nest-site:build:production"
+            },
+            "development": {
+              "browserTarget": "ng-nest-site:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -90,6 +94,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "styles": ["src/styles.scss"],
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"]
@@ -130,14 +135,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "lib/ng-nest/ui/tsconfig.lib.json",
             "project": "lib/ng-nest/ui/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "lib/ng-nest/ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "lib/ng-nest/ui/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

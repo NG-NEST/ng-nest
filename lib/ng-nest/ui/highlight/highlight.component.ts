@@ -23,9 +23,9 @@ declare let Prism: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XHighlightComponent extends XHighlightProperty implements OnChanges {
-  @ViewChild('code', { static: false }) codeRef: ElementRef;
+  @ViewChild('code', { static: false }) codeRef!: ElementRef;
 
-  display: SafeHtml;
+  display!: SafeHtml;
   lines: string[] = [];
   lineHeight = 1.1875;
 

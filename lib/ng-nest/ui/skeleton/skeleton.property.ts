@@ -27,12 +27,12 @@ export class XSkeletonProperty extends XProperty {
    * @zh_CN 激活动画
    * @en_US Activate animation
    */
-  @Input() @XInputBoolean() active: XBoolean;
+  @Input() @XInputBoolean() active!: XBoolean;
   /**
    * @zh_CN 显示边框
    * @en_US Show border
    */
-  @Input() @XInputBoolean() border: XBoolean;
+  @Input() @XInputBoolean() border!: XBoolean;
 }
 
 /**
