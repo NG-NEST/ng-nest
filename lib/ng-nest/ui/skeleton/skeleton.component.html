@@ -9,7 +9,7 @@
 </ng-container>
 
 <ng-template #rowsTpl let-rows="rows">
-  <x-row *ngFor="let row of rows" [space]="row.space" [justify]="row.flex ? 'start' : ''" [ngStyle]="row.style">
+  <x-row *ngFor="let row of rows" [space]="row.space" [justify]="row.flex ? 'start' : undefined" [ngStyle]="row.style">
     <x-col
       *ngFor="let col of row.cols"
       [span]="col.span"

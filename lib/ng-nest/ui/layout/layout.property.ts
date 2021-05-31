@@ -22,12 +22,12 @@ export class XRowProperty extends XProperty {
    * @zh_CN flex 布局下的水平排列方式
    * @en_US Horizontal arrangement under flex layout
    */
-  @Input() justify!: XJustify;
+  @Input() justify?: XJustify;
   /**
    * @zh_CN flex 布局下的垂直排列方式
    * @en_US Vertical arrangement under flex layout
    */
-  @Input() align!: XAlign;
+  @Input() align?: XAlign;
 }
 
 /**

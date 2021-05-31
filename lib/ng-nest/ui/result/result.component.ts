@@ -10,6 +10,9 @@ import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XResultComponent extends XResultProperty implements OnInit {
+  get strIcon() {
+    return this.icon as string;
+  }
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,

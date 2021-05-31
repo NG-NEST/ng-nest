@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build --prod ",
-    "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui --prod && npm run copy:scss && npm run build:scss",
+    "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui && npm run copy:scss && npm run build:scss",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
     "build:scss": "sass ./lib/ng-nest/ui/style/core/index.scss ./dist/ng-nest/ui/style/core/index.css",
