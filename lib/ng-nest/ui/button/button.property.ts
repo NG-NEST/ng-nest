@@ -23,12 +23,12 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @zh_CN 图标
    * @en_US Icon
    */
-  @Input() icon!: string;
+  @Input() icon?: string;
   /**
    * @zh_CN 提示
    * @en_US Title
    */
-  @Input() title: string = '';
+  @Input() title?: string = '';
   /**
    * @zh_CN 布局方式
    * @en_US Layout
