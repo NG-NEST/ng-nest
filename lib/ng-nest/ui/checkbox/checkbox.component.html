@@ -15,7 +15,7 @@
         [title]="item.title"
         [size]="size"
         [activated]="getChecked(item.id)"
-        [disabled]="disabled || item.disabled"
+        [disabled]="getDisabled(item.disabled)"
         (click)="checkboxClick($event, item)"
         >{{ item.label }}</x-button
       >

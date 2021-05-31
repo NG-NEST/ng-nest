@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XClearClass, XConfigService, XBoolean } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
@@ -28,6 +28,10 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();
+  }
+
+  getDisabled(disabled?: boolean) {
+    return (this.disabled || disabled) as XBoolean;
   }
 
   nodes: XCheckboxNode[] = [];
