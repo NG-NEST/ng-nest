@@ -34,9 +34,8 @@
     "fs-extra": "^9.1.0",
     "prismjs": "^1.22.0",
     "remark": "^13.0.0",
-    "resize-observer-polyfill": "^1.5.1",
     "rxjs": "^6.6.0",
-    "sass": "^1.34.0",
+    "sass": "~1.32.13",
     "tslib": "^2.0.0",
     "yaml-front-matter": "^4.1.1",
     "zone.js": "~0.11.4"

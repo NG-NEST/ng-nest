@@ -56,7 +56,7 @@ describe(XTablePrefix, () => {
       expect(table).toBeDefined();
     });
   });
-  describe(`adaption.`, () => {
+  fdescribe(`adaption.`, () => {
     let fixture: ComponentFixture<TestXTableAdaptionComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -116,7 +116,7 @@ describe(XTablePrefix, () => {
       expect(table).toBeDefined();
     });
   });
-  fdescribe(`checkbox.`, () => {
+  describe(`checkbox.`, () => {
     let fixture: ComponentFixture<TestXTableCheckboxComponent>;
     let table: DebugElement;
     beforeEach(() => {
