@@ -1,4 +1,4 @@
-import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert, XWithConfig } from '@ng-nest/ui/core';
+import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert, XWithConfig, XDate } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -45,7 +45,7 @@ export interface XTimelineNode extends XIdentityProperty {
    * @zh_CN 时间
    * @en_US Time
    */
-  time?: string | Date;
+  time?: XDate;
   /**
    * @zh_CN 内容
    * @en_US Content

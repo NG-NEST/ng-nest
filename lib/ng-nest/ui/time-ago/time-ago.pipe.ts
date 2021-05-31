@@ -9,7 +9,8 @@ export class XTimeAgoPipe implements PipeTransform {
   locale: XI18nTimeAgo = {};
   private catchContent: any;
   constructor(private datePipe: DatePipe, private i18n: XI18nService) {}
-  transform(input: XDate): string {
+  transform(input?: XDate): string {
+    if (!input) return '';
     const date = XToDate(input);
     if (isNaN(date.valueOf())) {
       return input as string;
