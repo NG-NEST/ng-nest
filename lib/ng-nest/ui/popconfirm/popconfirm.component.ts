@@ -1,6 +1,6 @@
 import { Renderer2, ElementRef, ChangeDetectorRef, Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
-import { XConfigService } from '@ng-nest/ui/core';
+import { XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nPopconfirm } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { map, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPopconfirmComponent extends XPopconfirmProperty {
-  visible!: boolean;
+  visible!: XBoolean;
   locale: XI18nPopconfirm = {};
 
   private _unSubject = new Subject<void>();

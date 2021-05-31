@@ -19,12 +19,12 @@ export class XPopconfirmProperty extends XProperty {
    * @zh_CN 标题，支持自定义模板
    * @en_US Title, support custom template
    */
-  @Input() title?: XTemplate;
+  @Input() title!: XTemplate;
   /**
    * @zh_CN 内容，支持自定义模板
    * @en_US Content, support custom templates
    */
-  @Input() content?: XTemplate;
+  @Input() content!: XTemplate;
   /**
    * @zh_CN 弹出的位置
    * @en_US Pop-up position
