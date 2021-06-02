@@ -27,12 +27,12 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 输入类型
    * @en_US Input type
    */
-  @Input() type: XInputType = 'text';
+  @Input() type?: XInputType = 'text';
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable?: XBoolean;
   /**
    * @zh_CN 只读
    * @en_US Read only
@@ -42,7 +42,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 图标
    * @en_US Icon
    */
-  @Input() icon!: string;
+  @Input() icon?: string;
   /**
    * @zh_CN 图标布局方式
    * @en_US Icon layout
@@ -62,7 +62,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 值模板
    * @en_US Node template
    */
-  @Input() valueTpl!: TemplateRef<any>;
+  @Input() valueTpl?: TemplateRef<any>;
   /**
    * @zh_CN 值模板参数
    * @en_US Node template

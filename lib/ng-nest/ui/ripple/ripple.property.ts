@@ -25,12 +25,12 @@ export class XRippleProperty extends XProperty {
    * @zh_CN 类型
    * @en_US Types of
    */
-  @Input() @XWithConfig<XRippleType>(X_CONFIG_NAME, 'initial') type!: XRippleType;
+  @Input() @XWithConfig<XRippleType>(X_CONFIG_NAME, 'initial') type?: XRippleType;
   /**
    * @zh_CN 禁用
    * @en_US Disable
    */
-  @Input() @XInputBoolean() disabled!: XBoolean;
+  @Input() @XInputBoolean() disabled?: XBoolean;
 }
 
 /**

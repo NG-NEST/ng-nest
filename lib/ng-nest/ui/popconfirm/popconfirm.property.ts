@@ -19,47 +19,47 @@ export class XPopconfirmProperty extends XProperty {
    * @zh_CN 标题，支持自定义模板
    * @en_US Title, support custom template
    */
-  @Input() title!: XTemplate;
+  @Input() title?: XTemplate;
   /**
    * @zh_CN 内容，支持自定义模板
    * @en_US Content, support custom templates
    */
-  @Input() content!: XTemplate;
+  @Input() content?: XTemplate;
   /**
    * @zh_CN 弹出的位置
    * @en_US Pop-up position
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement!: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement?: XPlacement;
   /**
    * @zh_CN 激活方式
    * @en_US Activation method
    */
-  @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'click') trigger!: XPopoverTrigger;
+  @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'click') trigger?: XPopoverTrigger;
   /**
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width?: string;
   /**
    * @zh_CN 图标
    * @en_US Icon
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-help-circle') icon!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-help-circle') icon?: string;
   /**
    * @zh_CN 图标颜色
    * @en_US Icon color
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#e6a23c') iconColor!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#e6a23c') iconColor?: string;
   /**
    * @zh_CN 取消的文字
    * @en_US Canceled text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText?: string;
   /**
    * @zh_CN 确认的文字
    * @en_US Confirmed text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText?: string;
   /**
    * @zh_CN 取消的点击事件
    * @en_US Cancelled click event

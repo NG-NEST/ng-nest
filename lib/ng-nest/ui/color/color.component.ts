@@ -30,8 +30,8 @@ export class XColorComponent extends XColorProperty implements OnInit {
 
   setColors() {
     let colors = [];
-    for (let amount of this.amounts) {
-      colors.push(toHex(mixColors(this.merge, this.hex.trim(), amount as number)));
+    for (let amount of this.amounts as Array<number>) {
+      colors.push(toHex(mixColors(this.merge as string, this.hex.trim(), amount as number)));
     }
     this.colors = colors;
   }

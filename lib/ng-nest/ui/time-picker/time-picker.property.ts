@@ -24,12 +24,12 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    * @zh_CN 格式化
    * @en_US Format
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format?: string;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement!: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

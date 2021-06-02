@@ -122,7 +122,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(this.debounceTime), takeUntil(this._unSubject)).subscribe(() => {
+    this.inputChange.pipe(debounceTime(this.debounceTime as number), takeUntil(this._unSubject)).subscribe(() => {
       this.modelChange();
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -241,7 +241,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XPositionTopBottom, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-auto-complete-portal'
     });
   }

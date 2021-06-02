@@ -21,7 +21,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
         index++;
       }
     } else {
-      result = !new RegExp(this.pattern).test(this.value as any);
+      result = !new RegExp(this.pattern as RegExp).test(this.value as any);
     }
     return result;
   }
@@ -32,7 +32,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
     if (Array.isArray(this.message)) {
       return this.message.length > this.invalidIndex ? this.message[this.invalidIndex] : '';
     } else {
-      return this.message;
+      return this.message as string;
     }
   }
   invalidIndex: number = 0;
@@ -52,7 +52,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
-  setFlex(ele: Element, renderer: Renderer2, justify: XJustify, align: XAlign, direction: XDirection) {
+  setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
     if (!XIsEmpty(justify)) renderer.addClass(ele, `x-justify-${this.justify}`);
     if (!XIsEmpty(align)) renderer.addClass(ele, `x-align-${this.align}`);
     if (!XIsEmpty(direction)) renderer.addClass(ele, `x-direction-${this.direction}`);

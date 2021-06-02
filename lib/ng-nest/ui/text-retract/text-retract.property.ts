@@ -18,10 +18,10 @@ export class XTextRetractProperty {
    * @zh_CN 文本
    * @en_US text
    */
-  @Input() content!: string;
+  @Input() content?: string;
   /**
    * @zh_CN 默认最大显示字符数
    * @en_US Default maximum number of characters displayed
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 256) @XInputNumber() max!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 256) @XInputNumber() max?: XNumber;
 }

@@ -24,7 +24,7 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement!: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

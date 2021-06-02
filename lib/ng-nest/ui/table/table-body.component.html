@@ -3,7 +3,7 @@
     <tr *ngFor="let row of data; index as i; trackBy: trackByItem" [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
       <td
         *ngFor="let column of cellConfig.cells; index as j"
-        [title]="row[column.id] ? row[column.id] : ''"
+        [title]="getTitle(row, column)"
         [class.x-table-sticky]="table.getSticky(column)"
         [style.left.px]="column.left"
         [style.grid-area]="column.gridArea"

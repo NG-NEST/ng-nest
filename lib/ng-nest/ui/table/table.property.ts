@@ -56,7 +56,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
-  @Input() activatedRow!: XTableRow;
+  @Input() activatedRow?: XTableRow;
   /**
    * @zh_CN 当前选中行改变
    * @en_US The currently selected row changes
@@ -91,7 +91,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN body 数据高度
    * @en_US body data height
    */
-  @Input() @XInputNumber() bodyHeight!: number;
+  @Input() @XInputNumber() bodyHeight?: number;
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
@@ -111,7 +111,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() adaptionHeight!: XNumber;
+  @Input() @XInputNumber() adaptionHeight?: XNumber;
   /**
    * @zh_CN 文档高度百分比，弹窗百分比高度用到
    * @en_US Document height percentage, used by pop-up window percentage height
@@ -131,7 +131,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 滚动区域高宽
    * @en_US Height and width of rolling area
    */
-  @Input() scroll!: { x: number; y: number };
+  @Input() scroll?: { x: number; y: number };
   /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
@@ -141,7 +141,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 单元格配置
    * @en_US Cell config
    */
-  @Input() cellConfig!: XTableCellConfig;
+  @Input() cellConfig?: XTableCellConfig;
 }
 
 /**
@@ -409,17 +409,17 @@ export class XTableHeadProperty extends XProperty {
    * @zh_CN 竖向滚动条宽度
    * @en_US Vertical scroll bar width
    */
-  @Input() scrollYWidth!: number;
+  @Input() scrollYWidth?: number;
   /**
    * @zh_CN 横向滚动条宽度
    * @en_US Horizontal scroll bar width
    */
-  @Input() scrollXWidth!: number | null;
+  @Input() scrollXWidth?: number | null;
   /**
    * @zh_CN 单元格配置
    * @en_US Cell merge rules
    */
-  @Input() cellConfig!: XTableCellConfigRule;
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**
@@ -453,7 +453,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
-  @Input() activatedRow!: XTableRow;
+  @Input() activatedRow?: XTableRow;
   /**
    * @zh_CN 当前选中行改变
    * @en_US The currently selected row changes
@@ -468,7 +468,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN body 数据高度
    * @en_US body data height
    */
-  @Input() @XInputNumber() bodyHeight!: number;
+  @Input() @XInputNumber() bodyHeight?: number;
   /**
    * @zh_CN 允许行点击选中
    * @en_US Allow row click to select
@@ -498,7 +498,7 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() adaptionHeight!: XNumber;
+  @Input() @XInputNumber() adaptionHeight?: XNumber;
   /**
    * @zh_CN 文档高度百分比，弹窗百分比高度用到
    * @en_US Document height percentage, used by pop-up window percentage height
@@ -508,12 +508,12 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 滚动区域高宽
    * @en_US Height and width of rolling area
    */
-  @Input() scroll!: { x: number; y: number };
+  @Input() scroll?: { x: number; y: number };
   /**
    * @zh_CN 单元格配置规则
    * @en_US Cell config rules
    */
-  @Input() cellConfig!: XTableCellConfigRule;
+  @Input() cellConfig?: XTableCellConfigRule;
 }
 
 /**

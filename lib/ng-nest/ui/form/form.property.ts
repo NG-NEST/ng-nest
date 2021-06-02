@@ -53,22 +53,22 @@ export class XFormProperty extends XFormProp {
    * @zh_CN 表单名称
    * @en_US Form name
    */
-  @Input() title!: string;
+  @Input() title?: string;
   /**
    * @zh_CN 控件间距，单位rem
    * @en_US Control spacing, unit rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() space!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() space?: XNumber;
   /**
    * @zh_CN 控件宽度，24栅格
    * @en_US Control width, 24 grid
    */
-  @Input() @XInputNumber() span!: XNumber;
+  @Input() @XInputNumber() span?: XNumber;
   /**
    * @zh_CN 标签后缀
    * @en_US Label suffix
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix!: string;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix?: string;
   /**
    * @zh_CN 表单控件
    * @en_US Form control
@@ -83,7 +83,7 @@ export class XFormProperty extends XFormProp {
    * @zh_CN 表单禁用
    * @en_US Form disabled
    */
-  @Input() @XInputBoolean() disabled!: XBoolean;
+  @Input() @XInputBoolean() disabled?: XBoolean;
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template
@@ -264,7 +264,7 @@ export class XControlProperty {
    * @zh_CN 控件对象
    * @en_US Control object
    */
-  @Input() option!: XControlOption;
+  @Input() option?: XControlOption;
 }
 
 export class XFormControl extends FormControl {

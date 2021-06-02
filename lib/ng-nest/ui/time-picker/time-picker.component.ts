@@ -10,7 +10,7 @@ import {
   Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
 import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
@@ -214,7 +214,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-time-picker-portal'
     });
   }

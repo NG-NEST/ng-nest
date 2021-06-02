@@ -18,7 +18,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @zh_CN 类型
    * @en_US Types of
    */
-  @Input() @XWithConfig<XButtonType>(X_CONFIG_NAME, 'initial') type!: XButtonType;
+  @Input() @XWithConfig<XButtonType>(X_CONFIG_NAME, 'initial') type?: XButtonType;
   /**
    * @zh_CN 图标
    * @en_US Icon
@@ -43,47 +43,47 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
   /**
    * @zh_CN 仅显示图标
    * @en_US Icon only
    */
-  @Input() @XInputBoolean() onlyIcon!: XBoolean;
+  @Input() @XInputBoolean() onlyIcon?: XBoolean;
   /**
    * @zh_CN 激活的按钮（样式差异）
    * @en_US Active button (style difference)
    */
-  @Input() @XInputBoolean() activated!: XBoolean;
+  @Input() @XInputBoolean() activated?: XBoolean;
   /**
    * @zh_CN 禁用按钮
    * @en_US Disable button
    */
-  @Input() @XInputBoolean() disabled!: XBoolean;
+  @Input() @XInputBoolean() disabled?: XBoolean;
   /**
    * @zh_CN 朴素按钮
    * @en_US Plain button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() plain!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() plain?: XBoolean;
   /**
    * @zh_CN 圆角按钮
    * @en_US Round button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() round!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() round?: XBoolean;
   /**
    * @zh_CN 圆型按钮（配合图标来使用）
    * @en_US Round button (use with icon)
    */
-  @Input() @XInputBoolean() circle!: XBoolean;
+  @Input() @XInputBoolean() circle?: XBoolean;
   /**
    * @zh_CN 加载中
    * @en_US Loading
    */
-  @Input() @XInputBoolean() loading!: XBoolean;
+  @Input() @XInputBoolean() loading?: XBoolean;
   /**
    * @zh_CN 关闭按钮
    * @en_US Close button
    */
-  @Input() @XInputBoolean() closable!: XBoolean;
+  @Input() @XInputBoolean() closable?: XBoolean;
 }
 
 /**
@@ -181,10 +181,10 @@ export class XButtonsProperty extends XProperty {
    * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
    * @en_US Button spacing, unit rem (calculated according to the ratio of 1rem = 16px)
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME_BUTTONS, 0) @XInputNumber() space!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME_BUTTONS, 0) @XInputNumber() space?: XNumber;
   /**
    * @zh_CN 隐藏边框
    * @en_US Hide border
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS) @XInputBoolean() hiddenBorder!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS) @XInputBoolean() hiddenBorder?: XBoolean;
 }

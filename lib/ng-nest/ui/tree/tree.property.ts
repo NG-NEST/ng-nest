@@ -36,12 +36,12 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 显示多选框
    * @en_US Show checkbox
    */
-  @Input() @XInputBoolean() checkbox!: XBoolean;
+  @Input() @XInputBoolean() checkbox?: XBoolean;
   /**
    * @zh_CN 开启懒加载节点，data 必须设置成函数类型
    * @en_US Open lazy loading node, data must be set to function type
    */
-  @Input() @XInputBoolean() lazy!: XBoolean;
+  @Input() @XInputBoolean() lazy?: XBoolean;
   /**
    * @zh_CN 当前激活的节点 Id
    * @en_US Currently active node Id
@@ -61,7 +61,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 展开所有节点
    * @en_US Expand all nodes
    */
-  @Input() @XInputBoolean() expandedAll!: XBoolean;
+  @Input() @XInputBoolean() expandedAll?: XBoolean;
   /**
    * @zh_CN 默认展开的层级
    * @en_US Default expanded level
@@ -71,27 +71,27 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 点击节点就触发展开/收起的操作，请确保节点上没有其它操作（checkbox、自定义的操作按钮）
    * @en_US Click the node to trigger the expand/collapse operation, please make sure that there are no other operations on the node (checkbox, custom operation button)
    */
-  @Input() @XInputBoolean() nodeOpen!: XBoolean;
+  @Input() @XInputBoolean() nodeOpen?: XBoolean;
   /**
    * @zh_CN 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.875) @XInputNumber() spacing!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.875) @XInputNumber() spacing?: XNumber;
   /**
    * @zh_CN 标签自定义模板
    * @en_US Label custom template
    */
-  @Input() labelTpl!: TemplateRef<void>;
+  @Input() labelTpl?: TemplateRef<void>;
   /**
    * @zh_CN 节点的高度，单位 rem, 默认 0 是自适应高度
    * @en_US The height of the node in rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() nodeHeight!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() nodeHeight?: XNumber;
   /**
    * @zh_CN 是否允许多次点击一个节点触发多次事件
    * @en_US Whether to allow multiple clicks on a node to trigger multiple events
    */
-  @Input() @XInputBoolean() allowManyActivated!: XBoolean;
+  @Input() @XInputBoolean() allowManyActivated?: XBoolean;
   /**
    * @zh_CN 当前点击选中的节点变化的事件
    * @en_US The event of the currently clicked node change
@@ -121,7 +121,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
    */
-  @Input() @XWithConfig<XAlign>(X_CONFIG_NAME, 'center') nodeAlignItems!: XAlign;
+  @Input() @XWithConfig<XAlign>(X_CONFIG_NAME, 'center') nodeAlignItems?: XAlign;
   /**
    * @zh_CN 树节点操作按钮
    * @en_US Tree node operation buttons
@@ -234,12 +234,12 @@ export class XTreeNodeProperty {
    * @zh_CN 层级
    * @en_US Level
    */
-  @Input() level!: XNumber;
+  @Input() level?: XNumber;
   /**
    * @zh_CN 懒加载子节点
    * @en_US Lazy loading of child nodes
    */
-  @Input() @XInputBoolean() lazy!: XBoolean;
+  @Input() @XInputBoolean() lazy?: XBoolean;
   /**
    * @zh_CN 节点的高度，单位 rem
    * @en_US The height of the node in rem
@@ -249,7 +249,7 @@ export class XTreeNodeProperty {
    * @zh_CN 节点内容不换行显示省略号
    * @en_US Show ellipsis without wrapping
    */
-  @Input() @XInputBoolean() nodeNowrap!: XBoolean;
+  @Input() @XInputBoolean() nodeNowrap?: XBoolean;
   /**
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
@@ -259,5 +259,5 @@ export class XTreeNodeProperty {
    * @zh_CN 懒加载函数
    * @en_US Lazy loading function
    */
-  @Input() lazyData!: (pid?: any) => Observable<XTreeNode[]>;
+  @Input() lazyData?: (pid?: any) => Observable<XTreeNode[]>;
 }

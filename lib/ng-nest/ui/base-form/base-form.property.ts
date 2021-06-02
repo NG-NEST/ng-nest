@@ -9,35 +9,35 @@ export class XFormProp extends XProperty {
   /**
    * 标签
    */
-  @Input() label: string = '';
+  @Input() label?: string = '';
   /**
    * 标签宽度
    */
-  @Input() labelWidth: string = '';
+  @Input() labelWidth?: string = '';
   /**
    * 标签文字对齐方式
    */
-  @Input() labelAlign: XAlign = 'start';
+  @Input() labelAlign?: XAlign = 'start';
   /**
    * flex 布局下的子元素水平排列方式
    */
-  @Input() justify: XJustify = 'start';
+  @Input() justify?: XJustify = 'start';
   /**
    * flex 布局下的子元素垂直排列方式
    */
-  @Input() align: XAlign = 'start';
+  @Input() align?: XAlign = 'start';
   /**
    * flex 布局下的子元素排列方向
    */
-  @Input() direction: XDirection = 'column';
+  @Input() direction?: XDirection = 'column';
   /**
    * 尺寸
    */
-  @Input() size: XSize = 'medium';
+  @Input() size?: XSize = 'medium';
   /**
    * 输入提示信息
    */
-  @Input() placeholder: string = '';
+  @Input() placeholder?: string = '';
   /**
    * 禁用
    */
@@ -49,11 +49,11 @@ export class XFormProp extends XProperty {
   /**
    * 正则验证规则
    */
-  @Input() pattern!: RegExp | RegExp[];
+  @Input() pattern?: RegExp | RegExp[];
   /**
    * 验证不通过提示文字
    */
-  @Input() message!: string | string[];
+  @Input() message?: string | string[];
 }
 
 export interface XFormOption {

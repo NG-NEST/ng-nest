@@ -33,22 +33,22 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
    * @zh_CN 按钮样式
    * @en_US Button style
    */
-  @Input() @XInputBoolean() button!: XBoolean;
+  @Input() @XInputBoolean() button?: XBoolean;
   /**
    * @zh_CN 图标样式
    * @en_US Icon style
    */
-  @Input() @XInputBoolean() icon!: XBoolean;
+  @Input() @XInputBoolean() icon?: XBoolean;
   /**
    * @zh_CN 不确定状态的样式
    * @en_US Uncertain state style
    */
-  @Input() @XInputBoolean() indeterminate!: XBoolean;
+  @Input() @XInputBoolean() indeterminate?: XBoolean;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
 }
 
 /**

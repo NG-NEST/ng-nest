@@ -22,5 +22,5 @@ export class XTypographyProperty extends XProperty {
    * @zh_CN 显示文字
    * @en_US Display text
    */
-  @Input() text!: string;
+  @Input() text?: string;
 }

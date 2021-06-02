@@ -18,17 +18,17 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @zh_CN 显示文字
    * @en_US Display text
    */
-  @Input() text!: XTemplate;
+  @Input() text?: XTemplate;
   /**
    * @zh_CN 请求地址
    * @en_US Request address
    */
-  @Input() action!: string;
+  @Input() action?: string;
   /**
    * @zh_CN 上传文件类型，与原生的 input file 组件一致
    * @en_US Upload file type, consistent with native input file component
    */
-  @Input() accept!: string;
+  @Input() accept?: string;
   /**
    * @zh_CN 文件显示类型
    * @en_US File display type
@@ -38,12 +38,12 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @zh_CN 图片剪裁
    * @en_US Picture cropping
    */
-  @Input() @XInputBoolean() imgCut!: XBoolean;
+  @Input() @XInputBoolean() imgCut?: XBoolean;
   /**
    * @zh_CN 多文件上传
    * @en_US Multiple file upload
    */
-  @Input() @XInputBoolean() multiple!: XBoolean;
+  @Input() @XInputBoolean() multiple?: XBoolean;
   /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event

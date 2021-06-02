@@ -18,12 +18,12 @@ export class XBadgeProperty extends XProperty {
    * @zh_CN 背景颜色
    * @en_US Background color
    */
-  @Input() @XWithConfig<XBadgeType>(X_CONFIG_NAME, 'danger') type!: XBadgeType;
+  @Input() @XWithConfig<XBadgeType>(X_CONFIG_NAME, 'danger') type?: XBadgeType;
   /**
    * @zh_CN 最大值
    * @en_US Max
    */
-  @Input() @XInputNumber() max!: XNumber;
+  @Input() @XInputNumber() max?: XNumber;
   /**
    * @zh_CN 显示值
    * @en_US Display value
@@ -33,7 +33,7 @@ export class XBadgeProperty extends XProperty {
    * @zh_CN 是否显示小红点
    * @en_US Whether to show the small red dot
    */
-  @Input() @XInputBoolean() dot!: XBoolean;
+  @Input() @XInputBoolean() dot?: XBoolean;
 }
 
 /**

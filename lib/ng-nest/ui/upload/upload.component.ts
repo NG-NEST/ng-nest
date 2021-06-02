@@ -130,7 +130,7 @@ export class XUploadComponent extends XUploadProperty {
   uploadFile(file: XUploadNode, index = -1) {
     let formData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('POST', this.action, formData, {
+    const req = new HttpRequest('POST', this.action as string, formData, {
       reportProgress: true,
       responseType: 'arraybuffer'
     });

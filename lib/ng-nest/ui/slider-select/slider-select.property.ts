@@ -34,7 +34,7 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
    * @zh_CN 精度，默认根据步数来计算
    * @en_US Precision, calculated based on the number of steps by default
    */
-  @Input() @XInputNumber() precision!: XNumber;
+  @Input() @XInputNumber() precision?: XNumber;
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event

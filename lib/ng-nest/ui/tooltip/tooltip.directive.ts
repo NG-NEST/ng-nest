@@ -67,7 +67,7 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
       backdropClass: '',
       positionStrategy: this.portalService.setPlacement({
         elementRef: this.elementRef,
-        placement: [this.placement, 'bottom', 'top', 'left', 'right']
+        placement: [this.placement as XPlacement, 'bottom', 'top', 'left', 'right']
       }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

@@ -13,16 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import {
-  XIsEmpty,
-  XIsObservable,
-  XIsChange,
-  XSetData,
-  XClearClass,
-  XConfigService,
-  XIsArray,
-  XPositionTopBottom
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XIsObservable, XIsChange, XSetData, XClearClass, XConfigService, XIsArray, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -299,7 +290,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom', 'top'],
+      placement: [this.placement as XPositionTopBottom, 'bottom', 'top'],
       transformOriginOn: 'x-select-portal'
     });
   }

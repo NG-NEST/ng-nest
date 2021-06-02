@@ -62,7 +62,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     public configService: XConfigService
   ) {
     super();
-    this.iconService.rootUrl = this.href;
+    this.iconService.rootUrl = this.href as string;
     this.renderer.addClass(this.elementRef.nativeElement, XIconPrefix);
   }
 
@@ -113,7 +113,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     }
   }
 
-  setSourceUrl(type: string) {
+  setSourceUrl(type?: string) {
     if (typeof type === 'undefined') return '';
     const split = type.split('-');
     const souce = split.shift();

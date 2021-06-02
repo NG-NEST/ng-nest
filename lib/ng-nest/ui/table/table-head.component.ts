@@ -25,7 +25,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   theadStyle: { [property: string]: any } = {};
   @ViewChild('thead') thead!: ElementRef;
   constructor(
-    @Host() @Optional() public table: XTableComponent,
+    @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,

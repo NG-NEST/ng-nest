@@ -23,7 +23,7 @@ import { XTableComponent } from './table.component';
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
   @ViewChild('tfoot') tfoot!: ElementRef;
   constructor(
-    @Host() @Optional() public table: XTableComponent,
+    @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef

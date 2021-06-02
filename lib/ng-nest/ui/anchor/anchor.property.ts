@@ -18,22 +18,22 @@ export class XAnchorProperty extends XProperty {
    * @zh_CN 滚动区域对象
    * @en_US Scroll area object
    */
-  @Input() scroll!: HTMLElement;
+  @Input() scroll?: HTMLElement;
   /**
    * @zh_CN 顶部距离
    * @en_US Top distance
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop?: string;
   /**
    * @zh_CN 导航相对内容位置
    * @en_US Navigation relative content position
    */
-  @Input() @XWithConfig<XAnchorLayout>(X_CONFIG_NAME, 'right') layout!: XAnchorLayout;
+  @Input() @XWithConfig<XAnchorLayout>(X_CONFIG_NAME, 'right') layout?: XAnchorLayout;
   /**
    * @zh_CN 对齐方式
    * @en_US Alignment
    */
-  @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify!: XJustify;
+  @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify?: XJustify;
 }
 
 /**

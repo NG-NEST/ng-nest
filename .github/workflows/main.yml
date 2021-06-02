@@ -24,7 +24,7 @@ jobs:
     - name: use node.js
       uses: actions/setup-node@v1
       with: 
-        node-version: 13.12.0 
+        node-version: 14.15.4 
     
     - name: build
       run: |

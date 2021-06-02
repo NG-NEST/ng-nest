@@ -17,7 +17,7 @@ export class XCalendarProperty extends XProperty {
    * @zh_CN 事务数据对象
    * @en_US Transaction data object
    */
-  @Input() data!: XCalendarData;
+  @Input() data?: XCalendarData;
   /**
    * @zh_CN 显示模式
    * @en_US Display mode

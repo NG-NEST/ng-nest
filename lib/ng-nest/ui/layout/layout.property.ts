@@ -17,7 +17,7 @@ export class XRowProperty extends XProperty {
    * @zh_CN 列间隔，rem
    * @en_US Column interval, rem
    */
-  @Input() @XInputNumber() space!: XNumber;
+  @Input() @XInputNumber() space?: XNumber;
   /**
    * @zh_CN flex 布局下的水平排列方式
    * @en_US Horizontal arrangement under flex layout
@@ -46,35 +46,35 @@ export class XColProperty extends XProperty {
    * @zh_CN 24栅格布局，列占的宽度
    * @en_US 24 grid layout, column width
    */
-  @Input() @XInputNumber() span!: XNumber;
+  @Input() @XInputNumber() span?: XNumber;
   /**
    * @zh_CN 栅格左侧的间隔格数
    * @en_US The number of intervals on the left side of the grid
    */
-  @Input() @XInputNumber() offset!: XNumber;
+  @Input() @XInputNumber() offset?: XNumber;
   /**
    * <768px
    */
-  @Input() @XInputNumber() xs!: XNumber;
+  @Input() @XInputNumber() xs?: XNumber;
   /**
    * ≥768px
    */
-  @Input() @XInputNumber() sm!: XNumber;
+  @Input() @XInputNumber() sm?: XNumber;
   /**
    * ≥992px
    */
-  @Input() @XInputNumber() md!: XNumber;
+  @Input() @XInputNumber() md?: XNumber;
   /**
    * ≥1200px
    */
-  @Input() @XInputNumber() lg!: XNumber;
+  @Input() @XInputNumber() lg?: XNumber;
   /**
    * ≥1920px
    */
-  @Input() @XInputNumber() xl!: XNumber;
+  @Input() @XInputNumber() xl?: XNumber;
   /**
    * @zh_CN 默认样式
    * @en_US Default style
    */
-  @Input() @XInputBoolean() inherit!: XBoolean;
+  @Input() @XInputBoolean() inherit?: XBoolean;
 }

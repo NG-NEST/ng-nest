@@ -17,7 +17,7 @@ export class XCollapseProperty extends XProperty {
    * @zh_CN 是否以手风琴的方式展示，只展开一个面板
    * @en_US Whether to display as an accordion, only expand one panel
    */
-  @Input() @XInputBoolean() accordion!: XBoolean;
+  @Input() @XInputBoolean() accordion?: XBoolean;
   /**
    * @zh_CN 当前激活的面板序号
    * @en_US The serial number of the currently active panel
@@ -46,10 +46,10 @@ export class XCollapsePanelProperty extends XProperty {
    * @zh_CN 标题，支持模板自定义
    * @en_US Title, support template customization
    */
-  @Input() label!: XTemplate;
+  @Input() label?: XTemplate;
   /**
    * @zh_CN 激活当前面板
    * @en_US Activate the current panel
    */
-  @Input() @XInputBoolean() active!: XBoolean;
+  @Input() @XInputBoolean() active?: XBoolean;
 }

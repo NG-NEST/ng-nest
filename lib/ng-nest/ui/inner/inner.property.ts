@@ -18,5 +18,5 @@ export class XInnerProperty extends XProperty {
    * @zh_CN 内边距
    * @en_US Inner padding
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') padding!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') padding?: string;
 }

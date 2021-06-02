@@ -23,17 +23,17 @@ export class XDrawerProperty extends XProperty {
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  @Input() @XInputBoolean() visible!: XBoolean;
+  @Input() @XInputBoolean() visible?: XBoolean;
   /**
    * @zh_CN 展示方向
    * @en_US Display direction
    */
-  @Input() @XWithConfig<XPosition>(X_CONFIG_NAME, 'right') placement!: XPosition;
+  @Input() @XWithConfig<XPosition>(X_CONFIG_NAME, 'right') placement?: XPosition;
   /**
    * @zh_CN 尺寸，支持固定值
    * @en_US Size, supports fixed value
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '30%') size!: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '30%') size?: string;
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed event

@@ -13,7 +13,7 @@ import {
   Inject,
   ViewChild
 } from '@angular/core';
-import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn } from './table.property';
+import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
 import { removeNgTag, XIsChange, XResize, XConfigService, XNumber } from '@ng-nest/ui/core';
 import { XTableComponent } from './table.component';
 import { Subject, fromEvent } from 'rxjs';
@@ -40,7 +40,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   private _resizeObserver!: ResizeObserver;
 
   constructor(
-    @Host() @Optional() public table: XTableComponent,
+    @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
@@ -112,7 +112,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   setScroll() {
     if (!this.virtualBody || !this.table.thead) return;
     const ele = this.virtualBody.elementRef.nativeElement;
-    const hasY = ele.scrollHeight > this.bodyHeight;
+    const hasY = ele.scrollHeight > (this.bodyHeight as number);
     const hasX = this.table.scrollContentEle.clientWidth > ele.clientWidth;
 
     if (!this.table.hasScrollY && hasY) {
@@ -157,8 +157,13 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.data.indexOf(item);
   }
 
+  getTitle(row: XTableRow, column: XTableCell) {
+    let it = row[column.id as string];
+    return it ? it : '';
+  }
+
   setAdaptionHeight() {
-    if (this.adaptionHeight > 0) {
+    if ((this.adaptionHeight as number) > 0) {
       const headHeight = this.table.thead?.nativeElement.clientHeight || 0;
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
       const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;

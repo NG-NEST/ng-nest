@@ -102,7 +102,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
 
   private setScrolling() {
     const scrollTop = this.scrollTop;
-    const visible = scrollTop >= this.visibilityHeight;
+    const visible = scrollTop >= (this.visibilityHeight as number);
     if (this.visiable !== visible) {
       this.visiable = visible;
       if (this.visiable) {
@@ -110,7 +110,12 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
           content: this.backTopTpl,
           viewContainerRef: this.viewContainerRef,
           overlayConfig: {
-            positionStrategy: this.portal.setPlace('bottom-end', '2.5rem', '2.5rem', ...['0', this.right, this.bottom, '0'])
+            positionStrategy: this.portal.setPlace(
+              'bottom-end',
+              '2.5rem',
+              '2.5rem',
+              ...['0', this.right as string, this.bottom as string, '0']
+            )
           }
         });
       } else {

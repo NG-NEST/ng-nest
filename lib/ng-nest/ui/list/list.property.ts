@@ -28,27 +28,27 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @zh_CN 选中
    * @en_US Selected
    */
-  @Input() @XInputBoolean() checked!: XBoolean;
+  @Input() @XInputBoolean() checked?: XBoolean;
   /**
    * @zh_CN 拖动
    * @en_US Drag
    */
-  @Input() @XInputBoolean() drag!: XBoolean;
+  @Input() @XInputBoolean() drag?: XBoolean;
   /**
    * @zh_CN 当开启多选的时候，ngModel 的值为对象数组
    * @en_US When multiple selection is enabled, the value of ngmodel is an array of objects
    */
-  @Input() @XInputBoolean() objectArray!: XBoolean;
+  @Input() @XInputBoolean() objectArray?: XBoolean;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl!: TemplateRef<any>;
+  @Input() nodeTpl?: TemplateRef<any>;
   /**
    * @zh_CN 滚动区域元素
    * @en_US Rolling area element
    */
-  @Input() scrollElement!: HTMLElement;
+  @Input() scrollElement?: HTMLElement;
   /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event
@@ -124,52 +124,52 @@ export class XListOptionProperty {
    * @zh_CN 节点参数
    * @en_US Node param
    */
-  @Input() node!: XListNode;
+  @Input() node?: XListNode;
   /**
    * @zh_CN 选中
    * @en_US Selected
    */
-  @Input() @XInputBoolean() checked!: XBoolean;
+  @Input() @XInputBoolean() checked?: XBoolean;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl!: TemplateRef<any>;
+  @Input() nodeTpl?: TemplateRef<any>;
   /**
    * @zh_CN 选中
    * @en_US selected
    */
-  @Input() @XInputBoolean() selected!: boolean;
+  @Input() @XInputBoolean() selected?: boolean;
   /**
    * @zh_CN 禁用
    * @en_US disabled
    */
-  @Input() @XInputBoolean() disabled!: boolean;
+  @Input() @XInputBoolean() disabled?: boolean;
   /**
    * @zh_CN 激活
    * @en_US active
    */
-  @Input() @XInputBoolean() active!: boolean;
+  @Input() @XInputBoolean() active?: boolean;
   /**
    * @zh_CN 图标
    * @en_US icon
    */
-  @Input() icon!: string;
+  @Input() icon?: string;
   /**
    * @zh_CN 分割线
    * @en_US Split line
    */
-  @Input() divided!: boolean;
+  @Input() divided?: boolean;
   /**
    * @zh_CN 标签
    * @en_US label
    */
-  @Input() label!: string;
+  @Input() label?: string;
   /**
    * @zh_CN 有子节点
    * @en_US leaf
    */
-  @Input() @XInputBoolean() leaf!: boolean;
+  @Input() @XInputBoolean() leaf?: boolean;
   /**
    * @zh_CN 有子节点
    * @en_US leaf
