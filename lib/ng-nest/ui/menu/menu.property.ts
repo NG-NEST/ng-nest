@@ -158,5 +158,5 @@ export class XMenuNodeProperty {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() node?: XMenuNode;
+  @Input() node!: XMenuNode;
 }

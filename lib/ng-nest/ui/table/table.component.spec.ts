@@ -32,7 +32,7 @@ describe(XTablePrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -56,7 +56,7 @@ describe(XTablePrefix, () => {
       expect(table).toBeDefined();
     });
   });
-  fdescribe(`adaption.`, () => {
+  describe(`adaption.`, () => {
     let fixture: ComponentFixture<TestXTableAdaptionComponent>;
     let table: DebugElement;
     beforeEach(() => {

@@ -277,7 +277,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-date-picker-portal'
     });
   }

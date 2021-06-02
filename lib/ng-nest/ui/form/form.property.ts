@@ -83,7 +83,7 @@ export class XFormProperty extends XFormProp {
    * @zh_CN 表单禁用
    * @en_US Form disabled
    */
-  @Input() @XInputBoolean() disabled?: XBoolean;
+  @Input() @XInputBoolean() disabled!: XBoolean;
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template

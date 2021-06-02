@@ -32,7 +32,7 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles?: string[];
+  @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles!: string[];
   /**
    * @zh_CN 是否能拖动
    * @en_US Can drag

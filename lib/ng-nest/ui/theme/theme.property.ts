@@ -27,7 +27,7 @@ export class XThemeProperty extends XControlValueAccessor<XColorsTheme> {
    * @zh_CN 混合的颜色占比
    * @en_US Proportion of mixed colors
    */
-  @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XThemeAmounts) amounts?: XNumber[];
+  @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XThemeAmounts) amounts!: XNumber[];
   /**
    * @zh_CN 显示暗黑模式的设置
    * @en_US Show dark mode settings

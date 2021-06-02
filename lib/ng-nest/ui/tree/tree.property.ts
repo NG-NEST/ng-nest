@@ -259,5 +259,5 @@ export class XTreeNodeProperty {
    * @zh_CN 懒加载函数
    * @en_US Lazy loading function
    */
-  @Input() lazyData?: (pid?: any) => Observable<XTreeNode[]>;
+  @Input() lazyData!: (pid?: any) => Observable<XTreeNode[]>;
 }
