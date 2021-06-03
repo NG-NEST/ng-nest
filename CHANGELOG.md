@@ -1,3 +1,12 @@
+## [11.2.11](https://github.com/NG-NEST/ng-nest/compare/11.2.10...11.2.11) (2021-06-03)
+
+
+### Bug Fixes
+
+* **module:message-box:** add close action ([d2f2969](https://github.com/NG-NEST/ng-nest/commit/d2f2969f896e14ffcd47e433e4dd0878c35b79de)), closes [#25](https://github.com/NG-NEST/ng-nest/issues/25)
+
+
+
 ## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.9...11.2.10) (2021-05-28)
 
 

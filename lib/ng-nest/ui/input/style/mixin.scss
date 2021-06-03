@@ -135,7 +135,7 @@
           opacity: 1;
         }
         > input {
-          padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2) !important;
+          padding-right: calc(#{$--x-input-icon-font-size} + #{$--x-input-icon-padding} * 2) !important;
         }
       }
     }
@@ -182,7 +182,7 @@
     > .#{$--x-input-prefix}-row {
       > input,
       > .#{$--x-input-prefix}-value-template-value {
-        padding-left: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
+        padding-left: calc(#{$--x-input-icon-font-size} + #{$--x-input-icon-padding} * 2);
       }
       > #{$--x-prefix}-icon {
         left: 0;
@@ -193,7 +193,7 @@
     > .#{$--x-input-prefix}-row {
       > input,
       > .#{$--x-input-prefix}-value-template-value {
-        padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
+        padding-right: calc(#{$--x-input-icon-font-size} + #{$--x-input-icon-padding} * 2);
       }
       > #{$--x-prefix}-icon {
         right: 0;

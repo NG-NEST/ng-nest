@@ -6,7 +6,7 @@
     "entryFile": "./index.ts",
     "styleIncludePaths": ["./style"],
     "umdModuleIds": {
-      "resize-observer-polyfill/ResizeObserver": "resize-observer-polyfill.ResizeObserver"
+      "resize-observer-polyfill": "ResizeObserver"
     }
   },
   "allowedNonPeerDependencies": ["tslib", "angular", "resize-observer-polyfill"]
