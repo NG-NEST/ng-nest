@@ -1,3 +1,23 @@
+# [12.0.0](https://github.com/NG-NEST/ng-nest/compare/11.2.10...12.0.0) (2021-06-03)
+
+
+### Bug Fixes
+
+* update circular dependency error ([2921cd6](https://github.com/NG-NEST/ng-nest/commit/2921cd6427bbd6e2ea478c91c9942c73e133c509))
+* update initializer not definitely ([55b4ba4](https://github.com/NG-NEST/ng-nest/commit/55b4ba46cf936f20b4207909e77fcb360a97ede6))
+* update type error ([d389ce7](https://github.com/NG-NEST/ng-nest/commit/d389ce7252bd24e33bf5818a17c627931053121e))
+* update type error ([e1f2d08](https://github.com/NG-NEST/ng-nest/commit/e1f2d08be9f7ba5b0ae01d720989459bac8309c3))
+* **module:alert:** update type error ([f56f736](https://github.com/NG-NEST/ng-nest/commit/f56f736ceb80a69e1b1261b97bd61be0e3be4889))
+* **module:button:** update type error ([d7714fb](https://github.com/NG-NEST/ng-nest/commit/d7714fbb1fa0cec665d4bcf4600478048c10cdf3))
+* **module:checkbox:** update type error ([6f03086](https://github.com/NG-NEST/ng-nest/commit/6f0308666c20e6bdd4bc1d08a5133ba32c780c00))
+* **module:message-box:** add close action ([db1b833](https://github.com/NG-NEST/ng-nest/commit/db1b8330596c0c5949105993499bc798983cacd1)), closes [#25](https://github.com/NG-NEST/ng-nest/issues/25)
+* **module:popconfirm:** update type error ([8a3da4c](https://github.com/NG-NEST/ng-nest/commit/8a3da4c3e0e87a789d387221057ca105487f242f))
+* **module:result:** update icon type ([3eb37cb](https://github.com/NG-NEST/ng-nest/commit/3eb37cbf33c065d62edc551d35ff8da9abac6f80))
+* **module:timeline:** update type error ([6b6394a](https://github.com/NG-NEST/ng-nest/commit/6b6394a871d074a2a8021491092194863849ea0c))
+* update package ([3e06161](https://github.com/NG-NEST/ng-nest/commit/3e06161591d950c973001b082376ef77af6e5905))
+
+
+
 ## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.9...11.2.10) (2021-05-28)
 
 
