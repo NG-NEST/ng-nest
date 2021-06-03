@@ -26,7 +26,7 @@ export class OnlineIdeService {
     'core-js': '~3.6.5',
     lodash: '^4.17.21',
     tslib: '^2.0.0',
-    'zone.js': '~0.11.1',
+    'zone.js': '~0.11.4',
     '@ng-nest/ui': `^12.0.0`
   };
   openStackBlitz(selector: string, modules: string[], providers: string[], files: { [fileName: string]: string }) {

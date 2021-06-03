@@ -11,6 +11,9 @@ export default {
       schematics: {
         '@schematics/angular:component': {
           style: 'scss'
+        },
+        '@schematics/angular:application': {
+          strict: true
         }
       },
       architect: {
@@ -22,47 +25,53 @@ export default {
             main: 'src/main.ts',
             polyfills: 'src/polyfills.ts',
             tsConfig: 'tsconfig.app.json',
-            aot: true,
             assets: ['src/favicon.ico', 'src/assets'],
             styles: ['node_modules/@ng-nest/ui/style/core/index.css', 'src/styles.scss']
           },
           configurations: {
             production: {
+              budgets: [
+                {
+                  type: 'initial',
+                  maximumWarning: '500kb',
+                  maximumError: '1mb'
+                },
+                {
+                  type: 'anyComponentStyle',
+                  maximumWarning: '2kb',
+                  maximumError: '4kb'
+                }
+              ],
               fileReplacements: [
                 {
                   replace: 'src/environments/environment.ts',
                   with: 'src/environments/environment.prod.ts'
                 }
               ],
-              optimization: true,
-              outputHashing: 'all',
-              sourceMap: false,
-              extractCss: true,
-              namedChunks: false,
-              aot: true,
-              extractLicenses: true,
-              vendorChunk: false,
-              buildOptimizer: true,
-              budgets: [
-                {
-                  type: 'initial',
-                  maximumWarning: '2mb',
-                  maximumError: '5mb'
-                }
-              ]
+              outputHashing: 'all'
+            },
+            development: {
+              buildOptimizer: false,
+              optimization: false,
+              vendorChunk: true,
+              extractLicenses: false,
+              sourceMap: true,
+              namedChunks: true
             }
-          }
+          },
+          defaultConfiguration: 'production'
         },
         serve: {
           builder: '@angular-devkit/build-angular:dev-server',
-          options: {
-            browserTarget: 'demo:build'
-          },
           configurations: {
             production: {
               browserTarget: 'demo:build:production'
+            },
+            development: {
+              browserTarget: 'demo:build:development'
             }
-          }
+          },
+          defaultConfiguration: 'development'
         }
       }
     }
