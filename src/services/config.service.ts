@@ -49,7 +49,7 @@ export class ConfigService {
       this.setMeta();
       callback && callback();
     } else {
-      this.http.get(`/assets/i18n/${lang}.json`).subscribe((x: XI18nProperty) => {
+      this.http.get<XI18nProperty>(`/assets/i18n/${lang}.json`).subscribe((x) => {
         this.lang = lang as string;
         const localeProps = this.setLocaleProps(x, this.lang);
         this.i18n.setLocale(localeProps, true);
@@ -77,7 +77,7 @@ export class ConfigService {
   }
 
   getVersions() {
-    this.http.get(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x: { versions: [] }) => {
+    this.http.get<{ versions: [] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x) => {
       this.versions = x.versions;
     });
   }

@@ -11,7 +11,7 @@
     [class.is-leaf]="!node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
-    (click)="!tree.nodeOpen && onToggle($event, node) && $event.stop"
+    (click)="!tree.nodeOpen && onToggle($event, node)"
   ></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <x-checkbox
@@ -20,7 +20,7 @@
     [(ngModel)]="node.checked"
     (ngModelChange)="onCheckboxChange()"
     [indeterminate]="node.indeterminate"
-    [disabled]="node.disabled"
+    [disabled]="getNodeDisabled(node.disabled)"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
   <span
@@ -53,5 +53,6 @@
     [nodeHeight]="nodeHeight"
     [nodeNowrap]="nodeNowrap"
     [nodeAlignItems]="nodeAlignItems"
+    [tree]="tree"
   ></li>
 </ul>

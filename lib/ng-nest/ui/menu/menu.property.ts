@@ -153,7 +153,7 @@ export const XMenuNodePrefix = 'x-menu-node';
  * Menu Node Property
  */
 @Component({ template: '' })
-export class XMenuNodeProperty {
+export class XMenuNodeProperty extends XProperty {
   /**
    * @zh_CN 节点数据
    * @en_US Node data

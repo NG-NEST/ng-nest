@@ -53,7 +53,7 @@
               ></x-comment-reply>
             </div>
           </li>
-          <li class="x-comment-more" *ngIf="node.count > node.children?.length">
+          <li class="x-comment-more" *ngIf="hasMore(node)">
             <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>{{ 'comment.more' | xI18n }} </x-link>
           </li>
         </ul>

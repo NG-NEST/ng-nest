@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
   @HostBinding('class.xsmall') get xsmall() {
     return this.layoutService.xsmall;
   }
-  @ViewChild('content', { static: true }) content: ContentComponent;
+  @ViewChild('content', { static: true }) content!: ContentComponent;
 
   constructor(private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
 

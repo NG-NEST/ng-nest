@@ -86,7 +86,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 节点的高度，单位 rem, 默认 0 是自适应高度
    * @en_US The height of the node in rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() nodeHeight?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() nodeHeight!: XNumber;
   /**
    * @zh_CN 是否允许多次点击一个节点触发多次事件
    * @en_US Whether to allow multiple clicks on a node to trigger multiple events
@@ -121,7 +121,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
    */
-  @Input() @XWithConfig<XAlign>(X_CONFIG_NAME, 'center') nodeAlignItems?: XAlign;
+  @Input() @XWithConfig<XAlign>(X_CONFIG_NAME, 'center') nodeAlignItems!: XAlign;
   /**
    * @zh_CN 树节点操作按钮
    * @en_US Tree node operation buttons
@@ -224,7 +224,7 @@ export const XTreeNodePrefix = 'x-tree-node';
  * TreeNode Property
  */
 @Component({ template: '' })
-export class XTreeNodeProperty {
+export class XTreeNodeProperty extends XProperty {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
@@ -259,5 +259,5 @@ export class XTreeNodeProperty {
    * @zh_CN 懒加载函数
    * @en_US Lazy loading function
    */
-  @Input() lazyData!: (pid?: any) => Observable<XTreeNode[]>;
+  @Input() lazyData!: XData<XTreeNode[]>;
 }

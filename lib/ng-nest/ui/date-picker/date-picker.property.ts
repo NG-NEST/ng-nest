@@ -45,7 +45,7 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @zh_CN 只读
    * @en_US Readonly
    */
-  @Input() @XInputBoolean() readonly?: XBoolean;
+  @Input() @XInputBoolean() readonly!: XBoolean;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

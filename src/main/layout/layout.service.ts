@@ -1,6 +1,6 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { CdkScrollable } from '@angular/cdk/overlay';
@@ -12,8 +12,8 @@ import { ConfigService } from 'src/services/config.service';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
-  headerRef: ElementRef;
-  contentRef: ElementRef;
+  headerRef!: ElementRef;
+  contentRef!: ElementRef;
   contentScrolling = new Subject<CdkScrollable>();
   shrink = false;
   small = false;
@@ -22,10 +22,10 @@ export class LayoutService {
   rightDrawerVisible = false;
   defaultActivatedId: any;
   menus: Menu[] = [];
-  menusChange: () => void;
+  menusChange!: () => void;
   menusLang: { [lang: string]: Menu[] } = {};
   navs: Menu[] = [];
-  navActive: Menu;
+  navActive!: Menu;
   navChildrenCatch: { [lang: string]: { [key: string]: Menu[] } } = {
     zh_CN: {},
     en_US: {}
@@ -41,8 +41,9 @@ export class LayoutService {
 
   constructor(private router: Router, private config: ConfigService, private location: Location, private title: Title) {
     this.setMenusLang();
-    this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x: NavigationEnd) => {
-      const route = this.getCurrentMenu(x.urlAfterRedirects);
+    this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x) => {
+      const rt = x as NavigationEnd;
+      const route = this.getCurrentMenu(rt.urlAfterRedirects);
       if (route) {
         this.title.setTitle(`${route.label}${route.label !== 'NG-NEST' ? ' | NG-NEST' : ''}`);
         this.setNav();

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
 import { delay } from 'rxjs/operators';
+import { XHighlightLines } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
@@ -24,6 +25,14 @@ export class XTreeFileComponent extends XTreeFileProperty {
 
   get codeHeight() {
     return Number(this.maxHeight) - (Boolean(this.showCrumb) ? 1.5 : 0);
+  }
+
+  get getCrumbData() {
+    return this.activatedNode?.crumbData as XCrumbNode[];
+  }
+
+  get getHighlightLines() {
+    return this.activatedNode?.highlightLines as XHighlightLines;
   }
 
   constructor(

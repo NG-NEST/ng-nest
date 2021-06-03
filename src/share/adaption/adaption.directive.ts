@@ -9,11 +9,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
   @Input() outerHeight: number = 0;
-  @Input() outerElement: HTMLElement;
-  @Input() container: HTMLElement;
+  @Input() outerElement!: HTMLElement;
+  @Input() container!: HTMLElement;
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
   constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) public doc: any) {}
 
   ngAfterViewInit() {

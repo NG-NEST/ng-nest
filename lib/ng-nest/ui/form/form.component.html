@@ -34,8 +34,8 @@
       [hidden]="control.hidden"
     >
       <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
-        <x-control [option]="control"></x-control>
-      </ng-container>      
+        <x-control [option]="control" [form]="this"></x-control>
+      </ng-container>
     </x-col>
   </x-row>
 </ng-template>

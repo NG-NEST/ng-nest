@@ -527,4 +527,4 @@ export const XTableFootPrefix = 'x-table-foot';
  * Table Foot Property
  */
 @Component({ template: '' })
-export class XTableFootProperty {}
+export class XTableFootProperty extends XProperty {}

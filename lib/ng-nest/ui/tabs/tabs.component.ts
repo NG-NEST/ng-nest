@@ -12,9 +12,9 @@ import {
   QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XConfigService, XData } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
+import { XSliderComponent, XSliderNode, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 
 @Component({

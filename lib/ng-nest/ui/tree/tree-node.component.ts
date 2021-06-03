@@ -11,9 +11,9 @@ import {
   Input
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
-import { XTreeComponent } from './tree.component';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -24,6 +24,7 @@ import { map } from 'rxjs/operators';
 })
 export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   @Input() parent!: XTreeNodeComponent;
+  @Input() tree: any;
   @HostBinding('class.x-tree-node') rootClass = true;
   private _loading = false;
   public get loading() {
@@ -39,7 +40,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   constructor(
-    @Optional() public tree: XTreeComponent,
+    // @Optional() public tree: XTreeComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
@@ -64,7 +65,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     if (node.open && !node.childrenLoaded) {
       if (this.lazy) {
         this.loading = true;
-        this.lazyData(node.id)
+
+        (this.lazyData as (pid?: any) => Observable<XTreeNode[]>)(node.id)
           .pipe(
             map((x) =>
               x.map((y) => {
@@ -152,6 +154,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     };
     getChildren(node.children as XTreeNode[]);
     this.cdr.detectChanges();
+  }
+
+  getNodeDisabled(disabled?: boolean) {
+    return disabled as XBoolean;
   }
 
   onAction(event: Event, action: XTreeAction, node: XTreeNode) {

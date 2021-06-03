@@ -8,11 +8,12 @@ import {
   Optional,
   Host,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  Input
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell } from './table.property';
 import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
-import { XTableComponent } from './table.component';
+
 
 @Component({
   selector: `${XTableHeadPrefix}`,
@@ -24,8 +25,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sortStr = '';
   theadStyle: { [property: string]: any } = {};
   @ViewChild('thead') thead!: ElementRef;
+  @Input() table: any;
   constructor(
-    @Optional() @Host() public table: XTableComponent,
+    // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,

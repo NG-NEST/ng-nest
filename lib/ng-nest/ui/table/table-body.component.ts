@@ -11,11 +11,11 @@ import {
   SimpleChanges,
   OnChanges,
   Inject,
-  ViewChild
+  ViewChild,
+  Input
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
 import { removeNgTag, XIsChange, XResize, XConfigService, XNumber } from '@ng-nest/ui/core';
-import { XTableComponent } from './table.component';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -35,12 +35,13 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   @ViewChild('tbody') tbody!: ElementRef;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
+  @Input() table: any;
 
   private _unSubject = new Subject<void>();
   private _resizeObserver!: ResizeObserver;
 
   constructor(
-    @Optional() @Host() public table: XTableComponent,
+    // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,

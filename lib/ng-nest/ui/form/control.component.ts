@@ -46,7 +46,6 @@ import {
   XTextareaControlOption,
   XTextareaControl
 } from './form.property';
-import { XFormComponent } from './form.component';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
@@ -60,6 +59,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   @Input() option!: XFormControlOption;
+  @Input() form: any;
   @ViewChild(FormControlName, { static: false }) control!: FormControlName;
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _changeProps = ['label', ...this._sharedProps];
@@ -68,7 +68,11 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   private _unSubject = new Subject();
   private _formControl!: FormControl;
 
-  constructor(@Host() @Optional() public form: XFormComponent, public cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(
+    // @Host() @Optional() public form: XFormComponent,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 

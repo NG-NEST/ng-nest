@@ -60,7 +60,7 @@ export class XTabsProperty extends XProperty {
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  @Input() nodeTpl!: TemplateRef<any>;
   /**
    * @zh_CN 尺寸
    * @en_US Size
