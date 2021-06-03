@@ -1,4 +1,13 @@
-# [10.2.0](https://github.com/NG-NEST/ng-nest/compare/10.0.2...10.2.0) (2021-05-24)
+## [10.2.2](https://github.com/NG-NEST/ng-nest/compare/10.2.1...10.2.2) (2021-06-03)
+
+
+
+## [10.2.1](https://github.com/NG-NEST/ng-nest/compare/10.0.2...10.2.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* **module:select:** double click input ([df84f0a](https://github.com/NG-NEST/ng-nest/commit/df84f0a032f7f8e463a62ec0bb4c7409fc3c33f8))
 
 
 
