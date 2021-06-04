@@ -1,6 +1,9 @@
 <div
   #alert
   class="x-alert"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  [cdkDragBoundary]="dragBoundary"
   [ngClass]="classMap"
   *ngIf="!hide"
   @x-fade-animation
@@ -19,7 +22,7 @@
     </ng-container>
   </ng-template>
   <div class="x-alert-inner">
-    <span class="x-alert-title" [class.x-bold]="title && content">
+    <span class="x-alert-title" cdkDragHandle [class.x-bold]="title && content">
       <ng-container *xOutlet="title; context: { $iconTpl: iconTpl }">{{ title }}</ng-container>
     </span>
     <div class="x-alert-content" *ngIf="content">

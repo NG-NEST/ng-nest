@@ -1,5 +1,5 @@
 import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XInputNumber, XBoolean, XNumber, XWithConfig } from '@ng-nest/ui/core';
-import { Input, EventEmitter, Output, Component } from '@angular/core';
+import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
 
 /**
  * Alert
@@ -69,6 +69,16 @@ export class XAlertProperty extends XProperty {
    * @en_US Manually handle close events
    */
   @Input() @XInputBoolean() manual: XBoolean;
+  /**
+   * @zh_CN 拖动提示框
+   * @en_US Drag dialog
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() draggable?: XBoolean;
+  /**
+   * @zh_CN 拖动范围限制，父节点选择器或者对象
+   * @en_US Drag dialog
+   */
+  @Input() dragBoundary!: string | ElementRef<HTMLElement> | HTMLElement;
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed events

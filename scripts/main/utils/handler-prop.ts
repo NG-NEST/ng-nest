@@ -109,7 +109,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         }
 
         const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
-        let name = propd[propd.length - 1].replace('?', '').trim();
+        let name = propd[propd.length - 1].replace(/\?|\!/g, '').trim();
         let type = '',
           val = '';
         if (rt.indexOf(' = ') !== -1) {

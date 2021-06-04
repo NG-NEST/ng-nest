@@ -16,6 +16,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { interval } from 'rxjs';
 
 describe(XDialogPrefix, () => {
   beforeEach(async(() => {
@@ -32,7 +33,7 @@ describe(XDialogPrefix, () => {
         XLinkModule,
         XMessageBoxModule
       ],
-      declarations: [TestXDialogComponent]
+      declarations: [TestXDialogComponent, TestXDialogDraggableComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -40,6 +41,18 @@ describe(XDialogPrefix, () => {
     let dialog: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDialogComponent);
+      fixture.detectChanges();
+      dialog = fixture.debugElement.query(By.directive(XDialogComponent));
+    });
+    it('should create.', () => {
+      expect(dialog).toBeDefined();
+    });
+  });
+  fdescribe(`draggable.`, () => {
+    let fixture: ComponentFixture<TestXDialogDraggableComponent>;
+    let dialog: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDialogDraggableComponent);
       fixture.detectChanges();
       dialog = fixture.debugElement.query(By.directive(XDialogComponent));
     });
@@ -264,6 +277,46 @@ class TestXDialogComponent {
 
   chinese() {
     this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-button (click)="dialog('center')">中(默认)</x-button>
+    </div>
+
+    <x-dialog title="标题" [(visible)]="visible" draggable>
+      <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
+    </x-dialog>
+  `,
+  styles: [
+    `
+      .row {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    `
+  ]
+})
+class TestXDialogDraggableComponent {
+  visible!: boolean;
+
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(0).subscribe((x) => {
+      this.cdr.detectChanges();
+    });
+  }
+
+  dialog() {
+    this.visible = true;
+    this.cdr.detectChanges();
+  }
+
+  refresh() {
     this.cdr.detectChanges();
   }
 }

@@ -5,10 +5,11 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XAlertProperty } from './alert.property';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [XAlertComponent, XAlertProperty],
   exports: [XAlertComponent],
-  imports: [CommonModule, XIconModule, XButtonModule, XOutletModule]
+  imports: [CommonModule, DragDropModule, XIconModule, XButtonModule, XOutletModule]
 })
 export class XAlertModule {}

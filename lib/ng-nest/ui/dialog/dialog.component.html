@@ -1,6 +1,8 @@
 <ng-template #dialogTpl>
   <div class="x-dialog" [@x-move-box-animation]="placement" (@x-move-box-animation.done)="moveDone($event)">
     <x-alert
+      [draggable]="draggable"
+      [dragBoundary]="'.cdk-overlay-container'"
       (close)="onClose()"
       [title]="title"
       [content]="contentTpl"
