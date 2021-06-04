@@ -1,7 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { XButtonModule } from '@ng-nest/ui/button';
 
@@ -11,7 +10,6 @@ import { XButtonModule } from '@ng-nest/ui/button';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     XButtonModule
   ],
   providers: [],
