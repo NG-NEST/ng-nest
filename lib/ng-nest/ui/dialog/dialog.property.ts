@@ -40,7 +40,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '40%') width?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '32rem') width?: string;
   /**
    * @zh_CN 高度
    * @en_US Height
@@ -96,6 +96,11 @@ export class XDialogProperty extends XAlertProperty {
    * @en_US Button center
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter?: XBoolean;
+  /**
+   * @zh_CN 拖动对话框
+   * @en_US Drag dialog
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() draggable?: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
@@ -205,6 +210,11 @@ export interface XDialogOption extends XAlertOption {
    * @en_US Button center
    */
   buttonsCenter?: XBoolean;
+  /**
+   * @zh_CN 拖动对话框
+   * @en_US Drag dialog
+   */
+  draggable?: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing

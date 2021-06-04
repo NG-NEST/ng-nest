@@ -37,6 +37,11 @@
       font-size: 1.75rem;
     }
   }
+  &-draggable {
+    .cdk-drag-handle {
+      cursor: move;
+    }
+  }
   @include type('success', $--x-success, $--x-success-900, $--x-success-600, $--x-success-400);
   @include type('info', $--x-info, $--x-info-900, $--x-info-600, $--x-info-400);
   @include type('warning', $--x-warning, $--x-warning-900, $--x-warning-600, $--x-warning-400);

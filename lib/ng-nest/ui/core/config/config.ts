@@ -124,6 +124,8 @@ export interface XAlertConfig {
   hideClose?: XBoolean;
   showIcon?: XBoolean;
   disabledAnimation?: XBoolean;
+  draggable?: XBoolean;
+  dragHandleTitle?: XBoolean;
   duration?: XNumber;
 }
 
@@ -240,6 +242,7 @@ export interface XDialogConfig {
   showConfirm?: XBoolean;
   confirmText?: string;
   backdropClose?: XBoolean;
+  draggable?: XBoolean;
   hasBackdrop?: XBoolean;
   className?: string;
   buttonsCenter?: XBoolean;

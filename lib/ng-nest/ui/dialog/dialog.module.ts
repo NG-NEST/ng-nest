@@ -8,6 +8,7 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogProperty } from './dialog.property';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { XDialogProperty } from './dialog.property';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DragDropModule,
     XInputModule,
     XButtonModule,
     XIconModule,

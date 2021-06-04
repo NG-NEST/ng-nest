@@ -33,7 +33,8 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
     this.classMap = {
       [`${XAlertPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`x-${this.effect}`]: !XIsEmpty(this.effect),
-      [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon)
+      [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon),
+      [`${XAlertPrefix}-draggable`]: Boolean(this.draggable)
     };
   }
 
