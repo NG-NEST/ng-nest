@@ -330,10 +330,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  searchKeyDown(event:KeyboardEvent): void{
-    if(event.key === 'Enter'){
+  searchKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
       this.searchClick();
-    }else if(event.key === 'Delete'){
+    } else if (event.key === 'Delete') {
       this.search.value = '';
     }
   }
@@ -345,7 +345,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
     this.tableQuery = this.tableQuery || [];
     this.tableQuery.filter = this.tableQuery.filter || [];
-    const field = this.tableQuery.filter.find(x => x.field === this.search.field);
+    const field = this.tableQuery.filter.find((x) => x.field === this.search.field);
 
     if (field) {
       field.value = this.search.value || '';

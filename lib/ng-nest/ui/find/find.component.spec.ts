@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef, Injectable } from '@angular
 import { By } from '@angular/platform-browser';
 import { XFindModule } from '@ng-nest/ui/find';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XFindPrefix } from './find.property';
+import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
@@ -22,7 +22,7 @@ describe(XFindPrefix, () => {
       declarations: [TestXFindComponent, TestXFindLabelComponent, TestXFindDisabledComponent, TestXFindFunctionComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXFindComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -260,10 +260,12 @@ interface User extends XId {
         [(tableIndex)]="table.index"
         [(tableSize)]="table.size"
         [tableTotal]="table.total"
+        [tableQuery]="table.query"
         (tableIndexChange)="table.indexChange($event)"
         (tableSortChange)="table.sortChange($event)"
         [tableVirtualScroll]="true"
         [tableBodyHeight]="420"
+        [search]="searchOption"
         multiple
       ></x-find>
     </x-row>
@@ -308,6 +310,12 @@ class TestXFindComponent {
   dialog: XDialogOption = {
     width: '65rem'
   };
+  searchOption: XFindSearchOption = {
+    label: '用户',
+    button: '搜索',
+    field: 'label',
+    value: ''
+  };
   tree = {
     data: this.treeService.data,
     activatedChange: (node: any) => {
@@ -336,11 +344,11 @@ class TestXFindComponent {
       this.table.getData();
     },
     getData: (visible: boolean = true) => {
-      if (visible)
-        this.tableService.getList(this.table.index, this.table.size, this.table.query).subscribe((x) => {
-          [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
-          this.cdr.detectChanges();
-        });
+      if (visible) console.log(this.table.query);
+      this.tableService.getList(this.table.index, this.table.size, this.table.query).subscribe((x) => {
+        [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
+        this.cdr.detectChanges();
+      });
     }
   };
 

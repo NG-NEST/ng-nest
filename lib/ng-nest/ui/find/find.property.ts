@@ -1,15 +1,4 @@
-import {
-  XInputBoolean,
-  XBoolean,
-  XDataConvert,
-  XData,
-  XInputNumber,
-  XNumber,
-  XSort,
-  XQuery,
-  XWithConfig,
-  XFilter
-} from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XDataConvert, XData, XInputNumber, XNumber, XSort, XQuery, XWithConfig, XFilter } from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { XTreeNode } from '@ng-nest/ui/tree';
@@ -213,7 +202,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 数据查询过滤表单
    * @en_US form for data filter
    */
-  @Input() search: any;
+  @Input() search!: XFindSearchOption;
 }
 
 /**
