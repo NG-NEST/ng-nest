@@ -158,7 +158,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.data.indexOf(item);
   }
 
-  getTitle(row: XTableRow, column: XTableCell) {
+  getTitle(row: XTableRow, column: XTableCell | any) {
     let it = row[column.id as string];
     return it ? stripTags(it) : '';
   }

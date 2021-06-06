@@ -52,7 +52,7 @@
     <td
       [style.width.px]="column.width"
       [style.flex]="column.width ? 'none' : column.flex"
-      [title]="row[column.id] ? row[column.id] : ''"
+      [title]="getTitle(row, column)"
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"
     >
