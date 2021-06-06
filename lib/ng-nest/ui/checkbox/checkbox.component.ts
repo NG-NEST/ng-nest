@@ -71,8 +71,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     if (this.single) {
       this.value = !this.value;
     } else {
-      this.value = this.value as Array<any>;
-      if (typeof this.value === 'undefined') this.value = [];
+      this.value = this.value as Array<any> || [];      
       let index = this.value.indexOf(node.id);
       if (index >= 0) {
         this.value.splice(index, 1);
