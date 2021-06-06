@@ -19,10 +19,10 @@
   }
   &-row {
     flex: 1;
-    display: flex;
+    //display: flex;
     align-items: center;
     position: relative;
-    height: $--x-checkbox-height;
+    //height: $--x-checkbox-height;
     line-height: $--x-checkbox-height;
   }
   &-item {

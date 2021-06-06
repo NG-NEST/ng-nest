@@ -38,5 +38,5 @@
   ></x-table-body>
   <x-table-foot [table]="this"></x-table-foot>
 </table>
-<x-pagination #pagination [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
+<x-pagination #pagination *ngIf="size" [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
 </x-pagination>

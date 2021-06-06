@@ -174,7 +174,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     if (!XIsEmpty(this.value)) {
-      this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
+      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
     }
     this.box = this.inputCom.inputElement.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
@@ -229,10 +229,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   onNodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
     this.closeSubject.next();
-    if (this.value === node.id) {
+    if (this.value === node.label) {
+      this.nodeClick.emit(node);
       return;
     }
-    this.value = node.id;
+    this.value = node.label;
     if (this.onChange) this.onChange(this.value);
     this.nodeClick.emit(node);
     this.cdr.detectChanges();
@@ -280,7 +281,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         if (XIsEmpty(this.value)) {
           this.closeSubject.next();
         } else {
-          this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
+          this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
           this.dataChange.next(this.searchNodes);
         }
       }

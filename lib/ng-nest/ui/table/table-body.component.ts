@@ -15,7 +15,7 @@ import {
   Input
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService, XNumber } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -158,9 +158,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.data.indexOf(item);
   }
 
-  getTitle(row: XTableRow, column: XTableCell) {
+  getTitle(row: XTableRow, column: XTableCell | any) {
     let it = row[column.id as string];
-    return it ? it : '';
+    return it ? stripTags(it) : '';
   }
 
   setAdaptionHeight() {
