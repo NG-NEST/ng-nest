@@ -80,6 +80,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
     return this.hasTree && !this.hasTreeTable && this.multiple;
   }
 
+  get hasSearch() {
+    return this.search && this.hasTable;
+  }
+
   temp: any;
   height = 100;
 
@@ -255,6 +259,8 @@ export class XFindComponent extends XFindProperty implements OnInit {
       this.rowMultiple(data);
     } else {
       this.temp = data;
+      this.sure();
+      this.dialogVisible = false;
     }
   }
 
@@ -321,6 +327,33 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.ngOnInit();
     this.ngAfterViewInit();
     this.treeCom?.setData();
+    this.cdr.detectChanges();
+  }
+
+  searchKeyDown(event:KeyboardEvent): void{
+    if(event.key === 'Enter'){
+      this.searchClick();
+    }else if(event.key === 'Delete'){
+      this.search.value = '';
+    }
+  }
+
+  searchClick(): void {
+    if (!this.hasSearch) {
+      return;
+    }
+
+    this.tableQuery = this.tableQuery || [];
+    this.tableQuery.filter = this.tableQuery.filter || [];
+    const field = this.tableQuery.filter.find(x => x.field === this.search.field);
+
+    if (field) {
+      field.value = this.search.value || '';
+    } else {
+      this.tableQuery.filter = [...this.tableQuery?.filter, this.search];
+    }
+
+    this.tableCom.change(1);
     this.cdr.detectChanges();
   }
 }
