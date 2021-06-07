@@ -32,7 +32,7 @@ describe(XTablePrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
     let table: DebugElement;
     beforeEach(() => {

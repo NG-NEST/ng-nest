@@ -15,7 +15,6 @@
     position: relative;
     overflow: hidden;
     display: block;
-    background-color: $--x-background-a100;
     min-height: 32px;
     > tr {
       position: absolute;
@@ -28,9 +27,8 @@
         flex: 1;
         position: relative;
         font-weight: 600;
-        background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
-        padding: calc(#{$--x-font-size} / 2);
+        padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > a {
           display: inline-flex;
           align-items: center;
@@ -75,7 +73,6 @@
         position: relative;
         justify-content: space-between;
         overflow: hidden;
-        //background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
         padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > div {
@@ -94,13 +91,13 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-success-800;
+          background-color: $--x-background-a200;
           color: $--x-primary;
         }
       }
       &:hover {
         > td {
-          background-color: $--x-success-800;
+          background-color: $--x-background-a200;
         }
       }
       &:last-child {
