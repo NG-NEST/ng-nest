@@ -27,7 +27,7 @@ describe(XCheckboxPrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXCheckboxComponent>;
     let checkbox: DebugElement;
     let testComponent: TestXCheckboxComponent;
