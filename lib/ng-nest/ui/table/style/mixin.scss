@@ -15,10 +15,12 @@
     overflow: hidden;
     display: block;
     background-color: $--x-background;
+    min-height: 42px;
     > tr {
       position: absolute;
       width: 100%;
       display: flex;
+      min-height: 42px;
       > th {
         display: flex;
         align-items: center;
@@ -51,9 +53,6 @@
             background-color: $--x-primary;
           }
         }
-        &:first-child {
-          padding-left: $--x-font-size;
-        }
       }
     }
   }
@@ -81,9 +80,6 @@
         &.#{$--x-table}-sticky {
           position: sticky;
           z-index: 1;
-        }
-        &:first-child {
-          padding-left: $--x-font-size;
         }
       }
       &.#{$--x-table}-activated {
@@ -191,34 +187,40 @@
     > thead > tr > th,
     > tbody tr > td {
       border-right: $--x-border-base;
-      padding-left: calc(#{$--x-font-size} / 2);
       &:last-child {
         border-right: none;
       }
     }
   }
   &-row-size {
-    @include rowSize(big, calc(#{$--x-font-size} / 5 * 4) calc(#{$--x-font-size} * 5 / 4) calc(#{$--x-font-size} / 5 * 4) 0);
-    @include rowSize(large, calc(#{$--x-font-size} / 4 * 3) calc(#{$--x-font-size} * 4 / 3) calc(#{$--x-font-size} / 4 * 3) 0);
-    @include rowSize(medium, calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0);
-    @include rowSize(small, calc(#{$--x-font-size} / 3) calc(#{$--x-font-size} * 2 / 3) calc(#{$--x-font-size} / 3) 0);
-    @include rowSize(mini, calc(#{$--x-font-size} / 4) calc(#{$--x-font-size} / 2) calc(#{$--x-font-size} / 4) 0);
+    @include rowSize(big, calc(#{$--x-font-size} / 5 * 4), calc(#{$--x-font-size} * 5 / 4), calc(#{$--x-font-size} / 5 * 4), 0);
+    @include rowSize(large, calc(#{$--x-font-size} / 4 * 3), calc(#{$--x-font-size} * 4 / 3), calc(#{$--x-font-size} / 4 * 3), 0);
+    @include rowSize(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), 0);
+    @include rowSize(small, calc(#{$--x-font-size} / 3), calc(#{$--x-font-size} * 2 / 3), calc(#{$--x-font-size} / 3), 0);
+    @include rowSize(mini, calc(#{$--x-font-size} / 4), calc(#{$--x-font-size} / 2), calc(#{$--x-font-size} / 4), 0);
   }
 }
 
-@mixin rowSize($size, $padding) {
+@mixin rowSize($size, $padding-top, $padding-right, $padding-bottom, $padding-left) {
   &-#{$size} {
-    > thead {
-      > tr {
-        > th {
-          padding: $padding;
-        }
+    > thead > tr > th,
+    > tbody tr > td {
+      padding: $padding-top $padding-right $padding-bottom $padding-left;
+      &:first-child {
+        padding-left: $padding-right;
       }
     }
-    > tbody {
-      tr {
-        > td {
-          padding: $padding;
+    &.#{$--x-table} {
+      &-bordered {
+        > thead > tr > th,
+        > tbody tr > td {
+          padding-left: $padding-right;
+        }
+      }
+      &-cell-config {
+        > thead > tr > th,
+        > tbody tr > td {
+          padding-left: $padding-right;
         }
       }
     }

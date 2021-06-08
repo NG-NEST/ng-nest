@@ -65,9 +65,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       });
       height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
     }
-    console.log(height);
     this.theadStyle = {
-      height: `${height}px`
+      height: `${height}px`,
+      ['min-height']: `${this.getRowHeight}px`
     };
   }
 

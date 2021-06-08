@@ -129,7 +129,7 @@ describe(XTablePrefix, () => {
       expect(true).toEqual(true);
     });
   });
-  fdescribe(`row size.`, () => {
+  describe(`row size.`, () => {
     let fixture: ComponentFixture<TestXTableRowSizeComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -270,7 +270,16 @@ class TestXTableComponent {
 @Component({
   template: `
     <div class="row">
-      <x-table [rowHeight]="0" [columns]="columns" [data]="data" [size]="1000" [scroll]="{ x: 1500, y: 600 }" virtualScroll loading>
+      <x-table
+        [rowHeight]="50"
+        [columns]="columns"
+        [data]="data"
+        [size]="1000"
+        [scroll]="{ x: 1500, y: 600 }"
+        virtualScroll
+        loading
+        rowSize="big"
+      >
       </x-table>
     </div>
   `,
@@ -677,7 +686,7 @@ class TestXTableCheckboxComponent {
       <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="50" rowSize="large"> </x-table>
     </div>
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="10" loading > </x-table>
+      <x-table [columns]="columns" [data]="data" [size]="10" loading> </x-table>
     </div>
     <div class="row">
       <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="32" rowSize="small"> </x-table>
