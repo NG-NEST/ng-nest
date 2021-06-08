@@ -1,3 +1,13 @@
+## [11.2.12](https://github.com/NG-NEST/ng-nest/compare/11.2.11...11.2.12) (2021-06-08)
+
+
+### Features
+
+* **module:dialog:** add draggable dialog ([3cb3447](https://github.com/NG-NEST/ng-nest/commit/3cb3447dfba4cf0c5d0efea55de5c132592c2e1b)), closes [#26](https://github.com/NG-NEST/ng-nest/issues/26)
+* **module:table:** add row size ([81042d4](https://github.com/NG-NEST/ng-nest/commit/81042d4222834a691609921901b319513735a102))
+
+
+
 ## [11.2.11](https://github.com/NG-NEST/ng-nest/compare/11.2.10...11.2.11) (2021-06-03)
 
 
