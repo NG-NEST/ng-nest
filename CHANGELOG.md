@@ -1,3 +1,22 @@
+## [12.0.1](https://github.com/NG-NEST/ng-nest/compare/12.0.0...12.0.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* **module:checkbox:** use flex-wrap line feed ([074b437](https://github.com/NG-NEST/ng-nest/commit/074b437ed42992dd87fa12ae6f3b987142de938b))
+* **module:find:** repair search input keydown event ([25f810b](https://github.com/NG-NEST/ng-nest/commit/25f810b108680158506366dd41fbf0a8f53f631e))
+* **module:ripple:** update directive style path ([01ebd88](https://github.com/NG-NEST/ng-nest/commit/01ebd8838e851842625930017e8c0a6f84bdd969))
+* **StackBlitz:** add strict and enableIvy ([7cd62db](https://github.com/NG-NEST/ng-nest/commit/7cd62db2cf26117b125fcd652a58a188776c5951))
+
+
+### Features
+
+* **module:dialog:** add draggable dialog ([555a10d](https://github.com/NG-NEST/ng-nest/commit/555a10d039de8e1937c729d2cbd3dc6f2ecc3d90)), closes [#26](https://github.com/NG-NEST/ng-nest/issues/26)
+* **module:table:** add row size ([7e54147](https://github.com/NG-NEST/ng-nest/commit/7e5414759d96bc60e989972dab1358765a559cd5))
+* **module:table:** update background color ([d406dfa](https://github.com/NG-NEST/ng-nest/commit/d406dfa928efc5c940b34057493b81bfbd5f37fe))
+
+
+
 # [12.0.0](https://github.com/NG-NEST/ng-nest/compare/11.2.10...12.0.0) (2021-06-03)
 
 
