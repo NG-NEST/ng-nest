@@ -64,6 +64,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   ngOnInit() {
+    this.setClassMap();
     this.setRowChecked();
     this.setMerge();
   }
@@ -77,6 +78,13 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.complete();
+  }
+
+  setClassMap() {
+    this.classMap = {
+      [`${XTablePrefix}-row-size-${this.rowSize}`]: !XIsEmpty(this.rowSize)
+    };
+    this.cdr.detectChanges();
   }
 
   getSticky(column: XTableColumn | XTableCell) {

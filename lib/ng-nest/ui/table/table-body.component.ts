@@ -32,6 +32,12 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   get isEmpty() {
     return this.data?.length === 0;
   }
+  get getRowHeight() {
+    return this.rowHeight == 0 ? '' : this.rowHeight;
+  }
+  get getItemSize() {
+    return this.rowHeight !== 0 && this.itemSize > this.rowHeight ? this.rowHeight : this.itemSize;
+  }
 
   @ViewChild('tbody') tbody!: ElementRef;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;

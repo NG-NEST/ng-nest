@@ -9,7 +9,8 @@ import {
   XBoolean,
   XData,
   XWithConfig,
-  XTextAlign
+  XTextAlign,
+  XSize
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
@@ -142,6 +143,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Cell config
    */
   @Input() cellConfig?: XTableCellConfig;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') rowSize?: XSize;
 }
 
 /**
@@ -219,6 +225,11 @@ export interface XTableOption extends XPaginationOption {
    * @en_US Cell config
    */
   cellConfig?: XTableCellConfig;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  rowSize?: XSize;
 }
 
 /**

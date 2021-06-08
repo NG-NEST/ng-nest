@@ -14,7 +14,6 @@ import {
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell } from './table.property';
 import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
 
-
 @Component({
   selector: `${XTableHeadPrefix}`,
   templateUrl: './table-head.component.html',
@@ -26,6 +25,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   theadStyle: { [property: string]: any } = {};
   @ViewChild('thead') thead!: ElementRef;
   @Input() table: any;
+  get getRowHeight() {
+    return this.rowHeight == 0 ? '' : this.rowHeight;
+  }
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
@@ -64,7 +66,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
     }
     this.theadStyle = {
-      height: `${height}px`
+      height: `${height}px`,
+      ['min-height']: `${this.getRowHeight}px`
     };
   }
 

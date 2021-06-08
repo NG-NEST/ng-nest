@@ -1,6 +1,7 @@
 <table
   #table
   class="x-table"
+  [ngClass]="classMap"
   [x-loading]="loading && getting"
   [class.x-table-scroll-left]="getScrollLeft"
   [class.x-table-scroll-top]="getScrollTop"

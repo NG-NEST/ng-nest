@@ -28,7 +28,8 @@ describe(XTablePrefix, () => {
         TestXTableFunctionComponent,
         TestXTableMergeColumnComponent,
         TestXTableWidthDragComponent,
-        TestXTableCheckboxComponent
+        TestXTableCheckboxComponent,
+        TestXTableRowSizeComponent
       ]
     }).compileComponents();
   }));
@@ -121,6 +122,18 @@ describe(XTablePrefix, () => {
     let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableCheckboxComponent);
+      fixture.detectChanges();
+      table = fixture.debugElement.query(By.directive(XTableComponent));
+    });
+    it('should create.', () => {
+      expect(true).toEqual(true);
+    });
+  });
+  describe(`row size.`, () => {
+    let fixture: ComponentFixture<TestXTableRowSizeComponent>;
+    let table: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTableRowSizeComponent);
       fixture.detectChanges();
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
@@ -257,7 +270,16 @@ class TestXTableComponent {
 @Component({
   template: `
     <div class="row">
-      <x-table [rowHeight]="0" [columns]="columns" [data]="data" [size]="1000" [scroll]="{ x: 1500, y: 600 }" virtualScroll loading>
+      <x-table
+        [rowHeight]="50"
+        [columns]="columns"
+        [data]="data"
+        [size]="1000"
+        [scroll]="{ x: 1500, y: 600 }"
+        virtualScroll
+        loading
+        rowSize="big"
+      >
       </x-table>
     </div>
   `,
@@ -643,6 +665,57 @@ class TestXTableCheckboxComponent {
   columns: XTableColumn[] = [
     { id: 'checked', label: '', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
     { id: 'index', label: '序号', flex: 0.5, type: 'index' },
+    { id: 'name', label: '用户', flex: 1.5, sort: true },
+    { id: 'position', label: '职位', flex: 0.5, sort: true },
+    { id: 'email', label: '邮箱', flex: 1 },
+    { id: 'phone', label: '电话', flex: 1 },
+    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+  ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {}
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="58" rowSize="big"> </x-table>
+    </div>
+    <div class="row">
+      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="50" rowSize="large"> </x-table>
+    </div>
+    <div class="row">
+      <x-table [columns]="columns" [data]="data" [size]="10" loading> </x-table>
+    </div>
+    <div class="row">
+      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="32" rowSize="small"> </x-table>
+    </div>
+    <div class="row">
+      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="24" rowSize="mini"> </x-table>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .row {
+        padding: 1rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTableRowSizeComponent {
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  columns: XTableColumn[] = [
+    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
     { id: 'name', label: '用户', flex: 1.5, sort: true },
     { id: 'position', label: '职位', flex: 0.5, sort: true },
     { id: 'email', label: '邮箱', flex: 1 },
