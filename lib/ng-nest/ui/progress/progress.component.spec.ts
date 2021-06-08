@@ -100,7 +100,7 @@ class TestXProgressComponent {
     return percent === 100 ? '已完成' : `加载中${percent}%`;
   }
   percent = 10;
-  color: '#3f51b5';
+  color!: '#3f51b5';
   colors = [
     { color: '#f56c6c', percent: 20 },
     { color: '#e6a23c', percent: 40 },

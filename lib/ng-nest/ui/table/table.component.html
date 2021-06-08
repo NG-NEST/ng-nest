@@ -1,6 +1,7 @@
 <table
   #table
   class="x-table"
+  [ngClass]="classMap"
   [x-loading]="loading && getting"
   [class.x-table-scroll-left]="getScrollLeft"
   [class.x-table-scroll-top]="getScrollTop"
@@ -15,6 +16,7 @@
     [scrollYWidth]="scrollYWidth"
     [scrollXWidth]="scrollXWidth"
     [cellConfig]="cellConfig?.thead"
+    [table]="this"
   ></x-table-head>
   <x-table-body
     [data]="tableData"
@@ -33,8 +35,9 @@
     [cellConfig]="cellConfig?.tbody"
     [(activatedRow)]="activatedRow"
     (activatedRowChange)="activatedRowChange.emit($event)"
+    [table]="this"
   ></x-table-body>
-  <x-table-foot></x-table-foot>
+  <x-table-foot [table]="this"></x-table-foot>
 </table>
-<x-pagination #pagination [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
+<x-pagination #pagination *ngIf="size" [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
 </x-pagination>

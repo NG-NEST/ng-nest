@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./multiple.component.scss']
 })
 export class ExMultipleComponent {
-  visible: boolean;
-  visibleOne: boolean;
-  visibleTwo: boolean;
+  visible!: boolean;
+  visibleOne!: boolean;
+  visibleTwo!: boolean;
 
   open() {
     this.visible = true;

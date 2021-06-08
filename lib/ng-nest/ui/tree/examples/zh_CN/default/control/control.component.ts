@@ -28,8 +28,8 @@ export class ExControlComponent {
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
   ];
-  @ViewChild('treeCom', { static: true }) treeCom: XTreeComponent;
-  activatedNode: XTreeNode;
+  @ViewChild('treeCom', { static: true }) treeCom!: XTreeComponent;
+  activatedNode!: XTreeNode;
   selectedNodes: XTreeNode[] = [];
   expandedAll: boolean = true;
   content: any;

@@ -76,7 +76,7 @@ describe(XIconPrefix, () => {
   ]
 })
 class TestXIconComponent {
-  type: string;
+  type!: string;
   spin = true;
   constructor(private cdr: ChangeDetectorRef) {
     setTimeout(() => {

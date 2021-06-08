@@ -27,8 +27,8 @@ import { Overlay } from '@angular/cdk/overlay';
   animations: [XSlideAnimation]
 })
 export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChanges {
-  @ViewChild('drawerTpl', { static: true }) drawerTpl: TemplateRef<void>;
-  portal: XPortalOverlayRef<any>;
+  @ViewChild('drawerTpl', { static: true }) drawerTpl!: TemplateRef<void>;
+  portal!: XPortalOverlayRef<any>;
   back$: Subscription | null = null;
 
   constructor(

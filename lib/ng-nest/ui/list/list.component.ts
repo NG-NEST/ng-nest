@@ -42,10 +42,10 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
-  @ViewChild('listItems') listItems: ElementRef;
+  @ViewChild('listItems') listItems!: ElementRef;
   @ViewChildren(XListOptionComponent)
-  options: QueryList<XListOptionComponent>;
-  keyManager: ActiveDescendantKeyManager<XListOptionComponent>;
+  options!: QueryList<XListOptionComponent>;
+  keyManager!: ActiveDescendantKeyManager<XListOptionComponent>;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;

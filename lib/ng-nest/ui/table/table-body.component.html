@@ -3,7 +3,7 @@
     <tr *ngFor="let row of data; index as i; trackBy: trackByItem" [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
       <td
         *ngFor="let column of cellConfig.cells; index as j"
-        [title]="row[column.id] ? row[column.id] : ''"
+        [title]="getTitle(row, column)"
         [class.x-table-sticky]="table.getSticky(column)"
         [style.left.px]="column.left"
         [style.grid-area]="column.gridArea"
@@ -19,7 +19,7 @@
   <cdk-virtual-scroll-viewport
     #virtualBody
     *ngIf="virtualScroll; else bodyTpl"
-    [itemSize]="itemSize"
+    [itemSize]="getItemSize"
     [minBufferPx]="minBufferPx"
     [maxBufferPx]="maxBufferPx"
     [style.height.px]="bodyHeight"
@@ -27,7 +27,8 @@
     <tr
       *cdkVirtualFor="let row of data; let index = index; trackBy: trackByItem"
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-      [style.height.px]="rowHeight == 0 ? '' : rowHeight"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
       (click)="rowClick(row)"
     >
       <!-- rowHeight 为 0 的时候，index 下标获取不到 -->
@@ -40,7 +41,8 @@
   <tr
     *ngFor="let row of data; index as i; trackBy: trackByItem"
     [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-    [style.height.px]="rowHeight == 0 ? '' : rowHeight"
+    [style.height.px]="getRowHeight"
+    [style.min-height.px]="getRowHeight"
     (click)="rowClick(row)"
   >
     <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
@@ -52,7 +54,7 @@
     <td
       [style.width.px]="column.width"
       [style.flex]="column.width ? 'none' : column.flex"
-      [title]="row[column.id] ? row[column.id] : ''"
+      [title]="getTitle(row, column)"
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"
     >

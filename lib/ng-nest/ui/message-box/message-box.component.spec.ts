@@ -134,7 +134,7 @@ describe(XMessageBoxPrefix, () => {
   ]
 })
 class TestXMessageBoxComponent {
-  @ViewChild('contentTpl', { static: true }) contentTpl: TemplateRef<void>;
+  @ViewChild('contentTpl', { static: true }) contentTpl!: TemplateRef<void>;
   constructor(
     private msgBox: XMessageBoxService,
     private message: XMessageService,

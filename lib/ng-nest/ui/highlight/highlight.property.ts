@@ -18,12 +18,12 @@ export class XHighlightProperty extends XProperty {
    * @zh_CN 代码类型
    * @en_US Code type
    */
-  @Input() type: string;
+  @Input() type?: string;
   /**
    * @zh_CN 数据
    * @en_US Data
    */
-  @Input() data: string;
+  @Input() data?: string;
   /**
    * @zh_CN 高亮行数据
    * @en_US Highlight row data

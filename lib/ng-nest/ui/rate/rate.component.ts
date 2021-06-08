@@ -21,7 +21,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XRateComponent)]
 })
 export class XRateComponent extends XRateProperty {
-  @ViewChild('rate', { static: true }) rate: ElementRef;
+  @ViewChild('rate', { static: true }) rate!: ElementRef;
   rates: number[] = [];
 
   hoverActivated = 0;

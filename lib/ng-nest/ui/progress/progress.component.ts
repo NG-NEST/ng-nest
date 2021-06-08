@@ -20,7 +20,7 @@ import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber, X
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XProgressComponent extends XProgressProperty implements OnInit, OnChanges {
-  currentColor: string;
+  currentColor!: string;
 
   constructor(
     public renderer: Renderer2,

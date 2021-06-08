@@ -23,30 +23,30 @@ export class XLoadingProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
   /**
    * @zh_CN 显示文字，支持自定义模板
    * @en_US Display text, support custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) text: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) text?: XTemplate;
   /**
    * @zh_CN 显示的图标
    * @en_US Icon displayed
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) icon: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) icon?: string;
   /**
    * @zh_CN 颜色
    * @en_US Color
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) color: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) color?: string;
   /**
    * @zh_CN 全屏显示
    * @en_US Full-screen display
    */
-  @Input() @XInputBoolean() fullScreen: XBoolean;
+  @Input() @XInputBoolean() fullScreen?: XBoolean;
   /**
    * @zh_CN 背景样式
    * @en_US Background style
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) background: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) background?: string;
 }

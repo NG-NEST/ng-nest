@@ -23,10 +23,10 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCountdownComponent extends XCountdownProperty implements OnInit, OnChanges {
-  diff: number;
+  diff!: number;
   period = 1000 / 30;
-  private _target: number;
-  private _updater: Subscription | null;
+  private _target!: number;
+  private _updater!: Subscription | null;
 
   constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, public configService: XConfigService) {
     super();

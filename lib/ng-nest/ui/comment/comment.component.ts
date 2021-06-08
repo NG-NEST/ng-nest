@@ -75,6 +75,10 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
     this.moreClick.emit(node);
   }
 
+  hasMore(node: XCommentNode) {
+    return (node.count as number) > (node.children?.length as number);
+  }
+
   trackByNode(index: number, item: XCommentNode) {
     return item.id;
   }

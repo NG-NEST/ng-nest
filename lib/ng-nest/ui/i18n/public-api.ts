@@ -1,4 +1,5 @@
 export * from './i18n.pipe';
+export * from './i18n.directive';
 export * from './i18n.service';
 export * from './i18n.property';
 export * from './i18n.module';

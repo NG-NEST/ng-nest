@@ -203,7 +203,8 @@
         &-round {
           border-radius: 0;
         }
-        &:focus {
+        &:focus,
+        &-activated {
           z-index: 1;
         }
       }

@@ -33,22 +33,22 @@ export class XCarouselProperty extends XProperty {
    * @zh_CN 幻灯片高度
    * @en_US Slide height
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') height: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') height?: string;
   /**
    * @zh_CN 切换器触发方式
    * @en_US Switcher trigger method
    */
-  @Input() @XWithConfig<XCarouselTrigger>(X_CONFIG_NAME, 'hover') trigger: XCarouselTrigger;
+  @Input() @XWithConfig<XCarouselTrigger>(X_CONFIG_NAME, 'hover') trigger?: XCarouselTrigger;
   /**
    * @zh_CN 箭头显示影藏方式
    * @en_US Arrow shows how to hide
    */
-  @Input() @XWithConfig<XCarouselArrow>(X_CONFIG_NAME, 'hover') arrow: XCarouselArrow;
+  @Input() @XWithConfig<XCarouselArrow>(X_CONFIG_NAME, 'hover') arrow?: XCarouselArrow;
   /**
    * @zh_CN 幻灯片轮播方向
    * @en_US Slide rotation direction
    */
-  @Input() @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal') direction: XCarouselDirection;
+  @Input() @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal') direction?: XCarouselDirection;
   /**
    * @zh_CN 自动切换
    * @en_US Automatic switching
@@ -63,12 +63,12 @@ export class XCarouselProperty extends XProperty {
    * @zh_CN 切换器否显示在外面
    * @en_US Whether the switcher is displayed outside
    */
-  @Input() @XInputBoolean() outside: XBoolean;
+  @Input() @XInputBoolean() outside?: XBoolean;
   /**
    * @zh_CN 是否以卡片的方式显示幻灯片
    * @en_US Whether to display the slideshow as a card
    */
-  @Input() @XInputBoolean() card: XBoolean;
+  @Input() @XInputBoolean() card?: XBoolean;
   /**
    * @zh_CN 激活的序号改变的事件
    * @en_US The activated sequence number changed event
@@ -110,5 +110,5 @@ export class XCarouselPanelProperty extends XProperty {
    * @zh_CN 激活当前幻灯片
    * @en_US Activate the current slide
    */
-  @Input() @XInputBoolean() active: XBoolean;
+  @Input() @XInputBoolean() active?: XBoolean;
 }

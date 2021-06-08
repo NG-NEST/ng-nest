@@ -25,12 +25,12 @@ import { reqAnimFrame, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 })
 export class XTimePickerFrameComponent {
   @Input() type: XTimePickerType = 'time';
-  @Input() value: number;
+  @Input() value!: number;
   @Output() nodeEmit = new EventEmitter<Date>();
-  @ViewChild('hourRef', { static: false }) hourRef: ElementRef;
-  @ViewChild('minuteRef', { static: false }) minuteRef: ElementRef;
-  @ViewChild('secondRef', { static: false }) secondRef: ElementRef;
-  model: Date;
+  @ViewChild('hourRef', { static: false }) hourRef!: ElementRef;
+  @ViewChild('minuteRef', { static: false }) minuteRef!: ElementRef;
+  @ViewChild('secondRef', { static: false }) secondRef!: ElementRef;
+  model!: Date;
   now = new Date();
   hour: number = 0;
   minute: number = 0;

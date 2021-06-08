@@ -32,27 +32,27 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles: string[];
+  @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles!: string[];
   /**
    * @zh_CN 是否能拖动
    * @en_US Can drag
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() drag: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() drag?: XBoolean;
   /**
    * @zh_CN 是否显示搜索（暂未实现）
    * @en_US Whether to display search (not implemented yet)
    */
-  @Input() @XInputBoolean() search: XBoolean;
+  @Input() @XInputBoolean() search?: XBoolean;
   /**
    * @zh_CN 数据自定义模板
    * @en_US Data customization template
    */
-  @Input() nodeTpl: TemplateRef<any>;
+  @Input() nodeTpl?: TemplateRef<any>;
   /**
    * @zh_CN 标题自定义模板
    * @en_US Title custom template
    */
-  @Input() titleTpl: TemplateRef<any>;
+  @Input() titleTpl?: TemplateRef<any>;
 }
 
 /**

@@ -8,7 +8,7 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./required.component.scss']
 })
 export class ExRequiredComponent {
-  model: number;
+  model!: number;
   data: XData<XCascadeNode> = [
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },

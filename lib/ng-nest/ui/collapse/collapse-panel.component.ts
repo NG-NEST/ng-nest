@@ -22,7 +22,7 @@ import { XCollapseComponent } from './collapse.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCollapsePanelComponent extends XCollapsePanelProperty implements OnInit {
-  index: number;
+  index!: number;
 
   constructor(
     @Optional() @Host() public collapseComponent: XCollapseComponent,

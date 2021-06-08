@@ -17,6 +17,14 @@ export class XMessageBoxComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
+  get getLabel() {
+    return this.messageBox.input?.content as string;
+  }
+
+  get getPattern() {
+    return this.messageBox.input?.inputPattern as RegExp;
+  }
+
   ngOnInit() {
     this.messageBox.input?.showInput && this.createFormGroup();
   }

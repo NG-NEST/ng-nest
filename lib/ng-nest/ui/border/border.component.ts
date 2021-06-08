@@ -4,7 +4,7 @@ import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-border',
-  templateUrl: './border.component.html',
+  template: '',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

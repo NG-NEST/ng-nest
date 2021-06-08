@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./async.component.scss']
 })
 export class ExAsyncComponent implements OnInit {
-  data: XData<XRadioNode>;
+  data!: XData<XRadioNode>;
   model = 'QQ';
   loading = false;
   getData() {

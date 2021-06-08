@@ -408,6 +408,7 @@ export interface XTableConfig {
   itemSize?: XNumber;
   bordered?: XNumber;
   allowSelectRow?: XBoolean;
+  rowSize?: XSize;
 }
 
 export interface XTabsConfig {

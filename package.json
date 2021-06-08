@@ -1,10 +1,10 @@
 {
   "name": "ng-nest",
-  "version": "11.2.11",
+  "version": "11.2.12",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build --prod --base-href /version/11.2.11/",
+    "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build --prod --base-href /version/11.2.12/",
     "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui --prod && npm run copy:scss && npm run build:scss",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",

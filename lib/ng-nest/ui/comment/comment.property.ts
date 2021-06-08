@@ -23,7 +23,7 @@ export class XCommentProperty extends XProperty {
    * @zh_CN 评论最大字数
    * @en_US Maximum number of comments
    */
-  @Input() @XWithConfig(X_CONFIG_NAME, 512) contentMax: number;
+  @Input() @XWithConfig(X_CONFIG_NAME, 512) contentMax!: XNumber;
   /**
    * @zh_CN 点赞的事件
    * @en_US Like events

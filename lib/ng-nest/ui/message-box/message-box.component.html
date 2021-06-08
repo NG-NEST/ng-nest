@@ -32,9 +32,9 @@
           <x-input
             [ngModel]="messageBox.input?.inputValue"
             [type]="messageBox.input?.inputType"
-            [label]="messageBox.input?.content"
+            [label]="getLabel"
             [placeholder]="messageBox.input?.inputPlaceholder"
-            [pattern]="messageBox.input?.inputPattern"
+            [pattern]="getPattern"
             [message]="messageBox.input?.inputInvalidMessage"
           ></x-input>
         </ng-template>

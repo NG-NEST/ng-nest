@@ -28,17 +28,17 @@ export class XLinkProperty extends XProperty {
    * @zh_CN 下划线
    * @en_US Underscore
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() underline: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() underline?: XBoolean;
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() disabled: XBoolean;
+  @Input() @XInputBoolean() disabled?: XBoolean;
   /**
    * @zh_CN 图标靠右对齐
    * @en_US Icons are aligned to the right
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() iconRight: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() iconRight?: XBoolean;
   /**
    * @zh_CN 链接类型
    * @en_US Link type

@@ -113,11 +113,12 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  dropCdk(event: CdkDragDrop<XTransferSource[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  dropCdk(event: CdkDragDrop<XTransferNode[] | undefined, any>) {
+    const ev = event as CdkDragDrop<XTransferNode[]>;
+    if (ev.previousContainer === ev.container) {
+      moveItemInArray(ev.container.data, ev.previousIndex, ev.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      transferArrayItem(ev.previousContainer.data, ev.container.data, ev.previousIndex, ev.currentIndex);
       this.setCheckedCount(this.left, this.right);
       this.setCheckedAll(this.left, this.right);
       this.setButtonDisabled(this.left, this.right);

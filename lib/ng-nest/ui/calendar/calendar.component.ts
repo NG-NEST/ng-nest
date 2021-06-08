@@ -129,7 +129,11 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   }
 
   getDate(date: Date): XCalendarNode[] {
-    return this.data?.[this.datePipe.transform(date, 'yyyy-MM-dd') as string];
+    if (this.data) {
+      return this.data[this.datePipe.transform(date, 'yyyy-MM-dd') as string];
+    } else {
+      return [];
+    }
   }
 
   getMonth(date: Date): XCalendarNode[] {

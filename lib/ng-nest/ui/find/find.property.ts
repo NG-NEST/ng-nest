@@ -1,14 +1,4 @@
-import {
-  XInputBoolean,
-  XBoolean,
-  XDataConvert,
-  XData,
-  XInputNumber,
-  XNumber,
-  XSort,
-  XQuery,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XDataConvert, XData, XInputNumber, XNumber, XSort, XQuery, XWithConfig, XFilter } from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { XTreeNode } from '@ng-nest/ui/tree';
@@ -21,6 +11,11 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  */
 export const XFindPrefix = 'x-find';
 const X_CONFIG_NAME = 'find';
+
+export interface XFindSearchOption extends XFilter {
+  label?: string;
+  button?: string;
+}
 
 /**
  * Find Property
@@ -36,22 +31,22 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 选中 label 名称字段
    * @en_US Check the label name field
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'label') columnLabel: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'label') columnLabel!: string;
   /**
    * @zh_CN 弹框标题
    * @en_US Bullet title
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '查找选择') dialogTitle: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '查找选择') dialogTitle!: string;
   /**
    * @zh_CN 弹框宽度
    * @en_US Bullet frame width
    */
-  @Input() dialogWidth: string;
+  @Input() dialogWidth?: string;
   /**
    * @zh_CN 弹框高度
    * @en_US Height of bullet frame
    */
-  @Input() dialogHeight: string;
+  @Input() dialogHeight?: string;
   /**
    * @zh_CN 弹框显示，隐藏
    * @en_US Bullet box display, hide
@@ -66,7 +61,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 按钮居中
    * @en_US Button centered
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dialogButtonsCenter: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dialogButtonsCenter?: XBoolean;
 
   /**
    * @zh_CN 表格行数据
@@ -77,12 +72,12 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格页码
    * @en_US Table page number
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex?: number;
   /**
    * @zh_CN 表每页数据条数
    * @en_US Number of data items per page
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize?: number;
   /**
    * @zh_CN 表每页数据条数
    * @en_US Number of data items per page
@@ -132,17 +127,17 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading loading
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() tableLoading: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() tableLoading!: XBoolean;
   /**
    * @zh_CN 表格开启虚拟滚动
    * @en_US Table opens virtual scrolling
    */
-  @Input() @XWithConfig<boolean>(X_CONFIG_NAME, false) @XInputBoolean() tableVirtualScroll: boolean;
+  @Input() @XWithConfig<boolean>(X_CONFIG_NAME, false) @XInputBoolean() tableVirtualScroll!: boolean;
   /**
    * @zh_CN 表格 body 数据高度
    * @en_US Table body data height
    */
-  @Input() @XInputNumber() tableBodyHeight: number;
+  @Input() @XInputNumber() tableBodyHeight?: number;
   /**
    * @zh_CN 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
@@ -157,7 +152,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Table adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() tableAdaptionHeight: XNumber;
+  @Input() @XInputNumber() tableAdaptionHeight?: XNumber;
   /**
    * @zh_CN 表格文档高度百分比，弹窗百分比高度用到
    * @en_US Table document height percentage, used for pop-up window percentage height
@@ -167,7 +162,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格行高度，单位 px
    * @en_US Table row height, unit px
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight!: number;
   /**
    * @zh_CN 树节点数据
    * @en_US Tree node data
@@ -187,7 +182,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 树默认展开的层级
    * @en_US The level of the tree expanded by default
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() treeExpandedLevel: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() treeExpandedLevel!: XNumber;
   /**
    * @zh_CN 树 checkbox 选中的节点
    * @en_US Tree checkbox selected node
@@ -197,12 +192,17 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 树显示多选框
    * @en_US Tree display checkbox
    */
-  @Input() @XInputBoolean() treeCheckbox: XBoolean;
+  @Input() @XInputBoolean() treeCheckbox?: XBoolean;
   /**
    * @zh_CN 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
    * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
   @Input() treeTableConnect: any;
+  /**
+   * @zh_CN 数据查询过滤表单
+   * @en_US form for data filter
+   */
+  @Input() search!: XFindSearchOption;
 }
 
 /**
@@ -382,4 +382,10 @@ export interface XFindOption extends XFormOption {
    * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
   treeTableConnect?: any;
+
+  /**
+   * @zh_CN 数据查询过滤表单
+   * @en_US form for data filter
+   */
+  search?: XFindSearchOption;
 }

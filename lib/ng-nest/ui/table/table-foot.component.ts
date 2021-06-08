@@ -8,11 +8,11 @@ import {
   ChangeDetectionStrategy,
   Host,
   Optional,
-  ViewChild
+  ViewChild,
+  Input
 } from '@angular/core';
 import { XTableFootPrefix, XTableFootProperty } from './table.property';
 import { removeNgTag } from '@ng-nest/ui/core';
-import { XTableComponent } from './table.component';
 
 @Component({
   selector: `${XTableFootPrefix}`,
@@ -21,9 +21,10 @@ import { XTableComponent } from './table.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
-  @ViewChild('tfoot') tfoot: ElementRef;
+  @ViewChild('tfoot') tfoot!: ElementRef;
+  @Input() table: any;
   constructor(
-    @Host() @Optional() public table: XTableComponent,
+    // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef
@@ -36,6 +37,6 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.table.tfoot = this.tfoot;
+    this.table.tfoot = this.tfoot!;
   }
 }

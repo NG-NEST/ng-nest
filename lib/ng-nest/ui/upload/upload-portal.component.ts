@@ -34,7 +34,7 @@ export class XUploadPortalComponent {
     width: 0,
     height: 0
   };
-  boundaryBox: {
+  boundaryBox!: {
     width: 0;
     height: 0;
   };
@@ -44,7 +44,7 @@ export class XUploadPortalComponent {
     x: 0,
     y: 0
   };
-  clipRect: {
+  clipRect!: {
     top: number;
     right: number;
     bottom: number;
@@ -53,9 +53,9 @@ export class XUploadPortalComponent {
 
   doc: Document;
 
-  closePortal: () => void;
-  destroyPortal: () => void;
-  surePortal: (blob: Blob) => void;
+  closePortal!: () => void;
+  destroyPortal!: () => void;
+  surePortal!: (blob: Blob) => void;
   private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef, @Inject(DOCUMENT) document: any) {

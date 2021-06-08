@@ -8,7 +8,7 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./label.component.scss']
 })
 export class ExLabelComponent {
-  model: number;
+  model!: number;
   data: XData<XCascadeNode> = [
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },

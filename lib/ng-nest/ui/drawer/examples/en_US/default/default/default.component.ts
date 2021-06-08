@@ -14,7 +14,7 @@ export class ExDefaultComponent {
     { id: 'top', label: 'top' },
     { id: 'bottom', label: 'bottom' }
   ];
-  visible: boolean;
+  visible!: boolean;
 
   open() {
     this.visible = true;

@@ -1,12 +1,13 @@
 <thead #thead [ngStyle]="theadStyle">
   <ng-container *ngIf="cellConfig; else columnsTpl">
-    <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
+    <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns" [style.min-height.px]="getRowHeight">
       <th
         *ngFor="let column of cellConfig.cells"
         [class.x-table-sticky]="getSticky(column)"
         [class.x-table-width-drag]="column.widthDrag"
         [style.grid-area]="column.gridArea"
         [style.left.px]="column.left"
+        [style.min-height.px]="getRowHeight"
         [title]="column?.label"
       >
         <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
@@ -17,10 +18,16 @@
 </thead>
 
 <ng-template #columnsTpl>
-  <tr [style.height.px]="rowHeight == 0 ? '' : rowHeight" [style.padding-right.px]="scrollYWidth" [style.width.px]="scrollXWidth">
+  <tr
+    [style.height.px]="getRowHeight"
+    [style.min-height.px]="getRowHeight"
+    [style.padding-right.px]="scrollYWidth"
+    [style.width.px]="scrollXWidth"
+  >
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
       [class.x-table-sticky]="getSticky(column)"
+      [style.min-height.px]="getRowHeight"
       [style.width.px]="column.width"
       [style.left.px]="column.left"
       [style.flex]="column.width ? 'none' : column.flex"

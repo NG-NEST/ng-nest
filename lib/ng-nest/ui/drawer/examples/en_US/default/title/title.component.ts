@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class ExTitleComponent {
-  visible: boolean;
+  visible!: boolean;
 
   open() {
     this.visible = true;

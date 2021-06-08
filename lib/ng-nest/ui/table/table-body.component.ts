@@ -11,11 +11,11 @@ import {
   SimpleChanges,
   OnChanges,
   Inject,
-  ViewChild
+  ViewChild,
+  Input
 } from '@angular/core';
-import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService, XNumber } from '@ng-nest/ui/core';
-import { XTableComponent } from './table.component';
+import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
+import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -32,15 +32,22 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   get isEmpty() {
     return this.data?.length === 0;
   }
+  get getRowHeight() {
+    return this.rowHeight == 0 ? '' : this.rowHeight;
+  }
+  get getItemSize() {
+    return this.rowHeight !== 0 && this.itemSize > this.rowHeight ? this.rowHeight : this.itemSize;
+  }
 
-  @ViewChild('tbody') tbody: ElementRef;
-  @ViewChild('virtualBody') virtualBody: CdkVirtualScrollViewport;
+  @ViewChild('tbody') tbody!: ElementRef;
+  @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
+  @Input() table: any;
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   constructor(
-    @Host() @Optional() public table: XTableComponent,
+    // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
@@ -112,7 +119,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   setScroll() {
     if (!this.virtualBody || !this.table.thead) return;
     const ele = this.virtualBody.elementRef.nativeElement;
-    const hasY = ele.scrollHeight > this.bodyHeight;
+    const hasY = ele.scrollHeight > (this.bodyHeight as number);
     const hasX = this.table.scrollContentEle.clientWidth > ele.clientWidth;
 
     if (!this.table.hasScrollY && hasY) {
@@ -157,8 +164,13 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.data.indexOf(item);
   }
 
+  getTitle(row: XTableRow, column: XTableCell | any) {
+    let it = row[column.id as string];
+    return it ? stripTags(it) : '';
+  }
+
   setAdaptionHeight() {
-    if (this.adaptionHeight > 0) {
+    if ((this.adaptionHeight as number) > 0) {
       const headHeight = this.table.thead?.nativeElement.clientHeight || 0;
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
       const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;

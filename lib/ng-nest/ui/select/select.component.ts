@@ -13,16 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import {
-  XIsEmpty,
-  XIsObservable,
-  XIsChange,
-  XSetData,
-  XClearClass,
-  XConfigService,
-  XIsArray,
-  XPositionTopBottom
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XIsObservable, XIsChange, XSetData, XClearClass, XConfigService, XIsArray, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -40,8 +31,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XSelectComponent)]
 })
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
-  @ViewChild('select', { static: true }) select: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
+  @ViewChild('select', { static: true }) select!: ElementRef;
 
   writeValue(value: any) {
     if (this.multiple && XIsEmpty(value)) {
@@ -58,12 +49,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
-  cloneNodes: XSelectNode[];
-  portal: XPortalOverlayRef<XSelectPortalComponent>;
+  cloneNodes!: XSelectNode[];
+  portal!: XPortalOverlayRef<XSelectPortalComponent>;
   icon: string = 'fto-chevron-down';
   iconSpin: boolean = false;
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;
@@ -299,7 +290,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom', 'top'],
+      placement: [this.placement as XPositionTopBottom, 'bottom', 'top'],
       transformOriginOn: 'x-select-portal'
     });
   }

@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Host, Optional, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Host, Optional, ElementRef, Input } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
-import { XMenuComponent } from './menu.component';
 import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
@@ -10,8 +9,9 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMenuNodeComponent extends XMenuNodeProperty {
+  @Input() menu: any;
   constructor(
-    @Host() @Optional() public menu: XMenuComponent,
+    // @Host() @Optional() public menu: XMenuComponent,
     public cdr: ChangeDetectorRef,
     public elementRef: ElementRef,
     public configService: XConfigService

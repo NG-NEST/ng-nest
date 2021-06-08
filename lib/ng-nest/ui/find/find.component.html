@@ -53,6 +53,10 @@
       ></x-tree>
     </div>
     <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>
+      <div class="x-find-search" *ngIf="hasSearch">
+        <x-input [label]="search.label" direction="row" (xKeydown)="searchKeyDown($event);" [(ngModel)]="search.value"></x-input>
+        <x-button type="primary" plain (click)="searchClick()">{{search.button || '查询'}}</x-button>
+      </div>
       <x-table
         #tableCom
         [data]="tableData"

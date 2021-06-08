@@ -26,10 +26,10 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSliderComponent extends XSliderProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @ViewChild('sliderScroll') sliderScroll: ElementRef;
-  @ViewChild('sliderNodes') sliderNodes: ElementRef;
+  @ViewChild('sliderScroll') sliderScroll!: ElementRef;
+  @ViewChild('sliderNodes') sliderNodes!: ElementRef;
   nodes: XSliderNode[] = [];
-  activated: XSliderNode;
+  activated!: XSliderNode;
   scrollClassMap: XClassMap = {};
   nodeClassMap: XClassMap = {};
   showArrow = false;
@@ -58,7 +58,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     top: ''
   };
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   constructor(
     public renderer: Renderer2,

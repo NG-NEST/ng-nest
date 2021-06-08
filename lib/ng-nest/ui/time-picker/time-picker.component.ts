@@ -10,7 +10,7 @@ import {
   Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
 import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
@@ -29,8 +29,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
 export class XTimePickerComponent extends XTimePickerProperty implements OnInit {
-  @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
+  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   writeValue(value: any) {
     if (XIsDate(value)) this.value = value.getTime();
@@ -46,10 +46,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   enter: boolean = false;
   animating = false;
   displayValue: any = '';
-  portal: XPortalOverlayRef<XTimePickerPortalComponent>;
+  portal!: XPortalOverlayRef<XTimePickerPortalComponent>;
   icon: string = 'fto-clock';
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 8;
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();
@@ -214,7 +214,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-time-picker-portal'
     });
   }

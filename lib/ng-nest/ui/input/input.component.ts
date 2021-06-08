@@ -25,8 +25,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XInputComponent)]
 })
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
-  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
-  @ViewChild('inputRef', { static: true }) inputRef: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement!: ElementRef;
+  @ViewChild('inputRef', { static: true }) inputRef!: ElementRef;
 
   writeValue(value: any) {
     this.value = value;

@@ -22,8 +22,8 @@ import { DatePipe } from '@angular/common';
 export class XPickerYearComponent extends XPickerYearProperty implements OnChanges {
   now = new Date();
   dates: Date[][] = [];
-  start: number;
-  end: number;
+  start!: number;
+  end!: number;
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe, public configService: XConfigService) {
     super();

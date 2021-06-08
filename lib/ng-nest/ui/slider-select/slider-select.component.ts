@@ -27,19 +27,19 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
 export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('sliderSelect', { static: true }) sliderSelect: ElementRef;
-  @ViewChild('dragRef', { static: true }) dragRef: ElementRef;
-  @ViewChild('railRef', { static: true }) railRef: ElementRef;
-  @ViewChild('processRef', { static: true }) processRef: ElementRef;
-  @ViewChild(XTooltipDirective, { static: true }) tooltip: XTooltipDirective;
+  @ViewChild('sliderSelect', { static: true }) sliderSelect!: ElementRef;
+  @ViewChild('dragRef', { static: true }) dragRef!: ElementRef;
+  @ViewChild('railRef', { static: true }) railRef!: ElementRef;
+  @ViewChild('processRef', { static: true }) processRef!: ElementRef;
+  @ViewChild(XTooltipDirective, { static: true }) tooltip!: XTooltipDirective;
   left: number = 0;
   visible: boolean = false;
   manual: boolean = false;
-  start: number;
+  start!: number;
   value = 0;
   displayValue = '0';
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);

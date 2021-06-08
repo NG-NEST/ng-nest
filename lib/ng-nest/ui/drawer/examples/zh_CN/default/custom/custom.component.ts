@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  visible: boolean;
-  visibleTable: boolean;
-  visibleForm: boolean;
+  visible!: boolean;
+  visibleTable!: boolean;
+  visibleForm!: boolean;
 
   open() {
     this.visible = true;

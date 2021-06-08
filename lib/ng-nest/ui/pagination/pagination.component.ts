@@ -22,7 +22,7 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPaginationComponent extends XPaginationProperty implements OnChanges {
-  lastIndex: number;
+  lastIndex!: number;
   indexes: number[] = [];
   indexFirst: number = 1;
   indexLast: number = 1;

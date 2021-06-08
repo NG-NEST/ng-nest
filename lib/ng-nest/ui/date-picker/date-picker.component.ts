@@ -31,11 +31,11 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XDatePickerComponent), DatePipe]
 })
 export class XDatePickerComponent extends XDatePickerProperty implements OnInit, OnChanges {
-  @ViewChild('datePicker', { static: true }) datePicker: ElementRef;
-  @ViewChild('inputCom', { static: true }) inputCom: XInputComponent;
+  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
+  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   modelType: XDatePickerModelType = 'date';
-  numberValue: number | string;
+  numberValue!: number | string;
   isInput = false;
 
   get getRequired() {
@@ -66,10 +66,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   inputClearable: boolean = false;
   animating = false;
   displayValue: any = '';
-  portal: XPortalOverlayRef<XDatePickerPortalComponent>;
+  portal!: XPortalOverlayRef<XDatePickerPortalComponent>;
   icon: string = 'fto-calendar';
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   valueChange: Subject<any> = new Subject();
@@ -277,7 +277,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-date-picker-portal'
     });
   }

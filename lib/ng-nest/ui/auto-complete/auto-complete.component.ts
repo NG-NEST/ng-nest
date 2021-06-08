@@ -55,12 +55,12 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   displayValue: any = '';
   nodes: XAutoCompleteNode[] = [];
   searchNodes: XAutoCompleteNode[] = [];
-  cloneNodes: XAutoCompleteNode[];
-  portal: XPortalOverlayRef<XAutoCompletePortalComponent>;
+  cloneNodes!: XAutoCompleteNode[];
+  portal!: XPortalOverlayRef<XAutoCompletePortalComponent>;
   icon: string = '';
   iconSpin: boolean = false;
-  box: DOMRect;
-  protalHeight: number;
+  box!: DOMRect;
+  protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
   asyncLoading = false;
@@ -122,7 +122,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(this.debounceTime), takeUntil(this._unSubject)).subscribe(() => {
+    this.inputChange.pipe(debounceTime(this.debounceTime as number), takeUntil(this._unSubject)).subscribe(() => {
       this.modelChange();
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -174,7 +174,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     if (!XIsEmpty(this.value)) {
-      this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
+      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
     }
     this.box = this.inputCom.inputElement.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
@@ -229,10 +229,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   onNodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
     this.closeSubject.next();
-    if (this.value === node.id) {
+    if (this.value === node.label) {
+      this.nodeClick.emit(node);
       return;
     }
-    this.value = node.id;
+    this.value = node.label;
     if (this.onChange) this.onChange(this.value);
     this.nodeClick.emit(node);
     this.cdr.detectChanges();
@@ -241,7 +242,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputElement,
-      placement: [this.placement, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement as XPositionTopBottom, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-auto-complete-portal'
     });
   }
@@ -280,7 +281,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         if (XIsEmpty(this.value)) {
           this.closeSubject.next();
         } else {
-          this.searchNodes = this.nodes.filter((x) => x.id.indexOf(this.value) >= 0);
+          this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
           this.dataChange.next(this.searchNodes);
         }
       }

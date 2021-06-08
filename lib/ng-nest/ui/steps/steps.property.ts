@@ -37,7 +37,7 @@ export class XStepsProperty extends XProperty {
    * @zh_CN 当前激活节点状态
    * @en_US Current active node status
    */
-  @Input() status: XStepsStatus;
+  @Input() status?: XStepsStatus;
 }
 
 export interface XStepsNode extends XParentIdentityProperty<XStepsNode> {

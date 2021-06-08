@@ -2,6 +2,7 @@ import { XStatus, XPlace } from '@ng-nest/ui/core';
 import { XAlertOption } from '@ng-nest/ui/alert';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XInputType } from '@ng-nest/ui/input';
 
 /**
  * MessageBox
@@ -94,7 +95,7 @@ export interface XMessageBoxOption extends XAlertOption {
    * @zh_CN 匹配规则
    * @en_US Matching rules
    */
-  inputPattern?: RegExp;
+  inputPattern?: RegExp | RegExp[];
   /**
    * @zh_CN 匹配失败的信息提示
    * @en_US Information prompt for matching failure
@@ -109,7 +110,7 @@ export interface XMessageBoxOption extends XAlertOption {
    * @zh_CN 输入框的类型
    * @en_US Type of input box
    */
-  inputType?: string;
+  inputType?: XInputType;
   /**
    * @zh_CN 输入框的值
    * @en_US Value of input box

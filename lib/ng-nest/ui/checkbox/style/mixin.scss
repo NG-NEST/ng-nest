@@ -21,6 +21,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     position: relative;
     height: $--x-checkbox-height;
     line-height: $--x-checkbox-height;

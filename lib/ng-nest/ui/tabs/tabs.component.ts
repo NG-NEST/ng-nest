@@ -12,9 +12,9 @@ import {
   QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XConfigService, XData } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
+import { XSliderComponent, XSliderNode, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 
 @Component({
@@ -33,9 +33,9 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     return Number(this.activatedIndex);
   }
 
-  @ContentChildren(XTabComponent) listTabs: QueryList<XTabComponent>;
+  @ContentChildren(XTabComponent) listTabs!: QueryList<XTabComponent>;
 
-  @ViewChild(XSliderComponent, { static: false }) slider: XSliderComponent;
+  @ViewChild(XSliderComponent, { static: false }) slider!: XSliderComponent;
 
   constructor(private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();

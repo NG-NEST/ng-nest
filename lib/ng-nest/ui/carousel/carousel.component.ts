@@ -23,14 +23,14 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCarouselComponent extends XCarouselProperty implements OnInit, OnChanges {
-  @ViewChild('carousel') carousel: ElementRef;
-  @ViewChild('content') content: ElementRef;
+  @ViewChild('carousel') carousel!: ElementRef;
+  @ViewChild('content') content!: ElementRef;
   start: number = -1;
-  before: number;
+  before!: number;
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
   private _unSubject = new Subject<void>();
-  private _resizeObserver: ResizeObserver;
+  private _resizeObserver!: ResizeObserver;
 
   constructor(
     public renderer: Renderer2,

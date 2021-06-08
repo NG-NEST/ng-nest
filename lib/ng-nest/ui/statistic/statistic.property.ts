@@ -57,7 +57,7 @@ export class XCountdownProperty extends XStatisticProperty {
    * @zh_CN 格式化
    * @en_US Format
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format?: string;
   /**
    * @zh_CN 倒计时结束的事件
    * @en_US Event at the end of the countdown

@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCommentReplyComponent extends XCommentReplyProperty {
-  inputValue: string;
+  inputValue!: string;
   private _unSubject = new Subject<void>();
 
   constructor(

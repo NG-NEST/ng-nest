@@ -1,4 +1,4 @@
-import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert, XWithConfig } from '@ng-nest/ui/core';
+import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert, XWithConfig, XDate } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -23,17 +23,17 @@ export class XTimelineProperty extends XProperty {
    * @zh_CN 类型
    * @en_US Type
    */
-  @Input() type: XType;
+  @Input() type?: XType;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
   /**
    * @zh_CN 内容模板
    * @en_US Content template
    */
-  @Input() wrapper: XTemplate;
+  @Input() wrapper?: XTemplate;
 }
 
 /**
@@ -45,7 +45,7 @@ export interface XTimelineNode extends XIdentityProperty {
    * @zh_CN 时间
    * @en_US Time
    */
-  time?: string | Date;
+  time?: XDate;
   /**
    * @zh_CN 内容
    * @en_US Content

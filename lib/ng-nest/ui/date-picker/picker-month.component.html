@@ -10,7 +10,7 @@
           <x-button
             *ngIf="!monthTemp"
             type="text"
-            [title]="month | date: 'yyyy-MM'"
+            title="{{ month | date: 'yyyy-MM' }}"
             [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
             (click)="monthClick(month)"
             >{{ getLocaleMonth(month) }}</x-button

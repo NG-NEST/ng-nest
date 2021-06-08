@@ -16,7 +16,7 @@ const isDefined = function (value?: any): boolean {
 export class XConfigService {
   private componentConfigUpdated$ = new Subject<keyof XComponentConfig>();
   private config: XConfig;
-  public themeService: XThemeService;
+  public themeService!: XThemeService;
 
   constructor(@Optional() themeService?: XThemeService, @Optional() @Inject(X_CONFIG) defaultConfig?: XConfig) {
     this.config = defaultConfig || {};
@@ -97,7 +97,7 @@ export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultV
 
         return isDefined(configValue) ? configValue : innerDefaultValue;
       },
-      set(value?: T): void {
+      set(value: T): void {
         if (originalDescriptor && originalDescriptor.set) {
           originalDescriptor.set.bind(this)(value);
         } else {

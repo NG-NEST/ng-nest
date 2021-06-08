@@ -9,28 +9,24 @@
   flex-direction: column;
   border-collapse: collapse;
   width: 100%;
-  // box-shadow: $--x-box-shadow-light;
   border: $--x-border-base;
   > thead {
     position: relative;
     overflow: hidden;
     display: block;
-    background-color: $--x-background-a100;
-    min-height: 42px;
+    background-color: $--x-background;
     > tr {
       position: absolute;
       width: 100%;
       display: flex;
-      min-height: 42px;
       > th {
         display: flex;
         align-items: center;
         flex: 1;
         position: relative;
         font-weight: 600;
-        background-color: $--x-background-a100;
+        background-color: $--x-background;
         border-bottom: $--x-border-base;
-        padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > a {
           display: inline-flex;
           align-items: center;
@@ -68,16 +64,14 @@
     min-height: 7rem;
     tr {
       display: flex;
-      min-height: 42px;
       > td {
         display: flex;
         align-items: center;
         position: relative;
         justify-content: space-between;
         overflow: hidden;
-        background-color: $--x-background-a100;
+        background-color: $--x-background;
         border-bottom: $--x-border-base;
-        padding: calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0;
         > div {
           flex: 1;
           white-space: nowrap;
@@ -94,13 +88,13 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background;
+          background-color: $--x-background-a200;
           color: $--x-primary;
         }
       }
       &:hover {
         > td {
-          background-color: $--x-background;
+          background-color: $--x-background-a200;
         }
       }
       &:last-child {
@@ -181,7 +175,7 @@
     > thead > tr > th,
     > tbody tr > td {
       border-right: $--x-border-base;
-      padding-left: $--x-font-size;
+      padding-left: calc(#{$--x-font-size} / 2);
       &:last-child {
         border-right: none;
       }
@@ -197,14 +191,40 @@
     > thead > tr > th,
     > tbody tr > td {
       border-right: $--x-border-base;
-      padding-left: $--x-font-size;
+      padding-left: calc(#{$--x-font-size} / 2);
       &:last-child {
         border-right: none;
+      }
+    }
+  }
+  &-row-size {
+    @include rowSize(big, calc(#{$--x-font-size} / 5 * 4) calc(#{$--x-font-size} * 5 / 4) calc(#{$--x-font-size} / 5 * 4) 0);
+    @include rowSize(large, calc(#{$--x-font-size} / 4 * 3) calc(#{$--x-font-size} * 4 / 3) calc(#{$--x-font-size} / 4 * 3) 0);
+    @include rowSize(medium, calc(#{$--x-font-size} / 2) $--x-font-size calc(#{$--x-font-size} / 2) 0);
+    @include rowSize(small, calc(#{$--x-font-size} / 3) calc(#{$--x-font-size} * 2 / 3) calc(#{$--x-font-size} / 3) 0);
+    @include rowSize(mini, calc(#{$--x-font-size} / 4) calc(#{$--x-font-size} / 2) calc(#{$--x-font-size} / 4) 0);
+  }
+}
+
+@mixin rowSize($size, $padding) {
+  &-#{$size} {
+    > thead {
+      > tr {
+        > th {
+          padding: $padding;
+        }
+      }
+    }
+    > tbody {
+      tr {
+        > td {
+          padding: $padding;
+        }
       }
     }
   }
 }
 
 @mixin pagination {
-  padding-top: $--x-font-size;
+  padding-top: calc(#{$--x-font-size} / 2);
 }

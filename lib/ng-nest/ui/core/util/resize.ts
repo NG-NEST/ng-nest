@@ -1,5 +1,5 @@
-import ResizeObserver from 'resize-observer-polyfill';
 import { Observable, Subscriber } from 'rxjs';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export const XResize = (...element: Element[]): Observable<{ entry: ResizeObserverEntry; resizeObserver: ResizeObserver }> => {
   return new Observable(

@@ -23,7 +23,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTextRetractComponent extends XTextRetractProperty implements OnInit, OnChanges {
-  displayValue: string;
+  displayValue!: string;
   retract: boolean = false;
   unfold: boolean = true;
 
@@ -54,11 +54,11 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   }
 
   setDisplayValue() {
-    if (this.content && this.content.length > this.max) {
+    if (this.content && this.content.length > (this.max as number)) {
       this.displayValue = this.content.substring(0, Number(this.max));
       this.retract = true;
     } else {
-      this.displayValue = this.content;
+      this.displayValue = this.content as string;
     }
     this.cdr.markForCheck();
   }
@@ -66,9 +66,9 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   toggle() {
     this.unfold = !this.unfold;
     if (this.unfold) {
-      this.displayValue = this.content.substring(0, Number(this.max));
+      this.displayValue = (this.content as string).substring(0, Number(this.max));
     } else {
-      this.displayValue = this.content;
+      this.displayValue = this.content as string;
     }
     this.cdr.detectChanges();
   }

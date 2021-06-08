@@ -12,3 +12,15 @@
 .#{$--x-find-prefix}-dialog {
   @include find-dialog();
 }
+
+.#{$--x-find-prefix}-search {
+  display: flex;
+  padding: 0.3rem;
+  .x-input,
+  x-input {
+    width: 15rem;
+  }
+  .x-button {
+    margin-left: 0.5rem;
+  }
+}

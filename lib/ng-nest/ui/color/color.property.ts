@@ -31,10 +31,10 @@ export class XColorProperty extends XProperty {
    * @zh_CN 混合的颜色
    * @en_US Mixed colors
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#ffffff') merge: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#ffffff') merge?: string;
   /**
    * @zh_CN 混合的颜色占比
    * @en_US Proportion of mixed colors
    */
-  @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XAmounts) amounts: XNumber[];
+  @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XAmounts) amounts?: XNumber[];
 }

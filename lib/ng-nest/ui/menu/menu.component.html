@@ -25,9 +25,9 @@
     (nodeClick)="onNodeClick($event)"
     children
   >
-    <x-menu-node [node]="node"></x-menu-node>
+    <x-menu-node [node]="node" [menu]="this"></x-menu-node>
   </x-dropdown>
-  <x-menu-node *ngIf="!collapsed" [node]="node"></x-menu-node>
+  <x-menu-node *ngIf="!collapsed" [node]="node" [menu]="this"></x-menu-node>
 </ng-template>
 
 <ng-template #nodeRowTpl let-node="$node">
