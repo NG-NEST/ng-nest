@@ -77,6 +77,11 @@ export class XMenuProperty extends XProperty {
    */
   @Input() target?: string | HTMLElement;
   /**
+   * @zh_CN 弹框的最小宽度
+   * @en_US Portal min-width
+   */
+  @Input() portalMinWidth?: string | number;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */

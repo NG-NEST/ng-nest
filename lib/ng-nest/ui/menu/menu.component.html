@@ -23,6 +23,7 @@
     [trigger]="trigger"
     placement="right-start"
     (nodeClick)="onNodeClick($event)"
+    [portalMinWidth]="portalMinWidth"
     children
   >
     <x-menu-node [node]="node" [menu]="this"></x-menu-node>
@@ -31,7 +32,14 @@
 </ng-template>
 
 <ng-template #nodeRowTpl let-node="$node">
-  <x-dropdown [disabled]="!node.leaf" [data]="node.children" [trigger]="trigger" (nodeClick)="onNodeClick($event)" children>
+  <x-dropdown
+    [disabled]="!node.leaf"
+    [data]="node.children"
+    [trigger]="trigger"
+    (nodeClick)="onNodeClick($event)"
+    [portalMinWidth]="portalMinWidth"
+    children
+  >
     <div class="x-menu-node" [ngClass]="nodeClassMap">
       <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
     </div>

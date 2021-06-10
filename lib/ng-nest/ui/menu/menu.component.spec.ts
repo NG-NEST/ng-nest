@@ -21,12 +21,13 @@ describe(XMenuPrefix, () => {
         TestXMenuCollapsedComponent,
         TestXMenuTestOneCollapsedComponent,
         TestXMenuTestTwoCollapsedComponent,
-        TestXMenuTestThreeCollapsedComponent
+        TestXMenuTestThreeCollapsedComponent,
+        TestXMenuWindowsComponent
       ],
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMenuComponent>;
     let menu: DebugElement;
     beforeEach(() => {
@@ -62,12 +63,24 @@ describe(XMenuPrefix, () => {
       expect(menu).toBeDefined();
     });
   });
+  fdescribe(`windows.`, () => {
+    let fixture: ComponentFixture<TestXMenuWindowsComponent>;
+    let menu: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXMenuWindowsComponent);
+      fixture.detectChanges();
+      menu = fixture.debugElement.query(By.directive(XMenuComponent));
+    });
+    it('should create.', () => {
+      expect(menu).toBeDefined();
+    });
+  });
 });
 
 @Component({
   template: `
     <x-theme showDark></x-theme>
-    <!-- <div class="row">
+    <div class="row">
       <x-menu [data]="data"> </x-menu>
     </div>
     <div class="row">
@@ -75,17 +88,17 @@ describe(XMenuPrefix, () => {
     </div>
     <div class="row">
       <x-menu [data]="dataLeaf" (nodeClick)="nodeClick($event)"> </x-menu>
-    </div> -->
+    </div>
     <div class="row">
       <x-menu [data]="dataLeaf" layout="column" expandedLevel="2"> </x-menu>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <x-menu [data]="dataLeaf" layout="column" size="big"> </x-menu>
       <x-menu [data]="dataLeaf" layout="column" size="large"> </x-menu>
       <x-menu [data]="dataLeaf" layout="column" size="medium"> </x-menu>
       <x-menu [data]="dataLeaf" layout="column" size="small"> </x-menu>
       <x-menu [data]="dataLeaf" layout="column" size="mini"> </x-menu>
-    </div> -->
+    </div>
   `,
   styles: [
     `
@@ -1169,3 +1182,84 @@ const mainRoutes: Routes = [
   exports: [RouterModule]
 })
 export class TestMenuRoutesModule {}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <div class="row">
+      <x-menu [data]="data" (nodeClick)="nodeClick($event)" [portalMinWidth]="'10rem'"> </x-menu>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .row x-menu:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXMenuWindowsComponent {
+  data = [
+    {
+      id: '1',
+      pid: null,
+      label: '文件(F)'
+    },
+    {
+      id: '1-1',
+      pid: '1',
+      label: '新建文件'
+    },
+    {
+      id: '1-2',
+      pid: '1',
+      label: '新建窗口'
+    },
+    {
+      id: '2',
+      pid: null,
+      label: '编辑(E)'
+    },
+    {
+      id: '3',
+      pid: null,
+      label: '选择(S)'
+    },
+    {
+      id: '4',
+      pid: null,
+      label: '查看(V)'
+    },
+    {
+      id: '5',
+      pid: null,
+      label: '转到(G)'
+    },
+    {
+      id: '6',
+      pid: null,
+      label: '运行(R)'
+    },
+    {
+      id: '7',
+      pid: null,
+      label: '终端(T)'
+    },
+    {
+      id: '8',
+      pid: null,
+      label: '帮助(H)'
+    }
+  ];
+  nodeClick($event: XMenuNode) {
+    console.log($event);
+  }
+}
