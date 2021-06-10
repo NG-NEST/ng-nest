@@ -12,10 +12,10 @@ import {
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
 import { XIsChange, XIsEmpty, XSetData, XGetChildren, XConfigService, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
-import { debounceTime, takeUntil, throttleTime } from 'rxjs/operators';
+import { debounceTime, delay, takeUntil, throttleTime } from 'rxjs/operators';
 import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
 
 @Component({
@@ -34,6 +34,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   visible: boolean = false;
   animating = false;
   outsideClick = false;
+  minWidth!: string | number;
+  hoverDelayUnsub = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
@@ -60,7 +62,9 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
 
   ngOnDestroy(): void {
     this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this._unSubject.complete();
+    this.hoverDelayUnsub.next();
+    this.hoverDelayUnsub.complete();
   }
 
   setSubject() {
@@ -70,16 +74,21 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   }
 
   onEnter() {
-    if (this.disabled || this.trigger === 'click') return;
-    if (this.timeoutHide) clearTimeout(this.timeoutHide);
-    if (!this.portal || (this.portal && !this.portal?.overlayRef?.hasAttached())) {
-      this.visible = true;
-      this.createPortal();
-      this.cdr.detectChanges();
-    }
+    of(true)
+      .pipe(delay(this.hoverDelay), takeUntil(this.hoverDelayUnsub))
+      .subscribe(() => {
+        if (this.disabled || this.trigger === 'click') return;
+        if (this.timeoutHide) clearTimeout(this.timeoutHide);
+        if (!this.portal || (this.portal && !this.portal?.overlayRef?.hasAttached())) {
+          this.visible = true;
+          this.createPortal();
+          this.cdr.detectChanges();
+        }
+      });
   }
 
   onLeave() {
+    this.hoverDelayUnsub.next();
     if (this.disabled || this.trigger === 'click') return;
     if (this.portal?.overlayRef?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
@@ -117,11 +126,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
 
   createPortal() {
     let box = this.dropdown.nativeElement.getBoundingClientRect();
+    this.minWidth = this.portalMinWidth ? this.portalMinWidth : box.width;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      minWidth: this.portalMinWidth ? this.portalMinWidth : box.width
+      minWidth: this.minWidth
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({
@@ -154,6 +164,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
     Object.assign(componentRef.instance, {
       data: this.nodes,
       trigger: this.trigger,
+      minWidth: this.minWidth,
       close: () => this.closeSubject.next(),
       positionChange: this.positionChange,
       destroyPortal: () => this.destroyPortal(),

@@ -47,6 +47,7 @@ export class XDropdownPortalComponent implements OnDestroy {
   node!: XDropdownNode;
   timeoutHide: any;
   timespan = 200;
+  minWidth!: string | number;
   portalPlacement!: XPositionTopBottom;
   childAnimating = false;
   private _unSubject = new Subject<void>();
@@ -104,7 +105,8 @@ export class XDropdownPortalComponent implements OnDestroy {
       backdropClass: '',
       panelClass: 'x-dropdown-portal-child',
       positionStrategy: this.setPlacement(),
-      scrollStrategy: this.overlay.scrollStrategies.reposition()
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      minWidth: this.minWidth
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({
@@ -128,6 +130,7 @@ export class XDropdownPortalComponent implements OnDestroy {
     if (!componentRef) return;
     Object.assign(componentRef.instance, {
       data: this.node?.children,
+      minWidth: this.minWidth,
       close: () => this.closePortal(),
       placement: this.portalPlacement,
       positionChange: this.portalPositionChange,
