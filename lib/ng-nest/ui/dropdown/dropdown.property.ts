@@ -41,6 +41,11 @@ export class XDropdownProperty extends XProperty {
    */
   @Input() @XInputBoolean() children?: XBoolean;
   /**
+   * @zh_CN 弹框的最小宽度
+   * @en_US Portal min-width
+   */
+  @Input() portalMinWidth?: string | number;
+  /**
    * @zh_CN 节点点击事件
    * @en_US Node click event
    */

@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-dropdown-portal} {
+  width: 100%;
+}
+
 .#{$--x-dropdown-portal} {
   @include dropdown-portal();
 }

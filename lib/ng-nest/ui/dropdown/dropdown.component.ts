@@ -116,10 +116,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   }
 
   createPortal() {
+    let box = this.dropdown.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
-      scrollStrategy: this.overlay.scrollStrategies.reposition()
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      minWidth: this.portalMinWidth ? this.portalMinWidth : box.width
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({

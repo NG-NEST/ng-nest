@@ -76,7 +76,7 @@ describe(XDropdownPrefix, () => {
   ]
 })
 class TestXDropdownComponent {
-  data = ['用户管理', '角色管理', '组织管理', '模块管理', '日志管理'];
+  data = ['用户管理123456789', '角色管理', '组织管理', '模块管理', '日志管理'];
   dataProp = [
     { label: '用户管理', icon: 'fto-user' },
     { label: '角色管理', icon: 'fto-users' },
