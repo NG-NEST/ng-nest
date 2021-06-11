@@ -39,7 +39,7 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    * @zh_CN 选择节点事件
    * @en_US Node click event
    */
-  @Output() nodeClick = new EventEmitter();
+  @Output() nodeEmit = new EventEmitter<XAutoCompleteNode>();
 }
 
 /**
@@ -62,6 +62,16 @@ export interface XAutoCompleteOption extends XFormOption {
    * @en_US Display position
    */
   placement?: XPositionTopBottom;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  nodeTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 选择节点事件
+   * @en_US Node click event
+   */
+  nodeClick?: (value: XAutoCompleteNode) => void;
 }
 
 /**

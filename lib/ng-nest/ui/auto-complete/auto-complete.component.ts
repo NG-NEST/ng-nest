@@ -230,12 +230,12 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     node = node as XAutoCompleteNode;
     this.closeSubject.next();
     if (this.value === node.label) {
-      this.nodeClick.emit(node);
+      this.nodeEmit.emit(node);
       return;
     }
     this.value = node.label;
     if (this.onChange) this.onChange(this.value);
-    this.nodeClick.emit(node);
+    this.nodeEmit.emit(node);
     this.cdr.detectChanges();
   }
 
