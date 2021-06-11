@@ -1,13 +1,4 @@
-import {
-  XIdentity,
-  XIdentityProperty,
-  XBoolean,
-  XIsEmpty,
-  XNumber,
-  XInputNumber,
-  XInputBoolean,
-  XWithConfig,
-} from '@ng-nest/ui/core';
+import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XInputBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
@@ -25,6 +16,7 @@ import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker
 import { XTextareaOption, XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
 import { XFormOption, XFormProp } from '@ng-nest/ui/base-form';
+import { XAutoCompleteOption, XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 
 /**
  * Form
@@ -289,8 +281,7 @@ export type XFormControlOption =
   | XSwitchControlOption
   | XTimePickerControlOption
   | XFindControlOption
-  | XTemplateControlOption
-  ;
+  | XTemplateControlOption;
 
 export type XFormControlComponent =
   | XInputComponent
@@ -306,7 +297,8 @@ export type XFormControlComponent =
   | XSwitchComponent
   | XTimePickerComponent
   | XTextareaComponent
-  | XFindComponent;
+  | XFindComponent
+  | XAutoCompleteComponent;
 
 export type XFormControlType =
   | XInputControl
@@ -322,7 +314,8 @@ export type XFormControlType =
   | XSwitchControl
   | XTimePickerControl
   | XTextareaControl
-  | XFindControl;
+  | XFindControl
+  | XAutoCompleteControl;
 
 export type XControlType =
   | 'input'
@@ -339,6 +332,7 @@ export type XControlType =
   | 'time-picker'
   | 'textarea'
   | 'find'
+  | 'auto-complete'
   | 'template';
 
 /**
@@ -482,7 +476,16 @@ export class XFindControl extends XControl {
 }
 
 /**
+ * AutoComplete Control
+ */
+export interface XAutoCompleteControlOption extends XControlOption, XAutoCompleteOption {}
+export class XAutoCompleteControl extends XControl {
+  constructor(option: XAutoCompleteControlOption = {}) {
+    super(option);
+  }
+}
+
+/**
  * Template Control
  */
-export interface XTemplateControlOption extends XControlOption, XFormOption {
-}
+export interface XTemplateControlOption extends XControlOption, XFormOption {}

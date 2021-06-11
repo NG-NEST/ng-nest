@@ -44,7 +44,9 @@ import {
   XFindControl,
   XFindControlOption,
   XTextareaControlOption,
-  XTextareaControl
+  XTextareaControl,
+  XAutoCompleteControl,
+  XAutoCompleteControlOption
 } from './form.property';
 import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
@@ -195,6 +197,8 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         return new XTextareaControl(option as XTextareaControlOption);
       case 'find':
         return new XFindControl(option as XFindControlOption);
+      case 'auto-complete':
+        return new XAutoCompleteControl(option as XAutoCompleteControlOption);
       default:
         return new XInputControl(option as XInputControlOption);
     }

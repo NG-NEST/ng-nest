@@ -563,6 +563,76 @@ export class ExDefaultComponent {
           maxlength: 10
         }
       ]
+    },
+    {
+      title: 'AutoComplete 自动完成',
+      icon: 'fto-list',
+      controls: [
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-human',
+          label: '手动匹配',
+          data: (str: string) =>
+            new Observable<string[]>((x) => {
+              x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+              x.complete();
+            }),
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-default',
+          label: '默认值',
+          data: (str: string) =>
+            new Observable<string[]>((x) => {
+              setTimeout(() => {
+                x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+                x.complete();
+              }, 500);
+            }),
+          span: 8,
+          value: 'ngnest'
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: '固定选项',
+          placeholder: '请输入 aa',
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed-one',
+          label: '固定选项，请求一次',
+          placeholder: '请输入 aa',
+          data: new Observable<string[]>((x) => {
+            setTimeout(() => {
+              x.next(['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa']);
+              x.complete();
+            }, 500);
+          }),
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: '禁用',
+          disabled: true,
+          value: 'aaaa',
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: '必填',
+          placeholder: '请输入 aa',
+          required: true,
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        }
+      ]
     }
   ];
 }

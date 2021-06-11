@@ -571,6 +571,76 @@ export class ExDefaultComponent {
           maxlength: 10
         }
       ]
+    },
+    {
+      title: 'AutoComplete',
+      icon: 'fto-list',
+      controls: [
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-human',
+          label: 'manual match',
+          data: (str: string) =>
+            new Observable<string[]>((x) => {
+              x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+              x.complete();
+            }),
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-default',
+          label: 'defaults',
+          data: (str: string) =>
+            new Observable<string[]>((x) => {
+              setTimeout(() => {
+                x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+                x.complete();
+              }, 500);
+            }),
+          span: 8,
+          value: 'ngnest'
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: 'fixed option',
+          placeholder: 'input aa',
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed-one',
+          label: 'fixed options, request once',
+          placeholder: 'input aa',
+          data: new Observable<string[]>((x) => {
+            setTimeout(() => {
+              x.next(['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa']);
+              x.complete();
+            }, 500);
+          }),
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: 'disabled',
+          disabled: true,
+          value: 'aaaa',
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        },
+        {
+          control: 'auto-complete',
+          id: 'auto-complete-fixed',
+          label: 'required',
+          placeholder: 'input aa',
+          required: true,
+          data: ['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'aaaaaa'],
+          span: 8
+        }
+      ]
     }
   ];
 }

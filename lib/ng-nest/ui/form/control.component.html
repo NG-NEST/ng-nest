@@ -39,6 +39,9 @@
     <ng-container *ngSwitchCase="'textarea'">
       <x-textarea [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-textarea>
     </ng-container>
+    <ng-container *ngSwitchCase="'auto-complete'">
+      <x-auto-complete [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-auto-complete>
+    </ng-container>
     <ng-container *ngSwitchCase="'find'">
       <x-find [formControlName]="option.id"></x-find>
     </ng-container>
