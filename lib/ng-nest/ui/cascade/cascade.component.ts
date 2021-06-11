@@ -33,10 +33,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   @ViewChild('cascade', { static: true }) cascade!: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
   writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
