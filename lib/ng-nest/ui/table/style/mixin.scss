@@ -27,7 +27,8 @@
         flex: 1;
         position: relative;
         font-weight: 600;
-        background-color: $--x-background;
+        //background-color: $--x-background;
+        background-color: $--x-background-a100;
         border-bottom: $--x-border-base;
         > a {
           display: inline-flex;
@@ -84,13 +85,15 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background-a200;
+          //background-color: $--x-background-a200;
+          background-color: $--x-success-900;
           color: $--x-primary;
         }
       }
       &:hover {
         > td {
-          background-color: $--x-background-a200;
+          //background-color: $--x-background-a200;
+          background-color: $--x-success-900;
         }
       }
       &:last-child {
