@@ -251,6 +251,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
         this.treeActivatedId = null;
       }
     }
+    this.onChange(this.value);
     this.cdr.detectChanges();
   }
 
