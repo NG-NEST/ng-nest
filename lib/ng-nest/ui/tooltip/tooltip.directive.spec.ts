@@ -39,7 +39,9 @@ describe(XTooltipPrefix, () => {
     <x-theme showDark></x-theme>
     <div class="box">
       <div class="top">
-        <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
+        <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start"
+          >上左</x-button
+        >
         <x-button x-tooltip content="上中上中上中上中上中上中上中上中上中上中" placement="top">上中</x-button>
         <x-button x-tooltip content="上右上右上右上右上右上右上右上右上右上右" placement="top-end">上右</x-button>
       </div>

@@ -96,6 +96,8 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
       box: this.box,
       content: this.content,
       contentChange: this.contentChange,
+      color: this.color,
+      backgroundColor: this.backgroundColor,
       placement: this.placement,
       positionChange: this.positionChange,
       portalHover: (hover: boolean) => {

@@ -37,6 +37,7 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
 
   @ViewChild('tooltipPortal', { static: true }) tooltipPortal!: ElementRef;
   @ViewChild('tooltipArrow', { static: false }) tooltipArrow!: ElementRef;
+  @ViewChild('tooltipArrowAfter', { static: false }) tooltipArrowAfter!: ElementRef;
 
   contentChange!: BehaviorSubject<any>;
   classMap: XClassMap = {};
@@ -49,6 +50,8 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
   placement!: XPlacement;
   previousPlacement!: XPlacement;
   content!: string;
+  color!: string;
+  backgroundColor!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
@@ -101,6 +104,12 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
       } else if (this.includes('-end')) {
         this.renderer.setStyle(this.tooltipArrow.nativeElement, 'right', `${this.box.width / 2 - offset}px`);
       }
+    }
+    if (!this.backgroundColor) return;
+    const ptSplit = this.placement.split('-');
+    if (ptSplit.length > 0) {
+      this.renderer.setStyle(this.tooltipArrow.nativeElement, `border-${ptSplit[0]}-color`, this.backgroundColor);
+      this.renderer.setStyle(this.tooltipArrowAfter.nativeElement, `border-${ptSplit[0]}-color`, this.backgroundColor);
     }
   }
 

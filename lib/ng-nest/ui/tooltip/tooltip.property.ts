@@ -30,6 +30,16 @@ export class XTooltipProperty {
    */
   @Input() @XInputBoolean() visible?: XBoolean;
   /**
+   * @zh_CN 背景颜色
+   * @en_US Background color
+   */
+  @Input() backgroundColor?: string;
+  /**
+   * @zh_CN 文字颜色
+   * @en_US Text color
+   */
+  @Input() color?: string;
+  /**
    * @zh_CN 手动处理关闭事件
    * @en_US Manually handle the shutdown event
    */

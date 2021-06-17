@@ -1,4 +1,6 @@
 <div #tooltipPortal class="x-tooltip-portal" [ngClass]="classMap">
-  <div class="x-tooltip-portal-inner" [innerHTML]="content"></div>
-  <div #tooltipArrow class="x-tooltip-portal-arrow"></div>
+  <div class="x-tooltip-portal-inner" [style.backgroundColor]="backgroundColor" [style.color]="color" [innerHTML]="content"></div>
+  <div #tooltipArrow class="x-tooltip-portal-arrow">
+    <div #tooltipArrowAfter class="x-tooltip-portal-arrow-after"></div>
+  </div>
 </div>
