@@ -124,6 +124,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         }
         if (docItem) {
           let def = getDocs(docItem, 'default') as string;
+          let withConfig = getDocs(docItem, 'withConfig') as string;
           const label = getDocs(docItem, lang) as string;
           const description = getDocs(docItem, 'description') as string;
           const property: NcPrope = {
@@ -131,6 +132,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             type: type,
             label: label ? label : docItem[docItem.start + 1],
             default: def ? def : val,
+            withConfig: Boolean(withConfig),
             description: description,
             decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
             attr: propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name,

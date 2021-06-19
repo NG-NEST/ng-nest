@@ -12,6 +12,7 @@ import { XMessageComponent } from './message.component';
 export const XMessagePrefix = 'x-message';
 
 export const XMessagePortal = 'x-message-portal';
+export const X_CONFIG_NAME = 'message';
 
 /**
  * Message Option
@@ -21,24 +22,28 @@ export interface XMessageOption extends XAlertOption {
    * @zh_CN 方位，九宫格
    * @en_US Direction, nine grid
    * @default 'top'
+   * @withConfig true
    */
   placement?: XPlace;
   /**
    * @zh_CN 偏移距离
    * @en_US Offset distance
    * @default '2rem'
+   * @withConfig true
    */
   offset?: string | string[];
   /**
    * @zh_CN 类型
    * @en_US Types of
    * @default 'info'
+   * @withConfig true
    */
   type?: XMessageType;
   /**
    * @zh_CN 宽度
    * @en_US Width
    * @default '16rem'
+   * @withConfig true
    */
   width?: string;
   /**
@@ -50,18 +55,21 @@ export interface XMessageOption extends XAlertOption {
    * @zh_CN 延迟关闭时间
    * @en_US Delay off time
    * @default 3000
+   * @withConfig true
    */
   duration?: number;
   /**
    * @zh_CN 隐藏关闭按钮
    * @en_US Hide close button
    * @default true
+   * @withConfig true
    */
   hideClose?: boolean;
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
-   * @default true;
+   * @default true
+   * @withConfig true
    */
   showIcon?: boolean;
   /**

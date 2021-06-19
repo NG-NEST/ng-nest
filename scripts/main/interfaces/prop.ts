@@ -76,6 +76,11 @@ export interface NcPrope {
    * 输入或输出
    */
   propType?: string;
+  /**
+   * 属性支持全局配置
+   * 针对 interface 中属性配置的说明 @withConfig true
+   */
+  withConfig?: boolean;
 }
 
 /**

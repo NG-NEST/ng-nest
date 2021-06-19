@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString } from '@ng-nest/ui/core';
-import { XMessageOverlayRef, XMessageType, XMessagePlacement, XMessageRef, XMessagePortal, XMessageOption } from './message.property';
+import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString, XConfigService, XMessageConfig } from '@ng-nest/ui/core';
+import {
+  XMessageOverlayRef,
+  XMessageType,
+  XMessagePlacement,
+  XMessageRef,
+  XMessagePortal,
+  XMessageOption,
+  X_CONFIG_NAME
+} from './message.property';
 import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -22,7 +30,12 @@ export class XMessageService {
     hide: false
   };
 
-  constructor(public portal: XPortalService) {}
+  configDefault?: XMessageConfig;
+
+  constructor(public portal: XPortalService, public configService: XConfigService) {
+    this.configDefault = this.configService.getConfigForComponent(X_CONFIG_NAME);
+    Object.assign(this.default, this.configDefault);
+  }
 
   info(option: XTemplate | XMessageOption): XMessageRef {
     return this.createMessage(option, 'info');

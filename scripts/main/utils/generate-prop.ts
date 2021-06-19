@@ -24,18 +24,22 @@ export function generateProps(...types: NcProp[]) {
 
           x.properties.forEach((y) => {
             let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
+            let isWithConfig = withConfig ? true : false;
             if (withConfig && !y.default) {
               const st = withConfig.match(/\((\S*)\)/)[1].split(',');
               if (st.length >= 2) {
                 y.default = st[st.length - 1];
               }
             }
+            if (!isWithConfig && y.withConfig) {
+              isWithConfig = true;
+            }
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
               <td>${y.label}<span>${y.description}</span></td>
               <td><code [innerHTML]="'${y.type}'"></code></td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
-              <td>${withConfig ? '✔' : ''}</td>
+              <td>${isWithConfig ? '✔' : ''}</td>
             </tr>`;
             switch (y.propType) {
               case 'Input':
@@ -91,6 +95,7 @@ export function generateProps(...types: NcProp[]) {
                 <th>{{ "api.description" | xI18n }}</th>
                 <th>{{ "api.type" | xI18n }}</th>
                 <th>{{ "api.default" | xI18n }}</th>
+                <th>{{ "api.globalConfig" | xI18n }}</th>
               </tr>
               ${table}
             </table>`;

@@ -8,14 +8,27 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XPlace } from '@ng-nest/ui/core';
+import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XMessagePrefix, () => {
+  let config: XConfig = {
+    components: {
+      message: {
+        placement: 'center',
+      }
+    }
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
-      declarations: [TestXMessageComponent, TestXMessageTypeComponent]
+      declarations: [TestXMessageComponent, TestXMessageTypeComponent],
+      providers: [
+        {
+          provide: X_CONFIG,
+          useValue: config
+        }
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -30,7 +43,7 @@ describe(XMessagePrefix, () => {
       expect(message).toBeDefined();
     });
   });
-  describe(`type.`, () => {
+  fdescribe(`type.`, () => {
     let fixture: ComponentFixture<TestXMessageTypeComponent>;
     let message: DebugElement;
     beforeEach(() => {

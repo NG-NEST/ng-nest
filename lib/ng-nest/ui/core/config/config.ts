@@ -16,7 +16,8 @@ import {
   XPlace,
   XPosition,
   XPlacement,
-  XPositionTopBottom
+  XPositionTopBottom,
+  XStatus
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -325,7 +326,15 @@ export interface XMenuConfig {
   trigger?: XTrigger;
 }
 
-export interface XMessageConfig {}
+export interface XMessageConfig {
+  type?: XStatus;
+  width?: string;
+  placement?: XPlace;
+  offset?: string | string[];
+  duration?: number;
+  hideClose?: boolean;
+  showIcon?: boolean;
+}
 
 export interface XMessageBoxConfig {}
 
