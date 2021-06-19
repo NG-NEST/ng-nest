@@ -22,7 +22,7 @@ import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
-import { XAutoCompleteModule } from '../auto-complete';
+import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
 
 const modules = [
   XLayoutModule,
