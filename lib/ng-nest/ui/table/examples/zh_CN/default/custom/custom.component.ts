@@ -11,6 +11,7 @@ import { delay } from 'rxjs/operators';
   providers: [CustomService]
 })
 export class ExCustomComponent {
+  size = 100;
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
   columns: XTableColumn[] = [{ id: 'name', label: '用户', flex: 1, sort: true }];
 
