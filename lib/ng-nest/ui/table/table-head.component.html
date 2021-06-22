@@ -30,7 +30,7 @@
       [style.min-height.px]="getRowHeight"
       [style.width.px]="column.width"
       [style.left.px]="column.left"
-      [style.flex]="column.width ? 'none' : column.flex"
+      [style.flex]="getFlex(column)"
     >
       <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
       <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>

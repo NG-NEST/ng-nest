@@ -56,6 +56,12 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     return Number(column.left) >= 0;
   }
 
+  getFlex(column: XTableColumn) {
+    if (column.width) return 'none';
+    if (!column.flex) return 1;
+    return column.flex;
+  }
+
   setStyle() {
     let height = this.rowHeight == 0 ? '' : this.rowHeight;
     if (this.cellConfig && this.cellConfig.cells) {

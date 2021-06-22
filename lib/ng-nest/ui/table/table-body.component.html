@@ -53,7 +53,7 @@
   <ng-container *ngFor="let column of columns; index as j; trackBy: trackByItem">
     <td
       [style.width.px]="column.width"
-      [style.flex]="column.width ? 'none' : column.flex"
+      [style.flex]="getFlex(column)"
       [title]="getTitle(row, column)"
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"

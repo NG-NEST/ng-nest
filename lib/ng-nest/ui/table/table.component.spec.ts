@@ -34,7 +34,7 @@ describe(XTablePrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -142,7 +142,7 @@ describe(XTablePrefix, () => {
       expect(true).toEqual(true);
     });
   });
-  fdescribe(`pagination.`, () => {
+  describe(`pagination.`, () => {
     let fixture: ComponentFixture<TestXTablePaginationComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -267,12 +267,12 @@ interface User extends XId {
 class TestXTableComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
-    { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
-    { id: 'name', label: '用户', flex: 1.5, sort: true },
-    { id: 'position', label: '职位', flex: 0.5, sort: true },
-    { id: 'email', label: '邮箱', flex: 1 },
-    { id: 'phone', label: '电话', flex: 1 },
-    { id: 'organization', label: '组织机构', flex: 1, sort: true }
+    { id: 'index', label: '序号', type: 'index' },
+    { id: 'name', label: '用户', sort: true },
+    { id: 'position', label: '职位', sort: true },
+    { id: 'email', label: '邮箱' },
+    { id: 'phone', label: '电话' },
+    { id: 'organization', label: '组织机构', sort: true }
   ];
 
   constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
@@ -749,7 +749,7 @@ class TestXTableRowSizeComponent {
         [columns]="columns"
         [data]="data"
         [rowHeight]="0"
-        [scroll]="{ y: 400 }"
+        [scroll]="{ y: 400, x: 450 }"
         [bodyColumnTpl]="{ name: nameTpl }"
         virtualScroll
         loading
@@ -779,7 +779,7 @@ class TestXTableRowSizeComponent {
       }
       .row {
         padding: 1rem;
-        width: 14rem;
+        width: 30rem;
       }
       .row:not(:first-child) {
         margin-top: 1rem;
