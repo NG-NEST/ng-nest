@@ -72,12 +72,12 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    * @zh_CN 表格页码
    * @en_US Table page number
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex?: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex!: number;
   /**
    * @zh_CN 表每页数据条数
    * @en_US Number of data items per page
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize?: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize!: number;
   /**
    * @zh_CN 表每页数据条数
    * @en_US Number of data items per page
