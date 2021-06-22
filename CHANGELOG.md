@@ -1,3 +1,28 @@
+## [12.0.2](https://github.com/NG-NEST/ng-nest/compare/12.0.1...12.0.2) (2021-06-22)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** update node emit ([7b5dcb9](https://github.com/NG-NEST/ng-nest/commit/7b5dcb9da7a17204cb60fca7c8be2950cc175570))
+* **module:cascade:** update required style ([b97208b](https://github.com/NG-NEST/ng-nest/commit/b97208bef8a1d0aef87346e73a1ce32af84a47b0))
+* **module:find:** close tag change value ([34824cf](https://github.com/NG-NEST/ng-nest/commit/34824cff63861e2e9b1e993d4eb03557b802d991))
+* **module:form:** update auto-complete import ([52dc848](https://github.com/NG-NEST/ng-nest/commit/52dc848d15541fa8e790a8b9ab43d7d83dc99d49))
+* **module:table:** update default column flex ([cf1780f](https://github.com/NG-NEST/ng-nest/commit/cf1780f2d1918c6e78f00ade699edbb93f3a88f8))
+
+
+### Features
+
+* **module:dropdown:** add hover delay ([5ba356b](https://github.com/NG-NEST/ng-nest/commit/5ba356b09dc21349371f5471513c89850682fd27))
+* **module:dropdown:** add min-width ([15bebc2](https://github.com/NG-NEST/ng-nest/commit/15bebc26f8b1e2ccab9f0ba3ba4eefe4cdd064ee))
+* **module:form:** add auto-complete ([d195c13](https://github.com/NG-NEST/ng-nest/commit/d195c132b14ad0a0a4a81ea5b9aa5750cc4936fc)), closes [#28](https://github.com/NG-NEST/ng-nest/issues/28)
+* **module:menu:** add min-width ([86f034d](https://github.com/NG-NEST/ng-nest/commit/86f034d8237ca58abe73285a44a228569c2e0160))
+* **module:message:** add global config ([01c880c](https://github.com/NG-NEST/ng-nest/commit/01c880cc7a93d0e8369eae39224f9495bf1a54bb)), closes [#31](https://github.com/NG-NEST/ng-nest/issues/31)
+* **module:pagination:** add parameter control ([7eab167](https://github.com/NG-NEST/ng-nest/commit/7eab167e8227dd9c8fe75a3def6c7f490a560074)), closes [#32](https://github.com/NG-NEST/ng-nest/issues/32)
+* **module:table:** add pagination param ([0d5e112](https://github.com/NG-NEST/ng-nest/commit/0d5e112fdda886d9ef0d25ce5d1cbc0871a7937a)), closes [#32](https://github.com/NG-NEST/ng-nest/issues/32)
+* **module:tooltip:** add color and backgroundColor ([2062874](https://github.com/NG-NEST/ng-nest/commit/206287414af6e203a7443e80e136617a2e73defd)), closes [#30](https://github.com/NG-NEST/ng-nest/issues/30)
+
+
+
 ## [12.0.1](https://github.com/NG-NEST/ng-nest/compare/12.0.0...12.0.1) (2021-06-08)
 
 
