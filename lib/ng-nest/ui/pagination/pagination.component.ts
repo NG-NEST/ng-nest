@@ -98,11 +98,15 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
         indexes.push(i);
       }
     }
-    this.indexes = indexes;
-    if (this.indexes.length > 0) {
+    if (indexes.length > 0) {
       this.indexFirst = 1;
       this.indexLast = this.lastIndex;
     }
+    if (!this.showEllipsis && indexes.length === 4) {
+      if (indexes[0] === this.indexFirst + 1) indexes.unshift(this.indexFirst);
+      if (indexes[indexes.length - 1] === this.indexLast - 1) indexes.push(this.indexLast);
+    }
+    this.indexes = indexes;
     this.cdr.detectChanges();
   }
 

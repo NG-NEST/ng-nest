@@ -12,7 +12,7 @@ describe(XPaginationPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [XPaginationModule, XButtonModule],
-      declarations: [TestXPaginationComponent]
+      declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -28,9 +28,19 @@ describe(XPaginationPrefix, () => {
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
-    it('should className.', () => {
+  });
+  fdescribe(`style.`, () => {
+    let fixture: ComponentFixture<TestXPaginationStyleComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXPaginationStyleComponent);
       fixture.detectChanges();
-      expect(element.classList).toContain(XPaginationPrefix);
+      debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
+      element = debugElement.nativeElement;
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
     });
   });
 });
@@ -46,12 +56,48 @@ describe(XPaginationPrefix, () => {
 class TestXPaginationComponent {
   index = 1;
   size = 10;
-  total = 25;
+  total = 100;
 
   constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
 
   change(index: number) {
-    console.log(index);
+    // console.log(index);
+  }
+
+  english() {
+    this.i18nService.setLocale(en_US);
+    this.cdr.detectChanges();
+  }
+
+  chinese() {
+    this.i18nService.setLocale(zh_CN);
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  selector: 'test-x-pagination-style',
+  template: `
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="total"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+  `
+})
+class TestXPaginationStyleComponent {
+  index = 1;
+  size = 10;
+  total = 100;
+
+  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+
+  change(index: number) {
+    // console.log(index);
   }
 
   english() {

@@ -1,15 +1,17 @@
-<x-buttons>
+<x-buttons [space]="space" [hiddenBorder]="hiddenBorder">
   <x-button
     [icon]="'fto-chevron-left'"
     [title]="'pagination.previous' | xI18n"
     [disabled]="leftDisabled"
     (click)="jump(-1, true)"
   ></x-button>
-  <x-button [activated]="firstActivated" (click)="jump(1)">1</x-button>
-  <x-button *ngIf="leftJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(-5, true)"></x-button>
+  <x-button *ngIf="showEllipsis" [activated]="firstActivated" (click)="jump(1)">1</x-button>
+  <x-button *ngIf="showEllipsis && leftJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(-5, true)"></x-button>
   <x-button *ngFor="let item of indexes; trackBy: trackByItem" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
-  <x-button *ngIf="rightJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(5, true)"></x-button>
-  <x-button *ngIf="lastIndex > indexFirst" [activated]="lastActivated" (click)="jump(lastIndex)">{{ lastIndex }}</x-button>
+  <x-button *ngIf="showEllipsis && rightJumpPage" [icon]="'fto-more-horizontal'" (click)="jump(5, true)"></x-button>
+  <x-button *ngIf="showEllipsis && lastIndex > indexFirst" [activated]="lastActivated" (click)="jump(lastIndex)">{{ lastIndex }}</x-button>
   <x-button [icon]="'fto-chevron-right'" [title]="'pagination.next' | xI18n" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>
 </x-buttons>
-<x-button class="x-pagination-total">{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button>
+<x-button *ngIf="showTotal" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
+  >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button
+>

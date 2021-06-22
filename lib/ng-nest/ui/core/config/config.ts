@@ -350,6 +350,10 @@ export interface XPageHeaderConfig {
 export interface XPaginationConfig {
   index?: XNumber;
   size?: XNumber;
+  space?: XNumber;
+  hiddenBorder?: boolean;
+  showEllipsis?: boolean;
+  showTotal?: boolean;
 }
 
 export interface XPatternConfig {}

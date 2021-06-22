@@ -6,9 +6,15 @@
 
 @mixin pagination {
   display: inline-flex;
-  > .x-buttons > x-button.x-button {
-    min-width: 2rem;
-    padding: 0.5rem;
+  > .x-buttons {
+    &.x-buttons-hiddenBorder {
+      > x-button > .x-button {
+        min-width: 1.75rem;
+        &-activated {
+          background-color: $pagination-activated-background-color;
+        }
+      }
+    }
   }
   &-total {
     margin-left: 0.5rem;
