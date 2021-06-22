@@ -1,0 +1,22 @@
+:host {
+  .row {
+    width: 14rem;
+  }
+  .custom-td {
+    display: flex;
+    align-items: center;
+    color: var(--x-text);
+  }
+  .custom-td x-icon {
+    font-size: 4rem;
+    padding: 1rem;
+  }
+  .custom-td-inner {
+    margin-left: 0.875rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .custom-td-name {
+    font-weight: 600;
+  }
+}

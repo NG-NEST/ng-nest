@@ -416,6 +416,7 @@ export interface XTableConfig {
   index?: number;
   size?: number;
   loading?: XBoolean;
+  showHeader?: XBoolean;
   virtualScroll?: boolean;
   rowHeight?: XNumber;
   itemSize?: XNumber;

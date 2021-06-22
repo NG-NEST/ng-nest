@@ -76,7 +76,7 @@
       <div>{{ table.getIndex(i) }}</div>
     </ng-container>
     <ng-container *ngSwitchDefault>
-      <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row }">
+      <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }">
         <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
       </ng-container>
     </ng-container>

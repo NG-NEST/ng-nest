@@ -117,7 +117,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   }
 
   setScroll() {
-    if (!this.virtualBody || !this.table.thead) return;
+    if (!this.virtualBody) return;
     const ele = this.virtualBody.elementRef.nativeElement;
     const hasY = ele.scrollHeight > (this.bodyHeight as number);
     const hasX = this.table.scrollContentEle.clientWidth > ele.clientWidth;

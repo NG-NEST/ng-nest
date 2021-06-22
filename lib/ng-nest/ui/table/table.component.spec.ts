@@ -29,7 +29,8 @@ describe(XTablePrefix, () => {
         TestXTableMergeColumnComponent,
         TestXTableWidthDragComponent,
         TestXTableCheckboxComponent,
-        TestXTableRowSizeComponent
+        TestXTableRowSizeComponent,
+        TestXTablePaginationComponent
       ]
     }).compileComponents();
   }));
@@ -134,6 +135,18 @@ describe(XTablePrefix, () => {
     let table: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTableRowSizeComponent);
+      fixture.detectChanges();
+      table = fixture.debugElement.query(By.directive(XTableComponent));
+    });
+    it('should create.', () => {
+      expect(true).toEqual(true);
+    });
+  });
+  fdescribe(`pagination.`, () => {
+    let fixture: ComponentFixture<TestXTablePaginationComponent>;
+    let table: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTablePaginationComponent);
       fixture.detectChanges();
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
@@ -722,6 +735,82 @@ class TestXTableRowSizeComponent {
     { id: 'phone', label: '电话', flex: 1 },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
+
+  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {}
+}
+
+@Component({
+  template: `
+    <div class="row">
+      <x-table
+        [(size)]="size"
+        [columns]="columns"
+        [data]="data"
+        [rowHeight]="0"
+        [scroll]="{ y: 400 }"
+        [bodyColumnTpl]="{ name: nameTpl }"
+        virtualScroll
+        loading
+        hiddenBorder
+        showEllipsis="false"
+        showTotal="false"
+        showHeader="false"
+      >
+      </x-table>
+      <ng-template #nameTpl let-column="$column" let-row="$row" let-index="$index">
+        <div class="custom-td">
+          <x-avatar icon="fto-user"></x-avatar>
+          <div class="custom-td-inner">
+            <span class="custom-td-name">{{ row.name }}</span>
+            <span class="custom-td-organization">{{ row.organization }}</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .row {
+        padding: 1rem;
+        width: 14rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .custom-td {
+        display: flex;
+        align-items: center;
+        color: var(--x-text);
+      }
+      .custom-td x-icon {
+        font-size: 4rem;
+        padding: 1rem;
+      }
+      .custom-td-inner {
+        margin-left: 0.875rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .custom-td-name {
+        font-weight: 600;
+      }
+      .custom-td-organization {
+      }
+    `
+  ],
+  providers: [UsersServiceTest]
+})
+class TestXTablePaginationComponent {
+  size = 100;
+  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  columns: XTableColumn[] = [{ id: 'name', label: '用户', flex: 1.5, sort: true }];
 
   constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
 

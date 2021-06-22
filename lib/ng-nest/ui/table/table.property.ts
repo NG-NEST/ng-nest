@@ -54,6 +54,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() bordered!: XBoolean;
   /**
+   * @zh_CN 是否显示列头
+   * @en_US Whether to display the column headers
+   */
+   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
+  /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */

@@ -1,0 +1,26 @@
+<div class="row">
+  <x-table
+    [(size)]="size"
+    [columns]="columns"
+    [data]="data"
+    [rowHeight]="0"
+    [scroll]="{ y: 400 }"
+    [bodyColumnTpl]="{ name: nameTpl }"
+    virtualScroll
+    loading
+    hiddenBorder
+    showEllipsis="false"
+    showTotal="false"
+    showHeader="false"
+  >
+  </x-table>
+</div>
+<ng-template #nameTpl let-column="$column" let-row="$row" let-index="$index">
+  <div class="custom-td">
+    <x-avatar icon="fto-user"></x-avatar>
+    <div class="custom-td-inner">
+      <span class="custom-td-name">{{ row.name }}</span>
+      <span class="custom-td-organization">{{ row.organization }}</span>
+    </div>
+  </div>
+</ng-template>

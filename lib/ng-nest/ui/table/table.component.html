@@ -10,6 +10,7 @@
   [class.x-table-cell-config]="cellConfig"
 >
   <x-table-head
+    *ngIf="showHeader"
     [columns]="columns"
     [rowHeight]="rowHeight"
     [columnTpl]="headColumnTpl"
@@ -39,5 +40,17 @@
   ></x-table-body>
   <x-table-foot [table]="this"></x-table-foot>
 </table>
-<x-pagination #pagination *ngIf="size" [(index)]="index" [(size)]="size" [(query)]="query" [total]="total" (indexChange)="change($event)">
+<x-pagination
+  #pagination
+  *ngIf="size"
+  [(index)]="index"
+  [(size)]="size"
+  [(query)]="query"
+  [total]="total"
+  (indexChange)="change($event)"
+  [showEllipsis]="showEllipsis"
+  [showTotal]="showTotal"
+  [space]="space"
+  [hiddenBorder]="hiddenBorder"
+>
 </x-pagination>
