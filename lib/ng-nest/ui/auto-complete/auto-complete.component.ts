@@ -27,7 +27,7 @@ import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAutoCompletePortalComponent } from './auto-complete-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -122,13 +122,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(this.debounceTime as number), takeUntil(this._unSubject)).subscribe(() => {
-      this.modelChange();
+    this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
+      this.modelChange(x);
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
       if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
-        this.inputChange.next();
+        this.inputChange.next(this.value);
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
         this.closeSubject.next();
@@ -251,19 +251,19 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 
-  modelChange() {
-    if (this.onChange) this.onChange(this.value);
+  modelChange(value: string | number) {
+    if (this.onChange) this.onChange(value);
     if (XIsFunction(this.data)) {
       if (!this.portalAttached()) {
         this.showPortal();
       } else {
-        if (XIsEmpty(this.value)) {
+        if (XIsEmpty(value)) {
           this.closeSubject.next();
         } else {
           this.icon = 'fto-loader';
           this.iconSpin = true;
           this.cdr.detectChanges();
-          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, this.value).subscribe((x) => {
+          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
             this.nodes = x;
             this.icon = '';
             this.iconSpin = false;
@@ -278,10 +278,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       if (!this.portalAttached()) {
         this.showPortal();
       } else {
-        if (XIsEmpty(this.value)) {
+        if (XIsEmpty(value)) {
           this.closeSubject.next();
         } else {
-          this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
+          this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
           this.dataChange.next(this.searchNodes);
         }
       }
@@ -301,7 +301,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   onFocus($event: Event) {}
 
   onInput($event: Event) {
-    this.inputChange.next();
+    this.inputChange.next(this.value);
   }
 
   onBlur($event: Event) {}
