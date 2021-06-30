@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
   animations: [XMoveAnimation]
 })
 export class XMessageComponent {
-  message: XMessageRef = { list: [] };
+  message: XMessageRef = { ref: {}, list: [], currentClose: () => {}, closeAll: () => {} };
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 

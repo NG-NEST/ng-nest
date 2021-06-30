@@ -78,13 +78,22 @@ export class XMessageService {
   }
 
   private createMessagePlacement(option: XMessageOption): XMessageRef {
-    if (typeof option.placement === 'undefined') return {};
+    if (typeof option.placement === 'undefined') return { ref: {}, list: [], currentClose: () => {}, closeAll: () => {} };
     let msgPlacement = this.messages[option.placement];
     this.setDuration(option);
     if (XIsEmpty(msgPlacement) || !msgPlacement.ref?.overlayRef?.hasAttached()) {
       this.messages[option.placement] = {
         ref: this.create(option),
-        list: [option]
+        list: [option],
+        currentClose: () => {
+          this.removeMessage(option);
+        },
+        closeAll: () => {
+          for (let key in this.messages) {
+            this.messages[key].list = [];
+            this.messageChange(this.messages[key]);
+          }
+        }
       };
     } else {
       this.messages[option.placement].list = [...(this.messages[option.placement].list as XMessageOption[]), option];

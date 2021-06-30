@@ -10,12 +10,14 @@ import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 describe(XMessagePrefix, () => {
   let config: XConfig = {
     components: {
       message: {
-        placement: 'center',
+        placement: 'center'
       }
     }
   };
@@ -140,6 +142,9 @@ class TestXMessageComponent {
         >成功提示，包含关闭按钮</x-button
       >
     </div>
+    <div class="row">
+      <x-button type="success" (click)="customClick()">自定义关闭</x-button>
+    </div>
   `,
   styles: [
     `
@@ -159,4 +164,17 @@ class TestXMessageComponent {
 })
 class TestXMessageTypeComponent {
   constructor(private message: XMessageService) {}
+
+  customClick() {
+    const msg = this.message.success({
+      title: '1123',
+      content: '214',
+      duration: 0,
+      duration$: of(true)
+        .pipe(delay(3000))
+        .subscribe(() => {
+          msg.currentClose();
+        })
+    });
+  }
 }

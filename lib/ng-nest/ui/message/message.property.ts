@@ -99,8 +99,10 @@ export interface XMessagePlacement {
 }
 
 export interface XMessageRef {
-  ref?: XMessageOverlayRef;
-  list?: XMessageOption[];
+  ref: XMessageOverlayRef;
+  list: XMessageOption[];
+  currentClose: () => void;
+  closeAll: () => void;
 }
 
 /**
