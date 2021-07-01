@@ -1,0 +1,20 @@
+:host {
+  .box {
+    width: 16rem;
+    height: 10rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  .row {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .box .row:first-child {
+    align-items: flex-start;
+  }
+  .box .row:last-child {
+    align-items: flex-end;
+  }
+}

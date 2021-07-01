@@ -24,6 +24,7 @@ export class XMessageService {
     placement: 'top',
     offset: '2rem',
     effect: 'white',
+    displayType: 'list',
     duration: 3000,
     hideClose: true,
     showIcon: true,
@@ -55,6 +56,7 @@ export class XMessageService {
 
   create(option: XMessageOption): XMessageOverlayRef {
     const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
+
     return this.portal.attach({
       content: XMessageComponent,
       overlayConfig: {
@@ -73,8 +75,15 @@ export class XMessageService {
       opt.type = type;
     }
     fillDefault(opt, this.default);
-
     return this.createMessagePlacement(opt);
+  }
+
+  private closeAll(excludeOption?: XMessageOption) {
+    for (let key in this.messages) {
+      for (let option of this.messages[key].list) {
+        option !== excludeOption && this.removeMessage(option);
+      }
+    }
   }
 
   private createMessagePlacement(option: XMessageOption): XMessageRef {
@@ -89,16 +98,15 @@ export class XMessageService {
           this.removeMessage(option);
         },
         closeAll: () => {
-          for (let key in this.messages) {
-            this.messages[key].list = [];
-            this.messageChange(this.messages[key]);
-          }
+          this.closeAll();
         }
       };
     } else {
       this.messages[option.placement].list = [...(this.messages[option.placement].list as XMessageOption[]), option];
     }
     this.messageChange(this.messages[option.placement]);
+
+    option.displayType === 'single' && this.closeAll(option);
 
     return this.messages[option.placement];
   }

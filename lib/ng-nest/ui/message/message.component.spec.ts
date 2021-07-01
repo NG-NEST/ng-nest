@@ -24,7 +24,7 @@ describe(XMessagePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
-      declarations: [TestXMessageComponent, TestXMessageTypeComponent],
+      declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
       providers: [
         {
           provide: X_CONFIG,
@@ -45,11 +45,23 @@ describe(XMessagePrefix, () => {
       expect(message).toBeDefined();
     });
   });
-  fdescribe(`type.`, () => {
+  describe(`type.`, () => {
     let fixture: ComponentFixture<TestXMessageTypeComponent>;
     let message: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXMessageTypeComponent);
+      fixture.detectChanges();
+      message = fixture.debugElement.query(By.directive(XMessageComponent));
+    });
+    it('should create.', () => {
+      expect(message).toBeDefined();
+    });
+  });
+  fdescribe(`displayYype.`, () => {
+    let fixture: ComponentFixture<TestXMessageDisplayTypeComponent>;
+    let message: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXMessageDisplayTypeComponent);
       fixture.detectChanges();
       message = fixture.debugElement.query(By.directive(XMessageComponent));
     });
@@ -143,7 +155,10 @@ class TestXMessageComponent {
       >
     </div>
     <div class="row">
-      <x-button type="success" (click)="customClick()">自定义关闭</x-button>
+      <x-button type="success" (click)="customClick()">自定义关闭1</x-button>
+    </div>
+    <div class="row">
+      <x-button type="success" (click)="customClick()">自定义关闭2</x-button>
     </div>
   `,
   styles: [
@@ -163,18 +178,72 @@ class TestXMessageComponent {
   ]
 })
 class TestXMessageTypeComponent {
+  i = 1;
   constructor(private message: XMessageService) {}
 
   customClick() {
     const msg = this.message.success({
-      title: '1123',
+      title: this.i++,
       content: '214',
-      duration: 0,
-      duration$: of(true)
-        .pipe(delay(3000))
-        .subscribe(() => {
-          msg.currentClose();
-        })
+      displayType: 'single'
     });
+  }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <div class="box">
+      <div class="row">
+        <x-button (click)="open('top-start', '上左')">上左</x-button>
+        <x-button (click)="open('top', '上')">上(默认)</x-button>
+        <x-button (click)="open('top-end', '上右')">上右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="open('left', '左')">左</x-button>
+        <x-button (click)="open('center', '中')">中</x-button>
+        <x-button (click)="open('right', '右')">右</x-button>
+      </div>
+      <div class="row">
+        <x-button (click)="open('bottom-start', '下左')">下左</x-button>
+        <x-button (click)="open('bottom', '下')">下</x-button>
+        <x-button (click)="open('bottom-end', '下右')">下右</x-button>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .box {
+        width: 16rem;
+        height: 10rem;
+        padding: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+      .row {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .box .row:first-child {
+        align-items: flex-start;
+      }
+      .box .row:last-child {
+        align-items: flex-end;
+      }
+    `
+  ]
+})
+class TestXMessageDisplayTypeComponent {
+  i = 1;
+  constructor(private message: XMessageService) {}
+
+  open(place: XPlace, title: string) {
+    this.message.info({ title: `${this.i++} ${title} 单一模式`, placement: place, displayType: 'single' });
   }
 }

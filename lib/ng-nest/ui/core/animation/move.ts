@@ -3,7 +3,7 @@ import { XDuration } from './consts';
 export const XMoveAnimation: AnimationTriggerMetadata = trigger('x-move-animation', [
   transition('void => top-start, void => top, void => top-end, void => center', [
     style({
-      transform: 'translateY(-100%)',
+      transform: 'translateY(-200%)',
       opacity: 0
     }),
     animate(
@@ -23,7 +23,7 @@ export const XMoveAnimation: AnimationTriggerMetadata = trigger('x-move-animatio
     animate(
       `${XDuration.Base}`,
       style({
-        transform: 'translateY(-100%)',
+        transform: 'translateY(-200%)',
         opacity: 0,
         height: 0
       })
@@ -87,7 +87,7 @@ export const XMoveAnimation: AnimationTriggerMetadata = trigger('x-move-animatio
   ]),
   transition('void => bottom-start, void => bottom, void => bottom-end', [
     style({
-      transform: 'translateY(100%)',
+      transform: 'translateY(200%)',
       opacity: 0,
       height: 0
     }),
@@ -108,7 +108,7 @@ export const XMoveAnimation: AnimationTriggerMetadata = trigger('x-move-animatio
     animate(
       `${XDuration.Base}`,
       style({
-        transform: 'translateY(100%)',
+        transform: 'translateY(200%)',
         opacity: 0
       })
     )

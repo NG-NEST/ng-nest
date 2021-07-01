@@ -330,6 +330,7 @@ export interface XMessageConfig {
   type?: XStatus;
   width?: string;
   placement?: XPlace;
+  displayType?: string;
   offset?: string | string[];
   duration?: number;
   hideClose?: boolean;

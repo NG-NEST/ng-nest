@@ -40,6 +40,13 @@ export interface XMessageOption extends XAlertOption {
    */
   type?: XMessageType;
   /**
+   * @zh_CN 多个消息的时候，显示类型
+   * @en_US When multiple messages, the display type
+   * @default 'list'
+   * @withConfig true
+   */
+  displayType?: XMessageDisplayType;
+  /**
    * @zh_CN 宽度
    * @en_US Width
    * @default '16rem'
@@ -110,3 +117,9 @@ export interface XMessageRef {
  * @en_US Types of
  */
 export type XMessageType = XStatus;
+
+/**
+ * @zh_CN 多个消息的时候，显示类型
+ * @en_US When multiple messages, the display type
+ */
+export type XMessageDisplayType = 'list' | 'single';
