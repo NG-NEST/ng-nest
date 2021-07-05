@@ -1,3 +1,18 @@
+## [12.0.3](https://github.com/NG-NEST/ng-nest/compare/12.0.2...12.0.3) (2021-07-05)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** skip duplicate value ([5752869](https://github.com/NG-NEST/ng-nest/commit/5752869c184a39fa82df97df25d4055590e6aa91))
+
+
+### Features
+
+* **module:message:** add custom close ([f95e0a1](https://github.com/NG-NEST/ng-nest/commit/f95e0a1b58f3304f4c3dc4d6362ab16a05390a63)), closes [#35](https://github.com/NG-NEST/ng-nest/issues/35)
+* **module:message:** add single mode ([b711a8d](https://github.com/NG-NEST/ng-nest/commit/b711a8d777264d72cabc8dfe7af46a68992e2e10)), closes [#34](https://github.com/NG-NEST/ng-nest/issues/34)
+
+
+
 ## [12.0.2](https://github.com/NG-NEST/ng-nest/compare/12.0.1...12.0.2) (2021-06-22)
 
 
@@ -6,6 +21,7 @@
 * **module:auto-complete:** update node emit ([7b5dcb9](https://github.com/NG-NEST/ng-nest/commit/7b5dcb9da7a17204cb60fca7c8be2950cc175570))
 * **module:cascade:** update required style ([b97208b](https://github.com/NG-NEST/ng-nest/commit/b97208bef8a1d0aef87346e73a1ce32af84a47b0))
 * **module:find:** close tag change value ([34824cf](https://github.com/NG-NEST/ng-nest/commit/34824cff63861e2e9b1e993d4eb03557b802d991))
+* **module:find:** update param ([d757dee](https://github.com/NG-NEST/ng-nest/commit/d757deee585952de086f432d11612bf1c5840386))
 * **module:form:** update auto-complete import ([52dc848](https://github.com/NG-NEST/ng-nest/commit/52dc848d15541fa8e790a8b9ab43d7d83dc99d49))
 * **module:table:** update default column flex ([cf1780f](https://github.com/NG-NEST/ng-nest/commit/cf1780f2d1918c6e78f00ade699edbb93f3a88f8))
 
