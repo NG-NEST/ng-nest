@@ -1,3 +1,17 @@
+## [12.0.4](https://github.com/NG-NEST/ng-nest/compare/12.0.3...12.0.4) (2021-07-07)
+
+
+### Bug Fixes
+
+* **module:pagination:** less pages display error ([05e32a4](https://github.com/NG-NEST/ng-nest/commit/05e32a454b0af022d02dfb75e7784f0487be412d))
+
+
+### Features
+
+* **module:pagination:** add pageLinkSize property ([3ea7be8](https://github.com/NG-NEST/ng-nest/commit/3ea7be8a41ea88c9c20fd59a200c1348d6600917))
+
+
+
 ## [12.0.3](https://github.com/NG-NEST/ng-nest/compare/12.0.2...12.0.3) (2021-07-05)
 
 
