@@ -33,16 +33,8 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     return Number(this.index) === 1 || Number(this.total) === 0;
   }
 
-  get leftJumpPage() {
-    return this.indexes.length > 0 && this.indexLast > 9 && Number(this.index) - 3 > this.indexFirst;
-  }
-
   get rightDisabled() {
     return Number(this.index) === this.lastIndex || Number(this.total) === 0;
-  }
-
-  get rightJumpPage() {
-    return this.indexes.length > 0 && this.indexLast > 9 && Number(this.index) + 3 < this.indexLast;
   }
 
   get firstActivated() {
@@ -78,41 +70,18 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   }
 
   setIndexes() {
-    this.lastIndex = Math.ceil(Number(this.total) / Number(this.size));
-    const indexes = [];
-    if (this.lastIndex <= 9) {
-      for (let i = 2; i <= this.lastIndex - 1; i++) {
-        indexes.push(i);
-      }
-    } else {
-      const current = Number(this.index);
-      let left = Math.max(2, current - 2);
-      let right = Math.min(current + 2, this.lastIndex - 1);
-      if (current - 1 <= 2) {
-        right = 5;
-      }
-      if (this.lastIndex - current <= 2) {
-        left = this.lastIndex - 4;
-      }
-      for (let i = left; i <= right; i++) {
-        indexes.push(i);
-      }
-    }
-    if (indexes.length > 0) {
-      this.indexFirst = 1;
-      this.indexLast = this.lastIndex;
-    }
-    if (!this.showEllipsis) {
-      if (indexes.length < 4) {
-        indexes.unshift(this.indexFirst);
-        if (this.indexFirst < this.lastIndex) {
-          this.indexLast = this.lastIndex;
-          indexes.push(this.lastIndex);
-        }
-      } else if (indexes.length === 4) {
-        if (indexes[0] === this.indexFirst + 1) indexes.unshift(this.indexFirst);
-        if (indexes[indexes.length - 1] === this.indexLast - 1) indexes.push(this.indexLast);
-      }
+    this.lastIndex = Math.ceil(Number(this.total) / Number(this.size)) || 1;
+    const indexes: number[] = [];
+    const current = Number(this.index) - 1;
+    const maxSize = Number(this.pageLinkSize);
+    const pages = Math.min(maxSize, this.lastIndex);
+    let start = Math.max(0, Math.ceil(current - pages / 2)),
+      end = Math.min(this.lastIndex - 1, start + pages - 1);
+    var delta = maxSize - (end - start + 1);
+    start = Math.max(0, start - delta);
+
+    for (let i = start; i <= end; i++) {
+      indexes.push(i + 1);
     }
     this.indexes = indexes;
     this.cdr.detectChanges();

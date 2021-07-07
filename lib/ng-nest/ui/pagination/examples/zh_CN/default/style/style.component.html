@@ -1,1 +1,53 @@
-<x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" hiddenBorder space="0.5"></x-pagination>
+<div class="row">
+  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" hiddenBorder></x-pagination>
+</div>
+<div class="row">
+  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" hiddenBorder [space]="0.25"></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    hiddenBorder
+    showEllipsis="false"
+    showTotal="false"
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    hiddenBorder
+    showEllipsis="false"
+    showTotal="false"
+    pageLinkSize="1"
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    hiddenBorder
+    showEllipsis="false"
+    showTotal="false"
+    pageLinkSize="3"
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    hiddenBorder
+    showEllipsis="false"
+    showTotal="false"
+    pageLinkSize="7"
+  ></x-pagination>
+</div>

@@ -352,6 +352,7 @@ export interface XPaginationConfig {
   index?: XNumber;
   size?: XNumber;
   space?: XNumber;
+  pageLinkSize?: XNumber;
   hiddenBorder?: boolean;
   showEllipsis?: boolean;
   showTotal?: boolean;

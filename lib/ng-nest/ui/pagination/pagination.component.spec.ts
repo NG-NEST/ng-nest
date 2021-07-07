@@ -50,8 +50,30 @@ describe(XPaginationPrefix, () => {
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
-  `
+    <div class="row">
+      <x-pagination [index]="index" [size]="size" [total]="10" (indexChange)="change($event)"></x-pagination>
+    </div>
+    <div class="row">
+      <x-pagination [index]="index" [size]="size" [total]="20" (indexChange)="change($event)"></x-pagination>
+    </div>
+    <div class="row">
+      <x-pagination [index]="index" [size]="size" [total]="30" (indexChange)="change($event)"></x-pagination>
+    </div>
+    <x-pagination [index]="index" [size]="size" [total]="40" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="50" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="60" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="70" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="80" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="90" (indexChange)="change($event)"></x-pagination>
+    <x-pagination [index]="index" [size]="size" [total]="100" (indexChange)="change($event)"></x-pagination>
+  `,
+  styles: [
+    `
+      :host .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
 })
 class TestXPaginationComponent {
   index = 1;
@@ -86,6 +108,117 @@ class TestXPaginationComponent {
       hiddenBorder
       showEllipsis="false"
       showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="10"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="20"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="30"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="40"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="50"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="60"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="70"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="80"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="90"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+      pageLinkSize="1"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+      pageLinkSize="3"
+    ></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      (indexChange)="change($event)"
+      hiddenBorder
+      showEllipsis="false"
+      showTotal="false"
+      pageLinkSize="7"
     ></x-pagination>
   `
 })

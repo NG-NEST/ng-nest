@@ -35,8 +35,13 @@ export class XPaginationProperty extends XProperty {
    */
   @Input() query: XQuery = {};
   /**
-   * @zh_CN 显示省略号以及首尾页
-   * @en_US Display the ellipsis and last page
+   * @zh_CN 最多显示的分页数量
+   * @en_US The largest number of pages display
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 5) @XInputNumber() pageLinkSize!: XNumber;
+  /**
+   * @zh_CN 显示首尾页跳转
+   * @en_US Display the first and last page
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showEllipsis!: XBoolean;
   /**
