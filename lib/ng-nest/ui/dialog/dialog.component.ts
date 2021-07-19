@@ -102,7 +102,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         positionStrategy: this.protalService.setPlace(this.placement, this.width, this.height, this.offset)
       }
     });
-    this.scrollStrategy.enable();
+    // this.scrollStrategy.enable();
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
     }
@@ -113,7 +113,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       this.visible = false;
       this.visibleChange.emit(this.visible);
       this.dialogRef?.overlayRef?.detach();
-      this.scrollStrategy.disable();
+      // this.scrollStrategy.disable();
       this.unsubscribe();
       this.close.emit();
     }
