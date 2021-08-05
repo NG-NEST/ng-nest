@@ -1,0 +1,10 @@
+// Description
+
+@import '../../style/themes/default';
+@import '../../style/mixins/index';
+@import './mixin';
+
+.#{$--x-description-prefix} {
+  @include reset-component();
+  @include description();
+}

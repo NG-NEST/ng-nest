@@ -1,0 +1,23 @@
+<div class="x-description">
+  <div class="x-description-header">
+    <div class="x-description-title" *xOutlet="title">
+      {{ title }}
+    </div>
+  </div>
+  <div class="x-description-table">
+    <table>
+      <tbody>
+        <tr>
+          <td *ngFor="let item of items; index as i" [style.grid-area]="item.gridArea ? item.gridArea : '1 / ' + (i + 1)">
+            <div class="x-description-item-label">
+              <ng-container *xOutlet="item.label">{{ item.label }}</ng-container>
+            </div>
+            <div class="x-description-item-content">
+              <ng-template [ngTemplateOutlet]="item.content"></ng-template>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+:host {
+  table {
+    width: 100%;
+    background: var(--x-background);
+    border-collapse: collapse;
+    border: 0.0625rem solid var(--x-border-200);
+    tr > th,
+    tr > td {
+      border-bottom: 0.0625rem solid var(--x-border-200);
+      text-align: left;
+      padding: 0.5rem 1rem;
+    }
+    tr {
+      td {
+        div {
+          width: 100%;
+        }
+      }
+      &:last-child {
+        > th,
+        > td {
+          border-width: 0px;
+        }
+      }
+      th {
+        white-space: nowrap;
+        color: var(--x-text-300);
+      }
+    }
+  }
+  div.solid {
+    border-top: 0.0625rem solid var(--x-border);
+  }
+  div.dashed {
+    border-top: 0.0625rem dashed var(--x-border);
+  }
+}
