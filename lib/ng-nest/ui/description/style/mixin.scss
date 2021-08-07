@@ -35,4 +35,16 @@
       margin: 0 0.5rem 0 0.125rem;
     }
   }
+  &-bordered {
+    .#{$--x-description-prefix} {
+      &-table {
+        > table > tbody > tr > td {
+          border: $--x-border-base;
+          margin-left: -1px;
+          margin-top: -1px;
+          padding: $--x-font-size-small;
+        }
+      }
+    }
+  }
 }

@@ -61,6 +61,7 @@ export interface XComponentConfig {
   dialog?: XDialogConfig;
   drawer?: XDrawerConfig;
   dropdown?: XDropdownConfig;
+  description?: XDescriptionConfig;
   empty?: XEmptyConfig;
   find?: XFindConfig;
   form?: XFormConfig;
@@ -257,6 +258,10 @@ export interface XDrawerConfig {
 export interface XDropdownConfig {
   trigger?: XTrigger;
   placement?: XPlacement;
+}
+
+export interface XDescriptionConfig {
+  bordered?: XBoolean;
 }
 
 export interface XEmptyConfig {

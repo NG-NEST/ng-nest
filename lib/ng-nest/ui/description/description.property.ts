@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { XTemplate } from '@ng-nest/ui/core';
+import { XBoolean, XInputBoolean, XTemplate, XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * Description
@@ -19,6 +19,11 @@ export class XDescriptionProperty {
    * @en_US Describe the title of the list, support custom template
    */
   @Input() title?: XTemplate;
+  /**
+   * @zh_CN 是否展示边框
+   * @en_US Whether to show column borders
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() bordered!: XBoolean;
 }
 
 /**
