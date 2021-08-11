@@ -14,7 +14,7 @@ describe(XDescriptionPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XDescriptionModule, XLayoutModule, XDocModule],
-      declarations: [TestXDescriptionComponent, TestXDescriptionBorderedComponent]
+      declarations: [TestXDescriptionComponent, TestXDescriptionBorderedComponent, TestXDescriptionGridComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -31,12 +31,26 @@ describe(XDescriptionPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXDescriptionBorderedComponent>;
     let debugElement: DebugElement;
     let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
+      element = debugElement.nativeElement;
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`grid.`, () => {
+    let fixture: ComponentFixture<TestXDescriptionGridComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDescriptionGridComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
       element = debugElement.nativeElement;
@@ -81,16 +95,16 @@ class TestXDescriptionComponent {}
   template: `
     <x-theme showDark></x-theme>
     <x-description title="UserInfo" bordered>
-      <x-description-item label="编码" gridArea="1/1/1/4">909090</x-description-item>
-      <x-description-item label="姓名" gridArea="2/1">张三</x-description-item>
-      <x-description-item label="账号" gridArea="2/2">zhangsan</x-description-item>
-      <x-description-item label="密码" gridArea="2/3">******</x-description-item>
-      <x-description-item label="文件" gridArea="3/1">个人资料.doc</x-description-item>
-      <x-description-item label="角色" gridArea="3/2">管理员</x-description-item>
-      <x-description-item label="城市" gridArea="3/3">张三</x-description-item>
-      <x-description-item label="性别" gridArea="4/1">张三</x-description-item>
-      <x-description-item label="年龄" gridArea="4/2">37</x-description-item>
-      <x-description-item label="爱好" gridArea="4/3">乒乓球</x-description-item>
+      <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
+      <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
+      <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
+      <x-description-item label="密码：" gridArea="2/4">******</x-description-item>
+      <x-description-item label="文件：" gridArea="3/2">个人资料.doc</x-description-item>
+      <x-description-item label="角色：" gridArea="3/3">管理员</x-description-item>
+      <x-description-item label="城市：" gridArea="3/4">张三</x-description-item>
+      <x-description-item label="性别：" gridArea="4/2">张三</x-description-item>
+      <x-description-item label="年龄：" gridArea="4/3">37</x-description-item>
+      <x-description-item label="爱好：" gridArea="4/4">乒乓球</x-description-item>
     </x-description>
   `,
   styles: [
@@ -104,3 +118,66 @@ class TestXDescriptionComponent {}
   ]
 })
 class TestXDescriptionBorderedComponent {}
+
+@Component({
+  selector: 'test-x-description-grid',
+  template: `
+    <x-theme showDark></x-theme>
+    <x-description title="UserInfo" bordered gridTemplateColumns="100px 1fr 1fr 1fr 1fr 1fr 1fr">
+      <x-description-item label="编码" justify="center" align="center" gridArea="1/1/2/2" heading></x-description-item>
+      <x-description-item gridArea="1/2/1/8">909090</x-description-item>
+      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center" heading></x-description-item>
+      <x-description-item label="姓名" gridArea="2/2" heading></x-description-item>
+      <x-description-item gridArea="2/3">张三</x-description-item>
+      <x-description-item label="账号" gridArea="2/4" heading></x-description-item>
+      <x-description-item gridArea="2/5">zhangsan</x-description-item>
+      <x-description-item label="密码" gridArea="2/6" heading></x-description-item>
+      <x-description-item gridArea="2/7">******</x-description-item>
+      <x-description-item label="文件" gridArea="3/2" heading></x-description-item>
+      <x-description-item gridArea="3/3">个人资料.doc</x-description-item>
+      <x-description-item label="角色" gridArea="3/4" heading></x-description-item>
+      <x-description-item gridArea="3/5">管理员</x-description-item>
+      <x-description-item label="城市" gridArea="3/6" heading></x-description-item>
+      <x-description-item gridArea="3/7">张三</x-description-item>
+      <x-description-item label="性别" gridArea="4/2" heading></x-description-item>
+      <x-description-item gridArea="4/3">张三</x-description-item>
+      <x-description-item label="年龄" gridArea="4/4" heading></x-description-item>
+      <x-description-item gridArea="4/5">37</x-description-item>
+      <x-description-item label="爱好" gridArea="4/6" heading></x-description-item>
+      <x-description-item gridArea="4/7">乒乓球</x-description-item>
+    </x-description>
+    <x-description title="UserInfo" bordered gridTemplateColumns="100px 1fr 1fr 1fr">
+      <x-description-item label="编码" gridArea="1/1/1/5" heading></x-description-item>
+      <x-description-item gridArea="2/1/2/5">909090</x-description-item>
+      <x-description-item label="基本资料" gridArea="3/1/9/2" justify="center" align="center" heading></x-description-item>
+      <x-description-item label="姓名" gridArea="3/2" heading></x-description-item>
+      <x-description-item gridArea="4/2">张三</x-description-item>
+      <x-description-item label="账号" gridArea="3/3" heading></x-description-item>
+      <x-description-item gridArea="4/3">zhangsan</x-description-item>
+      <x-description-item label="密码" gridArea="3/4" heading></x-description-item>
+      <x-description-item gridArea="4/4">******</x-description-item>
+      <x-description-item label="文件" gridArea="5/2" heading></x-description-item>
+      <x-description-item gridArea="6/2">个人资料.doc</x-description-item>
+      <x-description-item label="角色" gridArea="5/3" heading></x-description-item>
+      <x-description-item gridArea="6/3">管理员</x-description-item>
+      <x-description-item label="城市" gridArea="5/4" heading></x-description-item>
+      <x-description-item gridArea="6/4">张三</x-description-item>
+      <x-description-item label="性别" gridArea="7/2" heading></x-description-item>
+      <x-description-item gridArea="8/2">张三</x-description-item>
+      <x-description-item label="年龄" gridArea="7/3" heading></x-description-item>
+      <x-description-item gridArea="8/3">37</x-description-item>
+      <x-description-item label="爱好" gridArea="7/4" heading></x-description-item>
+      <x-description-item gridArea="8/4">乒乓球</x-description-item> -->
+    </x-description>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+    `
+  ]
+})
+class TestXDescriptionGridComponent {}

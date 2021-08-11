@@ -25,15 +25,15 @@
           display: flex;
           align-items: baseline;
           padding-bottom: $--x-font-size-small;
+          @include flex();
         }
       }
     }
   }
   &-item-label {
-    &::after {
-      content: ':';
-      margin: 0 0.5rem 0 0.125rem;
-    }
+  }
+  &-item-heading {
+    background-color: $--x-background-a100;
   }
   &-bordered {
     .#{$--x-description-prefix} {

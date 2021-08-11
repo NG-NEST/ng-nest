@@ -1,6 +1,6 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap } from '@ng-nest/ui/core';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
 @Component({ template: '' })
@@ -53,9 +53,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
     this.disabled = disabled;
   }
   setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
-    if (!XIsEmpty(justify)) renderer.addClass(ele, `x-justify-${this.justify}`);
-    if (!XIsEmpty(align)) renderer.addClass(ele, `x-align-${this.align}`);
-    if (!XIsEmpty(direction)) renderer.addClass(ele, `x-direction-${this.direction}`);
+    setFlex(ele, renderer, justify, align, direction);
   }
 }
 
