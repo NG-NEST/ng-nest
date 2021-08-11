@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XTemplate, XWithConfig } from '@ng-nest/ui/core';
+import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize, XTemplate, XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * Description
@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'description';
  * Description Property
  */
 @Component({ template: '' })
-export class XDescriptionProperty {
+export class XDescriptionProperty extends XProperty {
   /**
    * @zh_CN 描述列表的标题，支持自定义模板
    * @en_US Describe the title of the list, support custom template
@@ -29,6 +29,11 @@ export class XDescriptionProperty {
    * @en_US Define column width under grid layout
    */
   @Input() gridTemplateColumns?: string;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
 }
 
 /**

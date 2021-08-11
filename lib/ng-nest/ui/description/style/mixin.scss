@@ -8,27 +8,18 @@
   &-header {
     display: flex;
     align-items: center;
-    margin-bottom: $--x-font-size;
   }
   &-title {
     font-weight: 700;
   }
-  &-table {
-    > table {
-      border-collapse: collapse;
-      width: 100%;
-      > tbody > tr {
-        display: grid;
-        grid-auto-flow: row;
-        height: 100%;
-        > td {
-          display: flex;
-          align-items: baseline;
-          padding-bottom: $--x-font-size-small;
-          @include flex();
-        }
-      }
-    }
+  &-grid {
+    display: grid;
+    grid-auto-flow: row;
+  }
+  &-item {
+    display: flex;
+    align-items: baseline;
+    @include flex();
   }
   &-item-label {
   }
@@ -37,13 +28,33 @@
   }
   &-bordered {
     .#{$--x-description-prefix} {
-      &-table {
-        > table > tbody > tr > td {
-          border: $--x-border-base;
-          margin-left: -1px;
-          margin-top: -1px;
-          padding: $--x-font-size-small;
-        }
+      &-item {
+        border: $--x-border-base;
+        margin-left: -1px;
+        margin-top: -1px;
+      }
+    }
+  }
+  @include size(big, $--x-padding-big);
+  @include size(large, $--x-padding-large);
+  @include size(medium, $--x-padding-medium);
+  @include size(small, $--x-padding-small);
+  @include size(mini, $--x-padding-mini);
+}
+
+@mixin size($size, $padding) {
+  &-#{$size} {
+    .#{$--x-description-prefix} {
+      &-header {
+        padding: $padding 0;
+      }
+      &-item {
+        padding: calc(#{$padding} / 2) 0;
+      }
+    }
+    &.#{$--x-description-prefix}-bordered {
+      .#{$--x-description-prefix}-item {
+        padding: $padding;
       }
     }
   }

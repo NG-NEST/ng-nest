@@ -262,6 +262,7 @@ export interface XDropdownConfig {
 
 export interface XDescriptionConfig {
   bordered?: XBoolean;
+  size?: XSize;
 }
 
 export interface XEmptyConfig {

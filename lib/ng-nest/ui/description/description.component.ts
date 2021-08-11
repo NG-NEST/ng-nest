@@ -6,10 +6,11 @@ import {
   ElementRef,
   ContentChildren,
   QueryList,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  SimpleChanges
 } from '@angular/core';
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
-import { XConfigService, XIsEmpty } from '@ng-nest/ui/core';
+import { XClearClass, XConfigService, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
 
 @Component({
@@ -25,10 +26,23 @@ export class XDescriptionComponent extends XDescriptionProperty {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setClassMap();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    XIsChange(changes.size) && this.setClassMap();
+  }
 
   ngAfterViewInit() {
     this.setMerge();
+  }
+
+  setClassMap() {
+    XClearClass(this.classMap);
+    this.classMap = {
+      [`${XDescriptionPrefix}-${this.size}`]: !XIsEmpty(this.size)
+    };
   }
 
   setFlex(item: XDescriptionItemComponent) {
@@ -50,7 +64,5 @@ export class XDescriptionComponent extends XDescriptionProperty {
       }
     });
     this.gridTemplateColumns = gridTemplateColumns.join(' ');
-
-    this.gridTemplateColumns = '100px 1fr 1fr 1fr';
   }
 }

@@ -2,19 +2,26 @@ import { XDocModule } from '@ng-nest/ui/doc';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDescriptionComponent } from './description.component';
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { XDescriptionPrefix } from './description.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { FormsModule } from '@angular/forms';
 
 describe(XDescriptionPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XDescriptionModule, XLayoutModule, XDocModule],
-      declarations: [TestXDescriptionComponent, TestXDescriptionBorderedComponent, TestXDescriptionGridComponent]
+      imports: [BrowserAnimationsModule, FormsModule, XThemeModule, XDescriptionModule, XRadioModule, XLayoutModule, XDocModule],
+      declarations: [
+        TestXDescriptionComponent,
+        TestXDescriptionBorderedComponent,
+        TestXDescriptionGridComponent,
+        TestXDescriptionSizeComponent
+      ]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -45,12 +52,26 @@ describe(XDescriptionPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`grid.`, () => {
+  describe(`grid.`, () => {
     let fixture: ComponentFixture<TestXDescriptionGridComponent>;
     let debugElement: DebugElement;
     let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionGridComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
+      element = debugElement.nativeElement;
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`size.`, () => {
+    let fixture: ComponentFixture<TestXDescriptionSizeComponent>;
+    let debugElement: DebugElement;
+    let element: Element;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDescriptionSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
       element = debugElement.nativeElement;
@@ -66,16 +87,16 @@ describe(XDescriptionPrefix, () => {
   template: `
     <x-theme showDark></x-theme>
     <x-description title="UserInfo">
-      <x-description-item label="编码" gridArea="1/1/1/4">909090</x-description-item>
-      <x-description-item label="姓名" gridArea="2/1">张三</x-description-item>
-      <x-description-item label="账号" gridArea="2/2">zhangsan</x-description-item>
-      <x-description-item label="密码" gridArea="2/3">******</x-description-item>
-      <x-description-item label="文件" gridArea="3/1">个人资料.doc</x-description-item>
-      <x-description-item label="角色" gridArea="3/2">管理员</x-description-item>
-      <x-description-item label="城市" gridArea="3/3">张三</x-description-item>
-      <x-description-item label="性别" gridArea="4/1">张三</x-description-item>
-      <x-description-item label="年龄" gridArea="4/2">37</x-description-item>
-      <x-description-item label="爱好" gridArea="4/3">乒乓球</x-description-item>
+      <x-description-item label="编码：" gridArea="1/1/1/4">909090</x-description-item>
+      <x-description-item label="姓名：" gridArea="2/1">张三</x-description-item>
+      <x-description-item label="账号：" gridArea="2/2">zhangsan</x-description-item>
+      <x-description-item label="密码：" gridArea="2/3">******</x-description-item>
+      <x-description-item label="文件：" gridArea="3/1">个人资料.doc</x-description-item>
+      <x-description-item label="角色：" gridArea="3/2">管理员</x-description-item>
+      <x-description-item label="城市：" gridArea="3/3">张三</x-description-item>
+      <x-description-item label="性别：" gridArea="4/1">张三</x-description-item>
+      <x-description-item label="年龄：" gridArea="4/2">37</x-description-item>
+      <x-description-item label="爱好：" gridArea="4/3">乒乓球</x-description-item>
     </x-description>
   `,
   styles: [
@@ -96,6 +117,7 @@ class TestXDescriptionComponent {}
     <x-theme showDark></x-theme>
     <x-description title="UserInfo" bordered>
       <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
+      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
       <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
       <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
       <x-description-item label="密码：" gridArea="2/4">******</x-description-item>
@@ -181,3 +203,60 @@ class TestXDescriptionBorderedComponent {}
   ]
 })
 class TestXDescriptionGridComponent {}
+
+@Component({
+  selector: 'test-x-description-grid',
+  template: `
+    <x-theme showDark></x-theme>
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-description title="UserInfo" bordered [size]="size">
+      <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
+      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
+      <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
+      <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
+      <x-description-item label="密码：" gridArea="2/4">******</x-description-item>
+      <x-description-item label="文件：" gridArea="3/2">个人资料.doc</x-description-item>
+      <x-description-item label="角色：" gridArea="3/3">管理员</x-description-item>
+      <x-description-item label="城市：" gridArea="3/4">张三</x-description-item>
+      <x-description-item label="性别：" gridArea="4/2">张三</x-description-item>
+      <x-description-item label="年龄：" gridArea="4/3">37</x-description-item>
+      <x-description-item label="爱好：" gridArea="4/4">乒乓球</x-description-item>
+    </x-description>
+    <x-description title="UserInfo" [size]="size">
+      <x-description-item label="编码：" gridArea="1/1/1/4">909090</x-description-item>
+      <x-description-item label="姓名：" gridArea="2/1">张三</x-description-item>
+      <x-description-item label="账号：" gridArea="2/2">zhangsan</x-description-item>
+      <x-description-item label="密码：" gridArea="2/3">******</x-description-item>
+      <x-description-item label="文件：" gridArea="3/1">个人资料.doc</x-description-item>
+      <x-description-item label="角色：" gridArea="3/2">管理员</x-description-item>
+      <x-description-item label="城市：" gridArea="3/3">张三</x-description-item>
+      <x-description-item label="性别：" gridArea="4/1">张三</x-description-item>
+      <x-description-item label="年龄：" gridArea="4/2">37</x-description-item>
+      <x-description-item label="爱好：" gridArea="4/3">乒乓球</x-description-item>
+    </x-description>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      :host x-description {
+        display: block;
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDescriptionSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
+}

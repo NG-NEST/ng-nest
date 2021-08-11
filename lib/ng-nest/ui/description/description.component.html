@@ -1,28 +1,23 @@
-<div class="x-description" [class.x-description-bordered]="bordered">
+<div class="x-description" [class.x-description-bordered]="bordered" [ngClass]="classMap">
   <div class="x-description-header">
     <div class="x-description-title" *xOutlet="title">
       {{ title }}
     </div>
   </div>
-  <div class="x-description-table">
-    <table>
-      <tbody>
-        <tr [style.grid-template-columns]="gridTemplateColumns">
-          <td
-            *ngFor="let item of items; index as i"
-            [style.grid-area]="item.gridArea ? item.gridArea : '1 / ' + (i + 1)"
-            [class.x-description-item-heading]="item.heading"
-            [ngClass]="setFlex(item)"
-          >
-            <div class="x-description-item-label">
-              <ng-container *xOutlet="item.label">{{ item.label }}</ng-container>
-            </div>
-            <div class="x-description-item-content">
-              <ng-template [ngTemplateOutlet]="item.content"></ng-template>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="x-description-grid" [style.grid-template-columns]="gridTemplateColumns">
+    <div
+      *ngFor="let item of items; index as i"
+      class="x-description-item"
+      [style.grid-area]="item.gridArea ? item.gridArea : '1 / ' + (i + 1)"
+      [class.x-description-item-heading]="item.heading"
+      [ngClass]="setFlex(item)"
+    >
+      <div class="x-description-item-label">
+        <ng-container *xOutlet="item.label">{{ item.label }}</ng-container>
+      </div>
+      <div class="x-description-item-content">
+        <ng-template [ngTemplateOutlet]="item.content"></ng-template>
+      </div>
+    </div>
   </div>
 </div>
