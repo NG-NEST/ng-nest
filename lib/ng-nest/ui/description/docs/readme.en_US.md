@@ -7,6 +7,14 @@ category: 'Data'
 
 Grouping display read-only field, often used to display information details page.
 
-## Simple Code
+## Used alone
+
+{{ __component }}
+
+## Sample code
 
 {{ __examples }}
+
+## API
+
+{{ __api }}
