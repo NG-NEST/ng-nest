@@ -10,11 +10,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
         TestXInputComponent,
         TestXInputLabelComponent,
@@ -111,7 +112,7 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`size.`, () => {
+  fdescribe(`size.`, () => {
     let fixture: ComponentFixture<TestXInputSizeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -392,21 +393,22 @@ class TestXInputLengthComponent {
 @Component({
   template: `
     <x-theme showDark></x-theme>
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
     <x-row>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="big"></x-input>
+        <x-input [size]="size"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="large"></x-input>
+        <x-input [size]="size" label="用户名" direction="row" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()"></x-input>
+        <x-input [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="small"></x-input>
+        <x-input required clearable [size]="size"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input [(ngModel)]="value" (ngModelChange)="change()" size="mini"></x-input>
+        <x-input disabled [size]="size"></x-input>
       </x-col>
     </x-row>
   `,
@@ -417,6 +419,10 @@ class TestXInputLengthComponent {
         padding: 1rem;
         border: 0.0625rem solid var(--x-border);
       }
+      x-row > x-col > x-input {
+        width: 15rem;
+        display: block;
+      }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
       }
@@ -424,9 +430,11 @@ class TestXInputLengthComponent {
   ]
 })
 class TestXInputSizeComponent {
-  value: any;
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
   constructor(private cdr: ChangeDetectorRef) {}
-  change() {
+  change($event: string) {
+    console.log($event);
     this.cdr.detectChanges();
   }
 }

@@ -71,6 +71,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.clearable) && this.setClearable();
+    XIsChange(changes.size, changes.labelAlign) && this.setClassMap();
   }
 
   ngOnDestroy() {

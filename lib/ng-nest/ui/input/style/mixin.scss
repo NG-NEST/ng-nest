@@ -10,8 +10,6 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-input-height;
-    line-height: $--x-input-height;
     position: relative;
     color: $--x-text-300;
     font-weight: 600;
@@ -220,6 +218,10 @@
         line-height: $height;
         padding: $padding;
       }
+    }
+    > label {
+      height: $height;
+      line-height: $height;
     }
   }
 }

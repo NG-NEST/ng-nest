@@ -300,6 +300,7 @@ export interface XInnerConfig {
 export interface XInputConfig {
   clearable?: XBoolean;
   iconLayout?: XPositionLeftRight;
+  size?: XSize;
 }
 
 export interface XInputNumberConfig {}

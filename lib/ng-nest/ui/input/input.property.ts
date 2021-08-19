@@ -1,12 +1,4 @@
-import {
-  XInputBoolean,
-  XInputNumber,
-  XSize,
-  XNumber,
-  XBoolean,
-  XWithConfig,
-  XPositionLeftRight
-} from '@ng-nest/ui/core';
+import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -68,6 +60,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Node template
    */
   @Input() valueTplContext: any;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
