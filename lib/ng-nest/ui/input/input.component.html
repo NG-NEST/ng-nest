@@ -8,6 +8,7 @@
   [class.x-clearable]="clearable"
   [class.x-clear-show]="clearShow"
   [class.x-input-icon]="getIcon"
+  [class.x-input-bordered]="bordered"
   [class.x-input-icon-left]="getIconLayoutLeft"
   [class.x-input-icon-right]="getIconLayoutRight"
   [class.x-input-value-template]="valueTpl"
@@ -21,9 +22,7 @@
       [style.padding-right.rem]="paddingRight"
       *ngIf="valueTpl"
     >
-      <ng-container
-        *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"></ng-container>
     </div>
     <input
       #inputRef
@@ -43,11 +42,7 @@
       (keydown)="xKeydown.emit($event)"
     />
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
-    <x-icon
-      *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)"
-      [type]="icon"
-      [spin]="iconSpin"
-    ></x-icon>
+    <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
     <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
     <span class="x-input-error-message" *ngIf="invalid">{{ invalidMessage }}</span>
     <ng-container *ngIf="requiredIsEmpty || invalid">

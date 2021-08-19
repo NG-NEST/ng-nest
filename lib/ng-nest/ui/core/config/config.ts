@@ -301,6 +301,7 @@ export interface XInputConfig {
   clearable?: XBoolean;
   iconLayout?: XPositionLeftRight;
   size?: XSize;
+  bordered?: XBoolean;
 }
 
 export interface XInputNumberConfig {}

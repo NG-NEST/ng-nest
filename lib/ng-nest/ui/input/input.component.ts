@@ -110,20 +110,28 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   setPadding() {
-    this.paddingLeft =
-      this.maxlength && this.icon && this.iconLayout === 'right'
-        ? (this.lengthTotal.length + 2) * 0.385
-        : this.icon && this.iconLayout === 'left'
-        ? 1.8
-        : 0.4;
-    this.paddingRight =
-      this.maxlength && this.icon && this.iconLayout === 'left'
-        ? (this.lengthTotal.length + 2) * 0.385
-        : this.icon && this.iconLayout === 'right'
-        ? 1.8
-        : this.maxlength && !this.icon
-        ? (this.lengthTotal.length + 2) * 0.385
-        : 0.4;
+    if (this.maxlength && this.icon && this.iconLayout === 'right') {
+      this.paddingLeft = (this.lengthTotal.length + 2) * 0.385;
+    } else {
+      if (this.icon && this.iconLayout === 'left') {
+        this.paddingLeft = 1.8;
+      } else {
+        this.paddingLeft = 0.4;
+      }
+    }
+    if (this.maxlength && this.icon && this.iconLayout === 'left') {
+      this.paddingRight = (this.lengthTotal.length + 2) * 0.385;
+    } else {
+      if (this.icon && this.iconLayout === 'right') {
+        this.paddingRight = 1.8;
+      } else {
+        if (this.maxlength && !this.icon) {
+          this.paddingRight = (this.lengthTotal.length + 2) * 0.385;
+        } else {
+          this.paddingRight = 0.4;
+        }
+      }
+    }
   }
 
   inputFocus() {

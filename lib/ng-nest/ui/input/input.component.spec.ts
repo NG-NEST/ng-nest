@@ -24,7 +24,8 @@ describe(XInputPrefix, () => {
         TestXInputDisabledComponent,
         TestXInputRequiredComponent,
         TestXInputLengthComponent,
-        TestXInputSizeComponent
+        TestXInputSizeComponent,
+        TestXInputBorderedComponent
       ]
     }).compileComponents();
   }));
@@ -112,13 +113,25 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`size.`, () => {
+  describe(`size.`, () => {
     let fixture: ComponentFixture<TestXInputSizeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXInputSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputSizeComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXInputBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputBorderedComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -437,4 +450,46 @@ class TestXInputSizeComponent {
     console.log($event);
     this.cdr.detectChanges();
   }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="24">
+        <x-input placeholder="请输入内容" bordered="false"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入内容" bordered="false" label="用户名:" direction="row" maxlength="50"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入内容" bordered="false" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入内容" bordered="false" required clearable></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="没有边框" bordered="false" disabled></x-input>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-input {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXInputBorderedComponent {
+  constructor() {}
 }

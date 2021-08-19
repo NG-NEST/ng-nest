@@ -66,6 +66,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */
@@ -137,6 +142,11 @@ export interface XInputOption extends XFormOption {
    * @en_US Size
    */
   size?: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: XBoolean;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event

@@ -28,6 +28,7 @@
       background-image: none;
       border: $--x-input-border;
       border-radius: $--x-input-border-radius;
+      border-width: 0;
       box-shadow: $--x-input-box-shadow;
       transition: all $--x-animation-duration-slow;
       @include placeholder();
@@ -199,6 +200,13 @@
       > .#{$--x-input-prefix}-max-length {
         right: inherit;
         left: 0;
+      }
+    }
+  }
+  &-bordered {
+    .#{$--x-input-prefix} {
+      &-row {
+        border-width: $--x-border-width;
       }
     }
   }
