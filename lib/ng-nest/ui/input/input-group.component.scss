@@ -1,0 +1,9 @@
+// Input Group
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-input-group-prefix} {
+  @include input-group();
+}

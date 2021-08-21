@@ -69,6 +69,7 @@ export interface XComponentConfig {
   icon?: XIconConfig;
   inner?: XInnerConfig;
   input?: XInputConfig;
+  inputGroup?: XInputGroupConfig;
   inputNumber?: XInputNumberConfig;
   col?: XColConfig;
   row?: XRowConfig;
@@ -302,6 +303,12 @@ export interface XInputConfig {
   iconLayout?: XPositionLeftRight;
   size?: XSize;
   bordered?: XBoolean;
+}
+
+export interface XInputGroupConfig {
+  size?: XSize;
+  bordered?: XBoolean;
+  compact?: XBoolean;
 }
 
 export interface XInputNumberConfig {}

@@ -1,4 +1,4 @@
-import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
+import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight, XProperty } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -170,3 +170,33 @@ export type XInputType = 'text' | 'password' | 'number';
  * @value "right" 靠右
  */
 export type XInputIconLayoutType = XPositionLeftRight;
+
+/**
+ * Input Group
+ * @selector x-input-group
+ * @decorator component
+ */
+export const XInputGroupPrefix = 'x-input-group';
+const X_CONFIG_GROUP_NAME = 'inputGroup';
+
+/**
+ * Input Group Property
+ */
+@Component({ template: '' })
+export class XInputGroupProperty extends XProperty {
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_GROUP_NAME) size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME) bordered!: XBoolean;
+  /**
+   * @zh_CN 是否使用紧凑模式
+   * @en_US Whether to use a compact mode
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME) compact!: XBoolean;
+}

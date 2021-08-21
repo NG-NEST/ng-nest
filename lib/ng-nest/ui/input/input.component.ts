@@ -9,17 +9,19 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges,
-  Input
+  Input,
+  Optional
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XInputGroupComponent } from './input-group.component';
 
 @Component({
   selector: `${XInputPrefix}`,
   templateUrl: './input.component.html',
-  styleUrls: ['./style/index.scss'],
+  styleUrls: ['./input.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputComponent)]
@@ -58,7 +60,8 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    @Optional() public inputGroup: XInputGroupComponent
   ) {
     super();
   }
@@ -66,6 +69,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   ngOnInit() {
     this.setPadding();
     this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setInheritedValue();
     this.setClassMap();
   }
 
@@ -109,29 +113,31 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     }
   }
 
+  setInheritedValue() {
+    if (!this.inputGroup) return;
+    if (!XIsUndefined(this.inputGroup.size)) {
+      this.size = this.inputGroup.size;
+    }
+    if (!XIsUndefined(this.inputGroup.bordered)) {
+      this.bordered = this.inputGroup.bordered;
+    }
+  }
+
   setPadding() {
-    if (this.maxlength && this.icon && this.iconLayout === 'right') {
-      this.paddingLeft = (this.lengthTotal.length + 2) * 0.385;
-    } else {
-      if (this.icon && this.iconLayout === 'left') {
-        this.paddingLeft = 1.8;
-      } else {
-        this.paddingLeft = 0.4;
-      }
-    }
-    if (this.maxlength && this.icon && this.iconLayout === 'left') {
-      this.paddingRight = (this.lengthTotal.length + 2) * 0.385;
-    } else {
-      if (this.icon && this.iconLayout === 'right') {
-        this.paddingRight = 1.8;
-      } else {
-        if (this.maxlength && !this.icon) {
-          this.paddingRight = (this.lengthTotal.length + 2) * 0.385;
-        } else {
-          this.paddingRight = 0.4;
-        }
-      }
-    }
+    this.paddingLeft =
+      this.maxlength && this.icon && this.iconLayout === 'right'
+        ? (this.lengthTotal.length + 2) * 0.385
+        : this.icon && this.iconLayout === 'left'
+        ? 1.8
+        : 0.4;
+    this.paddingRight =
+      this.maxlength && this.icon && this.iconLayout === 'left'
+        ? (this.lengthTotal.length + 2) * 0.385
+        : this.icon && this.iconLayout === 'right'
+        ? 1.8
+        : this.maxlength && !this.icon
+        ? (this.lengthTotal.length + 2) * 0.385
+        : 0.4;
   }
 
   inputFocus() {

@@ -11,11 +11,23 @@ import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XInputModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule,
+        XSelectModule,
+        XButtonModule
+      ],
       declarations: [
         TestXInputComponent,
         TestXInputLabelComponent,
@@ -25,7 +37,8 @@ describe(XInputPrefix, () => {
         TestXInputRequiredComponent,
         TestXInputLengthComponent,
         TestXInputSizeComponent,
-        TestXInputBorderedComponent
+        TestXInputBorderedComponent,
+        TestXInputGroupComponent
       ]
     }).compileComponents();
   }));
@@ -125,13 +138,25 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXInputBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXInputBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputBorderedComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`group.`, () => {
+    let fixture: ComponentFixture<TestXInputGroupComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputGroupComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputGroupComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -492,4 +517,51 @@ class TestXInputSizeComponent {
 })
 class TestXInputBorderedComponent {
   constructor() {}
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-input-group size="big">
+      <x-row space="0.5">
+        <x-col span="4">
+          <x-input></x-input>
+        </x-col>
+        <x-col span="8">
+          <x-input></x-input>
+        </x-col>
+      </x-row>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="15"></x-input>
+      <x-input [style.width.%]="25"></x-input>
+      <x-input [style.width.%]="35"></x-input>
+    </x-input-group>
+    <x-input-group compact>
+      <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
+      <x-input [style.width.%]="25"></x-input>
+    </x-input-group>
+    <x-input-group compact>
+      <x-button>查找</x-button>
+      <x-input [style.width.%]="25"></x-input>
+    </x-input-group>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      :host x-input-group:not(:first-child) {
+        margin-top: 1rem;
+        display: block;
+      }
+    `
+  ]
+})
+class TestXInputGroupComponent {
+  constructor(private cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => this.cdr.detectChanges());
+  }
 }
