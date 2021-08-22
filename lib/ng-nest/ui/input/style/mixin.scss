@@ -241,11 +241,16 @@
   &-compact {
     > * {
       display: inline-block;
+      input,
+      .x-button {
+        border-radius: 0 !important;
+        
+      }
       input:hover,
       input:focus,
-      .x-button {
+      .x-button:hover,
+      .x-button:focus {
         z-index: 1;
-        border-radius: 0 !important;
       }
     }
     > *:first-child {

@@ -13,6 +13,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
@@ -26,7 +27,8 @@ describe(XInputPrefix, () => {
         XLayoutModule,
         XRadioModule,
         XSelectModule,
-        XButtonModule
+        XButtonModule,
+        XDatePickerModule
       ],
       declarations: [
         TestXInputComponent,
@@ -544,6 +546,15 @@ class TestXInputBorderedComponent {
     <x-input-group compact>
       <x-button>查找</x-button>
       <x-input [style.width.%]="25"></x-input>
+    </x-input-group>
+    <x-input-group compact>
+      <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
+      <x-input [style.width.%]="25"></x-input>
+      <x-button icon="fto-search"></x-button>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25"></x-input>
+      <x-date-picker [style.width.%]="25"></x-date-picker>
     </x-input-group>
   `,
   styles: [
