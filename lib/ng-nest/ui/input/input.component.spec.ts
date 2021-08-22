@@ -7,13 +7,19 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputPrefix } from './input.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { interval } from 'rxjs';
+import { interval, of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XFindModule } from '@ng-nest/ui/find';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 describe(XInputPrefix, () => {
   beforeEach(async(() => {
@@ -28,7 +34,13 @@ describe(XInputPrefix, () => {
         XRadioModule,
         XSelectModule,
         XButtonModule,
-        XDatePickerModule
+        XDatePickerModule,
+        XAutoCompleteModule,
+        XCascadeModule,
+        XColorPickerModule,
+        XFindModule,
+        XTextareaModule,
+        XTimePickerModule
       ],
       declarations: [
         TestXInputComponent,
@@ -527,34 +539,62 @@ class TestXInputBorderedComponent {
     <x-input-group size="big">
       <x-row space="0.5">
         <x-col span="4">
-          <x-input></x-input>
+          <x-input placeholder="输入内容"></x-input>
         </x-col>
         <x-col span="8">
-          <x-input></x-input>
+          <x-input placeholder="输入内容"></x-input>
         </x-col>
       </x-row>
     </x-input-group>
     <x-input-group compact>
-      <x-input [style.width.%]="15"></x-input>
-      <x-input [style.width.%]="25"></x-input>
-      <x-input [style.width.%]="35"></x-input>
+      <x-input [style.width.%]="15" placeholder="输入内容1"></x-input>
+      <x-input [style.width.%]="25" placeholder="输入内容2"></x-input>
+      <x-input [style.width.%]="35" placeholder="输入内容3"></x-input>
     </x-input-group>
     <x-input-group compact>
       <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
-      <x-input [style.width.%]="25"></x-input>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
     </x-input-group>
     <x-input-group compact>
       <x-button>查找</x-button>
-      <x-input [style.width.%]="25"></x-input>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
     </x-input-group>
     <x-input-group compact>
       <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
-      <x-input [style.width.%]="25"></x-input>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
       <x-button icon="fto-search"></x-button>
     </x-input-group>
     <x-input-group compact>
-      <x-input [style.width.%]="25"></x-input>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
       <x-date-picker [style.width.%]="25"></x-date-picker>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-auto-complete
+        [style.width.%]="25"
+        [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+        placeholder="输入下拉匹配，如：aa"
+      ></x-auto-complete>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-cascade [style.width.%]="25" [data]="cascadeData"></x-cascade>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-color-picker [style.width.%]="25"></x-color-picker>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-find></x-find>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-time-picker></x-time-picker>
+    </x-input-group>
+    <x-input-group compact>
+      <x-input [style.width.%]="25" placeholder="输入内容"></x-input>
+      <x-textarea [style.width.%]="25"></x-textarea>
     </x-input-group>
   `,
   styles: [
@@ -572,6 +612,44 @@ class TestXInputBorderedComponent {
   ]
 })
 class TestXInputGroupComponent {
+  cascadeData = [
+    { id: 1, label: 'AAAA' },
+    { id: 2, label: 'BBBB' },
+    { id: 3, label: 'CCCC' },
+    { id: 4, label: 'DDDD' },
+    { id: 5, label: 'AAAA-1', pid: 1 },
+    { id: 6, label: 'AAAA-2', pid: 1 },
+    { id: 7, label: 'AAAA-3', pid: 1 },
+    { id: 8, label: 'AAAA-4', pid: 1 },
+    { id: 9, label: 'BBBB-1', pid: 2 },
+    { id: 10, label: 'BBBB-2', pid: 2 },
+    { id: 11, label: 'BBBB-3', pid: 2 },
+    { id: 12, label: 'BBBB-4', pid: 2 },
+    { id: 13, label: 'CCCC-1', pid: 3 },
+    { id: 14, label: 'CCCC-2', pid: 3 },
+    { id: 15, label: 'CCCC-3', pid: 3 },
+    { id: 16, label: 'CCCC-4', pid: 3 },
+    { id: 17, label: 'DDDD-1', pid: 4 },
+    { id: 18, label: 'DDDD-2', pid: 4 },
+    { id: 19, label: 'DDDD-3', pid: 4 },
+    { id: 20, label: 'DDDD-4', pid: 4 },
+    { id: 21, label: 'AAAA-1-1', pid: 5 },
+    { id: 22, label: 'AAAA-1-2', pid: 5 },
+    { id: 23, label: 'AAAA-1-3', pid: 5 },
+    { id: 24, label: 'AAAA-1-4', pid: 5 },
+    { id: 25, label: 'AAAA-2-1', pid: 6 },
+    { id: 26, label: 'AAAA-2-2', pid: 6 },
+    { id: 27, label: 'AAAA-2-3', pid: 6 },
+    { id: 28, label: 'AAAA-2-4', pid: 6 },
+    { id: 29, label: 'AAAA-3-1', pid: 7 },
+    { id: 30, label: 'AAAA-3-2', pid: 7 },
+    { id: 31, label: 'AAAA-3-3', pid: 7 },
+    { id: 32, label: 'AAAA-3-4', pid: 7 },
+    { id: 33, label: 'AAAA-4-1', pid: 8 },
+    { id: 34, label: 'AAAA-4-2', pid: 8 },
+    { id: 35, label: 'AAAA-4-3', pid: 8 },
+    { id: 36, label: 'AAAA-4-4', pid: 8 }
+  ];
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => this.cdr.detectChanges());
   }

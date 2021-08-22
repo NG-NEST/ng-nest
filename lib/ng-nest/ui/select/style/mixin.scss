@@ -23,6 +23,7 @@
     align-items: center;
     position: relative;
     > x-input {
+      flex: 1;
       > .x-input {
         > .x-input-row {
           > input,

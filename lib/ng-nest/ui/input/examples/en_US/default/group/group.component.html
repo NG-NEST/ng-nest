@@ -1,0 +1,60 @@
+<x-input-group size="big">
+  <x-row space="0.5">
+    <x-col span="4">
+      <x-input placeholder="Input content"></x-input>
+    </x-col>
+    <x-col span="8">
+      <x-input placeholder="Input content"></x-input>
+    </x-col>
+  </x-row>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="15" placeholder="Input content1"></x-input>
+  <x-input [style.width.%]="25" placeholder="Input content2"></x-input>
+  <x-input [style.width.%]="35" placeholder="Input content3"></x-input>
+</x-input-group>
+<x-input-group compact>
+  <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+</x-input-group>
+<x-input-group compact>
+  <x-button>Search</x-button>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+</x-input-group>
+<x-input-group compact>
+  <x-select [data]="['city1', 'city2', 'city3']" [style.width.%]="15"></x-select>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-button icon="fto-search"></x-button>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-date-picker [style.width.%]="25"></x-date-picker>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-auto-complete
+    [style.width.%]="25"
+    [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+    placeholder="Input pulldown matching, such as: aa"
+  ></x-auto-complete>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-cascade [style.width.%]="25" [data]="cascadeData"></x-cascade>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-color-picker [style.width.%]="25"></x-color-picker>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-find></x-find>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-time-picker></x-time-picker>
+</x-input-group>
+<x-input-group compact>
+  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
+  <x-textarea [style.width.%]="25"></x-textarea>
+</x-input-group>
