@@ -13,6 +13,8 @@
   [class.x-input-icon-right]="getIconLayoutRight"
   [class.x-input-after]="after"
   [class.x-input-before]="before"
+  [class.x-input-after-template]="afterIsTemplate"
+  [class.x-input-before-template]="beforeIsTemplate"
   [class.x-input-value-template]="valueTpl"
   [ngClass]="classMap"
 >
@@ -26,9 +28,11 @@
     >
       <ng-container *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"></ng-container>
     </div>
-    <ng-container *xOutlet="before">
-      <div class="x-input-row-before" *ngIf="before">{{ before }}</div>
-    </ng-container>
+
+    <div class="x-input-row-before" *ngIf="before" [class.x-input-row-before-template]="beforeIsTemplate">
+      <ng-container *xOutlet="before">{{ before }}</ng-container>
+    </div>
+
     <input
       #inputRef
       [type]="type"
@@ -46,9 +50,10 @@
       (input)="xInput.emit($event)"
       (keydown)="xKeydown.emit($event)"
     />
-    <ng-container *xOutlet="after">
-      <div class="x-input-row-after" *ngIf="after">{{ after }}</div>
-    </ng-container>
+
+    <div class="x-input-row-after" *ngIf="after" [class.x-input-row-after-template]="afterIsTemplate">
+      <ng-container *xOutlet="after">{{ after }}</ng-container>
+    </div>
     <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
     <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
     <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>

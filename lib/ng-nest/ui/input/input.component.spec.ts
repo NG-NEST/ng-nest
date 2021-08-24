@@ -682,14 +682,35 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入网址" before="http://" after=".com"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input placeholder="请输入网址" [before]="beforeTpl" [after]="afterTpl"></x-input>
+        <x-input placeholder="请输入网址" [before]="beforeSelectTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入网址" [after]="afterSelectTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入网址" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeButtonTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterButtonTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-input>
       </x-col>
     </x-row>
-    <ng-template #beforeTpl>
-      <x-select [data]="['http://', 'ws://', 'file://']"></x-select>
+    <ng-template #beforeSelectTpl>
+      <x-select [style.width.%]="30" [data]="['http://', 'ws://', 'file://']"></x-select>
     </ng-template>
-    <ng-template #afterTpl>
-      <x-select [data]="['.com', '.cn', '.org']"></x-select>
+    <ng-template #afterSelectTpl>
+      <x-select [style.width.%]="30" [data]="['.com', '.cn', '.org']"></x-select>
+    </ng-template>
+    <ng-template #beforeButtonTpl>
+      <x-button>查询</x-button>
+    </ng-template>
+    <ng-template #afterButtonTpl>
+      <x-button icon="fto-search"></x-button>
     </ng-template>
   `,
   styles: [
@@ -698,6 +719,9 @@ class TestXInputGroupComponent {
         background-color: var(--x-background);
         padding: 1rem;
         border: 0.0625rem solid var(--x-border);
+      }
+      x-row {
+        width: 20rem;
       }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;

@@ -10,7 +10,8 @@ import {
   OnChanges,
   SimpleChanges,
   Input,
-  Optional
+  Optional,
+  TemplateRef
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
@@ -55,7 +56,15 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   get getIconLayoutRight() {
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
- 
+
+  get beforeIsTemplate() {
+    return this.before instanceof TemplateRef;
+  }
+
+  get afterIsTemplate() {
+    return this.after instanceof TemplateRef;
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,

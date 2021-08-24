@@ -48,12 +48,45 @@
       transition: all $--x-animation-duration-base;
       z-index: 2;
     }
-    .#{$--x-input-prefix}-row-before,
-    .#{$--x-input-prefix}-row-after {
+    .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
+    .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
       border: $--x-input-border;
       border-radius: $--x-input-border-radius;
       background-color: $--x-background-a100;
       border-width: 0;
+    }
+    .#{$--x-input-prefix}-row-before-template {
+      display: contents;
+      margin-right: calc(#{$--x-border-width} * -1);
+      input,
+      .x-button {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    .#{$--x-input-prefix}-row-after-template {
+      display: contents;
+      input,
+      .x-button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    .#{$--x-input-prefix}-row-before-template + input {
+      margin-right: calc(#{$--x-border-width} * -1);
+      &:hover,
+      &:focus {
+        z-index: 1;
+      }
+    }
+    .#{$--x-input-prefix}-row-before-template,
+    .#{$--x-input-prefix}-row-after-template {
+      input:hover,
+      input:focus,
+      .x-button:hover,
+      .x-button:focus {
+        z-index: 1;
+      }
     }
   }
   &-value-template {
@@ -217,11 +250,11 @@
       > input {
         border-width: $--x-border-width;
       }
-      .#{$--x-input-prefix}-row-before {
+      .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template) {
         border-width: $--x-border-width;
         border-right-width: 0;
       }
-      .#{$--x-input-prefix}-row-after {
+      .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
         border-width: $--x-border-width;
         border-left-width: 0;
       }
@@ -242,6 +275,17 @@
         border-bottom-right-radius: 0;
       }
     }
+    &-template {
+      .#{$--x-input-prefix}-row {
+        > input {
+          margin-right: calc(#{$--x-border-width} * -1);
+          &:hover,
+          &:focus {
+            z-index: 1;
+          }
+        }
+      }
+    }
   }
   @include size('big', $--x-height-big, 0 $--x-padding-big);
   @include size('large', $--x-height-large, 0 $--x-padding-large);
@@ -254,8 +298,8 @@
   &-#{$size} {
     > .#{$--x-input-prefix}-row {
       > input,
-      > .#{$--x-input-prefix}-row-before,
-      > .#{$--x-input-prefix}-row-after,
+      > .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
+      > .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template),
       > .#{$--x-input-prefix}-value-template-value {
         height: $height;
         line-height: $height;
