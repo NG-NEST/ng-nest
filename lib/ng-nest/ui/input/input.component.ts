@@ -55,7 +55,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   get getIconLayoutRight() {
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
-
+ 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,

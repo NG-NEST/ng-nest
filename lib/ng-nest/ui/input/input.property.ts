@@ -1,4 +1,14 @@
-import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight, XProperty } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XInputNumber,
+  XSize,
+  XNumber,
+  XBoolean,
+  XWithConfig,
+  XPositionLeftRight,
+  XProperty,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -69,7 +79,17 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() after!: XTemplate;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event

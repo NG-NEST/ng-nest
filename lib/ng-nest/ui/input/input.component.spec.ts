@@ -52,7 +52,8 @@ describe(XInputPrefix, () => {
         TestXInputLengthComponent,
         TestXInputSizeComponent,
         TestXInputBorderedComponent,
-        TestXInputGroupComponent
+        TestXInputGroupComponent,
+        TestXInputBeforeAfterComponent
       ]
     }).compileComponents();
   }));
@@ -164,13 +165,25 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`group.`, () => {
+  describe(`group.`, () => {
     let fixture: ComponentFixture<TestXInputGroupComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXInputGroupComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputGroupComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`before/after.`, () => {
+    let fixture: ComponentFixture<TestXInputBeforeAfterComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputBeforeAfterComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputBeforeAfterComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -653,4 +666,45 @@ class TestXInputGroupComponent {
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe(() => this.cdr.detectChanges());
   }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="24">
+        <x-input placeholder="请输入域名" after=".com"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入电话" before="0728"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入网址" before="http://" after=".com"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入网址" [before]="beforeTpl" [after]="afterTpl"></x-input>
+      </x-col>
+    </x-row>
+    <ng-template #beforeTpl>
+      <x-select [data]="['http://', 'ws://', 'file://']"></x-select>
+    </ng-template>
+    <ng-template #afterTpl>
+      <x-select [data]="['.com', '.cn', '.org']"></x-select>
+    </ng-template>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXInputBeforeAfterComponent {
+  constructor() {}
 }

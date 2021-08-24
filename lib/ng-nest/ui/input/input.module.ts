@@ -6,10 +6,11 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputGroupProperty, XInputProperty } from './input.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XInputComponent, XInputProperty, XInputGroupComponent, XInputGroupProperty],
   exports: [XInputComponent, XInputGroupComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconModule, XBaseFormModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconModule, XBaseFormModule, XOutletModule]
 })
 export class XInputModule {}
