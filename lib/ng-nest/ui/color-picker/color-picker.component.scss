@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-color-picker-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-color-picker-prefix} {
   @include reset-component();
   @include color-picker();

@@ -1,0 +1,139 @@
+<x-row>
+  <x-col span="24">
+    <x-input placeholder="Domain name" after=".com"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Phone" before="0728"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Url" before="http://" after=".com"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Url" [before]="beforeSelectTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Url" [after]="afterSelectTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Url" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeButtonTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterButtonTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeInputTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterInputTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeInputTpl" [after]="afterInputTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeDatePickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterDatePickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeAutoCompleteTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterAutoCompleteTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeCascadeTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterCascadeTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeColorPickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterColorPickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeTimePickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [after]="afterTimePickerTpl"></x-input>
+  </x-col>
+  <x-col span="24">
+    <x-input placeholder="Text" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-input>
+  </x-col>
+</x-row>
+<ng-template #beforeSelectTpl>
+  <x-select [style.width.%]="30" [data]="['http://', 'ws://', 'file://']"></x-select>
+</ng-template>
+<ng-template #afterSelectTpl>
+  <x-select [style.width.%]="30" [data]="['.com', '.cn', '.org']"></x-select>
+</ng-template>
+<ng-template #beforeButtonTpl>
+  <x-button>Search</x-button>
+</ng-template>
+<ng-template #afterButtonTpl>
+  <x-button icon="fto-search"></x-button>
+</ng-template>
+<ng-template #beforeInputTpl>
+  <x-input [style.width.%]="30"></x-input>
+</ng-template>
+<ng-template #afterInputTpl>
+  <x-input [style.width.%]="30"></x-input>
+</ng-template>
+<ng-template #beforeDatePickerTpl>
+  <x-date-picker [style.width.%]="30"></x-date-picker>
+</ng-template>
+<ng-template #afterDatePickerTpl>
+  <x-date-picker [style.width.%]="30"></x-date-picker>
+</ng-template>
+<ng-template #beforeAutoCompleteTpl>
+  <x-auto-complete
+    [style.width.%]="40"
+    [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+    placeholder="Such as: aa"
+  ></x-auto-complete>
+</ng-template>
+<ng-template #afterAutoCompleteTpl>
+  <x-auto-complete
+    [style.width.%]="40"
+    [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+    placeholder="Such as: aa"
+  ></x-auto-complete>
+</ng-template>
+<ng-template #beforeCascadeTpl>
+  <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+</ng-template>
+<ng-template #afterCascadeTpl>
+  <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+</ng-template>
+<ng-template #beforeColorPickerTpl>
+  <x-color-picker [style.width.%]="30"></x-color-picker>
+</ng-template>
+<ng-template #afterColorPickerTpl>
+  <x-color-picker [style.width.%]="30"></x-color-picker>
+</ng-template>
+<ng-template #beforeTimePickerTpl>
+  <x-time-picker [style.width.%]="30"></x-time-picker>
+</ng-template>
+<ng-template #afterTimePickerTpl>
+  <x-time-picker [style.width.%]="30"></x-time-picker>
+</ng-template>

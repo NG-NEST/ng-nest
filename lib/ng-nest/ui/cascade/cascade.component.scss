@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-cascade-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-cascade-prefix} {
   @include reset-component();
   @include cascade();

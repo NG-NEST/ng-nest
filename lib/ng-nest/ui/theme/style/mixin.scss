@@ -5,9 +5,8 @@
 @import './param';
 
 @mixin theme {
-  display: block;
+  display: inline-block;
   x-color-picker {
-    width: 3rem;
     &:not(:first-child) {
       margin-left: 0.125rem;
     }

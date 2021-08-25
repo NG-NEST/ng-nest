@@ -165,7 +165,7 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`group.`, () => {
+  fdescribe(`group.`, () => {
     let fixture: ComponentFixture<TestXInputGroupComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -177,7 +177,7 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`before/after.`, () => {
+  describe(`before/after.`, () => {
     let fixture: ComponentFixture<TestXInputBeforeAfterComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -699,6 +699,60 @@ class TestXInputGroupComponent {
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-input>
       </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeInputTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterInputTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeInputTpl" [after]="afterInputTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeDatePickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterDatePickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeAutoCompleteTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterAutoCompleteTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeCascadeTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterCascadeTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeColorPickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterColorPickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeTimePickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [after]="afterTimePickerTpl"></x-input>
+      </x-col>
+      <x-col span="24">
+        <x-input placeholder="请输入文字" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-input>
+      </x-col>
     </x-row>
     <ng-template #beforeSelectTpl>
       <x-select [style.width.%]="30" [data]="['http://', 'ws://', 'file://']"></x-select>
@@ -712,6 +766,50 @@ class TestXInputGroupComponent {
     <ng-template #afterButtonTpl>
       <x-button icon="fto-search"></x-button>
     </ng-template>
+    <ng-template #beforeInputTpl>
+      <x-input [style.width.%]="30"></x-input>
+    </ng-template>
+    <ng-template #afterInputTpl>
+      <x-input [style.width.%]="30"></x-input>
+    </ng-template>
+    <ng-template #beforeDatePickerTpl>
+      <x-date-picker [style.width.%]="30"></x-date-picker>
+    </ng-template>
+    <ng-template #afterDatePickerTpl>
+      <x-date-picker [style.width.%]="30"></x-date-picker>
+    </ng-template>
+    <ng-template #beforeAutoCompleteTpl>
+      <x-auto-complete
+        [style.width.%]="40"
+        [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+        placeholder="输入下拉匹配，如：aa"
+      ></x-auto-complete>
+    </ng-template>
+    <ng-template #afterAutoCompleteTpl>
+      <x-auto-complete
+        [style.width.%]="40"
+        [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+        placeholder="输入下拉匹配，如：aa"
+      ></x-auto-complete>
+    </ng-template>
+    <ng-template #beforeCascadeTpl>
+      <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+    </ng-template>
+    <ng-template #afterCascadeTpl>
+      <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+    </ng-template>
+    <ng-template #beforeColorPickerTpl>
+      <x-color-picker [style.width.%]="30"></x-color-picker>
+    </ng-template>
+    <ng-template #afterColorPickerTpl>
+      <x-color-picker [style.width.%]="30"></x-color-picker>
+    </ng-template>
+    <ng-template #beforeTimePickerTpl>
+      <x-time-picker [style.width.%]="30"></x-time-picker>
+    </ng-template>
+    <ng-template #afterTimePickerTpl>
+      <x-time-picker [style.width.%]="30"></x-time-picker>
+    </ng-template>
   `,
   styles: [
     `
@@ -721,7 +819,7 @@ class TestXInputGroupComponent {
         border: 0.0625rem solid var(--x-border);
       }
       x-row {
-        width: 20rem;
+        width: 25rem;
       }
       x-row > x-col:not(:first-child) {
         margin-top: 1rem;
@@ -730,5 +828,43 @@ class TestXInputGroupComponent {
   ]
 })
 class TestXInputBeforeAfterComponent {
+  cascadeData = [
+    { id: 1, label: 'AAAA' },
+    { id: 2, label: 'BBBB' },
+    { id: 3, label: 'CCCC' },
+    { id: 4, label: 'DDDD' },
+    { id: 5, label: 'AAAA-1', pid: 1 },
+    { id: 6, label: 'AAAA-2', pid: 1 },
+    { id: 7, label: 'AAAA-3', pid: 1 },
+    { id: 8, label: 'AAAA-4', pid: 1 },
+    { id: 9, label: 'BBBB-1', pid: 2 },
+    { id: 10, label: 'BBBB-2', pid: 2 },
+    { id: 11, label: 'BBBB-3', pid: 2 },
+    { id: 12, label: 'BBBB-4', pid: 2 },
+    { id: 13, label: 'CCCC-1', pid: 3 },
+    { id: 14, label: 'CCCC-2', pid: 3 },
+    { id: 15, label: 'CCCC-3', pid: 3 },
+    { id: 16, label: 'CCCC-4', pid: 3 },
+    { id: 17, label: 'DDDD-1', pid: 4 },
+    { id: 18, label: 'DDDD-2', pid: 4 },
+    { id: 19, label: 'DDDD-3', pid: 4 },
+    { id: 20, label: 'DDDD-4', pid: 4 },
+    { id: 21, label: 'AAAA-1-1', pid: 5 },
+    { id: 22, label: 'AAAA-1-2', pid: 5 },
+    { id: 23, label: 'AAAA-1-3', pid: 5 },
+    { id: 24, label: 'AAAA-1-4', pid: 5 },
+    { id: 25, label: 'AAAA-2-1', pid: 6 },
+    { id: 26, label: 'AAAA-2-2', pid: 6 },
+    { id: 27, label: 'AAAA-2-3', pid: 6 },
+    { id: 28, label: 'AAAA-2-4', pid: 6 },
+    { id: 29, label: 'AAAA-3-1', pid: 7 },
+    { id: 30, label: 'AAAA-3-2', pid: 7 },
+    { id: 31, label: 'AAAA-3-3', pid: 7 },
+    { id: 32, label: 'AAAA-3-4', pid: 7 },
+    { id: 33, label: 'AAAA-4-1', pid: 8 },
+    { id: 34, label: 'AAAA-4-2', pid: 8 },
+    { id: 35, label: 'AAAA-4-3', pid: 8 },
+    { id: 36, label: 'AAAA-4-4', pid: 8 }
+  ];
   constructor() {}
 }

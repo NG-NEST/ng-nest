@@ -57,7 +57,6 @@
     }
     .#{$--x-input-prefix}-row-before-template {
       display: contents;
-      margin-right: calc(#{$--x-border-width} * -1);
       input,
       .x-button {
         border-top-right-radius: 0;
@@ -72,8 +71,7 @@
         border-bottom-left-radius: 0;
       }
     }
-    .#{$--x-input-prefix}-row-before-template + input {
-      margin-right: calc(#{$--x-border-width} * -1);
+    .#{$--x-input-prefix}-row-before-template {
       &:hover,
       &:focus {
         z-index: 1;
@@ -265,6 +263,17 @@
       > input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+      }
+    }
+    &-template {
+      .#{$--x-input-prefix}-row {
+        > input {
+          margin-left: calc(#{$--x-border-width} * -1);
+          &:hover,
+          &:focus {
+            z-index: 1;
+          }
+        }
       }
     }
   }

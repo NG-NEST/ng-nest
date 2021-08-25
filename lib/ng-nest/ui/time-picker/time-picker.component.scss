@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-time-picker-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-time-picker-prefix} {
   @include reset-component();
   @include time-picker();

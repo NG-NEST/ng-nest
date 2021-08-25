@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-auto-complete-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-auto-complete-prefix} {
   @include reset-component();
   @include auto-complete();

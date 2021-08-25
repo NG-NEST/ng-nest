@@ -4,6 +4,10 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-date-picker-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-date-picker-prefix} {
   @include reset-component();
   @include date-picker();
