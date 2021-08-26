@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInputComponent } from './input.component';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,7 +53,8 @@ describe(XInputPrefix, () => {
         TestXInputSizeComponent,
         TestXInputBorderedComponent,
         TestXInputGroupComponent,
-        TestXInputBeforeAfterComponent
+        TestXInputBeforeAfterComponent,
+        TestXInputFocusComponent
       ]
     }).compileComponents();
   }));
@@ -165,7 +166,7 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`group.`, () => {
+  describe(`group.`, () => {
     let fixture: ComponentFixture<TestXInputGroupComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -184,6 +185,18 @@ describe(XInputPrefix, () => {
       fixture = TestBed.createComponent(TestXInputBeforeAfterComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputBeforeAfterComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`focus.`, () => {
+    let fixture: ComponentFixture<TestXInputFocusComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputFocusComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputFocusComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -867,4 +880,39 @@ class TestXInputBeforeAfterComponent {
     { id: 36, label: 'AAAA-4-4', pid: 8 }
   ];
   constructor() {}
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="24">
+        <x-buttons>
+          <x-button (click)="inputCom.inputFocus('select')">设置焦点（选中文字）</x-button>
+          <x-button (click)="inputCom.inputFocus('before')">设置焦点（光标在文字前）</x-button>
+          <x-button (click)="inputCom.inputFocus()">设置焦点（光标在文字后，默认）</x-button>
+        </x-buttons>
+      </x-col>
+      <x-col span="24">
+        <x-input #inputCom [style.width.rem]="15" [(ngModel)]="inputValue"></x-input>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXInputFocusComponent {
+  inputValue = 'Please enter the content';
+  // @ViewChild('inputCom') inputCom!: XInputComponent;
+  constructor(private cdr: ChangeDetectorRef) {}
 }
