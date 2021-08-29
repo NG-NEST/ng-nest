@@ -1,10 +1,4 @@
-import {
-  XInputBoolean,
-  XProperty,
-  XBoolean,
-  XCorner,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XInputBoolean, XProperty, XBoolean, XCorner, XWithConfig, XSize, XTemplate } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -46,6 +40,36 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @en_US Readonly
    */
   @Input() @XInputBoolean() readonly!: XBoolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  @Input() valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  @Input() valueTplContext: any;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() after!: XTemplate;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

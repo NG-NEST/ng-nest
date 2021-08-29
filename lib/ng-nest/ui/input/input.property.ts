@@ -168,6 +168,16 @@ export interface XInputOption extends XFormOption {
    */
   bordered?: XBoolean;
   /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */

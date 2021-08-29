@@ -11,18 +11,20 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN, X_I18N, zh_TW } from '@ng-nest/ui/i18n';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XDatePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XButtonModule, XRadioModule],
       declarations: [
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,
         TestXDatePickerDisabledComponent,
         TestXDatePickerRequiredComponent,
         TestXDatePickerYearOrMonthComponent,
-        TestXDatePickerHourMinuteSecondComponent
+        TestXDatePickerHourMinuteSecondComponent,
+        TestXDatePickerSizeComponent
       ]
     }).compileComponents();
   }));
@@ -93,6 +95,18 @@ describe(XDatePickerPrefix, () => {
       fixture = TestBed.createComponent(TestXDatePickerHourMinuteSecondComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerHourMinuteSecondComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`size.`, () => {
+    let fixture: ComponentFixture<TestXDatePickerSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDatePickerSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerSizeComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -325,5 +339,56 @@ class TestXDatePickerHourMinuteSecondComponent {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
+  }
+}
+
+@Component({
+  template: `
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-date-picker [size]="size"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker [size]="size" label="用户名" direction="row" maxlength="50"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker [size]="size" label="用户名" direction="column" maxlength="50"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker required clearable [size]="size"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker disabled [size]="size"></x-date-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-date-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDatePickerSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
   }
 }
