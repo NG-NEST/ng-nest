@@ -24,11 +24,12 @@ describe(XDatePickerPrefix, () => {
         TestXDatePickerRequiredComponent,
         TestXDatePickerYearOrMonthComponent,
         TestXDatePickerHourMinuteSecondComponent,
-        TestXDatePickerSizeComponent
+        TestXDatePickerSizeComponent,
+        TestXDatePickerBorderedComponent,
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -100,13 +101,25 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`size.`, () => {
+  describe(`size.`, () => {
     let fixture: ComponentFixture<TestXDatePickerSizeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDatePickerSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerSizeComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXDatePickerBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDatePickerBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerBorderedComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -391,4 +404,45 @@ class TestXDatePickerSizeComponent {
     console.log($event);
     this.cdr.detectChanges();
   }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-date-picker placeholder="请选择日期" bordered="false"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker placeholder="请选择日期" bordered="false" label="日生:" direction="row" ></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker placeholder="请选择日期" bordered="false" ></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker placeholder="请选择日期" bordered="false" required></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-date-picker placeholder="没有边框" bordered="false" disabled></x-date-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-date-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDatePickerBorderedComponent {
+  constructor() {}
 }
