@@ -15,39 +15,10 @@
     font-weight: 600;
     @include text-align();
   }
-  > .#{$--x-input-prefix}-row {
+  &-row {
     flex: 1;
     display: flex;
     align-items: center;
-    position: relative;
-    > input {
-      flex: 1;
-      width: 100%;
-      font-size: $--x-input-font-size;
-      background-color: $--x-input-background-color;
-      background-image: none;
-      border: $--x-input-border;
-      border-radius: $--x-input-border-radius;
-      border-width: 0;
-      box-shadow: $--x-input-box-shadow;
-      transition: all $--x-animation-duration-slow;
-      @include placeholder();
-      &:hover {
-        @include hover();
-      }
-      &:focus {
-        @include focus();
-        outline: 0;
-      }
-      &[disabled] {
-        color: $--x-input-disabled-color;
-      }
-    }
-    > #{$--x-prefix}-icon {
-      color: $--x-text-400;
-      transition: all $--x-animation-duration-base;
-      z-index: 2;
-    }
     .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
     .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
       border: $--x-input-border;
@@ -87,8 +58,42 @@
       }
     }
   }
+  &-input {
+    position: relative;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    > input {
+      flex: 1;
+      width: 100%;
+      font-size: $--x-input-font-size;
+      background-color: $--x-input-background-color;
+      background-image: none;
+      border: $--x-input-border;
+      border-radius: $--x-input-border-radius;
+      border-width: 0;
+      box-shadow: $--x-input-box-shadow;
+      transition: all $--x-animation-duration-slow;
+      @include placeholder();
+      &:hover {
+        @include hover();
+      }
+      &:focus {
+        @include focus();
+        outline: 0;
+      }
+      &[disabled] {
+        color: $--x-input-disabled-color;
+      }
+    }
+    > #{$--x-prefix}-icon {
+      color: $--x-text-400;
+      transition: all $--x-animation-duration-base;
+      z-index: 2;
+    }
+  }
   &-value-template {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input {
         color: transparent;
       }
@@ -123,7 +128,7 @@
     > label {
       color: $--x-danger;
     }
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > #{$--x-prefix}-icon {
         color: $--x-danger;
       }
@@ -131,7 +136,7 @@
     }
   }
   &.x-disabled {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > #{$--x-prefix}-icon {
         color: $--x-text-400;
       }
@@ -145,7 +150,7 @@
     }
   }
   &.x-clearable {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > .#{$--x-input-prefix}-clear {
         position: absolute;
         color: $--x-text-400;
@@ -169,12 +174,12 @@
       }
     }
     &.x-clear-show {
-      > .#{$--x-input-prefix}-row {
+      .#{$--x-input-prefix}-input {
         > .#{$--x-input-prefix}-clear {
           opacity: 1;
         }
         > input {
-          padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2) !important;
+          padding-right: calc(#{$--x-input-icon-font-size} + #{$--x-input-icon-padding} * 2) !important;
         }
       }
     }
@@ -205,7 +210,7 @@
     }
   }
   &-icon {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > #{$--x-prefix}-icon {
         position: absolute;
         font-size: $--x-input-icon-font-size;
@@ -218,7 +223,7 @@
     }
   }
   &-icon-left {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input,
       > .#{$--x-input-prefix}-value-template-value {
         padding-left: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
@@ -229,7 +234,7 @@
     }
   }
   &-icon-right {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input,
       > .#{$--x-input-prefix}-value-template-value {
         padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
@@ -244,10 +249,12 @@
     }
   }
   &-bordered {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input {
         border-width: $--x-border-width;
       }
+    }
+    .#{$--x-input-prefix}-row {
       .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template) {
         border-width: $--x-border-width;
         border-right-width: 0;
@@ -259,14 +266,14 @@
     }
   }
   &-before {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
     }
     &-template {
-      .#{$--x-input-prefix}-row {
+      .#{$--x-input-prefix}-input {
         > input {
           margin-left: calc(#{$--x-border-width} * -1);
           &:hover,
@@ -278,14 +285,14 @@
     }
   }
   &-after {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
     &-template {
-      .#{$--x-input-prefix}-row {
+      .#{$--x-input-prefix}-input {
         > input {
           margin-right: calc(#{$--x-border-width} * -1);
           &:hover,
@@ -305,7 +312,7 @@
 
 @mixin size($size, $height, $padding) {
   &-#{$size} {
-    > .#{$--x-input-prefix}-row {
+    .#{$--x-input-prefix}-input {
       > input,
       > .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
       > .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template),
@@ -314,7 +321,21 @@
         line-height: $height;
         padding: $padding;
       }
+      > .#{$--x-input-prefix}-max-length {
+        height: $height;
+        line-height: $height;
+      }
     }
+
+    > .#{$--x-input-prefix}-row {
+      > .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
+      > .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
+        height: $height;
+        line-height: $height;
+        padding: $padding;
+      }
+    }
+
     > label {
       height: $height;
       line-height: $height;

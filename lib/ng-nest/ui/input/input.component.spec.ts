@@ -190,7 +190,7 @@ describe(XInputPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`focus.`, () => {
+  describe(`focus.`, () => {
     let fixture: ComponentFixture<TestXInputFocusComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

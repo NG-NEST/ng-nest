@@ -115,6 +115,21 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Keydown event
    */
   @Output() xKeydown = new EventEmitter<any>();
+  /**
+   * @zh_CN Click
+   * @en_US Click event
+   */
+  @Output() xClick = new EventEmitter<any>();
+  /**
+   * @zh_CN Mouseenter
+   * @en_US Mouseenter event
+   */
+  @Output() xMouseenter = new EventEmitter<any>();
+  /**
+   * @zh_CN Mouseleave
+   * @en_US Mouseleave event
+   */
+  @Output() xMouseleave = new EventEmitter<any>();
 }
 
 /**
