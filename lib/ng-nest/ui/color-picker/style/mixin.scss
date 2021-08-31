@@ -47,6 +47,7 @@
     left: 0.125rem;
     background-image: $--x-color-picker-transparent;
     cursor: pointer;
+    z-index: 1;
     > div {
       width: 100%;
       height: 100%;
