@@ -49,6 +49,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
   time!: number;
+  preset: string[] = [];
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
@@ -175,6 +176,10 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   getLocaleMonth(date: Date) {
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+  }
+
+  onToday() {
+    this.dateChange(new Date());
   }
 
   selectTime(time: Date) {

@@ -40,6 +40,15 @@
     padding: 0.4rem;
     border-bottom: $--x-border-width solid $--x-border;
   }
+  &-preset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: $--x-border-width solid $--x-border;
+    > x-button {
+      flex: 1;
+    }
+  }
   &-year-month {
     flex: 1;
     text-align: center;

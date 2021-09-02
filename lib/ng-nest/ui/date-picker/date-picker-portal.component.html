@@ -6,6 +6,11 @@
     <div class="x-date-picker-portal-body">
       <x-picker-date [display]="display" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
     </div>
+    <div *ngIf="preset" class="x-date-picker-portal-preset">
+      <ng-container *ngFor="let item of preset">
+        <x-button type="text" *ngIf="item === 'today'" (click)="onToday()">{{ locale.today }}</x-button>
+      </ng-container>
+    </div>
   </ng-container>
   <ng-container *ngSwitchCase="'month'">
     <div class="x-date-picker-portal-header">

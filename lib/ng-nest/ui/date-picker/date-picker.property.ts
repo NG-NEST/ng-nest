@@ -71,6 +71,11 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() after!: XTemplate;
   /**
+   * @zh_CN 快捷选择按钮，支持当天
+   * @en_US Quick selection button, support the day
+   */
+  @Input() preset!: string[];
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -102,6 +107,26 @@ export interface XDatePickerOption extends XFormOption {
    * @en_US Display position
    */
   placement?: XCorner;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: XBoolean;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

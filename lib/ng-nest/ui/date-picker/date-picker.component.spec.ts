@@ -50,7 +50,8 @@ describe(XDatePickerPrefix, () => {
         TestXDatePickerHourMinuteSecondComponent,
         TestXDatePickerSizeComponent,
         TestXDatePickerBorderedComponent,
-        TestXDatePickerBeforeAfterComponent
+        TestXDatePickerBeforeAfterComponent,
+        TestXDatePickerTodayComponent
       ]
     }).compileComponents();
   }));
@@ -150,13 +151,25 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`before/after.`, () => {
+  describe(`before/after.`, () => {
     let fixture: ComponentFixture<TestXDatePickerBeforeAfterComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDatePickerBeforeAfterComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerBeforeAfterComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`today.`, () => {
+    let fixture: ComponentFixture<TestXDatePickerTodayComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDatePickerTodayComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerTodayComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -681,5 +694,33 @@ class TestXDatePickerBeforeAfterComponent {
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
   ];
+  constructor() {}
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-date-picker [preset]="['today']"></x-date-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row {
+        width: 25rem;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDatePickerTodayComponent {
   constructor() {}
 }

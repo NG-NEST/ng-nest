@@ -82,6 +82,7 @@ export interface XI18nDatePicker {
   october?: string;
   november?: string;
   december?: string;
+  today?: string;
 }
 
 export interface XI18nEmpty {
