@@ -23,7 +23,7 @@
     <div class="x-input-row-before" *ngIf="before" [class.x-input-row-before-template]="beforeIsTemplate">
       <ng-container *xOutlet="before">{{ before }}</ng-container>
     </div>
-    <div class="x-input-input">
+    <div class="x-input-input" (mouseenter)="xMouseenter.emit($event)" (mouseleave)="xMouseleave.emit($event)">
       <div
         class="x-input-value-template-value"
         [style.padding-left.rem]="paddingLeft"
@@ -49,8 +49,6 @@
         (input)="xInput.emit($event)"
         (keydown)="xKeydown.emit($event)"
         (click)="xClick.emit($event)"
-        (mouseenter)="xMouseenter.emit($event)"
-        (mouseleave)="xMouseleave.emit($event)"
       />
       <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
       <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>

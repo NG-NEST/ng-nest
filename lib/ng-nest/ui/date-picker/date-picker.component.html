@@ -1,15 +1,6 @@
-<div
-  #datePicker
-  class="x-date-picker"
-  [class.x-required-show]="getRequired"
->
+<div #datePicker class="x-date-picker" [class.x-required-show]="getRequired">
   <!-- <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label> -->
-  <div
-    class="x-date-picker-row"
-    (click)="showPortal()"
-    (mouseenter)="menter()"
-    (mouseleave)="mleave()"
-  >
+  <div class="x-date-picker-row">
     <x-input
       #inputCom
       type="text"
@@ -33,8 +24,12 @@
       [size]="size"
       [bordered]="bordered"
       [before]="before"
+      [after]="after"
       (clearEmit)="clearEmit()"
       (xInput)="onInput()"
+      (xClick)="showPortal()"
+      (xMouseenter)="menter()"
+      (xMouseleave)="mleave()"
     ></x-input>
   </div>
 </div>
