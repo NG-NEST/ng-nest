@@ -11,7 +11,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -180,6 +180,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   onToday() {
     this.dateChange(new Date());
+  }
+
+  onYesterday() {
+    this.dateChange(XAddDays(new Date(), -1));
+  }
+
+  onTomorrow() {
+    this.dateChange(XAddDays(new Date(), 1));
   }
 
   selectTime(time: Date) {

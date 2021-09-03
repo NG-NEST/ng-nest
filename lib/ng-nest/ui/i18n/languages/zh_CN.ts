@@ -63,7 +63,9 @@ export default {
     friday: '五',
     saturday: '六',
     sunday: '日',
-    today: '今天'
+    yesterday: '昨天',
+    today: '今天',
+    tomorrow: '明天'
   },
   empty: {
     noData: '暂无数据'

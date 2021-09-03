@@ -63,7 +63,9 @@ export default {
     friday: 'Fri',
     saturday: 'Sat',
     sunday: 'Sun',
-    today: 'Today'
+    yesterday: 'Yesterday',
+    today: 'Today',
+    tomorrow: 'Tomorrow'
   },
   empty: {
     noData: 'No data'

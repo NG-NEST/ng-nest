@@ -701,7 +701,7 @@ class TestXDatePickerBeforeAfterComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-date-picker [preset]="['today']"></x-date-picker>
+        <x-date-picker [preset]="['yesterday','today','tomorrow']"></x-date-picker>
       </x-col>
     </x-row>
   `,

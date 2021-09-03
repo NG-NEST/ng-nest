@@ -71,8 +71,8 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() after!: XTemplate;
   /**
-   * @zh_CN 快捷选择按钮，支持当天
-   * @en_US Quick selection button, support the day
+   * @zh_CN 快捷选择按钮，支持今天,昨天,明天
+   * @en_US Quick selection button, support today, yesterday, tomorrow
    */
   @Input() preset!: string[];
   /**
