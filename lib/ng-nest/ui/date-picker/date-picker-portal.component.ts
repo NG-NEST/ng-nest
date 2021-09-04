@@ -10,8 +10,8 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { XDatePickerPortalPrefix, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays } from '@ng-nest/ui/core';
+import { XDatePickerPortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
+import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays, XData } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -49,7 +49,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
   time!: number;
-  preset: string[] = [];
+  preset: XDatePickerPreset[] = [];
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
@@ -188,6 +188,10 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   onTomorrow() {
     this.dateChange(XAddDays(new Date(), 1));
+  }
+
+  onPresetFunc(item: XDatePickerPreset) {
+    this.dateChange(item.func());
   }
 
   selectTime(time: Date) {

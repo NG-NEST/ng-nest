@@ -15,7 +15,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -80,6 +80,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   constructor(
     public renderer: Renderer2,
+    public configService: XConfigService,
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,

@@ -8,9 +8,10 @@
     </div>
     <div *ngIf="preset" class="x-date-picker-portal-preset">
       <ng-container *ngFor="let item of preset">
-        <x-button type="text" *ngIf="item === 'yesterday'" (click)="onYesterday()">{{ locale.yesterday }}</x-button>
-        <x-button type="text" *ngIf="item === 'today'" (click)="onToday()">{{ locale.today }}</x-button>
-        <x-button type="text" *ngIf="item === 'tomorrow'" (click)="onTomorrow()">{{ locale.tomorrow }}</x-button>
+        <x-button type="text" *ngIf="item.id === 'yesterday'" (click)="onYesterday()">{{ locale.yesterday }}</x-button>
+        <x-button type="text" *ngIf="item.id === 'today'" (click)="onToday()">{{ locale.today }}</x-button>
+        <x-button type="text" *ngIf="item.id === 'tomorrow'" (click)="onTomorrow()">{{ locale.tomorrow }}</x-button>
+        <x-button type="text" *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-button>
       </ng-container>
     </div>
   </ng-container>

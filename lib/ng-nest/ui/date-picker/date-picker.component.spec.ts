@@ -20,6 +20,7 @@ import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
+import { XAddDays } from '@ng-nest/ui/core';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
@@ -701,7 +702,7 @@ class TestXDatePickerBeforeAfterComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-date-picker [preset]="['yesterday','today','tomorrow']"></x-date-picker>
+        <x-date-picker [preset]="preset"></x-date-picker>
       </x-col>
     </x-row>
   `,
@@ -722,5 +723,16 @@ class TestXDatePickerBeforeAfterComponent {
   ]
 })
 class TestXDatePickerTodayComponent {
+  preset = [
+    'yesterday',
+    'today',
+    'tomorrow',
+    {
+      label: '7天后',
+      func: () => {
+        return XAddDays(new Date(), 7);
+      }
+    }
+  ];
   constructor() {}
 }

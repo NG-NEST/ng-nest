@@ -1,4 +1,15 @@
-import { XInputBoolean, XProperty, XBoolean, XCorner, XWithConfig, XSize, XTemplate } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XProperty,
+  XBoolean,
+  XCorner,
+  XWithConfig,
+  XSize,
+  XTemplate,
+  XDataConvert,
+  XData,
+  XIdentityProperty
+} from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, TemplateRef, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -74,7 +85,7 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @zh_CN 快捷选择按钮，支持今天,昨天,明天
    * @en_US Quick selection button, support today, yesterday, tomorrow
    */
-  @Input() preset!: string[];
+  @Input() @XDataConvert() preset: XData<XDatePickerPreset> = [];
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -132,6 +143,18 @@ export interface XDatePickerOption extends XFormOption {
    * @en_US Node click event
    */
   nodeClick?: (value: number) => void;
+}
+
+/**
+ * @zh_CN 快捷选择按钮
+ * @en_US Quick selection button
+ */
+export interface XDatePickerPreset extends XIdentityProperty {
+  /**
+   * @zh_CN 自定义函数
+   * @en_US Custom function
+   */
+  func: () => Date;
 }
 
 /**
