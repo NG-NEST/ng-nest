@@ -121,6 +121,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setFormat() {
+    if (this.format !== 'yyyy-MM-dd') return;
     if (this.type === 'date') {
       this.format = 'yyyy-MM-dd';
     } else if (this.type === 'year') {
