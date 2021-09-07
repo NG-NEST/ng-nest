@@ -10,10 +10,17 @@ import { XDatePickerPortalComponent } from './date-picker-portal.component';
 import { XPickerDateComponent } from './picker-date.component';
 import { XPickerMonthComponent } from './picker-month.component';
 import { XPickerYearComponent } from './picker-year.component';
-import { XDatePickerProperty, XPickerDateProperty, XPickerMonthProperty, XPickerYearProperty } from './date-picker.property';
+import {
+  XDatePickerProperty,
+  XPickerDateProperty,
+  XPickerMonthProperty,
+  XPickerYearProperty,
+  XDateRangeProperty
+} from './date-picker.property';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XDateRangeComponent } from './date-range.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +32,18 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
     XDatePickerProperty,
     XPickerDateProperty,
     XPickerMonthProperty,
-    XPickerYearProperty
+    XPickerYearProperty,
+    XDateRangeComponent,
+    XDateRangeProperty
   ],
-  exports: [XDatePickerComponent, XDatePickerPortalComponent, XPickerDateComponent, XPickerMonthComponent, XPickerYearComponent],
+  exports: [
+    XDatePickerComponent,
+    XDateRangeComponent,
+    XDatePickerPortalComponent,
+    XPickerDateComponent,
+    XPickerMonthComponent,
+    XPickerYearComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

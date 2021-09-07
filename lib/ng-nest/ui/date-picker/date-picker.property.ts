@@ -146,6 +146,26 @@ export interface XDatePickerOption extends XFormOption {
 }
 
 /**
+ * DateRange
+ * @selector x-date-range
+ * @decorator component
+ */
+export const XDateRangePrefix = 'x-date-range';
+const X_CONFIG_Range_NAME = 'dateRange';
+
+/**
+ * DateRange Property
+ */
+@Component({ template: '' })
+export class XDateRangeProperty extends XControlValueAccessor<any> implements XDateRangeOption {}
+
+/**
+ * DateRange Option
+ * @undocument true
+ */
+export interface XDateRangeOption extends XFormOption {}
+
+/**
  * @zh_CN 快捷选择按钮
  * @en_US Quick selection button
  */

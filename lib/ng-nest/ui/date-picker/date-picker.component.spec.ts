@@ -52,7 +52,8 @@ describe(XDatePickerPrefix, () => {
         TestXDatePickerSizeComponent,
         TestXDatePickerBorderedComponent,
         TestXDatePickerBeforeAfterComponent,
-        TestXDatePickerTodayComponent
+        TestXDatePickerTodayComponent,
+        TestXDateRangeComponent
       ]
     }).compileComponents();
   }));
@@ -164,13 +165,25 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`today.`, () => {
+  describe(`today.`, () => {
     let fixture: ComponentFixture<TestXDatePickerTodayComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDatePickerTodayComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXDatePickerTodayComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`date-range.`, () => {
+    let fixture: ComponentFixture<TestXDateRangeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXDateRangeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXDateRangeComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -734,5 +747,33 @@ class TestXDatePickerTodayComponent {
       }
     }
   ];
+  constructor() {}
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-date-range></x-date-range>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row {
+        width: 25rem;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXDateRangeComponent {
   constructor() {}
 }

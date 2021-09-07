@@ -1,0 +1,14 @@
+// DateRange
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-date-range-prefix} {
+  display: inline-block;
+}
+
+.#{$--x-date-range-prefix} {
+  @include reset-component();
+  @include date-range();
+}
