@@ -26,6 +26,9 @@ $--x-date-picker-border: $--x-border-width $--x-border-style $--x-border;
 /* 边框圆角 */
 $--x-date-picker-border-radius: $--x-border-radius;
 
+/* 阴影 */
+$--x-date-picker-box-shadow: $--x-box-shadow transparent;
+
 /* 禁用颜色 */
 $--x-date-picker-disabled-color: $--x-text-500;
 
@@ -43,4 +46,7 @@ $--x-picker-month-prefix: $--x-prefix + '-picker-month';
 
 $--x-picker-year-prefix: $--x-prefix + '-picker-year';
 
-$--x-date-range-prefix: $--x-prefix + '-range';
+$--x-date-range-prefix: $--x-prefix + '-date-range';
+
+$--x-date-range-portal-prefix: $--x-prefix + '-date-range-portal';
+

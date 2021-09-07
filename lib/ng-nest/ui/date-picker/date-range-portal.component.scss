@@ -1,0 +1,9 @@
+// DateRange-Portal
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-date-range-portal-prefix} {
+  @include date-range-portal();
+}

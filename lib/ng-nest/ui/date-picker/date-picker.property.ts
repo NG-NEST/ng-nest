@@ -157,13 +157,25 @@ const X_CONFIG_Range_NAME = 'dateRange';
  * DateRange Property
  */
 @Component({ template: '' })
-export class XDateRangeProperty extends XControlValueAccessor<any> implements XDateRangeOption {}
+export class XDateRangeProperty extends XControlValueAccessor<any> implements XDateRangeOption {
+  /**
+   * @zh_CN tab 键控制次序
+   * @en_US Tab key control order
+   */
+  @Input() tabindex: number = 0;
+}
 
 /**
  * DateRange Option
  * @undocument true
  */
-export interface XDateRangeOption extends XFormOption {}
+export interface XDateRangeOption extends XFormOption {
+  /**
+   * @zh_CN tab 键控制次序
+   * @en_US Tab key control order
+   */
+  tabindex?: number;
+}
 
 /**
  * @zh_CN 快捷选择按钮
@@ -195,6 +207,13 @@ export type XDatePickerModelType = 'date' | 'number' | 'string';
  * @decorator component
  */
 export const XDatePickerPortalPrefix = 'x-date-picker-portal';
+
+/**
+ * DateRange Portal
+ * @selector x-date-range-portal
+ * @decorator component
+ */
+export const XDateRangePortalPrefix = 'x-date-range-portal';
 
 /**
  * PickerDate

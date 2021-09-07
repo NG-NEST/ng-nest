@@ -13,6 +13,8 @@ import { XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
   providers: [XValueAccessor(XDateRangeComponent), DatePipe]
 })
 export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges {
+  icon: string = 'fto-calendar';
+  isFocus = false;
   constructor(public renderer: Renderer2, public configService: XConfigService) {
     super();
   }

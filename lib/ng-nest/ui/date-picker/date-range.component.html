@@ -1,8 +1,10 @@
-<div #dateRange class="x-date-range">
+<div #dateRange class="x-date-range" [class.x-date-range-focus]="isFocus">
   <div class="x-date-range-row">
-    <x-input-group bordered="false">
-      <x-input #inputStartCom type="text"></x-input>
-      <x-input #inputEndCom type="text"></x-input>
+    <x-input-group class="x-date-range-group" bordered="false">
+      <x-input #inputStartCom type="text" placeholder="开始日期" (xFocus)="isFocus = true" (xBlur)="isFocus = false"></x-input>
+      <x-icon type="fto-arrow-right"></x-icon>
+      <x-input #inputEndCom type="text" placeholder="结束日期" (xFocus)="isFocus = true" (xBlur)="isFocus = false"></x-input>
+      <x-icon [type]="icon"></x-icon>
     </x-input-group>
   </div>
 </div>

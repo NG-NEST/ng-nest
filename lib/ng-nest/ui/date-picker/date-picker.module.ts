@@ -21,6 +21,7 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XDateRangeComponent } from './date-range.component';
+import { XDateRangePortalComponent } from './date-range-portal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { XDateRangeComponent } from './date-range.component';
     XPickerMonthProperty,
     XPickerYearProperty,
     XDateRangeComponent,
+    XDateRangePortalComponent,
     XDateRangeProperty
   ],
   exports: [
@@ -56,6 +58,6 @@ import { XDateRangeComponent } from './date-range.component';
     XI18nModule,
     XBaseFormModule
   ],
-  entryComponents: [XDatePickerPortalComponent]
+  entryComponents: [XDatePickerPortalComponent, XDateRangePortalComponent]
 })
 export class XDatePickerModule {}
