@@ -58,6 +58,7 @@ export interface XComponentConfig {
   footer?: XFooterConfig;
   crumb?: XCrumbComfig;
   datePicker?: XDatePickerConfig;
+  dateRange?: XDateRangeConfig;
   dialog?: XDialogConfig;
   drawer?: XDrawerConfig;
   dropdown?: XDropdownConfig;
@@ -230,6 +231,12 @@ export interface XCrumbComfig {
 }
 
 export interface XDatePickerConfig {
+  format?: string;
+  clearable?: XBoolean;
+  placement?: XCorner;
+}
+
+export interface XDateRangeConfig {
   format?: string;
   clearable?: XBoolean;
   placement?: XCorner;
