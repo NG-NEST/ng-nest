@@ -59,7 +59,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 输入最大长度
    * @en_US Enter the maximum length
    */
-  @Input() @XInputNumber() maxlength: XNumber = 0;
+  @Input() @XInputNumber() maxlength!: XNumber;
   /**
    * @zh_CN 值模板
    * @en_US Node template
