@@ -5,66 +5,7 @@
 @import './param';
 
 @mixin auto-complete {
-  flex: 1;
   width: 100%;
-  @include flex();
-  > label {
-    display: inline-block;
-    white-space: nowrap;
-    height: $--x-auto-complete-height;
-    line-height: $--x-auto-complete-height;
-    color: $--x-text-300;
-    font-weight: 600;
-    @include text-align();
-  }
-  > .#{$--x-auto-complete-prefix}-row {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-    > x-input {
-      flex: 1;
-    }
-  }
-  &.x-invalid,
-  &.x-required {
-    > label {
-      color: $--x-danger;
-    }
-  }
-  &.x-disabled {
-    > .#{$--x-auto-complete-prefix}-row {
-      > x-input {
-        > .x-input {
-          > .x-input-row {
-            > input {
-              cursor: not-allowed;
-            }
-          }
-        }
-      }
-    }
-  }
-  &.x-flex {
-    &.x-direction {
-      &-row {
-        > label {
-          padding: 0 0.5rem 0 0;
-        }
-      }
-      &-row-reverse {
-        > label {
-          padding: 0 0 0 0.5rem;
-        }
-      }
-      &-column {
-        align-items: inherit;
-      }
-      &-column-reverse {
-        align-items: inherit;
-      }
-    }
-  }
 }
 
 @mixin auto-complete-portal {

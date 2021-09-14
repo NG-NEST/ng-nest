@@ -49,7 +49,6 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.cdr.detectChanges();
   }
 
-  readonly = true;
   clearable: boolean = false;
   enter: boolean = false;
   displayValue: any = '';
@@ -286,6 +285,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         }
       }
     }
+  }
+
+  clearEmit() {
+    this.value = '';
+    this.displayValue = '';
+    this.valueChange.next(this.value);
+    this.modelChange(this.value);
   }
 
   formControlChanges() {

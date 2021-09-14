@@ -1,27 +1,39 @@
 <div
   #autoComplete
   class="x-auto-complete"
-  [class.x-flex]="justify || align || direction"
   [class.x-checked]="value"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <div class="x-auto-complete-row" (click)="showPortal()">
+  <div class="x-auto-complete-row">
     <x-input
       #inputCom
       type="text"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [labelAlign]="labelAlign"
+      [justify]="justify"
+      [align]="align"
+      [direction]="direction"
+      [disabled]="disabled"
+      [required]="required"
       [icon]="icon"
       [iconSpin]="iconSpin"
       [placeholder]="placeholder"
-      [required]="required"
-      [disabled]="disabled"
+      [readonly]="readonly"
+      [clearable]="clearable"
       [(ngModel)]="value"
+      [valueTpl]="valueTpl"
+      [valueTplContext]="valueTplContext"
+      [size]="size"
+      [bordered]="bordered"
+      [before]="before"
+      [after]="after"
+      (clearEmit)="clearEmit()"
       (xInput)="onInput($event)"
       (xKeydown)="onKeydown($event)"
       (xFocus)="onFocus($event)"
       (xBlur)="onBlur($event)"
+      (xClick)="showPortal()"
     ></x-input>
   </div>
 </div>
