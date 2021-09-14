@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize } from '@ng-nest/ui/core';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * 表单对象共有的参数
@@ -46,6 +46,30 @@ export class XFormProp extends XProperty {
    * 必填
    */
   @Input() @XInputBoolean() required: XBoolean = false;
+  /**
+   * 只读
+   */
+  @Input() @XInputBoolean() readonly: XBoolean = false;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  @Input() valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  @Input() valueTplContext: any;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() after!: XTemplate;
   /**
    * 正则验证规则
    */

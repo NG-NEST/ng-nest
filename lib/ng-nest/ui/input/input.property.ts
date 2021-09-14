@@ -36,11 +36,6 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable?: XBoolean;
   /**
-   * @zh_CN 只读
-   * @en_US Read only
-   */
-  @Input() @XInputBoolean() readonly: XBoolean = false;
-  /**
    * @zh_CN 图标
    * @en_US Icon
    */
@@ -61,16 +56,6 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() maxlength!: XNumber;
   /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  @Input() valueTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  @Input() valueTplContext: any;
-  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -80,16 +65,6 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Display Border
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
-  /**
-   * @zh_CN 前置标签
-   * @en_US Before label
-   */
-  @Input() before!: XTemplate;
-  /**
-   * @zh_CN 后置标签
-   * @en_US After label
-   */
-  @Input() after!: XTemplate;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
