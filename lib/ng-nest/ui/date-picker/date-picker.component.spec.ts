@@ -610,10 +610,10 @@ class TestXDatePickerBorderedComponent {
       <x-button icon="fto-search"></x-button>
     </ng-template>
     <ng-template #beforeInputTpl>
-      <x-date-picker [style.width.%]="30"></x-date-picker>
+      <x-input [style.width.%]="30"></x-input>
     </ng-template>
     <ng-template #afterInputTpl>
-      <x-date-picker [style.width.%]="30"></x-date-picker>
+      <x-input [style.width.%]="30"></x-input>
     </ng-template>
     <ng-template #beforeDatePickerTpl>
       <x-date-picker [style.width.%]="30"></x-date-picker>
