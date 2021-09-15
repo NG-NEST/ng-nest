@@ -1,0 +1,21 @@
+<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-row>
+  <x-col span="24">
+    <x-auto-complete [size]="size" [data]="data"></x-auto-complete>
+  </x-col>
+  <x-col span="24">
+    <x-auto-complete [size]="size" [data]="data" label="Name" direction="row" maxlength="50"></x-auto-complete>
+  </x-col>
+  <x-col span="24">
+    <x-auto-complete [size]="size" [data]="data" label="Name" direction="column" maxlength="50"></x-auto-complete>
+  </x-col>
+  <x-col span="24">
+    <x-auto-complete [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-auto-complete>
+  </x-col>
+  <x-col span="24">
+    <x-auto-complete required clearable [data]="data" [size]="size"></x-auto-complete>
+  </x-col>
+  <x-col span="24">
+    <x-auto-complete disabled [size]="size" [data]="data"></x-auto-complete>
+  </x-col>
+</x-row>

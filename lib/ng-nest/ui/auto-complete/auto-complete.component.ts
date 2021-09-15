@@ -175,7 +175,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     if (!XIsEmpty(this.value)) {
       this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
     }
-    this.box = this.inputCom.inputElement.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.box.width,
@@ -240,7 +240,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputElement,
+      elementRef: this.inputCom.inputRef,
       placement: [this.placement as XPositionTopBottom, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-auto-complete-portal'
     });
