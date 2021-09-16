@@ -1,4 +1,4 @@
-<div #datePicker class="x-date-picker" [class.x-required-show]="getRequired">
+<div #datePicker class="x-date-picker">
   <div class="x-date-picker-row">
     <x-input
       #inputCom
@@ -22,6 +22,8 @@
       [bordered]="bordered"
       [before]="before"
       [after]="after"
+      [pattern]="pattern"
+      [message]="message"
       (clearEmit)="clearEmit()"
       (xInput)="onInput()"
       (xClick)="showPortal()"

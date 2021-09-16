@@ -38,10 +38,6 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   numberValue!: number | string;
   isInput = false;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
   writeValue(value: any) {
     if (XIsDate(value)) {
       this.modelType = 'date';
