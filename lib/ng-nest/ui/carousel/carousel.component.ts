@@ -46,7 +46,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   ngAfterViewInit() {
-    this.resetInterval();
+    this.autoplay && this.resetInterval();
     XResize(this.content.nativeElement)
       .pipe(debounceTime(30), takeUntil(this._unSubject))
       .subscribe((x) => {

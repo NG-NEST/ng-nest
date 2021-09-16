@@ -31,7 +31,7 @@ describe(XCarouselPrefix, () => {
       declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXCarouselComponent>;
     let carousel: DebugElement;
     beforeEach(() => {
@@ -85,7 +85,7 @@ describe(XCarouselPrefix, () => {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-carousel height="12rem">
+      <x-carousel autoplay="false" height="12rem">
         <x-carousel-panel *ngFor="let item of list">
           <h3>{{ item }}</h3>
         </x-carousel-panel>
