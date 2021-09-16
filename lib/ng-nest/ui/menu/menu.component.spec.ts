@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
+import { interval } from 'rxjs';
 
 describe(XMenuPrefix, () => {
   beforeEach(async(() => {
@@ -1187,7 +1188,7 @@ export class TestMenuRoutesModule {}
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-menu [data]="data" (nodeClick)="nodeClick($event)" [portalMinWidth]="'10rem'"> </x-menu>
+      <x-menu [data]="data" (nodeClick)="nodeClick($event)" [(activatedId)]="activatedId" [portalMinWidth]="'10rem'"> </x-menu>
     </div>
   `,
   styles: [
@@ -1259,7 +1260,14 @@ class TestXMenuWindowsComponent {
       label: '帮助(H)'
     }
   ];
+  activatedId = '2';
   nodeClick($event: XMenuNode) {
     console.log($event);
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {
+    interval().subscribe(() => this.cdr.detectChanges());
+    setTimeout(() => (this.activatedId = '8'), 2000);
+    setTimeout(() => (this.activatedId = '7'), 3000);
   }
 }
