@@ -1,9 +1,4 @@
-<div
-  #autoComplete
-  class="x-auto-complete"
-  [class.x-checked]="value"
-  [class.x-invalid]="invalid"
->
+<div #autoComplete class="x-auto-complete">
   <div class="x-auto-complete-row">
     <x-input
       #inputCom
@@ -28,6 +23,8 @@
       [bordered]="bordered"
       [before]="before"
       [after]="after"
+      [pattern]="pattern"
+      [message]="message"
       (clearEmit)="clearEmit()"
       (xInput)="onInput($event)"
       (xKeydown)="onKeydown($event)"
