@@ -1,3 +1,61 @@
+## [12.0.6](https://github.com/NG-NEST/ng-nest/compare/12.0.5...12.0.6) (2021-09-17)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** fix param ([fec119a](https://github.com/NG-NEST/ng-nest/commit/fec119aca2338299c0fd84d7211e08c34fa8cc7f))
+* **module:button:** fix group style ([11fc16a](https://github.com/NG-NEST/ng-nest/commit/11fc16a536240ae4e85fc4cbb1bef963fba0a4ef))
+* **module:carousel:** fix autoplay not effective ([5fe0932](https://github.com/NG-NEST/ng-nest/commit/5fe09328ef7d609cc6bdba8a21e5a6ce24580a8a))
+* **module:color-picker:** fix style issues ([de75d87](https://github.com/NG-NEST/ng-nest/commit/de75d87d1acde1460f167335b59164fa2996edd2))
+* **module:date-picker:** fix format date ([27bbb73](https://github.com/NG-NEST/ng-nest/commit/27bbb735be7127958671183f2821306a457befa5))
+* **module:date-picker:** fix param ([925c3fb](https://github.com/NG-NEST/ng-nest/commit/925c3fb03fea99fdecb50512db29aa1bbfc75cb5))
+* **module:input:** adjust structure ([caf82b6](https://github.com/NG-NEST/ng-nest/commit/caf82b695c7c6cf81550e1d1e124824ac6f8f068))
+* **module:input:** fix maxlength ([0f472fb](https://github.com/NG-NEST/ng-nest/commit/0f472fb8c74d9fd0716e8f0ac66d0a2dd8c1b0cb))
+* **module:menu:** fix activatedId when layout is row ([9cbe3b8](https://github.com/NG-NEST/ng-nest/commit/9cbe3b83f72e69fbb0204c8afc307ffea35a0348))
+* **module:message-box:** fix sure disabled ([355d00c](https://github.com/NG-NEST/ng-nest/commit/355d00cdeaf24ba017a91a5d52017512bf00cc63))
+
+
+### Features
+
+* **input:module:** add focus function ([6cc5d4e](https://github.com/NG-NEST/ng-nest/commit/6cc5d4ed7b277e765430b2fdde50b5f3f5fdd123)), closes [#174](https://github.com/NG-NEST/ng-nest/issues/174)
+* **module:auto-complete:** update form feature ([3bd398d](https://github.com/NG-NEST/ng-nest/commit/3bd398de1bdbba2c59f15740e2f656f61a7b2966))
+* **module:date-picker:** add after and before property ([56adcf8](https://github.com/NG-NEST/ng-nest/commit/56adcf863fc44bc98228e9c5866eda6eef230fea))
+* **module:date-picker:** add bordered ([85896cc](https://github.com/NG-NEST/ng-nest/commit/85896cc0f1a24f172100b8a82f4559dbf262d3c3)), closes [#67](https://github.com/NG-NEST/ng-nest/issues/67)
+* **module:date-picker:** add custom preset button ([85c0933](https://github.com/NG-NEST/ng-nest/commit/85c09336abf67bde93e317d082888b9300e85669)), closes [#54](https://github.com/NG-NEST/ng-nest/issues/54)
+* **module:date-picker:** add date range ([dd1328c](https://github.com/NG-NEST/ng-nest/commit/dd1328c20f0c15ef8cc8c74f6feef4c768d9be3a)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+* **module:date-picker:** add date range param ([7aee306](https://github.com/NG-NEST/ng-nest/commit/7aee3060946285ed982e11d5ff508ae585545482)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+* **module:date-picker:** add date range portal ([2cc33f6](https://github.com/NG-NEST/ng-nest/commit/2cc33f679924e25bab54c9ae69f1d465b9a572cd)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+* **module:date-picker:** add size ([f0ed857](https://github.com/NG-NEST/ng-nest/commit/f0ed8576d297aa54b0f63a01cd633ff20502d7bf)), closes [#66](https://github.com/NG-NEST/ng-nest/issues/66)
+* **module:date-picker:** add today ([ba20cfc](https://github.com/NG-NEST/ng-nest/commit/ba20cfcad2c38aacd57e3e4199196fca84aad2bc))
+* **module:date-picker:** add yesterday and tomorrow ([187ac05](https://github.com/NG-NEST/ng-nest/commit/187ac05de78f738f1122ce82659d15e5be6e79f8)), closes [#53](https://github.com/NG-NEST/ng-nest/issues/53)
+* **module:input:** add before and after label ([08fa630](https://github.com/NG-NEST/ng-nest/commit/08fa630464d8bf42f3e4fa5160e8ca93f0195e05)), closes [#68](https://github.com/NG-NEST/ng-nest/issues/68)
+* **module:input:** add bordered ([c7a61a6](https://github.com/NG-NEST/ng-nest/commit/c7a61a62ea88530e5a8dda56118cde50855f1425)), closes [#71](https://github.com/NG-NEST/ng-nest/issues/71)
+* **module:input:** add input group ([d7f6667](https://github.com/NG-NEST/ng-nest/commit/d7f666798144161dd04da74a7b8cb6e694e9eb91)), closes [#70](https://github.com/NG-NEST/ng-nest/issues/70)
+* **module:input:** add input size ([f76bc6a](https://github.com/NG-NEST/ng-nest/commit/f76bc6a0b896ab39a57ea6326fcd1a8ecb4776ca)), closes [#69](https://github.com/NG-NEST/ng-nest/issues/69)
+* **module:input:** add select and button ([00aafe6](https://github.com/NG-NEST/ng-nest/commit/00aafe62b42fc46734c8d44f76ecc1a24e7cbc8b)), closes [#68](https://github.com/NG-NEST/ng-nest/issues/68)
+* **module:input:** before/after support more components ([7818342](https://github.com/NG-NEST/ng-nest/commit/7818342a6ada94fb57d97e2268e9e8889c4064f6)), closes [#68](https://github.com/NG-NEST/ng-nest/issues/68)
+* **module:input:** input group add more component ([4d51a10](https://github.com/NG-NEST/ng-nest/commit/4d51a104a29c09265b8a02b9038bef8d9d15cb12)), closes [#70](https://github.com/NG-NEST/ng-nest/issues/70)
+* **module:input:** input-group add select and date-picker ([703cb65](https://github.com/NG-NEST/ng-nest/commit/703cb6548a06afb0df3c92ac3f693bd527351890)), closes [#70](https://github.com/NG-NEST/ng-nest/issues/70)
+
+
+
+## [12.0.5](https://github.com/NG-NEST/ng-nest/compare/12.0.4...12.0.5) (2021-08-15)
+
+
+### Bug Fixes
+
+* **module:dialog:** scroll disabled ([82673bb](https://github.com/NG-NEST/ng-nest/commit/82673bbe8f4d28f3d0f012d7b0e435eb53a7521c))
+
+
+### Features
+
+* **module:description:** add border ([30017fa](https://github.com/NG-NEST/ng-nest/commit/30017fabed757186a08d7c30127ee25d1355bef2)), closes [#132](https://github.com/NG-NEST/ng-nest/issues/132)
+* **module:description:** add description component ([a6e868c](https://github.com/NG-NEST/ng-nest/commit/a6e868c3145269ee43894665a092deb2ce26ddd7)), closes [#132](https://github.com/NG-NEST/ng-nest/issues/132)
+* **module:description:** add grid layout ([1afbbd5](https://github.com/NG-NEST/ng-nest/commit/1afbbd5395d037b495330bbf1f942851468e3d98)), closes [#132](https://github.com/NG-NEST/ng-nest/issues/132)
+* **module:description:** add size ([390255d](https://github.com/NG-NEST/ng-nest/commit/390255db516f9c1bd91503e18433ab3af4ff11c8)), closes [#132](https://github.com/NG-NEST/ng-nest/issues/132)
+
+
+
 ## [12.0.4](https://github.com/NG-NEST/ng-nest/compare/12.0.3...12.0.4) (2021-07-07)
 
 
