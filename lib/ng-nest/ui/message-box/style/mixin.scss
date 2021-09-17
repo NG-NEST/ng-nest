@@ -16,8 +16,11 @@
   }
   &-content {
     display: inline-flex;
-    form {
+    > form {
       width: 100%;
+      > x-input {
+        width: 100%;
+      }
     }
   }
 }
