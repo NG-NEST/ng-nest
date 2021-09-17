@@ -73,7 +73,7 @@ export class XFormProp extends XProperty {
   /**
    * 正则验证规则
    */
-  @Input() pattern?: RegExp | RegExp[];
+  @Input() pattern?: any;
   /**
    * 验证不通过提示文字
    */

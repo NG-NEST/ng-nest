@@ -78,7 +78,7 @@ describe(XButtonPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`group.`, () => {
+  fdescribe(`group.`, () => {
     let fixture: ComponentFixture<TestXButtonGroupComponent>;
     let debugElement: DebugElement;
     let element: Element;

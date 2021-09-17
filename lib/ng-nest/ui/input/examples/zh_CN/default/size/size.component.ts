@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { XSize } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-size',
@@ -7,5 +8,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExSizeComponent {
   radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size = 'medium';
+  size: XSize = 'medium';
 }

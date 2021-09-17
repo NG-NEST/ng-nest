@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
-import { XData } from '@ng-nest/ui/core';
+import { XData, XSize } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-size',
@@ -9,6 +9,6 @@ import { XData } from '@ng-nest/ui/core';
 })
 export class ExSizeComponent {
   radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size = 'medium';
+  size: XSize = 'medium';
   data: XData<XAutoCompleteNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 }

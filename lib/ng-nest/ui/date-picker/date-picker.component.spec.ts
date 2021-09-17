@@ -166,7 +166,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`today.`, () => {
+  fdescribe(`today.`, () => {
     let fixture: ComponentFixture<TestXDatePickerTodayComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -178,7 +178,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`date-range.`, () => {
+  describe(`date-range.`, () => {
     let fixture: ComponentFixture<TestXDateRangeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
