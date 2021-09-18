@@ -6,70 +6,6 @@
 
 @mixin cascade {
   width: 100%;
-  @include flex();
-  > label {
-    display: inline-block;
-    height: $--x-cascade-height;
-    line-height: $--x-cascade-height;
-    color: $--x-text-300;
-    font-weight: 600;
-    @include text-align();
-  }
-  > .#{$--x-cascade-prefix}-row {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-    > x-input {
-      flex: 1;
-      > .x-input {
-        > .x-input-row {
-          > input {
-            cursor: pointer;
-          }
-        }
-      }
-    }
-  }
-  &.x-invalid,
-  &.x-required {
-    > label {
-      color: $--x-danger;
-    }
-  }
-  &.x-disabled {
-    > .#{$--x-cascade-prefix}-row {
-      > x-input {
-        > .x-input {
-          > .x-input-row {
-            > input {
-              cursor: not-allowed;
-            }
-          }
-        }
-      }
-    }
-  }
-  &.x-flex {
-    &.x-direction {
-      &-row {
-        > label {
-          padding: 0 0.5rem 0 0;
-        }
-      }
-      &-row-reverse {
-        > label {
-          padding: 0 0 0 0.5rem;
-        }
-      }
-      &-column {
-        align-items: inherit;
-      }
-      &-column-reverse {
-        align-items: inherit;
-      }
-    }
-  }
 }
 
 @mixin cascade-portal {
@@ -81,10 +17,12 @@
   box-shadow: $--x-box-shadow-light;
   background-color: $--x-background;
   display: flex;
-  > x-list:not(:first-child) {
-    border-left: $--x-border-width solid $--x-border;
+  > x-list {
     .x-list-option {
       min-width: 8rem;
+    }
+    &:not(:first-child) {
+      border-left: $--x-border-width solid $--x-border;
     }
   }
 }

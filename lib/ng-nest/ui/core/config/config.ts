@@ -149,6 +149,8 @@ export interface XAvatarConfig {
 export interface XAutoCompleteConfig {
   placement?: XPositionTopBottom;
   debounceTime?: number;
+  size?: XSize;
+  bordered?: boolean;
 }
 
 export interface XBackTopConfig {
@@ -189,6 +191,8 @@ export interface XCarouselConfig {
 
 export interface XCascadeConfig {
   placement?: XCorner;
+  size?: XSize;
+  bordered?: boolean;
 }
 
 export interface XCheckboxConfig {
@@ -234,6 +238,8 @@ export interface XDatePickerConfig {
   format?: string;
   clearable?: XBoolean;
   placement?: XCorner;
+  size?: XSize;
+  bordered?: boolean;
 }
 
 export interface XDateRangeConfig {

@@ -72,16 +72,6 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
-   * @zh_CN 前置标签
-   * @en_US Before label
-   */
-  @Input() before!: XTemplate;
-  /**
-   * @zh_CN 后置标签
-   * @en_US After label
-   */
-  @Input() after!: XTemplate;
-  /**
    * @zh_CN 快捷选择按钮，支持今天,昨天,明天
    * @en_US Quick selection button, support today, yesterday, tomorrow
    */
