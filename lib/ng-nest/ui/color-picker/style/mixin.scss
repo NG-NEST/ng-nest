@@ -6,96 +6,14 @@
 
 @mixin color-picker {
   width: 100%;
-  @include flex();
-  > label {
-    display: inline-block;
-    height: $--x-color-picker-height;
-    line-height: $--x-color-picker-height;
-    color: $--x-text-300;
-    font-weight: 600;
-    @include text-align();
-  }
-  > .#{$--x-color-picker-prefix}-row {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background-color: $--x-background-a100;
-    > x-input {
-      flex: 1;
-      position: relative;
-      x-icon {
-        display: none;
-      }
-      > .x-input {
-        color: transparent;
-        > .x-input-row {
-          > input {
-            cursor: pointer;
-            background-color: transparent;
-            color: transparent;
-          }
-        }
-      }
-    }
-  }
   &-value {
     position: absolute;
-    width: calc(100% - 0.25rem);
-    height: calc(100% - 0.25rem);
-    top: 0.125rem;
-    left: 0.125rem;
     background-image: $--x-color-picker-transparent;
     cursor: pointer;
     z-index: 1;
     > div {
       width: 100%;
       height: 100%;
-    }
-  }
-  &.x-required {
-    &.x-required-show {
-      > label {
-        color: $--x-danger;
-      }
-    }
-  }
-  &.x-disabled {
-    > .#{$--x-color-picker-prefix}-row {
-      background-color: $--x-background-a100;
-      border-radius: $--x-color-picker-border-radius;
-      > x-input {
-        > .x-input {
-          > .x-input-row {
-            > input {
-              cursor: not-allowed;
-            }
-          }
-        }
-      }
-      > .#{$--x-color-picker-prefix}-value {
-        cursor: not-allowed;
-      }
-    }
-  }
-  &.x-flex {
-    &.x-direction {
-      &-row {
-        > label {
-          padding: 0 0.5rem 0 0;
-        }
-      }
-      &-row-reverse {
-        > label {
-          padding: 0 0 0 0.5rem;
-        }
-      }
-      &-column {
-        align-items: inherit;
-      }
-      &-column-reverse {
-        align-items: inherit;
-      }
     }
   }
 }

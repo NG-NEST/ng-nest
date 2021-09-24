@@ -1,4 +1,4 @@
-import { XCorner, XWithConfig } from '@ng-nest/ui/core';
+import { XBoolean, XCorner, XInputBoolean, XSize, XWithConfig } from '@ng-nest/ui/core';
 import { Component, Input } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -21,6 +21,16 @@ export class XColorPickerProperty extends XControlValueAccessor<string> implemen
    * @en_US Display position
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
 }
 
 /**

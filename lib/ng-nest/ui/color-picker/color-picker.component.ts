@@ -31,10 +31,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
-  }
-
   writeValue(value: string) {
     this.value = value;
     this.displayValue = value;
@@ -47,6 +43,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   enter: boolean = false;
   animating = false;
   displayValue: string = '';
+  valueStyle: { [key: string]: string | number } = {};
   portal!: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon: string = 'fto-chevron-down';
   box!: DOMRect;
@@ -78,6 +75,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   ngAfterViewInit() {
     this.setPortal();
+    // this.setValueStyle();
   }
 
   ngOnDestroy(): void {
@@ -89,6 +87,19 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.closePortal();
     });
+  }
+
+  setValueStyle() {
+    this.valueStyle = {
+      width: `${this.inputCom.inputRef.nativeElement.clientWidth}px`,
+      height: `${this.inputCom.inputRef.nativeElement.clientHeight}px`
+    };
+    if (this.direction === 'column') {
+      this.valueStyle.bottom = 0;
+    }
+    if (this.direction === 'row') {
+      this.valueStyle.bottom = 0;
+    }
   }
 
   menter() {
@@ -191,7 +202,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputElement,
+      elementRef: this.inputCom.inputRef,
       placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-color-picker-portal'
     });
