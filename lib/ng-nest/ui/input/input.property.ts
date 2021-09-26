@@ -66,6 +66,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  @Input() inputStyle!: { [style: string]: any };
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */
