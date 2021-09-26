@@ -1,8 +1,5 @@
 <div #colorPicker class="x-color-picker">
   <div class="x-color-picker-row">
-    <!-- <div class="x-color-picker-value" [ngStyle]="valueStyle" *ngIf="value">
-      <div [style.background-color]="value"></div>
-    </div> -->
     <x-input
       #inputCom
       type="text"
@@ -27,6 +24,7 @@
       [after]="after"
       [pattern]="pattern"
       [message]="message"
+      [inputStyle]="inputStyle"
       (clearEmit)="clearEmit()"
       (xClick)="showPortal()"
       (xMouseenter)="menter()"

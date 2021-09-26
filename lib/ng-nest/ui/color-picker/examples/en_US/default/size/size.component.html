@@ -1,0 +1,21 @@
+<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-row>
+  <x-col span="24">
+    <x-color-picker [size]="size"></x-color-picker>
+  </x-col>
+  <x-col span="24">
+    <x-color-picker [size]="size" label="Color" direction="row" maxlength="50"></x-color-picker>
+  </x-col>
+  <x-col span="24">
+    <x-color-picker [size]="size" label="Color" direction="column" maxlength="50"></x-color-picker>
+  </x-col>
+  <x-col span="24">
+    <x-color-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-color-picker>
+  </x-col>
+  <x-col span="24">
+    <x-color-picker required clearable [size]="size"></x-color-picker>
+  </x-col>
+  <x-col span="24">
+    <x-color-picker disabled [size]="size"></x-color-picker>
+  </x-col>
+</x-row>

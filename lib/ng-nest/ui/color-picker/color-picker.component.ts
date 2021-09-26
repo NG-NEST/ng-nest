@@ -38,6 +38,13 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     this.cdr.detectChanges();
   }
 
+  get inputStyle() {
+    return {
+      backgroundColor: this.value,
+      color: "transparent"
+    }
+  }
+
   readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;

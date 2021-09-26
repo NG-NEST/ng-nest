@@ -10,16 +10,19 @@ import { XColorPickerPrefix } from './color-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XColorPickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,
         TestXColorPickerDisabledComponent,
-        TestXColorPickerRequiredComponent
+        TestXColorPickerRequiredComponent,
+        TestXColorPickerSizeComponent,
+        TestXColorPickerBorderedComponent
       ]
     }).compileComponents();
   }));
@@ -66,6 +69,30 @@ describe(XColorPickerPrefix, () => {
       fixture = TestBed.createComponent(TestXColorPickerRequiredComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXColorPickerRequiredComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`size.`, () => {
+    let fixture: ComponentFixture<TestXColorPickerSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXColorPickerSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXColorPickerComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXColorPickerBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXColorPickerBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXColorPickerComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -241,4 +268,96 @@ class TestXColorPickerRequiredComponent {
       this.cdr.detectChanges();
     });
   }
+}
+
+@Component({
+  template: `
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-color-picker [size]="size"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker [size]="size" label="用户名" direction="row" maxlength="50"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker [size]="size" label="用户名" direction="column" maxlength="50"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker required clearable [size]="size"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker disabled [size]="size"></x-color-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-color-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXColorPickerSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-color-picker placeholder="请选择日期" bordered="false"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker placeholder="请选择日期" bordered="false"></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker placeholder="请选择日期" bordered="false" required></x-color-picker>
+      </x-col>
+      <x-col span="24">
+        <x-color-picker placeholder="没有边框" bordered="false" disabled></x-color-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-color-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXColorPickerBorderedComponent {
+  constructor() {}
 }
