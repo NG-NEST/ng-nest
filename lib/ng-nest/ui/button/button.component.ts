@@ -11,7 +11,7 @@ import {
   ElementRef,
   Renderer2
 } from '@angular/core';
-import { XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService, XClearClass } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
 import { XButtonsComponent } from './buttons.component';
 
@@ -41,9 +41,11 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   ngOnChanges(changes: SimpleChanges): void {
     if (XIsChange(changes.loading)) this.disabled = this.loading;
     XIsChange(changes.disabled, changes.activated) && this.cdr.detectChanges();
+    XIsChange(changes.type, changes.plain, changes.size, changes.direction) && this.setClassMap();
   }
 
   setClassMap() {
+    XClearClass(this.classMap);
     this.classMap = {
       [`${XButtonPrefix}-${this.type}`]: !XIsEmpty(this.type) && XIsEmpty(this.plain),
       [`${XButtonPrefix}-${this.type}-plain`]: !XIsEmpty(this.type) && !XIsEmpty(this.plain),

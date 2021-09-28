@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
 import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -101,6 +101,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   ngOnChanges(simples: SimpleChanges) {
     XIsChange(simples.tableData) && this.setTableCheckedRow();
+    XIsChange(simples.labelAlign, simples.size) && this.setClassMap();
   }
 
   ngOnInit() {
@@ -119,8 +120,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   setClassMap() {
-    XClearClass(this.labelMap);
+    XClearClass(this.labelMap, this.classMap);
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
+    this.classMap[`x-find-${this.size}`] = !XIsEmpty(this.size);
   }
 
   setSubscribe() {

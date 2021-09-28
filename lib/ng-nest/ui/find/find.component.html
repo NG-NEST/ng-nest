@@ -6,18 +6,24 @@
   [class.x-disabled]="disabled"
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
+  [ngClass]="classMap"
 >
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-find-row">
-    <x-button #buttonCom icon="fto-search" [disabled]="disabled" (click)="showModal()"></x-button>
+    <x-button #buttonCom icon="fto-search" [size]="size" [disabled]="disabled" (click)="showModal()"></x-button>
     <div class="x-find-tags">
       <ng-container *ngIf="multiple; else singleTpl">
-        <x-tag *ngFor="let item of value; index as i; trackBy: trackByItem" closable [disabled]="disabled" (close)="tagClose(i)">{{
-          item[columnLabel]
-        }}</x-tag>
+        <x-tag
+          *ngFor="let item of value; index as i; trackBy: trackByItem"
+          closable
+          [size]="size"
+          [disabled]="disabled"
+          (close)="tagClose(i)"
+          >{{ item[columnLabel] }}</x-tag
+        >
       </ng-container>
       <ng-template #singleTpl>
-        <x-tag *ngIf="value" closable [disabled]="disabled" (close)="tagClose()">{{ value[columnLabel] }}</x-tag>
+        <x-tag *ngIf="value" closable [disabled]="disabled" [size]="size" (close)="tagClose()">{{ value[columnLabel] }}</x-tag>
       </ng-template>
     </div>
   </div>
@@ -54,8 +60,8 @@
     </div>
     <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>
       <div class="x-find-search" *ngIf="hasSearch">
-        <x-input [label]="search.label" direction="row" (xKeydown)="searchKeyDown($event);" [(ngModel)]="search.value"></x-input>
-        <x-button type="primary" plain (click)="searchClick()">{{search.button || '查询'}}</x-button>
+        <x-input [label]="search.label" direction="row" (xKeydown)="searchKeyDown($event)" [(ngModel)]="search.value"></x-input>
+        <x-button type="primary" plain (click)="searchClick()">{{ search.button || '查询' }}</x-button>
       </div>
       <x-table
         #tableCom

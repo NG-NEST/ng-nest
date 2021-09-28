@@ -284,6 +284,8 @@ export interface XEmptyConfig {
 }
 
 export interface XFindConfig {
+  size?: XSize;
+  bordered?: XBoolean;
   columnLabel?: string;
   dialogTitle?: string;
   dialogButtonsCenter?: XBoolean;

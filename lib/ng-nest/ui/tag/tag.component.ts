@@ -1,6 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  SimpleChanges
+} from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTagPrefix}`,
@@ -23,7 +32,12 @@ export class XTagComponent extends XTagProperty implements OnInit {
     this.setClassMap();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    XIsChange(changes.type, changes.size, changes.dark) && this.setClassMap();
+  }
+
   setClassMap() {
+    XClearClass(this.classMap);
     this.classMap = {
       [`${XTagPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`${XTagPrefix}-${this.size}`]: !XIsEmpty(this.size),

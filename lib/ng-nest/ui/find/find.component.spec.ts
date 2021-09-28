@@ -14,15 +14,22 @@ import { Observable } from 'rxjs';
 import { orderBy, map, cloneDeep } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XFindPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule],
-      declarations: [TestXFindComponent, TestXFindLabelComponent, TestXFindDisabledComponent, TestXFindFunctionComponent]
+      imports: [BrowserAnimationsModule, XThemeModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      declarations: [
+        TestXFindComponent,
+        TestXFindLabelComponent,
+        TestXFindDisabledComponent,
+        TestXFindFunctionComponent,
+        TestXFindSizeComponent
+      ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFindComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -65,6 +72,18 @@ describe(XFindPrefix, () => {
       fixture = TestBed.createComponent(TestXFindDisabledComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXFindDisabledComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`size.`, () => {
+    let fixture: ComponentFixture<TestXFindSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXFindSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXFindComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -536,4 +555,57 @@ class TestXFindLabelComponent {
 })
 class TestXFindDisabledComponent {
   model = { id: 10, label: '姓名1' };
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-find [size]="size"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find [size]="size" label="用户名" direction="row" maxlength="50"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find [size]="size" label="用户名" maxlength="50"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find [size]="size" [(ngModel)]="model" multiple></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find disabled [size]="size"></x-find>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-find {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXFindSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  model = [
+    { id: 1, label: '姓名1' },
+    { id: 2, label: '姓名2' }
+  ];
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
 }

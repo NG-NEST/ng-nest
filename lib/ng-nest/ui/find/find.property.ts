@@ -1,4 +1,16 @@
-import { XInputBoolean, XBoolean, XDataConvert, XData, XInputNumber, XNumber, XSort, XQuery, XWithConfig, XFilter } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XBoolean,
+  XDataConvert,
+  XData,
+  XInputNumber,
+  XNumber,
+  XSort,
+  XQuery,
+  XWithConfig,
+  XFilter,
+  XSize
+} from '@ng-nest/ui/core';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { XTreeNode } from '@ng-nest/ui/tree';
@@ -22,6 +34,16 @@ export interface XFindSearchOption extends XFilter {
  */
 @Component({ template: '' })
 export class XFindProperty extends XControlValueAccessor<any | any[]> implements XFindOption {
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
    * @zh_CN 多选
    * @en_US Multiple choice
@@ -210,6 +232,16 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
  * @undocument true
  */
 export interface XFindOption extends XFormOption {
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: XBoolean;
   /**
    * @zh_CN 多选
    * @en_US Multiple select
