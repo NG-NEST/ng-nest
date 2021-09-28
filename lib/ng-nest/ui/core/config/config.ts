@@ -463,6 +463,7 @@ export interface XTabsConfig {
 
 export interface XTagConfig {
   size?: XSize;
+  bordered?: XBoolean;
   closable?: XBoolean;
   dark?: XBoolean;
 }

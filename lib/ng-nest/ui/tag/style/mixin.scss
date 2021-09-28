@@ -14,6 +14,7 @@
   padding: 0 0.65rem;
   white-space: nowrap;
   border: $--x-border-width $--x-border-style;
+  border-width: 0;
   > .x-icon {
     position: relative;
     right: -0.25rem;
@@ -33,6 +34,9 @@
     > .x-icon:hover {
       background-color: rgba(255, 255, 255, 0.3);
     }
+  }
+  &-bordered {
+    border-width: $--x-border-width;
   }
   @include size('big', $--x-height-big, $--x-padding-big);
   @include size('large', $--x-height-large, $--x-padding-large);

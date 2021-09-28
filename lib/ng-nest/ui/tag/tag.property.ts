@@ -25,6 +25,11 @@ export class XTagProperty extends XProperty {
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
   /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
    * @zh_CN 显示关闭按钮
    * @en_US Show close button
    */

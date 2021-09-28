@@ -1,4 +1,4 @@
-<div #tag class="x-tag" [ngClass]="classMap" [class.x-disabled]="disabled">
+<div #tag class="x-tag" [ngClass]="classMap" [class.x-disabled]="disabled" [class.x-tag-bordered]="bordered">
   <ng-content></ng-content>
   <x-icon type="fto-x" *ngIf="closable" (click)="onClose()"></x-icon>
 </div>

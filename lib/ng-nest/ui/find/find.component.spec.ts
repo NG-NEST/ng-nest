@@ -25,7 +25,8 @@ describe(XFindPrefix, () => {
         TestXFindLabelComponent,
         TestXFindDisabledComponent,
         TestXFindFunctionComponent,
-        TestXFindSizeComponent
+        TestXFindSizeComponent,
+        TestXFindBorderedComponent
       ]
     }).compileComponents();
   }));
@@ -77,11 +78,23 @@ describe(XFindPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`size.`, () => {
+  describe(`size.`, () => {
     let fixture: ComponentFixture<TestXFindSizeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXFindSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXFindComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXFindBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXFindBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXFindComponent));
     });
@@ -566,10 +579,10 @@ class TestXFindDisabledComponent {
         <x-find [size]="size"></x-find>
       </x-col>
       <x-col span="24">
-        <x-find [size]="size" label="用户名" direction="row" maxlength="50"></x-find>
+        <x-find [size]="size" label="用户名" direction="row"></x-find>
       </x-col>
       <x-col span="24">
-        <x-find [size]="size" label="用户名" maxlength="50"></x-find>
+        <x-find [size]="size" label="用户名"></x-find>
       </x-col>
       <x-col span="24">
         <x-find [size]="size" [(ngModel)]="model" multiple></x-find>
@@ -608,4 +621,50 @@ class TestXFindSizeComponent {
     console.log($event);
     this.cdr.detectChanges();
   }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="24">
+        <x-find bordered="false"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find bordered="false" label="用户名" direction="row"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find bordered="false" label="用户名"></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find bordered="false" [(ngModel)]="model" multiple></x-find>
+      </x-col>
+      <x-col span="24">
+        <x-find bordered="false" disabled></x-find>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-input {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXFindBorderedComponent {
+  constructor() {}
+  model = [
+    { id: 1, label: '姓名1' },
+    { id: 2, label: '姓名2' }
+  ];
 }
