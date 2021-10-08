@@ -1,40 +1,53 @@
-<div
-  #inputNumber
-  class="x-input-number"
-  [class.x-flex]="justify || align || direction"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
->
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+<div #inputNumber class="x-input-number">
   <div class="x-input-number-row">
-    <x-button
-      class="x-input-number-reduce"
-      icon="fto-minus"
-      size="medium"
-      [disabled]="disabled || minDisabled"
-      (click)="!minDisabled && plus($event, step, false)"
-      (mousedown)="!minDisabled && down($event, step, false)"
-      (mouseup)="up($event)"
-    ></x-button>
-    <input
+    <ng-template #beforeButtonTpl>
+      <x-button
+        class="x-input-number-reduce"
+        icon="fto-minus"
+        [size]="size"
+        [disabled]="disabled || minDisabled"
+        (click)="!minDisabled && plus($event, step, false)"
+        (mousedown)="!minDisabled && down($event, step, false)"
+        (mouseup)="up($event)"
+      ></x-button>
+    </ng-template>
+    <x-input
       #inputEleRef
-      type="text"
-      [placeholder]="placeholder"
-      [required]="required"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [labelAlign]="labelAlign"
+      [justify]="justify"
+      [align]="align"
+      [direction]="direction"
       [disabled]="disabled"
+      [required]="required"
+      [icon]="icon"
+      [iconSpin]="iconSpin"
+      [placeholder]="placeholder"
+      [readonly]="readonly"
+      [clearable]="clearable"
       [(ngModel)]="displayValue"
       (ngModelChange)="change($event)"
-    />
-    <x-button
-      class="x-input-number-plus"
-      icon="fto-plus"
-      size="medium"
-      [disabled]="disabled || maxDisabled"
-      (click)="!maxDisabled && plus($event, step)"
-      (mousedown)="!maxDisabled && down($event, step)"
-      (mouseup)="up($event)"
-    ></x-button>
+      [valueTpl]="valueTpl"
+      [valueTplContext]="valueTplContext"
+      [size]="size"
+      [bordered]="bordered"
+      [before]="beforeButtonTpl"
+      [after]="afterButtonTpl"
+      [pattern]="pattern"
+      [message]="message"
+    ></x-input>
+    <ng-template #afterButtonTpl>
+      <x-button
+        class="x-input-number-plus"
+        icon="fto-plus"
+        [size]="size"
+        [disabled]="disabled || maxDisabled"
+        (click)="!maxDisabled && plus($event, step)"
+        (mousedown)="!maxDisabled && down($event, step)"
+        (mouseup)="up($event)"
+      ></x-button>
+    </ng-template>
     <ng-container *ngIf="invalid">
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>

@@ -4,6 +4,10 @@
 @import '../../style/mixins/index';
 @import './mixin';
 
+#{$--x-input-number-prefix} {
+  display: inline-block;
+}
+
 .#{$--x-input-number-prefix} {
   @include reset-component();
   @include input-number();

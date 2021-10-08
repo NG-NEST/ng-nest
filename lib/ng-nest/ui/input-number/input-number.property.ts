@@ -1,4 +1,4 @@
-import { XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XBoolean, XInputBoolean, XInputNumber, XNumber, XSize, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -8,6 +8,8 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XInputNumberPrefix = 'x-input-number';
+
+const X_CONFIG_NAME = 'inputNumber';
 
 /**
  * InputNumber Property
@@ -39,6 +41,16 @@ export class XInputNumberProperty extends XControlValueAccessor<any> implements 
    * @en_US Precision
    */
   @Input() @XInputNumber() precision: XNumber = 0;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
 }
 
 /**

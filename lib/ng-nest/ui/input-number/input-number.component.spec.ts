@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInputNumberComponent } from './input-number.component';
-import { Component, DebugElement } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,18 +9,20 @@ import { XInputNumberPrefix } from './input-number.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XInputNumberPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
         TestXInputNumberComponent,
         TestXInputNumberLabelComponent,
         TestXInputNumberLimitComponent,
         TestXInputNumberPrecisionComponent,
         TestXInputNumberDisabledComponent,
-        TestXInputNumberRequiredComponent
+        TestXInputNumberRequiredComponent,
+        TestXInputNumberSizeComponent
       ]
     }).compileComponents();
   }));
@@ -91,6 +93,18 @@ describe(XInputNumberPrefix, () => {
       fixture = TestBed.createComponent(TestXInputNumberRequiredComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberRequiredComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`size.`, () => {
+    let fixture: ComponentFixture<TestXInputNumberSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputNumberSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -289,3 +303,54 @@ class TestXInputNumberDisabledComponent {
   ]
 })
 class TestXInputNumberRequiredComponent {}
+
+@Component({
+  template: `
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-input-number [size]="size"></x-input-number>
+      </x-col>
+      <x-col span="24">
+        <x-input-number [size]="size" label="用户名" direction="row"></x-input-number>
+      </x-col>
+      <x-col span="24">
+        <x-input-number [size]="size" label="用户名" direction="column"></x-input-number>
+      </x-col>
+      <x-col span="24">
+        <x-input-number [size]="size" precision="2" step="0.1"></x-input-number>
+      </x-col>
+      <x-col span="24">
+        <x-input-number required [size]="size"></x-input-number>
+      </x-col>
+      <x-col span="24">
+        <x-input-number disabled [size]="size"></x-input-number>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-input-number {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXInputNumberSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
+}

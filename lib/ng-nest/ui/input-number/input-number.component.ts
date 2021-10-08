@@ -36,6 +36,9 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   maxDisabled: boolean = false;
   mousedown$!: Subscription;
   timer: any;
+  icon: string = '';
+  iconSpin = false;
+  clearable = false;
 
   @HostListener('document:mouseup', ['$event']) onMouseup(event: Event) {
     this.up(event);
