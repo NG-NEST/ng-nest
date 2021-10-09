@@ -326,7 +326,10 @@ export interface XInputGroupConfig {
   compact?: XBoolean;
 }
 
-export interface XInputNumberConfig {}
+export interface XInputNumberConfig {
+  size?: XSize;
+  bordered?: XBoolean;
+}
 
 export interface XColConfig {}
 

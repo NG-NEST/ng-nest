@@ -5,6 +5,7 @@
         class="x-input-number-reduce"
         icon="fto-minus"
         [size]="size"
+        [onlyIcon]="!bordered"
         [disabled]="disabled || minDisabled"
         (click)="!minDisabled && plus($event, step, false)"
         (mousedown)="!minDisabled && down($event, step, false)"
@@ -13,6 +14,7 @@
     </ng-template>
     <x-input
       #inputEleRef
+      class="x-input-number-input"
       [label]="label"
       [labelWidth]="labelWidth"
       [labelAlign]="labelAlign"
@@ -42,6 +44,7 @@
         class="x-input-number-plus"
         icon="fto-plus"
         [size]="size"
+        [onlyIcon]="!bordered"
         [disabled]="disabled || maxDisabled"
         (click)="!maxDisabled && plus($event, step)"
         (mousedown)="!maxDisabled && down($event, step)"

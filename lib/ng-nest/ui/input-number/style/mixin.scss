@@ -6,4 +6,9 @@
 
 @mixin input-number {
   width: 100%;
+  &-input {
+    input {
+      text-align: center;
+    }
+  }
 }
