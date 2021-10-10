@@ -1,3 +1,25 @@
+## [12.0.7](https://github.com/NG-NEST/ng-nest/compare/12.0.6...12.0.7) (2021-10-10)
+
+
+### Bug Fixes
+
+* **docs:** update docs ([8e4fe02](https://github.com/NG-NEST/ng-nest/commit/8e4fe022b57cce198c48bbb39069ff2b34b4a1e7))
+* **module:message-box:** fix inuput style ([fe66ecb](https://github.com/NG-NEST/ng-nest/commit/fe66ecb8da64b4b39611bc1d3f7e7755de9f3b2a))
+
+
+### Features
+
+* **module:cascade:** add size and bordered ([a764842](https://github.com/NG-NEST/ng-nest/commit/a7648427500df9a2c2650cc5d8a507904e1db76d)), closes [#51](https://github.com/NG-NEST/ng-nest/issues/51) [#52](https://github.com/NG-NEST/ng-nest/issues/52)
+* **module:color-picker:** add size and bordered ([dc0af45](https://github.com/NG-NEST/ng-nest/commit/dc0af451244c84a3d0ab891bfdd4946782f6c8ac))
+* **module:color-picker:** add size and bordered ([81cb40f](https://github.com/NG-NEST/ng-nest/commit/81cb40f17c12a9ad578f73708b317d9bfcc9555c))
+* **module:find:** add bordered param ([29d5c62](https://github.com/NG-NEST/ng-nest/commit/29d5c6228d4826d506e4fdaca06e149f0d8c2bfb))
+* **module:find:** add size param ([c4e158f](https://github.com/NG-NEST/ng-nest/commit/c4e158f65214ef7bcd9bc8db41869ce1aaf7116b))
+* **module:input:** add input style ([a90ca7f](https://github.com/NG-NEST/ng-nest/commit/a90ca7fdc1ad15cd79bd015f841eba49b52ed2c0))
+* **module:input-number:** add bordered param ([e8b4df4](https://github.com/NG-NEST/ng-nest/commit/e8b4df4696b0270169bf303b325a99fe8688790c)), closes [#75](https://github.com/NG-NEST/ng-nest/issues/75)
+* **module:input-number:** add size param ([459dff6](https://github.com/NG-NEST/ng-nest/commit/459dff69958fd5e7f83d03250b50b72285135c07)), closes [#74](https://github.com/NG-NEST/ng-nest/issues/74)
+
+
+
 ## [12.0.6](https://github.com/NG-NEST/ng-nest/compare/12.0.5...12.0.6) (2021-09-17)
 
 
