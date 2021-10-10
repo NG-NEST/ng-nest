@@ -113,7 +113,13 @@ ns-nav {
 ns-search {
   > section {
     width: $sider-width;
-    .x-auto-complete > .x-auto-complete-row > x-input > .x-input > .x-input-row > input {
+    x-auto-complete {
+      width: 100%;
+      x-input {
+        width: 100%;
+      }
+    }
+    .x-auto-complete > .x-auto-complete-row > x-input > .x-input > .x-input-row > .x-input-input > input {
       border-color: transparent;
       border-bottom: 0.0625rem solid $--x-border;
     }

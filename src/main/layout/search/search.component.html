@@ -2,7 +2,7 @@
   <x-auto-complete
     [data]="getSearchData"
     [debounceTime]="0"
-    (nodeClick)="pagaTo($event)"
+    (nodeEmit)="pagaTo($event)"
     placeholder="{{ 'header.search' | xI18n }}"
   ></x-auto-complete>
 </section>

@@ -32,6 +32,7 @@ export class SearchComponent {
   ) {}
 
   pagaTo(menu: Menu) {
+    console.log(menu)
     this.router.navigate([menu.router], { relativeTo: this.activatedRoute });
   }
 }
