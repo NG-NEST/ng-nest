@@ -426,6 +426,8 @@ export interface XResultConfig {}
 export interface XSelectConfig {
   placement?: XPositionTopBottom;
   clearable?: XBoolean;
+  size?: XSize;
+  bordered?: XBoolean;
 }
 
 export interface XSkeletonConfig {}

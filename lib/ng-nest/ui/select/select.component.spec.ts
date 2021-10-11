@@ -11,11 +11,12 @@ import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XSelectPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,
@@ -23,11 +24,13 @@ describe(XSelectPrefix, () => {
         TestXSelectDisabledComponent,
         TestXSelectRequiredComponent,
         TestXSelectMultipleComponent,
-        TestXSelectCustomNodeComponent
+        TestXSelectCustomNodeComponent,
+        TestXSelectBorderedComponent,
+        TestXSelectSizeComponent
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -104,6 +107,30 @@ describe(XSelectPrefix, () => {
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXSelectCustomNodeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`size.`, () => {
+    let fixture: ComponentFixture<TestXSelectSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXSelectBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXSelectBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XSelectComponent));
     });
@@ -406,4 +433,98 @@ class TestXSelectCustomNodeComponent {
   change(value: any) {
     console.log(value);
   }
+}
+
+@Component({
+  template: `
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-select [size]="size" [data]="data"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [size]="size" [data]="data" label="用户名" direction="row" maxlength="50"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [size]="size" [data]="data" label="用户名" direction="column" maxlength="50"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select required clearable [size]="size" [data]="data"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select disabled [size]="size" [data]="data"></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-select {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXSelectSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  data = data;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-select [data]="data" placeholder="请选择" bordered="false"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [data]="data" placeholder="请选择" bordered="false" label="日生:" direction="row"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [data]="data" placeholder="请选择" bordered="false"></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [data]="data" placeholder="请选择" bordered="false" required></x-select>
+      </x-col>
+      <x-col span="24">
+        <x-select [data]="data" placeholder="没有边框" bordered="false" disabled></x-select>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-select {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXSelectBorderedComponent {
+  data = data;
+  constructor() {}
 }

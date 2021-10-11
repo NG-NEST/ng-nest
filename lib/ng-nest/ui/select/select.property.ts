@@ -5,7 +5,8 @@ import {
   XData,
   XBoolean,
   XWithConfig,
-  XPositionTopBottom
+  XPositionTopBottom,
+  XSize
 } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -53,6 +54,16 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Node template
    */
   @Input() nodeTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
 }
 
 /**

@@ -1,30 +1,36 @@
-<div
-  #select
-  class="x-select"
-  [class.x-flex]="justify || align || direction"
-  [class.x-checked]="value"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
->
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <div class="x-select-row" (click)="showPortal()" (mouseenter)="menter()" (mouseleave)="mleave()">
+<div #select class="x-select">
+  <div class="x-select-row">
     <x-input
       #inputCom
       type="text"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [labelAlign]="labelAlign"
+      [justify]="justify"
+      [align]="align"
+      [direction]="direction"
+      [disabled]="disabled"
+      [required]="required"
       [icon]="icon"
       [iconSpin]="iconSpin"
       [placeholder]="placeholder"
-      [required]="required"
-      [disabled]="disabled"
       [readonly]="readonly"
       [clearable]="showClearable"
       [(ngModel)]="displayValue"
-      [valueTpl]="nodeTpl"
+      [valueTpl]="valueTpl"
       [valueTplContext]="valueTplContext"
+      [size]="size"
+      [bordered]="bordered"
+      [before]="before"
+      [after]="after"
+      [pattern]="pattern"
+      [message]="message"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
       (xFocus)="onFocus($event)"
+      (xClick)="showPortal()"
+      (xMouseenter)="menter()"
+      (xMouseleave)="mleave()"
     ></x-input>
   </div>
 </div>

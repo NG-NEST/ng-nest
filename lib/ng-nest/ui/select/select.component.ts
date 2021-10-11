@@ -220,7 +220,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
-    this.box = this.inputCom.inputElement.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.box.width,
@@ -289,7 +289,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputElement,
+      elementRef: this.inputCom.inputRef,
       placement: [this.placement as XPositionTopBottom, 'bottom', 'top'],
       transformOriginOn: 'x-select-portal'
     });
