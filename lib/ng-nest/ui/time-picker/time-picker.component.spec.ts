@@ -10,21 +10,24 @@ import { XTimePickerPrefix } from './time-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, XThemeModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
         TestXTimePickerComponent,
         TestXTimePickerLabelComponent,
         TestXTimePickerDisabledComponent,
         TestXTimePickerRequiredComponent,
-        TestXTimePickerHourOrMinuteComponent
+        TestXTimePickerHourOrMinuteComponent,
+        TestXTimePickerSizeComponent,
+        TestXTimePickerBorderedComponent
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -79,6 +82,30 @@ describe(XTimePickerPrefix, () => {
       fixture = TestBed.createComponent(TestXTimePickerHourOrMinuteComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXTimePickerHourOrMinuteComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  describe(`size.`, () => {
+    let fixture: ComponentFixture<TestXTimePickerSizeComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTimePickerSizeComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXTimePickerComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`bordered.`, () => {
+    let fixture: ComponentFixture<TestXTimePickerBorderedComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXTimePickerBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXTimePickerComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -270,4 +297,98 @@ class TestXTimePickerHourOrMinuteComponent {
       this.cdr.detectChanges();
     });
   }
+}
+
+@Component({
+  template: `
+    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
+    <x-row>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" [size]="size"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="row" maxlength="50"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="column" maxlength="50"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" required clearable [size]="size"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" disabled [size]="size"></x-time-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-time-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXTimePickerSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size = 'medium';
+  model: any;
+  constructor(private cdr: ChangeDetectorRef) {}
+  change($event: string) {
+    console.log($event);
+    this.cdr.detectChanges();
+  }
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" label="时间:" direction="row"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" required></x-time-picker>
+      </x-col>
+      <x-col span="24">
+        <x-time-picker [(ngModel)]="model" placeholder="没有边框" bordered="false" disabled></x-time-picker>
+      </x-col>
+    </x-row>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-time-picker {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXTimePickerBorderedComponent {
+  model: any;
+  constructor() {}
 }

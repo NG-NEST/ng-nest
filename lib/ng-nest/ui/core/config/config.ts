@@ -486,6 +486,8 @@ export interface XTimeAgoConfig {}
 export interface XTimePickerConfig {
   format?: string;
   placement?: XCorner;
+  size?: XSize;
+  bordered?: XBoolean;
 }
 
 export interface XTimeRangeConfig {}
