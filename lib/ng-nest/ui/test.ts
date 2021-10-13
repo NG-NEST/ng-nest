@@ -19,7 +19,7 @@ declare const require: {
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
-const files = ['./time-picker/time-picker.component.spec.ts'];
+const files = ['./tag/tag.component.spec.ts'];
 // And load the modules.
 context
   .keys()

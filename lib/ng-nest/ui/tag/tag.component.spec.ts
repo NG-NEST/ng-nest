@@ -140,6 +140,13 @@ describe(XTagPrefix, () => {
     <div class="row">
       <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{ tag }}</x-tag>
     </div>
+    <div class="row">
+      <x-tag bordered="false" size="large" closable disabled>标签</x-tag>
+      <x-tag bordered="false" size="medium" closable disabled>标签</x-tag>
+      <x-tag bordered="false" closable disabled>标签</x-tag>
+      <x-tag bordered="false" size="small" closable disabled>标签</x-tag>
+      <x-tag bordered="false" size="mini" closable disabled>标签</x-tag>
+    </div>
   `,
   styles: [
     `
