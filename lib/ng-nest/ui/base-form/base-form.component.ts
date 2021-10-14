@@ -53,7 +53,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
     this.disabled = disabled;
   }
   setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
-    setFlex(ele, renderer, justify, align, direction);
+    return setFlex(ele, renderer, justify, align, direction);
   }
 }
 

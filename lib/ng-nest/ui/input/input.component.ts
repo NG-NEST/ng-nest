@@ -42,6 +42,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   paddingLeft: number = 0.4;
   paddingRight: number = 0.4;
   clearShow: boolean = false;
+  flexClass: string[] = [];
   private _required: boolean = false;
   private _unSubject = new Subject();
 
@@ -77,7 +78,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   ngOnInit() {
     this.setPadding();
-    this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlexClass();
     this.setInheritedValue();
     this.setClassMap();
   }
@@ -85,6 +86,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   ngOnChanges(changes: SimpleChanges): void {
     XIsChange(changes.clearable) && this.setClearable();
     XIsChange(changes.size, changes.labelAlign) && this.setClassMap();
+    XIsChange(changes.justify, changes.align, changes.direction) && this.setFlexClass();
   }
 
   ngOnDestroy() {
@@ -112,6 +114,15 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     this.change(this.value);
     this.clearEmit.emit(clearValue);
     this.inputRef.nativeElement.focus();
+  }
+
+  setFlexClass() {
+    if (this.flexClass.length > 0) {
+      for (let cls of this.flexClass) {
+        this.renderer.removeClass(this.inputElement.nativeElement, cls);
+      }
+    }
+    this.flexClass = this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
   }
 
   setClearable() {

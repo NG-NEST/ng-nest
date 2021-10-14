@@ -36,7 +36,7 @@ describe(XFormPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`row`, () => {
+  fdescribe(`row`, () => {
     let fixture: ComponentFixture<TestXFormRowComponent>;
     let debugElement: DebugElement;
     let element: Element;
