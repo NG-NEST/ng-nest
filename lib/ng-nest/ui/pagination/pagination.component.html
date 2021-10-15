@@ -10,6 +10,15 @@
   <x-button [icon]="'fto-chevron-right'" [title]="'pagination.next' | xI18n" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>
   <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-right'" [disabled]="lastActivated" (click)="jump(lastIndex)"></x-button>
 </x-buttons>
+<x-select
+  *ngIf="showSize"
+  [style.width.px]="sizeWidth"
+  class="x-pagination-size"
+  [data]="sizeData"
+  clearable="false"
+  [(ngModel)]="size"
+  (ngModelChange)="sizeChanged()"
+></x-select>
 <x-button *ngIf="showTotal" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
   >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button
 >

@@ -60,6 +60,21 @@ export class XPaginationProperty extends XProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenBorder?: XBoolean;
   /**
+   * @zh_CN 显示分页条数
+   * @en_US Show size
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showSize?: XBoolean;
+  /**
+   * @zh_CN 分页条数的宽度
+   * @en_US size with
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 85) @XInputNumber() sizeWidth?: XNumber;
+  /**
+   * @zh_CN 分页条数的宽度
+   * @en_US size with
+   */
+  @Input() @XWithConfig<number[]>(X_CONFIG_NAME, [10, 20, 50, 100]) sizeData?: number[];
+  /**
    * @zh_CN 页码变化的事件
    * @en_US Page number change event
    */

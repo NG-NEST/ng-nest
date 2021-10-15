@@ -389,6 +389,9 @@ export interface XPaginationConfig {
   hiddenBorder?: boolean;
   showEllipsis?: boolean;
   showTotal?: boolean;
+  showSize?: boolean;
+  sizeWidth?: number;
+  sizeData?: number[];
 }
 
 export interface XPatternConfig {}

@@ -7,15 +7,16 @@ import { XPaginationModule } from '@ng-nest/ui/pagination';
 import { XPaginationPrefix } from './pagination.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XPaginationPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [XPaginationModule, XButtonModule],
+      imports: [BrowserAnimationsModule, XPaginationModule, XButtonModule],
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -29,7 +30,7 @@ describe(XPaginationPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`style.`, () => {
+  describe(`style.`, () => {
     let fixture: ComponentFixture<TestXPaginationStyleComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -65,7 +66,14 @@ describe(XPaginationPrefix, () => {
     <x-pagination [index]="index" [size]="size" [total]="70" (indexChange)="change($event)"></x-pagination>
     <x-pagination [index]="index" [size]="size" [total]="80" (indexChange)="change($event)"></x-pagination>
     <x-pagination [index]="index" [size]="size" [total]="90" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="100" (indexChange)="change($event)"></x-pagination>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      showSize
+      [sizeData]="[5, 10, 100]"
+      (indexChange)="change($event)"
+    ></x-pagination>
   `,
   styles: [
     `

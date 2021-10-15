@@ -69,6 +69,11 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     this._unSubject.unsubscribe();
   }
 
+  sizeChanged() {
+    this.setIndexes();
+    this.sizeChange.emit(this.size as number);
+  }
+
   setIndexes() {
     this.lastIndex = Math.ceil(Number(this.total) / Number(this.size)) || 1;
     const indexes: number[] = [];
