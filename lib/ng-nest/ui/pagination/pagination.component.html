@@ -1,14 +1,25 @@
 <x-buttons [space]="space" [hiddenBorder]="hiddenBorder">
-  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-left'" [disabled]="firstActivated" (click)="jump(1)"></x-button>
+  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-left'" [disabled]="disabled || firstActivated" (click)="jump(1)"></x-button>
   <x-button
     [icon]="'fto-chevron-left'"
     [title]="'pagination.previous' | xI18n"
-    [disabled]="leftDisabled"
+    [disabled]="disabled || leftDisabled"
     (click)="jump(-1, true)"
   ></x-button>
-  <x-button *ngFor="let item of indexes; trackBy: trackByItem" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
-  <x-button [icon]="'fto-chevron-right'" [title]="'pagination.next' | xI18n" [disabled]="rightDisabled" (click)="jump(1, true)"></x-button>
-  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-right'" [disabled]="lastActivated" (click)="jump(lastIndex)"></x-button>
+  <x-button
+    *ngFor="let item of indexes; trackBy: trackByItem"
+    [disabled]="disabled"
+    [activated]="getActivated(item)"
+    (click)="jump(item)"
+    >{{ item }}</x-button
+  >
+  <x-button
+    [icon]="'fto-chevron-right'"
+    [title]="'pagination.next' | xI18n"
+    [disabled]="disabled || rightDisabled"
+    (click)="jump(1, true)"
+  ></x-button>
+  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-right'" [disabled]="disabled || lastActivated" (click)="jump(lastIndex)"></x-button>
 </x-buttons>
 <x-select
   *ngIf="showSize"
@@ -16,9 +27,10 @@
   class="x-pagination-size"
   [data]="sizeData"
   clearable="false"
+  [disabled]="disabled"
   [(ngModel)]="size"
   (ngModelChange)="sizeChanged()"
 ></x-select>
-<x-button *ngIf="showTotal" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
+<x-button *ngIf="showTotal" [disabled]="disabled" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
   >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button
 >

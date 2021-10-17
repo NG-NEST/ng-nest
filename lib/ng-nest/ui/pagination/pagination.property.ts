@@ -1,5 +1,6 @@
-import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig, XBoolean, XInputBoolean } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig, XBoolean, XInputBoolean, XData } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XSelectNode } from '@ng-nest/ui/select';
 
 /**
  * Pagination
@@ -58,22 +59,27 @@ export class XPaginationProperty extends XProperty {
    * @zh_CN 隐藏边框
    * @en_US Hide border
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenBorder?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenBorder!: XBoolean;
   /**
    * @zh_CN 显示分页条数
    * @en_US Show size
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showSize?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showSize!: XBoolean;
   /**
    * @zh_CN 分页条数的宽度
    * @en_US size with
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 85) @XInputNumber() sizeWidth?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 85) @XInputNumber() sizeWidth!: XNumber;
   /**
    * @zh_CN 分页条数的宽度
    * @en_US size with
    */
-  @Input() @XWithConfig<number[]>(X_CONFIG_NAME, [10, 20, 50, 100]) sizeData?: number[];
+  @Input() @XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME, [10, 20, 50, 100]) sizeData!: XData<XSelectNode>;
+  /**
+   * @zh_CN 禁用整个分页
+   * @en_US disabled
+   */
+  @Input() @XInputBoolean() disabled!: XBoolean;
   /**
    * @zh_CN 页码变化的事件
    * @en_US Page number change event
