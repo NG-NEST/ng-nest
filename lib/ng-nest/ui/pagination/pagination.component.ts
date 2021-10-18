@@ -13,6 +13,7 @@ import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XI18nService } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
+import { ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XPaginationPrefix}`,
@@ -26,6 +27,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   indexes: number[] = [];
   indexFirst: number = 1;
   indexLast: number = 1;
+  jumpPage: number | null = null;
 
   private _unSubject = new Subject<void>();
 
@@ -98,6 +100,20 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
       this.index = ix;
       this.setIndexes();
       this.indexChange.emit(this.index);
+    }
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (this.jumpPage !== null && event.keyCode === ENTER) {
+      if (this.jumpPage <= this.indexFirst) {
+        this.jump(this.indexFirst);
+      } else if (this.jumpPage >= this.lastIndex) {
+        this.jump(this.lastIndex);
+      } else {
+        this.jump(this.jumpPage);
+      }
+      this.jumpPage = null;
+      this.cdr.detectChanges();
     }
   }
 

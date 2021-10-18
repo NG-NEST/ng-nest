@@ -41,6 +41,7 @@ export default {
     december: 'Tháng 12'
   },
   datePicker: {
+    sure: 'xác nhận',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'hôm qua',
+    today: 'hôm nay',
+    tomorrow: 'Ngày mai'
   },
   empty: {
     noData: 'Không dữ liệu'
@@ -70,7 +74,11 @@ export default {
     previous: 'Trang trước',
     next: 'Trang tiếp theo',
     total: 'Toàn bộ',
-    item: 'Bài báo'
+    item: 'Bài báo',
+    first: 'trang chủ',
+    last: 'Trang cuối',
+    jump: 'Nhảy vào',
+    sizePage: 'Mục lục'
   },
   textRetract: {
     unfold: 'Mở ra',

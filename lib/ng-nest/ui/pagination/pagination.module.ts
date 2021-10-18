@@ -6,10 +6,11 @@ import { XPaginationProperty } from './pagination.property';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule } from '@angular/forms';
+import { XInputModule } from '@ng-nest/ui/input';
 
 @NgModule({
   declarations: [XPaginationComponent, XPaginationProperty],
   exports: [XPaginationComponent],
-  imports: [CommonModule, FormsModule, XButtonModule, XI18nModule, XSelectModule]
+  imports: [CommonModule, FormsModule, XButtonModule, XI18nModule, XSelectModule, XInputModule]
 })
 export class XPaginationModule {}

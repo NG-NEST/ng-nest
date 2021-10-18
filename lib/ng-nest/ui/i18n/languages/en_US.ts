@@ -42,6 +42,7 @@ export default {
     december: 'December'
   },
   datePicker: {
+    sure: 'Ok',
     month: '',
     year: '',
     january: 'Jan',
@@ -74,7 +75,11 @@ export default {
     previous: 'Prev',
     next: 'Next',
     total: 'Total',
-    item: 'Item'
+    item: 'Items',
+    first: 'First page',
+    last: 'Last page',
+    jump: 'Go to',
+    sizePage: '/ page'
   },
   textRetract: {
     unfold: 'Unfold',

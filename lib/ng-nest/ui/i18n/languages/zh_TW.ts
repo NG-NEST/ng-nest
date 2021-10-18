@@ -62,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: '昨天',
+    today: '今天',
+    tomorrow: '明天'
   },
   empty: {
     noData: '暫無數據'
@@ -71,7 +74,11 @@ export default {
     previous: '上一頁',
     next: '下一頁',
     total: '共',
-    item: '條'
+    item: '條',
+    first: '首頁',
+    last: '尾頁',
+    jump: '跳至',
+    sizePage: '條/頁'
   },
   textRetract: {
     unfold: '展開',

@@ -1,5 +1,11 @@
 <x-buttons [space]="space" [hiddenBorder]="hiddenBorder">
-  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-left'" [disabled]="disabled || firstActivated" (click)="jump(1)"></x-button>
+  <x-button
+    *ngIf="showEllipsis"
+    [icon]="'fto-chevrons-left'"
+    [title]="'pagination.first' | xI18n"
+    [disabled]="disabled || firstActivated"
+    (click)="jump(1)"
+  ></x-button>
   <x-button
     [icon]="'fto-chevron-left'"
     [title]="'pagination.previous' | xI18n"
@@ -19,7 +25,13 @@
     [disabled]="disabled || rightDisabled"
     (click)="jump(1, true)"
   ></x-button>
-  <x-button *ngIf="showEllipsis" [icon]="'fto-chevrons-right'" [disabled]="disabled || lastActivated" (click)="jump(lastIndex)"></x-button>
+  <x-button
+    *ngIf="showEllipsis"
+    [icon]="'fto-chevrons-right'"
+    [title]="'pagination.last' | xI18n"
+    [disabled]="disabled || lastActivated"
+    (click)="jump(lastIndex)"
+  ></x-button>
 </x-buttons>
 <x-select
   *ngIf="showSize"
@@ -28,9 +40,19 @@
   [data]="sizeData"
   clearable="false"
   [disabled]="disabled"
+  [bordered]="!hiddenBorder"
+  [nodeTpl]="nodeTpl"
   [(ngModel)]="size"
   (ngModelChange)="sizeChanged()"
 ></x-select>
+<div *ngIf="showJump" class="x-pagination-jump">
+  <span>{{ 'pagination.jump' | xI18n }}</span>
+  <x-input [bordered]="!hiddenBorder" [style.width.px]="jumpWidth" [(ngModel)]="jumpPage" (xKeydown)="onKeydown($event)"></x-input>
+</div>
 <x-button *ngIf="showTotal" [disabled]="disabled" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
   >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button
 >
+
+<ng-template #nodeTpl let-node="$node">
+  <ng-container *ngIf="node"> {{ node?.label }} {{ 'pagination.sizePage' | xI18n }} </ng-container>
+</ng-template>

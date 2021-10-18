@@ -4,3 +4,14 @@
 <div class="row">
   <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" [space]="0.25"></x-pagination>
 </div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    [sizeData]="[5, 10, 20, 100]"
+    showSize
+    showJump
+  ></x-pagination>
+</div>

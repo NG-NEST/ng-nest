@@ -74,7 +74,11 @@ export default {
     previous: '上一页',
     next: '下一页',
     total: '共',
-    item: '条'
+    item: '条',
+    first: '首页',
+    last: '尾页',
+    jump: '跳至',
+    sizePage: '条/页'
   },
   textRetract: {
     unfold: '展开',

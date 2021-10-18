@@ -392,6 +392,8 @@ export interface XPaginationConfig {
   showSize?: boolean;
   sizeWidth?: number;
   sizeData?: number[];
+  showJump?: boolean;
+  jumpWidth?: number;
 }
 
 export interface XPatternConfig {}

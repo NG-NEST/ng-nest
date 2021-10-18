@@ -16,7 +16,7 @@ describe(XPaginationPrefix, () => {
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -30,7 +30,7 @@ describe(XPaginationPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`style.`, () => {
+  fdescribe(`style.`, () => {
     let fixture: ComponentFixture<TestXPaginationStyleComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -71,6 +71,7 @@ describe(XPaginationPrefix, () => {
       [size]="size"
       [total]="100"
       showSize
+      showJump
       [sizeData]="[5, 10, 100]"
       (indexChange)="change($event)"
     ></x-pagination>

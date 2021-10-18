@@ -28,6 +28,7 @@
         class="x-input-value-template-value"
         [style.padding-left.rem]="paddingLeft"
         [style.padding-right.rem]="paddingRight"
+        (click)="xClick.emit($event)"
         *ngIf="valueTpl"
       >
         <ng-container *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"></ng-container>

@@ -22,4 +22,12 @@
   &-total {
     margin-left: 0.5rem;
   }
+  &-jump {
+    margin-left: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    x-input {
+      margin-left: 0.5rem;
+    }
+  }
 }

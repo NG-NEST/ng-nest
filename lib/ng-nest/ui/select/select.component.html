@@ -17,7 +17,7 @@
       [readonly]="readonly"
       [clearable]="showClearable"
       [(ngModel)]="displayValue"
-      [valueTpl]="valueTpl"
+      [valueTpl]="valueTpl ? valueTpl : nodeTpl"
       [valueTplContext]="valueTplContext"
       [size]="size"
       [bordered]="bordered"

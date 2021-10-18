@@ -69,7 +69,7 @@ export class XPaginationProperty extends XProperty {
    * @zh_CN 分页条数的宽度
    * @en_US size with
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 85) @XInputNumber() sizeWidth!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 100) @XInputNumber() sizeWidth!: XNumber;
   /**
    * @zh_CN 分页条数的宽度
    * @en_US size with
@@ -80,6 +80,16 @@ export class XPaginationProperty extends XProperty {
    * @en_US disabled
    */
   @Input() @XInputBoolean() disabled!: XBoolean;
+  /**
+   * @zh_CN 显示跳转输入框
+   * @en_US Show size
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showJump!: XBoolean;
+  /**
+   * @zh_CN 跳转页的宽度
+   * @en_US size with
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() jumpWidth!: XNumber;
   /**
    * @zh_CN 页码变化的事件
    * @en_US Page number change event
