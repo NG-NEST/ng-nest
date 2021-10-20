@@ -14,7 +14,7 @@ describe(XStepsPrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonModule, XTabsModule],
-      declarations: [TestXStepsComponent]
+      declarations: [TestXStepsComponent, TestXStepsDotComponent]
     }).compileComponents();
   }));
   describe(`default.`, () => {
@@ -22,6 +22,18 @@ describe(XStepsPrefix, () => {
     let steps: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXStepsComponent);
+      fixture.detectChanges();
+      steps = fixture.debugElement.query(By.directive(XStepsComponent));
+    });
+    it('should create.', () => {
+      expect(steps).toBeDefined();
+    });
+  });
+  fdescribe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXStepsDotComponent>;
+    let steps: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXStepsDotComponent);
       fixture.detectChanges();
       steps = fixture.debugElement.query(By.directive(XStepsComponent));
     });
@@ -135,4 +147,87 @@ class TestXStepsComponent {
   doneTab() {
     console.log('提交');
   }
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <div class="row">
+      <x-steps [data]="data" [customTpl]="customTpl" [activatedIndex]="activatedIndex"> </x-steps>
+    </div>
+    <ng-template #customTpl let-node="$node" let-index="$index">
+      <ng-container [ngSwitch]="node.status">
+        <ng-container *ngSwitchCase="'process'">
+          <svg class="custom-loading-circular" viewBox="25 25 50 50">
+            <circle class="custom-loading-path" cx="50" cy="50" r="20" fill="none" />
+          </svg>
+        </ng-container>
+        <div *ngSwitchDefault class="custom-class {{ node.status }}"></div>
+      </ng-container>
+    </ng-template>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      .row {
+        margin-top: 2rem;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .custom-class {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        margin-top: 0.75rem;
+        background-color: var(--x-primary);
+      }
+      .custom-class.wait {
+        background-color: var(--x-background-a900);
+      }
+      .custom-loading-circular {
+        animation: loading-rotate 2s linear infinite;
+        height: 1.75rem;
+        width: 1.75rem;
+      }
+      .custom-loading-path {
+        animation: loading-dash 1.5s ease-in-out infinite;
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: 0;
+        stroke-width: 2;
+        stroke: var(--x-primary);
+        stroke-linecap: round;
+      }
+      @keyframes loading-rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes loading-dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -2.5rem;
+        }
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -7.5rem;
+        }
+      }
+    `
+  ]
+})
+class TestXStepsDotComponent {
+  data = ['步骤 1', '步骤 2', '步骤 3'];
+  activatedIndex = 1;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 }

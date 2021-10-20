@@ -1,0 +1,11 @@
+<x-steps [data]="data" [customTpl]="customTpl" [activatedIndex]="activatedIndex"> </x-steps>
+<ng-template #customTpl let-node="$node" let-index="$index">
+  <ng-container [ngSwitch]="node.status">
+    <ng-container *ngSwitchCase="'process'">
+      <svg class="custom-loading-circular" viewBox="25 25 50 50">
+        <circle class="custom-loading-path" cx="50" cy="50" r="20" fill="none" />
+      </svg>
+    </ng-container>
+    <div *ngSwitchDefault class="custom-class {{ node.status }}"></div>
+  </ng-container>
+</ng-template>

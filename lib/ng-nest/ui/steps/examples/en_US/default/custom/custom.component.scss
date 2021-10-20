@@ -1,0 +1,42 @@
+.custom-class {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.75rem;
+  background-color: var(--x-primary);
+}
+.custom-class.wait {
+  background-color: var(--x-background-a900);
+}
+.custom-loading-circular {
+  animation: loading-rotate 2s linear infinite;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+.custom-loading-path {
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: var(--x-primary);
+  stroke-linecap: round;
+}
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -2.5rem;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -7.5rem;
+  }
+}

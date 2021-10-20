@@ -1,4 +1,14 @@
-import { XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import {
+  XData,
+  XProperty,
+  XParentIdentityProperty,
+  XDataConvert,
+  XInputNumber,
+  XNumber,
+  XInputBoolean,
+  XBoolean,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -38,6 +48,11 @@ export class XStepsProperty extends XProperty {
    * @en_US Current active node status
    */
   @Input() status?: XStepsStatus;
+  /**
+   * @zh_CN 自定义节点
+   * @en_US Custom node
+   */
+  @Input() customTpl?: XTemplate;
 }
 
 export interface XStepsNode extends XParentIdentityProperty<XStepsNode> {
