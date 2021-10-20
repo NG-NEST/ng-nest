@@ -7,10 +7,11 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XPaginationComponent, XPaginationProperty],
   exports: [XPaginationComponent],
-  imports: [CommonModule, FormsModule, XButtonModule, XI18nModule, XSelectModule, XInputModule]
+  imports: [CommonModule, FormsModule, XButtonModule, XI18nModule, XSelectModule, XInputModule, XOutletModule]
 })
 export class XPaginationModule {}

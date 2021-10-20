@@ -1,4 +1,4 @@
-import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig, XBoolean, XInputBoolean, XData } from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig, XBoolean, XInputBoolean, XData, XTemplate } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XSelectNode } from '@ng-nest/ui/select';
 
@@ -90,6 +90,21 @@ export class XPaginationProperty extends XProperty {
    * @en_US size with
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() jumpWidth!: XNumber;
+  /**
+   * @zh_CN 总数自定义模板
+   * @en_US Total template
+   */
+  @Input() totalTpl?: XTemplate;
+  /**
+   * @zh_CN 简单分页
+   * @en_US Simple
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() simple!: XBoolean;
+  /**
+   * @zh_CN 简单分页输入框宽度
+   * @en_US Simple index with
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 130) @XInputNumber() simpleIndexWidth!: XNumber;
   /**
    * @zh_CN 页码变化的事件
    * @en_US Page number change event

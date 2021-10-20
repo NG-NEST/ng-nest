@@ -30,4 +30,17 @@
       margin-left: 0.5rem;
     }
   }
+  &-simple {
+    margin: 0 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    > x-input {
+      input {
+        text-align: center;
+      }
+    }
+    > span {
+      margin-left: 0.5rem;
+    }
+  }
 }

@@ -117,6 +117,18 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     }
   }
 
+  onSimpleKeydown(event: KeyboardEvent) {
+    if (this.index !== null && event.keyCode === ENTER) {
+      if (this.index <= this.indexFirst) {
+        this.index = this.indexFirst;
+      } else if (this.index >= this.lastIndex) {
+        this.index = this.lastIndex;
+      }
+      this.jump(this.index as number);
+      this.cdr.detectChanges();
+    }
+  }
+
   validateIndex(value: number): number {
     if (value > this.lastIndex) {
       return this.lastIndex;

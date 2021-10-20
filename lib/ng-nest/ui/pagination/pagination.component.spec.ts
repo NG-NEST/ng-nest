@@ -16,7 +16,7 @@ describe(XPaginationPrefix, () => {
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -30,7 +30,7 @@ describe(XPaginationPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`style.`, () => {
+  describe(`style.`, () => {
     let fixture: ComponentFixture<TestXPaginationStyleComponent>;
     let debugElement: DebugElement;
     let element: Element;
@@ -72,6 +72,27 @@ describe(XPaginationPrefix, () => {
       [total]="100"
       showSize
       showJump
+      [sizeData]="[5, 10, 100]"
+      (indexChange)="change($event)"
+    ></x-pagination>
+    <x-pagination
+      [space]="1"
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      showSize
+      showJump
+      [sizeData]="[5, 10, 100]"
+      (indexChange)="change($event)"
+      [totalTpl]="totalTpl"
+    ></x-pagination>
+    <ng-template #totalTpl let-total="$total">共 {{ total }} 条数据</ng-template>
+    <x-pagination
+      [index]="index"
+      [size]="size"
+      [total]="100"
+      simple
+      showSize
       [sizeData]="[5, 10, 100]"
       (indexChange)="change($event)"
     ></x-pagination>

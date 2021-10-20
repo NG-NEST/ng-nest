@@ -1,4 +1,4 @@
-<x-buttons [space]="space" [hiddenBorder]="hiddenBorder">
+<x-buttons *ngIf="!simple; else simpleTpl" [space]="space" [hiddenBorder]="hiddenBorder">
   <x-button
     *ngIf="showEllipsis"
     [icon]="'fto-chevrons-left'"
@@ -6,12 +6,7 @@
     [disabled]="disabled || firstActivated"
     (click)="jump(1)"
   ></x-button>
-  <x-button
-    [icon]="'fto-chevron-left'"
-    [title]="'pagination.previous' | xI18n"
-    [disabled]="disabled || leftDisabled"
-    (click)="jump(-1, true)"
-  ></x-button>
+  <ng-container *xOutlet="previousTpl"></ng-container>
   <x-button
     *ngFor="let item of indexes; trackBy: trackByItem"
     [disabled]="disabled"
@@ -19,20 +14,29 @@
     (click)="jump(item)"
     >{{ item }}</x-button
   >
+  <ng-container *xOutlet="nextTpl"></ng-container>
   <x-button
-    [icon]="'fto-chevron-right'"
-    [title]="'pagination.next' | xI18n"
-    [disabled]="disabled || rightDisabled"
-    (click)="jump(1, true)"
-  ></x-button>
-  <x-button
-    *ngIf="showEllipsis"
+    *ngIf="showEllipsis && !simple"
     [icon]="'fto-chevrons-right'"
     [title]="'pagination.last' | xI18n"
     [disabled]="disabled || lastActivated"
     (click)="jump(lastIndex)"
   ></x-button>
 </x-buttons>
+<ng-template #simpleTpl>
+  <div class="x-pagination-simple">
+    <x-input
+      [bordered]="!hiddenBorder"
+      [before]="previousTpl"
+      [after]="nextTpl"
+      [style.width.px]="simpleIndexWidth"
+      [(ngModel)]="index"
+      (xKeydown)="onSimpleKeydown($event)"
+    ></x-input>
+    <span>/</span>
+    <span>{{ lastIndex }}</span>
+  </div>
+</ng-template>
 <x-select
   *ngIf="showSize"
   [style.width.px]="sizeWidth"
@@ -45,13 +49,33 @@
   [(ngModel)]="size"
   (ngModelChange)="sizeChanged()"
 ></x-select>
-<div *ngIf="showJump" class="x-pagination-jump">
+<div *ngIf="showJump && !simple" class="x-pagination-jump">
   <span>{{ 'pagination.jump' | xI18n }}</span>
   <x-input [bordered]="!hiddenBorder" [style.width.px]="jumpWidth" [(ngModel)]="jumpPage" (xKeydown)="onKeydown($event)"></x-input>
 </div>
 <x-button *ngIf="showTotal" [disabled]="disabled" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
-  >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</x-button
+  ><ng-container *xOutlet="totalTpl; context: { $total: total }"
+    >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</ng-container
+  ></x-button
 >
+
+<ng-template #previousTpl>
+  <x-button
+    [icon]="'fto-chevron-left'"
+    [title]="'pagination.previous' | xI18n"
+    [disabled]="disabled || leftDisabled"
+    (click)="jump(-1, true)"
+  ></x-button>
+</ng-template>
+
+<ng-template #nextTpl>
+  <x-button
+    [icon]="'fto-chevron-right'"
+    [title]="'pagination.next' | xI18n"
+    [disabled]="disabled || rightDisabled"
+    (click)="jump(1, true)"
+  ></x-button>
+</ng-template>
 
 <ng-template #nodeTpl let-node="$node">
   <ng-container *ngIf="node"> {{ node?.label }} {{ 'pagination.sizePage' | xI18n }} </ng-container>
