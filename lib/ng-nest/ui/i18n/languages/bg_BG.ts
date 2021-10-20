@@ -41,6 +41,7 @@ export default {
     december: '12месец'
   },
   datePicker: {
+    sure: 'потвърждение',
     month: 'месец',
     year: 'година',
     january: '1месец',
@@ -61,7 +62,10 @@ export default {
     thursday: 'четири',
     friday: 'петици',
     saturday: 'шест',
-    sunday: 'ден'
+    sunday: 'ден',
+    yesterday: 'вчера',
+    today: 'В днешно време',
+    tomorrow: 'утре'
   },
   empty: {
     noData: 'Няма данни'
@@ -70,7 +74,11 @@ export default {
     previous: 'Предишна страница',
     next: 'Следваща страница',
     total: 'Обща сума',
-    item: 'статия'
+    item: 'статия',
+    first: 'първа страница',
+    last: 'Опашка',
+    jump: 'Прескачане',
+    sizePage: '/ cтраница'
   },
   textRetract: {
     unfold: 'Разгънете',

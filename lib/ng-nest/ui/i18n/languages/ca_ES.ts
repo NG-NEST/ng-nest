@@ -41,6 +41,7 @@ export default {
     december: '12mes'
   },
   datePicker: {
+    sure: 'confirmar',
     month: 'mes',
     year: 'curs',
     january: '1mes',
@@ -61,7 +62,10 @@ export default {
     thursday: 'quatre',
     friday: 'Cinc',
     saturday: 'sis',
-    sunday: 'dia'
+    sunday: 'dia',
+    yesterday: 'ahir',
+    today: 'Actualment',
+    tomorrow: 'demà'
   },
   empty: {
     noData: 'No hi ha dades'
@@ -70,7 +74,11 @@ export default {
     previous: 'Pàgina anterior',
     next: 'Pàgina següent',
     total: 'Total',
-    item: 'Article'
+    item: 'Article',
+    first: 'portada',
+    last: 'Cua',
+    jump: 'Saltar',
+    sizePage: '/ pàgina'
   },
   textRetract: {
     unfold: 'Desplegar',

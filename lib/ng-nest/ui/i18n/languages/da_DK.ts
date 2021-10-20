@@ -41,6 +41,7 @@ export default {
     december: '12'
   },
   datePicker: {
+    sure: 'bekræfte',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: 'fire',
     friday: 'Fives',
     saturday: 'seks',
-    sunday: 'dag'
+    sunday: 'dag',
+    yesterday: 'i går',
+    today: 'I dag',
+    tomorrow: 'i morgen'
   },
   empty: {
     noData: 'Ingen data'
@@ -70,7 +74,11 @@ export default {
     previous: 'Forrige side',
     next: 'Næste side',
     total: 'Total',
-    item: 'artikel'
+    item: 'artikel',
+    first: 'Forside',
+    last: 'Hale',
+    jump: 'Hoppe',
+    sizePage: '/ side'
   },
   textRetract: {
     unfold: 'Unfold',

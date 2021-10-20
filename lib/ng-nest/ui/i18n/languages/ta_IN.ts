@@ -41,6 +41,7 @@ export default {
     december: 'டிசம்பர்'
   },
   datePicker: {
+    sure: 'உறுதி',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'நேற்று',
+    today: 'இப்போதெல்லாம்',
+    tomorrow: 'நாளை'
   },
   empty: {
     noData: 'இல்லை தகவல்கள்'
@@ -70,7 +74,11 @@ export default {
     previous: 'முந்தைய பக்கம்',
     next: 'அடுத்த பக்கம்',
     total: 'மொத்தம்',
-    item: 'கட்டுரை'
+    item: 'கட்டுரை',
+    first: 'முன் பக்கம்',
+    last: 'வால்',
+    jump: 'தாவி செல்லவும்',
+    sizePage: '/ பக்கம்'
   },
   textRetract: {
     unfold: 'திறக்க',

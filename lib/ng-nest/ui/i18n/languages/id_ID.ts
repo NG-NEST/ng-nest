@@ -41,6 +41,7 @@ export default {
     december: 'Desember'
   },
   datePicker: {
+    sure: 'Konfirmasi',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'kemarin',
+    today: 'Dewasa ini',
+    tomorrow: 'besok'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'Halaman sebelumnya',
     next: 'Halaman selanjutnya',
     total: 'Total',
-    item: 'Artikel'
+    item: 'Artikel',
+    first: 'halaman Depan',
+    last: 'Ekor',
+    jump: 'Melompat',
+    sizePage: '/ Halaman'
   },
   textRetract: {
     unfold: 'Membuka',

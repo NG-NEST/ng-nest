@@ -41,6 +41,7 @@ export default {
     december: 'December'
   },
   datePicker: {
+    sure: 'Potrdite',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'Včeraj',
+    today: 'Danes.',
+    tomorrow: 'Jutri'
   },
   empty: {
     noData: 'Ne podatkov'
@@ -70,7 +74,11 @@ export default {
     previous: 'Prejšnja stran',
     next: 'Naslednja stran',
     total: 'Skupaj',
-    item: 'Članek'
+    item: 'Članek',
+    first: 'prednja stran',
+    last: 'Rep',
+    jump: 'Jump.',
+    sizePage: '/ stran'
   },
   textRetract: {
     unfold: 'Razviti',

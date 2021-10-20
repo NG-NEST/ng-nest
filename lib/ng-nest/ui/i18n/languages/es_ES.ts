@@ -41,6 +41,7 @@ export default {
     december: '12mes'
   },
   datePicker: {
+    sure: 'confirmar',
     month: '',
     year: '',
     january: '1mes',
@@ -61,7 +62,10 @@ export default {
     thursday: 'cuatro',
     friday: 'Fives',
     saturday: 'seis',
-    sunday: 'día'
+    sunday: 'día',
+    yesterday: 'el dia de ayer',
+    today: 'Hoy en día',
+    tomorrow: 'mañana'
   },
   empty: {
     noData: 'Sin datos'
@@ -70,7 +74,11 @@ export default {
     previous: 'Pagina anterior',
     next: 'Siguiente página',
     total: 'Total',
-    item: 'Artículo'
+    item: 'Artículo',
+    first: 'página delantera',
+    last: 'Cola',
+    jump: 'Salto',
+    sizePage: '/página'
   },
   textRetract: {
     unfold: 'Desplegar',

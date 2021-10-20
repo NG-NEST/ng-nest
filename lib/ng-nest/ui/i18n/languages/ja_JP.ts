@@ -41,6 +41,7 @@ export default {
     december: '12月'
   },
   datePicker: {
+    sure: '確認',
     month: '月',
     year: '年',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: '昨日',
+    today: '現在',
+    tomorrow: '明日'
   },
   empty: {
     noData: '番号 データ'
@@ -70,7 +74,11 @@ export default {
     previous: '前のページ',
     next: '次のページ',
     total: '合計',
-    item: '論文'
+    item: '論文',
+    first: '表紙',
+    last: 'しっぽ',
+    jump: 'ジャンプ',
+    sizePage: '/ページ'
   },
   textRetract: {
     unfold: '展開する',

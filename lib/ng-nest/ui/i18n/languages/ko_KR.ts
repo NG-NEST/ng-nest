@@ -41,6 +41,7 @@ export default {
     december: '12 월'
   },
   datePicker: {
+    sure: '확인하다',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: '어제',
+    today: '요즘',
+    tomorrow: '내일'
   },
   empty: {
     noData: '아니 데이터'
@@ -70,7 +74,11 @@ export default {
     previous: '이전 페이지',
     next: '다음 페이지',
     total: '합계',
-    item: '조'
+    item: '조',
+    first: '첫장',
+    last: '꼬리',
+    jump: '도약',
+    sizePage: '조각/페이지'
   },
   textRetract: {
     unfold: '펴다',

@@ -41,6 +41,7 @@ export default {
     december: 'დეკემბერი'
   },
   datePicker: {
+    sure: 'დადასტურება',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'გუშინ',
+    today: 'დღეს',
+    tomorrow: 'ხვალ'
   },
   empty: {
     noData: 'არა მონაცემები'
@@ -70,7 +74,11 @@ export default {
     previous: 'Წინა გვერდი',
     next: 'Შემდეგი გვერდი',
     total: 'სულ',
-    item: 'მუხლი'
+    item: 'მუხლი',
+    first: 'წინა გვერდი',
+    last: 'კუდი',
+    jump: 'ხტომა',
+    sizePage: '/ გვერდი'
   },
   textRetract: {
     unfold: 'გახსნილია',

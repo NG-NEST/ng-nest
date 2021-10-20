@@ -41,6 +41,7 @@ export default {
     december: '12'
   },
   datePicker: {
+    sure: 'bestätigen Sie',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: 'vier',
     friday: 'Fünf',
     saturday: 'sechs',
-    sunday: 'Tag'
+    sunday: 'Tag',
+    yesterday: 'gestern',
+    today: 'Heutzutage',
+    tomorrow: 'Morgen'
   },
   empty: {
     noData: 'Keine Daten'
@@ -70,7 +74,11 @@ export default {
     previous: 'Vorherige Seite',
     next: 'Nächste Seite',
     total: 'Gesamt',
-    item: 'Artikel'
+    item: 'Artikel',
+    first: 'Titelseite',
+    last: 'Schwanz',
+    jump: 'Springen',
+    sizePage: '/ buchseite'
   },
   textRetract: {
     unfold: 'Entfalten',

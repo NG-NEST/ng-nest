@@ -41,6 +41,7 @@ export default {
     december: 'דֵצֶמבֶּר'
   },
   datePicker: {
+    sure: 'לְאַשֵׁר',
     month: '',
     year: '',
     january: 'יָנוּאָר',
@@ -61,7 +62,10 @@ export default {
     thursday: 'ארבע',
     friday: 'חמישיות',
     saturday: 'שֵׁשׁ',
-    sunday: 'יְוֹם'
+    sunday: 'יְוֹם',
+    yesterday: 'אתמול',
+    today: 'כַּיוֹם',
+    tomorrow: 'מָחָר'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'עמוד קודם',
     next: 'עמוד הבא',
     total: 'סה"כ',
-    item: 'מאמר'
+    item: 'מאמר',
+    first: 'עמוד ראשי',
+    last: 'זָנָב',
+    jump: 'קְפִיצָה',
+    sizePage: '/עמוד'
   },
   textRetract: {
     unfold: 'לְהִתְפַּתֵחַ',

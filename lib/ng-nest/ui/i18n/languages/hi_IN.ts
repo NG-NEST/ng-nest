@@ -41,6 +41,7 @@ export default {
     december: 'दिसंबर'
   },
   datePicker: {
+    sure: 'पुष्टि करना',
     month: '',
     year: '',
     january: 'जनवरी',
@@ -61,7 +62,10 @@ export default {
     thursday: 'चार',
     friday: 'फाइव्स',
     saturday: 'छह',
-    sunday: 'दिन'
+    sunday: 'दिन',
+    yesterday: 'बीता हुआ कल',
+    today: 'आजकल',
+    tomorrow: 'कल'
   },
   empty: {
     noData: 'कोई आकड़ा उपलब्ध नहीं है'
@@ -70,7 +74,11 @@ export default {
     previous: 'पिछला पृष्ठ',
     next: 'अगला पृष्ठ',
     total: 'संपूर्ण',
-    item: 'लेख'
+    item: 'लेख',
+    first: 'मुखपृष्ठ',
+    last: 'पूंछ',
+    jump: 'कूद',
+    sizePage: 'पट्टी/पृष्ठ'
   },
   textRetract: {
     unfold: 'उधेड़ना',

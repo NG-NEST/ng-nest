@@ -41,6 +41,7 @@ export default {
     december: 'decembrie'
   },
   datePicker: {
+    sure: 'a confirma',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'ieri',
+    today: 'In zilele de azi',
+    tomorrow: 'Mâine'
   },
   empty: {
     noData: 'Nu date'
@@ -70,7 +74,11 @@ export default {
     previous: 'Pagina anterioară',
     next: 'Pagina următoare',
     total: 'Total',
-    item: 'Articol'
+    item: 'Articol',
+    first: 'prima pagina',
+    last: 'Coadă',
+    jump: 'A sari',
+    sizePage: '/ pagină'
   },
   textRetract: {
     unfold: 'Unfold',

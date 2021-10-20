@@ -41,6 +41,7 @@ export default {
     december: '12ամիս'
   },
   datePicker: {
+    sure: 'հաստատել',
     month: 'ամիս',
     year: 'տարի',
     january: '1ամիս',
@@ -61,7 +62,10 @@ export default {
     thursday: 'չորսը',
     friday: 'Հինգը',
     saturday: 'վեց',
-    sunday: 'օր'
+    sunday: 'օր',
+    yesterday: 'երեկ',
+    today: 'Այժմ',
+    tomorrow: 'վաղը'
   },
   empty: {
     noData: 'Տվյալներ չկան'
@@ -70,7 +74,11 @@ export default {
     previous: 'Նախորդ էջ',
     next: 'Հաջորդ էջը',
     total: 'Ընդհանուր',
-    item: 'Հոդված'
+    item: 'Հոդված',
+    first: 'առաջին էջ',
+    last: 'Պոչ',
+    jump: 'Ցատկել',
+    sizePage: '/ Էջ'
   },
   textRetract: {
     unfold: 'Բացահայտված',

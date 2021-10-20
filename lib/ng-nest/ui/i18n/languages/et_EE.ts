@@ -41,6 +41,7 @@ export default {
     december: '12kuu'
   },
   datePicker: {
+    sure: 'kinnitama',
     month: '',
     year: '',
     january: '1kuu',
@@ -61,7 +62,10 @@ export default {
     thursday: 'neli',
     friday: 'Viis',
     saturday: 'kuus',
-    sunday: 'päev'
+    sunday: 'päev',
+    yesterday: 'eile',
+    today: 'Tänapäeval',
+    tomorrow: 'homme'
   },
   empty: {
     noData: 'Andmed puuduvad'
@@ -70,7 +74,11 @@ export default {
     previous: 'Eelmine leht',
     next: 'Järgmine leht',
     total: 'Kokku',
-    item: 'Artikkel'
+    item: 'Artikkel',
+    first: 'Esilehekülg',
+    last: 'Saba',
+    jump: 'Hüpata',
+    sizePage: '/Leht'
   },
   textRetract: {
     unfold: 'Lahti lahti',

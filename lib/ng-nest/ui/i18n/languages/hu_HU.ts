@@ -41,6 +41,7 @@ export default {
     december: 'december'
   },
   datePicker: {
+    sure: 'megerősít',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'tegnap',
+    today: 'Manapság',
+    tomorrow: 'holnap'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'Előző oldal',
     next: 'Következő oldal',
     total: 'Teljes',
-    item: 'Cikk'
+    item: 'Cikk',
+    first: 'Címlap',
+    last: 'Farok',
+    jump: 'Ugrás',
+    sizePage: '/ oldal'
   },
   textRetract: {
     unfold: 'Unfold',

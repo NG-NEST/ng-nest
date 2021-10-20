@@ -41,6 +41,7 @@ export default {
     december: 'grudzień'
   },
   datePicker: {
+    sure: 'potwierdzać',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'wczoraj',
+    today: 'Obecnie',
+    tomorrow: 'jutro'
   },
   empty: {
     noData: 'Nie dane'
@@ -70,7 +74,11 @@ export default {
     previous: 'Poprzednia strona',
     next: 'Następna strona',
     total: 'Całkowity',
-    item: 'Artykuł'
+    item: 'Artykuł',
+    first: 'pierwsza strona',
+    last: 'Ogon',
+    jump: 'Skok',
+    sizePage: '/ strona'
   },
   textRetract: {
     unfold: 'Rozwijać się',

@@ -41,6 +41,7 @@ export default {
     december: 'December'
   },
   datePicker: {
+    sure: 'Ok',
     month: '',
     year: '',
     january: 'Jan',
@@ -61,7 +62,10 @@ export default {
     thursday: 'Thu',
     friday: 'Fri',
     saturday: 'Sat',
-    sunday: 'Sun'
+    sunday: 'Sun',
+    yesterday: 'Yesterday',
+    today: 'Today',
+    tomorrow: 'Tomorrow'
   },
   empty: {
     noData: 'No data'
@@ -70,7 +74,11 @@ export default {
     previous: 'Pre',
     next: 'Next',
     total: 'Total',
-    item: 'Article'
+    item: 'Article',
+    first: 'First',
+    last: 'Last',
+    jump: 'Go to',
+    sizePage: '/ page'
   },
   textRetract: {
     unfold: 'Unfold',

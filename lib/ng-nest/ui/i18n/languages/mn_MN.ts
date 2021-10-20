@@ -41,6 +41,7 @@ export default {
     december: '12-р сар'
   },
   datePicker: {
+    sure: 'батлах',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'өчигдөр',
+    today: 'Одооadays',
+    tomorrow: 'маргааш'
   },
   empty: {
     noData: 'Үгүй шүү өгөгдөл'
@@ -70,7 +74,11 @@ export default {
     previous: 'Өмнөх хуудас',
     next: 'Дараагийн хуудас',
     total: 'Нийт',
-    item: 'Нийтлэл'
+    item: 'Нийтлэл',
+    first: 'өмнөх хуудас',
+    last: 'Сүүл ээлж',
+    jump: 'Үсрэх',
+    sizePage: '/ xуудас'
   },
   textRetract: {
     unfold: 'Уншаагүй байна',

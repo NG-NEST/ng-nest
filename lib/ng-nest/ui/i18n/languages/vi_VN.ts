@@ -78,7 +78,7 @@ export default {
     first: 'trang chủ',
     last: 'Trang cuối',
     jump: 'Nhảy vào',
-    sizePage: 'Mục lục'
+    sizePage: '/ Mục lục'
   },
   textRetract: {
     unfold: 'Mở ra',

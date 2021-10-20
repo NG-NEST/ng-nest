@@ -41,6 +41,7 @@ export default {
     december: 'prosinac'
   },
   datePicker: {
+    sure: 'potvrditi',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'jučer',
+    today: 'Ovih dana',
+    tomorrow: 'sutra'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'Prethodna stranica',
     next: 'Sljedeća stranica',
     total: 'ukupno',
-    item: 'Članak'
+    item: 'Članak',
+    first: 'Naslovna strana',
+    last: 'Rep',
+    jump: 'Skok',
+    sizePage: '/ stranica'
   },
   textRetract: {
     unfold: 'razmotati',

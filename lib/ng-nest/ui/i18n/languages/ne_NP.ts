@@ -41,6 +41,7 @@ export default {
     december: 'डिसेम्बर'
   },
   datePicker: {
+    sure: 'पक्का गर्नु',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'हिजो',
+    today: 'आजकल',
+    tomorrow: 'भोली'
   },
   empty: {
     noData: 'होइन डाटा'
@@ -70,7 +74,11 @@ export default {
     previous: 'अघिल्लो पृष्ठ',
     next: 'अर्को पाना',
     total: 'कुल',
-    item: 'लेख'
+    item: 'लेख',
+    first: 'अग्रगामी पृष्ठ',
+    last: 'पुच्छर',
+    jump: 'उफ्रनु',
+    sizePage: '/ पृष्ठ'
   },
   textRetract: {
     unfold: 'खोलियो',

@@ -41,6 +41,7 @@ export default {
     december: 'Decembris'
   },
   datePicker: {
+    sure: 'Apstiprināt',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'vakar',
+    today: 'Mūsdienās',
+    tomorrow: 'rīt'
   },
   empty: {
     noData: 'Nē dati'
@@ -70,7 +74,11 @@ export default {
     previous: 'Iepriekšējā lapa',
     next: 'Nākamā lapaspuse',
     total: 'Kopā',
-    item: 'Raksts'
+    item: 'Raksts',
+    first: 'priekšējā lapa',
+    last: 'Asti',
+    jump: 'Lēkt',
+    sizePage: '/ lappuse'
   },
   textRetract: {
     unfold: 'Atlocīt',

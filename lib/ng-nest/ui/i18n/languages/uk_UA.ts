@@ -41,6 +41,7 @@ export default {
     december: 'Грудень'
   },
   datePicker: {
+    sure: 'підтверджувати',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'вчора',
+    today: 'На сьогоднішній день',
+    tomorrow: 'завтра'
   },
   empty: {
     noData: 'Немає дані'
@@ -70,7 +74,11 @@ export default {
     previous: 'Попередня сторінка',
     next: 'Наступна сторінка',
     total: 'Всього',
-    item: 'Стаття'
+    item: 'Стаття',
+    first: 'титульна сторінка',
+    last: 'Хвіст',
+    jump: 'Стрибок',
+    sizePage: '/ Сторінка'
   },
   textRetract: {
     unfold: 'Розгорнути',

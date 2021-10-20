@@ -41,6 +41,7 @@ export default {
     december: 'ಡಿಸೆಂಬರ್'
   },
   datePicker: {
+    sure: 'ದೃಢೀಕರಿಸಿ',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'ನಿನ್ನೆ',
+    today: 'ಈ ದಿನಗಳಲ್ಲಿ',
+    tomorrow: 'ನಾಳೆ'
   },
   empty: {
     noData: 'ಇಲ್ಲ ಡೇಟಾ'
@@ -70,7 +74,11 @@ export default {
     previous: 'ಹಿಂದಿನ ಪುಟ',
     next: 'ಮುಂದಿನ ಪುಟ',
     total: 'ಒಟ್ಟು',
-    item: 'ಲೇಖನ'
+    item: 'ಲೇಖನ',
+    first: 'ಮುಖಪುಟ',
+    last: 'ಬಾಲ',
+    jump: 'ನೆಗೆಯುವುದನ್ನು',
+    sizePage: '/ ಪುಟ'
   },
   textRetract: {
     unfold: 'ಬಿಚ್ಚಿಡಲಾಗಿದೆ',

@@ -41,6 +41,7 @@ export default {
     december: 'december'
   },
   datePicker: {
+    sure: 'bekräfta',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'i går',
+    today: 'Nu för tiden',
+    tomorrow: 'i morgon'
   },
   empty: {
     noData: 'Nej data'
@@ -70,7 +74,11 @@ export default {
     previous: 'Föregående sida',
     next: 'Nästa sida',
     total: 'Total',
-    item: 'Artikel'
+    item: 'Artikel',
+    first: 'framsida',
+    last: 'Svans',
+    jump: 'Hoppa',
+    sizePage: '/ Sida'
   },
   textRetract: {
     unfold: 'Veckla ut',

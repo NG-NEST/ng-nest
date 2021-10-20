@@ -41,6 +41,7 @@ export default {
     december: 'Децембар'
   },
   datePicker: {
+    sure: 'Потврди',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'јучер',
+    today: 'Данас',
+    tomorrow: 'сутра'
   },
   empty: {
     noData: 'Не података'
@@ -70,7 +74,11 @@ export default {
     previous: 'Претходна страница',
     next: 'Следећа страна',
     total: 'Укупно',
-    item: 'Члан'
+    item: 'Члан',
+    first: 'Насловна страна',
+    last: 'Реп',
+    jump: 'Скочити',
+    sizePage: '/ страна'
   },
   textRetract: {
     unfold: 'Рашири',

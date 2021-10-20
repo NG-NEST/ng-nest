@@ -41,6 +41,7 @@ export default {
     december: '12mois'
   },
   datePicker: {
+    sure: 'confirmer',
     month: '',
     year: '',
     january: '1mois',
@@ -61,7 +62,10 @@ export default {
     thursday: 'quatre',
     friday: 'Cinq',
     saturday: 'six',
-    sunday: 'journée'
+    sunday: 'journée',
+    yesterday: 'hier',
+    today: 'De nos jours',
+    tomorrow: 'demain'
   },
   empty: {
     noData: 'Pas de données'
@@ -70,7 +74,11 @@ export default {
     previous: 'Page précédente',
     next: 'Page suivante',
     total: 'Total',
-    item: 'Article'
+    item: 'Article',
+    first: 'page de garde',
+    last: 'Queue',
+    jump: 'Saut',
+    sizePage: '/ page'
   },
   textRetract: {
     unfold: 'Se dérouler',

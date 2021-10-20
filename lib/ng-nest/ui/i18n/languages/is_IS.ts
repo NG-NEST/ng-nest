@@ -41,6 +41,7 @@ export default {
     december: 'Desember'
   },
   datePicker: {
+    sure: 'staðfesta',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'í gær',
+    today: 'Nú á dögum',
+    tomorrow: 'á morgun'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'Fyrri síða',
     next: 'Næsta síða',
     total: 'Samtals',
-    item: 'Grein'
+    item: 'Grein',
+    first: 'Forsíða',
+    last: 'Hala',
+    jump: 'Hoppa',
+    sizePage: '/ settur'
   },
   textRetract: {
     unfold: 'Brettu út',

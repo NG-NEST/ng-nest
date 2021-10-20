@@ -41,6 +41,7 @@ export default {
     december: 'Berfanbar'
   },
   datePicker: {
+    sure: 'tesdîqkirin',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'do',
+    today: 'Naha',
+    tomorrow: 'sibêbê'
   },
   empty: {
     noData: 'Na jimare'
@@ -70,7 +74,11 @@ export default {
     previous: 'Rûpela berê',
     next: 'Rûpelê din',
     total: 'Hemî',
-    item: 'Tişt'
+    item: 'Tişt',
+    first: 'Rûpela pêşîn',
+    last: 'Terrî',
+    jump: 'Helperkîn',
+    sizePage: '/ Rûpel'
   },
   textRetract: {
     unfold: 'Ji hevvekirin',

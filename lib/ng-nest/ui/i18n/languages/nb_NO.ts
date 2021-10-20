@@ -41,6 +41,7 @@ export default {
     december: 'desember'
   },
   datePicker: {
+    sure: 'bekrefte',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'i går',
+    today: 'Nå for tiden',
+    tomorrow: 'i morgen'
   },
   empty: {
     noData: 'Nei data'
@@ -70,7 +74,11 @@ export default {
     previous: 'Forrige side',
     next: 'Neste side',
     total: 'Total',
-    item: 'Artikkel'
+    item: 'Artikkel',
+    first: 'Forside',
+    last: 'Hale',
+    jump: 'Hoppe',
+    sizePage: '/ side'
   },
   textRetract: {
     unfold: 'Brette',

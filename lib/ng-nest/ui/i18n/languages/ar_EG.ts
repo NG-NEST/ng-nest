@@ -41,6 +41,7 @@ export default {
     december: '12شهر'
   },
   datePicker: {
+    sure: 'تؤكد',
     month: 'شهر',
     year: 'عام',
     january: '1شهر',
@@ -61,7 +62,10 @@ export default {
     thursday: 'أربعة',
     friday: 'خمسة',
     saturday: 'ستة',
-    sunday: 'يوم'
+    sunday: 'يوم',
+    yesterday: 'في الامس',
+    today: 'الوقت الحاضر',
+    tomorrow: 'غدا'
   },
   empty: {
     noData: 'لايوجد بيانات'
@@ -70,7 +74,11 @@ export default {
     previous: 'الصفحة السابقة',
     next: 'الصفحة التالية',
     total: 'مجموع',
-    item: 'مقالة - سلعة'
+    item: 'مقالة - سلعة',
+    first: 'الصفحة الأمامية',
+    last: 'ذيل',
+    jump: 'القفز',
+    sizePage: '/صفحة'
   },
   textRetract: {
     unfold: 'تكشف',

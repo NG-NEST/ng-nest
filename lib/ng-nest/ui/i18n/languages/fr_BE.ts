@@ -41,6 +41,7 @@ export default {
     december: '12mois'
   },
   datePicker: {
+    sure: 'confirmer',
     month: '',
     year: '',
     january: '1mois',
@@ -61,7 +62,14 @@ export default {
     thursday: 'quatre',
     friday: 'Cinq',
     saturday: 'six',
-    sunday: 'journée'
+    sunday: 'journée',
+    yesterday: 'hier',
+    today: 'De nos jours',
+    tomorrow: 'demain',
+    first: 'page de garde',
+    last: 'Queue',
+    jump: 'Saut',
+    sizePage: '/ page'
   },
   empty: {
     noData: 'Pas de données'

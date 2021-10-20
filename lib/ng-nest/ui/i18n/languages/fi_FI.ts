@@ -41,6 +41,7 @@ export default {
     december: '12'
   },
   datePicker: {
+    sure: 'vahvistaa',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: 'neljä',
     friday: 'Kehut',
     saturday: 'kuusi',
-    sunday: 'päivä'
+    sunday: 'päivä',
+    yesterday: 'eilen',
+    today: 'Nykyään',
+    tomorrow: 'huomenna'
   },
   empty: {
     noData: 'Ei dataa'
@@ -70,7 +74,11 @@ export default {
     previous: 'Edellinen sivu',
     next: 'Seuraava sivu',
     total: 'Kaikki yhteensä',
-    item: 'Artikla'
+    item: 'Artikla',
+    first: 'Etusivu',
+    last: 'Häntä',
+    jump: 'Hypätä',
+    sizePage: '/ sivu'
   },
   textRetract: {
     unfold: 'Unfold',

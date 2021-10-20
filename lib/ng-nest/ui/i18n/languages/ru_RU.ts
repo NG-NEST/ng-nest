@@ -41,6 +41,7 @@ export default {
     december: 'Декабрь'
   },
   datePicker: {
+    sure: 'подтверждать',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'вчера',
+    today: 'Настоящее время',
+    tomorrow: 'завтра'
   },
   empty: {
     noData: 'нет данные'
@@ -70,7 +74,11 @@ export default {
     previous: 'Предыдущая страница',
     next: 'Следующая страница',
     total: 'Общее количество',
-    item: 'Статья'
+    item: 'Статья',
+    first: 'титульная страница',
+    last: 'Хвост',
+    jump: 'Прыжок',
+    sizePage: '/ cтраница'
   },
   textRetract: {
     unfold: 'Открываются',

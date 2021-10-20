@@ -41,6 +41,7 @@ export default {
     december: 'Aralık'
   },
   datePicker: {
+    sure: 'onaylamak',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'dün',
+    today: 'Şu günlerde',
+    tomorrow: 'yarın'
   },
   empty: {
     noData: 'Hayır veri'
@@ -70,7 +74,11 @@ export default {
     previous: 'Önceki sayfa',
     next: 'Sonraki Sayfa',
     total: 'Toplam',
-    item: 'makale'
+    item: 'makale',
+    first: 'ön Sayfa',
+    last: 'Kuyruk',
+    jump: 'Zıplamak',
+    sizePage: '/ Sayfa'
   },
   textRetract: {
     unfold: 'Çıkar',

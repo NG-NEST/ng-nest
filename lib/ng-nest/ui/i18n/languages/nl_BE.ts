@@ -41,6 +41,7 @@ export default {
     december: 'december'
   },
   datePicker: {
+    sure: 'bevestigen',
     month: '',
     year: '',
     january: '1月',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'gisteren',
+    today: 'Vandaag de dag',
+    tomorrow: 'morgen'
   },
   empty: {
     noData: 'Nee gegevens'
@@ -70,7 +74,11 @@ export default {
     previous: 'Vorige pagina',
     next: 'Volgende bladzijde',
     total: 'Totaal',
-    item: 'Artikel'
+    item: 'Artikel',
+    first: 'voorpagina',
+    last: 'Staart',
+    jump: 'Springen',
+    sizePage: '/ bladzijde'
   },
   textRetract: {
     unfold: 'Ontvouwen',

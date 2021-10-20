@@ -41,6 +41,7 @@ export default {
     december: 'دسامبر'
   },
   datePicker: {
+    sure: 'تایید',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: 'چهار',
     friday: 'پنج',
     saturday: 'شش',
-    sunday: 'روز'
+    sunday: 'روز',
+    yesterday: 'دیروز',
+    today: 'این روزها',
+    tomorrow: 'فردا'
   },
   empty: {
     noData: 'اطلاعاتی وجود ندارد'
@@ -70,7 +74,11 @@ export default {
     previous: 'صفحه قبلی',
     next: 'صفحه بعد',
     total: 'جمع',
-    item: 'مقاله'
+    item: 'مقاله',
+    first: 'صفحه اول',
+    last: 'دم',
+    jump: 'پرش',
+    sizePage: '/صفحه'
   },
   textRetract: {
     unfold: 'آشکار شد',

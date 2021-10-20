@@ -41,6 +41,7 @@ export default {
     december: '12Měsíc'
   },
   datePicker: {
+    sure: 'potvrdit',
     month: 'Měsíc',
     year: 'rok',
     january: '1Měsíc',
@@ -61,7 +62,10 @@ export default {
     thursday: 'čtyři',
     friday: 'Pětky',
     saturday: 'šest',
-    sunday: 'den'
+    sunday: 'den',
+    yesterday: 'včera',
+    today: 'Dnes',
+    tomorrow: 'zítra'
   },
   empty: {
     noData: 'Žádná data'
@@ -70,7 +74,11 @@ export default {
     previous: 'Předchozí stránka',
     next: 'Další strana',
     total: 'Celkový',
-    item: 'Článek'
+    item: 'Článek',
+    first: 'přední strana',
+    last: 'Ocas',
+    jump: 'Skok',
+    sizePage: '/ strana'
   },
   textRetract: {
     unfold: 'Rozvinout',

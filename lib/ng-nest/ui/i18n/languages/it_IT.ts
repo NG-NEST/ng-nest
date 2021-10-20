@@ -41,6 +41,7 @@ export default {
     december: 'dicembre'
   },
   datePicker: {
+    sure: 'Confermare',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: '四',
     friday: '五',
     saturday: '六',
-    sunday: '日'
+    sunday: '日',
+    yesterday: 'ieri',
+    today: 'Oggi',
+    tomorrow: 'Domani'
   },
   empty: {
     noData: 'אין מידע'
@@ -70,7 +74,11 @@ export default {
     previous: 'Pagina precedente',
     next: 'Pagina successiva',
     total: 'Totale',
-    item: 'Articolo'
+    item: 'Articolo',
+    first: 'prima pagina',
+    last: 'Coda',
+    jump: 'Salto',
+    sizePage: '/ pagina'
   },
   textRetract: {
     unfold: 'Svelare',

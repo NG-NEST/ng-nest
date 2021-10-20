@@ -41,6 +41,7 @@ export default {
     december: '12'
   },
   datePicker: {
+    sure: 'επιβεβαιώνω',
     month: '',
     year: '',
     january: '1',
@@ -61,7 +62,10 @@ export default {
     thursday: 'τέσσερα',
     friday: 'Πέντε',
     saturday: 'έξι',
-    sunday: 'ημέρα'
+    sunday: 'ημέρα',
+    yesterday: 'εχθές',
+    today: 'Στην εποχή μας',
+    tomorrow: 'αύριο'
   },
   empty: {
     noData: 'Χωρίς δεδομένα'
@@ -70,7 +74,11 @@ export default {
     previous: 'Προηγούμενη σελίδα',
     next: 'Επόμενη σελίδα',
     total: 'Σύνολο',
-    item: 'Αρθρο'
+    item: 'Αρθρο',
+    first: 'εξώφυλλο',
+    last: 'Ουρά',
+    jump: 'Αλμα',
+    sizePage: '/Σελίδα'
   },
   textRetract: {
     unfold: 'Ξεδιπλώνονται',
