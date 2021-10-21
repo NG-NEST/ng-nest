@@ -56,6 +56,11 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
+   * @zh_CN 匹配区分大小写
+   * @en_US Case-sensitive
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  /**
    * @zh_CN 选择节点事件
    * @en_US Node click event
    */

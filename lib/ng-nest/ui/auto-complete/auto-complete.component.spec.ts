@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XAutoCompletePrefix, XAutoCompleteNode } from './auto-complete.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
-import { XData } from '@ng-nest/ui/core';
+import { XCloneDeep, XData, XDrop, XOrderBy, XRemove } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -41,7 +41,7 @@ describe(XAutoCompletePrefix, () => {
         XFindModule,
         XTextareaModule,
         XTimePickerModule,
-        XDatePickerModule,
+        XDatePickerModule
       ],
       declarations: [
         TestXAutoCompleteComponent,

@@ -280,7 +280,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         if (XIsEmpty(value)) {
           this.closeSubject.next();
         } else {
-          this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
+          if (this.caseSensitive) {
+            this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
+          } else {
+            this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
+          }
           this.dataChange.next(this.searchNodes);
         }
       }

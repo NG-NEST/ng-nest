@@ -151,6 +151,7 @@ export interface XAutoCompleteConfig {
   debounceTime?: number;
   size?: XSize;
   bordered?: boolean;
+  caseSensitive?: boolean;
 }
 
 export interface XBackTopConfig {
