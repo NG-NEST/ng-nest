@@ -9,9 +9,8 @@ import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
-import { orderBy, map, cloneDeep } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -202,7 +201,7 @@ class UsersServiceTest extends XRepositoryAbstract {
   }
 
   private setGroup(data: User[], group: string): XGroupItem[] {
-    return map(groupBy(data, group), (value, key) => {
+    return groupBy(data, group).map((value, key) => {
       let groupItem: XGroupItem = { id: key, count: value.length };
       groupItem[group] = key;
       return groupItem;
@@ -210,10 +209,10 @@ class UsersServiceTest extends XRepositoryAbstract {
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
-    return orderBy(
+    return XOrderBy(
       data,
-      map(sort, (x) => x.field),
-      map(sort, (x) => x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }
@@ -244,7 +243,7 @@ class TreeServiceTest {
   getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
-        x.next(cloneDeep(this.data));
+        x.next(XCloneDeep(this.data));
         x.complete();
       }, 10);
     });

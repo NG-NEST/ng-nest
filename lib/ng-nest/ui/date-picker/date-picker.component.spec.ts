@@ -21,7 +21,6 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
-import { invert } from 'lodash';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
