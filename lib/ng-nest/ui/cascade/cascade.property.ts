@@ -1,4 +1,15 @@
-import { XParentIdentityProperty, XDataConvert, XData, XCorner, XWithConfig, XSize, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
+import {
+  XParentIdentityProperty,
+  XDataConvert,
+  XData,
+  XCorner,
+  XWithConfig,
+  XSize,
+  XInputBoolean,
+  XBoolean,
+  XTrigger,
+  XNumber
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -36,6 +47,16 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
+   * @zh_CN 子节点触发方式
+   * @en_US Sub node triggering method
+   */
+  @Input() @XWithConfig<XCascadeNodeTrigger>(X_CONFIG_NAME, 'click') nodeTrigger?: XCascadeNodeTrigger;
+  /**
+   * @zh_CN 子节点触发方式为 hover 时的延迟时间
+   * @en_US Sub node triggering method
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 200) nodeHoverDelay?: XNumber;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -69,6 +90,12 @@ export interface XCascadeOption extends XFormOption {
  * @en_US Cascade data object
  */
 export interface XCascadeNode extends XParentIdentityProperty<XCascadeNode> {}
+
+/**
+ * @zh_CN 子节点触发方式
+ * @en_US Sub node triggering method
+ */
+export type XCascadeNodeTrigger = XTrigger;
 
 /**
  * Cascade-Portal

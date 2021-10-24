@@ -10,10 +10,10 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { XCascadeNode } from './cascade.property';
-import { XIsEmpty, XCorner, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { of, Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'x-cascade-portal',
@@ -44,6 +44,9 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   animating!: Function;
   nodeEmit!: Function;
   values: XCascadeNode[] = [];
+  nodeTrigger!: XCascadeNodeTrigger;
+  nodeHoverDelay!: number;
+  hoverDelayUnSub = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
@@ -90,7 +93,21 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     this.values = this.selecteds.map((x) => x.id) as XCascadeNode[];
   }
 
+  nodeMouseenter(node: XCascadeNode) {
+    of(true)
+      .pipe(delay(this.nodeHoverDelay), takeUntil(this.hoverDelayUnSub))
+      .subscribe(() => this.nodeExpansion(node, false));
+  }
+
+  nodeMouseleave() {
+    this.hoverDelayUnSub.next();
+  }
+
   nodeClick(node: XCascadeNode) {
+    this.nodeExpansion(node);
+  }
+
+  nodeExpansion(node: XCascadeNode, click = true) {
     const level = Number(node.level);
     this.ngZone.run(() => {
       if (node.leaf) {
@@ -107,7 +124,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
         }
         this.values = this.selecteds.map((x) => x.id);
         this.cdr.detectChanges();
-      } else {
+      } else if (click) {
         if (this.selecteds.length >= level + 1) {
           this.selecteds = this.selecteds.splice(0, level);
         }

@@ -194,6 +194,8 @@ export interface XCascadeConfig {
   placement?: XCorner;
   size?: XSize;
   bordered?: boolean;
+  nodeTrigger?: XTrigger;
+  nodeHoverDelay?: XNumber;
 }
 
 export interface XCheckboxConfig {

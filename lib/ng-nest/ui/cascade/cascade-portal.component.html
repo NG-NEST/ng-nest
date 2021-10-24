@@ -1,5 +1,12 @@
 <div class="x-cascade-portal" (click)="stopPropagation($event)">
   <ng-container *ngFor="let list of nodes">
-    <x-list [data]="list" [(ngModel)]="values" (nodeClick)="nodeClick($event)" checked></x-list>
+    <x-list
+      [data]="list"
+      [(ngModel)]="values"
+      (nodeClick)="nodeClick($event)"
+      (nodeMouseenter)="nodeTrigger === 'hover' && nodeMouseenter($event)"
+      (nodeMouseleave)="nodeTrigger === 'hover' && nodeMouseleave()"
+      checked
+    ></x-list>
   </ng-container>
 </div>

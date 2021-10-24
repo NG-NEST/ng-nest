@@ -26,7 +26,7 @@ describe(XCascadePrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXCascadeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -86,7 +86,7 @@ describe(XCascadePrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXCascadeBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

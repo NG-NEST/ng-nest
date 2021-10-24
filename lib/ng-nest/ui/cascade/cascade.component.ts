@@ -198,6 +198,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      nodeTrigger: this.nodeTrigger,
+      nodeHoverDelay: this.nodeHoverDelay,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: { node: XCascadeNode; label: string }) => this.onNodeClick(node),
