@@ -21,6 +21,7 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XAutoCompletePrefix, () => {
   beforeEach(async(() => {
@@ -41,7 +42,8 @@ describe(XAutoCompletePrefix, () => {
         XFindModule,
         XTextareaModule,
         XTimePickerModule,
-        XDatePickerModule
+        XDatePickerModule,
+        XIconModule
       ],
       declarations: [
         TestXAutoCompleteComponent,
@@ -51,7 +53,8 @@ describe(XAutoCompletePrefix, () => {
         TestXAutoCompleteRequiredComponent,
         TestXAutoCompleteSizeComponent,
         TestXAutoCompleteBorderedComponent,
-        TestXAutoCompleteBeforeAfterComponent
+        TestXAutoCompleteBeforeAfterComponent,
+        TestXAutoCompleteCustomComponent
       ]
     }).compileComponents();
   }));
@@ -139,11 +142,23 @@ describe(XAutoCompletePrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`before/after.`, () => {
+  describe(`before/after.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteBeforeAfterComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXAutoCompleteBeforeAfterComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(XAutoCompleteComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`value custom.`, () => {
+    let fixture: ComponentFixture<TestXAutoCompleteCustomComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXAutoCompleteCustomComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XAutoCompleteComponent));
     });
@@ -657,4 +672,38 @@ class TestXAutoCompleteBeforeAfterComponent {
     { id: 36, label: 'AAAA-4-4', pid: 8 }
   ];
   constructor() {}
+}
+
+@Component({
+  template: `
+    <x-theme showDark></x-theme>
+    <x-row>
+      <x-col span="8">
+        <x-auto-complete [data]="data1" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-auto-complete>
+      </x-col>
+    </x-row>
+    <ng-template #nodeTpl let-node="$node">
+      <span class="select-item"><x-icon type="fto-user"></x-icon> {{ node?.label }} </span>
+    </ng-template>
+  `,
+  styles: [
+    `
+      :host {
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXAutoCompleteCustomComponent {
+  data1 = data;
+  data2 = JSON.parse(JSON.stringify(data));
+  model1: any;
+  model2: any = 'BBBB';
+  constructor(public cdr: ChangeDetectorRef) {
+    interval(0).subscribe(() => this.cdr.detectChanges());
+  }
 }

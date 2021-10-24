@@ -1,0 +1,9 @@
+<x-row>
+  <x-col>
+    <x-auto-complete [data]="data" [(ngModel)]="model" [nodeTpl]="nodeTpl"></x-auto-complete>
+  </x-col>
+</x-row>
+
+<ng-template #nodeTpl let-node="$node">
+  <span class="select-item"><x-icon type="fto-user"></x-icon> {{ node?.label }} </span>
+</ng-template>

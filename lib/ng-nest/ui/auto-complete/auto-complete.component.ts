@@ -65,6 +65,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   asyncLoading = false;
   animating = false;
 
+  valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   dataChange: Subject<XAutoCompleteNode[]> = new Subject();
@@ -233,6 +234,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       return;
     }
     this.value = node.label;
+    this.valueTplContext.$node = node;
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(node);
     this.cdr.detectChanges();
@@ -294,6 +296,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   clearEmit() {
     this.value = '';
     this.displayValue = '';
+    this.valueTplContext.$node = null;
     this.valueChange.next(this.value);
     this.modelChange(this.value);
   }
