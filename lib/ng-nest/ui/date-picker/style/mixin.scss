@@ -252,7 +252,7 @@
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-light;
   background-color: $--x-background;
-  width: 16rem;
+  width: 34rem;
   display: flex;
   flex-direction: column;
   font-size: $--x-font-size-small;
@@ -290,6 +290,15 @@
   }
   &-body {
     padding: 0.4rem;
+    display: flex;
+  }
+  &-start {
+    flex: 1;
+    margin-right: 0.4rem;
+  }
+  &-end {
+    flex: 1;
+    margin-left: 0.4rem;
   }
   &-footer {
     display: flex;

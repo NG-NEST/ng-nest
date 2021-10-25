@@ -183,6 +183,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -195,6 +196,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   showPortal() {
     if (this.disabled || this.animating) return;
+    this.active = true;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),

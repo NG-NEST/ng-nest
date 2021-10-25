@@ -268,6 +268,11 @@ export class XPickerDateProperty extends XProperty {
    */
   @Input() dateTemp?: TemplateRef<any>;
   /**
+   * @zh_CN 范围选择
+   * @en_US Range picker
+   */
+  @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
    * @zh_CN 选中的事件
    * @en_US Selected event
    */

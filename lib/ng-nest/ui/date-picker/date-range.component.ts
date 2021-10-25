@@ -78,6 +78,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
+  startDisplay: string | null = '';
+  endDisplay: string | null = '';
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -243,9 +245,21 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure),
+      startNodeEmit: (node: Date) => this.startNodeClick(node),
+      endNodeEmit: (node: Date) => this.endNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
+  }
+
+  startNodeClick(node: Date) {
+    this.startDisplay = this.datePipe.transform(node, this.format);
+    this.cdr.detectChanges();
+  }
+
+  endNodeClick(node: Date) {
+    this.endDisplay = this.datePipe.transform(node, this.format);
+    this.cdr.detectChanges();
   }
 
   onNodeClick(date: Date, sure = true) {

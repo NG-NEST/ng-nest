@@ -18,7 +18,7 @@
               type="text"
               size="mini"
               title="{{ week | date: 'yyyy-MM-dd' }}"
-              [activated]="(week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+              [activated]="!rangePicker && (week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
               (click)="dateClick(week)"
               >{{ week | date: 'd' }}</x-button
             >

@@ -11,7 +11,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDateRangePortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays, XData } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays, XData, XAddMonths } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -39,7 +39,11 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   type: XDatePickerType = 'date';
   display = new Date();
   model!: Date;
+  startModel!: Date;
+  endModel!: Date;
   startYear!: number;
+  startDisplay: Date = new Date();
+  endDisplay: Date = XAddMonths(this.startDisplay, 1);
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
@@ -47,6 +51,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   closePortal!: Function;
   destroyPortal!: Function;
   nodeEmit!: (date: Date, sure?: boolean) => void;
+  startNodeEmit!: (date: Date) => void;
+  endNodeEmit!: (date: Date) => void;
   locale: XI18nDatePicker = {};
   time!: number;
   preset: XDatePickerPreset[] = [];
@@ -89,6 +95,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       this.setDefault();
     } else {
       this.model = this.display;
+      this.startModel = this.model;
+      this.endModel = XAddMonths(this.model, 1);
     }
     this.time = this.model.getTime();
     this._type = this.type;
@@ -107,6 +115,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
 
   setDisplay(date: Date) {
     this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.startDisplay = this.display;
+    this.endDisplay = XAddMonths(this.display, 1);
   }
 
   dateChange(date: Date) {
@@ -118,6 +128,14 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     } else {
       this.nodeEmit(this.model);
     }
+  }
+
+  startDateChange(date: Date) {
+    this.startNodeEmit(date)
+  }
+
+  endDateChange(date: Date) {
+    this.endNodeEmit(date)
   }
 
   typeChange(type: XDatePickerType) {

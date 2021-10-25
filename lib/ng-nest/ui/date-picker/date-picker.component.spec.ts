@@ -1,11 +1,11 @@
-import { interval } from 'rxjs';
+import { interval, of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDatePickerComponent } from './date-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
+import { delay } from 'rxjs/operators';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(async(() => {
@@ -165,7 +166,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`today.`, () => {
+  describe(`today.`, () => {
     let fixture: ComponentFixture<TestXDatePickerTodayComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -177,7 +178,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`date-range.`, () => {
+  fdescribe(`date-range.`, () => {
     let fixture: ComponentFixture<TestXDateRangeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -755,6 +756,7 @@ class TestXDatePickerTodayComponent {
     <x-row>
       <x-col span="24">
         <x-date-range></x-date-range>
+        <x-date-picker placeholder="请选择日期"></x-date-picker>
       </x-col>
     </x-row>
   `,
@@ -776,7 +778,7 @@ class TestXDatePickerTodayComponent {
 })
 class TestXDateRangeComponent {
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(() => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

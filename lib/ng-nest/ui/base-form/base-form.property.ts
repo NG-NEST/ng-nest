@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize, XTemplate } from '@ng-nest/ui/core';
 
 /**
@@ -78,6 +78,14 @@ export class XFormProp extends XProperty {
    * 验证不通过提示文字
    */
   @Input() message?: string | string[];
+  /**
+   * 激活状态
+   */
+  @Input() @XInputBoolean() active: XBoolean = false;
+  /**
+   * 激活状态
+   */
+  @Output() activeChange = new EventEmitter<XBoolean>();
 }
 
 export interface XFormOption {
@@ -129,4 +137,8 @@ export interface XFormOption {
    * 验证不通过提示文字
    */
   message?: string | string[];
+  /**
+   * 激活状态
+   */
+  active?: XBoolean;
 }

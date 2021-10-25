@@ -1,9 +1,23 @@
 <div #dateRange class="x-date-range" [class.x-date-range-focus]="isFocus">
   <div class="x-date-range-row">
     <x-input-group #inputGroup class="x-date-range-group" bordered="false" (click)="showPortal()">
-      <x-input #inputStartCom type="text" placeholder="开始日期" (xFocus)="isFocus = true" (xBlur)="isFocus = false"></x-input>
+      <x-input
+        #inputStartCom
+        type="text"
+        placeholder="开始日期"
+        (xFocus)="isFocus = true"
+        (xBlur)="isFocus = false"
+        [(ngModel)]="startDisplay"
+      ></x-input>
       <x-icon type="fto-arrow-right"></x-icon>
-      <x-input #inputEndCom type="text" placeholder="结束日期" (xFocus)="isFocus = true" (xBlur)="isFocus = false"></x-input>
+      <x-input
+        #inputEndCom
+        type="text"
+        placeholder="结束日期"
+        (xFocus)="isFocus = true"
+        (xBlur)="isFocus = false"
+        [(ngModel)]="endDisplay"
+      ></x-input>
       <x-icon [type]="icon"></x-icon>
     </x-input-group>
   </div>
