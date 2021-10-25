@@ -11,18 +11,29 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XCascadePrefix, () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XCascadeModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XCascadeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule,
+        XIconModule
+      ],
       declarations: [
         TestXCascadeComponent,
         TestXCascadeLabelComponent,
         TestXCascadeDisabledComponent,
         TestXCascadeRequiredComponent,
         TestXCascadeSizeComponent,
-        TestXCascadeBorderedComponent
+        TestXCascadeBorderedComponent,
+        TestXCascadeCustomComponent
       ]
     }).compileComponents();
   }));
@@ -91,6 +102,18 @@ describe(XCascadePrefix, () => {
     let debugElement: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCascadeBorderedComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXCascadeComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+  fdescribe(`custom.`, () => {
+    let fixture: ComponentFixture<TestXCascadeCustomComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXCascadeCustomComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXCascadeComponent));
     });
@@ -394,5 +417,45 @@ class TestXCascadeSizeComponent {
 })
 class TestXCascadeBorderedComponent {
   data = data;
+  constructor() {}
+}
+
+@Component({
+  template: `
+    <x-row>
+      <x-col span="24">
+        <x-cascade [data]="data" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
+      </x-col>
+      <x-col span="24">
+        <x-cascade [data]="data" [(ngModel)]="model" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
+      </x-col>
+    </x-row>
+    <ng-template #nodeTpl let-node="$node"> <x-icon type="fto-map-pin"></x-icon> {{ node.label }} </ng-template>
+    <ng-template #valueTpl let-nodes="$nodes">
+      <ng-container *ngFor="let node of nodes; index as i">
+        <x-icon type="fto-chevron-right" *ngIf="i > 0"></x-icon> {{ node.label }}
+      </ng-container>
+    </ng-template>
+  `,
+  styles: [
+    `
+      :host {
+        background-color: var(--x-background);
+        padding: 1rem;
+        border: 0.0625rem solid var(--x-border);
+      }
+      x-row > x-col > x-cascade {
+        width: 15rem;
+        display: block;
+      }
+      x-row > x-col:not(:first-child) {
+        margin-top: 1rem;
+      }
+    `
+  ]
+})
+class TestXCascadeCustomComponent {
+  data = data;
+  model = 20;
   constructor() {}
 }

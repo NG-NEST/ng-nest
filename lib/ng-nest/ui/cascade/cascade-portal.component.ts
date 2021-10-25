@@ -8,7 +8,8 @@ import {
   Renderer2,
   OnDestroy,
   HostBinding,
-  HostListener
+  HostListener,
+  TemplateRef
 } from '@angular/core';
 import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
 import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
@@ -44,6 +45,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   animating!: Function;
   nodeEmit!: Function;
   values: XCascadeNode[] = [];
+  nodeTpl!: TemplateRef<any>;
   nodeTrigger!: XCascadeNodeTrigger;
   nodeHoverDelay!: number;
   hoverDelayUnSub = new Subject();
@@ -131,6 +133,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
         this.selecteds = [...this.selecteds, node];
         this.nodeEmit({
           node: node,
+          nodes: this.selecteds,
           label: this.selecteds.map((x) => x.label).join(` / `)
         });
       }

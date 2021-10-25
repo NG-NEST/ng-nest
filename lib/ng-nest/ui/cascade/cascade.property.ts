@@ -10,7 +10,7 @@ import {
   XTrigger,
   XNumber
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
@@ -56,6 +56,11 @@ export class XCascadeProperty extends XControlValueAccessor<any> implements XCas
    * @en_US Sub node triggering method
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 200) nodeHoverDelay?: XNumber;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  @Input() nodeTpl?: TemplateRef<any>;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event

@@ -53,6 +53,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
+  valueTplContext: { $node: any; $nodes: any; $isValue: boolean } = { $node: null, $nodes: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
@@ -133,6 +134,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   clearEmit() {
     this.value = '';
     this.displayValue = '';
+    this.valueTplContext.$node = null;
+    this.valueTplContext.$nodes = null;
     this.mleave();
     this.valueChange.next(this.value);
     if (this.onChange) this.onChange(this.value);
@@ -198,19 +201,22 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      nodeTpl: this.nodeTpl,
       nodeTrigger: this.nodeTrigger,
       nodeHoverDelay: this.nodeHoverDelay,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: { node: XCascadeNode; label: string }) => this.onNodeClick(node),
+      nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  onNodeClick(selected: { node: XCascadeNode; label: string }) {
+  onNodeClick(selected: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) {
     this.value = selected.node.id;
     this.displayValue = selected.label;
+    this.valueTplContext.$node = selected;
+    this.valueTplContext.$nodes = selected.nodes;
     this.closeSubject.next();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(selected);
@@ -220,6 +226,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     let node = this.datas.find((x) => x.id === this.value) as XCascadeNode;
     if (typeof node === 'undefined') {
       this.displayValue = '';
+      this.valueTplContext.$node = null;
+      this.valueTplContext.$nodes = null;
       return;
     } else {
       let selecteds = [node];
@@ -228,6 +236,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
         selecteds = [node, ...selecteds];
       }
       this.displayValue = selecteds.map((x) => x.label).join(` / `);
+      this.valueTplContext.$node = node;
+      this.valueTplContext.$nodes = selecteds;
     }
   }
 

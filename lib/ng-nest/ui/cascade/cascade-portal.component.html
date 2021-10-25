@@ -2,6 +2,7 @@
   <ng-container *ngFor="let list of nodes">
     <x-list
       [data]="list"
+      [nodeTpl]="nodeTpl"
       [(ngModel)]="values"
       (nodeClick)="nodeClick($event)"
       (nodeMouseenter)="nodeTrigger === 'hover' && nodeMouseenter($event)"
