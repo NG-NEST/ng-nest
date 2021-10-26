@@ -1,4 +1,4 @@
-<div class="x-date-picker-portal {{ type }}" [ngSwitch]="type">
+<div class="x-date-picker-portal {{ type }}" [ngSwitch]="type" tabindex="-1" (click)="inputCom.inputFocus()">
   <ng-container *ngSwitchCase="'date'">
     <div class="x-date-picker-portal-header">
       <ng-container *ngTemplateOutlet="dateHeaderTpl"></ng-container>

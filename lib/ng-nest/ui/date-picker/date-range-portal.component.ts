@@ -44,13 +44,13 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   startYear!: number;
   startDisplay: Date = new Date();
   endDisplay: Date = XAddMonths(this.startDisplay, 1);
-  value: any;
-  valueChange!: Subject<any>;
+  value: number[] = [];
+  valueChange!: Subject<number[]>;
   positionChange!: Subject<any>;
   animating!: Function;
   closePortal!: Function;
   destroyPortal!: Function;
-  nodeEmit!: (date: Date, sure?: boolean) => void;
+  nodeEmit!: (date: Date[], sure?: boolean) => void;
   startNodeEmit!: (date: Date) => void;
   endNodeEmit!: (date: Date) => void;
   locale: XI18nDatePicker = {};
@@ -94,6 +94,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     if (!XIsEmpty(this.value)) {
       this.setDefault();
     } else {
+      this.value = [];
       this.model = this.display;
       this.startModel = this.model;
       this.endModel = XAddMonths(this.model, 1);
@@ -109,7 +110,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setDefault() {
-    const date = new Date(this.value);
+    const date = new Date();
     this.model = date;
   }
 
@@ -120,22 +121,21 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   dateChange(date: Date) {
-    this.setDisplay(date);
-    this.model = date;
-    this.setModel(this.model, new Date(this.time));
-    if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
-      this.nodeEmit(this.model, false);
-    } else {
-      this.nodeEmit(this.model);
+    let time = date.getTime();
+    if (this.value.length === 0) {
+      this.value.push(time);
+      this.startNodeEmit(date);
+    } else if (this.value.length === 1) {
+      if (time > this.value[0]) {
+        this.value.push(time);
+        this.endNodeEmit(date);
+      } else {
+        this.value.unshift(time);
+        this.startNodeEmit(date);
+        this.endNodeEmit(new Date(this.value[1]));
+      }
+      this.nodeEmit(this.value.map((x) => new Date(x)));
     }
-  }
-
-  startDateChange(date: Date) {
-    this.startNodeEmit(date)
-  }
-
-  endDateChange(date: Date) {
-    this.endNodeEmit(date)
   }
 
   typeChange(type: XDatePickerType) {
@@ -147,7 +147,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.setDisplay(date);
     if (this._type === 'month') {
       this.model = date;
-      this.nodeEmit(date);
+      // this.nodeEmit(date);
     } else {
       this.type = this._type;
     }
@@ -158,7 +158,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.setDisplay(date);
     if (this._type === 'year') {
       this.model = date;
-      this.nodeEmit(date);
+      // this.nodeEmit(date);
     } else {
       this.type = 'month';
     }
@@ -214,7 +214,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
 
   selectTime(time: Date) {
     this.time = time.getTime();
-    this.nodeEmit(this.setModel(this.model, time), false);
+    // this.nodeEmit(this.setModel(this.model, time), false);
     this.cdr.detectChanges();
   }
 

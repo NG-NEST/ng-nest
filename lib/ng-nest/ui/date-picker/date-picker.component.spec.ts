@@ -756,7 +756,9 @@ class TestXDatePickerTodayComponent {
     <x-row>
       <x-col span="24">
         <x-date-range></x-date-range>
-        <x-date-picker placeholder="请选择日期"></x-date-picker>
+      </x-col>
+      <x-col span="24">
+        <x-input></x-input>
       </x-col>
     </x-row>
   `,

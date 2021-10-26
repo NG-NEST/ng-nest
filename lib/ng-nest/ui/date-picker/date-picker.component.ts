@@ -236,6 +236,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       preset: this.preset,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure),
@@ -252,6 +253,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.setDisplayValue(this.numberValue);
       this.closeSubject.next();
       this.modelChange();
+      this.inputCom.inputFocus();
       this.nodeEmit.emit(this.numberValue);
     } else {
       this.setDisplayValue(date.getTime());

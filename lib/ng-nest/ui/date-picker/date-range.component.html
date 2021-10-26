@@ -1,12 +1,12 @@
-<div #dateRange class="x-date-range" [class.x-date-range-focus]="isFocus">
+<div #dateRange class="x-date-range" [class.x-date-range-active]="active">
   <div class="x-date-range-row">
-    <x-input-group #inputGroup class="x-date-range-group" bordered="false" (click)="showPortal()">
+    <x-input-group #inputGroup class="x-date-range-group" bordered="false" (click)="showPortal($event)">
       <x-input
         #inputStartCom
         type="text"
         placeholder="开始日期"
-        (xFocus)="isFocus = true"
-        (xBlur)="isFocus = false"
+        [(active)]="startActive"
+        (click)="showPortal($event, 'start')"
         [(ngModel)]="startDisplay"
       ></x-input>
       <x-icon type="fto-arrow-right"></x-icon>
@@ -14,8 +14,8 @@
         #inputEndCom
         type="text"
         placeholder="结束日期"
-        (xFocus)="isFocus = true"
-        (xBlur)="isFocus = false"
+        [(active)]="endActive"
+        (click)="showPortal($event, 'end')"
         [(ngModel)]="endDisplay"
       ></x-input>
       <x-icon [type]="icon"></x-icon>

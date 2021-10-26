@@ -9,14 +9,14 @@
         class="x-date-range-portal-start"
         [display]="startDisplay"
         [model]="startModel"
-        (modelChange)="startDateChange($event)"
+        (modelChange)="dateChange($event)"
         rangePicker
       ></x-picker-date>
       <x-picker-date
         class="x-date-range-portal-end"
         [display]="endDisplay"
         [model]="endModel"
-        (modelChange)="endDateChange($event)"
+        (modelChange)="dateChange($event)"
         rangePicker
       ></x-picker-date>
     </div>

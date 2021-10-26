@@ -14,7 +14,7 @@ import {
   ViewChild,
   SimpleChanges
 } from '@angular/core';
-import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
+import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
 import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService } from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
@@ -36,9 +36,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
 
   modelType: XDatePickerModelType = 'date';
-  numberValue!: number | string;
+  numberValue!: (number | string)[];
   isInput = false;
-  isFocus = false;
 
   get getRequired() {
     return this.required && XIsEmpty(this.value);
@@ -67,7 +66,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   enter: boolean = false;
   inputClearable: boolean = false;
   animating = false;
-  displayValue: any = '';
+  displayValue: string[] = [];
   portal!: XPortalOverlayRef<XDateRangePortalComponent>;
   icon: string = 'fto-calendar';
   box!: DOMRect;
@@ -80,6 +79,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   closeSubject: Subject<any> = new Subject();
   startDisplay: string | null = '';
   endDisplay: string | null = '';
+  startActive = false;
+  endActive = false;
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -162,9 +163,9 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   clearEmit() {
-    this.value = '';
-    this.numberValue = '';
-    this.displayValue = '';
+    this.value = [];
+    this.numberValue = [];
+    this.displayValue = [];
     this.mleave();
     this.valueChange.next(this.numberValue);
     this.modelChange();
@@ -191,6 +192,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -201,8 +203,12 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     this.portal?.overlayRef?.dispose();
   }
 
-  showPortal() {
+  showPortal($event: Event, type?: 'start' | 'end') {
+    $event.stopPropagation();
     if (this.disabled || this.animating) return;
+    this.active = true;
+    this.startActive = type === 'start';
+    this.endActive = type === 'end';
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -244,7 +250,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       positionChange: this.positionChange,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: Date, sure = true) => this.onNodeClick(node, sure),
+      nodeEmit: (dates: Date[], sure = true) => this.onNodeClick(dates, sure),
       startNodeEmit: (node: Date) => this.startNodeClick(node),
       endNodeEmit: (node: Date) => this.endNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
@@ -262,10 +268,10 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     this.cdr.detectChanges();
   }
 
-  onNodeClick(date: Date, sure = true) {
+  onNodeClick(dates: Date[], sure = true) {
     this.isInput = false;
     if (sure) {
-      this.numberValue = date.getTime();
+      this.numberValue = dates.map(x=> x.getTime());
       this.value = this.getValue();
       this.setDisplayValue(this.numberValue);
       this.closeSubject.next();
@@ -281,7 +287,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     this.isInput = true;
   }
 
-  setDisplayValue(dateNumber: number | string) {
+  setDisplayValue(dateNumber: (number | string)[]) {
     if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue))) {
       this.displayValue = this.datePipe.transform(this.displayValue, this.format);
       this.numberValue = new Date(this.displayValue).getTime();

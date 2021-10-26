@@ -226,9 +226,17 @@
         padding: 0.4rem;
       }
       > x-input {
+        width: 10rem;
         input {
-          height: inherit !important;
-          line-height: inherit !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0.4rem;
+          margin-right: 0.4rem;
+        }
+        &.x-input-active {
+          input {
+            background-color: gray;
+          }
         }
       }
     }
@@ -236,7 +244,7 @@
       @include hover();
     }
   }
-  &-focus {
+  &-active {
     .x-date-range-group {
       @include focus();
     }

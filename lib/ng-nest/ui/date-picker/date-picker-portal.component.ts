@@ -16,6 +16,7 @@ import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
@@ -50,6 +51,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   locale: XI18nDatePicker = {};
   time!: number;
   preset: XDatePickerPreset[] = [];
+  inputCom!: XInputComponent;
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
