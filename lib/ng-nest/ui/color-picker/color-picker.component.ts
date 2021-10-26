@@ -41,8 +41,8 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   get inputStyle() {
     return {
       backgroundColor: this.value,
-      color: "transparent"
-    }
+      color: 'transparent'
+    };
   }
 
   readonly: boolean = true;
@@ -144,6 +144,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -156,6 +157,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   showPortal() {
     if (this.disabled || this.animating) return;
+    this.active = true;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -192,6 +194,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (color: string) => this.onNodeClick(color),
@@ -203,6 +206,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   onNodeClick(color: string) {
     this.value = color;
     this.displayValue = color;
+    this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }

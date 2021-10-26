@@ -322,10 +322,21 @@
     }
   }
   &-active {
-    input {
-      @include focus();
+    .x-input-row {
+      > .#{$--x-input-prefix}-input > input {
+        @include focus();
+      }
     }
-    
+  }
+  &-pointer {
+    .x-input-row {
+      > .#{$--x-input-prefix}-input {
+        > input,
+        > .#{$--x-input-prefix}-value-template-value {
+          cursor: pointer;
+        }
+      }
+    }
   }
   @include size('big', $--x-height-big, 0 $--x-padding-big);
   @include size('large', $--x-height-large, 0 $--x-padding-large);

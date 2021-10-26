@@ -83,6 +83,10 @@ export class XFormProp extends XProperty {
    */
   @Input() @XInputBoolean() active: XBoolean = false;
   /**
+   * 输入框点击样式
+   */
+  @Input() @XInputBoolean() pointer: XBoolean = false;
+  /**
    * 激活状态
    */
   @Output() activeChange = new EventEmitter<XBoolean>();
@@ -141,4 +145,8 @@ export interface XFormOption {
    * 激活状态
    */
   active?: XBoolean;
+  /**
+   * 输入框点击样式
+   */
+  pointer?: XBoolean;
 }

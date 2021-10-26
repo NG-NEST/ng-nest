@@ -148,6 +148,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -160,6 +161,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   showPortal() {
     if (this.disabled || this.animating) return;
+    this.active = true;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -204,6 +206,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       nodeTpl: this.nodeTpl,
       nodeTrigger: this.nodeTrigger,
       nodeHoverDelay: this.nodeHoverDelay,
+      inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node),
@@ -218,6 +221,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     this.valueTplContext.$node = selected;
     this.valueTplContext.$nodes = selected.nodes;
     this.closeSubject.next();
+    this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(selected);
   }

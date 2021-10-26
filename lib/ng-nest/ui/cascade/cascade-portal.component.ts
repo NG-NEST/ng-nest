@@ -15,6 +15,7 @@ import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
 import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: 'x-cascade-portal',
@@ -49,6 +50,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   nodeTrigger!: XCascadeNodeTrigger;
   nodeHoverDelay!: number;
   hoverDelayUnSub = new Subject();
+  inputCom!: XInputComponent;
   private _unSubject = new Subject<void>();
 
   constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}

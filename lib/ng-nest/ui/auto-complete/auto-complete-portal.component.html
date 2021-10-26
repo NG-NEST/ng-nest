@@ -1,4 +1,4 @@
-<div #autoCompletePortal class="x-auto-complete-portal" (click)="stopPropagation($event)">
+<div #autoCompletePortal class="x-auto-complete-portal" tabindex="-1" (click)="inputCom.inputFocus(); stopPropagation($event)">
   <x-list
     #list
     [data]="data"

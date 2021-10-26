@@ -53,6 +53,7 @@
       align-items: center;
       > .#{$--x-slider-select-prefix}-drag {
         position: absolute;
+        cursor: pointer;
         left: 0%;
         > .#{$--x-slider-select-prefix}-button {
           width: $--x-slider-select-button-size;
@@ -98,6 +99,7 @@
       }
       > .#{$--x-slider-select-prefix}-drags {
         > .#{$--x-slider-select-prefix}-drag {
+          cursor: not-allowed;
           > .#{$--x-slider-select-prefix}-button {
             border-color: $--x-primary-400;
           }

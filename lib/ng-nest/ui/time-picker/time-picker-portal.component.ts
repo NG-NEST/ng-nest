@@ -14,6 +14,7 @@ import { XTimePickerPortalPrefix, XTimePickerType } from './time-picker.property
 import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
@@ -39,6 +40,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   closePortal!: Function;
   destroyPortal!: Function;
   animating!: Function;
+  inputCom!: XInputComponent;
   nodeEmit!: (date: Date) => void;
 
   private _unSubject = new Subject<void>();

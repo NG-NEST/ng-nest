@@ -1,4 +1,4 @@
-<div class="x-cascade-portal" (click)="stopPropagation($event)">
+<div class="x-cascade-portal" tabindex="-1" (click)="inputCom.inputFocus(); stopPropagation($event)">
   <ng-container *ngFor="let list of nodes">
     <x-list
       [data]="list"

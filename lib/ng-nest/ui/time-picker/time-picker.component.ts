@@ -142,6 +142,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -154,6 +155,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
 
   showPortal() {
     if (this.disabled || this.animating) return;
+    this.active = true;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -191,6 +193,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       placement: this.placement,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node),

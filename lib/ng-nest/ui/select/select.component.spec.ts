@@ -90,7 +90,7 @@ describe(XSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`multiple.`, () => {
+  fdescribe(`multiple.`, () => {
     let fixture: ComponentFixture<TestXSelectMultipleComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -126,7 +126,7 @@ describe(XSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXSelectBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

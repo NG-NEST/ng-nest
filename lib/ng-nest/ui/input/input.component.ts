@@ -160,7 +160,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         : 0.4;
   }
 
-  inputFocus(type: 'select' | 'before' | 'after' = 'after') {
+  inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {
     this.inputRef.nativeElement.focus();
     if (type === 'after') {
       this.inputRef.nativeElement.setSelectionRange(this.value.length, this.value.length);

@@ -1,7 +1,4 @@
-<div
-  #datePicker
-  class="x-time-picker"
->
+<div #datePicker class="x-time-picker">
   <div class="x-time-picker-row">
     <x-input
       #inputCom
@@ -27,6 +24,8 @@
       [after]="after"
       [pattern]="pattern"
       [message]="message"
+      [pointer]="true"
+      [(active)]="active"
       (clearEmit)="clearEmit()"
       (xClick)="showPortal()"
       (xMouseenter)="menter()"

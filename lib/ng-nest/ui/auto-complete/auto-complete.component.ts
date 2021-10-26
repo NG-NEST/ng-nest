@@ -143,6 +143,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -155,6 +156,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   showPortal() {
     if (XIsEmpty(this.value) || this.disabled || this.iconSpin || this.animating) return;
+    this.active = true;
     if ((XIsObservable(this.data) && this.nodes.length === 0) || XIsFunction(this.data)) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
@@ -219,6 +221,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       positionChange: this.positionChange,
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
+      inputCom: this.inputCom,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XAutoCompleteNode) => this.onNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
@@ -235,6 +238,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     }
     this.value = node.label;
     this.valueTplContext.$node = node;
+    this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(node);
     this.cdr.detectChanges();

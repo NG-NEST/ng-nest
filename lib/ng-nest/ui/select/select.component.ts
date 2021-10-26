@@ -187,6 +187,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
+      this.active = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -200,6 +201,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   showPortal() {
     if (this.disabled || this.iconSpin) return;
     if (this.animating) return;
+    this.active = true;
     if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
@@ -264,6 +266,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       positionChange: this.positionChange,
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
+      inputCom: this.inputCom,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
@@ -283,6 +286,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.value = node.id;
       this.closeSubject.next();
     }
+    this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();
   }

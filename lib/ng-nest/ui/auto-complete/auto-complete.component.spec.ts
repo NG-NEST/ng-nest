@@ -58,7 +58,7 @@ describe(XAutoCompletePrefix, () => {
       ]
     }).compileComponents();
   }));
-  describe(`default.`, () => {
+  fdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -154,7 +154,7 @@ describe(XAutoCompletePrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`value custom.`, () => {
+  describe(`value custom.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteCustomComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

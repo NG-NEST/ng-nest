@@ -85,7 +85,7 @@ describe(XSliderSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`tabs.`, () => {
+  fdescribe(`tabs.`, () => {
     let fixture: ComponentFixture<TestXSliderSelectTabsComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

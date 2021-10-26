@@ -109,7 +109,7 @@ describe(XCascadePrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`custom.`, () => {
+  describe(`custom.`, () => {
     let fixture: ComponentFixture<TestXCascadeCustomComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

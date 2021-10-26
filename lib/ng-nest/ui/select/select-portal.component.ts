@@ -16,6 +16,7 @@ import { Subject } from 'rxjs';
 import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
@@ -51,6 +52,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   nodeTpl!: TemplateRef<any>;
   show: boolean = false;
   active: number = -1;
+  inputCom!: XInputComponent;
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}

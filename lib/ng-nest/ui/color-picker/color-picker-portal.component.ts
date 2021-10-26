@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
@@ -51,6 +52,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   destroyPortal!: Function;
   animating!: Function;
   nodeEmit!: Function;
+  inputCom!: XInputComponent;
 
   sliderColorNum = 0;
   type!: XColorType;
