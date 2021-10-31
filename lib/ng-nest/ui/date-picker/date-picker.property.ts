@@ -187,7 +187,7 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
-  @Output() nodeEmit = new EventEmitter<number>();
+  @Output() nodeEmit = new EventEmitter<number[]>();
 }
 
 /**

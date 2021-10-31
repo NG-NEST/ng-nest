@@ -15,8 +15,8 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService } from '@ng-nest/ui/core';
-import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
+import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
+import { XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
@@ -36,7 +36,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
 
   modelType: XDatePickerModelType = 'date';
-  numberValue!: (number | string)[];
+  numberValue!: number[];
   isInput = false;
 
   get getRequired() {
@@ -44,18 +44,19 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   writeValue(value: any) {
-    if (XIsDate(value)) {
-      this.modelType = 'date';
-      this.numberValue = value.getTime();
-    } else if (XIsNumber(value)) {
-      this.modelType = 'number';
-      this.numberValue = value;
-    } else if (XIsString(value)) {
-      this.modelType = 'string';
-      const valueTime = new Date(value).getTime();
-      this.numberValue = !isNaN(valueTime) ? valueTime : '';
-    } else if (XIsEmpty(value)) {
-      this.numberValue = '';
+    if (XIsUndefined(value)) value = [];
+    if (value.length > 0) {
+      if (XIsDate(value[0])) {
+        this.modelType = 'date';
+        this.numberValue = value.getTime();
+      } else if (XIsNumber(value[0])) {
+        this.modelType = 'number';
+        this.numberValue = value;
+      } else if (XIsString(value[0])) {
+        this.modelType = 'string';
+        const valueTime = value.map((x: string) => new Date(x).getTime());
+        this.numberValue = !isNaN(valueTime[0]) ? valueTime : [];
+      }
     }
     this.value = value;
     this.setDisplayValue(this.numberValue);
@@ -77,8 +78,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<any> = new Subject();
-  startDisplay: string | null = '';
-  endDisplay: string | null = '';
+  startDisplay: string | number = '';
+  endDisplay: string | number = '';
   startActive = false;
   endActive = false;
   private _unSubject = new Subject<void>();
@@ -179,9 +180,9 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
 
   getValue() {
     return this.modelType === 'date'
-      ? new Date(this.numberValue)
+      ? this.numberValue.map((x) => new Date(x))
       : this.modelType === 'string'
-      ? this.datePipe.transform(this.numberValue, this.format)
+      ? this.numberValue.map((x) => this.datePipe.transform(x, this.format))
       : this.numberValue;
   }
 
@@ -259,26 +260,26 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   startNodeClick(node: Date) {
-    this.startDisplay = this.datePipe.transform(node, this.format);
+    this.startDisplay = this.datePipe.transform(node, this.format) as string;
     this.cdr.detectChanges();
   }
 
   endNodeClick(node: Date) {
-    this.endDisplay = this.datePipe.transform(node, this.format);
+    this.endDisplay = this.datePipe.transform(node, this.format) as string;
     this.cdr.detectChanges();
   }
 
   onNodeClick(dates: Date[], sure = true) {
     this.isInput = false;
     if (sure) {
-      this.numberValue = dates.map(x=> x.getTime());
+      this.numberValue = dates.map((x) => x.getTime());
       this.value = this.getValue();
       this.setDisplayValue(this.numberValue);
       this.closeSubject.next();
       this.modelChange();
       this.nodeEmit.emit(this.numberValue);
     } else {
-      this.setDisplayValue(date.getTime());
+      this.setDisplayValue(dates.map((x) => x.getTime()));
       this.cdr.markForCheck();
     }
   }
@@ -287,16 +288,16 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     this.isInput = true;
   }
 
-  setDisplayValue(dateNumber: (number | string)[]) {
-    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue))) {
-      this.displayValue = this.datePipe.transform(this.displayValue, this.format);
-      this.numberValue = new Date(this.displayValue).getTime();
-      this.value = this.getValue();
-      this.modelChange();
-      this.isInput = false;
-    } else {
-      this.displayValue = this.datePipe.transform(dateNumber, this.format);
-    }
+  setDisplayValue(dateNumber: number[]) {
+    // if (this.isInput && isNaN(this.startDisplay) && !isNaN(Date.parse(this.displayValue))) {
+    //   this.displayValue = this.datePipe.transform(this.displayValue, this.format);
+    //   this.numberValue = new Date(this.displayValue).getTime();
+    //   this.value = this.getValue();
+    //   this.modelChange();
+    //   this.isInput = false;
+    // } else {
+      this.displayValue = dateNumber.map((x) => this.datePipe.transform(x, this.format)) as string[];
+    // }
   }
 
   setPlacement() {
