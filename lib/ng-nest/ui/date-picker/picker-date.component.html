@@ -1,33 +1,45 @@
 <div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp">
-  <table class="x-picker-date-table" cellspacing="0" cellpadding="0">
-    <thead>
-      <tr>
-        <th *ngFor="let title of titles; trackBy: trackByNode">{{ title | xI18n }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let weeks of dates">
-        <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
-          <td
-            [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
-            [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-            (click)="dateTemp && dateClick(week)"
-          >
-            <x-button
-              *ngIf="!dateTemp"
-              type="text"
-              size="mini"
-              title="{{ week | date: 'yyyy-MM-dd' }}"
-              [activated]="!rangePicker && (week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
-              (click)="dateClick(week)"
-              >{{ week | date: 'd' }}</x-button
+  <div class="x-picker-date-header">
+    <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
+    <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)"></x-button>
+    <div class="x-picker-date-year-month">
+      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
+      <x-button type="text" size="small" (click)="typeOnChange('month')">{{ getLocaleMonth(display) }}</x-button>
+    </div>
+    <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)"></x-button>
+    <x-button icon="fto-chevrons-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
+  </div>
+  <div class="x-picker-date-body">
+    <table cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th *ngFor="let title of titles; trackBy: trackByNode">{{ title | xI18n }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let weeks of dates">
+          <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
+            <td
+              [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
+              [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
+              (click)="dateTemp && dateClick(week)"
             >
-            <ng-container *ngIf="dateTemp">
-              <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
-            </ng-container>
-          </td>
-        </ng-container>
-      </tr>
-    </tbody>
-  </table>
+              <x-button
+                *ngIf="!dateTemp"
+                type="text"
+                size="mini"
+                title="{{ week | date: 'yyyy-MM-dd' }}"
+                [activated]="!rangePicker && (week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+                (click)="dateClick(week)"
+                >{{ week | date: 'd' }}</x-button
+              >
+              <ng-container *ngIf="dateTemp">
+                <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -253,6 +253,11 @@ export const XPickerDatePrefix = 'x-picker-date';
 @Component({ template: '' })
 export class XPickerDateProperty extends XProperty {
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
@@ -272,6 +277,11 @@ export class XPickerDateProperty extends XProperty {
    * @en_US Range picker
    */
   @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -297,6 +307,11 @@ export const XPickerMonthPrefix = 'x-picker-month';
 @Component({ template: '' })
 export class XPickerMonthProperty extends XProperty {
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
@@ -317,6 +332,11 @@ export class XPickerMonthProperty extends XProperty {
    */
   @Output() modelChange = new EventEmitter<Date>();
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
+  /**
    * @zh_CN 范围变化的事件
    * @en_US Scope change event
    */
@@ -336,6 +356,11 @@ export const XPickerYearPrefix = 'x-picker-year';
 @Component({ template: '' })
 export class XPickerYearProperty extends XProperty {
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
@@ -350,6 +375,11 @@ export class XPickerYearProperty extends XProperty {
    * @en_US Selected event
    */
   @Output() modelChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
   /**
    * @zh_CN 开始年份变化的事件
    * @en_US Start year change event

@@ -112,6 +112,14 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   setDefault() {
     const date = new Date();
     this.model = date;
+    if (this.value.length > 0) {
+      this.startModel = new Date(this.value[0]);
+      this.startDisplay = this.startModel;
+    }
+    if (this.value.length > 1) {
+      this.endModel = new Date(this.value[1]);
+      this.endDisplay = this.endModel;
+    }
   }
 
   setDisplay(date: Date) {

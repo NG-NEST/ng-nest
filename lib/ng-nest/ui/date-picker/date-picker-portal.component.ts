@@ -40,7 +40,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   type: XDatePickerType = 'date';
   display = new Date();
   model!: Date;
-  startYear!: number;
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
@@ -89,12 +88,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   init() {
     if (!XIsEmpty(this.value)) {
       this.setDefault();
-    } else {
-      this.model = this.display;
     }
-    this.time = this.model.getTime();
     this._type = this.type;
-    this.setDisplay(this.model);
     this.cdr.detectChanges();
   }
 
@@ -105,6 +100,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   setDefault() {
     const date = new Date(this.value);
     this.model = date;
+    this.time = this.model.getTime();
+    this.setDisplay(this.model);
   }
 
   setDisplay(date: Date) {
@@ -114,17 +111,12 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   dateChange(date: Date) {
     this.setDisplay(date);
     this.model = date;
-    this.setModel(this.model, new Date(this.time));
+    if (this.time) this.setModelTime(this.model, new Date(this.time));
     if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
       this.nodeEmit(this.model, false);
     } else {
       this.nodeEmit(this.model);
     }
-  }
-
-  typeChange(type: XDatePickerType) {
-    this.type = type;
-    this.cdr.detectChanges();
   }
 
   monthChange(date: Date) {
@@ -149,37 +141,6 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.cdr.detectChanges();
   }
 
-  yearStartChange(number: number) {
-    this.startYear = number;
-    this.cdr.detectChanges();
-  }
-
-  nextMonth(num: number) {
-    let date = new Date(this.display);
-    date.setMonth(date.getMonth() + num);
-    this.setDisplay(date);
-    this.cdr.detectChanges();
-  }
-
-  nextYear(num: number) {
-    let date = new Date(this.display);
-    date.setFullYear(date.getFullYear() + num);
-    this.setDisplay(date);
-    this.cdr.detectChanges();
-  }
-
-  nextYears(num: number) {
-    this.startYear += num;
-    let date = new Date(this.display);
-    date.setFullYear(this.startYear);
-    this.setDisplay(date);
-    this.cdr.detectChanges();
-  }
-
-  getLocaleMonth(date: Date) {
-    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
-  }
-
   onToday() {
     this.dateChange(new Date());
   }
@@ -198,11 +159,11 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
 
   selectTime(time: Date) {
     this.time = time.getTime();
-    this.nodeEmit(this.setModel(this.model, time), false);
+    this.nodeEmit(this.setModelTime(this.model, time), false);
     this.cdr.detectChanges();
   }
 
-  setModel(date: Date, time: Date) {
+  setModelTime(date: Date, time: Date) {
     this.model = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), time.getSeconds());
     return this.model;
   }

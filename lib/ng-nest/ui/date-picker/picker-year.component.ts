@@ -34,11 +34,11 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   }
 
   init() {
-    this.setYears();
+    this.setYears(this.display);
   }
 
-  setYears() {
-    let year = this.display.getFullYear();
+  setYears(date: Date) {
+    let year = date.getFullYear();
     this.start = Math.floor(year / 10) * 10;
     this.end = this.start + 9;
     let dates: Date[] = [];
@@ -58,6 +58,19 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   lastOrNext(year: Date) {
     const yearStr = this.datePipe.transform(year, 'yyyy') as string;
     return yearStr < `${this.start}` || yearStr > `${this.end}`;
+  }
+
+  setDisplay(date: Date) {
+    this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.setYears(this.display);
+  }
+
+  nextYears(num: number) {
+    this.start += num;
+    let date = new Date(this.display);
+    date.setFullYear(this.start);
+    this.setDisplay(date);
+    this.cdr.detectChanges();
   }
 
   equalYear(one: Date, two: Date) {

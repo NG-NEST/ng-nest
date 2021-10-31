@@ -253,7 +253,6 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.setDisplayValue(this.numberValue);
       this.closeSubject.next();
       this.modelChange();
-      this.inputCom.inputFocus();
       this.nodeEmit.emit(this.numberValue);
     } else {
       this.setDisplayValue(date.getTime());

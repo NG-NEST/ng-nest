@@ -8,7 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { XPickerMonthProperty } from './date-picker.property';
+import { XDatePickerType, XPickerMonthProperty } from './date-picker.property';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
 import { Subject } from 'rxjs';
@@ -57,11 +57,11 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
   }
 
   init() {
-    this.setMonths();
+    this.setMonths(this.display);
   }
 
-  setMonths() {
-    let year = this.display.getFullYear();
+  setMonths(date: Date) {
+    let year = date.getFullYear();
     let dates: Date[] = [];
     for (let i = 0; i < 16; i++) {
       dates = [...dates, new Date(year, i, 1)];
@@ -80,6 +80,24 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
 
   getLocaleMonth(date: Date) {
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+  }
+
+  setDisplay(date: Date) {
+    this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.setMonths(this.display);
+  }
+
+  nextYear(num: number) {
+    let date = new Date(this.display);
+    date.setFullYear(date.getFullYear() + num);
+    this.setDisplay(date);
+    this.cdr.detectChanges();
+  }
+
+  typeOnChange(type: XDatePickerType) {
+    this.type = type;
+    this.typeChange.emit(type);
+    this.cdr.detectChanges();
   }
 
   trackByMonth(index: number, item: Date) {
