@@ -35,6 +35,7 @@ export class XTimePickerFrameComponent {
   hour: number = 0;
   minute: number = 0;
   second: number = 0;
+  scrollAnimating: { [key: string]: boolean } = {};
   hourDate = Array.from({ length: 24 }).map((_, i) => {
     return {
       label: this.prefixZero(i, 2),
@@ -59,6 +60,7 @@ export class XTimePickerFrameComponent {
       this.setScrollTop();
     }
   }
+
   constructor(private cdr: ChangeDetectorRef) {}
 
   init() {
@@ -93,7 +95,8 @@ export class XTimePickerFrameComponent {
   }
 
   selected(ele: HTMLElement, num: number) {
-    let current = ele.querySelector(`ul li:nth-child(${num + 1})`) as HTMLElement;
+    if (this.scrollAnimating[ele.className]) return;
+    let current = ele.querySelector(`.x-list x-list-option:nth-child(${num + 1})`) as HTMLElement;
     if (current) {
       ele.scrollTop = current.offsetTop;
     }
@@ -102,33 +105,36 @@ export class XTimePickerFrameComponent {
   hourClick(date: XListNode) {
     this.hour = date.id;
     this.model.setHours(this.hour);
+    this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();
-    this.scrollTo(this.hourRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   minuteClick(date: XListNode) {
     this.minute = date.id;
     this.model.setMinutes(this.minute);
+    this.scrollTo(this.minuteRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();
-    this.scrollTo(this.minuteRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   secondClick(date: XListNode) {
     this.second = date.id;
     this.model.setSeconds(this.second);
+    this.scrollTo(this.secondRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();
-    this.scrollTo(this.secondRef.nativeElement, (date.event?.srcElement as HTMLElement).offsetTop, 120);
   }
 
   private scrollTo(element: HTMLElement, to: number, duration: number): void {
+    const clsName = element.className;
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
+    this.scrollAnimating[clsName] = true;
     reqAnimFrame(() => {
       element.scrollTop = element.scrollTop + perTick;
       if (element.scrollTop === to || duration <= 0) {
+        this.scrollAnimating[clsName] = false;
         return;
       } else {
         this.scrollTo(element, to, duration - 10);
