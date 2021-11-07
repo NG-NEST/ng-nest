@@ -1,3 +1,36 @@
+## [12.0.8](https://github.com/NG-NEST/ng-nest/compare/12.0.7...12.0.8) (2021-11-07)
+
+
+### Bug Fixes
+
+* **module:calendar:** update date-picker param ([b4444de](https://github.com/NG-NEST/ng-nest/commit/b4444deb05099095a416b1e4911c32850f1c4bc9))
+* **module:date-picker:** fix type error ([6064eb5](https://github.com/NG-NEST/ng-nest/commit/6064eb56e6f82f988ec56b3929746b9730f61630))
+* **module:input:** change flex param ([3c4b84b](https://github.com/NG-NEST/ng-nest/commit/3c4b84b1c2667099f7f6f40892363223eeb49381))
+* **module:input:** fix active and pointer ([069df9b](https://github.com/NG-NEST/ng-nest/commit/069df9b45ea68079fa22ac2f1af881d3da27b468))
+* **module:time-picker:** fix default selected value ([3968d44](https://github.com/NG-NEST/ng-nest/commit/3968d44ba3264e23814890864bf3fb245ddfd6e5))
+* **test:** fix test error ([5fa927e](https://github.com/NG-NEST/ng-nest/commit/5fa927e160c7b34b6347c782aebcb2f30ac3295d))
+
+
+### Features
+
+* **module:auto-complete:** add caseSensitive param ([bced251](https://github.com/NG-NEST/ng-nest/commit/bced2516fea9d49ec1f3538b98a9b6824abe498b)), closes [#44](https://github.com/NG-NEST/ng-nest/issues/44)
+* **module:auto-complete:** add custom format ([de31768](https://github.com/NG-NEST/ng-nest/commit/de3176872c59410634a166f9e56c2568323b31e3)), closes [#45](https://github.com/NG-NEST/ng-nest/issues/45)
+* **module:cascade:** add custom param ([c236b29](https://github.com/NG-NEST/ng-nest/commit/c236b29e08e0e1c6bc0e52ccc3a2bd1a800ce2d3)), closes [#49](https://github.com/NG-NEST/ng-nest/issues/49) [#50](https://github.com/NG-NEST/ng-nest/issues/50)
+* **module:cascade:** add node trigger ([36a0c6a](https://github.com/NG-NEST/ng-nest/commit/36a0c6aaf2f34d7f202b5a14741a9e004bb190df)), closes [#48](https://github.com/NG-NEST/ng-nest/issues/48)
+* **module:date-picker:** add range style ([e05785c](https://github.com/NG-NEST/ng-nest/commit/e05785c92ffa8586ebbbb73779aa30eb05c829dd)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+* **module:date-picker:** add start and end input ([5b90839](https://github.com/NG-NEST/ng-nest/commit/5b90839fbf8dcac4b0e8bb0289dd4fa573075c38)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+* **module:i18n:** update date-picker and pagination ([91d9e99](https://github.com/NG-NEST/ng-nest/commit/91d9e99c07b795851891dcfeeb0a39c846b9ecf8))
+* **module:pagination:** add disabled param ([aec2f17](https://github.com/NG-NEST/ng-nest/commit/aec2f17a9288479d5600a1602df1434df6b25d49)), closes [#40](https://github.com/NG-NEST/ng-nest/issues/40)
+* **module:pagination:** add go to page ([dec5007](https://github.com/NG-NEST/ng-nest/commit/dec5007d13d95b57ad5ab521881036fcdc1f2cf4)), closes [#39](https://github.com/NG-NEST/ng-nest/issues/39)
+* **module:pagination:** add page size param ([3e9d452](https://github.com/NG-NEST/ng-nest/commit/3e9d452cb76dca3acdccfe91b4327053a2b7bb6a)), closes [#38](https://github.com/NG-NEST/ng-nest/issues/38)
+* **module:pagination:** add simple and total template ([4f5c68a](https://github.com/NG-NEST/ng-nest/commit/4f5c68a2bc52696c1206502e860425d6ea434c3e)), closes [#41](https://github.com/NG-NEST/ng-nest/issues/41) [#42](https://github.com/NG-NEST/ng-nest/issues/42)
+* **module:select:** add size and bordered param ([9d2c168](https://github.com/NG-NEST/ng-nest/commit/9d2c1688a2df06f431c34319fcaf9bf2e023e756)), closes [#82](https://github.com/NG-NEST/ng-nest/issues/82)
+* **module:steps:** add custom param ([a10e9ed](https://github.com/NG-NEST/ng-nest/commit/a10e9ed89b129a5f4ae50e0c423d8d2f7934c068)), closes [#43](https://github.com/NG-NEST/ng-nest/issues/43)
+* **module:tag:** add bordered param ([e92cbc7](https://github.com/NG-NEST/ng-nest/commit/e92cbc776b7153ceda426f47df3a878b3d993fac)), closes [#154](https://github.com/NG-NEST/ng-nest/issues/154)
+* **module:time-picker:** add size and bordered param ([706d407](https://github.com/NG-NEST/ng-nest/commit/706d40792510daf2e575fd51499590203b41edd0)), closes [#98](https://github.com/NG-NEST/ng-nest/issues/98) [#100](https://github.com/NG-NEST/ng-nest/issues/100)
+
+
+
 ## [12.0.7](https://github.com/NG-NEST/ng-nest/compare/12.0.6...12.0.7) (2021-10-10)
 
 
@@ -14,9 +47,9 @@
 * **module:color-picker:** add size and bordered ([81cb40f](https://github.com/NG-NEST/ng-nest/commit/81cb40f17c12a9ad578f73708b317d9bfcc9555c))
 * **module:find:** add bordered param ([29d5c62](https://github.com/NG-NEST/ng-nest/commit/29d5c6228d4826d506e4fdaca06e149f0d8c2bfb))
 * **module:find:** add size param ([c4e158f](https://github.com/NG-NEST/ng-nest/commit/c4e158f65214ef7bcd9bc8db41869ce1aaf7116b))
-* **module:input:** add input style ([a90ca7f](https://github.com/NG-NEST/ng-nest/commit/a90ca7fdc1ad15cd79bd015f841eba49b52ed2c0))
 * **module:input-number:** add bordered param ([e8b4df4](https://github.com/NG-NEST/ng-nest/commit/e8b4df4696b0270169bf303b325a99fe8688790c)), closes [#75](https://github.com/NG-NEST/ng-nest/issues/75)
 * **module:input-number:** add size param ([459dff6](https://github.com/NG-NEST/ng-nest/commit/459dff69958fd5e7f83d03250b50b72285135c07)), closes [#74](https://github.com/NG-NEST/ng-nest/issues/74)
+* **module:input:** add input style ([a90ca7f](https://github.com/NG-NEST/ng-nest/commit/a90ca7fdc1ad15cd79bd015f841eba49b52ed2c0))
 
 
 
@@ -157,10 +190,6 @@
 
 ### Bug Fixes
 
-* update circular dependency error ([2921cd6](https://github.com/NG-NEST/ng-nest/commit/2921cd6427bbd6e2ea478c91c9942c73e133c509))
-* update initializer not definitely ([55b4ba4](https://github.com/NG-NEST/ng-nest/commit/55b4ba46cf936f20b4207909e77fcb360a97ede6))
-* update type error ([d389ce7](https://github.com/NG-NEST/ng-nest/commit/d389ce7252bd24e33bf5818a17c627931053121e))
-* update type error ([e1f2d08](https://github.com/NG-NEST/ng-nest/commit/e1f2d08be9f7ba5b0ae01d720989459bac8309c3))
 * **module:alert:** update type error ([f56f736](https://github.com/NG-NEST/ng-nest/commit/f56f736ceb80a69e1b1261b97bd61be0e3be4889))
 * **module:button:** update type error ([d7714fb](https://github.com/NG-NEST/ng-nest/commit/d7714fbb1fa0cec665d4bcf4600478048c10cdf3))
 * **module:checkbox:** update type error ([6f03086](https://github.com/NG-NEST/ng-nest/commit/6f0308666c20e6bdd4bc1d08a5133ba32c780c00))
@@ -168,7 +197,11 @@
 * **module:popconfirm:** update type error ([8a3da4c](https://github.com/NG-NEST/ng-nest/commit/8a3da4c3e0e87a789d387221057ca105487f242f))
 * **module:result:** update icon type ([3eb37cb](https://github.com/NG-NEST/ng-nest/commit/3eb37cbf33c065d62edc551d35ff8da9abac6f80))
 * **module:timeline:** update type error ([6b6394a](https://github.com/NG-NEST/ng-nest/commit/6b6394a871d074a2a8021491092194863849ea0c))
+* update circular dependency error ([2921cd6](https://github.com/NG-NEST/ng-nest/commit/2921cd6427bbd6e2ea478c91c9942c73e133c509))
+* update initializer not definitely ([55b4ba4](https://github.com/NG-NEST/ng-nest/commit/55b4ba46cf936f20b4207909e77fcb360a97ede6))
 * update package ([3e06161](https://github.com/NG-NEST/ng-nest/commit/3e06161591d950c973001b082376ef77af6e5905))
+* update type error ([d389ce7](https://github.com/NG-NEST/ng-nest/commit/d389ce7252bd24e33bf5818a17c627931053121e))
+* update type error ([e1f2d08](https://github.com/NG-NEST/ng-nest/commit/e1f2d08be9f7ba5b0ae01d720989459bac8309c3))
 
 
 
@@ -301,6 +334,7 @@
 
 ### Features
 
+* add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
 * **module:auto-complete:** add async param ([194566e](https://github.com/NG-NEST/ng-nest/commit/194566e809b4adb83db785894de2b19f3850a546))
 * **module:auto-complete:** add debounceTime param ([3fc6feb](https://github.com/NG-NEST/ng-nest/commit/3fc6febfb1ea1f435a99e76390953f82a3d381c0))
 * **module:auto-complete:** add query param ([5004911](https://github.com/NG-NEST/ng-nest/commit/50049110ecfb444b58f63b3fc23c7e46ee035110)), closes [#12](https://github.com/NG-NEST/ng-nest/issues/12)
@@ -310,7 +344,6 @@
 * **module:upload:** clip image upload ([83919d2](https://github.com/NG-NEST/ng-nest/commit/83919d2506329de574b044a3c772f79b560388d6)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
 * **stackblitz:** add code mapping ([8de104d](https://github.com/NG-NEST/ng-nest/commit/8de104de5644b2321016cceef22c9f045dde6d23)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
 * **stackblitz:** add files ([6684fd7](https://github.com/NG-NEST/ng-nest/commit/6684fd75049f5f88082260382413de62a4d3887e)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
-* add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
 
 
 
@@ -389,8 +422,8 @@
 
 ### Features
 
-* update angular to 10.2.0 ([4f6d7cc](https://github.com/NG-NEST/ng-nest/commit/4f6d7cc01ea1df798c2874bf67600d030c0432de))
 * **module:tree:** add height and align param ([e383901](https://github.com/NG-NEST/ng-nest/commit/e383901b0518471539f5c9423011d291a49968f8))
+* update angular to 10.2.0 ([4f6d7cc](https://github.com/NG-NEST/ng-nest/commit/4f6d7cc01ea1df798c2874bf67600d030c0432de))
 
 
 
@@ -447,16 +480,16 @@
 
 ### Bug Fixes
 
-* update weixin img ([9d0a682](https://github.com/NG-NEST/ng-nest/commit/9d0a682fd063532c5bf88dce42be30842b08b164))
 * **config:** language switch ([186770d](https://github.com/NG-NEST/ng-nest/commit/186770dc33763a092504f4e17e53786169bc9d7d))
+* update weixin img ([9d0a682](https://github.com/NG-NEST/ng-nest/commit/9d0a682fd063532c5bf88dce42be30842b08b164))
 
 
 ### Features
 
-* **module: menu:** add router param ([41dcfb2](https://github.com/NG-NEST/ng-nest/commit/41dcfb293e878ea8f62de32df430f2b3f4160d9f))
-* **module: menu:** add routerLink property ([1996084](https://github.com/NG-NEST/ng-nest/commit/199608448f3bbf3d38024953378bbf47c531449b))
 * add style var ([34d2eb7](https://github.com/NG-NEST/ng-nest/commit/34d2eb766481c868846a64b1381a9f324761ccf9))
 * **module: drawer:** add visibleChange event ([cc0d305](https://github.com/NG-NEST/ng-nest/commit/cc0d305d69560135985827dcb3b00a5225d90f15))
+* **module: menu:** add router param ([41dcfb2](https://github.com/NG-NEST/ng-nest/commit/41dcfb293e878ea8f62de32df430f2b3f4160d9f))
+* **module: menu:** add routerLink property ([1996084](https://github.com/NG-NEST/ng-nest/commit/199608448f3bbf3d38024953378bbf47c531449b))
 * **module:*:** *ngFor add trackBy ([7933fe0](https://github.com/NG-NEST/ng-nest/commit/7933fe00a7dbb40ad40121fa1ac98c103bec420c))
 
 
@@ -676,8 +709,8 @@
 * **module:back-top:** fixed in tabs ([72c984e](https://github.com/NG-NEST/ng-nest/commit/72c984e7539630de5545cbfad7bc2e814da954e6))
 * **module:dropdown:** children property don't work ([b984fe1](https://github.com/NG-NEST/ng-nest/commit/b984fe198161c085c45826e8efdb59e49d4504fe))
 * **module:loading:** load is not displayed ([856745e](https://github.com/NG-NEST/ng-nest/commit/856745e40c08a6e36353520b8da5948a1bad8c9f))
-* **module:slider:** move element is null ([2a99fe6](https://github.com/NG-NEST/ng-nest/commit/2a99fe69032283951050b991757ba263f1c752b7))
 * **module:slider-select:** included tabs drag ([0f249fa](https://github.com/NG-NEST/ng-nest/commit/0f249fa7fbed2c2db0af7b751927c0bd7fa08c6c))
+* **module:slider:** move element is null ([2a99fe6](https://github.com/NG-NEST/ng-nest/commit/2a99fe69032283951050b991757ba263f1c752b7))
 * **module:tabs:** card border style ([b3c53e1](https://github.com/NG-NEST/ng-nest/commit/b3c53e1e546cfce1c3ebbde8034305b160715d71))
 * **module:time-picker:** sliding abnormalities ([0137756](https://github.com/NG-NEST/ng-nest/commit/0137756958db3c6e9fbbb0cc788af5d629db03d2))
 * **module:tree-file:** first request flashes ([6ec7879](https://github.com/NG-NEST/ng-nest/commit/6ec78794115ba056d76e0eb6b0b01812b151d2e0))
