@@ -15,7 +15,18 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsDate,
+  XIsNumber,
+  XIsChange,
+  XCorner,
+  XClearClass,
+  XIsString,
+  XConfigService,
+  XIsUndefined,
+  XBoolean
+} from '@ng-nest/ui/core';
 import { XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -80,8 +91,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   closeSubject: Subject<any> = new Subject();
   startDisplay: string | number = '';
   endDisplay: string | number = '';
-  startActive = false;
-  endActive = false;
+  startActive: XBoolean = false;
+  endActive: XBoolean = false;
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -296,7 +307,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     //   this.modelChange();
     //   this.isInput = false;
     // } else {
-      this.displayValue = dateNumber.map((x) => this.datePipe.transform(x, this.format)) as string[];
+    this.displayValue = dateNumber.map((x) => this.datePipe.transform(x, this.format)) as string[];
     // }
   }
 
