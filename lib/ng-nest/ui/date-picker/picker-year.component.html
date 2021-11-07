@@ -1,5 +1,5 @@
 <div class="x-picker-year">
-  <div class="x-picker-year-header">
+  <div class="x-picker-year-header" *ngIf="showHeader">
     <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYears(-10)"></x-button>
     <div class="x-date-picker-portal-year-month">
       <x-button type="text" size="small">{{ start }}</x-button> -

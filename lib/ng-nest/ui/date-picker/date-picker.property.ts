@@ -273,6 +273,11 @@ export class XPickerDateProperty extends XProperty {
    */
   @Input() dateTemp?: TemplateRef<any>;
   /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
    * @zh_CN 范围选择
    * @en_US Range picker
    */
@@ -327,6 +332,11 @@ export class XPickerMonthProperty extends XProperty {
    */
   @Input() monthTemp?: TemplateRef<any>;
   /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
    * @zh_CN 选中的事件
    * @en_US Selected event
    */
@@ -370,6 +380,11 @@ export class XPickerYearProperty extends XProperty {
    * @en_US Selected date
    */
   @Input() model?: Date;
+  /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event

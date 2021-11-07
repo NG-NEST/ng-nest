@@ -1,5 +1,5 @@
 <div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
-  <div class="x-picker-month-header">
+  <div class="x-picker-month-header" *ngIf="showHeader">
     <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
     <div class="x-picker-month-year-month">
       <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>

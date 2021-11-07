@@ -1,5 +1,5 @@
 <div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp">
-  <div class="x-picker-date-header">
+  <div class="x-picker-date-header" *ngIf="showHeader">
     <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
     <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)"></x-button>
     <div class="x-picker-date-year-month">
