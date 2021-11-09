@@ -32,7 +32,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     if (XIsDate(value)) this.value = value.getTime();
     else if (XIsNumber(value)) this.value = value;
     else if (XIsEmpty(value)) this.value = '';
@@ -41,7 +41,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     this.cdr.detectChanges();
   }
 
-  readonly: boolean = true;
+  override readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
   animating = false;
@@ -55,12 +55,12 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -102,7 +102,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }

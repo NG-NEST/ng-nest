@@ -57,7 +57,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 是否显示列头
    * @en_US Whether to display the column headers
    */
-   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
   /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
@@ -304,6 +304,11 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Drag the column width, you need to set the initial width of the column width
    */
   dragWidth?: boolean;
+  /**
+   * @zh_CN 头部显示 checkbox 
+   * @en_US Head shows checkbox
+   */
+  headChecked?: boolean;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes

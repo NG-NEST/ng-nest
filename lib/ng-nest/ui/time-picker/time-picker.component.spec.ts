@@ -144,7 +144,7 @@ class TestXTimePickerComponent {
   model1: any;
   model2 = new Date();
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -190,7 +190,7 @@ class TestXTimePickerComponent {
 class TestXTimePickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -257,7 +257,7 @@ class TestXTimePickerDisabledComponent {
 class TestXTimePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -293,7 +293,7 @@ class TestXTimePickerRequiredComponent {
 class TestXTimePickerHourOrMinuteComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

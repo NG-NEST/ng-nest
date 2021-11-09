@@ -5,8 +5,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnDestroy,
-  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -55,7 +53,8 @@ export class XTimePickerFrameComponent {
     };
   });
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.value)) {
+    const { value } = changes;
+    if (XIsChange(value)) {
       this.init();
       this.setScrollTop();
     }

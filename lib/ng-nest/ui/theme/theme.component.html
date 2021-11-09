@@ -1,7 +1,7 @@
 <div class="x-theme">
   <x-row>
     <x-col [style.width.rem]="8" *ngIf="showDark">
-      <x-switch direction="row" [label]="locale?.darkMode" [(ngModel)]="dark" (ngModelChange)="darkChanges($event)"></x-switch>
+      <x-switch direction="row" [label]="locale?.darkMode" [(ngModel)]="dark" (ngModelChange)="darkChanges()"></x-switch>
     </x-col>
     <x-col [style.width.rem]="8">
       <x-button (click)="default()">{{ locale?.initDefault }}</x-button>

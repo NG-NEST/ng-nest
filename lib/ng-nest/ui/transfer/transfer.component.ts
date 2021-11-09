@@ -43,7 +43,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   private _titles = ['List', 'Selected'];
   private _unSubject = new Subject<void>();
 
-  writeValue(value: any): void {
+  override writeValue(value: any): void {
     this.value = value;
     this.setList();
   }
@@ -62,7 +62,8 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy() {
@@ -132,7 +133,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     return !item.data.disabled;
   }
 
-  trackByNode(index: number, item: XTransferNode) {
+  trackByNode(_index: number, item: XTransferNode) {
     return item.id;
   }
 

@@ -8,8 +8,10 @@ import { XTransferNode } from '@ng-nest/ui/transfer';
 })
 export class ExCustomComponent {
   value = [1, 3, 7];
-  data: XTransferNode[] = Array.from({ length: 15 }).map((x, i) => {
+  data: XTransferNode[] = Array.from({ length: 15 }).map((_x, i) => {
     return { id: i + 1, label: 'user ' + (i + 1), icon: 'fto-user', disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
   });
-  change(data: any[]) {}
+  change(data: any[]) {
+    console.log(data)
+  }
 }

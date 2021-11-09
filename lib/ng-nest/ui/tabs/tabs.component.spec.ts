@@ -21,15 +21,11 @@ describe(XTabsPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTabsComponent>;
-    let testComponent: TestXTabsComponent;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTabsComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTabsComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

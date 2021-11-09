@@ -6,8 +6,6 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Host,
-  Optional,
   SimpleChanges,
   OnChanges,
   Inject,
@@ -57,7 +55,8 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     super();
   }
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.data, simples.columns, simples.activatedRow, simples.mergeRule) && this.cdr.detectChanges();
+    const { data, columns, activatedRow, mergeRule } = simples;
+    XIsChange(data, columns, activatedRow, mergeRule) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
@@ -207,7 +206,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     this.cdr.detectChanges();
   }
 
-  trackByItem(index: number, item: XTableRow | XTableColumn) {
+  trackByItem(_index: number, item: XTableRow | XTableColumn) {
     return item.id;
   }
 }

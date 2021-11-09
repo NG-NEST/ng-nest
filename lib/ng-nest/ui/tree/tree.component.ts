@@ -38,11 +38,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.expandedAll) && this.setExpandedAll();
-    XIsChange(changes.data) && this.setData();
-    XIsChange(changes.activatedId) && this.setActivatedNode(this.treeData);
-    XIsChange(changes.checked) && this.setCheckedKeys(this.checked);
-    XIsChange(changes.manual) && this.setManual();
+    const { expandedAll, data, activatedId, checked, manual } = changes;
+    XIsChange(expandedAll) && this.setExpandedAll();
+    XIsChange(data) && this.setData();
+    XIsChange(activatedId) && this.setActivatedNode(this.treeData);
+    XIsChange(checked) && this.setCheckedKeys(this.checked);
+    XIsChange(manual) && this.setManual();
   }
 
   ngOnDestroy(): void {
@@ -205,7 +206,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     node.change && node.change();
   }
 
-  trackByItem(index: number, item: XTreeNode) {
+  trackByItem(_index: number, item: XTreeNode) {
     return item.id;
   }
 }

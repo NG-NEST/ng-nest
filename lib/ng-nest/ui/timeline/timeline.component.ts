@@ -35,7 +35,8 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -43,7 +44,7 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
     this._unSubject.unsubscribe();
   }
 
-  trackByNode(index: number, item: XTimelineNode) {
+  trackByNode(_index: number, item: XTimelineNode) {
     return item.id;
   }
 

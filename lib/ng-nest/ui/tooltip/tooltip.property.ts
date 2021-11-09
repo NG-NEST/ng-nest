@@ -1,4 +1,4 @@
-import { XPlacement, XInputBoolean, XBoolean, XInputNumber, XNumber, XWithConfig } from '@ng-nest/ui/core';
+import { XPlacement, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Directive } from '@angular/core';
 
 /**

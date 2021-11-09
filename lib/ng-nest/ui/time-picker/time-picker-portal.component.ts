@@ -1,4 +1,3 @@
-import { XListNode } from '@ng-nest/ui/list';
 import {
   Component,
   ViewEncapsulation,
@@ -30,7 +29,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
   type: XTimePickerType = 'time';

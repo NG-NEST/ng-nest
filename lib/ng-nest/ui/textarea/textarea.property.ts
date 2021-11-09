@@ -29,11 +29,6 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable?: XBoolean;
   /**
-   * @zh_CN 只读
-   * @en_US Read only
-   */
-  @Input() @XInputBoolean() readonly: XBoolean = false;
-  /**
    * @zh_CN 图标
    * @en_US Icon
    */

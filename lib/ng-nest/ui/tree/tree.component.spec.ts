@@ -37,8 +37,8 @@ describe(XTreePrefix, () => {
         TestXTreeCheckedComponent,
         TestXTreeDiabledComponent,
         TestXTreeCustomComponent,
-        TestXTreeEventComponent
-        // TestXTreeOperationComponent
+        TestXTreeEventComponent,
+        TestXTreeOperationComponent
       ]
     }).compileComponents();
   }));
@@ -198,7 +198,7 @@ class TreeServiceTest {
   providers: [TreeServiceTest]
 })
 class TestXTreeComponent {
-  constructor(private service: TreeServiceTest) {}
+  constructor(public service: TreeServiceTest) {}
 }
 
 @Component({
@@ -228,7 +228,7 @@ class TestXTreeComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeLazyComponent {
-  constructor(private service: TreeServiceTest) {}
+  constructor(public service: TreeServiceTest) {}
 }
 
 @Component({
@@ -255,7 +255,7 @@ class TestXTreeLazyComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeCheckedComponent {
-  constructor(private service: TreeServiceTest) {}
+  constructor(public service: TreeServiceTest) {}
 }
 
 @Component({
@@ -282,7 +282,7 @@ class TestXTreeCheckedComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeDiabledComponent {
-  constructor(private service: TreeServiceTest) {}
+  constructor(public service: TreeServiceTest) {}
 }
 
 @Component({
@@ -329,7 +329,7 @@ class TestXTreeDiabledComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeCustomComponent {
-  constructor(private service: TreeServiceTest) {}
+  constructor(public service: TreeServiceTest) {}
 }
 
 @Component({
@@ -383,7 +383,7 @@ class TestXTreeEventComponent {
   selectedNodes: XTreeNode[] = [];
   expandedAll: boolean = true;
   content: any;
-  constructor(private service: TreeServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(public service: TreeServiceTest, private cdr: ChangeDetectorRef) {}
 
   activatedChange(node: XTreeNode) {
     this.activatedNode = node;
@@ -407,7 +407,7 @@ class TestXTreeEventComponent {
 
 @Injectable()
 class OrganizationService extends XRepositoryService<Organization> {
-  constructor(public http: XHttpService) {
+  constructor(public override http: XHttpService) {
     super(http, { api: 'http://localhost:3000/', controller: { name: 'organization' } });
   }
 }
@@ -603,7 +603,7 @@ class TestXTreeOperationComponent {
         });
         break;
       case 'delete':
-        this.service.delete(node.id).subscribe((x) => {
+        this.service.delete(node.id).subscribe(() => {
           this.treeCom.removeNode(node);
           this.formGroup.reset();
           this.message.success('删除成功！');
@@ -618,7 +618,7 @@ class TestXTreeOperationComponent {
             this.message.success('新增成功！');
           });
         } else if (this.type === 'edit') {
-          this.service.put(this.formGroup.value).subscribe((x) => {
+          this.service.put(this.formGroup.value).subscribe(() => {
             this.type = 'info';
             this.treeCom.updateNode(node, this.formGroup.value);
             this.cdr.detectChanges();
