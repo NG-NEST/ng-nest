@@ -1,5 +1,5 @@
 import { XDocModule } from '@ng-nest/ui/doc';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTypographyComponent } from './typography.component';
 import { Component, DebugElement } from '@angular/core';
@@ -9,7 +9,7 @@ import { XTypographyModule } from '@ng-nest/ui/typography';
 import { XTypographyPrefix } from './typography.property';
 
 describe(XTypographyPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XTypographyModule, XLayoutModule, XDocModule],
       declarations: [TestXTypographyComponent]
@@ -18,12 +18,10 @@ describe(XTypographyPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTypographyComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTypographyComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTypographyComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
