@@ -34,8 +34,9 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
   ngOnInit() {}
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.status) && this.setClassMap();
-    XIsChange(simples.percent) && this.setColor();
+    const { status, percent } = simples;
+    XIsChange(status) && this.setClassMap();
+    XIsChange(percent) && this.setColor();
   }
 
   setClassMap() {

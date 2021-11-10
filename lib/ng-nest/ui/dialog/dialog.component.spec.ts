@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDialogComponent } from './dialog.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -19,7 +19,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 
 describe(XDialogPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -48,7 +48,7 @@ describe(XDialogPrefix, () => {
       expect(dialog).toBeDefined();
     });
   });
-  fdescribe(`draggable.`, () => {
+  describe(`draggable.`, () => {
     let fixture: ComponentFixture<TestXDialogDraggableComponent>;
     let dialog: DebugElement;
     beforeEach(() => {
@@ -306,7 +306,7 @@ class TestXDialogDraggableComponent {
   visible!: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

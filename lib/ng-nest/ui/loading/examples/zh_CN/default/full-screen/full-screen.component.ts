@@ -12,7 +12,7 @@ export class ExFullScreenComponent {
     this.loading = true;
     of(true)
       .pipe(delay(2000))
-      .subscribe(x => {
+      .subscribe(() => {
         this.loading = false;
       });
   }

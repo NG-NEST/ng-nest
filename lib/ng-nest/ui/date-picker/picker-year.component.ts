@@ -30,7 +30,8 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.display) && this.init();
+    const { display } = simples;
+    XIsChange(display) && this.init();
   }
 
   init() {
@@ -77,7 +78,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     return this.datePipe.transform(one, 'yyyy') === this.datePipe.transform(two, 'yyyy');
   }
 
-  trackByYear(index: number, item: Date) {
+  trackByYear(_index: number, item: Date) {
     return item;
   }
 }

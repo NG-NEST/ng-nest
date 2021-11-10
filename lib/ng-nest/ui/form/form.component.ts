@@ -27,7 +27,8 @@ export class XFormComponent extends XFormProperty implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.disabled) && this.setDisabled();
+    const { disabled } = changes;
+    XIsChange(disabled) && this.setDisabled();
   }
 
   ngOnInit() {
@@ -57,7 +58,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
         control.disabled = true;
         control.required = false;
         delete (control as any).pattern;
-        type.setValidators();
+        type.setValidators && type.setValidators();
         control.formControlChanges();
       }
     } else {
@@ -66,7 +67,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
         control.disabled = type.disabled as XBoolean;
         control.required = type.required as XBoolean;
         control.pattern = type.pattern as RegExp | RegExp[];
-        type.setValidators();
+        type.setValidators && type.setValidators();
         control.formControlChanges();
       }
     }
@@ -96,7 +97,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
     return result;
   }
 
-  trackByControl(index: number, item: XFormControlOption) {
+  trackByControl(_index: number, item: XFormControlOption) {
     return item.id;
   }
 }

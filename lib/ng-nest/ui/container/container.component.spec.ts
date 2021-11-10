@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XContainerComponent } from './container.component';
 import { Component, DebugElement } from '@angular/core';
@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XContainerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XContainerModule],
       declarations: [TestXContainerComponent]
@@ -18,12 +18,10 @@ describe(XContainerPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXContainerComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXContainerComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XContainerComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

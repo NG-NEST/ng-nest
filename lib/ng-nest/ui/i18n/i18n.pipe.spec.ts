@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XI18nPrefix } from './i18n.property';
@@ -10,7 +10,7 @@ import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
 
 describe(XI18nPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XI18nModule, XButtonModule, XCommentModule],
       declarations: [TestXI18nComponent]

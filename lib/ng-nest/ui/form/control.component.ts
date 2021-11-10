@@ -3,8 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
-  Host,
-  Optional,
   ViewChild,
   ChangeDetectorRef,
   OnInit,
@@ -60,14 +58,14 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
-  @Input() option!: XFormControlOption;
+  @Input() override option!: XFormControlOption;
   @Input() form: any;
   @ViewChild(FormControlName, { static: false }) control!: FormControlName;
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _changeProps = ['label', ...this._sharedProps];
   private _control!: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
   private _formControl!: FormControl;
 
   constructor(
@@ -152,7 +150,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     }
   }
 
-  setMessages(state: 'INVALID' | 'VALID' | 'DISABLED') {
+  setMessages(state: 'VALID' | 'INVALID' | 'PENDING' | 'DISABLED') {
     let control: XFormControl = this._formControl;
     if (state === 'INVALID' && this._formControl.errors !== null) {
       for (const key in control.errors) {

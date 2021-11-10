@@ -1,5 +1,5 @@
 import { XDocModule } from '@ng-nest/ui/doc';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDescriptionComponent } from './description.component';
 import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
@@ -13,7 +13,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 
 describe(XDescriptionPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XThemeModule, XDescriptionModule, XRadioModule, XLayoutModule, XDocModule],
       declarations: [
@@ -23,16 +23,14 @@ describe(XDescriptionPrefix, () => {
         TestXDescriptionSizeComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDescriptionComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -41,12 +39,10 @@ describe(XDescriptionPrefix, () => {
   describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXDescriptionBorderedComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -55,26 +51,22 @@ describe(XDescriptionPrefix, () => {
   describe(`grid.`, () => {
     let fixture: ComponentFixture<TestXDescriptionGridComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionGridComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`size.`, () => {
+  describe(`size.`, () => {
     let fixture: ComponentFixture<TestXDescriptionSizeComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDescriptionSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDescriptionComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

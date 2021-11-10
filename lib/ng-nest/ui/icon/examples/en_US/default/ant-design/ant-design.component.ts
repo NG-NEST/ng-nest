@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-ant-design',
   templateUrl: './ant-design.component.html',
   styleUrls: ['./ant-design.component.scss']
 })
-export class ExAntDesignComponent implements OnInit {
+export class ExAntDesignComponent {
   tabs = [
     {
       type: 'ado',
@@ -743,7 +743,4 @@ export class ExAntDesignComponent implements OnInit {
       ]
     }
   ];
-  constructor() {}
-
-  ngOnInit() {}
 }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTreeComponent } from './tree.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
@@ -18,7 +18,7 @@ import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTreePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -290,7 +290,7 @@ class TestXTreeDiabledComponent {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12">
-        <x-tree [data]="service.data" checkbox [labelTemp]="labelTpl"> </x-tree>
+        <x-tree [data]="service.data" checkbox [labelTpl]="labelTpl"> </x-tree>
         <ng-template #labelTpl let-node="$node">
           <div class="custom-label">
             <span>{{ node.label }}</span>

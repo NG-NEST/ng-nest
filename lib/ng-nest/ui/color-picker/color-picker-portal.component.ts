@@ -14,7 +14,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsEmpty, XCorner, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
@@ -37,7 +37,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
 

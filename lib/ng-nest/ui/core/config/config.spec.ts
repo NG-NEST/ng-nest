@@ -22,7 +22,6 @@ class NzGlobalConfigTestBasicComponent {
 
 describe('x-config', () => {
   let fixture: ComponentFixture<NzGlobalConfigTestBasicComponent>;
-  let testComponent: NzGlobalConfigTestBasicComponent;
   let button: DebugElement;
   let buttonEl: HTMLButtonElement;
   let buttonInner: HTMLButtonElement | null;
@@ -56,7 +55,6 @@ describe('x-config', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);
-    testComponent = fixture.debugElement.componentInstance;
     button = fixture.debugElement.query(By.directive(XButtonComponent));
     buttonEl = button.nativeElement;
     buttonInner = buttonEl.querySelector('.x-button');

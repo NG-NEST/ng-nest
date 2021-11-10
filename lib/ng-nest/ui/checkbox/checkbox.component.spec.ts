@@ -1,6 +1,6 @@
 import { XButtonModule } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCheckboxPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XCheckboxModule, XButtonModule, XLayoutModule],
       declarations: [
@@ -27,17 +27,13 @@ describe(XCheckboxPrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCheckboxComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();
@@ -46,14 +42,10 @@ describe(XCheckboxPrefix, () => {
   describe(`disabled.`, () => {
     let fixture: ComponentFixture<TestXCheckboxDisabledComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxDisabledComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxDisabledComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();
@@ -62,14 +54,10 @@ describe(XCheckboxPrefix, () => {
   describe(`button.`, () => {
     let fixture: ComponentFixture<TestXCheckboxButtonComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxButtonComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxButtonComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();
@@ -78,14 +66,10 @@ describe(XCheckboxPrefix, () => {
   describe(`icon.`, () => {
     let fixture: ComponentFixture<TestXCheckboxIconComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxIconComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxIconComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();
@@ -94,14 +78,10 @@ describe(XCheckboxPrefix, () => {
   describe(`async.`, () => {
     let fixture: ComponentFixture<TestXCheckboxAsyncComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxAsyncComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxAsyncComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();
@@ -110,14 +90,10 @@ describe(XCheckboxPrefix, () => {
   describe(`indeterminate.`, () => {
     let fixture: ComponentFixture<TestXCheckboxIndeterminateComponent>;
     let checkbox: DebugElement;
-    let testComponent: TestXCheckboxIndeterminateComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCheckboxIndeterminateComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
-      element = checkbox.nativeElement;
     });
     it('should create.', () => {
       expect(checkbox).toBeDefined();

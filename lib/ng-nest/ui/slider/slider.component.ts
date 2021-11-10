@@ -74,13 +74,12 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setData();
-    XIsChange(changes.layout) && this.setChange(this.classMap, changes.layout);
-    XIsChange(changes.justify) && this.setChange(this.scrollClassMap, changes.justify, 'x-justify');
-    XIsChange(changes.nodeJustify) && this.setChange(this.nodeClassMap, changes.nodeJustify, 'x-justify');
-    XIsChange(changes.activatedIndex) &&
-      this.setDirection(changes.activatedIndex.currentValue, changes.activatedIndex.previousValue) &&
-      this.setActivated();
+    const { data, layout, justify, nodeJustify, activatedIndex } = changes;
+    XIsChange(data) && this.setData();
+    XIsChange(layout) && this.setChange(this.classMap, layout);
+    XIsChange(justify) && this.setChange(this.scrollClassMap, justify, 'x-justify');
+    XIsChange(nodeJustify) && this.setChange(this.nodeClassMap, nodeJustify, 'x-justify');
+    XIsChange(activatedIndex) && this.setDirection(activatedIndex.currentValue, activatedIndex.previousValue) && this.setActivated();
   }
 
   ngOnDestroy(): void {
@@ -233,7 +232,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     return Number(this.activatedIndex) === index;
   }
 
-  trackByNode(index: number, item: XSliderNode) {
+  trackByNode(_index: number, item: XSliderNode) {
     return item.id;
   }
 }

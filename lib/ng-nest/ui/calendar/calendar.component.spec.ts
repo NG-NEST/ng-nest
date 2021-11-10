@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -16,7 +16,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XCalendarPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -71,7 +71,7 @@ describe(XCalendarPrefix, () => {
 class TestXCalendarComponent {
   data: XCalendarData = {};
   constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef, private pipeDate: DatePipe) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

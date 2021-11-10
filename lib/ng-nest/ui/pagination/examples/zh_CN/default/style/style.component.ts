@@ -15,5 +15,7 @@ export class ExStyleComponent {
   index = 1;
   size = 10;
   total = 100;
-  change(index: number) {}
+  change(index: number) {
+    console.log(index);
+  }
 }

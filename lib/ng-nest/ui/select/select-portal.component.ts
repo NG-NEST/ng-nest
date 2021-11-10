@@ -32,7 +32,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
 
@@ -66,7 +66,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.list.setUnActive(this.active);
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {

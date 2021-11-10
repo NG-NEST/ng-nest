@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { XTimeRangeModule } from '@ng-nest/ui/time-range';
 import { XTimeRangePrefix } from './time-range.property';
 
 describe(XTimeRangePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XTimeRangeModule],
       declarations: [TestXTimeRangeComponent]

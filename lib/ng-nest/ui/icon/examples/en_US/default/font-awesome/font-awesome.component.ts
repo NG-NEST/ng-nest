@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-font-awesome',
   templateUrl: './font-awesome.component.html',
   styleUrls: ['./font-awesome.component.scss']
 })
-export class ExFontAwesomeComponent implements OnInit {
+export class ExFontAwesomeComponent {
   tabs = [
     {
       type: 'fab',
@@ -1542,7 +1542,4 @@ export class ExFontAwesomeComponent implements OnInit {
       ]
     }
   ];
-  constructor() {}
-
-  ngOnInit() {}
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-feather',
   templateUrl: './feather.component.html',
   styleUrls: ['./feather.component.scss']
 })
-export class ExFeatherComponent implements OnInit {
+export class ExFeatherComponent {
   tabs = [
     {
       type: 'fto',
@@ -293,8 +293,4 @@ export class ExFeatherComponent implements OnInit {
       ]
     }
   ];
-
-  constructor() {}
-
-  ngOnInit() {}
 }

@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
 import { XPortalModule } from '@ng-nest/ui/portal';
 import { PortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
 
 describe(PortalPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XPortalModule],
       declarations: [TestXPortalComponent]
@@ -15,15 +15,9 @@ describe(PortalPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPortalComponent>;
-    let testComponent: TestXPortalComponent;
-    let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPortalComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
-      // debugElement = fixture.debugElement.query(By.directive(XPortalComponent));
-      // element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(true).toBe(true);
@@ -34,7 +28,6 @@ describe(PortalPrefix, () => {
 @Component({
   selector: 'test-x-portal',
   template: `
-    <x-portal></x-portal>
     <button (click)="showPortal()">打开模板</button>
     <ng-template #temp let-text="text">{{ text }}模板内容</ng-template>
   `

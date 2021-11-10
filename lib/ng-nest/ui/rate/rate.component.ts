@@ -1,14 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
-  Input,
-  ViewChild
-} from '@angular/core';
-import { XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { XIsEmpty, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -27,7 +18,7 @@ export class XRateComponent extends XRateProperty {
   hoverActivated = 0;
   hoverHalfActivated = 0;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     if (XIsEmpty(value)) value = 0;
     this.value = value;
     this.hoverActivated = value;
@@ -62,7 +53,7 @@ export class XRateComponent extends XRateProperty {
       .map((_, i) => i + 1);
   }
 
-  rateHover(rate: number, event: MouseEvent) {
+  rateHover(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
     this.hoverActivated = rate;
     this.cdr.detectChanges();
@@ -76,26 +67,26 @@ export class XRateComponent extends XRateProperty {
     this.cdr.detectChanges();
   }
 
-  rateClick(rate: number, event: MouseEvent) {
+  rateClick(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
     this.value = this.value === rate ? 0 : rate;
     if (this.onChange) this.onChange(this.value);
   }
 
-  rateHalfHover(rate: number, event: MouseEvent) {
+  rateHalfHover(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
     this.hoverActivated = rate - 1;
     this.hoverHalfActivated = rate;
     this.cdr.detectChanges();
   }
 
-  rateHalfClick(rate: number, event: MouseEvent) {
+  rateHalfClick(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
     this.value = rate - 0.5;
     if (this.onChange) this.onChange(this.value);
   }
 
-  trackByItem(index: number, item: number) {
+  trackByItem(_index: number, item: number) {
     return item;
   }
 

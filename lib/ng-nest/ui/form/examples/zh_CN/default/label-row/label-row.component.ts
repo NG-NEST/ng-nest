@@ -29,7 +29,7 @@ export class ExLabelRowComponent {
       required: true,
       pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
       message: ['整数', '正整数'],
-      clearClick: (value: any) => {}
+      clearClick: (_value: any) => {}
     },
     {
       control: 'input',

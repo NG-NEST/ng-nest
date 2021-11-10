@@ -36,7 +36,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   visible: boolean = false;
   manual: boolean = false;
   start!: number;
-  value = 0;
+  override value = 0;
   displayValue = '0';
   private _unSubject = new Subject<void>();
   private _resizeObserver!: ResizeObserver;
@@ -45,7 +45,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     return this.required && XIsEmpty(this.value);
   }
 
-  writeValue(value: number) {
+  override writeValue(value: number) {
     if (value === null) value = 0;
     this.value = value;
     this.setLeft();

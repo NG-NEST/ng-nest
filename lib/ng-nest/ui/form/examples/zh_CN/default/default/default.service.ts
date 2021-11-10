@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { map, orderBy } from 'lodash';
 
@@ -17,7 +17,7 @@ export class DefaultService extends XRepositoryAbstract {
     '财务部'
   ];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+  users: User[] = Array.from({ length: 123456 }).map((_x, i) => {
     i++;
     let positionId = Math.floor(Math.random() * 5 + 1);
     let organizationId = Math.floor(Math.random() * 9 + 1);
@@ -54,16 +54,16 @@ export class DefaultService extends XRepositoryAbstract {
       }, 10);
     });
   }
-  get(id: number | string): Observable<User> {
+  get(_id: number | string): Observable<User> {
     return new Observable();
   }
-  post(entity: User): Observable<User> {
+  post(_entity: User): Observable<User> {
     return new Observable();
   }
-  put(entity: User): Observable<User> {
+  put(_entity: User): Observable<User> {
     return new Observable();
   }
-  delete(id: number | string): Observable<boolean> {
+  delete(_id: number | string): Observable<boolean> {
     return new Observable();
   }
 
@@ -95,14 +95,6 @@ export class DefaultService extends XRepositoryAbstract {
       });
     }
     return result;
-  }
-
-  private setGroup(data: User[], group: string): XGroupItem[] {
-    return map(groupBy(data, group), (value, key) => {
-      let groupItem: XGroupItem = { id: key, count: value.length };
-      groupItem[group] = key;
-      return groupItem;
-    });
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {

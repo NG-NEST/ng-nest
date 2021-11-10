@@ -9,7 +9,7 @@ import {
   XProperty,
   XTemplate
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
@@ -59,7 +59,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -74,7 +74,7 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  @Input() @XInputBoolean() pointer!: XBoolean;
+  @Input() @XInputBoolean() override pointer!: XBoolean;
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event

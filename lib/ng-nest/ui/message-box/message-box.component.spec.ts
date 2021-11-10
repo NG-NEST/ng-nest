@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMessageBoxComponent } from './message-box.component';
 import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
@@ -14,7 +14,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XMessageBoxPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonModule, XMessageModule],
       declarations: [TestXMessageBoxComponent]

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCrumbComponent } from './crumb.component';
 import { Component, DebugElement } from '@angular/core';
@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCrumbPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XCrumbModule, XIconModule, XTagModule],
       declarations: [TestXCrumbComponent]
@@ -19,15 +19,11 @@ describe(XCrumbPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCrumbComponent>;
-    let testComponent: TestXCrumbComponent;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXCrumbComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XCrumbComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

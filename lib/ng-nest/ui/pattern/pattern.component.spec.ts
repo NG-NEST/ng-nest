@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XPatternComponent } from './pattern.component';
 import { Component, DebugElement } from '@angular/core';
@@ -7,7 +7,7 @@ import { XPatternModule } from './pattern.module';
 import { PatternPrefix } from './pattern.property';
 
 describe(PatternPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XPatternModule],
       declarations: [TestXPatternComponent]

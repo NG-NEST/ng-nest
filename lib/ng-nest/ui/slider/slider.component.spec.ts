@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSliderComponent } from './slider.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSliderPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XSliderModule, XThemeModule, BrowserAnimationsModule, XIconModule, XTabsModule],
       declarations: [TestXSliderComponent]

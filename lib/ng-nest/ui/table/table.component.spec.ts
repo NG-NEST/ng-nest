@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTableComponent } from './table.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular/core';
@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
 
 describe(XTablePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
       declarations: [
@@ -33,8 +33,8 @@ describe(XTablePrefix, () => {
         TestXTablePaginationComponent
       ]
     }).compileComponents();
-  }));
-  fdescribe(`default.`, () => {
+  });
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
     let table: DebugElement;
     beforeEach(() => {

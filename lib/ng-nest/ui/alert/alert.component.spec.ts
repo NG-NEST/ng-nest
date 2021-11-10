@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAlertComponent } from './alert.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XAlertPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule, XThemeModule],
       declarations: [TestXAlertComponent]

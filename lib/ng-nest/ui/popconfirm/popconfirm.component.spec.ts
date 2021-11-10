@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XPopconfirmComponent } from './popconfirm.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XPopconfirmPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -71,7 +71,7 @@ describe(XPopconfirmPrefix, () => {
 })
 class TestXPopconfirmComponent {
   constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
+    interval(1).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

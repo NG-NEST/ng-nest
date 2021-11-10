@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XButtonComponent } from './button.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -8,7 +8,7 @@ import { XButtonPrefix } from './button.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XButtonPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XButtonModule, XThemeModule],
       declarations: [
@@ -25,12 +25,10 @@ describe(XButtonPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXButtonComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -39,12 +37,10 @@ describe(XButtonPrefix, () => {
   describe(`disabled.`, () => {
     let fixture: ComponentFixture<TestXButtonDiabledComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonDiabledComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -53,40 +49,34 @@ describe(XButtonPrefix, () => {
   describe(`text.`, () => {
     let fixture: ComponentFixture<TestXButtonTextComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonTextComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`icon.`, () => {
+  describe(`icon.`, () => {
     let fixture: ComponentFixture<TestXButtonIconComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonIconComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`group.`, () => {
+  describe(`group.`, () => {
     let fixture: ComponentFixture<TestXButtonGroupComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonGroupComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -95,12 +85,10 @@ describe(XButtonPrefix, () => {
   describe(`loading.`, () => {
     let fixture: ComponentFixture<TestXButtonLoadingComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonLoadingComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -109,12 +97,10 @@ describe(XButtonPrefix, () => {
   describe(`size.`, () => {
     let fixture: ComponentFixture<TestXButtonSizeComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXButtonSizeComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XButtonComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

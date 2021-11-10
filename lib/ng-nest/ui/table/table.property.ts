@@ -305,7 +305,7 @@ export interface XTableColumn extends XIdentityProperty {
    */
   dragWidth?: boolean;
   /**
-   * @zh_CN 头部显示 checkbox 
+   * @zh_CN 头部显示 checkbox
    * @en_US Head shows checkbox
    */
   headChecked?: boolean;

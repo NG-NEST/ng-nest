@@ -10,7 +10,6 @@ import {
   OnChanges,
   OnDestroy,
   AfterViewInit,
-  Input,
   Inject
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
@@ -55,10 +54,11 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setData();
-    XIsChange(changes.activatedId) && this.setActivatedNode(this.nodes);
-    XIsChange(changes.collapsed) && this.setClassMap();
-    if (XIsChange(changes.target)) {
+    const { data, activatedId, collapsed, target } = changes;
+    XIsChange(data) && this.setData();
+    XIsChange(activatedId) && this.setActivatedNode(this.nodes);
+    XIsChange(collapsed) && this.setClassMap();
+    if (XIsChange(target)) {
       this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
     }
   }
@@ -191,7 +191,6 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
 
   setActivatedNode(nodes: XMenuNode[]) {
     this.activated = nodes.find((x) => x.id == this.activatedId) as XMenuNode;
-    // console.log(this.nodes)
     this.rootIndex = nodes.findIndex((x) => x.id == this.activatedId && !x.pid);
     if (this.activated) {
       this.setParentOpen(nodes, this.activated);
@@ -210,7 +209,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     getParent(node);
   }
 
-  trackByNode(index: number, item: XMenuNode) {
+  trackByNode(_index: number, item: XMenuNode) {
     return item.id;
   }
 }

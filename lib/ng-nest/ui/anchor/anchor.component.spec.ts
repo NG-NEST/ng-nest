@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XAnchorComponent } from './anchor.component';
 import { Component, DebugElement } from '@angular/core';
@@ -9,7 +9,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XAnchorPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XAnchorModule, XThemeModule],
       declarations: [TestXAnchorComponent]

@@ -15,7 +15,7 @@ import { XIsChange, XIsEmpty, XSetData, XGetChildren, XConfigService, XPositionT
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
-import { debounceTime, delay, takeUntil, throttleTime } from 'rxjs/operators';
+import { debounceTime, delay, takeUntil } from 'rxjs/operators';
 import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
 
 @Component({
@@ -35,9 +35,9 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   animating = false;
   outsideClick = false;
   minWidth!: string | number;
-  hoverDelayUnsub = new Subject();
+  hoverDelayUnsub = new Subject<void>();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -57,7 +57,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -68,7 +69,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }

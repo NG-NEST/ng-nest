@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { XTreeNode } from "@ng-nest/ui/tree";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { XTreeNode } from '@ng-nest/ui/tree';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class TreeService {
@@ -16,7 +16,7 @@ export class TreeService {
     { id: 9, label: 'Accounting department', pid: 4 }
   ];
 
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+  getTreeList = (_pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
         x.next(this.data);

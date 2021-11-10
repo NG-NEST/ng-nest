@@ -47,25 +47,10 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
   /**
-   * @zh_CN 只读
-   * @en_US Readonly
-   */
-  @Input() @XInputBoolean() readonly!: XBoolean;
-  /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  @Input() valueTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  @Input() valueTplContext: any;
-  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -141,7 +126,7 @@ export interface XDatePickerOption extends XFormOption {
  * @decorator component
  */
 export const XDateRangePrefix = 'x-date-range';
-const X_CONFIG_Range_NAME = 'dateRange';
+const X_CONFIG_RANGE_NAME = 'dateRange';
 
 /**
  * DateRange Property
@@ -157,27 +142,27 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 格式化类型
    * @en_US Format type
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'yyyy-MM-dd') format?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_RANGE_NAME, 'yyyy-MM-dd') format?: string;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME, true) @XInputBoolean() clearable?: XBoolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_RANGE_NAME, 'bottom-start') placement?: XCorner;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_RANGE_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME, true) bordered!: XBoolean;
   /**
    * @zh_CN 快捷选择按钮，支持今天,昨天,明天
    * @en_US Quick selection button, support today, yesterday, tomorrow

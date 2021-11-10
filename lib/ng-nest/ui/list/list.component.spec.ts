@@ -1,5 +1,5 @@
 import { interval } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XListComponent } from './list.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -13,7 +13,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XListPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XListModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXListComponent]

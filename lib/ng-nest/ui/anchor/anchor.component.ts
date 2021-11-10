@@ -35,7 +35,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   document: Document;
   private _scrolling = false;
   private _fontSize: number;
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
@@ -82,7 +82,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private setScroll() {
     fromEvent(this.scroll ? this.scroll : window, 'scroll')
       .pipe(throttleTime(10), takeUntil(this._unSubject))
-      .subscribe((x) => {
+      .subscribe(() => {
         if (this._scrolling) return;
         this.setActivatedByScroll();
       });

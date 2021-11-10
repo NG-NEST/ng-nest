@@ -42,7 +42,7 @@ describe(XUploadPrefix, () => {
       expect(upload).toBeDefined();
     });
   });
-  fdescribe(`imgCut.`, () => {
+  describe(`imgCut.`, () => {
     let fixture: ComponentFixture<TestXUploadImgCutComponent>;
     let upload: DebugElement;
     beforeEach(() => {

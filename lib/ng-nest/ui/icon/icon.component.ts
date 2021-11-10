@@ -69,9 +69,10 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.type)) {
+    const { type } = changes;
+    if (XIsChange(type)) {
       this.setSvgElement();
-      this.renderer.removeClass(this.elementRef.nativeElement, changes.type.previousValue);
+      this.renderer.removeClass(this.elementRef.nativeElement, type.previousValue);
       this.renderer.addClass(this.elementRef.nativeElement, `${this.type}`);
     }
   }

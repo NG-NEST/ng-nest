@@ -70,7 +70,8 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.visible) && this.setVisible();
+    const { visible } = changes;
+    XIsChange(visible) && this.setVisible();
   }
 
   ngOnDestroy(): void {

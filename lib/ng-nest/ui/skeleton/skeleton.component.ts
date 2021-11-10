@@ -34,7 +34,8 @@ export class XSkeletonComponent extends XSkeletonProperty implements OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.loading) && this.cdr.markForCheck();
+    const { loading } = changes;
+    XIsChange(loading) && this.cdr.markForCheck();
   }
 
   setClassMap() {
