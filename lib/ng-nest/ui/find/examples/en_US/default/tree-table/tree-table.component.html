@@ -1,9 +1,9 @@
-<x-row
-  ><x-find
+<x-row>
+  <x-find
     label="tree table single select"
     [(ngModel)]="model"
-    [tableColumns]="table.columns"
-    [tableData]="table.data"
+    [tableColumns]="tableColumns"
+    [tableData]="tableData"
     [tableSize]="1000"
     [tableVirtualScroll]="true"
     [tableBodyHeight]="420"
@@ -11,13 +11,13 @@
     treeTableConnect="organizationId"
   ></x-find>
 </x-row>
-<x-row [style.margin-top.rem]="1"
-  ><x-find
+<x-row [style.margin-top.rem]="1">
+  <x-find
     label="tree table multiple select"
     dialogWidth="65rem"
     [(ngModel)]="modelMultiple"
-    [tableColumns]="table.columns"
-    [tableData]="table.data"
+    [tableColumns]="tableColumns"
+    [tableData]="tableData"
     [tableSize]="1000"
     [tableVirtualScroll]="true"
     [tableBodyHeight]="420"

@@ -381,6 +381,11 @@ export interface XTableCell {
    */
   id?: string;
   /**
+   * @zh_CN 拖动列宽
+   * @en_US Drag the column width
+   */
+  dragWidth?: boolean;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */

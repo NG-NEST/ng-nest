@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { XQuery } from '@ng-nest/ui/core';
+import { XData, XQuery } from '@ng-nest/ui/core';
+import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
 import { DefaultService } from './default.service';
 
 @Component({
@@ -12,13 +13,11 @@ export class ExDefaultComponent {
   modelMultiple: any;
   constructor(private defaultService: DefaultService) {}
 
-  table: { [property: string]: any } = {
-    columns: [
-      { id: 'index', label: 'Serial No', type: 'index', width: 80 },
-      { id: 'label', label: 'user', flex: 1, sort: true },
-      { id: 'position', label: 'position', flex: 1, sort: true },
-      { id: 'organization', label: 'organization', flex: 1, sort: true }
-    ],
-    data: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query)
-  };
+  tableColumns: XTableColumn[] = [
+    { id: 'index', label: 'Serial No', type: 'index', width: 80 },
+    { id: 'label', label: 'user', flex: 1, sort: true },
+    { id: 'position', label: 'position', flex: 1, sort: true },
+    { id: 'organization', label: 'organization', flex: 1, sort: true }
+  ];
+  tableData: XData<XTableRow> = (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query);
 }

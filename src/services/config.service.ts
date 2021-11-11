@@ -73,7 +73,8 @@ export class ConfigService {
   setMeta() {
     const locale = this.i18n.getLocale();
     const description = this.meta.getTag("name='description'");
-    description?.setAttribute('content', locale.meta.description);
+    const { meta } = locale;
+    description?.setAttribute('content', meta.description);
   }
 
   getVersions() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ComponentRef, Injectable } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault, XIsString } from '@ng-nest/ui/core';
 import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
@@ -63,8 +63,12 @@ export class XMessageBoxService {
 
   private createMessageBoxPlacement(option: XMessageBoxOption): XMessageBoxRef {
     let result = { ref: this.create(option), input: option };
-    (result.ref?.componentRef?.instance as any).messageBox = result;
-    if (option.backdropClose) result.ref?.overlayRef?.backdropClick().subscribe(() => result.ref?.componentRef?.instance.onClose());
+    const { overlayRef, componentRef } = result.ref;
+    const { instance } = componentRef as ComponentRef<XMessageBoxComponent>;
+    instance.messageBox = result;
+    if (option.backdropClose && overlayRef) {
+      overlayRef.backdropClick().subscribe(() => instance.onClose());
+    }
     return result;
   }
 
