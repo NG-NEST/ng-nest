@@ -25,7 +25,7 @@ npm 13.0.0
 
 ## Support Angular version
 
-Angular ^12.0.0 is currently supported by `@ng-nest/UI`.
+Angular ^13.0.0 is currently supported by `@ng-nest/UI`.
 
 ## Supporting environment
 

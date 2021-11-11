@@ -13,22 +13,22 @@ import tsconfigAppTS from './files/tsconfig.app.json';
 @Injectable({ providedIn: 'root' })
 export class OnlineIdeService {
   dependencies = {
-    '@angular/animations': '^12.0.0',
-    '@angular/cdk': '^12.0.0',
-    '@angular/common': '^12.0.0',
-    '@angular/compiler': '^12.0.0',
-    '@angular/core': '^12.0.0',
-    '@angular/forms': '^12.0.0',
-    '@angular/platform-browser': '^12.0.0',
-    '@angular/platform-browser-dynamic': '^12.0.0',
-    '@angular/router': '^12.0.0',
-    rxjs: '~6.6.3',
-    'core-js': '~3.6.5',
+    '@angular/animations': '^13.0.0',
+    '@angular/cdk': '^13.0.0',
+    '@angular/common': '^13.0.0',
+    '@angular/compiler': '^13.0.0',
+    '@angular/core': '^13.0.0',
+    '@angular/forms': '^13.0.0',
+    '@angular/platform-browser': '^13.0.0',
+    '@angular/platform-browser-dynamic': '^13.0.0',
+    '@angular/router': '^13.0.0',
+    rxjs: '~7.4.0',
+    'core-js': '~3.19.1',
     lodash: '^4.17.21',
     '@types/lodash': '^4.14.171',
-    tslib: '^2.0.0',
+    tslib: '^2.3.0',
     'zone.js': '~0.11.4',
-    '@ng-nest/ui': `^12.0.0`
+    '@ng-nest/ui': `^13.0.0`
   };
   openStackBlitz(selector: string, modules: string[], providers: string[], files: { [fileName: string]: string }) {
     StackBlitzSDK.openProject({

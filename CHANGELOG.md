@@ -1,3 +1,16 @@
+# [13.0.0](https://github.com/NG-NEST/ng-nest/compare/12.0.8...13.0.0) (2021-11-11)
+
+
+### Performance Improvements
+
+* clear redundant codes ([48ff797](https://github.com/NG-NEST/ng-nest/commit/48ff7975a25403eacb980de16b9640ff0dcf2362))
+* clear redundant codes ([6bb7ba8](https://github.com/NG-NEST/ng-nest/commit/6bb7ba8a1698194050a5510ae5cdf8319f546c5b))
+* clear redundant codes ([ae7393d](https://github.com/NG-NEST/ng-nest/commit/ae7393d411940a2da9d1dec027c50bcf34d4f491))
+* **module:typography:** clear redundant codes ([9341389](https://github.com/NG-NEST/ng-nest/commit/93413895d2345ea83e695e3cf5b72679ff9f711a))
+* **module:upload:** clear redundant codes ([81a7fb8](https://github.com/NG-NEST/ng-nest/commit/81a7fb87a7e8654c9eb296118e3d1963eb8940be))
+
+
+
 ## [12.0.8](https://github.com/NG-NEST/ng-nest/compare/12.0.7...12.0.8) (2021-11-07)
 
 
