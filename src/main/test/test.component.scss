@@ -1,0 +1,10 @@
+@import 'src/styles/index';
+
+ns-test {
+  > section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+  }
+}

@@ -1,5 +1,6 @@
 // Layout
 
+@use 'sass:math';
 @import '../../style/themes/default';
 @import '../../style/mixins/index';
 @import './param';
@@ -20,7 +21,7 @@
 @mixin media-screen($key, $value) {
   $col-layout-initial: $--x-col-layout;
   @while $col-layout-initial>0 {
-    $col-percentage: 100% * $col-layout-initial / $--x-col-layout;
+    $col-percentage: math.div(100% * $col-layout-initial, $--x-col-layout);
     @media only screen and #{inspect($value)} {
       &-#{$key}-#{$col-layout-initial} {
         width: $col-percentage;
@@ -38,7 +39,7 @@
   box-sizing: border-box;
   $col-layout-initial: $--x-col-layout;
   @while $col-layout-initial>0 {
-    $col-percentage: 100% * $col-layout-initial / $--x-col-layout;
+    $col-percentage: math.div(100% * $col-layout-initial, $--x-col-layout);
     &-#{$col-layout-initial} {
       width: $col-percentage;
     }

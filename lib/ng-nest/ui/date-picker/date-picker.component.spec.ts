@@ -23,7 +23,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
 
 describe(XDatePickerPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -56,7 +56,7 @@ describe(XDatePickerPrefix, () => {
         TestXDateRangeComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
     let debugElement: DebugElement;
@@ -777,9 +777,5 @@ class TestXDatePickerTodayComponent {
   ]
 })
 class TestXDateRangeComponent {
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor() {}
 }
