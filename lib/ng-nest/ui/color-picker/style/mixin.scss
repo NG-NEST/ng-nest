@@ -21,6 +21,9 @@
   background-color: $--x-background;
   width: 15rem;
   overflow: hidden;
+  &:focus {
+    outline: none;
+  }
   &-panel {
     padding: 0.375rem;
     margin: -0.375rem;

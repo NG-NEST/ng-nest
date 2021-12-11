@@ -162,6 +162,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {
     this.inputRef.nativeElement.focus();
+    if (!this.value) return;
     if (type === 'after') {
       this.inputRef.nativeElement.setSelectionRange(this.value.length, this.value.length);
     } else if (type === 'before') {

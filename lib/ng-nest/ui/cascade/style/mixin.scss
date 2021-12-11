@@ -20,6 +20,9 @@
   box-shadow: $--x-box-shadow-light;
   background-color: $--x-background;
   display: flex;
+  &:focus {
+    outline: none;
+  }
   > x-list {
     .x-list-option {
       min-width: 8rem;
