@@ -1,3 +1,12 @@
+## [12.0.10](https://github.com/NG-NEST/ng-nest/compare/12.0.9...12.0.10) (2021-12-11)
+
+
+### Bug Fixes
+
+* **module:date-picker:** resolved format error ([ed9b967](https://github.com/NG-NEST/ng-nest/commit/ed9b96799063be0b44d69ac4a3c08206a89e608f))
+
+
+
 ## [12.0.9](https://github.com/NG-NEST/ng-nest/compare/12.0.8...12.0.9) (2021-12-11)
 
 
