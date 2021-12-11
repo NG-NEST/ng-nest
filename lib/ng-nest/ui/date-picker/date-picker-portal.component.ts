@@ -47,7 +47,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   destroyPortal!: Function;
   nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
-  time!: number;
+  time: number = new Date().getTime();
   preset: XDatePickerPreset[] = [];
   inputCom!: XInputComponent;
   private _type!: XDatePickerType;
@@ -110,8 +110,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   dateChange(date: Date) {
     this.setDisplay(date);
     this.model = date;
-    if (this.time) this.setModelTime(this.model, new Date(this.time));
     if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
+      this.setModelTime(this.model, new Date(this.time));
       this.nodeEmit(this.model, false);
     } else {
       this.nodeEmit(this.model);

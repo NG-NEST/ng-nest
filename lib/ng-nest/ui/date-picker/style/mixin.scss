@@ -6,6 +6,9 @@
 
 @mixin date-picker {
   width: 100%;
+  x-input {
+    width: 100%;
+  }
 }
 
 @mixin date-picker-portal {
@@ -66,7 +69,7 @@
     .x-time-picker-frame {
       border-width: 0;
       box-shadow: none;
-      margin:0;
+      margin: 0;
     }
   }
 }

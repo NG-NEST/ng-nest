@@ -60,21 +60,32 @@ export class XTimePickerFrameComponent {
     }
   }
 
+  ngOnInit() {
+    this.init();
+  }
+
   constructor(private cdr: ChangeDetectorRef) {}
 
   init() {
     if (!XIsEmpty(this.value)) {
       this.setDefault();
     } else {
-      this.model = new Date(0, 0, 0, this.now.getHours(), this.now.getMinutes(), this.now.getSeconds());
+      const def = new Date('1970-01-01');
+      this.model = new Date(
+        def.getFullYear(),
+        def.getMonth(),
+        def.getDate(),
+        this.now.getHours(),
+        this.now.getMinutes(),
+        this.now.getSeconds()
+      );
     }
     this.setTime(this.model);
     this.cdr.detectChanges();
   }
 
   setDefault() {
-    const date = new Date(this.value);
-    this.model = new Date(0, 0, 0, date.getHours(), date.getMinutes(), date.getSeconds());
+    this.model = new Date(this.value);
   }
 
   setTime(date: Date) {

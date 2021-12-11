@@ -6,6 +6,9 @@
 
 @mixin color-picker {
   width: 100%;
+  x-input {
+    width: 100%;
+  }
 }
 
 @mixin color-picker-portal {
