@@ -52,7 +52,8 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -71,7 +72,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     if (this.single) {
       this.value = !this.value;
     } else {
-      this.value = this.value as Array<any> || [];      
+      this.value = (this.value as Array<any>) || [];
       let index = this.value.indexOf(node.id);
       if (index >= 0) {
         this.value.splice(index, 1);
@@ -95,7 +96,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
     });
   }
 
-  trackByItem(index: number, item: XCheckboxNode) {
+  trackByItem(_index: number, item: XCheckboxNode) {
     return item.id;
   }
 

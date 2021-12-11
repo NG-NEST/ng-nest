@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XIsBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';

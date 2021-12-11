@@ -1,4 +1,3 @@
-import { XDatePickerPortalComponent } from './date-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { Subject } from 'rxjs';
 import {
@@ -88,7 +87,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   startDisplay: string | number = '';
   endDisplay: string | number = '';
   startActive: XBoolean = false;
@@ -98,7 +97,6 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   constructor(
     public renderer: Renderer2,
     public configService: XConfigService,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -120,7 +118,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.type)) {
+    const { type } = changes;
+    if (XIsChange(type)) {
       this.setFormat();
       this.setDisplayValue(this.numberValue);
     }
@@ -132,7 +131,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }

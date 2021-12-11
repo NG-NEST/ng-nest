@@ -4,14 +4,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   OnInit,
-  Renderer2,
   OnDestroy,
   AfterViewInit,
   HostBinding,
   HostListener
 } from '@angular/core';
 import { XDateRangePortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays, XData, XAddMonths } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XAddMonths } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -32,7 +31,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
 

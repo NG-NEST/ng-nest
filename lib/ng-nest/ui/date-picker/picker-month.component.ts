@@ -53,7 +53,8 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.display) && this.init();
+    const { display } = simples;
+    XIsChange(display) && this.init();
   }
 
   init() {
@@ -100,7 +101,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     this.cdr.detectChanges();
   }
 
-  trackByMonth(index: number, item: Date) {
+  trackByMonth(_index: number, item: Date) {
     return item;
   }
 }

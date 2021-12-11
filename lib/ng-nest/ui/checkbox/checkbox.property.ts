@@ -1,13 +1,4 @@
-import {
-  XData,
-  XTemplate,
-  XIdentityProperty,
-  XDataConvert,
-  XInputBoolean,
-  XSize,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XData, XTemplate, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 

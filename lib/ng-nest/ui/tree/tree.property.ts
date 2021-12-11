@@ -12,7 +12,6 @@ import {
   XAlign
 } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
-import { Observable } from 'rxjs';
 
 /**
  * Tree

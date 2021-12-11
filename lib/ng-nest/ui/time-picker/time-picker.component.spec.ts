@@ -118,12 +118,12 @@ describe(XTimePickerPrefix, () => {
     <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
-        <x-time-picker [(ngModel)]="model1"></x-time-picker>
+        <x-time-picker [(ngModel)]="model1" (ngModelChange)="change($event)"></x-time-picker>
       </x-col>
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-time-picker [(ngModel)]="model2"></x-time-picker>
+        <x-time-picker format="HH时mm分ss秒" [(ngModel)]="model2" (ngModelChange)="change($event)"></x-time-picker>
       </x-col>
     </x-row>
   `,
@@ -142,11 +142,14 @@ describe(XTimePickerPrefix, () => {
 })
 class TestXTimePickerComponent {
   model1: any;
-  model2 = new Date();
+  model2 = new Date().getTime();
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
+  }
+  change($event: any) {
+    console.log($event);
   }
 }
 

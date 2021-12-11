@@ -34,8 +34,9 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.content) && this.contentChange.next(this.content);
-    if (XIsChange(changes.visible)) {
+    const { content, visible } = changes;
+    XIsChange(content) && this.contentChange.next(this.content);
+    if (XIsChange(visible)) {
       if (this.visible) this.show();
       else this.hide();
     }

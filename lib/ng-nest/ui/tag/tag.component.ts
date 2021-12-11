@@ -33,7 +33,8 @@ export class XTagComponent extends XTagProperty implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.type, changes.size, changes.dark) && this.setClassMap();
+    const { type, size, dark } = changes;
+    XIsChange(type, size, dark) && this.setClassMap();
   }
 
   setClassMap() {

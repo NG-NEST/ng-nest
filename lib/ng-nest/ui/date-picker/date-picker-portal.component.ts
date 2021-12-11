@@ -4,14 +4,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   OnInit,
-  Renderer2,
   OnDestroy,
   AfterViewInit,
   HostBinding,
   HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XCorner, XPositionTopBottom, XAddDays, XData } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -33,7 +32,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
 
@@ -48,7 +47,7 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   destroyPortal!: Function;
   nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
-  time!: number;
+  time: number = new Date().getTime();
   preset: XDatePickerPreset[] = [];
   inputCom!: XInputComponent;
   private _type!: XDatePickerType;
@@ -111,8 +110,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   dateChange(date: Date) {
     this.setDisplay(date);
     this.model = date;
-    if (this.time) this.setModelTime(this.model, new Date(this.time));
     if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
+      this.setModelTime(this.model, new Date(this.time));
       this.nodeEmit(this.model, false);
     } else {
       this.nodeEmit(this.model);

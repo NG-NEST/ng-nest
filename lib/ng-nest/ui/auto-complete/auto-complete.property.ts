@@ -6,8 +6,7 @@ import {
   XPositionTopBottom,
   XSize,
   XInputBoolean,
-  XBoolean,
-  XTemplate
+  XBoolean
 } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef, EventEmitter, Output } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';

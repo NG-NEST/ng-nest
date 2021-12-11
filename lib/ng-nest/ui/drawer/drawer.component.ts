@@ -48,7 +48,8 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.visible) && this.setVisible();
+    const { visible } = simples;
+    XIsChange(visible) && this.setVisible();
   }
 
   ngOnDestroy(): void {

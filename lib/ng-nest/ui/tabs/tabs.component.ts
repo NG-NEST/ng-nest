@@ -12,9 +12,9 @@ import {
   QueryList
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty, XConfigService, XData } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XSliderComponent, XSliderNode, XSliderProperty } from '@ng-nest/ui/slider';
+import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 
 @Component({
@@ -48,10 +48,11 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
-    XIsChange(changes.layout) && this.setLayout(changes.layout);
-    XIsChange(changes.justify) && this.cdr.detectChanges();
-    XIsChange(changes.activatedIndex) && this.setActivatedIndex();
+    const { data, layout, justify, activatedIndex } = changes;
+    XIsChange(data) && this.setData();
+    XIsChange(layout) && this.setLayout(layout);
+    XIsChange(justify) && this.cdr.detectChanges();
+    XIsChange(activatedIndex) && this.setActivatedIndex();
   }
 
   ngOnDestroy(): void {

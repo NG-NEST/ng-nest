@@ -78,7 +78,7 @@ export class XHttpService {
   /**
    * 添加头部信息
    */
-  private addHeader(option: { [property: string]: any }) {
+  private addHeader(_option: { [property: string]: any }) {
     // let auth = this.setting.getSession("Auth");
     // if (auth && auth["token"]) {
     //   option["headers"] = { Authorization: `Bearer ${auth["token"]}` };

@@ -27,7 +27,8 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -46,7 +47,7 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
     }
   }
 
-  trackByNode(index: number, item: XCrumbNode) {
+  trackByNode(_index: number, item: XCrumbNode) {
     return item.id;
   }
 

@@ -6,6 +6,9 @@
 
 @mixin time-picker {
   width: 100%;
+  x-input {
+    width: 100%;
+  }
 }
 
 @mixin time-picker-portal {

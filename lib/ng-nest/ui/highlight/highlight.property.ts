@@ -1,6 +1,5 @@
-import { XProperty, XType } from '@ng-nest/ui/core';
+import { XProperty } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 
 /**
  * Highlight

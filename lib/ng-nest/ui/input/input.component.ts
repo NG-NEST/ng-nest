@@ -9,7 +9,6 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges,
-  Input,
   Optional,
   TemplateRef
 } from '@angular/core';
@@ -44,7 +43,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   clearShow: boolean = false;
   flexClass: string[] = [];
   private _required: boolean = false;
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
   get getIcon() {
     return !XIsEmpty(this.icon);
@@ -84,9 +83,10 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.clearable) && this.setClearable();
-    XIsChange(changes.size, changes.labelAlign) && this.setClassMap();
-    XIsChange(changes.justify, changes.align, changes.direction) && this.setFlexClass();
+    const { clearable, size, labelAlign, justify, align, direction } = changes;
+    XIsChange(clearable) && this.setClearable();
+    XIsChange(size, labelAlign) && this.setClassMap();
+    XIsChange(justify, align, direction) && this.setFlexClass();
   }
 
   ngOnDestroy() {
@@ -162,6 +162,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {
     this.inputRef.nativeElement.focus();
+    if (!this.value) return;
     if (type === 'after') {
       this.inputRef.nativeElement.setSelectionRange(this.value.length, this.value.length);
     } else if (type === 'before') {

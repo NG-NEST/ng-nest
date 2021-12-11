@@ -100,8 +100,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.tableData) && this.setTableCheckedRow();
-    XIsChange(simples.labelAlign, simples.size) && this.setClassMap();
+    const { tableData, labelAlign, size } = simples;
+    XIsChange(tableData) && this.setTableCheckedRow();
+    XIsChange(labelAlign, size) && this.setClassMap();
   }
 
   ngOnInit() {
@@ -228,7 +229,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
     if (this.hasTable) {
       let it = this.tableCom?.tableData.find((x) => item.id === x.id);
       if (it) {
-        it.$checked = false;
+        it['$checked'] = false;
         this.tableCom?.bodyChange();
       }
     } else if (this.hasTree) {
@@ -269,7 +270,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   rowMultiple(data: XTableRow) {
     if (typeof this.temp === 'undefined') this.temp = [];
-    if (data.$checked) {
+    if (data['$checked']) {
       this.temp = [...this.temp, data];
     } else {
       this.temp.splice(
@@ -322,7 +323,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.treeMultiple(node);
   }
 
-  trackByItem(index: number, item: any) {
+  trackByItem(_index: number, item: any) {
     return item.id;
   }
 

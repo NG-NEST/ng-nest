@@ -5,8 +5,6 @@ import {
   XDataConvert,
   XInputNumber,
   XNumber,
-  XInputBoolean,
-  XBoolean,
   XTemplate
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';

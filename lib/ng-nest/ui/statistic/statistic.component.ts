@@ -18,7 +18,8 @@ export class XStatisticComponent extends XStatisticProperty implements OnChanges
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.value) && this.setDisplay();
+    const { value } = simples;
+    XIsChange(value) && this.setDisplay();
   }
 
   setDisplay() {

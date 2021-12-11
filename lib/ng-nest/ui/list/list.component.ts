@@ -16,17 +16,10 @@ import {
   ViewChildren
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import {
-  XIsChange,
-  XSetData,
-  XConfigService,
-  XIsEmpty,
-  XIsUndefined,
-  XIsNull
-} from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
-import { ActiveDescendantKeyManager, FocusKeyManager } from '@angular/cdk/a11y';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
@@ -84,7 +77,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngAfterViewInit() {
@@ -121,7 +115,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     });
   }
 
-  setScorllTop(num: number) {
+  setScorllTop(_num: number) {
     if (!this.scrollElement) return;
     let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
     let list = this.scrollElement;
@@ -151,9 +145,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       }
       if (this.objectArray) {
         this.selectedNodes = this.nodes
-          .filter(
-            (x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id))
-          )
+          .filter((x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id)))
           .map((x) => {
             x.selected = true;
             return x;
@@ -170,8 +162,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   setKeyManager() {
-    if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0)
-      return;
+    if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0) return;
     let activeIndex = 0;
     if (XIsUndefined(this.value) || this.value.length === 0) {
       this.keyManager.updateActiveItem(activeIndex);
@@ -254,7 +245,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  trackByNode(index: number, item: XListNode) {
+  trackByNode(_index: number, item: XListNode) {
     return item.id;
   }
 

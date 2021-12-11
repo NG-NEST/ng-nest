@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
-import { XNumber, toHex, mixColors, XConfigService } from '@ng-nest/ui/core';
+import { toHex, mixColors, XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-color',
@@ -17,7 +17,7 @@ export class XColorComponent extends XColorProperty implements OnInit {
     @Inject(DOCUMENT) private doc: any,
     private renderer: Renderer2,
     private elementRef: ElementRef,
-    private configService: XConfigService
+    public configService: XConfigService
   ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
@@ -36,7 +36,7 @@ export class XColorComponent extends XColorProperty implements OnInit {
     this.colors = colors;
   }
 
-  trackByColor(index: number, item: string) {
+  trackByColor(_index: number, item: string) {
     return item;
   }
 }

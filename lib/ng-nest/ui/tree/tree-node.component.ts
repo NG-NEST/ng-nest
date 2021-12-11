@@ -7,7 +7,6 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostBinding,
-  Optional,
   Input
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
@@ -165,7 +164,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     event.stopPropagation();
   }
 
-  trackByItem(index: number, item: XTreeAction | XTreeNode) {
+  trackByItem(_index: number, item: XTreeAction | XTreeNode) {
     return item.id;
   }
 }

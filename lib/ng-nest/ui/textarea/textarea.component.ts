@@ -67,7 +67,8 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.clearable) && this.setClearable();
+    const { clearable } = changes;
+    XIsChange(clearable) && this.setClearable();
   }
 
   change(value: any) {

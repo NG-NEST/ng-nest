@@ -9,7 +9,7 @@ import {
   XProperty,
   XTemplate
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**

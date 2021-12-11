@@ -63,7 +63,8 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setMonthData();
+    const { data } = changes;
+    XIsChange(data) && this.setMonthData();
   }
 
   ngOnDestroy() {
@@ -140,11 +141,11 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
     return this.monthData?.[this.datePipe.transform(date, 'yyyy-MM') as string];
   }
 
-  trackByDate(index: number, item: XCalendarNode) {
+  trackByDate(_index: number, item: XCalendarNode) {
     return `${item.id}-${item.label}`;
   }
 
-  trackByMonth(index: number, item: XCalendarNode) {
+  trackByMonth(_index: number, item: XCalendarNode) {
     return item.id;
   }
 }

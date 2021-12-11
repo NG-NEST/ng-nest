@@ -57,7 +57,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -83,7 +83,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -106,7 +107,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }

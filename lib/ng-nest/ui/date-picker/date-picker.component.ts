@@ -71,13 +71,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
     public configService: XConfigService,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -99,7 +98,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.type)) {
+    const { type } = changes;
+    if (XIsChange(type)) {
       this.setFormat();
       this.setDisplayValue(this.numberValue);
     }
@@ -111,7 +111,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }

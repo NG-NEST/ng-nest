@@ -15,7 +15,7 @@ export class XReuseStrategyService implements RouteReuseStrategy {
   /**
    * 表示对所有路由允许复用 如果你有路由不想利用可以在这加一些业务逻辑判断
    */
-  public shouldDetach(route: ActivatedRouteSnapshot): boolean {
+  public shouldDetach(_route: ActivatedRouteSnapshot): boolean {
     return true;
   }
 

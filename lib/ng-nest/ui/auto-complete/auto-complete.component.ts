@@ -70,7 +70,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   positionChange: Subject<any> = new Subject();
   dataChange: Subject<XAutoCompleteNode[]> = new Subject();
   inputChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
 
@@ -92,7 +92,8 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngAfterViewInit() {
@@ -119,7 +120,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
     this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {

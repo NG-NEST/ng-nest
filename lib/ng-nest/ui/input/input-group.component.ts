@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnChanges,
-  OnInit,
-  Renderer2,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { XConfigService } from '@ng-nest/ui/core';
 import { XInputGroupPrefix, XInputGroupProperty } from './input.property';
 
@@ -19,7 +9,7 @@ import { XInputGroupPrefix, XInputGroupProperty } from './input.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XInputGroupComponent extends XInputGroupProperty implements OnInit, OnChanges {
+export class XInputGroupComponent extends XInputGroupProperty {
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -28,8 +18,4 @@ export class XInputGroupComponent extends XInputGroupProperty implements OnInit,
   ) {
     super();
   }
-
-  ngOnInit(): void {}
-
-  ngOnChanges(changes: SimpleChanges): void {}
 }

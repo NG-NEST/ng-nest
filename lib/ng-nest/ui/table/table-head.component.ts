@@ -5,8 +5,6 @@ import {
   Renderer2,
   ElementRef,
   ChangeDetectorRef,
-  Optional,
-  Host,
   SimpleChanges,
   ViewChild,
   Input
@@ -39,7 +37,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.columns, simples.scrollYWidth, simples.scrollXWidth, simples.cellConfig) && this.cdr.detectChanges();
+    const { columns, scrollYWidth, scrollXWidth, cellConfig } = simples;
+    XIsChange(columns, scrollYWidth, scrollXWidth, cellConfig) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
@@ -108,7 +107,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     }
   }
 
-  trackByItem(index: number, item: XTableColumn) {
+  trackByItem(_index: number, item: XTableColumn) {
     return item.id;
   }
 }

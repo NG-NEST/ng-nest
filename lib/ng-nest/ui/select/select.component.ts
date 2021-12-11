@@ -18,7 +18,7 @@ import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { delay, takeUntil, throttleTime } from 'rxjs/operators';
+import { takeUntil, throttleTime } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE, LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -84,7 +84,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngAfterViewInit() {
@@ -112,7 +113,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
@@ -314,7 +315,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if ($event.keyCode !== TAB) $event.preventDefault();
   }
 
-  onFocus($event: Event) {
+  onFocus(_event: Event) {
     this.inputCom.inputFocus();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from '@angular/core';
-import { MediaMatcher, Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
 import { ContentComponent } from './content/content.component';
 
@@ -21,7 +21,7 @@ export class LayoutComponent implements OnInit {
   }
   @ViewChild('content', { static: true }) content!: ContentComponent;
 
-  constructor(private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
 
   ngOnInit() {
     // // 手持设备

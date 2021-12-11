@@ -31,7 +31,7 @@ export class XInnerComponent extends XInnerProperty implements OnInit, OnChanges
     this.setStyle();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(_changes: SimpleChanges): void {
     this.setStyle();
   }
 

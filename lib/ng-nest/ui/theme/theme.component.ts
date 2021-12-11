@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import {
   XConfigService,
@@ -170,7 +170,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     return result;
   }
 
-  darkChanges($event: Event) {
+  darkChanges() {
     let colors = this.darkBeforeColors as XColorsTheme;
     if (this.dark) {
       this.beforeColors = this.formGroup.value;

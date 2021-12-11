@@ -61,7 +61,8 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.display) && this.init();
+    const { display } = simples;
+    XIsChange(display) && this.init();
   }
 
   ngOnDestory() {
@@ -151,7 +152,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.cdr.detectChanges();
   }
 
-  trackByNode(index: number, item: string | Date) {
+  trackByNode(_index: number, item: string | Date) {
     return item;
   }
 }

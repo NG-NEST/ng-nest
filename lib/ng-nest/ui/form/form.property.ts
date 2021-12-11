@@ -1,4 +1,4 @@
-import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XInputBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
@@ -71,11 +71,6 @@ export class XFormProperty extends XFormProp {
    * @en_US Form width
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '100%') width: string = '100%';
-  /**
-   * @zh_CN 表单禁用
-   * @en_US Form disabled
-   */
-  @Input() @XInputBoolean() disabled!: XBoolean;
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template
@@ -200,6 +195,11 @@ export class XControl extends XIdentity implements XControlOption {
    * @en_US External change event
    */
   change?: () => void;
+  /**
+   * @zh_CN 设置验证
+   * @en_US Set verification
+   */
+  setValidators?: () => void;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes

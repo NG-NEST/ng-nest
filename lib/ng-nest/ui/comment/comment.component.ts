@@ -42,7 +42,8 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -79,7 +80,7 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
     return (node.count as number) > (node.children?.length as number);
   }
 
-  trackByNode(index: number, item: XCommentNode) {
+  trackByNode(_index: number, item: XCommentNode) {
     return item.id;
   }
 

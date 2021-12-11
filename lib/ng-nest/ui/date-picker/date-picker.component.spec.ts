@@ -386,13 +386,13 @@ class TestXDatePickerYearOrMonthComponent {
   template: `
     <x-row>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分秒" [type]="'date-time'"></x-date-picker>
+        <x-date-picker [(ngModel)]="model1" format="yyyy_MM_dd HH时mm分ss秒" label="时分秒" [type]="'date-time'"></x-date-picker>
       </x-col>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分" [type]="'date-minute'"></x-date-picker>
+        <x-date-picker [(ngModel)]="model2" label="时分" [type]="'date-minute'"></x-date-picker>
       </x-col>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时" [type]="'date-hour'"></x-date-picker>
+        <x-date-picker [(ngModel)]="model3" label="时" [type]="'date-hour'"></x-date-picker>
       </x-col>
     </x-row>
   `,

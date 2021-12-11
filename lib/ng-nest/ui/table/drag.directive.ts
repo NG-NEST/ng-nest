@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, Inject, Input, Output, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Inject, Output, Renderer2 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -35,7 +35,7 @@ export class XDragDirective {
         });
       fromEvent<MouseEvent>(this.doc.documentElement, 'mouseup')
         .pipe(takeUntil(_unSub))
-        .subscribe((x) => {
+        .subscribe(() => {
           this.renderer.removeStyle(this.doc.documentElement, 'cursor');
           this.renderer.removeStyle(this.doc.documentElement, 'user-select');
           _unSub.next();

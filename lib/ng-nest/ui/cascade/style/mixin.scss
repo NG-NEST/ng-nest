@@ -6,6 +6,9 @@
 
 @mixin cascade {
   width: 100%;
+  x-input {
+    width: 100%;
+  }
 }
 
 @mixin cascade-portal {
@@ -17,6 +20,9 @@
   box-shadow: $--x-box-shadow-light;
   background-color: $--x-background;
   display: flex;
+  &:focus {
+    outline: none;
+  }
   > x-list {
     .x-list-option {
       min-width: 8rem;

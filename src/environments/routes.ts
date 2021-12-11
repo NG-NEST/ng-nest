@@ -17,6 +17,10 @@ export const mainRoutes: Routes = [
     path: `${environment.layout}`,
     loadChildren: () => import('../main/layout/layout.module').then((x) => x.LayoutModule)
   },
+  {
+    path: `test`,
+    loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
+  },
   { path: '', redirectTo: `${environment.layout}`, pathMatch: 'full' },
 
   ...shareRoutes
@@ -46,5 +50,6 @@ export interface Menu {
   type?: string;
   order?: number;
   category?: string;
+  lang?: string;
   [property: string]: any;
 }
