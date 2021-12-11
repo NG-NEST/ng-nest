@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -36,7 +36,7 @@
     "prismjs": "^1.25.0",
     "remark": "^13.0.0",
     "rxjs": "~7.4.0",
-    "sass": "~1.32.13",
+    "sass": "^1.45.0",
     "tslib": "^2.3.0",
     "yaml-front-matter": "^4.1.1",
     "zone.js": "~0.11.4"

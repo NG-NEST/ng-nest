@@ -1,3 +1,13 @@
+## [13.0.2](https://github.com/NG-NEST/ng-nest/compare/13.0.1...13.0.2) (2021-12-11)
+
+
+### Bug Fixes
+
+* **module:input:** resolved undefined error ([fa2decb](https://github.com/NG-NEST/ng-nest/commit/fa2decb2e06d93adedcc8fc348487b7029219fe5))
+* **module:time-picker:** solved data binding problem ([9c930ef](https://github.com/NG-NEST/ng-nest/commit/9c930ef0d807486fcaf7e3ece1f8f6627ec45e83))
+
+
+
 ## [13.0.1](https://github.com/NG-NEST/ng-nest/compare/13.0.0...13.0.1) (2021-11-28)
 
 
