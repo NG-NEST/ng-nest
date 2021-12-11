@@ -169,11 +169,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   getValue() {
-    return this.modelType === 'date'
-      ? new Date(this.numberValue)
-      : this.modelType === 'string'
-      ? this.datePipe.transform(this.numberValue, this.format)
-      : this.numberValue;
+    return ['date', 'string'].includes(this.modelType) ? new Date(this.numberValue) : this.numberValue;
   }
 
   portalAttached() {

@@ -386,10 +386,16 @@ class TestXDatePickerYearOrMonthComponent {
   template: `
     <x-row>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" format="yyyy_MM_dd HH时mm分ss秒" label="时分秒" [type]="'date-time'"></x-date-picker>
+        <x-date-picker
+          [(ngModel)]="model1"
+          (ngModelChange)="change($event)"
+          format="yyyy_MM"
+          label="时分秒"
+          [type]="'date-time'"
+        ></x-date-picker>
       </x-col>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model2" label="时分" [type]="'date-minute'"></x-date-picker>
+        <x-date-picker [(ngModel)]="model2" (ngModelChange)="change($event)" label="时分" [type]="'date-minute'"></x-date-picker>
       </x-col>
       <x-col span="8">
         <x-date-picker [(ngModel)]="model3" label="时" [type]="'date-hour'"></x-date-picker>
@@ -411,12 +417,15 @@ class TestXDatePickerYearOrMonthComponent {
 })
 class TestXDatePickerHourMinuteSecondComponent {
   model1 = '2011-10-1 13:10:57';
-  model2: any;
+  model2 = new Date().getTime();
   model3: any;
   constructor(private cdr: ChangeDetectorRef) {
     interval(0).subscribe((x) => {
       this.cdr.detectChanges();
     });
+  }
+  change($event: any) {
+    console.log($event);
   }
 }
 
