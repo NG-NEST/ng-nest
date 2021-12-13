@@ -10,7 +10,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDateRangePortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XAddMonths } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -46,6 +46,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   value: number[] = [];
   valueChange!: Subject<number[]>;
   positionChange!: Subject<any>;
+  inputActiveChange!: Subject<'start' | 'end'>;
+  activeType?: 'start' | 'end';
   animating!: Function;
   closePortal!: Function;
   destroyPortal!: Function;
@@ -68,6 +70,11 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.placement = x;
       this.cdr.detectChanges();
+    });
+    this.inputActiveChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.activeType = x;
+      console.log(x);
+      this.setDefault();
     });
     this.i18n.localeChange
       .pipe(
@@ -97,10 +104,9 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       this.model = this.display;
       this.startModel = this.model;
       this.endModel = XAddMonths(this.model, 1);
+      this.setDisplay(this.model);
     }
-    this.time = this.model.getTime();
     this._type = this.type;
-    this.setDisplay(this.model);
     this.cdr.detectChanges();
   }
 
@@ -109,16 +115,20 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setDefault() {
-    const date = new Date();
-    this.model = date;
-    if (this.value.length > 0) {
+    console.log(1111)
+    const type = this.activeType || 'start';
+    if (type === 'start') {
       this.startModel = new Date(this.value[0]);
       this.startDisplay = this.startModel;
-    }
-    if (this.value.length > 1) {
+      this.endModel = XAddMonths(this.startModel, 1);
+      this.endDisplay = this.endModel;
+    } else if (type === 'end') {
       this.endModel = new Date(this.value[1]);
       this.endDisplay = this.endModel;
+      this.startModel = XAddMonths(this.endModel, -1);
+      this.startDisplay = this.startModel;
     }
+    this.cdr.detectChanges();
   }
 
   setDisplay(date: Date) {
@@ -127,7 +137,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.endDisplay = XAddMonths(this.display, 1);
   }
 
-  dateChange(date: Date) {
+  dateChange(date: Date, type: 'start' | 'end') {
     let time = date.getTime();
     if (this.value.length === 0) {
       this.value.push(time);
@@ -140,6 +150,15 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
         this.value.unshift(time);
         this.startNodeEmit(date);
         this.endNodeEmit(new Date(this.value[1]));
+      }
+      this.nodeEmit(this.value.map((x) => new Date(x)));
+    } else {
+      if (type === 'start') {
+        this.value[0] = time;
+        this.startNodeEmit(date);
+      } else if (type === 'end') {
+        this.value[1] = time;
+        this.endNodeEmit(date);
       }
       this.nodeEmit(this.value.map((x) => new Date(x)));
     }
@@ -203,22 +222,6 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
 
-  onToday() {
-    this.dateChange(new Date());
-  }
-
-  onYesterday() {
-    this.dateChange(XAddDays(new Date(), -1));
-  }
-
-  onTomorrow() {
-    this.dateChange(XAddDays(new Date(), 1));
-  }
-
-  onPresetFunc(item: XDatePickerPreset) {
-    this.dateChange(item.func());
-  }
-
   selectTime(time: Date) {
     this.time = time.getTime();
     // this.nodeEmit(this.setModel(this.model, time), false);
@@ -228,5 +231,21 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   setModel(date: Date, time: Date) {
     this.model = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), time.getSeconds());
     return this.model;
+  }
+
+  startYearChange(num: number) {
+    this.endDisplay = XAddYears(this.endDisplay, num);
+  }
+
+  endYearChange(num: number) {
+    this.startDisplay = XAddYears(this.startDisplay, num);
+  }
+
+  startMonthChange(num: number) {
+    this.endDisplay = XAddMonths(this.endDisplay, num);
+  }
+
+  endMonthChange(num: number) {
+    this.startDisplay = XAddMonths(this.startDisplay, num);
   }
 }

@@ -26,7 +26,7 @@ import {
   XIsUndefined,
   XBoolean
 } from '@ng-nest/ui/core';
-import { XInputGroupComponent } from '@ng-nest/ui/input';
+import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
@@ -44,6 +44,8 @@ import { XDateRangePortalComponent } from './date-range-portal.component';
 export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges {
   @ViewChild('dateRange', { static: true }) dateRange!: ElementRef;
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
+  @ViewChild('inputStartCom', { static: true }) inputStartCom!: XInputComponent;
+  @ViewChild('inputEndCom', { static: true }) inputEndCom!: XInputComponent;
 
   modelType: XDatePickerModelType = 'date';
   numberValue!: number[];
@@ -87,11 +89,13 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
+  inputActiveChange: Subject<string> = new Subject();
   closeSubject: Subject<void> = new Subject();
   startDisplay: string | number = '';
   endDisplay: string | number = '';
   startActive: XBoolean = false;
   endActive: XBoolean = false;
+  activeType?: 'start' | 'end';
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -204,6 +208,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
       this.active = false;
+      this.startActive = false;
+      this.endActive = false;
       this.cdr.detectChanges();
       return true;
     }
@@ -215,11 +221,14 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   showPortal($event: Event, type?: 'start' | 'end') {
-    $event.stopPropagation();
+    type && $event.stopPropagation();
     if (this.disabled || this.animating) return;
-    this.active = true;
     this.startActive = type === 'start';
     this.endActive = type === 'end';
+    this.activeType = type;
+    this.activeType && this.inputActiveChange.next(this.activeType);
+    if (this.active) return;
+    this.active = true;
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -234,9 +243,12 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     this.portal.overlayRef
       ?.outsidePointerEvents()
       .pipe(takeUntil(this._unSubject))
-      .subscribe(() => {
-        this.setDisplayValue(this.numberValue);
-        this.closeSubject.next();
+      .subscribe((event: MouseEvent) => {
+        const clickTarget = event.target as HTMLElement;
+        if (clickTarget !== this.inputStartCom.inputRef.nativeElement && clickTarget !== this.inputEndCom.inputRef.nativeElement) {
+          this.setDisplayValue(this.numberValue);
+          this.closeSubject.next();
+        }
       });
     this.setInstance();
   }
@@ -259,6 +271,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       preset: this.preset,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
+      inputActiveChange: this.inputActiveChange,
+      activeType: this.activeType,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (dates: Date[], sure = true) => this.onNodeClick(dates, sure),
@@ -271,6 +285,9 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
 
   startNodeClick(node: Date) {
     this.startDisplay = this.datePipe.transform(node, this.format) as string;
+    this.startActive = false;
+    this.endActive = true;
+    this.inputEndCom.inputFocus('after');
     this.cdr.detectChanges();
   }
 
@@ -306,6 +323,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     //   this.modelChange();
     //   this.isInput = false;
     // } else {
+    if (!dateNumber) return;
     this.displayValue = dateNumber.map((x) => this.datePipe.transform(x, this.format)) as string[];
     // }
   }

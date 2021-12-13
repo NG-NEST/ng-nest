@@ -129,6 +129,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
   setDisplay(date: Date) {
     this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.displayChange.emit(this.display);
     this.setDays(this.display);
   }
 
@@ -136,6 +137,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     let date = new Date(this.display);
     date.setMonth(date.getMonth() + num);
     this.setDisplay(date);
+    this.monthChange.emit(num);
     this.cdr.detectChanges();
   }
 
@@ -143,6 +145,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     let date = new Date(this.display);
     date.setFullYear(date.getFullYear() + num);
     this.setDisplay(date);
+    this.yearChange.emit(num);
     this.cdr.detectChanges();
   }
 

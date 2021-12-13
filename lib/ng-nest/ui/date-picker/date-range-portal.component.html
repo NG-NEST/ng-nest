@@ -1,22 +1,26 @@
 <div class="x-date-range-portal {{ type }}" [ngSwitch]="type">
   <ng-container *ngSwitchCase="'date'">
-    <div class="x-date-range-portal-header">
-      <ng-container *ngTemplateOutlet="startDateHeaderTpl"></ng-container>
-      <ng-container *ngTemplateOutlet="endDateHeaderTpl"></ng-container>
-    </div>
     <div class="x-date-range-portal-body">
       <x-picker-date
         class="x-date-range-portal-start"
-        [display]="startDisplay"
+        [(display)]="startDisplay"
         [model]="startModel"
-        (modelChange)="dateChange($event)"
+        [nextYearBtn]="false"
+        [nextMonthBtn]="false"
+        (modelChange)="dateChange($event, 'start')"
+        (yearChange)="startYearChange($event)"
+        (monthChange)="startMonthChange($event)"
         rangePicker
       ></x-picker-date>
       <x-picker-date
         class="x-date-range-portal-end"
-        [display]="endDisplay"
+        [(display)]="endDisplay"
         [model]="endModel"
-        (modelChange)="dateChange($event)"
+        [lastYearBtn]="false"
+        [lastMonthBtn]="false"
+        (modelChange)="dateChange($event, 'end')"
+        (yearChange)="endYearChange($event)"
+        (monthChange)="endMonthChange($event)"
         rangePicker
       ></x-picker-date>
     </div>

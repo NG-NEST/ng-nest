@@ -268,6 +268,26 @@ export class XPickerDateProperty extends XProperty {
    */
   @Input() @XInputBoolean() rangePicker?: XBoolean;
   /**
+   * @zh_CN 上一年
+   * @en_US Last year
+   */
+  @Input() @XInputBoolean() lastYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 上月
+   * @en_US Last month
+   */
+  @Input() @XInputBoolean() lastMonthBtn: XBoolean = true;
+  /**
+   * @zh_CN 下一年
+   * @en_US Next year
+   */
+  @Input() @XInputBoolean() nextYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 上月
+   * @en_US Next month
+   */
+  @Input() @XInputBoolean() nextMonthBtn: XBoolean = true;
+  /**
    * @zh_CN 选择类型
    * @en_US Select type
    */
@@ -282,6 +302,21 @@ export class XPickerDateProperty extends XProperty {
    * @en_US Scope change event
    */
   @Output() rangeChange = new EventEmitter<Date[]>();
+  /**
+   * @zh_CN 选年的事件
+   * @en_US Year change event
+   */
+  @Output() yearChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 选月的事件
+   * @en_US Month change event
+   */
+  @Output() monthChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 显示日期事件
+   * @en_US display date event
+   */
+  @Output() displayChange = new EventEmitter<Date>();
 }
 
 /**

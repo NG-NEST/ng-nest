@@ -128,6 +128,9 @@
       }
     }
   }
+  .x-visibility {
+    visibility: hidden;
+  }
 }
 
 @mixin picker-month {
@@ -266,10 +269,12 @@
           padding-right: 0 !important;
           margin-left: 0.4rem;
           margin-right: 0.4rem;
+          border-radius: 0;
+          border-bottom: $--x-border-width $--x-border-style transparent;
         }
-        &.x-input-active {
+        .x-input-active {
           input {
-            background-color: gray;
+            border-color: $--x-primary;
           }
         }
       }
@@ -331,16 +336,13 @@
     text-align: center;
   }
   &-body {
-    padding: 0.4rem;
     display: flex;
   }
   &-start {
     flex: 1;
-    margin-right: 0.4rem;
   }
   &-end {
     flex: 1;
-    margin-left: 0.4rem;
   }
   &-footer {
     display: flex;
