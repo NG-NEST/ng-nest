@@ -30,6 +30,7 @@
                 size="mini"
                 title="{{ week | date: 'yyyy-MM-dd' }}"
                 [activated]="!rangePicker && (week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
+                [disabled]="false"
                 (click)="dateClick(week)"
                 >{{ week | date: 'd' }}</x-button
               >

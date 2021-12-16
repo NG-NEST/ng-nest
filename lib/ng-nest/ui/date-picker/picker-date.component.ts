@@ -37,6 +37,20 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
 
+  get rangeStart() {
+    if (this.rangeValue && this.rangeValue.length > 0) {
+      return this.rangeValue[0];
+    }
+    return '';
+  }
+
+  get rangeEnd() {
+    if (this.rangeValue && this.rangeValue.length > 1) {
+      return this.rangeValue[1];
+    }
+    return '';
+  }
+
   constructor(
     public renderer: Renderer2,
     public datePipe: DatePipe,
@@ -61,8 +75,11 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { display } = simples;
+    const { display, rangeType } = simples;
     XIsChange(display) && this.init();
+    if (rangeType) {
+      console.log(this.rangeType);
+    }
   }
 
   ngOnDestory() {
@@ -125,6 +142,15 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
   getLocaleMonth(date: Date) {
     return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+  }
+
+  rangeDisabled(date: Date) {
+    if (this.rangeType === 'end') {
+      return this.rangeStart !== '' && date.getTime() < this.rangeStart;
+    } else if (this.rangeType === 'start') {
+      return this.rangeEnd !== '' && date.getTime() > this.rangeEnd;
+    }
+    return false;
   }
 
   setDisplay(date: Date) {

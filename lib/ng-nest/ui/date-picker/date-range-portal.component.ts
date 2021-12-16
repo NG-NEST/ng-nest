@@ -47,7 +47,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   valueChange!: Subject<number[]>;
   positionChange!: Subject<any>;
   inputActiveChange!: Subject<'start' | 'end'>;
-  activeType?: 'start' | 'end';
+  activeType!: 'start' | 'end';
   animating!: Function;
   closePortal!: Function;
   destroyPortal!: Function;
@@ -73,7 +73,6 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     });
     this.inputActiveChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.activeType = x;
-      console.log(x);
       this.setDefault();
     });
     this.i18n.localeChange
@@ -115,7 +114,6 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setDefault() {
-    console.log(1111)
     const type = this.activeType || 'start';
     if (type === 'start') {
       this.startModel = new Date(this.value[0]);
@@ -140,27 +138,31 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   dateChange(date: Date, type: 'start' | 'end') {
     let time = date.getTime();
     if (this.value.length === 0) {
-      this.value.push(time);
+      this.value = [time];
       this.startNodeEmit(date);
     } else if (this.value.length === 1) {
       if (time > this.value[0]) {
-        this.value.push(time);
+        this.value = [...this.value, time];
         this.endNodeEmit(date);
       } else {
-        this.value.unshift(time);
+        this.value = [time, ...this.value];
         this.startNodeEmit(date);
         this.endNodeEmit(new Date(this.value[1]));
       }
       this.nodeEmit(this.value.map((x) => new Date(x)));
     } else {
       if (type === 'start') {
-        this.value[0] = time;
+        this.value = [time, this.value[1]];
         this.startNodeEmit(date);
       } else if (type === 'end') {
-        this.value[1] = time;
+        this.value = [this.value[0], time];
+        this.cdr.detectChanges();
         this.endNodeEmit(date);
       }
-      this.nodeEmit(this.value.map((x) => new Date(x)));
+      this.nodeEmit(
+        this.value.map((x) => new Date(x)),
+        type !== 'start'
+      );
     }
   }
 

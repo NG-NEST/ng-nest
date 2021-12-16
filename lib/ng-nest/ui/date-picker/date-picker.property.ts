@@ -288,6 +288,16 @@ export class XPickerDateProperty extends XProperty {
    */
   @Input() @XInputBoolean() nextMonthBtn: XBoolean = true;
   /**
+   * @zh_CN 范围日期
+   * @en_US Range date
+   */
+  @Input() rangeValue: number[] = [];
+  /**
+   * @zh_CN 当前选择的是开始/结束日期
+   * @en_US The current choice is the start / end date
+   */
+  @Input() rangeType!: 'start' | 'end';
+  /**
    * @zh_CN 选择类型
    * @en_US Select type
    */
