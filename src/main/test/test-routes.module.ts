@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: 'table',
         loadChildren: () => import('./modules/table/table.module').then((x) => x.TeTableModule)
+      },
+      {
+        path: 'carousel',
+        loadChildren: () => import('./modules/carousel/carousel.module').then((x) => x.TeCarouselModule)
       }
     ]
   }

@@ -1,0 +1,18 @@
+<x-row space="1">
+  <x-col span="12">
+    <div>默认 Hover 指示器触发</div>
+    <x-carousel height="12rem">
+      <x-carousel-panel *ngFor="let item of list">
+        <h3>{{ item }}</h3>
+      </x-carousel-panel>
+    </x-carousel>
+  </x-col>
+  <x-col span="12">
+    <div>Click 指示器触发</div>
+    <x-carousel height="12rem" trigger="click">
+      <x-carousel-panel *ngFor="let item of list">
+        <h3>{{ item }}</h3>
+      </x-carousel-panel>
+    </x-carousel>
+  </x-col>
+</x-row>
