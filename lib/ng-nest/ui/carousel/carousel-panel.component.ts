@@ -13,7 +13,8 @@ import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.propert
 import { XDropAnimation, XConfigService } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
@@ -33,7 +34,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   scale = 1;
   inStage = false;
   updateSub = new BehaviorSubject(false);
-  updateSub$!: Subscription;
+  unSubject = new Subject<void>();
 
   constructor(
     @Optional() @Host() public carousel: XCarouselComponent,
@@ -51,18 +52,17 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
     this.index = this.carousel.start;
     this.setClass('x-carousel-card', Boolean(this.carousel.card));
     this.carousel.panelChanges.push(this.updateSub);
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.updateSub.subscribe((x) => {
-        if (x) this.update();
-      });
+    this.updateSub.pipe(takeUntil(this.unSubject)).subscribe((x) => {
+      if (x) this.update();
     });
   }
 
   ngOnDestroy(): void {
-    this.updateSub$?.unsubscribe();
+    this.carousel.start--;
+    const idx = this.carousel.panelChanges.indexOf(this.updateSub);
+    this.carousel.panelChanges.splice(idx, 1);
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setActive() {

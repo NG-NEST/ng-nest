@@ -56,7 +56,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   ngOnChanges(changes: SimpleChanges) {
     const { data, activatedId, collapsed, target } = changes;
     XIsChange(data) && this.setData();
-    XIsChange(activatedId) && this.setActivatedNode(this.nodes);
+    XIsChange(activatedId) && this.setActivatedNode(this.datas);
     XIsChange(collapsed) && this.setClassMap();
     if (XIsChange(target)) {
       this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
