@@ -1,8 +1,25 @@
+## [13.0.3](https://github.com/NG-NEST/ng-nest/compare/13.0.2...13.0.3) (2022-01-01)
+
+
+### Bug Fixes
+
+* **module:carousel:** solved img loading problem ([d2a9add](https://github.com/NG-NEST/ng-nest/commit/d2a9addc9d7a6328d5411ff12afc6b19b7dae64a))
+* **module:menu:** resolve activated node ([957e175](https://github.com/NG-NEST/ng-nest/commit/957e175a2b8ce1dc5a1649a58e8010426b20b288))
+
+
+### Features
+
+* **module:date-picker:** add last/next button ([cd443a3](https://github.com/NG-NEST/ng-nest/commit/cd443a35fe917057bfe99b983a552e627ac7a43c))
+* **module:date-picker:** add months linkage ([81b97da](https://github.com/NG-NEST/ng-nest/commit/81b97da6fb129bc12fc95a7d49aab549e6b41d47)), closes [#57](https://github.com/NG-NEST/ng-nest/issues/57)
+
+
+
 ## [13.0.2](https://github.com/NG-NEST/ng-nest/compare/13.0.1...13.0.2) (2021-12-11)
 
 
 ### Bug Fixes
 
+* **module:date-picker:** resolve format error ([a879b73](https://github.com/NG-NEST/ng-nest/commit/a879b73b61f69a001d897b23ebdaf1834faab705))
 * **module:input:** resolved undefined error ([fa2decb](https://github.com/NG-NEST/ng-nest/commit/fa2decb2e06d93adedcc8fc348487b7029219fe5))
 * **module:time-picker:** solved data binding problem ([9c930ef](https://github.com/NG-NEST/ng-nest/commit/9c930ef0d807486fcaf7e3ece1f8f6627ec45e83))
 

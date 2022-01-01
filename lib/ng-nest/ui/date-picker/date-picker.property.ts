@@ -296,7 +296,7 @@ export class XPickerDateProperty extends XProperty {
    * @zh_CN 当前选择的是开始/结束日期
    * @en_US The current choice is the start / end date
    */
-  @Input() rangeType!: 'start' | 'end';
+  @Input() rangeType!: XDatePickerRangType;
   /**
    * @zh_CN 选择类型
    * @en_US Select type
@@ -328,6 +328,12 @@ export class XPickerDateProperty extends XProperty {
    */
   @Output() displayChange = new EventEmitter<Date>();
 }
+
+/**
+ * @zh_CN 当前选择的是开始/结束日期
+ * @en_US The current choice is the start / end date
+ */
+export type XDatePickerRangType = 'start' | 'end';
 
 /**
  * PickerMonth
