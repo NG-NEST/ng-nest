@@ -1,6 +1,6 @@
 # NG-NEST
 
-UI 库支持最新版本 [Angular ^12.0.0](https://angular.io/docs)，支持最新的 [Ivy](https://angular.io/guide/ivy) 特性。
+UI 库支持最新版本 [Angular ^13.0.0](https://angular.io/docs)
 
 # 文档
 

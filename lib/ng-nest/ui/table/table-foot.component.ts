@@ -6,8 +6,6 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Host,
-  Optional,
   ViewChild,
   Input
 } from '@angular/core';

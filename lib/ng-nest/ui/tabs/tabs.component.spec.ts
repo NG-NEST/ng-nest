@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTabsComponent } from './tabs.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTabsPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTabsModule, XRadioModule, XIconModule],
       declarations: [TestXTabsComponent]
@@ -21,15 +21,11 @@ describe(XTabsPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTabsComponent>;
-    let testComponent: TestXTabsComponent;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTabsComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTabsComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

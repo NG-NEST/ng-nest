@@ -1,25 +1,34 @@
 <div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
-  <table class="x-picker-month-table" cellspacing="0" cellpadding="0">
-    <tr *ngFor="let months of dates">
-      <ng-container *ngFor="let month of months; trackBy: trackByMonth">
-        <td
-          [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
-          [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
-          (click)="monthTemp && monthClick(month)"
-        >
-          <x-button
-            *ngIf="!monthTemp"
-            type="text"
-            title="{{ month | date: 'yyyy-MM' }}"
-            [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
-            (click)="monthClick(month)"
-            >{{ getLocaleMonth(month) }}</x-button
+  <div class="x-picker-month-header" *ngIf="showHeader">
+    <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
+    <div class="x-picker-month-year-month">
+      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
+    </div>
+    <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
+  </div>
+  <div class="x-picker-month-body">
+    <table cellspacing="0" cellpadding="0">
+      <tr *ngFor="let months of dates">
+        <ng-container *ngFor="let month of months; trackBy: trackByMonth">
+          <td
+            [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
+            [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
+            (click)="monthTemp && monthClick(month)"
           >
-          <ng-container *ngIf="monthTemp">
-            <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month }"></ng-container>
-          </ng-container>
-        </td>
-      </ng-container>
-    </tr>
-  </table>
+            <x-button
+              *ngIf="!monthTemp"
+              type="text"
+              title="{{ month | date: 'yyyy-MM' }}"
+              [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
+              (click)="monthClick(month)"
+              >{{ getLocaleMonth(month) }}</x-button
+            >
+            <ng-container *ngIf="monthTemp">
+              <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month }"></ng-container>
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+  </div>
 </div>

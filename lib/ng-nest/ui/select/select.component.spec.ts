@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSelectComponent } from './select.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -14,7 +14,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XSelectPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -90,7 +90,7 @@ describe(XSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`multiple.`, () => {
+  describe(`multiple.`, () => {
     let fixture: ComponentFixture<TestXSelectMultipleComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

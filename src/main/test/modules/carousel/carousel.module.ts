@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { XCarouselModule } from '@ng-nest/ui/carousel';
+import { ExDefaultComponent } from './default/default.component';
+import { TeCarouselComponent } from './carousel.component';
+import { XLayoutModule } from '@ng-nest/ui/layout';
+import { CommonModule } from '@angular/common';
+
+const routers = [{ path: '', component: TeCarouselComponent }];
+
+@NgModule({
+  imports: [RouterModule.forChild(routers), CommonModule, XCarouselModule, XLayoutModule],
+  declarations: [TeCarouselComponent, ExDefaultComponent]
+})
+export class TeCarouselModule {}

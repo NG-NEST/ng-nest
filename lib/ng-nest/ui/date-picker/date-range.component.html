@@ -3,19 +3,23 @@
     <x-input-group #inputGroup class="x-date-range-group" bordered="false" (click)="showPortal($event)">
       <x-input
         #inputStartCom
+        [class.x-input-active]="startActive"
         type="text"
         placeholder="开始日期"
-        [(active)]="startActive"
         (click)="showPortal($event, 'start')"
+        (xFocus)="startActive = true"
+        (xBlur)="startActive = false"
         [(ngModel)]="startDisplay"
       ></x-input>
       <x-icon type="fto-arrow-right"></x-icon>
       <x-input
         #inputEndCom
+        [class.x-input-active]="endActive"
         type="text"
         placeholder="结束日期"
-        [(active)]="endActive"
         (click)="showPortal($event, 'end')"
+        (xFocus)="endActive = true"
+        (xBlur)="endActive = false"
         [(ngModel)]="endDisplay"
       ></x-input>
       <x-icon [type]="icon"></x-icon>

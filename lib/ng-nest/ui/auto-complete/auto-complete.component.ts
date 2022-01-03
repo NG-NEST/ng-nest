@@ -43,7 +43,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('autoComplete', { static: true }) autoComplete!: ElementRef;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     this.value = value;
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
@@ -65,12 +65,12 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   asyncLoading = false;
   animating = false;
 
-  valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
+  override valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   dataChange: Subject<XAutoCompleteNode[]> = new Subject();
   inputChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
 
@@ -92,7 +92,8 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngAfterViewInit() {
@@ -119,7 +120,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
     this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
@@ -315,11 +316,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.keydownSubject.next($event);
   }
 
-  onFocus($event: Event) {}
+  onFocus(_event: Event) {}
 
-  onInput($event: Event) {
+  onInput(_event: Event) {
     this.inputChange.next(this.value);
   }
 
-  onBlur($event: Event) {}
+  onBlur(_event: Event) {}
 }

@@ -47,7 +47,8 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.loading) && this.setLoading();
+    const { loading } = changes;
+    XIsChange(loading) && this.setLoading();
   }
 
   setClassMap() {

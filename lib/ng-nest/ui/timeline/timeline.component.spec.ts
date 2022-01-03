@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTimelineComponent } from './timeline.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTimelinePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XTimelineModule, XCardModule, XTimeAgoModule],
       declarations: [TestXTimelineComponent]

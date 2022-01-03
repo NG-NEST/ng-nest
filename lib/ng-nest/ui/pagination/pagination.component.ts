@@ -63,7 +63,8 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.total, changes.size, changes.index) && this.setIndexes();
+    const { total, size, index } = changes;
+    XIsChange(total, size, index) && this.setIndexes();
   }
 
   ngOnDestory() {
@@ -143,7 +144,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     return Number(this.index) === index;
   }
 
-  trackByItem(index: number, item: number) {
+  trackByItem(_index: number, item: number) {
     return item;
   }
 }

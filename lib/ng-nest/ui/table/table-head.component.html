@@ -4,7 +4,7 @@
       <th
         *ngFor="let column of cellConfig.cells"
         [class.x-table-sticky]="getSticky(column)"
-        [class.x-table-width-drag]="column.widthDrag"
+        [class.x-table-width-drag]="column.dragWidth"
         [style.grid-area]="column.gridArea"
         [style.left.px]="column.left"
         [style.min-height.px]="getRowHeight"

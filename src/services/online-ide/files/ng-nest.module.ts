@@ -16,7 +16,6 @@ ${importFromModules(modules)}
 const modules = [${importModules(modules)}];
     
 @NgModule({
-  imports: [...modules],
   exports: [...modules]
 })
 export class NgNestModule {}`;

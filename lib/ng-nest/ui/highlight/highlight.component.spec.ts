@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XHighlightComponent } from './highlight.component';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix, XHighlightLines } from './highlight.property';
@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XHighlightPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XHighlightModule],
       declarations: [TestXHighlightComponent]
@@ -17,15 +17,11 @@ describe(XHighlightPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXHighlightComponent>;
-    let testComponent: TestXHighlightComponent;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXHighlightComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XHighlightComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -113,7 +109,7 @@ class TestXHighlightComponent {
     }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit() {
     // setTimeout(() => {

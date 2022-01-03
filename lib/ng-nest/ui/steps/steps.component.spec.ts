@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XStepsComponent } from './steps.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -11,12 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XStepsPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonModule, XTabsModule],
       declarations: [TestXStepsComponent, TestXStepsDotComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXStepsComponent>;
     let steps: DebugElement;
@@ -29,7 +29,7 @@ describe(XStepsPrefix, () => {
       expect(steps).toBeDefined();
     });
   });
-  fdescribe(`custom.`, () => {
+  describe(`custom.`, () => {
     let fixture: ComponentFixture<TestXStepsDotComponent>;
     let steps: DebugElement;
     beforeEach(() => {
@@ -228,6 +228,4 @@ class TestXStepsComponent {
 class TestXStepsDotComponent {
   data = ['步骤 1', '步骤 2', '步骤 3'];
   activatedIndex = 1;
-
-  constructor(private cdr: ChangeDetectorRef) {}
 }

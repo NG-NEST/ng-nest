@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-eva',
   templateUrl: './eva.component.html',
   styleUrls: ['./eva.component.scss']
 })
-export class ExEvaComponent implements OnInit {
+export class ExEvaComponent {
   tabs = [
     {
       type: 'eao',
@@ -504,7 +504,4 @@ export class ExEvaComponent implements OnInit {
       ]
     }
   ];
-  constructor() {}
-
-  ngOnInit() {}
 }

@@ -44,7 +44,7 @@ export class XUploadComponent extends XUploadProperty {
 
   private _unSubject = new Subject<void>();
 
-  writeValue(value: XUploadNode[]) {
+  override writeValue(value: XUploadNode[]) {
     this.value = value;
     this.setFiles();
     this.cdr.detectChanges();
@@ -184,7 +184,7 @@ export class XUploadComponent extends XUploadProperty {
     return;
   }
 
-  trackByItem(index: number, item: XUploadNode) {
+  trackByItem(_index: number, item: XUploadNode) {
     return `${item.name}-${item.lastModified}`;
   }
 
@@ -234,12 +234,13 @@ export class XUploadComponent extends XUploadProperty {
     this.portal?.overlayRef?.dispose();
   }
 
-  imgError(event: Event, file: XUploadNode) {
+  imgError(event: ErrorEvent, file: XUploadNode) {
     file.state = 'error';
+    console.error(event.error);
     this.cdr.detectChanges();
   }
 
-  imgLoad(event: Event, file: XUploadNode) {
+  imgLoad(file: XUploadNode) {
     file.state = 'success';
     this.cdr.detectChanges();
   }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XBackTopComponent } from './back-top.component';
 import { Component, DebugElement } from '@angular/core';
@@ -11,7 +11,7 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XBackTopPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XBackTopModule, XButtonModule, BrowserAnimationsModule, XTabsModule, XThemeModule],
       declarations: [TestXBackTopComponent, TestXBackTopTabsComponent]
@@ -109,7 +109,7 @@ describe(XBackTopPrefix, () => {
   ]
 })
 class TestXBackTopComponent {
-  buttons = Array.from({ length: 20 }).map((x, i) => `按钮 ${i + 1}`);
+  buttons = Array.from({ length: 20 }).map((_x, i) => `按钮 ${i + 1}`);
 }
 
 @Component({

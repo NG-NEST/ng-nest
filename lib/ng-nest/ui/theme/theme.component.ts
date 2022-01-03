@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Optional, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import {
   XConfigService,
@@ -45,7 +45,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     { control: 'color-picker', id: 'text', label: '文字', span: 5 }
   ];
 
-  value: XColorsTheme = {};
+  override value: XColorsTheme = {};
 
   themeService: XThemeService;
 
@@ -53,7 +53,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
 
   private _unSubject = new Subject<void>();
 
-  writeValue(value: XColorsTheme) {
+  override writeValue(value: XColorsTheme) {
     this.value = value;
     if (this.value && Object.keys(this.value).length > 0) {
       this.theme = { colors: this.themeService.getDefineColors(Object.assign({}, X_THEME_COLORS, this.value), '', this.dark as boolean) };
@@ -170,7 +170,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     return result;
   }
 
-  darkChanges($event: Event) {
+  darkChanges() {
     let colors = this.darkBeforeColors as XColorsTheme;
     if (this.dark) {
       this.beforeColors = this.formGroup.value;

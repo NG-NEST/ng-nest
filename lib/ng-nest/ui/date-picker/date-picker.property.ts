@@ -47,25 +47,10 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
   /**
-   * @zh_CN 只读
-   * @en_US Readonly
-   */
-  @Input() @XInputBoolean() readonly!: XBoolean;
-  /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  @Input() valueTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  @Input() valueTplContext: any;
-  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -141,7 +126,7 @@ export interface XDatePickerOption extends XFormOption {
  * @decorator component
  */
 export const XDateRangePrefix = 'x-date-range';
-const X_CONFIG_Range_NAME = 'dateRange';
+const X_CONFIG_RANGE_NAME = 'dateRange';
 
 /**
  * DateRange Property
@@ -157,27 +142,27 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 格式化类型
    * @en_US Format type
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'yyyy-MM-dd') format?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_RANGE_NAME, 'yyyy-MM-dd') format?: string;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME, true) @XInputBoolean() clearable?: XBoolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XCorner>(X_CONFIG_NAME, 'bottom-start') placement?: XCorner;
+  @Input() @XWithConfig<XCorner>(X_CONFIG_RANGE_NAME, 'bottom-start') placement?: XCorner;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_RANGE_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME, true) bordered!: XBoolean;
   /**
    * @zh_CN 快捷选择按钮，支持今天,昨天,明天
    * @en_US Quick selection button, support today, yesterday, tomorrow
@@ -187,7 +172,7 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
-  @Output() nodeEmit = new EventEmitter<number>();
+  @Output() nodeEmit = new EventEmitter<number[]>();
 }
 
 /**
@@ -253,6 +238,11 @@ export const XPickerDatePrefix = 'x-picker-date';
 @Component({ template: '' })
 export class XPickerDateProperty extends XProperty {
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
@@ -268,10 +258,50 @@ export class XPickerDateProperty extends XProperty {
    */
   @Input() dateTemp?: TemplateRef<any>;
   /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
    * @zh_CN 范围选择
    * @en_US Range picker
    */
   @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
+   * @zh_CN 上一年
+   * @en_US Last year
+   */
+  @Input() @XInputBoolean() lastYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 上月
+   * @en_US Last month
+   */
+  @Input() @XInputBoolean() lastMonthBtn: XBoolean = true;
+  /**
+   * @zh_CN 下一年
+   * @en_US Next year
+   */
+  @Input() @XInputBoolean() nextYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 上月
+   * @en_US Next month
+   */
+  @Input() @XInputBoolean() nextMonthBtn: XBoolean = true;
+  /**
+   * @zh_CN 范围日期
+   * @en_US Range date
+   */
+  @Input() rangeValue: number[] = [];
+  /**
+   * @zh_CN 当前选择的是开始/结束日期
+   * @en_US The current choice is the start / end date
+   */
+  @Input() rangeType!: XDatePickerRangType;
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -282,7 +312,28 @@ export class XPickerDateProperty extends XProperty {
    * @en_US Scope change event
    */
   @Output() rangeChange = new EventEmitter<Date[]>();
+  /**
+   * @zh_CN 选年的事件
+   * @en_US Year change event
+   */
+  @Output() yearChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 选月的事件
+   * @en_US Month change event
+   */
+  @Output() monthChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 显示日期事件
+   * @en_US display date event
+   */
+  @Output() displayChange = new EventEmitter<Date>();
 }
+
+/**
+ * @zh_CN 当前选择的是开始/结束日期
+ * @en_US The current choice is the start / end date
+ */
+export type XDatePickerRangType = 'start' | 'end';
 
 /**
  * PickerMonth
@@ -296,6 +347,11 @@ export const XPickerMonthPrefix = 'x-picker-month';
  */
 @Component({ template: '' })
 export class XPickerMonthProperty extends XProperty {
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
   /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
@@ -312,10 +368,20 @@ export class XPickerMonthProperty extends XProperty {
    */
   @Input() monthTemp?: TemplateRef<any>;
   /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
    * @zh_CN 选中的事件
    * @en_US Selected event
    */
   @Output() modelChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
   /**
    * @zh_CN 范围变化的事件
    * @en_US Scope change event
@@ -336,6 +402,11 @@ export const XPickerYearPrefix = 'x-picker-year';
 @Component({ template: '' })
 export class XPickerYearProperty extends XProperty {
   /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
    * @zh_CN 显示的日期
    * @en_US Date displayed
    */
@@ -346,10 +417,20 @@ export class XPickerYearProperty extends XProperty {
    */
   @Input() model?: Date;
   /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
    * @zh_CN 选中的事件
    * @en_US Selected event
    */
   @Output() modelChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
   /**
    * @zh_CN 开始年份变化的事件
    * @en_US Start year change event

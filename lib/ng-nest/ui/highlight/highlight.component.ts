@@ -35,7 +35,8 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   setData(): void {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(`${XRowPrefix}`, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XLayoutModule],
       declarations: [
@@ -22,16 +22,14 @@ describe(`${XRowPrefix}`, () => {
         TestHiddenLayoutComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -40,12 +38,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`space.`, () => {
     let fixture: ComponentFixture<TestSpaceLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestSpaceLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -54,12 +50,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`blend.`, () => {
     let fixture: ComponentFixture<TestBlendLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestBlendLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -68,12 +62,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`offset.`, () => {
     let fixture: ComponentFixture<TestOffsetLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestOffsetLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -82,12 +74,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`flex.`, () => {
     let fixture: ComponentFixture<TestFlexLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestFlexLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -96,12 +86,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`layout.`, () => {
     let fixture: ComponentFixture<TestLayoutLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestLayoutLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -110,12 +98,10 @@ describe(`${XRowPrefix}`, () => {
   describe(`hidden.`, () => {
     let fixture: ComponentFixture<TestHiddenLayoutComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestHiddenLayoutComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

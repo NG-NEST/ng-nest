@@ -53,7 +53,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   indeterminate = '$$indeterminate';
   @ViewChild('table') table!: ElementRef;
   @ViewChild('pagination') pagination!: XPaginationComponent;
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -70,9 +70,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.data, simples.checkedRow) && this.setData();
-    XIsChange(simples.columns, simples.activatedRow) && this.cdr.detectChanges();
-    XIsChange(simples.manual) && this.setManual();
+    const { data, checkedRow, columns, activatedRow, manual } = simples;
+    XIsChange(data, checkedRow) && this.setData();
+    XIsChange(columns, activatedRow) && this.cdr.detectChanges();
+    XIsChange(manual) && this.setManual();
   }
 
   ngOnDestroy() {
@@ -214,7 +215,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.detectChanges();
   }
 
-  bodyChecked(checked: boolean, column: XTableColumn) {
+  bodyChecked(_checked: boolean, column: XTableColumn) {
     this.setCheckedValues(column);
     this.detectChanges();
   }

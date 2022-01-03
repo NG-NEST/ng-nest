@@ -1,5 +1,5 @@
 import { interval } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCascadeComponent } from './cascade.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -14,7 +14,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XCascadePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -37,7 +37,7 @@ describe(XCascadePrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCascadeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -203,7 +203,7 @@ class TestXCascadeComponent {
   model2 = 22;
   model3 = 10;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
+    interval(1).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -250,7 +250,7 @@ class TestXCascadeLabelComponent {
   data = data;
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -320,7 +320,7 @@ class TestXCascadeRequiredComponent {
   model1: any;
   model2: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

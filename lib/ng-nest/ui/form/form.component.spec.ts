@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XFormComponent } from './form.component';
 import { Component, DebugElement, ViewChild, Injectable, ChangeDetectorRef } from '@angular/core';
@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
+import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
@@ -16,7 +16,7 @@ import { map, orderBy } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 
 describe(XFormPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XButtonModule, XFormModule],
       declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
@@ -25,26 +25,22 @@ describe(XFormPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFormComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXFormComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XFormComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`row`, () => {
+  describe(`row`, () => {
     let fixture: ComponentFixture<TestXFormRowComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXFormRowComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XFormComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -53,12 +49,10 @@ describe(XFormPrefix, () => {
   describe(`title`, () => {
     let fixture: ComponentFixture<TestXFormTitleComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXFormTitleComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XFormComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -80,7 +74,7 @@ class UsersServiceTest extends XRepositoryAbstract {
     '财务部'
   ];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+  users: User[] = Array.from({ length: 123456 }).map((_x, i) => {
     i++;
     let positionId = Math.floor(Math.random() * 5 + 1);
     let organizationId = Math.floor(Math.random() * 9 + 1);
@@ -120,16 +114,16 @@ class UsersServiceTest extends XRepositoryAbstract {
       }, 10);
     });
   }
-  get(id: number | string): Observable<User> {
+  get(_id: number | string): Observable<User> {
     return new Observable();
   }
-  post(entity: User): Observable<User> {
+  post(_entity: User): Observable<User> {
     return new Observable();
   }
-  put(entity: User): Observable<User> {
+  put(_entity: User): Observable<User> {
     return new Observable();
   }
-  delete(id: number | string): Observable<boolean> {
+  delete(_id: number | string): Observable<boolean> {
     return new Observable();
   }
 
@@ -163,14 +157,6 @@ class UsersServiceTest extends XRepositoryAbstract {
     return result;
   }
 
-  private setGroup(data: User[], group: string): XGroupItem[] {
-    return map(groupBy(data, group), (value, key) => {
-      let groupItem: XGroupItem = { id: key, count: value.length };
-      groupItem[group] = key;
-      return groupItem;
-    });
-  }
-
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return orderBy(
       data,
@@ -194,7 +180,7 @@ class TreeServiceTest {
     { id: 9, label: '财务部', pid: 4 }
   ];
 
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+  getTreeList = (_pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
         x.next(this.data);

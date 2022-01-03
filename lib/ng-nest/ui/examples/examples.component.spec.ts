@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XExamplesComponent } from './examples.component';
 import { Component, DebugElement } from '@angular/core';
@@ -8,7 +8,7 @@ import { XExamplesPrefix } from './examples.property';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 
 describe(XExamplesPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XExamplesModule, XTabsModule],
       declarations: [TestXExamplesComponent]
@@ -17,12 +17,10 @@ describe(XExamplesPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXExamplesComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXExamplesComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XExamplesComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

@@ -1,8 +1,7 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
-import { XButtonModule, XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonModule } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,10 +59,6 @@ class XGlobalThemeTestBasicComponent {
 
 describe('x-theme', () => {
   let fixture: ComponentFixture<XGlobalThemeTestBasicComponent>;
-  let testComponent: XGlobalThemeTestBasicComponent;
-  let button: DebugElement;
-  let buttonEl: HTMLButtonElement;
-  let buttonInner: HTMLButtonElement | null;
   let config: XConfig = {
     theme: {
       colors: {
@@ -71,25 +66,23 @@ describe('x-theme', () => {
       }
     }
   };
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [XButtonModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
-      declarations: [XGlobalThemeTestBasicComponent],
-      providers: [
-        {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [XButtonModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
+        declarations: [XGlobalThemeTestBasicComponent],
+        providers: [
+          {
+            provide: X_CONFIG,
+            useValue: config
+          }
+        ]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(XGlobalThemeTestBasicComponent);
-    testComponent = fixture.debugElement.componentInstance;
-    button = fixture.debugElement.query(By.directive(XButtonComponent));
-    buttonEl = button.nativeElement;
-    buttonInner = buttonEl.querySelector('.x-button');
   });
   it('should theme work', () => {
     fixture.detectChanges();

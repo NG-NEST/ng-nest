@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTransferComponent } from './transfer.component';
 import { Component, DebugElement } from '@angular/core';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTransferPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -93,7 +93,7 @@ describe(XTransferPrefix, () => {
 })
 class TestXTransferComponent {
   value = [1, 3, 7];
-  data: XTransferNode[] = Array.from({ length: 15 }).map((x, i) => {
+  data: XTransferNode[] = Array.from({ length: 15 }).map((_x, i) => {
     return { id: i + 1, label: '用户 ' + (i + 1), icon: 'fto-user', disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
   });
   constructor() {

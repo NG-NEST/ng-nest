@@ -1,4 +1,4 @@
-import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPosition, XPositionLeftRight } from '@ng-nest/ui/core';
+import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**

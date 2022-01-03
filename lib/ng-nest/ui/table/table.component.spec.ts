@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTableComponent } from './table.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular/core';
@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
 
 describe(XTablePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
       declarations: [
@@ -33,8 +33,8 @@ describe(XTablePrefix, () => {
         TestXTablePaginationComponent
       ]
     }).compileComponents();
-  }));
-  fdescribe(`default.`, () => {
+  });
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
     let table: DebugElement;
     beforeEach(() => {
@@ -43,7 +43,7 @@ describe(XTablePrefix, () => {
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(true).toEqual(true);
+      expect(table).toBeDefined();
     });
   });
   describe(`scroll.`, () => {
@@ -127,7 +127,7 @@ describe(XTablePrefix, () => {
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(true).toEqual(true);
+      expect(table).toBeDefined();
     });
   });
   describe(`row size.`, () => {
@@ -139,7 +139,7 @@ describe(XTablePrefix, () => {
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(true).toEqual(true);
+      expect(table).toBeDefined();
     });
   });
   describe(`pagination.`, () => {
@@ -151,7 +151,7 @@ describe(XTablePrefix, () => {
       table = fixture.debugElement.query(By.directive(XTableComponent));
     });
     it('should create.', () => {
-      expect(true).toEqual(true);
+      expect(table).toBeDefined();
     });
   });
 });
@@ -160,7 +160,7 @@ describe(XTablePrefix, () => {
 class UsersServiceTest extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 10000 }).map((x, i) => {
+  users: User[] = Array.from({ length: 10000 }).map((_x, i) => {
     i++;
     return {
       id: i,
@@ -191,16 +191,16 @@ class UsersServiceTest extends XRepositoryAbstract {
       x.complete();
     });
   }
-  get(id: number | string): Observable<User> {
+  get(_id: number | string): Observable<User> {
     return new Observable();
   }
-  post(entity: User): Observable<User> {
+  post(_entity: User): Observable<User> {
     return new Observable();
   }
-  put(entity: User): Observable<User> {
+  put(_entity: User): Observable<User> {
     return new Observable();
   }
-  delete(id: number | string): Observable<boolean> {
+  delete(_id: number | string): Observable<boolean> {
     return new Observable();
   }
 
@@ -275,7 +275,7 @@ class TestXTableComponent {
     { id: 'organization', label: '组织机构', sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }
@@ -324,7 +324,7 @@ class TestXTableScrollComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }
@@ -373,7 +373,7 @@ class TestXTableBorderedComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }
@@ -685,7 +685,7 @@ class TestXTableCheckboxComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }
@@ -736,7 +736,7 @@ class TestXTableRowSizeComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }
@@ -812,7 +812,7 @@ class TestXTablePaginationComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [{ id: 'name', label: '用户', flex: 1.5, sort: true }];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(private service: UsersServiceTest) {}
 
   ngOnInit() {}
 }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XNotificationComponent } from './notification.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { XCorner } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XNotificationPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonModule],
       declarations: [TestXNotificationComponent, TestXNotificationTypeComponent]
@@ -142,5 +142,5 @@ class TestXNotificationComponent {
 })
 class TestXNotificationTypeComponent {
   content = '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
-  constructor(private notification: XNotificationService) {}
+  constructor() {}
 }

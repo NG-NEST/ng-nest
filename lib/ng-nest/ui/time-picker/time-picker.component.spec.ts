@@ -1,5 +1,5 @@
 import { interval } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTimePickerComponent } from './time-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -13,7 +13,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XTimePickerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XTimePickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -27,7 +27,7 @@ describe(XTimePickerPrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimePickerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -144,7 +144,7 @@ class TestXTimePickerComponent {
   model1: any;
   model2 = new Date();
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -190,7 +190,7 @@ class TestXTimePickerComponent {
 class TestXTimePickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -257,7 +257,7 @@ class TestXTimePickerDisabledComponent {
 class TestXTimePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -293,7 +293,7 @@ class TestXTimePickerRequiredComponent {
 class TestXTimePickerHourOrMinuteComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe((x) => {
+    interval(50).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

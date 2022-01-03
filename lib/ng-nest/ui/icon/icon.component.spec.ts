@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XIconComponent } from './icon.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XIconPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XIconModule, XLayoutModule],
       declarations: [TestXIconComponent]
@@ -18,15 +18,11 @@ describe(XIconPrefix, () => {
   }));
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXIconComponent>;
-    let testComponent: TestXIconComponent;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXIconComponent);
-      testComponent = fixture.debugElement.componentInstance;
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XIconComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

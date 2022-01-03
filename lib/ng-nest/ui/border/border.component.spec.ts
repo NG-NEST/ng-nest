@@ -1,5 +1,5 @@
 import { XDocModule } from '@ng-nest/ui/doc';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XBorderComponent } from './border.component';
 import { Component, DebugElement } from '@angular/core';
@@ -11,7 +11,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XBorderPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XBorderModule, XLayoutModule, XDocModule],
       declarations: [TestXBorderComponent]
@@ -20,12 +20,10 @@ describe(XBorderPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBorderComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXBorderComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XBorderComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

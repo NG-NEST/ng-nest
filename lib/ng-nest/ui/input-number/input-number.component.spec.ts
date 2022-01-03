@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInputNumberComponent } from './input-number.component';
 import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XInputNumberPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -111,7 +111,7 @@ describe(XInputNumberPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXInputNumberBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

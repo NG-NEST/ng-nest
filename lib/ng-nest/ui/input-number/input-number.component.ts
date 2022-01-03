@@ -25,7 +25,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
   @ViewChild('inputNumber', { static: true }) inputNumber!: ElementRef;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     this.value = value;
     this.setDisplayValue();
     this.cdr.detectChanges();

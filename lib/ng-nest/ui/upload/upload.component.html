@@ -26,7 +26,7 @@
     <ng-container *ngSwitchCase="'img'">
       <div class="x-upload-img-item {{ file.state }}" *ngFor="let file of files; index as i; trackBy: trackByItem" [title]="file.name">
         <div class="x-upload-img-inner">
-          <img [src]="file.url" (load)="imgLoad($event, file)" (error)="imgError($event, file)" />
+          <img [src]="file.url" (load)="imgLoad(file)" (error)="imgError($event, file)" />
           <x-icon type="fto-image"></x-icon>
           <span *ngIf="file.state == 'uploading'">{{ file.percent }}%</span>
         </div>

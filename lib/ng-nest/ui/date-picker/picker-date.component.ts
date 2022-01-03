@@ -8,17 +8,19 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
+import { XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 import { Subject } from 'rxjs';
-import { XI18nService } from '@ng-nest/ui/i18n';
-import { takeUntil } from 'rxjs/operators';
+import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
+import { map, takeUntil } from 'rxjs/operators';
+import { DatePipe, LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: `${XPickerDatePrefix}`,
   templateUrl: './picker-date.component.html',
   styleUrls: ['./picker-date.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe, LowerCasePipe]
 })
 export class XPickerDateComponent extends XPickerDateProperty implements OnChanges {
   titles = [
@@ -32,18 +34,52 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   ];
   now = new Date();
   dates: Date[][] = [];
+  locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public configService: XConfigService, public i18n: XI18nService) {
+  get rangeStart() {
+    if (this.rangeValue && this.rangeValue.length > 0) {
+      return this.rangeValue[0];
+    }
+    return '';
+  }
+
+  get rangeEnd() {
+    if (this.rangeValue && this.rangeValue.length > 1) {
+      return this.rangeValue[1];
+    }
+    return '';
+  }
+
+  constructor(
+    public renderer: Renderer2,
+    public datePipe: DatePipe,
+    public lowerCasePipe: LowerCasePipe,
+    public cdr: ChangeDetectorRef,
+    public configService: XConfigService,
+    public i18n: XI18nService
+  ) {
     super();
   }
 
   ngOnInit() {
-    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.datePicker as XI18nDatePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.display) && this.init();
+    const { display, rangeType } = simples;
+    XIsChange(display) && this.init();
+    if (rangeType) {
+      console.log(this.rangeType);
+    }
   }
 
   ngOnDestory() {
@@ -104,7 +140,48 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.cdr.markForCheck();
   }
 
-  trackByNode(index: number, item: string | Date) {
+  getLocaleMonth(date: Date) {
+    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+  }
+
+  rangeDisabled(date: Date) {
+    if (this.rangeType === 'end') {
+      return this.rangeStart !== '' && date.getTime() < this.rangeStart;
+    } else if (this.rangeType === 'start') {
+      return this.rangeEnd !== '' && date.getTime() > this.rangeEnd;
+    }
+    return false;
+  }
+
+  setDisplay(date: Date) {
+    this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.displayChange.emit(this.display);
+    this.setDays(this.display);
+  }
+
+  nextMonth(num: number) {
+    let date = new Date(this.display);
+    date.setMonth(date.getMonth() + num);
+    this.setDisplay(date);
+    this.monthChange.emit(num);
+    this.cdr.detectChanges();
+  }
+
+  nextYear(num: number) {
+    let date = new Date(this.display);
+    date.setFullYear(date.getFullYear() + num);
+    this.setDisplay(date);
+    this.yearChange.emit(num);
+    this.cdr.detectChanges();
+  }
+
+  typeOnChange(type: XDatePickerType) {
+    this.type = type;
+    this.typeChange.emit(type);
+    this.cdr.detectChanges();
+  }
+
+  trackByNode(_index: number, item: string | Date) {
     return item;
   }
 }

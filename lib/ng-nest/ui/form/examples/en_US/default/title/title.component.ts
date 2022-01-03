@@ -14,7 +14,7 @@ export class ExTitleComponent {
       id: 'account',
       label: 'user',
       clearable: true,
-      clearClick: (value: any) => {},
+      clearClick: (_value: any) => {},
       required: true
     },
     { control: 'input', id: 'password', label: 'password', type: 'password', required: true },

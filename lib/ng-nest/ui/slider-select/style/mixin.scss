@@ -1,5 +1,6 @@
 // SliderSelect
 
+@use 'sass:math';
 @import '../../style/themes/default';
 @import '../../style/mixins/index';
 @import './param';
@@ -24,7 +25,7 @@
     padding-right: $--x-slider-select-button-size;
     > .#{$--x-slider-select-prefix}-rail {
       position: absolute;
-      margin-left: $--x-slider-select-button-size/2;
+      margin-left: math.div($--x-slider-select-button-size, 2);
       width: calc(100% - #{$--x-slider-select-button-size});
       background-color: $--x-border-100;
       height: $--x-slider-select-track-height;
@@ -35,7 +36,7 @@
       }
     }
     > .#{$--x-slider-select-prefix}-track {
-      margin-left: $--x-slider-select-button-size/2;
+      margin-left: math.div($--x-slider-select-button-size, 2);
       width: calc(100% - #{$--x-slider-select-button-size});
       position: absolute;
       > .#{$--x-slider-select-prefix}-process {

@@ -38,7 +38,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   numberValue!: number | string;
   isInput = false;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     if (XIsDate(value)) {
       this.modelType = 'date';
       this.numberValue = value.getTime();
@@ -71,13 +71,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
     public configService: XConfigService,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -99,7 +98,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.type)) {
+    const { type } = changes;
+    if (XIsChange(type)) {
       this.setFormat();
       this.setDisplayValue(this.numberValue);
     }
@@ -111,7 +111,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }
@@ -169,11 +169,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   getValue() {
-    return this.modelType === 'date'
-      ? new Date(this.numberValue)
-      : this.modelType === 'string'
-      ? this.datePipe.transform(this.numberValue, this.format)
-      : this.numberValue;
+    return ['date', 'string'].includes(this.modelType) ? new Date(this.numberValue) : this.numberValue;
   }
 
   portalAttached() {
@@ -253,7 +249,6 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.setDisplayValue(this.numberValue);
       this.closeSubject.next();
       this.modelChange();
-      this.inputCom.inputFocus();
       this.nodeEmit.emit(this.numberValue);
     } else {
       this.setDisplayValue(date.getTime());

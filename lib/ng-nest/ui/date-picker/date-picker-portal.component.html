@@ -1,11 +1,6 @@
-<div class="x-date-picker-portal {{ type }}" [ngSwitch]="type" tabindex="-1" (click)="inputCom.inputFocus()">
+<div class="x-date-picker-portal {{ type }}" [ngSwitch]="type" (click)="inputCom.inputFocus()">
   <ng-container *ngSwitchCase="'date'">
-    <div class="x-date-picker-portal-header">
-      <ng-container *ngTemplateOutlet="dateHeaderTpl"></ng-container>
-    </div>
-    <div class="x-date-picker-portal-body">
-      <x-picker-date [display]="display" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
-    </div>
+    <x-picker-date [display]="display" [model]="model" [(type)]="type" (modelChange)="dateChange($event)"></x-picker-date>
     <div *ngIf="preset" class="x-date-picker-portal-preset">
       <ng-container *ngFor="let item of preset">
         <x-button type="text" *ngIf="item.id === 'yesterday'" (click)="onYesterday()">{{ locale.yesterday }}</x-button>
@@ -16,25 +11,10 @@
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="'month'">
-    <div class="x-date-picker-portal-header">
-      <ng-container *ngTemplateOutlet="monthHeaderTpl"></ng-container>
-    </div>
-    <div class="x-date-picker-portal-body">
-      <x-picker-month [display]="display" [model]="model" (modelChange)="monthChange($event)"></x-picker-month>
-    </div>
+    <x-picker-month [display]="display" [model]="model" [(type)]="type" (modelChange)="monthChange($event)"></x-picker-month>
   </ng-container>
   <ng-container *ngSwitchCase="'year'">
-    <div class="x-date-picker-portal-header">
-      <ng-container *ngTemplateOutlet="yearHeaderTpl"></ng-container>
-    </div>
-    <div class="x-date-picker-portal-body">
-      <x-picker-year
-        [display]="display"
-        [model]="model"
-        (modelChange)="yearChange($event)"
-        (startChange)="yearStartChange($event)"
-      ></x-picker-year>
-    </div>
+    <x-picker-year [display]="display" [model]="model" [(type)]="type" (modelChange)="yearChange($event)"></x-picker-year>
   </ng-container>
   <ng-container *ngSwitchCase="'date-time'">
     <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH:mm:ss', timeType: 'time' }"></ng-container>
@@ -47,43 +27,10 @@
   </ng-container>
 </div>
 
-<ng-template #dateHeaderTpl>
-  <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
-  <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)"></x-button>
-  <div class="x-date-picker-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
-    <x-button type="text" size="small" (click)="typeChange('month')">{{ getLocaleMonth(display) }}</x-button>
-  </div>
-  <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)"></x-button>
-  <x-button icon="fto-chevrons-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
-</ng-template>
-
-<ng-template #monthHeaderTpl>
-  <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
-  <div class="x-date-picker-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
-  </div>
-  <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
-</ng-template>
-
-<ng-template #yearHeaderTpl>
-  <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYears(-10)"></x-button>
-  <div class="x-date-picker-portal-year-month">
-    <x-button type="text" size="small">{{ startYear }}</x-button> -
-    <x-button type="text" size="small">{{ startYear + 9 }}</x-button>
-  </div>
-  <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextYears(10)"></x-button>
-</ng-template>
-
 <ng-template #dateTimeHourMinuteTpl let-timeFormat="timeFormat" let-timeType="timeType">
   <div class="x-date-picker-portal-content">
     <div class="x-date-picker-portal-date">
-      <div class="x-date-picker-portal-header">
-        <ng-container *ngTemplateOutlet="dateHeaderTpl"></ng-container>
-      </div>
-      <div class="x-date-picker-portal-body">
-        <x-picker-date [display]="display" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
-      </div>
+      <x-picker-date [display]="display" [(type)]="type" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
     </div>
     <div class="x-date-picker-portal-time">
       <div class="x-date-picker-portal-time-label">

@@ -13,7 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -32,16 +32,25 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
-  writeValue(value: any) {
-    if (XIsDate(value)) this.value = value.getTime();
-    else if (XIsNumber(value)) this.value = value;
-    else if (XIsEmpty(value)) this.value = '';
-    this.setDisplayValue();
+  override writeValue(value: any) {
+    if (XIsDate(value)) {
+      this.value = value.getTime();
+      this.valueType = 'date';
+    } else if (XIsNumber(value)) {
+      this.value = value;
+      this.valueType = 'number';
+    } else if (XIsString(value)) {
+      this.value = new Date(value).getTime();
+      this.valueType = 'string';
+    } else if (XIsEmpty(value)) {
+      this.value = '';
+    }
+    this.setDisplayValue(this.value);
     this.valueChange.next(this.value);
     this.cdr.detectChanges();
   }
 
-  readonly: boolean = true;
+  override readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
   animating = false;
@@ -55,12 +64,13 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
+  valueType: 'date' | 'number' | 'string' = 'date';
   private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -102,7 +112,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }
@@ -203,15 +213,19 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   onNodeClick(date: Date) {
-    this.value = date.getTime();
-    this.setDisplayValue();
+    this.value = this.setValue(date);
+    this.setDisplayValue(date);
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(this.value);
   }
 
-  setDisplayValue() {
-    this.displayValue = this.datePipe.transform(this.value, this.format);
+  setValue(value: Date) {
+    return ['date', 'string'].includes(this.valueType) ? new Date(value) : value.getTime();
+  }
+
+  setDisplayValue(date: Date | number) {
+    this.displayValue = this.datePipe.transform(date, this.format);
   }
 
   setPlacement() {

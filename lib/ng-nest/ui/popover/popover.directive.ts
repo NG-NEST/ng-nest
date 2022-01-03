@@ -14,7 +14,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   positionChange: Subject<any> = new Subject();
   timeoutHide: any;
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
   private realPlacement!: XPlacement;
 
   constructor(
@@ -47,8 +47,9 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.content) && this.contentChange.next(this.content);
-    if (XIsChange(changes.visible)) {
+    const { content, visible } = changes;
+    XIsChange(content) && this.contentChange.next(this.content);
+    if (XIsChange(visible)) {
       if (this.visible) this.show();
       else this.hide();
     }

@@ -26,8 +26,8 @@ module.exports = function (config) {
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/ng-nest/site'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      subdir: '.',
+      reports: ['html', 'text-summary']
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

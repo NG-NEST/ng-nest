@@ -1,5 +1,5 @@
 import { XButtonModule } from '@ng-nest/ui/button';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XUploadComponent } from './upload.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XUploadPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XIconModule, XUploadModule, XButtonModule, XLayoutModule],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent, TestXUploadImgComponent, TestXUploadImgCutComponent]
@@ -21,14 +21,10 @@ describe(XUploadPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXUploadComponent>;
     let upload: DebugElement;
-    let testComponent: TestXUploadComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXUploadComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
-      element = upload.nativeElement;
     });
     it('should create.', () => {
       expect(upload).toBeDefined();
@@ -37,30 +33,22 @@ describe(XUploadPrefix, () => {
   describe(`img.`, () => {
     let fixture: ComponentFixture<TestXUploadImgComponent>;
     let upload: DebugElement;
-    let testComponent: TestXUploadImgComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXUploadImgComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
-      element = upload.nativeElement;
     });
     it('should create.', () => {
       expect(upload).toBeDefined();
     });
   });
-  fdescribe(`imgCut.`, () => {
+  describe(`imgCut.`, () => {
     let fixture: ComponentFixture<TestXUploadImgCutComponent>;
     let upload: DebugElement;
-    let testComponent: TestXUploadImgCutComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXUploadImgCutComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
-      element = upload.nativeElement;
     });
     it('should create.', () => {
       expect(upload).toBeDefined();
@@ -69,14 +57,10 @@ describe(XUploadPrefix, () => {
   describe(`disabled.`, () => {
     let fixture: ComponentFixture<TestXUploadDisabledComponent>;
     let upload: DebugElement;
-    let testComponent: TestXUploadDisabledComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXUploadDisabledComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       upload = fixture.debugElement.query(By.directive(XUploadComponent));
-      element = upload.nativeElement;
     });
     it('should create.', () => {
       expect(upload).toBeDefined();

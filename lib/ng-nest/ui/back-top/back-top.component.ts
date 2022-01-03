@@ -6,7 +6,6 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input,
   Inject,
   OnDestroy,
   ViewChild,
@@ -16,7 +15,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
-import { XClassMap, reqAnimFrame, XConfigService, XIsChange } from '@ng-nest/ui/core';
+import { reqAnimFrame, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
@@ -52,11 +51,10 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
     }
   }
 
-  classMap: XClassMap = {};
   visiable = false;
   scrolling = false;
   portalRef!: XPortalOverlayRef<any>;
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
   private _target: HTMLElement | null = null;
 
   constructor(
@@ -71,7 +69,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
     super();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.target)) {
+    const { target } = changes;
+    if (XIsChange(target)) {
       this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
       this.setScrollEvent();
     }

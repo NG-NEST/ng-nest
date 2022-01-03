@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { XSize } from '@ng-nest/ui/core';
 
 @Component({

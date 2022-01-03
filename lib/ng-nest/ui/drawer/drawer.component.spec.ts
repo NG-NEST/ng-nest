@@ -1,5 +1,5 @@
 // import {} from 'jasmine';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDrawerComponent } from './drawer.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +15,7 @@ import { XPosition } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XDrawerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XDrawerModule, FormsModule, XInputModule, XIconModule, XRadioModule, XButtonModule],
       declarations: [TestXDrawerComponent, TestXDrawerTitleComponent, TestXDrawerCustomComponent, TestXDrawerMultipleComponent]

@@ -17,7 +17,8 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: all $--x-animation-duration-base ease-in-out;
+  transition: color $--x-animation-duration-base ease-in-out, background-color $--x-animation-duration-base ease-in-out,
+    border $--x-animation-duration-base ease-in-out;
   &:focus {
     outline: none;
   }

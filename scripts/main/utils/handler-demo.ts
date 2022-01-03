@@ -16,7 +16,7 @@ export function handlerDemo(page: NcPage, docDir: string, router: string) {
     temp.syswords.imports += `import { environment } from 'src/environments/environment';\n`;
     temp.syswords.constant += `static = environment.static;\n`;
     for (let child of children) {
-      const treeFile = this.getTreeFile(demoPath, child, router);
+      const treeFile = getTreeFile(demoPath, child, router);
       let tpl = fs.readFileSync(path.join(tplDir, 'tree-file.component.template.html'), 'utf8');
       let constant = randomString(8);
       let params = getKeys(page.custom, child);

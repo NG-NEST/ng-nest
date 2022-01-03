@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XFindComponent } from './find.component';
 import { Component, DebugElement, ChangeDetectorRef, Injectable } from '@angular/core';
@@ -9,14 +9,14 @@ import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XFindPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -89,7 +89,7 @@ describe(XFindPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXFindBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -117,7 +117,7 @@ class UsersServiceTest extends XRepositoryAbstract {
     '财务部'
   ];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+  users: User[] = Array.from({ length: 123456 }).map((_x, i) => {
     i++;
     let positionId = Math.floor(Math.random() * 5 + 1);
     let organizationId = Math.floor(Math.random() * 9 + 1);
@@ -157,16 +157,16 @@ class UsersServiceTest extends XRepositoryAbstract {
       }, 10);
     });
   }
-  get(id: number | string): Observable<User> {
+  get(_id: number | string): Observable<User> {
     return new Observable();
   }
-  post(entity: User): Observable<User> {
+  post(_entity: User): Observable<User> {
     return new Observable();
   }
-  put(entity: User): Observable<User> {
+  put(_entity: User): Observable<User> {
     return new Observable();
   }
-  delete(id: number | string): Observable<boolean> {
+  delete(_id: number | string): Observable<boolean> {
     return new Observable();
   }
 
@@ -198,14 +198,6 @@ class UsersServiceTest extends XRepositoryAbstract {
       });
     }
     return result;
-  }
-
-  private setGroup(data: User[], group: string): XGroupItem[] {
-    return groupBy(data, group).map((value, key) => {
-      let groupItem: XGroupItem = { id: key, count: value.length };
-      groupItem[group] = key;
-      return groupItem;
-    });
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
@@ -240,7 +232,7 @@ class TreeServiceTest {
     { id: 18, label: '财务部', pid: 4 }
   ];
 
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+  getTreeList = (_pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
         x.next(XCloneDeep(this.data));
@@ -354,7 +346,15 @@ class TestXFindComponent {
       this.table.getData();
     }
   };
-  table: { query: XQuery; [property: string]: any } = {
+  table: {
+    query: XQuery;
+    index: number;
+    size: number;
+    total: number;
+    data: [];
+    getData: (visible?: boolean) => void;
+    [property: string]: any;
+  } = {
     index: 1,
     size: 1000,
     total: 0,

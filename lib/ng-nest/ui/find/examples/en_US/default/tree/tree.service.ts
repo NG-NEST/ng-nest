@@ -16,7 +16,7 @@ export class TreeService {
     { id: 9, label: 'Accounting department', pid: 4 }
   ];
 
-  getTreeList = (pid = undefined): Observable<XTreeNode[]> => {
+  getTreeList = (_pid = undefined): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
         x.next(this.data);

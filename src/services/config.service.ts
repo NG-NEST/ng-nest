@@ -10,7 +10,7 @@ export class ConfigService {
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions: string[] = [];
-  version = '12.0.7';
+  version = '13.0.3';
   navName = 'NG-NEST';
 
   get lang() {
@@ -73,7 +73,8 @@ export class ConfigService {
   setMeta() {
     const locale = this.i18n.getLocale();
     const description = this.meta.getTag("name='description'");
-    description?.setAttribute('content', locale.meta.description);
+    const { meta } = locale;
+    description?.setAttribute('content', meta.description);
   }
 
   getVersions() {

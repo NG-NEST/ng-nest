@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInputComponent } from './input.component';
-import { Component, DebugElement, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputPrefix } from './input.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { interval, of } from 'rxjs';
+import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -22,7 +22,7 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 describe(XInputPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -914,5 +914,4 @@ class TestXInputBeforeAfterComponent {
 class TestXInputFocusComponent {
   inputValue = 'Please enter the content';
   // @ViewChild('inputCom') inputCom!: XInputComponent;
-  constructor(private cdr: ChangeDetectorRef) {}
 }

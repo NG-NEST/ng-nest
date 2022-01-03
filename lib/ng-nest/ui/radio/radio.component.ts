@@ -42,7 +42,8 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.data) && this.setData();
+    const { data } = changes;
+    XIsChange(data) && this.setData();
   }
 
   ngOnDestroy(): void {
@@ -50,7 +51,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
     this._unSubject.unsubscribe();
   }
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     this.value = value;
     this.cdr.detectChanges();
   }
@@ -75,7 +76,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
     });
   }
 
-  trackByItem(index: number, item: XRadioNode) {
+  trackByItem(_index: number, item: XRadioNode) {
     return item.id;
   }
 

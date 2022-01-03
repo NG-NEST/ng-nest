@@ -5,7 +5,6 @@ import {
   ChangeDetectorRef,
   OnInit,
   NgZone,
-  Renderer2,
   OnDestroy,
   HostBinding,
   HostListener,
@@ -31,7 +30,7 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
 
@@ -49,11 +48,11 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   nodeTpl!: TemplateRef<any>;
   nodeTrigger!: XCascadeNodeTrigger;
   nodeHoverDelay!: number;
-  hoverDelayUnSub = new Subject();
+  hoverDelayUnSub = new Subject<void>();
   inputCom!: XInputComponent;
   private _unSubject = new Subject<void>();
 
-  constructor(private renderer: Renderer2, public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
+  constructor(public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.init();

@@ -23,7 +23,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XSwitchComponent extends XSwitchProperty implements OnInit {
   @ViewChild('switch', { static: true }) switch!: ElementRef;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     this.value = value;
     this.cdr.detectChanges();
   }

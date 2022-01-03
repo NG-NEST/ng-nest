@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
 import { XTimeAgoPrefix } from './time-ago.property';
@@ -7,7 +7,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XTimeAgoPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XTimeAgoModule, XButtonModule],
       declarations: [TestXTimeAgoComponent]

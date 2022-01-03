@@ -1,16 +1,16 @@
-import { interval, of } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { interval } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDatePickerComponent } from './date-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XI18nService, en_US, zh_CN, X_I18N, zh_TW } from '@ng-nest/ui/i18n';
+import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
@@ -21,10 +21,9 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
-import { delay } from 'rxjs/operators';
 
 describe(XDatePickerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -57,7 +56,7 @@ describe(XDatePickerPrefix, () => {
         TestXDateRangeComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
     let debugElement: DebugElement;
@@ -178,7 +177,7 @@ describe(XDatePickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`date-range.`, () => {
+  describe(`date-range.`, () => {
     let fixture: ComponentFixture<TestXDateRangeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -224,7 +223,7 @@ class TestXDatePickerComponent {
   model1: any;
   model2 = new Date();
   constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -278,7 +277,6 @@ class TestXDatePickerComponent {
 })
 class TestXDatePickerLabelComponent {
   model: any;
-  constructor(private cdr: ChangeDetectorRef) {}
 }
 
 @Component({
@@ -340,7 +338,7 @@ class TestXDatePickerDisabledComponent {
 class TestXDatePickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -376,7 +374,7 @@ class TestXDatePickerYearOrMonthComponent {
   model1: any;
   model2: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -386,13 +384,13 @@ class TestXDatePickerYearOrMonthComponent {
   template: `
     <x-row>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分秒" type="date-time"></x-date-picker>
+        <x-date-picker [(ngModel)]="model1" label="时分秒" [type]="'date-time'"></x-date-picker>
       </x-col>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分" type="date-minute"></x-date-picker>
+        <x-date-picker [(ngModel)]="model1" label="时分" [type]="'date-minute'"></x-date-picker>
       </x-col>
       <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时" type="date-hour"></x-date-picker>
+        <x-date-picker [(ngModel)]="model1" label="时" [type]="'date-hour'"></x-date-picker>
       </x-col>
     </x-row>
   `,
@@ -414,7 +412,7 @@ class TestXDatePickerHourMinuteSecondComponent {
   model2: any;
   model3: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe((x) => {
+    interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -779,9 +777,5 @@ class TestXDatePickerTodayComponent {
   ]
 })
 class TestXDateRangeComponent {
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
+  constructor() {}
 }

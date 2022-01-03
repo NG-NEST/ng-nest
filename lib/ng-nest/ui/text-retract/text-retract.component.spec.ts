@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTextRetractComponent } from './text-retract.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -12,7 +12,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XTextRetractPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, XTextRetractModule, XLayoutModule, XButtonModule, XIconModule],
       declarations: [TestXTextRetractComponent]

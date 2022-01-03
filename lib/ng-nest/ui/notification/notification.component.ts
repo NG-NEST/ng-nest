@@ -43,7 +43,7 @@ export class XNotificationComponent {
     }
   }
 
-  trackByItem(index: number, item: XNotificationOption) {
+  trackByItem(_index: number, item: XNotificationOption) {
     return `${item.title}-${item.content}`;
   }
 }

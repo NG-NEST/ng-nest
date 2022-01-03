@@ -1,5 +1,5 @@
 import { interval } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XColorPickerComponent } from './color-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -13,7 +13,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XColorPickerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -86,7 +86,7 @@ describe(XColorPickerPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`bordered.`, () => {
+  describe(`bordered.`, () => {
     let fixture: ComponentFixture<TestXColorPickerBorderedComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -191,7 +191,7 @@ class TestXColorPickerComponent {
 class TestXColorPickerLabelComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
+    interval(1).subscribe(() => {
       this.cdr.detectChanges();
     });
   }
@@ -264,7 +264,7 @@ class TestXColorPickerDisabledComponent {
 class TestXColorPickerRequiredComponent {
   model: any;
   constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe((x) => {
+    interval(1).subscribe(() => {
       this.cdr.detectChanges();
     });
   }

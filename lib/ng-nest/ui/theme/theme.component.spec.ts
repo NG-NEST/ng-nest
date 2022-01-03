@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XThemeComponent } from './theme.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -13,7 +13,7 @@ import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 
 describe(XThemePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, ReactiveFormsModule, XButtonModule, XThemeModule, XSwitchModule, XFormModule],
       declarations: [TestXThemeComponent]

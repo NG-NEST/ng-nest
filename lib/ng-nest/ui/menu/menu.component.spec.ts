@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMenuComponent } from './menu.component';
 import { Component, DebugElement, ChangeDetectorRef, NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { interval } from 'rxjs';
 
 describe(XMenuPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule, TestMenuRoutesModule],
       declarations: [
@@ -64,7 +64,7 @@ describe(XMenuPrefix, () => {
       expect(menu).toBeDefined();
     });
   });
-  fdescribe(`windows.`, () => {
+  describe(`windows.`, () => {
     let fixture: ComponentFixture<TestXMenuWindowsComponent>;
     let menu: DebugElement;
     beforeEach(() => {

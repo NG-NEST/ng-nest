@@ -30,15 +30,16 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.display) && this.init();
+    const { display } = simples;
+    XIsChange(display) && this.init();
   }
 
   init() {
-    this.setYears();
+    this.setYears(this.display);
   }
 
-  setYears() {
-    let year = this.display.getFullYear();
+  setYears(date: Date) {
+    let year = date.getFullYear();
     this.start = Math.floor(year / 10) * 10;
     this.end = this.start + 9;
     let dates: Date[] = [];
@@ -60,11 +61,24 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     return yearStr < `${this.start}` || yearStr > `${this.end}`;
   }
 
+  setDisplay(date: Date) {
+    this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.setYears(this.display);
+  }
+
+  nextYears(num: number) {
+    this.start += num;
+    let date = new Date(this.display);
+    date.setFullYear(this.start);
+    this.setDisplay(date);
+    this.cdr.detectChanges();
+  }
+
   equalYear(one: Date, two: Date) {
     return this.datePipe.transform(one, 'yyyy') === this.datePipe.transform(two, 'yyyy');
   }
 
-  trackByYear(index: number, item: Date) {
+  trackByYear(_index: number, item: Date) {
     return item;
   }
 }

@@ -41,8 +41,9 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.data) && this.setData();
-    XIsChange(changes.activatedIndex) && this.setActivated();
+    const { data, activatedIndex } = changes;
+    XIsChange(data) && this.setData();
+    XIsChange(activatedIndex) && this.setActivated();
   }
 
   ngOnDestroy(): void {
@@ -88,7 +89,7 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
     this.cdr.detectChanges();
   }
 
-  trackByNode(index: number, item: XStepsNode) {
+  trackByNode(_index: number, item: XStepsNode) {
     return item.id;
   }
 }

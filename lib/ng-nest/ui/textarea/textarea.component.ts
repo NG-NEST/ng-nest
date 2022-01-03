@@ -26,7 +26,7 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
   @ViewChild('textarea', { static: true }) textarea!: ElementRef;
   @ViewChild('textareaRef', { static: true }) textareaRef!: ElementRef;
 
-  writeValue(value: any) {
+  override writeValue(value: any) {
     this.value = value;
     this.change(value);
     this.cdr.detectChanges();
@@ -67,7 +67,8 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.clearable) && this.setClearable();
+    const { clearable } = changes;
+    XIsChange(clearable) && this.setClearable();
   }
 
   change(value: any) {

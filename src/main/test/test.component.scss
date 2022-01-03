@@ -1,0 +1,16 @@
+@import 'src/styles/index';
+
+ns-test {
+  > section {
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    width: 15rem;
+    .x-menu-column {
+      width: 100%;
+    }
+  }
+  .content {
+    padding: 1rem 1rem 1rem 16rem;
+  }
+}

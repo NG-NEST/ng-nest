@@ -1,17 +1,16 @@
 import { XButtonModule } from '@ng-nest/ui/button';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTooltipDirective } from './tooltip.directive';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
-import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XTooltipPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonModule],
       declarations: [TestXTooltipComponent]
@@ -20,12 +19,10 @@ describe(XTooltipPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTooltipComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTooltipComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XTooltipDirective));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

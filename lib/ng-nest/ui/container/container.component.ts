@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, SimpleChanges } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
 import { XConfigService } from '@ng-nest/ui/core';
 
@@ -20,7 +20,7 @@ export class XContainerComponent extends XContainerProperty implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    let direction = changes.direction;
+    const { direction } = changes;
     if (direction && direction.currentValue != direction.previousValue) {
       this.setDirection();
     }

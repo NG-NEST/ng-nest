@@ -7,7 +7,7 @@ import { map, orderBy } from 'lodash';
 export class RowSizeService extends XRepositoryAbstract {
   organizations = ['Manufacturing Center', 'R&D Center', 'Finance Center', 'Marketing Center', 'Administrative Center'];
   positions = ['Technician', 'Sales', 'Manager', 'Director', 'Production'];
-  users: User[] = Array.from({ length: 123456 }).map((x, i) => {
+  users: User[] = Array.from({ length: 123456 }).map((_x, i) => {
     i++;
     return {
       id: i,
@@ -38,16 +38,16 @@ export class RowSizeService extends XRepositoryAbstract {
       x.complete();
     });
   }
-  get(id: number | string): Observable<User> {
+  get(_id: number | string): Observable<User> {
     return new Observable();
   }
-  post(entity: User): Observable<User> {
+  post(_entity: User): Observable<User> {
     return new Observable();
   }
-  put(entity: User): Observable<User> {
+  put(_entity: User): Observable<User> {
     return new Observable();
   }
-  delete(id: number | string): Observable<boolean> {
+  delete(_id: number | string): Observable<boolean> {
     return new Observable();
   }
 

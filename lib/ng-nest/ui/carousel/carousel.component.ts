@@ -57,7 +57,8 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   ngOnChanges(simples: SimpleChanges): void {
-    XIsChange(simples.active) && this.setActiveItem(Number(this.active));
+    const { active } = simples;
+    XIsChange(active) && this.setActiveItem(Number(this.active));
   }
 
   ngOnDestroy(): void {
@@ -99,7 +100,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
     return Number(this.active) === index;
   }
 
-  trackByPanel(index: number, item: any) {
+  trackByPanel(index: number, _item: any) {
     return index;
   }
 }

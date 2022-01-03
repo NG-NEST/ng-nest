@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDocComponent } from './doc.component';
 import { Component, DebugElement } from '@angular/core';
@@ -18,7 +18,7 @@ import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
 
 describe(XDocPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -36,16 +36,14 @@ describe(XDocPrefix, () => {
       ],
       declarations: [TestXDocComponent, ExColorComponent, ExCustomComponent, ExDefaultComponent, ExDotComponent, ExMaxComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDocComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDocComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XDocComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

@@ -1,13 +1,4 @@
-import {
-  XData,
-  XTemplate,
-  XIdentityProperty,
-  XDataConvert,
-  XInputBoolean,
-  XSize,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XData, XTemplate, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -48,7 +39,7 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size?: XSize;
 }
 
 /**

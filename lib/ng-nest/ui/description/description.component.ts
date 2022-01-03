@@ -1,14 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  ContentChildren,
-  QueryList,
-  ChangeDetectorRef,
-  SimpleChanges
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ContentChildren, QueryList, SimpleChanges } from '@angular/core';
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
 import { XClearClass, XConfigService, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
@@ -22,7 +12,7 @@ import { XDescriptionItemComponent } from './description-item.component';
 })
 export class XDescriptionComponent extends XDescriptionProperty {
   @ContentChildren(XDescriptionItemComponent) items!: QueryList<XDescriptionItemComponent>;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
+  constructor(public configService: XConfigService) {
     super();
   }
 
@@ -31,7 +21,8 @@ export class XDescriptionComponent extends XDescriptionProperty {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    XIsChange(changes.size) && this.setClassMap();
+    const { size } = changes;
+    XIsChange(size) && this.setClassMap();
   }
 
   ngAfterViewInit() {

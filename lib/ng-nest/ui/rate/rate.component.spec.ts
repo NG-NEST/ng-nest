@@ -1,5 +1,5 @@
 import { XButtonModule } from '@ng-nest/ui/button';
-import { async, ComponentFixture, TestBed, __core_private_testing_placeholder__ } from '@angular/core/testing';
+import { ComponentFixture, TestBed, __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 import { XRateComponent } from './rate.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XRatePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule, XIconModule],
       declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
@@ -42,7 +42,7 @@ describe(XRatePrefix, () => {
       expect(rate).toBeDefined();
     });
   });
-  fdescribe(`custom.`, () => {
+  describe(`custom.`, () => {
     let fixture: ComponentFixture<TestXRateCustomComponent>;
     let rate: DebugElement;
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XApiComponent } from './api.component';
 import { Component, DebugElement } from '@angular/core';
@@ -7,7 +7,7 @@ import { XApiModule } from './api.module';
 import { XApiPrefix } from './api.property';
 
 describe(XApiPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XApiModule],
       declarations: [TestXApiComponent]

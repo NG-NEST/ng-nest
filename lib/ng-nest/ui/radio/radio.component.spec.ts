@@ -1,6 +1,6 @@
 import { XButtonModule } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XRadioComponent } from './radio.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XRadioPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XRadioModule, XButtonModule, XLayoutModule],
       declarations: [
@@ -29,14 +29,10 @@ describe(XRadioPrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRadioComponent>;
     let radio: DebugElement;
-    let testComponent: TestXRadioComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRadioComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
-      element = radio.nativeElement;
     });
     it('should create.', () => {
       expect(radio).toBeDefined();
@@ -45,14 +41,10 @@ describe(XRadioPrefix, () => {
   describe(`disabled.`, () => {
     let fixture: ComponentFixture<TestXRadioDisabledComponent>;
     let radio: DebugElement;
-    let testComponent: TestXRadioDisabledComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRadioDisabledComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
-      element = radio.nativeElement;
     });
     it('should create.', () => {
       expect(radio).toBeDefined();
@@ -61,14 +53,10 @@ describe(XRadioPrefix, () => {
   describe(`button.`, () => {
     let fixture: ComponentFixture<TestXRadioButtonComponent>;
     let radio: DebugElement;
-    let testComponent: TestXRadioButtonComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRadioButtonComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
-      element = radio.nativeElement;
     });
     it('should create.', () => {
       expect(radio).toBeDefined();
@@ -77,14 +65,10 @@ describe(XRadioPrefix, () => {
   describe(`icon.`, () => {
     let fixture: ComponentFixture<TestXRadioIconComponent>;
     let radio: DebugElement;
-    let testComponent: TestXRadioIconComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRadioIconComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
-      element = radio.nativeElement;
     });
     it('should create.', () => {
       expect(radio).toBeDefined();
@@ -93,14 +77,10 @@ describe(XRadioPrefix, () => {
   describe(`async.`, () => {
     let fixture: ComponentFixture<TestXRadioAsyncComponent>;
     let radio: DebugElement;
-    let testComponent: TestXRadioAsyncComponent;
-    let element: HTMLElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRadioAsyncComponent);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
       radio = fixture.debugElement.query(By.directive(XRadioComponent));
-      element = radio.nativeElement;
     });
     it('should create.', () => {
       expect(radio).toBeDefined();

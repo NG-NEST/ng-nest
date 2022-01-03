@@ -13,7 +13,7 @@ import { delay, takeUntil } from 'rxjs/operators';
   animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
-  private _unSubject = new Subject();
+  private _unSubject = new Subject<void>();
 
   constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();

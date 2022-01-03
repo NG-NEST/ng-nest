@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XPaginationComponent } from './pagination.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -10,21 +10,19 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XPaginationPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XPaginationModule, XButtonModule],
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPaginationComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -33,12 +31,10 @@ describe(XPaginationPrefix, () => {
   describe(`style.`, () => {
     let fixture: ComponentFixture<TestXPaginationStyleComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPaginationStyleComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -112,7 +108,7 @@ class TestXPaginationComponent {
 
   constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
 
-  change(index: number) {
+  change(_index: number) {
     // console.log(index);
   }
 
@@ -259,7 +255,7 @@ class TestXPaginationStyleComponent {
 
   constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
 
-  change(index: number) {
+  change(_index: number) {
     // console.log(index);
   }
 

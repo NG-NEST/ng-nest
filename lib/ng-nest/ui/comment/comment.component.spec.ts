@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCommentComponent } from './comment.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XCommentPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -157,7 +157,7 @@ class TestXCommentComponent {
     }
   ];
 
-  constructor(private cdr: ChangeDetectorRef, private datePipe: DatePipe) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   createNode(pid: any, content: string | undefined, index = 0) {
     return {

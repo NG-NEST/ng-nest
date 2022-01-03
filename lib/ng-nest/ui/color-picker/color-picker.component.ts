@@ -1,6 +1,6 @@
 import { XColorPickerPortalComponent } from './color-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -12,7 +12,7 @@ import {
   ViewContainerRef,
   ViewChild
 } from '@angular/core';
-import { XColorPickerPrefix, XColorPickerProperty } from './color-picker.property';
+import { XColorPickerProperty } from './color-picker.property';
 import { XIsEmpty, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -31,7 +31,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
-  writeValue(value: string) {
+  override writeValue(value: string) {
     this.value = value;
     this.displayValue = value;
     this.valueChange.next(this.value);
@@ -45,7 +45,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     };
   }
 
-  readonly: boolean = true;
+  override readonly: boolean = true;
   clearable: boolean = false;
   enter: boolean = false;
   animating = false;
@@ -60,12 +60,11 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<any> = new Subject();
+  closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
     public renderer: Renderer2,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
@@ -91,7 +90,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
   }
@@ -102,10 +101,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       height: `${this.inputCom.inputRef.nativeElement.clientHeight}px`
     };
     if (this.direction === 'column') {
-      this.valueStyle.bottom = 0;
+      this.valueStyle['bottom'] = 0;
     }
     if (this.direction === 'row') {
-      this.valueStyle.bottom = 0;
+      this.valueStyle['bottom'] = 0;
     }
   }
 

@@ -74,7 +74,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-93",
+    "id": "1-92",
     "pid": "1",
     "name": "typography",
     "router": "docs/en_US/components/typography",
@@ -542,7 +542,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-94",
+    "id": "1-93",
     "pid": "1",
     "name": "upload",
     "router": "docs/en_US/components/upload",
@@ -874,7 +874,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-93",
+    "id": "1-92",
     "pid": "1",
     "name": "typography",
     "router": "docs/zh_CN/components/typography",
@@ -1342,7 +1342,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-94",
+    "id": "1-93",
     "pid": "1",
     "name": "upload",
     "router": "docs/zh_CN/components/upload",

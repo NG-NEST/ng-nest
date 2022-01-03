@@ -17,12 +17,10 @@ describe(XRipplePrefix, () => {
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRippleComponent>;
     let debugElement: DebugElement;
-    let element: Element;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXRippleComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRippleDirective));
-      element = debugElement.nativeElement;
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();

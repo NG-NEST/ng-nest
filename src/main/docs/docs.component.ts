@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ConfigService } from 'src/services/config.service';
 import { environment } from 'src/environments/environment.prod';
 import { LayoutService } from '../layout/layout.service';
 import { Menu } from 'src/environments/routes';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'ns-docs',

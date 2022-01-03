@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XIsBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -35,7 +35,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 类型
    * @en_US Types of
    */
-  @Input() type: XDialogType = 'info';
+  @Input() override type: XDialogType = 'info';
   /**
    * @zh_CN 宽度
    * @en_US Width
@@ -50,7 +50,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 样式主题
    * @en_US Style theme
    */
-  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') effect!: XEffect;
+  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') override effect!: XEffect;
   /**
    * @zh_CN 底部自定义模板
    * @en_US Custom template at the bottom
@@ -100,7 +100,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() draggable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override draggable?: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing

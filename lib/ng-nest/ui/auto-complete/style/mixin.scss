@@ -6,6 +6,9 @@
 
 @mixin auto-complete {
   width: 100%;
+  x-input {
+    width: 100%;
+  }
 }
 
 @mixin auto-complete-portal {
@@ -21,4 +24,7 @@
   background-color: $--x-background;
   overflow-y: auto;
   max-height: calc(calc(#{$--x-auto-complete-height} * 6) + calc(#{$--x-border-width} * 7));
+  &:focus {
+    outline: none;
+  }
 }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XAutoCompleteComponent } from './auto-complete.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XAutoCompletePrefix, XAutoCompleteNode } from './auto-complete.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
-import { XCloneDeep, XData, XDrop, XOrderBy, XRemove } from '@ng-nest/ui/core';
+import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -24,7 +24,7 @@ import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XAutoCompletePrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -58,7 +58,7 @@ describe(XAutoCompletePrefix, () => {
       ]
     }).compileComponents();
   }));
-  fdescribe(`default.`, () => {
+  describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSliderSelectComponent } from './slider-select.component';
 import { Component, DebugElement } from '@angular/core';
@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XSliderSelectPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
       declarations: [
@@ -85,7 +85,7 @@ describe(XSliderSelectPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  fdescribe(`tabs.`, () => {
+  describe(`tabs.`, () => {
     let fixture: ComponentFixture<TestXSliderSelectTabsComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

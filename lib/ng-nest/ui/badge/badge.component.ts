@@ -36,7 +36,8 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    XIsChange(simples.value) && this.setDisplayValue();
+    const { value } = simples;
+    XIsChange(value) && this.setDisplayValue();
   }
 
   setClassMap() {

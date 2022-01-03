@@ -21,7 +21,7 @@ export class XTreeFileProperty extends XTreeProperty {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XTreeFileNode> = [];
+  @Input() @XDataConvert() override data: XData<XTreeFileNode> = [];
   /**
    * @zh_CN 文件绝对路径地址前缀，为空表示取当前运行的地址
    * @en_US File absolute path address prefix, empty means to take the address of the current operation
@@ -56,7 +56,7 @@ export class XTreeFileProperty extends XTreeProperty {
    * @zh_CN 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.5) @XInputNumber() spacing?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.5) @XInputNumber() override spacing?: XNumber;
 }
 
 /**

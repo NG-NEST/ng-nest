@@ -10,7 +10,7 @@ import {
   Inject
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
-import { debounceTime, map, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { XClamp } from '@ng-nest/ui/core';
 import { XUploadCutType, XUploadNode, XUploadPortalPrefix } from './upload.property';
 
@@ -122,7 +122,7 @@ export class XUploadPortalComponent {
         });
       fromEvent<MouseEvent>(this.doc.documentElement, 'mouseup')
         .pipe(takeUntil(_unSub))
-        .subscribe((x) => {
+        .subscribe(() => {
           this.cutType = '';
           this.cdr.detectChanges();
           _unSub.next();

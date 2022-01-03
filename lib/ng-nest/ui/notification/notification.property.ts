@@ -1,7 +1,5 @@
-import { ComponentRef } from '@angular/core';
 import { XStatus, XCorner } from '@ng-nest/ui/core';
 import { XAlertOption } from '@ng-nest/ui/alert';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { XNotificationComponent } from './notification.component';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';

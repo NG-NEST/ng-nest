@@ -45,7 +45,8 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.content) && this.setDisplayValue();
+    const { content } = changes;
+    XIsChange(content) && this.setDisplayValue();
   }
 
   ngOnDestory() {

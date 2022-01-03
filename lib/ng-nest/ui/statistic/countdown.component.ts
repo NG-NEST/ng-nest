@@ -6,9 +6,6 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Input,
-  Output,
-  EventEmitter,
   NgZone
 } from '@angular/core';
 import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
@@ -37,9 +34,10 @@ export class XCountdownComponent extends XCountdownProperty implements OnInit, O
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.value) {
-      this._target = Number(changes.value.currentValue);
-      if (!changes.value.isFirstChange()) {
+    const { value } = changes;
+    if (value) {
+      this._target = Number(value.currentValue);
+      if (!value.isFirstChange()) {
         this.syncTimer();
       }
     }

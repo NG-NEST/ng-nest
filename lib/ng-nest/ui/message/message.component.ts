@@ -41,7 +41,7 @@ export class XMessageComponent {
     }
   }
 
-  trackByNode(index: number, item: XMessageOption) {
+  trackByNode(_index: number, item: XMessageOption) {
     return `${item.title}-${item.content}`;
   }
 }

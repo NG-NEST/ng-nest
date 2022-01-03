@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Host, Optional, ElementRef, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, Input } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
 import { XConfigService } from '@ng-nest/ui/core';
 

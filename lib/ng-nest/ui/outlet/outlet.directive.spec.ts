@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XOutletPrefix } from './outlet.property';
 
 describe(XOutletPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XOutletModule],
       declarations: [TestXOutletComponent]

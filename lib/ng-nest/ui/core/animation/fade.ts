@@ -1,4 +1,4 @@
-import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from '@angular/animations';
+import { AnimationTriggerMetadata, trigger, style, animate, transition } from '@angular/animations';
 import { XDuration } from './consts';
 
 // 进场动画

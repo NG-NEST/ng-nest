@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnDestroy, Renderer2, SimpleChanges, OnChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, SimpleChanges, OnChanges } from '@angular/core';
 import { XI18nService } from './i18n.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +15,8 @@ export class XI18nDirective implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    XIsChange(changes.path) && this.setLocale();
+    const { path } = changes;
+    XIsChange(path) && this.setLocale();
   }
 
   ngOnDestroy(): void {

@@ -39,9 +39,10 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (XIsChange(changes.loading)) this.disabled = this.loading;
-    XIsChange(changes.disabled, changes.activated) && this.cdr.detectChanges();
-    XIsChange(changes.type, changes.plain, changes.size, changes.direction) && this.setClassMap();
+    const { loading, disabled, activated, type, plain, size, direction } = changes;
+    if (XIsChange(loading)) this.disabled = this.loading;
+    XIsChange(disabled, activated) && this.cdr.detectChanges();
+    XIsChange(type, plain, size, direction) && this.setClassMap();
   }
 
   setClassMap() {

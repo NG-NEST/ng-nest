@@ -1,5 +1,5 @@
 import { XIconModule } from '@ng-nest/ui/icon';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XLoadingComponent } from './loading.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 
 describe(XLoadingPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -141,7 +141,7 @@ class TestXLoadingComponent {
     this.cdr.detectChanges();
     of(true)
       .pipe(delay(2000))
-      .subscribe((x) => {
+      .subscribe(() => {
         this.loading = false;
         this.cdr.detectChanges();
       });

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInnerComponent } from './inner.component';
 import { Component, DebugElement } from '@angular/core';
@@ -7,7 +7,7 @@ import { XInnerModule } from './inner.module';
 import { XInnerPrefix } from './inner.property';
 
 describe(XInnerPrefix, () => {
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [XInnerModule],
       declarations: [TestXInnerComponent]
