@@ -332,10 +332,12 @@
     .x-input-row {
       > .#{$--x-input-prefix}-input {
         > input,
+        > x-icon,
         > .#{$--x-input-prefix}-value-template-value {
           cursor: pointer;
         }
       }
+
     }
   }
   @include size('big', $--x-height-big, 0 $--x-padding-big);

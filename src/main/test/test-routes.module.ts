@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'carousel',
         loadChildren: () => import('./modules/carousel/carousel.module').then((x) => x.TeCarouselModule)
+      },
+      {
+        path: 'select',
+        loadChildren: () => import('./modules/select/select.module').then((x) => x.TeSelectModule)
       }
     ]
   }
