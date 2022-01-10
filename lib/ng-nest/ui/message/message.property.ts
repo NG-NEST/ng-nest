@@ -10,9 +10,8 @@ import { XMessageComponent } from './message.component';
  * @decorator component
  */
 export const XMessagePrefix = 'x-message';
-
 export const XMessagePortal = 'x-message-portal';
-export const X_CONFIG_NAME = 'message';
+export const X_MESSAGE_CONFIG_NAME = 'message';
 
 /**
  * Message Option

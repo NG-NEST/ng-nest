@@ -1,0 +1,6 @@
+<h4 x-drawer-title>{{ data.title }}</h4>
+<div x-drawer-content>
+  <x-button x-drawer-close>Close through directive</x-button>
+  <x-button (click)="close()">Close through service method</x-button>
+  <p>{{ data.content }}</p>
+</div>

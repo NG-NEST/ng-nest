@@ -1,6 +1,6 @@
-import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef, ViewContainerRef, StaticProvider } from '@angular/core';
+import { Injectable, TemplateRef, Injector, ElementRef, ViewContainerRef, StaticProvider } from '@angular/core';
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
-import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
 import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 
@@ -31,9 +31,8 @@ export class XPortalService {
     return portal;
   }
 
-  createInjector(data: any, injectorToken: InjectionToken<any>, viewContainerRef?: ViewContainerRef) {
+  createInjector(providers: StaticProvider[], viewContainerRef?: ViewContainerRef) {
     const injector = viewContainerRef && viewContainerRef.injector;
-    const providers: StaticProvider[] = [{ provide: injectorToken, useValue: data }];
     return Injector.create({ parent: injector || this.injector, providers });
   }
 
