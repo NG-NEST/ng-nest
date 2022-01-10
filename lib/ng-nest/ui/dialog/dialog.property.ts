@@ -1,8 +1,9 @@
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
 import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
+import { XDialogContainerComponent } from './dialog-container.component';
 
 /**
  * Dialog
@@ -10,10 +11,9 @@ import { XDialogComponent } from './dialog.component';
  * @decorator component
  */
 export const XDialogPrefix = 'x-dialog';
-
-const X_CONFIG_NAME = 'dialog';
-
+export const X_DIALOG_CONFIG_NAME = 'dialog';
 export const XDialogPortal = 'x-dialog-portal';
+export const X_DIALOG_DATA = new InjectionToken<any>('XDialogData');
 
 /**
  * Dialog Property
@@ -25,12 +25,12 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 方位，九宫格
    * @en_US Direction, nine grid
    */
-  @Input() @XWithConfig<XPlace>(X_CONFIG_NAME, 'center') placement!: XPlace;
+  @Input() @XWithConfig<XPlace>(X_DIALOG_CONFIG_NAME, 'center') placement!: XPlace;
   /**
    * @zh_CN 偏移距离
    * @en_US Offset distance
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') offset!: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '1rem') offset!: string;
   /**
    * @zh_CN 类型
    * @en_US Types of
@@ -40,7 +40,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '32rem') width?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') width?: string;
   /**
    * @zh_CN 高度
    * @en_US Height
@@ -50,7 +50,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 样式主题
    * @en_US Style theme
    */
-  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'white') override effect!: XEffect;
+  @Input() @XWithConfig<XEffect>(X_DIALOG_CONFIG_NAME, 'white') override effect!: XEffect;
   /**
    * @zh_CN 底部自定义模板
    * @en_US Custom template at the bottom
@@ -60,47 +60,47 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 显示取消按钮
    * @en_US Show cancel button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showCancel!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) showCancel!: XBoolean;
   /**
    * @zh_CN 取消按钮文字
    * @en_US Cancel button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) cancelText?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) cancelText?: string;
   /**
    * @zh_CN 显示确认按钮
    * @en_US Show confirmation button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) showConfirm!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) showConfirm!: XBoolean;
   /**
    * @zh_CN 确认按钮文字
    * @en_US Confirm button text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) confirmText?: string;
   /**
    * @zh_CN 点击遮罩关闭
    * @en_US Click the mask to close
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) backdropClose!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) backdropClose!: XBoolean;
   /**
    * @zh_CN 是否显示背景遮罩
    * @en_US Whether to display the background mask
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) hasBackdrop!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) hasBackdrop!: XBoolean;
   /**
    * @zh_CN 自定义样式名
    * @en_US Custom style name
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '') className!: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '') className!: string;
   /**
    * @zh_CN 按钮居中
    * @en_US Button center
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() buttonsCenter?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME) @XInputBoolean() buttonsCenter?: XBoolean;
   /**
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override draggable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() override draggable?: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
@@ -222,6 +222,82 @@ export interface XDialogOption extends XAlertOption {
   beforeClose?: Function;
 }
 
+/**
+ * Dialog option by service
+ */
+export interface XDialogRefOption {
+  /**
+   * @zh_CN 展示方向
+   * @en_US Display direction
+   * @default 'center'
+   * @withConfig true
+   */
+  placement?: XPlace;
+  /**
+   * @zh_CN 偏移距离
+   * @en_US Offset distance
+   * @default '1rem'
+   * @withConfig true
+   */
+  offset?: string;
+  /**
+   * @zh_CN 宽度
+   * @en_US Width
+   * @default '32rem'
+   * @withConfig true
+   */
+  width?: string;
+  /**
+   * @zh_CN 高度
+   * @en_US Height
+   */
+  height?: string;
+  /**
+   * @zh_CN 自定义样式名
+   * @en_US Custom style name
+   */
+  className?: string;
+  /**
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
+   * @default true
+   * @withConfig true
+   */
+  backdropClose?: boolean;
+  /**
+   * @zh_CN 是否显示背景遮罩
+   * @en_US Whether to display the background mask
+   * @default true
+   * @withConfig true
+   */
+  hasBackdrop?: boolean;
+  /**
+   * @zh_CN 拖动对话框
+   * @en_US Drag dialog
+   * @default false
+   * @withConfig true
+   */
+  draggable?: boolean;
+  /**
+   * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
+   * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"
+   */
+  data?: any;
+  /**
+   * @en_US 视图容器实例可以包含其他视图容器。
+   * @en_US A view container instance can contain other view containers.
+   */
+  viewContainerRef?: ViewContainerRef;
+}
+
+export type XDialogAnimationState = XPlace | 'void';
+
+export interface XDialogAnimationEvent {
+  state: XDialogAnimationState;
+  action: 'start' | 'done';
+  totalTime: number;
+}
+
 export interface XDialogCallback {
   (action: XDialogAction, message?: string): void;
 }
@@ -229,15 +305,16 @@ export interface XDialogCallback {
 export type XDialogAction = 'confirm' | 'cancel';
 
 /**
- * @zh_CN 创建的消息对象
- * @en_US Message object created
+ * @zh_CN 创建的弹框对象
+ * @en_US Dialog object created
  */
 export interface XDialogOverlayRef extends XPortalOverlayRef<XDialogComponent> {}
 
-export interface XDialogRef {
-  ref?: XDialogOverlayRef;
-  input?: XDialogProperty;
-}
+/**
+ * @zh_CN 创建的弹框对象，通过服务
+ * @en_US Dialog object created by service
+ */
+export interface XDialogContainerOverlayRef extends XPortalOverlayRef<XDialogContainerComponent> {}
 
 /**
  * @zh_CN 类型
