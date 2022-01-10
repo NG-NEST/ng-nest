@@ -18,6 +18,14 @@ const routes: Routes = [
       {
         path: 'select',
         loadChildren: () => import('./modules/select/select.module').then((x) => x.TeSelectModule)
+      },
+      {
+        path: 'drawer',
+        loadChildren: () => import('./modules/drawer/drawer.module').then((x) => x.TeDrawerModule)
+      },
+      {
+        path: 'dialog',
+        loadChildren: () => import('./modules/dialog/dialog.module').then((x) => x.TeDialogModule)
       }
     ]
   }

@@ -17,13 +17,17 @@ export const mainRoutes: Routes = [
     path: `${environment.layout}`,
     loadChildren: () => import('../main/layout/layout.module').then((x) => x.LayoutModule)
   },
+  { path: '', redirectTo: `${environment.layout}`, pathMatch: 'full' },
+
+  ...shareRoutes
+];
+
+export const testRoutes: Routes = [
   {
     path: `test`,
     loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
   },
-  { path: '', redirectTo: `${environment.layout}`, pathMatch: 'full' },
-
-  ...shareRoutes
+  { path: '', redirectTo: `test`, pathMatch: 'full' }
 ];
 
 /**

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  layout: 'index',
-  defaultPage: 'docs',
+  layout: 'test',
+  defaultPage: 'dialog',
   static: 'http://localhost:9494'
 };
 
