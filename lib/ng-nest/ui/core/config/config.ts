@@ -426,6 +426,7 @@ export interface XPortalConfig {}
 
 export interface XProgressConfing {
   height?: string;
+  stepWidth?: string;
 }
 
 export interface XRadioConfig {

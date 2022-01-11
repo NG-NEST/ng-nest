@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { TestComponent } from './test.component';
 
 const routes: Routes = [
@@ -26,7 +27,12 @@ const routes: Routes = [
       {
         path: 'dialog',
         loadChildren: () => import('./modules/dialog/dialog.module').then((x) => x.TeDialogModule)
-      }
+      },
+      {
+        path: 'progress',
+        loadChildren: () => import('./modules/progress/progress.module').then((x) => x.TeProgressModule)
+      },
+      { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
 ];

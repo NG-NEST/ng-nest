@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'dialog',
+  defaultPage: 'progress',
   static: 'http://localhost:9494'
 };
 

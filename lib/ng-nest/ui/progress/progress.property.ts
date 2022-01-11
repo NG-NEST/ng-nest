@@ -49,6 +49,26 @@ export class XProgressProperty extends XProperty {
    * @en_US Custom color
    */
   @Input() color?: string | { color: string; percent: number }[] | Function;
+  /**
+   * @zh_CN 渐变颜色
+   * @en_US Gradient color
+   */
+  @Input() gradient?: XProgressGradient;
+  /**
+   * @zh_CN 步骤进度条
+   * @en_US Steps progress bar
+   */
+  @Input() steps?: number;
+  /**
+   * @zh_CN 单个步骤的宽度
+   * @en_US Single step width
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') stepWidth?: string;
+  /**
+   * @zh_CN 单个步骤的宽度自适应
+   * @en_US Single step width flex
+   */
+  @Input() @XInputBoolean() stepFlex?: XBoolean;
 }
 
 /**
@@ -62,3 +82,9 @@ export type XProgressType = 'line' | 'circle' | 'dashboard';
  * @en_US Status
  */
 export type XProgressStatus = 'normal' | 'active' | 'success' | 'exception' | 'warning';
+
+/**
+ * @zh_CN 渐变颜色
+ * @en_US Gradient color
+ */
+export type XProgressGradient = { direction?: string } & ({ from: string; to: string } | { [percent: string]: string });

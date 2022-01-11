@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
@@ -19,8 +18,10 @@ import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber, X
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XProgressComponent extends XProgressProperty implements OnInit, OnChanges {
+export class XProgressComponent extends XProgressProperty implements OnChanges {
   currentColor!: string;
+  linearGradient!: string;
+  stepsArray: Array<boolean> = [];
 
   constructor(
     public renderer: Renderer2,
@@ -31,12 +32,12 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
     super();
   }
 
-  ngOnInit() {}
-
   ngOnChanges(simples: SimpleChanges) {
-    const { status, percent } = simples;
+    const { status, percent, gradient, steps } = simples;
     XIsChange(status) && this.setClassMap();
     XIsChange(percent) && this.setColor();
+    XIsChange(gradient) && this.setGradient();
+    XIsChange(steps, percent) && this.setSteps();
   }
 
   setClassMap() {
@@ -65,6 +66,43 @@ export class XProgressComponent extends XProgressProperty implements OnInit, OnC
       }
     }
     return colors[colors.length - 1].color;
+  }
+
+  setGradient() {
+    if (XIsEmpty(this.gradient)) {
+      this.linearGradient = '';
+    } else {
+      const { from, to, direction = 'to right', ...percents } = this.gradient || {};
+      if (Object.keys(percents).length !== 0) {
+        this.linearGradient = `linear-gradient(${direction}, ${this.sortGradient(percents as { [percent: string]: string }).map(
+          ({ key, value }) => `${value} ${key}%`
+        )})`;
+        return;
+      }
+      this.linearGradient = `linear-gradient(${direction}, ${from}, ${to})`;
+    }
+    console.log(this.linearGradient);
+  }
+
+  sortGradient(percents: { [percent: string]: string }) {
+    let arr: { key: number; value: string }[] = [];
+    Object.keys(percents).forEach((key) => {
+      const value = percents[key];
+      const numKey = +key.replace('%', '');
+      if (!isNaN(numKey)) {
+        arr.push({ key: numKey, value });
+      }
+    });
+    return arr.sort((a, b) => a.key - b.key);
+  }
+
+  setSteps() {
+    if (XIsEmpty(this.steps)) {
+      this.stepsArray = [];
+    } else {
+      const critical = Math.ceil((Number(this.percent) / 100) * this.steps!);
+      this.stepsArray = Array.from({ length: this.steps as number }).map((_, index) => index + 1 <= critical);
+    }
   }
 
   onFormat(percent: XNumber) {

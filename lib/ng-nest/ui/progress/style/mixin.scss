@@ -48,6 +48,15 @@
       margin: 0 0.325rem;
     }
   }
+  &-step {
+    background-color: $--x-border-100;
+    &:not(:first-child) {
+      margin-left: 0.125rem;
+    }
+  }
+  &-step-active {
+    background-color: $--x-primary;
+  }
   &-text {
     margin-left: 0.5rem;
     display: inline-flex;
@@ -72,7 +81,8 @@
     .#{$--x-progress}-text {
       color: $--x-danger;
     }
-    .#{$--x-progress}-bg {
+    .#{$--x-progress}-bg,
+    .#{$--x-progress}-step-active {
       background-color: $--x-danger;
     }
   }
@@ -80,7 +90,8 @@
     .#{$--x-progress}-text {
       color: $--x-success;
     }
-    .#{$--x-progress}-bg {
+    .#{$--x-progress}-bg,
+    .#{$--x-progress}-step-active {
       background-color: $--x-success;
     }
   }
@@ -88,10 +99,9 @@
     .#{$--x-progress}-text {
       color: $--x-warning;
     }
-    .#{$--x-progress}-bg {
+    .#{$--x-progress}-bg,
+    .#{$--x-progress}-step-active {
       background-color: $--x-warning;
     }
-  }
-  &-inside {
   }
 }

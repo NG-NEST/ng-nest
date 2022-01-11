@@ -1,10 +1,11 @@
-<div class="x-progress" [ngClass]="classMap">
-  <div class="x-progress-track">
+<div class="x-progress" [ngClass]="classMap" [class.x-progress-steps]="stepsArray.length > 0">
+  <div class="x-progress-track" *ngIf="stepsArray.length === 0">
     <div class="x-progress-rail">
       <div
         class="x-progress-bg"
         [style.width.%]="percent"
         [style.background-color]="currentColor"
+        [style.background-image]="linearGradient"
         [style.height]="height"
         [style.line-height]="height"
       >
@@ -12,6 +13,18 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="stepsArray.length > 0">
+    <div
+      *ngFor="let step of stepsArray"
+      class="x-progress-step"
+      [class.x-progress-step-active]="step"
+      [style.background-color]="currentColor"
+      [style.width]="stepWidth"
+      [style.flex]="stepFlex ? 1 : 'none'"
+      [style.height]="height"
+      [style.line-height]="height"
+    ></div>
+  </ng-container>
   <span class="x-progress-text" *ngIf="info && !inside" [ngSwitch]="status">
     <ng-container *ngSwitchCase="'success'">
       <x-icon type="fto-check-circle"></x-icon>
