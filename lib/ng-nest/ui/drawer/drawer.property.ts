@@ -124,7 +124,7 @@ export interface XDrawerOverlayRef extends XPortalOverlayRef<XDrawerContainerCom
 
 export type XDrawerAnimationState = XPosition | 'void';
 
-export interface XDialogAnimationEvent {
+export interface XDrawerAnimationEvent {
   state: XDrawerAnimationState;
   action: 'start' | 'done';
   totalTime: number;

@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { XSlideAnimation } from '@ng-nest/ui/core';
-import { XDialogAnimationEvent, XDrawerAnimationState } from './drawer.property';
+import { XDrawerAnimationEvent, XDrawerAnimationState } from './drawer.property';
 import { AnimationEvent } from '@angular/animations';
 
 @Component({
@@ -33,7 +33,7 @@ export class XDrawerContainerComponent extends BasePortalOutlet {
   }
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet!: CdkPortalOutlet;
 
-  animationChanged = new EventEmitter<XDialogAnimationEvent>();
+  animationChanged = new EventEmitter<XDrawerAnimationEvent>();
 
   constructor() {
     super();
