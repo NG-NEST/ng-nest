@@ -22,6 +22,7 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   currentColor!: string;
   linearGradient!: string;
   stepsArray: Array<boolean> = [];
+  clipPath!: string;
 
   constructor(
     public renderer: Renderer2,
@@ -33,16 +34,18 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { status, percent, gradient, steps } = simples;
-    XIsChange(status) && this.setClassMap();
+    const { status, percent, gradient, steps, type } = simples;
+    XIsChange(type, status) && this.setClassMap();
     XIsChange(percent) && this.setColor();
     XIsChange(gradient) && this.setGradient();
     XIsChange(steps, percent) && this.setSteps();
+    XIsChange(type, percent) && this.setType();
   }
 
   setClassMap() {
     this.classMap = {
       [`${XProgressPrefix}-${this.status}`]: true,
+      [`${XProgressPrefix}-${this.type}`]: true,
       [`${XProgressPrefix}-inside`]: Boolean(this.inside)
     };
   }
@@ -102,6 +105,40 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
     } else {
       const critical = Math.ceil((Number(this.percent) / 100) * this.steps!);
       this.stepsArray = Array.from({ length: this.steps as number }).map((_, index) => index + 1 <= critical);
+    }
+  }
+
+  setType() {
+    if (this.type === 'circle') {
+      this.setClipPath();
+    }
+  }
+
+  /**
+   * circle 中的 100% 等于 clip-path 中的 400%
+   */
+  setClipPath() {
+    let r = Number(this.percent) * 4;
+    let k1 = 'polygon(50% 50%,50% 0%,';
+    let k2 = k1 + '100% 0%,';
+    let k3 = k2 + '100% 100%,';
+    let k4 = k3 + '0% 100%,';
+    let k5 = k4 + '0% 0%,';
+    if (r <= 50) {
+      r += 50;
+      this.clipPath = `${k1}${r}% 0%)`;
+    } else if (r > 50 && r <= 150) {
+      r -= 50;
+      this.clipPath = `${k2}100% ${r}%)`;
+    } else if (r > 150 && r <= 250) {
+      r = 250 - r;
+      this.clipPath = `${k3}${r}% 100%)`;
+    } else if (r > 250 && r <= 350) {
+      r = 350 - r;
+      this.clipPath = `${k4}0% ${r}%)`;
+    } else if (r > 350 && r <= 400) {
+      r -= 350;
+      this.clipPath = `${k5}${r}% 0%)`;
     }
   }
 

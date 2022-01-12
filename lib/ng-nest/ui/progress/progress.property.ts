@@ -15,6 +15,11 @@ const X_CONFIG_NAME = 'progress';
 @Component({ template: '' })
 export class XProgressProperty extends XProperty {
   /**
+   * @zh_CN 进度条类型
+   * @en_US Progress bar type
+   */
+  @Input() type: XProgressType = 'line';
+  /**
    * @zh_CN 显示进度 0-100
    * @en_US Show progress 0-100
    */
@@ -69,6 +74,16 @@ export class XProgressProperty extends XProperty {
    * @en_US Single step width flex
    */
   @Input() @XInputBoolean() stepFlex?: XBoolean;
+  /**
+   * @zh_CN 圆环厚度
+   * @en_US Ring thickness
+   */
+  @Input() thickness?: string = '0.5rem';
+  /**
+   * @zh_CN 圆环尺寸
+   * @en_US Ring thickness
+   */
+  @Input() circleSize?: string = '5rem';
 }
 
 /**

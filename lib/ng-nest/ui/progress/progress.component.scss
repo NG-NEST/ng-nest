@@ -5,8 +5,7 @@
 @import './style/mixin';
 
 #{$--x-progress} {
-  display: flex;
-  align-items: center;
+  display: initial;
 }
 
 .#{$--x-progress} {

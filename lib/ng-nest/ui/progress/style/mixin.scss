@@ -48,6 +48,36 @@
       margin: 0 0.325rem;
     }
   }
+  &-circle,
+  &-steps:not(.x-progress-steps-flex) {
+    width: initial;
+  }
+  &-ring {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &-rail {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-style: solid;
+      border-color: $--x-border-100;
+      border-radius: 100%;
+    }
+    &-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-style: solid;
+      border-color: $--x-primary;
+      border-radius: 100%;
+    }
+    .x-progress-text {
+      margin-left: 0;
+      font-size: $--x-font-size-large;
+    }
+  }
   &-step {
     background-color: $--x-border-100;
     &:not(:first-child) {
@@ -85,6 +115,9 @@
     .#{$--x-progress}-step-active {
       background-color: $--x-danger;
     }
+    .#{$--x-progress}-ring-bg {
+      border-color: $--x-danger;
+    }
   }
   &-success {
     .#{$--x-progress}-text {
@@ -94,6 +127,9 @@
     .#{$--x-progress}-step-active {
       background-color: $--x-success;
     }
+    .#{$--x-progress}-ring-bg {
+      border-color: $--x-success;
+    }
   }
   &-warning {
     .#{$--x-progress}-text {
@@ -102,6 +138,9 @@
     .#{$--x-progress}-bg,
     .#{$--x-progress}-step-active {
       background-color: $--x-warning;
+    }
+    .#{$--x-progress}-ring-bg {
+      border-color: $--x-warning;
     }
   }
 }

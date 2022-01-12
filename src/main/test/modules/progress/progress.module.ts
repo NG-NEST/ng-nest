@@ -7,11 +7,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExGradientComponent } from './gradient/gradient.component';
 import { ExStepsComponent } from './steps/steps.component';
+import { ExCircleComponent } from './circle/circle.component';
 
 const routers = [{ path: '', component: TeProgressComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XProgressModule, XLayoutModule],
-  declarations: [TeProgressComponent, ExDefaultComponent, ExGradientComponent, ExStepsComponent]
+  declarations: [TeProgressComponent, ExDefaultComponent, ExGradientComponent, ExStepsComponent, ExCircleComponent]
 })
 export class TeProgressModule {}
