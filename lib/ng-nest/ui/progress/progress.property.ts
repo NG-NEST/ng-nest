@@ -75,15 +75,20 @@ export class XProgressProperty extends XProperty {
    */
   @Input() @XInputBoolean() stepFlex?: XBoolean;
   /**
-   * @zh_CN 圆环厚度
+   * @zh_CN 圆环/仪表盘厚度
    * @en_US Ring thickness
    */
   @Input() thickness?: string = '0.5rem';
   /**
-   * @zh_CN 圆环尺寸
-   * @en_US Ring thickness
+   * @zh_CN 圆环/仪表盘尺寸
+   * @en_US Ring size
    */
-  @Input() circleSize?: string = '5rem';
+  @Input() size?: string = '5rem';
+  /**
+   * @zh_CN 仪表盘缺口角度 0~300
+   * @en_US Dashboard notch angle
+   */
+  @Input() notchAngle?: number = 80;
 }
 
 /**

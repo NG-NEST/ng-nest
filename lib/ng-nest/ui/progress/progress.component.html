@@ -8,6 +8,9 @@
   <ng-container *ngSwitchCase="'circle'">
     <ng-container *ngTemplateOutlet="circleTpl"> </ng-container>
   </ng-container>
+  <ng-container *ngSwitchCase="'dashboard'">
+    <ng-container *ngTemplateOutlet="dashboardTpl"> </ng-container>
+  </ng-container>
   <ng-container *ngSwitchDefault>
     <ng-container *ngTemplateOutlet="lineTpl"> </ng-container>
   </ng-container>
@@ -26,11 +29,24 @@
 </ng-template>
 
 <ng-template #circleTpl>
-  <div class="x-progress-ring" [style.width]="circleSize" [style.height]="circleSize">
+  <div class="x-progress-ring" [style.width]="size" [style.height]="size">
     <div class="x-progress-ring-rail" [style.border-width]="thickness"></div>
     <div
       class="x-progress-ring-bg"
-      [style.clip-path]="clipPath"
+      [style.clip-path]="circleClipPath"
+      [style.background-color]="currentColor"
+      [style.border-width]="thickness"
+    ></div>
+    <ng-container *ngTemplateOutlet="textTpl"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #dashboardTpl>
+  <div class="x-progress-ring" [style.width]="size" [style.height]="size">
+    <div class="x-progress-ring-rail" [style.clip-path]="dashboardRailClipPath" [style.border-width]="thickness"></div>
+    <div
+      class="x-progress-ring-bg"
+      [style.clip-path]="dashboardClipPath"
       [style.background-color]="currentColor"
       [style.border-width]="thickness"
     ></div>

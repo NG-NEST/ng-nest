@@ -22,7 +22,9 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   currentColor!: string;
   linearGradient!: string;
   stepsArray: Array<boolean> = [];
-  clipPath!: string;
+  circleClipPath!: string;
+  dashboardClipPath!: string;
+  dashboardRailClipPath!: string;
 
   constructor(
     public renderer: Renderer2,
@@ -34,12 +36,12 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { status, percent, gradient, steps, type } = simples;
+    const { status, percent, gradient, steps, type, notchAngle } = simples;
     XIsChange(type, status) && this.setClassMap();
     XIsChange(percent) && this.setColor();
     XIsChange(gradient) && this.setGradient();
     XIsChange(steps, percent) && this.setSteps();
-    XIsChange(type, percent) && this.setType();
+    XIsChange(type, percent, notchAngle) && this.setType();
   }
 
   setClassMap() {
@@ -84,7 +86,6 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
       }
       this.linearGradient = `linear-gradient(${direction}, ${from}, ${to})`;
     }
-    console.log(this.linearGradient);
   }
 
   sortGradient(percents: { [percent: string]: string }) {
@@ -110,35 +111,86 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
 
   setType() {
     if (this.type === 'circle') {
-      this.setClipPath();
+      this.setCircleClipPath();
+    } else if (this.type === 'dashboard') {
+      this.setDashboardClipPath();
     }
   }
 
   /**
    * circle 中的 100% 等于 clip-path 中的 400%
    */
-  setClipPath() {
-    let r = Number(this.percent) * 4;
+  setCircleClipPath() {
+    let value = Number(this.percent) * 4;
     let k1 = 'polygon(50% 50%,50% 0%,';
     let k2 = k1 + '100% 0%,';
     let k3 = k2 + '100% 100%,';
     let k4 = k3 + '0% 100%,';
     let k5 = k4 + '0% 0%,';
-    if (r <= 50) {
-      r += 50;
-      this.clipPath = `${k1}${r}% 0%)`;
-    } else if (r > 50 && r <= 150) {
-      r -= 50;
-      this.clipPath = `${k2}100% ${r}%)`;
-    } else if (r > 150 && r <= 250) {
-      r = 250 - r;
-      this.clipPath = `${k3}${r}% 100%)`;
-    } else if (r > 250 && r <= 350) {
-      r = 350 - r;
-      this.clipPath = `${k4}0% ${r}%)`;
-    } else if (r > 350 && r <= 400) {
-      r -= 350;
-      this.clipPath = `${k5}${r}% 0%)`;
+    if (value <= 50) {
+      value += 50;
+      this.circleClipPath = `${k1}${value}% 0%)`;
+    } else if (value > 50 && value <= 150) {
+      value -= 50;
+      this.circleClipPath = `${k2}100% ${value}%)`;
+    } else if (value > 150 && value <= 250) {
+      value = 250 - value;
+      this.circleClipPath = `${k3}${value}% 100%)`;
+    } else if (value > 250 && value <= 350) {
+      value = 350 - value;
+      this.circleClipPath = `${k4}0% ${value}%)`;
+    } else if (value > 350 && value <= 400) {
+      value -= 350;
+      this.circleClipPath = `${k5}${value}% 0%)`;
+    }
+  }
+
+  /**
+   *
+   * 90 polygon(50% 50%, 0% 100%, 0% 0%, 100% 0%, 100% 100%);
+   * 180 polygon(50% 50%, 0% 50%, 0% 0%, 100% 0%, 100% 50%);
+   * 270 polygon(50% 50%, 0% 0%, 100% 0%);
+   */
+  setDashboardClipPath() {
+    let railValue = (Number(this.notchAngle) / 360) * 50 * 4;
+    let k1 = `polygon(50% 50%,`;
+    let start = '';
+    let per = 0;
+    if (railValue <= 50) {
+      per = 50 - railValue;
+      start = `${k1} ${per}% 100%`;
+      this.dashboardRailClipPath = `${start}, 0% 100%, 0% 0%, 100% 0%, 100% 100%, ${100 - per}% 100%)`;
+    } else if (railValue > 50 && railValue <= 150) {
+      per = 150 - railValue;
+      start = `${k1} 0% ${per}%`;
+      this.dashboardRailClipPath = `${start}, 0% 0%, 100% 0%, 100% ${per}%)`;
+    } else if (railValue > 150 && railValue <= 250) {
+      per = railValue - 150;
+      start = `${k1} ${per}% 0%`;
+      this.dashboardRailClipPath = `${start}, ${100 - per}% 0%)`;
+    }
+
+    this.setCircleClipPathValue(start, railValue);
+  }
+
+  setCircleClipPathValue(start: string, railValue: number) {
+    let value = ((400 - railValue * 2) / 100) * Number(this.percent);
+    let val = value + railValue;
+    if (val <= 50) {
+      val = 50 - val;
+      this.dashboardClipPath = `${start}, ${val}% 100%)`;
+    } else if (val > 50 && val <= 150) {
+      val = 150 - val;
+      this.dashboardClipPath = `${start}, 0% 100%, 0% ${val}%)`;
+    } else if (val > 150 && val <= 250) {
+      val = val - 150;
+      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, ${val}% 0%)`;
+    } else if (val > 250 && val <= 350) {
+      val = val - 250;
+      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 0% 100%, ${val}% 100%)`;
+    } else if (val > 350 && val <= 400) {
+      val = 250 - val;
+      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 0% 100%, 100% 100%, ${val}% 100%)`;
     }
   }
 
