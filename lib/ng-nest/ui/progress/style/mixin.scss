@@ -73,6 +73,7 @@
       border-style: solid;
       border-color: $--x-primary;
       border-radius: 100%;
+      transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     }
     .x-progress-text {
       margin-left: 0;
@@ -87,6 +88,7 @@
   }
   &-step-active {
     background-color: $--x-primary;
+    transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   }
   &-text {
     margin-left: 0.5rem;

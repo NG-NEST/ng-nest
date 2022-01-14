@@ -187,10 +187,10 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
       this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, ${val}% 0%)`;
     } else if (val > 250 && val <= 350) {
       val = val - 250;
-      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 0% 100%, ${val}% 100%)`;
+      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 100% 0%, 100% ${val}%)`;
     } else if (val > 350 && val <= 400) {
-      val = 250 - val;
-      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 0% 100%, 100% 100%, ${val}% 100%)`;
+      val = 100 - (val - 350);
+      this.dashboardClipPath = `${start}, 0% 100%, 0% 0%, 100% 0%, 100% 100%, ${val}% 100%)`;
     }
   }
 
