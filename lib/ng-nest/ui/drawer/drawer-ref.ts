@@ -1,5 +1,5 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { filter, take } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
 import { XDrawerContainerComponent } from './drawer-container.component';
 
 // TODO: add more function
