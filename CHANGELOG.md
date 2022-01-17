@@ -1,3 +1,27 @@
+## [13.0.4](https://github.com/NG-NEST/ng-nest/compare/13.0.3...13.0.4) (2022-01-17)
+
+
+### Bug Fixes
+
+* **modue:progress:** solve build error ([3a53569](https://github.com/NG-NEST/ng-nest/commit/3a53569fb84eac1b984efa25e4e1d29990d448d8))
+* **module:drawer:** fix type error ([faace02](https://github.com/NG-NEST/ng-nest/commit/faace02c8e9f5a274ffab919c4d4576072a2bc42))
+* **module:select:** click icon pop up ([c55fdcd](https://github.com/NG-NEST/ng-nest/commit/c55fdcd673b736ea719c2b49b78b6e07200d1fc1)), closes [#176](https://github.com/NG-NEST/ng-nest/issues/176)
+
+
+### Features
+
+* **module:dialog:** add dialog service ([43a4d11](https://github.com/NG-NEST/ng-nest/commit/43a4d113bb61a2eb8a6d5848fa4402949802666c)), closes [#175](https://github.com/NG-NEST/ng-nest/issues/175)
+* **module:drawer:** add drawer service ([47b7123](https://github.com/NG-NEST/ng-nest/commit/47b71238141850867c2fef661ddeeafdec94787e)), closes [#175](https://github.com/NG-NEST/ng-nest/issues/175)
+* **module:popconfirm:** add async close example ([1153f3b](https://github.com/NG-NEST/ng-nest/commit/1153f3bf0dc7492b08f3a73621346ec65e277543)), closes [#169](https://github.com/NG-NEST/ng-nest/issues/169)
+* **module:progress:** add circle type ([c1c82f5](https://github.com/NG-NEST/ng-nest/commit/c1c82f516537bb0d10249c3889b328e09800caf4)), closes [#170](https://github.com/NG-NEST/ng-nest/issues/170)
+* **module:progress:** add dashboard type ([fda9961](https://github.com/NG-NEST/ng-nest/commit/fda99614e5af5cf3ad109cd4a7ad5d3daccd5374)), closes [#177](https://github.com/NG-NEST/ng-nest/issues/177)
+* **module:progress:** add gradient and steps ([ceb56d9](https://github.com/NG-NEST/ng-nest/commit/ceb56d964e65bfd70dd4f33f65831cf3a1145bb5)), closes [#173](https://github.com/NG-NEST/ng-nest/issues/173) [#172](https://github.com/NG-NEST/ng-nest/issues/172)
+* **module:progress:** add subsection param ([668313c](https://github.com/NG-NEST/ng-nest/commit/668313cedeeccd848bebeb13d392e6b3118ad741)), closes [#171](https://github.com/NG-NEST/ng-nest/issues/171)
+* **module:progress:** optimize dashboard calculation ([fa4155d](https://github.com/NG-NEST/ng-nest/commit/fa4155d417b37452ec82d0e45be988ca0195c4d6)), closes [#177](https://github.com/NG-NEST/ng-nest/issues/177)
+* **module:steps:** add nodeStatus param ([3c2aece](https://github.com/NG-NEST/ng-nest/commit/3c2aeceab8a47629f6fe86329f88c8cdf14008cf)), closes [#178](https://github.com/NG-NEST/ng-nest/issues/178)
+
+
+
 ## [13.0.3](https://github.com/NG-NEST/ng-nest/compare/13.0.2...13.0.3) (2022-01-01)
 
 
