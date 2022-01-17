@@ -19,7 +19,7 @@ import {
   XConfigService,
   XIsNumber
 } from '@ng-nest/ui/core';
-import { XProgressColorNode } from '..';
+import { XProgressColorNode } from './progress.property';
 
 @Component({
   selector: `${XProgressPrefix}`,
