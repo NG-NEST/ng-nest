@@ -5,7 +5,9 @@ import {
   XDataConvert,
   XInputNumber,
   XNumber,
-  XTemplate
+  XTemplate,
+  XInputBoolean,
+  XBoolean
 } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
@@ -51,6 +53,11 @@ export class XStepsProperty extends XProperty {
    * @en_US Custom node
    */
   @Input() customTpl?: XTemplate;
+  /**
+   * @zh_CN 节点设置的状态优先，将不会自动计算当前节点，`activatedIndex` 和 `status` 将失效
+   * @en_US the status set by the node takes precedence, and the current node will not be calculated, `activatedIndex` and `status` will be invalidated
+   */
+  @Input() @XInputBoolean() nodeStatus?: XBoolean;
 }
 
 export interface XStepsNode extends XParentIdentityProperty<XStepsNode> {
