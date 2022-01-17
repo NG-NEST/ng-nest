@@ -4,6 +4,7 @@ import { NcCate, NcCates, NcCode, NcCodeBox } from '../interfaces/examples';
 import { parseMdDoc } from '.';
 import { sortBy } from 'lodash';
 import { NcPage } from '../interfaces/page';
+import { NcTemplate } from '../interfaces/template';
 
 /**
  * 示例分类处理
@@ -26,11 +27,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           label: readme.meta.label,
           path: catePath
         };
-        handlerCodeBoxes(cate, readme);
-        if (cate.className) {
-          mod.syswords.declarations += `, ${cate.className}`;
-          mod.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(`/${page.lang}/`, '/')}';\n`;
-        }
+        handlerCodeBoxes(cate, readme, mod, page);
         cates.list.push(cate);
         cates.list = sortBy(cates.list, 'order');
       }
@@ -45,7 +42,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
  * @param {NcCate} cate
  * @param {*} readme
  */
-export function handlerCodeBoxes(cate: NcCate, readme) {
+export function handlerCodeBoxes(cate: NcCate, readme, module: NcTemplate, page: NcPage) {
   let folder = fs.readdirSync(cate.path, 'utf8');
   let box: NcCodeBox = {
     codes: [],
@@ -60,6 +57,7 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
         subType: subType.slice(subType.lastIndexOf('.') + 1, subType.length),
         content: fs.readFileSync(path.join(cate.path, x), 'utf8')
       };
+
       if (code.type === 'ts' && code.subType === 'component') {
         const matchSelector = code.content.match(/selector: \'(\S*)\',/);
         const matchClassName = code.content.match(/export class (\S*) /);
@@ -69,6 +67,10 @@ export function handlerCodeBoxes(cate: NcCate, readme) {
           0,
           x.lastIndexOf(code.type) - 1
         )}`;
+        if (cate.className) {
+          module.syswords.declarations += `, ${cate.className}`;
+          module.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(`/${page.lang}/`, '/')}';\n`;
+        }
       }
       box.codes.push(code);
     }
