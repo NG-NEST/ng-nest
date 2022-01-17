@@ -270,6 +270,9 @@ export interface XDialogConfig {
 export interface XDrawerConfig {
   placement?: XPosition;
   size?: string;
+  backdropClose?: XBoolean;
+  hasBackdrop?: XBoolean;
+  className?: string;
 }
 
 export interface XDropdownConfig {
@@ -423,6 +426,7 @@ export interface XPortalConfig {}
 
 export interface XProgressConfing {
   height?: string;
+  stepWidth?: string;
 }
 
 export interface XRadioConfig {

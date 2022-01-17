@@ -1,0 +1,10 @@
+// Dialog container
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+.#{$--x-dialog-container} {
+  @include reset-component();
+  @include dialog-container();
+}

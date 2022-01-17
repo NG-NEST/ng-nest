@@ -7,7 +7,7 @@ import {
   XMessageRef,
   XMessagePortal,
   XMessageOption,
-  X_CONFIG_NAME
+  X_MESSAGE_CONFIG_NAME
 } from './message.property';
 import { XMessageComponent } from './message.component';
 import { of } from 'rxjs';
@@ -34,7 +34,7 @@ export class XMessageService {
   configDefault?: XMessageConfig;
 
   constructor(public portal: XPortalService, public configService: XConfigService) {
-    this.configDefault = this.configService.getConfigForComponent(X_CONFIG_NAME);
+    this.configDefault = this.configService.getConfigForComponent(X_MESSAGE_CONFIG_NAME);
     Object.assign(this.default, this.configDefault);
   }
 

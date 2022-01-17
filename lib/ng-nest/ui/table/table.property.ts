@@ -369,7 +369,7 @@ export interface XTableCell {
    * @zh_CN 宽度
    * @en_US Width
    */
-  width?: string;
+  width?: number;
   /**
    * @zh_CN 固定列，距离左边的距离
    * @en_US Fixed column, distance from left

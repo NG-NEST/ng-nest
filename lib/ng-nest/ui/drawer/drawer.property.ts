@@ -1,5 +1,8 @@
 import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, InjectionToken, ViewContainerRef } from '@angular/core';
+import { XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { XDrawerContainerComponent } from './drawer-container.component';
+import { XDrawerRef } from './drawer-ref';
 
 /**
  * Drawer
@@ -7,7 +10,8 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XDrawerPrefix = 'x-drawer';
-const X_CONFIG_NAME = 'drawer';
+export const X_DRAWER_CONFIG_NAME = 'drawer';
+export const X_DRAWER_DATA = new InjectionToken<any>('XDrawerData');
 
 /**
  * Drawer Property
@@ -28,12 +32,27 @@ export class XDrawerProperty extends XProperty {
    * @zh_CN 展示方向
    * @en_US Display direction
    */
-  @Input() @XWithConfig<XPosition>(X_CONFIG_NAME, 'right') placement?: XPosition;
+  @Input() @XWithConfig<XPosition>(X_DRAWER_CONFIG_NAME, 'right') placement?: XPosition;
   /**
    * @zh_CN 尺寸，支持固定值
    * @en_US Size, supports fixed value
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '30%') size?: string;
+  @Input() @XWithConfig<string>(X_DRAWER_CONFIG_NAME, '30%') size?: string;
+  /**
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
+   */
+  @Input() @XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME, true) backdropClose!: XBoolean;
+  /**
+   * @zh_CN 是否显示背景遮罩
+   * @en_US Whether to display the background mask
+   */
+  @Input() @XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME, true) hasBackdrop!: XBoolean;
+  /**
+   * @zh_CN 自定义样式名
+   * @en_US Custom style name
+   */
+  @Input() @XWithConfig<string>(X_DRAWER_CONFIG_NAME, '') className!: string;
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed event
@@ -44,4 +63,69 @@ export class XDrawerProperty extends XProperty {
    * @en_US Show/hide event
    */
   @Output() visibleChange = new EventEmitter<boolean>();
+}
+
+/**
+ * Drawer Option
+ */
+export interface XDrawerOption {
+  /**
+   * @zh_CN 展示方向
+   * @en_US Display direction
+   * @default 'right'
+   * @withConfig true
+   */
+  placement?: XPosition;
+  /**
+   * @zh_CN 尺寸，支持固定值
+   * @en_US Size, supports fixed value
+   * @default '30%'
+   * @withConfig true
+   */
+  size?: string;
+  /**
+   * @zh_CN 自定义样式名
+   * @en_US Custom style name
+   */
+  className?: string;
+  /**
+   * @zh_CN 点击遮罩关闭
+   * @en_US Click the mask to close
+   * @default true
+   * @withConfig true
+   */
+  backdropClose?: boolean;
+  /**
+   * @zh_CN 是否显示背景遮罩
+   * @en_US Whether to display the background mask
+   * @default true
+   * @withConfig true
+   */
+  hasBackdrop?: boolean;
+  /**
+   * @zh_CN 数据，通过 "@Inject(X_DRAWER_DATA)" 来接收数据
+   * @en_US Data. Receive data by "@Inject(X_DRAWER_DATA)"
+   */
+  data?: any;
+  /**
+   * @en_US 视图容器实例可以包含其他视图容器。
+   * @en_US A view container instance can contain other view containers.
+   */
+  viewContainerRef?: ViewContainerRef;
+}
+
+/**
+ * @zh_CN 创建的抽屉对象
+ * @en_US Drawer object created
+ */
+export interface XDrawerOverlayRef extends XPortalOverlayRef<XDrawerContainerComponent> {
+  drawerRef?: XDrawerRef<any>;
+}
+
+export type XDrawerAnimationState = XPosition | 'void';
+
+export interface XDrawerAnimationEvent {
+  state: XDrawerAnimationState;
+  action: 'start' | 'done';
+  totalTime: number;
 }

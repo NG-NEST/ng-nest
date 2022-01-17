@@ -1,18 +1,100 @@
-<div class="x-progress" [ngClass]="classMap">
+<div
+  class="x-progress"
+  [ngClass]="classMap"
+  [class.x-progress-steps]="stepsArray.length > 0"
+  [class.x-progress-steps-flex]="stepFlex"
+  [ngSwitch]="type"
+>
+  <ng-container *ngSwitchCase="'circle'">
+    <ng-container *ngTemplateOutlet="circleTpl"> </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'dashboard'">
+    <ng-container *ngTemplateOutlet="dashboardTpl"> </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <ng-container *ngTemplateOutlet="lineTpl"> </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #lineTpl>
+  <ng-container *ngIf="stepsArray.length === 0">
+    <ng-container *ngTemplateOutlet="trackTpl"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="stepsArray.length > 0">
+    <ng-container *ngTemplateOutlet="stepsTpl"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="info && !inside">
+    <ng-container *ngTemplateOutlet="textTpl"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #circleTpl>
+  <div class="x-progress-ring" [style.width]="size" [style.height]="size">
+    <div class="x-progress-ring-rail" [style.border-width]="thickness"></div>
+    <div
+      class="x-progress-ring-bg"
+      [style.clip-path]="circleClipPath"
+      [style.background-color]="currentColor"
+      [style.border-width]="thickness"
+    ></div>
+    <ng-container *ngTemplateOutlet="textTpl"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #dashboardTpl>
+  <div class="x-progress-ring" [style.width]="size" [style.height]="size">
+    <div class="x-progress-ring-rail" [style.clip-path]="dashboardRailClipPath" [style.border-width]="thickness"></div>
+    <div
+      class="x-progress-ring-bg"
+      [style.clip-path]="dashboardClipPath"
+      [style.background-color]="currentColor"
+      [style.border-width]="thickness"
+    ></div>
+    <ng-container *ngTemplateOutlet="textTpl"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #trackTpl>
   <div class="x-progress-track">
-    <div class="x-progress-rail">
+    <div class="x-progress-rail" [class.x-progress-mask]="subsection" [style.background-image]="subsection ? subLinearGradient : 'none'">
       <div
         class="x-progress-bg"
         [style.width.%]="percent"
         [style.background-color]="currentColor"
+        [style.background-image]="linearGradient"
         [style.height]="height"
         [style.line-height]="height"
       >
-        <span *ngIf="inside">{{ percent }}%</span>
+        <ng-container *ngIf="info && inside">
+          <ng-container *ngTemplateOutlet="textTpl"></ng-container>
+        </ng-container>
       </div>
+      <div
+        *ngIf="subsection"
+        class="x-progress-bg-mask"
+        [style.width.%]="maskWidth"
+        [style.height]="height"
+        [style.line-height]="height"
+      ></div>
     </div>
   </div>
-  <span class="x-progress-text" *ngIf="info && !inside" [ngSwitch]="status">
+</ng-template>
+
+<ng-template #stepsTpl>
+  <div
+    *ngFor="let step of stepsArray"
+    class="x-progress-step"
+    [class.x-progress-step-active]="step"
+    [style.background-color]="currentColor"
+    [style.width]="stepWidth"
+    [style.flex]="stepFlex ? 1 : 'none'"
+    [style.height]="height"
+    [style.line-height]="height"
+  ></div>
+</ng-template>
+
+<ng-template #textTpl>
+  <span class="x-progress-text" [ngSwitch]="status">
     <ng-container *ngSwitchCase="'success'">
       <x-icon type="fto-check-circle"></x-icon>
     </ng-container>
@@ -27,4 +109,4 @@
       <ng-template #defaultTemp>{{ percent }}%</ng-template>
     </ng-container>
   </span>
-</div>
+</ng-template>
