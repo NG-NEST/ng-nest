@@ -9,11 +9,21 @@ import { ExGradientComponent } from './gradient/gradient.component';
 import { ExStepsComponent } from './steps/steps.component';
 import { ExCircleComponent } from './circle/circle.component';
 import { ExDashboardComponent } from './dashboard/dashboard.component';
+import { ExSubsectionComponent } from './subsection/subsection.component';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeProgressComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XProgressModule, XLayoutModule],
-  declarations: [TeProgressComponent, ExDefaultComponent, ExGradientComponent, ExStepsComponent, ExCircleComponent, ExDashboardComponent]
+  imports: [RouterModule.forChild(routers), CommonModule, XProgressModule, XLayoutModule, XButtonModule],
+  declarations: [
+    TeProgressComponent,
+    ExDefaultComponent,
+    ExGradientComponent,
+    ExStepsComponent,
+    ExCircleComponent,
+    ExDashboardComponent,
+    ExSubsectionComponent
+  ]
 })
 export class TeProgressModule {}

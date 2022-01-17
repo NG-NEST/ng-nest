@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss']
 })
-export class ExStepsComponent {}
+export class ExStepsComponent {
+  percent = 50;
+  plus(num: number) {
+    if ((this.percent === 0 && num === -10) || (this.percent === 100 && num === 10)) return;
+    this.percent = this.percent + num;
+  }
+}

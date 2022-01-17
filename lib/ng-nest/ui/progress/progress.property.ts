@@ -53,7 +53,7 @@ export class XProgressProperty extends XProperty {
    * @zh_CN 自定义颜色
    * @en_US Custom color
    */
-  @Input() color?: string | { color: string; percent: number }[] | Function;
+  @Input() color?: XProgressColor;
   /**
    * @zh_CN 渐变颜色
    * @en_US Gradient color
@@ -89,6 +89,11 @@ export class XProgressProperty extends XProperty {
    * @en_US Dashboard notch angle
    */
   @Input() notchAngle?: number = 80;
+  /**
+   * @zh_CN 分段显示颜色，只适用 type = 'line'
+   * @en_US Segmentation display color, only use of type = 'line'
+   */
+  @Input() @XInputBoolean() subsection?: XBoolean;
 }
 
 /**
@@ -97,6 +102,28 @@ export class XProgressProperty extends XProperty {
  */
 export type XProgressType = 'line' | 'circle' | 'dashboard';
 
+/**
+ * @zh_CN 进度条颜色
+ * @en_US Progress bar color
+ */
+export type XProgressColor = string | XProgressColorNode[] | Function;
+
+/**
+ * @zh_CN 进度条节点颜色
+ * @en_US Progress bar node color
+ */
+export interface XProgressColorNode {
+  /**
+   * @zh_CN 颜色
+   * @en_US Color
+   */
+  color: string;
+  /**
+   * @zh_CN 百分比
+   * @en_US Percent
+   */
+  percent: number;
+}
 /**
  * @zh_CN 状态
  * @en_US Status

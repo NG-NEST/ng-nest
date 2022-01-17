@@ -9,7 +9,17 @@ import {
   OnChanges
 } from '@angular/core';
 import { XProgressPrefix, XProgressProperty } from './progress.property';
-import { XIsFunction, XIsString, XIsObjectArray, XIsEmpty, XIsChange, XNumber, XConfigService } from '@ng-nest/ui/core';
+import {
+  XIsFunction,
+  XIsString,
+  XIsObjectArray,
+  XIsEmpty,
+  XIsChange,
+  XNumber,
+  XConfigService,
+  XIsNumber
+} from '@ng-nest/ui/core';
+import { XProgressColorNode } from '..';
 
 @Component({
   selector: `${XProgressPrefix}`,
@@ -25,6 +35,11 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   circleClipPath!: string;
   dashboardClipPath!: string;
   dashboardRailClipPath!: string;
+  subLinearGradient!: string;
+
+  get maskWidth() {
+    return XIsNumber(this.percent) ? 100 - Number(this.percent) : 100;
+  }
 
   constructor(
     public renderer: Renderer2,
@@ -53,18 +68,22 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   }
 
   setColor() {
-    if (XIsEmpty(this.color)) return;
-    if (XIsString(this.color)) {
-      this.currentColor = this.color as string;
-    } else if (XIsObjectArray(this.color)) {
-      this.currentColor = this.getLevelColor(this.percent);
-    } else if (XIsFunction(this.color)) {
-      this.currentColor = (this.color as Function)(this.percent);
+    if (this.subsection) {
+      this.setSubLinearGradient();
+    } else {
+      if (XIsEmpty(this.color)) return;
+      if (XIsString(this.color)) {
+        this.currentColor = this.color as string;
+      } else if (XIsObjectArray(this.color)) {
+        this.currentColor = this.getLevelColor(this.percent);
+      } else if (XIsFunction(this.color)) {
+        this.currentColor = (this.color as Function)(this.percent);
+      }
     }
   }
 
   getLevelColor(percent: XNumber) {
-    let colors = (this.color as { color: string; percent: number }[]).sort((a, b) => a.percent - b.percent);
+    let colors = (this.color as XProgressColorNode[]).sort((a, b) => a.percent - b.percent);
     for (let i = 0; i < colors.length; i++) {
       if (colors[i].percent > Number(percent)) {
         return colors[i].color;
@@ -74,6 +93,7 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
   }
 
   setGradient() {
+    if (this.subsection) return;
     if (XIsEmpty(this.gradient)) {
       this.linearGradient = '';
     } else {
@@ -98,6 +118,29 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
       }
     });
     return arr.sort((a, b) => a.key - b.key);
+  }
+
+  setSubLinearGradient() {
+    let colors = this.color as XProgressColorNode[];
+    if (!colors || colors.length <= 0) {
+      this.subLinearGradient = `linear-gradient(to right, var(--x-primary) 0%, var(--x-primary) 100%)`;
+      return;
+    } else if (colors.length === 1) {
+      colors.push({ percent: 100, color: 'var(--x-primary)' });
+    }
+    colors = colors.sort((a, b) => a.percent - b.percent);
+    let lgs: string[] = [];
+    colors.reduce((a, b, index) => {
+      if (index === 1 && a.percent > 0) {
+        lgs.push(`${a.color} 0%, ${a.color} ${a.percent}%`);
+      }
+      lgs.push(`${b.color} ${a.percent}%, ${b.color} ${b.percent}%`);
+      if (index === colors.length - 1 && b.percent < 100) {
+        lgs.push(`var(--x-primary) ${b.percent}%, var(--x-primary) 100%`);
+      }
+      return b;
+    });
+    this.subLinearGradient = `linear-gradient(to right,${lgs.join(',')})`;
   }
 
   setSteps() {

@@ -30,7 +30,7 @@
   }
   &-rail {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     width: 100%;
     overflow: hidden;
     vertical-align: middle;
@@ -40,7 +40,7 @@
   &-bg {
     position: relative;
     background-color: $--x-primary;
-    transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    transition: width 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     border-radius: $--x-border-radius;
     text-align: right;
     color: white;
@@ -73,25 +73,38 @@
       border-style: solid;
       border-color: $--x-primary;
       border-radius: 100%;
-      transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+      transition: clip-path 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     }
     .x-progress-text {
       margin-left: 0;
+      justify-content: center;
       font-size: $--x-font-size-large;
     }
   }
+  &-mask {
+    .#{$--x-progress}-bg {
+      background: transparent;
+    }
+  }
+  &-bg-mask {
+    transition: width 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    background-color: $--x-border-100;
+    border-top-right-radius: $--x-border-radius;
+    border-bottom-right-radius: $--x-border-radius;
+  }
   &-step {
     background-color: $--x-border-100;
+    border-radius: $--x-border-radius;
     &:not(:first-child) {
       margin-left: 0.125rem;
     }
   }
   &-step-active {
     background-color: $--x-primary;
-    transition: all 0.3s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   }
   &-text {
     margin-left: 0.5rem;
+    width: 3.25rem;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;

@@ -56,7 +56,7 @@
 
 <ng-template #trackTpl>
   <div class="x-progress-track">
-    <div class="x-progress-rail">
+    <div class="x-progress-rail" [class.x-progress-mask]="subsection" [style.background-image]="subsection ? subLinearGradient : 'none'">
       <div
         class="x-progress-bg"
         [style.width.%]="percent"
@@ -69,6 +69,13 @@
           <ng-container *ngTemplateOutlet="textTpl"></ng-container>
         </ng-container>
       </div>
+      <div
+        *ngIf="subsection"
+        class="x-progress-bg-mask"
+        [style.width.%]="maskWidth"
+        [style.height]="height"
+        [style.line-height]="height"
+      ></div>
     </div>
   </div>
 </ng-template>
