@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'progress',
+  defaultPage: 'popconfirm',
   static: 'http://localhost:9494'
 };
 

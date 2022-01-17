@@ -32,6 +32,14 @@ const routes: Routes = [
         path: 'progress',
         loadChildren: () => import('./modules/progress/progress.module').then((x) => x.TeProgressModule)
       },
+      {
+        path: 'steps',
+        loadChildren: () => import('./modules/steps/steps.module').then((x) => x.TeStepsModule)
+      },
+      {
+        path: 'popconfirm',
+        loadChildren: () => import('./modules/popconfirm/popconfirm.module').then((x) => x.TePopconfirmModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
