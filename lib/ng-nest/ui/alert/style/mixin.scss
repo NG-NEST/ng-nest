@@ -46,6 +46,7 @@
   @include type('info', $--x-info, $--x-info-900, $--x-info-600, $--x-info-400);
   @include type('warning', $--x-warning, $--x-warning-900, $--x-warning-600, $--x-warning-400);
   @include type('error', $--x-danger, $--x-danger-900, $--x-danger-600, $--x-danger-400);
+  @include type('loading', $--x-primary, $--x-info-900, $--x-info-600, $--x-info-400);
 }
 
 @mixin type($type, $color, $background, $border-color, $close-color) {

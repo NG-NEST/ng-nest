@@ -18,6 +18,11 @@ export const X_MESSAGE_CONFIG_NAME = 'message';
  */
 export interface XMessageOption extends XAlertOption {
   /**
+   * @zh_CN 消息框的 id
+   * @en_US Message id
+   */
+  id?: string;
+  /**
    * @zh_CN 方位，九宫格
    * @en_US Direction, nine grid
    * @default 'top'
@@ -108,6 +113,7 @@ export interface XMessageRef {
   ref: XMessageOverlayRef;
   list: XMessageOption[];
   currentClose: () => void;
+  currentUpdate: (option: XMessageOption) => void;
   closeAll: () => void;
 }
 

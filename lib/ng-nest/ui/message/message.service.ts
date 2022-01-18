@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString, XConfigService, XMessageConfig } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString, XConfigService, XMessageConfig, XRemove } from '@ng-nest/ui/core';
 import {
   XMessageOverlayRef,
   XMessageType,
@@ -54,6 +54,10 @@ export class XMessageService {
     return this.createMessage(option, 'error');
   }
 
+  loading(option: XTemplate | XMessageOption): XMessageRef {
+    return this.createMessage(option, 'loading');
+  }
+
   create(option: XMessageOption): XMessageOverlayRef {
     const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
 
@@ -74,6 +78,7 @@ export class XMessageService {
       opt = option as XMessageOption;
       opt.type = type;
     }
+    if (!opt.id) opt.id = `${new Date().getTime()}`;
     fillDefault(opt, this.default);
     return this.createMessagePlacement(opt);
   }
@@ -87,7 +92,8 @@ export class XMessageService {
   }
 
   private createMessagePlacement(option: XMessageOption): XMessageRef {
-    if (typeof option.placement === 'undefined') return { ref: {}, list: [], currentClose: () => {}, closeAll: () => {} };
+    if (typeof option.placement === 'undefined')
+      return { ref: {}, list: [], currentClose: () => {}, currentUpdate: (_option: XMessageOption) => {}, closeAll: () => {} };
     let msgPlacement = this.messages[option.placement];
     this.setDuration(option);
     if (XIsEmpty(msgPlacement) || !msgPlacement.ref?.overlayRef?.hasAttached()) {
@@ -97,18 +103,22 @@ export class XMessageService {
         currentClose: () => {
           this.removeMessage(option);
         },
+        currentUpdate: (opt) => {
+          this.updateMessage(opt, option);
+        },
         closeAll: () => {
           this.closeAll();
         }
       };
+      msgPlacement = this.messages[option.placement];
     } else {
-      this.messages[option.placement].list = [...(this.messages[option.placement].list as XMessageOption[]), option];
+      msgPlacement.list = [...(this.messages[option.placement].list as XMessageOption[]), option];
     }
-    this.messageChange(this.messages[option.placement]);
+    this.messageChange(msgPlacement);
 
     option.displayType === 'single' && this.closeAll(option);
 
-    return this.messages[option.placement];
+    return msgPlacement;
   }
 
   private messageChange(message: XMessageRef) {
@@ -118,7 +128,7 @@ export class XMessageService {
   }
 
   private setDuration(option: XMessageOption) {
-    if (option.duration) {
+    if (option.duration && option.type !== 'loading') {
       option.duration$ = of(true)
         .pipe(delay(option.duration))
         .subscribe(() => {
@@ -130,5 +140,14 @@ export class XMessageService {
   private removeMessage(option: XMessageOption) {
     if (typeof option.placement === 'undefined') return;
     this.messages[option.placement].ref?.componentRef?.instance.onClose(option);
+  }
+
+  private updateMessage(newOption: XMessageOption, oldOption: XMessageOption) {
+    Object.assign(oldOption, newOption);
+    this.setDuration(oldOption);
+    const refs = this.messages[oldOption.placement!];
+    if (refs) {
+      refs.ref.componentRef?.instance.cdr.detectChanges();
+    }
   }
 }

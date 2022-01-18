@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
   animations: [XMoveAnimation]
 })
 export class XMessageComponent {
-  message: XMessageRef = { ref: {}, list: [], currentClose: () => {}, closeAll: () => {} };
+  message: XMessageRef = { ref: {}, list: [], currentClose: () => {}, currentUpdate: (_option: XMessageOption) => {}, closeAll: () => {} };
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
@@ -42,6 +42,6 @@ export class XMessageComponent {
   }
 
   trackByNode(_index: number, item: XMessageOption) {
-    return `${item.title}-${item.content}`;
+    return item.id;
   }
 }
