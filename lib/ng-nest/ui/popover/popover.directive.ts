@@ -28,6 +28,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   }
 
   @HostListener('click') click() {
+    if (this.condition) return;
     if (this.trigger === 'click') {
       this.visible = !this.visible;
       if (this.visible) this.show();
@@ -37,10 +38,12 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   }
 
   @HostListener('mouseenter') mouseenter() {
+    if (this.condition) return;
     if (this.trigger === 'hover') this.show();
   }
 
   @HostListener('mouseleave') mouseleave() {
+    if (this.condition) return;
     if (this.trigger === 'hover') this.hide();
   }
 
@@ -49,7 +52,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   ngOnChanges(changes: SimpleChanges): void {
     const { content, visible } = changes;
     XIsChange(content) && this.contentChange.next(this.content);
-    if (XIsChange(visible)) {
+    if (XIsChange(visible) && !this.condition) {
       if (this.visible) this.show();
       else this.hide();
     }

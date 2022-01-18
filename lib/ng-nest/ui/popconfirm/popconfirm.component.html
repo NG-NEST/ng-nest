@@ -8,7 +8,9 @@
   [placement]="placement"
   [trigger]="trigger"
   [width]="width"
+  [condition]="condition"
   [(visible)]="visible"
+  (click)="onClick()"
 >
   <ng-content></ng-content>
 </div>
@@ -25,6 +27,6 @@
 <ng-template #footerTpl>
   <div class="x-popconfirm-buttons">
     <x-button (click)="onCancel()">{{ getCancelText }}</x-button>
-    <x-button type="primary" (click)="onConfirm()">{{ getConfirmText }}</x-button>
+    <x-button type="primary" (click)="onConfirm()" [loading]="loading">{{ getConfirmText }}</x-button>
   </div>
 </ng-template>

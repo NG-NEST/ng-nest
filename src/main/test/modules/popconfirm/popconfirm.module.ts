@@ -7,11 +7,24 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { ExAsyncCloseComponent } from './async-close/async-close.component';
+import { ExConditionComponent } from './condition/condition.component';
+import { XSwitchModule } from '@ng-nest/ui/switch';
+import { FormsModule } from '@angular/forms';
+import { XMessageModule } from '@ng-nest/ui/message';
 
 const routers = [{ path: '', component: TePopconfirmComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XPopconfirmModule, XLayoutModule, XButtonModule],
-  declarations: [TePopconfirmComponent, ExDefaultComponent, ExAsyncCloseComponent]
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    XPopconfirmModule,
+    XLayoutModule,
+    XButtonModule,
+    FormsModule,
+    XSwitchModule,
+    XMessageModule
+  ],
+  declarations: [TePopconfirmComponent, ExDefaultComponent, ExAsyncCloseComponent, ExConditionComponent]
 })
 export class TePopconfirmModule {}

@@ -13,9 +13,11 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XMessageModule } from '@ng-nest/ui/message';
 
 describe(XPopconfirmPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -25,11 +27,13 @@ describe(XPopconfirmPrefix, () => {
         XButtonModule,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconModule,
+        XSwitchModule,
+        XMessageModule
       ],
       declarations: [TestXPopconfirmComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopconfirmComponent>;
     let popconfirm: DebugElement;

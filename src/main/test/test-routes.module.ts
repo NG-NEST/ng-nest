@@ -40,6 +40,10 @@ const routes: Routes = [
         path: 'popconfirm',
         loadChildren: () => import('./modules/popconfirm/popconfirm.module').then((x) => x.TePopconfirmModule)
       },
+      {
+        path: 'message',
+        loadChildren: () => import('./modules/message/message.module').then((x) => x.TeMessageModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
