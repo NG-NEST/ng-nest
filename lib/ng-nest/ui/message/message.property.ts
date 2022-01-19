@@ -106,14 +106,28 @@ export interface XMessageOverlayRef extends XPortalOverlayRef<XMessageComponent>
  * @en_US Message object in Jiugongge
  */
 export interface XMessagePlacement {
-  [property: string]: XMessageRef;
+  [property: string]: XMessagePlacementRef;
 }
 
-export interface XMessageRef {
+/**
+ * @zh_CN 九宫格中的消息对象
+ * @en_US Message object in Jiugongge
+ */
+export interface XMessagePlacementRef {
+  /**
+   * @zh_CN 方位对应的 overlayRef
+   * @en_US Placement overlayRef
+   */
   ref: XMessageOverlayRef;
+  /**
+   * @zh_CN 对应的消息 list 数据
+   * @en_US Corresponding message list data
+   */
   list: XMessageOption[];
-  currentClose: () => void;
-  currentUpdate: (option: XMessageOption) => void;
+  /**
+   * @zh_CN 关闭所有数据
+   * @en_US Close all data
+   */
   closeAll: () => void;
 }
 

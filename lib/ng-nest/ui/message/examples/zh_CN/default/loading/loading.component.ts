@@ -10,14 +10,14 @@ export class ExLoadingComponent {
   loading() {
     const ld = this.message.loading('加载中');
     setTimeout(() => {
-      ld.currentClose();
+      ld.close();
     }, 3000);
   }
 
   loadingSuccess() {
     const ld = this.message.loading('加载中');
     setTimeout(() => {
-      ld.currentUpdate({ type: 'success', title: '加载完成！', duration: 2000 });
+      ld.update({ type: 'success', title: '加载完成！', duration: 2000 });
     }, 3000);
   }
 }
