@@ -83,7 +83,7 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         hasBackdrop: true,
-        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        scrollStrategy: this.overlay.scrollStrategies.block(),
         positionStrategy: this.portalService.setPosition(this.placement, width, height)
       }
     });

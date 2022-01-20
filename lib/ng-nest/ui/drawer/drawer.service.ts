@@ -32,7 +32,7 @@ export class XDrawerService {
       overlayConfig: {
         hasBackdrop: option.hasBackdrop,
         panelClass: option.className,
-        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        scrollStrategy: this.overlay.scrollStrategies.block(),
         positionStrategy: this.portalService.setPosition(option.placement, width, height)
       }
     });
