@@ -1,11 +1,11 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { filter, take } from 'rxjs';
-import { XDrawerContainerComponent } from './drawer-container.component';
+import { XDrawerPortalComponent } from './drawer-portal.component';
 
 // TODO: add more function
 export class XDrawerRef<C> {
   componentInstance!: C;
-  constructor(public overlayRef: OverlayRef, public containerInstance: XDrawerContainerComponent) {}
+  constructor(public overlayRef: OverlayRef, public containerInstance: XDrawerPortalComponent) {}
   close() {
     this.containerInstance.animationChanged
       .pipe(

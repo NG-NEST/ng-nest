@@ -1,0 +1,9 @@
+<x-drawer-container class="example-container">
+  <div class="example-content">
+    <x-radio [data]="data" [(ngModel)]="value"></x-radio>
+    <x-button (click)="open()">Open</x-button>
+  </div>
+  <x-drawer title="Title" [visible]="visible" [placement]="value" (close)="close()">
+    <span>Content</span>
+  </x-drawer>
+</x-drawer-container>

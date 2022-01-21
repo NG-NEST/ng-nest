@@ -15,12 +15,12 @@ export class XDrawerCloseDirective {
   selector: `[x-drawer-title]`
 })
 export class XDrawerTitleDirective {
-  @HostBinding('class.x-drawer-container-title') _has = true;
+  @HostBinding('class.x-drawer-portal-title') _has = true;
 }
 
 @Directive({
   selector: `[x-drawer-content], x-drawer-content`
 })
 export class XDrawerContentDirective {
-  @HostBinding('class.x-drawer-container-content') _has = true;
+  @HostBinding('class.x-drawer-portal-content') _has = true;
 }

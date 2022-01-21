@@ -10,11 +10,12 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { ExServiceComponent } from './service/service.component';
 import { ExServiceDrawerComponent } from './service/service-drawer.component';
+import { ExContainerComponent } from './container/container.component';
 
 const routers = [{ path: '', component: TeDrawerComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XDrawerModule, XLayoutModule, XRadioModule, XButtonModule],
-  declarations: [TeDrawerComponent, ExDefaultComponent, ExServiceComponent, ExServiceDrawerComponent]
+  declarations: [TeDrawerComponent, ExDefaultComponent, ExServiceComponent, ExServiceDrawerComponent, ExContainerComponent]
 })
 export class TeDrawerModule {}
