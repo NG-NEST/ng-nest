@@ -13,7 +13,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
-import { XDialogPrefix, XDialogOverlayRef, XDialogPortal, XDialogProperty } from './dialog.property';
+import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
@@ -98,7 +98,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       content: this.dialogTpl,
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
-        panelClass: [XDialogPortal, this.className],
+        panelClass: [XDialogContainer, this.className],
         hasBackdrop: Boolean(this.hasBackdrop),
         positionStrategy: this.protalService.setPlace(this.placement, this.width, this.height, this.offset)
       }

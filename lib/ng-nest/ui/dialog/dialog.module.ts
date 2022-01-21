@@ -15,8 +15,8 @@ import {
   XDialogCloseDirective,
   XDialogContentDirective,
   XDialogTitleDirective
-} from './dialog-container.directives';
-import { XDialogContainerComponent } from './dialog-container.component';
+} from './dialog-portal.directives';
+import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogService } from './dialog.service';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { XDialogService } from './dialog.service';
     XDialogTitleDirective,
     XDialogContentDirective,
     XDialogActionsDirective,
-    XDialogContainerComponent,
+    XDialogPortalComponent,
     XDialogProperty
   ],
   exports: [
@@ -35,7 +35,7 @@ import { XDialogService } from './dialog.service';
     XDialogTitleDirective,
     XDialogContentDirective,
     XDialogActionsDirective,
-    XDialogContainerComponent
+    XDialogPortalComponent
   ],
   imports: [
     CommonModule,

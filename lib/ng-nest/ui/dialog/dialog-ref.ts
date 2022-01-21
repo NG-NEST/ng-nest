@@ -1,11 +1,11 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { filter, take } from 'rxjs';
-import { XDialogContainerComponent } from './dialog-container.component';
+import { XDialogPortalComponent } from './dialog-portal.component';
 
 // TODO: add more function
 export class XDialogRef<C> {
   componentInstance!: C;
-  constructor(public overlayRef: OverlayRef, public containerInstance: XDialogContainerComponent) {}
+  constructor(public overlayRef: OverlayRef, public containerInstance: XDialogPortalComponent) {}
   close() {
     this.containerInstance.animationChanged
       .pipe(

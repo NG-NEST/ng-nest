@@ -3,7 +3,7 @@ import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConf
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
-import { XDialogContainerComponent } from './dialog-container.component';
+import { XDialogPortalComponent } from './dialog-portal.component';
 
 /**
  * Dialog
@@ -12,7 +12,7 @@ import { XDialogContainerComponent } from './dialog-container.component';
  */
 export const XDialogPrefix = 'x-dialog';
 export const X_DIALOG_CONFIG_NAME = 'dialog';
-export const XDialogPortal = 'x-dialog-portal';
+export const XDialogContainer = 'x-dialog-container';
 export const X_DIALOG_DATA = new InjectionToken<any>('XDialogData');
 
 /**
@@ -314,7 +314,7 @@ export interface XDialogOverlayRef extends XPortalOverlayRef<XDialogComponent> {
  * @zh_CN 创建的弹框对象，通过服务
  * @en_US Dialog object created by service
  */
-export interface XDialogContainerOverlayRef extends XPortalOverlayRef<XDialogContainerComponent> {}
+export interface XDialogPortalOverlayRef extends XPortalOverlayRef<XDialogPortalComponent> {}
 
 /**
  * @zh_CN 类型

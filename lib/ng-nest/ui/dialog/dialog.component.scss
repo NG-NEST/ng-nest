@@ -9,7 +9,7 @@
   @include dialog();
 }
 
-.#{$--x-dialog}-portal {
+.#{$--x-dialog}-container {
   #{$--x-dialog} {
     width: 100%;
   }

@@ -15,15 +15,15 @@ import { XDialogAnimationEvent, XDialogAnimationState } from './dialog.property'
 import { AnimationEvent } from '@angular/animations';
 
 @Component({
-  selector: 'x-dialog-container',
-  templateUrl: './dialog-container.component.html',
-  styleUrls: ['./dialog-container.component.scss'],
+  selector: 'x-dialog-portal',
+  templateUrl: './dialog-portal.component.html',
+  styleUrls: ['./dialog-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XMoveBoxAnimation]
 })
-export class XDialogContainerComponent extends BasePortalOutlet {
-  @HostBinding('class.x-dialog-container') _has = true;
+export class XDialogPortalComponent extends BasePortalOutlet {
+  @HostBinding('class.x-dialog-portal') _has = true;
   @HostBinding('@x-move-box-animation') public placement?: XDialogAnimationState;
   @HostListener('@x-move-box-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({ action: 'done', state: toState as XDialogAnimationState, totalTime });

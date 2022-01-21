@@ -3,7 +3,7 @@ import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/por
 import { Injectable, TemplateRef } from '@angular/core';
 import { fillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
 import { XPortalService } from '@ng-nest/ui/portal';
-import { XDialogContainerComponent } from './dialog-container.component';
+import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
 
@@ -26,8 +26,8 @@ export class XDialogService {
 
   create<T>(content: TemplateRef<any> | ComponentType<T>, option: XDialogRefOption = {}): XDialogRef<T> {
     fillDefault(option, this.default);
-    const portal = this.portalService.attach<XDialogContainerComponent>({
-      content: XDialogContainerComponent,
+    const portal = this.portalService.attach<XDialogPortalComponent>({
+      content: XDialogPortalComponent,
       viewContainerRef: option.viewContainerRef,
       overlayConfig: {
         hasBackdrop: option.hasBackdrop,

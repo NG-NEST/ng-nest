@@ -15,19 +15,19 @@ export class XDialogCloseDirective {
   selector: `[x-dialog-title]`
 })
 export class XDialogTitleDirective {
-  @HostBinding('class.x-dialog-container-title') _has = true;
+  @HostBinding('class.x-dialog-portal-title') _has = true;
 }
 
 @Directive({
   selector: `[x-dialog-content], x-dialog-content`
 })
 export class XDialogContentDirective {
-  @HostBinding('class.x-dialog-container-content') _has = true;
+  @HostBinding('class.x-dialog-portal-content') _has = true;
 }
 
 @Directive({
   selector: `[x-dialog-actions], x-dialog-actions`
 })
 export class XDialogActionsDirective {
-  @HostBinding('class.x-dialog-container-actions') _has = true;
+  @HostBinding('class.x-dialog-portal-actions') _has = true;
 }
