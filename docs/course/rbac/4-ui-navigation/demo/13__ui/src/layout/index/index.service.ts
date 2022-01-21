@@ -3,12 +3,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { XMenuNode } from '@ng-nest/ui/menu';
 import { filter } from 'rxjs/operators';
 import { drop } from 'lodash';
-import { XSliderNode } from '@ng-nest/ui/slider';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
 
 @Injectable({ providedIn: 'root' })
 export class IndexService {
-  menus: XMenuNode[] | { [property: string]: any }[] = [
+  menus: MenuNode[] = [
     { id: 1, label: '首页', icon: 'ado-home', routerLink: './home' },
     { id: 2, label: '仪表盘', icon: 'ado-radar-chart', routerLink: './dashboard' },
     { id: 3, label: '系统管理', icon: 'ado-setting' },
@@ -18,11 +17,11 @@ export class IndexService {
     { id: 7, pid: 3, label: '菜单管理', icon: 'fto-menu', routerLink: './menus' }
   ];
 
-  tabs: XSliderNode[] | { [property: string]: any }[] = [];
+  tabs: TabNode[] = [];
 
   crumbs: XCrumbNode[] = [];
 
-  session: { [property: string]: any } = {};
+  session: Session = {};
 
   constructor(private router: Router) {
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe(() => {
@@ -39,15 +38,15 @@ export class IndexService {
       let subPage = routers.length > 3 ? drop(routers, 3).join('/') : undefined;
       let param = url.param;
       let menu = this.menus.find((x) => x.routerLink == `./${router}`);
-      if (menu !== undefined) {
-        let tab = this.tabs.find((x) => x.routerLink == menu?.routerLink);
+      if (typeof menu !== 'undefined') {
+        let tab = this.tabs.find((x) => x.routerLink === menu!.routerLink);
         if (tab) {
           tab.subPage = subPage;
           tab.param = param;
         } else {
           menu.subPage = subPage;
           menu.param = param;
-          this.tabs = [menu, ...this.tabs];
+          this.tabs = [menu as TabNode, ...this.tabs];
         }
         this.session = {
           activatedPage: router,
@@ -61,7 +60,7 @@ export class IndexService {
   setCrumbs() {
     let menu = this.menus.find((x) => x.routerLink === `./${this.session.activatedPage}`);
     let crumbs: XCrumbNode[] = [];
-    let addParent = (item: { [property: string]: any }) => {
+    let addParent = (item: MenuNode) => {
       if (item.pid === null && item.pid === '') return;
       let parent = this.menus.find((x) => x.id === item.pid);
       if (parent) {
@@ -97,4 +96,17 @@ export class IndexService {
     }
     return result;
   }
+}
+
+export interface MenuNode extends XMenuNode {
+  subPage?: string;
+  param?: { [property: string]: string };
+}
+
+export interface TabNode extends MenuNode {
+  routerLink?: string;
+}
+
+export interface Session extends MenuNode {
+  activatedPage?: string;
 }
