@@ -1,3 +1,20 @@
+## [13.0.5](https://github.com/NG-NEST/ng-nest/compare/13.0.4...13.0.5) (2022-01-22)
+
+
+### Bug Fixes
+
+* **module:drawer:** disable external scroll bar ([de8d7ba](https://github.com/NG-NEST/ng-nest/commit/de8d7baf9f5cdbc0d54c9aac826af8091e0587a3)), closes [#165](https://github.com/NG-NEST/ng-nest/issues/165)
+
+
+### Features
+
+* **module:drawer:** add drawer container component ([16aef79](https://github.com/NG-NEST/ng-nest/commit/16aef79677115593c74cec93d7fe6c47e287b371)), closes [#165](https://github.com/NG-NEST/ng-nest/issues/165) [#166](https://github.com/NG-NEST/ng-nest/issues/166)
+* **module:message:** add loading param ([ee36caa](https://github.com/NG-NEST/ng-nest/commit/ee36caaef7aa16e2adb92a1a02f44b9e86dee804)), closes [#167](https://github.com/NG-NEST/ng-nest/issues/167)
+* **module:message:** add message ref ([6f16794](https://github.com/NG-NEST/ng-nest/commit/6f167948a03074876b662e619a36cedd3ada5202)), closes [#167](https://github.com/NG-NEST/ng-nest/issues/167)
+* **module:popconfirm:** add async and condition ([00fd7da](https://github.com/NG-NEST/ng-nest/commit/00fd7da5bc355eca875ebd2bdddedb30f4c8571e)), closes [#168](https://github.com/NG-NEST/ng-nest/issues/168) [#169](https://github.com/NG-NEST/ng-nest/issues/169)
+
+
+
 ## [13.0.4](https://github.com/NG-NEST/ng-nest/compare/13.0.3...13.0.4) (2022-01-17)
 
 
