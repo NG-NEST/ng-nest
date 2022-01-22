@@ -10,9 +10,8 @@ import { XSelectProperty } from './select.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
-  declarations: [XSelectComponent, XSelectPortalComponent, XSelectProperty],
-  exports: [XSelectComponent, XSelectPortalComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XBaseFormModule],
-  entryComponents: [XSelectPortalComponent]
+    declarations: [XSelectComponent, XSelectPortalComponent, XSelectProperty],
+    exports: [XSelectComponent, XSelectPortalComponent],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, XPortalModule, XInputModule, XListModule, XBaseFormModule]
 })
 export class XSelectModule {}

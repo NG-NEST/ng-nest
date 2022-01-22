@@ -7,9 +7,8 @@ import { XListModule } from '@ng-nest/ui/list';
 import { XDropdownProperty } from './dropdown.property';
 
 @NgModule({
-  declarations: [XDropdownComponent, XDropdownPortalComponent, XDropdownProperty],
-  exports: [XDropdownComponent, XDropdownPortalComponent],
-  imports: [CommonModule, XPortalModule, XListModule],
-  entryComponents: [XDropdownPortalComponent]
+    declarations: [XDropdownComponent, XDropdownPortalComponent, XDropdownProperty],
+    exports: [XDropdownComponent, XDropdownPortalComponent],
+    imports: [CommonModule, XPortalModule, XListModule]
 })
 export class XDropdownModule {}

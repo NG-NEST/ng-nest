@@ -24,40 +24,39 @@ import { XDateRangeComponent } from './date-range.component';
 import { XDateRangePortalComponent } from './date-range-portal.component';
 
 @NgModule({
-  declarations: [
-    XDatePickerComponent,
-    XDatePickerPortalComponent,
-    XPickerDateComponent,
-    XPickerMonthComponent,
-    XPickerYearComponent,
-    XDatePickerProperty,
-    XPickerDateProperty,
-    XPickerMonthProperty,
-    XPickerYearProperty,
-    XDateRangeComponent,
-    XDateRangePortalComponent,
-    XDateRangeProperty
-  ],
-  exports: [
-    XDatePickerComponent,
-    XDateRangeComponent,
-    XDatePickerPortalComponent,
-    XPickerDateComponent,
-    XPickerMonthComponent,
-    XPickerYearComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    XPortalModule,
-    XTimePickerModule,
-    XInputModule,
-    XButtonModule,
-    XIconModule,
-    XI18nModule,
-    XBaseFormModule
-  ],
-  entryComponents: [XDatePickerPortalComponent, XDateRangePortalComponent]
+    declarations: [
+        XDatePickerComponent,
+        XDatePickerPortalComponent,
+        XPickerDateComponent,
+        XPickerMonthComponent,
+        XPickerYearComponent,
+        XDatePickerProperty,
+        XPickerDateProperty,
+        XPickerMonthProperty,
+        XPickerYearProperty,
+        XDateRangeComponent,
+        XDateRangePortalComponent,
+        XDateRangeProperty
+    ],
+    exports: [
+        XDatePickerComponent,
+        XDateRangeComponent,
+        XDatePickerPortalComponent,
+        XPickerDateComponent,
+        XPickerMonthComponent,
+        XPickerYearComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XPortalModule,
+        XTimePickerModule,
+        XInputModule,
+        XButtonModule,
+        XIconModule,
+        XI18nModule,
+        XBaseFormModule
+    ]
 })
 export class XDatePickerModule {}

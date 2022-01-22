@@ -12,19 +12,18 @@ import { XColorPickerProperty } from './color-picker.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
-  declarations: [XColorPickerComponent, XColorPickerPortalComponent, XColorPickerProperty],
-  exports: [XColorPickerComponent, XColorPickerPortalComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    XPortalModule,
-    XSliderSelectModule,
-    XTabsModule,
-    XInputModule,
-    XBaseFormModule
-  ],
-  entryComponents: [XColorPickerPortalComponent]
+    declarations: [XColorPickerComponent, XColorPickerPortalComponent, XColorPickerProperty],
+    exports: [XColorPickerComponent, XColorPickerPortalComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DragDropModule,
+        XPortalModule,
+        XSliderSelectModule,
+        XTabsModule,
+        XInputModule,
+        XBaseFormModule
+    ]
 })
 export class XColorPickerModule {}

@@ -6,9 +6,8 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { XTooltipProperty } from './tooltip.property';
 
 @NgModule({
-  declarations: [XTooltipDirective, XTooltipPortalComponent, XTooltipProperty],
-  exports: [XTooltipDirective, XTooltipPortalComponent],
-  imports: [CommonModule, XPortalModule],
-  entryComponents: [XTooltipPortalComponent]
+    declarations: [XTooltipDirective, XTooltipPortalComponent, XTooltipProperty],
+    exports: [XTooltipDirective, XTooltipPortalComponent],
+    imports: [CommonModule, XPortalModule]
 })
 export class XTooltipModule {}

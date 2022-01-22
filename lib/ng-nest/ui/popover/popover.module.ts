@@ -7,9 +7,8 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XPopoverProperty } from './popover.property';
 
 @NgModule({
-  declarations: [XPopoverDirective, XPopoverPortalComponent, XPopoverProperty],
-  exports: [XPopoverDirective, XPopoverPortalComponent],
-  imports: [CommonModule, XPortalModule, XOutletModule],
-  entryComponents: [XPopoverPortalComponent]
+    declarations: [XPopoverDirective, XPopoverPortalComponent, XPopoverProperty],
+    exports: [XPopoverDirective, XPopoverPortalComponent],
+    imports: [CommonModule, XPortalModule, XOutletModule]
 })
 export class XPopoverModule {}

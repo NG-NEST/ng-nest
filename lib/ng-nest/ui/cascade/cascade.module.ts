@@ -10,9 +10,8 @@ import { XCascadeProperty } from './cascade.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
-  declarations: [XCascadeComponent, XCascadePortalComponent, XCascadeProperty],
-  exports: [XCascadeComponent, XCascadePortalComponent],
-  imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule, XBaseFormModule],
-  entryComponents: [XCascadePortalComponent]
+    declarations: [XCascadeComponent, XCascadePortalComponent, XCascadeProperty],
+    exports: [XCascadeComponent, XCascadePortalComponent],
+    imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule, XBaseFormModule]
 })
 export class XCascadeModule {}
