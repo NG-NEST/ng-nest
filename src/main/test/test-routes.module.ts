@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'message',
         loadChildren: () => import('./modules/message/message.module').then((x) => x.TeMessageModule)
       },
+      {
+        path: 'alert',
+        loadChildren: () => import('./modules/alert/alert.module').then((x) => x.TeAlertModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
