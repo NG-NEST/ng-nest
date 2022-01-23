@@ -48,6 +48,14 @@ const routes: Routes = [
         path: 'alert',
         loadChildren: () => import('./modules/alert/alert.module').then((x) => x.TeAlertModule)
       },
+      {
+        path: 'find',
+        loadChildren: () => import('./modules/find/find.module').then((x) => x.TeFindModule)
+      },
+      {
+        path: 'form',
+        loadChildren: () => import('./modules/form/form.module').then((x) => x.TeFormModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
