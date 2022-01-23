@@ -1,6 +1,6 @@
-import { Injectable, TemplateRef, Injector, InjectionToken, ElementRef } from '@angular/core';
+import { Injectable, TemplateRef, Injector, ElementRef, ViewContainerRef, StaticProvider } from '@angular/core';
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
-import { TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
 import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
 
@@ -31,24 +31,25 @@ export class XPortalService {
     return portal;
   }
 
-  createInjector(data: any, token: InjectionToken<any>): PortalInjector {
-    const injectorTokens = new WeakMap();
-    injectorTokens.set(token, data);
-    return new PortalInjector(this.injector, injectorTokens);
+  createInjector(providers: StaticProvider[], viewContainerRef?: ViewContainerRef) {
+    const injector = viewContainerRef && viewContainerRef.injector;
+    return Injector.create({ parent: injector || this.injector, providers });
   }
 
   setPlacement(param?: { elementRef?: ElementRef; placement?: XPlace[] | XPlacement[]; transformOriginOn?: string }): PositionStrategy {
     if (!param) {
       return this.overlay.position().global().centerHorizontally().centerVertically();
     } else {
-      return this.overlay
-        .position()
-        .flexibleConnectedTo(param.elementRef!)
-        // .withLockedPosition(true)
-        .withFlexibleDimensions(false)
-        .withPush(false)
-        .withPositions(this.setConnectedPosition(...param.placement))
-        .withTransformOriginOn(param.transformOriginOn!);
+      return (
+        this.overlay
+          .position()
+          .flexibleConnectedTo(param.elementRef!)
+          // .withLockedPosition(true)
+          .withFlexibleDimensions(false)
+          .withPush(false)
+          .withPositions(this.setConnectedPosition(...param.placement))
+          .withTransformOriginOn(param.transformOriginOn!)
+      );
     }
   }
 

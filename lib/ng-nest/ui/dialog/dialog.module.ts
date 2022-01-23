@@ -10,10 +10,33 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogProperty } from './dialog.property';
+import {
+  XDialogActionsDirective,
+  XDialogCloseDirective,
+  XDialogContentDirective,
+  XDialogTitleDirective
+} from './dialog-container.directives';
+import { XDialogContainerComponent } from './dialog-container.component';
+import { XDialogService } from './dialog.service';
 
 @NgModule({
-  declarations: [XDialogComponent, XDialogProperty],
-  exports: [XDialogComponent],
+  declarations: [
+    XDialogComponent,
+    XDialogCloseDirective,
+    XDialogTitleDirective,
+    XDialogContentDirective,
+    XDialogActionsDirective,
+    XDialogContainerComponent,
+    XDialogProperty
+  ],
+  exports: [
+    XDialogComponent,
+    XDialogCloseDirective,
+    XDialogTitleDirective,
+    XDialogContentDirective,
+    XDialogActionsDirective,
+    XDialogContainerComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +48,7 @@ import { XDialogProperty } from './dialog.property';
     XPortalModule,
     XAlertModule,
     XOutletModule
-  ]
+  ],
+  providers: [XDialogService]
 })
 export class XDialogModule {}

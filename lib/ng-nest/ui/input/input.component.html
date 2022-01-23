@@ -55,7 +55,12 @@
         (click)="xClick.emit($event)"
       />
       <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
-      <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>
+      <x-icon
+        *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)"
+        [type]="icon"
+        [spin]="iconSpin"
+        (click)="xClick.emit($event)"
+      ></x-icon>
       <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
       <span class="x-input-error-message" *ngIf="invalid">{{ invalidMessage }}</span>
       <ng-container *ngIf="requiredIsEmpty || invalid">

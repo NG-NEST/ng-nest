@@ -1,0 +1,6 @@
+<h4 x-drawer-title>{{ data.title }}</h4>
+<div x-drawer-content>
+  <x-button x-drawer-close>通过指令关闭</x-button>
+  <x-button (click)="close()">通过服务方法关闭</x-button>
+  <p>{{ data.content }}</p>
+</div>

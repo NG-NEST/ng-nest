@@ -131,6 +131,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     } else {
       this.clearShow = false;
     }
+    this.setPadding()
   }
 
   setInheritedValue() {

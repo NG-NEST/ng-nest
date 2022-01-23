@@ -332,6 +332,7 @@
     .x-input-row {
       > .#{$--x-input-prefix}-input {
         > input,
+        > x-icon,
         > .#{$--x-input-prefix}-value-template-value {
           cursor: pointer;
         }
