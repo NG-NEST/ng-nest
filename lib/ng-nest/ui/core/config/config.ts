@@ -265,6 +265,9 @@ export interface XEmptyConfig {
 export interface XFindConfig {
   columnLabel?: string;
   dialogTitle?: string;
+  dialogCheckboxLabel?: string;
+  dialogCheckboxWidth?: number;
+  dialogEmptyContent?: string;
   dialogButtonsCenter?: XBoolean;
   tableIndex?: number;
   tableSize?: number;

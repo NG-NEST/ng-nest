@@ -46,7 +46,7 @@
     "@angular-devkit/schematics": "^11.2.8",
     "@angular/cli": "~11.2.3",
     "@angular/compiler-cli": "~11.2.4",
-    "@stackblitz/sdk": "^1.5.2",
+    "@stackblitz/sdk": "^1.4.0",
     "@types/fs-extra": "^9.0.10",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",

@@ -22,6 +22,14 @@ export const mainRoutes: Routes = [
   ...shareRoutes
 ];
 
+export const testRoutes: Routes = [
+  {
+    path: `test`,
+    loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
+  },
+  { path: '', redirectTo: `test`, pathMatch: 'full' }
+];
+
 /**
  * DocModule 文档模块通过命令生成
  */

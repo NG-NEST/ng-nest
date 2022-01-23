@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { mainRoutes } from '../environments/routes';
+import { mainRoutes, testRoutes } from '../environments/routes';
 import { XPreloadingStrategyService } from '@ng-nest/ui/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(mainRoutes, {
+    RouterModule.forRoot(environment.production ? mainRoutes : testRoutes, {
       enableTracing: false,
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'top',
