@@ -3,7 +3,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@ng-nest/ui": ["./dist/ng-nest/ui/"],
+      "@ng-nest/ui/*": ["./dist/ng-nest/ui/*"],
+      "@services": ["./src/services/"],
+      "@services/*": ["./src/services/*"],
+      "@utils": ["./src/utils/"],
+      "@utils/*": ["./src/utils/*"]
+    }
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["src/**/*.ts"],

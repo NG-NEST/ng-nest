@@ -1,3 +1,12 @@
+## [13.0.6](https://github.com/NG-NEST/ng-nest/compare/13.0.5...13.0.6) (2022-01-24)
+
+
+### Features
+
+* **module:find:** add dialogCheckboxLabel, dialogCheckboxWidth and dialogEmptyContent ([0b29d76](https://github.com/NG-NEST/ng-nest/commit/0b29d76542dfecf8661868df393f583a7c3c7ca1)), closes [#179](https://github.com/NG-NEST/ng-nest/issues/179)
+
+
+
 ## [13.0.5](https://github.com/NG-NEST/ng-nest/compare/13.0.4...13.0.5) (2022-01-22)
 
 
