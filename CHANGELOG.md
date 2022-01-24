@@ -1,3 +1,7 @@
+## [11.2.13](https://github.com/NG-NEST/ng-nest/compare/11.2.12...11.2.13) (2022-01-24)
+
+
+
 ## [11.2.12](https://github.com/NG-NEST/ng-nest/compare/11.2.11...11.2.12) (2021-06-08)
 
 
@@ -146,6 +150,7 @@
 
 ### Features
 
+* add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
 * **module:auto-complete:** add async param ([194566e](https://github.com/NG-NEST/ng-nest/commit/194566e809b4adb83db785894de2b19f3850a546))
 * **module:auto-complete:** add debounceTime param ([3fc6feb](https://github.com/NG-NEST/ng-nest/commit/3fc6febfb1ea1f435a99e76390953f82a3d381c0))
 * **module:auto-complete:** add query param ([5004911](https://github.com/NG-NEST/ng-nest/commit/50049110ecfb444b58f63b3fc23c7e46ee035110)), closes [#12](https://github.com/NG-NEST/ng-nest/issues/12)
@@ -155,7 +160,6 @@
 * **module:upload:** clip image upload ([83919d2](https://github.com/NG-NEST/ng-nest/commit/83919d2506329de574b044a3c772f79b560388d6)), closes [#10](https://github.com/NG-NEST/ng-nest/issues/10)
 * **stackblitz:** add code mapping ([8de104d](https://github.com/NG-NEST/ng-nest/commit/8de104de5644b2321016cceef22c9f045dde6d23)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
 * **stackblitz:** add files ([6684fd7](https://github.com/NG-NEST/ng-nest/commit/6684fd75049f5f88082260382413de62a4d3887e)), closes [#17](https://github.com/NG-NEST/ng-nest/issues/17)
-* add support for CSS style import ([4ccbaa0](https://github.com/NG-NEST/ng-nest/commit/4ccbaa09a13c600b1fc497c404c61e419cee4994)), closes [#16](https://github.com/NG-NEST/ng-nest/issues/16)
 
 
 
@@ -234,8 +238,8 @@
 
 ### Features
 
-* update angular to 10.2.0 ([4f6d7cc](https://github.com/NG-NEST/ng-nest/commit/4f6d7cc01ea1df798c2874bf67600d030c0432de))
 * **module:tree:** add height and align param ([e383901](https://github.com/NG-NEST/ng-nest/commit/e383901b0518471539f5c9423011d291a49968f8))
+* update angular to 10.2.0 ([4f6d7cc](https://github.com/NG-NEST/ng-nest/commit/4f6d7cc01ea1df798c2874bf67600d030c0432de))
 
 
 
@@ -292,16 +296,16 @@
 
 ### Bug Fixes
 
-* update weixin img ([9d0a682](https://github.com/NG-NEST/ng-nest/commit/9d0a682fd063532c5bf88dce42be30842b08b164))
 * **config:** language switch ([186770d](https://github.com/NG-NEST/ng-nest/commit/186770dc33763a092504f4e17e53786169bc9d7d))
+* update weixin img ([9d0a682](https://github.com/NG-NEST/ng-nest/commit/9d0a682fd063532c5bf88dce42be30842b08b164))
 
 
 ### Features
 
-* **module: menu:** add router param ([41dcfb2](https://github.com/NG-NEST/ng-nest/commit/41dcfb293e878ea8f62de32df430f2b3f4160d9f))
-* **module: menu:** add routerLink property ([1996084](https://github.com/NG-NEST/ng-nest/commit/199608448f3bbf3d38024953378bbf47c531449b))
 * add style var ([34d2eb7](https://github.com/NG-NEST/ng-nest/commit/34d2eb766481c868846a64b1381a9f324761ccf9))
 * **module: drawer:** add visibleChange event ([cc0d305](https://github.com/NG-NEST/ng-nest/commit/cc0d305d69560135985827dcb3b00a5225d90f15))
+* **module: menu:** add router param ([41dcfb2](https://github.com/NG-NEST/ng-nest/commit/41dcfb293e878ea8f62de32df430f2b3f4160d9f))
+* **module: menu:** add routerLink property ([1996084](https://github.com/NG-NEST/ng-nest/commit/199608448f3bbf3d38024953378bbf47c531449b))
 * **module:*:** *ngFor add trackBy ([7933fe0](https://github.com/NG-NEST/ng-nest/commit/7933fe00a7dbb40ad40121fa1ac98c103bec420c))
 
 
@@ -521,8 +525,8 @@
 * **module:back-top:** fixed in tabs ([72c984e](https://github.com/NG-NEST/ng-nest/commit/72c984e7539630de5545cbfad7bc2e814da954e6))
 * **module:dropdown:** children property don't work ([b984fe1](https://github.com/NG-NEST/ng-nest/commit/b984fe198161c085c45826e8efdb59e49d4504fe))
 * **module:loading:** load is not displayed ([856745e](https://github.com/NG-NEST/ng-nest/commit/856745e40c08a6e36353520b8da5948a1bad8c9f))
-* **module:slider:** move element is null ([2a99fe6](https://github.com/NG-NEST/ng-nest/commit/2a99fe69032283951050b991757ba263f1c752b7))
 * **module:slider-select:** included tabs drag ([0f249fa](https://github.com/NG-NEST/ng-nest/commit/0f249fa7fbed2c2db0af7b751927c0bd7fa08c6c))
+* **module:slider:** move element is null ([2a99fe6](https://github.com/NG-NEST/ng-nest/commit/2a99fe69032283951050b991757ba263f1c752b7))
 * **module:tabs:** card border style ([b3c53e1](https://github.com/NG-NEST/ng-nest/commit/b3c53e1e546cfce1c3ebbde8034305b160715d71))
 * **module:time-picker:** sliding abnormalities ([0137756](https://github.com/NG-NEST/ng-nest/commit/0137756958db3c6e9fbbb0cc788af5d629db03d2))
 * **module:tree-file:** first request flashes ([6ec7879](https://github.com/NG-NEST/ng-nest/commit/6ec78794115ba056d76e0eb6b0b01812b151d2e0))
