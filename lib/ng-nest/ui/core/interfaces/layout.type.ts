@@ -19,7 +19,7 @@ export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'da
 /**
  * 状态类型
  */
-export type XStatus = 'success' | 'info' | 'warning' | 'error';
+export type XStatus = 'success' | 'info' | 'warning' | 'error' | 'loading';
 
 /**
  * 样式映射类型

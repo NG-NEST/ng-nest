@@ -23,8 +23,8 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"],
     "paths": {
-      "@ng-nest/ui": ["./dist/ng-nest/ui/"],
-      "@ng-nest/ui/*": ["./dist/ng-nest/ui/*"],
+      "@ng-nest/ui": ["./lib/ng-nest/ui/"],
+      "@ng-nest/ui/*": ["./lib/ng-nest/ui/*"],
       "@services": ["./src/services/"],
       "@services/*": ["./src/services/*"],
       "@utils": ["./src/utils/"],

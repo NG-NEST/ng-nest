@@ -2,9 +2,15 @@
 
 ns-test {
   > section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    width: 15rem;
+    .x-menu-column {
+      width: 100%;
+    }
+  }
+  .content {
+    padding: 1rem;
   }
 }
