@@ -127,6 +127,11 @@ export class XTreeProperty extends XProperty {
    */
   @Input() actions: XTreeAction[] = [];
   /**
+   * @zh_CN 开启虚拟滚动
+   * @en_US Turn on virtual scrolling
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */

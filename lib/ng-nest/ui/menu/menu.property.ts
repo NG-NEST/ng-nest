@@ -40,7 +40,12 @@ export class XMenuProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 宽度，只有布局 layout 为 'column' 生效
+   * @en_US Width, only layout layout is the 'column'
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width!: string;
   /**
    * @zh_CN 缩起菜单
    * @en_US Shrink menu
@@ -50,7 +55,7 @@ export class XMenuProperty extends XProperty {
    * @zh_CN 触发方式，只针对横向布局
    * @en_US Trigger mode, only for horizontal layout
    */
-  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger?: XMenuTrigger;
+  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger!: XMenuTrigger;
   /**
    * @zh_CN 节点模板
    * @en_US Node template

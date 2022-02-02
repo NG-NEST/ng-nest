@@ -17,7 +17,8 @@ import {
   XPosition,
   XPlacement,
   XPositionTopBottom,
-  XStatus
+  XStatus,
+  XAlign
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -365,6 +366,7 @@ export interface XLoadingConfig {
 
 export interface XMenuConfig {
   size?: XSize;
+  width?: string;
   trigger?: XTrigger;
 }
 
@@ -525,6 +527,8 @@ export interface XTransferConfig {
 export interface XTreeConfig {
   spacing?: XNumber;
   nodeHeight?: XNumber;
+  nodeAlignItems?: XAlign;
+  virtualScroll?: boolean;
 }
 
 export interface XTextareaConfig {

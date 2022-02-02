@@ -1,4 +1,4 @@
-<div #menu class="x-menu" [ngClass]="classMap">
+<div #menu class="x-menu" [ngClass]="classMap" [style.width]="layout === 'column' ? width : ''">
   <div class="x-menu-nodes" *ngIf="layout === 'column'">
     <ng-container *ngFor="let node of nodes; trackBy: trackByNode">
       <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>

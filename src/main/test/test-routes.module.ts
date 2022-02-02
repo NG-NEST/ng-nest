@@ -56,6 +56,14 @@ const routes: Routes = [
         path: 'form',
         loadChildren: () => import('./modules/form/form.module').then((x) => x.TeFormModule)
       },
+      {
+        path: 'tree',
+        loadChildren: () => import('./modules/tree/tree.module').then((x) => x.TeTreeModule)
+      },
+      {
+        path: 'menu',
+        loadChildren: () => import('./modules/menu/menu.module').then((x) => x.TeMenuModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
