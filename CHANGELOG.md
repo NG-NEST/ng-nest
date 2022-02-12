@@ -1,9 +1,11 @@
-## [13.0.6](https://github.com/NG-NEST/ng-nest/compare/13.0.5...13.0.6) (2022-01-24)
+## [13.0.7](https://github.com/NG-NEST/ng-nest/compare/13.0.5...13.0.7) (2022-02-12)
 
 
 ### Features
 
 * **module:find:** add dialogCheckboxLabel, dialogCheckboxWidth and dialogEmptyContent ([0b29d76](https://github.com/NG-NEST/ng-nest/commit/0b29d76542dfecf8661868df393f583a7c3c7ca1)), closes [#179](https://github.com/NG-NEST/ng-nest/issues/179)
+* **module:menu:** add setting width when layout is column ([e9cfc15](https://github.com/NG-NEST/ng-nest/commit/e9cfc15ec8c834f43a3be9287976417b06230ed1)), closes [#180](https://github.com/NG-NEST/ng-nest/issues/180)
+* **module:tree:** add activated color ([b9b9e9e](https://github.com/NG-NEST/ng-nest/commit/b9b9e9e04325a683e2f62de560dd7d27c987eb2b)), closes [#162](https://github.com/NG-NEST/ng-nest/issues/162)
 
 
 
