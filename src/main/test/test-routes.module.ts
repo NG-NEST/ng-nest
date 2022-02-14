@@ -64,6 +64,10 @@ const routes: Routes = [
         path: 'menu',
         loadChildren: () => import('./modules/menu/menu.module').then((x) => x.TeMenuModule)
       },
+      {
+        path: 'tooltip',
+        loadChildren: () => import('./modules/tooltip/tooltip.module').then((x) => x.TeTooltipModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

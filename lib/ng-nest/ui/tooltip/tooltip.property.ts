@@ -44,6 +44,16 @@ export class XTooltipProperty {
    * @en_US Manually handle the shutdown event
    */
   @Input() @XInputBoolean() manual?: XBoolean;
+  /**
+   * @zh_CN 鼠标移入后延时多少才显示
+   * @en_US How much is the mouse transfer after transfer
+   */
+  @Input() mouseEnterDelay: number = 150;
+  /**
+   * @zh_CN 鼠标移出后延时多少才隐藏
+   * @en_US How much hidden is hidden after the mouse is removed
+   */
+  @Input() mouseLeaveDelay: number = 100;
 }
 
 /**

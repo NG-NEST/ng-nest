@@ -14,6 +14,7 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   positionChange: Subject<any> = new Subject();
   timeoutHide: any;
+  timeoutShow: any;
   private _unSubject = new Subject();
 
   constructor(
@@ -48,18 +49,23 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
 
   show() {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
+    if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) {
-      this.visible = true;
-      this.createPortal();
+      this.timeoutShow = setTimeout(() => {
+        this.visible = true;
+        this.createPortal();
+      }, this.mouseEnterDelay);
     }
   }
 
   hide() {
+    if (this.timeoutHide) clearTimeout(this.timeoutHide);
+    if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (this.portal?.overlayRef?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.visible = false;
         this.portal.overlayRef?.dispose();
-      });
+      }, this.mouseLeaveDelay);
     }
   }
 
