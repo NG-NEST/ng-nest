@@ -196,7 +196,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   rowClick(row: XTableRow) {
     this.activatedRow = row;
-    if (this.table.rowChecked) {
+    if (this.allowSelectRow && this.table.rowChecked) {
       if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
         row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
         this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked);
