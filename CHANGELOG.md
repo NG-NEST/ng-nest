@@ -1,3 +1,19 @@
+## [13.0.8](https://github.com/NG-NEST/ng-nest/compare/13.0.7...13.0.8) (2022-02-20)
+
+
+### Bug Fixes
+
+* **docs:** menu width 100% ([fa008f0](https://github.com/NG-NEST/ng-nest/commit/fa008f05ab3a736b9a48e6ef647811ff6e0ed784))
+* **module:table:** solve allowSelectRow failure ([e351311](https://github.com/NG-NEST/ng-nest/commit/e351311dd9cf48c897f46e6585bfff43bdb56e44))
+
+
+### Features
+
+* **module:table:** add rowClass ([e1919c3](https://github.com/NG-NEST/ng-nest/commit/e1919c3086fd56bc8e6aed1d236d91287e97671c)), closes [#181](https://github.com/NG-NEST/ng-nest/issues/181)
+* **module:tooltip:** add hover delay ([11ab57f](https://github.com/NG-NEST/ng-nest/commit/11ab57f6643a080e109b96b3520fb33cb26e15c2)), closes [#161](https://github.com/NG-NEST/ng-nest/issues/161)
+
+
+
 ## [13.0.7](https://github.com/NG-NEST/ng-nest/compare/13.0.5...13.0.7) (2022-02-12)
 
 

@@ -7,7 +7,8 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'ex-rowclass',
   templateUrl: './rowclass.component.html',
-  styleUrls: ['./rowclass.component.scss']
+  styleUrls: ['./rowclass.component.scss'],
+  providers: [RowclassService]
 })
 export class ExRowclassComponent {
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
