@@ -27,6 +27,7 @@
     <tr
       *cdkVirtualFor="let row of data; let index = index; trackBy: trackByItem"
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
+      [ngClass]="!rowClass ? {} : rowClass(row, index)"
       [style.height.px]="getRowHeight"
       [style.min-height.px]="getRowHeight"
       (click)="rowClick(row)"
@@ -41,6 +42,7 @@
   <tr
     *ngFor="let row of data; index as i; trackBy: trackByItem"
     [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
+    [ngClass]="!rowClass ? {} : rowClass(row, i)"
     [style.height.px]="getRowHeight"
     [style.min-height.px]="getRowHeight"
     (click)="rowClick(row)"

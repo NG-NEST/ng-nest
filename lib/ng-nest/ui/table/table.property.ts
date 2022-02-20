@@ -79,6 +79,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() bodyColumnTpl: XTableTemplate = {};
   /**
+   * @zh_CN 行条件样式
+   * @en_US Row condition class
+   */
+  @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
+  /**
    * @zh_CN 排序点击的事件
    * @en_US Sort click events
    */
@@ -195,6 +200,11 @@ export interface XTableOption extends XPaginationOption {
    * @en_US Column content custom template
    */
   bodyColumnTpl?: XTableTemplate;
+  /**
+   * @zh_CN 行条件样式
+   * @en_US Row condition class
+   */
+  rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
@@ -540,6 +550,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Cell config rules
    */
   @Input() cellConfig?: XTableCellConfigRule;
+  /**
+   * @zh_CN 行条件样式
+   * @en_US Row condition class
+   */
+  @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
 }
 
 /**

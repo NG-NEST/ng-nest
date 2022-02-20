@@ -69,7 +69,6 @@
         position: relative;
         justify-content: space-between;
         overflow: hidden;
-        background-color: $--x-background;
         border-bottom: $--x-border-base;
         > div {
           flex: 1;
@@ -84,13 +83,13 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background-a200;
+          background-color: rgba(0, 0, 0, 0.05);
           color: $--x-primary;
         }
       }
       &:hover {
         > td {
-          background-color: $--x-background-a200;
+          background-color: rgba(0, 0, 0, 0.05);
         }
       }
       &:last-child {

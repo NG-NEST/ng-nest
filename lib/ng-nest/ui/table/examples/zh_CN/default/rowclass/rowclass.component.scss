@@ -1,0 +1,16 @@
+:host {
+  ::ng-deep {
+    .even {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .odd {
+      background-color: white;
+    }
+    .first {
+      color: blue;
+    }
+    .inspector {
+      color: red;
+    }
+  }
+}
