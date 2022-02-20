@@ -1,0 +1,14 @@
+<div class="row">
+  <x-progress [percent]="percent" type="circle"></x-progress>
+  <br />
+  <x-progress [percent]="percent" type="circle" size="10rem" thickness="2rem"></x-progress>
+  <br />
+  <x-progress [percent]="percent" type="circle" status="exception"></x-progress>
+  <x-progress [percent]="percent" type="circle" status="warning"></x-progress>
+  <x-progress [percent]="percent" type="circle" status="success"></x-progress>
+  <br />
+  <x-buttons>
+    <x-button icon="fto-minus" (click)="plus(-5)"></x-button>
+    <x-button icon="fto-plus" (click)="plus(5)"></x-button>
+  </x-buttons>
+</div>

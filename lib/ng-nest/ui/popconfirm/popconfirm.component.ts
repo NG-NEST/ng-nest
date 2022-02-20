@@ -1,4 +1,4 @@
-import { Renderer2, ElementRef, ChangeDetectorRef, Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Renderer2, ElementRef, ChangeDetectorRef, Component, ChangeDetectionStrategy, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
 import { XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
@@ -12,11 +12,13 @@ import { map, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPopconfirmComponent extends XPopconfirmProperty {
+export class XPopconfirmComponent extends XPopconfirmProperty implements OnDestroy {
   visible!: XBoolean;
   locale: XI18nPopconfirm = {};
+  loading = false;
 
   private _unSubject = new Subject<void>();
+  private _asyncUnSub = new Subject<void>();
 
   get getCancelText() {
     return this.cancelText || this.locale.cancelText;
@@ -48,13 +50,33 @@ export class XPopconfirmComponent extends XPopconfirmProperty {
       });
   }
 
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.complete();
+  }
+
   onCancel() {
     this.visible = false;
     this.cancel.emit();
   }
 
   onConfirm() {
-    this.visible = false;
-    this.confirm.emit();
+    if (this.confirmAsync) {
+      this.loading = true;
+      this.confirmAsync.pipe(takeUntil(this._asyncUnSub)).subscribe(() => {
+        this.loading = false;
+        this.visible = false;
+        this.confirm.emit();
+        this.cdr.detectChanges();
+        this._asyncUnSub.next();
+      });
+    } else {
+      this.visible = false;
+      this.confirm.emit();
+    }
+  }
+
+  onClick() {
+    this.condition && this.onConfirm();
   }
 }

@@ -60,6 +60,21 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '查找选择') dialogTitle!: string;
   /**
+   * @zh_CN 弹框表格选择列头名称
+   * @en_US Ball Form Select List Name
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '选择') dialogCheckboxLabel!: string;
+  /**
+   * @zh_CN 弹框表格选择列宽
+   * @en_US Ball Form Select List width
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 60) @XInputNumber() dialogCheckboxWidth!: number;
+  /**
+   * @zh_CN 弹框选择数据为空的提示信息
+   * @en_US Ball box selection data empty prompt information
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '请选择数据') dialogEmptyContent!: string;
+  /**
    * @zh_CN 弹框宽度
    * @en_US Bullet frame width
    */
@@ -257,6 +272,21 @@ export interface XFindOption extends XFormOption {
    * @en_US Bullet title
    */
   dialogTitle?: string;
+  /**
+   * @zh_CN 弹框表格选择框列头名称
+   * @en_US Ball Form Select Box List Name
+   */
+  dialogCheckboxLabel?: string;
+  /**
+   * @zh_CN 弹框表格选择框列头宽度
+   * @en_US Ball Form Select Box List width
+   */
+  dialogCheckboxWidth?: number;
+  /**
+   * @zh_CN 弹框选择数据为空的提示内容
+   * @en_US Ball box selection data empty prompt information
+   */
+  dialogEmptyContent?: string;
   /**
    * @zh_CN 弹框宽度
    * @en_US Bullet frame width

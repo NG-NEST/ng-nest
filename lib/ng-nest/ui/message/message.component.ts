@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
-import { XMessagePrefix, XMessageOption, XMessageRef } from './message.property';
+import { XMessagePrefix, XMessageOption, XMessagePlacementRef } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
   animations: [XMoveAnimation]
 })
 export class XMessageComponent {
-  message: XMessageRef = { ref: {}, list: [], currentClose: () => {}, closeAll: () => {} };
+  message: XMessagePlacementRef = { ref: {}, list: [], closeAll: () => {} };
 
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
@@ -42,6 +42,6 @@ export class XMessageComponent {
   }
 
   trackByNode(_index: number, item: XMessageOption) {
-    return `${item.title}-${item.content}`;
+    return item.id;
   }
 }

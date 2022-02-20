@@ -1,6 +1,7 @@
-import { XPlacement, XTemplate, XProperty, XWithConfig } from '@ng-nest/ui/core';
+import { XPlacement, XTemplate, XProperty, XWithConfig, XInputBoolean, XBoolean } from '@ng-nest/ui/core';
 import { XPopoverTrigger } from '@ng-nest/ui/popover';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 /**
  * Popconfirm
@@ -60,6 +61,16 @@ export class XPopconfirmProperty extends XProperty {
    * @en_US Confirmed text
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) confirmText?: string;
+  /**
+   * @zh_CN 确认异步 Observable
+   * @en_US Confirm async
+   */
+  @Input() confirmAsync?: Observable<void>;
+  /**
+   * @zh_CN 条件触发
+   * @en_US condition trigger
+   */
+  @Input() @XInputBoolean() condition?: XBoolean;
   /**
    * @zh_CN 取消的点击事件
    * @en_US Cancelled click event

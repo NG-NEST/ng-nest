@@ -152,7 +152,16 @@ export class XFindComponent extends XFindProperty implements OnInit {
     if (!this.multiple) return;
     if (this.hasTable) {
       if (!this.tableColumns.find((x) => x.rowChecked)) {
-        this.tableColumns = [{ id: '$checked', label: '选择', rowChecked: true, type: 'checkbox', width: 60 }, ...this.tableColumns];
+        this.tableColumns = [
+          {
+            id: '$checked',
+            label: this.dialogCheckboxLabel,
+            rowChecked: true,
+            type: 'checkbox',
+            width: this.dialogCheckboxWidth
+          },
+          ...this.tableColumns
+        ];
       }
     }
   }

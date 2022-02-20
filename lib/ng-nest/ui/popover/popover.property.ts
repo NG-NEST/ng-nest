@@ -50,6 +50,11 @@ export class XPopoverProperty extends XProperty {
    */
   @Input() @XInputBoolean() visible?: XBoolean;
   /**
+   * @zh_CN 条件触发
+   * @en_US condition trigger
+   */
+  @Input() @XInputBoolean() condition?: XBoolean;
+  /**
    * @zh_CN 显示/隐藏改变的事件
    * @en_US Show/hide changed events
    */

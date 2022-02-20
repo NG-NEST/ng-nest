@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy, SimpleChanges } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
-import { XFadeAnimation, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 
@@ -29,7 +29,13 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
     this._unSubject.unsubscribe();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const { type, effect, title, content, showIcon, draggable } = changes;
+    XIsChange(type, effect, title, content, showIcon, draggable) && this.setClassMap();
+  }
+
   setClassMap() {
+    XClearClass(this.classMap);
     this.classMap = {
       [`${XAlertPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`x-${this.effect}`]: !XIsEmpty(this.effect),
