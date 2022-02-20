@@ -1,3 +1,16 @@
+## [12.1.2](https://github.com/NG-NEST/ng-nest/compare/12.1.1...12.1.2) (2022-02-20)
+
+
+### Features
+
+* **module:table:** merge 13.0.8 ([1a0ce74](https://github.com/NG-NEST/ng-nest/commit/1a0ce74dc05bee50c52887c4cf71ac631a0ee639))
+
+
+
+## [12.1.1](https://github.com/NG-NEST/ng-nest/compare/12.1.0...12.1.1) (2022-01-24)
+
+
+
 # [12.1.0](https://github.com/NG-NEST/ng-nest/compare/12.0.11...12.1.0) (2022-01-17)
 
 
