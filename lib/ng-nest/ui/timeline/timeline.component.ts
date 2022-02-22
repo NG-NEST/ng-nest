@@ -50,8 +50,23 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
 
   private setData() {
     XSetData<XTimelineNode>(this.data, this._unSubject).subscribe((x) => {
+      this.setDashed(x);
       this.nodes = x;
       this.cdr.detectChanges();
     });
+  }
+
+  private setDashed(nodes: XTimelineNode[]) {
+    const len = nodes.length;
+    if (len <= 1) return;
+    for (let i = 0; i < nodes.length; i++) {
+      let node = nodes[i];
+      if (!node.loading) continue;
+      if (i === 0) {
+        node.dashed = true;
+      } else if (i > 0) {
+        nodes[i - 1].dashed = true;
+      }
+    }
   }
 }

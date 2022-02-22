@@ -17,12 +17,20 @@
           border-left-color: transparent;
         }
       }
+      &:first-child {
+        .#{$--x-timeline-prefix}-tail {
+          top: 1.25rem;
+        }
+      }
     }
   }
   &-tail {
     position: absolute;
     height: 100%;
     border-left: $--x-timeline-line-width solid $--x-border;
+    &-dashed {
+      border-left-style: dashed;
+    }
   }
   &-icon {
     position: absolute;
@@ -55,6 +63,13 @@
   &-time {
     font-size: 0.75rem;
     color: $--x-text-400;
+  }
+  &-loading {
+    .#{$--x-timeline-prefix}-icon {
+      color: $--x-text-400;
+      font-size: 1.25rem;
+      background-color: transparent !important;
+    }
   }
   @include type('primary', $--x-primary);
   @include type('success', $--x-success);

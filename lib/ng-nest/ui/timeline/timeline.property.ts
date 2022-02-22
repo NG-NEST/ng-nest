@@ -38,7 +38,7 @@ export class XTimelineProperty extends XProperty {
 
 /**
  * @zh_CN Timeline 数据对象
- * @en_US Timeline 数据对象
+ * @en_US Timeline node data
  */
 export interface XTimelineNode extends XIdentityProperty {
   /**
@@ -71,4 +71,19 @@ export interface XTimelineNode extends XIdentityProperty {
    * @en_US Color
    */
   color?: string;
+  /**
+   * @zh_CN 加载中
+   * @en_US Loading
+   */
+  loading?: boolean;
+  /**
+   * @zh_CN 连接线显示虚线，针对下一个节点，下一个节点为 loading 状态也会显示虚线
+   * @en_US The connecting line displays a dotted line. For the next node, the dotted line will also be displayed when the next node is in loading status
+   */
+  dashed?: boolean;
+  /**
+   * @zh_CN 其它自定义属性
+   * @en_US Other property
+   */
+  [property: string]: any;
 }

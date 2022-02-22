@@ -1,14 +1,13 @@
 <div #timeline class="x-timeline" [ngClass]="classMap">
   <ul>
-    <li *ngFor="let node of nodes; trackBy: trackByNode">
-      <div class="x-timeline-tail"></div>
+    <li *ngFor="let node of nodes; trackBy: trackByNode" [class.x-timeline-loading]="node.loading">
+      <div class="x-timeline-tail" [class.x-timeline-tail-dashed]="node.dashed"></div>
       <div
-        class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }} {{
-          node.size ? 'x-timeline-' + node.size : ''
-        }}"
+        class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }} {{ node.size ? 'x-timeline-' + node.size : '' }}"
         [style.background-color]="node.color"
       >
-        <x-icon *ngIf="node.icon" [type]="node.icon"></x-icon>
+        <x-icon *ngIf="node.icon && !node.loading" [type]="node.icon"></x-icon>
+        <x-icon *ngIf="node.loading" type="fto-loader" [spin]="true"></x-icon>
       </div>
       <div class="x-timeline-wrapper">
         <ng-container *xOutlet="wrapper; context: { $node: node }">

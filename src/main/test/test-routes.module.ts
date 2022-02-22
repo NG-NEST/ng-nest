@@ -68,6 +68,10 @@ const routes: Routes = [
         path: 'tooltip',
         loadChildren: () => import('./modules/tooltip/tooltip.module').then((x) => x.TeTooltipModule)
       },
+      {
+        path: 'timeline',
+        loadChildren: () => import('./modules/timeline/timeline.module').then((x) => x.TeTimelineModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
