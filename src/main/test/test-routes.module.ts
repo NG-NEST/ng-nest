@@ -72,6 +72,10 @@ const routes: Routes = [
         path: 'timeline',
         loadChildren: () => import('./modules/timeline/timeline.module').then((x) => x.TeTimelineModule)
       },
+      {
+        path: 'tag',
+        loadChildren: () => import('./modules/tag/tag.module').then((x) => x.TeTagModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

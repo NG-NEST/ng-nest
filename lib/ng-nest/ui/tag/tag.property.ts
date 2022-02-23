@@ -45,6 +45,11 @@ export class XTagProperty extends XProperty {
    */
   @Input() @XInputBoolean() disabled?: XBoolean;
   /**
+   * @zh_CN 样式
+   * @en_US Style
+   */
+  @Input() style?: { [cssStyle: string]: any };
+  /**
    * @zh_CN 点击关闭的事件
    * @en_US Click to close the event
    */
