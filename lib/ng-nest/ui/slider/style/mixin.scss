@@ -56,6 +56,16 @@
   &-activated {
     color: $--x-primary;
   }
+  &-disabled {
+    color: $--x-text-400 !important;
+    cursor: not-allowed !important;
+    .x-link {
+      cursor: not-allowed !important;
+      &:hover {
+        color: $--x-text-400 !important;
+      }
+    }
+  }
   &-arrow-left,
   &-arrow-right {
     height: 1.675rem;

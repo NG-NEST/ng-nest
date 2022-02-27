@@ -106,7 +106,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
       if (this.listTabs && this.listTabs.length > 0) {
         let _data: any[] = [];
         this.listTabs.forEach((x, index) => {
-          _data = [...(_data as XTabsNode[]), { id: index + 1, label: x.label }];
+          _data = [...(_data as XTabsNode[]), { id: index + 1, label: x.label, disabled: x.disabled }];
         });
         this.data = _data;
       } else {

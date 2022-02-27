@@ -76,6 +76,10 @@ const routes: Routes = [
         path: 'tag',
         loadChildren: () => import('./modules/tag/tag.module').then((x) => x.TeTagModule)
       },
+      {
+        path: 'tabs',
+        loadChildren: () => import('./modules/tabs/tabs.module').then((x) => x.TeTabsModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

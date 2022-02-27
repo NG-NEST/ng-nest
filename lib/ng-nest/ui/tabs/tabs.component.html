@@ -19,6 +19,7 @@
       [active]="activeIndex == i"
       [content]="tab.content"
       [class.x-tab-content-unactivated]="activeIndex != i"
+      [class.x-tab-content-disabled]="tab.disabled"
       [style.transform]="'translate(' + (-activeIndex || 0) * 100 + '%, 0px)'"
     >
     </x-tab-content>

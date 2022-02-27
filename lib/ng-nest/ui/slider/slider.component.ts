@@ -119,6 +119,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSliderNode, index: number) {
+    if (node.disabled) return;
     this.setDirection(index, Number(this.activatedIndex));
     this.activatedIndex = index;
     this.activated = node;

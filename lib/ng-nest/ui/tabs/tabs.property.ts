@@ -87,7 +87,18 @@ export class XTabsProperty extends XProperty {
  * @zh_CN Tabs 数据对象
  * @en_US Tabs data object
  */
-export interface XTabsNode extends XIdentityProperty {}
+export interface XTabsNode extends XIdentityProperty {
+  /**
+   * @zh_CN 禁用节点
+   * @en_US Node disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom properties
+   */
+  [property: string]: any;
+}
 
 /**
  * @zh_CN 激活的tab
@@ -127,4 +138,9 @@ export class XTabProperty {
    * @en_US Label name, support custom template
    */
   @Input() label?: XTemplate;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabeld
+   */
+  @Input() @XInputBoolean() disabled?: XBoolean;
 }

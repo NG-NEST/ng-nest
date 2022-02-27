@@ -89,6 +89,11 @@ export interface XSliderNode extends XIdentityProperty {
    * @en_US Title, support template
    */
   label?: XTemplate;
+  /**
+   * @zh_CN 禁用节点
+   * @en_US Node disabled
+   */
+  disabled?: boolean;
 }
 
 /**
