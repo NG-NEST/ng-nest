@@ -67,6 +67,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.setClassMap();
     this.setRowChecked();
     this.setMerge();
+    this.setPaginationPosition();
   }
 
   ngOnChanges(simples: SimpleChanges) {
@@ -86,6 +87,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       [`${XTablePrefix}-row-size-${this.rowSize}`]: !XIsEmpty(this.rowSize)
     };
     this.cdr.detectChanges();
+  }
+
+  setPaginationPosition() {
+    this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition}`);
   }
 
   getSticky(column: XTableColumn | XTableCell) {

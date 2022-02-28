@@ -158,6 +158,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') rowSize?: XSize;
+  /**
+   * @zh_CN 分页器位置
+   * @en_US Pagination position
+   */
+  @Input() paginationPosition: XPaginationPosition = 'bottom-left';
 }
 
 /**
@@ -407,6 +412,12 @@ export interface XTableCell {
  * @en_US Column type
  */
 export type XColumnType = 'label' | 'index' | 'checkbox';
+
+/**
+ * @zh_CN 分页器位置
+ * @en_US Paging position
+ */
+export type XPaginationPosition = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 
 /**
  * @zh_CN 模板

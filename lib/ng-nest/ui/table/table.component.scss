@@ -11,7 +11,40 @@
 
 #{$--x-table} {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   .x-pagination {
     @include pagination();
+  }
+  &.x-table {
+    &-top-left {
+      flex-direction: column-reverse;
+      .x-pagination {
+        padding-top: 0;
+        padding-bottom: calc(#{$--x-font-size} / 2);
+      }
+    }
+    &-top-center {
+      flex-direction: column-reverse;
+      align-items: center;
+      .x-pagination {
+        padding-top: 0;
+        padding-bottom: calc(#{$--x-font-size} / 2);
+      }
+    }
+    &-top-right {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      .x-pagination {
+        padding-top: 0;
+        padding-bottom: calc(#{$--x-font-size} / 2);
+      }
+    }
+    &-bottom-center {
+      align-items: center;
+    }
+    &-bottom-right {
+      align-items: flex-end;
+    }
   }
 }
