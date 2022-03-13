@@ -80,6 +80,10 @@ const routes: Routes = [
         path: 'tabs',
         loadChildren: () => import('./modules/tabs/tabs.module').then((x) => x.TeTabsModule)
       },
+      {
+        path: 'popover',
+        loadChildren: () => import('./modules/popover/popover.module').then((x) => x.TePopoverModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

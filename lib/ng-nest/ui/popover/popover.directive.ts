@@ -14,6 +14,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
   positionChange: Subject<any> = new Subject();
   timeoutHide: any;
+  timeoutShow: any;
   private _unSubject = new Subject<void>();
   private realPlacement!: XPlacement;
 
@@ -68,20 +69,25 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
 
   show() {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
+    if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) {
-      this.visible = true;
-      this.createPortal();
-      this.visibleChange.emit(this.visible);
+      this.timeoutShow = setTimeout(() => {
+        this.visible = true;
+        this.createPortal();
+        this.visibleChange.emit(this.visible);
+      }, this.mouseEnterDelay);
     }
   }
 
   hide() {
+    if (this.timeoutHide) clearTimeout(this.timeoutHide);
+    if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (this.portal.overlayRef?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.visible = false;
         this.portal.overlayRef?.dispose();
         this.visibleChange.emit(this.visible);
-      });
+      }, this.mouseLeaveDelay);
     }
   }
 

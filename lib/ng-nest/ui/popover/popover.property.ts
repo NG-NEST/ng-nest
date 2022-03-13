@@ -55,6 +55,16 @@ export class XPopoverProperty extends XProperty {
    */
   @Input() @XInputBoolean() condition?: XBoolean;
   /**
+   * @zh_CN 鼠标移入后延时多少才显示
+   * @en_US How much is the mouse transfer after transfer
+   */
+  @Input() mouseEnterDelay: number = 150;
+  /**
+   * @zh_CN 鼠标移出后延时多少才隐藏
+   * @en_US How much hidden is hidden after the mouse is removed
+   */
+  @Input() mouseLeaveDelay: number = 100;
+  /**
    * @zh_CN 显示/隐藏改变的事件
    * @en_US Show/hide changed events
    */
