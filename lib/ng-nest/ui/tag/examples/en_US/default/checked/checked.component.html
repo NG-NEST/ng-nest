@@ -1,0 +1,18 @@
+<div class="row">
+  <x-tag checked [selected]="true" (selectedChange)="change($event)">tag1</x-tag>
+  <x-tag checked [selected]="true" (selectedChange)="change($event)">tag2</x-tag>
+  <x-tag checked [selected]="true" (selectedChange)="change($event)">tag3</x-tag>
+</div>
+<div class="row">
+  <x-tag bordered="false" checked [selected]="false" (selectedChange)="change($event)">tag1</x-tag>
+  <x-tag bordered="false" checked [selected]="false" (selectedChange)="change($event)">tag2</x-tag>
+  <x-tag bordered="false" checked [selected]="false" (selectedChange)="change($event)">tag3</x-tag>
+</div>
+<div class="row">
+  <x-tag checked>tag</x-tag>
+  <x-tag checked type="primary">tag</x-tag>
+  <x-tag checked type="success">tag</x-tag>
+  <x-tag checked type="warning">tag</x-tag>
+  <x-tag checked type="danger">tag</x-tag>
+  <x-tag checked type="info">tag</x-tag>
+</div>

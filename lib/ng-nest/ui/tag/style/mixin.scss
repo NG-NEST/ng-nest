@@ -38,6 +38,10 @@
   &-bordered {
     border-width: $--x-border-width;
   }
+  &-checked {
+    cursor: pointer;
+    transition: 0.3s;
+  }
   @include size('big', $--x-height-big, $--x-padding-big);
   @include size('large', $--x-height-large, $--x-padding-large);
   @include size('medium', $--x-height-medium, $--x-padding-medium);
@@ -54,7 +58,13 @@
     $--x-border,
     $--x-text-400,
     $--x-background-200,
-    $--x-border
+    $--x-border,
+    $--x-primary,
+    $--x-primary,
+    'transparent',
+    $--x-white,
+    $--x-primary,
+    $--x-primary
   );
   @include type(
     'primary',
@@ -66,7 +76,13 @@
     $--x-primary-800,
     $--x-primary-800,
     $--x-primary-500,
-    $--x-primary-500
+    $--x-primary-500,
+    $--x-primary,
+    $--x-primary,
+    'transparent',
+    $--x-white,
+    $--x-primary,
+    $--x-primary
   );
   @include type(
     'success',
@@ -78,7 +94,13 @@
     $--x-success-800,
     $--x-success-800,
     $--x-success-500,
-    $--x-success-500
+    $--x-success-500,
+    $--x-success,
+    $--x-success,
+    'transparent',
+    $--x-white,
+    $--x-success,
+    $--x-success
   );
   @include type(
     'warning',
@@ -90,7 +112,13 @@
     $--x-warning-800,
     $--x-warning-800,
     $--x-warning-500,
-    $--x-warning-500
+    $--x-warning-500,
+    $--x-warning,
+    $--x-warning,
+    'transparent',
+    $--x-white,
+    $--x-warning,
+    $--x-warning
   );
   @include type(
     'danger',
@@ -102,7 +130,13 @@
     $--x-danger-800,
     $--x-danger-800,
     $--x-danger-500,
-    $--x-danger-500
+    $--x-danger-500,
+    $--x-danger,
+    $--x-danger,
+    'transparent',
+    $--x-white,
+    $--x-danger,
+    $--x-danger
   );
   @include type(
     'info',
@@ -114,7 +148,13 @@
     $--x-info-800,
     $--x-info-800,
     $--x-info-500,
-    $--x-info-500
+    $--x-info-500,
+    $--x-info,
+    $--x-info,
+    'transparent',
+    $--x-white,
+    $--x-info,
+    $--x-info
   );
 }
 
@@ -128,7 +168,13 @@
   $disabled-border,
   $dark-disabled-color,
   $dark-disabled-background,
-  $dark-disabled-border
+  $dark-disabled-border,
+  $checked-hover-color,
+  $checked-hover-border,
+  $checked-hover-background,
+  $checked-selected-color,
+  $checked-selected-border,
+  $checked-selected-background
 ) {
   &-#{$type} {
     border-color: $border-color;
@@ -143,6 +189,19 @@
       &:active {
         @include disabled($disabled-color, $disabled-background, $disabled-border);
       }
+    }
+    &.#{$--x-tag-prefix}-checked:not(.x-tag-selected) {
+      &:hover,
+      &:active {
+        border-color: $checked-hover-border;
+        color: $checked-hover-color;
+        background-color: $checked-hover-background;
+      }
+    }
+    &.#{$--x-tag-prefix}-selected {
+      border-color: $checked-selected-border;
+      color: $checked-selected-color;
+      background-color: $checked-selected-background;
     }
     &.#{$--x-tag-prefix}-dark {
       border-color: $color;

@@ -45,6 +45,16 @@ export class XTagProperty extends XProperty {
    */
   @Input() @XInputBoolean() disabled?: XBoolean;
   /**
+   * @zh_CN 可选择标签
+   * @en_US checked
+   */
+  @Input() @XInputBoolean() checked?: XBoolean;
+  /**
+   * @zh_CN 选中
+   * @en_US Selected
+   */
+  @Input() selected?: boolean;
+  /**
    * @zh_CN 样式
    * @en_US Style
    */
@@ -54,4 +64,9 @@ export class XTagProperty extends XProperty {
    * @en_US Click to close the event
    */
   @Output() close = new EventEmitter<void>();
+  /**
+   * @zh_CN 选中事件
+   * @en_US Selected event
+   */
+  @Output() selectedChange = new EventEmitter<boolean>();
 }

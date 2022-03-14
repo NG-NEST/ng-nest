@@ -42,8 +42,14 @@ export class XTagComponent extends XTagProperty implements OnInit {
     this.classMap = {
       [`${XTagPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`${XTagPrefix}-${this.size}`]: !XIsEmpty(this.size),
-      [`${XTagPrefix}-dark`]: Boolean(this.dark)
+      [`${XTagPrefix}-dark`]: Boolean(this.dark),
+      [`${XTagPrefix}-checked`]: Boolean(this.checked)
     };
+  }
+
+  onClick() {
+    this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
   }
 
   onClose() {
