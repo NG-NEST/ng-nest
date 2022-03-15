@@ -2,9 +2,13 @@ import { AnimationTriggerMetadata, trigger, style, animate, transition } from '@
 import { XDuration } from './consts';
 
 // 进场动画
-const XDURATION_BASE_EASE_IN = `${XDuration.Fast} ease-in`;
+// const XDURATION_SLOW_EASE_IN = `${XDuration.Slow} ease-in`;
+const XDURATION_BASE_EASE_IN = `${XDuration.Base} ease-in`;
+const XDURATION_FAST_EASE_IN = `${XDuration.Fast} ease-in`;
 // 移除动画
-const XDURATION_BASE_EASE_OUT = `${XDuration.Fast} ease-out`;
+// const XDURATION_SLOW_EASE_OUT = `${XDuration.Slow} ease-out`;
+const XDURATION_BASE_EASE_OUT = `${XDuration.Base} ease-out`;
+const XDURATION_FAST_EASE_OUT = `${XDuration.Fast} ease-out`;
 
 export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-animation', [
   transition('void => top-start, void => top, void => top-end, void => center', [
@@ -14,7 +18,7 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
       // transformOrigin: '0% 100%'
     }),
     animate(
-      XDURATION_BASE_EASE_IN,
+      XDURATION_FAST_EASE_IN,
       style({
         opacity: 1
         // transform: 'scaleY(1)',
@@ -29,7 +33,7 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
       // transformOrigin: '0% 100%'
     }),
     animate(
-      XDURATION_BASE_EASE_OUT,
+      XDURATION_FAST_EASE_OUT,
       style({
         opacity: 0
         // transform: 'scaleY(0.8)',
@@ -100,7 +104,7 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
       // transformOrigin: '0% 0%'
     }),
     animate(
-      XDURATION_BASE_EASE_IN,
+      XDURATION_FAST_EASE_IN,
       style({
         opacity: 1
         // transform: 'scale(1)',
@@ -115,7 +119,7 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
       // transformOrigin: '30% 30%'
     }),
     animate(
-      XDURATION_BASE_EASE_OUT,
+      XDURATION_FAST_EASE_OUT,
       style({
         opacity: 0
         // transform: 'scale(0)',
@@ -126,6 +130,11 @@ export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-an
 ]);
 
 export const XConnectBaseAnimation: AnimationTriggerMetadata = trigger('x-connect-base-animation', [
-  transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_BASE_EASE_IN)]),
-  transition(':leave', [animate(XDURATION_BASE_EASE_OUT, style({ opacity: 0 }))])
+  transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_FAST_EASE_IN)]),
+  transition(':leave', [animate(XDURATION_FAST_EASE_OUT, style({ opacity: 0 }))])
+]);
+
+export const XBaseAnimation: AnimationTriggerMetadata = trigger('x-base-animation', [
+  transition(':enter', [style({ opacity: 0, transform: 'scale(0.2)' }), animate(XDURATION_BASE_EASE_IN)]),
+  transition(':leave', [animate(XDURATION_BASE_EASE_OUT, style({ opacity: 0, transform: 'scale(0.2)' }))])
 ]);

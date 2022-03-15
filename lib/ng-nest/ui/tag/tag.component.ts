@@ -6,19 +6,33 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges
+  SimpleChanges,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
-import { XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XIsChange, XClearClass, XBaseAnimation } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTagPrefix}`,
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XBaseAnimation]
 })
 export class XTagComponent extends XTagProperty implements OnInit {
+  @HostBinding('@x-base-animation') public animation = true;
+  animating = false;
+  @HostListener('@x-base-animation.done', ['$event']) done() {
+    // this.animating(false);
+    this.animating = false;
+    // event.toState === 'void' && this.destroyPortal();
+  }
+  @HostListener('@x-base-animation.start', ['$event']) start() {
+    this.animating = true;
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -48,6 +62,7 @@ export class XTagComponent extends XTagProperty implements OnInit {
   }
 
   onClick() {
+    if (!this.checked) return;
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
   }

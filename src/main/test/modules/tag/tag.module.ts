@@ -7,11 +7,13 @@ import { TeTagComponent } from './tag.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExCheckedComponent } from './checked/checked.component';
+import { ExCloseComponent } from './close/close.component';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeTagComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XTagModule, XLayoutModule],
-  declarations: [TeTagComponent, ExDefaultComponent, ExColorComponent, ExCheckedComponent]
+  imports: [RouterModule.forChild(routers), CommonModule, XTagModule, XLayoutModule, XButtonModule],
+  declarations: [TeTagComponent, ExDefaultComponent, ExColorComponent, ExCheckedComponent, ExCloseComponent]
 })
 export class TeTagModule {}
