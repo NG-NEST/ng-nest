@@ -19,6 +19,11 @@ export class XCollapseProperty extends XProperty {
    */
   @Input() @XInputBoolean() accordion?: XBoolean;
   /**
+   * @zh_CN 显示的图标
+   * @en_US The icon displayed on the right
+   */
+  @Input() icon?: XTemplate;
+  /**
    * @zh_CN 当前激活的面板序号
    * @en_US The serial number of the currently active panel
    */

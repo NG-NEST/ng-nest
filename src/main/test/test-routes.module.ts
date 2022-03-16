@@ -84,6 +84,10 @@ const routes: Routes = [
         path: 'popover',
         loadChildren: () => import('./modules/popover/popover.module').then((x) => x.TePopoverModule)
       },
+      {
+        path: 'collapse',
+        loadChildren: () => import('./modules/collapse/collapse.module').then((x) => x.TeCollapseModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

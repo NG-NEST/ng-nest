@@ -3,7 +3,9 @@
     <div>
       <ng-container *xOutlet="label">{{ label }}</ng-container>
     </div>
-    <x-icon type="fto-chevron-right"></x-icon>
+    <ng-container *xOutlet="collapseComponent.icon">
+      <x-icon type="fto-chevron-right"></x-icon>
+    </ng-container>
   </div>
   <div class="x-collapse-panel-body">
     <div class="x-collapse-panel-content" [@x-drop-animation]="active"><ng-content></ng-content></div>
