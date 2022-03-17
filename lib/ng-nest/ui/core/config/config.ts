@@ -203,7 +203,9 @@ export interface XCheckboxConfig {
   size?: XSize;
 }
 
-export interface XCollapseConfig {}
+export interface XCollapseConfig {
+  showIcon?: Boolean;
+}
 
 export interface XColorConfig {
   merge?: string;
