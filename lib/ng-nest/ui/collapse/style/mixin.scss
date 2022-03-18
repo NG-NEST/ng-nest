@@ -16,6 +16,20 @@
       }
     }
   }
+  &-ghost {
+    border-top: none;
+    border-bottom: none;
+    x-collapse-panel {
+      .x-collapse-panel {
+        &-header {
+          border-bottom: none;
+        }
+        &-body {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
 
 @mixin collapse-panel {

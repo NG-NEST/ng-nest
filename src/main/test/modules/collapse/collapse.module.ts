@@ -7,11 +7,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExIconComponent } from './icon/icon.component';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { ExGhostComponent } from './ghost/ghost.component';
 
 const routers = [{ path: '', component: TeCollapseComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XCollapseModule, XLayoutModule, XIconModule],
-  declarations: [TeCollapseComponent, ExDefaultComponent, ExIconComponent]
+  declarations: [TeCollapseComponent, ExDefaultComponent, ExIconComponent, ExGhostComponent]
 })
 export class TeCollapseModule {}

@@ -30,6 +30,11 @@ export class XCollapseProperty extends XProperty {
    */
   @Input() @XInputBoolean() @XWithConfig<Boolean>(X_CONFIG_NAME, true) showIcon?: Boolean;
   /**
+   * @zh_CN 幽灵面板
+   * @en_US Ghost panel
+   */
+  @Input() @XInputBoolean() @XWithConfig<Boolean>(X_CONFIG_NAME, false) ghost?: XBoolean;
+  /**
    * @zh_CN 当前激活的面板序号
    * @en_US The serial number of the currently active panel
    */
