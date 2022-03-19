@@ -79,7 +79,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
       .pipe(delay(this.hoverDelay), takeUntil(this.hoverDelayUnsub))
       .subscribe(() => {
         if (this.disabled || this.trigger === 'click') return;
-        if (this.timeoutHide) clearTimeout(this.timeoutHide);
+        if (this.timeoutHide) {
+          clearTimeout(this.timeoutHide);
+          this.timeoutHide = null;
+        }
         if (!this.portal || (this.portal && !this.portal?.overlayRef?.hasAttached())) {
           this.visible = true;
           this.createPortal();
@@ -116,6 +119,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   closePortal() {
     if (this.portalAttached()) {
       this.portal?.overlayRef?.dispose();
+      this.visible = false;
       return true;
     }
     return false;
