@@ -1,3 +1,26 @@
+## [13.0.9](https://github.com/NG-NEST/ng-nest/compare/13.0.8...13.0.9) (2022-03-20)
+
+
+### Bug Fixes
+
+* **module:menu:** fix actived node style ([672779f](https://github.com/NG-NEST/ng-nest/commit/672779fbff7d9a7b8f0ebc1244befa941e7fb6ab)), closes [#182](https://github.com/NG-NEST/ng-nest/issues/182)
+
+
+### Features
+
+* **module:collapse:** add ghost panel ([fc49491](https://github.com/NG-NEST/ng-nest/commit/fc494918eb07c00e10f3d2739e020a2f8bf10261)), closes [#130](https://github.com/NG-NEST/ng-nest/issues/130)
+* **module:collapse:** add show icon ([78972d5](https://github.com/NG-NEST/ng-nest/commit/78972d5c619d2abad8d546420ebf8c876bc0b41c)), closes [#128](https://github.com/NG-NEST/ng-nest/issues/128)
+* **module:icon:** add icon template ([3d0ac8a](https://github.com/NG-NEST/ng-nest/commit/3d0ac8ab2cce505545affe0b17ba05ef13448169)), closes [#129](https://github.com/NG-NEST/ng-nest/issues/129)
+* **module:popover:** add mouse delay ([dbf2e00](https://github.com/NG-NEST/ng-nest/commit/dbf2e00e03d1e97573d800382078006b2908d968)), closes [#139](https://github.com/NG-NEST/ng-nest/issues/139) [#140](https://github.com/NG-NEST/ng-nest/issues/140)
+* **module:table:** add pagination postion ([dfdab64](https://github.com/NG-NEST/ng-nest/commit/dfdab6423d0981a495e21a02178a29e5fca30144)), closes [#147](https://github.com/NG-NEST/ng-nest/issues/147)
+* **module:tabs:** add node disabled ([8d680f9](https://github.com/NG-NEST/ng-nest/commit/8d680f97e451a1ffe384ab1933f7932afc232a1b)), closes [#149](https://github.com/NG-NEST/ng-nest/issues/149)
+* **module:tag:** add checked ([0c78544](https://github.com/NG-NEST/ng-nest/commit/0c78544bc7a45e4e8c9e8211e19572916df288ae)), closes [#155](https://github.com/NG-NEST/ng-nest/issues/155)
+* **module:tag:** add close animation ([9a8e314](https://github.com/NG-NEST/ng-nest/commit/9a8e31473df29ec1cc579e03d108302fb5bcd54b)), closes [#153](https://github.com/NG-NEST/ng-nest/issues/153)
+* **module:tag:** add style ([ed6fdf0](https://github.com/NG-NEST/ng-nest/commit/ed6fdf0ffb88ac5fbe5f51f7318838af8145a095)), closes [#152](https://github.com/NG-NEST/ng-nest/issues/152)
+* **module:timeline:** add node loading ([59c7a61](https://github.com/NG-NEST/ng-nest/commit/59c7a61593e534239b384891b00c5560122c62d3)), closes [#157](https://github.com/NG-NEST/ng-nest/issues/157)
+
+
+
 ## [13.0.8](https://github.com/NG-NEST/ng-nest/compare/13.0.7...13.0.8) (2022-02-20)
 
 
