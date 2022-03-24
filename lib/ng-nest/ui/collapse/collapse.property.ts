@@ -30,6 +30,11 @@ export class XCollapseProperty extends XProperty {
    */
   @Input() @XInputBoolean() @XWithConfig<Boolean>(X_CONFIG_NAME, true) showIcon?: Boolean;
   /**
+   * @zh_CN 图标位置
+   * @en_US Icon position
+   */
+  @Input() @XWithConfig<'left' | 'right'>(X_CONFIG_NAME, 'right') iconPosition?: 'left' | 'right';
+  /**
    * @zh_CN 幽灵面板
    * @en_US Ghost panel
    */

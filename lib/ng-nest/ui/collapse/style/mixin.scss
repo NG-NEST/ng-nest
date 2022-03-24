@@ -42,11 +42,17 @@
     border-bottom: $--x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;
+    &-title {
+      flex: 1;
+    }
     > .x-icon {
       margin-right: 0.125rem;
       color: $--x-text-300;
       transition: transform 0.3s;
     }
+  }
+  &-icon-left {
+    flex-direction: row-reverse;
   }
   &-body {
     overflow: hidden;

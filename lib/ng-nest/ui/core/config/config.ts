@@ -206,6 +206,7 @@ export interface XCheckboxConfig {
 export interface XCollapseConfig {
   showIcon?: Boolean;
   ghost?: Boolean;
+  iconPosition?: 'left' | 'right';
 }
 
 export interface XColorConfig {
