@@ -16,6 +16,22 @@
       }
     }
   }
+  &-bordered {
+    border-left: $--x-border-base;
+    border-right: $--x-border-base;
+    x-collapse-panel {
+      .x-collapse-panel {
+        &-header {
+          padding-left: 0.625rem;
+          padding-right: 0.625rem;
+        }
+        &-body {
+          padding-left: 0.625rem;
+          padding-right: 0.625rem;
+        }
+      }
+    }
+  }
   &-ghost {
     border-top: none;
     border-bottom: none;

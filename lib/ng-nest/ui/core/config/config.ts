@@ -207,6 +207,7 @@ export interface XCollapseConfig {
   showIcon?: Boolean;
   ghost?: Boolean;
   iconPosition?: 'left' | 'right';
+  bordered?: Boolean;
 }
 
 export interface XColorConfig {

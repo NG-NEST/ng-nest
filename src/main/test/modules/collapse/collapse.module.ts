@@ -9,11 +9,12 @@ import { ExIconComponent } from './icon/icon.component';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { ExGhostComponent } from './ghost/ghost.component';
 import { ExArrowComponent } from './arrow/arrow.component';
+import { ExBorderComponent } from './border/border.component';
 
 const routers = [{ path: '', component: TeCollapseComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XCollapseModule, XLayoutModule, XIconModule],
-  declarations: [TeCollapseComponent, ExDefaultComponent, ExIconComponent, ExGhostComponent, ExArrowComponent]
+  declarations: [TeCollapseComponent, ExDefaultComponent, ExIconComponent, ExGhostComponent, ExArrowComponent, ExBorderComponent]
 })
 export class TeCollapseModule {}
