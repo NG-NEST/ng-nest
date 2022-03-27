@@ -11,6 +11,12 @@ export const XPaginationPrefix = 'x-pagination';
 const X_CONFIG_NAME = 'pagination';
 
 /**
+ * @zh_CN 分页选择条数
+ * @en_US Sub-selection
+ */
+export const XPaginationSizeData = [10, 20, 50, 100];
+
+/**
  * Pagination Property
  */
 @Component({ template: '' })
@@ -74,7 +80,7 @@ export class XPaginationProperty extends XProperty {
    * @zh_CN 分页条数的宽度
    * @en_US size with
    */
-  @Input() @XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME, [10, 20, 50, 100]) sizeData!: XData<XSelectNode>;
+  @Input() @XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME, XPaginationSizeData) sizeData!: XData<XSelectNode>;
   /**
    * @zh_CN 禁用整个分页
    * @en_US disabled
