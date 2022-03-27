@@ -163,6 +163,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Pagination position
    */
   @Input() paginationPosition: XPaginationPosition = 'bottom-left';
+  /**
+   * @zh_CN 显示分页器
+   * @en_US Pagination position
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showPagination?: XBoolean;
 }
 
 /**

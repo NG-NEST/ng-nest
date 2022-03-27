@@ -484,6 +484,7 @@ export interface XTableConfig {
   bordered?: XNumber;
   allowSelectRow?: XBoolean;
   rowSize?: XSize;
+  showPagination?: XBoolean;
 }
 
 export interface XTabsConfig {

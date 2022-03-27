@@ -43,7 +43,7 @@
 </table>
 <x-pagination
   #pagination
-  *ngIf="size"
+  *ngIf="showPagination && size"
   [(index)]="index"
   [(size)]="size"
   [(query)]="query"
