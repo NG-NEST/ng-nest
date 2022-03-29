@@ -33,7 +33,7 @@ export class XCollapseProperty extends XProperty {
    * @zh_CN 图标位置
    * @en_US Icon position
    */
-  @Input() @XWithConfig<'left' | 'right'>(X_CONFIG_NAME, 'right') iconPosition?: 'left' | 'right';
+  @Input() @XWithConfig<XCollapseIconPosition>(X_CONFIG_NAME, 'right') iconPosition?: XCollapseIconPosition;
   /**
    * @zh_CN 幽灵面板
    * @en_US Ghost panel
@@ -43,7 +43,7 @@ export class XCollapseProperty extends XProperty {
    * @zh_CN 边框
    * @en_US border
    */
-   @Input() @XInputBoolean() @XWithConfig<Boolean>(X_CONFIG_NAME, false) bordered?: XBoolean;
+  @Input() @XInputBoolean() @XWithConfig<Boolean>(X_CONFIG_NAME, false) bordered?: XBoolean;
   /**
    * @zh_CN 当前激活的面板序号
    * @en_US The serial number of the currently active panel
@@ -55,6 +55,12 @@ export class XCollapseProperty extends XProperty {
    */
   @Output() activeChange = new EventEmitter<XNumber | XNumber[]>();
 }
+
+/**
+ * @zh_CN 图标位置
+ * @en_US Icon position
+ */
+export type XCollapseIconPosition = 'left' | 'right';
 
 /**
  * Collapse Panel
