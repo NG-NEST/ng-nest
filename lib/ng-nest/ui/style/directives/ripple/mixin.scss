@@ -19,16 +19,16 @@
     transition: opacity, transform 0ms cubic-bezier(0, 0, 0.2, 1);
     transform: scale(0);
   }
-  @include button-type('initial', $--x-background-a500);
-  @include button-type('primary', $--x-primary-200);
-  @include button-type('success', $--x-success-200);
-  @include button-type('warning', $--x-warning-200);
-  @include button-type('danger', $--x-danger-200);
-  @include button-type('info', $--x-info-200);
-  @include button-type('text', rgba(0, 0, 0, 0.1));
+  @include ripple-type('initial', $--x-background-a500);
+  @include ripple-type('primary', $--x-primary-200);
+  @include ripple-type('success', $--x-success-200);
+  @include ripple-type('warning', $--x-warning-200);
+  @include ripple-type('danger', $--x-danger-200);
+  @include ripple-type('info', $--x-info-200);
+  @include ripple-type('text', rgba(0, 0, 0, 0.1));
 }
 
-@mixin button-type($type, $background) {
+@mixin ripple-type($type, $background) {
   &-#{$type} {
     .#{$--x-ripple-prefix}-element {
       background-color: $background;

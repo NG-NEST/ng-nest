@@ -1,0 +1,6 @@
+// Resizable
+@import './mixin';
+
+.#{$--x-resizable-prefix} {
+  @include resizable();
+}

@@ -32,6 +32,8 @@ export * from '@ng-nest/ui/empty';
 export * from '@ng-nest/ui/outlet';
 export * from '@ng-nest/ui/pagination';
 export * from '@ng-nest/ui/progress';
+export * from '@ng-nest/ui/ripple';
+export * from '@ng-nest/ui/resizable';
 export * from '@ng-nest/ui/statistic';
 export * from '@ng-nest/ui/table';
 export * from '@ng-nest/ui/tag';
