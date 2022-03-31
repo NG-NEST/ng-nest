@@ -6,6 +6,9 @@
 
 @mixin resizable {
   position: relative;
+  &-resizing {
+    user-select: none;
+  }
   @include resizable-position('bottom', s-resize, 100%, 0.5rem, null, null, -0.25rem, 0);
   @include resizable-position('top', n-resize, 100%, 0.5rem, -0.25rem, null, null, 0);
   @include resizable-position('left', w-resize, 0.5rem, 100%, 0, null, null, -0.25rem);

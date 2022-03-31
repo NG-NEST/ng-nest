@@ -16,9 +16,10 @@ import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
 import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
-import { BlockScrollStrategy } from '@angular/cdk/overlay';
+import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
+import { XResizableEvent } from '../resizable';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -51,6 +52,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     public cdr: ChangeDetectorRef,
     public viewContainerRef: ViewContainerRef,
     public protalService: XPortalService,
+    public overlay: Overlay,
     public i18n: XI18nService
   ) {
     super();
@@ -91,6 +93,22 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       this.detach();
       // this.visibleChange.emit(false);
     }
+  }
+
+  resizing($event: XResizableEvent) {
+    if (!this.dialogRef) return;
+    if ($event.clientWidth) {
+      this.dialogRef.overlayRef?.updateSize({ width: $event.clientWidth });
+    }
+    if ($event.clientHeight) {
+      this.dialogRef.overlayRef?.updateSize({ height: $event.clientHeight });
+    }
+    // if ($event.offsetLeft) {
+    //   this.dialogRef.overlayRef?.updatePositionStrategy(this.overlay.position().global().left(`${$event.offsetLeft}px`));
+    // }
+    // if ($event.offsetTop) {
+    //   this.dialogRef.overlayRef?.updatePositionStrategy(this.overlay.position().global().top(`${$event.offsetTop}px`));
+    // }
   }
 
   create() {

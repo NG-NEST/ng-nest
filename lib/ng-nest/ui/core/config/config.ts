@@ -268,6 +268,7 @@ export interface XDialogConfig {
   confirmText?: string;
   backdropClose?: XBoolean;
   draggable?: XBoolean;
+  resizable?: XBoolean;
   hasBackdrop?: XBoolean;
   className?: string;
   buttonsCenter?: XBoolean;

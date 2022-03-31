@@ -102,10 +102,16 @@ export class XDialogProperty extends XAlertProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() override draggable?: XBoolean;
   /**
+   * @zh_CN 调整弹框的大小
+   * @en_US Adjust the size of the box
+   */
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() resizable?: XBoolean;
+  /**
    * @zh_CN 关闭前处理函数
-   * @en_US Processing function before closing
+   * @en_US Processing function before closing 
    */
   @Input() beforeClose!: Function;
+
   /**
    * @zh_CN 取消按钮的事件
    * @en_US Cancel button event
