@@ -65,7 +65,9 @@ export class XMessageService {
       content: XMessageComponent,
       overlayConfig: {
         panelClass: XMessagePortal,
-        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
+        width: option.width,
+        height: option.height,
+        positionStrategy: this.portal.setPlace(option.placement, ...offset)
       }
     });
   }

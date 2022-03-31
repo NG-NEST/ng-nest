@@ -44,7 +44,9 @@ export class XMessageBoxService {
       overlayConfig: {
         panelClass: XMessageBoxPortal,
         hasBackdrop: true,
-        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
+        width: option.width,
+        height: option.height,
+        positionStrategy: this.portal.setPlace(option.placement, ...offset)
       }
     });
   }

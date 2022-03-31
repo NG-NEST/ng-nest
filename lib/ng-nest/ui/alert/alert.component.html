@@ -9,6 +9,7 @@
   @x-fade-animation
   [@.disabled]="disabledAnimation"
   (@x-fade-animation.done)="onCloseAnimationDone()"
+  x-resizable
 >
   <ng-container *ngIf="showIcon">
     <ng-container *ngTemplateOutlet="iconTpl"></ng-container>

@@ -51,7 +51,9 @@ export class XNotificationService {
       content: XNotificationComponent,
       overlayConfig: {
         panelClass: XNotificationPortal,
-        positionStrategy: this.portal.setPlace(option.placement, option.width, option.height, ...offset)
+        width: option.width,
+        height: option.height,
+        positionStrategy: this.portal.setPlace(option.placement, ...offset)
       }
     });
   }

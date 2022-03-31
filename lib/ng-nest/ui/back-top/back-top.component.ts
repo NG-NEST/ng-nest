@@ -109,12 +109,9 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
           content: this.backTopTpl,
           viewContainerRef: this.viewContainerRef,
           overlayConfig: {
-            positionStrategy: this.portal.setPlace(
-              'bottom-end',
-              '2.5rem',
-              '2.5rem',
-              ...['0', this.right as string, this.bottom as string, '0']
-            )
+            width: '2.5rem',
+            height: '2.5rem',
+            positionStrategy: this.portal.setPlace('bottom-end', ...['0', this.right as string, this.bottom as string, '0'])
           }
         });
       } else {

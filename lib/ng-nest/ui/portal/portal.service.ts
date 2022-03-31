@@ -68,8 +68,8 @@ export class XPortalService {
     }
   }
 
-  setPlace(place?: XPlace, width?: string, height?: string, ...offset: string[]): PositionStrategy {
-    let result = this.overlay.position().global().width(width).height(height);
+  setPlace(place?: XPlace, ...offset: string[]): PositionStrategy {
+    let result = this.overlay.position().global();
     if (offset.length === 0) offset = Array.from({ length: 4 }).map(() => `0`);
     else if (offset.length < 4) {
       Array.from({ length: 4 - offset.length }).map(() => (offset = [...offset, offset[offset.length - 1]]));
