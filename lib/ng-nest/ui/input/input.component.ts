@@ -104,7 +104,16 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
     this.setPadding();
-    if (this.onChange) this.onChange(value);
+    if (this.onChange) {
+      if (this.type === 'number') {
+        if (['', undefined, null].includes(value)) {
+          value = null;
+        } else {
+          value = Number(value);
+        }
+      }
+      this.onChange(value);
+    }
     this.cdr.detectChanges();
   }
 
@@ -131,7 +140,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     } else {
       this.clearShow = false;
     }
-    this.setPadding()
+    this.setPadding();
   }
 
   setInheritedValue() {

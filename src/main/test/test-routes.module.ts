@@ -88,6 +88,10 @@ const routes: Routes = [
         path: 'collapse',
         loadChildren: () => import('./modules/collapse/collapse.module').then((x) => x.TeCollapseModule)
       },
+      {
+        path: 'input',
+        loadChildren: () => import('./modules/input/input.module').then((x) => x.TeInputModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

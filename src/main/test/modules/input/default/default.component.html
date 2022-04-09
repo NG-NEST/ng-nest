@@ -1,0 +1,12 @@
+<x-row>
+  <x-col span="8">
+    <x-input [type]="'number'" [(ngModel)]="value" (ngModelChange)="change($event, value)"></x-input>
+    <input type="number" [(ngModel)]="value1" (ngModelChange)="change($event, value1)" />
+  </x-col>
+</x-row>
+<x-row>
+  <x-col span="8" [formGroup]="form">
+    <!-- <x-input placeholder="请输入内容"></x-input> -->
+    <x-input [type]="'number'" formControlName="aaaa"></x-input>
+  </x-col>
+</x-row>
