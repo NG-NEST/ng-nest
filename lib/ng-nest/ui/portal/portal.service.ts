@@ -1,4 +1,13 @@
-import { Injectable, TemplateRef, Injector, ElementRef, ViewContainerRef, StaticProvider } from '@angular/core';
+import {
+  Injectable,
+  TemplateRef,
+  Injector,
+  ElementRef,
+  ViewContainerRef,
+  StaticProvider,
+  RendererFactory2,
+  Renderer2
+} from '@angular/core';
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
@@ -9,7 +18,10 @@ import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
  */
 @Injectable()
 export class XPortalService {
-  constructor(public overlay: Overlay, public injector: Injector) {}
+  renderer!: Renderer2;
+  constructor(public overlay: Overlay, public injector: Injector, public rendererFactory: RendererFactory2) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
+  }
 
   attach<T>(option: XPortalProperty): XPortalOverlayRef<T> {
     let portal: XPortalOverlayRef<T> = {};
@@ -97,6 +109,60 @@ export class XPortalService {
       default:
         return result.centerVertically().centerHorizontally();
     }
+  }
+
+  setResizable(ele: HTMLElement, place?: XPlace) {
+    const { clientWidth, clientHeight } = ele;
+    const computedStyle = window.getComputedStyle(ele);
+    const marginRight = parseFloat(computedStyle.marginRight);
+    const marginBottom = parseFloat(computedStyle.marginBottom);
+    let marginLeft = null;
+    let marginTop = null;
+    switch (place) {
+      case 'top-start':
+        break;
+      case 'top':
+        marginLeft = `calc(50vw - ${clientWidth / 2}px)`;
+        break;
+      case 'top-end':
+        marginLeft = `calc(100vw - ${clientWidth + marginRight}px)`;
+        break;
+      case 'left':
+        marginTop = `calc(50vh - ${clientHeight / 2}px)`;
+        break;
+      case 'center':
+        marginLeft = `calc(50vw - ${clientWidth / 2}px)`;
+        marginTop = `calc(50vh - ${clientHeight / 2}px)`;
+        break;
+      case 'right':
+        marginLeft = `calc(100vw - ${clientWidth + marginRight}px)`;
+        marginTop = `calc(50vh - ${clientHeight / 2}px)`;
+        break;
+      case 'bottom-start':
+        marginTop = `calc(100vh - ${clientHeight + marginBottom}px)`;
+        break;
+      case 'bottom':
+        marginLeft = `calc(50vw - ${clientWidth / 2}px)`;
+        marginTop = `calc(100vh - ${clientHeight + marginBottom}px)`;
+        break;
+      case 'bottom-end':
+        marginLeft = `calc(100vw - ${clientWidth + marginRight}px)`;
+        marginTop = `calc(100vh - ${clientHeight + marginBottom}px)`;
+        break;
+      default:
+        marginLeft = `calc(50vw - ${clientWidth / 2}px)`;
+        marginTop = `calc(100vh - ${clientHeight / 2}px)`;
+        break;
+    }
+    marginLeft && this.renderer.setStyle(ele, 'margin-left', marginLeft);
+    marginTop && this.renderer.setStyle(ele, 'margin-top', marginTop);
+
+    return {
+      marginLeft: marginLeft || computedStyle.marginLeft,
+      marginTop: marginTop || computedStyle.marginTop,
+      marginBottom: computedStyle.marginBottom,
+      marginRight: computedStyle.marginRight
+    };
   }
 
   createOverlayRef(option: XPortalProperty): OverlayRef {

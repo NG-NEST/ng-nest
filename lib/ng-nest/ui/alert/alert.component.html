@@ -2,6 +2,8 @@
   #alert
   class="x-alert"
   cdkDrag
+  (cdkDragEnded)="dragEnded.emit($event)"
+  [cdkDragFreeDragPosition]="dragFreeDragPosition"
   [cdkDragDisabled]="!draggable"
   [cdkDragBoundary]="dragBoundary"
   [ngClass]="classMap"
@@ -9,7 +11,11 @@
   @x-fade-animation
   [@.disabled]="disabledAnimation"
   (@x-fade-animation.done)="onCloseAnimationDone()"
-  x-resizable
+  [xResizable]="resizable!"
+  [offsetLeft]="offsetLeft"
+  [offsetTop]="offsetTop"
+  [style.minWidth]="minWidth"
+  [style.minHeight]="minHeight"
 >
   <ng-container *ngIf="showIcon">
     <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
@@ -30,16 +36,18 @@
     <div class="x-alert-content" *ngIf="content">
       <ng-container *xOutlet="content; context: { $iconTpl: iconTpl }">{{ content }}</ng-container>
     </div>
-    <x-button
-      *ngIf="!hideClose"
-      class="x-alert-close"
-      size="small"
-      [icon]="!closeText ? 'fto-x' : ''"
-      [onlyIcon]="!closeText"
-      [type]="closeText ? 'text' : 'initial'"
-      (click)="onClose()"
-      closable
-      >{{ closeText }}</x-button
-    >
+    <div class="x-alert-close">
+      <div class="x-alert-operation" *xOutlet="operationTpl">{{ operationTpl }}</div>
+      <x-button
+        *ngIf="!hideClose"
+        size="small"
+        [icon]="!closeText ? 'fto-x' : ''"
+        [onlyIcon]="!closeText"
+        [type]="closeText ? 'text' : 'initial'"
+        (click)="onClose()"
+        closable
+        >{{ closeText }}</x-button
+      >
+    </div>
   </div>
 </div>

@@ -1,8 +1,18 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
 import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XAlertPrefix}`,
@@ -13,6 +23,7 @@ import { delay, takeUntil } from 'rxjs/operators';
   animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
+  @ViewChild('alert') alert!: CdkDrag;
   private _unSubject = new Subject<void>();
 
   constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
@@ -31,7 +42,7 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
 
   ngOnChanges(changes: SimpleChanges): void {
     const { type, effect, title, content, showIcon, draggable } = changes;
-    XIsChange(type, effect, title, content, showIcon, draggable) && this.setClassMap();
+    XIsChange(type, effect, title, content, showIcon, draggable) && this.setClassMap(); 
   }
 
   setClassMap() {
@@ -42,6 +53,7 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
       [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon),
       [`${XAlertPrefix}-draggable`]: Boolean(this.draggable)
     };
+    
   }
 
   setDuration() {

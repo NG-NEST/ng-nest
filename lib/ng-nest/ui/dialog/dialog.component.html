@@ -1,22 +1,23 @@
 <ng-template #dialogTpl>
-  <div
-    class="x-dialog"
-    [@x-move-box-animation]="placement"
-    (@x-move-box-animation.done)="moveDone($event)"
-    x-resizable
-    (resizing)="resizing($event)"
-    ghost
-  >
+  <div class="x-dialog" [@x-move-box-animation]="placement" (@x-move-box-animation.done)="moveDone($event)">
     <x-alert
-      [draggable]="draggable"
+      [draggable]="draggable && dialogBox['draggable']"
+      [resizable]="resizable && dialogBox['resizable']"
+      [dragFreeDragPosition]="dialogBox['distance']"
+      [offsetLeft]="offsetLeft"
+      [offsetTop]="offsetTop"
+      [minWidth]="dialogBox['minWidth']"
+      [minHeight]="dialogBox['minHeight']"
       [dragBoundary]="'.cdk-overlay-container'"
-      (close)="onClose()"
       [title]="title"
       [content]="contentTpl"
       [type]="type"
       [effect]="effect"
       [hideClose]="hideClose"
       [closeText]="closeText"
+      [operationTpl]="operationTpl"
+      (close)="onClose()"
+      (dragEnded)="onDragEnded($event)"
       showIcon="false"
       duration="0"
       manual
@@ -39,4 +40,10 @@
       </ng-container>
     </div>
   </div>
+</ng-template>
+
+<ng-template #operationTpl>
+  <ng-container *ngIf="maximize || resizable">
+    <x-button size="small" [icon]="isMaximize ? 'fto-minimize' : 'fto-maximize'" [onlyIcon]="true" (click)="onSize()"></x-button>
+  </ng-container>
 </ng-template>

@@ -14,12 +14,12 @@ import {
 } from '@angular/core';
 import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
 import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer } from './dialog.property';
-import { XPortalService } from '@ng-nest/ui/portal';
+import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
-import { XResizableEvent } from '../resizable';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -35,6 +35,10 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   backdropClick$!: Subscription;
   scrollStrategy: BlockScrollStrategy;
   locale: XI18nDialog = {};
+  overlayElement?: HTMLElement;
+  isMaximize = false;
+  dialogBox: { [key: string]: any } = {};
+  distance = { x: 0, y: 0 };
 
   private _unSubject = new Subject<void>();
 
@@ -69,6 +73,8 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         this.locale = x;
         this.cdr.markForCheck();
       });
+    this.dialogBox['draggable'] = this.draggable;
+    this.dialogBox['resizable'] = this.resizable;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -95,22 +101,6 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     }
   }
 
-  resizing($event: XResizableEvent) {
-    if (!this.dialogRef) return;
-    if ($event.clientWidth) {
-      this.dialogRef.overlayRef?.updateSize({ width: $event.clientWidth });
-    }
-    if ($event.clientHeight) {
-      this.dialogRef.overlayRef?.updateSize({ height: $event.clientHeight });
-    }
-    // if ($event.offsetLeft) {
-    //   this.dialogRef.overlayRef?.updatePositionStrategy(this.overlay.position().global().left(`${$event.offsetLeft}px`));
-    // }
-    // if ($event.offsetTop) {
-    //   this.dialogRef.overlayRef?.updatePositionStrategy(this.overlay.position().global().top(`${$event.offsetTop}px`));
-    // }
-  }
-
   create() {
     this.dialogRef = this.protalService.attach({
       content: this.dialogTpl,
@@ -118,9 +108,29 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       overlayConfig: {
         panelClass: [XDialogContainer, this.className],
         hasBackdrop: Boolean(this.hasBackdrop),
-        positionStrategy: this.protalService.setPlace(this.placement, this.width, this.height, this.offset)
+        width: this.width,
+        height: this.height,
+        minWidth: this.minWidth,
+        minHeight: this.minHeight,
+        positionStrategy: this.protalService.setPlace(this.placement, this.offset)
       }
     });
+    const { hostElement, overlayElement } = this.dialogRef.overlayRef!;
+    this.overlayElement = overlayElement;
+    Object.assign(this.dialogBox, {
+      width: this.width,
+      height: this.height,
+      minWidth: this.minWidth,
+      minHeight: this.minHeight
+    });
+    if (this.resizable) {
+      this.renderer.addClass(hostElement, PortalResizablePrefix);
+      setTimeout(() => {
+        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
+        this.offsetLeft = this.overlayElement!.offsetLeft;
+        this.offsetTop = this.overlayElement!.offsetTop;
+      });
+    }
     // this.scrollStrategy.enable();
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
@@ -150,6 +160,76 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     }
   }
 
+  onDragEnded($event: CdkDragEnd) {
+    this.distance = { x: this.distance.x + $event.distance.x, y: this.distance.y + $event.distance.y };
+  }
+
+  onSize() {
+    if (!this.dialogRef) return;
+    this.isMaximize = !this.isMaximize;
+    if (this.isMaximize) {
+      this.onMaximize();
+    } else {
+      this.onMinimize();
+    }
+  }
+
+  onMaximize() {
+    this.dialogRef.overlayRef?.updateSize({
+      width: '100%',
+      height: '100%',
+      minWidth: '100%',
+      minHeight: '100%',
+      maxHeight: '100%',
+      maxWidth: '100%'
+    });
+    this.dialogBox['minWidth'] = '100%';
+    this.dialogBox['minHeight'] = '100%';
+    this.dialogBox['draggable'] = false;
+    this.dialogBox['resizable'] = false;
+    if (this.resizable) {
+      this.renderer.setStyle(this.overlayElement, 'margin', '0 0 0 0');
+    }
+    if (this.draggable) {
+      this.dialogBox['distance'] = { x: 0, y: 0 };
+    }
+  }
+
+  onMinimize() {
+    this.dialogBox['minWidth'] = this.minWidth;
+    this.dialogBox['minHeight'] = this.minHeight;
+    this.dialogBox['draggable'] = this.draggable;
+    this.dialogBox['resizable'] = this.resizable;
+    this.dialogRef.overlayRef?.updateSize({
+      width: this.dialogBox['width'],
+      height: this.dialogBox['height'],
+      minWidth: this.dialogBox['minWidth'],
+      minHeight: this.dialogBox['minHeight']
+    });
+    if (this.draggable) {
+      this.dialogBox['distance'] = { ...this.distance };
+    }
+    if (this.resizable) {
+      setTimeout(() => {
+        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
+        this.offsetLeft = this.overlayElement!.offsetLeft;
+        this.offsetTop = this.overlayElement!.offsetTop;
+      });
+      if (this.dialogBox['marginTop']) {
+        this.renderer.setStyle(this.overlayElement, 'margin-top', `${this.dialogBox['marginTop']}`);
+      }
+      if (this.dialogBox['marginLeft']) {
+        this.renderer.setStyle(this.overlayElement, 'margin-left', `${this.dialogBox['marginLeft']}`);
+      }
+      if (this.dialogBox['marginRight']) {
+        this.renderer.setStyle(this.overlayElement, 'margin-right', `${this.dialogBox['marginRight']}`);
+      }
+      if (this.dialogBox['marginBottom']) {
+        this.renderer.setStyle(this.overlayElement, 'margin-bottom', `${this.dialogBox['marginBottom']}`);
+      }
+    }
+  }
+
   onCancel() {
     this.onClose();
     this.cancel.emit();
@@ -163,6 +243,12 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
       this.closeDone.emit($event);
+      this.isMaximize = false;
+      this.dialogBox = {
+        draggable: this.draggable,
+        resizable: this.resizable
+      };
+      this.distance = { x: 0, y: 0 };
       this.dialogRef?.overlayRef?.dispose();
     } else {
       this.showDone.emit($event);

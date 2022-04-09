@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import { XBoolean, XCorner, XInputBoolean, XPosition, XProperty } from '@ng-nest/ui/core';
+import { XBoolean, XCorner, XInputBoolean, XInputNumber, XNumber, XPosition, XProperty } from '@ng-nest/ui/core';
 
 /**
  * Resizable 指令名称
@@ -12,8 +12,13 @@ export const XResizablePrefix = 'x-resizable';
 /**
  * Resizable Property
  */
-@Directive({ selector: '[x-resizable]' })
+@Directive({ selector: '[xResizable]' })
 export class XResizableProperty extends XProperty {
+  /**
+   * @zh_CN 启用调整尺寸大小
+   * @en_US Enable adjustment size size
+   */
+  @Input() @XInputBoolean() xResizable: XBoolean = true;
   /**
    * @zh_CN 调整方位
    * @en_US Adjust the orientation
@@ -24,6 +29,16 @@ export class XResizableProperty extends XProperty {
    * @en_US Manual adjustment, adjustment of the number of callbacks
    */
   @Input() @XInputBoolean() ghost: XBoolean = false;
+  /**
+   * @zh_CN 偏移屏幕左边
+   * @en_US Distance on the left side
+   */
+  @Input() @XInputNumber() offsetLeft: XNumber = 0;
+  /**
+   * @zh_CN 偏移屏幕顶部
+   * @en_US Distance to the top of the screen
+   */
+  @Input() @XInputNumber() offsetTop: XNumber = 0;
   /**
    * @zh_CN 开始调整
    * @en_US Adjust the orientation

@@ -9,17 +9,22 @@
   &-resizing {
     user-select: none;
   }
-  @include resizable-position('bottom', s-resize, 100%, 0.5rem, null, null, -0.25rem, 0);
-  @include resizable-position('top', n-resize, 100%, 0.5rem, -0.25rem, null, null, 0);
-  @include resizable-position('left', w-resize, 0.5rem, 100%, 0, null, null, -0.25rem);
-  @include resizable-position('right', e-resize, 0.5rem, 100%, 0, -0.25rem, null, null);
-  @include resizable-position('top-start', nw-resize, 0.5rem, 0.5rem, -0.25rem, null, null, -0.25rem);
-  @include resizable-position('top-end', ne-resize, 0.5rem, 0.5rem, -0.25rem, -0.25rem, null, null);
-  @include resizable-position('bottom-start', sw-resize, 0.5rem, 0.5rem, null, null, -0.25rem, -0.25rem);
-  @include resizable-position('bottom-end', se-resize, 0.5rem, 0.5rem, null, -0.25rem, -0.25rem, null);
+  @include resizable-position('bottom', s-resize, 100%, 0.625rem, null, null, -0.375rem, 0, 0.25rem 0, border-bottom, 0.0625rem);
+  @include resizable-position('top', n-resize, 100%, 0.625rem, -0.375rem, null, null, 0, 0.25rem 0, border-top, 0.0625rem);
+  @include resizable-position('left', w-resize, 0.625rem, 100%, 0, null, null, -0.375rem, 0 0.25rem, border-left, 0.0625rem);
+  @include resizable-position('right', e-resize, 0.625rem, 100%, 0, -0.375rem, null, null, 0 0.25rem, border-right, 0.0625rem);
+  @include resizable-position('top-start', nw-resize, 0.625rem, 0.625rem, -0.375rem, null, null, -0.375rem, 0 0, border, 0);
+  @include resizable-position('top-end', ne-resize, 0.625rem, 0.625rem, -0.375rem, -0.375rem, null, null, 0 0, border, 0);
+  @include resizable-position('bottom-start', sw-resize, 0.625rem, 0.625rem, null, null, -0.375rem, -0.375rem, 0 0, border, 0);
+  @include resizable-position('bottom-end', se-resize, 0.625rem, 0.625rem, null, -0.375rem, -0.375rem, null, 0 0, border, 0);
+  &-activating {
+    &::before {
+      border-color: $--x-primary;
+    }
+  }
 }
 
-@mixin resizable-position($type, $cursor, $width, $height, $top, $right, $bottom, $left) {
+@mixin resizable-position($type, $cursor, $width, $height, $top, $right, $bottom, $left, $padding, $border, $border-width) {
   &-#{$type} {
     position: absolute;
     cursor: $cursor;
@@ -29,5 +34,20 @@
     right: $right;
     bottom: $bottom;
     top: $top;
+    padding: $padding;
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      display: block;
+      #{$border}: $border-width dashed transparent;
+      pointer-events: none;
+    }
+    &:hover {
+      &::before {
+        transition: border-color $--x-animation-duration-base ease-in $--x-animation-duration-base;
+        border-color: $--x-primary;
+      }
+    }
   }
 }

@@ -130,6 +130,7 @@ export interface XAlertConfig {
   showIcon?: XBoolean;
   disabledAnimation?: XBoolean;
   draggable?: XBoolean;
+  resizable?: XBoolean;
   dragHandleTitle?: XBoolean;
   duration?: XNumber;
 }
@@ -261,6 +262,8 @@ export interface XDialogConfig {
   placement?: XPlace;
   offset?: string;
   width?: string;
+  minWidth?: string;
+  minHeight?: string;
   effect?: XEffect;
   showCancel?: XBoolean;
   cancelText?: string;
@@ -269,6 +272,7 @@ export interface XDialogConfig {
   backdropClose?: XBoolean;
   draggable?: XBoolean;
   resizable?: XBoolean;
+  maximize?: XBoolean;
   hasBackdrop?: XBoolean;
   className?: string;
   buttonsCenter?: XBoolean;

@@ -4,11 +4,13 @@ import { XIsArray, XIsString } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
-@Directive({ selector: '[x-resizable]' })
+@Directive({ selector: '[xResizable]' })
 export class XResizableDirective extends XResizableProperty implements OnInit, OnDestroy {
   document!: Document;
   ele!: HTMLElement;
-  allPositions: XResizablePosition[] = ['left', 'right', 'top', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end'];
+  cornerPositions: XResizablePosition[] = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
+  allPositions: XResizablePosition[] = ['left', 'right', 'top', 'bottom', ...this.cornerPositions];
+  positions: XResizablePosition[] = [];
   direction?: XResizablePosition | null;
   newBox = { clientWidth: 0, clientHeight: 0, offsetLeft: 0, offsetTop: 0 };
   mouseUpSub?: Subscription;
@@ -17,6 +19,9 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   maxWidth?: number;
   minHeight?: number;
   maxHeight?: number;
+
+  positionNodes: { [key: string]: HTMLElement } = {};
+  activatingNodes: HTMLElement[] = [];
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef, @Inject(DOCUMENT) doc: any) {
     super();
@@ -39,6 +44,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
   mousedown(event: MouseEvent | TouchEvent) {
+    if (!this.xResizable) return;
     const classList = (event.target as HTMLElement).classList;
     let direction: XResizablePosition | null = null;
     for (let pos of this.allPositions) {
@@ -56,6 +62,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     const moveEvent = isTouchEvent ? 'touchmove' : 'mousemove';
     const upEvent = isTouchEvent ? 'touchend' : 'mouseup';
 
+    this.setActivatingNodes(direction);
     this.initResize(event, direction);
 
     const mouseup = fromEvent(this.document, upEvent);
@@ -74,6 +81,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   setPosition() {
+    if (!this.xResizable) return;
     let positions: XResizablePosition[] = [];
     if (XIsString(this.position)) {
       positions.push(this.position as XResizablePosition);
@@ -82,10 +90,11 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     }
 
     if (positions.includes('all')) {
-      this.createNode(...this.allPositions);
+      this.positions = this.allPositions;
     } else {
-      this.createNode(...positions);
+      this.positions = positions;
     }
+    this.createNode(...this.positions);
 
     const computedStyle = window.getComputedStyle(this.ele);
     this.minWidth = parseFloat(computedStyle.minWidth);
@@ -94,18 +103,49 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     this.maxHeight = parseFloat(computedStyle.maxHeight);
   }
 
+  setActivatingNodes(direction: XResizablePosition) {
+    if (!this.positions.includes(direction)) return;
+    const addActivatingNode = (...direction: XResizablePosition[]) => {
+      for (let item of direction) {
+        const nd = this.positionNodes[item];
+        const isNd = this.activatingNodes.includes(nd);
+        if (!nd || isNd) continue;
+        this.renderer.addClass(nd, 'x-resizable-activating');
+        this.activatingNodes.push(nd);
+      }
+    };
+    if (this.cornerPositions.includes(direction)) {
+      switch (direction) {
+        case 'bottom-end':
+          addActivatingNode('bottom', 'right');
+          break;
+        case 'top-end':
+          addActivatingNode('top', 'right');
+          break;
+        case 'bottom-start':
+          addActivatingNode('bottom', 'left');
+          break;
+        case 'top-start':
+          addActivatingNode('top', 'left');
+          break;
+      }
+    }
+    addActivatingNode(direction);
+  }
+
   createNode(...classes: XResizablePosition[]) {
     for (let cla of classes) {
       const pos = this.renderer.createElement('div');
       this.renderer.addClass(pos, `x-resizable-${cla}`);
       this.renderer.appendChild(this.ele, pos);
+      this.positionNodes[cla] = pos;
     }
   }
 
   initResize(event: MouseEvent | TouchEvent, direction: XResizablePosition) {
     this.direction = direction;
     this.renderer.addClass(this.ele, `x-resizable-resizing`);
-    const { clientWidth, clientHeight, offsetLeft, offsetTop } = this.ele;
+    let { clientWidth, clientHeight, offsetLeft, offsetTop } = this.ele;
     this.newBox = { clientWidth, clientHeight, offsetLeft, offsetTop };
     event.stopPropagation();
     this.resizeBegin.emit();
@@ -120,6 +160,10 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
     this.direction = null;
     this.renderer.removeClass(this.ele, `x-resizable-resizing`);
+    for (const node of this.activatingNodes) {
+      this.renderer.removeClass(node, 'x-resizable-activating');
+    }
+    this.activatingNodes = [];
     this.resizeEnd.emit({ event: evt, ...this.newBox });
   }
 
@@ -135,52 +179,56 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
       offsetTop: top + movementY
     };
 
-    this.resizeWidth(evt);
-    this.resizeHeight(evt);
+    const box = {
+      ...this.newBox,
+      offsetLeft: this.newBox.offsetLeft - Number(this.offsetLeft),
+      offsetTop: this.newBox.offsetTop - Number(this.offsetTop)
+    };
+
+    this.resizeWidth(box);
+    this.resizeHeight(box);
+
+    this.resizing.emit({ ...this.newBox, event: evt });
   }
 
-  resizeWidth(event: MouseEvent | Touch): void {
-    const overMinWidth = !this.minWidth || this.newBox.clientWidth >= this.minWidth;
-    const underMaxWidth = !this.maxWidth || this.newBox.clientWidth <= this.maxWidth;
+  resizeWidth(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }): void {
+    const overMinWidth = !this.minWidth || box.clientWidth >= this.minWidth;
+    const underMaxWidth = !this.maxWidth || box.clientWidth <= this.maxWidth;
 
     if (['bottom-end', 'right', 'top-end'].includes(this.direction as string)) {
       if (overMinWidth && underMaxWidth) {
         if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'width', `${this.newBox.clientWidth}px`);
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
         }
-        this.resizing.emit({ event, clientWidth: this.newBox.clientWidth });
       }
     }
     if (['bottom-start', 'left', 'top-start'].includes(this.direction as string)) {
       if (overMinWidth && underMaxWidth) {
         if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'left', `${this.newBox.offsetLeft}px`);
-          this.renderer.setStyle(this.ele, 'width', `${this.newBox.clientWidth}px`);
+          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
         }
-        this.resizing.emit({ event, clientWidth: this.newBox.clientWidth, offsetLeft: this.newBox.offsetLeft });
       }
     }
   }
 
-  resizeHeight(event: MouseEvent | Touch): void {
-    const overMinHeight = !this.minHeight || this.newBox.clientHeight >= this.minHeight;
-    const underMaxHeight = !this.maxHeight || this.newBox.clientHeight <= this.maxHeight;
+  resizeHeight(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }): void {
+    const overMinHeight = !this.minHeight || box.clientHeight >= this.minHeight;
+    const underMaxHeight = !this.maxHeight || box.clientHeight <= this.maxHeight;
     if (['bottom-end', 'bottom', 'bottom-start'].includes(this.direction as string)) {
       if (overMinHeight && underMaxHeight) {
         if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'height', `${this.newBox.clientHeight}px`);
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
         }
-        this.resizing.emit({ event, clientHeight: this.newBox.clientHeight });
       }
     }
 
     if (['top-start', 'top', 'top-end'].includes(this.direction as string)) {
       if (overMinHeight && underMaxHeight) {
         if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'top', `${this.newBox.offsetTop}px`);
-          this.renderer.setStyle(this.ele, 'height', `${this.newBox.clientHeight}px`);
+          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
         }
-        this.resizing.emit({ event, offsetTop: this.newBox.offsetTop, clientHeight: this.newBox.clientHeight });
       }
     }
   }

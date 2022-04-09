@@ -9,6 +9,7 @@ import { XInvertKeyValues } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const PortalPrefix = 'x-portal';
+export const PortalResizablePrefix = 'x-portal-resizable';
 
 export const XPortalPlacement: { [proptery: string]: ConnectedPosition } = {
   bottom: { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top' },

@@ -11,6 +11,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { ExServiceComponent } from './service/service.component';
 import { ExServiceDialogComponent } from './service/service-dialog.component';
+import { ExResizableComponent } from './resizable/resizable.component';
 
 const routers = [{ path: '', component: TeDialogComponent }];
 
@@ -25,6 +26,6 @@ const routers = [{ path: '', component: TeDialogComponent }];
     XRadioModule,
     XButtonModule
   ],
-  declarations: [TeDialogComponent, ExDefaultComponent, ExServiceComponent, ExServiceDialogComponent]
+  declarations: [TeDialogComponent, ExDefaultComponent, ExServiceComponent, ExServiceDialogComponent, ExResizableComponent]
 })
 export class TeDialogModule {}

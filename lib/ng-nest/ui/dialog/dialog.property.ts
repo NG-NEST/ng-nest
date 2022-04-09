@@ -47,6 +47,16 @@ export class XDialogProperty extends XAlertProperty {
    */
   @Input() height?: string;
   /**
+   * @zh_CN 最小宽度
+   * @en_US Min width
+   */
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '18rem') override minWidth?: string;
+  /**
+   * @zh_CN 最小高度
+   * @en_US Min height
+   */
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '9rem') override minHeight?: string;
+  /**
    * @zh_CN 样式主题
    * @en_US Style theme
    */
@@ -105,10 +115,15 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 调整弹框的大小
    * @en_US Adjust the size of the box
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() resizable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() override resizable?: XBoolean;
+  /**
+   * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
+   * @en_US Maximize the bullet box button, Will also display when resizable is enabled
+   */
+  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() maximize?: XBoolean;
   /**
    * @zh_CN 关闭前处理函数
-   * @en_US Processing function before closing 
+   * @en_US Processing function before closing
    */
   @Input() beforeClose!: Function;
 
@@ -220,7 +235,12 @@ export interface XDialogOption extends XAlertOption {
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    */
-  draggable?: XBoolean;
+  draggable?: boolean;
+  /**
+   * @zh_CN 调整弹框的大小
+   * @en_US Adjust the size of the box
+   */
+  resizable?: boolean;
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
@@ -284,6 +304,13 @@ export interface XDialogRefOption {
    * @withConfig true
    */
   draggable?: boolean;
+  /**
+   * @zh_CN 调整弹框的大小
+   * @en_US Adjust the size of the box
+   * @default false
+   * @withConfig true
+   */
+  resizable?: boolean;
   /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"

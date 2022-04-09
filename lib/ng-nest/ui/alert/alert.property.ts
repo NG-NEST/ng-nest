@@ -1,5 +1,6 @@
 import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XInputNumber, XBoolean, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 /**
  * Alert
@@ -75,15 +76,55 @@ export class XAlertProperty extends XProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() draggable?: XBoolean;
   /**
+   * @zh_CN 调整提示框大小
+   * @en_US Adjust the size of the box
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() resizable?: XBoolean;
+  /**
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
+   * @en_US Open the resizable resize, offset screen left
+   */
+  @Input() @XInputNumber() offsetLeft: XNumber = 0;
+  /**
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
+   * @en_US Open the resizable resize, offset screen top
+   */
+  @Input() @XInputNumber() offsetTop: XNumber = 0;
+  /**
+   * @zh_CN 最小宽度
+   * @en_US Min width
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0rem') minWidth?: string;
+  /**
+   * @zh_CN 最小高度
+   * @en_US Min height
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0rem') minHeight?: string;
+  /**
    * @zh_CN 拖动范围限制，父节点选择器或者对象
    * @en_US Drag dialog
    */
   @Input() dragBoundary!: string | ElementRef<HTMLElement> | HTMLElement;
   /**
+   * @zh_CN 设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置
+   * @en_US Set the location of the CDKDRAG outside the container. Can be used to recover elements for returned users
+   */
+  @Input() dragFreeDragPosition!: XAlertDragFreeDragPosition;
+  /**
+   * @zh_CN 自定义操作
+   * @en_US Custom operation
+   */
+  @Input() operationTpl!: XTemplate;
+  /**
    * @zh_CN 关闭的事件
    * @en_US Closed events
    */
   @Output() close = new EventEmitter();
+  /**
+   * @zh_CN 拖动结束的事件
+   * @en_US Drag end event
+   */
+  @Output() dragEnded = new EventEmitter<CdkDragEnd>();
 }
 
 /**
@@ -135,6 +176,30 @@ export interface XAlertOption {
    * 手动处理关闭事件
    */
   manual?: boolean;
+  /**
+   * 拖动提示框
+   */
+  draggable?: boolean;
+  /**
+   * 调整提示框大小
+   */
+  resizable?: boolean;
+  /**
+   * 开启 resizable 调整大小，偏移屏幕左边
+   */
+  offsetLeft?: number;
+  /**
+   * 开启 resizable 调整大小，偏移屏幕顶部
+   */
+  offsetTop?: number;
+  /**
+   * 最小宽度
+   */
+  minWidth?: string;
+  /**
+   * 最小高度
+   */
+  minHeight?: string;
 }
 
 /**
@@ -146,3 +211,9 @@ export interface XAlertOption {
  * @value "error"
  */
 export type XAlertType = XStatus;
+
+/**
+ * @zh_CN 设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置
+ * @en_US Set the location of the CDKDRAG outside the container. Can be used to recover elements for returned users
+ */
+export type XAlertDragFreeDragPosition = { x: number; y: number };

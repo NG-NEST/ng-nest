@@ -1,8 +1,8 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, TemplateRef } from '@angular/core';
 import { fillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
-import { XPortalService } from '@ng-nest/ui/portal';
+import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
@@ -15,11 +15,20 @@ export class XDialogService {
     width: '32rem',
     backdropClose: true,
     hasBackdrop: true,
-    draggable: false
+    draggable: false,
+    resizable: false
   };
   configDefault?: XDialogConfig;
 
-  constructor(public portalService: XPortalService, public configService: XConfigService, public overlay: Overlay) {
+  renderer!: Renderer2;
+
+  constructor(
+    public portalService: XPortalService,
+    public configService: XConfigService,
+    public overlay: Overlay,
+    public rendererFactory: RendererFactory2
+  ) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
     this.configDefault = this.configService.getConfigForComponent(X_DIALOG_CONFIG_NAME);
     Object.assign(this.default, this.configDefault);
   }
@@ -33,9 +42,14 @@ export class XDialogService {
         hasBackdrop: option.hasBackdrop,
         panelClass: option.className,
         scrollStrategy: this.overlay.scrollStrategies.reposition(),
-        positionStrategy: this.portalService.setPlace(option.placement, option.width, option.height, option.offset!)
+        width: option.width,
+        height: option.height,
+        positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
     });
+    if (option.resizable) {
+      this.renderer.addClass(portal.overlayRef?.hostElement, PortalResizablePrefix);
+    }
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
     instance.placement = option.placement;
