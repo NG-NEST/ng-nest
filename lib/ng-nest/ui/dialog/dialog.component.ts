@@ -39,7 +39,9 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   overlayElement?: HTMLElement;
   dialogContent?: HTMLElement;
   initHeight? = 0;
+  initContentHeight? = 0;
   isMaximize = false;
+  isDefaultMaximize = false;
   dialogBox: { [key: string]: any } = {};
   contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
@@ -122,13 +124,14 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     });
     const { hostElement, overlayElement } = this.dialogRef.overlayRef!;
     this.overlayElement = overlayElement;
+    this.setWidthHeight();
     Object.assign(this.dialogBox, {
       width: this.width,
       height: this.height,
       minWidth: this.minWidth,
       minHeight: this.minHeight
     });
-    if (this.resizable) {
+    if (this.resizable && !this.isDefaultMaximize) {
       this.renderer.addClass(hostElement, PortalResizablePrefix);
       setTimeout(() => {
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
@@ -137,10 +140,22 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         const dialogDraggable = this.overlayElement?.querySelector('.x-alert-draggable')!;
         this.initHeight = dialogDraggable.clientHeight;
         this.dialogContent = this.overlayElement?.querySelector('.x-dialog-content')!;
+        this.initContentHeight = this.dialogContent.clientHeight;
       });
     }
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
+    }
+  }
+
+  setWidthHeight() {
+    const ws = ['100%', '100vw'];
+    const hs = ['100%', '100vh'];
+    if (ws.includes(this.width as string) && hs.includes(this.height as string)) {
+      this.isDefaultMaximize = true;
+      this.resizable = false;
+      this.draggable = false;
+      this.maximize = false;
     }
   }
 
@@ -255,7 +270,9 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   }
 
   onResizing(event: XResizableEvent) {
-    const contentHeight = `calc(70vh + ${Number(event.clientHeight) - Number(this.initHeight)}px)`;
-    this.renderer.setStyle(this.dialogContent, 'max-height', contentHeight);
+    const contentHeight = Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
+    this.renderer.setStyle(this.dialogContent, 'max-height', 'initial');
+    this.renderer.setStyle(this.dialogContent, 'flex', 'initial');
+    this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
   }
 }

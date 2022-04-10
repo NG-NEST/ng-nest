@@ -5,6 +5,7 @@
     (@x-move-box-animation.done)="moveDone($event)"
     [class.x-dialog-maximize]="isMaximize"
     [class.x-dialog-resizable]="resizable"
+    [class.x-dialog-default-maximize]="isDefaultMaximize"
   >
     <x-alert
       [draggable]="draggable && dialogBox['draggable']"

@@ -61,6 +61,14 @@
     }
     .#{$--x-dialog}-content {
       max-height: calc(100vh - 7rem) !important;
+      height: calc(100vh - 7rem) !important;
+    }
+  }
+  &-default-maximize {
+    .#{$--x-dialog}-content {
+      max-height: calc(100vh - 7rem) !important;
+      height: calc(100vh - 7rem) !important;
+      flex: initial;
     }
   }
 }
