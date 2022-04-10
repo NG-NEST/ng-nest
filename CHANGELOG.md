@@ -1,3 +1,28 @@
+# [13.1.0](https://github.com/NG-NEST/ng-nest/compare/13.0.9...13.1.0) (2022-04-10)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix maximize style ([7b83d9b](https://github.com/NG-NEST/ng-nest/commit/7b83d9b9f7c461607742f0d781a3f6e0affcb3ee))
+* **module:dialog:** fix scroll bar problem ([af279bf](https://github.com/NG-NEST/ng-nest/commit/af279bfc39ad98b2868a4e276d5131a23252e5ce))
+* **module:dialog:** service temporarily removes the drag resizing parameter ([794ac70](https://github.com/NG-NEST/ng-nest/commit/794ac70753763fb82fa626373cee03601f75044b))
+* **module:input:** fix input type number ([85242ca](https://github.com/NG-NEST/ng-nest/commit/85242ca3b67353cf9cf24f2e737d181f99c0c1c8))
+* **module:pagination:** fix sizeData default value ([51d0465](https://github.com/NG-NEST/ng-nest/commit/51d04654b4f0272a52e1fcd106b23849f2f10801))
+* **module:potal:** fix overlay global ([9caad7e](https://github.com/NG-NEST/ng-nest/commit/9caad7ee403a15201d49e494f8e7a3ed5d960284))
+* **scripts:** fix build docs ([80ef444](https://github.com/NG-NEST/ng-nest/commit/80ef4449e912df73cf08e888ec3c6fe9b5afe130))
+
+
+### Features
+
+* **module:collapse:** add bordered ([cb55405](https://github.com/NG-NEST/ng-nest/commit/cb554050e6f64a001493689049a709c8749ad3bf)), closes [#126](https://github.com/NG-NEST/ng-nest/issues/126)
+* **module:collapse:** add icon position ([23c5cfd](https://github.com/NG-NEST/ng-nest/commit/23c5cfd7046ff2d28eec3caff5c8ff0fba3d1f6e)), closes [#127](https://github.com/NG-NEST/ng-nest/issues/127)
+* **module:dialog:** add resizable ([6ddedba](https://github.com/NG-NEST/ng-nest/commit/6ddedba33db988e2e4ef95a1e6779c4d67178ef9)), closes [#184](https://github.com/NG-NEST/ng-nest/issues/184)
+* **module:dialog:** add resizable param ([682ed88](https://github.com/NG-NEST/ng-nest/commit/682ed88f65b5117667f872dc6e017eed9a496b47)), closes [#184](https://github.com/NG-NEST/ng-nest/issues/184)
+* **module:resizable:** add resizable directive ([f741c08](https://github.com/NG-NEST/ng-nest/commit/f741c08ee64f11e182c5bbe82184a5c7c212702c)), closes [#83](https://github.com/NG-NEST/ng-nest/issues/83)
+* **module:table:** add show pagination ([224061c](https://github.com/NG-NEST/ng-nest/commit/224061ce735bf40c1873f16907d142614baff0ca)), closes [#183](https://github.com/NG-NEST/ng-nest/issues/183)
+
+
+
 ## [13.0.9](https://github.com/NG-NEST/ng-nest/compare/13.0.8...13.0.9) (2022-03-20)
 
 

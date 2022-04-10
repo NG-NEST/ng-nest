@@ -1,6 +1,7 @@
 ---
 label: 'Resizeble'
 category: 'Data'
+hidden: true
 ---
 
 # Resizeble

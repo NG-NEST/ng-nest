@@ -65,7 +65,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-79",
+    "id": "1-80",
     "pid": "1",
     "name": "theme",
     "router": "docs/en_US/components/theme",
@@ -74,7 +74,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-92",
+    "id": "1-93",
     "pid": "1",
     "name": "typography",
     "router": "docs/en_US/components/typography",
@@ -191,7 +191,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-69",
+    "id": "1-70",
     "pid": "1",
     "name": "statistic",
     "router": "docs/en_US/components/statistic",
@@ -200,7 +200,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-73",
+    "id": "1-74",
     "pid": "1",
     "name": "table",
     "router": "docs/en_US/components/table",
@@ -209,7 +209,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-75",
+    "id": "1-76",
     "pid": "1",
     "name": "tag",
     "router": "docs/en_US/components/tag",
@@ -218,7 +218,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-77",
+    "id": "1-78",
     "pid": "1",
     "name": "text-retract",
     "router": "docs/en_US/components/text-retract",
@@ -227,7 +227,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-80",
+    "id": "1-81",
     "pid": "1",
     "name": "time-ago",
     "router": "docs/en_US/components/time-ago",
@@ -236,7 +236,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-82",
+    "id": "1-83",
     "pid": "1",
     "name": "time-range",
     "router": "docs/en_US/components/time-range",
@@ -245,7 +245,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-84",
     "pid": "1",
     "name": "timeline",
     "router": "docs/en_US/components/timeline",
@@ -254,7 +254,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-87",
     "pid": "1",
     "name": "tree",
     "router": "docs/en_US/components/tree",
@@ -263,7 +263,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-87",
+    "id": "1-88",
     "pid": "1",
     "name": "tree-file",
     "router": "docs/en_US/components/tree-file",
@@ -353,7 +353,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-63",
+    "id": "1-64",
     "pid": "1",
     "name": "result",
     "router": "docs/en_US/components/result",
@@ -362,7 +362,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-66",
+    "id": "1-67",
     "pid": "1",
     "name": "skeleton",
     "router": "docs/en_US/components/skeleton",
@@ -371,7 +371,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-84",
+    "id": "1-85",
     "pid": "1",
     "name": "tooltip",
     "router": "docs/en_US/components/tooltip",
@@ -488,7 +488,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-65",
+    "id": "1-66",
     "pid": "1",
     "name": "select",
     "router": "docs/en_US/components/select",
@@ -497,7 +497,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-68",
+    "id": "1-69",
     "pid": "1",
     "name": "slider-select",
     "router": "docs/en_US/components/slider-select",
@@ -506,7 +506,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-72",
+    "id": "1-73",
     "pid": "1",
     "name": "switch",
     "router": "docs/en_US/components/switch",
@@ -515,7 +515,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-78",
+    "id": "1-79",
     "pid": "1",
     "name": "textarea",
     "router": "docs/en_US/components/textarea",
@@ -524,7 +524,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-81",
+    "id": "1-82",
     "pid": "1",
     "name": "time-picker",
     "router": "docs/en_US/components/time-picker",
@@ -533,7 +533,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-85",
+    "id": "1-86",
     "pid": "1",
     "name": "transfer",
     "router": "docs/en_US/components/transfer",
@@ -542,7 +542,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-93",
+    "id": "1-94",
     "pid": "1",
     "name": "upload",
     "router": "docs/en_US/components/upload",
@@ -614,7 +614,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-67",
+    "id": "1-68",
     "pid": "1",
     "name": "slider",
     "router": "docs/en_US/components/slider",
@@ -623,7 +623,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-70",
+    "id": "1-71",
     "pid": "1",
     "name": "steps",
     "router": "docs/en_US/components/steps",
@@ -632,7 +632,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-74",
+    "id": "1-75",
     "pid": "1",
     "name": "tabs",
     "router": "docs/en_US/components/tabs",
@@ -865,7 +865,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-79",
+    "id": "1-80",
     "pid": "1",
     "name": "theme",
     "router": "docs/zh_CN/components/theme",
@@ -874,7 +874,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-92",
+    "id": "1-93",
     "pid": "1",
     "name": "typography",
     "router": "docs/zh_CN/components/typography",
@@ -991,7 +991,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-69",
+    "id": "1-70",
     "pid": "1",
     "name": "statistic",
     "router": "docs/zh_CN/components/statistic",
@@ -1000,7 +1000,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-73",
+    "id": "1-74",
     "pid": "1",
     "name": "table",
     "router": "docs/zh_CN/components/table",
@@ -1009,7 +1009,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-75",
+    "id": "1-76",
     "pid": "1",
     "name": "tag",
     "router": "docs/zh_CN/components/tag",
@@ -1018,7 +1018,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-77",
+    "id": "1-78",
     "pid": "1",
     "name": "text-retract",
     "router": "docs/zh_CN/components/text-retract",
@@ -1027,7 +1027,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-80",
+    "id": "1-81",
     "pid": "1",
     "name": "time-ago",
     "router": "docs/zh_CN/components/time-ago",
@@ -1036,7 +1036,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-82",
+    "id": "1-83",
     "pid": "1",
     "name": "time-range",
     "router": "docs/zh_CN/components/time-range",
@@ -1045,7 +1045,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-84",
     "pid": "1",
     "name": "timeline",
     "router": "docs/zh_CN/components/timeline",
@@ -1054,7 +1054,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-87",
     "pid": "1",
     "name": "tree",
     "router": "docs/zh_CN/components/tree",
@@ -1063,7 +1063,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-87",
+    "id": "1-88",
     "pid": "1",
     "name": "tree-file",
     "router": "docs/zh_CN/components/tree-file",
@@ -1153,7 +1153,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-63",
+    "id": "1-64",
     "pid": "1",
     "name": "result",
     "router": "docs/zh_CN/components/result",
@@ -1162,7 +1162,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-66",
+    "id": "1-67",
     "pid": "1",
     "name": "skeleton",
     "router": "docs/zh_CN/components/skeleton",
@@ -1171,7 +1171,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-84",
+    "id": "1-85",
     "pid": "1",
     "name": "tooltip",
     "router": "docs/zh_CN/components/tooltip",
@@ -1288,7 +1288,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-65",
+    "id": "1-66",
     "pid": "1",
     "name": "select",
     "router": "docs/zh_CN/components/select",
@@ -1297,7 +1297,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-68",
+    "id": "1-69",
     "pid": "1",
     "name": "slider-select",
     "router": "docs/zh_CN/components/slider-select",
@@ -1306,7 +1306,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-72",
+    "id": "1-73",
     "pid": "1",
     "name": "switch",
     "router": "docs/zh_CN/components/switch",
@@ -1315,7 +1315,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-78",
+    "id": "1-79",
     "pid": "1",
     "name": "textarea",
     "router": "docs/zh_CN/components/textarea",
@@ -1324,7 +1324,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-81",
+    "id": "1-82",
     "pid": "1",
     "name": "time-picker",
     "router": "docs/zh_CN/components/time-picker",
@@ -1333,7 +1333,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-85",
+    "id": "1-86",
     "pid": "1",
     "name": "transfer",
     "router": "docs/zh_CN/components/transfer",
@@ -1342,7 +1342,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-93",
+    "id": "1-94",
     "pid": "1",
     "name": "upload",
     "router": "docs/zh_CN/components/upload",
@@ -1414,7 +1414,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-67",
+    "id": "1-68",
     "pid": "1",
     "name": "slider",
     "router": "docs/zh_CN/components/slider",
@@ -1423,7 +1423,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-70",
+    "id": "1-71",
     "pid": "1",
     "name": "steps",
     "router": "docs/zh_CN/components/steps",
@@ -1432,7 +1432,7 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-74",
+    "id": "1-75",
     "pid": "1",
     "name": "tabs",
     "router": "docs/zh_CN/components/tabs",

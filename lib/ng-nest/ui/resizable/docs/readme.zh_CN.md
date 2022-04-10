@@ -1,6 +1,7 @@
 ---
 label: 'Resizeble 调整大小'
 category: 'Data'
+hidden: true
 ---
 
 # Resizeble 调整大小
