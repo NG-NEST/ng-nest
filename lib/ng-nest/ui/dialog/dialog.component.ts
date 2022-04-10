@@ -179,9 +179,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       width: '100%',
       height: '100%',
       minWidth: '100%',
-      minHeight: '100%',
-      maxHeight: '100%',
-      maxWidth: '100%'
+      minHeight: '100%'
     });
     this.dialogBox['minWidth'] = '100%';
     this.dialogBox['minHeight'] = '100%';
@@ -210,11 +208,6 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       this.dialogBox['distance'] = { ...this.distance };
     }
     if (this.resizable) {
-      setTimeout(() => {
-        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
-        this.offsetLeft = this.overlayElement!.offsetLeft;
-        this.offsetTop = this.overlayElement!.offsetTop;
-      });
       if (this.dialogBox['marginTop']) {
         this.renderer.setStyle(this.overlayElement, 'margin-top', `${this.dialogBox['marginTop']}`);
       }

@@ -1,5 +1,10 @@
 <ng-template #dialogTpl>
-  <div class="x-dialog" [@x-move-box-animation]="placement" (@x-move-box-animation.done)="moveDone($event)">
+  <div
+    class="x-dialog"
+    [@x-move-box-animation]="placement"
+    (@x-move-box-animation.done)="moveDone($event)"
+    [class.x-dialog-maximize]="isMaximize"
+  >
     <x-alert
       [draggable]="draggable && dialogBox['draggable']"
       [resizable]="resizable && dialogBox['resizable']"
