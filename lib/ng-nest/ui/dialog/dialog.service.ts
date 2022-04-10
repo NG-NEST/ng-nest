@@ -2,7 +2,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable, Renderer2, RendererFactory2, TemplateRef } from '@angular/core';
 import { fillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
-import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
@@ -14,9 +14,9 @@ export class XDialogService {
     offset: '1rem',
     width: '32rem',
     backdropClose: true,
-    hasBackdrop: true,
-    draggable: false,
-    resizable: false
+    hasBackdrop: true
+    // draggable: false,
+    // resizable: false
   };
   configDefault?: XDialogConfig;
 
@@ -47,9 +47,9 @@ export class XDialogService {
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
     });
-    if (option.resizable) {
-      this.renderer.addClass(portal.overlayRef?.hostElement, PortalResizablePrefix);
-    }
+    // if (option.resizable) {
+    //   this.renderer.addClass(portal.overlayRef?.hostElement, PortalResizablePrefix);
+    // }
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
     instance.placement = option.placement;
