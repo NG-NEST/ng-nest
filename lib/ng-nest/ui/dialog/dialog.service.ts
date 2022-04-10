@@ -41,7 +41,7 @@ export class XDialogService {
       overlayConfig: {
         hasBackdrop: option.hasBackdrop,
         panelClass: option.className,
-        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        scrollStrategy: this.overlay.scrollStrategies.block(),
         width: option.width,
         height: option.height,
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)

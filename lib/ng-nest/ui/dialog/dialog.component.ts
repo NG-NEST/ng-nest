@@ -20,6 +20,7 @@ import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { XResizableEvent } from '@ng-nest/ui/resizable';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -36,8 +37,11 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   scrollStrategy: BlockScrollStrategy;
   locale: XI18nDialog = {};
   overlayElement?: HTMLElement;
+  dialogContent?: HTMLElement;
+  initHeight? = 0;
   isMaximize = false;
   dialogBox: { [key: string]: any } = {};
+  contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
 
   private _unSubject = new Subject<void>();
@@ -108,6 +112,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       overlayConfig: {
         panelClass: [XDialogContainer, this.className],
         hasBackdrop: Boolean(this.hasBackdrop),
+        scrollStrategy: this.overlay.scrollStrategies.block(),
         width: this.width,
         height: this.height,
         minWidth: this.minWidth,
@@ -129,9 +134,11 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
         this.offsetLeft = this.overlayElement!.offsetLeft;
         this.offsetTop = this.overlayElement!.offsetTop;
+        const dialogDraggable = this.overlayElement?.querySelector('.x-alert-draggable')!;
+        this.initHeight = dialogDraggable.clientHeight;
+        this.dialogContent = this.overlayElement?.querySelector('.x-dialog-content')!;
       });
     }
-    // this.scrollStrategy.enable();
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
     }
@@ -142,7 +149,6 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       this.visible = false;
       this.visibleChange.emit(this.visible);
       this.dialogRef?.overlayRef?.detach();
-      // this.scrollStrategy.disable();
       this.unsubscribe();
       this.close.emit();
     }
@@ -246,5 +252,10 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     } else {
       this.showDone.emit($event);
     }
+  }
+
+  onResizing(event: XResizableEvent) {
+    const contentHeight = `calc(70vh + ${Number(event.clientHeight) - Number(this.initHeight)}px)`;
+    this.renderer.setStyle(this.dialogContent, 'max-height', contentHeight);
   }
 }

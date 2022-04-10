@@ -12,6 +12,7 @@
   [@.disabled]="disabledAnimation"
   (@x-fade-animation.done)="onCloseAnimationDone()"
   [xResizable]="resizable!"
+  (resizing)="resizing.emit($event)"
   [offsetLeft]="offsetLeft"
   [offsetTop]="offsetTop"
   [style.minWidth]="minWidth"

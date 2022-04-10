@@ -51,11 +51,16 @@
     display: inline-flex;
     flex-direction: column;
     flex: 1;
+    max-height: 70vh;
+    overflow: auto;
   }
   &-maximize {
     > x-alert .x-alert {
       left: 0 !important;
       top: 0 !important;
+    }
+    .#{$--x-dialog}-content {
+      max-height: calc(100vh - 7rem) !important;
     }
   }
 }

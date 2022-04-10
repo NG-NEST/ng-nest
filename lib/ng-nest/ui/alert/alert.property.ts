@@ -1,6 +1,7 @@
 import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XInputNumber, XBoolean, XNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { XResizableEvent } from '@ng-nest/ui/resizable';
 
 /**
  * Alert
@@ -125,6 +126,11 @@ export class XAlertProperty extends XProperty {
    * @en_US Drag end event
    */
   @Output() dragEnded = new EventEmitter<CdkDragEnd>();
+  /**
+   * @zh_CN 改变尺寸事件
+   * @en_US Change the size event
+   */
+  @Output() resizing = new EventEmitter<XResizableEvent>();
 }
 
 /**

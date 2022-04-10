@@ -4,6 +4,7 @@
     [@x-move-box-animation]="placement"
     (@x-move-box-animation.done)="moveDone($event)"
     [class.x-dialog-maximize]="isMaximize"
+    [class.x-dialog-resizable]="resizable"
   >
     <x-alert
       [draggable]="draggable && dialogBox['draggable']"
@@ -23,6 +24,7 @@
       [operationTpl]="operationTpl"
       (close)="onClose()"
       (dragEnded)="onDragEnded($event)"
+      (resizing)="onResizing($event)"
       showIcon="false"
       duration="0"
       manual
