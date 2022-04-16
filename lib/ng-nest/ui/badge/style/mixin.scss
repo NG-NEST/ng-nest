@@ -36,6 +36,11 @@
       border-radius: 50%;
     }
   }
+  &-offset {
+    > sup {
+      right: inherit;
+    }
+  }
   @include badge-type('primary', $--x-primary);
   @include badge-type('success', $--x-success);
   @include badge-type('info', $--x-info);

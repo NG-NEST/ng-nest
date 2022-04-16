@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -21,6 +21,20 @@ import { XIsNumber, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core
 })
 export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
   displayValue: string = '';
+
+  get getOffsetLeft() {
+    if (this.offset && XIsArray(this.offset) && this.offset.length > 0) {
+      return this.offset[0];
+    }
+    return null;
+  }
+
+  get getOffsetTop() {
+    if (this.offset && XIsArray(this.offset) && this.offset.length > 1) {
+      return this.offset[1];
+    }
+    return null;
+  }
 
   constructor(
     public renderer: Renderer2,

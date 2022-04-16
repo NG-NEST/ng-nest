@@ -92,6 +92,10 @@ const routes: Routes = [
         path: 'input',
         loadChildren: () => import('./modules/input/input.module').then((x) => x.TeInputModule)
       },
+      {
+        path: 'badge',
+        loadChildren: () => import('./modules/badge/badge.module').then((x) => x.TeBadgeModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

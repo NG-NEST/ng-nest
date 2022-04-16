@@ -30,6 +30,11 @@ export class XBadgeProperty extends XProperty {
    */
   @Input() value: XNumber = '';
   /**
+   * @zh_CN 偏移值 [left, top]
+   * @en_US Offset value
+   */
+  @Input() offset: (number | string)[] = [];
+  /**
    * @zh_CN 是否显示小红点
    * @en_US Whether to show the small red dot
    */

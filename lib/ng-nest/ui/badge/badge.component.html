@@ -1,6 +1,6 @@
-<div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot">
+<div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot" [class.x-badge-offset]="getOffsetLeft">
   <ng-content></ng-content>
-  <sup>
+  <sup [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
     <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
   </sup>
 </div>
