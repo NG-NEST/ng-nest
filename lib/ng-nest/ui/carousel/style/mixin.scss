@@ -125,7 +125,7 @@
         }
         &.x-activated {
           > x-button .x-button {
-            background-color: $--x-white;
+            background-color: rgba(0, 0, 0, 0.5);
           }
         }
       }
