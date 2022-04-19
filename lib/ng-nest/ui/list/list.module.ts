@@ -9,6 +9,7 @@ import { XListOptionProperty, XListProperty } from './list.property';
 import { XEmptyModule } from '@ng-nest/ui/empty';
 import { A11yModule } from '@angular/cdk/a11y';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XListComponent, XListOptionComponent, XListProperty, XListOptionProperty],
@@ -21,7 +22,8 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
     A11yModule,
     XIconModule,
     XEmptyModule,
-    XBaseFormModule
+    XBaseFormModule,
+    XOutletModule
   ]
 })
 export class XListModule {}

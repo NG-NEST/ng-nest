@@ -1,0 +1,9 @@
+:host {
+  x-row > x-col > div {
+    border: 0.0625rem solid var(--x-border-300);
+    border-radius: 0.125rem;
+  }
+  x-row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

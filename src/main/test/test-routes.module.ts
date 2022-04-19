@@ -96,6 +96,10 @@ const routes: Routes = [
         path: 'badge',
         loadChildren: () => import('./modules/badge/badge.module').then((x) => x.TeBadgeModule)
       },
+      {
+        path: 'list',
+        loadChildren: () => import('./modules/list/list.module').then((x) => x.TeListModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

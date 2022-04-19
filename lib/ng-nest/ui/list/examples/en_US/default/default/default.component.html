@@ -30,4 +30,8 @@
     <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
     <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
   </x-col>
+  <x-col span="8">
+    <h6>Header/Footer</h6>
+    <div><x-list [data]="data9" [(ngModel)]="model9" [header]="'Header'" [footer]="'Footer'"></x-list></div>
+  </x-col>
 </x-row>

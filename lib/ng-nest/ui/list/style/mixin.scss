@@ -6,25 +6,39 @@
 
 @mixin list {
   width: 100%;
-  cursor: pointer;
   &:focus {
     outline: none;
   }
-  &.cdk-drop-list-dragging {
-    > x-list-option {
-      &:hover {
-        background-color: transparent;
-      }
-      &.cdk-drag-placeholder {
-        border-color: $--x-border;
-        color: $--x-text-400;
-        background-color: $--x-background-a100;
-        opacity: 0.9;
-      }
-      &:not(.cdk-drag-placeholder) {
-        transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+  &-content {
+    cursor: pointer;
+    &.cdk-drop-list-dragging {
+      > x-list-option {
+        &:hover {
+          background-color: transparent;
+        }
+        &.cdk-drag-placeholder {
+          border-color: $--x-border;
+          color: $--x-text-400;
+          background-color: $--x-background-a100;
+          opacity: 0.9;
+        }
+        &:not(.cdk-drag-placeholder) {
+          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+        }
       }
     }
+  }
+  &-header {
+    padding: 0 0.4rem;
+    height: $--x-list-height;
+    line-height: $--x-list-height;
+    font-weight: bold;
+  }
+  &-footer {
+    padding: 0 0.4rem;
+    height: $--x-list-height;
+    line-height: $--x-list-height;
+    font-weight: bold;
   }
 
   &-leaf,
@@ -41,8 +55,7 @@
 
 @mixin list-option {
   @include option();
-  transition: border-color $--x-animation-duration-base,
-    background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+  transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
   > span {
     overflow: hidden;
     white-space: nowrap;

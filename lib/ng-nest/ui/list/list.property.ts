@@ -1,4 +1,4 @@
-import { XData, XParentIdentityProperty, XDataConvert, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import { XData, XParentIdentityProperty, XDataConvert, XInputNumber, XInputBoolean, XNumber, XBoolean, XTemplate } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -44,6 +44,16 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US Node template
    */
   @Input() nodeTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 列表头部
+   * @en_US List header
+   */
+  @Input() header?: XTemplate;
+  /**
+   * @zh_CN 列表底部
+   * @en_US List footer
+   */
+  @Input() footer?: XTemplate;
   /**
    * @zh_CN 滚动区域元素
    * @en_US Rolling area element
