@@ -126,8 +126,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   started(drag: CdkDragStart) {
     const start = this.left;
     this.start = start;
-    this.manual = true;
-    this.visible = true;
+    if (this.showTooltip) {
+      this.manual = true;
+      this.visible = true;
+    }
     this.cdr.detectChanges();
     this.dragStartEmit.emit(drag);
   }
@@ -136,14 +138,18 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     let transform = drag.source.getFreeDragPosition();
     this.setDrag(transform.x);
     drag.source.reset();
-    this.tooltip.updatePortal();
+    if (this.showTooltip) {
+      this.tooltip.updatePortal();
+    }
     this.change();
     this.dragMoveEmit.emit(drag);
   }
 
   ended(drag: CdkDragEnd) {
-    this.manual = false;
-    this.visible = false;
+    if (this.showTooltip) {
+      this.manual = false;
+      this.visible = false;
+    }
     this.cdr.detectChanges();
     this.dragEndEmit.emit(drag);
   }

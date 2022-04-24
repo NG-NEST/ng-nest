@@ -27,11 +27,11 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   @HostListener('mouseenter') mouseenter() {
-    !this.manual && this.show();
+    !this.disabled && !this.manual && this.show();
   }
 
   @HostListener('mouseleave') mouseleave() {
-    !this.manual && this.hide();
+    !this.disabled && !this.manual && this.hide();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

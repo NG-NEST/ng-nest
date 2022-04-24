@@ -100,6 +100,10 @@ const routes: Routes = [
         path: 'list',
         loadChildren: () => import('./modules/list/list.module').then((x) => x.TeListModule)
       },
+      {
+        path: 'slider-select',
+        loadChildren: () => import('./modules/slider-select/slider-select.module').then((x) => x.TeSliderSelectModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

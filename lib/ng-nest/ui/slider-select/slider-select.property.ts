@@ -1,4 +1,4 @@
-import { XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XBoolean, XInputBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -35,6 +35,11 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
    * @en_US Precision, calculated based on the number of steps by default
    */
   @Input() @XInputNumber() precision?: XNumber;
+  /**
+   * @zh_CN 显示 tooltip 提示
+   * @en_US Display Tooltip prompts
+   */
+  @Input() @XInputBoolean() showTooltip?: XBoolean = true;
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event

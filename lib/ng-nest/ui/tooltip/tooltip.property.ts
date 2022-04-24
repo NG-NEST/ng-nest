@@ -54,6 +54,11 @@ export class XTooltipProperty {
    * @en_US How much hidden is hidden after the mouse is removed
    */
   @Input() mouseLeaveDelay: number = 100;
+  /**
+   * @zh_CN 禁用显示
+   * @en_US Disable display
+   */
+  @Input() @XInputBoolean() disabled?: XBoolean = false;
 }
 
 /**
