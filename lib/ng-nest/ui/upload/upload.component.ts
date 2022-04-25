@@ -82,7 +82,7 @@ export class XUploadComponent extends XUploadProperty {
 
   setFiles() {
     if (!Array.isArray(this.value)) return;
-    if (this.type !== 'img') return;
+    // if (this.type !== 'img') return;
     this.files = this.value.map((x) => {
       if (!x.state) x.state = 'success';
       return x;
@@ -110,6 +110,11 @@ export class XUploadComponent extends XUploadProperty {
     this.files.splice(index, 1);
     if (this.files.length === 0) this.file.nativeElement.value = '';
     this.showUpload = this.files.find((x) => x.state === 'ready') != null;
+    const vindex = this.value.indexOf(file);
+    if (vindex > -1) {
+      this.value.splice(vindex, 1);
+      this.onChange(this.value);
+    }
     this.removeClick.emit({ file: file, index: index });
     this.cdr.detectChanges();
   }
@@ -150,6 +155,7 @@ export class XUploadComponent extends XUploadProperty {
                 this.value[index] = file;
                 this.files[index] = file;
               }
+              this.onChange(this.value);
               this.cdr.detectChanges();
             };
           })

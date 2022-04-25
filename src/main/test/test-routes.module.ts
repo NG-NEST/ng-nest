@@ -104,6 +104,10 @@ const routes: Routes = [
         path: 'slider-select',
         loadChildren: () => import('./modules/slider-select/slider-select.module').then((x) => x.TeSliderSelectModule)
       },
+      {
+        path: 'upload',
+        loadChildren: () => import('./modules/upload/upload.module').then((x) => x.TeUploadModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
