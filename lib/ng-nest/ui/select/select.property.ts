@@ -64,6 +64,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Display Border
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
+   * @zh_CN 下拉框的最大高度
+   * @en_US The biggest height of the drop-down box
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') portalMaxHeight!: string;
 }
 
 /**

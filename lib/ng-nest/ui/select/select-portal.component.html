@@ -1,4 +1,4 @@
-<div #selectPortal class="x-select-portal" (click)="inputCom.inputFocus(); stopPropagation($event)">
+<div #selectPortal class="x-select-portal" (click)="inputCom.inputFocus(); stopPropagation($event)" [style.maxHeight]="portalMaxHeight">
   <x-list
     #list
     [data]="data"

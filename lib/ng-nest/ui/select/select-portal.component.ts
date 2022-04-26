@@ -53,6 +53,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   show: boolean = false;
   active: number = -1;
   inputCom!: XInputComponent;
+  portalMaxHeight = '';
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}

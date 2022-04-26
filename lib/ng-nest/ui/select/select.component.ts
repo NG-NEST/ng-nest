@@ -268,6 +268,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
       inputCom: this.inputCom,
+      portalMaxHeight: this.portalMaxHeight,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)

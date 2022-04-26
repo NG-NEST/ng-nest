@@ -457,6 +457,7 @@ export interface XSelectConfig {
   clearable?: XBoolean;
   size?: XSize;
   bordered?: XBoolean;
+  portalMaxHeight?: string;
 }
 
 export interface XSkeletonConfig {}
