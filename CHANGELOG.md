@@ -1,3 +1,12 @@
+## [13.1.2](https://github.com/NG-NEST/ng-nest/compare/13.1.1...13.1.2) (2022-04-27)
+
+
+### Bug Fixes
+
+* **module:upload:** add ReactiveFormsModule ([22aa50f](https://github.com/NG-NEST/ng-nest/commit/22aa50f6b32bfd329a58ab7e5ab141a3cd44231c))
+
+
+
 ## [13.1.1](https://github.com/NG-NEST/ng-nest/compare/13.1.0...13.1.1) (2022-04-27)
 
 
