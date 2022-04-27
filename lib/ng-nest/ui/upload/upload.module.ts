@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XUploadComponent } from './upload.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XUploadProperty } from './upload.property';
@@ -18,6 +18,7 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DragDropModule,
     XPortalModule,
     XOutletModule,
