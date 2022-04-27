@@ -45,6 +45,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   dialogBox: { [key: string]: any } = {};
   contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
+  viewInit = false;
 
   private _unSubject = new Subject<void>();
 
@@ -94,11 +95,17 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     this._unSubject.unsubscribe();
   }
 
+  ngAfterViewInit() {
+    this.viewInit = true;
+    setTimeout(() => this.visible && this.create());
+  }
+
   unsubscribe() {
     this.backdropClick$?.unsubscribe();
   }
 
   setVisible() {
+    if (!this.viewInit) return;
     if (this.visible) {
       this.create();
     } else {
