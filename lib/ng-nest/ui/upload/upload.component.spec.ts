@@ -6,18 +6,18 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XUploadModule } from '@ng-nest/ui/upload';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XUploadPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XIconModule, XUploadModule, XButtonModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, FormsModule, ReactiveFormsModule, XIconModule, XUploadModule, XButtonModule, XLayoutModule],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent, TestXUploadImgComponent, TestXUploadImgCutComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXUploadComponent>;
     let upload: DebugElement;

@@ -67,7 +67,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     XIsChange(total, size, index) && this.setIndexes();
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }

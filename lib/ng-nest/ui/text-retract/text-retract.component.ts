@@ -49,7 +49,7 @@ export class XTextRetractComponent extends XTextRetractProperty implements OnIni
     XIsChange(content) && this.setDisplayValue();
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }

@@ -23,7 +23,7 @@ export class XEmptyComponent extends XEmptyProperty {
     this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }

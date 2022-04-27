@@ -82,7 +82,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     }
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }

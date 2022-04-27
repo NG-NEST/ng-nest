@@ -36,7 +36,7 @@ export class XPageHeaderComponent extends XPageHeaderProperty {
       });
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }

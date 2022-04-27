@@ -7,7 +7,9 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
 import { XIsTemplateRef } from '@ng-nest/ui/core';
@@ -26,7 +28,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XUploadComponent)]
 })
-export class XUploadComponent extends XUploadProperty {
+export class XUploadComponent extends XUploadProperty implements OnInit, OnDestroy {
   @ViewChild('file', { static: true }) file!: ElementRef;
   files: XUploadNode[] = [];
   showUpload = false;
@@ -75,7 +77,7 @@ export class XUploadComponent extends XUploadProperty {
     if (this.type === 'img') this.accept = 'image/*';
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
   }
@@ -113,7 +115,7 @@ export class XUploadComponent extends XUploadProperty {
     const vindex = this.value.indexOf(file);
     if (vindex > -1) {
       this.value.splice(vindex, 1);
-      this.onChange(this.value);
+      this.onChange && this.onChange(this.value);
     }
     this.removeClick.emit({ file: file, index: index });
     this.cdr.detectChanges();
@@ -155,7 +157,7 @@ export class XUploadComponent extends XUploadProperty {
                 this.value[index] = file;
                 this.files[index] = file;
               }
-              this.onChange(this.value);
+              this.onChange && this.onChange(this.value);
               this.cdr.detectChanges();
             };
           })
