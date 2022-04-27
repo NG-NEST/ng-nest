@@ -1,3 +1,24 @@
+## [13.1.1](https://github.com/NG-NEST/ng-nest/compare/13.1.0...13.1.1) (2022-04-27)
+
+
+### Bug Fixes
+
+* **module:carousel:** fix indicator outside style ([5c9bd8c](https://github.com/NG-NEST/ng-nest/commit/5c9bd8ca5c54d5940df43607597dc5dab77c3616)), closes [#125](https://github.com/NG-NEST/ng-nest/issues/125)
+* **module:dialog:** fix visible default to true ([4b866ea](https://github.com/NG-NEST/ng-nest/commit/4b866ea020672630aa7c1b4ae83a490753474ade)), closes [#185](https://github.com/NG-NEST/ng-nest/issues/185)
+* **module:upload:** fix model change ([08e335e](https://github.com/NG-NEST/ng-nest/commit/08e335e75d6260eda032d1fed5ed039d783a9339))
+
+
+### Features
+
+* **module:badge:** add enter/leave animation ([819c21c](https://github.com/NG-NEST/ng-nest/commit/819c21c3d08a38502abe4b4e01a3be8677b7a17b)), closes [#119](https://github.com/NG-NEST/ng-nest/issues/119)
+* **module:badge:** add offset ([5fb1606](https://github.com/NG-NEST/ng-nest/commit/5fb160610a80966f6655f76a937418e17179fc48)), closes [#120](https://github.com/NG-NEST/ng-nest/issues/120)
+* **module:badge:** update box-shadow style ([ba40e5b](https://github.com/NG-NEST/ng-nest/commit/ba40e5be8d2521dd3c654ee6d3d7253b25c38545)), closes [#118](https://github.com/NG-NEST/ng-nest/issues/118)
+* **module:list:** add header and footer ([2184cb1](https://github.com/NG-NEST/ng-nest/commit/2184cb17c29dba643cec27f8d32c1e4e1c2c8ae1)), closes [#134](https://github.com/NG-NEST/ng-nest/issues/134)
+* **module:select:** add portal max height ([9d8ca70](https://github.com/NG-NEST/ng-nest/commit/9d8ca70b05ff66724b1856cc7bab9da87b58710f)), closes [#186](https://github.com/NG-NEST/ng-nest/issues/186)
+* **module:slider-select:** add show tooltip ([fdd9ebc](https://github.com/NG-NEST/ng-nest/commit/fdd9ebcb4645be6aca5182470e9feee3875369ce)), closes [#88](https://github.com/NG-NEST/ng-nest/issues/88)
+
+
+
 # [13.1.0](https://github.com/NG-NEST/ng-nest/compare/13.0.9...13.1.0) (2022-04-10)
 
 
