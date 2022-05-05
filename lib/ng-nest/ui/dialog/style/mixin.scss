@@ -53,6 +53,7 @@
     flex: 1;
     max-height: 70vh;
     overflow: auto;
+    min-height: 2rem;
   }
   &-maximize {
     > x-alert .x-alert {

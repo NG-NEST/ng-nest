@@ -92,4 +92,9 @@ export interface XResizableEvent {
    * @en_US Distance to the top of the screen
    */
   offsetTop?: number;
+  /**
+   * @zh_CN 改变方位
+   * @en_US Change position
+   */
+  direction?: XResizablePosition | null;
 }

@@ -97,10 +97,12 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     this.createNode(...this.positions);
 
     const computedStyle = window.getComputedStyle(this.ele);
-    this.minWidth = parseFloat(computedStyle.minWidth);
-    this.maxWidth = parseFloat(computedStyle.maxWidth);
-    this.minHeight = parseFloat(computedStyle.minHeight);
-    this.maxHeight = parseFloat(computedStyle.maxHeight);
+    setTimeout(() => {
+      this.minWidth = parseFloat(computedStyle.minWidth);
+      this.maxWidth = parseFloat(computedStyle.maxWidth);
+      this.minHeight = parseFloat(computedStyle.minHeight);
+      this.maxHeight = parseFloat(computedStyle.maxHeight);
+    });
   }
 
   setActivatingNodes(direction: XResizablePosition) {
@@ -185,51 +187,78 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
       offsetTop: this.newBox.offsetTop - Number(this.offsetTop)
     };
 
-    this.resizeWidth(box);
-    this.resizeHeight(box);
+    this.resizeBox(box);
 
-    this.resizing.emit({ ...this.newBox, event: evt });
+    this.resizing.emit({ ...this.newBox, event: evt, direction: this.direction });
   }
 
-  resizeWidth(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }): void {
+  resizeBox(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }) {
+    if (this.ghost) return;
     const overMinWidth = !this.minWidth || box.clientWidth >= this.minWidth;
     const underMaxWidth = !this.maxWidth || box.clientWidth <= this.maxWidth;
-
-    if (['bottom-end', 'right', 'top-end'].includes(this.direction as string)) {
-      if (overMinWidth && underMaxWidth) {
-        if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
-        }
-      }
-    }
-    if (['bottom-start', 'left', 'top-start'].includes(this.direction as string)) {
-      if (overMinWidth && underMaxWidth) {
-        if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
-        }
-      }
-    }
-  }
-
-  resizeHeight(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }): void {
     const overMinHeight = !this.minHeight || box.clientHeight >= this.minHeight;
     const underMaxHeight = !this.maxHeight || box.clientHeight <= this.maxHeight;
-    if (['bottom-end', 'bottom', 'bottom-start'].includes(this.direction as string)) {
-      if (overMinHeight && underMaxHeight) {
-        if (!this.ghost) {
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
-        }
-      }
-    }
 
-    if (['top-start', 'top', 'top-end'].includes(this.direction as string)) {
-      if (overMinHeight && underMaxHeight) {
-        if (!this.ghost) {
+    switch (this.direction) {
+      case 'right':
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        break;
+      case 'top-end':
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        if (overMinHeight && underMaxHeight) {
           this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
           this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
         }
-      }
+        break;
+      case 'bottom-end':
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        if (overMinHeight && underMaxHeight) {
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+        }
+        break;
+      case 'bottom-start':
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        if (overMinHeight && underMaxHeight) {
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+        }
+        break;
+      case 'left':
+        console.log(this.minWidth);
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        break;
+      case 'top-start':
+        if (overMinWidth && underMaxWidth) {
+          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+        }
+        if (overMinHeight && underMaxHeight) {
+          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+        }
+        break;
+      case 'top':
+        if (overMinHeight && underMaxHeight) {
+          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+        }
+        break;
+      case 'bottom':
+        if (overMinHeight && underMaxHeight) {
+          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+        }
+        break;
     }
   }
 

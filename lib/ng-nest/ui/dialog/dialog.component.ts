@@ -280,6 +280,8 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     const contentHeight = Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
     this.renderer.setStyle(this.dialogContent, 'max-height', 'initial');
     this.renderer.setStyle(this.dialogContent, 'flex', 'initial');
-    this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
+    if (['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(event.direction as string)) {
+      this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
+    }
   }
 }
