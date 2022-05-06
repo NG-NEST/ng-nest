@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: 'revenir'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

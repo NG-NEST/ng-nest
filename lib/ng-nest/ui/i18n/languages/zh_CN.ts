@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: '返回'
+  },
+  list: {
+    selectAllText: '全选'
+  },
+  select: {
+    selectAllText: '全选'
   }
 };

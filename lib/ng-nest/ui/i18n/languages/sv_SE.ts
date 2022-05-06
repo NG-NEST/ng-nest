@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: 'lämna tillbaka'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

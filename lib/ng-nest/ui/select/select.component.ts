@@ -13,7 +13,17 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
-import { XIsEmpty, XIsObservable, XIsChange, XSetData, XClearClass, XConfigService, XIsArray, XPositionTopBottom } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsObservable,
+  XIsChange,
+  XSetData,
+  XClearClass,
+  XConfigService,
+  XIsArray,
+  XPositionTopBottom,
+  XIsObjectArray
+} from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
@@ -59,6 +69,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
+  objectArray = false;
   override valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
@@ -163,7 +174,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayValue = '';
           this.valueTplContext.$node = null;
         } else {
-          let nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
+          let nodes: XSelectNode[] = [];
+          if (XIsObjectArray(this.value)) {
+            this.objectArray = true;
+            nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
+          } else {
+            this.objectArray = false;
+            nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: string | number) => y === x.id)));
+          }
           this.displayValue = nodes.map((x) => x.label).join(',');
           this.valueTplContext.$node = [...nodes];
         }
@@ -262,6 +280,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       value: this.value,
       placement: this.placement,
       multiple: this.multiple === true ? 0 : 1,
+      selectAll: this.selectAll,
       nodeTpl: this.nodeTpl,
       valueChange: this.valueChange,
       positionChange: this.positionChange,
@@ -269,6 +288,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       keydownSubject: this.keydownSubject,
       inputCom: this.inputCom,
       portalMaxHeight: this.portalMaxHeight,
+      objectArray: this.objectArray,
+      selectAllText: this.selectAllText,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)

@@ -14,9 +14,10 @@ import {
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
 import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
@@ -48,15 +49,24 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
   nodeEmit!: Function;
+  selectAllEmit!: Function;
   multiple: XNumber = 1;
+  selectAll: boolean = false;
   nodeTpl!: TemplateRef<any>;
   show: boolean = false;
+  objectArray: boolean = false;
   active: number = -1;
   inputCom!: XInputComponent;
   portalMaxHeight = '';
+  selectAllText!: string;
+  locale: XI18nSelect = {};
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  get getSelectAllText() {
+    return this.selectAllText || this.locale.selectAllText;
+  }
+
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -73,6 +83,15 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
     });
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.select as XI18nSelect),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnDestroy(): void {
@@ -87,6 +106,10 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   nodeClick(node: XSelectNode) {
     if (this.multiple === 0) this.nodeEmit(this.value);
     else this.nodeEmit(node);
+  }
+
+  onSelectAll(_isSelectAll: boolean) {
+    this.nodeEmit(this.value);
   }
 
   onActive(num: number) {

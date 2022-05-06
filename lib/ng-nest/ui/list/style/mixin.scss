@@ -9,6 +9,10 @@
   &:focus {
     outline: none;
   }
+  &-select-all {
+    cursor: pointer;
+    font-weight: bold;
+  }
   &-content {
     cursor: pointer;
     &.cdk-drop-list-dragging {

@@ -6,9 +6,12 @@
     (nodeClick)="nodeClick($event)"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
+    (onSelectAll)="onSelectAll($event)"
     checked
-    [objectArray]="multiple === 0"
+    [objectArray]="objectArray"
     [multiple]="multiple"
+    [selectAll]="selectAll"
+    [selectAllText]="getSelectAllText"
     [nodeTpl]="nodeTpl"
     [scrollElement]="selectPortal"
   ></x-list>

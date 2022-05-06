@@ -32,6 +32,8 @@
   </x-col>
   <x-col span="8">
     <h6>头部/底部</h6>
-    <div><x-list [data]="data9" [(ngModel)]="model9" [header]="'Header'" [footer]="'Footer'"></x-list></div>
+    <div>
+      <x-list [data]="data9" [(ngModel)]="model9" (ngModelChange)="change9($event)" [header]="'Header'" [footer]="'Footer'" [multiple]="0" [selectAll]="true" [checked]="true"></x-list>
+    </div>
   </x-col>
 </x-row>

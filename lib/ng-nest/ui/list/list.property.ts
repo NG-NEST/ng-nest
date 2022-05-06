@@ -1,4 +1,14 @@
-import { XData, XParentIdentityProperty, XDataConvert, XInputNumber, XInputBoolean, XNumber, XBoolean, XTemplate } from '@ng-nest/ui/core';
+import {
+  XData,
+  XParentIdentityProperty,
+  XDataConvert,
+  XInputNumber,
+  XInputBoolean,
+  XNumber,
+  XBoolean,
+  XTemplate,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -8,6 +18,7 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XListPrefix = 'x-list';
+const X_CONFIG_NAME = 'list';
 
 /**
  * List Property
@@ -20,10 +31,20 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() @XDataConvert() data: XData<XListNode> = [];
   /**
-   * @zh_CN 多选个数
+   * @zh_CN 多选个数，设置为0，不限制选择个数
    * @en_US Multiple choice
    */
   @Input() @XInputNumber() multiple: XNumber = 1;
+  /**
+   * @zh_CN 多选添加全选功能，适用于 multiple=0
+   * @en_US Multi choice to add full selection function
+   */
+  @Input() @XInputBoolean() selectAll?: XBoolean;
+  /**
+   * @zh_CN 全选的文字
+   * @en_US Selected all text
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) selectAllText?: string;
   /**
    * @zh_CN 选中
    * @en_US Selected
@@ -59,6 +80,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US Rolling area element
    */
   @Input() scrollElement?: HTMLElement;
+  /**
+   * @zh_CN Full event
+   * @en_US 全选事件
+   */
+  @Output() onSelectAll = new EventEmitter<boolean>();
   /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event

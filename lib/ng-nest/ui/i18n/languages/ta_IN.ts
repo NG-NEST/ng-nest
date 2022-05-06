@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: 'திரும்ப'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

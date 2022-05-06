@@ -24,8 +24,12 @@ export class ExDefaultComponent implements OnInit {
   model6 = ['BBBB', 'CCCC'];
   model7 = 'BBBB';
   model8: any;
-  model9: any;
+  model9 = ['AAAA', 'BBBB', 'CCCC', 'DDDD'];
   constructor() {}
 
   ngOnInit() {}
+
+  change9($event: any) {
+    console.log($event);
+  }
 }

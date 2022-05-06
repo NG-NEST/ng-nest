@@ -50,6 +50,16 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() multiple?: XBoolean;
   /**
+   * @zh_CN 多选添加全选功能
+   * @en_US Multi choice to add full selection function
+   */
+  @Input() @XInputBoolean() selectAll?: XBoolean;
+  /**
+   * @zh_CN 全选的文字
+   * @en_US Selected all text
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) selectAllText?: string;
+  /**
    * @zh_CN 节点模板
    * @en_US Node template
    */

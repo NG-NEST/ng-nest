@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: '返す'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

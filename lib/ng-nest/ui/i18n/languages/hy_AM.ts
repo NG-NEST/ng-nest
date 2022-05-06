@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: 'վերադառնալ'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

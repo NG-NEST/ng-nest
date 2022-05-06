@@ -21,8 +21,9 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nList, XI18nService } from '../i18n';
 
 @Component({
   selector: `${XListPrefix}`,
@@ -39,6 +40,8 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   @ViewChildren(XListOptionComponent)
   options!: QueryList<XListOptionComponent>;
   keyManager!: ActiveDescendantKeyManager<XListOptionComponent>;
+  isSelectAll = false;
+  locale: XI18nList = {};
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -56,6 +59,10 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     return XIsEmpty(this.nodes);
   }
 
+  get getSelectAllText() {
+    return this.selectAllText || this.locale.selectAllText;
+  }
+
   override writeValue(value: any): void {
     this.value = value;
     this.setSelected();
@@ -69,12 +76,23 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     public renderer: Renderer2,
     public cdr: ChangeDetectorRef,
     public elementRef: ElementRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    private i18n: XI18nService
   ) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.list as XI18nList),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;
@@ -140,9 +158,13 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       let valArry: any[] = [];
       if (this.value instanceof Array) {
         valArry = this.value;
+        if (valArry.length === this.nodes.length) {
+          this.isSelectAll = true;
+        }
       } else {
         valArry = [this.value];
       }
+
       if (this.objectArray) {
         this.selectedNodes = this.nodes
           .filter((x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id)))
@@ -195,6 +217,9 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       if (this.selectedNodes.length < this.multiple || this.multiple === 0) {
         node.selected = selected;
         this.selectedNodes = [...this.selectedNodes, node];
+        if (this.selectedNodes.length === this.nodes.length) {
+          this.isSelectAll = true;
+        }
         this.cdr.detectChanges();
       } else if (this.multiple === 1 && this.selectedNodes.length === 1) {
         node.selected = selected;
@@ -210,6 +235,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
         this.selectedNodes.findIndex((x) => x.id == node.id),
         1
       );
+      this.isSelectAll = false;
     }
     if (this.multiple === 1 && this.selectedNodes.length === 1) {
       this.value = this.objectArray ? this.selectedNodes[0] : this.selectedNodes[0].id;
@@ -243,6 +269,26 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   dropCdk(event: CdkDragDrop<XListNode[]>) {
     moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
     this.cdr.detectChanges();
+  }
+
+  onSelectAllNodes() {
+    this.isSelectAll = !this.isSelectAll;
+    if (this.isSelectAll) {
+      this.nodes.map((x) => {
+        x.selected = true;
+        return x;
+      });
+      this.selectedNodes = [...this.nodes];
+    } else {
+      this.nodes.map((x) => {
+        x.selected = false;
+        return x;
+      });
+      this.selectedNodes = [];
+    }
+    this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
+    if (this.onChange) this.onChange(this.value);
+    this.onSelectAll.emit(this.isSelectAll);
   }
 
   trackByNode(_index: number, item: XListNode) {

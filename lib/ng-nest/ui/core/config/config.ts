@@ -364,7 +364,9 @@ export interface XLinkConfig {
   iconRight?: XBoolean;
 }
 
-export interface XListConfig {}
+export interface XListConfig {
+  selectAllText?: string;
+}
 
 export interface XLoadingConfig {
   size?: XSize;
@@ -458,6 +460,7 @@ export interface XSelectConfig {
   size?: XSize;
   bordered?: XBoolean;
   portalMaxHeight?: string;
+  selectAllText?: string;
 }
 
 export interface XSkeletonConfig {}

@@ -107,5 +107,11 @@ export default {
   },
   pageHeader: {
     back: 'फर्किनु'
+  },
+  list: {
+    selectAllText: 'Select all'
+  },
+  select: {
+    selectAllText: 'Select all'
   }
 };

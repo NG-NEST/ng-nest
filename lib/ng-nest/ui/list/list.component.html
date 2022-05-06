@@ -2,6 +2,11 @@
   <ng-container *ngIf="header">
     <div class="x-list-header" *xOutlet="header">{{ header }}</div>
   </ng-container>
+  <ng-container *ngIf="selectAll && multiple === 0">
+    <div class="x-list-select-all">
+      <x-list-option [label]="getSelectAllText" [checked]="true" [selected]="isSelectAll" (click)="onSelectAllNodes()"></x-list-option>
+    </div>
+  </ng-container>
   <div class="x-list-content" cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag" [hidden]="isEmpty">
     <x-list-option
       cdkDrag

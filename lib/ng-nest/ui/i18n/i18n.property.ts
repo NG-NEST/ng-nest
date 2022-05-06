@@ -22,6 +22,8 @@ export interface XI18nProperty {
   popconfirm?: XI18nPopconfirm;
   upload?: XI18nUpload;
   pageHeader?: XI18nPageHeader;
+  list?: XI18nList;
+  select?: XI18nSelect;
   [property: string]: any;
 }
 
@@ -131,6 +133,14 @@ export interface XI18nUpload {
 
 export interface XI18nPageHeader {
   back?: string;
+}
+
+export interface XI18nSelect {
+  selectAllText?: string;
+}
+
+export interface XI18nList {
+  selectAllText?: string;
 }
 
 export const X_I18N = new InjectionToken<XI18nProperty>('x-i18n');
