@@ -108,6 +108,10 @@ const routes: Routes = [
         path: 'upload',
         loadChildren: () => import('./modules/upload/upload.module').then((x) => x.TeUploadModule)
       },
+      {
+        path: 'rate',
+        loadChildren: () => import('./modules/rate/rate.module').then((x) => x.TeRateModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

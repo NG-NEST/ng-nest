@@ -73,20 +73,7 @@
     .#{$--x-rate-prefix} {
       &-icons {
         cursor: not-allowed;
-      }
-      &-icon {
-        color: $--x-info-500;
-        &:hover {
-          transform: scale(1);
-        }
-        &.activated {
-          color: $--x-warning-500;
-        }
-        &.half-activated {
-          .x-rate-half {
-            color: $--x-warning-500;
-          }
-        }
+        opacity: 0.8;
       }
     }
   }

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { XIsEmpty, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XClearClass, XConfigService, XIsString, XIsObject } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -17,6 +17,23 @@ export class XRateComponent extends XRateProperty {
 
   hoverActivated = 0;
   hoverHalfActivated = 0;
+
+  get getColor() {
+    let color = '';
+    if (XIsString(this.color)) {
+      color = this.color as string;
+    } else if (XIsObject(this.color)) {
+      this.color = this.color as { [color: string]: (rate: number) => boolean };
+      let val = this.half ? (Math.floor(this.hoverActivated) + this.hoverHalfActivated) * 0.5 : this.hoverActivated;
+      for (let key in this.color) {
+        if (this.color[key](val)) {
+          color = key;
+          break;
+        }
+      }
+    }
+    return color;
+  }
 
   override writeValue(value: any) {
     if (XIsEmpty(value)) value = 0;

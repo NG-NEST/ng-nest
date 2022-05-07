@@ -1,4 +1,4 @@
-import { XInputNumber, XNumber, XInputBoolean, XBoolean, XTemplate } from '@ng-nest/ui/core';
+import { XInputNumber, XNumber, XInputBoolean, XBoolean, XTemplate, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -8,6 +8,7 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XRatePrefix = 'x-rate';
+const X_CONFIG_NAME = 'rate';
 
 /**
  * Rate Property
@@ -25,11 +26,22 @@ export class XRateProperty extends XControlValueAccessor<any> implements XRateOp
    */
   @Input() @XInputBoolean() half?: XBoolean;
   /**
+   * @zh_CN 颜色
+   * @en_US Color
+   */
+  @Input() @XWithConfig<XRateColor>(X_CONFIG_NAME) color?: XRateColor;
+  /**
    * @zh_CN 自定义模板
    * @en_US Custom template
    */
   @Input() customTemp!: TemplateRef<any>;
 }
+
+/**
+ * @zh_CN 颜色类型
+ * @en_US Color type
+ */
+export type XRateColor = string | { [color: string]: (rate: number) => boolean };
 
 /**
  * Rate Option

@@ -450,7 +450,9 @@ export interface XRadioConfig {
   size?: XSize;
 }
 
-export interface XRateConfig {}
+export interface XRateConfig {
+  color?: string | { [color: string]: (rate: number) => boolean };
+}
 
 export interface XResultConfig {}
 

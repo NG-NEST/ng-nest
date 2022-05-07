@@ -12,9 +12,16 @@
       class="x-rate-icon"
       [class.activated]="rate <= hoverActivated"
       [class.half-activated]="rate <= hoverHalfActivated"
+      [style.color]="rate <= hoverActivated ? getColor : ''"
       *ngFor="let rate of rates; index as i; trackBy: trackByItem"
     >
-      <div *ngIf="half" class="x-rate-half" (mouseenter)="rateHalfHover(rate, $event)" (click)="rateHalfClick(rate, $event)">
+      <div
+        *ngIf="half"
+        class="x-rate-half"
+        [style.color]="rate <= hoverHalfActivated ? getColor : ''"
+        (mouseenter)="rateHalfHover(rate, $event)"
+        (click)="rateHalfClick(rate, $event)"
+      >
         <ng-container *ngIf="customTemp; else iconTpl">
           <ng-container *ngTemplateOutlet="customTemp"></ng-container>
         </ng-container>
