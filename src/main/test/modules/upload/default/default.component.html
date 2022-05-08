@@ -1,1 +1,10 @@
-<x-upload action="http://localhost:3000/upload" multiple [(ngModel)]="model1" (ngModelChange)="change($event)"></x-upload>
+<x-upload
+  action="http://localhost:3000/upload"
+  multiple
+  [(ngModel)]="model1"
+  (ngModelChange)="change($event)"
+  (uploadReady)="uploadReady($event)"
+  (uploading)="uploading($event)"
+  (uploadSuccess)="uploadSuccess($event)"
+  (uploadError)="uploadError($event)"
+></x-upload>

@@ -49,6 +49,26 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @en_US Delete button event
    */
   @Output() removeClick = new EventEmitter<{ file: XUploadNode; index: number }>();
+  /**
+   * @zh_CN 开始上传事件
+   * @en_US Start upload event
+   */
+  @Output() uploadReady = new EventEmitter<XUploadNode>();
+  /**
+   * @zh_CN 正在上传事件
+   * @en_US Start upload event
+   */
+  @Output() uploading = new EventEmitter<XUploadNode>();
+  /**
+   * @zh_CN 上传成功事件
+   * @en_US Start upload event
+   */
+  @Output() uploadSuccess = new EventEmitter<XUploadNode>();
+  /**
+   * @zh_CN 上传失败事件
+   * @en_US Start upload event
+   */
+  @Output() uploadError = new EventEmitter<XUploadNode>();
 }
 
 /**

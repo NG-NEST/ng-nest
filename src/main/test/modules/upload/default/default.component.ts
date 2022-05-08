@@ -11,4 +11,20 @@ export class ExDefaultComponent {
   change($event: any) {
     console.log($event);
   }
+
+  uploadReady($event: any) {
+    console.log('uploadReady', $event);
+  }
+
+  uploading($event: any) {
+    console.log('uploading', $event);
+  }
+
+  uploadSuccess($event: any) {
+    console.log('uploadSuccess', $event);
+  }
+
+  uploadError($event: any) {
+    console.log('uploadError', $event);
+  }
 }

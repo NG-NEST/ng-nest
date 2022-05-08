@@ -102,8 +102,9 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     }
     if (files.length > 0) this.showUpload = true;
     this.files = files;
-    this.value = [];
-    this.uploading();
+    this.value = this.files;
+    this.onChange && this.onChange(this.value);
+    this.onUploading();
     input.value = '';
     this.cdr.detectChanges();
   }
@@ -126,7 +127,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     this.file.nativeElement.click();
   }
 
-  uploading() {
+  onUploading() {
     if (!this.action) return;
     let readyFiles = this.files.filter((x) => x.state === 'ready');
     readyFiles.forEach((x) => {
@@ -152,12 +153,11 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
             reader.onload = () => {
               file.url = JSON.parse(reader.result as string)[0];
               if (index === -1) {
-                this.value.push(file);
+                // this.value.push(file);
               } else {
-                this.value[index] = file;
+                // this.value[index] = file;
                 this.files[index] = file;
               }
-              this.onChange && this.onChange(this.value);
               this.cdr.detectChanges();
             };
           })
@@ -170,6 +170,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
         },
         () => {
           file.state = 'error';
+          this.uploadError.emit(file);
           this.cdr.detectChanges();
         }
       );
@@ -179,14 +180,17 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     switch (event.type) {
       case HttpEventType.Sent:
         file.state = 'ready';
+        this.uploadReady.emit(file);
         return `开始上传文件`;
       case HttpEventType.UploadProgress:
         file.state = 'uploading';
         if (event.total) file.percent = Math.round((100 * event.loaded) / event.total);
+        this.uploading.emit(file);
         return `上传中`;
       case HttpEventType.Response:
         file.state = 'success';
         fun(event.body);
+        this.uploadSuccess.emit(file);
         return `文件上传完毕`;
     }
     return;
