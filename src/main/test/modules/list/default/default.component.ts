@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { XSize } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent implements OnInit {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size: XSize = 'medium';
   data = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD'];
   data1 = JSON.parse(JSON.stringify(this.data));
   data2 = JSON.parse(JSON.stringify(this.data));

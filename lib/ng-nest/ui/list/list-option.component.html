@@ -1,5 +1,6 @@
 <div
   class="x-list-option"
+  [ngClass]="classMap"
   [class.x-selected]="selected"
   [class.x-disabled]="disabled"
   [class.x-active]="active"
@@ -7,9 +8,7 @@
   [class.x-list-divided]="divided"
 >
   <span>
-    <ng-container *ngIf="!nodeTpl"
-      ><x-icon [type]="icon" *ngIf="icon"></x-icon> {{ label }}</ng-container
-    >
+    <ng-container *ngIf="!nodeTpl"><x-icon [type]="icon" *ngIf="icon"></x-icon> {{ label }}</ng-container>
     <ng-container *ngIf="nodeTpl">
       <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
     </ng-container>

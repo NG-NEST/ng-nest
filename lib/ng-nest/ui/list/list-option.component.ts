@@ -4,10 +4,12 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import { XListOptionPrefix, XListOptionProperty } from './list.property';
 import { Highlightable } from '@angular/cdk/a11y';
+import { XClassMap, XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XListOptionPrefix}`,
@@ -18,9 +20,21 @@ import { Highlightable } from '@angular/cdk/a11y';
 })
 export class XListOptionComponent extends XListOptionProperty implements Highlightable {
   @HostBinding('attr.role') role = 'option';
-  constructor(public elementRef: ElementRef, private cdr: ChangeDetectorRef) {
+  classMap: XClassMap = {}
+  constructor(public elementRef: ElementRef, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
+  ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    const { size } = changes;
+    XIsChange(size) && this.setClassMap();
+  }
+
+  setClassMap() {
+    XClearClass(this.classMap);
+    this.classMap[`${XListOptionPrefix}-${this.size}`] = this.size ? true : false;
+  }
+
   setActiveStyles(): void {
     this.active = true;
     this.activeChange.emit(this.active);

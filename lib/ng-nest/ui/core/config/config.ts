@@ -78,6 +78,7 @@ export interface XComponentConfig {
   ripple?: XRippleConfig;
   link?: XLinkConfig;
   list?: XListConfig;
+  listOption?: XListOptionConfig;
   loading?: XLoadingConfig;
   menu?: XMenuConfig;
   message?: XMessageConfig;
@@ -366,6 +367,10 @@ export interface XLinkConfig {
 
 export interface XListConfig {
   selectAllText?: string;
+}
+
+export interface XListOptionConfig {
+  size?: XSize;
 }
 
 export interface XLoadingConfig {

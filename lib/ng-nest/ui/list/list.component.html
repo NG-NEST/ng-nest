@@ -4,7 +4,13 @@
   </ng-container>
   <ng-container *ngIf="selectAll && multiple === 0">
     <div class="x-list-select-all">
-      <x-list-option [label]="getSelectAllText" [checked]="true" [selected]="isSelectAll" (click)="onSelectAllNodes()"></x-list-option>
+      <x-list-option
+        [size]="size"
+        [label]="getSelectAllText"
+        [checked]="true"
+        [selected]="isSelectAll"
+        (click)="onSelectAllNodes()"
+      ></x-list-option>
     </div>
   </ng-container>
   <div class="x-list-content" cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag" [hidden]="isEmpty">
@@ -20,6 +26,7 @@
       [icon]="node.icon"
       [label]="node.label"
       [leaf]="node.leaf"
+      [size]="size"
       (click)="onNodeClick($event, node)"
       (mouseenter)="onMouseenter($event, node)"
       (mouseleave)="onMouseleave($event, node)"

@@ -6,11 +6,13 @@ import { TeListComponent } from './list.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ExSizeComponent } from './size/size.component';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 const routers = [{ path: '', component: TeListComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XListModule, XLayoutModule],
-  declarations: [TeListComponent, ExDefaultComponent]
+  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XListModule, XRadioModule, XLayoutModule],
+  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent]
 })
 export class TeListModule {}

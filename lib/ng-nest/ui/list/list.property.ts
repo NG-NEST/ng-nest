@@ -7,7 +7,8 @@ import {
   XNumber,
   XBoolean,
   XTemplate,
-  XWithConfig
+  XWithConfig,
+  XSize
 } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
@@ -80,6 +81,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US Rolling area element
    */
   @Input() scrollElement?: HTMLElement;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
   /**
    * @zh_CN Full event
    * @en_US 全选事件
@@ -206,6 +212,11 @@ export class XListOptionProperty {
    * @en_US leaf
    */
   @Input() @XInputBoolean() leaf?: boolean;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 有子节点
    * @en_US leaf
