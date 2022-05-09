@@ -1,3 +1,20 @@
+## [13.1.3](https://github.com/NG-NEST/ng-nest/compare/13.1.2...13.1.3) (2022-05-08)
+
+
+### Bug Fixes
+
+* fix spelling mistakes ([db075b4](https://github.com/NG-NEST/ng-nest/commit/db075b4d9b5fe256e8927e34721a9b1889b710ac))
+* **module:dialog:** fix resizable height ([bf56e67](https://github.com/NG-NEST/ng-nest/commit/bf56e673de58adf4bbd66af0555b5a2d7b9bb524)), closes [#187](https://github.com/NG-NEST/ng-nest/issues/187)
+* **module:upload:** add file state ([51267dd](https://github.com/NG-NEST/ng-nest/commit/51267ddd9cdc1b32f7bc8bd561652ad8316cb802)), closes [#189](https://github.com/NG-NEST/ng-nest/issues/189)
+
+
+### Features
+
+* **module:rate:** add color param ([1b2388d](https://github.com/NG-NEST/ng-nest/commit/1b2388d66e2b97a4eb6c2b592f884179df1fe09a)), closes [#190](https://github.com/NG-NEST/ng-nest/issues/190) [#191](https://github.com/NG-NEST/ng-nest/issues/191)
+* **module:select:** add select all ([1077dae](https://github.com/NG-NEST/ng-nest/commit/1077dae4b68c5fb7039fd99111bc3789937b7401)), closes [#188](https://github.com/NG-NEST/ng-nest/issues/188)
+
+
+
 ## [13.1.2](https://github.com/NG-NEST/ng-nest/compare/13.1.1...13.1.2) (2022-04-27)
 
 
