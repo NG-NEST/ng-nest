@@ -23,7 +23,7 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { XI18nList, XI18nService } from '../i18n';
+import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XListPrefix}`,
