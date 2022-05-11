@@ -14,8 +14,8 @@ export class XDialogService {
     offset: '1rem',
     width: '32rem',
     backdropClose: true,
-    hasBackdrop: true
-    // draggable: false,
+    hasBackdrop: true,
+    draggable: false,
     // resizable: false
   };
   configDefault?: XDialogConfig;
@@ -52,8 +52,10 @@ export class XDialogService {
     // }
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
-    instance.placement = option.placement;
     const dialogRef = new XDialogRef<T>(overlayRef!, instance);
+    instance.placement = option.placement;
+    instance.option = option;
+    instance.dialogRef = dialogRef;
     if (content instanceof TemplateRef) {
       instance.attachTemplatePortal(
         new TemplatePortal(content, option.viewContainerRef!, { $implicit: option.data, dialogRef: dialogRef })

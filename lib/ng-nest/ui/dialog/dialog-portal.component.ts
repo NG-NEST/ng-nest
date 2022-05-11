@@ -3,16 +3,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentRef,
+  ContentChildren,
   EmbeddedViewRef,
   EventEmitter,
   HostBinding,
   HostListener,
+  QueryList,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
-import { XDialogAnimationEvent, XDialogAnimationState } from './dialog.property';
+import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
 import { AnimationEvent } from '@angular/animations';
+import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { XDialogRef } from './dialog-ref';
 
 @Component({
   selector: 'x-dialog-portal',
@@ -23,7 +27,7 @@ import { AnimationEvent } from '@angular/animations';
   animations: [XMoveBoxAnimation]
 })
 export class XDialogPortalComponent extends BasePortalOutlet {
-  @HostBinding('class.x-dialog-portal') _has = true;
+  // @HostBinding('class.x-dialog-portal') _has = true;
   @HostBinding('@x-move-box-animation') public placement?: XDialogAnimationState;
   @HostListener('@x-move-box-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({ action: 'done', state: toState as XDialogAnimationState, totalTime });
@@ -32,11 +36,27 @@ export class XDialogPortalComponent extends BasePortalOutlet {
     this.animationChanged.next({ action: 'start', state: toState as XDialogAnimationState, totalTime });
   }
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet!: CdkPortalOutlet;
+  @ViewChild(CdkDrag, { static: true }) dragRef!: CdkDrag;
+
+  @ContentChildren(CdkDragHandle, { descendants: true }) handles!: QueryList<CdkDragHandle>;
 
   animationChanged = new EventEmitter<XDialogAnimationEvent>();
 
+  option!: XDialogRefOption;
+  dialogRef!: XDialogRef<any>;
+
   constructor() {
     super();
+  }
+
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    let list = new QueryList<CdkDragHandle>();
+    for (let item of this.dialogRef.dragHandleRefs) {
+      list.reset([...list.toArray(), new CdkDragHandle(item, this.dragRef)]);
+    }
+    this.dragRef._handles = list;
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {

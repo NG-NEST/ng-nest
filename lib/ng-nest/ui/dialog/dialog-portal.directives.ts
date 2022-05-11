@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, Optional } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Optional } from '@angular/core';
 import { XDialogRef } from './dialog-ref';
 
 @Directive({
@@ -30,4 +30,15 @@ export class XDialogContentDirective {
 })
 export class XDialogActionsDirective {
   @HostBinding('class.x-dialog-portal-actions') _has = true;
+}
+
+@Directive({
+  selector: `[x-dialog-drag-handle], x-dialog-drag-handle`
+})
+export class XDialogDragHandleDirective {
+  constructor(@Optional() public dialogRef: XDialogRef<any>, private elementRef: ElementRef) {}
+
+  ngOnInit() {
+    this.dialogRef.dragHandleRefs.push(this.elementRef);
+  }
 }

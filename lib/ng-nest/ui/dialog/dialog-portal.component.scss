@@ -8,3 +8,8 @@
   @include reset-component();
   @include dialog-portal();
 }
+
+#{$--x-dialog-portal} {
+  width: 100%;
+  height: 100%;
+}

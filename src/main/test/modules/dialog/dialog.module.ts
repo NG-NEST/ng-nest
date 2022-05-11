@@ -12,6 +12,7 @@ import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { ExServiceComponent } from './service/service.component';
 import { ExServiceDialogComponent } from './service/service-dialog.component';
 import { ExResizableComponent } from './resizable/resizable.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const routers = [{ path: '', component: TeDialogComponent }];
 
@@ -24,7 +25,8 @@ const routers = [{ path: '', component: TeDialogComponent }];
     XDialogModule,
     XLayoutModule,
     XRadioModule,
-    XButtonModule
+    XButtonModule,
+    DragDropModule
   ],
   declarations: [TeDialogComponent, ExDefaultComponent, ExServiceComponent, ExServiceDialogComponent, ExResizableComponent]
 })

@@ -298,6 +298,13 @@ export interface XDialogRefOption {
    */
   hasBackdrop?: boolean;
   /**
+   * @zh_CN 拖动对话框
+   * @en_US Drag dialog
+   * @default false
+   * @withConfig false
+   */
+  draggable?: boolean;
+  /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"
    */

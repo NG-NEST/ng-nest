@@ -88,13 +88,17 @@
   border: 0.0625rem solid transparent;
   border-radius: $--x-border-radius;
   &-title {
-    display: block;
-    margin: 0 0 0.5rem 0;
     font-weight: 600;
     color: $--x-text-300;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 3rem;
+    line-height: 3rem;
+    display: block;
+    align-items: center;
+    margin: -1rem -1rem 0;
+    padding: 0 1rem;
   }
   &-content {
     display: block;
@@ -112,7 +116,8 @@
     justify-content: flex-end;
     flex-wrap: wrap;
     box-sizing: content-box;
-    margin-bottom: -1rem;
+    margin: 0 -1rem -1rem -1rem;
+    padding: 0 1rem;
     min-height: 4rem;
     &[align='center'] {
       justify-content: center;

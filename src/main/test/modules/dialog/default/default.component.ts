@@ -8,7 +8,7 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  visible: boolean = true;
+  visible: boolean = false;
   placement!: XPlace;
   constructor(private msgBox: XMessageBoxService) {}
 
