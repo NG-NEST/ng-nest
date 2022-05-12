@@ -301,9 +301,37 @@ export interface XDialogRefOption {
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    * @default false
-   * @withConfig false
+   * @withConfig true
    */
   draggable?: boolean;
+  /**
+   * @zh_CN 调整弹框的大小
+   * @en_US Adjust the size of the box
+   * @default false
+   * @withConfig true
+   */
+  resizable?: boolean;
+  /**
+   * @zh_CN 最小宽度
+   * @en_US Min width
+   * @default '18rem'
+   * @withConfig true
+   */
+  minWidth?: string;
+  /**
+   * @zh_CN 最小高度
+   * @en_US Min height
+   * @default '9rem'
+   * @withConfig true
+   */
+  minHeight?: string;
+  /**
+   * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
+   * @en_US Maximize the bullet box button, Will also display when resizable is enabled
+   * @default false
+   * @withConfig true
+   */
+  maximize?: boolean;
   /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"

@@ -15,6 +15,7 @@ export class ExServiceComponent {
       placement: 'center', // 默认center
       width: '20rem',
       draggable: true,
+      resizable: true,
       data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
     });
   }

@@ -2,7 +2,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable, Renderer2, RendererFactory2, TemplateRef } from '@angular/core';
 import { fillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
-import { XPortalService } from '@ng-nest/ui/portal';
+import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
@@ -13,10 +13,13 @@ export class XDialogService {
     placement: 'center',
     offset: '1rem',
     width: '32rem',
+    minWidth: '18rem',
+    minHeight: '9rem',
     backdropClose: true,
     hasBackdrop: true,
     draggable: false,
-    // resizable: false
+    resizable: false,
+    maximize: false
   };
   configDefault?: XDialogConfig;
 
@@ -44,18 +47,43 @@ export class XDialogService {
         scrollStrategy: this.overlay.scrollStrategies.block(),
         width: option.width,
         height: option.height,
+        minWidth: option.minWidth,
+        minHeight: option.minHeight,
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
     });
-    // if (option.resizable) {
-    //   this.renderer.addClass(portal.overlayRef?.hostElement, PortalResizablePrefix);
-    // }
+
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
+    const { hostElement, overlayElement } = overlayRef || {};
     const dialogRef = new XDialogRef<T>(overlayRef!, instance);
     instance.placement = option.placement;
     instance.option = option;
     instance.dialogRef = dialogRef;
+    let dialogBox = {
+      draggable: option.draggable,
+      resizable: option.resizable
+    };
+    this.setWidthHeight();
+    Object.assign(dialogBox, {
+      width: option.width,
+      height: option.height,
+      minWidth: option.minWidth,
+      minHeight: option.minHeight
+    });
+    if (option.resizable) {
+      this.renderer.addClass(hostElement, PortalResizablePrefix);
+      setTimeout(() => {
+        Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, option.placement));
+        instance.offsetLeft = overlayElement!.offsetLeft;
+        instance.offsetTop = overlayElement!.offsetTop;
+        const dialogDraggable = overlayElement?.querySelector('.x-dialog-portal')!;
+        instance.initHeight = dialogDraggable.clientHeight;
+        instance.dialogContent = overlayElement?.querySelector('.x-dialog-portal-content')!;
+        instance.initContentHeight = instance.dialogContent?.clientHeight;
+        console.log(instance)
+      });
+    }
     if (content instanceof TemplateRef) {
       instance.attachTemplatePortal(
         new TemplatePortal(content, option.viewContainerRef!, { $implicit: option.data, dialogRef: dialogRef })
@@ -76,5 +104,16 @@ export class XDialogService {
     }
 
     return dialogRef;
+  }
+
+  private setWidthHeight(option: XDialogRefOption = {}) {
+    const ws = ['100%', '100vw'];
+    const hs = ['100%', '100vh'];
+    if (ws.includes(option.width as string) && hs.includes(option.height as string)) {
+      // option.isDefaultMaximize = true;
+      option.resizable = false;
+      option.draggable = false;
+      option.maximize = false;
+    }
   }
 }

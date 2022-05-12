@@ -36,6 +36,7 @@ export class XDialogActionsDirective {
   selector: `[x-dialog-drag-handle], x-dialog-drag-handle`
 })
 export class XDialogDragHandleDirective {
+  @HostBinding('class.x-dialog-portal-drag-handle') _has = true;
   constructor(@Optional() public dialogRef: XDialogRef<any>, private elementRef: ElementRef) {}
 
   ngOnInit() {

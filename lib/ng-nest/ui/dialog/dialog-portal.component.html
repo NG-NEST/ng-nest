@@ -1,3 +1,15 @@
-<div class="x-dialog-portal" #dragRef cdkDrag [cdkDragDisabled]="!option.draggable" [cdkDragBoundary]="'.cdk-overlay-container'">
+<div
+  class="x-dialog-portal"
+  #dragRef
+  cdkDrag
+  [cdkDragDisabled]="!option.draggable"
+  [cdkDragBoundary]="'.cdk-overlay-container'"
+  [xResizable]="option.resizable!"
+  (resizing)="resizing($event)"
+  [offsetLeft]="offsetLeft"
+  [offsetTop]="offsetTop"
+  [style.minWidth]="minWidth"
+  [style.minHeight]="minHeight"
+>
   <ng-template cdkPortalOutlet></ng-template>
 </div>

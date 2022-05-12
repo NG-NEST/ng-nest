@@ -9,6 +9,7 @@ import {
   HostBinding,
   HostListener,
   QueryList,
+  Renderer2,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -17,6 +18,7 @@ import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from '
 import { AnimationEvent } from '@angular/animations';
 import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
+import { XResizableEvent } from '@ng-nest/ui/resizable';
 
 @Component({
   selector: 'x-dialog-portal',
@@ -45,7 +47,17 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   option!: XDialogRefOption;
   dialogRef!: XDialogRef<any>;
 
-  constructor() {
+  offsetLeft = 0;
+  offsetTop = 0;
+  minWidth = '0rem';
+  minHeight = '0rem';
+  initHeight = 0;
+  initContentHeight = 0;
+  dialogContent?: HTMLElement;
+
+  dialogBox: { [key: string]: any } = {};
+
+  constructor(private renderer: Renderer2) {
     super();
   }
 
@@ -70,5 +82,14 @@ export class XDialogPortalComponent extends BasePortalOutlet {
       throw Error('dialog portal has attached');
     }
     return this.portalOutlet.attachTemplatePortal(portal);
+  }
+
+  resizing(event: XResizableEvent) {
+    const contentHeight = Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
+    this.renderer.setStyle(this.dialogContent, 'max-height', 'initial');
+    this.renderer.setStyle(this.dialogContent, 'flex', 'initial');
+    if (['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(event.direction as string)) {
+      this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
+    }
   }
 }

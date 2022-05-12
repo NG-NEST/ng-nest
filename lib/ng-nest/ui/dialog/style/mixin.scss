@@ -77,7 +77,6 @@
 @mixin dialog-portal {
   width: 100%;
   height: 100%;
-  overflow: auto;
   display: block;
   padding: 1rem;
   box-sizing: border-box;
@@ -128,5 +127,8 @@
     x-button:not(:first-child) {
       margin-left: 1rem;
     }
+  }
+  &-drag-handle {
+    cursor: move;
   }
 }
