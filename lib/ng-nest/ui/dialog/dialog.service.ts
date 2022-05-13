@@ -71,7 +71,8 @@ export class XDialogService {
     instance.option = option;
     instance.dialogRef = dialogRef;
     instance.defaultMaximize = defaultMaximize;
-    if ((option.resizable && !defaultMaximize)) {
+    dialogRef.option = option;
+    if (option.resizable && !defaultMaximize) {
       this.renderer.addClass(hostElement, PortalResizablePrefix);
       setTimeout(() => {
         Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, option.placement));
