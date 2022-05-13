@@ -117,7 +117,7 @@
     box-sizing: content-box;
     margin: 0 -1rem -1rem -1rem;
     padding: 0 1rem;
-    min-height: 4rem;
+    height: 4rem;
     &[align='center'] {
       justify-content: center;
     }
@@ -130,5 +130,11 @@
   }
   &-drag-handle {
     cursor: move;
+  }
+  &-default-maximize {
+    .#{$--x-dialog-portal}-content {
+      max-height: calc(100vh - 7rem) !important;
+      height: calc(100vh - 7rem) !important;
+    }
   }
 }

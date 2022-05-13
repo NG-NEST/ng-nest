@@ -326,13 +326,6 @@ export interface XDialogRefOption {
    */
   minHeight?: string;
   /**
-   * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
-   * @en_US Maximize the bullet box button, Will also display when resizable is enabled
-   * @default false
-   * @withConfig true
-   */
-  maximize?: boolean;
-  /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"
    */

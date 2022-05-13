@@ -13,7 +13,17 @@ export class ExServiceComponent {
   create() {
     this.dialogService.create(ExServiceDialogComponent, {
       placement: 'center', // 默认center
-      width: '20rem',
+      draggable: true,
+      resizable: true,
+      data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
+    });
+  }
+
+  createFullScreen() {
+    this.dialogService.create(ExServiceDialogComponent, {
+      placement: 'center', // 默认center
+      width: '100%',
+      height: '100%',
       draggable: true,
       resizable: true,
       data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }

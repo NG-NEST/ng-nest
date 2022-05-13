@@ -54,6 +54,7 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   initHeight = 0;
   initContentHeight = 0;
   dialogContent?: HTMLElement;
+  defaultMaximize = false;
 
   dialogBox: { [key: string]: any } = {};
 
