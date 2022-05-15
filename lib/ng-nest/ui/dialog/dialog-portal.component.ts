@@ -16,7 +16,7 @@ import {
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
 import { AnimationEvent } from '@angular/animations';
-import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragEnd, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
 
@@ -55,6 +55,9 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   initContentHeight = 0;
   dialogContent?: HTMLElement;
   defaultMaximize = false;
+  overlayElement?: HTMLElement;
+  hostElement?: HTMLElement;
+  distance = { x: 0, y: 0 };
 
   dialogBox: { [key: string]: any } = {};
 
@@ -62,7 +65,10 @@ export class XDialogPortalComponent extends BasePortalOutlet {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dialogBox['draggable'] = this.defaultMaximize ? this.dialogBox['draggable'] : this.option.draggable;
+    this.dialogBox['resizable'] = this.defaultMaximize ? this.dialogBox['resizable'] : this.option.resizable;
+  }
 
   ngAfterViewInit() {
     let list = new QueryList<CdkDragHandle>();
@@ -92,5 +98,9 @@ export class XDialogPortalComponent extends BasePortalOutlet {
     if (['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(event.direction as string)) {
       this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
     }
+  }
+
+  onDragEnded(event: CdkDragEnd) {
+    this.distance = { x: this.distance.x + event.distance.x, y: this.distance.y + event.distance.y };
   }
 }

@@ -3,6 +3,7 @@
   <p>{{ data.content }}</p>
 </div>
 <div x-dialog-actions>
+  <x-button x-dialog-fullscreen>{{ dialogRef?.fullscreen ? '缩小' : '全屏' }}</x-button>
   <x-button x-dialog-close>通过指令关闭</x-button>
   <x-button (click)="close()">通过服务方法关闭</x-button>
 </div>

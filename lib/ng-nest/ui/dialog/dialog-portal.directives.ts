@@ -37,11 +37,21 @@ export class XDialogActionsDirective {
 })
 export class XDialogDragHandleDirective {
   @HostBinding('class.x-dialog-portal-drag-handle') get getDraggable() {
-    return this.dialogRef.option.draggable;
+    return !this.dialogRef.fullscreen && this.dialogRef.option.draggable;
   }
   constructor(@Optional() public dialogRef: XDialogRef<any>, private elementRef: ElementRef) {}
 
   ngOnInit() {
     this.dialogRef.dragHandleRefs.push(this.elementRef);
   }
+}
+
+@Directive({
+  selector: `[x-dialog-fullscreen], x-dialog-fullscreen`
+})
+export class XDialogFullscreenDirective {
+  @HostListener('click', ['$event']) onFullscreenClick() {
+    this.dialogRef && this.dialogRef.onFullscreen();
+  }
+  constructor(@Optional() public dialogRef: XDialogRef<any>) {}
 }

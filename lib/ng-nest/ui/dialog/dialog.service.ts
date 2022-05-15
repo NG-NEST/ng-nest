@@ -55,15 +55,15 @@ export class XDialogService {
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
     const { hostElement, overlayElement } = overlayRef || {};
-    const dialogRef = new XDialogRef<T>(overlayRef!, instance);
+    const dialogRef = new XDialogRef<T>(overlayRef!, instance, this.renderer, this.portalService);
     let dialogBox = {
       draggable: option.draggable,
       resizable: option.resizable
     };
     let defaultMaximize = this.setMaximize(option);
     Object.assign(dialogBox, {
-      width: option.width,
-      height: option.height,
+      width: defaultMaximize ? this.default.width : option.width,
+      height: defaultMaximize ? null : option.height,
       minWidth: option.minWidth,
       minHeight: option.minHeight
     });
@@ -71,7 +71,11 @@ export class XDialogService {
     instance.option = option;
     instance.dialogRef = dialogRef;
     instance.defaultMaximize = defaultMaximize;
+    instance.dialogBox = dialogBox;
+    instance.hostElement = hostElement;
+    instance.overlayElement = overlayElement;
     dialogRef.option = option;
+    dialogRef.fullscreen = defaultMaximize;
     if (option.resizable && !defaultMaximize) {
       this.renderer.addClass(hostElement, PortalResizablePrefix);
       setTimeout(() => {
@@ -82,6 +86,7 @@ export class XDialogService {
         instance.initHeight = dialogDraggable.clientHeight;
         instance.dialogContent = overlayElement?.querySelector('.x-dialog-portal-content')!;
         instance.initContentHeight = instance.dialogContent?.clientHeight;
+        instance.dialogBox = dialogBox;
       });
     }
     if (content instanceof TemplateRef) {
@@ -110,10 +115,8 @@ export class XDialogService {
     const ws = ['100%', '100vw'];
     const hs = ['100%', '100vh'];
     if (ws.includes(option.width as string) && hs.includes(option.height as string)) {
-      // option.isDefaultMaximize = true;
       option.resizable = false;
       option.draggable = false;
-      // option.maximize = false;
       return true;
     }
     return false;

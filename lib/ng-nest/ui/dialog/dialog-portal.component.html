@@ -2,15 +2,17 @@
   class="x-dialog-portal"
   #dragRef
   cdkDrag
-  [cdkDragDisabled]="!option.draggable"
+  [cdkDragDisabled]="!option.draggable && !dialogBox['draggable']"
   [cdkDragBoundary]="'.cdk-overlay-container'"
-  [xResizable]="option.resizable!"
+  [cdkDragFreeDragPosition]="dialogBox['distance']"
+  [xResizable]="option.resizable && dialogBox['resizable']!"
   (resizing)="resizing($event)"
+  (cdkDragEnded)="onDragEnded($event)"
   [offsetLeft]="offsetLeft"
   [offsetTop]="offsetTop"
-  [style.minWidth]="minWidth"
-  [style.minHeight]="minHeight"
-  [class.x-dialog-portal-default-maximize]="defaultMaximize"
+  [style.minWidth]="dialogBox['minWidth']"
+  [style.minHeight]="dialogBox['minHeight']"
+  [class.x-dialog-portal-fullscreen]="dialogRef.fullscreen"
 >
   <ng-template cdkPortalOutlet></ng-template>
 </div>

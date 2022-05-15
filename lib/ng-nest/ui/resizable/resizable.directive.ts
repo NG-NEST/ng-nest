@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, HostListener, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { XIsArray, XIsString } from '@ng-nest/ui/core';
+import { Directive, ElementRef, HostListener, Inject, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
@@ -23,6 +23,8 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   positionNodes: { [key: string]: HTMLElement } = {};
   activatingNodes: HTMLElement[] = [];
 
+  firstLoaded = true;
+
   constructor(private renderer: Renderer2, private elementRef: ElementRef, @Inject(DOCUMENT) doc: any) {
     super();
     this.document = doc;
@@ -39,6 +41,11 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
 
   ngOnDestroy() {
     this.destroySubscription();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { xResizable } = changes;
+    XIsChange(xResizable) && this.setPosition();
   }
 
   @HostListener('mousedown', ['$event'])
@@ -81,7 +88,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   setPosition() {
-    if (!this.xResizable) return;
+    if (!this.xResizable && !this.firstLoaded) return;
     let positions: XResizablePosition[] = [];
     if (XIsString(this.position)) {
       positions.push(this.position as XResizablePosition);
@@ -102,6 +109,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
       this.maxWidth = parseFloat(computedStyle.maxWidth);
       this.minHeight = parseFloat(computedStyle.minHeight);
       this.maxHeight = parseFloat(computedStyle.maxHeight);
+      this.firstLoaded = false;
     });
   }
 

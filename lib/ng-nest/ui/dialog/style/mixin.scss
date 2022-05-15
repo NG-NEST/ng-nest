@@ -131,7 +131,9 @@
   &-drag-handle {
     cursor: move;
   }
-  &-default-maximize {
+  &-fullscreen {
+    left: 0 !important;
+    top: 0 !important;
     .#{$--x-dialog-portal}-content {
       max-height: calc(100vh - 7rem) !important;
       height: calc(100vh - 7rem) !important;

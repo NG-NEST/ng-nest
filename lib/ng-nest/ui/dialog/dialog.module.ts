@@ -16,6 +16,7 @@ import {
   XDialogCloseDirective,
   XDialogContentDirective,
   XDialogDragHandleDirective,
+  XDialogFullscreenDirective,
   XDialogTitleDirective
 } from './dialog-portal.directives';
 import { XDialogPortalComponent } from './dialog-portal.component';
@@ -29,6 +30,7 @@ import { XDialogService } from './dialog.service';
     XDialogContentDirective,
     XDialogActionsDirective,
     XDialogDragHandleDirective,
+    XDialogFullscreenDirective,
     XDialogPortalComponent,
     XDialogProperty
   ],
@@ -39,6 +41,7 @@ import { XDialogService } from './dialog.service';
     XDialogContentDirective,
     XDialogActionsDirective,
     XDialogDragHandleDirective,
+    XDialogFullscreenDirective,
     XDialogPortalComponent
   ],
   imports: [
