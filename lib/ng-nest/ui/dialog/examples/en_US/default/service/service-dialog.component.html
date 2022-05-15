@@ -3,6 +3,7 @@
   <p>{{ data.content }}</p>
 </div>
 <div x-dialog-actions>
+  <x-button x-dialog-fullscreen>{{ dialogRef?.fullscreen ? 'Minimize' : 'Maximize' }}</x-button>
   <x-button x-dialog-close>Close through directive</x-button>
   <x-button (click)="close()">Close through service method</x-button>
 </div>
