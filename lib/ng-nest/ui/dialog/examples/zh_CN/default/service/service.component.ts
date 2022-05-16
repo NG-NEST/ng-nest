@@ -12,7 +12,9 @@ export class ExServiceComponent {
 
   create() {
     this.dialogService.create(ExServiceDialogComponent, {
-      placement: 'top', // 默认center
+      placement: 'center', // 默认center
+      draggable: true,
+      resizable: true,
       data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
     });
   }

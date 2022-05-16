@@ -1,4 +1,22 @@
-## [13.1.3](https://github.com/NG-NEST/ng-nest/compare/13.1.2...13.1.3) (2022-05-08)
+## [13.1.4](https://github.com/NG-NEST/ng-nest/compare/13.1.3...13.1.4) (2022-05-16)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix fullscreen draggable created by service ([7f3b98a](https://github.com/NG-NEST/ng-nest/commit/7f3b98adbdb3f863ce39fc35d2e5c4a750afc902)), closes [#192](https://github.com/NG-NEST/ng-nest/issues/192)
+
+
+### Features
+
+* **module:dialog:** add drag created by service ([9f6d6ce](https://github.com/NG-NEST/ng-nest/commit/9f6d6cea8d76241c0702fa0770e998f6172392bb)), closes [#192](https://github.com/NG-NEST/ng-nest/issues/192)
+* **module:dialog:** add fullscreen ([2f9cec5](https://github.com/NG-NEST/ng-nest/commit/2f9cec5f29d59ec99be48d96c437ca853d96b4d6)), closes [#192](https://github.com/NG-NEST/ng-nest/issues/192)
+* **module:dialog:** add fullscreen created by service ([8646a58](https://github.com/NG-NEST/ng-nest/commit/8646a587d5f40b2e26d505a5630cae27a92fe62b)), closes [#192](https://github.com/NG-NEST/ng-nest/issues/192)
+* **module:dialog:** add resizable created by service ([f77a46b](https://github.com/NG-NEST/ng-nest/commit/f77a46b393439e60743cfd853d5e5f11c1bb533f)), closes [#192](https://github.com/NG-NEST/ng-nest/issues/192)
+* **module:list:** add size param ([1644b4f](https://github.com/NG-NEST/ng-nest/commit/1644b4f5b6243731564336aeecbbd7eddc01d4ad)), closes [#135](https://github.com/NG-NEST/ng-nest/issues/135)
+
+
+
+## [13.1.3](https://github.com/NG-NEST/ng-nest/compare/13.1.2...13.1.3) (2022-05-09)
 
 
 ### Bug Fixes

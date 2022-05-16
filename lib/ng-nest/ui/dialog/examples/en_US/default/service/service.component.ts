@@ -12,7 +12,9 @@ export class ExServiceComponent {
 
   create() {
     this.dialogService.create(ExServiceDialogComponent, {
-      placement: 'top', // Default center
+      placement: 'center', // Default center
+      draggable: true,
+      resizable: true,
       data: { title: 'Title', content: 'Pass content information, pass content information, pass content information' }
     });
   }
