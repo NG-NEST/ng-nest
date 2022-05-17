@@ -55,7 +55,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 最小高度
    * @en_US Min height
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '9rem') override minHeight?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '8rem') override minHeight?: string;
   /**
    * @zh_CN 样式主题
    * @en_US Style theme
@@ -125,7 +125,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
    */
-  @Input() beforeClose!: Function;
+  @Input() beforeClose!: (action: XDialogAction) => void;
 
   /**
    * @zh_CN 取消按钮的事件
@@ -137,6 +137,11 @@ export class XDialogProperty extends XAlertProperty {
    * @en_US Confirm button event
    */
   @Output() confirm = new EventEmitter();
+  /**
+   * @zh_CN 确认按钮的事件
+   * @en_US Confirm button event
+   */
+  @Output() override close = new EventEmitter();
   /**
    * @zh_CN 显示/隐藏改变事件
    * @en_US Show/hide change events
@@ -245,7 +250,7 @@ export interface XDialogOption extends XAlertOption {
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
    */
-  beforeClose?: Function;
+  beforeClose?: (action: XDialogAction) => void;
 }
 
 /**
@@ -321,7 +326,7 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 最小高度
    * @en_US Min height
-   * @default '9rem'
+   * @default '8rem'
    * @withConfig true
    */
   minHeight?: string;
@@ -349,7 +354,7 @@ export interface XDialogCallback {
   (action: XDialogAction, message?: string): void;
 }
 
-export type XDialogAction = 'confirm' | 'cancel';
+export type XDialogAction = 'confirm' | 'cancel' | 'close';
 
 /**
  * @zh_CN 创建的弹框对象

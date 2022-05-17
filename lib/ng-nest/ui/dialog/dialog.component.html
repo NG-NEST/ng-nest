@@ -23,7 +23,7 @@
       [hideClose]="hideClose"
       [closeText]="closeText"
       [operationTpl]="operationTpl"
-      (close)="onClose()"
+      (close)="onClose('close')"
       (dragEnded)="onDragEnded($event)"
       (resizing)="onResizing($event)"
       showIcon="false"
@@ -42,8 +42,8 @@
     <div class="x-dialog-buttons" [class.x-dialog-buttons-center]="buttonsCenter">
       <ng-container *xOutlet="footer">
         <x-buttons space="1" *ngIf="showCancel || showConfirm">
-          <x-button *ngIf="showCancel" (click)="onCancel()">{{ getCancelText }}</x-button>
-          <x-button *ngIf="showConfirm" type="primary" (click)="onConfirm()">{{ getConfirmText }}</x-button>
+          <x-button *ngIf="showCancel" (click)="onClose('cancel')">{{ getCancelText }}</x-button>
+          <x-button *ngIf="showConfirm" type="primary" (click)="onClose('confirm')">{{ getConfirmText }}</x-button>
         </x-buttons>
       </ng-container>
     </div>

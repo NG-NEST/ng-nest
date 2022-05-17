@@ -51,6 +51,7 @@ export class XDialogRef<C> {
       if (this.option.draggable) {
         dialogBox['distance'] = { x: 0, y: 0 };
       }
+      this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     } else {
       dialogBox['minWidth'] = this.option.minWidth;
       dialogBox['minHeight'] = this.option.minHeight;
@@ -86,6 +87,7 @@ export class XDialogRef<C> {
           this.renderer.setStyle(overlayElement, 'margin-bottom', `${dialogBox['marginBottom']}`);
         }
       }
+      this.renderer.removeClass(overlayElement, 'x-dialog-portal-fullscreen');
       if (this._isFristFullscreen && defaultMaximize) {
         dialogRef.overlayRef?.updatePositionStrategy(this.portalService.setPlace(this.option.placement, this.option.offset!));
         this.renderer.addClass(hostElement, PortalResizablePrefix);

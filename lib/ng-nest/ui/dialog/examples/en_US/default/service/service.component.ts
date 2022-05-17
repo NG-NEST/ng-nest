@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { XPlace } from '@ng-nest/ui/core';
 import { XDialogService } from '@ng-nest/ui/dialog';
 import { ExServiceDialogComponent } from './service-dialog.component';
 
@@ -10,12 +11,23 @@ import { ExServiceDialogComponent } from './service-dialog.component';
 export class ExServiceComponent {
   constructor(private dialogService: XDialogService) {}
 
-  create() {
+  dialog(placement: XPlace) {
     this.dialogService.create(ExServiceDialogComponent, {
-      placement: 'center', // Default center
+      placement: placement, // 默认center
       draggable: true,
       resizable: true,
-      data: { title: 'Title', content: 'Pass content information, pass content information, pass content information' }
+      data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
+    });
+  }
+
+  createFullScreen(placement: XPlace) {
+    this.dialogService.create(ExServiceDialogComponent, {
+      placement: placement, // 默认center
+      width: '100%',
+      height: '100%',
+      draggable: true,
+      resizable: true,
+      data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
     });
   }
 }

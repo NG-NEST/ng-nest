@@ -13,7 +13,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
-import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer } from './dialog.property';
+import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer, XDialogAction } from './dialog.property';
 import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
@@ -46,6 +46,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
   viewInit = false;
+  action: XDialogAction | null = null;
 
   private _unSubject = new Subject<void>();
 
@@ -109,8 +110,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     if (this.visible) {
       this.create();
     } else {
-      this.detach();
-      // this.visibleChange.emit(false);
+      this.onClose('close', false);
     }
   }
 
@@ -151,7 +151,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       });
     }
     if (this.hasBackdrop && this.backdropClose && this.dialogRef?.overlayRef) {
-      this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose());
+      this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose('close'));
     }
   }
 
@@ -166,25 +166,28 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     }
   }
 
-  detach() {
-    if (this.portalAttached()) {
-      this.visible = false;
-      this.visibleChange.emit(this.visible);
-      this.dialogRef?.overlayRef?.detach();
-      this.unsubscribe();
-      this.close.emit();
-    }
-  }
-
   portalAttached() {
     return this.dialogRef?.overlayRef?.hasAttached();
   }
 
-  onClose() {
-    if (XIsFunction(this.beforeClose)) {
-      this.beforeClose();
+  onClose(action: XDialogAction, execFunction = true) {
+    if (!this.portalAttached()) return;
+    if (XIsFunction(this.beforeClose) && execFunction) {
+      this.beforeClose(action);
+      this.action = action;
     } else {
-      this.detach();
+      this.visible = false;
+      this.visibleChange.emit(this.visible);
+      this.dialogRef?.overlayRef?.detach();
+      this.unsubscribe();
+      if ([action, this.action].includes('confirm')) {
+        this.confirm.emit();
+      }
+      if ([action, this.action].includes('cancel')) {
+        this.cancel.emit();
+      }
+      this.action = null;
+      this.close.emit();
     }
   }
 
@@ -249,16 +252,6 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
         this.renderer.setStyle(this.overlayElement, 'margin-bottom', `${this.dialogBox['marginBottom']}`);
       }
     }
-  }
-
-  onCancel() {
-    this.onClose();
-    this.cancel.emit();
-  }
-
-  onConfirm() {
-    this.onClose();
-    this.confirm.emit();
   }
 
   moveDone($event: { toState: string }) {

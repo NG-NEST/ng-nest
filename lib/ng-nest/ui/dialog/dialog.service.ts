@@ -14,7 +14,7 @@ export class XDialogService {
     offset: '1rem',
     width: '32rem',
     minWidth: '18rem',
-    minHeight: '9rem',
+    minHeight: '8rem',
     backdropClose: true,
     hasBackdrop: true,
     draggable: false,
@@ -88,6 +88,9 @@ export class XDialogService {
         instance.initContentHeight = instance.dialogContent?.clientHeight;
         instance.dialogBox = dialogBox;
       });
+    }
+    if (defaultMaximize) {
+      this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     }
     if (content instanceof TemplateRef) {
       instance.attachTemplatePortal(

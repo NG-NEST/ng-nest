@@ -1,9 +1,27 @@
 :host {
+  x-button:not(:first-child) {
+    margin-left: 1rem;
+  }
+  .box {
+    width: 16rem;
+    height: 10rem;
+    padding: 0.5rem;
+    border: 0.0625rem solid var(--x-border);
+  }
   .row {
+    height: 3rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
-  .row x-button {
-    margin-left: 1rem;
+  .box .row:first-child {
+    align-items: flex-start;
+  }
+  .box .row:last-child {
+    align-items: flex-end;
+  }
+
+  .fullscreen {
+    margin: 1rem 0;
   }
 }

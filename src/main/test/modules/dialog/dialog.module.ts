@@ -7,12 +7,16 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { XRadioModule } from '@ng-nest/ui/radio';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { ExServiceComponent } from './service/service.component';
 import { ExServiceDialogComponent } from './service/service-dialog.component';
 import { ExResizableComponent } from './resizable/resizable.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ExCustomComponent } from './custom/custom.component';
+import { XInputModule } from '@ng-nest/ui/input';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 const routers = [{ path: '', component: TeDialogComponent }];
 
@@ -26,8 +30,18 @@ const routers = [{ path: '', component: TeDialogComponent }];
     XLayoutModule,
     XRadioModule,
     XButtonModule,
-    DragDropModule
+    DragDropModule,
+    XInputModule,
+    XIconModule,
+    XLinkModule
   ],
-  declarations: [TeDialogComponent, ExDefaultComponent, ExServiceComponent, ExServiceDialogComponent, ExResizableComponent]
+  declarations: [
+    TeDialogComponent,
+    ExDefaultComponent,
+    ExServiceComponent,
+    ExServiceDialogComponent,
+    ExResizableComponent,
+    ExCustomComponent
+  ]
 })
 export class TeDialogModule {}

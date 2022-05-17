@@ -22,6 +22,11 @@
       border-color: $--x-primary;
     }
   }
+  &-disabled {
+    > div[class^='x-resizable-'] {
+      display: none;
+    }
+  }
 }
 
 @mixin resizable-position($type, $cursor, $width, $height, $top, $right, $bottom, $left, $padding, $border, $border-width) {
