@@ -1,3 +1,12 @@
+## [13.1.5](https://github.com/NG-NEST/ng-nest/compare/13.1.4...13.1.5) (2022-05-17)
+
+
+### Features
+
+* **module:dialog:** add event callback ([38f7288](https://github.com/NG-NEST/ng-nest/commit/38f72880ebc4a8ade96509f1e9dc7949610b6d7c))
+
+
+
 ## [13.1.4](https://github.com/NG-NEST/ng-nest/compare/13.1.3...13.1.4) (2022-05-16)
 
 
