@@ -112,6 +112,10 @@ const routes: Routes = [
         path: 'rate',
         loadChildren: () => import('./modules/rate/rate.module').then((x) => x.TeRateModule)
       },
+      {
+        path: 'auto-complete',
+        loadChildren: () => import('./modules/auto-complete/auto-complete.module').then((x) => x.TeAutoCompleteModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

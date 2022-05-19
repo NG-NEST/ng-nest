@@ -60,6 +60,11 @@ export class XAutoCompleteProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
   /**
+   * @zh_CN 只能是选择的值
+   * @en_US Can only be the value of choice
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) onlySelect!: XBoolean;
+  /**
    * @zh_CN 选择节点事件
    * @en_US Node click event
    */

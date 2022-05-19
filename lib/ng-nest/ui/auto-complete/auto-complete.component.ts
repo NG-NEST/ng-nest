@@ -145,6 +145,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
       this.active = false;
+      if (this.onlySelect) {
+        if (!this.nodes.map((x) => x.label).includes(this.value)) {
+          this.value = '';
+          if (this.onChange) this.onChange(this.value);
+          this.inputChange.next(this.value);
+        }
+      }
       this.cdr.detectChanges();
       return true;
     }
@@ -176,8 +183,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
-    if (!XIsEmpty(this.value)) {
-      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(this.value) >= 0);
+    if (XIsFunction(this.data)) {
+      this.searchNodes = this.nodes;
+    } else if (!XIsEmpty(this.value)) {
+      this.setSearchNodes(this.value);
     }
     this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
@@ -257,6 +266,14 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 
+  setSearchNodes(value: string | number) {
+    if (this.caseSensitive) {
+      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
+    } else {
+      this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
+    }
+  }
+
   modelChange(value: string | number) {
     if (this.onChange) this.onChange(value);
     if (XIsFunction(this.data)) {
@@ -287,11 +304,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         if (XIsEmpty(value)) {
           this.closeSubject.next();
         } else {
-          if (this.caseSensitive) {
-            this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
-          } else {
-            this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
-          }
+          this.setSearchNodes(value);
           this.dataChange.next(this.searchNodes);
         }
       }

@@ -155,6 +155,7 @@ export interface XAutoCompleteConfig {
   size?: XSize;
   bordered?: boolean;
   caseSensitive?: boolean;
+  onlySelect?: boolean;
 }
 
 export interface XBackTopConfig {
