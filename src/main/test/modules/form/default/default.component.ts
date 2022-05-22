@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { XFormRow } from '@ng-nest/ui/form';
+import { Component, ViewChild } from '@angular/core';
+import { XFormComponent, XFormRow } from '@ng-nest/ui/form';
 import { XData, XQuery } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
@@ -58,6 +58,8 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 })
 export class ExDefaultComponent {
   constructor(public defaultService: DefaultService, public treeService: TreeService) {}
+
+  @ViewChild('formCom') formCom!: XFormComponent;
 
   controls: XFormRow[] = [
     {
@@ -433,9 +435,9 @@ export class ExDefaultComponent {
           tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           multiple: true,
           label: '表格多选',
-          dialogCheckboxLabel: "Select",
+          dialogCheckboxLabel: 'Select',
           dialogCheckboxWidth: 100,
-          dialogEmptyContent: "未选择数据！",
+          dialogEmptyContent: '未选择数据！',
           span: 8
         },
         {
@@ -568,4 +570,10 @@ export class ExDefaultComponent {
       ]
     }
   ];
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.formCom.formGroup.reset();
+    }, 3000);
+  }
 }

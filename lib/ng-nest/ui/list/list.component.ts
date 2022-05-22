@@ -186,7 +186,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   setKeyManager() {
     if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0) return;
     let activeIndex = 0;
-    if (XIsUndefined(this.value) || this.value.length === 0) {
+    if (XIsEmpty(this.value)) {
       this.keyManager.updateActiveItem(activeIndex);
       return;
     }
