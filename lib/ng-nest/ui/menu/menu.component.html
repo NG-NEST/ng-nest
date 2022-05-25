@@ -22,6 +22,7 @@
     [data]="node.children"
     [trigger]="trigger"
     placement="right-start"
+    [(activatedId)]="activatedId"
     (nodeClick)="onNodeClick($event)"
     [portalMinWidth]="portalMinWidth"
     children
@@ -36,6 +37,7 @@
     [disabled]="!node.leaf"
     [data]="node.children"
     [trigger]="trigger"
+    [(activatedId)]="activatedId"
     (nodeClick)="onNodeClick($event)"
     [portalMinWidth]="portalMinWidth"
     children

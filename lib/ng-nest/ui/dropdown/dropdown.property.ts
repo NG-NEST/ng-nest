@@ -51,10 +51,20 @@ export class XDropdownProperty extends XProperty {
    */
   @Input() hoverDelay: number = 200;
   /**
+   * @zh_CN 当前激活的菜单
+   * @en_US The currently activated menu
+   */
+  @Input() activatedId: any;
+  /**
    * @zh_CN 节点点击事件
    * @en_US Node click event
    */
   @Output() nodeClick = new EventEmitter<XDropdownNode>();
+  /**
+   * @zh_CN 当前激活的菜单事件
+   * @en_US The currently activated menu event
+   */
+  @Output() activatedIdChange = new EventEmitter<any>();
 }
 
 /**

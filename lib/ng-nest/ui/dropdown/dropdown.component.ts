@@ -38,6 +38,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   hoverDelayUnsub = new Subject<void>();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
+  activatedIdSub = new Subject<any>();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -71,6 +72,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   setSubject() {
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
+    });
+    this.activatedIdSub.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.activatedId = x;
+      this.activatedIdChange.emit(x);
     });
   }
 
@@ -170,6 +175,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
       data: this.nodes,
       trigger: this.trigger,
       minWidth: this.minWidth,
+      activatedId: this.activatedId,
+      activatedIdSub: this.activatedIdSub,
       close: () => this.closeSubject.next(),
       positionChange: this.positionChange,
       destroyPortal: () => this.destroyPortal(),

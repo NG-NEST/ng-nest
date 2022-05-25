@@ -116,6 +116,10 @@ const routes: Routes = [
         path: 'auto-complete',
         loadChildren: () => import('./modules/auto-complete/auto-complete.module').then((x) => x.TeAutoCompleteModule)
       },
+      {
+        path: 'dropdown',
+        loadChildren: () => import('./modules/dropdown/dropdown.module').then((x) => x.TeDropdownModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

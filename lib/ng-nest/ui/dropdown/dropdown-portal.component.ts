@@ -50,6 +50,8 @@ export class XDropdownPortalComponent implements OnDestroy {
   minWidth!: string | number;
   portalPlacement!: XPositionTopBottom;
   childAnimating = false;
+  activatedId!: any;
+  activatedIdSub!: Subject<any>;
   private _unSubject = new Subject<void>();
 
   @HostListener('mouseenter') mouseenter() {
@@ -84,7 +86,11 @@ export class XDropdownPortalComponent implements OnDestroy {
   }
 
   nodeClick(node: XDropdownNode) {
-    if (!node.leaf) this.close();
+    if (!node.leaf) {
+      this.close();
+      this.activatedId = node.id;
+      this.activatedIdSub.next(this.activatedId);
+    }
     this.nodeEmit(node);
   }
 
@@ -134,6 +140,8 @@ export class XDropdownPortalComponent implements OnDestroy {
       close: () => this.closePortal(),
       placement: this.portalPlacement,
       positionChange: this.portalPositionChange,
+      activatedId: this.activatedId,
+      activatedIdSub: this.activatedIdSub,
       nodeEmit: (node: XDropdownNode) => this.nodeClick(node),
       portalHover: (hover: boolean) => this.hover(hover),
       animating: (ing: boolean) => (this.childAnimating = ing)

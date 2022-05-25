@@ -1,3 +1,9 @@
 <div #dropdownPortal class="x-dropdown-portal">
-  <x-list [data]="data" (nodeClick)="nodeClick($event)" (nodeMouseenter)="onEnter($event)" (nodeMouseleave)="onLeave()"></x-list>
+  <x-list
+    [data]="data"
+    (nodeClick)="nodeClick($event)"
+    [(ngModel)]="activatedId"
+    (nodeMouseenter)="onEnter($event)"
+    (nodeMouseleave)="onLeave()"
+  ></x-list>
 </div>
