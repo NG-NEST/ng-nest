@@ -1,3 +1,19 @@
+## [13.1.6](https://github.com/NG-NEST/ng-nest/compare/13.1.5...13.1.6) (2022-05-26)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix drag exception ([2b8b764](https://github.com/NG-NEST/ng-nest/commit/2b8b7643da7642247913b6dee1e7f274fefd28b4))
+* **module:list:** fix null ([afb41d0](https://github.com/NG-NEST/ng-nest/commit/afb41d06f21110129b0cbda84463645070e1185e))
+
+
+### Features
+
+* **module:auto-complete:** add only select ([797b1eb](https://github.com/NG-NEST/ng-nest/commit/797b1eb9ba715090efe185de23f490d8b97e366f))
+* **module:menu:** add selected style ([735b145](https://github.com/NG-NEST/ng-nest/commit/735b1452108b87fcb58848aa19b94a7a81c0b7a2)), closes [#193](https://github.com/NG-NEST/ng-nest/issues/193)
+
+
+
 ## [13.1.5](https://github.com/NG-NEST/ng-nest/compare/13.1.4...13.1.5) (2022-05-17)
 
 
