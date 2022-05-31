@@ -2,15 +2,15 @@ import {
   XProperty,
   XNumber,
   XInputNumber,
-  XIdentityProperty,
-  XId,
   XSort,
   XInputBoolean,
   XBoolean,
   XData,
   XWithConfig,
   XTextAlign,
-  XSize
+  XSize,
+  XParentIdentityProperty,
+  XIdentityProperty
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
@@ -168,6 +168,26 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Pagination position
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showPagination?: XBoolean;
+  /**
+   * @zh_CN 树形表格
+   * @en_US Tree table
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() treeTable?: XBoolean;
+  /**
+   * @zh_CN 树形表格展开所有节点
+   * @en_US Tree table
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() expandedAll?: XBoolean;
+  /**
+   * @zh_CN 默认展开的层级，-1 不展开
+   * @en_US Default expanded level
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, -1) @XInputNumber() expandedLevel!: XNumber;
+  /**
+   * @zh_CN 展开的节点
+   * @en_US Expanded node
+   */
+  @Input() expanded: any[] = [];
 }
 
 /**
@@ -261,7 +281,12 @@ export interface XTableOption extends XPaginationOption {
  * @zh_CN 数据
  * @en_US Data
  */
-export interface XTableRow extends XId {
+export interface XTableRow extends XParentIdentityProperty<XTableRow> {
+  /**
+   * @zh_CN 展开
+   * @en_US Unfold
+   */
+  expanded?: boolean;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
@@ -315,6 +340,11 @@ export interface XTableColumn extends XIdentityProperty {
    */
   rowChecked?: boolean;
   /**
+   * @zh_CN type 为 expand 时绑定行点击展开事件
+   * @en_US Bind row click selection event when type is expand
+   */
+  rowExpand?: boolean;
+  /**
    * @zh_CN 文字对齐方式
    * @en_US Text alignment
    */
@@ -329,6 +359,11 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Head shows checkbox
    */
   headChecked?: boolean;
+  /**
+   * @zh_CN 头部显示 expand
+   * @en_US Head shows expand
+   */
+  headExpand?: boolean;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
@@ -416,7 +451,7 @@ export interface XTableCell {
  * @zh_CN 列类型
  * @en_US Column type
  */
-export type XColumnType = 'label' | 'index' | 'checkbox';
+export type XColumnType = 'label' | 'index' | 'checkbox' | 'expand';
 
 /**
  * @zh_CN 分页器位置
@@ -571,6 +606,16 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Row condition class
    */
   @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
+  /**
+   * @zh_CN 树形表格下的层级
+   * @en_US The level under the tree table
+   */
+  @Input() level: number = 0;
+  /**
+   * @zh_CN 树形表格展开所有节点
+   * @en_US Tree table
+   */
+  @Input() @XInputBoolean() expandedAll?: XBoolean;
 }
 
 /**

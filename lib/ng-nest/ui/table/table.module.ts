@@ -14,6 +14,7 @@ import { XTableHeadComponent } from './table-head.component';
 import { XTableBodyComponent } from './table-body.component';
 import { XTableFootComponent } from './table-foot.component';
 import { XDragDirective } from './drag.directive';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { XDragDirective } from './drag.directive';
     XOutletModule,
     XCheckboxModule,
     XIconModule,
+    XButtonModule,
     ScrollingModule,
     XEmptyModule,
     XLoadingModule

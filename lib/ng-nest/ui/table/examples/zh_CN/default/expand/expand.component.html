@@ -1,0 +1,12 @@
+<x-button (click)="expandedAll = !expandedAll">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button> <br /><br />
+<x-table
+  [columns]="columns"
+  [data]="data"
+  [showPagination]="false"
+  loading
+  treeTable
+  [expanded]="expanded"
+  [expandedLevel]="expandedLevel"
+  [expandedAll]="expandedAll"
+>
+</x-table>

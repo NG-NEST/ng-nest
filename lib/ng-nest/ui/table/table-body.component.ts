@@ -55,12 +55,13 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     super();
   }
   ngOnChanges(simples: SimpleChanges) {
-    const { data, columns, activatedRow, mergeRule } = simples;
-    XIsChange(data, columns, activatedRow, mergeRule) && this.cdr.detectChanges();
+    const { data, columns, activatedRow, mergeRule, expandedAll } = simples;
+    XIsChange(data, columns, activatedRow, mergeRule, expandedAll) && this.cdr.detectChanges();
   }
 
   ngOnInit() {
     removeNgTag(this.elementRef.nativeElement);
+    if (this.level > 0) removeNgTag(this.tbody.nativeElement);
     if (this.scroll?.y && !this.bodyHeight) {
       this.bodyHeight = this.scroll.y;
     }
@@ -203,6 +204,11 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
       }
     }
     this.activatedRowChange.emit(row);
+    this.cdr.detectChanges();
+  }
+
+  onExpanded(_event: Event, node: XTableRow) {
+    node.expanded = !node.expanded;
     this.cdr.detectChanges();
   }
 

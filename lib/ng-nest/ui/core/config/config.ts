@@ -502,6 +502,9 @@ export interface XTableConfig {
   allowSelectRow?: XBoolean;
   rowSize?: XSize;
   showPagination?: XBoolean;
+  treeTable?: XBoolean;
+  expandedAll?: XBoolean;
+  expandedLevel?: XNumber;
 }
 
 export interface XTabsConfig {

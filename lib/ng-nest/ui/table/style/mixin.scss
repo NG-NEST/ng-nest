@@ -80,6 +80,19 @@
           position: sticky;
           z-index: 1;
         }
+        > x-button {
+          .x-icon {
+            transition: $--x-animation-duration-base;
+          }
+          &.is-leaf {
+            visibility: hidden;
+          }
+          &.is-expanded {
+            .x-icon {
+              transform: rotate(90deg);
+            }
+          }
+        }
       }
       &.#{$--x-table}-activated {
         > td {
@@ -190,6 +203,9 @@
         border-right: none;
       }
     }
+  }
+  &-expand {
+    margin-right: 0.5rem;
   }
   &-row-size {
     @include rowSize(big, calc(#{$--x-font-size} / 5 * 4), calc(#{$--x-font-size} * 5 / 4), calc(#{$--x-font-size} / 5 * 4), 0);

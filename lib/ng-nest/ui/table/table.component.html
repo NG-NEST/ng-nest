@@ -20,7 +20,7 @@
     [table]="this"
   ></x-table-head>
   <x-table-body
-    [data]="tableData"
+    [data]="treeTable ? treeTableData : tableData"
     [columns]="columns"
     [itemSize]="itemSize"
     [rowHeight]="rowHeight"
@@ -35,6 +35,7 @@
     [scroll]="scroll"
     [rowClass]="rowClass"
     [cellConfig]="cellConfig?.tbody"
+    [expandedAll]="expandedAll"
     [(activatedRow)]="activatedRow"
     (activatedRowChange)="activatedRowChange.emit($event)"
     [table]="this"

@@ -12,7 +12,7 @@
       </td>
     </tr>
   </ng-container>
-  <x-empty *ngIf="isEmpty"></x-empty>
+  <x-empty *ngIf="isEmpty && level === 0"></x-empty>
 </tbody>
 
 <ng-template #virtualScrollTpl>
@@ -39,16 +39,34 @@
 </ng-template>
 
 <ng-template #bodyTpl>
-  <tr
-    *ngFor="let row of data; index as i; trackBy: trackByItem"
-    [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-    [ngClass]="!rowClass ? {} : rowClass(row, i)"
-    [style.height.px]="getRowHeight"
-    [style.min-height.px]="getRowHeight"
-    (click)="rowClick(row)"
-  >
-    <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
-  </tr>
+  <ng-container *ngFor="let row of data; index as i; trackBy: trackByItem">
+    <tr
+      [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
+      [ngClass]="!rowClass ? {} : rowClass(row, i)"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
+      (click)="rowClick(row)"
+    >
+      <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
+    </tr>
+    <div class="x-table-children" *ngIf="table.treeTable && row.children && row.expanded">
+      <x-table-body
+        [data]="row.children"
+        [columns]="table.columns"
+        [itemSize]="table.itemSize"
+        [rowHeight]="table.rowHeight"
+        [columnTpl]="table.bodyColumnTpl"
+        [allowSelectRow]="table.allowSelectRow"
+        [rowClass]="table.rowClass"
+        [cellConfig]="table.cellConfig?.tbody"
+        [(activatedRow)]="table.activatedRow"
+        [expandedAll]="expandedAll"
+        (activatedRowChange)="table.activatedRowChange.emit($event)"
+        [level]="row.level! + 1"
+        [table]="table"
+      ></x-table-body>
+    </div>
+  </ng-container>
 </ng-template>
 
 <ng-template #rowTpl let-row="row" let-i="i">
@@ -78,8 +96,21 @@
       <div>{{ table.getIndex(i) }}</div>
     </ng-container>
     <ng-container *ngSwitchDefault>
+      <ng-container *ngIf="table.isExpandColumn(column)">
+        <x-button
+          [class.is-leaf]="!row.leaf"
+          [class.is-expanded]="row.expanded"
+          (click)="onExpanded($event, row)"
+          icon="fto-chevron-right"
+          size="mini"
+          onlyIcon
+          class="x-table-expand"
+          [style.margin-left.rem]="row.level - 0.5"
+        ></x-button>
+      </ng-container>
       <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }">
         <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
+        {{ table.rowExpandNext && table.rowExpandNext.id === column.id ? 'x-table-body-level-' + row.level : '' }}
       </ng-container>
     </ng-container>
   </ng-container>
