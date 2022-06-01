@@ -241,9 +241,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   onNodeClick(node: XAutoCompleteNode | XAutoCompleteNode[]) {
     node = node as XAutoCompleteNode;
-    this.closeSubject.next();
     if (this.value === node.label) {
       this.nodeEmit.emit(node);
+      this.closeSubject.next();
       return;
     }
     this.value = node.label;
@@ -251,6 +251,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
     this.nodeEmit.emit(node);
+    this.closeSubject.next();
     this.cdr.detectChanges();
   }
 
