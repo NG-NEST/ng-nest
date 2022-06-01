@@ -1,5 +1,5 @@
 <div class="x-description" [class.x-description-bordered]="bordered" [ngClass]="classMap">
-  <div class="x-description-header">
+  <div class="x-description-header" *ngIf="title">
     <div class="x-description-title" *xOutlet="title">
       {{ title }}
     </div>

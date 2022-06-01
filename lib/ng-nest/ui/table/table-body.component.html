@@ -27,7 +27,6 @@
     <tr
       *cdkVirtualFor="let row of data; let index = index; trackBy: trackByItem"
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-      [ngClass]="!rowClass ? {} : rowClass(row, index)"
       [style.height.px]="getRowHeight"
       [style.min-height.px]="getRowHeight"
       (click)="rowClick(row)"
@@ -42,14 +41,13 @@
   <ng-container *ngFor="let row of data; index as i; trackBy: trackByItem">
     <tr
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-      [ngClass]="!rowClass ? {} : rowClass(row, i)"
       [style.height.px]="getRowHeight"
       [style.min-height.px]="getRowHeight"
       (click)="rowClick(row)"
     >
       <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
     </tr>
-    <div class="x-table-children" *ngIf="table.treeTable && row.children && row.expanded">
+    <div class="x-table-children" [class.x-table-expandTpl]="expandTpl" *ngIf="table.treeTable && row.children && row.expanded">
       <x-table-body
         [data]="row.children"
         [columns]="table.columns"
@@ -61,6 +59,7 @@
         [cellConfig]="table.cellConfig?.tbody"
         [(activatedRow)]="table.activatedRow"
         [expandedAll]="expandedAll"
+        [expandTpl]="expandTpl"
         (activatedRowChange)="table.activatedRowChange.emit($event)"
         [level]="row.level! + 1"
         [table]="table"
@@ -70,6 +69,15 @@
 </ng-template>
 
 <ng-template #rowTpl let-row="row" let-i="i">
+  <ng-container *ngIf="level > 0 && expandTpl">
+    <ng-container *xOutlet="expandTpl; context: { $row: row, $index: i, $level: level }"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="level === 0 || !expandTpl">
+    <ng-container *xOutlet="rowDefault; context: { row: row, i: i, level: level }"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #rowDefault let-row="row" let-i="i">
   <ng-container *ngFor="let column of columns; index as j; trackBy: trackByItem">
     <td
       [style.width.px]="column.width"
@@ -77,6 +85,7 @@
       [title]="getTitle(row, column)"
       [class.x-table-sticky]="table.getSticky(column)"
       [style.left.px]="column.left"
+      [ngClass]="!rowClass ? {} : rowClass(row, i)"
     >
       <ng-template *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-template>
     </td>

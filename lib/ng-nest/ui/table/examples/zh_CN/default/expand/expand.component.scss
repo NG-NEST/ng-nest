@@ -1,0 +1,15 @@
+:host {
+  .row {
+    display: block;
+  }
+  .title {
+    font-weight: 600;
+  }
+  .leaf {
+    visibility: hidden;
+    margin-right: 0.5rem;
+  }
+  .has-leaf {
+    visibility: visible;
+  }
+}

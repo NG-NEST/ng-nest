@@ -10,7 +10,8 @@ import {
   XTextAlign,
   XSize,
   XParentIdentityProperty,
-  XIdentityProperty
+  XIdentityProperty,
+  XTemplate
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
 import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
@@ -188,6 +189,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Expanded node
    */
   @Input() expanded: any[] = [];
+  /**
+   * @zh_CN 自定义展开内容
+   * @en_US Customized expansion content
+   */
+  @Input() expandTpl?: XTemplate;
 }
 
 /**
@@ -616,6 +622,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Tree table
    */
   @Input() @XInputBoolean() expandedAll?: XBoolean;
+  /**
+   * @zh_CN 自定义展开内容
+   * @en_US Customized expansion content
+   */
+  @Input() expandTpl?: XTemplate;
 }
 
 /**

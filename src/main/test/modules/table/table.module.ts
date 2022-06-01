@@ -10,12 +10,16 @@ import { RowclassService } from './rowclass/rowclass.service';
 import { TeTableComponent } from './table.component';
 import { ExExpandComponent } from './expand/expand.component';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XDialogModule } from '@ng-nest/ui/dialog';
+import { ExAdaptionComponent } from './adaption/adaption.component';
+import { CommonModule } from '@angular/common';
+import { XDescriptionModule } from '@ng-nest/ui/description';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), XTableModule, XButtonModule],
-  declarations: [TeTableComponent, ExConfigComponent, ExCheckboxComponent, ExRowclassComponent, ExExpandComponent],
+  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XDialogModule, XDescriptionModule],
+  declarations: [TeTableComponent, ExConfigComponent, ExCheckboxComponent, ExRowclassComponent, ExExpandComponent, ExAdaptionComponent],
   providers: [ConfigService, CheckboxService, RowclassService]
 })
 export class TeTableModule {}

@@ -15,11 +15,21 @@ import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
+import { XDescriptionModule } from '@ng-nest/ui/description';
 
 describe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XTableModule, XIconModule, XAvatarModule, XDialogModule, XButtonModule],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        XDescriptionModule,
+        XTableModule,
+        XIconModule,
+        XAvatarModule,
+        XDialogModule,
+        XButtonModule
+      ],
       declarations: [
         TestXTableComponent,
         TestXTableScrollComponent,
