@@ -101,7 +101,11 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
       files = [...files, file];
     }
     if (files.length > 0) this.showUpload = true;
-    this.files = files;
+    if (this.multipleModel === 'cover') {
+      this.files = files;
+    } else if (this.multipleModel === 'add') {
+      this.files = [...this.files, ...files];
+    }
     this.value = this.files;
     this.onChange && this.onChange(this.value);
     this.onUploading();

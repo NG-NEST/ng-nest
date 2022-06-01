@@ -68,9 +68,17 @@
       &:not(:first-child) {
         margin-top: 0.2rem;
       }
-      &:hover {
+      &.x-upload-disabled {
+        cursor: default;
+        > a {
+          cursor: default;
+        }
+      }
+      &:hover:not(.x-upload-disabled) {
         color: $--x-primary;
         background-color: $--x-background;
+      }
+      &:hover {
         > .x-button {
           display: inline-block;
         }

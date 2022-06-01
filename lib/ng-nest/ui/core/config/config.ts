@@ -567,4 +567,7 @@ export interface XTreeFileConfig {
   spacing?: XNumber;
 }
 
-export interface XUploadConfig {}
+export interface XUploadConfig {
+  download?: XBoolean;
+  multipleModel?: 'cover' | 'add';
+}

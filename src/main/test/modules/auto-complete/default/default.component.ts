@@ -26,7 +26,7 @@ export class ExDefaultComponent {
     });
 
   // 固定选项匹配
-  modelArray = '';
+  modelArray = 'aaaa';
   dataArray = ['aaaa', 'bbbb', 'cccc', 'dddd', 'AAAA', 'BBBB'];
 
   // 固定选项匹配，请求一次
@@ -37,4 +37,8 @@ export class ExDefaultComponent {
       x.complete();
     }, 500);
   });
+
+  getValue() {
+    console.log(this.modelArray);
+  }
 }

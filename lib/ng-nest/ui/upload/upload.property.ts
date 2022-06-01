@@ -1,4 +1,4 @@
-import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner } from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -8,6 +8,7 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XUploadPrefix = 'x-upload';
+const X_CONFIG_NAME = 'upload';
 
 /**
  * Upload Property
@@ -44,6 +45,16 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @en_US Multiple file upload
    */
   @Input() @XInputBoolean() multiple?: XBoolean;
+  /**
+   * @zh_CN 点击下载
+   * @en_US click download
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() download!: XBoolean;
+  /**
+   * @zh_CN 多次上传的模式，cover 覆盖现有 add 继续添加
+   * @en_US For many upload mode, 'cover' covers the existing, 'add' continue to add
+   */
+  @Input() @XWithConfig<XUploadMultipleModel>(X_CONFIG_NAME, 'cover') multipleModel!: XUploadMultipleModel;
   /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event
@@ -104,6 +115,12 @@ export type XStateType = 'ready' | 'uploading' | 'success' | 'error';
  * @en_US File display type
  */
 export type XUploadType = 'list' | 'img';
+
+/**
+ * @zh_CN 多次上传的模式，cover 覆盖现有 add 继续添加
+ * @en_US For many upload mode, 'cover' covers the existing, 'add' continue to add
+ */
+export type XUploadMultipleModel = 'cover' | 'add';
 
 /**
  * @zh_CN 剪裁的方位
