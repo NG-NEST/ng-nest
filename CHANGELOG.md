@@ -1,4 +1,20 @@
-## [13.1.6](https://github.com/NG-NEST/ng-nest/compare/13.1.5...13.1.6) (2022-05-26)
+## [13.1.7](https://github.com/NG-NEST/ng-nest/compare/13.1.6...13.1.7) (2022-06-06)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** repair that only drop-down values can be selected ([12ed94b](https://github.com/NG-NEST/ng-nest/commit/12ed94b0c8b4e04eeb46f49f9e65578750776f35)), closes [#196](https://github.com/NG-NEST/ng-nest/issues/196)
+
+
+### Features
+
+* **module:table:** add tree expand ([22bb675](https://github.com/NG-NEST/ng-nest/commit/22bb67535ba4661f9660c57792df329273d0b654)), closes [#143](https://github.com/NG-NEST/ng-nest/issues/143)
+* **module:table:** add tree table template ([0ba285b](https://github.com/NG-NEST/ng-nest/commit/0ba285b48845e6ddc41be6e6f1450631fa8ef4a2)), closes [#143](https://github.com/NG-NEST/ng-nest/issues/143)
+* **module:upload:** add download and mmultiple model ([d2c7b5d](https://github.com/NG-NEST/ng-nest/commit/d2c7b5d9407502c2a77e308bcf376305dfecc427)), closes [#195](https://github.com/NG-NEST/ng-nest/issues/195) [#194](https://github.com/NG-NEST/ng-nest/issues/194)
+
+
+
+## [13.1.6](https://github.com/NG-NEST/ng-nest/compare/13.1.5...13.1.6) (2022-05-27)
 
 
 ### Bug Fixes
