@@ -56,6 +56,11 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    */
   @Input() @XWithConfig<XUploadMultipleModel>(X_CONFIG_NAME, 'cover') multipleModel!: XUploadMultipleModel;
   /**
+   * @zh_CN 文件列表自定义显示模板
+   * @en_US File list custom display template
+   */
+  @Input() filesTpl?: XTemplate;
+  /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event
    */
