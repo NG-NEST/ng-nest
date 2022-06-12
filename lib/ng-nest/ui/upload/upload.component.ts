@@ -12,7 +12,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
-import { XIsTemplateRef } from '@ng-nest/ui/core';
+import { XConfigService, XIsTemplateRef } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
@@ -59,7 +59,8 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     public cdr: ChangeDetectorRef,
     public portalService: XPortalService,
     public viewContainerRef: ViewContainerRef,
-    public i18n: XI18nService
+    public i18n: XI18nService,
+    public configService: XConfigService
   ) {
     super();
   }
