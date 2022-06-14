@@ -132,6 +132,26 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
   /**
+   * @zh_CN 滚动区域高度，开启虚拟滚动的时候生效
+   * @en_US Rolling area height
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 400) @XInputNumber() virtualScrollHeight!: number;
+  /**
+   * @zh_CN itemSize，对应 cdk scroll 中的参数，开启虚拟滚动才生效
+   * @en_US itemSize，corresponding to the parameters in cdk scroll
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 26) @XInputNumber() itemSize!: number;
+  /**
+   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数，开启虚拟滚动才生效
+   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
+   */
+  @Input() minBufferPx: number = 100;
+  /**
+   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数，开启虚拟滚动才生效
+   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
+   */
+  @Input() maxBufferPx: number = 200;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */
@@ -264,4 +284,9 @@ export class XTreeNodeProperty extends XProperty {
    * @en_US Lazy loading function
    */
   @Input() lazyData!: XData<XTreeNode[]>;
+  /**
+   * @zh_CN 标记为虚拟滚动的节点
+   * @en_US Mark as a node of virtual rolling
+   */
+  @Input() @XInputBoolean() virtualScroll?: XBoolean;
 }

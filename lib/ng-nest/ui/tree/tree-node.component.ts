@@ -35,7 +35,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
   }
 
   get paddingLeft() {
-    return Number(this.level) * Number(this.tree.spacing);
+    return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
   }
 
   constructor(
@@ -61,26 +61,15 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
 
   onToggle(event: Event, node: XTreeNode) {
     node.open = !node.open;
-    if (node.open && !node.childrenLoaded) {
+    if (this.virtualScroll) {
+      if (this.lazy && !node.childrenLoaded) {
+        this.getLazyData(node, () => this.virtualToggle(node));
+      } else {
+        this.virtualToggle(node);
+      }
+    } else if (node.open && !node.childrenLoaded) {
       if (this.lazy) {
-        this.loading = true;
-
-        (this.lazyData as (pid?: any) => Observable<XTreeNode[]>)(node.id)
-          .pipe(
-            map((x) =>
-              x.map((y) => {
-                y.level = (node.level as number) + 1;
-                y.checked = node.checked;
-                return y;
-              })
-            )
-          )
-          .subscribe((x) => {
-            node.children = x;
-            node.childrenLoaded = true;
-            this.loading = false;
-            this.cdr.detectChanges();
-          });
+        this.getLazyData(node);
       } else {
         node.childrenLoaded = true;
       }
@@ -88,6 +77,53 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.cdr.detectChanges();
+  }
+
+  virtualToggle(node: XTreeNode) {
+    let index = this.tree.nodes.indexOf(node);
+    if (node.open) {
+      let addNodes: XTreeNode[] = [];
+      const getNodes = (nd: XTreeNode) => {
+        for (let child of nd.children!) {
+          addNodes.push(child);
+          child.open && getNodes(child);
+        }
+      };
+      getNodes(node);
+      this.tree.nodes.splice(index + 1, 0, ...addNodes);
+    } else {
+      let delCount = 0;
+      const getCount = (nd: XTreeNode) => {
+        delCount += nd.children!.length;
+        for (let child of nd.children!) {
+          child.open && getCount(child);
+        }
+      };
+      getCount(node);
+      this.tree.nodes.splice(index + 1, delCount);
+    }
+    this.tree.nodes = [...this.tree.nodes];
+  }
+
+  getLazyData(node: XTreeNode, callBack?: () => void) {
+    this.loading = true;
+    (this.lazyData as (pid?: any) => Observable<XTreeNode[]>)(node.id)
+      .pipe(
+        map((x) =>
+          x.map((y) => {
+            y.level = (node.level as number) + 1;
+            y.checked = node.checked;
+            return y;
+          })
+        )
+      )
+      .subscribe((x) => {
+        node.children = x;
+        node.childrenLoaded = true;
+        this.loading = false;
+        if (callBack) callBack();
+        this.cdr.detectChanges();
+      });
   }
 
   onActivate(event: Event, node: XTreeNode) {
@@ -112,7 +148,21 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     if (!this.tree.levelCheck) return;
     this.node.indeterminate = this.node.checked;
     this.node.children && this.setChildrenCheckbox(this.node.checked as boolean);
-    this.parent?.setParentCheckbox();
+    if (this.virtualScroll) {
+      const setParent = (node: XTreeNode) => {
+        let parent = this.tree.nodes.find((x: XTreeNode) => x.id === node.pid);
+        if (!parent || XIsEmpty(parent.children)) return;
+        let checkedList = parent.children?.filter((y: XTreeNode) => y.checked);
+        let indeterminateList = parent.children?.filter((y: XTreeNode) => y.indeterminate);
+        parent.checked = checkedList?.length === parent.children?.length;
+        parent.indeterminate = (checkedList as XTreeNode[]).length > 0 || (indeterminateList as XTreeNode[]).length > 0;
+        parent.change && parent.change();
+        setParent(parent);
+      };
+      setParent(this.node);
+    } else {
+      this.parent?.setParentCheckbox();
+    }
   }
 
   setChildrenCheckbox(checked: boolean) {

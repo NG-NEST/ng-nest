@@ -1,5 +1,5 @@
 <div #tree class="x-tree">
-  <ul>
+  <ul *ngIf="!virtualScroll; else virtualScrollTpl">
     <li
       x-tree-node
       *ngFor="let node of nodes; trackBy: trackByItem"
@@ -13,6 +13,27 @@
     ></li>
   </ul>
 </div>
+
+<ng-template #virtualScrollTpl>
+  <cdk-virtual-scroll-viewport
+    [itemSize]="itemSize"
+    [minBufferPx]="minBufferPx"
+    [maxBufferPx]="maxBufferPx"
+    [style.height.px]="virtualScrollHeight"
+  >
+    <x-tree-node
+      *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
+      [node]="node"
+      [lazy]="lazy"
+      [lazyData]="data"
+      [nodeHeight]="nodeHeight"
+      [nodeNowrap]="nodeNowrap"
+      [nodeAlignItems]="nodeAlignItems"
+      [tree]="this"
+      [virtualScroll]="virtualScroll"
+    ></x-tree-node>
+  </cdk-virtual-scroll-viewport>
+</ng-template>
 
 <!-- 提前加载loading的图标-->
 <x-icon *ngIf="lazy" [style.display]="'none'" type="fto-loader"></x-icon>

@@ -23,6 +23,7 @@ import { Subject } from 'rxjs';
 export class XTreeComponent extends XTreeProperty implements OnChanges {
   @ViewChild('tree', { static: true }) tree!: ElementRef;
   nodes: XTreeNode[] = [];
+  virtualNodes: XTreeNode[] = [];
   activatedNode!: XTreeNode;
   dataIsFunc = false;
   getting = false;
@@ -39,8 +40,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const { expandedAll, data, activatedId, checked, manual } = changes;
-    XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(data) && this.setData();
+    XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(activatedId) && this.setActivatedNode(this.treeData);
     XIsChange(checked) && this.setCheckedKeys(this.checked);
     XIsChange(manual) && this.setManual();
@@ -91,6 +92,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     };
     this.treeData = value;
     this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
+
     this.cdr.detectChanges();
   }
 
@@ -99,7 +101,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const getChildren = (nodes: XTreeNode[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
-        if (x.checked) result = [...result, x];
+        if (x.checked && !result.includes(x)) {
+          result = [...result, x];
+        }
         getChildren(x.children as XTreeNode[]);
       });
     };
@@ -134,6 +138,32 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       });
     };
     setChildren(this.nodes);
+
+    if (this.virtualScroll) {
+      if (this.virtualNodes.length === 0) {
+        this.virtualNodes = [...this.nodes];
+      }
+      this.nodes = [...this.virtualNodes];
+      for (let item of this.virtualNodes) {
+        this.setVirtualExpandedAll(item, this.expandedAll as boolean);
+      }
+    }
+  }
+
+  setVirtualExpandedAll(item: XTreeNode, expandedAll: boolean) {
+    let index = this.nodes.indexOf(item);
+    if (expandedAll) {
+      let addNodes: XTreeNode[] = [];
+      const getNodes = (nd: XTreeNode) => {
+        for (let child of nd.children!) {
+          addNodes.push(child);
+          getNodes(child);
+        }
+      };
+      getNodes(item);
+      this.nodes.splice(index + 1, 0, ...addNodes);
+    }
+    this.nodes = [...this.nodes];
   }
 
   setActivatedNode(nodes: XTreeNode[]) {
