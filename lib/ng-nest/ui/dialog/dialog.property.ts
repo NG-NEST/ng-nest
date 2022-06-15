@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig, XProperty } from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -12,7 +12,7 @@ import { XDialogPortalComponent } from './dialog-portal.component';
  */
 export const XDialogPrefix = 'x-dialog';
 export const X_DIALOG_CONFIG_NAME = 'dialog';
-export const XDialogContainer = 'x-dialog-container';
+export const XDialogContainer = 'x-dialog-overlay';
 export const X_DIALOG_DATA = new InjectionToken<any>('XDialogData');
 
 /**
@@ -252,6 +252,20 @@ export interface XDialogOption extends XAlertOption {
    */
   beforeClose?: (action: XDialogAction) => void;
 }
+
+/**
+ * Dialog Container
+ * @selector x-dialog-container
+ * @decorator component
+ */
+ export const XDialogContainerPrefix = 'x-dialog-container';
+ export const X_DIALOG_CONTAINER = new InjectionToken('X_DIALOG_CONTAINER');
+
+/**
+ * Dialog Container Property
+ */
+@Component({ template: '' })
+export class XDialogContainerProperty extends XProperty {}
 
 /**
  * Dialog option by service
