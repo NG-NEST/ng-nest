@@ -82,18 +82,14 @@ export class XPortalService {
 
   setPlace(place?: XPlace, ...offset: string[]): PositionStrategy {
     let result = this.overlay.position().global();
-    if (offset.length === 0) offset = Array.from({ length: 4 }).map(() => `0`);
-    else if (offset.length < 4) {
-      Array.from({ length: 4 - offset.length }).map(() => (offset = [...offset, offset[offset.length - 1]]));
-    }
-    let [top, right, bottom, left] = offset;
+    let [top, right, bottom, left] = this.getOffset(offset);
     switch (place) {
       case 'top-start':
-        return result.top(top).left(right);
+        return result.top(top).left(left);
       case 'top':
         return result.centerHorizontally().top(top);
       case 'top-end':
-        return result.top(bottom).right(left);
+        return result.top(top).right(right);
       case 'left':
         return result.centerVertically().left(left);
       case 'center':
@@ -163,6 +159,39 @@ export class XPortalService {
       marginBottom: computedStyle.marginBottom,
       marginRight: computedStyle.marginRight
     };
+  }
+
+  setContainerStyle(place?: XPlace, ...offset: string[]) {
+    let [top, right, bottom, left] = this.getOffset(offset);
+    switch (place) {
+      case 'top-start':
+        return { top, left };
+      case 'top':
+        return { top };
+      case 'top-end':
+        return { top, right };
+      case 'left':
+        return { left };
+      case 'center':
+        return {};
+      case 'right':
+        return { right };
+      case 'bottom-start':
+        return { bottom, left };
+      case 'bottom':
+        return { bottom };
+      case 'bottom-end':
+        return { bottom, right };
+    }
+    return {};
+  }
+
+  getOffset(offset: string[]) {
+    if (offset.length === 0) offset = Array.from({ length: 4 }).map(() => `0`);
+    else if (offset.length < 4) {
+      Array.from({ length: 4 - offset.length }).map(() => (offset = [...offset, offset[offset.length - 1]]));
+    }
+    return offset;
   }
 
   createOverlayRef(option: XPortalProperty): OverlayRef {

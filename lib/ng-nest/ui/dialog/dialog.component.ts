@@ -10,10 +10,13 @@ import {
   ViewChild,
   TemplateRef,
   ViewContainerRef,
-  OnDestroy
+  OnDestroy,
+  Optional,
+  Inject,
+  HostBinding
 } from '@angular/core';
-import { XMoveBoxAnimation, XIsChange, XIsFunction } from '@ng-nest/ui/core';
-import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer, XDialogAction } from './dialog.property';
+import { XMoveBoxAnimation, XIsChange, XIsFunction, XConfigService, XIsEmpty, XClearClass, XOpacityAnimation } from '@ng-nest/ui/core';
+import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer, XDialogAction, X_DIALOG_CONTAINER } from './dialog.property';
 import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
@@ -21,6 +24,7 @@ import { XI18nDialog, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
+import { XDialogContainerComponent } from './dialog-container.component';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -28,9 +32,12 @@ import { XResizableEvent } from '@ng-nest/ui/resizable';
   styleUrls: ['./dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveBoxAnimation]
+  animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
 export class XDialogComponent extends XDialogProperty implements OnChanges, OnDestroy {
+  @HostBinding('class.x-dialog-visible') get getVisible() {
+    return this.visible;
+  }
   @ViewChild('dialogTpl', { static: false }) dialogTpl!: TemplateRef<void>;
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
@@ -47,6 +54,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   distance = { x: 0, y: 0 };
   viewInit = false;
   action: XDialogAction | null = null;
+  containerInit = false;
 
   private _unSubject = new Subject<void>();
 
@@ -58,6 +66,18 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     return this.confirmText || this.locale.confirmText;
   }
 
+  get getStyle() {
+    return this.container
+      ? {
+          ...this.protalService.setContainerStyle(this.placement, this.offset),
+          width: this.width,
+          height: this.height,
+          minWidth: this.minWidth,
+          minHeight: this.minHeight
+        }
+      : {};
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -65,7 +85,9 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     public viewContainerRef: ViewContainerRef,
     public protalService: XPortalService,
     public overlay: Overlay,
-    public i18n: XI18nService
+    public i18n: XI18nService,
+    public configService: XConfigService,
+    @Optional() @Inject(X_DIALOG_CONTAINER) public container?: XDialogContainerComponent
   ) {
     super();
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
@@ -83,11 +105,15 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       });
     this.dialogBox['draggable'] = this.draggable;
     this.dialogBox['resizable'] = this.resizable;
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { visible } = changes;
+    const { visible, placement } = changes;
     XIsChange(visible) && this.setVisible();
+    if (XIsChange(placement)) {
+      this.setClassMap();
+    }
   }
 
   ngOnDestroy(): void {
@@ -105,6 +131,19 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
     this.backdropClick$?.unsubscribe();
   }
 
+  setClassMap() {
+    for (let key in this.classMap) {
+      this.renderer.removeClass(this.elementRef.nativeElement, key);
+    }
+    XClearClass(this.classMap);
+    this.classMap = {
+      [`${XDialogPrefix}-${this.placement}`]: !XIsEmpty(this.placement)
+    };
+    for (let key in this.classMap) {
+      this.renderer.addClass(this.elementRef.nativeElement, key);
+    }
+  }
+
   setVisible() {
     if (!this.viewInit) return;
     if (this.visible) {
@@ -115,6 +154,10 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   }
 
   create() {
+    if (this.container) {
+      this.containerInit = true;
+      return;
+    }
     this.dialogRef = this.protalService.attach({
       content: this.dialogTpl,
       viewContainerRef: this.viewContainerRef,
@@ -171,21 +214,25 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   }
 
   onClose(action: XDialogAction, execFunction = true) {
-    if (!this.portalAttached()) return;
+    if (!this.portalAttached() && !this.container) return;
+    if (this.container && !this.containerInit) return;
     if (XIsFunction(this.beforeClose) && execFunction) {
       this.beforeClose(action);
       this.action = action;
     } else {
       this.visible = false;
       this.visibleChange.emit(this.visible);
-      this.dialogRef?.overlayRef?.detach();
-      this.unsubscribe();
+      if (this.portalAttached()) {
+        this.dialogRef?.overlayRef?.detach();
+        this.unsubscribe();
+      }
       if ([action, this.action].includes('confirm')) {
         this.confirm.emit();
       }
       if ([action, this.action].includes('cancel')) {
         this.cancel.emit();
       }
+      this.containerInit = false;
       this.action = null;
       this.close.emit();
     }
