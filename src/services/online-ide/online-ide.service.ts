@@ -30,7 +30,13 @@ export class OnlineIdeService {
     'zone.js': '~0.11.4',
     '@ng-nest/ui': `^13.0.0`
   };
-  openStackBlitz(selector: string, modules: string[], providers: string[], files: { [fileName: string]: string }) {
+  openStackBlitz(
+    selector: string,
+    otherSelectors: string[],
+    modules: string[],
+    providers: string[],
+    files: { [fileName: string]: string }
+  ) {
     StackBlitzSDK.openProject({
       title: 'NG-NEST',
       description: 'NG-NEST of Angular and Nestjs',
@@ -44,7 +50,7 @@ export class OnlineIdeService {
         'src/index.html': `<app-root>加载中...</app-root>`,
         'src/main.ts': mainTs,
         'src/polyfills.ts': polyfillTS,
-        'src/app/app.module.ts': appModuleTs(selector, providers),
+        'src/app/app.module.ts': appModuleTs(selector, otherSelectors, providers),
         'src/app/ng-nest.module.ts': ngNestModuleTs(modules),
         'src/app/app.component.ts': appComponentTs,
         'src/app/app.component.html': `<ex-${selector}></ex-${selector}>`,

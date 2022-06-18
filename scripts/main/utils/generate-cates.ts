@@ -63,6 +63,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   let html = '';
   let files = [];
   let providers = [];
+  let otherNames = [];
   childTabs.tabs.forEach((x, index) => {
     let param = '';
     while (param == '' || hasIn(comTpl.syswords.constant, param)) param = randomString();
@@ -81,11 +82,13 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     if (childTabs.tabs.length - 1 !== index) comTpl.syswords.constant += `  `;
     if (x.name == `${tab.name}.component.ts`) {
       html = `<${cate.selector}></${cate.selector}>`;
+    } else if (x.name.lastIndexOf('.component.ts') > 0) {
+      otherNames.push(`'${x.name.replace('.component.ts', '')}'`);
     }
     x.content = tpl;
   });
   tab.content = `
-  <div class="x-examples-html">${html}${generateTools(tab.name, providers, files)}</div>\n
+  <div class="x-examples-html">${html}${generateTools(tab.name, otherNames, providers, files)}</div>\n
   ${tab.content ? `<div class="x-examples-info">${tab.content}</div>\n` : ''}
   <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
@@ -93,7 +96,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
   return tab;
 }
 
-export function generateTools(name: string, providers: string[], files: string[]) {
+export function generateTools(name: string, otherNames: string[], providers: string[], files: string[]) {
   return `<div class="x-examples-tools">  
   <x-buttons space="0.2" hiddenBorder>
     <x-button
@@ -103,7 +106,7 @@ export function generateTools(name: string, providers: string[], files: string[]
       content="从 StackBlitz 打开"
       placement="top"
       (click)="
-        this.ois.openStackBlitz('${name}', [{{ __modules }}], [${providers.join(', ')}], {
+        this.ois.openStackBlitz('${name}', [${otherNames.join(', ')}], [{{ __modules }}], [${providers.join(', ')}], {
           ${files.join(', ')}
         })
       "
