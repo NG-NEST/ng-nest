@@ -1,3 +1,18 @@
+## [13.1.8](https://github.com/NG-NEST/ng-nest/compare/13.1.7...13.1.8) (2022-06-15)
+
+
+### Bug Fixes
+
+* **module:upload:** fix config service ([8950308](https://github.com/NG-NEST/ng-nest/commit/8950308678b36973e6a0f5d6f708ab579d1f5a16))
+
+
+### Features
+
+* **module:tree:** add virtual scroll ([583484e](https://github.com/NG-NEST/ng-nest/commit/583484ea8b6e99a51694a7bec023963174d3c5b4)), closes [#163](https://github.com/NG-NEST/ng-nest/issues/163)
+* **module:upload:** add filesTpl param ([fc94f9c](https://github.com/NG-NEST/ng-nest/commit/fc94f9c8111ef0a76c29b7854d8a35b1c05ddb7f)), closes [#198](https://github.com/NG-NEST/ng-nest/issues/198)
+
+
+
 ## [13.1.7](https://github.com/NG-NEST/ng-nest/compare/13.1.6...13.1.7) (2022-06-06)
 
 

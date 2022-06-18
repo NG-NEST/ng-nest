@@ -146,3 +146,70 @@
     }
   }
 }
+
+@mixin dialog-container {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  #{$--x-dialog} {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: z-index 400ms;
+    top: 0;
+    left: 0;
+  }
+  .#{$--x-dialog} {
+    position: absolute;
+    display: block;
+    outline: 0;
+    z-index: 1001;
+    width: initial;
+    height: initial;
+    // &-left {
+    //   transform: translate3d(-100%, 0, 0);
+    //   left: 0;
+    //   top: 0;
+    // }
+    // &-right {
+    //   transform: translate3d(100%, 0, 0);
+    //   right: 0;
+    //   top: 0;
+    // }
+    &-top,
+    &-bottom {
+      justify-content: center;
+    }
+    &-center {
+      justify-content: center;
+      align-items: center;
+    }
+    &-left,
+    &-right {
+      align-items: center;
+    }
+    // &-bottom {
+    //   transform: translate3d(0, 100%, 0);
+    //   bottom: 0;
+    //   left: 0;
+    // }
+    &-visible {
+      display: flex;
+      z-index: 1000;
+    }
+    &-backdrop {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.32);
+    }
+  }
+}

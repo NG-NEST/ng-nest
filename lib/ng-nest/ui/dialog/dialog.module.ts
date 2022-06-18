@@ -10,7 +10,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XResizableModule } from '@ng-nest/ui/resizable';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { XDialogProperty } from './dialog.property';
+import { XDialogContainerProperty, XDialogProperty } from './dialog.property';
 import {
   XDialogActionsDirective,
   XDialogCloseDirective,
@@ -21,10 +21,12 @@ import {
 } from './dialog-portal.directives';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogService } from './dialog.service';
+import { XDialogContainerComponent } from './dialog-container.component';
 
 @NgModule({
   declarations: [
     XDialogComponent,
+    XDialogContainerComponent,
     XDialogCloseDirective,
     XDialogTitleDirective,
     XDialogContentDirective,
@@ -32,10 +34,12 @@ import { XDialogService } from './dialog.service';
     XDialogDragHandleDirective,
     XDialogFullscreenDirective,
     XDialogPortalComponent,
-    XDialogProperty
+    XDialogProperty,
+    XDialogContainerProperty
   ],
   exports: [
     XDialogComponent,
+    XDialogContainerComponent,
     XDialogCloseDirective,
     XDialogTitleDirective,
     XDialogContentDirective,

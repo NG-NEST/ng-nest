@@ -1,4 +1,5 @@
 export * from './dialog.component';
+export * from './dialog-container.component';
 export * from './dialog-portal.component';
 export * from './dialog-portal.directives';
 export * from './dialog.module';

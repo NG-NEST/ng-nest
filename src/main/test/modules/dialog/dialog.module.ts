@@ -17,6 +17,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { ExContainerComponent } from './container/container.component';
 
 const routers = [{ path: '', component: TeDialogComponent }];
 
@@ -41,7 +42,8 @@ const routers = [{ path: '', component: TeDialogComponent }];
     ExServiceComponent,
     ExServiceDialogComponent,
     ExResizableComponent,
-    ExCustomComponent
+    ExCustomComponent,
+    ExContainerComponent
   ]
 })
 export class TeDialogModule {}
