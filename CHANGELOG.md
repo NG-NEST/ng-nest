@@ -1,3 +1,12 @@
+## [13.1.9](https://github.com/NG-NEST/ng-nest/compare/13.1.8...13.1.9) (2022-06-18)
+
+
+### Features
+
+* **module:dialog:** add pop-up box in specified container ([faf797b](https://github.com/NG-NEST/ng-nest/commit/faf797b713f93259f2e344c83a20b5597c85c78f)), closes [#199](https://github.com/NG-NEST/ng-nest/issues/199)
+
+
+
 ## [13.1.8](https://github.com/NG-NEST/ng-nest/compare/13.1.7...13.1.8) (2022-06-15)
 
 
