@@ -1,6 +1,6 @@
 import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeOption, XCascadeComponent } from '@ng-nest/ui/cascade';
@@ -40,7 +40,7 @@ export class XFormProperty extends XFormProp {
    * @zh_CN 表单 FormGroup
    * @en_US Form FormGroup
    */
-  @Input() formGroup: FormGroup = new FormGroup({});
+  @Input() formGroup: UntypedFormGroup = new UntypedFormGroup({});
   /**
    * @zh_CN 表单名称
    * @en_US Form name
@@ -259,7 +259,7 @@ export class XControlProperty {
   @Input() option?: XControlOption;
 }
 
-export class XFormControl extends FormControl {
+export class XFormControl extends UntypedFormControl {
   /**
    * @zh_CN 提示信息
    * @en_US Prompt information

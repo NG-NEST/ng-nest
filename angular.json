@@ -180,7 +180,6 @@
       }
     }
   },
-  "defaultProject": "ng-nest-site",
   "cli": {
     "analytics": "a1dad8b2-137f-41b7-820a-b4a924402c3a"
   }

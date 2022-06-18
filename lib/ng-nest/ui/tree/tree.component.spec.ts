@@ -11,7 +11,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XFormModule, XFormRow } from '@ng-nest/ui/form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
@@ -484,7 +484,7 @@ interface Organization extends XTreeNode {
 })
 class TestXTreeOperationComponent {
   @ViewChild('treeCom') treeCom!: XTreeComponent;
-  formGroup = new FormGroup({});
+  formGroup = new UntypedFormGroup({});
 
   get disabled() {
     return !['edit', 'add', 'add-root'].includes(this.type);

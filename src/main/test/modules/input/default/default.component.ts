@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { isNumber } from 'lodash';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'ex-default',
@@ -11,7 +11,7 @@ export class ExDefaultComponent {
   value: any;
   value1: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.form.valueChanges.subscribe((x) => {
       console.log(isNumber(x.aaaa));
     });

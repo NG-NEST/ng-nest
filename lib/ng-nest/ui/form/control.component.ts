@@ -46,7 +46,7 @@ import {
   XAutoCompleteControl,
   XAutoCompleteControlOption
 } from './form.property';
-import { FormControlName, Validators, FormControl, ValidatorFn } from '@angular/forms';
+import { FormControlName, Validators, UntypedFormControl, ValidatorFn } from '@angular/forms';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -66,7 +66,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   private _control!: XFormControlType;
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject<void>();
-  private _formControl!: FormControl;
+  private _formControl!: UntypedFormControl;
 
   constructor(
     // @Host() @Optional() public form: XFormComponent,
@@ -80,7 +80,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this.setProps();
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
-    this._formControl = new FormControl(this._control.value);
+    this._formControl = new UntypedFormControl(this._control.value);
     this.setValidators();
     this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.setMessages(x);

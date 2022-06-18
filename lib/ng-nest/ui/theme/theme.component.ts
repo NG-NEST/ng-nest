@@ -9,7 +9,7 @@ import {
   X_THEME_COLORS,
   X_THEME_DARK_COLORS
 } from '@ng-nest/ui/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { XControl } from '@ng-nest/ui/form';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -25,7 +25,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XThemeComponent)]
 })
 export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy {
-  formGroup = new FormGroup({});
+  formGroup = new UntypedFormGroup({});
 
   theme: XTheme = {
     colors: {}

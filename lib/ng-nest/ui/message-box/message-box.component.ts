@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction, XMessageBoxOption } from './message-box.property';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class XMessageBoxComponent implements OnInit {
   messageBox: XMessageBoxRef = {};
   action: XMessageBoxAction = 'close';
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: UntypedFormGroup = new UntypedFormGroup({});
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
   get msgInput(): XMessageBoxOption {
@@ -73,7 +73,7 @@ export class XMessageBoxComponent implements OnInit {
   createFormGroup() {
     this.formGroup.addControl(
       'inputValue',
-      new FormControl(this.msgInput.inputValue, [Validators.required, Validators.pattern(this.msgInput.inputPattern as RegExp)])
+      new UntypedFormControl(this.msgInput.inputValue, [Validators.required, Validators.pattern(this.msgInput.inputPattern as RegExp)])
     );
   }
 }
