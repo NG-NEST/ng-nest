@@ -1,3 +1,17 @@
+# [14.0.0](https://github.com/NG-NEST/ng-nest/compare/13.1.8...14.0.0) (2022-06-19)
+
+
+### Bug Fixes
+
+* **type:** fix type error ([f1b8672](https://github.com/NG-NEST/ng-nest/commit/f1b86720c45178590a7bb0061ae035038696e983))
+
+
+### Features
+
+* **module:dialog:** add pop-up box in specified container ([faf797b](https://github.com/NG-NEST/ng-nest/commit/faf797b713f93259f2e344c83a20b5597c85c78f)), closes [#199](https://github.com/NG-NEST/ng-nest/issues/199)
+
+
+
 ## [13.1.8](https://github.com/NG-NEST/ng-nest/compare/13.1.7...13.1.8) (2022-06-15)
 
 
