@@ -46,7 +46,7 @@ import {
   XAutoCompleteControl,
   XAutoCompleteControlOption
 } from './form.property';
-import { FormControlName, Validators, UntypedFormControl, ValidatorFn } from '@angular/forms';
+import { FormControlName, Validators, UntypedFormControl, ValidatorFn, ControlValueAccessor } from '@angular/forms';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -98,7 +98,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   }
 
   ngAfterViewInit() {
-    Object.assign(this.control.valueAccessor, this._control);
+    Object.assign(this.control.valueAccessor!, this._control as ControlValueAccessor);
     this.form.controlTypes[this._control.id] = this._control;
     this.form.controlComponents[this._control.id] = this.control.valueAccessor as XFormControlComponent;
     this.form.controlComponents[this._control.id].formControlChanges();
