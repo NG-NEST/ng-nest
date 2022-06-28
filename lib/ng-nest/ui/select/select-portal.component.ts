@@ -12,9 +12,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject, debounceTime } from 'rxjs';
 import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
@@ -40,6 +40,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   @ViewChild('list') list!: XListComponent;
 
   data!: XSelectNode[];
+  searchData!: XSelectNode[];
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
@@ -48,6 +49,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   destroyPortal!: Function;
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
+  searchSubject!: BehaviorSubject<any>;
   nodeEmit!: Function;
   selectAllEmit!: Function;
   multiple: XNumber = 1;
@@ -55,11 +57,14 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   nodeTpl!: TemplateRef<any>;
   show: boolean = false;
   objectArray: boolean = false;
+  caseSensitive: boolean = true;
   active: number = -1;
   inputCom!: XInputComponent;
   portalMaxHeight = '';
   selectAllText!: string;
   locale: XI18nSelect = {};
+  search: boolean = false;
+  scrollNull = undefined;
   private _unSubject = new Subject<void>();
 
   get getSelectAllText() {
@@ -69,6 +74,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
 
   ngOnInit(): void {
+    this.searchData = [...this.data];
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.value = x;
       this.cdr.detectChanges();
@@ -83,6 +89,20 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
     });
+    this.searchSubject
+      .pipe(
+        filter((x) => x !== null),
+        debounceTime(10),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        if (this.caseSensitive) {
+          this.data = this.searchData.filter((y) => y.label.indexOf(x) >= 0);
+        } else {
+          this.data = this.searchData.filter((y) => (y.label as string).toLowerCase().indexOf((x as string).toLowerCase()) >= 0);
+        }
+        this.cdr.detectChanges();
+      });
     this.i18n.localeChange
       .pipe(
         map((x) => x.select as XI18nSelect),

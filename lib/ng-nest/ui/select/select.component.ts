@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -29,7 +29,7 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
 import { takeUntil, throttleTime } from 'rxjs/operators';
-import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, TAB, ESCAPE, LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
@@ -43,6 +43,10 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('select', { static: true }) select!: ElementRef;
+
+  get getReadonly() {
+    return this.readonly && !this.search;
+  }
 
   override writeValue(value: any) {
     if (this.multiple && XIsEmpty(value)) {
@@ -75,6 +79,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
+  searchSubject: BehaviorSubject<any> = new BehaviorSubject(null);
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -164,6 +169,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.valueTplContext.$node = null;
     this.mleave();
     this.valueChange.next(this.value);
+    this.searchSubject.next('');
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -262,6 +268,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.closeSubject.next();
       });
     this.setInstance();
+    if (this.search && this.value) {
+      this.searchSubject.next('');
+    }
   }
 
   setPosition(config: OverlayConfig) {
@@ -286,10 +295,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       positionChange: this.positionChange,
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
+      searchSubject: this.searchSubject,
       inputCom: this.inputCom,
       portalMaxHeight: this.portalMaxHeight,
       objectArray: this.objectArray,
       selectAllText: this.selectAllText,
+      caseSensitive: this.caseSensitive,
+      search: this.search,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode) => this.nodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
@@ -334,10 +346,19 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   onKeydown($event: KeyboardEvent) {
     this.keydownSubject.next($event);
-    if ($event.keyCode !== TAB) $event.preventDefault();
+    if ($event.keyCode !== TAB && !this.search) {
+      $event.preventDefault();
+    }
   }
 
   onFocus(_event: Event) {
     this.inputCom.inputFocus();
+  }
+
+  onInput(_event: Event) {
+    this.searchSubject.next(this.displayValue);
+    if (!this.portalAttached()) {
+      this.showPortal();
+    }
   }
 }

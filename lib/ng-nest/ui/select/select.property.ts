@@ -79,6 +79,16 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US The biggest height of the drop-down box
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') portalMaxHeight!: string;
+  /**
+   * @zh_CN 输入搜索
+   * @en_US Input search
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) search!: XBoolean;
+  /**
+   * @zh_CN 匹配区分大小写
+   * @en_US Case-sensitive
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
 }
 
 /**
@@ -106,6 +116,41 @@ export interface XSelectOption extends XFormOption {
    * @en_US Multiple choice
    */
   multiple?: XBoolean;
+  /**
+   * @zh_CN 多选添加全选功能
+   * @en_US Multi choice to add full selection function
+   */
+  selectAll?: XBoolean;
+  /**
+   * @zh_CN 全选的文字
+   * @en_US Selected all text
+   */
+  selectAllText?: string;
+  /**
+   * @zh_CN 节点模板
+   * @en_US Node template
+   */
+  nodeTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: XBoolean;
+  /**
+   * @zh_CN 下拉框的最大高度
+   * @en_US The biggest height of the drop-down box
+   */
+  portalMaxHeight?: string;
+  /**
+   * @zh_CN 输入搜索
+   * @en_US Input search
+   */
+  search?: XBoolean;
 }
 
 /**

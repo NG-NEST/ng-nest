@@ -469,6 +469,8 @@ export interface XSelectConfig {
   bordered?: XBoolean;
   portalMaxHeight?: string;
   selectAllText?: string;
+  search?: XBoolean;
+  caseSensitive?: XBoolean;
 }
 
 export interface XSkeletonConfig {}

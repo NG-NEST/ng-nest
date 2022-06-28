@@ -196,11 +196,11 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     } else {
       valArry = [this.value];
     }
-    const last = valArry[valArry.length - 1];
+    const first = valArry[0];
     if (this.objectArray) {
-      activeIndex = this.nodes.findIndex((x) => x.id === last.id);
+      activeIndex = this.nodes.findIndex((x) => x.id === first.id);
     } else {
-      activeIndex = this.nodes.findIndex((x) => x.id === last);
+      activeIndex = this.nodes.findIndex((x) => x.id === first);
     }
     this.keyManager.updateActiveItem(activeIndex);
     this.setScorllTop(activeIndex);

@@ -13,6 +13,6 @@
     [selectAll]="selectAll"
     [selectAllText]="getSelectAllText"
     [nodeTpl]="nodeTpl"
-    [scrollElement]="selectPortal"
+    [scrollElement]="search ? scrollNull : selectPortal"
   ></x-list>
 </div>
