@@ -27,3 +27,18 @@
     display: none;
   }
 }
+
+@mixin form-control {
+  x-input,
+  x-select,
+  x-date-picker,
+  x-time-picker,
+  x-input-number,
+  x-slider-select,
+  x-cascade,
+  x-color-picker,
+  x-textarea,
+  x-auto-complete {
+    width: 100%;
+  }
+}

@@ -21,6 +21,7 @@ export class XFormComponent extends XFormProperty implements OnInit {
   controlsType!: 'controls' | 'rows';
   controlComponents: { [property: string]: XFormControlComponent } = {};
   controlTypes: { [property: string]: XFormControlType } = {};
+  formId = Number(Math.random().toString().substring(2, 6) + Date.now()).toString(36);
 
   constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();

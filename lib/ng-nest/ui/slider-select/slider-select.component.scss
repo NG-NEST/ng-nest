@@ -4,6 +4,11 @@
 @import '../style/mixins/index';
 @import './style/mixin';
 
+#{$--x-slider-select-prefix} {
+  display: inline-block;
+  width: 12rem;
+}
+
 .#{$--x-slider-select-prefix} {
   @include reset-component();
   @include slider-select();

@@ -13,7 +13,7 @@ import {
   ViewContainerRef,
   ViewChild
 } from '@angular/core';
-import { XCascadePrefix, XCascadeNode, XCascadeProperty } from './cascade.property';
+import { XCascadeNode, XCascadeProperty } from './cascade.property';
 import { XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -62,14 +62,12 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   constructor(
     public renderer: Renderer2,
-    private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay
   ) {
     super();
-    this.renderer.addClass(this.elementRef.nativeElement, XCascadePrefix);
   }
 
   ngOnInit() {

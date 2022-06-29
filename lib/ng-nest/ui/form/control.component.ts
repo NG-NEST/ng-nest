@@ -54,6 +54,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'x-control',
   templateUrl: './control.component.html',
+  styleUrls: ['./control.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -77,6 +78,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   }
 
   ngOnInit() {
+    this.option = { ...this.option };
     this.setProps();
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
