@@ -1,3 +1,17 @@
+## [14.0.1](https://github.com/NG-NEST/ng-nest/compare/14.0.0...14.0.1) (2022-07-02)
+
+
+### Bug Fixes
+
+* **module:form:** fix more form controls ([4f65e08](https://github.com/NG-NEST/ng-nest/commit/4f65e081ed7a96bb97f7e020521810b30af0ca17)), closes [#197](https://github.com/NG-NEST/ng-nest/issues/197)
+
+
+### Features
+
+* **module:select:** add search param ([a8652aa](https://github.com/NG-NEST/ng-nest/commit/a8652aa8dc728cb1d278d4c573f05ebeaff7e765)), closes [#200](https://github.com/NG-NEST/ng-nest/issues/200)
+
+
+
 # [14.0.0](https://github.com/NG-NEST/ng-nest/compare/13.1.8...14.0.0) (2022-06-19)
 
 
