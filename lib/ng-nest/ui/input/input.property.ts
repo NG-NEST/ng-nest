@@ -115,6 +115,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Mouseleave event
    */
   @Output() xMouseleave = new EventEmitter<any>();
+  /**
+   * @zh_CN Composition
+   * @en_US Composition event
+   */
+  @Output() xComposition = new EventEmitter<any>();
 }
 
 /**

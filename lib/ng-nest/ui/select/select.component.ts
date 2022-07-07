@@ -356,9 +356,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   onInput(_event: Event) {
-    this.searchSubject.next(this.displayValue);
-    if (!this.portalAttached()) {
-      this.showPortal();
-    }
+    setTimeout(() => {
+      this.searchSubject.next(this.displayValue);
+      if (!this.portalAttached()) {
+        this.showPortal();
+      }
+    });
   }
 }

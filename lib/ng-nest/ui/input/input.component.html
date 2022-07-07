@@ -53,6 +53,8 @@
         (input)="xInput.emit($event)"
         (keydown)="xKeydown.emit($event)"
         (click)="xClick.emit($event)"
+        (compositionstart)="xComposition.next(true)"
+        (compositionend)="xComposition.next(false)"
       />
       <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
       <x-icon
