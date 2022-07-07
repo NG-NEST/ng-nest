@@ -330,11 +330,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.keydownSubject.next($event);
   }
 
-  onFocus(_event: Event) {}
-
   onInput(_event: Event) {
-    this.inputChange.next(this.value);
+    setTimeout(() => {
+      this.inputChange.next(this.value);
+    });
   }
+
+  onFocus(_event: Event) {}
 
   onBlur(_event: Event) {}
 }
