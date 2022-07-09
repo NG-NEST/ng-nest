@@ -1,0 +1,10 @@
+<x-table [columns]="columns" [data]="data" loading header="用户信息表" footer="用户信息表"> </x-table>
+<br />
+<br />
+<x-table [columns]="columns" [data]="data" loading [header]="headerTpl" [footer]="footerTpl"> </x-table>
+
+<ng-template #headerTpl> <x-icon type="fto-user"></x-icon>&nbsp;&nbsp;<span>用户信息表</span> </ng-template>
+
+<ng-template #footerTpl>
+  <x-button>新增</x-button>
+</ng-template>

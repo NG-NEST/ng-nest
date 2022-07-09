@@ -177,11 +177,15 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   setAdaptionHeight() {
     if ((this.adaptionHeight as number) > 0) {
+      const captionHeight = this.table.tcaption?.nativeElement.clientHeight || 0;
       const headHeight = this.table.thead?.nativeElement.clientHeight || 0;
+
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
+      console.log(captionHeight, footHeight);
       const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;
       this.bodyHeight =
         Number(this.docPercent) * this.doc.documentElement.clientHeight -
+        captionHeight -
         headHeight -
         footHeight -
         paginationHeight -

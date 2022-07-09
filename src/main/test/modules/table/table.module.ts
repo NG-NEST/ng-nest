@@ -14,12 +14,22 @@ import { XDialogModule } from '@ng-nest/ui/dialog';
 import { ExAdaptionComponent } from './adaption/adaption.component';
 import { CommonModule } from '@angular/common';
 import { XDescriptionModule } from '@ng-nest/ui/description';
+import { ExHeaderComponent } from './header/header.component';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XDialogModule, XDescriptionModule],
-  declarations: [TeTableComponent, ExConfigComponent, ExCheckboxComponent, ExRowclassComponent, ExExpandComponent, ExAdaptionComponent],
+  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XIconModule, XDialogModule, XDescriptionModule],
+  declarations: [
+    TeTableComponent,
+    ExConfigComponent,
+    ExCheckboxComponent,
+    ExRowclassComponent,
+    ExExpandComponent,
+    ExAdaptionComponent,
+    ExHeaderComponent
+  ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })
 export class TeTableModule {}

@@ -21,6 +21,9 @@ import { removeNgTag } from '@ng-nest/ui/core';
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
   @ViewChild('tfoot') tfoot!: ElementRef;
   @Input() table: any;
+  get getRowHeight() {
+    return this.rowHeight == 0 ? '' : this.rowHeight;
+  }
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,

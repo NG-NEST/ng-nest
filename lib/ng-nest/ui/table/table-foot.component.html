@@ -1,1 +1,3 @@
-<tfoot></tfoot>
+<tfoot #tfoot class="x-table-footer" [style.height.px]="getRowHeight" [style.min-height.px]="getRowHeight">
+  <ng-container *xOutlet="footer">{{ footer }}</ng-container>
+</tfoot>

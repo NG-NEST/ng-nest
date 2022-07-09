@@ -1,0 +1,10 @@
+<x-table [columns]="columns" [data]="data" loading header="User Info" footer="User Info"> </x-table>
+<br />
+<br />
+<x-table [columns]="columns" [data]="data" loading [header]="headerTpl" [footer]="footerTpl"> </x-table>
+
+<ng-template #headerTpl> <x-icon type="fto-user"></x-icon>&nbsp;&nbsp;<span>User Info</span> </ng-template>
+
+<ng-template #footerTpl>
+  <x-button>Add</x-button>
+</ng-template>

@@ -5,10 +5,15 @@
   [x-loading]="loading && getting"
   [class.x-table-scroll-left]="getScrollLeft"
   [class.x-table-scroll-top]="getScrollTop"
+  [class.x-table-has-scroll-right]="scrollYWidth"
+  [class.x-table-has-scroll-bottom]="scrollXWidth"
   [class.x-table-bordered]="bordered"
   [class.x-table-td-adaption-height]="rowHeight == 0"
   [class.x-table-cell-config]="cellConfig"
 >
+  <caption #caption class="x-table-header" *ngIf="header" [style.height.px]="getRowHeight" [style.min-height.px]="getRowHeight">
+    <ng-container *xOutlet="header">{{ header }}</ng-container>
+  </caption>
   <x-table-head
     *ngIf="showHeader"
     [columns]="columns"
@@ -41,7 +46,9 @@
     (activatedRowChange)="activatedRowChange.emit($event)"
     [table]="this"
   ></x-table-body>
-  <x-table-foot [table]="this"></x-table-foot>
+  <ng-container *ngIf="footer">
+    <x-table-foot [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
+  </ng-container>
 </table>
 <x-pagination
   #pagination

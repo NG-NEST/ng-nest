@@ -31,6 +31,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   get getScrollTop() {
     return this.scrollTop > 0;
   }
+  get getRowHeight() {
+    return this.rowHeight == 0 ? '' : this.rowHeight;
+  }
+  tcaption!: ElementRef;
   thead!: ElementRef;
   tfoot!: ElementRef;
   virtualBody!: CdkVirtualScrollViewport;
@@ -55,6 +59,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   checkedValues: { [prop: string]: boolean } = {};
   indeterminate = '$$indeterminate';
   @ViewChild('table') table!: ElementRef;
+  @ViewChild('caption') caption!: ElementRef;
   @ViewChild('pagination') pagination!: XPaginationComponent;
   private _unSubject = new Subject<void>();
   constructor(
@@ -85,6 +90,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.complete();
+  }
+
+  ngAfterViewInit() {
+    this.tcaption = this.caption;
   }
 
   setClassMap() {

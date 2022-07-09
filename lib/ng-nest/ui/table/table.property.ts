@@ -145,6 +145,16 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() scroll?: { x: number; y: number };
   /**
+   * @zh_CN 表格页头
+   * @en_US Table header
+   */
+  @Input() header?: XTemplate;
+  /**
+   * @zh_CN 表格页尾
+   * @en_US Table footer
+   */
+  @Input() footer?: XTemplate;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */
@@ -640,4 +650,15 @@ export const XTableFootPrefix = 'x-table-foot';
  * Table Foot Property
  */
 @Component({ template: '' })
-export class XTableFootProperty extends XProperty {}
+export class XTableFootProperty extends XProperty {
+  /**
+   * @zh_CN 表格页尾
+   * @en_US Table footer
+   */
+  @Input() footer?: XTemplate;
+  /**
+   * @zh_CN 表头和行高，单位 px
+   * @en_US Header and row height, unit px
+   */
+  @Input() rowHeight!: number;
+}
