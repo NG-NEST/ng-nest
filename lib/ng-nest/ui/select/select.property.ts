@@ -89,6 +89,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Case-sensitive
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  /**
+   * @zh_CN 输入延迟执行时间，ms
+   * @en_US Enter a delay execution time, ms
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime?: number;
 }
 
 /**

@@ -12,9 +12,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
-import { BehaviorSubject, Subject, debounceTime } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
@@ -40,10 +40,10 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   @ViewChild('list') list!: XListComponent;
 
   data!: XSelectNode[];
-  searchData!: XSelectNode[];
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
+  dataChange!: Subject<XSelectNode[]>;
   animating!: Function;
   activeChange!: Function;
   destroyPortal!: Function;
@@ -74,7 +74,6 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
 
   ngOnInit(): void {
-    this.searchData = [...this.data];
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.value = x;
       this.cdr.detectChanges();
@@ -83,26 +82,17 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
+    this.dataChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.data = x;
+      this.cdr.detectChanges();
+    });
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.list.setUnActive(this.active);
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
     });
-    this.searchSubject
-      .pipe(
-        filter((x) => x !== null),
-        debounceTime(10),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        if (this.caseSensitive) {
-          this.data = this.searchData.filter((y) => y.label.indexOf(x) >= 0);
-        } else {
-          this.data = this.searchData.filter((y) => (y.label as string).toLowerCase().indexOf((x as string).toLowerCase()) >= 0);
-        }
-        this.cdr.detectChanges();
-      });
+    
     this.i18n.localeChange
       .pipe(
         map((x) => x.select as XI18nSelect),

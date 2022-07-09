@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-search',
@@ -6,8 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  data = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+  default = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+
+  data = [...this.default];
   model = '';
+
+  dataAsync = (str: string) =>
+    new Observable<string[]>((x) => {
+      setTimeout(() => {
+        if (XIsEmpty(str)) {
+          x.next([...this.default]);
+        } else {
+          x.next(this.default.filter((x) => x.indexOf(str) >= 0));
+        }
+        x.complete();
+      }, 1000);
+    });
+  modelAsync = '';
 
   change(_event: any) {
     console.log(_event);

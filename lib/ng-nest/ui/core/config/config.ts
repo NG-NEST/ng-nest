@@ -471,6 +471,7 @@ export interface XSelectConfig {
   selectAllText?: string;
   search?: XBoolean;
   caseSensitive?: XBoolean;
+  debounceTime?: number;
 }
 
 export interface XSkeletonConfig {}

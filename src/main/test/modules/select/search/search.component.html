@@ -3,3 +3,9 @@
     <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" search [caseSensitive]="false"></x-select>
   </x-col>
 </x-row>
+
+<x-row>
+  <x-col>
+    <x-select [data]="dataAsync" [(ngModel)]="modelAsync" (ngModelChange)="change($event)" search async></x-select>
+  </x-col>
+</x-row>

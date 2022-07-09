@@ -56,9 +56,9 @@
         (compositionstart)="xComposition.next(true)"
         (compositionend)="xComposition.next(false)"
       />
-      <x-icon *ngIf="clearShow" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
+      <x-icon *ngIf="clearShow && !iconSpin" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
       <x-icon
-        *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)"
+        *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft || iconSpin)"
         [type]="icon"
         [spin]="iconSpin"
         (click)="xClick.emit($event)"

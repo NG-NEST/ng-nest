@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -22,13 +22,14 @@ import {
   XConfigService,
   XIsArray,
   XPositionTopBottom,
-  XIsObjectArray
+  XIsObjectArray,
+  XIsFunction
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -63,6 +64,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
+  searchNodes: XSelectNode[] = [];
   cloneNodes!: XSelectNode[];
   portal!: XPortalOverlayRef<XSelectPortalComponent>;
   icon: string = 'fto-chevron-down';
@@ -78,8 +80,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
+  dataChange: Subject<XSelectNode[]> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
-  searchSubject: BehaviorSubject<any> = new BehaviorSubject(null);
+  inputChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -132,10 +135,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
+    this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
+      this.modelChange(x);
+    });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
       if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
-        this.showPortal();
+        this.inputChange.next(this.displayValue);
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
         this.closeSubject.next();
@@ -144,7 +150,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   menter() {
-    if (this.disabled || !this.clearable) return;
+    if (this.disabled || !this.clearable || this.iconSpin) return;
     this.enter = true;
     if (!XIsEmpty(this.displayValue)) {
       this.icon = '';
@@ -154,12 +160,52 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   mleave() {
-    if (this.disabled || !this.clearable) return;
+    if (this.disabled || !this.clearable || this.iconSpin) return;
     this.enter = false;
     if (this.clearable) {
       this.icon = 'fto-chevron-down';
       this.showClearable = false;
       this.cdr.detectChanges();
+    }
+  }
+
+  modelChange(value: string | number) {
+    if (XIsFunction(this.data)) {
+      if (!this.portalAttached()) {
+        this.showPortal();
+      } else {
+        this.icon = 'fto-loader';
+        this.iconSpin = true;
+        this.cdr.detectChanges();
+        XSetData<XSelectNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
+          this.icon = '';
+          this.iconSpin = false;
+          this.nodes = x;
+          this.dataChange.next(this.nodes);
+          this.cdr.detectChanges();
+        });
+      }
+      return;
+    }
+    if (this.nodes) {
+      if (!this.portalAttached()) {
+        this.showPortal();
+      } else {
+        if (XIsEmpty(value)) {
+          this.searchNodes = [...this.nodes];
+        } else {
+          this.setSearchNodes(value);
+        }
+        this.dataChange.next(this.searchNodes);
+      }
+    }
+  }
+
+  setSearchNodes(value: string | number) {
+    if (this.caseSensitive) {
+      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
+    } else {
+      this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
     }
   }
 
@@ -169,7 +215,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.valueTplContext.$node = null;
     this.mleave();
     this.valueChange.next(this.value);
-    this.searchSubject.next('');
+    this.inputChange.next('');
     if (this.onChange) this.onChange(this.value);
   }
 
@@ -223,20 +269,20 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.portal?.overlayRef?.dispose();
   }
 
-  showPortal() {
-    if (this.disabled || this.iconSpin) return;
-    if (this.animating) return;
+  showPortal(click = false) {
+    if (this.disabled || this.iconSpin || this.animating) return;
     this.active = true;
-    if (this.async && XIsObservable(this.data) && this.nodes.length === 0) {
+    if ((this.async && XIsObservable(this.data) && this.nodes.length === 0) || XIsFunction(this.data)) {
       this.icon = 'fto-loader';
       this.iconSpin = true;
-      this.cdr.detectChanges();
-      XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
-        this.nodes = x;
-        this.setDisplayValue();
-        this.createPortal();
+      this.inputCom.cdr.detectChanges();
+      XSetData<XSelectNode>(this.data, this._unSubject, true, click ? '' : this.displayValue).subscribe((x) => {
         this.icon = 'fto-chevron-down';
         this.iconSpin = false;
+        this.inputCom.cdr.detectChanges();
+        this.nodes = x;
+        if (!this.search) this.setDisplayValue();
+        this.createPortal();
         this.cdr.detectChanges();
       });
     } else {
@@ -268,9 +314,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.closeSubject.next();
       });
     this.setInstance();
-    if (this.search && this.value) {
-      this.searchSubject.next('');
-    }
   }
 
   setPosition(config: OverlayConfig) {
@@ -295,7 +338,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       positionChange: this.positionChange,
       closeSubject: this.closeSubject,
       keydownSubject: this.keydownSubject,
-      searchSubject: this.searchSubject,
+      dataChange: this.dataChange,
       inputCom: this.inputCom,
       portalMaxHeight: this.portalMaxHeight,
       objectArray: this.objectArray,
@@ -355,12 +398,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.inputCom.inputFocus();
   }
 
-  onInput(_event: Event) {
+  onInput(_event: InputEvent) {
     setTimeout(() => {
-      this.searchSubject.next(this.displayValue);
-      if (!this.portalAttached()) {
-        this.showPortal();
-      }
+      this.inputChange.next(this.displayValue);
     });
   }
 }
