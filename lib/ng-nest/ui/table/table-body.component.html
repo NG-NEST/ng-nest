@@ -4,8 +4,13 @@
       <td
         *ngFor="let column of cellConfig.cells; index as j"
         [title]="getTitle(row, column)"
-        [class.x-table-sticky]="table.getSticky(column)"
+        [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
+        [class.x-table-sticky-left]="table.getStickyLeft(column)"
+        [class.x-table-sticky-right]="table.getStickyRight(column)"
+        [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
+        [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
         [style.left.px]="column.left"
+        [style.right.px]="column.right"
         [style.grid-area]="column.gridArea"
       >
         <ng-container *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-container>
@@ -83,8 +88,13 @@
       [style.width.px]="column.width"
       [style.flex]="getFlex(column)"
       [title]="getTitle(row, column)"
-      [class.x-table-sticky]="table.getSticky(column)"
+      [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
+      [class.x-table-sticky-left]="table.getStickyLeft(column)"
+      [class.x-table-sticky-right]="table.getStickyRight(column)"
+      [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
+      [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
       [style.left.px]="column.left"
+      [style.right.px]="column.right"
       [ngClass]="!rowClass ? {} : rowClass(row, i)"
     >
       <ng-template *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-template>

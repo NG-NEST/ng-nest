@@ -51,14 +51,31 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.table.headChange = () => this.cdr.detectChanges();
   }
 
-  getSticky(column: XTableColumn | XTableCell) {
-    return Number(column.left) >= 0;
-  }
-
   getFlex(column: XTableColumn) {
     if (column.width) return 'none';
     if (!column.flex) return 1;
     return column.flex;
+  }
+
+  getColumnRight(right?: number) {
+    if (Number(right) >= 0) {
+      if (Number(this.scrollYWidth) >= 0) {
+        return Number(right) + Number(this.scrollYWidth);
+      }
+      return Number(right);
+    }
+    // return right;
+    return '';
+  }
+
+  getColumnWidth(column: XTableColumn) {
+    // if (Number(column.right) === 0) {
+    //   if (Number(this.scrollYWidth) >= 0) {
+    //     return Number(column.width) + Number(this.scrollYWidth);
+    //   }
+    //   return column.width;
+    // }
+    return column.width;
   }
 
   setStyle() {

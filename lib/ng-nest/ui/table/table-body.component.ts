@@ -111,6 +111,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
           if (ele.scrollLeft >= 0 && this.table.thead) {
             this.table.thead.nativeElement.scrollLeft = this.table.scrollLeft;
           }
+          this.table.scrollLeftMax = ele.scrollLeft + ele.clientWidth === ele.scrollWidth;
           this.table.cdr.detectChanges();
         });
     }

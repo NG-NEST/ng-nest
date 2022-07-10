@@ -346,6 +346,11 @@ export interface XTableColumn extends XIdentityProperty {
    */
   left?: number;
   /**
+   * @zh_CN 固定列，距离右边的距离
+   * @en_US Fixed column, distance from right
+   */
+  right?: number;
+  /**
    * @zh_CN 操作按钮
    * @en_US Operation button
    */
@@ -446,6 +451,11 @@ export interface XTableCell {
    * @en_US Fixed column, distance from left
    */
   left?: number;
+  /**
+   * @zh_CN 固定列，距离右边的距离
+   * @en_US Fixed column, distance from right
+   */
+  right?: number;
   /**
    * @zh_CN 对应列的 id
    * @en_US The id of the corresponding column

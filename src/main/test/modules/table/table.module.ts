@@ -16,11 +16,14 @@ import { CommonModule } from '@angular/common';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { ExHeaderComponent } from './header/header.component';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { ExScrollComponent } from './scroll/scroll.component';
+import { XLinkModule } from '@ng-nest/ui/link';
+import { ExFixComponent } from './fix/fix.component';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XIconModule, XDialogModule, XDescriptionModule],
+  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XIconModule, XDialogModule, XDescriptionModule, XLinkModule],
   declarations: [
     TeTableComponent,
     ExConfigComponent,
@@ -28,7 +31,9 @@ const routers = [{ path: '', component: TeTableComponent }];
     ExRowclassComponent,
     ExExpandComponent,
     ExAdaptionComponent,
-    ExHeaderComponent
+    ExHeaderComponent,
+    ExScrollComponent,
+    ExFixComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })

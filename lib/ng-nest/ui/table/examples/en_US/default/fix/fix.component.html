@@ -1,0 +1,19 @@
+<x-table
+  [(size)]="size"
+  [columns]="columns"
+  [data]="data"
+  [rowHeight]="0"
+  [scroll]="{ x: 1500, y: 600 }"
+  virtualScroll
+  bordered
+  loading
+  [bodyColumnTpl]="{ actions: actionsTpl }"
+>
+</x-table>
+
+<ng-template #actionsTpl let-column="$column" let-row="$row">
+  <div>
+    <x-link type="primary" (click)="edit(row, column)">Edit</x-link> &nbsp;&nbsp;
+    <x-link type="danger" (click)="del(row, column)">Delete</x-link>
+  </div>
+</ng-template>

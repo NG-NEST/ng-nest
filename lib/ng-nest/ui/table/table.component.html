@@ -4,6 +4,7 @@
   [ngClass]="classMap"
   [x-loading]="loading && getting"
   [class.x-table-scroll-left]="getScrollLeft"
+  [class.x-table-scroll-left-max]="scrollLeftMax"
   [class.x-table-scroll-top]="getScrollTop"
   [class.x-table-has-scroll-right]="scrollYWidth"
   [class.x-table-has-scroll-bottom]="scrollXWidth"
@@ -49,6 +50,13 @@
   <ng-container *ngIf="footer">
     <x-table-foot [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
   </ng-container>
+  <div
+    *ngIf="hasStickyRight()"
+    class="x-table-sticky-right-scroll"
+    [style.width.px]="scrollYWidth"
+    [style.height.px]="getRowHeight"
+    [style.min-height.px]="getRowHeight"
+  ></div>
 </table>
 <x-pagination
   #pagination

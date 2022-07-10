@@ -47,6 +47,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   scrollXHeight = 0;
   scrollXWidth!: number | null;
   scrollLeft = 0;
+  scrollLeftMax = false;
   scrollTop = 0;
   rowChecked!: XTableColumn;
   headCheckboxList!: XTableColumn[];
@@ -107,8 +108,28 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition}`);
   }
 
-  getSticky(column: XTableColumn | XTableCell) {
+  getStickyLeft(column: XTableColumn | XTableCell) {
     return Number(column.left) >= 0;
+  }
+
+  getStickyLeftLast(column: XTableColumn | XTableCell) {
+    let lefts = this.columns.filter((x) => Number(x.left) >= 0);
+    if (lefts.length === 0) return false;
+    return lefts[lefts.length - 1].id === column.id;
+  }
+
+  getStickyRight(column: XTableColumn | XTableCell) {
+    return Number(column.right) >= 0;
+  }
+
+  getStickyRightFirst(column: XTableColumn | XTableCell) {
+    let rights = this.columns.filter((x) => Number(x.right) >= 0);
+    if (rights.length === 0) return false;
+    return rights[0].id === column.id;
+  }
+
+  hasStickyRight() {
+    return this.columns.some((x) => Number(x.right) >= 0);
   }
 
   getIndex(index: number) {

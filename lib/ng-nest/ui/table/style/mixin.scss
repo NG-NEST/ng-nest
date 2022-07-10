@@ -10,6 +10,7 @@
   border-collapse: collapse;
   width: 100%;
   border: $--x-border-base;
+  position: relative;
   > thead {
     position: relative;
     overflow: hidden;
@@ -148,17 +149,9 @@
     }
   }
   &-scroll-left {
-    > thead {
-      .#{$--x-table}-sticky {
-        box-shadow: $--x-box-shadow-light-right;
-        border-right: $--x-border-base;
-      }
-    }
-    > tbody {
-      .#{$--x-table}-sticky {
-        box-shadow: $--x-box-shadow-light-right;
-        border-right: $--x-border-base;
-      }
+    .#{$--x-table}-sticky-left-last {
+      box-shadow: $--x-box-shadow-light-right;
+      border-right: $--x-border-base;
     }
   }
   &-td-adaption-height {
@@ -221,9 +214,26 @@
     align-items: center;
   }
 
+  &-sticky-right-scroll {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-height: 42px;
+    background-color: $--x-background;
+    z-index: 1;
+  }
+
   &-has-scroll-right {
     .x-table-footer {
       border-top: $--x-border-base;
+    }
+  }
+  &-has-scroll-bottom {
+    &:not(.x-table-scroll-left-max) {
+      .#{$--x-table}-sticky-right-first {
+        box-shadow: $--x-box-shadow-light-left;
+        border-left: $--x-border-base;
+      }
     }
   }
   &-row-size {
