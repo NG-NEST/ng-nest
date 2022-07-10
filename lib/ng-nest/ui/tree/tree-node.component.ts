@@ -63,9 +63,9 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     node.open = !node.open;
     if (this.virtualScroll) {
       if (this.lazy && !node.childrenLoaded) {
-        this.getLazyData(node, () => this.virtualToggle(node));
+        this.getLazyData(node, () => this.tree.virtualToggle(node));
       } else {
-        this.virtualToggle(node);
+        this.tree.virtualToggle(node);
       }
     } else if (node.open && !node.childrenLoaded) {
       if (this.lazy) {
@@ -77,32 +77,6 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.cdr.detectChanges();
-  }
-
-  virtualToggle(node: XTreeNode) {
-    let index = this.tree.nodes.indexOf(node);
-    if (node.open) {
-      let addNodes: XTreeNode[] = [];
-      const getNodes = (nd: XTreeNode) => {
-        for (let child of nd.children!) {
-          addNodes.push(child);
-          child.open && getNodes(child);
-        }
-      };
-      getNodes(node);
-      this.tree.nodes.splice(index + 1, 0, ...addNodes);
-    } else {
-      let delCount = 0;
-      const getCount = (nd: XTreeNode) => {
-        delCount += nd.children!.length;
-        for (let child of nd.children!) {
-          child.open && getCount(child);
-        }
-      };
-      getCount(node);
-      this.tree.nodes.splice(index + 1, delCount);
-    }
-    this.tree.nodes = [...this.tree.nodes];
   }
 
   getLazyData(node: XTreeNode, callBack?: () => void) {

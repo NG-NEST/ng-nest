@@ -166,6 +166,32 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     this.nodes = [...this.nodes];
   }
 
+  virtualToggle(node: XTreeNode) {
+    let index = this.nodes.indexOf(node);
+    if (node.open) {
+      let addNodes: XTreeNode[] = [];
+      const getNodes = (nd: XTreeNode) => {
+        for (let child of nd.children!) {
+          addNodes.push(child);
+          child.open && getNodes(child);
+        }
+      };
+      getNodes(node);
+      this.nodes.splice(index + 1, 0, ...addNodes);
+    } else {
+      let delCount = 0;
+      const getCount = (nd: XTreeNode) => {
+        delCount += nd.children!.length;
+        for (let child of nd.children!) {
+          child.open && getCount(child);
+        }
+      };
+      getCount(node);
+      this.nodes.splice(index + 1, delCount);
+    }
+    this.nodes = [...this.nodes];
+  }
+
   setActivatedNode(nodes: XTreeNode[]) {
     let before = this.activatedNode;
     this.activatedNode = nodes.find((x) => x.id == this.activatedId) as XTreeNode;
@@ -205,8 +231,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       parent.open = true;
       parent.leaf = true;
       parent.children = [...parent.children, node];
+      if (this.virtualScroll) {
+        this.virtualToggle(parent);
+        this.cdr.detectChanges();
+      }
       parent.change && parent.change();
-    } else if (node.pid == null) {
+    } else if (XIsEmpty(node.pid)) {
       this.activatedId = node.id;
       node.level = 0;
       this.treeData = [...this.treeData, node];
@@ -223,10 +253,26 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       parent.children.splice(parent.children.indexOf(node), 1);
       parent.leaf = parent.children.length > 0;
       if (!parent.leaf) this.activatedId = parent.id;
+      if (this.virtualScroll) {
+        let index = this.nodes.indexOf(node);
+        let aindex = index - 1;
+        if (index === 0 && this.nodes.length > 1) {
+          aindex = 1;
+        }
+        let activatedNode = this.nodes[aindex];
+        this.activatedId = activatedNode.id;
+        this.setActivatedNode(this.nodes);
+        this.nodes.splice(index, 1);
+        this.nodes = [...this.nodes];
+        this.cdr.detectChanges();
+      }
       parent.change && parent.change();
-    } else if (node.pid == null) {
+    } else if (XIsEmpty(node.pid)) {
       this.treeData.splice(this.treeData.indexOf(node), 1);
       this.nodes.splice(this.nodes.indexOf(node), 1);
+      if (this.virtualScroll) {
+        this.nodes = [...this.nodes];
+      }
       this.cdr.detectChanges();
     }
   }

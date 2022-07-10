@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { Component, ViewChild } from '@angular/core';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -32,6 +32,8 @@ export class ExVirtualScrollComponent {
 
   dataLazy: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
 
+  @ViewChild('treeCom') treeCom!: XTreeComponent;
+
   getData = (pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       let result = this.dataLazy
@@ -46,4 +48,33 @@ export class ExVirtualScrollComponent {
       }, 500);
     });
   };
+
+  selected?: XTreeNode;
+
+  info(node: XTreeNode) {
+    this.selected = node;
+    console.log(this.selected);
+  }
+
+  add() {
+    this.treeCom.addNode({ id: new Date().getTime(), label: '新增根节点' });
+  }
+
+  addChild() {
+    if (this.selected) {
+      this.treeCom.addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selected.id });
+    }
+  }
+
+  update() {
+    if (this.selected) {
+      this.treeCom.updateNode(this.selected!, { id: this.selected.id, label: '更新节点' });
+    }
+  }
+
+  remove() {
+    if (this.selected) {
+      this.treeCom.removeNode(this.selected);
+    }
+  }
 }

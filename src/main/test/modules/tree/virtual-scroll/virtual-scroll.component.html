@@ -1,4 +1,8 @@
 <h2>基本使用</h2>
-<x-tree [data]="data" virtualScroll> </x-tree>
+<x-button (click)="add()">新增根节点</x-button>
+<x-button (click)="addChild()" [disabled]="selected ? false : true">新增子节点</x-button>
+<x-button (click)="update()" [disabled]="selected ? false : true">修改节点</x-button>
+<x-button (click)="remove()" [disabled]="selected ? false : true">删除节点</x-button>
+<x-tree #treeCom [data]="data" virtualScroll (activatedChange)="info($event)"> </x-tree>
 <h2>懒加载</h2>
 <x-tree [data]="getData" virtualScroll lazy> </x-tree>
