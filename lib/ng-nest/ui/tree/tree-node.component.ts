@@ -11,8 +11,6 @@ import {
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -59,50 +57,11 @@ export class XTreeNodeComponent extends XTreeNodeProperty implements OnInit {
     this.setIndeterminate(this.node);
   }
 
-  onToggle(event: Event, node: XTreeNode) {
-    node.open = !node.open;
-    if (this.virtualScroll) {
-      if (this.lazy && !node.childrenLoaded) {
-        this.getLazyData(node, () => this.tree.virtualToggle(node));
-      } else {
-        this.tree.virtualToggle(node);
-      }
-    } else if (node.open && !node.childrenLoaded) {
-      if (this.lazy) {
-        this.getLazyData(node);
-      } else {
-        node.childrenLoaded = true;
-      }
-    }
-    event.preventDefault();
-    event.stopPropagation();
-    this.cdr.detectChanges();
-  }
-
-  getLazyData(node: XTreeNode, callBack?: () => void) {
-    this.loading = true;
-    (this.lazyData as (pid?: any) => Observable<XTreeNode[]>)(node.id)
-      .pipe(
-        map((x) =>
-          x.map((y) => {
-            y.level = (node.level as number) + 1;
-            y.checked = node.checked;
-            return y;
-          })
-        )
-      )
-      .subscribe((x) => {
-        node.children = x;
-        node.childrenLoaded = true;
-        this.loading = false;
-        if (callBack) callBack();
-        this.cdr.detectChanges();
-      });
-  }
+  
 
   onActivate(event: Event, node: XTreeNode) {
     const change: Function = this.tree.activatedNode?.change as Function;
-    this.tree.nodeOpen && node.leaf && this.onToggle(event, node);
+    this.tree.nodeOpen && node.leaf && this.tree.onToggle(event, node);
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id && !this.tree.allowManyActivated) return;
     }

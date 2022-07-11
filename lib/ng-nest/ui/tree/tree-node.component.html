@@ -7,13 +7,13 @@
   (click)="onActivate($event, node)"
 >
   <x-icon
-    *ngIf="!loading"
+    *ngIf="!node.loading"
     [class.is-leaf]="!node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
-    (click)="!tree.nodeOpen && onToggle($event, node)"
+    (click)="!tree.nodeOpen && tree.onToggle($event, node)"
   ></x-icon>
-  <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
+  <x-icon *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
   <x-checkbox
     *ngIf="tree.checkbox"
     [data]="[{ label: '', id: node.id }]"

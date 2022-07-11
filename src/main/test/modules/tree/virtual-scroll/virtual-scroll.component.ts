@@ -33,6 +33,7 @@ export class ExVirtualScrollComponent {
   dataLazy: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
 
   @ViewChild('treeCom') treeCom!: XTreeComponent;
+  @ViewChild('treeComLazy') treeComLazy!: XTreeComponent;
 
   getData = (pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
@@ -50,6 +51,7 @@ export class ExVirtualScrollComponent {
   };
 
   selected?: XTreeNode;
+  selectedLazy?: XTreeNode;
 
   info(node: XTreeNode) {
     this.selected = node;
@@ -75,6 +77,33 @@ export class ExVirtualScrollComponent {
   remove() {
     if (this.selected) {
       this.treeCom.removeNode(this.selected);
+    }
+  }
+
+  infoLazy(node: XTreeNode) {
+    this.selectedLazy = node;
+    console.log(this.selectedLazy);
+  }
+
+  addLazy() {
+    this.treeComLazy.addNode({ id: new Date().getTime(), label: '新增根节点' });
+  }
+
+  addChildLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selectedLazy.id });
+    }
+  }
+
+  updateLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.updateNode(this.selectedLazy!, { id: this.selectedLazy.id, label: '更新节点' });
+    }
+  }
+
+  removeLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.removeNode(this.selectedLazy);
     }
   }
 }

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
 import { XIsObservable, XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: `${XTreePrefix}`,
@@ -218,31 +218,83 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     getParent(node);
   }
 
+  onToggle(event: Event, node: XTreeNode) {
+    node.open = !node.open;
+    if (this.virtualScroll) {
+      if (this.lazy && !node.childrenLoaded) {
+        this.getLazyData(node, () => this.virtualToggle(node));
+      } else {
+        this.virtualToggle(node);
+      }
+    } else if (node.open && !node.childrenLoaded) {
+      if (this.lazy) {
+        this.getLazyData(node);
+      } else {
+        node.childrenLoaded = true;
+      }
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    this.cdr.detectChanges();
+  }
+
+  getLazyData(node: XTreeNode, callBack?: () => void) {
+    node.loading = true;
+    node.change && node.change();
+    (this.data as (pid?: any) => Observable<XTreeNode[]>)(node.id)
+      .pipe(
+        map((x) =>
+          x.map((y) => {
+            y.level = (node.level as number) + 1;
+            y.checked = node.checked;
+            return y;
+          })
+        )
+      )
+      .subscribe((x) => {
+        node.children = x;
+        node.childrenLoaded = true;
+        node.loading = false;
+        if (callBack) callBack();
+        node.change && node.change();
+        this.cdr.detectChanges();
+      });
+  }
+
   addNode(node: XTreeNode) {
     let parent = this.treeData.find((x) => x.id === node.pid);
-    if (parent) {
-      if (!parent.children) parent.children = [];
-      this.expanded = [...this.expanded, parent.id];
-      this.activatedId = node.id;
-      node.level = Number(parent.level) + 1;
-      node.pid = parent.id;
-      this.treeData.push(node);
-      this.setActivatedNode(this.treeData);
-      parent.open = true;
-      parent.leaf = true;
-      parent.children = [...parent.children, node];
-      if (this.virtualScroll) {
-        this.virtualToggle(parent);
+    const _addNode = () => {
+      if (parent) {
+        if (!parent.children) parent.children = [];
+        this.expanded = [...this.expanded, parent.id];
+        this.activatedId = node.id;
+        node.level = Number(parent.level) + 1;
+        node.pid = parent.id;
+        this.treeData.push(node);
+        this.setActivatedNode(this.treeData);
+        parent.open = true;
+        parent.leaf = true;
+        parent.children = [...parent.children, node];
+        if (this.virtualScroll) {
+          this.virtualToggle(parent);
+          this.cdr.detectChanges();
+        }
+        parent.change && parent.change();
+      } else if (XIsEmpty(node.pid)) {
+        this.activatedId = node.id;
+        node.level = 0;
+        this.treeData = [...this.treeData, node];
+        this.nodes = [...this.nodes, node];
+        this.setActivatedNode(this.treeData);
         this.cdr.detectChanges();
       }
-      parent.change && parent.change();
-    } else if (XIsEmpty(node.pid)) {
-      this.activatedId = node.id;
-      node.level = 0;
-      this.treeData = [...this.treeData, node];
-      this.nodes = [...this.nodes, node];
-      this.setActivatedNode(this.treeData);
-      this.cdr.detectChanges();
+    };
+    if (this.lazy && parent && !parent.childrenLoaded) {
+      this.getLazyData(parent, () => {
+        _addNode();
+      });
+    } else {
+      _addNode();
     }
   }
 
@@ -264,6 +316,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.setActivatedNode(this.nodes);
         this.nodes.splice(index, 1);
         this.nodes = [...this.nodes];
+        if (activatedNode) {
+          activatedNode.change && activatedNode.change();
+        }
         this.cdr.detectChanges();
       }
       parent.change && parent.change();

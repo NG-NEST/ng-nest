@@ -214,6 +214,11 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    */
   alignItems?: XAlign;
   /**
+   * @zh_CN 节点懒加载中
+   * @en_US Node lazy loading
+   */
+  loading?: boolean;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
