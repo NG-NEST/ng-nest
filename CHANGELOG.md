@@ -1,3 +1,22 @@
+## [14.0.2](https://github.com/NG-NEST/ng-nest/compare/14.0.1...14.0.2) (2022-07-12)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** search chinese invalid ([296d2c3](https://github.com/NG-NEST/ng-nest/commit/296d2c3624600f12589eddae466519278e6f0008)), closes [#207](https://github.com/NG-NEST/ng-nest/issues/207)
+* **module:select:** search input chinese invalid ([57e1bbf](https://github.com/NG-NEST/ng-nest/commit/57e1bbffb0841a500de2c57c8a61092feb9d6140)), closes [#206](https://github.com/NG-NEST/ng-nest/issues/206)
+* **module:tree:** fix lazy load operation node ([3ac45ad](https://github.com/NG-NEST/ng-nest/commit/3ac45ad63490846345ffa11470fdd129237b6397)), closes [#209](https://github.com/NG-NEST/ng-nest/issues/209)
+* **module:tree:** fix virtual scroll operation node ([073a655](https://github.com/NG-NEST/ng-nest/commit/073a6552a564dc3c2c61bd710068f0a6f0bbf35e)), closes [#209](https://github.com/NG-NEST/ng-nest/issues/209)
+
+
+### Features
+
+* **module:select:** add search async ([daaaad2](https://github.com/NG-NEST/ng-nest/commit/daaaad2eeb2ffafa9bbf411966d245866245f844)), closes [#208](https://github.com/NG-NEST/ng-nest/issues/208)
+* **module:table:** add fixed column to right ([269469e](https://github.com/NG-NEST/ng-nest/commit/269469e4955781dadcda106af7db7aeb6bbcdcb5)), closes [#144](https://github.com/NG-NEST/ng-nest/issues/144)
+* **module:table:** add header and footer ([6f6a007](https://github.com/NG-NEST/ng-nest/commit/6f6a0076fe6b7c4e32fc2335231be7f1d63a13d7)), closes [#141](https://github.com/NG-NEST/ng-nest/issues/141)
+
+
+
 ## [14.0.1](https://github.com/NG-NEST/ng-nest/compare/14.0.0...14.0.1) (2022-07-02)
 
 
