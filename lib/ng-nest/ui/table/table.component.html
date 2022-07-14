@@ -53,6 +53,7 @@
   <div
     *ngIf="hasStickyRight()"
     class="x-table-sticky-right-scroll"
+    [style.top.px]="getStickyRightScrollTop"
     [style.width.px]="scrollYWidth"
     [style.height.px]="getRowHeight"
     [style.min-height.px]="getRowHeight"
