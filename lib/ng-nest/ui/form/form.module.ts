@@ -23,6 +23,7 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 const modules = [
   XLayoutModule,
@@ -43,7 +44,8 @@ const modules = [
   XFindModule,
   XAutoCompleteModule,
   XOutletModule,
-  XBaseFormModule
+  XBaseFormModule,
+  XI18nModule
 ];
 
 @NgModule({

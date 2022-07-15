@@ -1,10 +1,12 @@
 <form
   #form
   class="x-form"
+  [class.x-form-has-content]="content.innerHTML.trim()"
   [formGroup]="formGroup"
   [style.width]="width"
   [style.padding-bottom.rem]="controlsType === 'controls' ? this.space : 0"
   [ngClass]="classMap"
+  (ngSubmit)="onSubmit($event)"
 >
   <ng-container [ngSwitch]="controlsType">
     <ng-container *ngSwitchCase="'controls'">
@@ -14,6 +16,7 @@
       <ng-container *ngTemplateOutlet="rowsTemp; context: { rows: controls }"></ng-container>
     </ng-container>
   </ng-container>
+  <div class="x-form-content" #content><ng-content></ng-content></div>
 </form>
 
 <ng-template #rowsTemp let-rows="rows">

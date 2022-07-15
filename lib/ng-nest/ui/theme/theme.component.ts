@@ -62,7 +62,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
     this.cdr.detectChanges();
   }
 
-  constructor(public configService: XConfigService, public i18n: XI18nService, public cdr: ChangeDetectorRef) {
+  constructor(public configService: XConfigService, public i18n: XI18nService, public override cdr: ChangeDetectorRef) {
     super();
     this.themeService = this.configService.themeService;
   }

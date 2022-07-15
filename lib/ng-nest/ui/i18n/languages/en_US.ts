@@ -114,5 +114,8 @@ export default {
   },
   select: {
     selectAllText: 'Select all'
+  },
+  form: {
+    required: 'required'
   }
 };

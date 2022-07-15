@@ -46,10 +46,11 @@ import {
   XAutoCompleteControl,
   XAutoCompleteControlOption
 } from './form.property';
-import { FormControlName, Validators, UntypedFormControl, ValidatorFn, ControlValueAccessor } from '@angular/forms';
+import { FormControlName, Validators, UntypedFormControl, ValidatorFn, ControlValueAccessor, FormControlStatus } from '@angular/forms';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
+import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: 'x-control',
@@ -62,6 +63,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   @Input() override option!: XFormControlOption;
   @Input() form: any;
   @ViewChild(FormControlName, { static: false }) control!: FormControlName;
+  locale: XI18nForm = {};
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _changeProps = ['label', ...this._sharedProps];
   private _control!: XFormControlType;
@@ -72,7 +74,8 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   constructor(
     // @Host() @Optional() public form: XFormComponent,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public i18n: XI18nService
   ) {
     super();
   }
@@ -80,6 +83,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   ngOnInit() {
     this.option = { ...this.option };
     this.setProps();
+    if (XIsEmpty(this.option.label)) this.option.label = '';
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
     this._formControl = new UntypedFormControl(this._control.value);
@@ -97,6 +101,15 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       });
       this.form.controlComponents[this._control.id].formControlChanges();
     };
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.form as XI18nForm),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngAfterViewInit() {
@@ -152,14 +165,15 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     }
   }
 
-  setMessages(state: 'VALID' | 'INVALID' | 'PENDING' | 'DISABLED') {
+  setMessages(state: FormControlStatus) {
     let control: XFormControl = this._formControl;
     if (state === 'INVALID' && this._formControl.errors !== null) {
       for (const key in control.errors) {
+        const label = this._control.label || this._control.id;
         if (key === 'required') {
-          control.messages = [`${this._control.label} 必填`];
+          control.messages = [`${label} ${this.locale?.required || 'required'}`];
         } else if (key === 'pattern') {
-          control.messages = [`${this._control.label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
+          control.messages = [`${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
         }
       }
     } else if (state === 'VALID') {

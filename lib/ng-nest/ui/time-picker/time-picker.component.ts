@@ -71,7 +71,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,

@@ -10,7 +10,8 @@ import {
   OnChanges,
   SimpleChanges,
   Optional,
-  TemplateRef
+  TemplateRef,
+  HostBinding
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
@@ -29,6 +30,10 @@ import { XInputGroupComponent } from './input-group.component';
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
   @ViewChild('inputElement', { static: true }) inputElement!: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef!: ElementRef;
+
+  @HostBinding('style.width.px') get getWidth() {
+    return this.width;
+  }
 
   override writeValue(value: any) {
     this.value = value;
@@ -68,7 +73,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     public configService: XConfigService,
     @Optional() public inputGroup: XInputGroupComponent
   ) {

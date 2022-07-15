@@ -1,5 +1,5 @@
 import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component, TemplateRef } from '@angular/core';
+import { Input, Component, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
@@ -76,6 +76,11 @@ export class XFormProperty extends XFormProp {
    * @en_US Custom template
    */
   @Input() controlTpl: XFormTemplate = {};
+  /**
+   * @zh_CN Submit
+   * @en_US Submit
+   */
+  @Output() xSubmit = new EventEmitter<SubmitEvent>();
 }
 
 /**

@@ -62,7 +62,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   constructor(
     public renderer: Renderer2,
-    private cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay

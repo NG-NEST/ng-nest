@@ -45,7 +45,7 @@
         [readonly]="readonly"
         [maxlength]="maxlength"
         [(ngModel)]="value"
-        (ngModelChange)="change($event)"
+        (ngModelChange)="formControlValidator(); change($event)"
         [style.padding-left.rem]="paddingLeft"
         [style.padding-right.rem]="paddingRight"
         (focus)="xFocus.emit($event)"

@@ -84,6 +84,11 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @en_US Close button
    */
   @Input() @XInputBoolean() closable?: XBoolean;
+  /**
+   * @zh_CN 按钮类型属性 submit,button,reset
+   * @en_US Button type attribute. submit,button,reset
+   */
+  @Input() @XWithConfig<XButtonAttrType>(X_CONFIG_NAME, 'submit') attrType?: XButtonAttrType;
 }
 
 /**
@@ -163,6 +168,12 @@ export interface XButtonOption {
  * @en_US Button type
  */
 export type XButtonType = XType;
+
+/**
+ * @zh_CN 按钮类型属性
+ * @en_US Button attr type
+ */
+export type XButtonAttrType = 'submit' | 'button' | 'reset';
 
 /**
  * Buttons

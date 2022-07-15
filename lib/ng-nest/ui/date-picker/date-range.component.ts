@@ -101,7 +101,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   constructor(
     public renderer: Renderer2,
     public configService: XConfigService,
-    private cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,

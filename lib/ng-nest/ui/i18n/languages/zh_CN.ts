@@ -113,5 +113,8 @@ export default {
   },
   select: {
     selectAllText: '全选'
+  },
+  form: {
+    required: '必填'
   }
 };

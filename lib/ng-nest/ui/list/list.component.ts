@@ -74,7 +74,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   constructor(
     public renderer: Renderer2,
-    public cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     public elementRef: ElementRef,
     public configService: XConfigService,
     private i18n: XI18nService

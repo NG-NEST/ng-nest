@@ -87,7 +87,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   constructor(
     public renderer: Renderer2,
-    private cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,

@@ -120,6 +120,10 @@ const routes: Routes = [
         path: 'dropdown',
         loadChildren: () => import('./modules/dropdown/dropdown.module').then((x) => x.TeDropdownModule)
       },
+      {
+        path: 'button',
+        loadChildren: () => import('./modules/button/button.module').then((x) => x.TeButtonModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

@@ -75,6 +75,15 @@ export class XFormComponent extends XFormProperty implements OnInit {
     this.formGroup.updateValueAndValidity();
   }
 
+  setValidator() {
+    for (let key in this.controlComponents) {
+      let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
+      control.formControlValidator();
+      type.setValidators && type.setValidators();
+      control.cdr.detectChanges();
+    }
+  }
+
   getValidatorMessages(): string[] {
     let result: string[] = [];
     if (this.formGroup.valid) return result;
@@ -96,6 +105,11 @@ export class XFormComponent extends XFormProperty implements OnInit {
       }
     }
     return result;
+  }
+
+  onSubmit(event: SubmitEvent) {
+    this.setValidator();
+    this.xSubmit.emit(event);
   }
 
   trackByControl(_index: number, item: XFormControlOption) {

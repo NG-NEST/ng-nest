@@ -56,7 +56,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public http: HttpClient,
-    public cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     public portalService: XPortalService,
     public viewContainerRef: ViewContainerRef,
     public i18n: XI18nService,

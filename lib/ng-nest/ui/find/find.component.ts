@@ -95,7 +95,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

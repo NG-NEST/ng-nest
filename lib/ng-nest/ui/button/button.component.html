@@ -1,4 +1,4 @@
-<div
+<button
   class="x-button"
   [tabindex]="tabindex"
   [ngClass]="classMap"
@@ -13,11 +13,12 @@
   x-ripple
   [type]="type"
   [disabled]="disabled"
+  [attr.type]="attrType"
 >
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
   <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
   <span #content><ng-content></ng-content></span>
-</div>
+</button>
 
 <!-- 提前加载 loading 的图标-->
 <x-icon *ngIf="loading" [style.display]="'none'" type="fto-loader"></x-icon>

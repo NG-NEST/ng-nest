@@ -26,6 +26,11 @@
   x-col[hidden] {
     display: none;
   }
+  &-has-content {
+    .x-form-content {
+      margin-top: 1.5rem;
+    }
+  }
 }
 
 @mixin form-control {

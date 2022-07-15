@@ -44,7 +44,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     this.up(event);
   }
 
-  constructor(public renderer: Renderer2, private cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
 

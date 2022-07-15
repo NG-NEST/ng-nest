@@ -56,6 +56,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() maxlength!: XNumber;
   /**
+   * @zh_CN 宽度
+   * @en_US width
+   */
+  @Input() @XInputNumber() width!: XNumber;
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -162,6 +167,11 @@ export interface XInputOption extends XFormOption {
    * @en_US Enter the maximum length
    */
   maxlength?: XNumber;
+  /**
+   * @zh_CN 宽度
+   * @en_US width
+   */
+  width?: XNumber;
   /**
    * @zh_CN 尺寸
    * @en_US Size

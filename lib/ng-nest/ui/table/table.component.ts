@@ -34,7 +34,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
-  get getStickyRightScrollTop() {
+  get getStickyScrollTop() {
     return this.tcaption ? this.tcaption.nativeElement.offsetHeight : 0;
   }
   tcaption!: ElementRef;

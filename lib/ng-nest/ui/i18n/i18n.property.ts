@@ -24,6 +24,7 @@ export interface XI18nProperty {
   pageHeader?: XI18nPageHeader;
   list?: XI18nList;
   select?: XI18nSelect;
+  form?: XI18nForm;
   [property: string]: any;
 }
 
@@ -141,6 +142,10 @@ export interface XI18nSelect {
 
 export interface XI18nList {
   selectAllText?: string;
+}
+
+export interface XI18nForm {
+  required?: string;
 }
 
 export const X_I18N = new InjectionToken<XI18nProperty>('x-i18n');

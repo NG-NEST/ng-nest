@@ -1,0 +1,6 @@
+<x-form #form [controls]="controls" (xSubmit)="submit($event)">
+  <x-button type="primary">submit 验证</x-button>
+</x-form>
+
+<x-form #formValid [controls]="controls"> </x-form>
+<x-button type="primary" (click)="valid()">手动验证</x-button>

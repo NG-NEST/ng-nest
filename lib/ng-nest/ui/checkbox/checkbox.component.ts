@@ -40,7 +40,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    public cdr: ChangeDetectorRef,
+    public override cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {
     super();
