@@ -166,6 +166,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     if (this.onChange) {
       this.onChange(this.getValue());
     }
+    this.formControlValidator();
   }
 
   getValue() {

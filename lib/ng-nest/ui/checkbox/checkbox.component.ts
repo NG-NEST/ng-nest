@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XClearClass, XConfigService, XBoolean, XJustify, XAlign, XDirection } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XClearClass, XConfigService, XBoolean, XJustify, XAlign, XDirection, XIsEmpty } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
@@ -69,6 +69,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   checkboxClick(event: Event, node: XCheckboxNode) {
     event.preventDefault();
     if (this.disabled || node.disabled) return;
+    this.formControlValidator();
     if (this.single) {
       this.value = !this.value;
     } else {
@@ -79,6 +80,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
         this.value = [...this.value];
       } else this.value = [...this.value, node.id];
     }
+    console.log(this.validator, this.required, XIsEmpty(this.value));
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }

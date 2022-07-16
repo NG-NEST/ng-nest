@@ -12,7 +12,7 @@
   [class.x-textarea-icon-right]="getIconLayoutRight"
   [ngClass]="classMap"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label *ngIf="label" [class.x-textarea-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-textarea-row">
     <textarea
       #textareaRef
@@ -26,6 +26,7 @@
       [style.height]="height"
       [style.padding-left.rem]="paddingLeft"
       [style.padding-right.rem]="paddingRight"
+      (input)="formControlValidator()"
     ></textarea>
     <x-icon *ngIf="clearShow" class="x-textarea-clear" type="fto-x" (click)="onClear()"></x-icon>
     <x-icon *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)" [type]="icon" [spin]="iconSpin"></x-icon>

@@ -8,9 +8,17 @@
   [class.x-invalid]="invalid"
   [ngClass]="classMap"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label *ngIf="label" [class.x-find-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-find-row">
-    <x-button #buttonCom icon="fto-search" [onlyIcon]="!bordered" [size]="size" [disabled]="disabled" (click)="showModal()"></x-button>
+    <x-button
+      #buttonCom
+      icon="fto-search"
+      [onlyIcon]="!bordered"
+      [size]="size"
+      [disabled]="disabled"
+      attrType="button"
+      (click)="showModal()"
+    ></x-button>
     <div class="x-find-tags">
       <ng-container *ngIf="multiple; else singleTpl">
         <x-tag

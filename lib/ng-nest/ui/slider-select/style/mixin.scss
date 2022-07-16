@@ -17,6 +17,16 @@
     font-weight: 600;
     @include text-align();
   }
+  &-label-required {
+    &:before {
+      display: inline-block;
+      margin-right: 0.25rem;
+      color: $--x-danger;
+      line-height: 1;
+      font-size: $--x-font-size-small;
+      content: '*';
+    }
+  }
   > .#{$--x-slider-select-prefix}-inner {
     flex: 1;
     position: relative;

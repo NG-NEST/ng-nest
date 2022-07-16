@@ -192,7 +192,7 @@ export class ExDefaultComponent {
         },
         {
           control: 'input',
-          id: 'inputRequired',
+          id: 'inputRequiredPattern',
           label: '必填+正则验证',
           span: 8,
           value: 0.1,
@@ -438,14 +438,16 @@ export class ExDefaultComponent {
           dialogCheckboxLabel: 'Select',
           dialogCheckboxWidth: 100,
           dialogEmptyContent: '未选择数据！',
-          span: 8
+          span: 8,
+          required: true
         },
         {
           control: 'find',
           id: 'findTree',
           treeData: this.treeService.getTreeList,
           label: '树单选',
-          span: 8
+          span: 8,
+          required: true
         },
         {
           control: 'find',
@@ -460,7 +462,8 @@ export class ExDefaultComponent {
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           label: '树+表格单选',
-          span: 8
+          span: 8,
+          required: true
         },
         {
           control: 'find',
@@ -477,7 +480,8 @@ export class ExDefaultComponent {
           treeTableConnect: 'organizationId',
           multiple: true,
           label: '树+表格多选',
-          span: 8
+          span: 8,
+          required: true
         },
         {
           control: 'find',
@@ -572,8 +576,8 @@ export class ExDefaultComponent {
   ];
 
   ngOnInit() {
-    setTimeout(() => {
-      this.formCom.formGroup.reset();
-    }, 3000);
+    // setTimeout(() => {
+      // this.formCom.formGroup.reset();
+    // }, 3000);
   }
 }

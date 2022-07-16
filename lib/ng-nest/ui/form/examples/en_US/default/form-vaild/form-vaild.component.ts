@@ -17,7 +17,7 @@ export class ExFormVaildComponent {
       control: 'input',
       id: 'user',
       icon: 'fto-user',
-      label: '用户',
+      label: 'User',
       width: 300,
       required: true
     },
@@ -25,7 +25,7 @@ export class ExFormVaildComponent {
       control: 'input',
       id: 'email',
       icon: 'fto-mail',
-      label: '邮箱',
+      label: 'Email',
       width: 300,
       required: true
     }

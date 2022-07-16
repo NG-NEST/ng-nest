@@ -20,7 +20,7 @@
   [class.x-input-value-template]="valueTpl"
   [ngClass]="classMap"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label *ngIf="label" [class.x-input-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-input-row">
     <div class="x-input-row-before" *ngIf="before" [class.x-input-row-before-template]="beforeIsTemplate">
       <ng-container *xOutlet="before">{{ before }}</ng-container>
@@ -45,12 +45,12 @@
         [readonly]="readonly"
         [maxlength]="maxlength"
         [(ngModel)]="value"
-        (ngModelChange)="formControlValidator(); change($event)"
+        (ngModelChange)="change($event)"
         [style.padding-left.rem]="paddingLeft"
         [style.padding-right.rem]="paddingRight"
         (focus)="xFocus.emit($event)"
         (blur)="xBlur.emit($event)"
-        (input)="xInput.emit($event)"
+        (input)="formControlValidator(); xInput.emit($event)"
         (keydown)="xKeydown.emit($event)"
         (click)="xClick.emit($event)"
         (compositionstart)="xComposition.next(true)"

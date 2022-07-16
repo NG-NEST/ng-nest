@@ -81,6 +81,11 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputBoolean() override pointer!: XBoolean;
   /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  @Input() @XInputBoolean() override validator!: XBoolean;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */

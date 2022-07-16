@@ -219,6 +219,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
   sure() {
     this.value = this.temp;
     this.onChange(this.value);
+    this.formControlValidator();
     this.cdr.detectChanges();
   }
 
@@ -264,6 +265,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
       }
     }
     this.onChange(this.value);
+    this.formControlValidator();
     this.cdr.detectChanges();
   }
 

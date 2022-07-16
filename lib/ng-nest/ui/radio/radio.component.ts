@@ -64,6 +64,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
     if (this.disabled || node.disabled || node.id === this.value) return;
+    this.formControlValidator();
     this.value = node.id;
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);

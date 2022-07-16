@@ -222,6 +222,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
     this.closeSubject.next();
     this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
+    this.formControlValidator();
     this.nodeEmit.emit(selected);
   }
 

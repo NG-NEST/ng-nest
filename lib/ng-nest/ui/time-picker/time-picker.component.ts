@@ -217,6 +217,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     this.setDisplayValue(date);
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
+    this.formControlValidator();
     this.nodeEmit.emit(this.value);
   }
 

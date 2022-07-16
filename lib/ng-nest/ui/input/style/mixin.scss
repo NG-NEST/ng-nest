@@ -101,7 +101,16 @@
       }
     }
   }
-
+  &-label-required {
+    &:before {
+      display: inline-block;
+      margin-right: 0.25rem;
+      color: $--x-danger;
+      line-height: 1;
+      font-size: $--x-font-size-small;
+      content: '*';
+    }
+  }
   &-value-template {
     .#{$--x-input-prefix}-input {
       > input {
@@ -337,7 +346,6 @@
           cursor: pointer;
         }
       }
-
     }
   }
   @include size('big', $--x-height-big, 0 $--x-padding-big);

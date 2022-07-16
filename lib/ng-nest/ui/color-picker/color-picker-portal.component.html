@@ -25,6 +25,7 @@
       <div class="x-color-picker-portal-area">
         <div class="x-color-picker-portal-slider">
           <x-slider-select
+            [style.width.%]="100"
             [(ngModel)]="hsla.h"
             min="0"
             max="360"
@@ -36,6 +37,7 @@
         </div>
         <div class="x-color-picker-portal-transparent">
           <x-slider-select
+            [style.width.%]="100"
             #transparentCom
             [(ngModel)]="hsla.a"
             min="0"
@@ -53,7 +55,7 @@
       <x-tabs animated="false" justify="center">
         <x-tab label="HEX">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="hex" (ngModelChange)="hexChange()"></x-input>
+            <x-input [style.width.%]="100" [(ngModel)]="hex" (ngModelChange)="hexChange()"></x-input>
           </div>
         </x-tab>
         <x-tab label="RGBA">

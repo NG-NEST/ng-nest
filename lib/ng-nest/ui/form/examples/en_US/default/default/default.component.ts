@@ -190,7 +190,7 @@ export class ExDefaultComponent {
         },
         {
           control: 'input',
-          id: 'inputRequired',
+          id: 'inputRequiredPattern',
           label: 'required + regular validation',
           span: 8,
           value: 0.1,

@@ -6,7 +6,7 @@
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label *ngIf="label" [class.x-radio-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <ng-container *ngIf="button || icon; else default">
     <x-buttons>
       <x-button
@@ -16,6 +16,7 @@
         [type]="type"
         [activated]="item.id === value"
         [disabled]="disabled || item.disabled"
+        attrType="button"
         (click)="radioClick($event, item)"
         >{{ item.label }}</x-button
       >

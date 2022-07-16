@@ -1,6 +1,6 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ChangeDetectorRef, Component, forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex } from '@ng-nest/ui/core';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex, XBoolean } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
 @Component({ template: '' })
@@ -41,7 +41,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
   invalidIndex: number = 0;
   labelMap: XClassMap = {};
   value!: T;
-  validator = false;
+  validator: XBoolean = false;
   onChange!: (value: T) => void;
   onTouched!: () => void;
   writeValue(value: T): void {

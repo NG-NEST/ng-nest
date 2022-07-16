@@ -207,6 +207,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     this.displayValue = color;
     this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
+    this.formControlValidator();
     this.cdr.detectChanges();
   }
 

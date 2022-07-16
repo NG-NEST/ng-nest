@@ -190,7 +190,7 @@ export class ExDefaultComponent {
         },
         {
           control: 'input',
-          id: 'inputRequired',
+          id: 'inputRequiredPattern',
           label: '必填+正则验证',
           span: 8,
           value: 0.1,

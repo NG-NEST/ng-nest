@@ -366,6 +366,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
     this.inputCom.inputFocus();
     if (this.onChange) this.onChange(this.value);
+    this.formControlValidator();
     this.cdr.detectChanges();
   }
 

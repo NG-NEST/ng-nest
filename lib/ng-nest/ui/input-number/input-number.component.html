@@ -7,7 +7,8 @@
         [size]="size"
         [onlyIcon]="!bordered"
         [disabled]="disabled || minDisabled"
-        (click)="!minDisabled && plus($event, step, false)"
+        (click)="!minDisabled && plus($event, step, false); formControlValidator()"
+        attrType="button"
         (mousedown)="!minDisabled && down($event, step, false)"
         (mouseup)="up($event)"
       ></x-button>
@@ -23,6 +24,7 @@
       [direction]="direction"
       [disabled]="disabled"
       [required]="required"
+      [validator]="validator"
       [icon]="icon"
       [iconSpin]="iconSpin"
       [placeholder]="placeholder"
@@ -38,6 +40,7 @@
       [after]="afterButtonTpl"
       [pattern]="pattern"
       [message]="message"
+      (xInput)="formControlValidator()"
     ></x-input>
     <ng-template #afterButtonTpl>
       <x-button
@@ -46,7 +49,8 @@
         [size]="size"
         [onlyIcon]="!bordered"
         [disabled]="disabled || maxDisabled"
-        (click)="!maxDisabled && plus($event, step)"
+        (click)="!maxDisabled && plus($event, step); formControlValidator()"
+        attrType="button"
         (mousedown)="!maxDisabled && down($event, step)"
         (mouseup)="up($event)"
       ></x-button>

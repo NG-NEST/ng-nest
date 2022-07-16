@@ -6,7 +6,7 @@
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
 >
-  <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label *ngIf="label" [class.x-slider-select-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>
       <div></div>

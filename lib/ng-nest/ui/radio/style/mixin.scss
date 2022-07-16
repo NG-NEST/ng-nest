@@ -88,6 +88,16 @@
   &-label {
     margin-left: 0.325rem;
   }
+  &-label-required {
+    &:before {
+      display: inline-block;
+      margin-right: 0.25rem;
+      color: $--x-danger;
+      line-height: 1;
+      font-size: $--x-font-size-small;
+      content: '*';
+    }
+  }
   &.x-disabled {
     .#{$--x-radio-prefix}-item {
       @include disabled();

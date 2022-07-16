@@ -35,6 +35,10 @@ export class XRateComponent extends XRateProperty {
     return color;
   }
 
+  override get requiredIsEmpty() {
+    return this.validator && this.required && (XIsEmpty(this.value) || this.value === 0);
+  }
+
   override writeValue(value: any) {
     if (XIsEmpty(value)) value = 0;
     this.value = value;
@@ -86,12 +90,14 @@ export class XRateComponent extends XRateProperty {
 
   rateClick(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
+    this.formControlValidator();
     this.value = this.value === rate ? 0 : rate;
     if (this.onChange) this.onChange(this.value);
   }
 
   rateHalfHover(rate: number, _event: MouseEvent) {
     if (this.disabled) return;
+    this.formControlValidator();
     this.hoverActivated = rate - 1;
     this.hoverHalfActivated = rate;
     this.cdr.detectChanges();

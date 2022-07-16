@@ -1,12 +1,4 @@
-import {
-  XInputBoolean,
-  XInputNumber,
-  XSize,
-  XNumber,
-  XBoolean,
-  XWithConfig,
-  XPositionLeftRight
-} from '@ng-nest/ui/core';
+import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -47,7 +39,7 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    * @zh_CN 输入最大长度
    * @en_US Enter the maximum length
    */
-  @Input() @XInputNumber() maxlength: XNumber = 0;
+  @Input() @XInputNumber() maxlength!: XNumber;
   /**
    * @zh_CN 高度
    * @en_US height

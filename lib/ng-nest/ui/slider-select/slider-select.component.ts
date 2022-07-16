@@ -41,8 +41,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   private _unSubject = new Subject<void>();
   private _resizeObserver!: ResizeObserver;
 
-  get getRequired() {
-    return this.required && XIsEmpty(this.value);
+  override get requiredIsEmpty() {
+    return this.validator && this.required && (XIsEmpty(this.value) || this.value === 0);
   }
 
   override writeValue(value: number) {
@@ -131,6 +131,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
       this.visible = true;
     }
     this.cdr.detectChanges();
+    this.formControlValidator();
     this.dragStartEmit.emit(drag);
   }
 
