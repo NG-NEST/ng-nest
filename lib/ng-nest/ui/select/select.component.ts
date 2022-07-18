@@ -10,7 +10,8 @@ import {
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
@@ -44,6 +45,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('select', { static: true }) select!: ElementRef;
+  @ViewChild('multipleValueTpl') multipleValueTpl!: TemplateRef<void>;
 
   get getReadonly() {
     return this.readonly && !this.search;
@@ -64,6 +66,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   showClearable: boolean = false;
   displayValue: any = '';
   nodes: XSelectNode[] = [];
+  selectedNodes: XSelectNode[] = [];
+  displayNodes: XSelectNode[] = [];
+  displayMore = '';
   searchNodes: XSelectNode[] = [];
   cloneNodes!: XSelectNode[];
   portal!: XPortalOverlayRef<XSelectPortalComponent>;
@@ -72,6 +77,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   box!: DOMRect;
   protalHeight!: number;
   maxNodes: number = 6;
+  inputPadding = 0.4;
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
@@ -100,6 +106,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
+    if (this.multiple) {
+      this.inputPadding = 0.125;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -109,6 +118,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   ngAfterViewInit() {
     this.setPortal();
+    if (this.multiple) {
+      this.valueTpl = this.multipleValueTpl;
+      this.inputPadding = 0.125;
+    }
   }
 
   ngOnDestroy(): void {
@@ -212,6 +225,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   clearEmit() {
     this.value = '';
     this.displayValue = '';
+    this.selectedNodes = [];
+    this.setDisplayNodes();
     this.valueTplContext.$node = null;
     this.mleave();
     this.valueChange.next(this.value);
@@ -224,18 +239,28 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       if (this.multiple) {
         if (XIsEmpty(this.value)) {
           this.displayValue = '';
+          this.selectedNodes = [];
+          this.displayNodes = [];
+          this.displayMore = '';
           this.valueTplContext.$node = null;
         } else {
-          let nodes: XSelectNode[] = [];
+          let ids = [];
+          let selected = [];
           if (XIsObjectArray(this.value)) {
             this.objectArray = true;
-            nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: XSelectNode) => y.id === x.id)));
+            ids = this.value.map((x: XSelectNode) => x.id);
           } else {
             this.objectArray = false;
-            nodes = this.nodes.filter((x) => !XIsEmpty(this.value.find((y: string | number) => y === x.id)));
+            ids = this.value;
           }
-          this.displayValue = nodes.map((x) => x.label).join(',');
-          this.valueTplContext.$node = [...nodes];
+          for (let id of ids) {
+            let node = this.nodes.find((x) => x.id === id);
+            if (node) selected.push(node);
+          }
+          this.selectedNodes = selected;
+          this.setDisplayNodes();
+          this.displayValue = this.selectedNodes.map((x) => x.label).join(',');
+          this.valueTplContext.$node = [...this.selectedNodes];
         }
       } else {
         let node = this.nodes.find((x) => x.id === this.value);
@@ -249,6 +274,32 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       }
       this.cdr.detectChanges();
     }
+  }
+
+  closeNode(event: Event, node: XSelectNode, index: number) {
+    let inx = -1;
+    if (XIsObjectArray(this.value)) {
+      inx = this.value.findIndex((y: XSelectNode) => y.id === node.id);
+    } else {
+      inx = this.value.findIndex((y: number | string) => y === node.id);
+    }
+    if (inx >= 0) {
+      this.value.splice(inx, 1);
+      this.valueChange.next(this.value);
+      if (this.onChange) this.onChange(this.value);
+      this.selectedNodes.splice(index, 1);
+      this.setDisplayNodes();
+    }
+    event.stopPropagation();
+  }
+
+  setDisplayNodes() {
+    const maxlen = this.selectedNodes.length;
+    const len = maxlen > Number(this.maxTagCount) ? Number(this.maxTagCount) : maxlen;
+    let more = maxlen - len;
+    more = more < 0 ? 0 : more;
+    this.displayNodes = this.selectedNodes.slice(0, len);
+    this.displayMore = more > 0 ? `还有 ${more} 个选中` : '';
   }
 
   portalAttached() {

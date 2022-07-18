@@ -70,6 +70,11 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return this.after instanceof TemplateRef;
   }
 
+  get getTemplateWidth() {
+    console.log(`calc(100% - ${this.paddingLeft + this.paddingRight}rem)`);
+    return `calc(100% - ${this.paddingLeft + this.paddingRight}rem)`;
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
@@ -164,16 +169,16 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       this.maxlength && this.icon && this.iconLayout === 'right'
         ? (this.lengthTotal.length + 2) * 0.385
         : this.icon && this.iconLayout === 'left'
-        ? 1.8
-        : 0.4;
+        ? Number(this.inputIconPadding)
+        : Number(this.inputPadding);
     this.paddingRight =
       this.maxlength && this.icon && this.iconLayout === 'left'
         ? (this.lengthTotal.length + 2) * 0.385
-        : this.icon && this.iconLayout === 'right'
-        ? 1.8
+        : (this.icon || this.clearShow) && this.iconLayout === 'right'
+        ? Number(this.inputIconPadding)
         : this.maxlength && !this.icon
         ? (this.lengthTotal.length + 2) * 0.385
-        : 0.4;
+        : Number(this.inputPadding);
   }
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {

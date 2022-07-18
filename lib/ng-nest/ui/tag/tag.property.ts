@@ -63,7 +63,7 @@ export class XTagProperty extends XProperty {
    * @zh_CN 点击关闭的事件
    * @en_US Click to close the event
    */
-  @Output() close = new EventEmitter<void>();
+  @Output() close = new EventEmitter<Event>();
   /**
    * @zh_CN 选中事件
    * @en_US Selected event

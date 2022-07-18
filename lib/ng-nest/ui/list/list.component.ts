@@ -165,21 +165,21 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
         valArry = [this.value];
       }
 
+      let ids = [];
+      let selectedNodes = [];
       if (this.objectArray) {
-        this.selectedNodes = this.nodes
-          .filter((x) => !XIsEmpty(valArry.find((y) => !XIsUndefined(y) && !XIsNull(y) && y.id === x.id)))
-          .map((x) => {
-            x.selected = true;
-            return x;
-          });
+        ids = valArry.filter((x) => !XIsUndefined(x) && !XIsNull(x)).map((x) => x.id);
       } else {
-        this.selectedNodes = this.nodes
-          .filter((x) => valArry.indexOf(x.id) > -1)
-          .map((x) => {
-            x.selected = true;
-            return x;
-          });
+        ids = valArry;
       }
+      for (let id of ids) {
+        let node = this.nodes.find((x) => x.id === id);
+        if (node) {
+          node.selected = true;
+          selectedNodes.push(node);
+        }
+      }
+      this.selectedNodes = selectedNodes;
     }
   }
 

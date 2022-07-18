@@ -1,4 +1,4 @@
-<div #select class="x-select">
+<div #select class="x-select" [class.x-select-multiple]="multiple">
   <div class="x-select-row">
     <x-input
       #inputCom
@@ -26,6 +26,7 @@
       [pattern]="pattern"
       [message]="message"
       [pointer]="true"
+      [inputPadding]="inputPadding"
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
@@ -37,3 +38,15 @@
     ></x-input>
   </div>
 </div>
+
+<ng-template #multipleValueTpl>
+  <x-tag
+    [@.disabled]="true"
+    *ngFor="let node of displayNodes; index as i"
+    closable
+    (close)="closeNode($event, node, i)"
+    size="small"
+    >{{ node.label }}</x-tag
+  >
+  <x-tag [@.disabled]="true" *ngIf="displayMore" size="small">{{ displayMore }}</x-tag>
+</ng-template>

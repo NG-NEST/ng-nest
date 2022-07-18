@@ -67,8 +67,8 @@ export class XTagComponent extends XTagProperty implements OnInit {
     this.selectedChange.emit(this.selected);
   }
 
-  onClose() {
+  onClose(event: Event) {
     if (this.disabled) return;
-    this.close.emit();
+    this.close.emit(event);
   }
 }

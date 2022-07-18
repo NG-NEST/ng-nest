@@ -6,7 +6,9 @@ import {
   XBoolean,
   XWithConfig,
   XPositionTopBottom,
-  XSize
+  XSize,
+  XInputNumber,
+  XNumber
 } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -94,6 +96,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US Enter a delay execution time, ms
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime?: number;
+  /**
+   * @zh_CN 多选时显示的选中数据个数，其它的在更多中显示
+   * @en_US Display the number of data in the maximum election, and the others are displayed in more of them
+   */
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 3) maxTagCount?: XNumber;
 }
 
 /**

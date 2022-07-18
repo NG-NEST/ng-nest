@@ -30,6 +30,7 @@
         class="x-input-value-template-value"
         [style.padding-left.rem]="paddingLeft"
         [style.padding-right.rem]="paddingRight"
+        [style.width]="getTemplateWidth"
         (click)="xClick.emit($event)"
         *ngIf="valueTpl"
       >

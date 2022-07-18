@@ -9,6 +9,18 @@
   x-input {
     width: 100%;
   }
+  &-multiple {
+    .x-input-value-template-value {
+      display: flex;
+      align-items: center;
+      x-tag {
+        display: inline-flex;
+        &:not(:first-child) {
+          margin-left: 0.125rem;
+        }
+      }
+    }
+  }
 }
 
 @mixin select-portal {

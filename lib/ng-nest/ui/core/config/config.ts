@@ -340,6 +340,8 @@ export interface XInputConfig {
   iconLayout?: XPositionLeftRight;
   size?: XSize;
   bordered?: XBoolean;
+  inputPadding?: XNumber;
+  inputIconPadding?: XNumber;
 }
 
 export interface XInputGroupConfig {
@@ -472,6 +474,7 @@ export interface XSelectConfig {
   search?: XBoolean;
   caseSensitive?: XBoolean;
   debounceTime?: number;
+  maxTagCount?: number;
 }
 
 export interface XSkeletonConfig {}
