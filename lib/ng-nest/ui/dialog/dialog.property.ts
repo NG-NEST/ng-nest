@@ -74,6 +74,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * @zh_CN 取消按钮文字
    * @en_US Cancel button text
+   * @default '取消'
    */
   @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) cancelText?: string;
   /**
@@ -84,6 +85,7 @@ export class XDialogProperty extends XAlertProperty {
   /**
    * @zh_CN 确认按钮文字
    * @en_US Confirm button text
+   * @default '确认'
    */
   @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) confirmText?: string;
   /**
@@ -258,8 +260,8 @@ export interface XDialogOption extends XAlertOption {
  * @selector x-dialog-container
  * @decorator component
  */
- export const XDialogContainerPrefix = 'x-dialog-container';
- export const X_DIALOG_CONTAINER = new InjectionToken('X_DIALOG_CONTAINER');
+export const XDialogContainerPrefix = 'x-dialog-container';
+export const X_DIALOG_CONTAINER = new InjectionToken('X_DIALOG_CONTAINER');
 
 /**
  * Dialog Container Property

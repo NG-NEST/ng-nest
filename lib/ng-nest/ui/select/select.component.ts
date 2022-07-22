@@ -21,18 +21,22 @@ import {
   XSetData,
   XClearClass,
   XConfigService,
-  XIsArray,
   XPositionTopBottom,
   XIsObjectArray,
-  XIsFunction
+  XIsFunction,
+  XIsArray,
+  XIsString,
+  XRemove,
+  XResize
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -45,10 +49,15 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('select', { static: true }) select!: ElementRef;
-  @ViewChild('multipleValueTpl') multipleValueTpl!: TemplateRef<void>;
+  @ViewChild('multipleValueTpl', { static: true }) multipleValueTpl!: TemplateRef<void>;
+  @ViewChild('multipleInput') multipleInput!: XInputComponent;
 
   get getReadonly() {
-    return this.readonly && !this.search;
+    return (this.readonly && !this.search) || (Boolean(this.search) && Boolean(this.multiple));
+  }
+
+  get getMaxTagContent() {
+    return this.maxTagContent || this.locale.maxTagContent;
   }
 
   override writeValue(value: any) {
@@ -65,10 +74,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   enter: boolean = false;
   showClearable: boolean = false;
   displayValue: any = '';
+  multipleSearchValue = '';
   nodes: XSelectNode[] = [];
   selectedNodes: XSelectNode[] = [];
   displayNodes: XSelectNode[] = [];
   displayMore = '';
+  showDisplayMore = false;
   searchNodes: XSelectNode[] = [];
   cloneNodes!: XSelectNode[];
   portal!: XPortalOverlayRef<XSelectPortalComponent>;
@@ -82,6 +93,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   asyncLoading = false;
   animating = false;
   objectArray = false;
+  selectedSurplus = 0;
+  selectedTotal = 0;
+  locale: XI18nSelect = {};
   override valueTplContext: { $node: any; $isValue: boolean } = { $node: null, $isValue: true };
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
@@ -89,7 +103,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   dataChange: Subject<XSelectNode[]> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
+  composition: boolean = false;
   private _unSubject = new Subject<void>();
+  private _resizeObserver!: ResizeObserver;
 
   constructor(
     public renderer: Renderer2,
@@ -97,6 +113,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,
+    public i18n: XI18nService,
     public configService: XConfigService
   ) {
     super();
@@ -107,8 +124,18 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setClassMap();
     this.setSubject();
     if (this.multiple) {
+      this.valueTpl = this.multipleValueTpl;
       this.inputPadding = 0.125;
     }
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.select as XI18nSelect),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -118,15 +145,20 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   ngAfterViewInit() {
     this.setPortal();
-    if (this.multiple) {
-      this.valueTpl = this.multipleValueTpl;
-      this.inputPadding = 0.125;
+    if (this.multiple && this.inputCom.inputValueRef) {
+      XResize(this.inputCom.inputValueRef.nativeElement)
+        .pipe(debounceTime(30), takeUntil(this._unSubject))
+        .subscribe((x) => {
+          this._resizeObserver = x.resizeObserver;
+          this.setMutipleInputSize();
+        });
     }
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
   }
 
   setClassMap() {
@@ -160,6 +192,46 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.closeSubject.next();
       }
     });
+  }
+
+  setMutipleInputSize() {
+    const ivf = this.inputCom.inputValueRef.nativeElement as HTMLDivElement;
+    let { clientWidth, scrollHeight } = ivf;
+    const len = ivf.children.length;
+    let lastRowTagTop = -1;
+    let lines = 1;
+    let rowTagTop = -1;
+    let lastRowTagsWidth = 0;
+    let marginLeft = 0;
+    let marginTop = 0;
+    for (let i = len - 1; i >= 0; i--) {
+      const ele = ivf.children[i] as HTMLElement;
+      if (ele.tagName === 'X-TAG') {
+        const { offsetTop, offsetWidth } = ele;
+        const style = getComputedStyle(ele);
+        marginLeft = Number(style.marginLeft.replace('px', ''));
+        marginTop = Number(style.marginTop.replace('px', ''));
+        if (rowTagTop === -1) {
+          rowTagTop = offsetTop;
+        } else if (rowTagTop !== offsetTop) {
+          lines++;
+          rowTagTop = offsetTop;
+        }
+        if (lastRowTagTop === -1) {
+          lastRowTagTop = offsetTop;
+        }
+        if (lastRowTagTop === offsetTop) {
+          lastRowTagsWidth += offsetWidth + marginLeft;
+        }
+      }
+    }
+    const height = scrollHeight + (lines > 1 ? marginTop : 0);
+    this.renderer.setStyle(this.inputCom.inputRef.nativeElement, 'height', `${height}px`);
+    if (this.multipleInput) {
+      const input = this.multipleInput?.elementRef.nativeElement;
+      this.renderer.setStyle(input, 'width', `${clientWidth - lastRowTagsWidth - marginLeft}px`);
+    }
+    this.portal?.overlayRef?.updatePosition();
   }
 
   menter() {
@@ -223,8 +295,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   clearEmit() {
-    this.value = '';
+    this.value = this.multiple ? [] : '';
     this.displayValue = '';
+    this.multipleSearchValue = '';
     this.selectedNodes = [];
     this.setDisplayNodes();
     this.valueTplContext.$node = null;
@@ -234,7 +307,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.onChange) this.onChange(this.value);
   }
 
-  setDisplayValue() {
+  setDisplayValue(clickNode?: XSelectNode) {
     if (this.nodes.length > 0) {
       if (this.multiple) {
         if (XIsEmpty(this.value)) {
@@ -253,11 +326,19 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
             this.objectArray = false;
             ids = this.value;
           }
-          for (let id of ids) {
-            let node = this.nodes.find((x) => x.id === id);
-            if (node) selected.push(node);
+          if (clickNode) {
+            if (clickNode.selected) {
+              this.selectedNodes.push(clickNode);
+            } else {
+              XRemove(this.selectedNodes, (x) => x.id === clickNode.id);
+            }
+          } else {
+            for (let id of ids) {
+              let node = this.nodes.find((x) => x.id === id);
+              if (node) selected.push(node);
+            }
+            this.selectedNodes = selected;
           }
-          this.selectedNodes = selected;
           this.setDisplayNodes();
           this.displayValue = this.selectedNodes.map((x) => x.label).join(',');
           this.valueTplContext.$node = [...this.selectedNodes];
@@ -295,11 +376,23 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setDisplayNodes() {
     const maxlen = this.selectedNodes.length;
-    const len = maxlen > Number(this.maxTagCount) ? Number(this.maxTagCount) : maxlen;
+    let len = 0;
+    if (!this.maxTagCount) {
+      len = maxlen;
+    } else {
+      len = maxlen > Number(this.maxTagCount) ? Number(this.maxTagCount) : maxlen;
+    }
     let more = maxlen - len;
     more = more < 0 ? 0 : more;
     this.displayNodes = this.selectedNodes.slice(0, len);
-    this.displayMore = more > 0 ? `还有 ${more} 个选中` : '';
+    this.showDisplayMore = more > 0;
+    if (XIsString(this.getMaxTagContent)) {
+      this.displayMore = more > 0 ? (this.getMaxTagContent as string).replace(/\{\{surplus\}\}/g, `${more}`) : '';
+    } else {
+      this.selectedSurplus = more;
+      this.selectedTotal = maxlen;
+    }
+    setTimeout(() => this.setMutipleInputSize());
   }
 
   portalAttached() {
@@ -310,6 +403,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
       this.active = false;
+      this.multipleSearchValue = '';
       this.cdr.detectChanges();
       return true;
     }
@@ -339,7 +433,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     } else {
       this.createPortal();
     }
-    this.inputCom.inputFocus();
+    if (this.search && this.multiple) {
+      this.multipleInput.inputFocus();
+    } else {
+      this.inputCom.inputFocus();
+    }
   }
 
   createPortal() {
@@ -397,17 +495,36 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       caseSensitive: this.caseSensitive,
       search: this.search,
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XSelectNode) => this.nodeClick(node),
+      nodeEmit: (node: XSelectNode, value: XSelectNode[] | (string | number)[]) => this.nodeClick(node, value),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  nodeClick(node: XSelectNode | XSelectNode[]) {
-    if (this.multiple && XIsArray(node)) {
-      node = node as XSelectNode[];
-      this.value = node;
-      this.setDisplayValue();
+  nodeClick(node: XSelectNode, value?: XSelectNode[] | (string | number)[]) {
+    if (this.multiple) {
+      if (XIsObjectArray(value)) {
+        if (node.selected) {
+          this.value.push(node);
+        } else {
+          let inx = this.value.findIndex((x: XSelectNode) => x.id === node.id);
+          this.value.splice(inx, 1);
+        }
+      } else if (XIsArray(value)) {
+        if (node.selected) {
+          this.value.push(node.id);
+        } else {
+          this.value.splice(this.value.indexOf(node.id), 1);
+        }
+      }
+      // const input = this.multipleInput.elementRef.nativeElement;
+      // this.renderer.setStyle(input, 'display', 'none');
+      if (this.search && this.multipleSearchValue !== '') {
+        this.multipleSearchValue = '';
+        this.inputChange.next('');
+        this.valueChange.next([...this.value]);
+      }
+      this.setDisplayValue(node);
     } else {
       node = node as XSelectNode;
       this.displayValue = node.label;
@@ -415,7 +532,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.value = node.id;
       this.closeSubject.next();
     }
-    this.inputCom.inputFocus();
+    if (this.search && this.multiple) {
+      this.multipleInput.inputFocus();
+    } else {
+      this.inputCom.inputFocus();
+    }
     if (this.onChange) this.onChange(this.value);
     this.formControlValidator();
     this.cdr.detectChanges();
@@ -447,12 +568,15 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   onFocus(_event: Event) {
-    this.inputCom.inputFocus();
+    if (this.search && this.multiple) {
+      this.multipleInput.inputFocus();
+    } else {
+      this.inputCom.inputFocus();
+    }
   }
 
   onInput(_event: InputEvent) {
-    setTimeout(() => {
-      this.inputChange.next(this.displayValue);
-    });
+    this.formControlValidator();
+    setTimeout(() => this.inputChange.next(this.multiple ? this.multipleSearchValue : this.displayValue));
   }
 }

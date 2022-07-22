@@ -22,6 +22,7 @@ import {
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogService } from './dialog.service';
 import { XDialogContainerComponent } from './dialog-container.component';
+import { XI18nModule } from '@ng-nest/ui/i18n';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { XDialogContainerComponent } from './dialog-container.component';
     XPortalModule,
     XAlertModule,
     XOutletModule,
-    XResizableModule
+    XResizableModule,
+    XI18nModule
   ],
   providers: [XDialogService]
 })

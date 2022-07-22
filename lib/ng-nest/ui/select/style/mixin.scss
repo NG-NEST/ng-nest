@@ -13,10 +13,30 @@
     .x-input-value-template-value {
       display: flex;
       align-items: center;
-      x-tag {
+      margin-bottom: 0.125rem;
+      flex-wrap: wrap;
+      width: initial;
+      height: initial !important;
+      > x-tag {
         display: inline-flex;
-        &:not(:first-child) {
-          margin-left: 0.125rem;
+        margin-left: 0.0625rem;
+        margin-top: 0.125rem;
+        .x-tag {
+          @include tag-size('big', $--x-height-large, $--x-padding-large);
+          @include tag-size('large', $--x-height-medium, $--x-padding-medium);
+          @include tag-size('medium', $--x-height-small, $--x-padding-small);
+          @include tag-size('small', $--x-height-mini, $--x-padding-mini);
+          @include tag-size('mini', 1.125rem, 0.125rem);
+        }
+      }
+      > x-input {
+        margin-top: 0.125rem;
+        .x-input {
+          @include input-size('big', $--x-height-large, 0 $--x-padding-large);
+          @include input-size('large', $--x-height-medium, 0 $--x-padding-medium);
+          @include input-size('medium', $--x-height-small, 0 $--x-padding-small);
+          @include input-size('small', $--x-height-mini, 0 $--x-padding-mini);
+          @include input-size('mini', 1.125rem, 0 0.125rem);
         }
       }
     }
@@ -36,4 +56,48 @@
   background-color: $--x-background;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-select-height} * 6) + calc(#{$--x-border-width} * 7));
+}
+
+@mixin tag-size($size, $height, $padding) {
+  &-#{$size} {
+    height: $height;
+    line-height: $height;
+    padding: 0 $padding;
+    > .x-icon {
+      right: -$padding/2;
+    }
+  }
+}
+
+@mixin input-size($size, $height, $padding) {
+  &-#{$size} {
+    > .x-input-row > .x-input-input {
+      > input,
+      > .x-input-row-before:not(.x-input-row-before-template),
+      > .x-input-row-after:not(.x-input-row-after-template),
+      > .x-input-value-template-value {
+        height: $height;
+        line-height: $height;
+        padding: $padding;
+      }
+      > .x-input-max-length {
+        height: $height;
+        line-height: $height;
+      }
+    }
+
+    > .x-input-row {
+      > .x-input-row-before:not(.x-input-row-before-template),
+      > .x-input-row-after:not(.x-input-row-after-template) {
+        height: $height;
+        line-height: $height;
+        padding: $padding;
+      }
+    }
+
+    > label {
+      height: $height;
+      line-height: $height;
+    }
+  }
 }

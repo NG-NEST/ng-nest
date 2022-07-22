@@ -30,6 +30,7 @@ import { XInputGroupComponent } from './input-group.component';
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
   @ViewChild('inputElement', { static: true }) inputElement!: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef!: ElementRef;
+  @ViewChild('inputValueRef') inputValueRef!: ElementRef;
 
   @HostBinding('style.width.px') get getWidth() {
     return this.width;
@@ -71,7 +72,6 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   get getTemplateWidth() {
-    console.log(`calc(100% - ${this.paddingLeft + this.paddingRight}rem)`);
     return `calc(100% - ${this.paddingLeft + this.paddingRight}rem)`;
   }
 

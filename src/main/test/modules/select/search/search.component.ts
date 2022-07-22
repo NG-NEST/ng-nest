@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  default = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+  default = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ', 'KKKK', 'LLLL', 'MMMM', 'NNNN', 'VVVV'];
 
   data = [...this.default];
   model = '';
@@ -19,12 +19,23 @@ export class ExSearchComponent {
         if (XIsEmpty(str)) {
           x.next([...this.default]);
         } else {
-          x.next(this.default.filter((x) => x.indexOf(str) >= 0));
+          x.next([...this.default.filter((x) => x.indexOf(str) >= 0)!]);
         }
         x.complete();
       }, 1000);
     });
   modelAsync = '';
+
+  modelMultipleAsync = [];
+
+  dataMultiple = [...this.default];
+  modelMultiple = [];
+
+  dataMultipleMore = [...this.default];
+  modelMultipleMore = [];
+
+  dataMultipleMoreTpl = [...this.default];
+  modelMultipleMoreTpl = [];
 
   change(_event: any) {
     console.log(_event);

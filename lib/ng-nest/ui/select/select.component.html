@@ -30,23 +30,33 @@
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
-      (xInput)="onInput($event); formControlValidator()"
+      (xInput)="onInput($event)"
       (xFocus)="onFocus($event)"
       (xClick)="showPortal(true)"
       (xMouseenter)="menter()"
       (xMouseleave)="mleave()"
+      (xComposition)="composition = $event"
     ></x-input>
   </div>
 </div>
 
 <ng-template #multipleValueTpl>
-  <x-tag
-    [@.disabled]="true"
-    *ngFor="let node of displayNodes; index as i"
-    closable
-    (close)="closeNode($event, node, i)"
-    size="small"
-    >{{ node.label }}</x-tag
-  >
-  <x-tag [@.disabled]="true" *ngIf="displayMore" size="small">{{ displayMore }}</x-tag>
+  <x-tag [@.disabled]="true" *ngFor="let node of displayNodes; index as i" closable (close)="closeNode($event, node, i)" [size]="size">{{
+    node.label
+  }}</x-tag>
+  <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
+    <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
+      displayMore
+    }}</ng-container>
+  </x-tag>
+  <x-input
+    #multipleInput
+    *ngIf="search"
+    bordered="false"
+    [size]="size"
+    inputPadding="0.275"
+    [(ngModel)]="multipleSearchValue"
+    (xInput)="onInput($event)"
+    (xKeydown)="onKeydown($event)"
+  ></x-input>
 </ng-template>

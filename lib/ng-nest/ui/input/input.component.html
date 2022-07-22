@@ -27,9 +27,11 @@
     </div>
     <div class="x-input-input" (mouseenter)="xMouseenter.emit($event)" (mouseleave)="xMouseleave.emit($event)">
       <div
+        #inputValueRef
         class="x-input-value-template-value"
-        [style.padding-left.rem]="paddingLeft"
-        [style.padding-right.rem]="paddingRight"
+        [style.left.rem]="paddingLeft"
+        [style.padding-left]="0"
+        [style.padding-right]="0"
         [style.width]="getTemplateWidth"
         (click)="xClick.emit($event)"
         *ngIf="valueTpl"
@@ -38,6 +40,7 @@
       </div>
       <input
         #inputRef
+        [class.x-input-has-value-template]="valueTpl"
         [ngStyle]="inputStyle"
         [type]="type"
         [placeholder]="placeholder"

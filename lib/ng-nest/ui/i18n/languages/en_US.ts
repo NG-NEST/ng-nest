@@ -113,7 +113,8 @@ export default {
     selectAllText: 'Select all'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Select all',
+    maxTagContent: 'and more {{surplus}} selected'
   },
   form: {
     required: 'required'

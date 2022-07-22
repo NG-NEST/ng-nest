@@ -112,7 +112,8 @@ export default {
     selectAllText: '全选'
   },
   select: {
-    selectAllText: '全选'
+    selectAllText: '全选',
+    maxTagContent: '更多{{surplus}}个选中'
   },
   form: {
     required: '必填'

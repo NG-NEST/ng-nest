@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { XTemplate } from '@ng-nest/ui/core';
 
 /**
  * I18n
@@ -138,6 +139,7 @@ export interface XI18nPageHeader {
 
 export interface XI18nSelect {
   selectAllText?: string;
+  maxTagContent?: XTemplate;
 }
 
 export interface XI18nList {

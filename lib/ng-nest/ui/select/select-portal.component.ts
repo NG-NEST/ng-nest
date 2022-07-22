@@ -92,7 +92,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
     });
-    
+
     this.i18n.localeChange
       .pipe(
         map((x) => x.select as XI18nSelect),
@@ -114,8 +114,11 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XSelectNode) {
-    if (this.multiple === 0) this.nodeEmit(this.value);
-    else this.nodeEmit(node);
+    if (this.multiple === 0) {
+      this.nodeEmit(node, this.value);
+    } else {
+      this.nodeEmit(node);
+    }
   }
 
   onSelectAll(_isSelectAll: boolean) {
