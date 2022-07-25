@@ -1,3 +1,23 @@
+## [14.0.3](https://github.com/NG-NEST/ng-nest/compare/14.0.2...14.0.3) (2022-07-25)
+
+
+### Bug Fixes
+
+* **select:module:** fix multiple node click style ([eac040e](https://github.com/NG-NEST/ng-nest/commit/eac040e61f173ffef41e5fb37b04d2b3e71e9e48)), closes [#205](https://github.com/NG-NEST/ng-nest/issues/205)
+* **table:module:** fix the right fixed scroll bar exception ([5f7e738](https://github.com/NG-NEST/ng-nest/commit/5f7e73819325680fc6e8e999ff893ac153a68198))
+* **test:form:** fix test error ([dffd0f8](https://github.com/NG-NEST/ng-nest/commit/dffd0f8560689e66d06e7fcf8eb7087bcc41d48b))
+
+
+### Features
+
+* **module:form:** add manual verification ([40c7411](https://github.com/NG-NEST/ng-nest/commit/40c741176300443b5316af1e1d1f0a5a3b8c4769)), closes [#210](https://github.com/NG-NEST/ng-nest/issues/210)
+* **module:form:** add manual verification ([0296afe](https://github.com/NG-NEST/ng-nest/commit/0296afedd762f0f6dc38759feb1b68c0605ebce8)), closes [#210](https://github.com/NG-NEST/ng-nest/issues/210)
+* **module:select:** add multiple tags ([59d2255](https://github.com/NG-NEST/ng-nest/commit/59d2255c1da032ad9704c8d08e8d6ed54992efb1)), closes [#205](https://github.com/NG-NEST/ng-nest/issues/205)
+* **module:select:** add mutiple style ([35e0827](https://github.com/NG-NEST/ng-nest/commit/35e0827c968156411f16f32b0bb41082164fea1c)), closes [#205](https://github.com/NG-NEST/ng-nest/issues/205)
+* **module:table:** add header position ([ee916e0](https://github.com/NG-NEST/ng-nest/commit/ee916e00b3a652671935620ce769b3d4ef363fbc)), closes [#211](https://github.com/NG-NEST/ng-nest/issues/211)
+
+
+
 ## [14.0.2](https://github.com/NG-NEST/ng-nest/compare/14.0.1...14.0.2) (2022-07-12)
 
 
