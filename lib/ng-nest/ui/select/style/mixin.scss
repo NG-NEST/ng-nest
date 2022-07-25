@@ -31,6 +31,7 @@
       }
       > x-input {
         margin-top: 0.125rem;
+        width: 5rem;
         .x-input {
           @include input-size('big', $--x-height-large, 0 $--x-padding-large);
           @include input-size('large', $--x-height-medium, 0 $--x-padding-medium);
@@ -64,7 +65,7 @@
     line-height: $height;
     padding: 0 $padding;
     > .x-icon {
-      right: -$padding/2;
+      right: calc(-#{$padding} / 2);
     }
   }
 }

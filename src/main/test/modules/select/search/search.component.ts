@@ -35,7 +35,7 @@ export class ExSearchComponent {
   modelMultipleMore = [];
 
   dataMultipleMoreTpl = [...this.default];
-  modelMultipleMoreTpl = [];
+  modelMultipleMoreTpl = ['AAAA', 'BBBB', 'CCCC'];
 
   change(_event: any) {
     console.log(_event);

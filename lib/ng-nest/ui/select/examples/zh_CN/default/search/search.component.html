@@ -1,11 +1,52 @@
 <x-row>
   <x-col>
-    <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" search [caseSensitive]="false"></x-select>
+    <x-select label="搜索" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" search [caseSensitive]="false"></x-select>
   </x-col>
-</x-row>
-
-<x-row>
   <x-col>
-    <x-select [data]="dataAsync" [(ngModel)]="modelAsync" (ngModelChange)="change($event)" search async></x-select>
+    <x-select label="异步搜索" [data]="dataAsync" [(ngModel)]="modelAsync" (ngModelChange)="change($event)" search async></x-select>
+  </x-col>
+  <x-col>
+    <x-select
+      label="搜索多选"
+      [data]="dataMultiple"
+      [(ngModel)]="modelMultiple"
+      (ngModelChange)="change($event)"
+      search
+      multiple
+    ></x-select>
+  </x-col>
+  <x-col>
+    <x-select
+      label="搜索多选(异步)"
+      [data]="dataAsync"
+      [(ngModel)]="modelMultipleAsync"
+      (ngModelChange)="change($event)"
+      search
+      multiple
+      async
+    ></x-select>
+  </x-col>
+  <x-col>
+    <x-select
+      label="搜索多选(更多)"
+      [maxTagCount]="3"
+      [data]="dataMultipleMore"
+      [(ngModel)]="modelMultipleMore"
+      (ngModelChange)="change($event)"
+      multiple
+    ></x-select>
+  </x-col>
+  <x-col>
+    <x-select
+      label="搜索多选(更多自定义模版)"
+      [maxTagCount]="3"
+      [maxTagContent]="maxTagContentTpl"
+      [data]="dataMultipleMoreTpl"
+      [(ngModel)]="modelMultipleMoreTpl"
+      (ngModelChange)="change($event)"
+      search
+      multiple
+    ></x-select>
+    <ng-template #maxTagContentTpl let-surplus="$surplus" let-total="$total">更多{{ surplus }},共{{ total }}</ng-template>
   </x-col>
 </x-row>

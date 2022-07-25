@@ -21,6 +21,7 @@
     border-radius: 50%;
     cursor: pointer;
     padding: 0.0625rem;
+    width: 0.8125rem;
     font-size: calc(#{$--x-font-size-small} + 0.0625rem);
     transition: 0.3s;
     &:hover {

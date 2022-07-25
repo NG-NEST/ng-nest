@@ -104,6 +104,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
   composition: boolean = false;
+  multipleInputSizeChange = new Subject<number>();
   private _unSubject = new Subject<void>();
   private _resizeObserver!: ResizeObserver;
 
@@ -192,6 +193,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.closeSubject.next();
       }
     });
+    this.multipleInputSizeChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
+      if (this.multipleInput) {
+        const input = this.multipleInput?.elementRef.nativeElement;
+        this.renderer.setStyle(input, 'width', `${x}px`);
+      }
+    });
   }
 
   setMutipleInputSize() {
@@ -228,8 +235,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
     this.renderer.setStyle(this.inputCom.inputRef.nativeElement, 'height', `${height}px`);
     if (this.multipleInput) {
-      const input = this.multipleInput?.elementRef.nativeElement;
-      this.renderer.setStyle(input, 'width', `${clientWidth - lastRowTagsWidth - marginLeft}px`);
+      this.multipleInputSizeChange.next(clientWidth - lastRowTagsWidth - marginLeft);
     }
     this.portal?.overlayRef?.updatePosition();
   }
@@ -316,6 +322,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayNodes = [];
           this.displayMore = '';
           this.valueTplContext.$node = null;
+          this.setDisplayNodes();
         } else {
           let ids = [];
           let selected = [];
@@ -517,8 +524,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.value.splice(this.value.indexOf(node.id), 1);
         }
       }
-      // const input = this.multipleInput.elementRef.nativeElement;
-      // this.renderer.setStyle(input, 'display', 'none');
+      if (this.multipleInput) {
+        const input = this.multipleInput.elementRef.nativeElement;
+        this.renderer.setStyle(input, 'width', '2rem');
+      }
       if (this.search && this.multipleSearchValue !== '') {
         this.multipleSearchValue = '';
         this.inputChange.next('');
