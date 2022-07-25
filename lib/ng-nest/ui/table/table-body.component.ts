@@ -108,8 +108,10 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
           const ele = x.srcElement as HTMLElement;
           this.table.scrollTop = ele.scrollTop;
           this.table.scrollLeft = ele.scrollLeft;
-          if (ele.scrollLeft >= 0 && this.table.thead) {
-            this.table.thead.nativeElement.scrollLeft = this.table.scrollLeft;
+          if (ele.scrollLeft >= 0 && this.table.thead.length > 0) {
+            for (let thead of this.table.thead) {
+              thead.nativeElement.scrollLeft = this.table.scrollLeft;
+            }
           }
           this.table.scrollLeftMax = ele.scrollLeft + ele.clientWidth === ele.scrollWidth;
           this.table.cdr.detectChanges();
@@ -179,8 +181,10 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   setAdaptionHeight() {
     if ((this.adaptionHeight as number) > 0) {
       const captionHeight = this.table.tcaption?.nativeElement.clientHeight || 0;
-      const headHeight = this.table.thead?.nativeElement.clientHeight || 0;
-
+      let headHeight = 0;
+      for (let thead of this.table.thead) {
+        headHeight += thead.nativeElement.clientHeight;
+      }
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
       console.log(captionHeight, footHeight);
       const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;

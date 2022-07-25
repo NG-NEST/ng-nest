@@ -56,6 +56,11 @@
         }
       }
     }
+    &.x-table-head-bottom {
+      > tr > th {
+        border-bottom: none;
+      }
+    }
   }
   > tbody {
     display: block;
@@ -217,7 +222,6 @@
   &-sticky-right-scroll {
     position: absolute;
     right: 0;
-    top: 0;
     min-height: 42px;
     background-color: $--x-background;
     z-index: 1;

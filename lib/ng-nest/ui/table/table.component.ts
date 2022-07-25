@@ -34,11 +34,18 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
-  get getStickyScrollTop() {
+  get getStickyTopScrollTop() {
     return this.tcaption ? this.tcaption.nativeElement.offsetHeight : 0;
   }
+  get getStickyBottomScrollTop() {
+    let top = 0;
+    if (this.footer && this.tfoot) {
+      top += this.tfoot?.nativeElement.clientHeight + 1;
+    }
+    return top;
+  }
   tcaption!: ElementRef;
-  thead!: ElementRef;
+  thead: ElementRef[] = [];
   tfoot!: ElementRef;
   virtualBody!: CdkVirtualScrollViewport;
   headChange!: () => void;
@@ -131,8 +138,20 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     return rights[0].id === column.id;
   }
 
-  hasStickyRight() {
-    return this.columns.some((x) => Number(x.right) >= 0);
+  hasStickyTopRight() {
+    return (
+      this.showHeader &&
+      (this.headerPosition === 'top' || this.headerPosition === 'top-bottom') &&
+      this.columns.some((x) => Number(x.right) >= 0)
+    );
+  }
+
+  hasStickyBottomRight() {
+    return (
+      this.showHeader &&
+      (this.headerPosition === 'bottom' || this.headerPosition === 'top-bottom') &&
+      this.columns.some((x) => Number(x.right) >= 0)
+    );
   }
 
   getIndex(index: number) {

@@ -16,13 +16,14 @@
     <ng-container *xOutlet="header">{{ header }}</ng-container>
   </caption>
   <x-table-head
-    *ngIf="showHeader"
+    *ngIf="showHeader && (headerPosition === 'top' || headerPosition === 'top-bottom')"
     [columns]="columns"
     [rowHeight]="rowHeight"
     [columnTpl]="headColumnTpl"
     [scrollYWidth]="scrollYWidth"
     [scrollXWidth]="scrollXWidth"
     [cellConfig]="cellConfig?.thead"
+    [position]="'top'"
     [table]="this"
   ></x-table-head>
   <x-table-body
@@ -47,13 +48,30 @@
     (activatedRowChange)="activatedRowChange.emit($event)"
     [table]="this"
   ></x-table-body>
-  <ng-container *ngIf="footer">
-    <x-table-foot [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
-  </ng-container>
+  <x-table-head
+    *ngIf="showHeader && (headerPosition === 'bottom' || headerPosition === 'top-bottom')"
+    [columns]="columns"
+    [rowHeight]="rowHeight"
+    [columnTpl]="headColumnTpl"
+    [scrollYWidth]="scrollYWidth"
+    [scrollXWidth]="scrollXWidth"
+    [cellConfig]="cellConfig?.thead"
+    [position]="'bottom'"
+    [table]="this"
+  ></x-table-head>
+  <x-table-foot *ngIf="footer" [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
   <div
-    *ngIf="hasStickyRight()"
+    *ngIf="hasStickyTopRight()"
     class="x-table-sticky-right-scroll"
-    [style.top.px]="getStickyScrollTop"
+    [style.top.px]="getStickyTopScrollTop"
+    [style.width.px]="scrollYWidth"
+    [style.height.px]="getRowHeight"
+    [style.min-height.px]="getRowHeight"
+  ></div>
+  <div
+    *ngIf="hasStickyBottomRight()"
+    class="x-table-sticky-right-scroll"
+    [style.bottom.px]="getStickyBottomScrollTop"
     [style.width.px]="scrollYWidth"
     [style.height.px]="getRowHeight"
     [style.min-height.px]="getRowHeight"

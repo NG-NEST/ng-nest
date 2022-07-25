@@ -19,11 +19,21 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { ExScrollComponent } from './scroll/scroll.component';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { ExFixComponent } from './fix/fix.component';
+import { ExHeadComponent } from './head/head.component';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XTableModule, XButtonModule, XIconModule, XDialogModule, XDescriptionModule, XLinkModule],
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    XTableModule,
+    XButtonModule,
+    XIconModule,
+    XDialogModule,
+    XDescriptionModule,
+    XLinkModule
+  ],
   declarations: [
     TeTableComponent,
     ExConfigComponent,
@@ -33,7 +43,8 @@ const routers = [{ path: '', component: TeTableComponent }];
     ExAdaptionComponent,
     ExHeaderComponent,
     ExScrollComponent,
-    ExFixComponent
+    ExFixComponent,
+    ExHeadComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })

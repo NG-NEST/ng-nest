@@ -60,6 +60,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
   /**
+   * @zh_CN 列头显示位置
+   * @en_US Whether to display the column headers
+   */
+  @Input() @XWithConfig<XTableHeaderPosition>(X_CONFIG_NAME, 'top') headerPosition!: XTableHeaderPosition;
+  /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
@@ -480,6 +485,12 @@ export interface XTableCell {
 export type XColumnType = 'label' | 'index' | 'checkbox' | 'expand';
 
 /**
+ * @zh_CN 列头显示位置
+ * @en_US Line head display position
+ */
+export type XTableHeaderPosition = 'top' | 'bottom' | 'top-bottom';
+
+/**
  * @zh_CN 分页器位置
  * @en_US Paging position
  */
@@ -533,6 +544,11 @@ export class XTableHeadProperty extends XProperty {
    * @en_US Cell merge rules
    */
   @Input() cellConfig?: XTableCellConfigRule;
+  /**
+   * @zh_CN 显示的位置
+   * @en_US Display position
+   */
+  @Input() position?: string;
 }
 
 /**

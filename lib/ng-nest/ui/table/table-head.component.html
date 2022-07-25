@@ -1,4 +1,4 @@
-<thead #thead [ngStyle]="theadStyle">
+<thead #thead [ngStyle]="theadStyle" [class.x-table-head-top]="position === 'top'" [class.x-table-head-bottom]="position === 'bottom'">
   <ng-container *ngIf="cellConfig; else columnsTpl">
     <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns" [style.min-height.px]="getRowHeight">
       <th
