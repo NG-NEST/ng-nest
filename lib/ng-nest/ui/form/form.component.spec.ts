@@ -249,8 +249,8 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 @Component({
   selector: 'test-x-form',
   template: `
-    <x-button (click)="onDisabled()">禁用整个表单</x-button>
-    <x-form [controls]="controls" [disabled]="disabled"></x-form>
+    <!-- <x-button (click)="onDisabled()">禁用整个表单</x-button>
+    <x-form [controls]="controls" [disabled]="disabled"></x-form> -->
   `,
   providers: [UsersServiceTest, TreeServiceTest]
 })
@@ -842,17 +842,17 @@ class TestXFormComponent {
 
 @Component({
   selector: 'test-x-form-row',
-  template: `<x-form
-      #form
-      [controls]="controls"
-      direction="row"
-      labelSuffix=":"
-      width="28rem"
-      labelWidth="8rem"
-      labelAlign="end"
-      span="20"
-    ></x-form>
-    <x-button (click)="submit()">提交</x-button><x-button (click)="getMessages()">获取验证信息</x-button>`
+  // template: `<x-form
+  //     #form
+  //     [controls]="controls"
+  //     direction="row"
+  //     labelSuffix=":"
+  //     width="28rem"
+  //     labelWidth="8rem"
+  //     labelAlign="end"
+  //     span="20"
+  //   ></x-form>
+  //   <x-button (click)="submit()">提交</x-button><x-button (click)="getMessages()">获取验证信息</x-button>`
 })
 class TestXFormRowComponent {
   controls: XControl[] = [
@@ -956,7 +956,7 @@ class TestXFormRowComponent {
 
 @Component({
   selector: 'test-x-form-title',
-  template: `<x-form [controls]="controls" direction="row" span="8" space="1.5"></x-form>`
+  // template: `<x-form [controls]="controls" direction="row" span="8" space="1.5"></x-form>`
 })
 class TestXFormTitleComponent {
   controls: XControl[] = [
