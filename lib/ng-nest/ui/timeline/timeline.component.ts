@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XTimelinePrefix, XTimelineNode, XTimelineProperty } from './timeline.property';
-import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService, XClearClass } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -35,13 +35,20 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { data } = changes;
+    const { data, mode } = changes;
     XIsChange(data) && this.setData();
+    XIsChange(mode) && this.setClassMap();
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    XClearClass(this.classMap);
+    this.classMap[`${XTimelinePrefix}-${this.mode}`] = this.mode ? true : false;
+    this.cdr.detectChanges();
   }
 
   trackByNode(_index: number, item: XTimelineNode) {

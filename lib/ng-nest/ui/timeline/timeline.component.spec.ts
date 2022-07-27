@@ -10,14 +10,16 @@ import { XCardModule } from '@ng-nest/ui/card';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { FormsModule } from '@angular/forms';
 
 describe(XTimelinePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XTimelineModule, XCardModule, XTimeAgoModule],
+      imports: [BrowserAnimationsModule, FormsModule, XThemeModule, XTimelineModule, XCardModule, XTimeAgoModule, XRadioModule],
       declarations: [TestXTimelineComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimelineComponent>;
     let timeline: DebugElement;

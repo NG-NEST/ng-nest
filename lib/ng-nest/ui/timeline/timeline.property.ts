@@ -34,6 +34,11 @@ export class XTimelineProperty extends XProperty {
    * @en_US Content template
    */
   @Input() wrapper?: XTemplate;
+  /**
+   * @zh_CN 时间轴的相对位置
+   * @en_US Content and timeline relative position
+   */
+  @Input() @XWithConfig<XTimelineMode>(X_CONFIG_NAME, 'left') mode?: XTimelineMode;
 }
 
 /**
@@ -87,3 +92,9 @@ export interface XTimelineNode extends XIdentityProperty {
    */
   [property: string]: any;
 }
+
+/**
+ * @zh_CN 时间轴的相对位置
+ * @en_US Content and timeline relative position
+ */
+export type XTimelineMode = 'left' | 'right' | 'alternate';

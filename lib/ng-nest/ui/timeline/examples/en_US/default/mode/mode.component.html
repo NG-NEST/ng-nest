@@ -1,0 +1,14 @@
+<div class="row">
+  <x-radio label="Timeline" direction="row" [data]="modeData" [(ngModel)]="mode"></x-radio>
+</div>
+<div class="row" [style.margin-top.rem]="1">
+  <x-timeline [data]="data" [mode]="mode" [wrapper]="wrapperTpl"></x-timeline>
+  <ng-template #wrapperTpl let-node="$node">
+    <div>
+      <span>{{ node.time | xTimeAgo }}</span>
+      <br />
+      <span>{{ node.label }}</span>
+      <p>{{ node.content }}</p>
+    </div>
+  </ng-template>
+</div>
