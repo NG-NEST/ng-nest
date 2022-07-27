@@ -122,7 +122,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   onSelectAll(_isSelectAll: boolean) {
-    this.nodeEmit(this.value);
+    this.nodeEmit(null, this.value);
   }
 
   onActive(num: number) {

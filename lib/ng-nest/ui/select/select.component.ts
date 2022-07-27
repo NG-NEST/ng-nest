@@ -510,19 +510,23 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   nodeClick(node: XSelectNode, value?: XSelectNode[] | (string | number)[]) {
     if (this.multiple) {
-      if (XIsObjectArray(value)) {
-        if (node.selected) {
-          this.value.push(node);
-        } else {
-          let inx = this.value.findIndex((x: XSelectNode) => x.id === node.id);
-          this.value.splice(inx, 1);
+      if (node) {
+        if (XIsObjectArray(value)) {
+          if (node.selected) {
+            this.value.push(node);
+          } else {
+            let inx = this.value.findIndex((x: XSelectNode) => x.id === node.id);
+            this.value.splice(inx, 1);
+          }
+        } else if (XIsArray(value)) {
+          if (node.selected) {
+            this.value.push(node.id);
+          } else {
+            this.value.splice(this.value.indexOf(node.id), 1);
+          }
         }
-      } else if (XIsArray(value)) {
-        if (node.selected) {
-          this.value.push(node.id);
-        } else {
-          this.value.splice(this.value.indexOf(node.id), 1);
-        }
+      } else {
+        this.value = value;
       }
       if (this.multipleInput) {
         const input = this.multipleInput.elementRef.nativeElement;
@@ -549,6 +553,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.onChange) this.onChange(this.value);
     this.formControlValidator();
     this.cdr.detectChanges();
+  }
+
+  selectAllNodes(value: XSelectNode[] | (string | number)[]) {
+    this.value = value;
   }
 
   setPlacement() {
