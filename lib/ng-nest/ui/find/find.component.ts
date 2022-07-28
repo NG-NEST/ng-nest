@@ -274,13 +274,14 @@ export class XFindComponent extends XFindProperty implements OnInit {
       this.rowMultiple(data);
     } else {
       this.temp = data;
-      this.sure();
       this.dialogVisible = false;
+      this.sure();
     }
   }
 
   rowMultiple(data: XTableRow) {
     if (typeof this.temp === 'undefined') this.temp = [];
+    // data['$checked'] = !data['$checked'];
     if (data['$checked']) {
       this.temp = [...this.temp, data];
     } else {

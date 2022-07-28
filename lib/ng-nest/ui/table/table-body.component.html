@@ -34,7 +34,7 @@
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
       [style.height.px]="getRowHeight"
       [style.min-height.px]="getRowHeight"
-      (click)="rowClick(row)"
+      (click)="rowClick($event, row)"
     >
       <!-- rowHeight 为 0 的时候，index 下标获取不到 -->
       <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: getIndex(index, row) }"></ng-container>
@@ -48,7 +48,7 @@
       [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
       [style.height.px]="getRowHeight"
       [style.min-height.px]="getRowHeight"
-      (click)="rowClick(row)"
+      (click)="rowClick($event, row)"
     >
       <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
     </tr>

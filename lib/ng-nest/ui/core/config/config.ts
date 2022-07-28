@@ -506,6 +506,7 @@ export interface XTableConfig {
   itemSize?: XNumber;
   bordered?: XNumber;
   allowSelectRow?: XBoolean;
+  allowCheckRow?: XBoolean;
   rowSize?: XSize;
   showPagination?: XBoolean;
   treeTable?: XBoolean;

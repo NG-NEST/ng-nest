@@ -186,7 +186,6 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
         headHeight += thead.nativeElement.clientHeight;
       }
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
-      console.log(captionHeight, footHeight);
       const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;
       this.bodyHeight =
         Number(this.docPercent) * this.doc.documentElement.clientHeight -
@@ -204,9 +203,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     }
   }
 
-  rowClick(row: XTableRow) {
+  rowClick(event: Event, row: XTableRow) {
     this.activatedRow = row;
-    if (this.allowSelectRow && this.table.rowChecked) {
+    if (this.table.allowCheckRow && this.table.rowChecked) {
       if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
         row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
         this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked);

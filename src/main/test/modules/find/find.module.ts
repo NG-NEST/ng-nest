@@ -6,11 +6,12 @@ import { TeFindComponent } from './find.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ExDefaultComponent } from './default/default.component';
 
 const routers = [{ path: '', component: TeFindComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XFindModule, XLayoutModule],
-  declarations: [TeFindComponent, ExTreeTableComponent]
+  declarations: [TeFindComponent, ExDefaultComponent, ExTreeTableComponent]
 })
 export class TeFindModule {}

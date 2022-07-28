@@ -84,6 +84,7 @@
         [query]="tableQuery"
         [total]="tableTotal"
         [allowSelectRow]="!multiple"
+        [allowCheckRow]="multiple"
         [checkedRow]="tableCheckedRow"
         [loading]="tableLoading"
         (indexChange)="tableIndexChange.emit($event)"

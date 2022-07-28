@@ -95,10 +95,15 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Output() sortChange = new EventEmitter<XSort[]>();
   /**
-   * @zh_CN 允许行点击选中
+   * @zh_CN 允许行点击选中当前行
    * @en_US Allow row click to select
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowSelectRow!: XBoolean;
+  /**
+   * @zh_CN 允许行点击选中 checkbox
+   * @en_US Allow lines to click checkbox
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowCheckRow!: XBoolean;
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
