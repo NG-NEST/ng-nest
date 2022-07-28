@@ -11,14 +11,15 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XTabsPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTabsModule, XRadioModule, XIconModule],
+      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTabsModule, XRadioModule, XIconModule, XButtonModule],
       declarations: [TestXTabsComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTabsComponent>;
     let debugElement: DebugElement;

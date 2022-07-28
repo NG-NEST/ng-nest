@@ -48,7 +48,21 @@
   &-left {
     flex-direction: row;
   }
-
+  &-actions {
+    display: flex;
+    align-items: center;
+  }
+  &-card {
+    .x-tabs-actions {
+      border-top: $--x-border-base;
+      border-bottom: $--x-border-base;
+    }
+  }
+  &-tag {
+    .x-tabs-actions {
+      border-bottom: $--x-border-base;
+    }
+  }
   @include block(top, bottom, bottom-left-radius, bottom-right-radius);
   @include block(right, left, top-left-radius, bottom-left-radius);
   @include block(bottom, top, top-left-radius, top-right-radius);

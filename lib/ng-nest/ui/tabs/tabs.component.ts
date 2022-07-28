@@ -9,11 +9,13 @@ import {
   ViewChild,
   ViewEncapsulation,
   SimpleChange,
-  QueryList
+  QueryList,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize } from '@ng-nest/ui/core';
+import { Subject, takeUntil, distinctUntilChanged } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 
@@ -28,6 +30,8 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   sliderOption = new XSliderProperty();
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
+  private _tabsContentChange = new Subject<string>();
+  private _resizeObserver!: ResizeObserver;
 
   get activeIndex() {
     return Number(this.activatedIndex);
@@ -36,8 +40,9 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   @ContentChildren(XTabComponent) listTabs!: QueryList<XTabComponent>;
 
   @ViewChild(XSliderComponent, { static: false }) slider!: XSliderComponent;
+  @ViewChild('actionsRef', { static: false }) actionsRef!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService, public renderer: Renderer2) {
     super();
   }
 
@@ -45,6 +50,8 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     this.setClassMap();
     this.setSliderOption();
     this.setNodeJustify();
+    this.setSubject();
+    this.setData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,10 +65,38 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
+  }
+
+  ngAfterContentChecked(): void {
+    if (this.tabs.length !== this.listTabs.length) {
+      this._tabsContentChange.next(`${this.tabs.length}-${this.listTabs.length}`);
+    }
   }
 
   ngAfterViewInit() {
-    this.setData();
+    this.setSliderWidth();
+  }
+
+  setSliderWidth() {
+    if (this.slider && this.actionsRef) {
+      XResize(this.actionsRef.nativeElement)
+        .pipe(takeUntil(this._unSubject))
+        .subscribe((x) => {
+          this._resizeObserver = x.resizeObserver;
+          this.renderer.setStyle(
+            this.slider.elementRef.nativeElement,
+            'width',
+            `calc(100% - ${this.actionsRef.nativeElement.clientWidth}px)`
+          );
+        });
+    }
+  }
+
+  setSubject() {
+    this._tabsContentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
+      this.setData();
+    });
   }
 
   activatedChange(index: number) {
@@ -102,24 +137,26 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   private setData() {
+    let data = [];
     if (XIsEmpty(this.data)) {
       if (this.listTabs && this.listTabs.length > 0) {
         let _data: any[] = [];
-        this.listTabs.forEach((x, index) => {
-          _data = [...(_data as XTabsNode[]), { id: index + 1, label: x.label, disabled: x.disabled }];
+        this.listTabs.forEach((x) => {
+          _data = [...(_data as XTabsNode[]), { id: x.label, label: x.label, disabled: x.disabled }];
         });
-        this.data = _data;
+        data = _data;
       } else {
+        data = [];
         return;
       }
     }
-    XSetData<XTabsNode>(this.data, this._unSubject).subscribe((x) => {
+    XSetData<XTabsNode>(data, this._unSubject).subscribe((x) => {
       this.tabs = x;
-      if (!this.sliderHidden) {
+      if (!this.sliderHidden && !this.actionTpl) {
         this.sliderHidden = this.tabs.length <= 1;
       }
       this.sliderOption.data = this.tabs;
-      this.setFirstAndLast();
+      this.setActivatedIndex();
       this.cdr.detectChanges();
     });
   }

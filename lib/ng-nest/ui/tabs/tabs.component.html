@@ -12,6 +12,9 @@
       [activatedIndex]="sliderOption.activatedIndex"
       (indexChange)="activatedChange($event)"
     ></x-slider>
+    <div #actionsRef class="x-tabs-actions" *ngIf="actionTpl">
+      <ng-container *ngTemplateOutlet="actionTpl"></ng-container>
+    </div>
   </div>
   <div #content class="x-tabs-contents" [class.x-tabs-contents-animated]="animated && (layout === 'top' || layout === 'bottom')">
     <x-tab-content

@@ -6,10 +6,11 @@ import { XSliderModule } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 import { XTabContentComponent } from './tab-content.component';
 import { XTabsProperty, XTabProperty } from './tabs.property';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 @NgModule({
   declarations: [XTabsComponent, XTabContentComponent, XTabComponent, XTabsProperty, XTabProperty],
   exports: [XTabsComponent, XTabContentComponent, XTabComponent],
-  imports: [CommonModule, XSliderModule, XIconModule]
+  imports: [CommonModule, XSliderModule, XButtonModule, XIconModule]
 })
 export class XTabsModule {}

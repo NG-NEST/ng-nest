@@ -382,6 +382,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setDisplayNodes() {
+    if (!this.multiple || !this.search) return;
     const maxlen = this.selectedNodes.length;
     let len = 0;
     if (!this.maxTagCount) {

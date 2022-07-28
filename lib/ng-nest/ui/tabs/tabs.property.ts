@@ -72,10 +72,15 @@ export class XTabsProperty extends XProperty {
    */
   @Input() nodeJustify?: XJustify;
   /**
-   * @zh_CN 隐藏标签栏
-   * @en_US Hide tab bar
+   * @zh_CN 隐藏标签栏，只有一个标签页时候默认隐藏（存在自定义操作模版的时候不会）
+   * @en_US Hide the label bar, there is only one tab, the default hidden
    */
   @Input() @XInputBoolean() sliderHidden?: XBoolean;
+  /**
+   * @zh_CN 标签栏上的自定义操作模版
+   * @en_US Custom template on the label bar
+   */
+  @Input() actionTpl?: TemplateRef<void>;
   /**
    * @zh_CN 标签切换变化的事件
    * @en_US Label switching event
