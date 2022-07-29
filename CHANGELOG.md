@@ -1,3 +1,19 @@
+## [14.0.4](https://github.com/NG-NEST/ng-nest/compare/14.0.3...14.0.4) (2022-07-28)
+
+
+### Bug Fixes
+
+* **module:find:** fix table multiple row click exception ([f1c1905](https://github.com/NG-NEST/ng-nest/commit/f1c1905456d1df242f5d76f5268db3f650510194)), closes [#213](https://github.com/NG-NEST/ng-nest/issues/213)
+* **module:select:** fix multiple select all ([db6e272](https://github.com/NG-NEST/ng-nest/commit/db6e27298d23cfc9aa3ac8a89e23044ea34b9027)), closes [#212](https://github.com/NG-NEST/ng-nest/issues/212)
+
+
+### Features
+
+* **module:tabs:** add action template ([b425b5e](https://github.com/NG-NEST/ng-nest/commit/b425b5e0fca3a08ff35ebeb4c990dc6041644d02)), closes [#151](https://github.com/NG-NEST/ng-nest/issues/151)
+* **module:timeline:** add mode orientation ([a2aebf3](https://github.com/NG-NEST/ng-nest/commit/a2aebf382e2634b097d92b80c859b47e46f626a5)), closes [#156](https://github.com/NG-NEST/ng-nest/issues/156)
+
+
+
 ## [14.0.3](https://github.com/NG-NEST/ng-nest/compare/14.0.2...14.0.3) (2022-07-25)
 
 
