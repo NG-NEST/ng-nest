@@ -462,7 +462,7 @@ class TestXTableWidthDragComponent {
         [(size)]="size"
         [total]="total"
         [bodyHeight]="420"
-        [adaptionHeight]="104"
+        [adaptionHeight]="139"
         [docPercent]="0.8"
         (indexChange)="indexChange($event)"
         (sortChange)="sortChange($event)"
