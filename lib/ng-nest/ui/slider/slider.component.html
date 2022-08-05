@@ -2,7 +2,12 @@
   <x-link *ngIf="showArrow" [disabled]="offset === 0" class="x-slider-arrow-left" icon="fto-chevron-left" (click)="scrollPrev()"></x-link>
   <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
     <ul #sliderNodes [style.transform]="transform">
-      <li *ngFor="let node of nodes; index as i; trackBy: trackByNode" [class.x-slider-activated]="getActivated(i)" [class.x-slider-disabled]="node.disabled" [title]="node.label">
+      <li
+        *ngFor="let node of nodes; index as i; trackBy: trackByNode"
+        [class.x-slider-activated]="getActivated(i)"
+        [class.x-slider-disabled]="node.disabled"
+        [title]="node.label"
+      >
         <x-link (click)="nodeClick(node, i)" [ngClass]="nodeClassMap">
           <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
           <ng-container *ngIf="!nodeTpl">
@@ -20,4 +25,15 @@
     icon="fto-chevron-right"
     (click)="scrollNext()"
   ></x-link>
+  <x-dropdown
+    *ngIf="showExpand && showArrow && layout === 'row'"
+    class="x-slider-all"
+    [data]="nodes"
+    trigger="click"
+    [(activatedId)]="activatedId"
+    (nodeClick)="dropdownClick($event)"
+    [portalMaxHeight]="expandMaxHeight"
+  >
+    <x-button icon="fto-list" onlyIcon [size]="size"> </x-button>
+  </x-dropdown>
 </div>

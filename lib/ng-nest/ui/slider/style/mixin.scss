@@ -44,7 +44,7 @@
           height: 0;
           border-radius: $--x-border-radius;
           background-color: rgba(0, 0, 0, 0.05);
-          border: 0.0625rem solid $--x-border;
+          // border: 0.0625rem solid $--x-border;
           &-animated {
             transition: width $--x-animation-duration-base, left $--x-animation-duration-base, height $--x-animation-duration-base,
               top $--x-animation-duration-base;

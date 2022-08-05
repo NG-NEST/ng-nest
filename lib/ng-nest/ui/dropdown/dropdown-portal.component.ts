@@ -48,6 +48,9 @@ export class XDropdownPortalComponent implements OnDestroy {
   timeoutHide: any;
   timespan = 200;
   minWidth!: string | number;
+  maxWidth!: string | number;
+  minHeight!: string | number;
+  maxHeight!: string | number;
   portalPlacement!: XPositionTopBottom;
   childAnimating = false;
   activatedId!: any;
@@ -137,6 +140,9 @@ export class XDropdownPortalComponent implements OnDestroy {
     Object.assign(componentRef.instance, {
       data: this.node?.children,
       minWidth: this.minWidth,
+      maxWidth: this.maxWidth,
+      minHeight: this.minHeight,
+      maxHeight: this.maxHeight,
       close: () => this.closePortal(),
       placement: this.portalPlacement,
       positionChange: this.portalPositionChange,

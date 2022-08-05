@@ -482,6 +482,7 @@ export interface XSkeletonConfig {}
 export interface XSliderConfig {
   animated?: XBoolean;
   size?: XSize;
+  showExpand?: XBoolean;
 }
 
 export interface XSliderSelectConfig {}

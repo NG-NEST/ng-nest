@@ -1,4 +1,11 @@
-<div #dropdownPortal class="x-dropdown-portal">
+<div
+  #dropdownPortal
+  class="x-dropdown-portal"
+  [style.minWidth]="minWidth"
+  [style.maxWidth]="maxWidth"
+  [style.minHeight]="minHeight"
+  [style.maxHeight]="maxHeight"
+>
   <x-list
     [data]="data"
     (nodeClick)="nodeClick($event)"

@@ -46,6 +46,21 @@ export class XDropdownProperty extends XProperty {
    */
   @Input() portalMinWidth?: string | number;
   /**
+   * @zh_CN 弹框的最大宽度
+   * @en_US Portal max-width
+   */
+  @Input() portalMaxWidth?: string | number;
+  /**
+   * @zh_CN 弹框的最小高度
+   * @en_US Portal min-height
+   */
+  @Input() portalMinHeight?: string | number;
+  /**
+   * @zh_CN 弹框的最大高度
+   * @en_US Portal max-height
+   */
+  @Input() portalMaxHeight?: string | number;
+  /**
    * @zh_CN hover 延迟触发时间，只有 trigger 为 'hover' 生效
    * @en_US Hover delay trigger time, only trigger is the 'hover'
    */

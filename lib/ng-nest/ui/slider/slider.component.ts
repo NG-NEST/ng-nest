@@ -33,6 +33,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   scrollClassMap: XClassMap = {};
   nodeClassMap: XClassMap = {};
   showArrow = false;
+  activatedId = '';
   private _offset: number = 0;
   get offset(): number {
     return this._offset;
@@ -123,13 +124,20 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     this.setDirection(index, Number(this.activatedIndex));
     this.activatedIndex = index;
     this.activated = node;
+    this.activatedId = node.id;
     this.setHighlight();
     this.setTranslate();
     this.indexChange.emit(index);
     this.nodeChange.emit(node);
   }
 
+  dropdownClick(node: XSliderNode) {
+    const index = this.nodes.indexOf(node);
+    this.nodeClick(node, index);
+  }
+
   scrollPrev() {
+    if (this.offset === 0) return;
     const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName}`];
     const currentOffset = this.offset;
     if (!currentOffset) return;
@@ -138,6 +146,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   scrollNext() {
+    if (this.offset === this.maxOffset) return;
     const sliderSize = this.sliderNodes.nativeElement[`offset${this.sizeName}`];
     const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName}`];
     const currentOffset = this.offset;
@@ -203,6 +212,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   setActivated() {
     if (this.nodes.length > 0) {
       this.activated = this.nodes[Number(this.activatedIndex)];
+      this.activatedId = this.activated.id;
     }
     this.setHighlight();
     this.setTranslate();
