@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { ExActionComponent } from './action/action.component';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { ExExpandComponent } from './expand/expand.component';
 
 const routers = [{ path: '', component: TeTabsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XTabsModule, XLayoutModule, XButtonModule, XIconModule],
-  declarations: [TeTabsComponent, ExDefaultComponent, ExActionComponent]
+  declarations: [TeTabsComponent, ExDefaultComponent, ExActionComponent, ExExpandComponent]
 })
 export class TeTabsModule {}

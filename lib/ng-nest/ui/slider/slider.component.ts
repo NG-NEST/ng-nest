@@ -190,9 +190,13 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
         offset = currentOffset + (moveRect.bottom - sliderRect.bottom);
       }
     }
-    this.maxOffset = Math.floor(maxOffset);
-    offset = Math.max(offset, 0);
-    this.offset = Math.min(offset, maxOffset);
+    this.maxOffset = Math.ceil(maxOffset);
+    offset = Math.max(Math.ceil(offset), 0);
+    if ([this.maxOffset + 1, this.maxOffset - 1].includes(offset)) {
+      this.offset = this.maxOffset;
+    } else {
+      this.offset = Math.min(offset, this.maxOffset);
+    }
   }
 
   sizeChecked() {
@@ -212,7 +216,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   setActivated() {
     if (this.nodes.length > 0) {
       this.activated = this.nodes[Number(this.activatedIndex)];
-      this.activatedId = this.activated.id;
+      if (this.activated) {
+        this.activatedId = this.activated.id;
+      }
     }
     this.setHighlight();
     this.setTranslate();

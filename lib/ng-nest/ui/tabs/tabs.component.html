@@ -10,6 +10,8 @@
       [size]="size"
       [nodeTpl]="nodeTpl"
       [activatedIndex]="sliderOption.activatedIndex"
+      [showExpand]="showExpand"
+      [expandMaxHeight]="expandMaxHeight"
       (indexChange)="activatedChange($event)"
     ></x-slider>
     <div #actionsRef class="x-tabs-actions" *ngIf="actionTpl">

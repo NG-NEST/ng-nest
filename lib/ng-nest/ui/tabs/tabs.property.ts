@@ -82,6 +82,16 @@ export class XTabsProperty extends XProperty {
    */
   @Input() actionTpl?: TemplateRef<void>;
   /**
+   * @zh_CN 标签页显示不下的时候显示展开所有的按钮，布局为 top 、bottom 的时候生效
+   * @en_US When the node is not displayed, display all the buttons, and the arrangement is effective when the arrangement is row
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showExpand?: XBoolean;
+  /**
+   * @zh_CN 展开所有弹框的最大高度
+   * @en_US Expand the maximum height of all bomb frames
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') expandMaxHeight?: string;
+  /**
    * @zh_CN 标签切换变化的事件
    * @en_US Label switching event
    */
