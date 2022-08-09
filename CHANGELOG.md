@@ -1,4 +1,19 @@
-## [14.0.4](https://github.com/NG-NEST/ng-nest/compare/14.0.3...14.0.4) (2022-07-28)
+## [14.0.5](https://github.com/NG-NEST/ng-nest/compare/14.0.4...14.0.5) (2022-08-09)
+
+
+### Bug Fixes
+
+* **module:select:** fix select all invalid ([69a3cf7](https://github.com/NG-NEST/ng-nest/commit/69a3cf7ff5237dbb073bc7fc698c2f67f38eb72f))
+
+
+### Features
+
+* **module:slider:** add show expand ([3f6d4a0](https://github.com/NG-NEST/ng-nest/commit/3f6d4a05e05deb9ab340764e489b373861f3b3b0)), closes [#150](https://github.com/NG-NEST/ng-nest/issues/150)
+* **module:tabs:** add expand ([bacb16a](https://github.com/NG-NEST/ng-nest/commit/bacb16abdb7cdc6251a5238e540bf64986203f0a)), closes [#150](https://github.com/NG-NEST/ng-nest/issues/150)
+
+
+
+## [14.0.4](https://github.com/NG-NEST/ng-nest/compare/14.0.3...14.0.4) (2022-07-29)
 
 
 ### Bug Fixes

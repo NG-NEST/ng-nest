@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "14.0.4",
+  "version": "14.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
