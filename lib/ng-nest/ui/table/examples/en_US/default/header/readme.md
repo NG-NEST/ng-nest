@@ -1,6 +1,6 @@
 ---
 order: 12
-label: '页头页尾'
+label: 'Header'
 ---
 
-- 使用 `header`、`footer` 来指定页头页尾。
+- Ad the end of the page with the `header`, `footer`.

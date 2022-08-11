@@ -18,7 +18,7 @@ export class ExEditComponent {
     { id: 'name', label: 'user', flex: 1 },
     { id: 'position', label: 'position', flex: 1 },
     { id: 'status', label: 'enabled', width: 100 },
-    { id: 'actions', label: 'actions', width: 100, right: 0 }
+    { id: 'actions', label: 'actions', width: 100 }
   ];
 
   positionOptions = ['Technician', 'Sales', 'Manager', 'Director', 'Production'];

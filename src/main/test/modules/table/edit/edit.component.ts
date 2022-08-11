@@ -20,7 +20,7 @@ export class ExEditComponent {
     { id: 'name', label: '用户', flex: 1 },
     { id: 'position', label: '职位', flex: 1 },
     { id: 'status', label: '启用', width: 100 },
-    { id: 'actions', label: '操作', width: 100, right: 0 }
+    { id: 'actions', label: '操作', width: 100 }
   ];
 
   positionOptions = ['技术员', '销售', '经理', '总监', '生产员'];
