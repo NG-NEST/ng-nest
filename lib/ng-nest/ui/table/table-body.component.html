@@ -128,8 +128,10 @@
         ></x-button>
       </ng-container>
       <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }">
-        <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
-        {{ table.rowExpandNext && table.rowExpandNext.id === column.id ? 'x-table-body-level-' + row.level : '' }}
+        <ng-container *xOutlet="table.bodyTdTpl; context: { $column: column, $row: row, $index: table.getIndex(i) }">
+          <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
+          {{ table.rowExpandNext && table.rowExpandNext.id === column.id ? 'x-table-body-level-' + row.level : '' }}
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>

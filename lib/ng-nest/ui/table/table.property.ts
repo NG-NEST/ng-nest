@@ -75,15 +75,20 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Output() activatedRowChange = new EventEmitter<XTableRow>();
   /**
-   * @zh_CN 列头自定义模板
+   * @zh_CN 列头自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column header custom template
    */
   @Input() headColumnTpl: XTableTemplate = {};
   /**
-   * @zh_CN 列内容自定义模板
+   * @zh_CN 列内容自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column content custom template
    */
   @Input() bodyColumnTpl: XTableTemplate = {};
+  /**
+   * @zh_CN 单元格的自定义模板，优先级低于列内容自定义模板
+   * @en_US Custom template of cells
+   */
+  @Input() bodyTdTpl?: XTemplate;
   /**
    * @zh_CN 行条件样式
    * @en_US Row condition class

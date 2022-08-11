@@ -20,6 +20,11 @@ import { ExScrollComponent } from './scroll/scroll.component';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { ExFixComponent } from './fix/fix.component';
 import { ExHeadComponent } from './head/head.component';
+import { FormsModule } from '@angular/forms';
+import { XInputModule } from '@ng-nest/ui/input';
+import { ExEditComponent } from './edit/edit.component';
+import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XSelectModule } from '@ng-nest/ui/select';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
@@ -27,12 +32,16 @@ const routers = [{ path: '', component: TeTableComponent }];
   imports: [
     RouterModule.forChild(routers),
     CommonModule,
+    FormsModule,
     XTableModule,
     XButtonModule,
     XIconModule,
     XDialogModule,
     XDescriptionModule,
-    XLinkModule
+    XLinkModule,
+    XInputModule,
+    XSwitchModule,
+    XSelectModule
   ],
   declarations: [
     TeTableComponent,
@@ -44,7 +53,8 @@ const routers = [{ path: '', component: TeTableComponent }];
     ExHeaderComponent,
     ExScrollComponent,
     ExFixComponent,
-    ExHeadComponent
+    ExHeadComponent,
+    ExEditComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })

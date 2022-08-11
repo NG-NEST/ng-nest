@@ -288,7 +288,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));
       return node;
     };
-    this.treeTableData = data.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
+    this.treeTableData = data
+      .filter((x) => XIsEmpty(x.pid))
+      .map((x, index) => {
+        if (XIsUndefined(x.id)) x.id = index + 1;
+        return getChildren(x, 0);
+      });
   }
 
   setExpandedAll() {

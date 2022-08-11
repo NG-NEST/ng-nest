@@ -13,6 +13,9 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { XInputModule } from '@ng-nest/ui/input';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
@@ -30,7 +33,10 @@ describe(XTablePrefix, () => {
         XAvatarModule,
         XDialogModule,
         XButtonModule,
-        XLinkModule
+        XLinkModule,
+        XInputModule,
+        XSelectModule,
+        XSwitchModule
       ],
       declarations: [
         TestXTableComponent,
