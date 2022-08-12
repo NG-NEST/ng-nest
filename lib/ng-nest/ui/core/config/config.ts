@@ -382,6 +382,7 @@ export interface XLoadingConfig {
   icon?: string;
   color?: string;
   background?: string;
+  zIndex?: number;
 }
 
 export interface XMenuConfig {

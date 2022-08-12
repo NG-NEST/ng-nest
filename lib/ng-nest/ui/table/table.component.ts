@@ -44,6 +44,20 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     }
     return top;
   }
+  get getStickyTopRightEleHeight() {
+    if (this.stickyTopRightEle) {
+      return this.stickyTopRightEle.nativeElement.offsetHeight;
+    } else {
+      return 0;
+    }
+  }
+  get getStickyBottomRightEleHeight() {
+    if (this.stickyBottomRightEle) {
+      return this.stickyBottomRightEle.nativeElement.offsetHeight;
+    } else {
+      return 0;
+    }
+  }
   tcaption!: ElementRef;
   thead: ElementRef[] = [];
   tfoot!: ElementRef;
@@ -72,6 +86,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   @ViewChild('table') table!: ElementRef;
   @ViewChild('caption') caption!: ElementRef;
   @ViewChild('pagination') pagination!: XPaginationComponent;
+  @ViewChild('stickyTopRightEle') stickyTopRightEle!: ElementRef;
+  @ViewChild('stickyBottomRightEle') stickyBottomRightEle!: ElementRef;
   private _unSubject = new Subject<void>();
   constructor(
     public renderer: Renderer2,
@@ -144,6 +160,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       (this.headerPosition === 'top' || this.headerPosition === 'top-bottom') &&
       this.columns.some((x) => Number(x.right) >= 0)
     );
+  }
+
+  hasStickyTopRightSearch() {
+    return this.headSearchTpl ? true : false;
   }
 
   hasStickyBottomRight() {

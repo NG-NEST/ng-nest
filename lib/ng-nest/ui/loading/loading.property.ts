@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean, XWithConfig, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -19,6 +19,11 @@ export class XLoadingProperty extends XProperty {
    * @en_US Show loading
    */
   @Input('x-loading') @XInputBoolean() loading: XBoolean = false;
+  /**
+   * @zh_CN 层级
+   * @en_US z-index
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) zIndex?: XNumber;
   /**
    * @zh_CN 尺寸
    * @en_US Size

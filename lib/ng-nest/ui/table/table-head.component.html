@@ -20,14 +20,18 @@
       </th>
     </tr>
   </ng-container>
+  <ng-container *ngIf="table.headSearchTpl">
+    <ng-container *ngTemplateOutlet="columnsTpl; context: { case: 'search' }"></ng-container>
+  </ng-container>
 </thead>
 
-<ng-template #columnsTpl>
+<ng-template #columnsTpl let-case="case">
   <tr
     [style.height.px]="getRowHeight"
     [style.min-height.px]="getRowHeight"
     [style.padding-right.px]="scrollYWidth"
     [style.width.px]="scrollXWidth"
+    [class.x-table-search]="case === 'search'"
   >
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
@@ -42,8 +46,15 @@
       [style.right.px]="getColumnRight(column.right)"
       [style.flex]="getFlex(column)"
     >
-      <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
-      <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
+      <ng-container [ngSwitch]="case">
+        <ng-container *ngSwitchCase="'search'">
+          <ng-container *ngTemplateOutlet="table.headSearchTpl; context: { $column: column }"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
+          <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
+        </ng-container>
+      </ng-container>
     </th>
   </tr>
 </ng-template>

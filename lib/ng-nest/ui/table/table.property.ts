@@ -95,6 +95,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
   /**
+   * @zh_CN 列头搜索自定义模板
+   * @en_US Line head search custom template
+   */
+  @Input() headSearchTpl?: XTemplate;
+  /**
    * @zh_CN 排序点击的事件
    * @en_US Sort click events
    */

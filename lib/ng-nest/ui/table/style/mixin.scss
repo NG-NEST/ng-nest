@@ -18,7 +18,6 @@
     background-color: $--x-background;
     min-height: 42px;
     > tr {
-      position: absolute;
       width: 100%;
       display: flex;
       min-height: 42px;
@@ -40,7 +39,7 @@
         }
         &.#{$--x-table}-sticky {
           position: sticky;
-          z-index: 1;
+          z-index: 5;
         }
         .#{$--x-table}-drag-width {
           position: absolute;
@@ -59,6 +58,11 @@
     &.x-table-head-bottom {
       > tr > th {
         border-bottom: none;
+      }
+      > tr.x-table-search {
+        > th {
+          border-top: $--x-border-base;
+        }
       }
     }
   }
@@ -85,7 +89,7 @@
         }
         &.#{$--x-table}-sticky {
           position: sticky;
-          z-index: 1;
+          z-index: 5;
         }
         > x-button {
           .x-icon {
@@ -213,12 +217,10 @@
     display: flex;
     align-items: center;
   }
-
   &-footer {
     display: flex;
     align-items: center;
   }
-
   &-sticky-right-scroll {
     position: absolute;
     right: 0;
@@ -226,7 +228,6 @@
     background-color: $--x-background;
     z-index: 1;
   }
-
   &-has-scroll-right {
     .x-table-footer {
       border-top: $--x-border-base;
@@ -239,6 +240,12 @@
         border-left: $--x-border-base;
       }
     }
+  }
+  &-border-bottom {
+    border-bottom: $--x-border-base;
+  }
+  &-border-top {
+    border-top: $--x-border-base;
   }
   &-row-size {
     @include rowSize(big, calc(#{$--x-font-size} / 5 * 4), calc(#{$--x-font-size} * 5 / 4), calc(#{$--x-font-size} / 5 * 4), 0);

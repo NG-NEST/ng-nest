@@ -1,0 +1,43 @@
+<x-table
+  #tableCom
+  [(size)]="size"
+  [columns]="columns"
+  [data]="data"
+  [query]="query"
+  [rowHeight]="0"
+  [scroll]="{ x: 1500, y: 600 }"
+  bordered
+  virtualScroll
+  loading
+  [headSearchTpl]="headSearchTpl"
+  headerPosition="top-bottom"
+>
+</x-table>
+
+<ng-template #headSearchTpl let-column="$column">
+  <ng-container [ngSwitch]="column.id">
+    <ng-container *ngSwitchCase="'name'">
+      <x-input [style.width.%]="100" [(ngModel)]="name" (ngModelChange)="change($event, 'name')"></x-input>
+    </ng-container>
+    <ng-container *ngSwitchCase="'phone'">
+      <x-input [style.width.%]="100" [(ngModel)]="phone" (ngModelChange)="change($event, 'phone')"></x-input>
+    </ng-container>
+    <ng-container *ngSwitchCase="'position'">
+      <x-select
+        [style.width.%]="100"
+        [(ngModel)]="position"
+        (ngModelChange)="change($event, 'position')"
+        [data]="service.positions"
+      ></x-select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'organization'">
+      <x-select
+        [style.width.%]="100"
+        [(ngModel)]="organization"
+        (ngModelChange)="change($event, 'organization')"
+        [data]="service.organizations"
+      ></x-select>
+    </ng-container>
+    <ng-container *ngSwitchDefault></ng-container>
+  </ng-container>
+</ng-template>

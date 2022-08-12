@@ -25,6 +25,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { ExEditComponent } from './edit/edit.component';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XSelectModule } from '@ng-nest/ui/select';
+import { ExSearchComponent } from './search/search.component';
 
 const routers = [{ path: '', component: TeTableComponent }];
 
@@ -54,7 +55,8 @@ const routers = [{ path: '', component: TeTableComponent }];
     ExScrollComponent,
     ExFixComponent,
     ExHeadComponent,
-    ExEditComponent
+    ExEditComponent,
+    ExSearchComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })
