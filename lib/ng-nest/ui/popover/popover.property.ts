@@ -77,7 +77,7 @@ export class XPopoverProperty extends XProperty {
  * @value "hover"
  * @value "click"
  */
-export type XPopoverTrigger = 'hover' | 'click';
+export type XPopoverTrigger = 'hover' | 'click' | 'focus';
 
 /**
  * Popover Portal

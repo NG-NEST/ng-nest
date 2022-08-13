@@ -1,4 +1,4 @@
-import { OnInit, ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges } from '@angular/core';
+import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPrefix, XPopoverProperty } from './popover.property';
@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { XPlacement, XIsChange, XConfigService } from '@ng-nest/ui/core';
 
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
-export class XPopoverDirective extends XPopoverProperty implements OnInit, OnChanges {
+export class XPopoverDirective extends XPopoverProperty implements OnChanges {
   portal!: XPortalOverlayRef<XPopoverPortalComponent>;
   box!: DOMRect;
   contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -48,7 +48,15 @@ export class XPopoverDirective extends XPopoverProperty implements OnInit, OnCha
     if (this.trigger === 'hover') this.hide();
   }
 
-  ngOnInit() {}
+  @HostListener('focus') focus() {
+    if (this.condition) return;
+    if (this.trigger === 'focus') this.show();
+  }
+
+  @HostListener('blur') blur() {
+    if (this.condition) return;
+    if (this.trigger === 'focus') this.hide();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { content, visible } = changes;
