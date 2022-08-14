@@ -44,6 +44,7 @@ export class XListProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 全选的文字
    * @en_US Selected all text
+   * @default '全选'
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) selectAllText?: string;
   /**
@@ -86,6 +87,23 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  /**
+   * @zh_CN 加载更多
+   * @en_US load more
+   */
+  @Input() @XInputBoolean() loadMore!: XBoolean;
+  /**
+   * @zh_CN 加载更多的文字
+   * @en_US Load more text
+   * @default '加载更多'
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) loadMoreText?: string;
+  /**
+   * @zh_CN 正在加载中的文字
+   * @en_US Loading
+   * @default '正在加载中'
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) loadingMoreText?: string;
   /**
    * @zh_CN Full event
    * @en_US 全选事件

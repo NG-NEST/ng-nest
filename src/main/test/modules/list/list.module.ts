@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExSizeComponent } from './size/size.component';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { ExLoadMoreComponent } from './load-more/load-more.component';
 
 const routers = [{ path: '', component: TeListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XListModule, XRadioModule, XLayoutModule],
-  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent]
+  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent, ExLoadMoreComponent]
 })
 export class TeListModule {}

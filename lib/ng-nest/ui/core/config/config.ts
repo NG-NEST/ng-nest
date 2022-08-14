@@ -370,6 +370,8 @@ export interface XLinkConfig {
 
 export interface XListConfig {
   selectAllText?: string;
+  loadMoreText?: string;
+  loadingMoreText?: string;
 }
 
 export interface XListOptionConfig {

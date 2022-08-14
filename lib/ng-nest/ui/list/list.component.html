@@ -32,6 +32,15 @@
       (mouseleave)="onMouseleave($event, node)"
     ></x-list-option>
   </div>
+  <ng-container *ngIf="loadMore && !isEmpty">
+    <div class="x-list-load-more">
+      <x-list-option [size]="size" [nodeTpl]="loadMoreTpl" (click)="onLoadMore()"></x-list-option>
+    </div>
+    <ng-template #loadMoreTpl>
+      <x-icon *ngIf="icon && iconSpin" [type]="icon" [spin]="iconSpin"></x-icon>
+      {{ icon && iconSpin ? getLoadingMoreText : getLoadMoreText }}
+    </ng-template>
+  </ng-container>
   <x-empty *ngIf="isEmpty"></x-empty>
   <ng-container *ngIf="footer">
     <div class="x-list-footer" *xOutlet="footer">{{ footer }}</div>

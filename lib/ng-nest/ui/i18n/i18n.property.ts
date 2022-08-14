@@ -144,6 +144,8 @@ export interface XI18nSelect {
 
 export interface XI18nList {
   selectAllText?: string;
+  loadMoreText?: string;
+  loadingMoreText?: string;
 }
 
 export interface XI18nForm {

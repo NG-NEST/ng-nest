@@ -110,7 +110,9 @@ export default {
     back: 'Back'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Select all',
+    loadMoreText: 'Load more',
+    loadingMoreText: 'Loading'
   },
   select: {
     selectAllText: 'Select all',

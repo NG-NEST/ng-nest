@@ -109,7 +109,9 @@ export default {
     back: '返回'
   },
   list: {
-    selectAllText: '全選'
+    selectAllText: '全選',
+    loadMoreText: '加載更多',
+    loadingMoreText: '正在加載中'
   },
   select: {
     selectAllText: '全選',

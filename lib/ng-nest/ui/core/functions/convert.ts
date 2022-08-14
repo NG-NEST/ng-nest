@@ -45,7 +45,7 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
   return value;
 }
 
-export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true, funcParam = null): Observable<T[]> {
+export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true, funcParam: any = null): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
     const result = (res: T[]) => {
       x.next(res);

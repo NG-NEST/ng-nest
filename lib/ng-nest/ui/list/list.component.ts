@@ -42,6 +42,9 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   keyManager!: ActiveDescendantKeyManager<XListOptionComponent>;
   isSelectAll = false;
   locale: XI18nList = {};
+  loadMoreIndex = 0;
+  icon: string = '';
+  iconSpin: boolean = false;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -61,6 +64,14 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   get getSelectAllText() {
     return this.selectAllText || this.locale.selectAllText;
+  }
+
+  get getLoadMoreText() {
+    return this.loadMoreText || this.locale.loadMoreText;
+  }
+
+  get getLoadingMoreText() {
+    return this.loadingMoreText || this.locale.loadingMoreText;
   }
 
   override writeValue(value: any): void {
@@ -111,8 +122,18 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   private setData() {
-    XSetData<XListNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
+    if (this.loadMore) {
+      this.icon = 'fto-loader';
+      this.iconSpin = true;
+    }
+    XSetData<XListNode>(this.data, this._unSubject, true, this.loadMoreIndex).subscribe((x) => {
+      if (this.loadMore) {
+        this.nodes = [...this.nodes, ...x];
+        this.icon = '';
+        this.iconSpin = false;
+      } else {
+        this.nodes = x;
+      }
       this.setSelected();
       this.setKeyManager();
       this.cdr.detectChanges();
@@ -289,6 +310,11 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
     if (this.onChange) this.onChange(this.value);
     this.onSelectAll.emit(this.isSelectAll);
+  }
+
+  onLoadMore() {
+    this.loadMoreIndex++;
+    this.setData();
   }
 
   trackByNode(_index: number, item: XListNode) {

@@ -13,6 +13,9 @@
     cursor: pointer;
     font-weight: bold;
   }
+  &-load-more {
+    cursor: pointer;
+  }
   &-content {
     cursor: pointer;
     &.cdk-drop-list-dragging {
