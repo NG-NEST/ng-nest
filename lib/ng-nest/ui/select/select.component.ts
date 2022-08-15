@@ -61,8 +61,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   override writeValue(value: any) {
-    if (this.multiple && XIsEmpty(value)) {
-      value = [];
+    if (this.multiple) {
+      if (XIsEmpty(value)) {
+        value = [];
+      }
+      if (!XIsArray(value)) {
+        value = [value];
+      }
     }
     this.value = value;
     this.setDisplayValue();
@@ -317,6 +322,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.nodes.length > 0) {
       if (this.multiple) {
         if (XIsEmpty(this.value)) {
+          this.value = [];
           this.displayValue = '';
           this.selectedNodes = [];
           this.displayNodes = [];
@@ -575,6 +581,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   formControlChanges() {
     this.setData();
     this.ngOnInit();
+    this.writeValue(this.value);
+    this.ngAfterViewInit();
     this.cdr.detectChanges();
   }
 

@@ -10,6 +10,7 @@
       [align]="align"
       [direction]="direction"
       [required]="required"
+      [disabled]="disabled"
       [validator]="validator"
       [icon]="icon"
       [iconSpin]="iconSpin"
@@ -41,9 +42,14 @@
 </div>
 
 <ng-template #multipleValueTpl>
-  <x-tag [@.disabled]="true" *ngFor="let node of displayNodes; index as i" closable (close)="closeNode($event, node, i)" [size]="size">{{
-    node.label
-  }}</x-tag>
+  <x-tag
+    [@.disabled]="true"
+    *ngFor="let node of displayNodes; index as i"
+    [closable]="!disabled"
+    (close)="closeNode($event, node, i)"
+    [size]="size"
+    >{{ node.label }}</x-tag
+  >
   <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
     <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
       displayMore

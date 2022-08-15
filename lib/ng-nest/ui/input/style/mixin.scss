@@ -115,7 +115,7 @@
   &-value-template {
     .#{$--x-input-prefix}-input {
       > input.#{$--x-input-prefix}-has-value-template {
-        color: transparent;
+        color: transparent !important;
       }
     }
     &-value {
@@ -158,13 +158,17 @@
     > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
       > #{$--x-prefix}-icon {
         color: $--x-text-400;
+        cursor: not-allowed;
       }
-      > input,
-      > .#{$--x-input-prefix}-value-template-value {
+      > input {
         color: $--x-text-400;
         cursor: not-allowed;
         border-color: $--x-border-100;
         background-color: $--x-background-a100;
+      }
+      > .#{$--x-input-prefix}-value-template-value {
+        color: $--x-text-400;
+        cursor: not-allowed;
       }
     }
   }
