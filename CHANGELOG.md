@@ -1,3 +1,20 @@
+## [14.0.6](https://github.com/NG-NEST/ng-nest/compare/14.0.5...14.0.6) (2022-08-15)
+
+
+### Bug Fixes
+
+* **module:form:** select multiple error ([bacbb38](https://github.com/NG-NEST/ng-nest/commit/bacbb382fe15d4be207324fbd824c7825477d56a))
+
+
+### Features
+
+* **module:list:** add load more ([1af718d](https://github.com/NG-NEST/ng-nest/commit/1af718d1162230f9e514a1e35318f2115a0d4d48)), closes [#137](https://github.com/NG-NEST/ng-nest/issues/137)
+* **module:popover:** add focus trriger ([7e9c38d](https://github.com/NG-NEST/ng-nest/commit/7e9c38d1d20ded87f9e5a610cb43d325264bbff6)), closes [#138](https://github.com/NG-NEST/ng-nest/issues/138)
+* **module:table:** add edit ([6d9f07d](https://github.com/NG-NEST/ng-nest/commit/6d9f07d56cdce9c593608cb454bc839dac8f43f2))
+* **module:table:** add search template ([b401c9c](https://github.com/NG-NEST/ng-nest/commit/b401c9cc9de8789d30c4172f8ad7661651bbf26d)), closes [#145](https://github.com/NG-NEST/ng-nest/issues/145)
+
+
+
 ## [14.0.5](https://github.com/NG-NEST/ng-nest/compare/14.0.4...14.0.5) (2022-08-09)
 
 
