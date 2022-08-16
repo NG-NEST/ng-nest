@@ -124,6 +124,10 @@ const routes: Routes = [
         path: 'button',
         loadChildren: () => import('./modules/button/button.module').then((x) => x.TeButtonModule)
       },
+      {
+        path: 'textarea',
+        loadChildren: () => import('./modules/textarea/textarea.module').then((x) => x.TeTextareaModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
