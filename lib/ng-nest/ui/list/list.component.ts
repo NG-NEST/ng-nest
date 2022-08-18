@@ -16,14 +16,15 @@ import {
   ViewChildren
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull, XResize } from '@ng-nest/ui/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, debounceTime } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: `${XListPrefix}`,
@@ -36,6 +37,11 @@ import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
 export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
+  @ViewChild('headerRef') headerRef!: ElementRef;
+  @ViewChild('footerRef') footerRef!: ElementRef;
+  @ViewChild('selectAllRef') selectAllRef!: ElementRef;
+  @ViewChild('loadMoreRef') loadMoreRef!: ElementRef;
+  @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
   @ViewChild('listItems') listItems!: ElementRef;
   @ViewChildren(XListOptionComponent)
   options!: QueryList<XListOptionComponent>;
@@ -45,6 +51,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   loadMoreIndex = 0;
   icon: string = '';
   iconSpin: boolean = false;
+  private _resizeObserver!: ResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -56,6 +63,18 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       this.setUnActive(activeIndex);
       this.onNodeClick($event, this.nodes[activeIndex]);
     }
+  }
+
+  itemSizeMap: { [key: string]: number } = {
+    mini: 22,
+    small: 24,
+    medium: 28,
+    large: 32,
+    big: 36
+  };
+
+  get getItemSize() {
+    return this.itemSizeMap[this.size];
   }
 
   get isEmpty() {
@@ -72,6 +91,19 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   get getLoadingMoreText() {
     return this.loadingMoreText || this.locale.loadingMoreText;
+  }
+
+  get getVirtualScrollHeight() {
+    let headerH = 0,
+      footerH = 0,
+      selectAllH = 0,
+      loadMoreH = 0;
+    if (this.headerRef) headerH = this.headerRef.nativeElement.clientHeight;
+    if (this.footerRef) footerH = this.footerRef.nativeElement.clientHeight;
+    if (this.selectAllRef) selectAllH = this.selectAllRef.nativeElement.clientHeight;
+    if (this.loadMoreRef) loadMoreH = this.loadMoreRef.nativeElement.clientHeight;
+
+    return Number(this.scrollHeight) - headerH - footerH - selectAllH - loadMoreH;
   }
 
   override writeValue(value: any): void {
@@ -112,13 +144,30 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     this.initKeyManager();
+    if (this.virtualScroll && this.heightAdaption) {
+      this.setVirtualScrollHeight();
+      XResize(this.heightAdaption as HTMLElement)
+        .pipe(debounceTime(30), takeUntil(this._unSubject))
+        .subscribe((x) => {
+          this._resizeObserver = x.resizeObserver;
+          this.setVirtualScrollHeight();
+        });
+    }
   }
-
-  ngAfterViewChecked() {}
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+    this._resizeObserver?.disconnect();
+  }
+
+  private setVirtualScrollHeight() {
+    this.scrollHeight = (this.heightAdaption as HTMLElement).clientHeight;
+    this.minBufferPx = this.getVirtualScrollHeight;
+    this.maxBufferPx = this.getVirtualScrollHeight * 1.2;
+    this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
+    this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
+    this.cdr.detectChanges();
   }
 
   private setData() {

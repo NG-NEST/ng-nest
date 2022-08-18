@@ -9,11 +9,25 @@ import { FormsModule } from '@angular/forms';
 import { ExSizeComponent } from './size/size.component';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { ExLoadMoreComponent } from './load-more/load-more.component';
+import { ExScrollComponent } from './scroll/scroll.component';
+import { XDialogModule } from '@ng-nest/ui/dialog';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XInputNumberModule } from '@ng-nest/ui/input-number';
 
 const routers = [{ path: '', component: TeListComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XListModule, XRadioModule, XLayoutModule],
-  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent, ExLoadMoreComponent]
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    FormsModule,
+    XListModule,
+    XRadioModule,
+    XLayoutModule,
+    XButtonModule,
+    XDialogModule,
+    XInputNumberModule
+  ],
+  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent, ExLoadMoreComponent, ExScrollComponent]
 })
 export class TeListModule {}

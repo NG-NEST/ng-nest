@@ -10,7 +10,7 @@ import {
   XWithConfig,
   XSize
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef, ElementRef } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 /**
@@ -104,6 +104,31 @@ export class XListProperty extends XControlValueAccessor<any> {
    * @default '正在加载中'
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) loadingMoreText?: string;
+  /**
+   * @zh_CN 开启虚拟滚动，不支持节点拖动功能
+   * @en_US Turn on virtual scrolling
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  /**
+   * @zh_CN 虚拟滚动高度, 实际会去掉头尾、全选、更多的高度
+   * @en_US The virtual rolling height will actually remove the head and end, the full selection, more height
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 400) @XInputNumber() scrollHeight!: XNumber;
+  /**
+   * @zh_CN 虚拟滚动高度自适应指定元素
+   * @en_US virtual rolling height follows the specified object
+   */
+  @Input() heightAdaption!: ElementRef<HTMLElement> | HTMLElement;
+  /**
+   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
+   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
+   */
+  @Input() minBufferPx: number = 100;
+  /**
+   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
+   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
+   */
+  @Input() maxBufferPx: number = 200;
   /**
    * @zh_CN Full event
    * @en_US 全选事件
