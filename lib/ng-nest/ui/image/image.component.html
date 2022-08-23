@@ -1,0 +1,9 @@
+<div class="x-image" [ngClass]="classMap">
+  <img class="x-image-img" [src]="src" [style.width]="width" [style.height]="height" />
+  <div class="x-image-overlay" (click)="onPreview()">
+    <div class="x-image-text">
+      <x-icon type="fto-eye"></x-icon>
+      <span>{{ getPreviewText }}</span>
+    </div>
+  </div>
+</div>

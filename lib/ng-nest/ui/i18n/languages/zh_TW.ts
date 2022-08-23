@@ -70,6 +70,9 @@ export default {
   empty: {
     noData: '暫無數據'
   },
+  image: {
+    previewText: '预览'
+  },
   pagination: {
     previous: '上一頁',
     next: '下一頁',

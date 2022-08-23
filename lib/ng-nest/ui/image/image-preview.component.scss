@@ -1,0 +1,23 @@
+// Image Preview
+
+@import '../style/themes/default';
+@import '../style/mixins/index';
+@import './style/mixin';
+
+#{$--x-image-preview} {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.#{$--x-image-preview} {
+  @include reset-component();
+  @include image-preview();
+  &-portal {
+    .x-dialog-portal {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+  }
+}

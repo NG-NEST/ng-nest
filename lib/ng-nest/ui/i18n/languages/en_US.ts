@@ -71,6 +71,9 @@ export default {
   empty: {
     noData: 'No data'
   },
+  image: {
+    previewText: 'Preview'
+  },
   pagination: {
     previous: 'Prev',
     next: 'Next',

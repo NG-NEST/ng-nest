@@ -1,0 +1,24 @@
+<div class="x-image-preview" [ngClass]="classMap">
+  <div class="x-image-preview-actions">
+    <x-icon type="fto-corner-up-left" (click)="onRotate(-90)"></x-icon>
+    <x-icon type="fto-corner-up-right" (click)="onRotate(90)"></x-icon>
+    <x-icon type="fto-zoom-out" [class.x-image-preview-disabled]="imgScale3d.x === 1" (click)="imgScale3d.x > 1 && onScale(-1)"></x-icon>
+    <x-icon type="fto-zoom-in" (click)="onScale(1)"></x-icon>
+    <x-icon type="fto-x" x-dialog-close></x-icon>
+  </div>
+  <div
+    class="x-image-preview-wrapper"
+    cdkDrag
+    [style.transform]="getWrapperTransform"
+    [cdkDragFreeDragPosition]="position"
+    (cdkDragReleased)="onDragReleased()"
+  >
+    <img #imageRef [src]="activated?.src" [attr.alt]="activated?.alt" cdkDragHandle [style.transform]="getImgTransform" />
+  </div>
+  <div *ngIf="data && data.length > 1" class="x-image-preview-left">
+    <x-icon type="fto-chevron-left"></x-icon>
+  </div>
+  <div *ngIf="data && data.length > 1" class="x-image-preview-right">
+    <x-icon type="fto-chevron-right"></x-icon>
+  </div>
+</div>

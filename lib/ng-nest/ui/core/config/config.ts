@@ -73,6 +73,7 @@ export interface XComponentConfig {
   input?: XInputConfig;
   inputGroup?: XInputGroupConfig;
   inputNumber?: XInputNumberConfig;
+  image?: XImageConfig;
   col?: XColConfig;
   row?: XRowConfig;
   ripple?: XRippleConfig;
@@ -353,6 +354,10 @@ export interface XInputGroupConfig {
 export interface XInputNumberConfig {
   size?: XSize;
   bordered?: XBoolean;
+}
+
+export interface XImageConfig {
+  previewText?: string;
 }
 
 export interface XColConfig {}

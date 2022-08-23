@@ -15,6 +15,7 @@ export interface XI18nProperty {
   calendar?: XI18nCalendar;
   datePicker?: XI18nDatePicker;
   empty?: XI18nEmpty;
+  image?: XI18nImage;
   pagination?: XI18nPagination;
   textRetract?: XI18nTextRetract;
   timeAgo?: XI18nTimeAgo;
@@ -93,6 +94,10 @@ export interface XI18nDatePicker {
 
 export interface XI18nEmpty {
   noData?: string;
+}
+
+export interface XI18nImage {
+  previewText?: string;
 }
 
 export interface XI18nPagination {

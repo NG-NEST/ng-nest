@@ -29,6 +29,7 @@ export * from '@ng-nest/ui/calendar';
 export * from '@ng-nest/ui/comment';
 export * from '@ng-nest/ui/description';
 export * from '@ng-nest/ui/empty';
+export * from '@ng-nest/ui/image';
 export * from '@ng-nest/ui/outlet';
 export * from '@ng-nest/ui/pagination';
 export * from '@ng-nest/ui/progress';

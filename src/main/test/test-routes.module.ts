@@ -128,6 +128,10 @@ const routes: Routes = [
         path: 'textarea',
         loadChildren: () => import('./modules/textarea/textarea.module').then((x) => x.TeTextareaModule)
       },
+      {
+        path: 'image',
+        loadChildren: () => import('./modules/image/image.module').then((x) => x.TeImageModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
