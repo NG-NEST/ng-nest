@@ -32,7 +32,9 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setClassMap();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data, mode } = changes;
