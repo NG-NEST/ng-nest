@@ -1,6 +1,15 @@
 <div class="x-image" [ngClass]="classMap">
-  <img class="x-image-img" [src]="src" [style.width]="width" [style.height]="height" />
-  <div class="x-image-overlay" (click)="onPreview()">
+  <img
+    [hidden]="placeholder && !isLoaded"
+    class="x-image-img"
+    [src]="src"
+    [style.width]="width"
+    [style.height]="height"
+    (error)="onError()"
+    (load)="onLoad()"
+  />
+  <img *ngIf="placeholder && !isLoaded" class="x-image-img" [src]="placeholder" [style.width]="width" [style.height]="height" />
+  <div class="x-image-overlay" *ngIf="!isError" (click)="onPreview()">
     <div class="x-image-text">
       <x-icon type="fto-eye"></x-icon>
       <span>{{ getPreviewText }}</span>

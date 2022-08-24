@@ -6,10 +6,12 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnInit,
-  Optional
+  Optional,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { XImageNode, XImagePrefix, XImageProperty } from './image.property';
-import { XConfigService } from '@ng-nest/ui/core';
+import { XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { XDialogService } from '@ng-nest/ui/dialog';
 import { XImagePreviewComponent } from './image-preview.component';
 import { XI18nImage, XI18nService } from '@ng-nest/ui/i18n';
@@ -24,8 +26,10 @@ import { XImageGroupComponent } from './image-group.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XImageComponent extends XImageProperty implements OnInit {
+export class XImageComponent extends XImageProperty implements OnInit, OnChanges {
   locale: XI18nImage = {};
+  isError = false;
+  isLoaded = false;
   private _unSubject = new Subject<void>();
 
   get getPreviewText() {
@@ -58,6 +62,13 @@ export class XImageComponent extends XImageProperty implements OnInit {
       });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    let { src } = changes;
+    if (XIsChange(src)) {
+      this.isLoaded = false;
+    }
+  }
+
   onPreview() {
     let data: XImageNode[] = [];
     if (this.group) {
@@ -66,12 +77,20 @@ export class XImageComponent extends XImageProperty implements OnInit {
     } else {
       data = [{ src: this.src, alt: this.alt, fallback: this.fallback }];
     }
-    console.log(data);
     this.dialog.create(XImagePreviewComponent, {
       width: '100%',
       height: '100%',
       className: 'x-image-preview-portal',
       data: data
     });
+  }
+
+  onError() {
+    this.src = this.fallback;
+    this.isError = true;
+  }
+
+  onLoad() {
+    this.isLoaded = true;
   }
 }

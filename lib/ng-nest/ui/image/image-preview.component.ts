@@ -34,6 +34,8 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
   };
 
   activated?: XImageNode;
+  total = 1;
+  current = 1;
 
   get getWrapperTransform() {
     return `translate3d(${this.position.x}px, ${this.position.y}px, 0)`;
@@ -60,13 +62,40 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
 
   ngOnChanges() {}
 
+  initialization() {
+    this.imgScale3d = {
+      x: 1,
+      y: 1,
+      z: 1
+    };
+    this.rotate = 0;
+    this.position = {
+      x: 0,
+      y: 0
+    };
+  }
+
   setActivated() {
     if (!this.data) return;
     if (this.data.length === 1) {
       this.activated = this.data[0];
+      this.total = this.current = 1;
     } else {
-      this.activated = this.data.find((x) => x.activated);
+      this.total = this.data.length;
+      this.activated = this.data.find((x, index) => {
+        if (x.activated) {
+          this.current = index + 1;
+          return true;
+        }
+        return false;
+      });
     }
+  }
+
+  onCurrentChange(num: number) {
+    this.current += num;
+    this.activated = this.data[this.current - 1];
+    this.initialization();
   }
 
   onRotate(deg: number) {

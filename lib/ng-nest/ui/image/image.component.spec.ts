@@ -44,8 +44,7 @@ describe(XImagePrefix, () => {
 });
 
 @Component({
-  template: ` <x-image></x-image> `,
-  styles: [``]
+  template: ` <x-image></x-image> `
 })
 class TestXImageComponent {
   constructor() {}

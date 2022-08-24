@@ -45,6 +45,11 @@ export class XImageProperty extends XProperty {
    * @default '预览'
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) previewText?: string;
+  /**
+   * @zh_CN 渐进加载显示的图片
+   * @en_US Gradually loaded the display of the display
+   */
+  @Input() placeholder?: string;
 }
 
 /**

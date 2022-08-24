@@ -5,6 +5,5 @@
 @import './style/mixin';
 
 #{$--x-image-group} {
-  display: grid;
-  grid-template-columns: auto;
+  display: inline-block;
 }
