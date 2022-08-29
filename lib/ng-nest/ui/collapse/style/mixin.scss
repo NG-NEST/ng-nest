@@ -67,6 +67,12 @@
       transition: transform 0.3s;
     }
   }
+  &-disabled {
+    .x-collapse-panel-header-title {
+      color: $--x-text-400;
+      cursor: not-allowed;
+    }
+  }
   &-icon-left {
     flex-direction: row-reverse;
   }

@@ -1,5 +1,5 @@
-<div class="x-collapse-panel" [class.x-activated]="active">
-  <div class="x-collapse-panel-header x-collapse-panel-icon-{{ collapseComponent.iconPosition }}" (click)="headerClick()">
+<div class="x-collapse-panel" [class.x-activated]="active" [class.x-collapse-panel-disabled]="disabled">
+  <div class="x-collapse-panel-header x-collapse-panel-icon-{{ collapseComponent.iconPosition }}" (click)="!disabled && headerClick()">
     <div class="x-collapse-panel-header-title">
       <ng-container *xOutlet="label">{{ label }}</ng-container>
     </div>

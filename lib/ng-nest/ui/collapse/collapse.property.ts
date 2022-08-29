@@ -84,4 +84,9 @@ export class XCollapsePanelProperty extends XProperty {
    * @en_US Activate the current panel
    */
   @Input() @XInputBoolean() active?: XBoolean;
+  /**
+   * @zh_CN 禁用
+   * @en_US disabled
+   */
+  @Input() @XInputBoolean() disabled?: XBoolean;
 }
