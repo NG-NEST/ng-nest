@@ -9,89 +9,101 @@
   &-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    > x-date-picker {
-      display: inline-block;
-      width: 6rem;
-    }
-    > x-buttons,
-    > x-radio {
-      margin-left: 0.5rem;
+    justify-content: space-between;
+    &-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      > x-date-picker {
+        display: inline-block;
+        width: 6rem;
+      }
+      > x-buttons,
+      > x-radio {
+        margin-left: 0.5rem;
+      }
     }
   }
   &-body {
     margin: 0.25rem -0.25rem 0 -0.25rem;
-    > x-picker-date .x-picker-date,
-    > x-picker-month .x-picker-month {
-      tr {
-        display: flex;
-        th {
-          height: 2.25rem;
-          line-height: 2.25rem;
-          padding: 0.325rem;
-          margin: 0 0.25rem;
-          display: inline-block;
-          text-align: right;
-          flex: 1;
-          overflow: hidden;
-        }
-        td {
-          padding: 0;
-          cursor: pointer;
-          text-align: left;
-          position: relative;
-          flex: 1;
-          overflow: hidden;
-          height: 6.75rem;
-          border-top: 0.125rem solid $--x-border;
-          margin: 0 0.25rem;
-          transition: 0.3s;
-          .x-calendar-date,
-          .x-calendar-month {
-            > span {
-              display: block;
-              padding: 0.325rem;
-              text-align: right;
-            }
-            &-content {
-              padding-left: 0.325rem;
-              position: static;
-              width: auto;
-              height: 4.5rem;
-              overflow-y: auto;
-              > ul {
-                li {
-                  line-height: 1.5;
-                  overflow: hidden;
-                  white-space: nowrap;
-                  text-overflow: ellipsis;
-                  width: 100%;
-                  display: inline-block;
-                  position: relative;
-                  > span {
-                    width: 100%;
-                    white-space: nowrap;
+  }
+  &-calendar {
+    .x-calendar-body {
+      > x-picker-date .x-picker-date,
+      > x-picker-month .x-picker-month {
+        tr {
+          display: flex;
+          th {
+            height: 2.25rem;
+            line-height: 2.25rem;
+            padding: 0.325rem;
+            margin: 0 0.25rem;
+            display: inline-block;
+            text-align: right;
+            flex: 1;
+            overflow: hidden;
+          }
+          td {
+            padding: 0;
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            height: 6.75rem;
+            border-top: 0.125rem solid $--x-border;
+            margin: 0 0.25rem;
+            transition: 0.3s;
+            .x-calendar-date,
+            .x-calendar-month {
+              > span {
+                display: block;
+                padding: 0.325rem;
+                text-align: right;
+              }
+              &-content {
+                padding-left: 0.325rem;
+                position: static;
+                width: auto;
+                height: 4.5rem;
+                overflow-y: auto;
+                > ul {
+                  li {
+                    line-height: 1.5;
                     overflow: hidden;
+                    white-space: nowrap;
                     text-overflow: ellipsis;
+                    width: 100%;
+                    display: inline-block;
+                    position: relative;
+                    > span {
+                      width: 100%;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
                   }
                 }
               }
+              &.x-activated {
+                background-color: $--x-primary-900;
+              }
             }
-            &.x-activated {
-              background-color: $--x-background-300;
+            &:hover {
+              background-color: $--x-background-a200;
             }
-          }
-          &:hover {
-            background-color: $--x-background-300;
-          }
-          &.x-date-last-or-next {
-            color: $--x-text-400;
-          }
-          &.x-date-now {
-            color: $--x-primary;
+            &.x-date-last-or-next {
+              color: $--x-text-400;
+            }
+            &.x-date-now {
+              color: $--x-primary;
+              border-top-color: $--x-primary;
+            }
           }
         }
       }
     }
+  }
+  &-card {
   }
 }

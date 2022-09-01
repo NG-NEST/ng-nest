@@ -1,11 +1,18 @@
-<div #calendar class="x-calendar">
+<div #calendar class="x-calendar" [ngClass]="classMap">
   <div class="x-calendar-header">
-    <x-date-picker [(ngModel)]="datetime" [type]="model" showHeader="false"></x-date-picker>
-    <x-buttons>
-      <x-button (click)="action(-1)">{{ model === 'month' ? locale.lastMonth : locale.lastYear }}</x-button>
-      <x-button (click)="action(1)">{{ model === 'month' ? locale.nextMonth : locale.nextYear }}</x-button>
-    </x-buttons>
-    <x-radio [data]="radioData" [(ngModel)]="model" (ngModelChange)="modelOnChange()" button></x-radio>
+    <div class="x-calendar-header-left">
+      <ng-container *ngIf="headerLeftTemp">
+        <ng-container *ngTemplateOutlet="headerLeftTemp"></ng-container>
+      </ng-container>
+    </div>
+    <div class="x-calendar-header-right">
+      <x-date-picker [(ngModel)]="datetime" [type]="model" showHeader="false"></x-date-picker>
+      <x-buttons>
+        <x-button (click)="action(-1)">{{ model === 'month' ? locale.lastMonth : locale.lastYear }}</x-button>
+        <x-button (click)="action(1)">{{ model === 'month' ? locale.nextMonth : locale.nextYear }}</x-button>
+      </x-buttons>
+      <x-radio [data]="radioData" [(ngModel)]="model" (ngModelChange)="modelOnChange()" button></x-radio>
+    </div>
   </div>
   <div class="x-calendar-body">
     <x-picker-date

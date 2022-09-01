@@ -10,7 +10,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
-import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nCalendar } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
@@ -60,6 +60,7 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
         this.setLocal();
         this.cdr.markForCheck();
       });
+    this.setClassMap();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -70,6 +71,10 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   ngOnDestroy() {
     this._unSubject.next();
     this._unSubject.unsubscribe();
+  }
+
+  setClassMap() {
+    this.classMap[`${XCalendarPrefix}-${this.displayStyle}`] = !XIsEmpty(this.displayStyle);
   }
 
   action(next: number) {

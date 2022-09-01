@@ -1,5 +1,5 @@
 import { XIdentityProperty, XProperty } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
 
 /**
  * Calendar
@@ -23,6 +23,16 @@ export class XCalendarProperty extends XProperty {
    * @en_US Display mode
    */
   @Input() model: XCalendarModel = 'month';
+  /**
+   * @zh_CN 显示风格
+   * @en_US Display style
+   */
+  @Input() displayStyle: XCalendarStyle = 'calendar';
+  /**
+   * @zh_CN 头部显示模版
+   * @en_US Head display template
+   */
+  @Input() headerLeftTemp?: TemplateRef<void>;
   /**
    * @zh_CN 选择日期变化的事件
    * @en_US Select the event of the date change
@@ -58,3 +68,9 @@ export interface XCalendarNode extends XIdentityProperty {}
  * @en_US Display mode
  */
 export type XCalendarModel = 'month' | 'year';
+
+/**
+ * @zh_CN 显示风格
+ * @en_US Display style
+ */
+export type XCalendarStyle = 'calendar' | 'card';

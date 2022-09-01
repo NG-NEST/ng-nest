@@ -132,6 +132,10 @@ const routes: Routes = [
         path: 'image',
         loadChildren: () => import('./modules/image/image.module').then((x) => x.TeImageModule)
       },
+      {
+        path: 'calendar',
+        loadChildren: () => import('./modules/calendar/calendar.module').then((x) => x.TeCalendarModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }
