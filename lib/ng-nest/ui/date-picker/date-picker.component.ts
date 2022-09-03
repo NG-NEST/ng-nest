@@ -136,6 +136,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   menter() {
     if (this.disabled) return;
     this.enter = true;
+    if (!this.clearable) return;
     if (!XIsEmpty(this.numberValue)) {
       this.icon = '';
       this.inputClearable = true;
@@ -146,6 +147,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   mleave() {
     if (this.disabled) return;
     this.enter = false;
+    if (!this.clearable) return;
     if (this.inputClearable) {
       this.icon = 'fto-calendar';
       this.inputClearable = false;
