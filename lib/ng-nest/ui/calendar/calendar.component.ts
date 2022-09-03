@@ -74,7 +74,7 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   }
 
   setClassMap() {
-    this.classMap[`${XCalendarPrefix}-${this.displayStyle}`] = !XIsEmpty(this.displayStyle);
+    this.classMap[`${XCalendarPrefix}-${this.displayType}`] = !XIsEmpty(this.displayType);
   }
 
   action(next: number) {

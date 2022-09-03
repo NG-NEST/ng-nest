@@ -1,0 +1,5 @@
+<div class="row">
+  <x-calendar [headerLeftTemp]="headerLeftTemp" [data]="data" (rangeChange)="rangeChange($event)"></x-calendar>
+</div>
+
+<ng-template #headerLeftTemp> 自定义头部显示内容 </ng-template>

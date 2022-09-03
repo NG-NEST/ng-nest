@@ -24,10 +24,10 @@ export class XCalendarProperty extends XProperty {
    */
   @Input() model: XCalendarModel = 'month';
   /**
-   * @zh_CN 显示风格
-   * @en_US Display style
+   * @zh_CN 显示类型
+   * @en_US Display type
    */
-  @Input() displayStyle: XCalendarStyle = 'calendar';
+  @Input() displayType: XCalendarType = 'calendar';
   /**
    * @zh_CN 头部显示模版
    * @en_US Head display template
@@ -51,8 +51,7 @@ export class XCalendarProperty extends XProperty {
  */
 export interface XCalendarData {
   /**
-   * key-value
-   * 2020-2-22: [{id:"1",label:"1"}]
+   * key-value { "2020-2-22": [{id:"1",label:"1"}] }
    */
   [property: string]: XCalendarNode[];
 }
@@ -70,7 +69,7 @@ export interface XCalendarNode extends XIdentityProperty {}
 export type XCalendarModel = 'month' | 'year';
 
 /**
- * @zh_CN 显示风格
- * @en_US Display style
+ * @zh_CN 显示类型
+ * @en_US Display type
  */
-export type XCalendarStyle = 'calendar' | 'card';
+export type XCalendarType = 'calendar' | 'card';

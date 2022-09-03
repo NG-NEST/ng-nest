@@ -25,65 +25,81 @@
     }
   }
   &-body {
-    margin: 0.25rem -0.25rem 0 -0.25rem;
+    > x-picker-date .x-picker-date,
+    > x-picker-month .x-picker-month {
+      tr {
+        display: flex;
+        th {
+          padding: 0.325rem;
+          margin: 0 0.25rem;
+          display: inline-block;
+          flex: 1;
+          overflow: hidden;
+        }
+        td {
+          padding: 0;
+          cursor: pointer;
+          position: relative;
+          flex: 1;
+          overflow: hidden;
+          margin: 0 0.25rem;
+          transition: 0.3s;
+          .x-calendar-date,
+          .x-calendar-month {
+            > span {
+              display: block;
+            }
+            &-content {
+              padding-left: 0.325rem;
+              position: static;
+              width: auto;
+              overflow-y: auto;
+              > ul {
+                li {
+                  line-height: 1.5;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  width: 100%;
+                  display: inline-block;
+                  position: relative;
+                  > span {
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   &-calendar {
+    margin: 0.25rem -0.25rem 0 -0.25rem;
     .x-calendar-body {
       > x-picker-date .x-picker-date,
       > x-picker-month .x-picker-month {
         tr {
-          display: flex;
           th {
             height: 2.25rem;
             line-height: 2.25rem;
-            padding: 0.325rem;
-            margin: 0 0.25rem;
-            display: inline-block;
             text-align: right;
-            flex: 1;
-            overflow: hidden;
           }
           td {
-            padding: 0;
-            cursor: pointer;
-            text-align: left;
-            position: relative;
-            flex: 1;
-            overflow: hidden;
             height: 6.75rem;
             border-top: 0.125rem solid $--x-border;
-            margin: 0 0.25rem;
-            transition: 0.3s;
+            text-align: left;
             .x-calendar-date,
             .x-calendar-month {
               > span {
-                display: block;
-                padding: 0.325rem;
                 text-align: right;
+                padding: 0.325rem;
               }
               &-content {
-                padding-left: 0.325rem;
-                position: static;
-                width: auto;
                 height: 4.5rem;
-                overflow-y: auto;
-                > ul {
-                  li {
-                    line-height: 1.5;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    width: 100%;
-                    display: inline-block;
-                    position: relative;
-                    > span {
-                      width: 100%;
-                      white-space: nowrap;
-                      overflow: hidden;
-                      text-overflow: ellipsis;
-                    }
-                  }
-                }
               }
               &.x-activated {
                 background-color: $--x-primary-900;
@@ -105,5 +121,50 @@
     }
   }
   &-card {
+    border: $--x-border-base;
+    .x-calendar-header {
+      padding: 0.5rem;
+      border-bottom: $--x-border-base;
+    }
+    .x-calendar-body {
+      > x-picker-date .x-picker-date,
+      > x-picker-month .x-picker-month {
+        tr {
+          th {
+          }
+          td {
+            margin: 0.25rem;
+            .x-calendar-date,
+            .x-calendar-month {
+              border: $--x-border-base;
+              border-radius: $--x-border-radius;
+              border-color: transparent;
+              > span {
+                padding: 0.125rem;
+              }
+              &.x-activated {
+                background-color: $--x-primary;
+                color: $--x-background-100;
+              }
+            }
+            &:hover {
+              background-color: $--x-background-a200;
+              color: $--x-primary;
+            }
+            &.x-date-last-or-next {
+              color: $--x-text-700;
+            }
+            &.x-date-now {
+              .x-calendar-date:not(.x-activated),
+              .x-calendar-month:not(.x-activated) {
+                color: $--x-primary;
+                background-color: transparent;
+                border-color: $--x-primary;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
