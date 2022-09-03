@@ -1,34 +1,34 @@
 <x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
 <x-row space="1">
   <x-col span="8">
-    <div><x-list [data]="data1" [(ngModel)]="model1" [size]="size"></x-list></div>
+    <div><x-list [data]="data1" [(ngModel)]="model1" [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
   <x-col span="8">
-    <div><x-list [data]="data2" [(ngModel)]="model2" [size]="size"></x-list></div>
+    <div><x-list [data]="data2" [(ngModel)]="model2" [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
   <x-col span="8">
-    <div><x-list [data]="data3" [(ngModel)]="model3" multiple [size]="size"></x-list></div>
+    <div><x-list [data]="data3" [(ngModel)]="model3" multiple [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
 </x-row>
 <x-row space="1">
   <x-col span="8">
-    <div><x-list [data]="data4" [(ngModel)]="model4" multiple [size]="size"></x-list></div>
+    <div><x-list [data]="data4" [(ngModel)]="model4" multiple [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
   <x-col span="8">
-    <div><x-list [data]="data5" [(ngModel)]="model5" multiple="2" [size]="size"></x-list></div>
+    <div><x-list [data]="data5" [(ngModel)]="model5" multiple="2" [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
   <x-col span="8">
-    <div><x-list [data]="data6" [(ngModel)]="model6" multiple="2" [size]="size"></x-list></div>
+    <div><x-list [data]="data6" [(ngModel)]="model6" multiple="2" [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
   </x-col>
 </x-row>
 <x-row space="1">
   <x-col span="8">
     <h6>上下拖动</h6>
-    <div><x-list [data]="data7" [(ngModel)]="model7" drag [size]="size"></x-list></div>
+    <div><x-list #dragListCom [data]="data7" [(ngModel)]="model7" drag [size]="size" (nodeClick)="onNodeClick($event)" (dropListDropped)="onDropListDropped($event)"></x-list></div>
   </x-col>
   <x-col span="8">
     <h6>模板</h6>
-    <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl" [size]="size"></x-list></div>
+    <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl" [size]="size" (nodeClick)="onNodeClick($event)"></x-list></div>
     <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
   </x-col>
   <x-col span="8">
@@ -44,6 +44,7 @@
         [selectAll]="true"
         [checked]="true"
         [size]="size"
+        (nodeClick)="onNodeClick($event)"
       ></x-list>
     </div>
   </x-col>

@@ -150,6 +150,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Output() nodeClick = new EventEmitter<XListNode>();
   /**
+   * @zh_CN 拖动结束事件
+   * @en_US Drag the end
+   */
+  @Output() dropListDropped = new EventEmitter<XListDragDrop>();
+  /**
    * @zh_CN Tab out 事件
    * @en_US Tab Out event
    */
@@ -266,3 +271,9 @@ export class XListOptionProperty {
    */
   @Output() activeChange = new EventEmitter<boolean>();
 }
+
+/**
+ * @zh_CN 拖动相关的数据
+ * @en_US Drag related data
+ */
+export type XListDragDrop = { data: XListNode[]; current: XListNode; currentIndex: number };

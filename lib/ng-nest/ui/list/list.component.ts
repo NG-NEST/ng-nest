@@ -281,7 +281,12 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       event.stopPropagation();
       return;
     }
-    if (node.disabled || (node.selected && this.multiple === 1)) return;
+    if (node.disabled) return;
+    if (node.selected && this.multiple === 1) {
+      node.event = event;
+      this.nodeClick.emit(node);
+      return;
+    }
     const selected = !node.selected;
     if (selected) {
       if (this.selectedNodes.length < this.multiple || this.multiple === 0) {
@@ -338,6 +343,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   dropCdk(event: CdkDragDrop<XListNode[]>) {
     moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
+    this.dropListDropped.emit({ data: this.nodes, current: this.nodes[event.currentIndex], currentIndex: event.currentIndex });
     this.cdr.detectChanges();
   }
 

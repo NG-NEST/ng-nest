@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { XSize } from '@ng-nest/ui/core';
+import { XListComponent } from '@ng-nest/ui/list';
 
 @Component({
   selector: 'ex-default',
@@ -28,11 +29,21 @@ export class ExDefaultComponent implements OnInit {
   model7 = 'BBBB';
   model8: any;
   model9 = ['AAAA', 'BBBB', 'CCCC', 'DDDD'];
+
+  @ViewChild('dragListCom') dragListCom!: XListComponent;
   constructor() {}
 
   ngOnInit() {}
 
   change9($event: any) {
+    console.log($event);
+  }
+
+  onNodeClick($event: any) {
+    console.log($event);
+  }
+
+  onDropListDropped($event: any) {
     console.log($event);
   }
 }
