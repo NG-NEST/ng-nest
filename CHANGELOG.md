@@ -1,3 +1,26 @@
+## [14.0.7](https://github.com/NG-NEST/ng-nest/compare/14.0.6...14.0.7) (2022-09-04)
+
+
+### Bug Fixes
+
+* **module:date-picker:** fix clearable display error ([4945414](https://github.com/NG-NEST/ng-nest/commit/494541441fcc31ef2a6a0bee0d9fafaf2428b6c8))
+* **module:list:** fix node click feedback ([82a69c8](https://github.com/NG-NEST/ng-nest/commit/82a69c86d0a609f6f2cea0afc59bbd285ac9fe0b))
+* **module:table:** fix search must set row height ([3c5ab55](https://github.com/NG-NEST/ng-nest/commit/3c5ab555dd0a1b3f1e4a035bdf72292c1112a82a))
+* **module:textarea:** fix style invalid ([c522da6](https://github.com/NG-NEST/ng-nest/commit/c522da6704bb04bcfb3f25eb8168c3be4379fb44))
+* **module:timeline:** fix default mode ([e62e443](https://github.com/NG-NEST/ng-nest/commit/e62e4434a5a1a9e97fb4bef1a9cfb9bceb91313e))
+
+
+### Features
+
+* **module:calendar:** add card style ([90e9bad](https://github.com/NG-NEST/ng-nest/commit/90e9bad8e2e3f5577e2122cf376d39a776c307e8)), closes [#122](https://github.com/NG-NEST/ng-nest/issues/122)
+* **module:calendar:** add header template and selected style ([d41dede](https://github.com/NG-NEST/ng-nest/commit/d41dede2ae42f1f4bb2ccbf3f837e7c9869cf109)), closes [#124](https://github.com/NG-NEST/ng-nest/issues/124) [#123](https://github.com/NG-NEST/ng-nest/issues/123)
+* **module:collapse:** add disabled property ([bf3d80e](https://github.com/NG-NEST/ng-nest/commit/bf3d80e3d6a0b4f12663a98ae428f41e60f71039)), closes [#131](https://github.com/NG-NEST/ng-nest/issues/131)
+* **module:image:** add fallback and placeholder ([3418a16](https://github.com/NG-NEST/ng-nest/commit/3418a16091bde4bc59112de8b0833a811a869711)), closes [#133](https://github.com/NG-NEST/ng-nest/issues/133)
+* **module:image:** add image component ([cc7eb3e](https://github.com/NG-NEST/ng-nest/commit/cc7eb3ed66aea4ad1cc7fd56ebf9583d6cfaf3a9)), closes [#133](https://github.com/NG-NEST/ng-nest/issues/133)
+* **module:list:** add virtual scroll ([4b08683](https://github.com/NG-NEST/ng-nest/commit/4b08683708285a9734d2dcd92b282ff305cea514)), closes [#136](https://github.com/NG-NEST/ng-nest/issues/136)
+
+
+
 ## [14.0.6](https://github.com/NG-NEST/ng-nest/compare/14.0.5...14.0.6) (2022-08-15)
 
 

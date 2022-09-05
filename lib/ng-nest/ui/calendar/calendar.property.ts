@@ -51,7 +51,8 @@ export class XCalendarProperty extends XProperty {
  */
 export interface XCalendarData {
   /**
-   * key-value { "2020-2-22": [{id:"1",label:"1"}] }
+   * key-value
+   * { "2020-2-22": [{id:"1",label:"1"}] }
    */
   [property: string]: XCalendarNode[];
 }

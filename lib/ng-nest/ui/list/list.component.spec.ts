@@ -11,12 +11,22 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XRadioModule, XListModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XRadioModule,
+        XListModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XInputNumberModule
+      ],
       declarations: [TestXListComponent]
     }).compileComponents();
   });
