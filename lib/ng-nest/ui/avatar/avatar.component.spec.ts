@@ -10,14 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XBadgeModule } from '@ng-nest/ui/badge';
 
 describe(XAvatarPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XAvatarModule, XLayoutModule, XIconModule, XThemeModule],
+      imports: [BrowserAnimationsModule, FormsModule, XAvatarModule, XLayoutModule, XIconModule, XBadgeModule, XThemeModule],
       declarations: [TestXAvatarComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAvatarComponent>;
     let avatar: DebugElement;
