@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(50%,-50%);
+    transform: translate(50%, -50%);
     transform-origin: 100% 0%;
     border-radius: 0.625rem;
     color: $--x-white;
@@ -33,13 +33,20 @@
       width: 0.5rem;
       height: 0.5rem;
       padding: 0;
-      right: 0.125rem;
+      right: 0;
       border-radius: 50%;
     }
   }
   &-offset {
     > sup {
       right: inherit;
+    }
+  }
+  &-standalone {
+    > sup {
+      position: initial;
+      transform: initial;
+      transform-origin: initial;
     }
   }
   @include badge-type('primary', $--x-primary);

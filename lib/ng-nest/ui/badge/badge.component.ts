@@ -10,7 +10,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray, XBadgeAnimation } from '@ng-nest/ui/core';
+import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray, XBadgeAnimation, XBadgeStandaloneAnimation } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -18,7 +18,7 @@ import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray, XBadgeAnimati
   styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XBadgeAnimation]
+  animations: [XBadgeAnimation, XBadgeStandaloneAnimation]
 })
 export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
   displayValue: string = '';
@@ -56,8 +56,7 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
     XIsChange(value) && this.setDisplayValue();
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   setClassMap() {
     this.classMap[`${XBadgePrefix}-${this.type}`] = !XIsEmpty(this.type);

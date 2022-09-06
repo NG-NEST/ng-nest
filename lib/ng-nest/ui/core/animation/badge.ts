@@ -28,3 +28,26 @@ export const XBadgeAnimation: AnimationTriggerMetadata = trigger('x-badge-animat
     )
   ])
 ]);
+
+export const XBadgeStandaloneAnimation: AnimationTriggerMetadata = trigger('x-badge-standalone-animation', [
+  transition(':enter', [
+    style({ opacity: 0, transform: 'scale(0)' }),
+    animate(
+      XDURATION_SLOW_EASE_IN,
+      style({
+        opacity: 1,
+        transform: 'scale(1)'
+      })
+    )
+  ]),
+  transition(':leave', [
+    style({ opacity: 1, transform: 'scale(1)' }),
+    animate(
+      XDURATION_SLOW_EASE_OUT,
+      style({
+        opacity: 0,
+        transform: 'scale(0)'
+      })
+    )
+  ])
+]);

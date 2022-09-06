@@ -1,6 +1,18 @@
-<div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot" [class.x-badge-offset]="getOffsetLeft">
+<div
+  #badge
+  class="x-badge"
+  [ngClass]="classMap"
+  [class.x-badge-dot]="dot"
+  [class.x-badge-offset]="getOffsetLeft"
+  [class.x-badge-standalone]="standalone"
+>
   <ng-content></ng-content>
-  <sup [@x-badge-animation] [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
-    <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
-  </sup>
+  <ng-container *ngIf="value != 0 || dot">
+    <sup *ngIf="standalone" [@x-badge-standalone-animation] [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
+      <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
+    </sup>
+    <sup *ngIf="!standalone" [@x-badge-animation] [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
+      <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
+    </sup>
+  </ng-container>
 </div>

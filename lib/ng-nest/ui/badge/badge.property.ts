@@ -39,6 +39,11 @@ export class XBadgeProperty extends XProperty {
    * @en_US Whether to show the small red dot
    */
   @Input() @XInputBoolean() dot?: XBoolean;
+  /**
+   * @zh_CN 独立使用
+   * @en_US Independent use
+   */
+  @Input() @XInputBoolean() standalone?: XBoolean;
 }
 
 /**
