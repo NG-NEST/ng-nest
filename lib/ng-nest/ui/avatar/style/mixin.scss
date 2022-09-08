@@ -29,6 +29,9 @@
       height: initial;
     }
   }
+  > span {
+    white-space: nowrap;
+  }
   @include avatar-size('big', $--x-avatar-size-big);
   @include avatar-size('large', $--x-avatar-size-large);
   @include avatar-size('medium', $--x-avatar-size-medium);

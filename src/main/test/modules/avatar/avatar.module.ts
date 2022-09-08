@@ -7,11 +7,14 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { XBadgeModule } from '@ng-nest/ui/badge';
 import { ExBadgeComponent } from './badge/badge.component';
+import { ExResponseComponent } from './response/response.component';
+import { ExLabelComponent } from './label/label.component';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeAvatarComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XAvatarModule, XLayoutModule, XBadgeModule],
-  declarations: [TeAvatarComponent, ExDefaultComponent, ExBadgeComponent]
+  imports: [RouterModule.forChild(routers), CommonModule, XAvatarModule, XButtonModule, XLayoutModule, XBadgeModule],
+  declarations: [TeAvatarComponent, ExDefaultComponent, ExBadgeComponent, ExResponseComponent, ExLabelComponent]
 })
 export class TeAvatarModule {}

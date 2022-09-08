@@ -1,4 +1,4 @@
-import { XSize, XTemplate, XProperty, XWithConfig, XShape, XFit } from '@ng-nest/ui/core';
+import { XSize, XTemplate, XProperty, XWithConfig, XShape, XFit, XResponseSize, XNumber, XInputNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -23,7 +23,7 @@ export class XAvatarProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  @Input() @XWithConfig<number | XSize | XResponseSize>(X_CONFIG_NAME, 'medium') size?: number | XSize | XResponseSize;
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
@@ -44,6 +44,11 @@ export class XAvatarProperty extends XProperty {
    * @en_US Image adaptation method
    */
   @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit?: XAvatarFit;
+  /**
+   * @zh_CN 字符类型的时候左右边距，px
+   * @en_US When the character type is the left and right distance, PX
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 8) @XInputNumber() gap?: XNumber;
 }
 
 /**

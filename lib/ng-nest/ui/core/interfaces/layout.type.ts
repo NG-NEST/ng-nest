@@ -47,6 +47,16 @@ export type XStyle = { [property: string]: any };
 export type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
 
 /**
+ * 响应尺寸
+ * @value "xs" <768px
+ * @value "sm" ≥768px
+ * @value "md" ≥992px
+ * @value "lg" ≥1200px
+ * @value "xl" ≥1920px
+ */
+export type XResponseSize = { xs?: number; sm?: number; md?: number; lg?: number; xl?: number };
+
+/**
  * flex 布局下的子元素水平排列方式
  */
 export type XJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';

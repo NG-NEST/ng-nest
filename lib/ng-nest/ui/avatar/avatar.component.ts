@@ -1,6 +1,21 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Inject,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XIsNumber, XIsString, XResize, XIsObject, XResponseSize, XIsChange } from '@ng-nest/ui/core';
+import { DOCUMENT } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: `${XAvatarPrefix}`,
@@ -9,27 +24,102 @@ import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent extends XAvatarProperty implements OnInit {
+export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnChanges, AfterViewInit {
   isImgError: boolean = false;
+
+  styleMap: { [key: string]: any } = {};
+  document!: Document;
+  private _unSubject = new Subject<void>();
+  private _resizeObserver!: ResizeObserver;
+
+  @ViewChild('labelRef') labelRef!: ElementRef;
 
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    @Inject(DOCUMENT) document: any
   ) {
     super();
+    this.document = document;
   }
 
-  ngOnInit() {
+  ngOnDestroy(): void {
+    this._unSubject.next();
+    this._unSubject.complete();
+    this._resizeObserver?.disconnect();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let { label } = changes;
+    XIsChange(label) && setTimeout(() => this.setLabel());
+  }
+
+  ngAfterViewInit(): void {
     this.setClassMap();
+    this.setLabel();
   }
 
   setClassMap() {
     this.classMap = {
-      [`${XAvatarPrefix}-${this.shape}`]: !XIsEmpty(this.shape),
-      [`${XAvatarPrefix}-${this.size}`]: !XIsEmpty(this.size)
+      [`${XAvatarPrefix}-${this.shape}`]: !XIsEmpty(this.shape)
     };
+    if (XIsNumber(this.size)) {
+      const nsize = Number(this.size);
+      this.setStyleMap(nsize);
+    } else if (XIsString(this.size)) {
+      this.classMap[`${XAvatarPrefix}-${this.size}`] = !XIsEmpty(this.size);
+    } else if (XIsObject(this.size)) {
+      this.classMap[`${XAvatarPrefix}-medium`] = true;
+      const sz = this.size as XResponseSize;
+      let { xs, sm, md, lg, xl } = sz;
+      if (!xs && !sm && !md && !lg && !xl) return;
+      XResize(this.document.documentElement)
+        .pipe(takeUntil(this._unSubject))
+        .subscribe((x) => {
+          this._resizeObserver = x.resizeObserver;
+          const width = this.document.documentElement.clientWidth;
+          let nsize = 40;
+          if (xs && width < 768) {
+            nsize = xs;
+          }
+          if (sm && width >= 768) {
+            nsize = sm;
+          }
+          if (md && width >= 992) {
+            nsize = md;
+          }
+          if (lg && width >= 1200) {
+            nsize = lg;
+          }
+          if (xl && width >= 1920) {
+            nsize = xl;
+          }
+          this.setStyleMap(nsize);
+          this.cdr.detectChanges();
+          this.setLabel();
+        });
+    }
+  }
+
+  setStyleMap(size: number) {
+    this.styleMap = {
+      height: `${size}px`,
+      width: `${size}px`,
+      lineHeight: `${size}px`,
+      fontSize: `${size * 0.6}px`
+    };
+  }
+
+  setLabel() {
+    if (!this.label) return;
+    if (!this.elementRef || !this.labelRef) return;
+    const eleWidth = this.elementRef.nativeElement.clientWidth;
+    const labelWidth = this.labelRef.nativeElement.clientWidth;
+    let scale = eleWidth / (labelWidth + Number(this.gap) * 2);
+    scale = scale > 1 ? 1 : scale;
+    this.renderer.setStyle(this.labelRef.nativeElement, 'transform', `scale(${scale})`);
   }
 
   imgError() {
