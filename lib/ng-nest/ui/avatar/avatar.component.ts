@@ -117,7 +117,7 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
     if (!this.elementRef || !this.labelRef) return;
     const eleWidth = this.elementRef.nativeElement.clientWidth;
     const labelWidth = this.labelRef.nativeElement.clientWidth;
-    let scale = eleWidth / (labelWidth + Number(this.gap) * 2);
+    let scale = (eleWidth - Number(this.gap) * 2) / labelWidth;
     scale = scale > 1 ? 1 : scale;
     this.renderer.setStyle(this.labelRef.nativeElement, 'transform', `scale(${scale})`);
   }

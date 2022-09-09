@@ -149,6 +149,7 @@ export interface XAvatarConfig {
   shape?: XShape;
   fit?: XFit;
   gap?: number;
+  backgroundColor?: string;
 }
 
 export interface XAutoCompleteConfig {

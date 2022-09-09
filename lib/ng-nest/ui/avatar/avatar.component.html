@@ -1,4 +1,12 @@
-<span #avatar class="x-avatar" [class.x-avatar-label]="label" [ngClass]="classMap" [class.x-avatar-error]="isImgError" [ngStyle]="styleMap">
+<span
+  #avatar
+  class="x-avatar"
+  [class.x-avatar-label]="label"
+  [ngClass]="classMap"
+  [class.x-avatar-error]="isImgError"
+  [ngStyle]="styleMap"
+  [style.backgroundColor]="backgroundColor"
+>
   <img *ngIf="src && !isImgError" [src]="src" [style.object-fit]="fit" (error)="imgError()" />
   <x-icon *ngIf="icon" [type]="icon"></x-icon>
   <x-icon *ngIf="isImgError" type="fto-image"></x-icon>

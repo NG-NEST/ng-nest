@@ -13,7 +13,6 @@
   text-align: center;
   overflow: hidden;
   color: $--x-background-100;
-  background-color: $--x-text-500;
   > img {
     display: block;
     height: 100%;
@@ -46,4 +45,8 @@
     line-height: $size;
     font-size: $size * 0.6;
   }
+}
+
+@mixin avatar-group {
+  
 }

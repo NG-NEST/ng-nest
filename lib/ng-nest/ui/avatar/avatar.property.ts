@@ -48,7 +48,12 @@ export class XAvatarProperty extends XProperty {
    * @zh_CN 字符类型的时候左右边距，px
    * @en_US When the character type is the left and right distance, PX
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 8) @XInputNumber() gap?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 4) @XInputNumber() gap?: XNumber;
+  /**
+   * @zh_CN 背景颜色
+   * @en_US Background color
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#999999') backgroundColor?: string;
 }
 
 /**
@@ -62,3 +67,16 @@ export type XAvatarShape = XShape;
  * @en_US When the display type is picture, set how the picture fits into the container frame
  */
 export type XAvatarFit = XFit;
+
+/**
+ * Avatar Group
+ * @selector x-avatar-group
+ * @decorator component
+ */
+export const XAvatarGroupPrefix = 'x-avatar';
+
+/**
+ * Avatar Group Property
+ */
+@Component({ template: '' })
+export class XAvatarGroupProperty extends XProperty {}
