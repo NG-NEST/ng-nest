@@ -73,7 +73,7 @@ export type XAvatarFit = XFit;
  * @selector x-avatar-group
  * @decorator component
  */
-export const XAvatarGroupPrefix = 'x-avatar';
+export const XAvatarGroupPrefix = 'x-avatar-group';
 
 /**
  * Avatar Group Property

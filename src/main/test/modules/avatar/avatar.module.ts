@@ -9,12 +9,13 @@ import { XBadgeModule } from '@ng-nest/ui/badge';
 import { ExBadgeComponent } from './badge/badge.component';
 import { ExResponseComponent } from './response/response.component';
 import { ExLabelComponent } from './label/label.component';
+import { ExGroupComponent } from './group/group.component';
 import { XButtonModule } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeAvatarComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XAvatarModule, XButtonModule, XLayoutModule, XBadgeModule],
-  declarations: [TeAvatarComponent, ExDefaultComponent, ExBadgeComponent, ExResponseComponent, ExLabelComponent]
+  declarations: [TeAvatarComponent, ExDefaultComponent, ExBadgeComponent, ExResponseComponent, ExLabelComponent, ExGroupComponent]
 })
 export class TeAvatarModule {}

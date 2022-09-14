@@ -48,5 +48,13 @@
 }
 
 @mixin avatar-group {
-  
+  > x-avatar {
+    z-index: 0;
+    &:not(:first-child) {
+      margin-left: -0.5rem;
+    }
+    .x-avatar {
+      border: $--x-border-width $--x-border-style $--x-white;
+    }
+  }
 }

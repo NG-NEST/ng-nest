@@ -65,11 +65,14 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
     this.classMap = {
       [`${XAvatarPrefix}-${this.shape}`]: !XIsEmpty(this.shape)
     };
+    console.log(this.size);
     if (XIsNumber(this.size)) {
       const nsize = Number(this.size);
       this.setStyleMap(nsize);
+      this.cdr.detectChanges();
     } else if (XIsString(this.size)) {
       this.classMap[`${XAvatarPrefix}-${this.size}`] = !XIsEmpty(this.size);
+      this.cdr.detectChanges();
     } else if (XIsObject(this.size)) {
       this.classMap[`${XAvatarPrefix}-medium`] = true;
       const sz = this.size as XResponseSize;
