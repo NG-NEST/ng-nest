@@ -1,4 +1,4 @@
-import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig } from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig, XNumber } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -35,6 +35,11 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @en_US File display type
    */
   @Input() type: XUploadType = 'list';
+  /**
+   * @zh_CN 图片类型下面加载失败显示
+   * @en_US Photo type below loading failed display
+   */
+  @Input() imgFallback?: string;
   /**
    * @zh_CN 图片剪裁
    * @en_US Picture cropping
@@ -106,7 +111,7 @@ export interface XUploadNode extends File {
    * @zh_CN 上传进度
    * @en_US Upload progress
    */
-  percent?: number;
+  percent?: XNumber;
 }
 
 /**

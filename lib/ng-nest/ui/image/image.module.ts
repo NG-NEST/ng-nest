@@ -9,10 +9,11 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XImageGroupComponent } from './image-group.component';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XImageComponent, XImageProperty, XImagePreviewComponent, XImagePreviewProperty, XImageGroupComponent],
   exports: [XImageComponent, XImagePreviewComponent, XImageGroupComponent],
-  imports: [CommonModule, XIconModule, XDialogModule, XButtonModule, XI18nModule, DragDropModule]
+  imports: [CommonModule, XIconModule, XDialogModule, XButtonModule, XI18nModule, XOutletModule, DragDropModule]
 })
 export class XImageModule {}

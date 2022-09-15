@@ -157,6 +157,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
             reader.readAsText(blob, 'utf-8');
             reader.onload = () => {
               file.url = JSON.parse(reader.result as string)[0];
+              console.log(file)
               if (index === -1) {
                 // this.value.push(file);
               } else {
@@ -251,9 +252,8 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     this.portal?.overlayRef?.dispose();
   }
 
-  imgError(event: ErrorEvent, file: XUploadNode) {
+  imgError(_event: ErrorEvent, file: XUploadNode) {
     file.state = 'error';
-    console.error(event.error);
     this.cdr.detectChanges();
   }
 

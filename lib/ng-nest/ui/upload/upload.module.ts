@@ -11,6 +11,8 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { XUploadPortalComponent } from './upload-portal.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XImageModule } from '@ng-nest/ui/image';
+import { XProgressModule } from '@ng-nest/ui/progress';
 
 @NgModule({
   declarations: [XUploadComponent, XUploadPortalComponent, XUploadProperty],
@@ -25,7 +27,9 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
     XButtonModule,
     XIconModule,
     XI18nModule,
-    XBaseFormModule
+    XBaseFormModule,
+    XImageModule,
+    XProgressModule
   ]
 })
 export class XUploadModule {}

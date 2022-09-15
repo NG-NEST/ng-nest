@@ -66,6 +66,8 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
     let { src } = changes;
     if (XIsChange(src)) {
       this.isLoaded = false;
+      this.isError = false;
+      this.cdr.detectChanges();
     }
   }
 
@@ -85,12 +87,19 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
     });
   }
 
-  onError() {
+  onError(event: Event) {
+    console.log('error');
     this.src = this.fallback;
     this.isError = true;
+    this.cdr.detectChanges();
+    this.error.emit(event);
   }
 
-  onLoad() {
+  onLoad(event: Event) {
+    console.log('load');
     this.isLoaded = true;
+    this.isError = false;
+    this.cdr.detectChanges();
+    this.load.emit(event);
   }
 }

@@ -8,7 +8,7 @@
   position: relative;
   display: inline-block;
   &-img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     vertical-align: middle;
   }
@@ -30,6 +30,12 @@
   &-text {
     > span {
       margin-left: 0.25rem;
+    }
+  }
+  &-error {
+    display: none;
+    &-icon {
+      font-size: 2rem;
     }
   }
 }

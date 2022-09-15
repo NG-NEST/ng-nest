@@ -1,5 +1,5 @@
-import { Input, Component } from '@angular/core';
-import { XProperty, XWithConfig } from '@ng-nest/ui/core';
+import { Input, Component, Output, EventEmitter } from '@angular/core';
+import { XProperty, XTemplate, XWithConfig } from '@ng-nest/ui/core';
 
 /**
  * Image
@@ -18,27 +18,27 @@ export class XImageProperty extends XProperty {
    * @zh_CN 图片显示地址
    * @en_US Picture display address
    */
-  @Input() src!: string;
+  @Input() src?: string;
   /**
    * @zh_CN 图片宽度
    * @en_US Picture width
    */
-  @Input() width!: string;
+  @Input() width?: string;
   /**
    * @zh_CN 图片高度
    * @en_US Picture height
    */
-  @Input() height!: string;
+  @Input() height?: string;
   /**
    * @zh_CN 图像描述
    * @en_US Image description
    */
-  @Input() alt!: string;
+  @Input() alt?: string;
   /**
    * @zh_CN 加载失败显示的地址
    * @en_US Load fault tolerance address
    */
-  @Input() fallback!: string;
+  @Input() fallback?: string;
   /**
    * @zh_CN 预览文字
    * @en_US Preview text
@@ -50,6 +50,21 @@ export class XImageProperty extends XProperty {
    * @en_US Gradually loaded the display of the display
    */
   @Input() placeholder?: string;
+  /**
+   * @zh_CN 自定义预览操作
+   * @en_US Custom preview operation
+   */
+  @Input() previewTpl?: XTemplate;
+  /**
+   * @zh_CN 图片加载错误
+   * @en_US Picture load failed
+   */
+  @Output() error = new EventEmitter();
+  /**
+   * @zh_CN 图片加载完成
+   * @en_US Picture loading complete
+   */
+  @Output() load = new EventEmitter();
 }
 
 /**
