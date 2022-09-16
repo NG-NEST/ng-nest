@@ -7,7 +7,15 @@
     </ng-template>
   </x-col>
   <x-col span="24">
-    <x-upload action="http://localhost:3000/upload" [text]="textTpl" type="img" multiple [(ngModel)]="imgs" multipleModel="add"></x-upload>
+    <x-upload
+      action="http://localhost:3000/upload"
+      [text]="textTpl"
+      type="img"
+      multiple
+      [(ngModel)]="imgs"
+      multipleModel="add"
+      maxLimit="5"
+    ></x-upload>
     <ng-template #textTpl>
       <x-icon class="upload-icon" type="fto-upload"></x-icon>
       <span>选择图片</span>

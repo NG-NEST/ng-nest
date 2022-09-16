@@ -88,7 +88,6 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
   }
 
   onError(event: Event) {
-    console.log('error');
     this.src = this.fallback;
     this.isError = true;
     this.cdr.detectChanges();
@@ -96,7 +95,6 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
   }
 
   onLoad(event: Event) {
-    console.log('load');
     this.isLoaded = true;
     this.isError = false;
     this.cdr.detectChanges();

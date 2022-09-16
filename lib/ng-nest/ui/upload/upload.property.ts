@@ -1,4 +1,4 @@
-import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig, XNumber } from '@ng-nest/ui/core';
+import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig, XNumber, XInputNumber } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -65,6 +65,11 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    * @en_US File list custom display template
    */
   @Input() filesTpl?: XTemplate;
+  /**
+   * @zh_CN 限制单次上传文件个数，只有开启多文件上传 multiple 时生效，默认不做限制
+   * @en_US Limit the number of files uploaded files. Do not restrict the default
+   */
+  @Input() @XInputNumber() maxLimit?: XNumber;
   /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event

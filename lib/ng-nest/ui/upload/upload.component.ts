@@ -96,7 +96,8 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     let input = event.target as HTMLInputElement;
     if (typeof input === 'undefined' || input.files?.length === 0) return;
     let files: XUploadNode[] = [];
-    for (let i = 0; i < (input.files as FileList).length; i++) {
+    let max = this.maxLimit ? Number(this.maxLimit) : (input.files as FileList).length;
+    for (let i = 0; i < max; i++) {
       let file: XUploadNode = (input.files as FileList).item(i) as XUploadNode;
       file.state = 'ready';
       files = [...files, file];
@@ -157,7 +158,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
             reader.readAsText(blob, 'utf-8');
             reader.onload = () => {
               file.url = JSON.parse(reader.result as string)[0];
-              console.log(file)
+              console.log(file);
               if (index === -1) {
                 // this.value.push(file);
               } else {
