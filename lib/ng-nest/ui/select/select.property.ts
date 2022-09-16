@@ -108,6 +108,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @default '更多{{surplus}}个选中'
    */
   @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) maxTagContent?: XTemplate;
+  /**
+   * @zh_CN 开启虚拟滚动
+   * @en_US Turn on virtual scrolling
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
 }
 
 /**

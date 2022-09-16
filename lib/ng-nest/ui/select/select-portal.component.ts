@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -65,6 +65,8 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   locale: XI18nSelect = {};
   search: boolean = false;
   scrollNull = undefined;
+  virtualScroll!: XBoolean;
+  size!: XSize;
   private _unSubject = new Subject<void>();
 
   get getSelectAllText() {

@@ -485,6 +485,7 @@ export interface XSelectConfig {
   caseSensitive?: XBoolean;
   debounceTime?: number;
   maxTagCount?: number;
+  virtualScroll?: XBoolean;
 }
 
 export interface XSkeletonConfig {}

@@ -204,7 +204,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   setScorllTop(_num: number) {
-    if (!this.scrollElement) return;
+    if (!this.scrollElement || !this.keyManager.activeItem) return;
     let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
     let list = this.scrollElement;
     let min = list.scrollTop;

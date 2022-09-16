@@ -508,6 +508,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       selectAllText: this.selectAllText,
       caseSensitive: this.caseSensitive,
       search: this.search,
+      virtualScroll: this.virtualScroll,
+      size: this.size,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode, value: XSelectNode[] | (string | number)[]) => this.nodeClick(node, value),
       animating: (ing: boolean) => (this.animating = ing)
