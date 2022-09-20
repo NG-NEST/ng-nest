@@ -181,11 +181,11 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   setData() {
     if (Array.isArray(this.data)) {
       this.dataIsFunc = false;
+      this.tableData = this.data;
       this.setChecked(this.data);
       this.setHeadCheckboxList(this.data);
       this.setExpand(this.data);
       this.setHeadExpandList();
-      this.tableData = this.data;
       this.detectChanges();
     } else if (this.data instanceof Function) {
       this.dataIsFunc = true;
@@ -207,11 +207,11 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
           this.virtualBody.checkViewportSize();
         }
         this.getting = false;
+        this.tableData = data;
         this.setChecked(data);
         this.setHeadCheckboxList(data);
         this.setExpand(data);
         this.setHeadExpandList();
-        this.tableData = data;
         this.total = total;
         this.detectChanges();
       });
@@ -355,7 +355,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   setCheckedValues(column: XTableColumn) {
     const count = this.tableData.length;
     const checkedLen = this.tableData.filter((x) => x[column.id]).length;
-    this.checkedValues[column.id] = count === checkedLen;
+    this.checkedValues[column.id] = count === checkedLen && count !== 0;
     this.checkedValues[column.id + this.indeterminate] = checkedLen > 0 && checkedLen < count;
   }
 
