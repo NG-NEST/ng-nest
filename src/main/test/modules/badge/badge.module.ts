@@ -10,11 +10,12 @@ import { ExOffsetComponent } from './offset/offset.component';
 import { ExStandaloneComponent } from './standalone/standalone.component';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { FormsModule } from '@angular/forms';
+import { ExAnimationComponent } from './animation/animation.component';
 
 const routers = [{ path: '', component: TeBadgeComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XBadgeModule, XButtonModule, XLayoutModule, XSwitchModule],
-  declarations: [TeBadgeComponent, ExDefaultComponent, ExOffsetComponent, ExStandaloneComponent]
+  declarations: [TeBadgeComponent, ExDefaultComponent, ExOffsetComponent, ExStandaloneComponent, ExAnimationComponent]
 })
 export class TeBadgeModule {}

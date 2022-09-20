@@ -1,0 +1,14 @@
+<div class="row">
+  <x-badge standalone [value]="value"></x-badge>
+
+  <x-badge [value]="valueMax" [max]="99">
+    <x-button>消息</x-button>
+  </x-badge>
+
+  <br />
+  <br />
+  <x-buttons>
+    <x-button icon="fto-minus" (click)="onPlus(-1)"></x-button>
+    <x-button icon="fto-plus" (click)="onPlus(1)"></x-button>
+  </x-buttons>
+</div>

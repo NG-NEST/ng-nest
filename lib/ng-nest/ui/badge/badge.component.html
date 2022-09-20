@@ -1,18 +1,25 @@
-<div
-  #badge
-  class="x-badge"
-  [ngClass]="classMap"
-  [class.x-badge-dot]="dot"
-  [class.x-badge-offset]="getOffsetLeft"
-  [class.x-badge-standalone]="standalone"
->
+<div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot" [class.x-badge-standalone]="standalone">
   <ng-content></ng-content>
-  <ng-container *ngIf="value != 0 || dot">
-    <sup *ngIf="standalone" [@x-badge-standalone-animation] [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
-      <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
+  <ng-container *ngIf="value > 0 || dot">
+    <sup *ngIf="standalone" [@x-badge-standalone-animation] [style.marginRight]="getOffsetRight" [style.marginTop]="getOffsetTop">
+      <ng-container *ngIf="!dot">
+        <ng-container *ngTemplateOutlet="diaplayValueTpl"></ng-container>
+      </ng-container>
     </sup>
-    <sup *ngIf="!standalone" [@x-badge-animation] [style.marginLeft]="getOffsetLeft" [style.marginTop]="getOffsetTop">
-      <ng-container *ngIf="!dot">{{ displayValue }}</ng-container>
+    <sup *ngIf="!standalone" [@x-badge-animation] [style.marginRight]="getOffsetRight" [style.marginTop]="getOffsetTop">
+      <ng-container *ngIf="!dot">
+        <ng-container *ngTemplateOutlet="diaplayValueTpl"></ng-container>
+      </ng-container>
     </sup>
   </ng-container>
 </div>
+
+<ng-template #diaplayValueTpl>
+  <span
+    class="x-badge-scroll"
+    *ngFor="let item of maxNums; let i = index"
+    [style.transform]="'translateY(-' + (displayNums[i] == '+' ? 10 : displayNums[i]) * 100 + '%)'"
+  >
+    <p *ngFor="let j of range">{{ j }}</p>
+  </span>
+</ng-template>

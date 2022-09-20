@@ -23,10 +23,13 @@ import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray, XBadgeAnimati
 export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
   displayValue: string = '';
   viewInit = false;
+  range = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+'];
+  displayNums: any[] = [];
+  maxNums: number[] = [];
 
-  get getOffsetLeft() {
+  get getOffsetRight() {
     if (this.offset && XIsArray(this.offset) && this.offset.length > 0) {
-      return this.offset[0];
+      return `-${this.offset[0]}`;
     }
     return null;
   }
@@ -68,6 +71,19 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
       this.displayValue = `${this.max}+`;
     } else {
       this.displayValue = `${this.value}`;
+    }
+    let res: any = [];
+    for (let i = 0; i < this.displayValue.length; i++) {
+      let str = this.displayValue[i];
+      if (str === '+') {
+        res.push(str);
+      } else {
+        res.push(Number(str));
+      }
+    }
+    this.displayNums = res;
+    if (this.displayNums.length != this.maxNums.length) {
+      this.maxNums = this.displayNums.map((_x, index) => index) as number[];
     }
   }
 }

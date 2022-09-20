@@ -5,7 +5,7 @@
 @import './style/mixin';
 
 #{$--x-badge} {
-  display: inline-flex;
+  display: inline-block;
 }
 
 .#{$--x-badge} {
