@@ -16,9 +16,10 @@ import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XInputNumberModule } from '@ng-nest/ui/input-number';
 
 describe(XTreePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -29,7 +30,8 @@ describe(XTreePrefix, () => {
         XLinkModule,
         XFormModule,
         XLinkModule,
-        XMessageModule
+        XMessageModule,
+        XInputNumberModule
       ],
       declarations: [
         TestXTreeComponent,
@@ -41,7 +43,7 @@ describe(XTreePrefix, () => {
         TestXTreeOperationComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeComponent>;
     let tree: DebugElement;

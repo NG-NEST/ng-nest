@@ -30,17 +30,35 @@ export class ExVirtualScrollComponent {
     ...Array.from({ length: 3000 }).map((_, index) => ({ id: 20000 + index, label: `三级 1-1-${index + 4}`, pid: 5 }))
   ];
 
-  dataLazy: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+  dataLazy1: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+  dataLazy2: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+
+  scrollHeight = 400;
 
   @ViewChild('treeCom') treeCom!: XTreeComponent;
   @ViewChild('treeComLazy') treeComLazy!: XTreeComponent;
 
-  getData = (pid?: any): Observable<XTreeNode[]> => {
+  getData1 = (pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
-      let result = this.dataLazy
+      let result = this.dataLazy1
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy.find((y) => y.pid === x.id) ? true : false;
+          x.leaf = this.dataLazy1.find((y) => y.pid === x.id) ? true : false;
+          return x;
+        });
+      setTimeout(() => {
+        x.next(result);
+        x.complete();
+      }, 500);
+    });
+  };
+
+  getData2 = (pid?: any): Observable<XTreeNode[]> => {
+    return new Observable((x) => {
+      let result = this.dataLazy2
+        .filter((y) => y.pid === pid)
+        .map((x) => {
+          x.leaf = this.dataLazy2.find((y) => y.pid === x.id) ? true : false;
           return x;
         });
       setTimeout(() => {

@@ -1,4 +1,17 @@
 <h4>Base</h4>
-<x-tree [data]="data" virtualScroll> </x-tree>
+<x-button (click)="add()">new root node</x-button>
+<x-button (click)="addChild()" [disabled]="selected ? false : true">new sub node</x-button>
+<x-button (click)="update()" [disabled]="selected ? false : true">update node</x-button>
+<x-button (click)="remove()" [disabled]="selected ? false : true">delete node</x-button>
+<x-tree #treeCom [data]="data" virtualScroll (activatedChange)="info($event)"> </x-tree>
 <h4>Lazy</h4>
-<x-tree [data]="getData" virtualScroll lazy> </x-tree>
+<x-button (click)="addLazy()">new root node</x-button>
+<x-button (click)="addChildLazy()" [disabled]="selectedLazy ? false : true">new sub node</x-button>
+<x-button (click)="updateLazy()" [disabled]="selectedLazy ? false : true">update node</x-button>
+<x-button (click)="removeLazy()" [disabled]="selectedLazy ? false : true">delete node</x-button>
+<x-tree #treeComLazy [data]="getData1" virtualScroll lazy (activatedChange)="infoLazy($event)"> </x-tree>
+<h4>Scroll Height Adaption</h4>
+<x-input-number label="Height" [(ngModel)]="scrollHeight" step="10" min="100" max="800"></x-input-number>
+<div #adaptionRef class="ex-scroll-list" [style.height.px]="scrollHeight">
+  <x-tree [data]="getData2" virtualScroll lazy (activatedChange)="infoLazy($event)" [heightAdaption]="adaptionRef"> </x-tree>
+</div>

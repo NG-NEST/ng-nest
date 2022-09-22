@@ -5,6 +5,7 @@
 @import './style/mixin';
 
 .#{$--x-tree-node-prefix} {
+  display: block;
   @include reset-component();
   @include tree-node();
 }

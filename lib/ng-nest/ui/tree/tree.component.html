@@ -1,7 +1,6 @@
 <div #tree class="x-tree">
-  <ul *ngIf="!virtualScroll; else virtualScrollTpl">
-    <li
-      x-tree-node
+  <ng-container *ngIf="!virtualScroll; else virtualScrollTpl">
+    <x-tree-node
       *ngFor="let node of nodes; trackBy: trackByItem"
       [node]="node"
       [lazy]="lazy"
@@ -10,12 +9,13 @@
       [nodeNowrap]="nodeNowrap"
       [nodeAlignItems]="nodeAlignItems"
       [tree]="this"
-    ></li>
-  </ul>
+    ></x-tree-node>
+  </ng-container>
 </div>
 
 <ng-template #virtualScrollTpl>
   <cdk-virtual-scroll-viewport
+    #virtualBody
     [itemSize]="itemSize"
     [minBufferPx]="minBufferPx"
     [maxBufferPx]="maxBufferPx"
@@ -30,7 +30,6 @@
       [nodeNowrap]="nodeNowrap"
       [nodeAlignItems]="nodeAlignItems"
       [tree]="this"
-      [virtualScroll]="virtualScroll"
     ></x-tree-node>
   </cdk-virtual-scroll-viewport>
 </ng-template>

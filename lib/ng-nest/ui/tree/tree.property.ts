@@ -11,7 +11,7 @@ import {
   XWithConfig,
   XAlign
 } from '@ng-nest/ui/core';
-import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
+import { Input, TemplateRef, Output, EventEmitter, Component, ElementRef } from '@angular/core';
 
 /**
  * Tree
@@ -127,6 +127,11 @@ export class XTreeProperty extends XProperty {
    */
   @Input() actions: XTreeAction[] = [];
   /**
+   * @zh_CN 滚动区域元素
+   * @en_US Rolling area element
+   */
+  @Input() scrollElement?: HTMLElement;
+  /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
@@ -136,6 +141,11 @@ export class XTreeProperty extends XProperty {
    * @en_US Rolling area height
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 400) @XInputNumber() virtualScrollHeight!: number;
+  /**
+   * @zh_CN 虚拟滚动高度自适应指定元素
+   * @en_US virtual rolling height follows the specified object
+   */
+  @Input() heightAdaption!: ElementRef<HTMLElement> | HTMLElement;
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数，开启虚拟滚动才生效
    * @en_US itemSize，corresponding to the parameters in cdk scroll
@@ -156,6 +166,11 @@ export class XTreeProperty extends XProperty {
    * @en_US Parameter control request change event
    */
   @Output() manualChange = new EventEmitter<boolean>();
+  /**
+   * @zh_CN 节点点击事件
+   * @en_US Node click event
+   */
+  @Output() nodeClick = new EventEmitter<XTreeNode>();
 }
 
 /**

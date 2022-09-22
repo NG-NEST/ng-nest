@@ -42,17 +42,3 @@
     ></x-link>
   </span>
 </div>
-<ul *ngIf="!virtualScroll && (node.childrenLoaded || (node.leaf && node.open))" [hidden]="!node.open">
-  <li
-    x-tree-node
-    *ngFor="let child of node.children; trackBy: trackByItem"
-    [node]="child"
-    [parent]="this"
-    [lazy]="lazy"
-    [lazyData]="lazyData"
-    [nodeHeight]="nodeHeight"
-    [nodeNowrap]="nodeNowrap"
-    [nodeAlignItems]="nodeAlignItems"
-    [tree]="tree"
-  ></li>
-</ul>

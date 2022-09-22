@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { Component, ViewChild } from '@angular/core';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,14 +30,20 @@ export class ExVirtualScrollComponent {
     ...Array.from({ length: 3000 }).map((_, index) => ({ id: 20000 + index, label: `三级 1-1-${index + 4}`, pid: 5 }))
   ];
 
-  dataLazy: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+  dataLazy1: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+  dataLazy2: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
 
-  getData = (pid?: any): Observable<XTreeNode[]> => {
+  scrollHeight = 400;
+
+  @ViewChild('treeCom') treeCom!: XTreeComponent;
+  @ViewChild('treeComLazy') treeComLazy!: XTreeComponent;
+
+  getData1 = (pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
-      let result = this.dataLazy
+      let result = this.dataLazy1
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy.find((y) => y.pid === x.id) ? true : false;
+          x.leaf = this.dataLazy1.find((y) => y.pid === x.id) ? true : false;
           return x;
         });
       setTimeout(() => {
@@ -46,4 +52,76 @@ export class ExVirtualScrollComponent {
       }, 500);
     });
   };
+
+  getData2 = (pid?: any): Observable<XTreeNode[]> => {
+    return new Observable((x) => {
+      let result = this.dataLazy2
+        .filter((y) => y.pid === pid)
+        .map((x) => {
+          x.leaf = this.dataLazy2.find((y) => y.pid === x.id) ? true : false;
+          return x;
+        });
+      setTimeout(() => {
+        x.next(result);
+        x.complete();
+      }, 500);
+    });
+  };
+
+  selected?: XTreeNode;
+  selectedLazy?: XTreeNode;
+
+  info(node: XTreeNode) {
+    this.selected = node;
+    console.log(this.selected);
+  }
+
+  add() {
+    this.treeCom.addNode({ id: new Date().getTime(), label: '新增根节点' });
+  }
+
+  addChild() {
+    if (this.selected) {
+      this.treeCom.addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selected.id });
+    }
+  }
+
+  update() {
+    if (this.selected) {
+      this.treeCom.updateNode(this.selected!, { id: this.selected.id, label: '更新节点' });
+    }
+  }
+
+  remove() {
+    if (this.selected) {
+      this.treeCom.removeNode(this.selected);
+    }
+  }
+
+  infoLazy(node: XTreeNode) {
+    this.selectedLazy = node;
+    console.log(this.selectedLazy);
+  }
+
+  addLazy() {
+    this.treeComLazy.addNode({ id: new Date().getTime(), label: '新增根节点' });
+  }
+
+  addChildLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selectedLazy.id });
+    }
+  }
+
+  updateLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.updateNode(this.selectedLazy!, { id: this.selectedLazy.id, label: '更新节点' });
+    }
+  }
+
+  removeLazy() {
+    if (this.selectedLazy) {
+      this.treeComLazy.removeNode(this.selectedLazy);
+    }
+  }
 }
