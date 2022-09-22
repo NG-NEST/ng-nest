@@ -1,0 +1,37 @@
+<div
+  #treeSelectPortal
+  class="x-tree-select-portal"
+  (click)="inputCom.inputFocus(); stopPropagation($event)"
+  [style.maxHeight]="portalMaxHeight"
+>
+  <!-- <x-list
+    #list
+    [data]="data"
+    [(ngModel)]="value"
+    (nodeClick)="nodeClick($event)"
+    (keyManagerChange)="onActive($event)"
+    (keyManagerTabOut)="onTabOut()"
+    (onSelectAll)="onSelectAll($event)"
+    checked
+    [objectArray]="objectArray"
+    [multiple]="multiple"
+    [selectAll]="selectAll"
+    [selectAllText]="getSelectAllText"
+    [nodeTpl]="nodeTpl"
+    [scrollElement]="search ? scrollNull : treeSelectPortal"
+    [virtualScroll]="virtualScroll"
+    [size]="size"
+    [heightAdaption]="treeSelectPortal"
+  ></x-list> -->
+  <x-tree
+    #tree
+    [data]="data"
+    [labelTpl]="nodeTpl"
+    [virtualScroll]="virtualScroll"
+    [scrollElement]="search ? scrollNull : treeSelectPortal"
+    [heightAdaption]="treeSelectPortal"
+    [expandedLevel]="expandedLevel"
+    [activatedId]="value"
+    (nodeClick)="nodeClick($event)"
+  ></x-tree>
+</div>

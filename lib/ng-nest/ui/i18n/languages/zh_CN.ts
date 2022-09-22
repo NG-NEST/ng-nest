@@ -120,6 +120,10 @@ export default {
     selectAllText: '全选',
     maxTagContent: '更多{{surplus}}个选中'
   },
+  treeSelect: {
+    selectAllText: '全选',
+    maxTagContent: '更多{{surplus}}个选中'
+  },
   form: {
     required: '必填'
   }

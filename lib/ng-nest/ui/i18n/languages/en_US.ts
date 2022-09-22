@@ -121,6 +121,10 @@ export default {
     selectAllText: 'Select all',
     maxTagContent: 'and more {{surplus}} selected'
   },
+  treeSelect: {
+    selectAllText: 'Select all',
+    maxTagContent: 'and more {{surplus}} selected'
+  },
   form: {
     required: 'required'
   }

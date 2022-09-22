@@ -140,6 +140,10 @@ const routes: Routes = [
         path: 'avatar',
         loadChildren: () => import('./modules/avatar/avatar.module').then((x) => x.TeAvatarModule)
       },
+      {
+        path: 'tree-select',
+        loadChildren: () => import('./modules/tree-select/tree-select.module').then((x) => x.TeTreeSelectModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

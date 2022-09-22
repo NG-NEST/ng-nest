@@ -82,6 +82,7 @@ export * from '@ng-nest/ui/slider-select';
 export * from '@ng-nest/ui/switch';
 export * from '@ng-nest/ui/time-picker';
 export * from '@ng-nest/ui/transfer';
+export * from '@ng-nest/ui/tree-select';
 export * from '@ng-nest/ui/textarea';
 export * from '@ng-nest/ui/upload';
 

@@ -117,6 +117,7 @@ export interface XComponentConfig {
   transfer?: XTransferConfig;
   tree?: XTreeConfig;
   treeFile?: XTreeFileConfig;
+  treeSelect?: XTreeSelectConfig;
   textarea?: XTextareaConfig;
   upload?: XUploadConfig;
 }
@@ -584,6 +585,20 @@ export interface XTextareaConfig {
 export interface XTreeFileConfig {
   maxHeight?: XNumber;
   spacing?: XNumber;
+}
+
+export interface XTreeSelectConfig {
+  placement?: XPositionTopBottom;
+  clearable?: XBoolean;
+  size?: XSize;
+  bordered?: XBoolean;
+  portalMaxHeight?: string;
+  selectAllText?: string;
+  search?: XBoolean;
+  caseSensitive?: XBoolean;
+  debounceTime?: number;
+  maxTagCount?: number;
+  virtualScroll?: XBoolean;
 }
 
 export interface XUploadConfig {

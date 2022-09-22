@@ -1,0 +1,68 @@
+<div #treeSelect class="x-tree-select" [class.x-tree-select-multiple]="multiple">
+  <div class="x-tree-select-row">
+    <x-input
+      #inputCom
+      type="text"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [labelAlign]="labelAlign"
+      [justify]="justify"
+      [align]="align"
+      [direction]="direction"
+      [required]="required"
+      [disabled]="disabled"
+      [validator]="validator"
+      [icon]="icon"
+      [iconSpin]="iconSpin"
+      [placeholder]="placeholder"
+      [readonly]="getReadonly"
+      [clearable]="showClearable"
+      [(ngModel)]="displayValue"
+      [valueTpl]="valueTpl ? valueTpl : nodeTpl"
+      [valueTplContext]="valueTplContext"
+      [size]="size"
+      [bordered]="bordered"
+      [before]="before"
+      [after]="after"
+      [pattern]="pattern"
+      [message]="message"
+      [pointer]="true"
+      [inputPadding]="inputPadding"
+      [(active)]="active"
+      (clearEmit)="clearEmit()"
+      (xKeydown)="onKeydown($event)"
+      (xInput)="onInput($event)"
+      (xFocus)="onFocus($event)"
+      (xClick)="showPortal(true)"
+      (xMouseenter)="menter()"
+      (xMouseleave)="mleave()"
+      (xComposition)="composition = $event"
+    ></x-input>
+  </div>
+</div>
+
+<ng-template #multipleValueTpl>
+  <x-tag
+    [@.disabled]="true"
+    *ngFor="let node of displayNodes; index as i"
+    [closable]="!disabled"
+    (close)="closeNode($event, node, i)"
+    [size]="size"
+    >{{ node.label }}</x-tag
+  >
+  <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
+    <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
+      displayMore
+    }}</ng-container>
+  </x-tag>
+  <x-input
+    #multipleInput
+    *ngIf="search"
+    bordered="false"
+    [size]="size"
+    inputPadding="0.275"
+    [(ngModel)]="multipleSearchValue"
+    (xInput)="onInput($event)"
+    (xKeydown)="onKeydown($event)"
+  ></x-input>
+</ng-template>

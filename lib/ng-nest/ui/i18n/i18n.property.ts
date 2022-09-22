@@ -26,6 +26,7 @@ export interface XI18nProperty {
   pageHeader?: XI18nPageHeader;
   list?: XI18nList;
   select?: XI18nSelect;
+  treeSelect?: XI18nTreeSelect;
   form?: XI18nForm;
   [property: string]: any;
 }
@@ -143,6 +144,11 @@ export interface XI18nPageHeader {
 }
 
 export interface XI18nSelect {
+  selectAllText?: string;
+  maxTagContent?: XTemplate;
+}
+
+export interface XI18nTreeSelect {
   selectAllText?: string;
   maxTagContent?: XTemplate;
 }
