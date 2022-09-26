@@ -352,14 +352,24 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
             }
             this.selectedNodes = selected;
           }
+          if (this.showPath) {
+            for (let node of this.selectedNodes) {
+              const parents = this.getParentPath(node);
+              node.path = parents.map((x) => x.label).join(this.separator);
+            }
+          }
           this.setDisplayNodes();
-          this.displayValue = this.selectedNodes.map((x) => x.label).join(',');
           this.valueTplContext.$node = [...this.selectedNodes];
         }
       } else {
         let node = this.nodes.find((x) => x.id === this.value);
         if (node) {
-          this.displayValue = node.label;
+          if (this.showPath) {
+            const parents = this.getParentPath(node);
+            this.displayValue = parents.map((x) => x.label).join(this.separator);
+          } else {
+            this.displayValue = node.label;
+          }
           this.valueTplContext.$node = node;
         } else {
           this.displayValue = '';
@@ -368,6 +378,20 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       }
       this.cdr.detectChanges();
     }
+  }
+
+  getParentPath(node: XTreeSelectNode) {
+    let res: XTreeSelectNode[] = [node];
+    const getParent = (nd: XTreeSelectNode) => {
+      let parent = this.nodes.find((x) => nd.pid && x.id === nd.pid);
+      if (parent) {
+        res = [parent, ...res];
+        getParent(parent);
+      }
+    };
+    getParent(node);
+
+    return res;
   }
 
   closeNode(event: Event, node: XTreeSelectNode, index: number) {
@@ -550,7 +574,12 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       this.setDisplayValue(node);
     } else {
       node = node as XTreeSelectNode;
-      this.displayValue = node.label;
+      if (this.showPath) {
+        const parents = this.getParentPath(node);
+        this.displayValue = parents.map((x) => x.label).join(this.separator);
+      } else {
+        this.displayValue = node.label;
+      }
       this.valueTplContext.$node = node;
       this.value = node.id;
       this.closeSubject.next();

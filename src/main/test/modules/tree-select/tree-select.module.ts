@@ -9,6 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
+import { ExPathComponent } from './path/path.component';
+import { ExLabelComponent } from './label/label.component';
+import { ExDisabledComponent } from './disabled/disabled.component';
+import { ExRequiredComponent } from './required/required.component';
+import { ExBorderedComponent } from './bordered/bordered.component';
+import { ExMultipleComponent } from './multiple/multiple.component';
 
 const routers = [{ path: '', component: TeTreeSelectComponent }];
 
@@ -23,6 +29,15 @@ const routers = [{ path: '', component: TeTreeSelectComponent }];
     XInputModule,
     XSelectModule
   ],
-  declarations: [TeTreeSelectComponent, ExDefaultComponent]
+  declarations: [
+    TeTreeSelectComponent,
+    ExDefaultComponent,
+    ExPathComponent,
+    ExLabelComponent,
+    ExDisabledComponent,
+    ExRequiredComponent,
+    ExBorderedComponent,
+    ExMultipleComponent
+  ]
 })
 export class TeTreeSelectModule {}

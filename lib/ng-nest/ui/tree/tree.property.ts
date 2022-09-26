@@ -42,8 +42,8 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() lazy?: XBoolean;
   /**
-   * @zh_CN 当前激活的节点 Id
-   * @en_US Currently active node Id
+   * @zh_CN 当前激活的节点 Id, 当 multiple 为 true 时，值为 Id 数组
+   * @en_US Currently active node Id. When Multiple is true, the value is the Id array
    */
   @Input() activatedId: any;
   /**
@@ -161,6 +161,11 @@ export class XTreeProperty extends XProperty {
    * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
   @Input() maxBufferPx: number = 200;
+  /**
+   * @zh_CN 多选功能，当前激活的节点可以是多个
+   * @en_US Multiple choice
+   */
+  @Input() @XInputBoolean() multiple?: XBoolean;
   /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event

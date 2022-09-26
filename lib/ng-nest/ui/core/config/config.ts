@@ -599,6 +599,8 @@ export interface XTreeSelectConfig {
   debounceTime?: number;
   maxTagCount?: number;
   virtualScroll?: XBoolean;
+  showPath?: XBoolean;
+  separator?: string;
 }
 
 export interface XUploadConfig {

@@ -118,6 +118,16 @@ export class XTreeSelectProperty extends XControlValueAccessor<any> {
    * @en_US Turn on virtual scrolling
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  /**
+   * @zh_CN 显示的值展示路径 AA > BB > CC
+   * @en_US Display value display path. AA > BB > CC
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showPath!: XBoolean;
+  /**
+   * @zh_CN 路径分隔符
+   * @en_US Path separator
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, ' / ') separator?: string;
 }
 
 /**
@@ -186,7 +196,18 @@ export interface XTreeSelectOption extends XFormOption {
  * @zh_CN Tree Select 数据对象
  * @en_US Tree Select data object
  */
-export interface XTreeSelectNode extends XParentIdentityProperty<XTreeSelectNode> {}
+export interface XTreeSelectNode extends XParentIdentityProperty<XTreeSelectNode> {
+  /**
+   * @zh_CN 当前节点路径名称
+   * @en_US Current node path name
+   */
+  path?: string;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom attribute
+   */
+  [property: string]: any;
+}
 
 /**
  * Tree Select Portal

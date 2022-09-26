@@ -34,6 +34,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
   }
 
+  // get activated() {
+  //   return this.tree.activatedId.includes(this.node.id);
+  // }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,

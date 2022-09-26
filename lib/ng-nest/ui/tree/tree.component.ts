@@ -35,6 +35,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   nodes: XTreeNode[] = [];
   virtualNodes: XTreeNode[] = [];
   activatedNode!: XTreeNode;
+  activatedIds: any[] = [];
   dataIsFunc = false;
   getting = false;
   treeData: XTreeNode[] = [];

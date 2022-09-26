@@ -48,7 +48,7 @@
     [closable]="!disabled"
     (close)="closeNode($event, node, i)"
     [size]="size"
-    >{{ node.label }}</x-tag
+    >{{ showPath ? node.path : node.label }}</x-tag
   >
   <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
     <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
