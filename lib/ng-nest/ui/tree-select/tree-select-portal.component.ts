@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
+import { XBoolean, XConnectBaseAnimation, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTreeSelect } from '@ng-nest/ui/i18n';
@@ -37,7 +37,6 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
     this.animating(true);
   }
 
-
   @ViewChild('tree') tree!: XTreeComponent;
   // @ViewChild('list') list!: XListComponent;
 
@@ -54,7 +53,7 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   searchSubject!: BehaviorSubject<any>;
   nodeEmit!: Function;
   selectAllEmit!: Function;
-  multiple: XNumber = 1;
+  multiple!: XBoolean;
   selectAll: boolean = false;
   nodeTpl!: TemplateRef<any>;
   show: boolean = false;
@@ -119,7 +118,7 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XTreeSelectNode) {
-    if (this.multiple === 0) {
+    if (this.multiple) {
       this.nodeEmit(node, this.value);
     } else {
       this.nodeEmit(node);

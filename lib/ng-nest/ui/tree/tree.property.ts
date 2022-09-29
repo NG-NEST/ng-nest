@@ -42,7 +42,7 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() lazy?: XBoolean;
   /**
-   * @zh_CN 当前激活的节点 Id, 当 multiple 为 true 时，值为 Id 数组
+   * @zh_CN 当前激活的节点 Id, 当 multiple 为 true 时，值为数组（默认是 Id 数组，objectArray 为 true，对象数组）
    * @en_US Currently active node Id. When Multiple is true, the value is the Id array
    */
   @Input() activatedId: any;
@@ -167,6 +167,11 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() multiple?: XBoolean;
   /**
+   * @zh_CN 当开启多选的时候，activatedId 的值为对象数组
+   * @en_US When multiple selection is enabled, the value of activatedId is an array of objects
+   */
+  @Input() @XInputBoolean() objectArray?: XBoolean;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */
@@ -176,6 +181,11 @@ export class XTreeProperty extends XProperty {
    * @en_US Node click event
    */
   @Output() nodeClick = new EventEmitter<XTreeNode>();
+  /**
+   * @zh_CN 节点点击事件
+   * @en_US Node click event
+   */
+  @Output() activatedIdChange = new EventEmitter<any>();
 }
 
 /**

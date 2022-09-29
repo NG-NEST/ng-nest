@@ -15,9 +15,7 @@
     // transition: $--x-animation-duration-base;
     x-icon {
       padding: 0.25rem;
-      color: $--x-text-400;
       font-size: 1rem;
-      margin-right: 0.125rem;
       transition: $--x-animation-duration-base;
       &.is-leaf {
         visibility: hidden;
@@ -33,19 +31,30 @@
       margin-right: 0.325rem;
       padding: 0.25rem 0;
     }
-    &:hover,
+    &:hover {
+      background-color: $--x-background-a200;
+    }
     &.x-activated {
-      background-color: $--x-background-a100;
+      background-color: $--x-background-a400;
       .#{$--x-tree-node-prefix}-label {
         color: $--x-primary;
       }
     }
+
     &:hover {
       .#{$--x-tree-node-prefix}-operations {
         display: flex;
         align-items: center;
       }
     }
+  }
+  &-right,
+  &-loading {
+    color: $--x-text-400;
+    margin-right: 0.125rem;
+  }
+  &-checked {
+    color: $--x-primary;
   }
   &-operations {
     display: none;

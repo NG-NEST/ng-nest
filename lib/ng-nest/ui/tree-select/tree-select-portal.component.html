@@ -31,7 +31,9 @@
     [scrollElement]="search ? scrollNull : treeSelectPortal"
     [heightAdaption]="treeSelectPortal"
     [expandedLevel]="expandedLevel"
-    [activatedId]="value"
+    [(activatedId)]="value"
     (nodeClick)="nodeClick($event)"
+    [multiple]="multiple"
+    [objectArray]="objectArray"
   ></x-tree>
 </div>

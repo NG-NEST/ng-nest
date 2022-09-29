@@ -144,6 +144,10 @@ const routes: Routes = [
         path: 'tree-select',
         loadChildren: () => import('./modules/tree-select/tree-select.module').then((x) => x.TeTreeSelectModule)
       },
+      {
+        path: 'transfer',
+        loadChildren: () => import('./modules/transfer/transfer.module').then((x) => x.TeTransferModule)
+      },
       { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' }
     ]
   }

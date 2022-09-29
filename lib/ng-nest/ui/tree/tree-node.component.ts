@@ -34,9 +34,17 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
   }
 
-  // get activated() {
-  //   return this.tree.activatedId.includes(this.node.id);
-  // }
+  get getActivated() {
+    if (this.tree.multiple) {
+      if (this.tree.objectArray) {
+        return this.tree.activatedId.map((x: XTreeNode) => x.id).includes(this.node.id);
+      } else {
+        return this.tree.activatedId.includes(this.node.id);
+      }
+    } else {
+      return this.tree.activatedNode?.id === this.node.id;
+    }
+  }
 
   constructor(
     public renderer: Renderer2,
@@ -61,6 +69,23 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   onActivate(event: Event, node: XTreeNode) {
     const change: Function = this.tree.activatedNode?.change as Function;
     this.tree.nodeOpen && node.leaf && this.tree.onToggle(event, node);
+    if (this.tree.multiple) {
+      if (this.tree.objectArray) {
+        const ids = this.tree.activatedId.map((x: XTreeNode) => x.id);
+        if (ids.includes(node.id)) {
+          this.tree.activatedId.splice(ids.indexOf(node.id), 1);
+        } else {
+          this.tree.activatedId.push(node);
+        }
+      } else {
+        if (this.tree.activatedId.includes(node.id)) {
+          this.tree.activatedId.splice(this.tree.activatedId.indexOf(node.id), 1);
+        } else {
+          this.tree.activatedId.push(node.id);
+        }
+      }
+      this.tree.activatedIdChange.emit(this.tree.activatedId);
+    }
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id && !this.tree.allowManyActivated) return;
     }

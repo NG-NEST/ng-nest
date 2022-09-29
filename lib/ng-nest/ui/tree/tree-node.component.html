@@ -1,6 +1,6 @@
 <div
   class="x-tree-node-content"
-  [class.x-activated]="tree.activatedNode?.id === node.id"
+  [class.x-activated]="getActivated"
   [style.padding-left.rem]="paddingLeft"
   [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
@@ -11,9 +11,10 @@
     [class.is-leaf]="!node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
+    class="x-tree-node-right"
     (click)="!tree.nodeOpen && tree.onToggle($event, node)"
   ></x-icon>
-  <x-icon *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
+  <x-icon class="x-tree-node-loading" *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
   <x-checkbox
     *ngIf="tree.checkbox"
     [data]="[{ label: '', id: node.id }]"
@@ -41,5 +42,5 @@
       (click)="onAction($event, action, node)"
     ></x-link>
   </span>
-  <!-- <x-icon class="x-tree-node-checked" type="fto-check" *ngIf="multiple && getActivated"></x-icon> -->
+  <x-icon class="x-tree-node-checked" type="fto-check" *ngIf="tree.multiple && getActivated"></x-icon>
 </div>

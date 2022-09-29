@@ -35,7 +35,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   nodes: XTreeNode[] = [];
   virtualNodes: XTreeNode[] = [];
   activatedNode!: XTreeNode;
-  activatedIds: any[] = [];
   dataIsFunc = false;
   getting = false;
   treeData: XTreeNode[] = [];
@@ -273,8 +272,21 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   setActivatedNode(nodes: XTreeNode[]) {
+    if (XIsEmpty(this.activatedId) && this.multiple) {
+      this.activatedId = [];
+    }
+    let activatedId: any;
+    if (this.multiple) {
+      if (this.activatedId.length > 0) {
+        if (this.objectArray) {
+          activatedId = this.activatedId[this.activatedId.length - 1].id;
+        } else {
+          activatedId = this.activatedId[this.activatedId.length - 1];
+        }
+      }
+    }
     let before = this.activatedNode;
-    this.activatedNode = nodes.find((x) => x.id == this.activatedId) as XTreeNode;
+    this.activatedNode = nodes.find((x) => x.id == activatedId) as XTreeNode;
     if (this.activatedNode) {
       this.setParentOpen(nodes, this.activatedNode);
       this.activatedChange.emit(this.activatedNode);
@@ -357,7 +369,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (parent) {
         if (!parent.children) parent.children = [];
         this.expanded = [...this.expanded, parent.id];
-        this.activatedId = node.id;
+        this.setActivatedId(node);
         node.level = Number(parent.level) + 1;
         node.pid = parent.id;
         this.treeData.push(node);
@@ -369,7 +381,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.cdr.detectChanges();
         parent.change && parent.change();
       } else if (XIsEmpty(node.pid)) {
-        this.activatedId = node.id;
+        this.setActivatedId(node);
         node.level = 0;
         this.treeData = [...this.treeData, node];
         this.nodes = [...this.nodes, node];
@@ -386,20 +398,35 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     }
   }
 
+  setActivatedId(node: XTreeNode) {
+    if (this.multiple) {
+      if (this.objectArray) {
+        this.activatedId = [node];
+      } else {
+        this.activatedId = [node.id];
+      }
+    } else {
+      this.activatedId = node.id;
+    }
+    this.activatedIdChange.emit(this.activatedId);
+  }
+
   removeNode(node: XTreeNode) {
     let parent = this.treeData.find((x) => x.id === node.pid);
     if (parent) {
       if (!parent.children) parent.children = [];
       parent.children.splice(parent.children.indexOf(node), 1);
       parent.leaf = parent.children.length > 0;
-      if (!parent.leaf) this.activatedId = parent.id;
+      if (!parent.leaf) {
+        this.setActivatedId(parent);
+      }
       let index = this.nodes.indexOf(node);
       let aindex = index - 1;
       if (index === 0 && this.nodes.length > 1) {
         aindex = 1;
       }
       let activatedNode = this.nodes[aindex];
-      this.activatedId = activatedNode.id;
+      this.setActivatedId(activatedNode);
       this.setActivatedNode(this.nodes);
       this.nodes.splice(index, 1);
       this.nodes = [...this.nodes];

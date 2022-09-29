@@ -68,6 +68,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       if (!XIsArray(value)) {
         value = [value];
       }
+      console.log(value);
     }
     this.value = value;
     this.setDisplayValue();
@@ -340,10 +341,11 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
             ids = this.value;
           }
           if (clickNode) {
-            if (clickNode.selected) {
-              this.selectedNodes.push(clickNode);
-            } else {
+            let inx = this.selectedNodes.findIndex((x: XTreeSelectNode) => x.id === clickNode.id);
+            if (inx >= 0) {
               XRemove(this.selectedNodes, (x) => x.id === clickNode.id);
+            } else {
+              this.selectedNodes.push(clickNode);
             }
           } else {
             for (let id of ids) {
@@ -479,7 +481,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   createPortal() {
-    this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
+    // this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
@@ -518,7 +520,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       data: this.nodes,
       value: this.value,
       placement: this.placement,
-      multiple: this.multiple === true ? 0 : 1,
+      multiple: this.multiple,
       selectAll: this.selectAll,
       nodeTpl: this.nodeTpl,
       valueChange: this.valueChange,
@@ -546,17 +548,13 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (this.multiple) {
       if (node) {
         if (XIsObjectArray(value)) {
-          if (node.selected) {
-            this.value.push(node);
-          } else {
-            let inx = this.value.findIndex((x: XTreeSelectNode) => x.id === node.id);
-            this.value.splice(inx, 1);
-          }
+          // do nothing
         } else if (XIsArray(value)) {
-          if (node.selected) {
-            this.value.push(node.id);
+          let inx = this.value.findIndex((x: any) => x === node.id);
+          if (inx >= 0) {
+            this.value.splice(inx, 1);
           } else {
-            this.value.splice(this.value.indexOf(node.id), 1);
+            this.value.push(node.id);
           }
         }
       } else {

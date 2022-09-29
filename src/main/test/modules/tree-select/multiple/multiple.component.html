@@ -1,7 +1,13 @@
 <x-row>
-  <x-col>
-    <x-tree-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change(model1)" multiple></x-tree-select>
+  <x-col span="24">
+    <x-tree-select [style.width.rem]="24" [data]="data1" [(ngModel)]="model1" (ngModelChange)="change(model1)" multiple></x-tree-select>
   </x-col>
+  <x-col span="24">
+    <x-tree-select [style.width.rem]="24" [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-tree-select>
+  </x-col>
+  <!-- <x-col span="24">
+    <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-select>
+  </x-col> -->
 </x-row>
 <!-- <x-row>
   <x-col>
