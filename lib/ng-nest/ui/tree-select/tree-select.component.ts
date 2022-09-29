@@ -68,7 +68,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       if (!XIsArray(value)) {
         value = [value];
       }
-      console.log(value);
+      this.objectArray = XIsObjectArray(value);
     }
     this.value = value;
     this.setDisplayValue();
@@ -333,11 +333,9 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         } else {
           let ids = [];
           let selected = [];
-          if (XIsObjectArray(this.value)) {
-            this.objectArray = true;
+          if (this.objectArray) {
             ids = this.value.map((x: XTreeSelectNode) => x.id);
           } else {
-            this.objectArray = false;
             ids = this.value;
           }
           if (clickNode) {
@@ -398,7 +396,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   closeNode(event: Event, node: XTreeSelectNode, index: number) {
     let inx = -1;
-    if (XIsObjectArray(this.value)) {
+    if (this.objectArray) {
       inx = this.value.findIndex((y: XTreeSelectNode) => y.id === node.id);
     } else {
       inx = this.value.findIndex((y: number | string) => y === node.id);
@@ -547,9 +545,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   nodeClick(node: XTreeSelectNode, value?: XTreeSelectNode[] | (string | number)[]) {
     if (this.multiple) {
       if (node) {
-        if (XIsObjectArray(value)) {
-          // do nothing
-        } else if (XIsArray(value)) {
+        if (!this.objectArray) {
           let inx = this.value.findIndex((x: any) => x === node.id);
           if (inx >= 0) {
             this.value.splice(inx, 1);
