@@ -1,36 +1,67 @@
 <x-row>
   <x-col span="24">
-    <x-tree-select [style.width.rem]="24" [data]="data1" [(ngModel)]="model1" (ngModelChange)="change(model1)" multiple></x-tree-select>
+    <x-tree-select
+      label="多选"
+      [style.width.rem]="24"
+      [data]="data1"
+      [(ngModel)]="model1"
+      (ngModelChange)="change(model1)"
+      multiple
+    ></x-tree-select>
   </x-col>
   <x-col span="24">
-    <x-tree-select [style.width.rem]="24" [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-tree-select>
-  </x-col>
-  <!-- <x-col span="24">
-    <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-select>
-  </x-col> -->
-</x-row>
-<!-- <x-row>
-  <x-col>
-    <x-tree-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-tree-select>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col> 全选 </x-col>
-</x-row>
-<x-row>
-  <x-col>
-    <x-tree-select [data]="data3" [(ngModel)]="model3" (ngModelChange)="change(model3)" multiple tree-selectAll></x-tree-select>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col>
     <x-tree-select
+      label="默认值，Id 数组"
+      [style.width.rem]="24"
+      [data]="data2"
+      [(ngModel)]="model2"
+      (ngModelChange)="change(model2)"
+      multiple
+    ></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select
+      label="默认值，对象数组"
+      [style.width.rem]="24"
+      [data]="data3"
+      [(ngModel)]="model3"
+      (ngModelChange)="change(model3)"
+      multiple
+    ></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select
+      label="显示路径"
+      [style.width.rem]="24"
       [data]="data4"
       [(ngModel)]="model4"
       (ngModelChange)="change(model4)"
       multiple
-      tree-selectAll
-      tree-selectAllText="选择所有选项"
+      showPath
     ></x-tree-select>
   </x-col>
-</x-row> -->
+  <x-col span="24">
+    <x-tree-select
+      label="更多"
+      [style.width.rem]="24"
+      [maxTagCount]="3"
+      [data]="data5"
+      [(ngModel)]="model5"
+      (ngModelChange)="change($event)"
+      multiple
+    ></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select
+      label="更多，自定义模版"
+      [style.width.rem]="24"
+      [maxTagCount]="3"
+      [maxTagContent]="maxTagContentTpl"
+      [data]="data6"
+      [(ngModel)]="model6"
+      (ngModelChange)="change($event)"
+      multiple
+    ></x-tree-select>
+    <ng-template #maxTagContentTpl let-surplus="$surplus" let-total="$total">更多 {{ surplus }} 个，共选中 {{ total }} 个 </ng-template>
+  </x-col>
+</x-row>

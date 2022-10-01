@@ -247,8 +247,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   menter() {
-    if (this.disabled || !this.clearable || this.iconSpin) return;
     this.enter = true;
+    if (this.disabled || !this.clearable || this.iconSpin) return;
     if (!XIsEmpty(this.displayValue)) {
       this.icon = '';
       this.showClearable = true;
@@ -257,8 +257,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   mleave() {
-    if (this.disabled || !this.clearable || this.iconSpin) return;
     this.enter = false;
+    if (this.disabled || !this.clearable || this.iconSpin) return;
     if (this.clearable) {
       this.icon = 'fto-chevron-down';
       this.showClearable = false;
@@ -359,6 +359,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
             }
           }
           this.setDisplayNodes();
+          this.displayValue = this.selectedNodes.map((x) => x.label).join(this.separator);
           this.valueTplContext.$node = [...this.selectedNodes];
         }
       } else {
@@ -462,6 +463,9 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       XSetData<XTreeSelectNode>(this.data, this._unSubject, true, click ? '' : this.displayValue).subscribe((x) => {
         this.icon = 'fto-chevron-down';
         this.iconSpin = false;
+        if (!this.enter && this.clearable) {
+          this.showClearable = false;
+        }
         this.inputCom.cdr.detectChanges();
         this.nodes = x;
         if (!this.search) this.setDisplayValue();
@@ -479,7 +483,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   createPortal() {
-    // this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
     this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
@@ -544,16 +547,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   nodeClick(node: XTreeSelectNode, value?: XTreeSelectNode[] | (string | number)[]) {
     if (this.multiple) {
-      if (node) {
-        if (!this.objectArray) {
-          let inx = this.value.findIndex((x: any) => x === node.id);
-          if (inx >= 0) {
-            this.value.splice(inx, 1);
-          } else {
-            this.value.push(node.id);
-          }
-        }
-      } else {
+      if (this.value.length === 0) {
         this.value = value;
       }
       if (this.multipleInput) {

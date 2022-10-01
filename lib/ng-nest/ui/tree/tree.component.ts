@@ -284,6 +284,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
           activatedId = this.activatedId[this.activatedId.length - 1];
         }
       }
+    } else {
+      activatedId = this.activatedId;
     }
     let before = this.activatedNode;
     this.activatedNode = nodes.find((x) => x.id == activatedId) as XTreeNode;

@@ -36,9 +36,7 @@
     }
     &.x-activated {
       background-color: $--x-background-a400;
-      .#{$--x-tree-node-prefix}-label {
-        color: $--x-primary;
-      }
+      color: $--x-primary;
     }
 
     &:hover {

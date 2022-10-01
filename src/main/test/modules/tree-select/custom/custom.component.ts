@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
-  selector: 'ex-bordered',
-  templateUrl: './bordered.component.html',
-  styleUrls: ['./bordered.component.scss']
+  selector: 'ex-custom',
+  templateUrl: './custom.component.html',
+  styleUrls: ['./custom.component.scss']
 })
-export class ExBorderedComponent {
+export class ExCustomComponent {
   data1 = [
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
@@ -25,7 +25,7 @@ export class ExBorderedComponent {
     { id: 15, label: '皇帝蕉', pid: 5 }
   ];
   data2: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data3: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data4: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data5: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
+
+  model1: any;
+  model2: any;
 }

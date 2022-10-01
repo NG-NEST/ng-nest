@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
+import { XSize } from '@ng-nest/ui/core';
 import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
-  selector: 'ex-bordered',
-  templateUrl: './bordered.component.html',
-  styleUrls: ['./bordered.component.scss']
+  selector: 'ex-size',
+  templateUrl: './size.component.html',
+  styleUrls: ['./size.component.scss']
 })
-export class ExBorderedComponent {
-  data1 = [
+export class ExSizeComponent {
+  radioData = ['big', 'large', 'medium', 'small', 'mini'];
+  size: XSize = 'medium';
+  data: XTreeSelectNode[] = [
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
     { id: 3, label: '饮料' },
@@ -24,8 +27,4 @@ export class ExBorderedComponent {
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
   ];
-  data2: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data3: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data4: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data5: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
 }
