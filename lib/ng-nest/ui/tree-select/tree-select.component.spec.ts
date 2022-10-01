@@ -37,8 +37,7 @@ const data: XData<XTreeSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EE
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
-    <x-tree-select [data]="data></x-tree-select>
+    <x-tree-select [data]="data"></x-tree-select>
   `,
   styles: [
     `
