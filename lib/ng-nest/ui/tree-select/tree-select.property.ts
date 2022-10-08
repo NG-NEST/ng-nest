@@ -126,8 +126,9 @@ export class XTreeSelectProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 路径分隔符
    * @en_US Path separator
+   * @default ' / '
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, ' / ') separator?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME) separator: string = ' / ';
 }
 
 /**

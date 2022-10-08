@@ -23,7 +23,7 @@ export class XAvatarProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<number | XSize | XResponseSize>(X_CONFIG_NAME, 'medium') size?: number | XSize | XResponseSize;
+  @Input() @XWithConfig<XAvatarSize>(X_CONFIG_NAME, 'medium') size?: XAvatarSize;
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
@@ -67,6 +67,12 @@ export type XAvatarShape = XShape;
  * @en_US When the display type is picture, set how the picture fits into the container frame
  */
 export type XAvatarFit = XFit;
+
+/**
+ * @zh_CN 尺寸类型
+ * @en_US Size type
+ */
+export type XAvatarSize = number | XSize | XResponseSize;
 
 /**
  * Avatar Group
