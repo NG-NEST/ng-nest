@@ -12,6 +12,7 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { XKeywordModule } from '@ng-nest/ui/keyword';
 
 @NgModule({
   declarations: [XListComponent, XListOptionComponent, XListProperty, XListOptionProperty],
@@ -27,7 +28,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     XBaseFormModule,
     XI18nModule,
     XOutletModule,
-    ScrollingModule
+    ScrollingModule,
+    XKeywordModule
   ]
 })
 export class XListModule {}

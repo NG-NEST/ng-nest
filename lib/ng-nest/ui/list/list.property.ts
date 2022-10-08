@@ -130,6 +130,16 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() maxBufferPx: number = 200;
   /**
+   * @zh_CN 关键字高亮
+   * @en_US Keyword highlighting
+   */
+  @Input() keywordText!: string | string[];
+  /**
+   * @zh_CN 匹配关键字区分大小写
+   * @en_US Case-sensitive
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  /**
    * @zh_CN Full event
    * @en_US 全选事件
    */
@@ -265,6 +275,16 @@ export class XListOptionProperty {
    * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
+   * @zh_CN 关键字高亮
+   * @en_US Keyword highlighting
+   */
+  @Input() keywordText!: string | string[];
+  /**
+   * @zh_CN 匹配关键字区分大小写
+   * @en_US Case-sensitive
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
   /**
    * @zh_CN 有子节点
    * @en_US leaf

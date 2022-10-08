@@ -67,12 +67,13 @@
 @mixin list-option {
   @include option();
   transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
-  > span {
+  &-content {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     pointer-events: none;
     user-select: none;
+    display: inline-block;
   }
   &:not(:first-child) {
     margin-top: $--x-border-width;

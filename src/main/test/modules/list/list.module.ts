@@ -13,6 +13,7 @@ import { ExScrollComponent } from './scroll/scroll.component';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
+import { ExKeywordComponent } from './keyword/keyword.component';
 
 const routers = [{ path: '', component: TeListComponent }];
 
@@ -28,6 +29,6 @@ const routers = [{ path: '', component: TeListComponent }];
     XDialogModule,
     XInputNumberModule
   ],
-  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent, ExLoadMoreComponent, ExScrollComponent]
+  declarations: [TeListComponent, ExDefaultComponent, ExSizeComponent, ExLoadMoreComponent, ExScrollComponent, ExKeywordComponent]
 })
 export class TeListModule {}
