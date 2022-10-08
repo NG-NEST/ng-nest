@@ -29,11 +29,7 @@
 <div class="row">
   <x-button (click)="customForm()">Custom form</x-button>
   <x-dialog title="form" [(visible)]="visibleForm" buttonsCenter>
-    <ul class="custom-form">
-      <li><x-input label="user" direction="row"></x-input></li>
-      <li><x-input label="email" direction="row"></x-input></li>
-      <li><x-radio [data]="['enabled', 'disabled']" [ngModel]="'enabled'"></x-radio></li>
-    </ul>
+    <x-form [controls]="controls"></x-form>
   </x-dialog>
 </div>
 

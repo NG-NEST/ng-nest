@@ -17,6 +17,7 @@ import { XLinkModule } from '@ng-nest/ui/link';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
+import { XFormModule } from '@ng-nest/ui/form';
 
 describe(XDialogPrefix, () => {
   beforeEach((() => {
@@ -31,6 +32,7 @@ describe(XDialogPrefix, () => {
         XButtonModule,
         XIconModule,
         XLinkModule,
+        XFormModule,
         XMessageBoxModule
       ],
       declarations: [TestXDialogComponent, TestXDialogDraggableComponent]
