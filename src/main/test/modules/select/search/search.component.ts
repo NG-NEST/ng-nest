@@ -8,7 +8,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  default = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ', 'KKKK', 'LLLL', 'MMMM', 'NNNN', 'VVVV'];
+  default = [
+    '水果',
+    '蔬菜',
+    '饮料',
+    '苹果',
+    '香蕉',
+    '梨子',
+    '生菜',
+    '大白菜',
+    '韭菜',
+    '汽水',
+    '果汁',
+    '纯净水',
+    '小米蕉',
+    '仙人蕉',
+    '皇帝蕉'
+  ];
 
   data = [...this.default];
   model = '';
@@ -35,7 +51,7 @@ export class ExSearchComponent {
   modelMultipleMore = [];
 
   dataMultipleMoreTpl = [...this.default];
-  modelMultipleMoreTpl = ['AAAA', 'BBBB', 'CCCC'];
+  modelMultipleMoreTpl = ['苹果', '纯净水', '仙人蕉'];
 
   change(_event: any) {
     console.log(_event);

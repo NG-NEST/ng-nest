@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -34,7 +34,7 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
 import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
 
@@ -105,7 +105,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
-  dataChange: Subject<XSelectNode[]> = new Subject();
+  dataChange = new BehaviorSubject<XSelectNode[]>([]);
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
   composition: boolean = false;
@@ -176,6 +176,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.async) return;
     XSetData<XSelectNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
+      this.dataChange.next(this.nodes);
       this.setDisplayValue();
       this.setPortal();
       this.cdr.detectChanges();
@@ -191,7 +192,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
-      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER].includes(keyCode)) {
+      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)) {
         this.inputChange.next(this.displayValue);
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
@@ -269,31 +270,32 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (XIsFunction(this.data)) {
       if (!this.portalAttached()) {
         this.showPortal();
-      } else {
-        this.icon = 'fto-loader';
-        this.iconSpin = true;
-        this.cdr.detectChanges();
-        XSetData<XSelectNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
-          this.icon = '';
-          this.iconSpin = false;
-          this.nodes = x;
-          this.dataChange.next(this.nodes);
-          this.cdr.detectChanges();
-        });
       }
+      this.icon = 'fto-loader';
+      this.iconSpin = true;
+      this.cdr.detectChanges();
+      XSetData<XSelectNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
+        this.icon = '';
+        this.iconSpin = false;
+        if (!this.enter && this.clearable) {
+          this.showClearable = false;
+        }
+        this.nodes = x;
+        this.dataChange.next(this.nodes);
+        this.cdr.detectChanges();
+      });
       return;
     }
     if (this.nodes) {
       if (!this.portalAttached()) {
         this.showPortal();
-      } else {
-        if (XIsEmpty(value)) {
-          this.searchNodes = [...this.nodes];
-        } else {
-          this.setSearchNodes(value);
-        }
-        this.dataChange.next(this.searchNodes);
       }
+      if (XIsEmpty(value)) {
+        this.searchNodes = [...this.nodes];
+      } else {
+        this.setSearchNodes(value);
+      }
+      this.dataChange.next(this.searchNodes);
     }
   }
 
@@ -438,13 +440,18 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       XSetData<XSelectNode>(this.data, this._unSubject, true, click ? '' : this.displayValue).subscribe((x) => {
         this.icon = 'fto-chevron-down';
         this.iconSpin = false;
+        if (!this.enter && this.clearable) {
+          this.showClearable = false;
+        }
         this.inputCom.cdr.detectChanges();
         this.nodes = x;
+        this.dataChange.next(this.nodes);
         if (!this.search) this.setDisplayValue();
         this.createPortal();
         this.cdr.detectChanges();
       });
     } else {
+      this.dataChange.next(this.nodes);
       this.createPortal();
     }
     if (this.search && this.multiple) {
@@ -510,6 +517,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       search: this.search,
       virtualScroll: this.virtualScroll,
       size: this.size,
+      inputChange: this.inputChange,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XSelectNode, value: XSelectNode[] | (string | number)[]) => this.nodeClick(node, value),
       animating: (ing: boolean) => (this.animating = ing)

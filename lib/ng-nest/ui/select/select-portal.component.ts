@@ -43,6 +43,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
+  inputChange!: Subject<any>;
   dataChange!: Subject<XSelectNode[]>;
   animating!: Function;
   activeChange!: Function;
@@ -67,6 +68,7 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
   scrollNull = undefined;
   virtualScroll!: XBoolean;
   size!: XSize;
+  keywordText!: string;
   private _unSubject = new Subject<void>();
 
   get getSelectAllText() {
@@ -93,6 +95,9 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     });
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
+    });
+    this.inputChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.keywordText = x;
     });
 
     this.i18n.localeChange
