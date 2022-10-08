@@ -11,11 +11,21 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { XInputModule } from '@ng-nest/ui/input';
 
 describe(XTreeSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XTreeSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        XTreeSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XInputModule,
+        XLayoutModule,
+        XRadioModule
+      ],
       declarations: [TestXTreeSelectComponent]
     }).compileComponents();
   });
@@ -36,9 +46,7 @@ describe(XTreeSelectPrefix, () => {
 const data: XData<XTreeSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
 
 @Component({
-  template: `
-    <x-tree-select [data]="data"></x-tree-select>
-  `,
+  template: ` <x-tree-select [data]="data"></x-tree-select> `,
   styles: [
     `
       :host {

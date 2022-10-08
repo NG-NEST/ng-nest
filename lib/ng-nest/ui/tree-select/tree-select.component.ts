@@ -106,7 +106,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   valueChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
-  portalInitSubject: Subject<void> = new Subject();
   dataChange = new BehaviorSubject<XTreeSelectNode[]>([]);
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
@@ -572,7 +571,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       virtualScroll: this.virtualScroll,
       size: this.size,
       expandedLevel: this.expandedLevel,
-      portalInitSubject: this.portalInitSubject,
       inputChange: this.inputChange,
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: XTreeSelectNode, value: XTreeSelectNode[] | (string | number)[]) => this.nodeClick(node, value),
