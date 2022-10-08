@@ -6,13 +6,18 @@
 
 @mixin form {
   display: inline-block;
+  overflow: hidden;
   &-title {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     font-size: $--x-font-size-medium;
     > x-icon {
       margin-right: 0.25rem;
     }
+  }
+  &-category {
+    width: 100%;
+    overflow: hidden;
   }
   &-rows {
     > x-row[hidden] {

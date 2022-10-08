@@ -13,11 +13,13 @@ import { ExServiceDialogComponent } from './service/service-dialog.component';
 import { ExResizableComponent } from './resizable/resizable.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ExCustomComponent } from './custom/custom.component';
+import { ExContainerComponent } from './container/container.component';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XLinkModule } from '@ng-nest/ui/link';
-import { ExContainerComponent } from './container/container.component';
+import { XFormModule } from '@ng-nest/ui/form';
+import { ExFormComponent } from './form/form.component';
 
 const routers = [{ path: '', component: TeDialogComponent }];
 
@@ -34,7 +36,8 @@ const routers = [{ path: '', component: TeDialogComponent }];
     DragDropModule,
     XInputModule,
     XIconModule,
-    XLinkModule
+    XLinkModule,
+    XFormModule
   ],
   declarations: [
     TeDialogComponent,
@@ -43,7 +46,8 @@ const routers = [{ path: '', component: TeDialogComponent }];
     ExServiceDialogComponent,
     ExResizableComponent,
     ExCustomComponent,
-    ExContainerComponent
+    ExContainerComponent,
+    ExFormComponent
   ]
 })
 export class TeDialogModule {}
