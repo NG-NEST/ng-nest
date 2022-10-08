@@ -172,6 +172,16 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() objectArray?: XBoolean;
   /**
+   * @zh_CN 关键字高亮，针对下拉树搜索
+   * @en_US Keyword highlighting
+   */
+  @Input() keywordText!: string | string[];
+  /**
+   * @zh_CN 匹配关键字区分大小写，针对下拉树搜索
+   * @en_US Case-sensitive
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */
@@ -194,11 +204,6 @@ export class XTreeProperty extends XProperty {
  */
 export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
   /**
-   * @zh_CN 展开
-   * @en_US Unfold
-   */
-  open?: boolean;
-  /**
    * @zh_CN 激活的
    * @en_US active
    */
@@ -208,11 +213,6 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    * @en_US Check for updates
    */
   change?: Function;
-  /**
-   * @zh_CN 子节点已加载过
-   * @en_US Child node has been loaded
-   */
-  childrenLoaded?: boolean;
   /**
    * @zh_CN checkbox 是否选中
    * @en_US whether checkbox is selected

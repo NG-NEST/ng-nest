@@ -32,6 +32,7 @@
       > x-input {
         margin-top: 0.125rem;
         width: 5rem;
+        min-width: 3rem;
         .x-input {
           @include input-size('big', $--x-height-large, 0 $--x-padding-large);
           @include input-size('large', $--x-height-medium, 0 $--x-padding-medium);
@@ -54,11 +55,16 @@
   box-shadow: $--x-box-shadow-light;
   position: relative;
   display: flex;
+  flex-direction: column;
   background-color: $--x-background;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-tree-select-height} * 6) + calc(#{$--x-border-width} * 7));
   x-tree {
     width: 100%;
+  }
+  x-empty {
+    margin: 1rem;
+    display: block;
   }
 }
 

@@ -12,6 +12,7 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XTreeModule } from '@ng-nest/ui/tree';
+import { XEmptyModule } from '@ng-nest/ui/empty';
 
 @NgModule({
   declarations: [XTreeSelectComponent, XTreeSelectPortalComponent, XTreeSelectProperty],
@@ -27,7 +28,8 @@ import { XTreeModule } from '@ng-nest/ui/tree';
     XTagModule,
     XI18nModule,
     XOutletModule,
-    XTreeModule
+    XTreeModule,
+    XEmptyModule
   ]
 })
 export class XTreeSelectModule {}

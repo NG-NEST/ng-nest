@@ -117,7 +117,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     !XIsEmpty(this.activatedId) && this.setActivatedNode(value);
     const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
-      node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0;
+      node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0 || node.open;
       node.checked = this.checked.indexOf(node.id) >= 0;
       node.childrenLoaded = node.open;
       if (XIsUndefined(node.children)) {
@@ -275,23 +275,28 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (XIsEmpty(this.activatedId) && this.multiple) {
       this.activatedId = [];
     }
-    let activatedId: any;
+    let before = this.activatedNode;
     if (this.multiple) {
       if (this.activatedId.length > 0) {
-        if (this.objectArray) {
-          activatedId = this.activatedId[this.activatedId.length - 1].id;
-        } else {
-          activatedId = this.activatedId[this.activatedId.length - 1];
+        let ids = this.objectArray ? this.activatedId.map((x: XTreeNode) => x.id) : this.activatedId;
+        for (let i = 0; i < ids.length; i++) {
+          let node = nodes.find((x) => x.id === ids[i]) as XTreeNode;
+          if (node) {
+            this.setParentOpen(nodes, node);
+            if (i === ids.length - 1) {
+              this.activatedNode = node;
+              this.activatedChange.emit(this.activatedNode);
+            }
+          }
         }
       }
     } else {
-      activatedId = this.activatedId;
-    }
-    let before = this.activatedNode;
-    this.activatedNode = nodes.find((x) => x.id == activatedId) as XTreeNode;
-    if (this.activatedNode) {
-      this.setParentOpen(nodes, this.activatedNode);
-      this.activatedChange.emit(this.activatedNode);
+      let activatedId = this.activatedId;
+      this.activatedNode = nodes.find((x) => x.id == activatedId) as XTreeNode;
+      if (this.activatedNode) {
+        this.setParentOpen(nodes, this.activatedNode);
+        this.activatedChange.emit(this.activatedNode);
+      }
     }
     if (before) {
       before.change && before.change();

@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { XBoolean, XConnectBaseAnimation, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
+import { XBoolean, XConnectBaseAnimation, XIsEmpty, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTreeSelect } from '@ng-nest/ui/i18n';
@@ -39,12 +39,16 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
 
   @ViewChild('tree') tree!: XTreeComponent;
   // @ViewChild('list') list!: XListComponent;
+  get isEmpty() {
+    return XIsEmpty(this.data);
+  }
 
   data!: XTreeSelectNode[];
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
-  dataChange!: Subject<XTreeSelectNode[]>;
+  inputChange!: Subject<any>;
+  dataChange!: BehaviorSubject<XTreeSelectNode[]>;
   animating!: Function;
   activeChange!: Function;
   destroyPortal!: Function;
@@ -69,6 +73,7 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   virtualScroll!: XBoolean;
   size!: XSize;
   expandedLevel!: number;
+  keywordText!: string;
   private _unSubject = new Subject<void>();
 
   get getSelectAllText() {
@@ -96,7 +101,9 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((_x) => {
       // this.tree.keydown(x);
     });
-
+    this.inputChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+      this.keywordText = x;
+    });
     this.i18n.localeChange
       .pipe(
         map((x) => x.treeSelect as XI18nTreeSelect),

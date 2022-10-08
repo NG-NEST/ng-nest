@@ -28,6 +28,9 @@
     class="x-tree-node-label"
     [class.nowrap]="node.nowrap === false || node.nowrap === true ? node.nowrap : nodeNowrap"
     [title]="node.label"
+    x-keyword
+    [text]="tree.keywordText"
+    [caseSensitive]="tree.caseSensitive"
     *ngIf="!tree.labelTpl; else labelTpl"
     >{{ node.label }}</span
   >

@@ -28,6 +28,57 @@ export class ExSearchComponent {
   ];
   model1: any;
 
+  data2 = (val: any): Observable<XTreeSelectNode[]> => {
+    return new Observable((x) => {
+      let data = JSON.parse(JSON.stringify(this.data1));
+      setTimeout(() => {
+        let nodes: XTreeSelectNode[] = data.filter((x: XTreeSelectNode) => x.label.indexOf(val) >= 0);
+        const getParent = (node: XTreeSelectNode) => {
+          if (XIsEmpty(node.pid)) return;
+          const parent = data.find((x: XTreeSelectNode) => x.id === node.pid);
+          if (!XIsEmpty(parent)) {
+            if (nodes.every((x) => x.id !== parent.id)) {
+              nodes.push(parent);
+            }
+          }
+        };
+        for (let node of nodes) {
+          getParent(node);
+        }
+        x.next(nodes);
+        x.complete();
+      }, 300);
+    });
+  };
+  model2: any;
+
+  data3 = JSON.parse(JSON.stringify(this.data1));
+  model3: any;
+
+  data4 = (val: any): Observable<XTreeSelectNode[]> => {
+    return new Observable((x) => {
+      let data = JSON.parse(JSON.stringify(this.data1));
+      setTimeout(() => {
+        let nodes: XTreeSelectNode[] = data.filter((x: XTreeSelectNode) => x.label.indexOf(val) >= 0);
+        const getParent = (node: XTreeSelectNode) => {
+          if (XIsEmpty(node.pid)) return;
+          const parent = data.find((x: XTreeSelectNode) => x.id === node.pid);
+          if (!XIsEmpty(parent)) {
+            if (nodes.every((x) => x.id !== parent.id)) {
+              nodes.push(parent);
+            }
+          }
+        };
+        for (let node of nodes) {
+          getParent(node);
+        }
+        x.next(nodes);
+        x.complete();
+      }, 300);
+    });
+  };
+  model4: any;
+
   change(event: any) {
     console.log(event);
   }

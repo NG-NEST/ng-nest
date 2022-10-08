@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { ExPathComponent } from './path/path.component';
 import { ExLabelComponent } from './label/label.component';
 import { ExDisabledComponent } from './disabled/disabled.component';
 import { ExRequiredComponent } from './required/required.component';
@@ -18,6 +17,8 @@ import { ExScrollComponent } from './scroll/scroll.component';
 import { ExAsyncComponent } from './async/async.component';
 import { ExCustomComponent } from './custom/custom.component';
 import { ExSizeComponent } from './size/size.component';
+import { ExSearchComponent } from './search/search.component';
+import { ExPathComponent } from './path/path.component';
 
 const routers = [{ path: '', component: TeTreeSelectComponent }];
 
@@ -35,7 +36,8 @@ const routers = [{ path: '', component: TeTreeSelectComponent }];
     ExScrollComponent,
     ExAsyncComponent,
     ExCustomComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExSearchComponent
   ]
 })
 export class TeTreeSelectModule {}

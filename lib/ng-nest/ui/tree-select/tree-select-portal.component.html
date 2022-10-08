@@ -36,5 +36,8 @@
     [multiple]="multiple"
     [allowManyActivated]="multiple"
     [objectArray]="objectArray"
+    [keywordText]="keywordText"
+    [caseSensitive]="caseSensitive"
   ></x-tree>
+  <x-empty *ngIf="isEmpty"></x-empty>
 </div>
