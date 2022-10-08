@@ -1,4 +1,35 @@
-## [14.0.7](https://github.com/NG-NEST/ng-nest/compare/14.0.6...14.0.7) (2022-09-04)
+## [14.0.8](https://github.com/NG-NEST/ng-nest/compare/14.0.7...14.0.8) (2022-10-08)
+
+
+### Bug Fixes
+
+* **module:form:** fix dialog form style ([86fe3e3](https://github.com/NG-NEST/ng-nest/commit/86fe3e38c7b9686ee4911999f749b73a12209ea6))
+* **module:select:** fix search backspace ([014a8b2](https://github.com/NG-NEST/ng-nest/commit/014a8b2dfeba7cb59444589302842af5eb61d2a5))
+* **module:table:** fix default select all ([ec1e4fb](https://github.com/NG-NEST/ng-nest/commit/ec1e4fb9aec09e8a580903eda149640e9bc95d8c))
+
+
+### Features
+
+* **module:avatar:** add auto label and background color ([b6b6242](https://github.com/NG-NEST/ng-nest/commit/b6b6242b19fc09346f0c1071268ab85253a26e8b)), closes [#115](https://github.com/NG-NEST/ng-nest/issues/115) [#113](https://github.com/NG-NEST/ng-nest/issues/113)
+* **module:avatar:** add avatar group ([d92eca4](https://github.com/NG-NEST/ng-nest/commit/d92eca432f1f6346510ad340e8681a9db3b6a423)), closes [#114](https://github.com/NG-NEST/ng-nest/issues/114)
+* **module:avatar:** add response size ([31eeacf](https://github.com/NG-NEST/ng-nest/commit/31eeacf346f7cd362b7bafa18d63692ad2a2917c)), closes [#116](https://github.com/NG-NEST/ng-nest/issues/116)
+* **module:badge:** add standalone param ([87e154b](https://github.com/NG-NEST/ng-nest/commit/87e154b127ab342a5e0a6166463bffd65aeb3c83)), closes [#121](https://github.com/NG-NEST/ng-nest/issues/121)
+* **module:badge:** add switch animation ([a6b72a6](https://github.com/NG-NEST/ng-nest/commit/a6b72a6af962a4e0e9604ea9b0d4013b15d8f412)), closes [#119](https://github.com/NG-NEST/ng-nest/issues/119)
+* **module:keyword:** add keyword highlight ([27653c8](https://github.com/NG-NEST/ng-nest/commit/27653c881bec8df7f56691ae32f03e5ac3c413a8))
+* **module:list:** add keyword highlight ([374a8e3](https://github.com/NG-NEST/ng-nest/commit/374a8e3e638fc9c0467fb0f6b69418dd1cf6a2bb))
+* **module:select:** add virtual scroll ([1ca6844](https://github.com/NG-NEST/ng-nest/commit/1ca6844788915821e1d8e82ba391b5ee9e077a9b))
+* **module:tree-select:** add async data ([3221d2f](https://github.com/NG-NEST/ng-nest/commit/3221d2ff57c84ebfff8075171ff480c98fc2edd3)), closes [#108](https://github.com/NG-NEST/ng-nest/issues/108)
+* **module:tree-select:** add multiple ([47ef38a](https://github.com/NG-NEST/ng-nest/commit/47ef38a02f5fb11e2e974227483f01ff1bf3f58f)), closes [#108](https://github.com/NG-NEST/ng-nest/issues/108)
+* **module:tree-select:** add object array ([b449cef](https://github.com/NG-NEST/ng-nest/commit/b449cefc4571e1f20e145d23221db4277f9dfc21)), closes [#108](https://github.com/NG-NEST/ng-nest/issues/108)
+* **module:tree-select:** add path display ([a70ba16](https://github.com/NG-NEST/ng-nest/commit/a70ba163ee89e653cf2d566757afecccac2d1e05)), closes [#108](https://github.com/NG-NEST/ng-nest/issues/108)
+* **module:tree-select:** add search ([6eab77d](https://github.com/NG-NEST/ng-nest/commit/6eab77d929cbe08897bb1703be4767e797fe664c))
+* **module:tree-select:** add tree select component ([d847b1d](https://github.com/NG-NEST/ng-nest/commit/d847b1d55714d6cee34c5bbbde5b5756075433d7)), closes [#108](https://github.com/NG-NEST/ng-nest/issues/108)
+* **module:upload:** add max limit ([ab6a57c](https://github.com/NG-NEST/ng-nest/commit/ab6a57cf33deef3fc65ee59e2453be1e8efd8ea1)), closes [#109](https://github.com/NG-NEST/ng-nest/issues/109)
+* **module:upload:** optimize examples and picture display ([329cf97](https://github.com/NG-NEST/ng-nest/commit/329cf97957d70c09655ad25429bc4d3ed029b803)), closes [#112](https://github.com/NG-NEST/ng-nest/issues/112) [#111](https://github.com/NG-NEST/ng-nest/issues/111) [#110](https://github.com/NG-NEST/ng-nest/issues/110)
+
+
+
+## [14.0.7](https://github.com/NG-NEST/ng-nest/compare/14.0.6...14.0.7) (2022-09-05)
 
 
 ### Bug Fixes
