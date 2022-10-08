@@ -16,10 +16,14 @@ export interface XParentIdentityProperty<T> extends XIdentityProperty {
   leaf?: boolean;
   // 子节点
   children?: T[];
+  // 子节点已加载过
+  childrenLoaded?: boolean;
   // 选中
   selected?: boolean;
   // 禁用
   disabled?: boolean;
+  // 展开
+  open?: boolean;
 }
 
 // 标识对象

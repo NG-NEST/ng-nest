@@ -1,0 +1,6 @@
+// Keyword
+@import './mixin';
+
+.#{$--x-keyword-prefix} {
+  @include keyword();
+}

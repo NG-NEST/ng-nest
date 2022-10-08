@@ -120,6 +120,7 @@ export interface XComponentConfig {
   treeSelect?: XTreeSelectConfig;
   textarea?: XTextareaConfig;
   upload?: XUploadConfig;
+  keyword?: XKeywordConfig;
 }
 
 export interface XAffixConfig {
@@ -380,6 +381,7 @@ export interface XListConfig {
   selectAllText?: string;
   loadMoreText?: string;
   loadingMoreText?: string;
+  caseSensitive?: boolean;
 }
 
 export interface XListOptionConfig {
@@ -606,4 +608,10 @@ export interface XTreeSelectConfig {
 export interface XUploadConfig {
   download?: XBoolean;
   multipleModel?: 'cover' | 'add';
+}
+
+export interface XKeywordConfig {
+  type?: XType;
+  color?: string;
+  caseSensitive?: boolean;
 }

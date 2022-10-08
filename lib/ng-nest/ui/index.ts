@@ -44,6 +44,7 @@ export * from '@ng-nest/ui/time-range';
 export * from '@ng-nest/ui/timeline';
 export * from '@ng-nest/ui/tree';
 export * from '@ng-nest/ui/tree-file';
+export * from '@ng-nest/ui/keyword';
 
 /**
  * Feedback
