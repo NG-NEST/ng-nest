@@ -1,5 +1,8 @@
 <x-row>
-  <x-col>
-    <x-tree-select [data]="data"></x-select>
+  <x-col span="24">
+    <x-tree-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change($event)"></x-tree-select>
   </x-col>
 </x-row>

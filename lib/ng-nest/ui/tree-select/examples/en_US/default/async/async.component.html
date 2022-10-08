@@ -1,0 +1,20 @@
+<x-row>
+  <x-col span="24">
+    <x-tree-select
+      label="Observable load once"
+      [data]="getData1"
+      [(ngModel)]="model1"
+      (ngModelChange)="change($event)"
+      async
+    ></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select
+      label="Function repeated loading"
+      [data]="getData2"
+      [(ngModel)]="model2"
+      (ngModelChange)="change($event)"
+      async
+    ></x-tree-select>
+  </x-col>
+</x-row>

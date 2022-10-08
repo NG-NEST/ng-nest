@@ -1,7 +1,6 @@
 ---
 label: 'Tree Select 树选择器'
 category: 'Form'
-hidden: true
 ---
 
 # Tree Select 树选择器

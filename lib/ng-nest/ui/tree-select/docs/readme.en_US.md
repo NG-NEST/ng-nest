@@ -1,7 +1,6 @@
 ---
 label: 'Tree Select'
 category: 'Form'
-hidden: true
 ---
 
 # Tree Select

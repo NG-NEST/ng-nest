@@ -1,0 +1,16 @@
+<x-row>
+  <x-col span="24">
+    <x-tree-select [data]="data1" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-tree-select>
+  </x-col>
+  <x-col span="24">
+    <x-tree-select [data]="data2" [(ngModel)]="model2" [nodeTpl]="multipleNodeTpl" multiple></x-tree-select>
+  </x-col>
+</x-row>
+
+<ng-template #nodeTpl let-node="$node">
+  <span *ngIf="node"> {{ node?.label }}[{{ node.id }}]</span>
+</ng-template>
+
+<ng-template #multipleNodeTpl let-node="$node">
+  <span *ngIf="node" [style.flex]="1"> {{ node?.label }}[{{ node?.id }}] </span>
+</ng-template>

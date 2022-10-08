@@ -1,4 +1,4 @@
 ---
 order: 1
-label: 'defalut'
+label: 'default'
 ---
