@@ -91,7 +91,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   setPosition() {
-    if (!this.xResizable && !this.firstLoaded) return;
+    if (!this.xResizable || !this.firstLoaded) return;
     let positions: XResizablePosition[] = [];
     if (XIsString(this.position)) {
       positions.push(this.position as XResizablePosition);
