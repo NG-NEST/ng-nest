@@ -12,9 +12,9 @@ import {
   TemplateRef
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
-import { Subject } from 'rxjs';
-import { XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
+import { filter, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 
@@ -41,7 +41,8 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   value: any;
   valueChange!: Subject<any>;
   positionChange!: Subject<any>;
-  dataChange!: Subject<XAutoCompleteNode[]>;
+  dataChange!: BehaviorSubject<XAutoCompleteNode[]>;
+  inputChange!: BehaviorSubject<any>;
   animating!: Function;
   destroyPortal!: Function;
   closeSubject!: Subject<void>;
@@ -52,6 +53,8 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   show: boolean = false;
   active: number = -1;
   inputCom!: XInputComponent;
+  keywordText!: string;
+  caseSensitive!: XBoolean;
   private _unSubject = new Subject<void>();
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
@@ -75,6 +78,15 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.list.keydown(x);
     });
+    this.inputChange
+      .pipe(
+        filter((x) => x !== null),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.keywordText = x;
+        console.log(this.keywordText);
+      });
   }
 
   ngOnDestroy(): void {
@@ -87,6 +99,7 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XAutoCompleteNode) {
+    this.keywordText = node.label;
     this.nodeEmit(node);
   }
 
