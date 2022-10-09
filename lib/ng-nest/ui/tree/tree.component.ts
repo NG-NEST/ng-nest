@@ -129,8 +129,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
           }
         }
       }
-      if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) > 0;
-      if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));
+      if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) === 0;
+      if (!node.leaf) node.children?.map((y) => getChildren(y, level + 1));
       return node;
     };
     this.treeData = value;
@@ -382,7 +382,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.treeData.push(node);
         this.setActivatedNode(this.treeData);
         parent.open = true;
-        parent.leaf = true;
+        parent.leaf = false;
         parent.children = [...parent.children, node];
         this.virtualToggle(parent);
         this.cdr.detectChanges();
@@ -423,8 +423,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (parent) {
       if (!parent.children) parent.children = [];
       parent.children.splice(parent.children.indexOf(node), 1);
-      parent.leaf = parent.children.length > 0;
-      if (!parent.leaf) {
+      parent.leaf = parent.children.length === 0;
+      if (parent.leaf) {
         this.setActivatedId(parent);
       }
       let index = this.nodes.indexOf(node);

@@ -5,6 +5,11 @@
 @import './param';
 
 @mixin tree {
+  &-only-leaf {
+    .#{$--x-tree-node-prefix}-sub {
+      color: $--x-text-300;
+    }
+  }
 }
 
 @mixin tree-node {
@@ -12,7 +17,6 @@
     display: flex;
     padding: 0.0625rem 0;
     cursor: pointer;
-    // transition: $--x-animation-duration-base;
     x-icon {
       padding: 0.25rem;
       font-size: 1rem;
@@ -24,7 +28,7 @@
         transform: rotate(90deg);
       }
       &:hover {
-        color: $--x-text-300;
+        color: $--x-text-400;
       }
     }
     x-checkbox {

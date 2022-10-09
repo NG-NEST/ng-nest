@@ -182,6 +182,11 @@ export class XTreeProperty extends XProperty {
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
   /**
+   * @zh_CN 只能选择叶子节点
+   * @en_US Only leaf nodes can be selected
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) onlyLeaf!: XBoolean;
+  /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event
    */

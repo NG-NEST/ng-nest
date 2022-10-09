@@ -12,7 +12,7 @@ export interface XParentIdentityProperty<T> extends XIdentityProperty {
   pid?: any;
   // 层级
   level?: number;
-  // 包含子节点
+  // 叶子节点
   leaf?: boolean;
   // 子节点
   children?: T[];

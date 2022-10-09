@@ -68,7 +68,16 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
 
   onActivate(event: Event, node: XTreeNode) {
     const change: Function = this.tree.activatedNode?.change as Function;
-    this.tree.nodeOpen && node.leaf && this.tree.onToggle(event, node);
+    this.tree.nodeOpen && !node.leaf && this.tree.onToggle(event, node);
+    const onChange = () => {
+      change && change();
+      event.stopPropagation();
+      this.cdr.detectChanges();
+    };
+    if (this.tree.onlyLeaf && !node.leaf) {
+      onChange();
+      return;
+    }
     if (this.tree.multiple) {
       if (this.tree.objectArray) {
         const ids = this.tree.activatedId.map((x: XTreeNode) => x.id);
@@ -92,9 +101,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.tree.activatedNode = node;
     this.tree.activatedChange.emit(node);
     this.tree.nodeClick.emit(node);
-    change && change();
-    event.stopPropagation();
-    this.cdr.detectChanges();
+    onChange();
   }
 
   onCheckboxChange() {

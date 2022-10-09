@@ -12,7 +12,7 @@ export class ExDefaultComponent {
   data = (_str: string) =>
     new Observable<string[]>((x) => {
       console.log('search', _str);
-      x.next(this.dataArray);
+      x.next(['aaaa', 'bbbb', 'cccc', 'dddd', 'AAAA', 'BBBB']);
       x.complete();
     });
   modelAsync = 'ngnest';

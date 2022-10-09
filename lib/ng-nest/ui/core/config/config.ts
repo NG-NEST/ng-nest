@@ -577,6 +577,7 @@ export interface XTreeConfig {
   nodeHeight?: XNumber;
   nodeAlignItems?: XAlign;
   virtualScroll?: boolean;
+  onlyLeaf?: boolean;
 }
 
 export interface XTextareaConfig {
@@ -603,6 +604,7 @@ export interface XTreeSelectConfig {
   virtualScroll?: XBoolean;
   showPath?: XBoolean;
   separator?: string;
+  onlyLeaf?: boolean;
 }
 
 export interface XUploadConfig {

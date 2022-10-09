@@ -1,4 +1,4 @@
-<div #tree class="x-tree">
+<div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf">
   <ng-container *ngIf="!virtualScroll; else virtualScrollTpl">
     <x-tree-node
       *ngFor="let node of nodes; trackBy: trackByItem"

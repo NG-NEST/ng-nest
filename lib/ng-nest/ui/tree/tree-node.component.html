@@ -1,6 +1,7 @@
 <div
   class="x-tree-node-content"
   [class.x-activated]="getActivated"
+  [class.x-tree-node-sub]="!node.leaf"
   [style.padding-left.rem]="paddingLeft"
   [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
@@ -8,7 +9,7 @@
 >
   <x-icon
     *ngIf="!node.loading"
-    [class.is-leaf]="!node.leaf"
+    [class.is-leaf]="node.leaf"
     [class.is-open]="node.open"
     type="fto-chevron-right"
     class="x-tree-node-right"

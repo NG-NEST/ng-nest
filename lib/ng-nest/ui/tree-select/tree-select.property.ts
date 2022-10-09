@@ -129,6 +129,11 @@ export class XTreeSelectProperty extends XControlValueAccessor<any> {
    * @default ' / '
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME) separator: string = ' / ';
+  /**
+   * @zh_CN 只能选择叶子节点
+   * @en_US Only leaf nodes can be selected
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) onlyLeaf!: XBoolean;
 }
 
 /**

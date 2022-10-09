@@ -19,6 +19,7 @@ import { ExCustomComponent } from './custom/custom.component';
 import { ExSizeComponent } from './size/size.component';
 import { ExSearchComponent } from './search/search.component';
 import { ExPathComponent } from './path/path.component';
+import { ExLeafComponent } from './leaf/leaf.component';
 
 const routers = [{ path: '', component: TeTreeSelectComponent }];
 
@@ -37,7 +38,8 @@ const routers = [{ path: '', component: TeTreeSelectComponent }];
     ExAsyncComponent,
     ExCustomComponent,
     ExSizeComponent,
-    ExSearchComponent
+    ExSearchComponent,
+    ExLeafComponent
   ]
 })
 export class TeTreeSelectModule {}

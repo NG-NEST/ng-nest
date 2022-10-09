@@ -72,6 +72,7 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   scrollNull = undefined;
   virtualScroll!: XBoolean;
   size!: XSize;
+  onlyLeaf!: XBoolean;
   expandedLevel!: number;
   keywordText!: string;
   private _unSubject = new Subject<void>();
@@ -125,6 +126,7 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XTreeSelectNode) {
+    console.log(node);
     if (this.multiple) {
       this.nodeEmit(node, this.value);
     } else {
