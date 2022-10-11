@@ -8,11 +8,11 @@ import {
   Renderer2,
   ElementRef,
   HostListener,
-  ViewChild
-} from '@angular/core';
+  ViewChild} from '@angular/core';
 import { XIsEmpty, XNumber, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { isNotNil } from '../core/util/check';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
@@ -60,7 +60,14 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
 
   setDisplayValue() {
     if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(Number(this.precision));
+
+    const displayValue = isNotNil(this.xFormatter(Number(this.value))) ? this.xFormatter(Number(this.value)) : '';
+    if(isNotNil(displayValue)){
+      this.displayValue = displayValue;
+    }
   }
+
+
 
   change(value: any) {
     this.verify(value);

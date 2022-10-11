@@ -1,0 +1,14 @@
+import { Component } from '@angular/core';
+import { XNumber } from '@ng-nest/ui/core';
+
+@Component({
+  selector: 'x-format',
+  templateUrl: './format.component.html',
+  styleUrls: ['./format.component.scss']
+})
+export class FormatComponent {
+
+  formatterDollar = (value: number): XNumber => `$ ${value}`;
+  formatterPercent = (value: number): XNumber => `${value} %`;
+
+}

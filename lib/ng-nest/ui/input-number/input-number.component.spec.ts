@@ -23,7 +23,8 @@ describe(XInputNumberPrefix, () => {
         TestXInputNumberDisabledComponent,
         TestXInputNumberRequiredComponent,
         TestXInputNumberSizeComponent,
-        TestXInputNumberBorderedComponent
+        TestXInputNumberBorderedComponent,
+        TestXInputNumberFormatterComponent
       ]
     }).compileComponents();
   }));
@@ -118,6 +119,22 @@ describe(XInputNumberPrefix, () => {
       fixture = TestBed.createComponent(TestXInputNumberBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberComponent));
+    });
+    it('should create.', () => {
+      expect(debugElement).toBeDefined();
+    });
+  });
+
+  /**
+   * format test
+   */
+  describe(`format test.`, () => {
+    let fixture: ComponentFixture<TestXInputNumberFormatterComponent>;
+    let debugElement: DebugElement;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestXInputNumberFormatterComponent);
+      fixture.detectChanges();
+      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberFormatterComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -407,4 +424,8 @@ class TestXInputNumberSizeComponent {
 })
 class TestXInputNumberBorderedComponent {
   constructor() {}
+}
+
+class TestXInputNumberFormatterComponent {
+
 }
