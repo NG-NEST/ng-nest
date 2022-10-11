@@ -6,9 +6,7 @@ import { XNumber } from '@ng-nest/ui/core';
   templateUrl: './format.component.html',
   styleUrls: ['./format.component.scss']
 })
-export class FormatComponent {
-
+export class ExFormatComponent {
   formatterDollar = (value: number): XNumber => `$ ${value}`;
   formatterPercent = (value: number): XNumber => `${value} %`;
-
 }

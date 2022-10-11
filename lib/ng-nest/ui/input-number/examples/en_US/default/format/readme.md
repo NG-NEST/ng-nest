@@ -3,4 +3,4 @@ order: 8
 label: 'formatter'
 ---
 
-- use `xFormatter` property to set a custom display value。
+- use `formatter` property to set a custom display value。

@@ -93,6 +93,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/input/input.module').then((x) => x.TeInputModule)
       },
       {
+        path: 'input-number',
+        loadChildren: () => import('./modules/input-number/input-number.module').then((x) => x.TeInputNumberModule)
+      },
+      {
         path: 'badge',
         loadChildren: () => import('./modules/badge/badge.module').then((x) => x.TeBadgeModule)
       },

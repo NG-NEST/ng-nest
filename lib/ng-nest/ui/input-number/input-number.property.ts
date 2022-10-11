@@ -53,11 +53,10 @@ export class XInputNumberProperty extends XControlValueAccessor<any> implements 
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
 
   /**
-   * 
    * @zh_CN 数字格式化
    * @en_US Display Formatter
    */
-  @Input() xFormatter: (value: number) => XNumber = value => value;
+  @Input() formatter!: (value: number) => XNumber;
 }
 
 /**
@@ -92,9 +91,9 @@ export interface XInputNumberOption extends XFormOption {
   precision?: XNumber;
 
   /**
-   * 
+   *
    * @zh_CN 数字格式化
    * @en_US Display Formate
    */
-  xFormatter?: (value: number) => XNumber; 
+  xFormatter?: (value: number) => XNumber;
 }
