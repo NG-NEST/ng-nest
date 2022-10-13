@@ -19,6 +19,7 @@ export interface XI18nProperty {
   pagination?: XI18nPagination;
   textRetract?: XI18nTextRetract;
   timeAgo?: XI18nTimeAgo;
+  transfer?: XI18nTransfer;
   messageBox?: XI18nMessageBox;
   dialog?: XI18nDialog;
   popconfirm?: XI18nPopconfirm;
@@ -118,6 +119,13 @@ export interface XI18nTimeAgo {
   secondsAgo?: string;
   minutesAgo?: string;
   hoursAgo?: string;
+}
+
+export interface XI18nTransfer {
+  listTitle?: string;
+  treeTitle?: string;
+  tableTitle?: string;
+  selectedTitle?: string;
 }
 
 export interface XI18nMessageBox {

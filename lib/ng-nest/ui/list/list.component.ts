@@ -13,11 +13,14 @@ import {
   ViewChild,
   HostBinding,
   HostListener,
-  ViewChildren
+  ViewChildren,
+  Optional,
+  Inject,
+  SkipSelf
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
 import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull, XResize } from '@ng-nest/ui/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
@@ -25,6 +28,7 @@ import { map, takeUntil, debounceTime } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { XListDropGroup, X_LIST_DROP_GROUP } from './list-drop-group.directive';
 
 @Component({
   selector: `${XListPrefix}`,
@@ -42,6 +46,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   @ViewChild('selectAllRef') selectAllRef!: ElementRef;
   @ViewChild('loadMoreRef') loadMoreRef!: ElementRef;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
+  @ViewChild(CdkDropList, { static: false }) dropList!: CdkDropList;
   @ViewChild('listItems') listItems!: ElementRef;
   @ViewChildren(XListOptionComponent)
   options!: QueryList<XListOptionComponent>;
@@ -120,7 +125,11 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     public override cdr: ChangeDetectorRef,
     public elementRef: ElementRef,
     public configService: XConfigService,
-    private i18n: XI18nService
+    private i18n: XI18nService,
+    @Optional()
+    @Inject(X_LIST_DROP_GROUP)
+    @SkipSelf()
+    private group?: XListDropGroup
   ) {
     super();
   }
@@ -153,12 +162,17 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
           this.setVirtualScrollHeight();
         });
     }
+    if (this.group && this.dropList) {
+      this.group.dropLists.add(this.dropList);
+      this.group.setConnectedTo();
+    }
   }
 
   ngOnDestroy(): void {
     this._unSubject.next();
     this._unSubject.unsubscribe();
     this._resizeObserver?.disconnect();
+    this.group?.dropLists.delete(this.dropList);
   }
 
   private setVirtualScrollHeight() {
@@ -343,8 +357,19 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   dropCdk(event: CdkDragDrop<XListNode[]>) {
     moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
-    this.dropListDropped.emit({ data: this.nodes, current: this.nodes[event.currentIndex], currentIndex: event.currentIndex });
+    this.dropListDropped.emit({
+      data: this.nodes,
+      current: this.nodes[event.currentIndex],
+      currentIndex: event.currentIndex,
+      event: event
+    });
     this.cdr.detectChanges();
+  }
+
+  predicate(drag: CdkDrag<XListNode>, drop: CdkDropList<XListNode>) {
+    console.log(drag);
+    console.log(drop);
+    return true;
   }
 
   onSelectAllNodes() {

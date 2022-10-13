@@ -13,10 +13,11 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { XListDropGroup } from './list-drop-group.directive';
 
 @NgModule({
-  declarations: [XListComponent, XListOptionComponent, XListProperty, XListOptionProperty],
-  exports: [XListComponent, XListOptionComponent],
+  declarations: [XListComponent, XListDropGroup, XListOptionComponent, XListProperty, XListOptionProperty],
+  exports: [XListComponent, XListDropGroup, XListOptionComponent],
   imports: [
     CommonModule,
     FormsModule,

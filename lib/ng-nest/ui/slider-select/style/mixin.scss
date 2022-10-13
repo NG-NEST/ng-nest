@@ -27,54 +27,53 @@
       content: '*';
     }
   }
-  > .#{$--x-slider-select-prefix}-inner {
+  &-inner {
     flex: 1;
     position: relative;
     display: flex;
     align-items: center;
     padding-right: $--x-slider-select-button-size;
-    > .#{$--x-slider-select-prefix}-rail {
-      position: absolute;
-      margin-left: math.div($--x-slider-select-button-size, 2);
-      width: calc(100% - #{$--x-slider-select-button-size});
-      background-color: $--x-border-100;
-      height: $--x-slider-select-track-height;
-      border-radius: $--x-slider-select-border-radius;
-      > div {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    > .#{$--x-slider-select-prefix}-track {
-      margin-left: math.div($--x-slider-select-button-size, 2);
-      width: calc(100% - #{$--x-slider-select-button-size});
-      position: absolute;
-      > .#{$--x-slider-select-prefix}-process {
-        height: $--x-slider-select-track-height;
-        background-color: $--x-primary;
-        border-radius: $--x-slider-select-border-radius;
-        width: 0%;
-      }
-    }
-    > .#{$--x-slider-select-prefix}-drags {
-      position: relative;
+  }
+  &-rail {
+    position: absolute;
+    margin-left: math.div($--x-slider-select-button-size, 2);
+    width: calc(100% - #{$--x-slider-select-button-size});
+    background-color: $--x-border-100;
+    height: $--x-slider-select-track-height;
+    border-radius: $--x-slider-select-border-radius;
+    > div {
       width: 100%;
-      height: $--x-slider-select-height;
-      display: flex;
-      align-items: center;
-      > .#{$--x-slider-select-prefix}-drag {
-        position: absolute;
-        cursor: pointer;
-        left: 0%;
-        > .#{$--x-slider-select-prefix}-button {
-          width: $--x-slider-select-button-size;
-          height: $--x-slider-select-button-size;
-          border-radius: $--x-slider-select-button-size;
-          border: calc(#{$--x-border-width} * 2) solid $--x-primary;
-          background-color: $--x-background-a100;
-        }
-      }
+      height: 100%;
     }
+  }
+  &-track {
+    margin-left: math.div($--x-slider-select-button-size, 2);
+    width: calc(100% - #{$--x-slider-select-button-size});
+    position: absolute;
+  }
+  &-process {
+    height: $--x-slider-select-track-height;
+    background-color: $--x-primary;
+    border-radius: $--x-slider-select-border-radius;
+    width: 0%;
+  }
+  &-drags {
+    position: relative;
+    width: 100%;
+    height: $--x-slider-select-height;
+    display: flex;
+    align-items: center;
+  }
+  &-drag {
+    position: absolute;
+    cursor: pointer;
+  }
+  &-button {
+    width: $--x-slider-select-button-size;
+    height: $--x-slider-select-button-size;
+    border-radius: $--x-slider-select-button-size;
+    border: calc(#{$--x-border-width} * 2) solid $--x-primary;
+    background-color: $--x-background-a100;
   }
   &.x-invalid,
   &.x-required {
@@ -99,22 +98,18 @@
     }
   }
   &.x-disabled {
-    > .#{$--x-slider-select-prefix}-inner {
-      > .#{$--x-slider-select-prefix}-rail {
+    .#{$--x-slider-select-prefix} {
+      &-rail {
         background-color: $--x-border-300;
       }
-      > .#{$--x-slider-select-prefix}-track {
-        > .#{$--x-slider-select-prefix}-process {
-          background-color: $--x-primary-400;
-        }
+      &-track {
+        background-color: $--x-primary-400;
       }
-      > .#{$--x-slider-select-prefix}-drags {
-        > .#{$--x-slider-select-prefix}-drag {
-          cursor: not-allowed;
-          > .#{$--x-slider-select-prefix}-button {
-            border-color: $--x-primary-400;
-          }
-        }
+      &-drag {
+        cursor: not-allowed;
+      }
+      &-button {
+        border-color: $--x-primary-400;
       }
     }
   }
@@ -144,5 +139,37 @@
     color: $--x-text-500;
     padding: $--x-slider-select-padding;
     right: 0;
+  }
+  &:hover:not(.x-disabled) {
+    .#{$--x-slider-select-prefix} {
+      &-track {
+        background-color: $--x-border-100;
+      }
+      &-process {
+        background-color: $--x-primary-100;
+      }
+      &-button {
+        border-color: $--x-primary-100;
+      }
+    }
+  }
+  &-reverse {
+    .#{$--x-slider-select-prefix} {
+      &-track {
+        display: flex;
+        justify-content: flex-end;
+      }
+      &-drags {
+        justify-content: flex-end;
+      }
+    }
+    .x-slider-select-drag {
+      right: 0%;
+    }
+  }
+  &:not(.x-slider-select-reverse) {
+    .x-slider-select-drag {
+      left: 0%;
+    }
   }
 }

@@ -123,6 +123,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     }
   }
 
+  onInnerClick($event: MouseEvent) {
+    console.log($event);
+  }
+
   started(drag: CdkDragStart) {
     const start = this.left;
     this.start = start;

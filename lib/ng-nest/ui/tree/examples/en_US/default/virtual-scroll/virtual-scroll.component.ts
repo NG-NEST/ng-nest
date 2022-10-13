@@ -42,7 +42,7 @@ export class ExVirtualScrollComponent {
       let result = this.dataLazy1
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy1.find((y) => y.pid === x.id) ? true : false;
+          x.leaf = this.dataLazy1.find((y) => y.pid === x.id) ? false : true;
           return x;
         });
       setTimeout(() => {
@@ -57,7 +57,7 @@ export class ExVirtualScrollComponent {
       let result = this.dataLazy2
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy2.find((y) => y.pid === x.id) ? true : false;
+          x.leaf = this.dataLazy2.find((y) => y.pid === x.id) ? false : true;
           return x;
         });
       setTimeout(() => {

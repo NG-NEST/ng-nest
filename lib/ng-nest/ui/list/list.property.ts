@@ -12,6 +12,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component, TemplateRef, ElementRef } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 /**
  * List
@@ -180,7 +181,7 @@ export class XListProperty extends XControlValueAccessor<any> {
  * @zh_CN List 数据对象
  * @en_US List data object
  */
-export interface XListNode extends XParentIdentityProperty<any> {
+export interface XListNode extends XParentIdentityProperty<XListNode> {
   /**
    * @zh_CN 图标
    * @en_US Iicon
@@ -296,4 +297,4 @@ export class XListOptionProperty {
  * @zh_CN 拖动相关的数据
  * @en_US Drag related data
  */
-export type XListDragDrop = { data: XListNode[]; current: XListNode; currentIndex: number };
+export type XListDragDrop = { data: XListNode[]; current: XListNode; currentIndex: number; event: CdkDragDrop<XListNode[]> };

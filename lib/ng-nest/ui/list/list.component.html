@@ -59,10 +59,19 @@
 </div>
 
 <ng-template #contentTpl>
-  <div class="x-list-content" cdkDropList (cdkDropListDropped)="dropCdk($event)" [cdkDropListDisabled]="!drag" [hidden]="isEmpty">
+  <div
+    class="x-list-content"
+    cdkDropList
+    (cdkDropListDropped)="dropCdk($event)"
+    [cdkDropListDisabled]="!drag"
+    [hidden]="isEmpty"
+    [cdkDropListData]="nodes"
+    [cdkDropListEnterPredicate]="predicate"
+  >
     <x-list-option
-      cdkDrag
       *ngFor="let node of nodes; trackBy: trackByNode"
+      cdkDrag
+      [cdkDragDisabled]="node.disabled"
       [node]="node"
       [checked]="checked"
       [nodeTpl]="nodeTpl"

@@ -12,9 +12,10 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XTreeModule } from '@ng-nest/ui/tree';
 
 describe(XTransferPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -24,11 +25,12 @@ describe(XTransferPrefix, () => {
         XButtonModule,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconModule,
+        XTreeModule
       ],
       declarations: [TestXTransferComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTransferComponent>;
     let transfer: DebugElement;

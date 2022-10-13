@@ -28,36 +28,40 @@
         transform: rotate(90deg);
       }
       &:hover {
-        color: $--x-text-400;
+        color: $--x-text-200;
       }
     }
     x-checkbox {
       margin-right: 0.325rem;
       padding: 0.25rem 0;
     }
-    &:hover {
+    &.x-disabled {
+      color: var(--x-text-400);
       background-color: $--x-background-a200;
     }
-    &.x-activated {
-      background-color: $--x-background-a400;
-      color: $--x-primary;
-    }
-
-    &:hover {
-      .#{$--x-tree-node-prefix}-operations {
-        display: flex;
-        align-items: center;
+    &:not(.x-disabled) {
+      &:hover {
+        background-color: $--x-background-a200;
+        .#{$--x-tree-node-prefix}-operations {
+          display: flex;
+          align-items: center;
+        }
+      }
+      &.x-activated {
+        background-color: $--x-background-a400;
+        color: $--x-primary;
+      }
+      &.#{$--x-tree-node-prefix}-checked {
+        color: $--x-primary;
       }
     }
   }
   &-right,
   &-loading {
-    color: $--x-text-400;
+    color: $--x-text-300;
     margin-right: 0.125rem;
   }
-  &-checked {
-    color: $--x-primary;
-  }
+
   &-operations {
     display: none;
     .x-link {

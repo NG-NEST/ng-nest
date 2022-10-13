@@ -10,12 +10,14 @@ import {
   OnChanges,
   OnDestroy
 } from '@angular/core';
-import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty } from './transfer.property';
-import { XIsChange, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
-import { of, Subject } from 'rxjs';
-import { delay, takeUntil } from 'rxjs/operators';
+import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty, XTransferType } from './transfer.property';
+import { XIsChange, XIsEmpty, XSetData, XConfigService, XRemove, XIsArray } from '@ng-nest/ui/core';
+import { interval, of, Subject } from 'rxjs';
+import { delay, map, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
+import { XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: `${XTransferPrefix}`,
@@ -40,11 +42,23 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     disabledButton: true
   };
   searchInput: string = '';
-  private _titles = ['List', 'Selected'];
+  locale: XI18nTransfer = {};
+  private get localTitle() {
+    if (this.type === 'tree') {
+      return this.locale.treeTitle;
+    } else if (this.type === 'table') {
+      return this.locale.tableTitle;
+    } else {
+      return this.locale.listTitle;
+    }
+  }
   private _unSubject = new Subject<void>();
-
-  override writeValue(value: any): void {
+  treeActivatedId: any[] = [];
+  override writeValue(value: any[]): void {
     this.value = value;
+    if (XIsArray(value)) {
+      this.treeActivatedId = [...value];
+    }
     this.setList();
   }
 
@@ -52,13 +66,27 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public i18n: XI18nService
   ) {
     super();
+    interval(1000).subscribe(() => {
+      console.log(this.value);
+    });
   }
 
   ngOnInit() {
     this.setTitles();
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.transfer as XI18nTransfer),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        XIsEmpty(this.titles) && this.setTitles();
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -76,11 +104,14 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  checkedAllChange($event: boolean, source: XTransferSource) {
-    let list = (source.list?.filter((x) => !x.disabled) as XTransferNode[]).map((x) => {
+  checkedAllChange($event: boolean, source: XTransferSource, arrow: 'left' | 'right') {
+    let list: XTransferNode[] = (source.list?.filter((x) => !x.disabled) as XTransferNode[]).map((x) => {
       x.checked = $event;
       return x;
     });
+    if (this.type === 'tree' && arrow === 'left') {
+      this.treeActivatedId = $event ? source.list?.map((x) => x.id)! : list.map((x) => x.id);
+    }
     source.checkedCount = $event ? list.length : 0;
     source.indeterminate = $event;
     this.setButtonDisabled(source);
@@ -95,23 +126,76 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.cdr.detectChanges();
   }
 
-  move(from: XTransferSource, to: XTransferSource) {
+  move(from: XTransferSource, to: XTransferSource, arrow: 'right' | 'left') {
     if (from.disabledButton) return;
-    let checkedItems = from.list?.filter((x) => !XIsEmpty(x.checked)) as XTransferNode[];
+    switch (this.type) {
+      case 'list':
+        this.moveList(from, to);
+        break;
+      case 'tree':
+        this.moveTree(from, to, arrow);
+        break;
+    }
+  }
+
+  moveList(from: XTransferSource, to: XTransferSource) {
+    let checkedItems = from.list?.filter((x) => !x.disabled && x.checked)!;
     let j = 0;
     checkedItems.forEach((x) => {
       const index = from.list?.indexOf(x) as number;
       x.checked = false;
-      transferArrayItem(from.list as XTransferNode[], to.list as XTransferNode[], index, j);
+      transferArrayItem(from.list!, to.list!, index, j);
       j++;
     });
-    from.checkedAll = false;
-    from.checkedCount = 0;
-    from.indeterminate = false;
-    from.disabledButton = true;
+    from.list = [...from.list!];
+    to.list = [...to.list!];
+    this.setCheckedCount('list', from, to);
+    this.setCheckedAll(from, to);
+    this.setButtonDisabled(from, to);
     this.setSearchList(from, to);
     this.setValue();
     this.cdr.detectChanges();
+  }
+
+  moveTree(from: XTransferSource, to: XTransferSource, arrow: 'right' | 'left') {
+    let checkedItems: XTransferNode[] = [];
+    if (arrow === 'right') {
+      checkedItems = from.list?.filter((x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id))!;
+      checkedItems.forEach((x: XTreeNode) => {
+        x.disabled = true;
+        x.change && x.change();
+      });
+      to.list?.unshift(
+        ...checkedItems.map((x) => {
+          let res = { ...x };
+          res.checked = false;
+          res.disabled = false;
+          return res;
+        })
+      );
+      this.setCheckedCount('tree', from);
+      this.setCheckedCount('list', to);
+    } else {
+      checkedItems = XRemove(from.list!, (x) => !x.disabled && x.checked!);
+      for (let item of checkedItems) {
+        let node: XTreeNode = to.list?.find((x) => x.id === item.id)!;
+        if (node) {
+          node.checked = false;
+          node.disabled = false;
+          const idx = this.treeActivatedId.findIndex((x) => x === node.id);
+          if (idx >= 0) {
+            this.treeActivatedId.splice(idx, 1);
+          }
+          node.change && node.change();
+        }
+      }
+      this.setCheckedCount('tree', to);
+      this.setCheckedCount('list', from);
+    }
+    this.setCheckedAll(from, to);
+    this.setButtonDisabled(from, to);
+    this.setSearchList(from, to);
+    this.setValue();
   }
 
   dropCdk(event: CdkDragDrop<XTransferNode[] | undefined, any>) {
@@ -120,7 +204,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       moveItemInArray(ev.container.data, ev.previousIndex, ev.currentIndex);
     } else {
       transferArrayItem(ev.previousContainer.data, ev.container.data, ev.previousIndex, ev.currentIndex);
-      this.setCheckedCount(this.left, this.right);
+      this.setCheckedCount('list', this.left, this.right);
       this.setCheckedAll(this.left, this.right);
       this.setButtonDisabled(this.left, this.right);
     }
@@ -137,6 +221,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     return item.id;
   }
 
+  getListNotDisabledCount(list: XTransferNode[]) {
+    return list?.filter((x) => !x.disabled).length;
+  }
+
+  onTreeNodeClick(_node: XTreeNode) {
+    this.setCheckedCount('tree', this.left);
+    this.setCheckedAll(this.left);
+    this.setButtonDisabled(this.left);
+  }
+
   private setCheckedAll(...sources: XTransferSource[]) {
     for (let source of sources) {
       if ((source.checkedCount as number) > 0) {
@@ -147,13 +241,22 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
           source.indeterminate = true;
         }
       } else {
+        source.checkedAll = false;
         source.indeterminate = false;
       }
     }
   }
 
-  private setCheckedCount(...sources: XTransferSource[]) {
-    for (let source of sources) source.checkedCount = source.list?.filter((x) => !XIsEmpty(x.checked)).length;
+  private setCheckedCount(type: XTransferType = 'list', ...sources: XTransferSource[]) {
+    for (let source of sources) {
+      if (type === 'list') {
+        source.checkedCount = source.list?.filter((x) => !x.disabled && x.checked).length;
+      } else if (type === 'tree') {
+        source.checkedCount = source.list?.filter(
+          (x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id)
+        ).length;
+      }
+    }
   }
 
   private setButtonDisabled(...sources: XTransferSource[]) {
@@ -178,29 +281,61 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   private setData() {
     XSetData<XTransferNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
+      this.setList();
     });
   }
 
   private setList() {
-    if (!XIsEmpty(this.value)) {
-      this.left.list = this.nodes.filter((x) => this.value.indexOf(x.id) < 0);
-      this.right.list = this.nodes.filter((x) => this.value.indexOf(x.id) >= 0);
-    } else {
-      this.left.list = this.nodes;
+    switch (this.type) {
+      case 'list':
+        if (!XIsEmpty(this.value)) {
+          this.left.list = this.nodes.filter((x) => this.value.indexOf(x.id) < 0);
+          this.right.list = this.nodes.filter((x) => this.value.indexOf(x.id) >= 0);
+        } else {
+          this.left.list = [...this.nodes];
+        }
+        this.setSearchList(this.left, this.right);
+        // ToDo: x-checkbox error. Attempt to use a destroyed view: detectChanges
+        of(true)
+          .pipe(delay(0), takeUntil(this._unSubject))
+          .subscribe(() => this.cdr.detectChanges());
+        break;
+      case 'tree':
+        this.setTreeNodeDisabled();
+        this.left.list = [...this.nodes];
+        if (!XIsEmpty(this.value)) {
+          this.right.list = this.nodes
+            .filter((x) => this.value.indexOf(x.id) >= 0)
+            .map((x) => {
+              let res = { ...x };
+              res.checked = false;
+              res.disabled = false;
+              return res;
+            });
+        }
+        break;
     }
-    this.setSearchList(this.left, this.right);
-    // ToDo: x-checkbox error. Attempt to use a destroyed view: detectChanges
-    of(true)
-      .pipe(delay(0), takeUntil(this._unSubject))
-      .subscribe(() => this.cdr.detectChanges());
   }
 
   private setTitles() {
+    let titles: string[] = [];
     if (XIsEmpty(this.titles)) {
-      this.titles = this._titles;
+      titles = [this.localTitle!, this.locale.selectedTitle!];
+    } else {
+      titles = this.titles;
     }
-    this.left.title = this.titles[0];
-    if (this.titles.length > 1) this.right.title = this.titles[1];
+    if (titles.length > 0) this.left.title = titles[0];
+    if (titles.length > 1) this.right.title = titles[1];
     this.cdr.detectChanges();
+  }
+
+  private setTreeNodeDisabled() {
+    if (!XIsEmpty(this.value) && this.nodes) {
+      for (let item of this.nodes) {
+        let hasIn = this.value.indexOf(item.id) >= 0;
+        item.disabled = hasIn;
+        item.checked = hasIn;
+      }
+    }
   }
 }

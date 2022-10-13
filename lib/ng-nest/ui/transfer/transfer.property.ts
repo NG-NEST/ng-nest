@@ -1,11 +1,4 @@
-import {
-  XData,
-  XDataConvert,
-  XInputBoolean,
-  XParentIdentityProperty,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -29,30 +22,36 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() @XDataConvert() data: XData<XTransferNode> = [];
   /**
+   * @zh_CN 选择的类型
+   * @en_US Type
+   */
+  @Input() @XWithConfig<XTransferType>(X_CONFIG_NAME, 'list') type!: XTransferType;
+  /**
    * @zh_CN 标题
    * @en_US Title
+   * @default ['List', 'Selected']
    */
   @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles!: string[];
   /**
-   * @zh_CN 是否能拖动
+   * @zh_CN 是否能拖动, type 
    * @en_US Can drag
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() drag?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() drag?: XBoolean;
   /**
    * @zh_CN 是否显示搜索（暂未实现）
    * @en_US Whether to display search (not implemented yet)
    */
   @Input() @XInputBoolean() search?: XBoolean;
   /**
-   * @zh_CN 数据自定义模板
+   * @zh_CN 行数据自定义模板
    * @en_US Data customization template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  @Input() nodeTpl?: TemplateRef<void>;
   /**
    * @zh_CN 标题自定义模板
    * @en_US Title custom template
    */
-  @Input() titleTpl?: TemplateRef<any>;
+  @Input() titleTpl?: TemplateRef<void>;
 }
 
 /**
@@ -115,4 +114,14 @@ export interface XTransferSource {
    * @en_US Button disabled
    */
   disabledButton?: boolean;
+  /**
+   * @zh_CN 列表模版
+   * @en_US List
+   */
+  listTpl?: TemplateRef<void>;
 }
+
+/**
+ * Transfer type
+ */
+export type XTransferType = 'list' | 'tree' | 'table';

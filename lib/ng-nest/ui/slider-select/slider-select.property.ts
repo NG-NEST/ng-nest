@@ -41,6 +41,11 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
    */
   @Input() @XInputBoolean() showTooltip?: XBoolean = true;
   /**
+   * @zh_CN 反向
+   * @en_US Reverse
+   */
+  @Input() @XInputBoolean() reverse?: XBoolean;
+  /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */

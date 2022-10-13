@@ -12,7 +12,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
-import { XIsObservable, XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize } from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
@@ -53,8 +53,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const { expandedAll, data, activatedId, checked, manual } = changes;
     XIsChange(data) && this.setData();
-    XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(activatedId) && this.setActivatedNode(this.treeData);
+    XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(checked) && this.setCheckedKeys(this.checked);
     XIsChange(manual) && this.setManual();
   }
@@ -81,15 +81,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   setData() {
     if (typeof this.data === 'undefined') return;
     this.dataIsFunc = false;
-    if (XIsObservable(this.data)) {
-      XSetData<XTreeNode>(this.data, this._unSubject).subscribe((x) => {
-        this.setDataChange(x);
-      });
-    } else if (XIsFunction(this.data)) {
+    if (XIsFunction(this.data)) {
       this.dataIsFunc = true;
       this.getDataByFunc();
     } else {
-      this.setDataChange(this.data as XTreeNode[]);
+      XSetData<XTreeNode>(this.data, this._unSubject).subscribe((x) => {
+        this.setDataChange(x);
+      });
     }
   }
 
@@ -114,7 +112,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   private setDataChange(value: XTreeNode[]) {
-    !XIsEmpty(this.activatedId) && this.setActivatedNode(value);
+    if (XIsEmpty(this.checked)) this.checked = [];
     const getChildren = (node: XTreeNode, level: number) => {
       node.level = level;
       node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0 || node.open;
@@ -190,7 +188,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         setChildren(x.children as XTreeNode[], clear);
       });
     };
-    setChildren(this.nodes, keys.length === 0);
+    setChildren(this.nodes, XIsEmpty(keys));
     this.cdr.detectChanges();
   }
 
@@ -287,6 +285,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
               this.activatedNode = node;
               this.activatedChange.emit(this.activatedNode);
             }
+            node.change && node.change();
           }
         }
       }
@@ -300,6 +299,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     }
     if (before) {
       before.change && before.change();
+    }
+    if (!XIsEmpty(nodes)) {
+      this.setDataChange(nodes);
     }
   }
 

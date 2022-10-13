@@ -17,7 +17,7 @@ export class ExDefaultComponent implements OnInit {
   data4 = JSON.parse(JSON.stringify(this.data));
   data5 = JSON.parse(JSON.stringify(this.data));
   data6 = JSON.parse(JSON.stringify(this.data));
-  data7 = JSON.parse(JSON.stringify(this.data));
+  data7 = [...JSON.parse(JSON.stringify(this.data)), { id: 'disabled item', disabled: true }];
   data8 = JSON.parse(JSON.stringify(this.data));
   data9 = JSON.parse(JSON.stringify(this.data));
   model1: any;

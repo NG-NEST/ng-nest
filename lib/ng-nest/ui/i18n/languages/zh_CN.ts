@@ -93,6 +93,12 @@ export default {
     minutesAgo: '分钟前',
     hoursAgo: '小时前'
   },
+  transfer: {
+    listTitle: '列表',
+    treeTitle: '树',
+    tableTitle: '表格',
+    selectedTitle: '选中项'
+  },
   messageBox: {
     cancelText: '取消',
     confirmText: '确认'

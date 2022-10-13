@@ -94,6 +94,12 @@ export default {
     minutesAgo: ' minutes ago',
     hoursAgo: ' hours ago'
   },
+  transfer: {
+    listTitle: 'List',
+    treeTitle: 'Tree',
+    tableTitle: 'Table',
+    selectedTitle: 'Selected'
+  },
   messageBox: {
     cancelText: 'Cancel',
     confirmText: 'OK'

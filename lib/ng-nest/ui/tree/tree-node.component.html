@@ -1,11 +1,12 @@
 <div
   class="x-tree-node-content"
   [class.x-activated]="getActivated"
+  [class.x-disabled]="node.disabled"
   [class.x-tree-node-sub]="!node.leaf"
   [style.padding-left.rem]="paddingLeft"
   [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
-  (click)="onActivate($event, node)"
+  (click)="!node.disabled && onActivate($event, node)"
 >
   <x-icon
     *ngIf="!node.loading"
@@ -22,7 +23,7 @@
     [(ngModel)]="node.checked"
     (ngModelChange)="onCheckboxChange()"
     [indeterminate]="node.indeterminate"
-    [disabled]="getNodeDisabled(node.disabled)"
+    [disabled]="node.disabled!"
     (click)="$event.stopPropagation()"
   ></x-checkbox>
   <span

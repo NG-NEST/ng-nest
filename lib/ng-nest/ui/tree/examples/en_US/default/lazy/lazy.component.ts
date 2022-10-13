@@ -35,7 +35,7 @@ export class ExLazyComponent {
       let result = this.data
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.data.find((y) => y.pid === x.id) ? true : false;
+          x.leaf = this.data.find((y) => y.pid === x.id) ? false : true;
           return x;
         });
       setTimeout(() => {

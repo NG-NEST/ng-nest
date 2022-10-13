@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  model1 = 0;
-  model2 = 60;
+  model1 = 60;
 }

@@ -37,12 +37,12 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   get getActivated() {
     if (this.tree.multiple) {
       if (this.tree.objectArray) {
-        return this.tree.activatedId.map((x: XTreeNode) => x.id).includes(this.node.id);
+        return this.tree.activatedId?.map((x: XTreeNode) => x.id).includes(this.node.id);
       } else {
-        return this.tree.activatedId.includes(this.node.id);
+        return this.tree.activatedId?.includes(this.node.id);
       }
     } else {
-      return this.tree.activatedNode?.id === this.node.id;
+      return this.tree.activatedId === this.node.id;
     }
   }
 
@@ -79,6 +79,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
       return;
     }
     if (this.tree.multiple) {
+      if (!this.tree.activatedId) this.tree.activatedId = [];
       if (this.tree.objectArray) {
         const ids = this.tree.activatedId.map((x: XTreeNode) => x.id);
         if (ids.includes(node.id)) {

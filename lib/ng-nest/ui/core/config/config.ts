@@ -570,6 +570,7 @@ export interface XTooltipConfig {
 export interface XTransferConfig {
   titles?: string[];
   drag?: XBoolean;
+  virtualScroll?: XBoolean;
 }
 
 export interface XTreeConfig {

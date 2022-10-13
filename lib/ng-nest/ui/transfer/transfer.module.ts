@@ -9,10 +9,21 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XTransferProperty } from './transfer.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XTreeModule } from '@ng-nest/ui/tree';
 
 @NgModule({
   declarations: [XTransferComponent, XTransferProperty],
   exports: [XTransferComponent],
-  imports: [CommonModule, FormsModule, DragDropModule, XOutletModule, XCheckboxModule, XButtonModule, XInputModule, XBaseFormModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    DragDropModule,
+    XOutletModule,
+    XCheckboxModule,
+    XButtonModule,
+    XInputModule,
+    XBaseFormModule,
+    XTreeModule
+  ]
 })
 export class XTransferModule {}

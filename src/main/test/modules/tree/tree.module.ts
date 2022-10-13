@@ -17,6 +17,7 @@ import { ExHeightComponent } from './height/height.component';
 import { ExCustomComponent } from './custom/custom.component';
 import { ExCheckboxComponent } from './checkbox/checkbox.component';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { ExActivatedComponent } from './activated/activated.component';
 
 const routers = [{ path: '', component: TeTreeComponent }];
 
@@ -41,7 +42,8 @@ const routers = [{ path: '', component: TeTreeComponent }];
     ExLazyComponent,
     ExHeightComponent,
     ExCustomComponent,
-    ExCheckboxComponent
+    ExCheckboxComponent,
+    ExActivatedComponent
   ]
 })
 export class TeTreeModule {}
