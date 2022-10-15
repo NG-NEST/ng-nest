@@ -12,7 +12,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 describe(XInputNumberPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
       declarations: [
@@ -23,11 +23,10 @@ describe(XInputNumberPrefix, () => {
         TestXInputNumberDisabledComponent,
         TestXInputNumberRequiredComponent,
         TestXInputNumberSizeComponent,
-        TestXInputNumberBorderedComponent,
-        TestXInputNumberFormatterComponent
+        TestXInputNumberBorderedComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputNumberComponent>;
     let debugElement: DebugElement;
@@ -119,22 +118,6 @@ describe(XInputNumberPrefix, () => {
       fixture = TestBed.createComponent(TestXInputNumberBorderedComponent);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(TestXInputNumberComponent));
-    });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
-
-  /**
-   * format test
-   */
-  describe(`format test.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberFormatterComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberFormatterComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberFormatterComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -424,8 +407,4 @@ class TestXInputNumberSizeComponent {
 })
 class TestXInputNumberBorderedComponent {
   constructor() {}
-}
-
-class TestXInputNumberFormatterComponent {
-
 }
