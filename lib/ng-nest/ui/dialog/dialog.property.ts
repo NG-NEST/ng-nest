@@ -366,10 +366,18 @@ export interface XDialogAnimationEvent {
   totalTime: number;
 }
 
+/**
+ * @zh_CN 关闭的回调函数类型
+ * @en_US Closed callback function type
+ */
 export interface XDialogCallback {
   (action: XDialogAction, message?: string): void;
 }
 
+/**
+ * @zh_CN 触发关闭的类型
+ * @en_US Type of trigger closure
+ */
 export type XDialogAction = 'confirm' | 'cancel' | 'close';
 
 /**

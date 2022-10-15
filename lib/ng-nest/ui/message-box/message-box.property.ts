@@ -100,7 +100,7 @@ export interface XMessageBoxOption extends XAlertOption {
    * @zh_CN 匹配失败的信息提示
    * @en_US Information prompt for matching failure
    */
-  inputInvalidMessage?: string;
+  inputInvalidMessage?: string | string[];
   /**
    * @zh_CN 输入框的占位符
    * @en_US Placeholder for input box
@@ -120,13 +120,26 @@ export interface XMessageBoxOption extends XAlertOption {
    * @zh_CN 输入框的验证函数
    * @en_US Validation function of input box
    */
-  inputValidator?: Function;
+  inputValidator?: (value: any) => boolean;
+  /**
+   * @zh_CN 关闭前处理函数
+   * @en_US Processing function before closing
+   */
+  beforeClose?: XMessageBoxCallback;
 }
 
+/**
+ * @zh_CN 关闭的回调函数类型
+ * @en_US Closed callback function type
+ */
 export interface XMessageBoxCallback {
   (action: XMessageBoxAction, message?: string): void;
 }
 
+/**
+ * @zh_CN 触发关闭的类型
+ * @en_US Type of trigger closure
+ */
 export type XMessageBoxAction = 'confirm' | 'cancel' | 'close';
 
 /**
@@ -136,8 +149,9 @@ export type XMessageBoxAction = 'confirm' | 'cancel' | 'close';
 export interface XMessageBoxOverlayRef extends XPortalOverlayRef<XMessageBoxComponent> {}
 
 export interface XMessageBoxRef {
-  ref?: XMessageBoxOverlayRef;
-  input?: XMessageBoxOption;
+  ref: XMessageBoxOverlayRef;
+  input: XMessageBoxOption;
+  close: () => void;
 }
 
 /**

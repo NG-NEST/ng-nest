@@ -45,6 +45,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/message/message.module').then((x) => x.TeMessageModule)
       },
       {
+        path: 'message-box',
+        loadChildren: () => import('./modules/message-box/message-box.module').then((x) => x.TeMessageBoxModule)
+      },
+      {
         path: 'alert',
         loadChildren: () => import('./modules/alert/alert.module').then((x) => x.TeAlertModule)
       },

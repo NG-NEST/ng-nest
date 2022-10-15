@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { XMoveBoxAnimation } from '@ng-nest/ui/core';
-import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction, XMessageBoxOption } from './message-box.property';
+import { XIsFunction, XMoveBoxAnimation } from '@ng-nest/ui/core';
+import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { XFormInputValidator } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
@@ -12,13 +13,17 @@ import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms
   animations: [XMoveBoxAnimation]
 })
 export class XMessageBoxComponent implements OnInit {
-  messageBox: XMessageBoxRef = {};
+  messageBox!: XMessageBoxRef;
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
   constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
 
-  get msgInput(): XMessageBoxOption {
-    return this.messageBox.input as XMessageBoxOption;
+  get msgInput() {
+    return this.messageBox.input!;
+  }
+
+  get msgOverlayRef() {
+    return this.messageBox.ref!;
   }
 
   get getLabel() {
@@ -44,10 +49,18 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   hideBox() {
+    if (XIsFunction(this.msgInput.beforeClose)) {
+      this.msgInput.beforeClose!(this.action, this.getInputValue());
+    } else {
+      this.close();
+    }
+  }
+
+  close() {
     if (this.msgInput.hide && this.msgInput.hide !== true) {
       this.msgInput.hide = true;
     }
-    this.messageBox.ref?.overlayRef?.detach();
+    this.msgOverlayRef?.overlayRef?.detach();
     this.cdr.detectChanges();
   }
 
@@ -60,9 +73,8 @@ export class XMessageBoxComponent implements OnInit {
 
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
-      this.msgInput.callback && this.msgInput.callback(this.action, this.getInputValue());
-
-      this.messageBox.ref?.overlayRef?.dispose();
+      XIsFunction(this.msgInput.callback) && this.msgInput.callback!(this.action, this.getInputValue());
+      this.msgOverlayRef.overlayRef?.dispose();
     }
   }
 
@@ -73,7 +85,11 @@ export class XMessageBoxComponent implements OnInit {
   createFormGroup() {
     this.formGroup.addControl(
       'inputValue',
-      new UntypedFormControl(this.msgInput.inputValue, [Validators.required, Validators.pattern(this.msgInput.inputPattern as RegExp)])
+      new UntypedFormControl(this.msgInput.inputValue, [
+        Validators.required,
+        Validators.pattern(this.msgInput.inputPattern as RegExp),
+        XFormInputValidator(this.msgInput.inputValidator!)
+      ])
     );
   }
 }

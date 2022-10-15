@@ -64,9 +64,16 @@ export class XMessageBoxService {
   }
 
   private createMessageBoxPlacement(option: XMessageBoxOption): XMessageBoxRef {
-    let result = { ref: this.create(option), input: option };
-    const { overlayRef, componentRef } = result.ref;
+    const ref = this.create(option);
+    const { overlayRef, componentRef } = ref;
     const { instance } = componentRef as ComponentRef<XMessageBoxComponent>;
+    const result = {
+      ref: ref,
+      input: option,
+      close: () => {
+        instance.close();
+      }
+    };
     instance.messageBox = result;
     if (option.backdropClose && overlayRef) {
       overlayRef.backdropClick().subscribe(() => instance.onClose());

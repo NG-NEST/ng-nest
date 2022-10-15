@@ -1,17 +1,17 @@
 <div
   class="x-message-box"
-  *ngIf="!messageBox?.input?.hide"
-  [@x-move-box-animation]="messageBox.input?.placement"
+  *ngIf="!msgInput.hide"
+  [@x-move-box-animation]="msgInput.placement"
   (@x-move-box-animation.done)="moveDone($event)"
 >
   <x-alert
     (close)="onClose()"
-    [title]="messageBox.input?.title"
+    [title]="msgInput.title"
     [content]="contentTpl"
-    [type]="messageBox.input?.type"
-    [effect]="messageBox.input?.effect"
-    [hideClose]="messageBox.input?.hideClose"
-    [closeText]="messageBox.input?.closeText"
+    [type]="msgInput.type"
+    [effect]="msgInput.effect"
+    [hideClose]="msgInput.hideClose"
+    [closeText]="msgInput.closeText"
     showIcon="false"
     duration="0"
     manual
@@ -20,30 +20,31 @@
   <ng-template #contentTpl let-iconTpl="$iconTpl">
     <div class="x-message-box-inner">
       <div class="x-message-box-content">
-        <ng-container *ngIf="!messageBox.input?.showInput; else inputTpl">
-          <ng-container *ngIf="messageBox.input?.showIcon">
+        <ng-container *ngIf="!msgInput.showInput; else inputTpl">
+          <ng-container *ngIf="msgInput.showIcon">
             <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
           </ng-container>
-          <ng-container *xOutlet="messageBox.input?.content">
-            {{ messageBox.input?.content }}
+          <ng-container *xOutlet="msgInput.content">
+            {{ msgInput.content }}
           </ng-container>
         </ng-container>
         <ng-template #inputTpl>
           <form [formGroup]="formGroup">
             <x-input
               formControlName="inputValue"
-              [type]="messageBox.input?.inputType"
+              [type]="msgInput.inputType!"
               [label]="getLabel"
-              [placeholder]="messageBox.input?.inputPlaceholder"
+              [placeholder]="msgInput.inputPlaceholder!"
               [pattern]="getPattern"
-              [message]="messageBox.input?.inputInvalidMessage"
+              [message]="msgInput.inputInvalidMessage!"
+              [inputValidator]="msgInput.inputValidator!"
             ></x-input>
           </form>
         </ng-template>
       </div>
       <x-buttons space="1">
-        <x-button *ngIf="messageBox.input?.showCancel" (click)="onCancel()">{{ messageBox.input?.cancelText }}</x-button>
-        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup?.invalid">{{ messageBox.input?.confirmText }}</x-button>
+        <x-button *ngIf="msgInput.showCancel" (click)="onCancel()">{{ msgInput.cancelText }}</x-button>
+        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup!.invalid">{{ msgInput.confirmText }}</x-button>
       </x-buttons>
     </div>
   </ng-template>

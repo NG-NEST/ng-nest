@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XMessageBoxService } from './message-box.service';
+import { XBaseFormModule } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XMessageBoxComponent],
@@ -22,7 +23,8 @@ import { XMessageBoxService } from './message-box.service';
     XButtonModule,
     XIconModule,
     XAlertModule,
-    XOutletModule
+    XOutletModule,
+    XBaseFormModule
   ],
   providers: [XMessageBoxService]
 })
