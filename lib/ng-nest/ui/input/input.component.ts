@@ -14,7 +14,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
@@ -124,6 +124,9 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         }
       }
       this.onChange(value);
+    }
+    if (this.validator && XIsFunction(this.inputValidator)) {
+      this.invalidInputValidator = !this.inputValidator(value);
     }
     this.cdr.detectChanges();
   }

@@ -1,15 +1,15 @@
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { ChangeDetectorRef, Component, forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex, XBoolean } from '@ng-nest/ui/core';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
 @Component({ template: '' })
 export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
   get invalid() {
-    return this.validator && !XIsEmpty(this.value) && this.invalidPattern;
+    return this.validator && ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator);
   }
   get invalidPattern(): boolean {
-    if (!this.validator) return false;
+    if (!this.validator || XIsUndefined(this.pattern)) return false;
     let result = false;
     let index = 0;
     if (Array.isArray(this.pattern)) {
@@ -42,6 +42,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
   labelMap: XClassMap = {};
   value!: T;
   validator: XBoolean = false;
+  invalidInputValidator = false;
   onChange!: (value: T) => void;
   onTouched!: () => void;
   writeValue(value: T): void {
@@ -66,4 +67,12 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
 
 export function XValueAccessor<T>(component: Type<T>) {
   return { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => component), multi: true };
+}
+
+export function XFormInputValidator(func: (value: any) => boolean): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!XIsFunction(func)) return null;
+    const invalid = !func(control.value);
+    return invalid ? { inputValidator: true } : null;
+  };
 }

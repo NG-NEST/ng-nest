@@ -47,10 +47,11 @@ import {
   XAutoCompleteControlOption
 } from './form.property';
 import { FormControlName, Validators, UntypedFormControl, ValidatorFn, ControlValueAccessor, FormControlStatus } from '@angular/forms';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
+import { XFormInputValidator } from '../base-form';
 
 @Component({
   selector: 'x-control',
@@ -137,6 +138,9 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     if (this._control.pattern) {
       this.setPattern();
     }
+    if (XIsFunction(this._control.inputValidator)) {
+      this._validatorFns = [...this._validatorFns, XFormInputValidator(this._control.inputValidator!)];
+    }
     this._formControl.setValidators(this._validatorFns);
     this._formControl.updateValueAndValidity();
   }
@@ -168,14 +172,18 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   setMessages(state: FormControlStatus) {
     let control: XFormControl = this._formControl;
     if (state === 'INVALID' && this._formControl.errors !== null) {
+      let messages: string[] = [];
       for (const key in control.errors) {
         const label = this._control.label || this._control.id;
         if (key === 'required') {
-          control.messages = [`${label} ${this.locale?.required || 'required'}`];
+          messages = [...messages, `${label} ${this.locale?.required || 'required'}`];
         } else if (key === 'pattern') {
-          control.messages = [`${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
+          messages = [...messages, `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
+        } else if (key === 'inputValidator') {
+          messages = [...messages, `${label} ${this._control.message}`];
         }
       }
+      control.messages = messages;
     } else if (state === 'VALID') {
       control.messages = [];
     }

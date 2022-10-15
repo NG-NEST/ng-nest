@@ -134,6 +134,11 @@ export interface XControlOption extends XIdentityProperty {
    */
   message?: string | string[];
   /**
+   * @zh_CN 输入框的验证函数
+   * @en_US Validation function of input box
+   */
+  inputValidator?: (value: any) => boolean;
+  /**
    * @zh_CN 外部改变事件
    * @en_US External change event
    */
@@ -195,6 +200,11 @@ export class XControl extends XIdentity implements XControlOption {
    * @en_US Verification failed prompt text
    */
   message?: string | string[];
+  /**
+   * @zh_CN 输入框的验证函数
+   * @en_US Validation function of input box
+   */
+  inputValidator?: (value: any) => boolean;
   /**
    * @zh_CN 外部改变事件
    * @en_US External change event

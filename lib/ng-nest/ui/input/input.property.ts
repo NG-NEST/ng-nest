@@ -81,8 +81,8 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputBoolean() override pointer!: XBoolean;
   /**
-   * @zh_CN 输入框点击样式
-   * @en_US Input pointer
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
    */
   @Input() @XInputBoolean() override validator!: XBoolean;
   /**
@@ -212,6 +212,11 @@ export interface XInputOption extends XFormOption {
    * @en_US Clear button event
    */
   clearClick?: (value: any) => void;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Input validation function
+   */
+  inputValidator?: (value: any) => boolean;
 }
 
 /**
