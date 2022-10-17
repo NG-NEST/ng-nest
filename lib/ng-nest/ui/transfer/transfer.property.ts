@@ -33,7 +33,12 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles!: string[];
   /**
-   * @zh_CN 是否能拖动, type 
+   * @zh_CN 穿梭框样式，使用方式于 ngStyle 相同
+   * @en_US shuttle box style, same as ngStyle
+   */
+  @Input() @XWithConfig<XTransferListStyle>(X_CONFIG_NAME) listStyle!: XTransferListStyle;
+  /**
+   * @zh_CN 是否能拖动, type
    * @en_US Can drag
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() drag?: XBoolean;
@@ -116,12 +121,22 @@ export interface XTransferSource {
   disabledButton?: boolean;
   /**
    * @zh_CN 列表模版
-   * @en_US List
+   * @en_US List template
    */
   listTpl?: TemplateRef<void>;
+  /**
+   * @zh_CN 列表样式
+   * @en_US List style
+   */
+  listStyle?: { [klass: string]: any };
 }
 
 /**
  * Transfer type
  */
-export type XTransferType = 'list' | 'tree' | 'table';
+export type XTransferType = 'list' | 'tree';
+
+/**
+ * Transfer list style
+ */
+export type XTransferListStyle = { [kclass: string]: any } | { [kclass: string]: any }[];

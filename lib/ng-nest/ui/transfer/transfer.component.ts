@@ -11,8 +11,8 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty, XTransferType } from './transfer.property';
-import { XIsChange, XIsEmpty, XSetData, XConfigService, XRemove, XIsArray } from '@ng-nest/ui/core';
-import { interval, of, Subject } from 'rxjs';
+import { XIsChange, XIsEmpty, XSetData, XConfigService, XRemove, XIsArray, XIsObject, XIsObjectArray, XResultList } from '@ng-nest/ui/core';
+import { of, Subject } from 'rxjs';
 import { delay, map, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
@@ -46,8 +46,6 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   private get localTitle() {
     if (this.type === 'tree') {
       return this.locale.treeTitle;
-    } else if (this.type === 'table') {
-      return this.locale.tableTitle;
     } else {
       return this.locale.listTitle;
     }
@@ -59,7 +57,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (XIsArray(value)) {
       this.treeActivatedId = [...value];
     }
-    this.setList();
+    this.setList(this.nodes);
   }
 
   constructor(
@@ -70,13 +68,11 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     public i18n: XI18nService
   ) {
     super();
-    interval(1000).subscribe(() => {
-      console.log(this.value);
-    });
   }
 
   ngOnInit() {
     this.setTitles();
+    this.setListStyle();
     this.i18n.localeChange
       .pipe(
         map((x) => x.transfer as XI18nTransfer),
@@ -110,7 +106,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       return x;
     });
     if (this.type === 'tree' && arrow === 'left') {
-      this.treeActivatedId = $event ? source.list?.map((x) => x.id)! : list.map((x) => x.id);
+      this.treeActivatedId = $event ? source.list!.map((x) => x.id)! : source.list!.filter((x) => x.disabled).map((x) => x.id);
     }
     source.checkedCount = $event ? list.length : 0;
     source.indeterminate = $event;
@@ -280,14 +276,15 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
 
   private setData() {
     XSetData<XTransferNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
-      this.setList();
+      this.setList(x);
     });
   }
 
-  private setList() {
+  private setList(data: XTransferNode[]) {
+    if (XIsEmpty(data)) return;
     switch (this.type) {
       case 'list':
+        this.nodes = data as XTransferNode[];
         if (!XIsEmpty(this.value)) {
           this.left.list = this.nodes.filter((x) => this.value.indexOf(x.id) < 0);
           this.right.list = this.nodes.filter((x) => this.value.indexOf(x.id) >= 0);
@@ -301,6 +298,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
           .subscribe(() => this.cdr.detectChanges());
         break;
       case 'tree':
+        this.nodes = data as XTransferNode[];
         this.setTreeNodeDisabled();
         this.left.list = [...this.nodes];
         if (!XIsEmpty(this.value)) {
@@ -326,6 +324,19 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     }
     if (titles.length > 0) this.left.title = titles[0];
     if (titles.length > 1) this.right.title = titles[1];
+    this.cdr.detectChanges();
+  }
+
+  private setListStyle() {
+    if (XIsEmpty(this.listStyle)) return;
+    let styles: object[] = [];
+    if (XIsObject(this.listStyle)) {
+      styles = [this.listStyle, this.listStyle];
+    } else if (XIsObjectArray(this.listStyle)) {
+      styles = this.listStyle as object[];
+    }
+    if (styles.length > 0) this.left.listStyle = styles[0];
+    if (styles.length > 1) this.right.listStyle = styles[1];
     this.cdr.detectChanges();
   }
 

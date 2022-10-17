@@ -30,21 +30,23 @@
     padding: 0.25rem 0.25rem;
     height: 18rem;
     overflow-y: auto;
-    > li {
-      @include transfer-li();
-      transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base,
-        color $--x-animation-duration-base;
-    }
+  }
+  &-item {
+    @include transfer-li();
+    transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+  }
+  &-droplist {
+    height: 100%;
     &.cdk-drop-list-dragging {
-      > li {
+      .#{$--x-transfer}-item {
         &:hover {
           background-color: transparent;
         }
         &.cdk-drag-placeholder {
-          border-color: $--x-border;
-          color: $--x-text-400;
-          background-color: $--x-background-a100;
-          opacity: 0.9;
+          border-color: $--x-primary;
+          color: $--x-primary;
+          background-color: $--x-background;
+          opacity: 0.8;
         }
         &:not(.cdk-drag-placeholder) {
           transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
@@ -77,10 +79,10 @@
 @mixin transfer-item {
   &.cdk-drag-preview {
     @include transfer-li();
-    border-color: $--x-primary;
-    color: $--x-primary;
-    background-color: $--x-background;
-    opacity: 0.8;
+    border-color: $--x-border;
+    color: $--x-text-400;
+    background-color: $--x-background-a100;
+    opacity: 0.9;
   }
   &.cdk-drag-animating {
     transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);

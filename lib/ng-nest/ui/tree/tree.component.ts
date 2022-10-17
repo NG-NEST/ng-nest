@@ -223,6 +223,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         let index = this.nodes.indexOf(item);
         this.nodes.splice(index + 1, 0, ...(item.children as XTreeNode[]));
       }
+      item.change && item.change();
     }
     this.nodes = [...this.nodes];
   }
@@ -285,7 +286,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
               this.activatedNode = node;
               this.activatedChange.emit(this.activatedNode);
             }
-            node.change && node.change();
           }
         }
       }
@@ -300,6 +300,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (before) {
       before.change && before.change();
     }
+
     if (!XIsEmpty(nodes)) {
       this.setDataChange(nodes);
     }
