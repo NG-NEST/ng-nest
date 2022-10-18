@@ -116,7 +116,7 @@ export class XFindProperty extends XControlValueAccessor<any | any[]> implements
    */
   @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize!: number;
   /**
-   * @zh_CN 表每页数据条数
+   * @zh_CN 表格查询条件
    * @en_US Number of data items per page
    */
   @Input() tableQuery: XQuery = {};
