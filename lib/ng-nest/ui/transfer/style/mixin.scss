@@ -7,29 +7,30 @@
 @mixin transfer {
   display: inline-flex;
   align-items: center;
-  &-box {
-    border: $--x-border-base;
-    border-radius: $--x-border-radius;
-    width: 12rem;
-  }
   &-title {
     padding: 0.25rem 0.5625rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.0625rem solid $--x-border;
+    border: $--x-border-base;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
+    border-bottom: none;
     background-color: $--x-background;
     color: $--x-text-300;
-    > span {
-      margin-left: 0.325rem;
-    }
+  }
+  &-total {
+    margin-left: 0.325rem;
   }
   &-list {
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0.25rem;
     height: 18rem;
-    overflow-y: auto;
+    width: 12rem;
+    border: $--x-border-base;
+    border-bottom-left-radius: $--x-border-radius;
+    border-bottom-right-radius: $--x-border-radius;
+    overflow: auto;
   }
   &-item {
     @include transfer-li();
@@ -37,6 +38,7 @@
   }
   &-droplist {
     height: 100%;
+    padding: 0.25rem;
     &.cdk-drop-list-dragging {
       .#{$--x-transfer}-item {
         &:hover {

@@ -1,6 +1,7 @@
-import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig, XQuery } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XTableColumn } from '@ng-nest/ui/table';
 
 /**
  * Transfer
@@ -38,6 +39,11 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() @XWithConfig<XTransferListStyle>(X_CONFIG_NAME) listStyle!: XTransferListStyle;
   /**
+   * @zh_CN 隐藏全选复选框
+   * @en_US Hidden check all
+   */
+  @Input() hiddenCheckAll?: boolean[];
+  /**
    * @zh_CN 是否能拖动, type
    * @en_US Can drag
    */
@@ -57,6 +63,31 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    * @en_US Title custom template
    */
   @Input() titleTpl?: TemplateRef<void>;
+  /**
+   * @zh_CN 表格列集合
+   * @en_US Table column set
+   */
+  @Input() tableColumns?: XTableColumn[];
+  /**
+   * @zh_CN 表格页码
+   * @en_US Table page number
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex!: number;
+  /**
+   * @zh_CN 表每页数据条数
+   * @en_US Number of data items per page
+   */
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize!: number;
+  /**
+   * @zh_CN 表格查询条件
+   * @en_US Number of data items per page
+   */
+  @Input() tableQuery: XQuery = {};
+  /**
+   * @zh_CN 表格数据总条数
+   * @en_US Total number of table data
+   */
+  @Input() tableTotal: number = 0;
 }
 
 /**
@@ -73,6 +104,11 @@ export interface XTransferNode extends XParentIdentityProperty<XTransferNode> {
    * @en_US Serial number
    */
   index?: number;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom property
+   */
+  [property: string]: any;
 }
 
 /**
@@ -100,6 +136,11 @@ export interface XTransferSource {
    */
   checkedCount?: number;
   /**
+   * @zh_CN 可选择的数据总数
+   * @en_US Total number of selectable data
+   */
+  count?: number;
+  /**
    * @zh_CN 不确定状态的样式
    * @en_US Uncertain state style
    */
@@ -120,21 +161,26 @@ export interface XTransferSource {
    */
   disabledButton?: boolean;
   /**
-   * @zh_CN 列表模版
-   * @en_US List template
+   * @zh_CN 隐藏全选复选框
+   * @en_US Hidden check all
    */
-  listTpl?: TemplateRef<void>;
+  hiddenCheckAll?: boolean;
   /**
    * @zh_CN 列表样式
    * @en_US List style
    */
   listStyle?: { [klass: string]: any };
+  /**
+   * @zh_CN 数据方向
+   * @en_US Data direction
+   */
+  direction?: 'left' | 'right';
 }
 
 /**
  * Transfer type
  */
-export type XTransferType = 'list' | 'tree';
+export type XTransferType = 'list' | 'tree' | 'table';
 
 /**
  * Transfer list style

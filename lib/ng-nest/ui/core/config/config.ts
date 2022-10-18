@@ -527,6 +527,8 @@ export interface XTableConfig {
   treeTable?: XBoolean;
   expandedAll?: XBoolean;
   expandedLevel?: XNumber;
+  hiddenPaginationBorder?: XBoolean;
+  hiddenWrapBorder?: XBoolean;
 }
 
 export interface XTabsConfig {

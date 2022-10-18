@@ -1,6 +1,6 @@
 ---
 order: 4
-label: '树'
+label: 'Tree'
 ---
 
-使用 `type` 可以设置成 `tree` 选择。
+Use `type` to set it to `tree` selection.

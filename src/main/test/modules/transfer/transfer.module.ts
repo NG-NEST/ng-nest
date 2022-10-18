@@ -11,11 +11,22 @@ import { ExCustomComponent } from './custom/custom.component';
 import { ExDragComponent } from './drag/drag.component';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTreeModule } from '@ng-nest/ui/tree';
+import { ExTableComponent } from './table/table.component';
+import { XTableModule } from '@ng-nest/ui/table';
 
 const routers = [{ path: '', component: TeTransferComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XTransferModule, XLayoutModule, XIconModule, XTreeModule],
-  declarations: [TeTransferComponent, ExDefaultComponent, ExCustomComponent, ExDragComponent, ExTreeComponent]
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    FormsModule,
+    XTransferModule,
+    XLayoutModule,
+    XIconModule,
+    XTreeModule,
+    XTableModule
+  ],
+  declarations: [TeTransferComponent, ExDefaultComponent, ExCustomComponent, ExDragComponent, ExTreeComponent, ExTableComponent]
 })
 export class TeTransferModule {}

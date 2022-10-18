@@ -10,6 +10,7 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XTransferProperty } from './transfer.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XTreeModule } from '@ng-nest/ui/tree';
+import { XTableModule } from '@ng-nest/ui/table';
 
 @NgModule({
   declarations: [XTransferComponent, XTransferProperty],
@@ -23,7 +24,8 @@ import { XTreeModule } from '@ng-nest/ui/tree';
     XButtonModule,
     XInputModule,
     XBaseFormModule,
-    XTreeModule
+    XTreeModule,
+    XTableModule
   ]
 })
 export class XTransferModule {}
