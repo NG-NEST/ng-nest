@@ -9,8 +9,10 @@
   flex-direction: column;
   border-collapse: collapse;
   width: 100%;
-  border: $--x-border-base;
   position: relative;
+  &:not(.x-table-wrap-border-hidden) {
+    border: $--x-border-base;
+  }
   > thead {
     position: relative;
     overflow: hidden;

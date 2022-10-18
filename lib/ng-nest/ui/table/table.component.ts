@@ -341,9 +341,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
 
   headChecked(checked: boolean, column: XTableColumn) {
     this.tableData.forEach((x) => {
-      x[column.id] = checked;
+      if (!x.disabled) {
+        x[column.id] = checked;
+      }
     });
     this.setCheckedValues(column);
+    this.headCheckboxChange.emit(this.checkedValues);
     this.detectChanges();
   }
 
@@ -353,8 +356,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   setCheckedValues(column: XTableColumn) {
-    const count = this.tableData.length;
-    const checkedLen = this.tableData.filter((x) => x[column.id]).length;
+    const notDisabled = this.tableData.filter((x) => !x.disabled);
+    const count = notDisabled.length;
+    const checkedLen = notDisabled.filter((x) => x[column.id]).length;
     this.checkedValues[column.id] = count === checkedLen && count !== 0;
     this.checkedValues[column.id + this.indeterminate] = checkedLen > 0 && checkedLen < count;
   }

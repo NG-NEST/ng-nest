@@ -108,6 +108,7 @@
       <x-checkbox
         [data]="[{ id: true, label: '' }]"
         [(ngModel)]="row[column.id]"
+        [disabled]="row.disabled"
         (ngModelChange)="table.bodyChecked($event, column)"
       ></x-checkbox>
     </ng-container>

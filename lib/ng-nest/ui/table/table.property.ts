@@ -105,6 +105,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Output() sortChange = new EventEmitter<XSort[]>();
   /**
+   * @zh_CN 列头 checkbox 事件
+   * @en_US head checkbox event
+   */
+  @Output() headCheckboxChange = new EventEmitter<{ [property: string]: boolean }>();
+  /**
    * @zh_CN 允许行点击选中当前行
    * @en_US Allow row click to select
    */
@@ -194,6 +199,16 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Pagination position
    */
   @Input() paginationPosition: XPaginationPosition = 'bottom-left';
+  /**
+   * @zh_CN 隐藏表格外边框
+   * @en_US Hidden table wrap border
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenWrapBorder?: XBoolean;
+  /**
+   * @zh_CN 隐藏分页器按钮边框
+   * @en_US Hidden pagination button border
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenPaginationBorder?: XBoolean;
   /**
    * @zh_CN 显示分页器
    * @en_US Pagination position

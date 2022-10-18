@@ -204,6 +204,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   }
 
   rowClick(event: Event, row: XTableRow) {
+    if (row.disabled) return;
     this.activatedRow = row;
     if (this.table.allowCheckRow && this.table.rowChecked) {
       if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
