@@ -15,4 +15,8 @@ export class XImageGroupComponent {
   addImage(image: XImageComponent): void {
     this.images.push(image);
   }
+
+  removeImage(image: XImageComponent): void {
+    this.images.splice(this.images.indexOf(image), 1);
+  }
 }

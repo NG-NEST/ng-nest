@@ -71,6 +71,12 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
     }
   }
 
+  ngOnDestroy() {
+    if (this.group) {
+      this.group.removeImage(this);
+    }
+  }
+
   onPreview() {
     let data: XImageNode[] = [];
     if (this.group) {
