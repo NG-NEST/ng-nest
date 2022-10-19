@@ -22,9 +22,14 @@ export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'da
 export type XStatus = 'success' | 'info' | 'warning' | 'error' | 'loading';
 
 /**
- * 样式映射类型
+ * 样式名映射类型
  */
 export type XClassMap = { [property: string]: boolean };
+
+/**
+ * 样式映射类型
+ */
+export type XStyleMap = { [property: string]: any };
 
 /**
  * 样式主题

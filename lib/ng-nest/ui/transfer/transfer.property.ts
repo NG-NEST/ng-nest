@@ -1,4 +1,4 @@
-import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig, XQuery } from '@ng-nest/ui/core';
+import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig, XQuery, XStyleMap } from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTableColumn } from '@ng-nest/ui/table';
@@ -169,13 +169,18 @@ export interface XTransferSource {
    * @zh_CN 列表样式
    * @en_US List style
    */
-  listStyle?: { [klass: string]: any };
+  listStyle?: XStyleMap;
   /**
    * @zh_CN 数据方向
    * @en_US Data direction
    */
-  direction?: 'left' | 'right';
+  direction?: XTransferDirection;
 }
+
+/**
+ * Transfer direction
+ */
+export type XTransferDirection = 'left' | 'right';
 
 /**
  * Transfer type
@@ -185,4 +190,4 @@ export type XTransferType = 'list' | 'tree' | 'table';
 /**
  * Transfer list style
  */
-export type XTransferListStyle = { [kclass: string]: any } | { [kclass: string]: any }[];
+export type XTransferListStyle = XStyleMap | XStyleMap[];

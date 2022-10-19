@@ -51,7 +51,7 @@ import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
-import { XFormInputValidator } from '../base-form';
+import { XFormInputValidator } from '@ng-nest/ui/base-form';
 
 @Component({
   selector: 'x-control',
