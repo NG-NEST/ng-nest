@@ -78,8 +78,14 @@ export class ConfigService {
   }
 
   getVersions() {
-    this.http.get<{ versions: [] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x) => {
-      this.versions = x.versions;
+    this.http.get<{ versions: string[] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x) => {
+      const versions = x.versions;
+      if (!versions.includes(this.version)) {
+        if (versions.length > 0) {
+          versions.splice(1, 0, this.version);
+        }
+      }
+      this.versions = versions;
     });
   }
 }

@@ -7,14 +7,16 @@ import {
   OnChanges,
   ViewChild,
   ChangeDetectorRef,
-  SimpleChanges
+  SimpleChanges,
+  Inject
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
+import { delay, of } from 'rxjs';
 
 declare let Prism: any;
-
 @Component({
   selector: `${XHighlightPrefix}`,
   templateUrl: './highlight.component.html',
@@ -29,9 +31,19 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   lines: string[] = [];
   lineHeight = 1.1875;
 
-  constructor(public elementRef: ElementRef, public renderer: Renderer2, public cdr: ChangeDetectorRef, public sanitizer: DomSanitizer) {
+  document: Document;
+  iconCopy = 'fto-copy';
+
+  constructor(
+    public elementRef: ElementRef,
+    public renderer: Renderer2,
+    public cdr: ChangeDetectorRef,
+    public sanitizer: DomSanitizer,
+    @Inject(DOCUMENT) document: any
+  ) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
+    this.document = document;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,5 +89,18 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
     }
 
     return result;
+  }
+
+  onCopy() {
+    navigator.clipboard.writeText(this.data as string).then(() => {
+      this.iconCopy = 'fto-check';
+      this.cdr.detectChanges();
+      of(true)
+        .pipe(delay(2000))
+        .subscribe(() => {
+          this.iconCopy = 'fto-copy';
+          this.cdr.detectChanges();
+        });
+    });
   }
 }

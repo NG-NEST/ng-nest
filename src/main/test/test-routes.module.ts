@@ -151,6 +151,10 @@ const testModules = [
   {
     path: 'transfer',
     loadChildren: () => import('./modules/transfer/transfer.module').then((x) => x.TeTransferModule)
+  },
+  {
+    path: 'highlight',
+    loadChildren: () => import('./modules/highlight/highlight.module').then((x) => x.TeHighlightModule)
   }
 ];
 

@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XBoolean, XInputBoolean, XProperty } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -28,6 +28,11 @@ export class XHighlightProperty extends XProperty {
    * @en_US Highlight row data
    */
   @Input() highlightLines: XHighlightLines = {};
+  /**
+   * @zh_CN 显示复制按钮
+   * @en_US display copy
+   */
+  @Input() @XInputBoolean() showCopy?: XBoolean;
 }
 
 /**

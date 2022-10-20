@@ -9,6 +9,7 @@
   line-height: 0;
   width: 100%;
   border: 0.0625rem solid var(--x-border);
+  position: relative;
   > pre {
     display: flex;
     padding: 0.875rem 0.875rem 0.875rem 3.5rem;
@@ -77,6 +78,11 @@
   .token.symbol,
   .token.deleted {
     color: #e6a23c;
+  }
+  &-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 
