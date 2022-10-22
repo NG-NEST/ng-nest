@@ -219,7 +219,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
   setExpanded() {
     for (let item of this.nodes) {
-      if (item.open) {
+      if (item.open && item.children) {
         let index = this.nodes.indexOf(item);
         this.nodes.splice(index + 1, 0, ...(item.children as XTreeNode[]));
       }
