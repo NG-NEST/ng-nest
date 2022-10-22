@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { XTabPrefix, XTabProperty } from './tabs.property';
 import { XConfigService } from '@ng-nest/ui/core';
+import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directive';
 
 @Component({
   selector: `${XTabPrefix}`,
@@ -9,7 +10,9 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTabComponent extends XTabProperty {
-  @ViewChild(TemplateRef, { static: true }) content!: TemplateRef<void>;
+  @ViewChild('contentTpl', { static: true }) content!: TemplateRef<void>;
+  @ContentChild(XTabLinkTemplateDirective, { static: false }) linkTemplateDirective!: XTabLinkTemplateDirective;
+  @ContentChild(XTabLinkDirective, { static: false }) linkDirective!: XTabLinkDirective;
 
   constructor(public configService: XConfigService) {
     super();

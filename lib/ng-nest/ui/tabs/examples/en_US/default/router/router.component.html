@@ -1,0 +1,6 @@
+<x-tabs linkRouter size="large">
+  <x-tab *ngFor="let label of labels; index as i">
+    <a *xTabLink x-tab-link [routerLink]="['.']" [queryParams]="{ tab: i }">{{ label }} </a>
+    <div [style.padding.rem]="0.625">内容：{{ label }}</div>
+  </x-tab>
+</x-tabs>

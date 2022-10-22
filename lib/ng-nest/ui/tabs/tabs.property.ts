@@ -92,6 +92,16 @@ export class XTabsProperty extends XProperty {
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') expandMaxHeight?: string;
   /**
+   * @zh_CN angular 路由联动
+   * @en_US Link angular router
+   */
+  @Input() @XInputBoolean() linkRouter?: XBoolean;
+  /**
+   * @zh_CN 以严格匹配模式确定联动的路由
+   * @en_US Determine the linked route in strict matching mode
+   */
+  @Input() @XInputBoolean() linkExact?: XBoolean = true;
+  /**
    * @zh_CN 标签切换变化的事件
    * @en_US Label switching event
    */

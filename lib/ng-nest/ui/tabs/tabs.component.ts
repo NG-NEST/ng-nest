@@ -11,13 +11,15 @@ import {
   SimpleChange,
   QueryList,
   ElementRef,
-  Renderer2
+  Renderer2,
+  Optional
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
 import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize } from '@ng-nest/ui/core';
-import { Subject, takeUntil, distinctUntilChanged } from 'rxjs';
+import { Subject, takeUntil, distinctUntilChanged, filter, startWith } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
+import { NavigationEnd, Router, RouterLink, RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: `${XTabsPrefix}`,
@@ -37,12 +39,17 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     return Number(this.activatedIndex);
   }
 
-  @ContentChildren(XTabComponent) listTabs!: QueryList<XTabComponent>;
+  @ContentChildren(XTabComponent, { descendants: true }) listTabs!: QueryList<XTabComponent>;
 
   @ViewChild(XSliderComponent, { static: false }) slider!: XSliderComponent;
   @ViewChild('actionsRef', { static: false }) actionsRef!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService, public renderer: Renderer2) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    public configService: XConfigService,
+    public renderer: Renderer2,
+    @Optional() private router: Router
+  ) {
     super();
   }
 
@@ -66,6 +73,12 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     this._unSubject.next();
     this._unSubject.unsubscribe();
     this._resizeObserver?.disconnect();
+  }
+
+  ngAfterContentInit() {
+    Promise.resolve().then(() => {
+      this.setRouter();
+    });
   }
 
   ngAfterContentChecked(): void {
@@ -97,6 +110,48 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     this._tabsContentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
       this.setData();
     });
+  }
+
+  setRouter() {
+    if (!this.linkRouter) return;
+    if (!this.router) {
+      console.warn(`${XTabsPrefix}: you should import 'RouterModule' if you want to use 'linkRouter'!`);
+      return;
+    }
+    this.router.events
+      .pipe(
+        filter((x) => x instanceof NavigationEnd),
+        startWith(true),
+        takeUntil(this._unSubject)
+      )
+      .subscribe(() => {
+        this.updateRouterActive();
+        this.cdr.markForCheck();
+      });
+  }
+
+  updateRouterActive() {
+    if (!this.router.navigated) return;
+    const index = this.findShouldActiveTabIndex();
+    if (index !== -1 && index !== this.activeIndex) {
+      this.activatedIndex = index;
+      this.setActivatedIndex();
+    }
+  }
+
+  findShouldActiveTabIndex(): number {
+    const tabs = this.listTabs.toArray();
+    const isActive = this.isLinkActive(this.router);
+    return tabs.findIndex((tab) => {
+      const c = tab.linkDirective;
+      return c ? isActive(c.routerLink) || isActive(c.routerLinkWithHref) : false;
+    });
+  }
+
+  isLinkActive(router: Router): (link?: RouterLink | RouterLinkWithHref) => boolean {
+    return (link?: RouterLink | RouterLinkWithHref) => {
+      return link ? router.isActive(link.urlTree!, Boolean(this.linkExact)) : false;
+    };
   }
 
   activatedChange(index: number) {
@@ -141,8 +196,10 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     if (XIsEmpty(this.data)) {
       if (this.listTabs && this.listTabs.length > 0) {
         let _data: any[] = [];
-        this.listTabs.forEach((x) => {
-          _data = [...(_data as XTabsNode[]), { id: x.label, label: x.label, disabled: x.disabled }];
+        this.listTabs.forEach((x, index) => {
+          const label = x.linkTemplateDirective?.templateRef || x.label;
+          const id = x.label || index;
+          _data = [...(_data as XTabsNode[]), { id: id, label: label, disabled: x.disabled }];
         });
         data = _data;
       } else {

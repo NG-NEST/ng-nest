@@ -1,3 +1,6 @@
-<ng-template>
+<ng-template #tabLinkTpl>
+  <ng-content select="[x-tab-link]"></ng-content>
+</ng-template>
+<ng-template #contentTpl>
   <ng-content></ng-content>
 </ng-template>

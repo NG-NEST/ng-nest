@@ -63,6 +63,27 @@
       border-bottom: $--x-border-base;
     }
   }
+  a[x-tab-link]:before {
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+    content: '';
+  }
+  .x-size-large a[x-tab-link]:before {
+    margin: 0 calc(-1 * #{$--x-padding-large});
+  }
+  .x-size-big a[x-tab-link]:before {
+    margin: 0 calc(-1 * #{$--x-padding-big});
+  }
+  .x-size-medium a[x-tab-link]:before {
+    margin: 0 calc(-1 * #{$--x-padding-medium});
+  }
+  .x-size-small a[x-tab-link]:before {
+    margin: 0 calc(-1 * #{$--x-padding-small});
+  }
+  .x-size-mini a[x-tab-link]:before {
+    margin: 0 calc(-1 * #{$--x-padding-mini});
+  }
   @include block(top, bottom, bottom-left-radius, bottom-right-radius);
   @include block(right, left, top-left-radius, bottom-left-radius);
   @include block(bottom, top, top-left-radius, top-right-radius);
