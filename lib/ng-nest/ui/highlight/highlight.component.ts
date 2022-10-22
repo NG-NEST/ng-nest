@@ -61,7 +61,7 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
       );
     } else {
       console.warn(
-        `x-highlight: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`
+        `${XHighlightPrefix}: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`
       );
       this.display = this.sanitizer.bypassSecurityTrustHtml(this.data as string);
     }
