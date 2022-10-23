@@ -1,4 +1,4 @@
-import { HttpClient, HttpEventType, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import {
   Component,
   ViewEncapsulation,
@@ -12,7 +12,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
-import { XConfigService, XIsTemplateRef } from '@ng-nest/ui/core';
+import { XConfigService, XIsArray, XIsTemplateRef } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
@@ -144,10 +144,18 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
   uploadFile(file: XUploadNode, index = -1) {
     let formData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('POST', this.action as string, formData, {
+    // let headers = new HttpHeaders();
+    // for (let key in this.headers) {
+    //   headers = headers.append(key, this.headers[key]);
+    // }
+    const req = new HttpRequest('POST', this.action!, formData, {
       reportProgress: true,
-      responseType: 'arraybuffer'
+      responseType: 'arraybuffer',
+      withCredentials: false,
+      headers: new HttpHeaders(this.headers)
     });
+    // let xhr = req.clone({ headers });
+    // console.log(xhr);
     this.http
       .request(req)
       .pipe(
@@ -157,14 +165,20 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
             let reader = new FileReader();
             reader.readAsText(blob, 'utf-8');
             reader.onload = () => {
-              file.url = JSON.parse(reader.result as string)[0];
-              console.log(file);
-              if (index === -1) {
-                // this.value.push(file);
-              } else {
-                // this.value[index] = file;
+              let body = [];
+              try {
+                body = JSON.parse(reader.result as string);
+                if (XIsArray(body) && body.length > 0) {
+                  file.url = body[0];
+                }
+                file.body = body;
+              } catch (e) {
+                console.log(e);
+              }
+              if (index !== -1) {
                 this.files[index] = file;
               }
+              this.uploadSuccess.emit(file);
               this.cdr.detectChanges();
             };
           })
@@ -183,7 +197,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
       );
   }
 
-  getEventMessage(event: HttpEvent<any>, file: XUploadNode, fun: Function) {
+  getEventMessage(event: HttpEvent<any>, file: XUploadNode, successFunc: Function) {
     switch (event.type) {
       case HttpEventType.Sent:
         file.state = 'ready';
@@ -196,8 +210,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
         return `上传中`;
       case HttpEventType.Response:
         file.state = 'success';
-        fun(event.body);
-        this.uploadSuccess.emit(file);
+        successFunc(event.body);
         return `文件上传完毕`;
     }
     return;

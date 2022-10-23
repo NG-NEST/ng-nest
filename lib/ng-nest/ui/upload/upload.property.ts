@@ -71,6 +71,11 @@ export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
    */
   @Input() @XInputNumber() maxLimit?: XNumber;
   /**
+   * @zh_CN 设置上传的请求头部
+   * @en_US Set the upload request header
+   */
+  @Input() headers?: { [key: string]: any };
+  /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event
    */
@@ -117,6 +122,11 @@ export interface XUploadNode extends File {
    * @en_US Upload progress
    */
   percent?: XNumber;
+  /**
+   * @zh_CN 上传返回数据
+   * @en_US Upload body
+   */
+  body?: any;
 }
 
 /**

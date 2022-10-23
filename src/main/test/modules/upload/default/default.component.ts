@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { XUploadNode } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-default',
@@ -20,8 +21,10 @@ export class ExDefaultComponent {
     console.log('uploading', $event);
   }
 
-  uploadSuccess($event: any) {
+  uploadSuccess($event: XUploadNode) {
     console.log('uploadSuccess', $event);
+    console.log('uploadSuccess url', $event.url);
+    console.log('uploadSuccess body', $event.body);
   }
 
   uploadError($event: any) {
