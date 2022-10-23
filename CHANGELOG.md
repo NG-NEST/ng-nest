@@ -1,3 +1,20 @@
+## [14.0.10](https://github.com/NG-NEST/ng-nest/compare/14.0.9...14.0.10) (2022-10-23)
+
+
+### Bug Fixes
+
+* **module:highlight:** optimization warning description ([0928f39](https://github.com/NG-NEST/ng-nest/commit/0928f39fee8c41e2c92337f558216831849576c9))
+* **module:tree:** expaned error ([22a4efb](https://github.com/NG-NEST/ng-nest/commit/22a4efbcd700aa7464db863813861bfedc352c34))
+* **module:upload:** fix uploadSuccess event ([8addcd0](https://github.com/NG-NEST/ng-nest/commit/8addcd0190c223bb790c10bcc0fbd43323f8ff6f))
+
+
+### Features
+
+* **module:highlight:** add copy code ([4371349](https://github.com/NG-NEST/ng-nest/commit/437134935fb4a8fd62c9161bdab7d2da3bbeb1c2))
+* **module:tabs:** add associated route ([2381a2a](https://github.com/NG-NEST/ng-nest/commit/2381a2ab9dfa2b36f24265e35de16679e940e6a0))
+
+
+
 ## [14.0.9](https://github.com/NG-NEST/ng-nest/compare/14.0.8...14.0.9) (2022-10-19)
 
 
