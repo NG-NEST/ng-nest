@@ -39,7 +39,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     return Number(this.activatedIndex);
   }
 
-  @ContentChildren(XTabComponent, { descendants: true }) listTabs!: QueryList<XTabComponent>;
+  @ContentChildren(XTabComponent) listTabs!: QueryList<XTabComponent>;
 
   @ViewChild(XSliderComponent, { static: false }) slider!: XSliderComponent;
   @ViewChild('actionsRef', { static: false }) actionsRef!: ElementRef;
@@ -204,6 +204,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
         data = _data;
       } else {
         data = [];
+
         return;
       }
     }

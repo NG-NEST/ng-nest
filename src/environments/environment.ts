@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  layout: 'test',
-  defaultPage: 'upload',
+  production: true,
+  layout: 'index',
+  defaultPage: 'docs',
   static: 'http://localhost:9494'
 };
 

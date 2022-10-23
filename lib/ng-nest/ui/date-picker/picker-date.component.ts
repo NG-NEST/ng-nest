@@ -75,11 +75,8 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { display, rangeType } = simples;
+    const { display } = simples;
     XIsChange(display) && this.init();
-    if (rangeType) {
-      console.log(this.rangeType);
-    }
   }
 
   ngOnDestroy() {

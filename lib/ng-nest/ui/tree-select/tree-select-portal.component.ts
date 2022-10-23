@@ -126,7 +126,6 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XTreeSelectNode) {
-    console.log(node);
     if (this.multiple) {
       this.nodeEmit(node, this.value);
     } else {

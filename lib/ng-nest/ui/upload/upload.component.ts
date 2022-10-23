@@ -144,18 +144,12 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
   uploadFile(file: XUploadNode, index = -1) {
     let formData = new FormData();
     formData.append('file', file);
-    // let headers = new HttpHeaders();
-    // for (let key in this.headers) {
-    //   headers = headers.append(key, this.headers[key]);
-    // }
     const req = new HttpRequest('POST', this.action!, formData, {
       reportProgress: true,
       responseType: 'arraybuffer',
       withCredentials: false,
       headers: new HttpHeaders(this.headers)
     });
-    // let xhr = req.clone({ headers });
-    // console.log(xhr);
     this.http
       .request(req)
       .pipe(
@@ -173,7 +167,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
                 }
                 file.body = body;
               } catch (e) {
-                console.log(e);
+                console.error(e);
               }
               if (index !== -1) {
                 this.files[index] = file;

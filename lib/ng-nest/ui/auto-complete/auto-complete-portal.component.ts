@@ -85,7 +85,6 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
       )
       .subscribe((x) => {
         this.keywordText = x;
-        console.log(this.keywordText);
       });
   }
 

@@ -366,9 +366,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  predicate(drag: CdkDrag<XListNode>, drop: CdkDropList<XListNode>) {
-    console.log(drag);
-    console.log(drop);
+  predicate(_drag: CdkDrag<XListNode>, _drop: CdkDropList<XListNode>) {
     return true;
   }
 
