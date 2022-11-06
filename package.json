@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "14.0.10",
+  "version": "14.0.11",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,7 @@
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
     "build:scss": "sass ./lib/ng-nest/ui/style/core/index.scss ./dist/ng-nest/ui/style/core/index.css",
+    "build:all": "npm run build:ng-nest-ui && npm run build:docs && npm run build",
     "copy:scss": "cpx ./lib/ng-nest/ui/style/**/* ./dist/ng-nest/ui/style",
     "clear:examples": "npm run build:scripts && node ./scripts/build/generate/clear-examples",
     "test": "ng test ng-nest-site",

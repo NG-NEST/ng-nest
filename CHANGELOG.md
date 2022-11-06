@@ -1,8 +1,18 @@
+## [14.0.11](https://github.com/NG-NEST/ng-nest/compare/14.0.10...14.0.11) (2022-11-06)
+
+
+### Features
+
+* **module:table:** add adaptionHeight change ([7e8ddda](https://github.com/NG-NEST/ng-nest/commit/7e8dddaf3f5b683965df60f67d0e787c135685ca))
+
+
+
 ## [14.0.10](https://github.com/NG-NEST/ng-nest/compare/14.0.9...14.0.10) (2022-10-23)
 
 
 ### Bug Fixes
 
+* **build:** fix build style confusion ([06ad1ee](https://github.com/NG-NEST/ng-nest/commit/06ad1eef2759539376cd610b156dba6093efb836))
 * **module:highlight:** optimization warning description ([0928f39](https://github.com/NG-NEST/ng-nest/commit/0928f39fee8c41e2c92337f558216831849576c9))
 * **module:tree:** expaned error ([22a4efb](https://github.com/NG-NEST/ng-nest/commit/22a4efbcd700aa7464db863813861bfedc352c34))
 * **module:upload:** fix uploadSuccess event ([8addcd0](https://github.com/NG-NEST/ng-nest/commit/8addcd0190c223bb790c10bcc0fbd43323f8ff6f))
