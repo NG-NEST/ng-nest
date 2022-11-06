@@ -55,8 +55,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     super();
   }
   ngOnChanges(simples: SimpleChanges) {
-    const { data, columns, activatedRow, mergeRule, expandedAll } = simples;
+    const { data, columns, activatedRow, mergeRule, expandedAll, adaptionHeight } = simples;
     XIsChange(data, columns, activatedRow, mergeRule, expandedAll) && this.cdr.detectChanges();
+    XIsChange(adaptionHeight) && this.setAdaptionHeight();
   }
 
   ngOnInit() {

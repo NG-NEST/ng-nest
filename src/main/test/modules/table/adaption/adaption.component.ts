@@ -25,6 +25,8 @@ export class ExAdaptionComponent {
 
   visible = false;
 
+  adaptionHeight = 139;
+
   constructor(private service: AdaptionService) {}
 
   ngOnInit() {}

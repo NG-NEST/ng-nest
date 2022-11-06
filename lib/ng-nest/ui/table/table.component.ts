@@ -112,6 +112,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     XIsChange(data, checkedRow) && this.setData();
     XIsChange(columns, activatedRow, showPagination) && this.cdr.detectChanges();
     XIsChange(manual) && this.setManual();
+    
   }
 
   ngOnDestroy() {
