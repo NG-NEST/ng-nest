@@ -26,6 +26,7 @@ export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise
       size: NcTabsSizeEnum.Big,
       tabsType: NcTabsTypeEnum.Block,
       tabsAnimated: false,
+      tabsLinkRouter: false,
       folderPath: cates.folderPath
     });
     catesTabs.tabs.forEach(async (x) => {
@@ -57,6 +58,7 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     size: NcTabsSizeEnum.Medium,
     tabsType: NcTabsTypeEnum.Tag,
     tabsAnimated: false,
+    tabsLinkRouter: false,
     folderPath: folderPath,
     id: func
   });

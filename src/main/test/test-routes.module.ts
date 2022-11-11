@@ -155,6 +155,10 @@ const testModules = [
   {
     path: 'highlight',
     loadChildren: () => import('./modules/highlight/highlight.module').then((x) => x.TeHighlightModule)
+  },
+  {
+    path: 'anchor',
+    loadChildren: () => import('./modules/anchor/anchor.module').then((x) => x.TeAnchorModule)
   }
 ];
 

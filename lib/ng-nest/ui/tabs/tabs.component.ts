@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
 import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize } from '@ng-nest/ui/core';
-import { Subject, takeUntil, distinctUntilChanged, filter, startWith } from 'rxjs';
+import { Subject, takeUntil, distinctUntilChanged, filter, startWith, delay } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 import { NavigationEnd, Router, RouterLink, RouterLinkWithHref } from '@angular/router';
@@ -75,12 +75,6 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     this._resizeObserver?.disconnect();
   }
 
-  ngAfterContentInit() {
-    Promise.resolve().then(() => {
-      this.setRouter();
-    });
-  }
-
   ngAfterContentChecked(): void {
     if (this.tabs.length !== this.listTabs.length) {
       this._tabsContentChange.next(`${this.tabs.length}-${this.listTabs.length}`);
@@ -89,6 +83,9 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     this.setSliderWidth();
+    Promise.resolve().then(() => {
+      this.setRouter();
+    });
   }
 
   setSliderWidth() {
@@ -122,6 +119,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
       .pipe(
         filter((x) => x instanceof NavigationEnd),
         startWith(true),
+        delay(0),
         takeUntil(this._unSubject)
       )
       .subscribe(() => {
@@ -142,6 +140,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   findShouldActiveTabIndex(): number {
     const tabs = this.listTabs.toArray();
     const isActive = this.isLinkActive(this.router);
+
     return tabs.findIndex((tab) => {
       const c = tab.linkDirective;
       return c ? isActive(c.routerLink) || isActive(c.routerLinkWithHref) : false;

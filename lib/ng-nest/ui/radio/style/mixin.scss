@@ -19,10 +19,9 @@
   }
   &-row {
     flex: 1;
-    //display: flex;
     align-items: center;
     position: relative;
-    //height: $--x-radio-height;
+    height: $--x-radio-height;
     line-height: $--x-radio-height;
   }
   &-item {

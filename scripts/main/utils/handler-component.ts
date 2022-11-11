@@ -48,25 +48,32 @@ export function handlerExamples(page: NcPage): Promise<void> {
   examples.tplPath = path.join(tplDir, 'examples-component.template.html');
   let func = '';
   while (func == '' || hasIn(comTpl.syswords.constant, func)) func = randomString();
-  let tabs = handlerTabs({
-    layout: NcTabsLayoutEnum.Left,
-    nodeJustify: NcTabsNodeJustifyEnum.Start,
-    size: NcTabsSizeEnum.Large,
-    tabsType: NcTabsTypeEnum.Block,
-    tabsAnimated: false,
-    folderPath: `${examples.path}/${page.lang}`
-  });
-  tabs.tabs.forEach((x) => {
-    let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
-    hanlderCates(cates, page);
-    generateCates(cates, comTpl);
-    if (cates.content) {
-      x.content = cates.content;
-    }
-  });
-  generateTabs(tabs);
+
+  // let tabs = handlerTabs({
+  //   layout: NcTabsLayoutEnum.Left,
+  //   nodeJustify: NcTabsNodeJustifyEnum.Start,
+  //   size: NcTabsSizeEnum.Large,
+  //   tabsType: NcTabsTypeEnum.Block,
+  //   tabsAnimated: false,
+  //   tabsLinkRouter: false,
+  //   folderPath: `${examples.path}/${page.lang}`
+  // });
+  // tabs.tabs.forEach((x) => {
+  //   let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
+  //   hanlderCates(cates, page);
+  //   generateCates(cates, comTpl);
+  //   if (cates.content) {
+  //     x.content = cates.content;
+  //   }
+  // });
+  // generateTabs(tabs);
+  let folderPath = path.join(`${examples.path}/${page.lang}`, 'default');
+  let cates: NcCates = { folderPath };
+  hanlderCates(cates, page);
+  generateCates(cates, comTpl);
+
   let examplesTpl = fs.readFileSync(examples.tplPath, 'utf8');
-  page.custom = replaceKey(page.custom, '__examples', replaceKey(examplesTpl, '__tabs', tabs.content));
+  page.custom = replaceKey(page.custom, '__examples', replaceKey(examplesTpl, '__tabs', cates.content));
   page.copyDir.push({
     from: `${examples.path}/${page.lang}`,
     to: path.join(page.genDir, 'examples'),

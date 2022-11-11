@@ -78,6 +78,11 @@ export class XSliderProperty extends XProperty {
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '15rem') expandMaxHeight?: string;
   /**
+   * @zh_CN 显示描点
+   * @en_US Show anchor
+   */
+  @Input() @XInputBoolean() showAnchor?: XBoolean;
+  /**
    * @zh_CN 激活索引变化事件
    * @en_US Activate index change event
    */

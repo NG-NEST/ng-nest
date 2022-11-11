@@ -62,17 +62,11 @@
     width: 100%;
     > .x-tabs-list {
       border: none;
-      
     }
-    > .x-tabs-contents {
-      > x-tab-content > x-tabs > .x-tabs {
-        &-top {
-          > .x-tabs-list {
-            border: none;
-            background: rgba(0, 0, 0, 0.05);
-          }
-          @include tabs-list();
-        }
+    &-top {
+      > .x-tabs-list {
+        border: none;
+        background: rgba(0, 0, 0, 0.05);
       }
     }
     &-left,
@@ -86,18 +80,6 @@
           min-width: 6rem;
         }
       }
-      // .#{$prefix}-html {
-      //   margin: 0 0 0 1rem;
-      //   border: 0;
-      //   padding: 0;
-      // }
-      // .#{$prefix}-info {
-      //   margin: 1rem 0 0 1rem;
-      // }
-      // .#{$prefix}-code {
-      //   margin: 1rem 0 0 1rem;
-      //   padding: 0;
-      // }
     }
   }
 }

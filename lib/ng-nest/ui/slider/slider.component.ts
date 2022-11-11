@@ -119,7 +119,11 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
       });
   }
 
-  nodeClick(node: XSliderNode, index: number) {
+  nodeClick(event: Event | null, node: XSliderNode, index: number) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     if (node.disabled) return;
     this.setDirection(index, Number(this.activatedIndex));
     this.activatedIndex = index;
@@ -133,7 +137,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   dropdownClick(node: XSliderNode) {
     const index = this.nodes.indexOf(node);
-    this.nodeClick(node, index);
+    this.nodeClick(null, node, index);
   }
 
   scrollPrev() {

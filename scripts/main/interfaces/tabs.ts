@@ -35,6 +35,13 @@ export interface NcTabs {
    */
   tabsType?: NcTabsTypeEnum;
   /**
+   * 启用路由
+   *
+   * @type {boolean}
+   * @memberof NcTabs
+   */
+  tabsLinkRouter?: boolean;
+  /**
    * 动画
    *
    * @type {NcTabsTypeEnum}
