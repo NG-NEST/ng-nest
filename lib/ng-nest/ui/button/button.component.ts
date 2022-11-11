@@ -11,7 +11,8 @@ import {
   ElementRef,
   Renderer2
 } from '@angular/core';
-import { XIsChange, XIsEmpty, XConfigService, XClearClass } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/core';
+import { delay, of } from 'rxjs';
 import { XButtonPrefix, XButtonProperty } from './button.property';
 import { XButtonsComponent } from './buttons.component';
 
@@ -23,6 +24,7 @@ import { XButtonsComponent } from './buttons.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
+  transition = false;
   constructor(
     @Optional() @Host() public buttons: XButtonsComponent,
     public cdr: ChangeDetectorRef,
@@ -54,6 +56,13 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
       [`x-size-${this.size}`]: !XIsEmpty(this.size),
       [`x-direction-${this.direction}`]: !XIsEmpty(this.direction)
     };
+    if (!this.transition)
+      of(true)
+        .pipe(delay(0))
+        .subscribe(() => {
+          this.transition = true;
+          this.cdr.detectChanges();
+        });
     this.cdr.detectChanges();
   }
 

@@ -17,8 +17,8 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: color $--x-animation-duration-base ease-in-out, background-color $--x-animation-duration-base ease-in-out,
-    border $--x-animation-duration-base ease-in-out;
+  touch-action: manipulation;
+  will-change: color, background-color, border;
   &:focus {
     outline: none;
   }
@@ -44,6 +44,10 @@
       margin-right: 0;
       margin-left: 0;
     }
+  }
+  &-transition {
+    transition: color $--x-animation-duration-base ease-in-out, background-color $--x-animation-duration-base ease-in-out,
+      border $--x-animation-duration-base ease-in-out;
   }
   &-disabled {
     transform: none !important;
