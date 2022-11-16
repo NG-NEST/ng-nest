@@ -1,3 +1,13 @@
+## [14.0.12](https://github.com/NG-NEST/ng-nest/compare/14.0.11...14.0.12) (2022-11-16)
+
+
+### Bug Fixes
+
+* **module:table:** merge cell style error ([4177ddc](https://github.com/NG-NEST/ng-nest/commit/4177ddc2e3fd857108b7fdd7d76b1d38a7f3fd2a))
+* **script:** generate scripts and style adjustments ([c0da620](https://github.com/NG-NEST/ng-nest/commit/c0da6206940605751c384c834731b4239725bee4))
+
+
+
 ## [14.0.11](https://github.com/NG-NEST/ng-nest/compare/14.0.10...14.0.11) (2022-11-06)
 
 
