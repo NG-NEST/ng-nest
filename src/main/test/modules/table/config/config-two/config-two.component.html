@@ -1,0 +1,5 @@
+<h1>表格1</h1>
+<x-table [columns]="columns" [data]="data" bordered [cellConfig]="cellConfig" loading [bodyColumnTpl]="{ actions: actionsTpl }"> </x-table>
+<ng-template #actionsTpl let-column="$column" let-row="$row">
+  <a>查看2</a>
+</ng-template>

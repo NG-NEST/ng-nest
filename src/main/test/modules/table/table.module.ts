@@ -27,8 +27,25 @@ import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { ExSearchComponent } from './search/search.component';
+import { ExConfigOneComponent } from './config/config-one/config-one.component';
+import { ExConfigTwoComponent } from './config/config-two/config-two.component';
 
-const routers = [{ path: '', component: TeTableComponent }];
+const routers = [
+  {
+    path: '',
+    component: TeTableComponent,
+    children: [
+      {
+        path: 'config-one',
+        component: ExConfigOneComponent
+      },
+      {
+        path: 'config-two',
+        component: ExConfigTwoComponent
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [
@@ -58,7 +75,9 @@ const routers = [{ path: '', component: TeTableComponent }];
     ExFixComponent,
     ExHeadComponent,
     ExEditComponent,
-    ExSearchComponent
+    ExSearchComponent,
+    ExConfigOneComponent,
+    ExConfigTwoComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })
