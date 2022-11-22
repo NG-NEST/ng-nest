@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Host, Optional, Self, TemplateRef } from '@angular/core';
-import { RouterLink, RouterLinkWithHref } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Directive({
   selector: 'ng-template[xTabLink]',
@@ -17,6 +17,6 @@ export class XTabLinkDirective {
   constructor(
     public elementRef: ElementRef,
     @Optional() @Self() public routerLink?: RouterLink,
-    @Optional() @Self() public routerLinkWithHref?: RouterLinkWithHref
+    @Optional() @Self() public routerLinkWithHref?: RouterLink
   ) {}
 }

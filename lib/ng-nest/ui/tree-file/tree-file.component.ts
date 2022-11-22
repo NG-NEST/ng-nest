@@ -14,7 +14,7 @@ import { XHighlightLines } from '@ng-nest/ui/highlight';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeFileComponent extends XTreeFileProperty {
-  activatedNode!: XTreeFileNode;
+  activatedNode?: XTreeFileNode;
   loading: boolean = false;
   time!: number;
   timeout: number = 200;

@@ -65,7 +65,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-82",
+    "id": "1-81",
     "pid": "1",
     "name": "theme",
     "router": "docs/en_US/components/theme",
@@ -74,7 +74,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-96",
+    "id": "1-95",
     "pid": "1",
     "name": "typography",
     "router": "docs/en_US/components/typography",
@@ -227,7 +227,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-80",
+    "id": "1-79",
     "pid": "1",
     "name": "text-retract",
     "router": "docs/en_US/components/text-retract",
@@ -236,7 +236,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-82",
     "pid": "1",
     "name": "time-ago",
     "router": "docs/en_US/components/time-ago",
@@ -245,7 +245,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-85",
+    "id": "1-84",
     "pid": "1",
     "name": "time-range",
     "router": "docs/en_US/components/time-range",
@@ -254,7 +254,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-85",
     "pid": "1",
     "name": "timeline",
     "router": "docs/en_US/components/timeline",
@@ -263,7 +263,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-89",
+    "id": "1-88",
     "pid": "1",
     "name": "tree",
     "router": "docs/en_US/components/tree",
@@ -272,7 +272,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-90",
+    "id": "1-89",
     "pid": "1",
     "name": "tree-file",
     "router": "docs/en_US/components/tree-file",
@@ -380,7 +380,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-87",
+    "id": "1-86",
     "pid": "1",
     "name": "tooltip",
     "router": "docs/en_US/components/tooltip",
@@ -524,7 +524,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-81",
+    "id": "1-80",
     "pid": "1",
     "name": "textarea",
     "router": "docs/en_US/components/textarea",
@@ -533,7 +533,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-84",
+    "id": "1-83",
     "pid": "1",
     "name": "time-picker",
     "router": "docs/en_US/components/time-picker",
@@ -542,7 +542,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-88",
+    "id": "1-87",
     "pid": "1",
     "name": "transfer",
     "router": "docs/en_US/components/transfer",
@@ -551,7 +551,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-91",
+    "id": "1-90",
     "pid": "1",
     "name": "tree-select",
     "router": "docs/en_US/components/tree-select",
@@ -560,7 +560,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-97",
+    "id": "1-96",
     "pid": "1",
     "name": "upload",
     "router": "docs/en_US/components/upload",
@@ -883,7 +883,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-82",
+    "id": "1-81",
     "pid": "1",
     "name": "theme",
     "router": "docs/zh_CN/components/theme",
@@ -892,7 +892,7 @@ export const menus: Menu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-96",
+    "id": "1-95",
     "pid": "1",
     "name": "typography",
     "router": "docs/zh_CN/components/typography",
@@ -1045,7 +1045,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-80",
+    "id": "1-79",
     "pid": "1",
     "name": "text-retract",
     "router": "docs/zh_CN/components/text-retract",
@@ -1054,7 +1054,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-82",
     "pid": "1",
     "name": "time-ago",
     "router": "docs/zh_CN/components/time-ago",
@@ -1063,7 +1063,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-85",
+    "id": "1-84",
     "pid": "1",
     "name": "time-range",
     "router": "docs/zh_CN/components/time-range",
@@ -1072,7 +1072,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-85",
     "pid": "1",
     "name": "timeline",
     "router": "docs/zh_CN/components/timeline",
@@ -1081,7 +1081,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-89",
+    "id": "1-88",
     "pid": "1",
     "name": "tree",
     "router": "docs/zh_CN/components/tree",
@@ -1090,7 +1090,7 @@ export const menus: Menu[] = [
     "category": "Data"
   },
   {
-    "id": "1-90",
+    "id": "1-89",
     "pid": "1",
     "name": "tree-file",
     "router": "docs/zh_CN/components/tree-file",
@@ -1198,7 +1198,7 @@ export const menus: Menu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-87",
+    "id": "1-86",
     "pid": "1",
     "name": "tooltip",
     "router": "docs/zh_CN/components/tooltip",
@@ -1342,7 +1342,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-81",
+    "id": "1-80",
     "pid": "1",
     "name": "textarea",
     "router": "docs/zh_CN/components/textarea",
@@ -1351,7 +1351,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-84",
+    "id": "1-83",
     "pid": "1",
     "name": "time-picker",
     "router": "docs/zh_CN/components/time-picker",
@@ -1360,7 +1360,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-88",
+    "id": "1-87",
     "pid": "1",
     "name": "transfer",
     "router": "docs/zh_CN/components/transfer",
@@ -1369,7 +1369,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-91",
+    "id": "1-90",
     "pid": "1",
     "name": "tree-select",
     "router": "docs/zh_CN/components/tree-select",
@@ -1378,7 +1378,7 @@ export const menus: Menu[] = [
     "category": "Form"
   },
   {
-    "id": "1-97",
+    "id": "1-96",
     "pid": "1",
     "name": "upload",
     "router": "docs/zh_CN/components/upload",

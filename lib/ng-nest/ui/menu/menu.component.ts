@@ -33,7 +33,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   datas: XMenuNode[] = [];
   nodes: XMenuNode[] = [];
   rootIndex: number = 0;
-  activated!: XMenuNode;
+  activated?: XMenuNode;
   activatedElementRef!: ElementRef;
   expanded: any[] = [];
   private _unSubject = new Subject<void>();
