@@ -1,4 +1,4 @@
-import { XData, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XData, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig, XTemplate } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -41,6 +41,16 @@ export class XRadioProperty extends XControlValueAccessor<any> implements XRadio
    * @en_US Take effect when button style
    */
   @Input() type: XButtonType = 'initial';
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() override before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() override after!: XTemplate;
 }
 
 /**
@@ -73,6 +83,16 @@ export interface XRadioOption extends XFormOption {
    * @en_US Take effect when button style
    */
   type?: XButtonType;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
 }
 
 /**

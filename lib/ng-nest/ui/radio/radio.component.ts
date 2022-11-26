@@ -7,7 +7,8 @@ import {
   ChangeDetectorRef,
   OnChanges,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
@@ -26,6 +27,14 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   @ViewChild('radio', { static: true }) radio!: ElementRef;
   nodes: XRadioNode[] = [];
   private _unSubject = new Subject<void>();
+
+  get beforeIsTemplate() {
+    return this.before instanceof TemplateRef;
+  }
+
+  get afterIsTemplate() {
+    return this.after instanceof TemplateRef;
+  }
 
   constructor(
     public renderer: Renderer2,

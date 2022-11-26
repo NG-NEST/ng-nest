@@ -96,6 +96,16 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    */
   @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.8) inputIconPadding!: XNumber;
   /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() override before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() override after!: XTemplate;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */

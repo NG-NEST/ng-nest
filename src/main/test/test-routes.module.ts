@@ -159,6 +159,10 @@ const testModules = [
   {
     path: 'anchor',
     loadChildren: () => import('./modules/anchor/anchor.module').then((x) => x.TeAnchorModule)
+  },
+  {
+    path: 'radio',
+    loadChildren: () => import('./modules/radio/radio.module').then((x) => x.TeRadioModule)
   }
 ];
 

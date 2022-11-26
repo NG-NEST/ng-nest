@@ -5,36 +5,50 @@
   [class.x-disabled]="disabled"
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
+  [class.x-radio-button]="button"
+  [class.x-radio-icon]="icon"
+  [class.x-radio-after]="after"
+  [class.x-radio-before]="before"
+  [class.x-radio-after-template]="afterIsTemplate"
+  [class.x-radio-before-template]="beforeIsTemplate"
 >
   <label *ngIf="label" [class.x-radio-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <ng-container *ngIf="button || icon; else default">
-    <x-buttons>
-      <x-button
-        *ngFor="let item of nodes; trackBy: trackByItem"
-        [icon]="item.icon"
-        [size]="size"
-        [type]="type"
-        [activated]="item.id === value"
-        [disabled]="disabled || item.disabled"
-        attrType="button"
-        (click)="radioClick($event, item)"
-        >{{ item.label }}</x-button
-      >
-    </x-buttons>
-  </ng-container>
+  <div class="x-radio-row">
+    <div class="x-radio-row-before" *ngIf="before">
+      <ng-container *xOutlet="before">{{ before }}</ng-container>
+    </div>
+    <div class="x-radio-row-list">
+      <ng-container *ngIf="button || icon; else default">
+        <x-buttons>
+          <x-button
+            *ngFor="let item of nodes; trackBy: trackByItem"
+            [icon]="item.icon"
+            [size]="size"
+            [type]="type"
+            [activated]="item.id === value"
+            [disabled]="disabled || item.disabled"
+            attrType="button"
+            (click)="radioClick($event, item)"
+            >{{ item.label }}</x-button
+          >
+        </x-buttons>
+      </ng-container>
+    </div>
+    <div class="x-radio-row-after" *ngIf="after">
+      <ng-container *xOutlet="after">{{ after }}</ng-container>
+    </div>
+  </div>
 </div>
 
 <ng-template #default>
-  <div class="x-radio-row">
-    <div
-      class="x-radio-item"
-      *ngFor="let item of nodes; trackBy: trackByItem"
-      [class.x-checked]="item.id === value"
-      [class.x-disabled]="item.disabled"
-      (click)="radioClick($event, item)"
-    >
-      <span class="x-radio-box"></span>
-      <span class="x-radio-label">{{ item.label }}</span>
-    </div>
+  <div
+    class="x-radio-row-item"
+    *ngFor="let item of nodes; trackBy: trackByItem"
+    [class.x-checked]="item.id === value"
+    [class.x-disabled]="item.disabled"
+    (click)="radioClick($event, item)"
+  >
+    <span class="x-radio-box"></span>
+    <span class="x-radio-label">{{ item.label }}</span>
   </div>
 </ng-template>
