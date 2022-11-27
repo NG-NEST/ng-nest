@@ -3,4 +3,8 @@
 $--x-radio-prefix: $--x-prefix + '-radio';
 $--x-radios-prefix: $--x-prefix + '-radios';
 
+$--x-radio-border: $--x-border-width $--x-border-style $--x-border;
+
+$--x-radio-border-radius: $--x-border-radius;
+
 $--x-radio-height: calc(#{$--x-font-size} + 0.875rem);

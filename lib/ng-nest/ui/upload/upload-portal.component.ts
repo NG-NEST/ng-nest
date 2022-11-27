@@ -22,7 +22,7 @@ import { XUploadCutType, XUploadNode, XUploadPortalPrefix } from './upload.prope
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XUploadPortalComponent {
-  file!: XUploadNode;
+  file?: XUploadNode;
   @ViewChild('imgRef') imgRef!: ElementRef;
   @ViewChild('imgClipRef') imgClipRef!: ElementRef;
   @ViewChild('boundaryRef') boundaryRef!: ElementRef;
@@ -133,7 +133,7 @@ export class XUploadPortalComponent {
 
   setOriginalSize() {
     const img = new Image();
-    img.src = this.file.url!;
+    img.src = this.file?.url!;
     img.onload = () => {
       this.originalSize = { width: img.width, height: img.height };
       this.proportion = this.boundaryBox.width / this.originalSize.width;
@@ -217,7 +217,7 @@ export class XUploadPortalComponent {
     canvas.height = this.cutBox.height / this.proportion;
     const context = canvas.getContext('2d')!;
     const img = new Image();
-    img.src = this.file.url!;
+    img.src = this.file?.url!;
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       context.drawImage(img, -this.cutBox.x / this.proportion, -this.cutBox.y / this.proportion);

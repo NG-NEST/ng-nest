@@ -12,11 +12,36 @@ import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XFindModule } from '@ng-nest/ui/find';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XInputModule } from '@ng-nest/ui/input';
 
 describe(XCheckboxPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XCheckboxModule, XButtonModule, XLayoutModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XCheckboxModule,
+        XButtonModule,
+        XAutoCompleteModule,
+        XSelectModule,
+        XDatePickerModule,
+        XLayoutModule,
+        XCascadeModule,
+        XColorPickerModule,
+        XFindModule,
+        XTextareaModule,
+        XTimePickerModule,
+        XInputModule
+      ],
       declarations: [
         TestXCheckboxComponent,
         TestXCheckboxDisabledComponent,
@@ -26,7 +51,7 @@ describe(XCheckboxPrefix, () => {
         TestXCheckboxIndeterminateComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCheckboxComponent>;
     let checkbox: DebugElement;

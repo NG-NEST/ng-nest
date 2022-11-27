@@ -12,11 +12,36 @@ import { XRadioPrefix, XRadioNode } from './radio.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XFindModule } from '@ng-nest/ui/find';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XInputModule } from '@ng-nest/ui/input';
 
 describe(XRadioPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XRadioModule, XButtonModule, XLayoutModule],
+      imports: [
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XRadioModule,
+        XAutoCompleteModule,
+        XSelectModule,
+        XDatePickerModule,
+        XButtonModule,
+        XLayoutModule,
+        XCascadeModule,
+        XColorPickerModule,
+        XFindModule,
+        XTextareaModule,
+        XTimePickerModule,
+        XInputModule
+      ],
       declarations: [
         TestXRadioComponent,
         TestXRadioDisabledComponent,
@@ -25,7 +50,7 @@ describe(XRadioPrefix, () => {
         TestXRadioAsyncComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRadioComponent>;
     let radio: DebugElement;

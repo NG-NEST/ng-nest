@@ -1,0 +1,112 @@
+<x-row>
+  <x-col span="14">
+    <x-checkbox [data]="data" before="https://" after=".com"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [after]="afterButtonTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" before="https://" after=".com" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [after]="afterButtonTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-checkbox>
+  </x-col>
+  <x-col span="14">
+    <x-checkbox [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-checkbox>
+  </x-col>
+</x-row>
+<ng-template #beforeSelectTpl>
+  <x-select [style.width.rem]="6" [data]="['http://', 'https://']"></x-select>
+</ng-template>
+<ng-template #afterSelectTpl>
+  <x-select [style.width.rem]="5" [data]="['.com', '.cn', '.org']"></x-select>
+</ng-template>
+<ng-template #beforeButtonTpl>
+  <x-button>查询</x-button>
+</ng-template>
+<ng-template #afterButtonTpl>
+  <x-button icon="fto-search"></x-button>
+</ng-template>
+<ng-template #beforeInputTpl>
+  <x-input [style.width.%]="30"></x-input>
+</ng-template>
+<ng-template #afterInputTpl>
+  <x-input [style.width.%]="30"></x-input>
+</ng-template>
+<ng-template #beforeDatePickerTpl>
+  <x-date-picker [style.width.rem]="10"></x-date-picker>
+</ng-template>
+<ng-template #afterDatePickerTpl>
+  <x-date-picker [style.width.rem]="10"></x-date-picker>
+</ng-template>
+<ng-template #beforeAutoCompleteTpl>
+  <x-auto-complete
+    [style.width.rem]="10"
+    [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+    placeholder="输入下拉匹配，如：aa"
+  ></x-auto-complete>
+</ng-template>
+<ng-template #afterAutoCompleteTpl>
+  <x-auto-complete
+    [style.width.rem]="10"
+    [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
+    placeholder="输入下拉匹配，如：aa"
+  ></x-auto-complete>
+</ng-template>
+<ng-template #beforeCascadeTpl>
+  <x-cascade [style.width.rem]="10" [data]="cascadeData"></x-cascade>
+</ng-template>
+<ng-template #afterCascadeTpl>
+  <x-cascade [style.width.rem]="10" [data]="cascadeData"></x-cascade>
+</ng-template>
+<ng-template #beforeColorPickerTpl>
+  <x-color-picker [style.width.rem]="10"></x-color-picker>
+</ng-template>
+<ng-template #afterColorPickerTpl>
+  <x-color-picker [style.width.rem]="10"></x-color-picker>
+</ng-template>
+<ng-template #beforeTimePickerTpl>
+  <x-time-picker [style.width.rem]="10"></x-time-picker>
+</ng-template>
+<ng-template #afterTimePickerTpl>
+  <x-time-picker [style.width.rem]="10"></x-time-picker>
+</ng-template>

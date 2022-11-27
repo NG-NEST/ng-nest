@@ -19,7 +19,7 @@ import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize } from '@ng-nest
 import { Subject, takeUntil, distinctUntilChanged, filter, startWith, delay } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
-import { NavigationEnd, Router, RouterLink, RouterLinkWithHref } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: `${XTabsPrefix}`,
@@ -147,8 +147,8 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
     });
   }
 
-  isLinkActive(router: Router): (link?: RouterLink | RouterLinkWithHref) => boolean {
-    return (link?: RouterLink | RouterLinkWithHref) => {
+  isLinkActive(router: Router): (link?: RouterLink | RouterLink) => boolean {
+    return (link?: RouterLink | RouterLink) => {
       return link ? router.isActive(link.urlTree!, Boolean(this.linkExact)) : false;
     };
   }

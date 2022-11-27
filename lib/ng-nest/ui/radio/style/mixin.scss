@@ -19,43 +19,69 @@
   }
   &-row {
     flex: 1;
+    display: flex;
     align-items: center;
-    position: relative;
+    flex-wrap: wrap;
     height: $--x-radio-height;
     line-height: $--x-radio-height;
-  }
-  &-item {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    outline: none;
-    margin-right: 0.875rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      color: var(--x-primary);
-      .#{$--x-radio-prefix}-box {
-        border-color: var(--x-primary);
-      }
+    .#{$--x-radio-prefix}-row-before,
+    .#{$--x-radio-prefix}-row-after {
+      border: $--x-radio-border;
+      border-radius: $--x-radio-border-radius;
+      background-color: $--x-background-a100;
+      padding: 0 $--x-padding-medium;
+      height: $--x-height-medium;
+      line-height: $--x-height-medium;
     }
-    &:last-child {
-      margin-right: 0;
+    &-list {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
     }
-    &.x-checked {
-      .#{$--x-radio-prefix}-box {
-        border-color: var(--x-primary);
-        &::after {
-          transform: scale(1);
-          opacity: 1;
+    &-item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      outline: none;
+      margin-right: 0.875rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: $--x-primary;
+        .#{$--x-radio-prefix}-box {
+          border-color: $--x-primary;
         }
       }
-    }
-    &.x-disabled {
-      @include disabled();
+      &:last-child {
+        margin-right: 0;
+      }
+      &.x-checked {
+        .#{$--x-radio-prefix}-box {
+          border-color: var(--x-primary);
+          &::after {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
+      &.x-disabled {
+        @include disabled();
+      }
     }
   }
+
+  &-button,
+  &-icon {
+    .#{$--x-radio-prefix}-row-before {
+      margin-right: 0;
+    }
+    .#{$--x-radio-prefix}-row-after {
+      margin-left: 0;
+    }
+  }
+
   &-box {
     border: 0.0625rem solid var(--x-border);
     border-radius: 100%;
@@ -97,6 +123,114 @@
       content: '*';
     }
   }
+  &-before {
+    &:not(.x-radio-before-template, .x-radio-button, .x-radio-icon) {
+      .#{$--x-radio-prefix}-row-before {
+        margin-right: $--x-padding-medium;
+      }
+    }
+    &.x-radio-button,
+    &.x-radio-icon {
+      .x-buttons:not(.x-buttons-space) > x-button:first-child .x-button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .#{$--x-radio-prefix}-row-before {
+        margin-right: 0;
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    &-template {
+      .#{$--x-radio-prefix}-row-before {
+        display: contents;
+      }
+      .#{$--x-radio-prefix}-row-list {
+        margin-left: $--x-padding-medium;
+      }
+      &.x-radio-button,
+      &.x-radio-icon {
+        .#{$--x-radio-prefix}-row-list {
+          margin-left: 0;
+          .x-button {
+            margin-left: calc(#{$--x-border-width} * -1);
+            &:hover,
+            &:focus {
+              z-index: 1;
+            }
+          }
+        }
+        .#{$--x-radio-prefix}-row-before {
+          input:hover,
+          input:focus,
+          .x-button:hover,
+          .x-button:focus {
+            z-index: 1;
+          }
+          input,
+          .x-button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+  }
+  &-after {
+    &:not(.x-radio-before-template, .x-radio-button, .x-radio-icon) {
+      .#{$--x-radio-prefix}-row-after {
+        margin-left: $--x-padding-medium;
+      }
+    }
+    &.x-radio-button,
+    &.x-radio-icon {
+      .x-buttons:not(.x-buttons-space) > x-button:last-child .x-button {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .#{$--x-radio-prefix}-row-after {
+        margin-left: 0;
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    &-template {
+      .#{$--x-radio-prefix}-row-after {
+        display: contents;
+      }
+      .#{$--x-radio-prefix}-row-list {
+        margin-right: $--x-padding-medium;
+      }
+      &.x-radio-button,
+      &.x-radio-icon {
+        .#{$--x-radio-prefix}-row-list {
+          margin-right: 0;
+          .x-button {
+            margin-right: calc(#{$--x-border-width} * -1);
+            &:hover,
+            &:focus {
+              z-index: 1;
+            }
+          }
+        }
+        .#{$--x-radio-prefix}-row-after {
+          input:hover,
+          input:focus,
+          .x-button:hover,
+          .x-button:focus {
+            z-index: 1;
+          }
+          input,
+          .x-button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+    }
+  }
   &.x-disabled {
     .#{$--x-radio-prefix}-item {
       @include disabled();
@@ -129,13 +263,13 @@
 }
 
 @mixin disabled {
-  color: var(--x-text-400);
+  color: $--x-text-400;
   cursor: not-allowed;
   .#{$--x-radio-prefix}-box {
-    border-color: var(--x-border-100);
-    background-color: var(--x-border-300);
+    border-color: $--x-border-100;
+    background-color: $--x-border-300;
     &::after {
-      background-color: var(--x-text-400);
+      background-color: $--x-text-400;
     }
   }
 }

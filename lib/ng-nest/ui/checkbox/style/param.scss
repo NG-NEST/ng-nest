@@ -3,4 +3,8 @@
 $--x-checkbox-prefix: $--x-prefix + '-checkbox';
 $--x-checkboxs-prefix: $--x-prefix + '-checkboxs';
 
+$--x-checkbox-border: $--x-border-width $--x-border-style $--x-border;
+
+$--x-checkbox-border-radius: $--x-border-radius;
+
 $--x-checkbox-height: calc(#{$--x-font-size} + 0.875rem);
