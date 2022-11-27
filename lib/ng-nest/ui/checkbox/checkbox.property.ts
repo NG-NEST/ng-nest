@@ -40,6 +40,16 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
    * @en_US Size
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size?: XSize;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  @Input() override before!: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  @Input() override after!: XTemplate;
 }
 
 /**
@@ -72,6 +82,16 @@ export interface XCheckboxOption extends XFormOption {
    * @en_US Size
    */
   size?: XSize;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
 }
 
 /**

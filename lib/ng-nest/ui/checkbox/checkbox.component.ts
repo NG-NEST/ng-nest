@@ -7,7 +7,8 @@ import {
   ChangeDetectorRef,
   OnChanges,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
@@ -28,6 +29,14 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   override writeValue(value: boolean | Array<any>) {
     this.value = value;
     this.cdr.detectChanges();
+  }
+
+  get beforeIsTemplate() {
+    return this.before instanceof TemplateRef;
+  }
+
+  get afterIsTemplate() {
+    return this.after instanceof TemplateRef;
   }
 
   getDisabled(disabled?: boolean) {

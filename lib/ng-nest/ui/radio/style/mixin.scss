@@ -21,6 +21,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     height: $--x-radio-height;
     line-height: $--x-radio-height;
     .#{$--x-radio-prefix}-row-before,
@@ -48,9 +49,9 @@
       cursor: pointer;
       transition: all 0.3s;
       &:hover {
-        color: var(--x-primary);
+        color: $--x-primary;
         .#{$--x-radio-prefix}-box {
-          border-color: var(--x-primary);
+          border-color: $--x-primary;
         }
       }
       &:last-child {
@@ -262,13 +263,13 @@
 }
 
 @mixin disabled {
-  color: var(--x-text-400);
+  color: $--x-text-400;
   cursor: not-allowed;
   .#{$--x-radio-prefix}-box {
-    border-color: var(--x-border-100);
-    background-color: var(--x-border-300);
+    border-color: $--x-border-100;
+    background-color: $--x-border-300;
     &::after {
-      background-color: var(--x-text-400);
+      background-color: $--x-text-400;
     }
   }
 }

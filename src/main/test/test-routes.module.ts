@@ -163,6 +163,10 @@ const testModules = [
   {
     path: 'radio',
     loadChildren: () => import('./modules/radio/radio.module').then((x) => x.TeRadioModule)
+  },
+  {
+    path: 'checkbox',
+    loadChildren: () => import('./modules/checkbox/checkbox.module').then((x) => x.TeCheckboxModule)
   }
 ];
 
