@@ -20,6 +20,7 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XInputModule } from '@ng-nest/ui/input';
 
 describe(XRadioPrefix, () => {
   beforeEach(() => {
@@ -38,7 +39,8 @@ describe(XRadioPrefix, () => {
         XColorPickerModule,
         XFindModule,
         XTextareaModule,
-        XTimePickerModule
+        XTimePickerModule,
+        XInputModule
       ],
       declarations: [
         TestXRadioComponent,
