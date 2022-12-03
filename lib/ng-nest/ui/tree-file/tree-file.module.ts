@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { XTreeFileComponent } from './tree-file.component';
 import { XTreeFileProperty } from './tree-file.property';
 import { XTreeModule } from '@ng-nest/ui/tree';
@@ -13,6 +12,6 @@ import { XLoadingModule } from '@ng-nest/ui/loading';
 @NgModule({
   declarations: [XTreeFileComponent, XTreeFileProperty],
   exports: [XTreeFileComponent],
-  imports: [CommonModule, HttpClientModule, XTreeModule, XLinkModule, XCrumbModule, XIconModule, XLoadingModule, XHighlightModule]
+  imports: [CommonModule, XTreeModule, XLinkModule, XCrumbModule, XIconModule, XLoadingModule, XHighlightModule]
 })
 export class XTreeFileModule {}

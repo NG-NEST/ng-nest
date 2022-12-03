@@ -1,8 +1,9 @@
-import { Injectable, SecurityContext } from '@angular/core';
+import { Injectable, Optional, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber } from 'rxjs';
 import { XHasIn } from '@ng-nest/ui/core';
+import { XIconPrefix } from './icon.property';
 
 type Task<T> = {
   name: string;
@@ -20,7 +21,11 @@ export class XIconService {
   isRunningTask = false;
   limit: number = 10;
 
-  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
+  constructor(private sanitizer: DomSanitizer, @Optional() private http: HttpClient) {
+    if (!http) {
+      throw new Error(`${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
+    }
+  }
 
   public addTask<T>(task: Task<T>) {
     this.queue.push(task);
