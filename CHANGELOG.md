@@ -1,4 +1,9 @@
-## [15.0.1](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.1) (2022-11-27)
+## [15.0.2](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.2) (2022-12-03)
+
+
+### Bug Fixes
+
+* resolve HttpClientModule coverage ([c3a9f5d](https://github.com/NG-NEST/ng-nest/commit/c3a9f5da6e2bc99ec178c73e5ea537470c53aadf))
 
 
 ### Features
