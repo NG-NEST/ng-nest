@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from './tree-file.property';
 import { HttpClient } from '@angular/common/http';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
@@ -39,10 +39,13 @@ export class XTreeFileComponent extends XTreeFileProperty {
     public renderer: Renderer2,
     public elementRef: ElementRef,
     public cdr: ChangeDetectorRef,
-    public http: HttpClient,
+    @Optional() public http: HttpClient,
     public configService: XConfigService
   ) {
     super();
+    if (!http) {
+      throw new Error(`${XTreeFilePrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
+    }
   }
 
   ngOnInit() {

@@ -8,14 +8,15 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XIconPrefix } from './icon.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientModule } from '@angular/common/http';
 
 describe(XIconPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XIconModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, HttpClientModule, XThemeModule, XIconModule, XLayoutModule],
       declarations: [TestXIconComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXIconComponent>;
     let debugElement: DebugElement;
