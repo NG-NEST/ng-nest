@@ -167,6 +167,10 @@ const testModules = [
   {
     path: 'checkbox',
     loadChildren: () => import('./modules/checkbox/checkbox.module').then((x) => x.TeCheckboxModule)
+  },
+  {
+    path: 'date-picker',
+    loadChildren: () => import('./modules/date-picker/date-picker.module').then((x) => x.TeDatePickerModule)
   }
 ];
 
