@@ -1,3 +1,12 @@
+## [15.0.3](https://github.com/NG-NEST/ng-nest/compare/15.0.2...15.0.3) (2022-12-06)
+
+
+### Bug Fixes
+
+* **module:date-picker:** fix clear invalid date ([0790b9b](https://github.com/NG-NEST/ng-nest/commit/0790b9b504fc282ed5b587320a499650479b7758))
+
+
+
 ## [15.0.2](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.2) (2022-12-03)
 
 
