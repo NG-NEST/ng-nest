@@ -466,7 +466,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
-      width: this.box.width,
+      width: this.portalWidth || this.box.width,
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
@@ -579,7 +579,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputRef,
-      placement: [this.placement as XPositionTopBottom, 'bottom', 'top'],
+      placement: [this.placement as XPositionTopBottom, 'bottom', 'top', 'bottom-start', 'bottom-end'],
       transformOriginOn: 'x-select-portal'
     });
   }

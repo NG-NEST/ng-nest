@@ -83,6 +83,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') portalMaxHeight!: string;
   /**
+   * @zh_CN 下拉框的宽度
+   * @en_US The width of the drop-down box
+   */
+  @Input() portalWidth!: string;
+  /**
    * @zh_CN 输入搜索
    * @en_US Input search
    */
