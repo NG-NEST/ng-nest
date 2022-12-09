@@ -1,4 +1,18 @@
-## [15.0.1](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.1) (2022-11-27)
+## [15.0.3](https://github.com/NG-NEST/ng-nest/compare/15.0.2...15.0.3) (2022-12-06)
+
+
+### Bug Fixes
+
+* **module:date-picker:** fix clear invalid date ([0790b9b](https://github.com/NG-NEST/ng-nest/commit/0790b9b504fc282ed5b587320a499650479b7758))
+
+
+
+## [15.0.2](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.2) (2022-12-03)
+
+
+### Bug Fixes
+
+* resolve HttpClientModule coverage ([c3a9f5d](https://github.com/NG-NEST/ng-nest/commit/c3a9f5da6e2bc99ec178c73e5ea537470c53aadf))
 
 
 ### Features

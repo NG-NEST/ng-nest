@@ -9,7 +9,8 @@ import {
   ViewChild,
   ViewContainerRef,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  Optional
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
 import { XConfigService, XIsArray, XIsTemplateRef } from '@ng-nest/ui/core';
@@ -55,7 +56,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef,
-    public http: HttpClient,
+    @Optional() public http: HttpClient,
     public override cdr: ChangeDetectorRef,
     public portalService: XPortalService,
     public viewContainerRef: ViewContainerRef,
@@ -63,6 +64,9 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     public configService: XConfigService
   ) {
     super();
+    if (!http) {
+      throw new Error(`${XUploadPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
+    }
   }
 
   ngOnInit() {
