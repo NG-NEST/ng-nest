@@ -27,7 +27,8 @@ import {
   XIsArray,
   XIsString,
   XRemove,
-  XResize
+  XResize,
+  XPlacement
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -59,6 +60,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   get getMaxTagContent() {
     return this.maxTagContent || this.locale.maxTagContent;
   }
+
+  noPortalWidthPlacements: XPlacement[] = ['bottom', 'top'];
+  hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'top-start', 'top-end'];
+  placements: XPlacement[] = [];
 
   override writeValue(value: any) {
     if (this.multiple) {
@@ -132,6 +137,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.multiple) {
       this.valueTpl = this.multipleValueTpl;
       this.inputPadding = 0.125;
+    }
+    if (this.portalWidth) {
+      if (this.placement === 'bottom') {
+        this.placement = 'bottom-start';
+      }
+      this.placements = [this.placement, ...this.hasPortalWidthPlacements];
+    } else {
+      this.placements = [this.placement, ...this.noPortalWidthPlacements];
     }
     this.i18n.localeChange
       .pipe(
@@ -466,7 +479,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
-      width: this.box.width,
+      width: this.portalWidth || this.box.width,
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
@@ -579,7 +592,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputRef,
-      placement: [this.placement as XPositionTopBottom, 'bottom', 'top'],
+      placement: this.placements,
       transformOriginOn: 'x-select-portal'
     });
   }

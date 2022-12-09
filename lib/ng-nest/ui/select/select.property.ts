@@ -5,11 +5,11 @@ import {
   XData,
   XBoolean,
   XWithConfig,
-  XPositionTopBottom,
   XSize,
   XInputNumber,
   XNumber,
-  XTemplate
+  XTemplate,
+  XPlacement
 } from '@ng-nest/ui/core';
 import { Input, Component, TemplateRef } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -46,7 +46,7 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement?: XPositionTopBottom;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement!: XPlacement;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
@@ -82,6 +82,11 @@ export class XSelectProperty extends XControlValueAccessor<any> {
    * @en_US The biggest height of the drop-down box
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') portalMaxHeight!: string;
+  /**
+   * @zh_CN 下拉框的宽度
+   * @en_US The width of the drop-down box
+   */
+  @Input() portalWidth!: string;
   /**
    * @zh_CN 输入搜索
    * @en_US Input search
@@ -134,7 +139,7 @@ export interface XSelectOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XPositionTopBottom;
+  placement?: XPlacement;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
