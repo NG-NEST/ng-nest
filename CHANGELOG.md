@@ -1,3 +1,17 @@
+## [15.0.4](https://github.com/NG-NEST/ng-nest/compare/15.0.3...15.0.4) (2022-12-09)
+
+
+### Bug Fixes
+
+* **module:select:** fix portal placement ([cfd8b1d](https://github.com/NG-NEST/ng-nest/commit/cfd8b1d0739a0c9d75f35bbd6651a97c305e8d66))
+
+
+### Features
+
+* **module:select:** add portal width param ([15cffb3](https://github.com/NG-NEST/ng-nest/commit/15cffb33fbf47ee25121b712de915e3e6332eaf0))
+
+
+
 ## [15.0.3](https://github.com/NG-NEST/ng-nest/compare/15.0.2...15.0.3) (2022-12-06)
 
 
@@ -7,12 +21,16 @@
 
 
 
-## [15.0.2](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.2) (2022-12-03)
+## [15.0.2](https://github.com/NG-NEST/ng-nest/compare/15.0.1...15.0.2) (2022-12-03)
 
 
 ### Bug Fixes
 
 * resolve HttpClientModule coverage ([c3a9f5d](https://github.com/NG-NEST/ng-nest/commit/c3a9f5da6e2bc99ec178c73e5ea537470c53aadf))
+
+
+
+## [15.0.1](https://github.com/NG-NEST/ng-nest/compare/15.0.0...15.0.1) (2022-11-27)
 
 
 ### Features
