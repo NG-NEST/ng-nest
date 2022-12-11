@@ -9,11 +9,13 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { ExFallbackComponent } from './fallback/fallback.component';
 import { ExPlaceholderComponent } from './placeholder/placeholder.component';
 import { ExGroupComponent } from './group/group.component';
+import { ExCustomComponent } from './custom/custom.component';
+import { XDialogModule } from '@ng-nest/ui/dialog';
 
 const routers = [{ path: '', component: TeImageComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XImageModule, XButtonModule, XLayoutModule],
-  declarations: [TeImageComponent, ExDefaultComponent, ExFallbackComponent, ExPlaceholderComponent, ExGroupComponent]
+  imports: [RouterModule.forChild(routers), CommonModule, XImageModule, XButtonModule, XLayoutModule, XDialogModule],
+  declarations: [TeImageComponent, ExDefaultComponent, ExFallbackComponent, ExPlaceholderComponent, ExGroupComponent, ExCustomComponent]
 })
 export class TeImageModule {}

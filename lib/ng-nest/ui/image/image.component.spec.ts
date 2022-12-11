@@ -6,6 +6,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XImageModule } from '@ng-nest/ui/image';
+import { XDialogModule } from '@ng-nest/ui/dialog';
 import { FormsModule } from '@angular/forms';
 import { XImagePrefix } from './image.property';
 import { XButtonModule } from '@ng-nest/ui/button';
@@ -24,7 +25,8 @@ describe(XImagePrefix, () => {
         XButtonModule,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconModule,
+        XDialogModule
       ],
       declarations: [TestXImageComponent]
     }).compileComponents();
