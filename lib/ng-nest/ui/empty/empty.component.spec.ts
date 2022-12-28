@@ -13,12 +13,14 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XEmptyPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XEmptyModule,
@@ -29,7 +31,7 @@ describe(XEmptyPrefix, () => {
       ],
       declarations: [TestXEmptyComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXEmptyComponent>;
     let empty: DebugElement;

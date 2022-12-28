@@ -9,14 +9,15 @@ import { XBorderModule } from '@ng-nest/ui/border';
 import { XBorderPrefix } from './border.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XBorderPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XBorderModule, XLayoutModule, XDocModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XBorderModule, XLayoutModule, XDocModule],
       declarations: [TestXBorderComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBorderComponent>;
     let debugElement: DebugElement;

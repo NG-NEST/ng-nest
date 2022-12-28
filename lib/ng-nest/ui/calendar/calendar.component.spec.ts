@@ -14,12 +14,14 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCalendarPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XCalendarModule,
@@ -30,7 +32,7 @@ describe(XCalendarPrefix, () => {
       ],
       declarations: [TestXCalendarComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCalendarComponent>;
     let calendar: DebugElement;

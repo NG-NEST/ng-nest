@@ -18,12 +18,14 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 import { XFormModule } from '@ng-nest/ui/form';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDialogPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XInputModule,
@@ -37,7 +39,7 @@ describe(XDialogPrefix, () => {
       ],
       declarations: [TestXDialogComponent, TestXDialogDraggableComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDialogComponent>;
     let dialog: DebugElement;

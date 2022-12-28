@@ -10,11 +10,12 @@ import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAlertPrefix, () => {
   beforeEach((() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule, XThemeModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, FormsModule, BrowserAnimationsModule, XButtonModule, XAlertModule, XStatisticModule, XThemeModule],
       declarations: [TestXAlertComponent]
     }).compileComponents();
   }));

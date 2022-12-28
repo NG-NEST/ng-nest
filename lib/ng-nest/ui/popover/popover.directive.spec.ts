@@ -10,14 +10,15 @@ import { interval } from 'rxjs';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XPopoverPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XPopoverModule, XButtonModule, XIconModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XPopoverModule, XButtonModule, XIconModule],
       declarations: [TestXPopoverComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopoverComponent>;
     let debugElement: DebugElement;

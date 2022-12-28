@@ -6,11 +6,12 @@ import { By } from '@angular/platform-browser';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XButtonPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule, XThemeModule],
+      imports: [HttpClientTestingModule, XButtonModule, XThemeModule],
       declarations: [
         TestXButtonComponent,
         TestXButtonDiabledComponent,
@@ -21,7 +22,7 @@ describe(XButtonPrefix, () => {
         TestXButtonSizeComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXButtonComponent>;
     let debugElement: DebugElement;

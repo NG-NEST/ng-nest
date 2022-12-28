@@ -2,14 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { XTimeRangeModule } from '@ng-nest/ui/time-range';
 import { XTimeRangePrefix } from './time-range.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimeRangePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTimeRangeModule],
+      imports: [HttpClientTestingModule, XTimeRangeModule],
       declarations: [TestXTimeRangeComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeRangeComponent>;
     beforeEach(() => {
@@ -26,8 +27,8 @@ describe(XTimeRangePrefix, () => {
   template: `
     <div class="row">
       <p>{{ diff | xTimeRange }}</p>
-      <p>{{ diff | xTimeRange: 'HH:mm:ss:SSS' }}</p>
-      <p>{{ diff | xTimeRange: 'D 天 H 时 m 分 s 秒' }}</p>
+      <p>{{ diff | xTimeRange : 'HH:mm:ss:SSS' }}</p>
+      <p>{{ diff | xTimeRange : 'D 天 H 时 m 分 s 秒' }}</p>
     </div>
   `
 })

@@ -5,14 +5,15 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { PortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(PortalPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XPortalModule],
+      imports: [HttpClientTestingModule, XPortalModule],
       declarations: [TestXPortalComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPortalComponent>;
     beforeEach(() => {

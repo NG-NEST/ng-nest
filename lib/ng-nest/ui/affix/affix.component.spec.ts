@@ -8,11 +8,12 @@ import { XAffixPrefix } from './affix.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAffixPrefix, () => {
   beforeEach((() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XAffixModule, XButtonModule, XThemeModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAffixModule, XButtonModule, XThemeModule],
       declarations: [TestXAffixComponent]
     }).compileComponents();
   }));

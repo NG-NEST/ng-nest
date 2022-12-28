@@ -11,11 +11,21 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDescriptionPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XThemeModule, XDescriptionModule, XRadioModule, XLayoutModule, XDocModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        FormsModule,
+        XThemeModule,
+        XDescriptionModule,
+        XRadioModule,
+        XLayoutModule,
+        XDocModule
+      ],
       declarations: [
         TestXDescriptionComponent,
         TestXDescriptionBorderedComponent,

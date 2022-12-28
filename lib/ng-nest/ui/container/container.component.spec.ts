@@ -7,14 +7,15 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { XContainerPrefix } from './container.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XContainerPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XContainerModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XContainerModule],
       declarations: [TestXContainerComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXContainerComponent>;
     let debugElement: DebugElement;

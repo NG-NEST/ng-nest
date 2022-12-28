@@ -12,12 +12,14 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCardPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XCardModule,
@@ -28,7 +30,7 @@ describe(XCardPrefix, () => {
       ],
       declarations: [TestXCardComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCardComponent>;
     let card: DebugElement;
@@ -79,19 +81,13 @@ describe(XCardPrefix, () => {
     <div class="row ">
       <x-row space="1">
         <x-col span="8">
-          <x-card shadow="always">
-            总是显示
-          </x-card>
+          <x-card shadow="always"> 总是显示 </x-card>
         </x-col>
         <x-col span="8">
-          <x-card shadow="hover">
-            鼠标悬浮时显示
-          </x-card>
+          <x-card shadow="hover"> 鼠标悬浮时显示 </x-card>
         </x-col>
         <x-col span="8">
-          <x-card shadow="never">
-            从不显示
-          </x-card>
+          <x-card shadow="never"> 从不显示 </x-card>
         </x-col>
       </x-row>
     </div>

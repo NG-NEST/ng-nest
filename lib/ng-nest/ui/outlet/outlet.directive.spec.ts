@@ -2,14 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { XOutletModule } from '@ng-nest/ui/outlet';
 import { XOutletPrefix } from './outlet.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XOutletPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XOutletModule],
+      imports: [HttpClientTestingModule, XOutletModule],
       declarations: [TestXOutletComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXOutletComponent>;
     beforeEach(() => {

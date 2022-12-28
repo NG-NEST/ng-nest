@@ -13,12 +13,14 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XTreeModule } from '@ng-nest/ui/tree';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTransferPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XTransferModule,

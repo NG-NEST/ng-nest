@@ -13,14 +13,25 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDrawerPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XDrawerModule, FormsModule, XInputModule, XIconModule, XRadioModule, XButtonModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XDrawerModule,
+        FormsModule,
+        XInputModule,
+        XIconModule,
+        XRadioModule,
+        XButtonModule
+      ],
       declarations: [TestXDrawerComponent, TestXDrawerTitleComponent, TestXDrawerCustomComponent, TestXDrawerMultipleComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDrawerComponent>;
     let drawer: DebugElement;

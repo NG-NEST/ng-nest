@@ -5,14 +5,15 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInnerModule } from './inner.module';
 import { XInnerPrefix } from './inner.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XInnerPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XInnerModule],
+      imports: [HttpClientTestingModule, XInnerModule],
       declarations: [TestXInnerComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInnerComponent>;
     let testComponent: TestXInnerComponent;

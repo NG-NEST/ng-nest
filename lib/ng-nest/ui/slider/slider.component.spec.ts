@@ -10,14 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSliderPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XSliderModule, XThemeModule, BrowserAnimationsModule, XIconModule, XTabsModule],
+      imports: [HttpClientTestingModule, XSliderModule, XThemeModule, BrowserAnimationsModule, XIconModule, XTabsModule],
       declarations: [TestXSliderComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderComponent>;
     let slider: DebugElement;

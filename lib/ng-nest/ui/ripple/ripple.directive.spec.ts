@@ -6,11 +6,12 @@ import { By } from '@angular/platform-browser';
 import { XRipplePrefix } from './ripple.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XRippleModule } from './ripple.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XRippleModule, XButtonModule],
+      imports: [HttpClientTestingModule, XRippleModule, XButtonModule],
       declarations: [TestXRippleComponent]
     }).compileComponents();
   });

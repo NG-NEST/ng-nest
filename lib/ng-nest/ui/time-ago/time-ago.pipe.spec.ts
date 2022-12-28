@@ -5,14 +5,15 @@ import { XTimeAgoPrefix } from './time-ago.property';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimeAgoPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTimeAgoModule, XButtonModule],
+      imports: [HttpClientTestingModule, XTimeAgoModule, XButtonModule],
       declarations: [TestXTimeAgoComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeAgoComponent>;
     beforeEach(() => {
@@ -30,13 +31,13 @@ describe(XTimeAgoPrefix, () => {
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
     <div class="row">
-      <p>{{ date | date: format }}：{{ date | xTimeAgo }}</p>
-      <p>{{ dateSecond | date: format }}：{{ dateSecond | xTimeAgo }}</p>
-      <p>{{ dateMinute | date: format }}：{{ dateMinute | xTimeAgo }}</p>
-      <p>{{ dateHours | date: format }}：{{ dateHours | xTimeAgo }}</p>
-      <p>{{ dateDays | date: format }}：{{ dateDays | xTimeAgo }}</p>
-      <p>{{ dateMonths | date: format }}：{{ dateMonths | xTimeAgo }}</p>
-      <p>{{ dateYears | date: format }}：{{ dateYears | xTimeAgo }}</p>
+      <p>{{ date | date : format }}：{{ date | xTimeAgo }}</p>
+      <p>{{ dateSecond | date : format }}：{{ dateSecond | xTimeAgo }}</p>
+      <p>{{ dateMinute | date : format }}：{{ dateMinute | xTimeAgo }}</p>
+      <p>{{ dateHours | date : format }}：{{ dateHours | xTimeAgo }}</p>
+      <p>{{ dateDays | date : format }}：{{ dateDays | xTimeAgo }}</p>
+      <p>{{ dateMonths | date : format }}：{{ dateMonths | xTimeAgo }}</p>
+      <p>{{ dateYears | date : format }}：{{ dateYears | xTimeAgo }}</p>
     </div>
   `
 })

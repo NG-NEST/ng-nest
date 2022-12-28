@@ -9,11 +9,12 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XStepsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonModule, XTabsModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonModule, XTabsModule],
       declarations: [TestXStepsComponent, TestXStepsDotComponent]
     }).compileComponents();
   });

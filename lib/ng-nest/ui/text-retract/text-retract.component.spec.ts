@@ -10,14 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { XTextRetractPrefix } from './text-retract.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTextRetractPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTextRetractModule, XLayoutModule, XButtonModule, XIconModule],
+      imports: [HttpClientTestingModule, FormsModule, XTextRetractModule, XLayoutModule, XButtonModule, XIconModule],
       declarations: [TestXTextRetractComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextRetractComponent>;
     let textRetract: DebugElement;

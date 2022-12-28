@@ -9,14 +9,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XBackTopPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XBackTopModule, XButtonModule, BrowserAnimationsModule, XTabsModule, XThemeModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XBackTopModule,
+        XButtonModule,
+        BrowserAnimationsModule,
+        XTabsModule,
+        XThemeModule
+      ],
       declarations: [TestXBackTopComponent, TestXBackTopTabsComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBackTopComponent>;
     let backTop: DebugElement;

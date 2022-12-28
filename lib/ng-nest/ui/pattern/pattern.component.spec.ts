@@ -5,14 +5,15 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPatternModule } from './pattern.module';
 import { PatternPrefix } from './pattern.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(PatternPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XPatternModule],
+      imports: [HttpClientTestingModule, XPatternModule],
       declarations: [TestXPatternComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPatternComponent>;
     let debugElement: DebugElement;

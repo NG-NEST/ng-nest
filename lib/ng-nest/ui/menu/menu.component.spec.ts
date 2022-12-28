@@ -11,11 +11,12 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { interval } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XMenuPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule, TestMenuRoutesModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule, TestMenuRoutesModule],
       declarations: [
         TestXMenuComponent,
         TestXMenuExpandedComponent,
@@ -27,7 +28,7 @@ describe(XMenuPrefix, () => {
       ],
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMenuComponent>;
     let menu: DebugElement;

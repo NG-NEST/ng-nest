@@ -15,12 +15,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XMessageModule } from '@ng-nest/ui/message';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XPopconfirmPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XPopconfirmModule,

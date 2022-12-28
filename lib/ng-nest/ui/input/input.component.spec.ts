@@ -20,12 +20,14 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XInputPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         XInputModule,
         FormsModule,
@@ -57,7 +59,7 @@ describe(XInputPrefix, () => {
         TestXInputFocusComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputComponent>;
     let debugElement: DebugElement;

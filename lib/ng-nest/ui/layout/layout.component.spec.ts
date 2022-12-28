@@ -7,11 +7,12 @@ import { XRowPrefix } from './layout.property';
 import { XRowComponent } from './row.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(`${XRowPrefix}`, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XLayoutModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XLayoutModule],
       declarations: [
         TestLayoutComponent,
         TestSpaceLayoutComponent,

@@ -6,11 +6,12 @@ import { By } from '@angular/platform-browser';
 import { XKeywordPrefix } from './keyword.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XKeywordModule } from './keyword.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XKeywordModule, XButtonModule],
+      imports: [HttpClientTestingModule, XKeywordModule, XButtonModule],
       declarations: [TestXKeywordComponent]
     }).compileComponents();
   });

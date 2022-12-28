@@ -15,12 +15,14 @@ import { XAvatarModule } from '@ng-nest/ui/avatar';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSkeletonPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XSkeletonModule,
@@ -34,7 +36,7 @@ describe(XSkeletonPrefix, () => {
       ],
       declarations: [TestXSkeletonComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSkeletonComponent>;
     let skeleton: DebugElement;

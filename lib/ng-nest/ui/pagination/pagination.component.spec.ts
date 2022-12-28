@@ -8,14 +8,15 @@ import { XPaginationPrefix } from './pagination.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XPaginationPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XPaginationModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XPaginationModule, XButtonModule],
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
     let debugElement: DebugElement;

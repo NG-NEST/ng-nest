@@ -10,14 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XLinkPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XLinkModule, XLayoutModule, XIconModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, FormsModule, XLinkModule, XLayoutModule, XIconModule],
       declarations: [TestXLinkComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXLinkComponent>;
     let link: DebugElement;

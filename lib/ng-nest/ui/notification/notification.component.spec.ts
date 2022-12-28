@@ -10,14 +10,15 @@ import { XNotificationService } from './notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XCorner } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XNotificationPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonModule],
       declarations: [TestXNotificationComponent, TestXNotificationTypeComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXNotificationComponent>;
     let notification: DebugElement;

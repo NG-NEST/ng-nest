@@ -12,11 +12,21 @@ import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XTabsModule, XRadioModule, XIconModule, XButtonModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XTabsModule,
+        XRadioModule,
+        XIconModule,
+        XButtonModule
+      ],
       declarations: [TestXTabsComponent]
     }).compileComponents();
   });

@@ -9,14 +9,15 @@ import { XSwitchPrefix } from './switch.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSwitchPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSwitchComponent>;
     let debugElement: DebugElement;

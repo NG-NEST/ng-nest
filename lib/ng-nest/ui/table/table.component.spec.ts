@@ -20,12 +20,14 @@ import { XLinkModule } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { map, orderBy } from 'lodash';
 import { XDescriptionModule } from '@ng-nest/ui/description';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         FormsModule,
         XDescriptionModule,
         XTableModule,

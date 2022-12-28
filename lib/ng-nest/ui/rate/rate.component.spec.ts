@@ -10,14 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRatePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule, XIconModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule, XIconModule],
       declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRateComponent>;
     let rate: DebugElement;

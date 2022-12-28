@@ -7,11 +7,12 @@ import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAnchorPrefix, () => {
   beforeEach((() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XAnchorModule, XThemeModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAnchorModule, XThemeModule],
       declarations: [TestXAnchorComponent]
     }).compileComponents();
   }));

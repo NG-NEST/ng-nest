@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCascadePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         XCascadeModule,
         FormsModule,
@@ -36,7 +38,7 @@ describe(XCascadePrefix, () => {
         TestXCascadeCustomComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCascadeComponent>;
     let debugElement: DebugElement;

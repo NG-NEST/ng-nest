@@ -6,14 +6,15 @@ import { By } from '@angular/platform-browser';
 import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XExamplesPrefix } from './examples.property';
 import { XTabsModule } from '@ng-nest/ui/tabs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XExamplesPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XExamplesModule, XTabsModule],
+      imports: [XExamplesModule, HttpClientTestingModule, XTabsModule],
       declarations: [TestXExamplesComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXExamplesComponent>;
     let debugElement: DebugElement;

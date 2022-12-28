@@ -11,14 +11,24 @@ import { XBadgePrefix } from './badge.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XBadgePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, FormsModule, XBadgeModule, XButtonModule, XLayoutModule, XIconModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        FormsModule,
+        XBadgeModule,
+        XButtonModule,
+        XLayoutModule,
+        XIconModule
+      ],
       declarations: [TestXBadgeComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBadgeComponent>;
     let badge: DebugElement;

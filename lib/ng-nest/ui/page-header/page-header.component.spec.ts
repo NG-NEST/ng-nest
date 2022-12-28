@@ -7,14 +7,15 @@ import { XPageHeaderModule } from '@ng-nest/ui/page-header';
 import { XPageHeaderPrefix } from './page-header.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XPageHeaderPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XPageHeaderModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XPageHeaderModule],
       declarations: [TestXPageHeaderComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPageHeaderComponent>;
     let pageheader: DebugElement;

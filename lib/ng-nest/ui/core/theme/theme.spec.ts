@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XConfig, X_CONFIG } from '../config';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Component({
   template: `<div class="row">
@@ -66,20 +67,18 @@ describe('x-theme', () => {
       }
     }
   };
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [XButtonModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
-        declarations: [XGlobalThemeTestBasicComponent],
-        providers: [
-          {
-            provide: X_CONFIG,
-            useValue: config
-          }
-        ]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [XButtonModule, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
+      declarations: [XGlobalThemeTestBasicComponent],
+      providers: [
+        {
+          provide: X_CONFIG,
+          useValue: config
+        }
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(XGlobalThemeTestBasicComponent);

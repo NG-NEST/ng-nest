@@ -14,11 +14,21 @@ import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XFindPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XFindModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XFindModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule
+      ],
       declarations: [
         TestXFindComponent,
         TestXFindLabelComponent,
@@ -28,7 +38,7 @@ describe(XFindPrefix, () => {
         TestXFindBorderedComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFindComponent>;
     let debugElement: DebugElement;

@@ -1,10 +1,10 @@
 <div
   #dropdownPortal
   class="x-dropdown-portal"
-  [style.minWidth]="minWidth"
-  [style.maxWidth]="maxWidth"
-  [style.minHeight]="minHeight"
-  [style.maxHeight]="maxHeight"
+  [style.minWidth]="getMinWidth"
+  [style.maxWidth]="getMaxWidth"
+  [style.minHeight]="getMinHeight"
+  [style.maxHeight]="getMaxHeight"
 >
   <x-list
     [data]="data"

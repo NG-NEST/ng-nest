@@ -17,12 +17,14 @@ import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         XTreeModule,
         XLayoutModule,

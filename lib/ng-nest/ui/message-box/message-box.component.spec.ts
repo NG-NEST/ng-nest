@@ -12,14 +12,15 @@ import { XPlace } from '@ng-nest/ui/core';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XMessageBoxPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonModule, XMessageModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonModule, XMessageModule],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageBoxComponent>;
     let messageBox: DebugElement;

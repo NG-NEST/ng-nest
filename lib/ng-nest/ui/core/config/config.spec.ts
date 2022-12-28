@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XSize } from '@ng-nest/ui/core';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Component({
   template: ` <x-button [size]="size">全局配置</x-button>
@@ -38,20 +39,18 @@ describe('x-config', () => {
       }
     }
   };
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [XButtonModule, XDropdownModule, XLinkModule],
-        declarations: [NzGlobalConfigTestBasicComponent],
-        providers: [
-          {
-            provide: X_CONFIG,
-            useValue: config
-          }
-        ]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [XButtonModule, HttpClientTestingModule, XDropdownModule, XLinkModule],
+      declarations: [NzGlobalConfigTestBasicComponent],
+      providers: [
+        {
+          provide: X_CONFIG,
+          useValue: config
+        }
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);

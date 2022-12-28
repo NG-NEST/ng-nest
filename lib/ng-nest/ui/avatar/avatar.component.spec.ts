@@ -11,11 +11,21 @@ import { XAvatarPrefix } from './avatar.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XBadgeModule } from '@ng-nest/ui/badge';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAvatarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XAvatarModule, XLayoutModule, XIconModule, XBadgeModule, XThemeModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        FormsModule,
+        XAvatarModule,
+        XLayoutModule,
+        XIconModule,
+        XBadgeModule,
+        XThemeModule
+      ],
       declarations: [TestXAvatarComponent]
     }).compileComponents();
   });

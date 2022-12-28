@@ -12,7 +12,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTreeFilePrefix, () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe(XTreeFilePrefix, () => {
         FormsModule,
         XThemeModule,
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         XTreeFileModule,
         XButtonModule,
         XContainerModule,

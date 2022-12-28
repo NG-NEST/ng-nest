@@ -8,14 +8,15 @@ import { XColorModule } from '@ng-nest/ui/color';
 import { XColorPrefix } from './color.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XColorPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XColorModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XColorModule, XLayoutModule],
       declarations: [TestXColorComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXColorComponent>;
     let debugElement: DebugElement;

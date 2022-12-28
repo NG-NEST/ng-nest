@@ -7,14 +7,15 @@ import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix, XHighlightLines } from './highlight.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XHighlightPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XHighlightModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XHighlightModule],
       declarations: [TestXHighlightComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXHighlightComponent>;
     let debugElement: DebugElement;

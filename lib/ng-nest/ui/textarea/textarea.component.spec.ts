@@ -10,11 +10,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTextareaPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XTextareaModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XTextareaModule, FormsModule, ReactiveFormsModule, XLayoutModule],
       declarations: [
         TestXTextareaComponent,
         TestXTextareaLabelComponent,
@@ -25,7 +26,7 @@ describe(XTextareaPrefix, () => {
         TestXTextareaLengthComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextareaComponent>;
     let debugElement: DebugElement;

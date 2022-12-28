@@ -9,14 +9,15 @@ import { XIconModule } from '@ng-nest/ui/icon';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCrumbPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XCrumbModule, XIconModule, XTagModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XCrumbModule, XIconModule, XTagModule],
       declarations: [TestXCrumbComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCrumbComponent>;
     let debugElement: DebugElement;

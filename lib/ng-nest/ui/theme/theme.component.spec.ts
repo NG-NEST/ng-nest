@@ -11,14 +11,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XThemePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, ReactiveFormsModule, XButtonModule, XThemeModule, XSwitchModule, XFormModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XButtonModule,
+        XThemeModule,
+        XSwitchModule,
+        XFormModule
+      ],
       declarations: [TestXThemeComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXThemeComponent>;
     let debugElement: DebugElement;

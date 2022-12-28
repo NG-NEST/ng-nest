@@ -10,14 +10,15 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDropdownPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XDropdownModule, XButtonModule, XLinkModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XDropdownModule, XButtonModule, XLinkModule, XLayoutModule],
       declarations: [TestXDropdownComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDropdownComponent>;
     let dropdown: DebugElement;

@@ -8,14 +8,15 @@ import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTooltipPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonModule],
       declarations: [TestXTooltipComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTooltipComponent>;
     let debugElement: DebugElement;
@@ -36,9 +37,7 @@ describe(XTooltipPrefix, () => {
     <x-theme showDark></x-theme>
     <div class="box">
       <div class="top">
-        <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start"
-          >上左</x-button
-        >
+        <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
         <x-button x-tooltip content="上中上中上中上中上中上中上中上中上中上中" placement="top">上中</x-button>
         <x-button x-tooltip content="上右上右上右上右上右上右上右上右上右上右" placement="top-end">上右</x-button>
       </div>

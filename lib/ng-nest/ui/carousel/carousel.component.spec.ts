@@ -13,12 +13,14 @@ import { XContainerModule } from '@ng-nest/ui/container';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCarouselPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XCarouselModule,
@@ -30,7 +32,7 @@ describe(XCarouselPrefix, () => {
       ],
       declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCarouselComponent>;
     let carousel: DebugElement;

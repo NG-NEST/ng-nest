@@ -14,12 +14,14 @@ import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XLoadingPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         BrowserAnimationsModule,
@@ -31,7 +33,7 @@ describe(XLoadingPrefix, () => {
       ],
       declarations: [TestXLoadingComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXLoadingComponent>;
     let loading: DebugElement;

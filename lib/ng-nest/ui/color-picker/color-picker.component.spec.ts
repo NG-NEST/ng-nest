@@ -11,11 +11,21 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XColorPickerPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XColorPickerModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XColorPickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule
+      ],
       declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,
@@ -25,7 +35,7 @@ describe(XColorPickerPrefix, () => {
         TestXColorPickerBorderedComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXColorPickerComponent>;
     let debugElement: DebugElement;

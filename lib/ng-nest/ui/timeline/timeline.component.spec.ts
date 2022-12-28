@@ -12,11 +12,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimelinePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, FormsModule, XThemeModule, XTimelineModule, XCardModule, XTimeAgoModule, XRadioModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        XThemeModule,
+        XTimelineModule,
+        XCardModule,
+        XTimeAgoModule,
+        XRadioModule
+      ],
       declarations: [TestXTimelineComponent]
     }).compileComponents();
   });

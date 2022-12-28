@@ -8,14 +8,15 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { XI18nService } from './i18n.service';
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XI18nPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XI18nModule, XButtonModule, XCommentModule],
+      imports: [XI18nModule, HttpClientTestingModule, XButtonModule, XCommentModule],
       declarations: [TestXI18nComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXI18nComponent>;
     beforeEach(() => {

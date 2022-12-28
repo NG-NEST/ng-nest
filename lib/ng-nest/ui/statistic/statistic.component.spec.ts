@@ -14,12 +14,14 @@ import { XCardModule } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XStatisticPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         FormsModule,
         XStatisticModule,
@@ -31,7 +33,7 @@ describe(XStatisticPrefix, () => {
       ],
       declarations: [TestXStatisticComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXStatisticComponent>;
     let statistic: DebugElement;
@@ -57,14 +59,14 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number: '1.0-2' }}"> </x-statistic>
+          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}"> </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
         <x-card>
           <x-statistic
             label="上升比例"
-            value="{{ 15.28 | number: '1.0-2' }}"
+            value="{{ 15.28 | number : '1.0-2' }}"
             [prefix]="prefixTempOne"
             suffix="%"
             [valueStyle]="{ color: '#67c23a' }"
@@ -77,7 +79,7 @@ describe(XStatisticPrefix, () => {
         <x-card>
           <x-statistic
             label="下降比例"
-            value="{{ 2.28 | number: '1.0-2' }}"
+            value="{{ 2.28 | number : '1.0-2' }}"
             [prefix]="prefixTempTwo"
             suffix="%"
             [valueStyle]="{ color: '#f56c6c' }"

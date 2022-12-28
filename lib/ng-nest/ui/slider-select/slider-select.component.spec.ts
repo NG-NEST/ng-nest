@@ -10,11 +10,21 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSliderSelectPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XSliderSelectModule, FormsModule, ReactiveFormsModule, XLayoutModule, XTabsModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XSliderSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XTabsModule
+      ],
       declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,
@@ -24,7 +34,7 @@ describe(XSliderSelectPrefix, () => {
         TestXSliderSelectTabsComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderSelectComponent>;
     let debugElement: DebugElement;

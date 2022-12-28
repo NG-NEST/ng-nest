@@ -14,14 +14,15 @@ import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { map, orderBy } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XFormPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XButtonModule, XFormModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonModule, XFormModule],
       declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFormComponent>;
     let debugElement: DebugElement;
@@ -841,7 +842,7 @@ class TestXFormComponent {
 }
 
 @Component({
-  selector: 'test-x-form-row',
+  selector: 'test-x-form-row'
   // template: `<x-form
   //     #form
   //     [controls]="controls"
@@ -955,7 +956,7 @@ class TestXFormRowComponent {
 }
 
 @Component({
-  selector: 'test-x-form-title',
+  selector: 'test-x-form-title'
   // template: `<x-form [controls]="controls" direction="row" span="8" space="1.5"></x-form>`
 })
 class TestXFormTitleComponent {

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XIsString, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
@@ -56,6 +56,19 @@ export class XDropdownPortalComponent implements OnDestroy {
   activatedId!: any;
   activatedIdSub!: Subject<any>;
   private _unSubject = new Subject<void>();
+
+  get getMinWidth() {
+    return XIsString(this.minWidth) ? this.minWidth : `${this.minWidth}px`;
+  }
+  get getMaxWidth() {
+    return XIsString(this.maxWidth) ? this.maxWidth : `${this.maxWidth}px`;
+  }
+  get getMinHeight() {
+    return XIsString(this.minHeight) ? this.minHeight : `${this.minHeight}px`;
+  }
+  get getMaxHeight() {
+    return XIsString(this.maxHeight) ? this.maxHeight : `${this.maxHeight}px`;
+  }
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover(true);

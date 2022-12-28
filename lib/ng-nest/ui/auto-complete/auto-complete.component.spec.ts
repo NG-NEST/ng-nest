@@ -22,12 +22,14 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XIconModule } from '@ng-nest/ui/icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAutoCompletePrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         XAutoCompleteModule,
         FormsModule,
@@ -57,7 +59,7 @@ describe(XAutoCompletePrefix, () => {
         TestXAutoCompleteCustomComponent
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;
     let debugElement: DebugElement;

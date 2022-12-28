@@ -5,14 +5,15 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XApiModule } from './api.module';
 import { XApiPrefix } from './api.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XApiPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XApiModule],
+      imports: [HttpClientTestingModule, XApiModule],
       declarations: [TestXApiComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXApiComponent>;
     let debugElement: DebugElement;

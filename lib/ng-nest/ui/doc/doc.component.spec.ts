@@ -16,12 +16,14 @@ import { XApiModule } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XPatternModule } from '@ng-nest/ui/pattern';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDocPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         XThemeModule,
         XDocModule,
         XIconModule,

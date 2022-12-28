@@ -7,14 +7,15 @@ import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTypographyModule } from '@ng-nest/ui/typography';
 import { XTypographyPrefix } from './typography.property';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTypographyPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTypographyModule, XLayoutModule, XDocModule],
+      imports: [HttpClientTestingModule, XTypographyModule, XLayoutModule, XDocModule],
       declarations: [TestXTypographyComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTypographyComponent>;
     let debugElement: DebugElement;
@@ -106,6 +107,5 @@ describe(XTypographyPrefix, () => {
 })
 class TestXTypographyComponent {
   text = '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
-  textLineHeight =
-    '天将降大任于是人也，必先苦其心志，<br/>劳其筋骨，饿其体肤，空乏其身，<br/>行拂乱其所为也，所以动心忍性，增益其所不能。';
+  textLineHeight = '天将降大任于是人也，必先苦其心志，<br/>劳其筋骨，饿其体肤，空乏其身，<br/>行拂乱其所为也，所以动心忍性，增益其所不能。';
 }

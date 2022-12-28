@@ -10,6 +10,7 @@ import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XMessagePrefix, () => {
   let config: XConfig = {
@@ -19,9 +20,9 @@ describe(XMessagePrefix, () => {
       }
     }
   };
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
       declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
       providers: [
         {
@@ -30,7 +31,7 @@ describe(XMessagePrefix, () => {
         }
       ]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageComponent>;
     let message: DebugElement;

@@ -10,11 +10,21 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XInputNumberPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, XThemeModule, XInputNumberModule, FormsModule, ReactiveFormsModule, XLayoutModule, XRadioModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        XInputNumberModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule
+      ],
       declarations: [
         TestXInputNumberComponent,
         TestXInputNumberLabelComponent,
