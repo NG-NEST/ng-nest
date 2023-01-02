@@ -1,5 +1,5 @@
 <div #transfer class="x-transfer" cdkDropListGroup [ngClass]="classMap">
-  <div class="x-transfer-box">
+  <div class="x-transfer-box" [class.x-transfer-has-footer]="left.footerTpl">
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left }"></ng-container>
     <div [ngStyle]="left.listStyle!" class="x-transfer-list">
       <ng-container [ngSwitch]="type">
@@ -44,12 +44,15 @@
         ></x-table>
       </ng-container>
     </div>
+    <div class="x-transfer-footer" *ngIf="left.footerTpl">
+      <ng-container *ngTemplateOutlet="left.footerTpl; context: { $source: left }"></ng-container>
+    </div>
   </div>
   <div class="x-transfer-buttons">
     <x-button type="primary" icon="fto-chevron-right" [disabled]="left.disabledButton" (click)="move(left, right)"></x-button>
     <x-button type="primary" icon="fto-chevron-left" [disabled]="right.disabledButton" (click)="move(right, left)"></x-button>
   </div>
-  <div class="x-transfer-box">
+  <div class="x-transfer-box" [class.x-transfer-has-footer]="right.footerTpl">
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right }"></ng-container>
     <div [ngSwitch]="type" [ngStyle]="right.listStyle!" class="x-transfer-list">
       <x-table
@@ -79,6 +82,9 @@
           <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
         </li>
       </ul>
+    </div>
+    <div class="x-transfer-footer" *ngIf="right.footerTpl">
+      <ng-container *ngTemplateOutlet="right.footerTpl; context: { $source: right }"></ng-container>
     </div>
   </div>
 </div>

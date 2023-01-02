@@ -64,6 +64,11 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() titleTpl?: TemplateRef<void>;
   /**
+   * @zh_CN 底部自定义模版
+   * @en_US Bottom Custom Template
+   */
+  @Input() footerTpl?: TemplateRef<void>[];
+  /**
    * @zh_CN 表格列集合
    * @en_US Table column set
    */
@@ -175,6 +180,11 @@ export interface XTransferSource {
    * @en_US Data direction
    */
   direction?: XTransferDirection;
+  /**
+   * @zh_CN 底部自定义模版
+   * @en_US Bottom Custom Template
+   */
+  footerTpl?: TemplateRef<void>;
 }
 
 /**

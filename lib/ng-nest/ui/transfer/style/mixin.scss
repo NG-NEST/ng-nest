@@ -68,6 +68,19 @@
     padding: 0.5rem;
     border-bottom: 0.0625rem solid $--x-border;
   }
+  &-footer {
+    padding: 0.25rem 0.5625rem;
+    border: $--x-border-base;
+    border-bottom-left-radius: $--x-border-radius;
+    border-bottom-right-radius: $--x-border-radius;
+  }
+  &-has-footer {
+    .#{$--x-transfer}-list {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: none;
+    }
+  }
 }
 
 @mixin transfer-li {

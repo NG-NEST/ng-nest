@@ -22,7 +22,8 @@ import {
   XIsObjectArray,
   XIsBoolean,
   XIsFunction,
-  XResultList
+  XResultList,
+  XIsUndefined
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -104,6 +105,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setListStyle();
     this.setHiddenCheckAll();
     this.getTableCheckColumn();
+    this.setFooterTpl();
     this.i18n.localeChange
       .pipe(
         map((x) => x.transfer as XI18nTransfer),
@@ -517,5 +519,15 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (this.hiddenCheckAll!.length > 0 && XIsBoolean(this.hiddenCheckAll![0])) this.left.hiddenCheckAll = this.hiddenCheckAll![0];
     if (this.hiddenCheckAll!.length > 1 && XIsBoolean(this.hiddenCheckAll![1])) this.right.hiddenCheckAll = this.hiddenCheckAll![1];
     this.cdr.detectChanges();
+  }
+
+  private setFooterTpl() {
+    if (XIsUndefined(this.footerTpl)) return;
+    if (this.footerTpl!.length > 0) {
+      this.left.footerTpl = this.footerTpl![0];
+    }
+    if (this.footerTpl!.length > 1) {
+      this.right.footerTpl = this.footerTpl![1];
+    }
   }
 }
