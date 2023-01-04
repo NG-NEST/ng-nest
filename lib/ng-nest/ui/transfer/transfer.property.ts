@@ -1,4 +1,14 @@
-import { XData, XDataConvert, XInputBoolean, XParentIdentityProperty, XBoolean, XWithConfig, XQuery, XStyleMap } from '@ng-nest/ui/core';
+import {
+  XData,
+  XDataConvert,
+  XInputBoolean,
+  XParentIdentityProperty,
+  XBoolean,
+  XWithConfig,
+  XQuery,
+  XStyleMap,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { TemplateRef, Input, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTableColumn } from '@ng-nest/ui/table';
@@ -49,10 +59,15 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() drag?: XBoolean;
   /**
-   * @zh_CN 是否显示搜索（暂未实现）
-   * @en_US Whether to display search (not implemented yet)
+   * @zh_CN 是否显示搜索。type 为 'table'，需要设置 tableHeadSearchTpl 和 tableQuery 来配合使用
+   * @en_US Whether to display search
    */
   @Input() @XInputBoolean() search?: XBoolean;
+  /**
+   * @zh_CN 表格列头搜索自定义模板
+   * @en_US table head search custom template
+   */
+  @Input() tableHeadSearchTpl?: XTemplate[];
   /**
    * @zh_CN 行数据自定义模板
    * @en_US Data customization template
@@ -185,6 +200,11 @@ export interface XTransferSource {
    * @en_US Bottom Custom Template
    */
   footerTpl?: TemplateRef<void>;
+  /**
+   * @zh_CN 表格列头搜索自定义模板
+   * @en_US table head search custom template
+   */
+  tableHeadSearchTpl?: XTemplate;
 }
 
 /**

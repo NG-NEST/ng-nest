@@ -23,8 +23,13 @@
           allowManyActivated
           [(activatedId)]="treeActivatedId"
           (nodeClick)="onTreeNodeClick($event)"
+          [labelTpl]="treeLabelTpl"
         ></x-tree>
+        <ng-template #treeLabelTpl let-node="$node">
+          <span class="x-transfer-tree-label" x-keyword [text]="left.searchInput!">{{ node.label }}</span>
+        </ng-template>
         <x-table
+          #leftTableCom
           *ngSwitchCase="'table'"
           [data]="tableData"
           [columns]="tableColumns!"
@@ -41,6 +46,7 @@
           showTotal="false"
           paginationPosition="bottom-center"
           allowSelectRow="false"
+          [headSearchTpl]="left.tableHeadSearchTpl"
         ></x-table>
       </ng-container>
     </div>
@@ -56,6 +62,7 @@
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right }"></ng-container>
     <div [ngSwitch]="type" [ngStyle]="right.listStyle!" class="x-transfer-list">
       <x-table
+        #rightTableCom
         *ngSwitchCase="'table'"
         [data]="right.list!"
         [columns]="tableColumns!"
@@ -68,6 +75,7 @@
         showTotal="false"
         paginationPosition="bottom-center"
         allowSelectRow="false"
+        [headSearchTpl]="right.tableHeadSearchTpl"
       ></x-table>
       <ul
         *ngSwitchDefault
@@ -103,21 +111,19 @@
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
     >
   </div>
-  <!-- <div class="x-transfer-search" *ngIf="search">
-    <x-input
-      icon="fto-search"
-      [(ngModel)]="source.searchInput"
-      (ngModelChange)="searchInputChange(source)"
-      clearable
-    ></x-input>
-  </div> -->
+  <div class="x-transfer-search" *ngIf="search && type !== 'table'">
+    <x-input icon="fto-search" [(ngModel)]="source.searchInput" (ngModelChange)="onSearchInputChange(source)" clearable></x-input>
+  </div>
 </ng-template>
 
 <ng-template #sourceNodeTpl let-node="node" let-source="source">
   <x-checkbox
-    [data]="[{ id: node.id, label: nodeTpl ? nodeTpl : node.label, node: node }]"
+    [data]="[{ id: node.id, label: nodeTpl ? nodeTpl : labelTpl, node: node }]"
     [disabled]="node.disabled"
     [(ngModel)]="node.checked"
     (ngModelChange)="checkedChange($event, source)"
   ></x-checkbox>
+  <ng-template #labelTpl>
+    <span x-keyword [text]="source.searchInput!">{{ node.label }}</span>
+  </ng-template>
 </ng-template>

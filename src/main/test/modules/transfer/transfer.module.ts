@@ -6,7 +6,7 @@ import { TeTransferComponent } from './transfer.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExTreeComponent } from './tree/tree.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExCustomComponent } from './custom/custom.component';
 import { ExDragComponent } from './drag/drag.component';
 import { XIconModule } from '@ng-nest/ui/icon';
@@ -15,6 +15,9 @@ import { ExTableComponent } from './table/table.component';
 import { XTableModule } from '@ng-nest/ui/table';
 import { ExFooterComponent } from './footer/footer.component';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { ExSearchComponent } from './search/search.component';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XInputModule } from '@ng-nest/ui/input';
 
 const routers = [{ path: '', component: TeTransferComponent }];
 
@@ -23,12 +26,15 @@ const routers = [{ path: '', component: TeTransferComponent }];
     RouterModule.forChild(routers),
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     XTransferModule,
     XButtonModule,
     XLayoutModule,
     XIconModule,
     XTreeModule,
-    XTableModule
+    XTableModule,
+    XSelectModule,
+    XInputModule
   ],
   declarations: [
     TeTransferComponent,
@@ -37,7 +43,8 @@ const routers = [{ path: '', component: TeTransferComponent }];
     ExDragComponent,
     ExTreeComponent,
     ExTableComponent,
-    ExFooterComponent
+    ExFooterComponent,
+    ExSearchComponent
   ]
 })
 export class TeTransferModule {}

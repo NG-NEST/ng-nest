@@ -1,0 +1,46 @@
+<x-transfer [data]="data" [(ngModel)]="value" search> </x-transfer>
+<br />
+<br />
+<x-transfer [data]="dataTree" [(ngModel)]="modelTree" [type]="'tree'" search> </x-transfer>
+<br />
+<br />
+<x-transfer
+  #transferCom
+  [type]="'table'"
+  [data]="dataTable"
+  [(ngModel)]="valueTable"
+  [listStyle]="{ 'width.rem': 21, 'height.rem': 34.25 }"
+  [hiddenCheckAll]="[true, true]"
+  [titles]="['用户列表', '选中用户']"
+  [tableColumns]="columns"
+  [tableQuery]="query"
+  [tableHeadSearchTpl]="[leftHeadSearchTpl]"
+>
+</x-transfer>
+
+<ng-template #leftHeadSearchTpl let-column="$column">
+  <ng-container [ngSwitch]="column.id">
+    <ng-container *ngSwitchCase="'name'">
+      <x-input [style.width.%]="100" ngDefaultControl [(ngModel)]="name" (ngModelChange)="change($event, 'name')"></x-input>
+    </ng-container>
+    <ng-container *ngSwitchCase="'position'">
+      <x-select
+        ngDefaultControl
+        [style.width.%]="100"
+        [(ngModel)]="position"
+        (ngModelChange)="change($event, 'position')"
+        [data]="service.positions"
+      ></x-select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'organization'">
+      <x-select
+        ngDefaultControl
+        [style.width.%]="100"
+        [(ngModel)]="organization"
+        (ngModelChange)="change($event, 'organization')"
+        [data]="service.organizations"
+      ></x-select>
+    </ng-container>
+    <ng-container *ngSwitchDefault></ng-container>
+  </ng-container>
+</ng-template>

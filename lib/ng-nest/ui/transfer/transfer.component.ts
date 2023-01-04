@@ -8,7 +8,8 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  OnDestroy
+  OnDestroy,
+  ViewChild
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty, XTransferType } from './transfer.property';
 import {
@@ -26,12 +27,12 @@ import {
   XIsUndefined
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 
 @Component({
   selector: `${XTransferPrefix}`,
@@ -42,6 +43,8 @@ import { XTableColumn } from '@ng-nest/ui/table';
   providers: [XValueAccessor(XTransferComponent)]
 })
 export class XTransferComponent extends XTransferProperty implements OnInit, OnChanges, OnDestroy {
+  @ViewChild('leftTableCom') leftTableCom?: XTableComponent;
+  @ViewChild('rightTableCom') rightTableCom?: XTableComponent;
   nodes: XTransferNode[] = [];
   left: XTransferSource = {
     list: [],
@@ -58,6 +61,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     disabledButton: true
   };
   searchInput: string = '';
+  searchInputLeftChange = new Subject<string>();
+  searchInputRightChange = new Subject<string>();
+  searchDebounceTime = 200;
   locale: XI18nTransfer = {};
   private get localTitle() {
     if (this.type === 'tree') {
@@ -106,6 +112,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setHiddenCheckAll();
     this.getTableCheckColumn();
     this.setFooterTpl();
+    this.setTableHeadSearchTpl();
     this.i18n.localeChange
       .pipe(
         map((x) => x.transfer as XI18nTransfer),
@@ -115,6 +122,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         this.locale = x;
         XIsEmpty(this.titles) && this.setTitles();
         this.cdr.markForCheck();
+      });
+    this.searchInputLeftChange
+      .pipe(debounceTime(this.searchDebounceTime), distinctUntilChanged(), takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.setSearchInputChange(this.left);
+      });
+    this.searchInputRightChange
+      .pipe(debounceTime(this.searchDebounceTime), distinctUntilChanged(), takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.setSearchInputChange(this.right);
       });
   }
 
@@ -128,8 +145,48 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this._unSubject.unsubscribe();
   }
 
-  searchInputChange(source: XTransferSource) {
-    source.list = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0);
+  onSearchInputChange(source: XTransferSource) {
+    if (source.direction === 'left') {
+      this.searchInputLeftChange.next(source.searchInput!);
+    } else if (source.direction === 'right') {
+      this.searchInputRightChange.next(source.searchInput!);
+    }
+  }
+
+  setSearchInputChange(source: XTransferSource) {
+    if (XIsUndefined(source.searchInput)) return;
+    if (XIsEmpty(source.searchInput)) {
+      source.list = [...source.searchList!];
+    } else {
+      switch (this.type) {
+        case 'list':
+          source.list = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0);
+          break;
+        case 'tree':
+          if (source.direction === 'right') {
+            source.list = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0);
+          } else if (source.direction === 'left') {
+            let searchList = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0)!;
+            let parents: XTransferNode[] = [];
+            const findParent = (item: XTransferNode) => {
+              if (!item.pid) return;
+              let parent = source.searchList?.find((x) => x.id === item.pid);
+              if (parent && !parents.some((x) => x.id === parent!.id)) {
+                parents.push(parent);
+                findParent(parent);
+              }
+            };
+            for (let item of searchList) {
+              findParent(item);
+            }
+            source.list = [...searchList, ...parents];
+          }
+          break;
+        case 'table':
+          break;
+      }
+    }
+    this.setListCount(this.type, source);
     this.cdr.detectChanges();
   }
 
@@ -173,9 +230,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     let checkedItems = from.list?.filter((x) => !x.disabled && x.checked)!;
     let j = 0;
     checkedItems.forEach((x) => {
-      const index = from.list?.indexOf(x) as number;
+      let index = from.list?.indexOf(x) as number;
       x.checked = false;
       transferArrayItem(from.list!, to.list!, index, j);
+      if (this.search) {
+        index = from.searchList?.indexOf(x) as number;
+        transferArrayItem(from.searchList!, to.searchList!, index, j);
+      }
       j++;
     });
     from.list = [...from.list!];
@@ -209,6 +270,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       this.setCheckedCount('list', to);
     } else {
       checkedItems = XRemove(from.list!, (x) => !x.disabled && x.checked!);
+      if (this.search) {
+        XRemove(from.searchList!, (x) => !x.disabled && x.checked!);
+      }
       for (let item of checkedItems) {
         let node: XTreeNode = to.list?.find((x) => x.id === item.id)!;
         if (node) {
@@ -383,14 +447,14 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.onChange(this.value);
   }
 
-  private setSearchList(..._sources: XTransferSource[]) {
-    // if (this.search) {
-    //   for (let source of sources) {
-    //     if (XIsEmpty(source.searchInput)) {
-    //       source.searchList = [...(source.list as XTransferNode[])];
-    //     }
-    //   }
-    // }
+  private setSearchList(...sources: XTransferSource[]) {
+    if (this.search) {
+      for (let source of sources) {
+        if (XIsEmpty(source.searchInput)) {
+          source.searchList = [...(source.list as XTransferNode[])];
+        }
+      }
+    }
   }
 
   private setData() {
@@ -528,6 +592,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     }
     if (this.footerTpl!.length > 1) {
       this.right.footerTpl = this.footerTpl![1];
+    }
+  }
+
+  private setTableHeadSearchTpl() {
+    if (XIsUndefined(this.tableHeadSearchTpl)) return;
+    if (this.tableHeadSearchTpl!.length > 0) {
+      this.left.tableHeadSearchTpl = this.tableHeadSearchTpl![0];
+    }
+    if (this.tableHeadSearchTpl!.length > 1) {
+      this.right.tableHeadSearchTpl = this.tableHeadSearchTpl![1];
     }
   }
 }

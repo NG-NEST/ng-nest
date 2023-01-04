@@ -15,19 +15,22 @@
     border: $--x-border-base;
     border-top-left-radius: $--x-border-radius;
     border-top-right-radius: $--x-border-radius;
-    border-bottom: none;
     background-color: $--x-background;
     color: $--x-text-300;
   }
   &-total {
     margin-left: 0.325rem;
   }
+  &-box {
+    min-width: 12rem;
+  }
   &-list {
     display: flex;
     flex-direction: column;
     height: 18rem;
-    width: 12rem;
+    width: 100%;
     border: $--x-border-base;
+    border-top: none;
     border-bottom-left-radius: $--x-border-radius;
     border-bottom-right-radius: $--x-border-radius;
     overflow: auto;
@@ -66,7 +69,14 @@
   }
   &-search {
     padding: 0.5rem;
-    border-bottom: 0.0625rem solid $--x-border;
+    border-left: $--x-border-base;
+    border-right: $--x-border-base;
+    x-input {
+      width: 100%;
+    }
+  }
+  &-tree-label {
+    flex: 1;
   }
   &-footer {
     padding: 0.25rem 0.5625rem;

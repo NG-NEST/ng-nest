@@ -6,7 +6,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XTransferModule } from '@ng-nest/ui/transfer';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.property';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XInputModule } from '@ng-nest/ui/input';
 
 describe(XTransferPrefix, () => {
   beforeEach(() => {
@@ -23,12 +25,15 @@ describe(XTransferPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
+        ReactiveFormsModule,
         XTransferModule,
         XButtonModule,
         XContainerModule,
         XLayoutModule,
         XIconModule,
-        XTreeModule
+        XTreeModule,
+        XSelectModule,
+        XInputModule
       ],
       declarations: [TestXTransferComponent]
     }).compileComponents();
