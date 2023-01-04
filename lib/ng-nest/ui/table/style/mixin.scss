@@ -56,6 +56,20 @@
           }
         }
       }
+      &.cdk-drop-list-dragging {
+        > th {
+          &:hover {
+            background-color: transparent;
+          }
+          &.cdk-drag-placeholder {
+            background-color: $--x-background-a200;
+            opacity: 0.9;
+          }
+          // &:not(.cdk-drag-placeholder) {
+          //   transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+          // }
+        }
+      }
     }
     &.x-table-head-bottom {
       > tr > th {
@@ -105,6 +119,10 @@
               transform: rotate(90deg);
             }
           }
+        }
+        &.x-table-dragging {
+          background-color: $--x-background-a200;
+          opacity: 0.9;
         }
       }
       &.#{$--x-table}-activated {
@@ -250,11 +268,35 @@
     border-top: $--x-border-base;
   }
   &-row-size {
-    @include rowSize(big, calc(#{$--x-font-size} / 5 * 4), calc(#{$--x-font-size} * 5 / 4), calc(#{$--x-font-size} / 5 * 4), 0);
-    @include rowSize(large, calc(#{$--x-font-size} / 4 * 3), calc(#{$--x-font-size} * 4 / 3), calc(#{$--x-font-size} / 4 * 3), 0);
-    @include rowSize(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), 0);
-    @include rowSize(small, calc(#{$--x-font-size} / 3), calc(#{$--x-font-size} * 2 / 3), calc(#{$--x-font-size} / 3), 0);
-    @include rowSize(mini, calc(#{$--x-font-size} / 4), calc(#{$--x-font-size} / 2), calc(#{$--x-font-size} / 4), 0);
+    @include rowSize(
+      big,
+      calc(#{$--x-font-size} / 5 * 4),
+      calc(#{$--x-font-size} * 5 / 4),
+      calc(#{$--x-font-size} / 5 * 4),
+      calc(#{$--x-font-size} * 5 / 4)
+    );
+    @include rowSize(
+      large,
+      calc(#{$--x-font-size} / 4 * 3),
+      calc(#{$--x-font-size} * 4 / 3),
+      calc(#{$--x-font-size} / 4 * 3),
+      calc(#{$--x-font-size} * 4 / 3)
+    );
+    @include rowSize(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), $--x-font-size);
+    @include rowSize(
+      small,
+      calc(#{$--x-font-size} / 3),
+      calc(#{$--x-font-size} * 2 / 3),
+      calc(#{$--x-font-size} / 3),
+      calc(#{$--x-font-size} * 2 / 3)
+    );
+    @include rowSize(
+      mini,
+      calc(#{$--x-font-size} / 4),
+      calc(#{$--x-font-size} / 2),
+      calc(#{$--x-font-size} / 4),
+      calc(#{$--x-font-size} / 2)
+    );
   }
 }
 
@@ -263,28 +305,11 @@
     > thead > tr > th,
     > tbody tr > td {
       padding: $padding-top $padding-right $padding-bottom $padding-left;
-      &:first-child {
-        padding-left: $padding-right;
-      }
     }
     .#{$--x-table} {
       &-header,
       &-footer {
-        padding: $padding-top $padding-right $padding-bottom $padding-right;
-      }
-    }
-    &.#{$--x-table} {
-      &-bordered {
-        > thead > tr > th,
-        > tbody tr > td {
-          padding-left: $padding-right;
-        }
-      }
-      &-cell-config {
-        > thead > tr > th,
-        > tbody tr > td {
-          padding-left: $padding-right;
-        }
+        padding: $padding-top $padding-right $padding-bottom $padding-left;
       }
     }
   }
@@ -292,4 +317,64 @@
 
 @mixin pagination {
   padding-top: calc(#{$--x-font-size} / 2);
+}
+
+@mixin body-table-th-size($size, $padding-top, $padding-right, $padding-bottom, $padding-left) {
+  &-#{$size} {
+    padding: $padding-top $padding-right $padding-bottom $padding-left;
+  }
+}
+
+@mixin body-table-th {
+  display: block;
+  @include body-table-th-size(
+    big,
+    calc(#{$--x-font-size} / 5 * 4),
+    calc(#{$--x-font-size} * 5 / 4),
+    calc(#{$--x-font-size} / 5 * 4),
+    calc(#{$--x-font-size} * 5 / 4)
+  );
+  @include body-table-th-size(
+    large,
+    calc(#{$--x-font-size} / 4 * 3),
+    calc(#{$--x-font-size} * 4 / 3),
+    calc(#{$--x-font-size} / 4 * 3),
+    calc(#{$--x-font-size} * 4 / 3)
+  );
+  @include body-table-th-size(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), $--x-font-size);
+  @include body-table-th-size(
+    small,
+    calc(#{$--x-font-size} / 3),
+    calc(#{$--x-font-size} * 2 / 3),
+    calc(#{$--x-font-size} / 3),
+    calc(#{$--x-font-size} * 2 / 3)
+  );
+  @include body-table-th-size(
+    mini,
+    calc(#{$--x-font-size} / 4),
+    calc(#{$--x-font-size} / 2),
+    calc(#{$--x-font-size} / 4),
+    calc(#{$--x-font-size} / 2)
+  );
+  &.cdk-drag-preview {
+    display: flex;
+    align-items: center;
+    border: $--x-border-base;
+    border-style: dashed;
+    border-radius: $--x-border-radius;
+    background-color: $--x-background;
+    opacity: 0.8;
+    box-shadow: $--x-box-shadow-light;
+    > a {
+      display: inline-flex;
+      align-items: center;
+      color: $--x-text-300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  &.cdk-drag-animating {
+    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+  }
 }

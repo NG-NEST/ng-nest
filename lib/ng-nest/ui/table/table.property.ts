@@ -239,6 +239,21 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Customized expansion content
    */
   @Input() expandTpl?: XTemplate;
+  /**
+   * @zh_CN 列头拖动开始事件，返回拖动的列
+   * @en_US Column Header Drag End Event
+   */
+  @Output() columnDragStarted = new EventEmitter<XTableColumn>();
+  /**
+   * @zh_CN 列头拖动结束事件，返回拖动的列
+   * @en_US The column header is dragging, and the event is triggered when the order is changed
+   */
+  @Output() columnDragEnded = new EventEmitter<XTableColumn>();
+  /**
+   * @zh_CN 当用户把一个条目投放进该容器时就会触发，拖动放开的事件，返回拖动排序后的列数据
+   * @en_US The column header is dragging, and the event is triggered when the order is changed
+   */
+  @Output() columnDropListDropped = new EventEmitter<XTableColumn[]>();
 }
 
 /**
@@ -410,6 +425,16 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Drag the column width, you need to set the initial width of the column width
    */
   dragWidth?: boolean;
+  /**
+   * @zh_CN 拖动列
+   * @en_US Drag the column
+   */
+  dragColumn?: boolean;
+  /**
+   * @zh_CN 正在拖动列
+   * @en_US Dragging column
+   */
+  dragging?: boolean;
   /**
    * @zh_CN 头部显示 checkbox
    * @en_US Head shows checkbox

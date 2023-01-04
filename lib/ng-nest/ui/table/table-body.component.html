@@ -88,6 +88,7 @@
       [style.width.px]="column.width"
       [style.flex]="getFlex(column)"
       [title]="getTitle(row, column)"
+      [class.x-table-dragging]="column.dragging"
       [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
       [class.x-table-sticky-left]="table.getStickyLeft(column)"
       [class.x-table-sticky-right]="table.getStickyRight(column)"

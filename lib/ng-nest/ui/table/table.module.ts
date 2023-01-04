@@ -15,6 +15,7 @@ import { XTableBodyComponent } from './table-body.component';
 import { XTableFootComponent } from './table-foot.component';
 import { XDragDirective } from './drag.directive';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
     XIconModule,
     XButtonModule,
     ScrollingModule,
+    DragDropModule,
     XEmptyModule,
     XLoadingModule
   ]

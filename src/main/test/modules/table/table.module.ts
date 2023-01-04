@@ -29,6 +29,8 @@ import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { ExSearchComponent } from './search/search.component';
 import { ExConfigOneComponent } from './config/config-one/config-one.component';
 import { ExConfigTwoComponent } from './config/config-two/config-two.component';
+import { ExDefaultComponent } from './default/default.component';
+import { ExDragColumnComponent } from './drag-column/drag-column.component';
 
 const routers = [
   {
@@ -65,6 +67,7 @@ const routers = [
   ],
   declarations: [
     TeTableComponent,
+    ExDefaultComponent,
     ExConfigComponent,
     ExCheckboxComponent,
     ExRowclassComponent,
@@ -77,7 +80,8 @@ const routers = [
     ExEditComponent,
     ExSearchComponent,
     ExConfigOneComponent,
-    ExConfigTwoComponent
+    ExConfigTwoComponent,
+    ExDragColumnComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })

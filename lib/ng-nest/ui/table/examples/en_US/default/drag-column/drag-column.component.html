@@ -1,0 +1,9 @@
+<x-table
+  [columns]="columns"
+  [data]="data"
+  loading
+  (columnDragStarted)="columnDragStarted($event)"
+  (columnDragEnded)="columnDragEnded($event)"
+  (columnDropListDropped)="columnDropListDropped($event)"
+>
+</x-table>

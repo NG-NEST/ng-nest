@@ -48,3 +48,7 @@
     }
   }
 }
+
+body > .#{$--x-table}-th {
+  @include body-table-th();
+}

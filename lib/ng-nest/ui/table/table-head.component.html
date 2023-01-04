@@ -27,6 +27,10 @@
 
 <ng-template #columnsTpl let-case="case">
   <tr
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListSorted)="dropListSorted($event)"
+    (cdkDropListDropped)="dropListDropped($event)"
     [style.height.px]="getRowHeight"
     [style.min-height.px]="getRowHeight"
     [style.padding-right.px]="scrollYWidth"
@@ -34,7 +38,13 @@
     [class.x-table-search]="case === 'search'"
   >
     <th
+      cdkDrag
+      [cdkDragDisabled]="!column.dragColumn"
+      (cdkDragStarted)="dragStarted(column)"
+      (cdkDragEnded)="dragEnded(column)"
       *ngFor="let column of columns; trackBy: trackByItem"
+      [ngClass]="thClassMap"
+      [class.x-table-th]="true"
       [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
       [class.x-table-sticky-left]="table.getStickyLeft(column)"
       [class.x-table-sticky-right]="table.getStickyRight(column)"

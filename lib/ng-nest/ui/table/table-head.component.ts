@@ -9,8 +9,9 @@ import {
   ViewChild,
   Input
 } from '@angular/core';
-import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber } from '@ng-nest/ui/core';
+import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
+import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber, XClassMap } from '@ng-nest/ui/core';
+import { CdkDragDrop, CdkDragSortEvent, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XTableHeadPrefix}`,
@@ -21,6 +22,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort: XSort[] = [];
   sortStr = '';
   theadStyle: { [property: string]: any } = {};
+  thClassMap: XClassMap = {};
   @ViewChild('thead') thead!: ElementRef;
   @Input() table: any;
   get getRowHeight() {
@@ -49,6 +51,13 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   ngAfterViewInit() {
     this.table.thead.push(this.thead);
     this.table.headChange = () => this.cdr.detectChanges();
+    this.setThClassMap();
+  }
+
+  setThClassMap() {
+    this.thClassMap = {
+      [`${XTablePrefix}-th-${this.table.rowSize}`]: !XIsEmpty(this.table.rowSize)
+    };
   }
 
   getFlex(column: XTableColumn) {
@@ -122,6 +131,28 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       this.cdr.detectChanges();
       this.table.bodyChange();
     }
+  }
+
+  dropListDropped(_event: CdkDragDrop<XTableColumn[]>) {
+    this.table.bodyChange();
+    this.table.columnDropListDropped.emit(this.columns);
+  }
+
+  dropListSorted(event: CdkDragSortEvent<XTableColumn[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+    this.table.bodyChange();
+  }
+
+  dragStarted(column: XTableColumn) {
+    column.dragging = true;
+    this.table.bodyChange();
+    this.table.columnDragStarted.emit(column);
+  }
+
+  dragEnded(column: XTableColumn) {
+    column.dragging = false;
+    this.table.bodyChange();
+    this.table.columnDragEnded.emit(column);
   }
 
   trackByItem(_index: number, item: XTableColumn) {
