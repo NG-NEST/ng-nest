@@ -15,3 +15,25 @@
     showJump
   ></x-pagination>
 </div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    (sizeChange)="change($event)"
+    simple
+    showInputSize
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    (sizeChange)="change($event)"
+    showInputSize
+    showJump
+  ></x-pagination>
+</div>

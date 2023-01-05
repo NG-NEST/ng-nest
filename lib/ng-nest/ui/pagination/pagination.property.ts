@@ -72,10 +72,20 @@ export class XPaginationProperty extends XProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showSize!: XBoolean;
   /**
-   * @zh_CN 分页条数的宽度
-   * @en_US size with
+   * @zh_CN 分页条数选择框的宽度
+   * @en_US size with select
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 100) @XInputNumber() sizeWidth!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 110) @XInputNumber() sizeWidth!: XNumber;
+  /**
+   * @zh_CN 显示输入分页条数（不能跟下拉选项同时使用）
+   * @en_US Display the number of input page breaks (cannot exist with the drop-down options of page breaks)
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showInputSize!: XBoolean;
+  /**
+   * @zh_CN 分页条数输入框的宽度
+   * @en_US size with input
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() inputSizeWidth!: XNumber;
   /**
    * @zh_CN 分页条数的宽度
    * @en_US size with

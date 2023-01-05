@@ -38,7 +38,7 @@
   </div>
 </ng-template>
 <x-select
-  *ngIf="showSize"
+  *ngIf="showSize && !showInputSize"
   [style.width.px]="sizeWidth"
   class="x-pagination-size"
   [data]="sizeData"
@@ -49,9 +49,20 @@
   [(ngModel)]="size"
   (ngModelChange)="sizeChanged()"
 ></x-select>
+<div *ngIf="showInputSize" class="x-pagination-input-size">
+  <x-input
+    [style.width.px]="inputSizeWidth"
+    [disabled]="disabled"
+    [bordered]="!hiddenBorder"
+    [(ngModel)]="inputSize"
+    (xKeydown)="onInputSizeKeydown($event)"
+  ></x-input>
+  <span> {{ 'pagination.sizePage' | xI18n }} </span>
+</div>
+
 <div *ngIf="showJump && !simple" class="x-pagination-jump">
   <span>{{ 'pagination.jump' | xI18n }}</span>
-  <x-input [bordered]="!hiddenBorder" [style.width.px]="jumpWidth" [(ngModel)]="jumpPage" (xKeydown)="onKeydown($event)"></x-input>
+  <x-input [bordered]="!hiddenBorder" [style.width.px]="jumpWidth" [(ngModel)]="jumpPage" (xKeydown)="onJumpKeydown($event)"></x-input>
 </div>
 <x-button *ngIf="showTotal" [disabled]="disabled" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
   ><ng-container *xOutlet="totalTpl; context: { $total: total }"
@@ -61,6 +72,7 @@
 
 <ng-template #previousTpl>
   <x-button
+    [type]="hiddenBorder ? 'text' : 'initial'"
     [icon]="'fto-chevron-left'"
     [title]="'pagination.previous' | xI18n"
     [disabled]="disabled || leftDisabled"
@@ -70,6 +82,7 @@
 
 <ng-template #nextTpl>
   <x-button
+    [type]="hiddenBorder ? 'text' : 'initial'"
     [icon]="'fto-chevron-right'"
     [title]="'pagination.next' | xI18n"
     [disabled]="disabled || rightDisabled"

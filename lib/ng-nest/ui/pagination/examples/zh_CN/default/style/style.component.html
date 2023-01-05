@@ -51,3 +51,39 @@
     pageLinkSize="7"
   ></x-pagination>
 </div>
+<div class="row">
+  <x-pagination
+    hiddenBorder
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    [sizeData]="[5, 10, 20, 100]"
+    showSize
+    showJump
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    hiddenBorder
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    (sizeChange)="change($event)"
+    simple
+    showInputSize
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    hiddenBorder
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    (sizeChange)="change($event)"
+    showInputSize
+    showJump
+  ></x-pagination>
+</div>

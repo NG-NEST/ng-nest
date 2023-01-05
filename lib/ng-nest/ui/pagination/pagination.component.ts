@@ -28,6 +28,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   indexFirst: number = 1;
   indexLast: number = 1;
   jumpPage: number | null = null;
+  inputSize!: number;
 
   private _unSubject = new Subject<void>();
 
@@ -60,6 +61,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
 
   ngOnInit() {
     this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+    this.inputSize = Number(this.size);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -75,6 +77,10 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
   sizeChanged() {
     this.setIndexes();
     this.sizeChange.emit(this.size as number);
+    if (this.index !== 1) {
+      this.index = 1;
+      this.indexChange.emit(this.index);
+    }
   }
 
   setIndexes() {
@@ -104,7 +110,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     }
   }
 
-  onKeydown(event: KeyboardEvent) {
+  onJumpKeydown(event: KeyboardEvent) {
     if (this.jumpPage !== null && event.keyCode === ENTER) {
       if (this.jumpPage <= this.indexFirst) {
         this.jump(this.indexFirst);
@@ -120,13 +126,37 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
 
   onSimpleKeydown(event: KeyboardEvent) {
     if (this.index !== null && event.keyCode === ENTER) {
+      if (Number(this.index) % 1 !== 0) {
+        this.index = Math.round(Number(this.index));
+      }
+      if (isNaN(Number(this.index)) || this.index === 0) {
+        this.index = 1;
+      }
       if (this.index <= this.indexFirst) {
         this.index = this.indexFirst;
       } else if (this.index >= this.lastIndex) {
         this.index = this.lastIndex;
       }
       this.jump(this.index as number);
+      this.indexChange.emit(this.index as number);
       this.cdr.detectChanges();
+    }
+  }
+
+  onInputSizeKeydown(event: KeyboardEvent) {
+    if (this.inputSize !== null && event.keyCode === ENTER) {
+      if (this.inputSize % 1 !== 0) {
+        this.inputSize = Math.round(this.inputSize);
+      }
+      if (isNaN(this.inputSize)) {
+        this.inputSize = Number(this.size);
+      }
+      if (this.inputSize <= 0) {
+        this.inputSize = Number(this.size);
+      } else if (this.inputSize !== Number(this.size)) {
+        this.size = this.inputSize;
+        this.sizeChanged();
+      }
     }
   }
 

@@ -22,6 +22,14 @@
   &-total {
     margin-left: 0.5rem;
   }
+  &-input-size {
+    margin-left: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    x-input {
+      margin-right: 0.5rem;
+    }
+  }
   &-jump {
     margin-left: 0.5rem;
     display: inline-flex;
@@ -31,7 +39,7 @@
     }
   }
   &-simple {
-    margin: 0 0.5rem;
+    margin-right: 0.5rem;
     display: inline-flex;
     align-items: center;
     > x-input {

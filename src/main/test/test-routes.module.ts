@@ -171,6 +171,10 @@ const testModules = [
   {
     path: 'date-picker',
     loadChildren: () => import('./modules/date-picker/date-picker.module').then((x) => x.TeDatePickerModule)
+  },
+  {
+    path: 'pagination',
+    loadChildren: () => import('./modules/pagination/pagination.module').then((x) => x.TePaginationModule)
   }
 ];
 

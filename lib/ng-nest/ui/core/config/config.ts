@@ -436,6 +436,8 @@ export interface XPaginationConfig {
   showSize?: boolean;
   sizeWidth?: number;
   sizeData?: number[];
+  showInputSize?: boolean;
+  inputSizeWidth?: number;
   showJump?: boolean;
   jumpWidth?: number;
   simple?: boolean;
