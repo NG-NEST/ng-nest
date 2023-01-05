@@ -8,7 +8,9 @@
     "inputType": "Input Type",
     "outputType": "Output Type",
     "default": "Default",
-    "globalConfig": "Global Config"
+    "globalConfig": "Global Config",
+    "extends": "extends",
+    "extendsDescription": "all parameters of the object"
   },
   "header": {
     "components": "Components",

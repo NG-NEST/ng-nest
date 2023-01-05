@@ -8,7 +8,9 @@
     "inputType": "输入类型",
     "outputType": "输出类型",
     "default": "默认值",
-    "globalConfig": "全局设置"
+    "globalConfig": "全局设置",
+    "extends": "继承",
+    "extendsDescription": "对象的所有参数"
   },
   "header": {
     "components": "组件",

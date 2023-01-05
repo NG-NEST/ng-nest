@@ -56,6 +56,17 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           prop.type = type.slice(0, type.indexOf(' ')) as NcPropType;
           let name = type.replace(prop.type, '').trim();
           prop.name = name.slice(0, name.indexOf(' '));
+          let overLine = name.replace(`${prop.name}`, '').trim();
+          if (overLine.startsWith('extends')) {
+            overLine = overLine.replace('extends', '').trim();
+            prop.extends = overLine.slice(0, overLine.indexOf(' '));
+            overLine = overLine.replace(`${prop.extends}`, '').trim();
+          }
+          if (overLine.startsWith('implements')) {
+            overLine = overLine.replace('implements', '').trim();
+            prop.implements = overLine.slice(0, overLine.indexOf(' '));
+            overLine = overLine.replace(`${prop.implements}`, '').trim();
+          }
           const labelLang = getDocs(docItem, lang) as string;
           prop.label = labelLang ? labelLang : docItem[docItem.start + 1];
           prop.description = getDocs(docItem, 'description') as string;

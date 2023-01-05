@@ -10,7 +10,7 @@ export interface NcProp {
    */
   name?: string;
   /**
-   * 
+   *
    */
   label?: string;
   /**
@@ -38,9 +38,13 @@ export interface NcProp {
    */
   decorator?: NcDecorator;
   /**
-   * 继承对象
+   * 继承对象 class
    */
   extends?: string;
+  /**
+   * 实现的接口 interface
+   */
+  implements?: string;
 }
 
 export interface NcPrope {

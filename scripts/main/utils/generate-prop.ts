@@ -21,7 +21,6 @@ export function generateProps(...types: NcProp[]) {
           let table = '';
           let inputTable = '';
           let outputTable = '';
-
           x.properties.forEach((y) => {
             let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
             let isWithConfig = withConfig ? true : false;
@@ -55,7 +54,12 @@ export function generateProps(...types: NcProp[]) {
           });
           let head = '';
           if (table !== '' || inputTable !== '' || outputTable !== '') {
-            head = `<h3>${x.name}</h3>
+            let extend = '';
+            if (x.extends && x.extends !== 'XProperty') {
+              extend = x.extends.replace('<', '&lt;');
+              extend = extend.replace('>', '&gt;');
+            }
+            head = `<h3>${x.name}${extend ? ` {{ "api.extends" | xI18n }} ${extend} {{ "api.extendsDescription" | xI18n }}` : ''}</h3>
             <p>${x.description}</p>`;
           }
           if (inputTable !== '') {
