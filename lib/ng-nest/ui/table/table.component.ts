@@ -134,6 +134,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition}`);
   }
 
+  getSticky(column: XTableColumn | XTableCell) {
+    return this.getStickyLeft(column) || this.getStickyRight(column);
+  }
+
   getStickyLeft(column: XTableColumn | XTableCell) {
     return Number(column.left) >= 0;
   }

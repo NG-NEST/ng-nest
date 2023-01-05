@@ -38,14 +38,14 @@
     [class.x-table-search]="case === 'search'"
   >
     <th
+      *ngFor="let column of columns; trackBy: trackByItem"
       cdkDrag
-      [cdkDragDisabled]="!column.dragColumn"
+      [cdkDragDisabled]="!column.dragColumn || table.getSticky(column)"
       (cdkDragStarted)="dragStarted(column)"
       (cdkDragEnded)="dragEnded(column)"
-      *ngFor="let column of columns; trackBy: trackByItem"
       [ngClass]="thClassMap"
       [class.x-table-th]="true"
-      [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
+      [class.x-table-sticky]="table.getSticky(column)"
       [class.x-table-sticky-left]="table.getStickyLeft(column)"
       [class.x-table-sticky-right]="table.getStickyRight(column)"
       [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
