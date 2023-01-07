@@ -183,7 +183,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     if ((this.adaptionHeight as number) > 0) {
       const captionHeight = this.table.tcaption?.nativeElement.clientHeight || 0;
       let headHeight = 0;
-      for (let thead of this.table.thead) {
+      for (let thead of this.table.theads) {
         headHeight += thead.nativeElement.clientHeight;
       }
       const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
