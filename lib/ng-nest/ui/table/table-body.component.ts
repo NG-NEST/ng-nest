@@ -109,8 +109,8 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
           const ele = x.srcElement as HTMLElement;
           this.table.scrollTop = ele.scrollTop;
           this.table.scrollLeft = ele.scrollLeft;
-          if (ele.scrollLeft >= 0 && this.table.thead.length > 0) {
-            for (let thead of this.table.thead) {
+          if (ele.scrollLeft >= 0 && this.table.theads.length > 0) {
+            for (let thead of this.table.theads) {
               thead.nativeElement.scrollLeft = this.table.scrollLeft;
             }
           }

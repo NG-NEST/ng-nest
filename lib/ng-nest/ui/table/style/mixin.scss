@@ -58,16 +58,10 @@
       }
       &.cdk-drop-list-dragging {
         > th {
-          &:hover {
-            background-color: transparent;
-          }
           &.cdk-drag-placeholder {
             background-color: $--x-background-a200;
             opacity: 0.9;
           }
-          // &:not(.cdk-drag-placeholder) {
-          //   transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
-          // }
         }
       }
     }

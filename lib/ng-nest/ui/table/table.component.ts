@@ -59,10 +59,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     }
   }
   tcaption!: ElementRef;
-  thead: ElementRef[] = [];
+  theads: ElementRef[] = [];
   tfoot!: ElementRef;
   virtualBody!: CdkVirtualScrollViewport;
-  headChange!: () => void;
+  theadsChange: (() => void)[] = [];
   bodyChange!: () => void;
   scrollContentEle!: HTMLElement;
   hasScrollY = false;
@@ -369,7 +369,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
 
   detectChanges() {
     this.bodyChange && this.bodyChange();
-    this.headChange && this.headChange();
+    this.theadsChanges();
     this.cdr.detectChanges();
+  }
+
+  theadsChanges() {
+    if (this.theadsChange && this.theadsChange.length > 0) {
+      for (let item of this.theadsChange) {
+        item();
+      }
+    }
   }
 }

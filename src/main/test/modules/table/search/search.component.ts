@@ -18,8 +18,8 @@ export class ExSearchComponent {
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 200, left: 100, sort: true },
-    { id: 'position', label: '职位', width: 150, sort: true },
-    { id: 'email', label: '邮箱', width: 150 },
+    { id: 'position', label: '职位', width: 150, dragColumn: true, sort: true },
+    { id: 'email', label: '邮箱', width: 150, dragColumn: true },
     { id: 'phone', label: '电话', width: 150 },
     { id: 'remark', label: '备注', flex: 1 },
     { id: 'organization', label: '组织机构', width: 150, right: 0, sort: true }

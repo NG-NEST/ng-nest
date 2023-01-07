@@ -40,8 +40,8 @@
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
       cdkDrag
-      [cdkDragDisabled]="!column.dragColumn || table.getSticky(column)"
-      (cdkDragStarted)="dragStarted(column)"
+      [cdkDragDisabled]="!column.dragColumn"
+      (cdkDragStarted)="dragStarted($event, column)"
       (cdkDragEnded)="dragEnded(column)"
       [ngClass]="thClassMap"
       [class.x-table-th]="true"
