@@ -1,3 +1,23 @@
+## [15.0.5](https://github.com/NG-NEST/ng-nest/compare/15.0.4...15.0.5) (2023-01-07)
+
+
+### Bug Fixes
+
+* **module:table:** fix fixed drag ([5565acf](https://github.com/NG-NEST/ng-nest/commit/5565acfd01e2a6359eb3ebc74033a17d191e013b))
+* **module:table:** sticky column disabled darg ([5b3a205](https://github.com/NG-NEST/ng-nest/commit/5b3a20544d7dcf0ba8a39349c624ce3ceb3d7bc8))
+* **test:** fix test error ([1bd1ab7](https://github.com/NG-NEST/ng-nest/commit/1bd1ab72a41eb510dc489e3d97b1c500c5edc4ab))
+
+
+### Features
+
+* **module:pagination:** add input size ([3793cf3](https://github.com/NG-NEST/ng-nest/commit/3793cf3525e7c3d4d7d2ef1cadcd8f025fcc2e23)), closes [#217](https://github.com/NG-NEST/ng-nest/issues/217)
+* **module:table:** add drag column ([97dad1e](https://github.com/NG-NEST/ng-nest/commit/97dad1e42023b94fd9ddc155b9eaa37b9c86c4e0)), closes [#216](https://github.com/NG-NEST/ng-nest/issues/216)
+* **module:transfer:** add footer template ([9559eab](https://github.com/NG-NEST/ng-nest/commit/9559eab847090de42ec7bf5ca55493d7e19962c1)), closes [#104](https://github.com/NG-NEST/ng-nest/issues/104)
+* **module:transfer:** add inverse ([82f6b8a](https://github.com/NG-NEST/ng-nest/commit/82f6b8aaef355679b29fe9ea7544afa54827a5d4)), closes [#102](https://github.com/NG-NEST/ng-nest/issues/102)
+* **module:transfer:** add search ([5670507](https://github.com/NG-NEST/ng-nest/commit/5670507bd3e8e44b7ec5c72c29201065d6644f27)), closes [#103](https://github.com/NG-NEST/ng-nest/issues/103)
+
+
+
 ## [15.0.4](https://github.com/NG-NEST/ng-nest/compare/15.0.3...15.0.4) (2022-12-09)
 
 
