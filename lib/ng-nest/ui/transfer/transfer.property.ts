@@ -108,6 +108,11 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    * @en_US Total number of table data
    */
   @Input() tableTotal: number = 0;
+  /**
+   * @zh_CN 反选操作
+   * @en_US Inverse select
+   */
+  @Input() @XInputBoolean() inverse?: XBoolean;
 }
 
 /**

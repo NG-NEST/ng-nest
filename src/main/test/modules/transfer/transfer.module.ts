@@ -18,6 +18,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
 import { ExSearchComponent } from './search/search.component';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XInputModule } from '@ng-nest/ui/input';
+import { ExInverseComponent } from './inverse/inverse.component';
 
 const routers = [{ path: '', component: TeTransferComponent }];
 
@@ -44,7 +45,8 @@ const routers = [{ path: '', component: TeTransferComponent }];
     ExTreeComponent,
     ExTableComponent,
     ExFooterComponent,
-    ExSearchComponent
+    ExSearchComponent,
+    ExInverseComponent
   ]
 })
 export class TeTransferModule {}

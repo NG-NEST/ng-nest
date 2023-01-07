@@ -12,6 +12,7 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTableModule } from '@ng-nest/ui/table';
 import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 @NgModule({
   declarations: [XTransferComponent, XTransferProperty],
@@ -27,7 +28,8 @@ import { XKeywordModule } from '@ng-nest/ui/keyword';
     XBaseFormModule,
     XTreeModule,
     XTableModule,
-    XKeywordModule
+    XKeywordModule,
+    XLinkModule
   ]
 })
 export class XTransferModule {}

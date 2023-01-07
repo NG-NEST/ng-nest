@@ -401,6 +401,22 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setButtonDisabled(source);
   }
 
+  onInverse(source: XTransferSource) {
+    for (let item of source.list!) {
+      if (!item.disabled) {
+        item.checked = !item.checked;
+      }
+    }
+    let type = `${this.type}` as XTransferType;
+    if (type === 'tree' && source.direction === 'right') {
+      type = 'list';
+    }
+    this.setCheckedCount(type, source);
+    this.setCheckedAll(source);
+    this.setButtonDisabled(source);
+    this.cdr.detectChanges();
+  }
+
   private getTableCheckColumn() {
     if (this.type !== 'table' || XIsEmpty(this.tableColumns)) return;
     this.tableCheckboxColumn = this.tableColumns?.find((x) => x.rowChecked);

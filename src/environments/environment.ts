@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'image',
+  defaultPage: 'transfer',
   static: 'http://localhost:9494'
 };
 

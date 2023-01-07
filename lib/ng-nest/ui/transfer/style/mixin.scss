@@ -17,6 +17,13 @@
     border-top-right-radius: $--x-border-radius;
     background-color: $--x-background;
     color: $--x-text-300;
+    &-left {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+  &-inverse {
+    margin: 0 0.5rem;
   }
   &-total {
     margin-left: 0.325rem;

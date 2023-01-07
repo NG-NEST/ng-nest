@@ -99,14 +99,17 @@
 
 <ng-template #sourceTitleTpl let-source="source">
   <div class="x-transfer-title">
-    <x-checkbox
-      *ngIf="source.title && !source.hiddenCheckAll"
-      [data]="[titleTpl ? '' : source.title]"
-      [(ngModel)]="source.checkedAll"
-      (ngModelChange)="checkedAllChange($event, source)"
-      [indeterminate]="source.indeterminate"
-    ></x-checkbox>
-    <span *ngIf="source.title && source.hiddenCheckAll">{{ source.title }}</span>
+    <div class="x-transfer-title-left">
+      <x-checkbox
+        *ngIf="source.title && !source.hiddenCheckAll"
+        [data]="[titleTpl ? '' : source.title]"
+        [(ngModel)]="source.checkedAll"
+        (ngModelChange)="checkedAllChange($event, source)"
+        [indeterminate]="source.indeterminate"
+      ></x-checkbox>
+      <span *ngIf="source.title && source.hiddenCheckAll">{{ source.title }}</span>
+      <x-link *ngIf="inverse && type === 'list'" class="x-transfer-inverse" type="primary" (click)="onInverse(source)">反选</x-link>
+    </div>
     <ng-container *xOutlet="titleTpl; context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
     >
