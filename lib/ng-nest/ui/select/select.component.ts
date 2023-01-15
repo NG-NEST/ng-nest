@@ -49,7 +49,7 @@ import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
 })
 export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
-  @ViewChild('select', { static: true }) select!: ElementRef;
+  @ViewChild('select', { static: true }) select!: ElementRef<HTMLElement>;
   @ViewChild('multipleValueTpl', { static: true }) multipleValueTpl!: TemplateRef<void>;
   @ViewChild('multipleInput') multipleInput!: XInputComponent;
 

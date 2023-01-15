@@ -41,7 +41,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 })
 export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
-  @ViewChild('autoComplete', { static: true }) autoComplete!: ElementRef;
+  @ViewChild('autoComplete', { static: true }) autoComplete!: ElementRef<HTMLElement>;
 
   override writeValue(value: any) {
     this.value = value;

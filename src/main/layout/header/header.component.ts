@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   lang = localStorage.getItem('Lang');
 
-  constructor(public ele: ElementRef, public layout: LayoutService) {}
+  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService) {}
 
   ngOnInit() {
     this.layout.headerRef = this.ele;

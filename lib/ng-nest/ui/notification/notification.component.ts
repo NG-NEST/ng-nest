@@ -15,7 +15,7 @@ import { delay } from 'rxjs/operators';
 export class XNotificationComponent {
   notification: XNotificationRef = { list: [] };
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
 
   onClose(item: XNotificationOption) {
     this.notification.list?.splice(this.notification.list.indexOf(item), 1);

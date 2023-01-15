@@ -23,10 +23,10 @@ import { XUploadCutType, XUploadNode, XUploadPortalPrefix } from './upload.prope
 })
 export class XUploadPortalComponent {
   file?: XUploadNode;
-  @ViewChild('imgRef') imgRef!: ElementRef;
-  @ViewChild('imgClipRef') imgClipRef!: ElementRef;
-  @ViewChild('boundaryRef') boundaryRef!: ElementRef;
-  @ViewChild('cutRef') cutRef!: ElementRef;
+  @ViewChild('imgRef') imgRef!: ElementRef<HTMLElement>;
+  @ViewChild('imgClipRef') imgClipRef!: ElementRef<HTMLElement>;
+  @ViewChild('boundaryRef') boundaryRef!: ElementRef<HTMLElement>;
+  @ViewChild('cutRef') cutRef!: ElementRef<HTMLElement>;
   ready = false;
   cutType: XUploadCutType = '';
   proportion = 1;
@@ -34,9 +34,9 @@ export class XUploadPortalComponent {
     width: 0,
     height: 0
   };
-  boundaryBox!: {
-    width: 0;
-    height: 0;
+  boundaryBox = {
+    width: 0,
+    height: 0
   };
   cutBox = {
     width: 0,

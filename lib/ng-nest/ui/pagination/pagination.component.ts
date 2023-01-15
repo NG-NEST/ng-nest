@@ -50,7 +50,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
 
   constructor(
     public configService: XConfigService,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public renderer: Renderer2,
     public cdr: ChangeDetectorRef,
     public i18n: XI18nService

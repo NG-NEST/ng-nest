@@ -28,7 +28,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   constructor(
     @Optional() @Host() public buttons: XButtonsComponent,
     public cdr: ChangeDetectorRef,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public renderer: Renderer2,
     public configService: XConfigService
   ) {

@@ -38,7 +38,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   constructor(
     @Optional() @Host() public carousel: XCarouselComponent,
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public sanitizer: DomSanitizer,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService

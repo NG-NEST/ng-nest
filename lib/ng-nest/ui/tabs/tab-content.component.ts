@@ -19,7 +19,7 @@ import { XBoolean } from '@ng-nest/ui/core';
 export class XTabContentComponent {
   @Input() content!: TemplateRef<void>;
   @Input() active: XBoolean = false;
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {
     this.renderer.addClass(this.elementRef.nativeElement, 'x-tab-content');
   }
 }

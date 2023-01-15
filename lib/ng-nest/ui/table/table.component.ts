@@ -58,9 +58,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       return 0;
     }
   }
-  tcaption!: ElementRef;
-  theads: ElementRef[] = [];
-  tfoot!: ElementRef;
+  tcaption!: ElementRef<HTMLElement>;
+  theads: ElementRef<HTMLElement>[] = [];
+  tfoot!: ElementRef<HTMLElement>;
   virtualBody!: CdkVirtualScrollViewport;
   theadsChange: (() => void)[] = [];
   bodyChange!: () => void;
@@ -83,15 +83,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   treeTableData: XTableRow[] = [];
   checkedValues: { [prop: string]: boolean } = {};
   indeterminate = '$$indeterminate';
-  @ViewChild('table') table!: ElementRef;
-  @ViewChild('caption') caption!: ElementRef;
+  @ViewChild('table') table!: ElementRef<HTMLElement>;
+  @ViewChild('caption') caption!: ElementRef<HTMLElement>;
   @ViewChild('pagination') pagination!: XPaginationComponent;
-  @ViewChild('stickyTopRightEle') stickyTopRightEle!: ElementRef;
-  @ViewChild('stickyBottomRightEle') stickyBottomRightEle!: ElementRef;
+  @ViewChild('stickyTopRightEle') stickyTopRightEle!: ElementRef<HTMLElement>;
+  @ViewChild('stickyBottomRightEle') stickyBottomRightEle!: ElementRef<HTMLElement>;
   private _unSubject = new Subject<void>();
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

@@ -16,7 +16,7 @@ export class XMessageBoxComponent implements OnInit {
   messageBox!: XMessageBoxRef;
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
 
   get msgInput() {
     return this.messageBox.input!;

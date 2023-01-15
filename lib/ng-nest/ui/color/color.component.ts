@@ -16,7 +16,7 @@ export class XColorComponent extends XColorProperty implements OnInit {
   constructor(
     @Inject(DOCUMENT) private doc: any,
     private renderer: Renderer2,
-    private elementRef: ElementRef,
+    private elementRef: ElementRef<HTMLElement>,
     public configService: XConfigService
   ) {
     super();

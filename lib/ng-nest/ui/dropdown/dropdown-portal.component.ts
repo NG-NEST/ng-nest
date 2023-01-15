@@ -80,7 +80,7 @@ export class XDropdownPortalComponent implements OnDestroy {
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private overlay: Overlay,

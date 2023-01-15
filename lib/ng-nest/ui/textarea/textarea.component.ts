@@ -23,8 +23,8 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XTextareaComponent)]
 })
 export class XTextareaComponent extends XTextareaProperty implements OnInit, OnChanges {
-  @ViewChild('textarea', { static: true }) textarea!: ElementRef;
-  @ViewChild('textareaRef', { static: true }) textareaRef!: ElementRef;
+  @ViewChild('textarea', { static: true }) textarea!: ElementRef<HTMLElement>;
+  @ViewChild('textareaRef', { static: true }) textareaRef!: ElementRef<HTMLElement>;
 
   override writeValue(value: any) {
     this.value = value;
@@ -53,7 +53,7 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public override cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

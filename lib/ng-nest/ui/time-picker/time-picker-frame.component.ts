@@ -28,10 +28,10 @@ export class XTimePickerFrameComponent {
   @Input() value!: number;
   @Input() use12Hours!: XBoolean;
   @Output() nodeEmit = new EventEmitter<Date>();
-  @ViewChild('hourRef', { static: false }) hourRef?: ElementRef;
-  @ViewChild('minuteRef', { static: false }) minuteRef?: ElementRef;
-  @ViewChild('secondRef', { static: false }) secondRef?: ElementRef;
-  @ViewChild('use12HoursRef', { static: false }) use12HoursRef?: ElementRef;
+  @ViewChild('hourRef') hourRef?: ElementRef<HTMLElement>;
+  @ViewChild('minuteRef') minuteRef?: ElementRef<HTMLElement>;
+  @ViewChild('secondRef') secondRef?: ElementRef<HTMLElement>;
+  @ViewChild('use12HoursRef') use12HoursRef?: ElementRef<HTMLElement>;
   model!: Date;
   now = new Date();
   hour: number = 0;
@@ -168,7 +168,7 @@ export class XTimePickerFrameComponent {
     this.selected(this.use12HoursRef?.nativeElement, this.use12Hour, animating);
   }
 
-  selected(ele: HTMLElement, num: number | string, animating = false) {
+  selected(ele?: HTMLElement, num?: number | string, animating = false) {
     if (!ele) return;
     if (this.scrollAnimating[ele.className]) return;
     const len = XIsString(num) ? this.use12HoursData.findIndex((x) => x.id === num) : Number(num);

@@ -42,7 +42,7 @@ import { XDateRangePortalComponent } from './date-range-portal.component';
   providers: [XValueAccessor(XDateRangeComponent), DatePipe]
 })
 export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges {
-  @ViewChild('dateRange', { static: true }) dateRange!: ElementRef;
+  @ViewChild('dateRange', { static: true }) dateRange!: ElementRef<HTMLElement>;
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
   @ViewChild('inputStartCom', { static: true }) inputStartCom!: XInputComponent;
   @ViewChild('inputEndCom', { static: true }) inputEndCom!: XInputComponent;

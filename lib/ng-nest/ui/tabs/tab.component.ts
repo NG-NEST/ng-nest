@@ -11,8 +11,8 @@ import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directi
 })
 export class XTabComponent extends XTabProperty {
   @ViewChild('contentTpl', { static: true }) content!: TemplateRef<void>;
-  @ContentChild(XTabLinkTemplateDirective, { static: false }) linkTemplateDirective!: XTabLinkTemplateDirective;
-  @ContentChild(XTabLinkDirective, { static: false }) linkDirective!: XTabLinkDirective;
+  @ContentChild(XTabLinkTemplateDirective) linkTemplateDirective!: XTabLinkTemplateDirective;
+  @ContentChild(XTabLinkDirective) linkDirective!: XTabLinkDirective;
 
   constructor(public configService: XConfigService) {
     super();

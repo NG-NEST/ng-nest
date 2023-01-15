@@ -28,9 +28,9 @@ import { XInputGroupComponent } from './input-group.component';
   providers: [XValueAccessor(XInputComponent)]
 })
 export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
-  @ViewChild('inputElement', { static: true }) inputElement!: ElementRef;
-  @ViewChild('inputRef', { static: true }) inputRef!: ElementRef;
-  @ViewChild('inputValueRef') inputValueRef!: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement!: ElementRef<HTMLElement>;
+  @ViewChild('inputRef', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('inputValueRef') inputValueRef!: ElementRef<HTMLElement>;
 
   @HostBinding('style.width.px') get getWidth() {
     return this.width;
@@ -77,7 +77,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public override cdr: ChangeDetectorRef,
     public configService: XConfigService,
     @Optional() public inputGroup: XInputGroupComponent

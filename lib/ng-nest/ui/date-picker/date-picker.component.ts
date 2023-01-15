@@ -31,7 +31,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XDatePickerComponent), DatePipe]
 })
 export class XDatePickerComponent extends XDatePickerProperty implements OnInit, OnChanges {
-  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
+  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   modelType: XDatePickerModelType = 'date';

@@ -25,7 +25,7 @@ declare let Prism: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XHighlightComponent extends XHighlightProperty implements OnChanges {
-  @ViewChild('code', { static: false }) codeRef!: ElementRef;
+  @ViewChild('code') codeRef!: ElementRef<HTMLElement>;
 
   display!: SafeHtml;
   lines: string[] = [];
@@ -35,7 +35,7 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   iconCopy = 'fto-copy';
 
   constructor(
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public renderer: Renderer2,
     public cdr: ChangeDetectorRef,
     public sanitizer: DomSanitizer,

@@ -27,10 +27,10 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
 export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('sliderSelect', { static: true }) sliderSelect!: ElementRef;
-  @ViewChild('dragRef', { static: true }) dragRef!: ElementRef;
-  @ViewChild('railRef', { static: true }) railRef!: ElementRef;
-  @ViewChild('processRef', { static: true }) processRef!: ElementRef;
+  @ViewChild('sliderSelect', { static: true }) sliderSelect!: ElementRef<HTMLElement>;
+  @ViewChild('dragRef', { static: true }) dragRef!: ElementRef<HTMLElement>;
+  @ViewChild('railRef', { static: true }) railRef!: ElementRef<HTMLElement>;
+  @ViewChild('processRef', { static: true }) processRef!: ElementRef<HTMLElement>;
   @ViewChild(XTooltipDirective, { static: true }) tooltip!: XTooltipDirective;
   left: number = 0;
   visible: boolean = false;
@@ -54,7 +54,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public override cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

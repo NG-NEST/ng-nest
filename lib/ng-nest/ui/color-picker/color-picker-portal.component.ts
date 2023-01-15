@@ -41,8 +41,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.animating(true);
   }
 
-  @ViewChild('panelRef', { static: true }) panelRef!: ElementRef;
-  @ViewChild('plateRef', { static: true }) plateRef!: ElementRef;
+  @ViewChild('panelRef', { static: true }) panelRef!: ElementRef<HTMLElement>;
+  @ViewChild('plateRef', { static: true }) plateRef!: ElementRef<HTMLElement>;
   @ViewChild('transparentCom', { static: true }) transparentCom!: XSliderSelectComponent;
   value!: string;
   transparentRail!: HTMLElement;
@@ -70,7 +70,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   private _unSubject = new Subject<void>();
 
   constructor(
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public renderer: Renderer2,
     @Inject(DOCUMENT) public doc: any,
     public ngZone: NgZone,
@@ -101,7 +101,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.panel = this.panelRef.nativeElement.getBoundingClientRect();
     this.plate = this.plateRef.nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div');
+    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();

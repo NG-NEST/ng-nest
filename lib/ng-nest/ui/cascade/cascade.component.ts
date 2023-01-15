@@ -30,7 +30,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XCascadeComponent)]
 })
 export class XCascadeComponent extends XCascadeProperty implements OnInit, OnChanges {
-  @ViewChild('cascade', { static: true }) cascade!: ElementRef;
+  @ViewChild('cascade', { static: true }) cascade!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   override writeValue(value: any) {

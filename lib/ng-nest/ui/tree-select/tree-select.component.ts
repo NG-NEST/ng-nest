@@ -48,7 +48,7 @@ import { XI18nTreeSelect, XI18nService } from '@ng-nest/ui/i18n';
 })
 export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit, OnChanges {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
-  @ViewChild('treeSelect', { static: true }) treeSelect!: ElementRef;
+  @ViewChild('treeSelect', { static: true }) treeSelect!: ElementRef<HTMLElement>;
   @ViewChild('multipleValueTpl', { static: true }) multipleValueTpl!: TemplateRef<void>;
   @ViewChild('multipleInput') multipleInput!: XInputComponent;
 

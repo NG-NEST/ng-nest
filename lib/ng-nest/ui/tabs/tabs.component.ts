@@ -41,8 +41,8 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
 
   @ContentChildren(XTabComponent) listTabs!: QueryList<XTabComponent>;
 
-  @ViewChild(XSliderComponent, { static: false }) slider!: XSliderComponent;
-  @ViewChild('actionsRef', { static: false }) actionsRef!: ElementRef;
+  @ViewChild(XSliderComponent) slider!: XSliderComponent;
+  @ViewChild('actionsRef') actionsRef!: ElementRef<HTMLElement>;
 
   constructor(
     private cdr: ChangeDetectorRef,

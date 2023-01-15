@@ -37,7 +37,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     @Optional() public http: HttpClient,
     public configService: XConfigService

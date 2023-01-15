@@ -14,7 +14,7 @@ export class XAsideComponent extends XAsideProperty {
     return this.width;
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XAsidePrefix);
   }

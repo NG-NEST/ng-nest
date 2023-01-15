@@ -54,7 +54,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   constructor(
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     private renderer: Renderer2,
     public iconService: XIconService,
     private cdr: ChangeDetectorRef,

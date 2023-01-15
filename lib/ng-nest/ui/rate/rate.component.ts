@@ -12,7 +12,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XRateComponent)]
 })
 export class XRateComponent extends XRateProperty {
-  @ViewChild('rate', { static: true }) rate!: ElementRef;
+  @ViewChild('rate', { static: true }) rate!: ElementRef<HTMLElement>;
   rates: number[] = [];
 
   hoverActivated = 0;
@@ -50,7 +50,7 @@ export class XRateComponent extends XRateProperty {
   rateNodes: any = [];
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public override cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

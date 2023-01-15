@@ -43,7 +43,7 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

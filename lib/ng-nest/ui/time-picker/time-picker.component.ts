@@ -30,7 +30,7 @@ import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
 export class XTimePickerComponent extends XTimePickerProperty implements OnInit {
-  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef;
+  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   override writeValue(value: any) {
@@ -72,7 +72,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,

@@ -15,7 +15,7 @@ import { delay } from 'rxjs/operators';
 export class XMessageComponent {
   message: XMessagePlacementRef = { ref: {}, list: [], closeAll: () => {} };
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
 
   onClose(item: XMessageOption) {
     this.message.list?.splice(this.message.list.indexOf(item), 1);

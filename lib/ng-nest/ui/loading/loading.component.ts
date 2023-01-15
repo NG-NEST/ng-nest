@@ -28,12 +28,12 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   @HostBinding('class.x-loading-parent') get getLoading() {
     return this.loading;
   }
-  @ViewChild('loadingTpl', { static: false }) loadingTpl!: TemplateRef<void>;
+  @ViewChild('loadingTpl') loadingTpl!: TemplateRef<void>;
   portalRef!: XPortalOverlayRef<any>;
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public portal: XPortalService,
     public viewContainerRef: ViewContainerRef,

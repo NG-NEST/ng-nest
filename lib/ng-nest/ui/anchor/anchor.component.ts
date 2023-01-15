@@ -26,9 +26,9 @@ import { throttleTime, takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('anchor', { static: true }) anchor!: ElementRef;
-  @ViewChild('content', { static: true }) content!: ElementRef;
-  hElements: HTMLElement[] = [];
+  @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
+  @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
+  hElements!: NodeListOf<HTMLElement>;
   sliderData: XSliderNode[] = [];
   activatedIndex: number = 0;
   sliderHeight?: number;
@@ -39,7 +39,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) doc: any,
     public configService: XConfigService

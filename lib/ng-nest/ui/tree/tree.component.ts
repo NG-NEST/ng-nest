@@ -25,7 +25,7 @@ import { XTreeNodeComponent } from './tree-node.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeComponent extends XTreeProperty implements OnChanges {
-  @ViewChild('tree', { static: true }) tree!: ElementRef;
+  @ViewChild('tree', { static: true }) tree!: ElementRef<HTMLElement>;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
   nodeComponents!: QueryList<XTreeNodeComponent>;
   @ViewChildren(XTreeNodeComponent)
@@ -43,7 +43,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   private _resizeObserver!: ResizeObserver;
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

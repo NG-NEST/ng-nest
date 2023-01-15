@@ -42,7 +42,7 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public overlay: Overlay,
     public portalService: XPortalService,

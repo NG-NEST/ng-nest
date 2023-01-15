@@ -21,7 +21,7 @@ import { XConfigService } from '@ng-nest/ui/core';
 export class XInnerComponent extends XInnerProperty implements OnInit, OnChanges {
   private _ele: HTMLElement;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XInnerPrefix);
     this._ele = this.elementRef.nativeElement;

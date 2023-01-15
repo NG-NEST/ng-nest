@@ -63,7 +63,7 @@ import { XFormInputValidator } from '@ng-nest/ui/base-form';
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   @Input() override option!: XFormControlOption;
   @Input() form: any;
-  @ViewChild(FormControlName, { static: false }) control!: FormControlName;
+  @ViewChild(FormControlName) control!: FormControlName;
   locale: XI18nForm = {};
   private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
   private _changeProps = ['label', ...this._sharedProps];

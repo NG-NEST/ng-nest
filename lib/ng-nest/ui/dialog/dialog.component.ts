@@ -38,7 +38,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
   @HostBinding('class.x-dialog-visible') get getVisible() {
     return this.visible;
   }
-  @ViewChild('dialogTpl', { static: false }) dialogTpl!: TemplateRef<void>;
+  @ViewChild('dialogTpl') dialogTpl!: TemplateRef<void>;
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
   scrollStrategy: BlockScrollStrategy;
@@ -80,7 +80,7 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public viewContainerRef: ViewContainerRef,
     public protalService: XPortalService,

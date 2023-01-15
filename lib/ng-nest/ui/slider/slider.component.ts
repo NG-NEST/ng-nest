@@ -26,8 +26,8 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSliderComponent extends XSliderProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @ViewChild('sliderScroll') sliderScroll!: ElementRef;
-  @ViewChild('sliderNodes') sliderNodes!: ElementRef;
+  @ViewChild('sliderScroll') sliderScroll!: ElementRef<HTMLElement>;
+  @ViewChild('sliderNodes') sliderNodes!: ElementRef<HTMLElement>;
   nodes: XSliderNode[] = [];
   activated!: XSliderNode;
   scrollClassMap: XClassMap = {};
@@ -63,7 +63,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {
@@ -174,7 +174,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
     if (XIsEmpty(moveEle)) return;
-    const moveRect = moveEle.getBoundingClientRect();
+    const moveRect = moveEle!.getBoundingClientRect();
     const currentOffset = this.offset;
     let offset = currentOffset;
     if (this.layout === 'row') {
@@ -230,7 +230,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   setHighlight() {
     if (XIsUndefined(this.sliderNodes)) return;
-    const activeEle = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${Number(this.activatedIndex) + 1})`);
+    const activeEle: HTMLElement = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${Number(this.activatedIndex) + 1})`)!;
     if (!activeEle) return;
     this.highlightBox = {
       width: `${activeEle.offsetWidth}px`,

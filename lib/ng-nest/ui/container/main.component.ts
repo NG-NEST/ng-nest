@@ -10,7 +10,7 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMainComponent {
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
     this.renderer.addClass(this.elementRef.nativeElement, XMainPrefix);
   }
 }

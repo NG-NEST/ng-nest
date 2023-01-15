@@ -28,7 +28,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XColorPickerComponent)]
 })
 export class XColorPickerComponent extends XColorPickerProperty implements OnInit {
-  @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef;
+  @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
   override writeValue(value: string) {

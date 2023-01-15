@@ -41,13 +41,13 @@ import { XListDropGroup, X_LIST_DROP_GROUP } from './list-drop-group.directive';
 export class XListComponent extends XListProperty implements OnInit, OnChanges {
   nodes: XListNode[] = [];
   selectedNodes: XListNode[] = [];
-  @ViewChild('headerRef') headerRef!: ElementRef;
-  @ViewChild('footerRef') footerRef!: ElementRef;
-  @ViewChild('selectAllRef') selectAllRef!: ElementRef;
-  @ViewChild('loadMoreRef') loadMoreRef!: ElementRef;
+  @ViewChild('headerRef') headerRef!: ElementRef<HTMLElement>;
+  @ViewChild('footerRef') footerRef!: ElementRef<HTMLElement>;
+  @ViewChild('selectAllRef') selectAllRef!: ElementRef<HTMLElement>;
+  @ViewChild('loadMoreRef') loadMoreRef!: ElementRef<HTMLElement>;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
-  @ViewChild(CdkDropList, { static: false }) dropList!: CdkDropList;
-  @ViewChild('listItems') listItems!: ElementRef;
+  @ViewChild(CdkDropList) dropList!: CdkDropList;
+  @ViewChild('listItems') listItems!: ElementRef<HTMLElement>;
   @ViewChildren(XListOptionComponent)
   options!: QueryList<XListOptionComponent>;
   keyManager!: ActiveDescendantKeyManager<XListOptionComponent>;
@@ -123,7 +123,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   constructor(
     public renderer: Renderer2,
     public override cdr: ChangeDetectorRef,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public configService: XConfigService,
     private i18n: XI18nService,
     @Optional()

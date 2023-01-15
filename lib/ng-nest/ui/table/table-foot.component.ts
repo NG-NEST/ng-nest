@@ -19,7 +19,7 @@ import { removeNgTag } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
-  @ViewChild('tfoot') tfoot!: ElementRef;
+  @ViewChild('tfoot') tfoot!: ElementRef<HTMLElement>;
   @Input() table: any;
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
@@ -27,7 +27,7 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef
   ) {
     super();

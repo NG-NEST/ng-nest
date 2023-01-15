@@ -32,11 +32,11 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
   private _unSubject = new Subject<void>();
   private _resizeObserver!: ResizeObserver;
 
-  @ViewChild('labelRef') labelRef!: ElementRef;
+  @ViewChild('labelRef') labelRef!: ElementRef<HTMLElement>;
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService,
     @Inject(DOCUMENT) document: any

@@ -7,7 +7,7 @@ import { LayoutService } from '../layout.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ContentComponent implements OnInit {
-  constructor(public ele: ElementRef, public layout: LayoutService) {}
+  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService) {}
 
   ngOnInit() {
     this.layout.contentRef = this.ele;

@@ -34,14 +34,14 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   nodes: XMenuNode[] = [];
   rootIndex: number = 0;
   activated?: XMenuNode;
-  activatedElementRef!: ElementRef;
+  activatedElementRef!: ElementRef<HTMLElement>;
   expanded: any[] = [];
   private _unSubject = new Subject<void>();
   private _target!: HTMLElement;
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) public doc: any,
     public configService: XConfigService

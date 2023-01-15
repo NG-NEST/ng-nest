@@ -27,7 +27,7 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
   constructor(
     @Optional() @Host() public collapseComponent: XCollapseComponent,
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef
   ) {
     super();

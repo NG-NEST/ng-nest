@@ -12,7 +12,7 @@ import { XInputGroupPrefix, XInputGroupProperty } from './input.property';
 export class XInputGroupComponent extends XInputGroupProperty {
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

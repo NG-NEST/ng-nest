@@ -37,7 +37,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.rowHeight !== 0 && this.itemSize > this.rowHeight ? this.rowHeight : this.itemSize;
   }
 
-  @ViewChild('tbody') tbody!: ElementRef;
+  @ViewChild('tbody') tbody!: ElementRef<HTMLElement>;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
   @Input() table: any;
 
@@ -47,7 +47,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) public doc: any,
     public configService: XConfigService

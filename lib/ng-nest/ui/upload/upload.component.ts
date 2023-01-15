@@ -30,7 +30,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   providers: [XValueAccessor(XUploadComponent)]
 })
 export class XUploadComponent extends XUploadProperty implements OnInit, OnDestroy {
-  @ViewChild('file', { static: true }) file!: ElementRef;
+  @ViewChild('file', { static: true }) file!: ElementRef<HTMLInputElement>;
   files: XUploadNode[] = [];
   showUpload = false;
   uploadNodes: XUploadNode[] = [];
@@ -55,7 +55,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     @Optional() public http: HttpClient,
     public override cdr: ChangeDetectorRef,
     public portalService: XPortalService,

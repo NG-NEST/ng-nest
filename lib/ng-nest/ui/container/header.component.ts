@@ -28,7 +28,7 @@ export class XHeaderComponent extends XHeaderProperty implements OnInit {
   constructor(
     @Optional() @Host() public container: XContainerComponent,
     private renderer: Renderer2,
-    private elementRef: ElementRef,
+    private elementRef: ElementRef<HTMLElement>,
     public configService: XConfigService
   ) {
     super();

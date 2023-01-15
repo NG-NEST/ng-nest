@@ -23,7 +23,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sortStr = '';
   theadStyle: { [property: string]: any } = {};
   thClassMap: XClassMap = {};
-  @ViewChild('thead') thead!: ElementRef;
+  @ViewChild('thead') thead!: ElementRef<HTMLElement>;
   @Input() table: any;
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
@@ -31,7 +31,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

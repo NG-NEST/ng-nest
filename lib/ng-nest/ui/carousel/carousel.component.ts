@@ -23,8 +23,8 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCarouselComponent extends XCarouselProperty implements OnInit, OnChanges {
-  @ViewChild('carousel') carousel!: ElementRef;
-  @ViewChild('content') content!: ElementRef;
+  @ViewChild('carousel') carousel!: ElementRef<HTMLElement>;
+  @ViewChild('content') content!: ElementRef<HTMLElement>;
   start: number = -1;
   before!: number;
   timer: any;
@@ -34,7 +34,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
 
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

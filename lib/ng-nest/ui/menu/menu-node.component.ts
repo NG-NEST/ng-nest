@@ -13,7 +13,7 @@ export class XMenuNodeComponent extends XMenuNodeProperty {
   constructor(
     // @Host() @Optional() public menu: XMenuComponent,
     public cdr: ChangeDetectorRef,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public configService: XConfigService
   ) {
     super();

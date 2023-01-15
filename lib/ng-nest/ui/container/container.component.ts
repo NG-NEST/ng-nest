@@ -10,7 +10,7 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty implements OnInit {
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
   }

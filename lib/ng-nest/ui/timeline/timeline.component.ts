@@ -25,7 +25,7 @@ export class XTimelineComponent extends XTimelineProperty implements OnInit, OnC
   private _unSubject = new Subject<void>();
   constructor(
     public renderer: Renderer2,
-    public elementRef: ElementRef,
+    public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService
   ) {

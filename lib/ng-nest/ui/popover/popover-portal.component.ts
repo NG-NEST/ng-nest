@@ -39,8 +39,8 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
 
   @HostBinding('@x-fade-animation') animation: any;
 
-  @ViewChild('popoverPortal', { static: true }) popoverPortal!: ElementRef;
-  @ViewChild('popoverArrow', { static: true }) popoverArrow!: ElementRef;
+  @ViewChild('popoverPortal', { static: true }) popoverPortal!: ElementRef<HTMLElement>;
+  @ViewChild('popoverArrow', { static: true }) popoverArrow!: ElementRef<HTMLElement>;
 
   classMap: XClassMap = {};
   box!: DOMRect;
