@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
-import { map, orderBy } from 'lodash';
 
 @Injectable()
 export class DefaultService extends XRepositoryAbstract {
@@ -40,7 +39,7 @@ export class DefaultService extends XRepositoryAbstract {
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
-      let chunks = chunk(data, size);
+      let chunks = XChunk(data, size);
       let result = { total: 0, list: [] };
       if ((index as number) <= chunks.length) {
         result.total = data.length;
@@ -98,10 +97,10 @@ export class DefaultService extends XRepositoryAbstract {
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
-    return orderBy(
+    return XOrderBy(
       data,
-      map(sort, (x) => x.field),
-      map(sort, (x) => x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

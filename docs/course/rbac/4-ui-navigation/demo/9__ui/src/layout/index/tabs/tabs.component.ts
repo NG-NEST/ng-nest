@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { XRemove } from '@ng-nest/ui/core';
 import { XMenuNode } from '@ng-nest/ui/menu';
-import { remove } from 'lodash';
 import { IndexService } from '../index.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class TabsComponent implements OnInit {
 
   close(tab: XMenuNode) {
     let deleteIndex = 0;
-    remove(this.index.tabs, (x, index) => {
+    XRemove(this.index.tabs, (x, index) => {
       if (x.routerLink === tab.routerLink) deleteIndex = index;
       return x.routerLink === tab.routerLink;
     });

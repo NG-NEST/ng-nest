@@ -6,4 +6,8 @@ export * from './remove';
 export * from './order-by';
 export * from './clone-deep';
 export * from './has-in';
+export * from './chunk';
+export * from './guid';
+export * from './group-by';
+export * from './resize';
 export * from './property';

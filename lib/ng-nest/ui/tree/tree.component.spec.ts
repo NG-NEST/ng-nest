@@ -12,7 +12,7 @@ import { XLinkModule } from '@ng-nest/ui/link';
 import { XFormModule, XFormRow } from '@ng-nest/ui/form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UntypedFormGroup } from '@angular/forms';
-import { XRepositoryService, XHttpService, guid } from '@ng-nest/ui/core';
+import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -583,7 +583,7 @@ class TestXTreeOperationComponent {
         this.selected = node;
         this.formGroup.reset();
         this.formGroup.patchValue({
-          id: guid(),
+          id: XGuid(),
           pid: node.id,
           type: 'department'
         });
@@ -593,7 +593,7 @@ class TestXTreeOperationComponent {
         this.type = type;
         this.formGroup.reset();
         this.formGroup.patchValue({
-          id: guid(),
+          id: XGuid(),
           pid: null,
           type: ''
         });

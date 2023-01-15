@@ -1,4 +1,4 @@
-export function chunk<T>(array: T[], size = 1): T[][] {
+export function XChunk<T>(array: T[], size = 1): T[][] {
   const len = array == null ? 0 : array.length;
   if (!len || size < 1) {
     return [];

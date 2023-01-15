@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XDatePickerType, XPickerMonthProperty } from './date-picker.property';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
@@ -67,7 +67,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     for (let i = 0; i < 16; i++) {
       dates = [...dates, new Date(year, i, 1)];
     }
-    this.dates = chunk(dates, 4) as Date[][];
+    this.dates = XChunk(dates, 4) as Date[][];
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
     }

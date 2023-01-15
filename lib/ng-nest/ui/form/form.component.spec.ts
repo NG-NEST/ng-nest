@@ -6,13 +6,12 @@ import { By } from '@angular/platform-browser';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId } from '@ng-nest/ui/core';
+import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 import { XButtonModule } from '@ng-nest/ui/button';
-import { map, orderBy } from 'lodash';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -101,7 +100,7 @@ class UsersServiceTest extends XRepositoryAbstract {
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
-      let chunks = chunk(data, size);
+      let chunks = XChunk(data, size);
       let result = { total: 0, list: [] };
       if ((index as number) <= chunks.length) {
         result.total = data.length;
@@ -159,10 +158,10 @@ class UsersServiceTest extends XRepositoryAbstract {
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
-    return orderBy(
+    return XOrderBy(
       data,
-      map(sort, (x) => x.field),
-      map(sort, (x) => x.value) as ('desc' | 'asc')[]
+      sort.map(x=> x.field),
+      sort.map(x=> x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

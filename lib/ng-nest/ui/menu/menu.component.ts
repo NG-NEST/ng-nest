@@ -13,7 +13,7 @@ import {
   Inject
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
-import { XClassMap, XIsChange, XIsEmpty, XSetData, groupBy, XConfigService } from '@ng-nest/ui/core';
+import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 
@@ -169,7 +169,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   setCategory(nodes: XMenuNode[]) {
-    const group = groupBy(nodes as XMenuNode[], 'category');
+    const group = XGroupBy(nodes as XMenuNode[], 'category');
     for (let list of group) {
       const first = list[0];
       if (first.category) {

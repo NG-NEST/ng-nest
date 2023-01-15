@@ -1,4 +1,4 @@
-export function groupBy<T>(array: T[], name: string): T[][] {
+export function XGroupBy<T>(array: T[], name: string): T[][] {
   const groups: any = {};
   array.forEach((obj: any) => {
     const group = JSON.stringify(obj[name]);

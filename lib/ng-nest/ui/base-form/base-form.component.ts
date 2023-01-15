@@ -1,6 +1,6 @@
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { ChangeDetectorRef, Component, forwardRef, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, setFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
+import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, XSetFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
 @Component({ template: '' })
@@ -58,7 +58,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
     this.disabled = disabled;
   }
   setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
-    return setFlex(ele, renderer, justify, align, direction);
+    return XSetFlex(ele, renderer, justify, align, direction);
   }
   formControlValidator() {
     this.validator = true;

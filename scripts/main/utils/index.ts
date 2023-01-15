@@ -4,6 +4,8 @@ export * from './replace-key';
 export * from './check-mkdir';
 export * from './copy-dir';
 export * from './parse-md-doc';
+export * from './order-by';
+export * from './has-in';
 export * from './themes';
 export * from './random-string';
 export * from './handler-page';

@@ -9,7 +9,7 @@ import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -153,7 +153,7 @@ class UsersServiceTest extends XRepositoryAbstract {
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
-      let chunks = chunk(data, size);
+      let chunks = XChunk(data, size);
       let result = { total: 0, list: [] };
       if ((index as number) <= chunks.length) {
         result.total = data.length;

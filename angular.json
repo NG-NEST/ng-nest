@@ -23,7 +23,6 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "allowedCommonJsDependencies": ["lodash"],
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"],
             "styles": ["node_modules/prismjs/themes/prism.css", "lib/ng-nest/ui/style/core/index.scss", "src/styles.scss"],
             "scripts": [

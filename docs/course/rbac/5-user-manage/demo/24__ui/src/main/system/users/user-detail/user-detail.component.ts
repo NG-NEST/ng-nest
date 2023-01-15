@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { guid } from '@ng-nest/ui/core';
+import { XGuid } from '@ng-nest/ui/core';
 import { XFormComponent, XControl } from '@ng-nest/ui/form';
 import { XMessageService } from '@ng-nest/ui/message';
 import { UserService } from './../user.service';
@@ -42,7 +42,7 @@ export class UserDetailComponent implements OnInit {
       pattern: /^((\+?86)|(\(\+86\)))?1\d{10}$/,
       message: '手机号格式不正确，+8615212345678'
     },
-    { control: 'input', id: 'id', hidden: true, value: guid() }
+    { control: 'input', id: 'id', hidden: true, value: XGuid() }
   ];
   title = '';
   get formInvalid() {

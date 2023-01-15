@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { isNumber } from 'lodash';
 import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
@@ -13,7 +12,7 @@ export class ExDefaultComponent {
 
   constructor(private formBuilder: UntypedFormBuilder) {
     this.form.valueChanges.subscribe((x) => {
-      console.log(isNumber(x.aaaa));
+      console.log(!isNaN(x.aaaa));
     });
   }
 
@@ -22,6 +21,6 @@ export class ExDefaultComponent {
   });
 
   change(event: number, value: number | null) {
-    console.log(isNumber(value), isNumber(event), value);
+    console.log(!isNaN(value!), !isNaN(event), value);
   }
 }

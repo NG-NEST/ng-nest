@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EditService } from './edit.service';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
-import { guid } from '@ng-nest/ui/core';
+import { XGuid } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-edit',
@@ -30,7 +30,7 @@ export class ExEditComponent {
   ngOnInit() {}
 
   add() {
-    this.data = [...this.data, { id: guid(), name: '', position: '', status: false }];
+    this.data = [...this.data, { id: XGuid(), name: '', position: '', status: false }];
   }
 
   del(row: XTableRow) {

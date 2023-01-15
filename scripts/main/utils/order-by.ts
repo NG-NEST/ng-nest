@@ -1,4 +1,4 @@
-export function XOrderBy<T>(collection: Array<T>, iteratees: Array<string>, orders?: Array<'asc' | 'desc'>): T[] {
+export function orderBy<T>(collection: Array<T>, iteratees: Array<string>, orders?: Array<'asc' | 'desc'>): T[] {
   if (!iteratees) return collection;
   if (!orders) orders = [];
 

@@ -1,9 +1,8 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { NcCates, NcCate } from '../interfaces/examples';
-import { handlerTabs, handlerTabsByFiles, randomString, generateTabs } from '.';
+import { handlerTabs, handlerTabsByFiles, randomString, generateTabs, hasIn } from '.';
 import { NcTabsLayoutEnum, NcTab, NcTabsSizeEnum, NcTabsNodeJustifyEnum, NcTabsTypeEnum } from '../interfaces/tabs';
-import { hasIn } from 'lodash';
 import { replaceKey } from './replace-key';
 import { NcTemplate } from '../interfaces/template';
 

@@ -14,9 +14,9 @@ import {
   generatePatterns,
   hanlderSpec,
   hanlderProp,
-  generateProps
+  generateProps,
+  hasIn
 } from '.';
-import { find, hasIn } from 'lodash';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
@@ -42,7 +42,7 @@ export async function handlerComponent(page: NcPage) {
 export function handlerExamples(page: NcPage): Promise<void> {
   if (page.custom.indexOf('__examples') <= -1) return;
   let examples: NcExamples = {};
-  let comTpl = find(page.templates, (x) => x.name == 'component');
+  let comTpl = page.templates.find((x) => x.name == 'component');
 
   examples.path = path.join(page.path, `examples`);
   examples.tplPath = path.join(tplDir, 'examples-component.template.html');

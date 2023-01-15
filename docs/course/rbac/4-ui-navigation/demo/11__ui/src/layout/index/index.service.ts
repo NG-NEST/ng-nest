@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { XMenuNode } from '@ng-nest/ui/menu';
 import { filter } from 'rxjs/operators';
-import { drop } from 'lodash';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
+import { XDrop } from '@ng-nest/ui/core';
 
 @Injectable({ providedIn: 'root' })
 export class IndexService {
@@ -35,7 +35,7 @@ export class IndexService {
     let routers = url.path.split('/');
     if (routers.length > 2) {
       let router = routers[2];
-      let subPage = routers.length > 3 ? drop(routers, 3).join('/') : undefined;
+      let subPage = routers.length > 3 ? XDrop(routers, 3).join('/') : undefined;
       let param = url.param;
       let menu = this.menus.find((x) => x.routerLink == `./${router}`);
       if (typeof menu !== 'undefined') {

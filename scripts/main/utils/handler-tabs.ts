@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcTabs, NcTab } from '../interfaces/tabs';
-import { parseMdDoc } from '.';
-import { sortBy } from 'lodash';
+import { orderBy, parseMdDoc } from '.';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
@@ -33,7 +32,7 @@ export function handlerTabs(tabs: NcTabs) {
       }
     }
   });
-  tabs.tabs = sortBy(tabs.tabs, 'order');
+  tabs.tabs = orderBy(tabs.tabs, ['order'], ['asc']);
 
   return tabs;
 }
@@ -62,7 +61,7 @@ export function handlerTabsByFiles(tabs: NcTabs) {
       tabs.tabs.push(tab);
     }
   });
-  tabs.tabs = sortBy(tabs.tabs, 'order');
+  tabs.tabs = orderBy(tabs.tabs, ['order']);
 
   return tabs;
 }

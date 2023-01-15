@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XPickerYearProperty } from './date-picker.property';
 import { DatePipe } from '@angular/common';
 
@@ -46,7 +46,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     for (let i = -3; i < 13; i++) {
       dates = [...dates, new Date(this.start + i, 1, 1)];
     }
-    this.dates = chunk(dates, 4) as Date[][];
+    this.dates = XChunk(dates, 4) as Date[][];
     this.startChange.emit(this.start);
   }
 

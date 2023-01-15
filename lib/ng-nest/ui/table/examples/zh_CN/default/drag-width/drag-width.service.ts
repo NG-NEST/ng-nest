@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, chunk, groupBy, XSort, XId } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
-import { map, orderBy } from 'lodash';
 
 @Injectable()
 export class DragWidthService extends XRepositoryAbstract {
@@ -29,7 +28,7 @@ export class DragWidthService extends XRepositoryAbstract {
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
-      let chunks = chunk(data, size);
+      let chunks = XChunk(data, size);
       if ((index as number) <= chunks.length) {
         x.next({ total: data.length, list: chunks[index - 1] });
       } else {
@@ -62,7 +61,7 @@ export class DragWidthService extends XRepositoryAbstract {
   }
 
   private setGroup(data: User[], group: string): XGroupItem[] {
-    return map(groupBy(data, group), (value, key) => {
+    return XGroupBy(data, group).map((value, key) => {
       let groupItem: XGroupItem = { id: key, count: value.length };
       groupItem[group] = key;
       return groupItem;
@@ -70,10 +69,10 @@ export class DragWidthService extends XRepositoryAbstract {
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
-    return orderBy(
+    return XOrderBy(
       data,
-      map(sort, (x) => x.field),
-      map(sort, (x) => x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

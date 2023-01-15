@@ -2,8 +2,7 @@ import * as path from 'path';
 import { NcPage } from '../interfaces/page';
 import * as fs from 'fs-extra';
 import { NcDemoTreeNode } from '../interfaces/demo';
-import { randomString, replaceKey, parseMdDoc } from '.';
-import { orderBy } from 'lodash';
+import { randomString, replaceKey, parseMdDoc, orderBy } from '.';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
@@ -65,7 +64,14 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
         ];
       }
     }
-    sortNodes = orderBy(sortNodes, [(x) => x.leaf, (x) => x.label.toLowerCase()]);
+    sortNodes = orderBy(
+      sortNodes.map((x) => {
+        x.label = x.label.toLowerCase();
+        return x;
+      }),
+      ['leaf', 'label'],
+      ['asc', 'asc']
+    );
     nodes = [...nodes, ...sortNodes];
   };
   getChildren(root, demo);

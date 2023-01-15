@@ -1,7 +1,7 @@
 import { Renderer2 } from '@angular/core';
 import { XAlign, XDirection, XIsEmpty, XJustify } from '../interfaces';
 
-export function setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
+export function XSetFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
   let result: string[] = [];
   if (!XIsEmpty(justify)) {
     const justifyStr = `x-justify-${justify}`;

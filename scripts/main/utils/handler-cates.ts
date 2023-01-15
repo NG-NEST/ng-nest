@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { NcCate, NcCates, NcCode, NcCodeBox } from '../interfaces/examples';
-import { parseMdDoc } from '.';
-import { sortBy } from 'lodash';
+import { orderBy, parseMdDoc } from '.';
 import { NcPage } from '../interfaces/page';
 import { NcTemplate } from '../interfaces/template';
 
@@ -29,7 +28,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
         };
         handlerCodeBoxes(cate, readme, mod, page);
         cates.list.push(cate);
-        cates.list = sortBy(cates.list, 'order');
+        cates.list = orderBy(cates.list, ['order'], ['asc']);
       }
     }
   });

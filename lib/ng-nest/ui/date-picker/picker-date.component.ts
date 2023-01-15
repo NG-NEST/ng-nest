@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { chunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 import { Subject } from 'rxjs';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
@@ -122,7 +122,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
       day = date.getDay();
     }
 
-    this.dates = chunk(dates, 7);
+    this.dates = XChunk(dates, 7);
 
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0], dates[dates.length - 1]]);

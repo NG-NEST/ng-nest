@@ -24,8 +24,6 @@ export class OnlineIdeService {
     '@angular/router': '^15.0.0',
     rxjs: '~7.5.0',
     'core-js': '~3.26.1',
-    lodash: '^4.17.21',
-    '@types/lodash': '^4.14.171',
     tslib: '^2.3.0',
     'zone.js': '~0.12.0',
     '@ng-nest/ui': `^15.0.0`

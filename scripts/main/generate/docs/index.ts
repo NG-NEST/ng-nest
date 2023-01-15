@@ -9,11 +9,11 @@ import {
   generateMenu,
   handlerComponent,
   getThemes,
-  handlerDemo
+  handlerDemo,
+  orderBy
 } from '../../utils';
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import { sortBy } from 'lodash';
 
 export const docsDir = path.resolve(__dirname, '../../../../docs');
 export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui');
@@ -39,7 +39,7 @@ export class NcDocs {
     handlerPage(this.page);
     this.addChildren(this.page, docsDir, `${outPath}/${lang}`, lang);
     generatePage(this.page);
-    this.menus = sortBy(this.menus, ['lang', 'pid', 'category', 'order', 'label']);
+    this.menus = orderBy(this.menus, ['lang', 'pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
   }
 
@@ -78,7 +78,7 @@ export class NcDocs {
         }
       }
     });
-    page.children = sortBy(page.children, (x) => x.order);
+    page.children = orderBy(page.children, ['order']);
     pageAddChildren(page, page.children);
   }
 
