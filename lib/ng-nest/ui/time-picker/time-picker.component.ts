@@ -17,8 +17,9 @@ import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString } from '@
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, map } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XTimePickerPrefix}`,
@@ -66,6 +67,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
   valueType: 'date' | 'number' | 'string' = 'date';
+  locale: XI18nTimePicker = {};
   private _unSubject = new Subject<void>();
 
   constructor(
@@ -75,7 +77,8 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
-    private overlay: Overlay
+    private overlay: Overlay,
+    private i18n: XI18nService
   ) {
     super();
   }
@@ -115,6 +118,18 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.timePicker as XI18nTimePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        if (this.use12Hours) {
+          this.setDisplayValue(this.value);
+        }
+        this.cdr.markForCheck();
+      });
   }
 
   menter() {
@@ -197,6 +212,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   setInstance() {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
+    console.log(this.use12Hours);
     Object.assign(componentRef.instance, {
       type: this.type,
       value: this.value,
@@ -204,6 +220,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       valueChange: this.valueChange,
       positionChange: this.positionChange,
       inputCom: this.inputCom,
+      use12Hours: this.use12Hours,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node),
@@ -226,7 +243,15 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   }
 
   setDisplayValue(date: Date | number) {
-    this.displayValue = this.datePipe.transform(date, this.format);
+    if (!date) return;
+    if (this.use12Hours) {
+      let dt = new Date(date);
+      let hour = dt.getHours();
+      let suffix = hour >= 12 ? this.locale.pm : this.locale.am;
+      this.displayValue = `${this.datePipe.transform(dt.setHours(hour === 0 ? 12 : hour > 12 ? hour - 12 : hour), this.format)} ${suffix}`;
+    } else {
+      this.displayValue = this.datePipe.transform(date, this.format);
+    }
   }
 
   setPlacement() {

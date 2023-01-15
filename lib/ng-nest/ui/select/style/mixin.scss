@@ -39,6 +39,9 @@
           @include input-size('small', $--x-height-mini, 0 $--x-padding-mini);
           @include input-size('mini', 1.125rem, 0 0.125rem);
         }
+        .x-input-row > .x-input-input > input {
+          background-color: transparent;
+        }
       }
     }
   }

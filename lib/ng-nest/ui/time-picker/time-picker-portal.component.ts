@@ -10,7 +10,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XTimePickerPortalPrefix, XTimePickerType } from './time-picker.property';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XBoolean, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -40,6 +40,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   destroyPortal!: Function;
   animating!: Function;
   inputCom!: XInputComponent;
+  use12Hours!: XBoolean;
   nodeEmit!: (date: Date) => void;
 
   private _unSubject = new Subject<void>();

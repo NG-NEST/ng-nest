@@ -175,6 +175,10 @@ const testModules = [
   {
     path: 'pagination',
     loadChildren: () => import('./modules/pagination/pagination.module').then((x) => x.TePaginationModule)
+  },
+  {
+    path: 'time-picker',
+    loadChildren: () => import('./modules/time-picker/time-picker.module').then((x) => x.TeTimePickerModule)
   }
 ];
 

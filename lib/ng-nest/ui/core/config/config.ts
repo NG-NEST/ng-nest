@@ -559,6 +559,7 @@ export interface XTimePickerConfig {
   placement?: XCorner;
   size?: XSize;
   bordered?: XBoolean;
+  use12Hours?: XBoolean;
 }
 
 export interface XTimeRangeConfig {}

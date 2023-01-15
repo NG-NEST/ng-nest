@@ -36,6 +36,11 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    */
   @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
   /**
+   * @zh_CN 使用12小时制
+   * @en_US Use 12 hour clock
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) use12Hours!: XBoolean;
+  /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */

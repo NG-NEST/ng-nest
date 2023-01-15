@@ -14,6 +14,7 @@ export interface XI18nProperty {
   theme?: XI18nTheme;
   calendar?: XI18nCalendar;
   datePicker?: XI18nDatePicker;
+  timePicker?: XI18nTimePicker;
   empty?: XI18nEmpty;
   image?: XI18nImage;
   pagination?: XI18nPagination;
@@ -92,6 +93,11 @@ export interface XI18nDatePicker {
   yesterday?: string;
   today?: string;
   tomorrow?: string;
+}
+
+export interface XI18nTimePicker {
+  am?: string;
+  pm?: string;
 }
 
 export interface XI18nEmpty {

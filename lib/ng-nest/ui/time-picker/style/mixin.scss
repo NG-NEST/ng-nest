@@ -33,13 +33,14 @@
   }
   &-hour,
   &-minute,
-  &-second {
+  &-second,
+  &-use12Hours {
     position: relative;
     float: left;
     overflow: hidden;
     width: 3.625rem;
     max-height: 15rem;
-    padding-bottom: 13.125rem;
+    padding-bottom: calc(#{$--x-border-width} * 2 + 13.125rem);
     &:hover {
       overflow-y: auto;
     }
