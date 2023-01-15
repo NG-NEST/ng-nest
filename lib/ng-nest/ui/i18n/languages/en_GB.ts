@@ -1,28 +1,29 @@
 export default {
   locale: 'en_GB',
   comment: {
-    comments: 'comment',
-    giveALike: 'like',
+    comments: 'Comments',
+    giveALike: 'Like',
     reply: 'Reply',
-    more: 'see more',
-    sure: 'release',
-    placeholder: 'Please enter a comment'
+    more: 'See more',
+    sure: 'Comments',
+    placeholder: 'Please enter comments'
   },
   theme: {
-    darkMode: 'Dark mode',
-    initDefault: 'Initialize the default value',
+    darkMode: 'Dark Mode',
+    initDefault: 'Init Default',
     primary: 'Primary',
     success: 'Success',
     warning: 'Warning',
     danger: 'Danger',
-    info: 'Information',
+    info: 'Info',
     background: 'Background',
     border: 'Border',
     text: 'Text'
   },
   calendar: {
-    month: 'month',
-    year: 'year',
+    sure: 'OK',
+    month: 'Month',
+    year: 'Year',
     lastMonth: 'Last month',
     lastYear: 'Last year',
     nextMonth: 'Next month',
@@ -67,28 +68,42 @@ export default {
     today: 'Today',
     tomorrow: 'Tomorrow'
   },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM'
+  },
   empty: {
     noData: 'No data'
   },
+  image: {
+    previewText: 'Preview'
+  },
   pagination: {
-    previous: 'Pre',
+    previous: 'Prev',
     next: 'Next',
     total: 'Total',
-    item: 'Article',
-    first: 'First',
-    last: 'Last',
+    item: 'Items',
+    first: 'First page',
+    last: 'Last page',
     jump: 'Go to',
     sizePage: '/ page'
   },
   textRetract: {
     unfold: 'Unfold',
-    packUp: 'Put away'
+    packUp: 'Pack Up'
   },
   timeAgo: {
     just: 'just',
     secondsAgo: ' seconds ago',
     minutesAgo: ' minutes ago',
     hoursAgo: ' hours ago'
+  },
+  transfer: {
+    listTitle: 'List',
+    treeTitle: 'Tree',
+    tableTitle: 'Table',
+    selectedTitle: 'Selected',
+    inverse: 'Inverse'
   },
   messageBox: {
     cancelText: 'Cancel',
@@ -109,9 +124,19 @@ export default {
     back: 'Back'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Select all',
+    loadMoreText: 'Load more',
+    loadingMoreText: 'Loading'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Select all',
+    maxTagContent: 'and more {{surplus}} selected'
+  },
+  treeSelect: {
+    selectAllText: 'Select all',
+    maxTagContent: 'and more {{surplus}} selected'
+  },
+  form: {
+    required: 'required'
   }
 };

@@ -68,6 +68,10 @@ export default {
     today: 'Today',
     tomorrow: 'Tomorrow'
   },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM'
+  },
   empty: {
     noData: 'No data'
   },
@@ -98,7 +102,8 @@ export default {
     listTitle: 'List',
     treeTitle: 'Tree',
     tableTitle: 'Table',
-    selectedTitle: 'Selected'
+    selectedTitle: 'Selected',
+    inverse: 'Inverse'
   },
   messageBox: {
     cancelText: 'Cancel',

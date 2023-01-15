@@ -67,6 +67,10 @@ export default {
     today: '今天',
     tomorrow: '明天'
   },
+  timePicker: {
+    am: '上午',
+    pm: '下午'
+  },
   empty: {
     noData: '暂无数据'
   },
@@ -97,7 +101,8 @@ export default {
     listTitle: '列表',
     treeTitle: '树',
     tableTitle: '表格',
-    selectedTitle: '选中项'
+    selectedTitle: '选中项',
+    inverse: '反选'
   },
   messageBox: {
     cancelText: '取消',

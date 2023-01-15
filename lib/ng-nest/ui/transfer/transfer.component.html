@@ -108,7 +108,9 @@
         [indeterminate]="source.indeterminate"
       ></x-checkbox>
       <span *ngIf="source.title && source.hiddenCheckAll">{{ source.title }}</span>
-      <x-link *ngIf="inverse && type === 'list'" class="x-transfer-inverse" type="primary" (click)="onInverse(source)">反选</x-link>
+      <x-link *ngIf="inverse && type === 'list'" class="x-transfer-inverse" type="primary" (click)="onInverse(source)">{{
+        'transfer.inverse' | xI18n
+      }}</x-link>
     </div>
     <ng-container *xOutlet="titleTpl; context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
