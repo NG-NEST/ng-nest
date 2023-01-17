@@ -41,6 +41,9 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   animating!: Function;
   inputCom!: XInputComponent;
   use12Hours!: XBoolean;
+  hourStep!: number;
+  minuteStep!: number;
+  secondStep!: number;
   nodeEmit!: (date: Date) => void;
 
   private _unSubject = new Subject<void>();

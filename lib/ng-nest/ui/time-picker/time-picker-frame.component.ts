@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
-import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsString } from '@ng-nest/ui/core';
+import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -27,6 +27,9 @@ export class XTimePickerFrameComponent {
   @Input() type: XTimePickerType = 'time';
   @Input() value!: number;
   @Input() use12Hours!: XBoolean;
+  @Input() hourStep = 1;
+  @Input() minuteStep = 1;
+  @Input() secondStep = 1;
   @Output() nodeEmit = new EventEmitter<Date>();
   @ViewChild('hourRef') hourRef?: ElementRef<HTMLElement>;
   @ViewChild('minuteRef') minuteRef?: ElementRef<HTMLElement>;
@@ -40,18 +43,8 @@ export class XTimePickerFrameComponent {
   use12Hour: string = 'am';
   scrollAnimating: { [key: string]: boolean } = {};
   hourData: XIdentity[] = [];
-  minuteData: XIdentity[] = Array.from({ length: 60 }).map((_, i) => {
-    return {
-      label: this.prefixZero(i, 2),
-      id: i
-    };
-  });
-  secondData: XIdentity[] = Array.from({ length: 60 }).map((_, i) => {
-    return {
-      label: this.prefixZero(i, 2),
-      id: i
-    };
-  });
+  minuteData: XIdentity[] = [];
+  secondData: XIdentity[] = [];
   use12HoursData: XIdentity[] = [];
   locale: XI18nTimePicker = {};
   private _unSubject = new Subject<void>();
@@ -66,6 +59,8 @@ export class XTimePickerFrameComponent {
 
   ngOnInit() {
     this.setHourData();
+    this.setMinuteData();
+    this.setSecondData();
     this.setUse12HoursData();
     this.init();
     this.i18n.localeChange
@@ -90,13 +85,36 @@ export class XTimePickerFrameComponent {
 
   setHourData() {
     let length = this.use12Hours ? 12 : 24;
-    this.hourData = Array.from({ length }).map((_, i) => {
+    this.hourData = Array.from({ length: Math.ceil(length / this.hourStep) }).map((_, i) => {
       if (this.use12Hours && i === 0) {
         i = 12;
+        return {
+          label: this.prefixZero(i, 2),
+          id: i
+        };
+      } else {
+        return {
+          label: this.prefixZero(i * this.hourStep, 2),
+          id: i * this.hourStep
+        };
       }
+    });
+  }
+
+  setMinuteData() {
+    this.minuteData = Array.from({ length: Math.ceil(60 / this.minuteStep) }).map((_, i) => {
       return {
-        label: this.prefixZero(i, 2),
-        id: i
+        label: this.prefixZero(i * this.minuteStep, 2),
+        id: i * this.minuteStep
+      };
+    });
+  }
+
+  setSecondData() {
+    this.secondData = Array.from({ length: Math.ceil(60 / this.secondStep) }).map((_, i) => {
+      return {
+        label: this.prefixZero(i * this.secondStep, 2),
+        id: i * this.secondStep
       };
     });
   }
@@ -161,17 +179,30 @@ export class XTimePickerFrameComponent {
   }
 
   setScrollTop(animating = false) {
-    console.log(this.hour);
-    this.selected(this.hourRef?.nativeElement, this.hour, animating);
-    this.selected(this.minuteRef?.nativeElement, this.minute, animating);
-    this.selected(this.secondRef?.nativeElement, this.second, animating);
-    this.selected(this.use12HoursRef?.nativeElement, this.use12Hour, animating);
+    this.selected('hour', this.hourRef?.nativeElement, this.hour, animating);
+    this.selected('minute', this.minuteRef?.nativeElement, this.minute, animating);
+    this.selected('second', this.secondRef?.nativeElement, this.second, animating);
+    this.selected('use12Hour', this.use12HoursRef?.nativeElement, this.use12Hour, animating);
   }
 
-  selected(ele?: HTMLElement, num?: number | string, animating = false) {
+  selected(type: 'hour' | 'minute' | 'second' | 'use12Hour', ele?: HTMLElement, num?: number | string, animating = false) {
     if (!ele) return;
     if (this.scrollAnimating[ele.className]) return;
-    const len = XIsString(num) ? this.use12HoursData.findIndex((x) => x.id === num) : Number(num);
+    let len = Number(num);
+    switch (type) {
+      case 'hour':
+        len = this.hourData.findIndex((x) => x.id === num);
+        break;
+      case 'minute':
+        len = this.minuteData.findIndex((x) => x.id === num);
+        break;
+      case 'second':
+        len = this.secondData.findIndex((x) => x.id === num);
+        break;
+      case 'use12Hour':
+        len = this.use12HoursData.findIndex((x) => x.id === num);
+        break;
+    }
     let current = ele.querySelector(`.x-list x-list-option:nth-child(${len + 1})`) as HTMLElement;
     if (current) {
       if (animating) {
@@ -217,7 +248,6 @@ export class XTimePickerFrameComponent {
         }
         break;
     }
-    console.log(this.model);
     this.setScrollTop(true);
     this.nodeEmit.emit(this.model);
     this.cdr.detectChanges();

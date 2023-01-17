@@ -212,7 +212,6 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   setInstance() {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
-    console.log(this.use12Hours);
     Object.assign(componentRef.instance, {
       type: this.type,
       value: this.value,
@@ -221,6 +220,9 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       positionChange: this.positionChange,
       inputCom: this.inputCom,
       use12Hours: this.use12Hours,
+      hourStep: this.hourStep,
+      minuteStep: this.minuteStep,
+      secondStep: this.secondStep,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node),

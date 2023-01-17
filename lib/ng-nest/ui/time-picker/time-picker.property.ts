@@ -1,4 +1,4 @@
-import { XBoolean, XCorner, XInputBoolean, XSize, XWithConfig } from '@ng-nest/ui/core';
+import { XBoolean, XCorner, XInputBoolean, XInputNumber, XNumber, XSize, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -45,6 +45,21 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    * @en_US Display Border
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  /**
+   * @zh_CN 小时选项间隔
+   * @en_US Hour option interval
+   */
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) hourStep!: XNumber;
+  /**
+   * @zh_CN 分钟选项间隔
+   * @en_US Minute option interval
+   */
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) minuteStep!: XNumber;
+  /**
+   * @zh_CN 秒选项间隔
+   * @en_US Second option interval
+   */
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) secondStep!: XNumber;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
