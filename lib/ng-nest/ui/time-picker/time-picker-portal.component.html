@@ -8,4 +8,10 @@
     [secondStep]="secondStep"
     (nodeEmit)="nodeEmit($event)"
   ></x-time-picker-frame>
+  <div *ngIf="preset" class="x-time-picker-portal-preset">
+    <ng-container *ngFor="let item of preset">
+      <x-button type="text" *ngIf="!item.func && item.id === 'now'" (click)="onNow()">{{ locale.now }}</x-button>
+      <x-button type="text" *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-button>
+    </ng-container>
+  </div>
 </div>

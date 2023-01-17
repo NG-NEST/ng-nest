@@ -70,7 +70,8 @@ export default {
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM'
+    pm: 'PM',
+    now: 'Now'
   },
   empty: {
     noData: 'No data'

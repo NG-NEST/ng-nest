@@ -223,6 +223,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       hourStep: this.hourStep,
       minuteStep: this.minuteStep,
       secondStep: this.secondStep,
+      preset: this.preset,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (node: Date) => this.onNodeClick(node),

@@ -9,11 +9,12 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { XTimePickerPortalPrefix, XTimePickerType } from './time-picker.property';
+import { XTimePickerPortalPrefix, XTimePickerPreset, XTimePickerType } from './time-picker.property';
 import { XBoolean, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
@@ -44,11 +45,13 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   hourStep!: number;
   minuteStep!: number;
   secondStep!: number;
+  preset: XTimePickerPreset[] = [];
   nodeEmit!: (date: Date) => void;
+  locale: XI18nTimePicker = {};
 
   private _unSubject = new Subject<void>();
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, private i18n: XI18nService) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: any) => {
@@ -58,6 +61,15 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
       this.placement = x;
       this.cdr.detectChanges();
     });
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.timePicker as XI18nTimePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   ngOnDestroy(): void {
@@ -67,5 +79,17 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
 
   stopPropagation(event: Event): void {
     event.stopPropagation();
+  }
+
+  onPresetFunc(item: XTimePickerPreset) {
+    let date = item.func();
+    this.valueChange.next(date);
+    this.nodeEmit(date);
+  }
+
+  onNow() {
+    let date = new Date();
+    this.valueChange.next(date);
+    this.nodeEmit(date);
   }
 }

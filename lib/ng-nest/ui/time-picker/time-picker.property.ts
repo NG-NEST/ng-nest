@@ -1,4 +1,15 @@
-import { XBoolean, XCorner, XInputBoolean, XInputNumber, XNumber, XSize, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XBoolean,
+  XCorner,
+  XData,
+  XDataConvert,
+  XIdentityProperty,
+  XInputBoolean,
+  XInputNumber,
+  XNumber,
+  XSize,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -61,6 +72,11 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) secondStep!: XNumber;
   /**
+   * @zh_CN 快捷选择按钮，支持此刻以及自定义
+   * @en_US Quick selection button, support now and custom
+   */
+  @Input() @XDataConvert() preset: XData<XTimePickerPreset> = [];
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -99,6 +115,18 @@ export interface XTimePickerOption extends XFormOption {
  * @en_US Time selection
  */
 export type XTimePickerType = 'time' | 'hour' | 'minute';
+
+/**
+ * @zh_CN 快捷选择按钮
+ * @en_US Quick selection button
+ */
+export interface XTimePickerPreset extends XIdentityProperty {
+  /**
+   * @zh_CN 自定义函数
+   * @en_US Custom function
+   */
+  func: () => Date;
+}
 
 /**
  * TimePickerPortal

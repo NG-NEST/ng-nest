@@ -98,6 +98,7 @@ export interface XI18nDatePicker {
 export interface XI18nTimePicker {
   am?: string;
   pm?: string;
+  now?: string;
 }
 
 export interface XI18nEmpty {

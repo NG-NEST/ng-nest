@@ -47,13 +47,14 @@ export class XTimePickerFrameComponent {
   secondData: XIdentity[] = [];
   use12HoursData: XIdentity[] = [];
   locale: XI18nTimePicker = {};
+  isInit = false;
   private _unSubject = new Subject<void>();
 
   ngOnChanges(changes: SimpleChanges): void {
     const { value } = changes;
     if (XIsChange(value)) {
       this.init();
-      this.setScrollTop();
+      this.setScrollTop(true);
     }
   }
 

@@ -69,7 +69,8 @@ export default {
   },
   timePicker: {
     am: '上午',
-    pm: '下午'
+    pm: '下午',
+    now: '此刻'
   },
   empty: {
     noData: '暫無數據'
