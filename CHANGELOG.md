@@ -1,9 +1,32 @@
+## [15.0.6](https://github.com/NG-NEST/ng-nest/compare/15.0.5...15.0.6) (2023-01-17)
+
+
+### Bug Fixes
+
+* **module:transfer:** fix multilingual ([efefebe](https://github.com/NG-NEST/ng-nest/commit/efefebe100e1c5c5ecea1eac9d5bd050c504f99a))
+
+
+### Features
+
+* **module:form:** add method to reset the verification display ([ed855cb](https://github.com/NG-NEST/ng-nest/commit/ed855cbb6b97232285c7259970bd8edd7f9131b9))
+* **module:time-picker:** add custom button ([75dd02b](https://github.com/NG-NEST/ng-nest/commit/75dd02b572c87df9c0ff8c2920ee12cc7552f6dd)), closes [#96](https://github.com/NG-NEST/ng-nest/issues/96)
+* **module:time-picker:** add step ([487d8c4](https://github.com/NG-NEST/ng-nest/commit/487d8c46f7b9e5fe0a25bdef535292cff099eacc)), closes [#99](https://github.com/NG-NEST/ng-nest/issues/99)
+* **module:time-picker:** add use12Hours ([75b6486](https://github.com/NG-NEST/ng-nest/commit/75b64864abf18c61d08a9f9b62758ae1d93b2a5c)), closes [#101](https://github.com/NG-NEST/ng-nest/issues/101)
+
+
+### Performance Improvements
+
+* **elementRef:** add specific generic types ([d4e595d](https://github.com/NG-NEST/ng-nest/commit/d4e595deb63b5f9fb8df42d97d8febb5b6950a9f))
+
+
+
 ## [15.0.5](https://github.com/NG-NEST/ng-nest/compare/15.0.4...15.0.5) (2023-01-07)
 
 
 ### Bug Fixes
 
 * **module:table:** fix fixed drag ([5565acf](https://github.com/NG-NEST/ng-nest/commit/5565acfd01e2a6359eb3ebc74033a17d191e013b))
+* **module:table:** fix theads error ([ce4a4a1](https://github.com/NG-NEST/ng-nest/commit/ce4a4a16c6d75bfd0b1602335cf361b4c25ef94a))
 * **module:table:** sticky column disabled darg ([5b3a205](https://github.com/NG-NEST/ng-nest/commit/5b3a20544d7dcf0ba8a39349c624ce3ceb3d7bc8))
 * **test:** fix test error ([1bd1ab7](https://github.com/NG-NEST/ng-nest/commit/1bd1ab72a41eb510dc489e3d97b1c500c5edc4ab))
 

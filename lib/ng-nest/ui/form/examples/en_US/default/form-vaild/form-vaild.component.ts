@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({

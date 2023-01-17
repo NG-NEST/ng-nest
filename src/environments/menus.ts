@@ -1,6 +1,45 @@
 import { Menu } from './routes';
 export const menus: Menu[] = [
   {
+    "id": "4",
+    "pid": null,
+    "name": "ui",
+    "router": "docs/en_US/ui",
+    "lang": "en_US",
+    "order": 1,
+    "label": "UI Components",
+    "type": "router",
+    "default": true
+  },
+  {
+    "id": "1",
+    "pid": null,
+    "name": "components",
+    "router": "docs/en_US/components",
+    "lang": "en_US",
+    "order": 2,
+    "label": "Components",
+    "type": "router"
+  },
+  {
+    "id": "2",
+    "pid": null,
+    "name": "course",
+    "router": "docs/en_US/course",
+    "lang": "en_US",
+    "order": 3,
+    "label": "Tutorial",
+    "type": "router"
+  },
+  {
+    "id": "1-34",
+    "pid": "1",
+    "name": "highlight",
+    "router": "docs/en_US/components/highlight",
+    "lang": "en_US",
+    "label": "Highlight"
+  },
+  {
     "id": "1-9",
     "pid": "1",
     "name": "border",
@@ -659,14 +698,6 @@ export const menus: Menu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-34",
-    "pid": "1",
-    "name": "highlight",
-    "router": "docs/en_US/components/highlight",
-    "lang": "en_US",
-    "label": "Highlight"
-  },
-  {
     "id": "2-0",
     "pid": "2",
     "name": "rbac",
@@ -791,10 +822,10 @@ export const menus: Menu[] = [
     "id": "4",
     "pid": null,
     "name": "ui",
-    "router": "docs/en_US/ui",
-    "lang": "en_US",
+    "router": "docs/zh_CN/ui",
+    "lang": "zh_CN",
     "order": 1,
-    "label": "UI Components",
+    "label": "UI 库",
     "type": "router",
     "default": true
   },
@@ -802,20 +833,20 @@ export const menus: Menu[] = [
     "id": "1",
     "pid": null,
     "name": "components",
-    "router": "docs/en_US/components",
-    "lang": "en_US",
+    "router": "docs/zh_CN/components",
+    "lang": "zh_CN",
     "order": 2,
-    "label": "Components",
+    "label": "组件",
     "type": "router"
   },
   {
     "id": "2",
     "pid": null,
     "name": "course",
-    "router": "docs/en_US/course",
-    "lang": "en_US",
+    "router": "docs/zh_CN/course",
+    "lang": "zh_CN",
     "order": 3,
-    "label": "Tutorial",
+    "label": "教程",
     "type": "router"
   },
   {
@@ -1604,36 +1635,5 @@ export const menus: Menu[] = [
     "lang": "zh_CN",
     "order": 4,
     "label": "国际化"
-  },
-  {
-    "id": "4",
-    "pid": null,
-    "name": "ui",
-    "router": "docs/zh_CN/ui",
-    "lang": "zh_CN",
-    "order": 1,
-    "label": "UI 库",
-    "type": "router",
-    "default": true
-  },
-  {
-    "id": "1",
-    "pid": null,
-    "name": "components",
-    "router": "docs/zh_CN/components",
-    "lang": "zh_CN",
-    "order": 2,
-    "label": "组件",
-    "type": "router"
-  },
-  {
-    "id": "2",
-    "pid": null,
-    "name": "course",
-    "router": "docs/zh_CN/course",
-    "lang": "zh_CN",
-    "order": 3,
-    "label": "教程",
-    "type": "router"
   }
 ]
