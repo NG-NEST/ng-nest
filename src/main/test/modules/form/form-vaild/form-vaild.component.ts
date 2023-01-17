@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
@@ -7,7 +8,15 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
   providers: []
 })
 export class ExFormVaildComponent {
-  constructor() {}
+  formDefault: FormGroup = this.formBuild.group({
+    name: [null, Validators.required],
+    age: [null, Validators.max(100)],
+    account: [null]
+  });
+
+  constructor(public formBuild: FormBuilder) {
+    console.log(this.formDefault);
+  }
 
   @ViewChild('form') form!: XFormComponent;
   @ViewChild('manualForm') manualForm!: XFormComponent;
@@ -52,5 +61,9 @@ export class ExFormVaildComponent {
   manual(_event: Event) {
     this.manualForm.setValidator();
     this.validForm(this.manualForm);
+  }
+
+  resetValidator() {
+    this.form.resetValidator();
   }
 }

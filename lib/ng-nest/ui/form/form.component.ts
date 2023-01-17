@@ -84,6 +84,14 @@ export class XFormComponent extends XFormProperty implements OnInit {
     }
   }
 
+  resetValidator() {
+    for (let key in this.controlComponents) {
+      let [control] = [this.controlComponents[key]];
+      control.validator = false;
+      control.cdr.detectChanges();
+    }
+  }
+
   getValidatorMessages(): string[] {
     let result: string[] = [];
     if (this.formGroup.valid) return result;

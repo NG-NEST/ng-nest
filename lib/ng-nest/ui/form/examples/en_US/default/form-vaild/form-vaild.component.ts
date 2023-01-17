@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
@@ -19,6 +20,10 @@ export class ExFormVaildComponent {
       icon: 'fto-user',
       label: 'User',
       width: 300,
+      inputValidator: (value: string) => {
+        return String(value).length > 5;
+      },
+      message: 'The length is greater than 5 characters',
       required: true
     },
     {
@@ -48,5 +53,9 @@ export class ExFormVaildComponent {
   manual(_event: Event) {
     this.manualForm.setValidator();
     this.validForm(this.manualForm);
+  }
+
+  resetValidator() {
+    this.form.resetValidator();
   }
 }
