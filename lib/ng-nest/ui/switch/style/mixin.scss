@@ -27,29 +27,41 @@
   }
   &-slider {
     position: relative;
-    margin: calc(calc(#{$--x-switch-height} - #{$--x-switch-slider-height}) / 2) 0;
+    margin: 0.25rem 0;
     display: inline-flex;
     align-items: center;
     position: relative;
-    width: $--x-switch-slider-height * 2;
-    height: $--x-switch-slider-height;
+    width: 2.5rem;
+    height: 1.25rem;
     border: $--x-border-width solid $--x-info;
-    border-radius: $--x-switch-slider-height;
+    border-radius: 1.25rem;
     background-color: $--x-info;
     cursor: pointer;
     transition: border-color 0.3s, background-color 0.3s;
     &::after {
       position: absolute;
-      box-shadow: 0 calc(#{$--x-border-width} * 2) calc(#{$--x-border-width} * 4) 0 rgba(0, 35, 11, 0.2);
-      width: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
-      height: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
-      margin: 0 calc(#{$--x-border-width} * 2);
+      box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 35, 11, 0.2);
+      width: 1rem;
+      height: 1rem;
+      margin: 0 0.125rem;
       background-color: $--x-background-a100;
-      border-radius: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 4));
+      border-radius: 1rem;
       cursor: pointer;
       left: 0;
       transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
       content: ' ';
+    }
+  }
+  &-spinner {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.125rem;
+    .x-loading {
+      background-color: transparent;
+    }
+    .x-loading-spinner {
+      display: flex;
+      align-items: center;
     }
   }
   &.x-checked {
@@ -60,13 +72,17 @@
         left: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 2));
       }
     }
+    .#{$--x-switch-prefix}-spinner {
+      left: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 2));
+    }
   }
   &.x-required {
     > label {
       color: $--x-danger;
     }
   }
-  &.x-disabled {
+  &.x-disabled,
+  &-loading {
     .#{$--x-switch-prefix}-slider {
       cursor: not-allowed;
       background-color: $--x-info-500;

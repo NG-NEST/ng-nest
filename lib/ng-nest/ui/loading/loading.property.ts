@@ -28,7 +28,7 @@ export class XLoadingProperty extends XProperty {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize | number;
   /**
    * @zh_CN 显示文字，支持自定义模板
    * @en_US Display text, support custom template

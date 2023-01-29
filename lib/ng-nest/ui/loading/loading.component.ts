@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService, XIsNumber } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
@@ -30,6 +30,8 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   }
   @ViewChild('loadingTpl') loadingTpl!: TemplateRef<void>;
   portalRef!: XPortalOverlayRef<any>;
+
+  sizeNumber?: number;
 
   constructor(
     public renderer: Renderer2,
@@ -52,7 +54,11 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   }
 
   setClassMap() {
-    this.classMap[`${XLoadingPrefix}-${this.size}`] = !XIsEmpty(this.size);
+    if (XIsNumber(this.size)) {
+      this.sizeNumber = this.size as number;
+    } else {
+      this.classMap[`${XLoadingPrefix}-${this.size}`] = !XIsEmpty(this.size);
+    }
     this.cdr.markForCheck();
   }
 

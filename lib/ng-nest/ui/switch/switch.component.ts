@@ -43,7 +43,7 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
   }
 
   switchClick() {
-    if (this.disabled) return;
+    if (this.disabled || this.loading || this.control) return;
     this.value = !this.value;
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();

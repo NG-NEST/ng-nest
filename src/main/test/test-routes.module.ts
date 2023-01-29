@@ -179,6 +179,10 @@ const testModules = [
   {
     path: 'time-picker',
     loadChildren: () => import('./modules/time-picker/time-picker.module').then((x) => x.TeTimePickerModule)
+  },
+  {
+    path: 'switch',
+    loadChildren: () => import('./modules/switch/switch.module').then((x) => x.TeSwitchModule)
   }
 ];
 
