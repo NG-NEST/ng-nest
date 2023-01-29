@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty, XConfigService, XIsNumber } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 
 @Component({
@@ -49,11 +49,13 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { loading } = changes;
+    const { loading, size } = changes;
     XIsChange(loading) && this.setLoading();
+    XIsChange(size) && this.setClassMap();
   }
 
   setClassMap() {
+    XClearClass(this.classMap);
     if (XIsNumber(this.size)) {
       this.sizeNumber = this.size as number;
     } else {

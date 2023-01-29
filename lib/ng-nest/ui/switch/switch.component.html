@@ -1,6 +1,7 @@
 <div
   #switch
   class="x-switch"
+  [ngClass]="classMap"
   [class.x-switch-loading]="loading"
   [class.x-flex]="justify || align || direction"
   [class.x-checked]="value"
@@ -9,7 +10,7 @@
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-switch-row">
     <div class="x-switch-slider" (click)="switchClick()">
-      <div class="x-switch-spinner" [x-loading]="loading" [size]="14"></div>
+      <div class="x-switch-spinner" [x-loading]="loading" [size]="size"></div>
     </div>
   </div>
 </div>

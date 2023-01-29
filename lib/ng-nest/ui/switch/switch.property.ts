@@ -23,11 +23,22 @@ export class XSwitchProperty extends XControlValueAccessor<boolean> implements X
    * @zh_CN 手动控制
    * @en_US Manual control
    */
-  @Input() @XInputBoolean() control: XBoolean = false;
+  @Input() @XInputBoolean() manual: XBoolean = false;
 }
 
 /**
  * Switch Option
  * @undocument true
  */
-export interface XSwitchOption extends XFormOption {}
+export interface XSwitchOption extends XFormOption {
+  /**
+   * @zh_CN 显示加载中
+   * @en_US Show loading
+   */
+  loading?: XBoolean;
+  /**
+   * @zh_CN 手动控制
+   * @en_US Manual control
+   */
+  manual?: XBoolean;
+}

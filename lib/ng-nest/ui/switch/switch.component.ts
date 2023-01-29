@@ -6,10 +6,11 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  ViewChild
+  ViewChild,
+  SimpleChanges
 } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
-import { XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
@@ -32,18 +33,24 @@ export class XSwitchComponent extends XSwitchProperty implements OnInit {
     super();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const { size, labelAlign } = changes;
+    XIsChange(size, labelAlign) && this.setClassMap();
+  }
+
   ngOnInit() {
     this.setFlex(this.switch.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
   }
 
   setClassMap() {
-    XClearClass(this.labelMap);
+    XClearClass(this.classMap, this.labelMap);
+    this.classMap[`${XSwitchPrefix}-${this.size}`] = this.size ? true : false;
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
   switchClick() {
-    if (this.disabled || this.loading || this.control) return;
+    if (this.disabled || this.loading || this.manual) return;
     this.value = !this.value;
     if (this.onChange) this.onChange(this.value);
     this.cdr.detectChanges();

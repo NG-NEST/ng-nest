@@ -10,8 +10,6 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-switch-height;
-    line-height: $--x-switch-height;
     position: relative;
     color: $--x-text-300;
     font-weight: 600;
@@ -27,22 +25,17 @@
   }
   &-slider {
     position: relative;
-    margin: 0.25rem 0;
+    margin: 0.125rem 0;
     display: inline-flex;
     align-items: center;
     position: relative;
-    width: 2.5rem;
-    height: 1.25rem;
     border: $--x-border-width solid $--x-info;
-    border-radius: 1.25rem;
     background-color: $--x-info;
     cursor: pointer;
     transition: border-color 0.3s, background-color 0.3s;
     &::after {
       position: absolute;
       box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 35, 11, 0.2);
-      width: 1rem;
-      height: 1rem;
       margin: 0 0.125rem;
       background-color: $--x-background-a100;
       border-radius: 1rem;
@@ -53,8 +46,6 @@
     }
   }
   &-spinner {
-    width: 1rem;
-    height: 1rem;
     margin: 0 0.125rem;
     .x-loading {
       background-color: transparent;
@@ -68,12 +59,6 @@
     .#{$--x-switch-prefix}-slider {
       background-color: $--x-primary;
       border-color: $--x-primary;
-      &::after {
-        left: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 2));
-      }
-    }
-    .#{$--x-switch-prefix}-spinner {
-      left: calc(#{$--x-switch-slider-height} - calc(#{$--x-border-width} * 2));
     }
   }
   &.x-required {
@@ -111,6 +96,50 @@
     }
     &-column-reverse {
       align-items: inherit;
+    }
+  }
+
+  @include size('big', $--x-height-big);
+  @include size('large', $--x-height-large);
+  @include size('medium', $--x-height-medium);
+  @include size('small', $--x-height-small);
+  @include size('mini', $--x-height-mini);
+}
+
+@mixin size($size, $height) {
+  &-#{$size} {
+    > label {
+      height: $height;
+      line-height: $height;
+    }
+    .#{$--x-switch-prefix} {
+      &-slider {
+        height: calc($height - 0.25rem);
+        width: calc(calc($height - 0.25rem) * 2);
+        border-radius: calc($height - 0.25rem);
+        &::after {
+          width: calc($height - 0.5rem);
+          height: calc($height - 0.5rem);
+        }
+      }
+    }
+    &.x-checked {
+      .#{$--x-switch-prefix}-slider {
+        &::after {
+          left: calc($height - 0.375rem);
+        }
+      }
+      .#{$--x-switch-prefix}-spinner {
+        left: calc($height - 0.375rem);
+      }
+    }
+    .x-switch-spinner {
+      width: calc($height - 0.5rem);
+      height: calc($height - 0.5rem);
+    }
+    .x-loading-#{$size} .x-loading-circular {
+      width: calc($height - 0.5rem);
+      height: calc($height - 0.5rem);
     }
   }
 }
