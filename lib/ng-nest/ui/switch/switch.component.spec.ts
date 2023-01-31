@@ -10,11 +10,25 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { XInputModule } from '@ng-nest/ui/input';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 describe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XSwitchModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        XSwitchModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XLayoutModule,
+        XRadioModule,
+        XInputModule,
+        XIconModule
+      ],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
     }).compileComponents();
   });

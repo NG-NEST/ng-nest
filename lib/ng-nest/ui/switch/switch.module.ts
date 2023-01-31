@@ -5,10 +5,11 @@ import { XSwitchComponent } from './switch.component';
 import { XSwitchProperty } from './switch.property';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XLoadingModule } from '@ng-nest/ui/loading';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XSwitchComponent, XSwitchProperty],
   exports: [XSwitchComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XBaseFormModule, XLoadingModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XBaseFormModule, XLoadingModule, XOutletModule]
 })
 export class XSwitchModule {}

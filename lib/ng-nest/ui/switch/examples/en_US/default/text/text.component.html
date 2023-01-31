@@ -1,0 +1,25 @@
+<div class="row">
+  <x-switch [ngModel]="true" [checkedText]="'开'" [unCheckedText]="'关'"></x-switch>
+</div>
+<div class="row">
+  <x-switch [checkedText]="'启用'" [unCheckedText]="'停用'"></x-switch>
+</div>
+<div class="row">
+  <x-switch [checkedText]="checkedTextTpl" [unCheckedText]="unCheckedTextTpl"></x-switch>
+</div>
+<div class="row">
+  <x-switch [checkedText]="checkedTextIconTpl" [unCheckedText]="unCheckedTextIconTpl"></x-switch>
+</div>
+<ng-template #checkedTextTpl>
+  <x-icon type="fto-check"></x-icon>
+</ng-template>
+<ng-template #unCheckedTextTpl>
+  <x-icon type="fto-x"></x-icon>
+</ng-template>
+
+<ng-template #checkedTextIconTpl>
+  <x-icon type="fto-volume-2"></x-icon>
+</ng-template>
+<ng-template #unCheckedTextIconTpl>
+  <x-icon type="fto-volume-x"></x-icon>
+</ng-template>

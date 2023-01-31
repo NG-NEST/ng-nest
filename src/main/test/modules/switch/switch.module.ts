@@ -12,11 +12,30 @@ import { FormsModule } from '@angular/forms';
 import { ExSizeComponent } from './size/size.component';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XInputModule } from '@ng-nest/ui/input';
+import { ExTextComponent } from './text/text.component';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeSwitchComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XSwitchModule, XLayoutModule, XRadioModule, XInputModule],
-  declarations: [TeSwitchComponent, ExDefaultComponent, ExDisabledComponent, ExLabelComponent, ExLoadingComponent, ExSizeComponent]
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    FormsModule,
+    XSwitchModule,
+    XLayoutModule,
+    XRadioModule,
+    XInputModule,
+    XIconModule
+  ],
+  declarations: [
+    TeSwitchComponent,
+    ExDefaultComponent,
+    ExDisabledComponent,
+    ExLabelComponent,
+    ExLoadingComponent,
+    ExSizeComponent,
+    ExTextComponent
+  ]
 })
 export class TeSwitchModule {}

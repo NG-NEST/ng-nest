@@ -10,7 +10,17 @@
   <label *ngIf="label" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-switch-row">
     <div class="x-switch-slider" (click)="switchClick()">
-      <div class="x-switch-spinner" [x-loading]="loading" [size]="size"></div>
+      <div class="x-switch-handle">
+        <div class="x-switch-spinner" [x-loading]="loading" [size]="size"></div>
+      </div>
+      <div class="x-switch-text">
+        <ng-container *ngIf="value; else uncheckTemplate">
+          <ng-container *xOutlet="checkedText">{{ checkedText }}</ng-container>
+        </ng-container>
+        <ng-template #uncheckTemplate>
+          <ng-container *xOutlet="unCheckedText">{{ unCheckedText }}</ng-container>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
