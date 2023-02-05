@@ -254,6 +254,21 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US The column header is dragging, and the event is triggered when the order is changed
    */
   @Output() columnDropListDropped = new EventEmitter<XTableColumn[]>();
+  /**
+   * @zh_CN 开始拖动列宽的事件
+   * @en_US Event to started drag column width
+   */
+  @Output() columnDragWidthStarted = new EventEmitter<XTableDragWidthEvent>();
+  /**
+   * @zh_CN 正在拖动列宽时的事件
+   * @en_US Event to moved drag column width
+   */
+  @Output() columnDragWidthMoved = new EventEmitter<XTableDragWidthEvent>();
+  /**
+   * @zh_CN 结束拖动列宽的事件
+   * @en_US Event to ended drag column width
+   */
+  @Output() columnDragWidthEnded = new EventEmitter<XTableDragWidthEvent>();
 }
 
 /**
@@ -426,6 +441,21 @@ export interface XTableColumn extends XIdentityProperty {
    */
   dragWidth?: boolean;
   /**
+   * @zh_CN 开始拖动列宽的事件
+   * @en_US Event to started drag column width
+   */
+  dragWidthStarted?: (event: XTableDragWidthEvent) => void;
+  /**
+   * @zh_CN 正在拖动列宽时的事件
+   * @en_US Event to moved drag column width
+   */
+  dragWidthMoved?: (event: XTableDragWidthEvent) => void;
+  /**
+   * @zh_CN 结束拖动列宽的事件
+   * @en_US Event to ended drag column width
+   */
+  dragWidthEnded?: (event: XTableDragWidthEvent) => void;
+  /**
    * @zh_CN 拖动列
    * @en_US Drag the column
    */
@@ -450,6 +480,23 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Custom attributes
    */
   [property: string]: any;
+}
+
+/**
+ * @zh_CN 列头宽度拖动事件
+ * @en_US Column header width drag event
+ */
+export interface XTableDragWidthEvent {
+  /**
+   * @zh_CN 拖动的列
+   * @en_US Dragged column
+   */
+  column: XTableColumn;
+  /**
+   * @zh_CN 列位置，正在拖动的时候指偏移位置
+   * @en_US The column position refers to the offset position when dragging
+   */
+  position: { x: number; y: number };
 }
 
 /**

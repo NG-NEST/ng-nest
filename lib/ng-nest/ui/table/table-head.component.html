@@ -16,7 +16,14 @@
         [title]="column?.label"
       >
         <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
-        <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
+        <div
+          *ngIf="column.dragWidth"
+          class="x-table-drag-width"
+          xDrag
+          (dragMoved)="dragWidthMoved($event, column)"
+          (dragStarted)="dragWidthStarted($event, column)"
+          (dragEnded)="dragWidthEnded($event, column)"
+        ></div>
       </th>
     </tr>
   </ng-container>
@@ -62,7 +69,14 @@
         </ng-container>
         <ng-container *ngSwitchDefault>
           <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
-          <div *ngIf="column.dragWidth" class="x-table-drag-width" xDrag (draging)="dragWidth($event, column)"></div>
+          <div
+            *ngIf="column.dragWidth"
+            class="x-table-drag-width"
+            xDrag
+            (dragMoved)="dragWidthMoved($event, column)"
+            (dragStarted)="dragWidthStarted($event, column)"
+            (dragEnded)="dragWidthEnded($event, column)"
+          ></div>
         </ng-container>
       </ng-container>
     </th>

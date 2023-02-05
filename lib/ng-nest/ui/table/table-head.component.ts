@@ -10,7 +10,7 @@ import {
   Input
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber, XClassMap } from '@ng-nest/ui/core';
+import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber, XClassMap, XIsFunction } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -124,12 +124,28 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  dragWidth(dis: { x: number; y: number }, column: XTableColumn | XTableCell) {
+  dragWidthMoved(position: { x: number; y: number; offsetX: number; offsetY: number }, column: XTableColumn | XTableCell) {
     if (column.width) {
-      (column.width as number) += dis.x;
+      (column.width as number) += position.offsetX;
       if (column.width < 60) column.width = 60;
+      XIsFunction(column.dragWidthMoved) && column.dragWidthMoved({ position, column });
+      this.table.columnDragWidthMoved.emit({ position, column });
       this.cdr.detectChanges();
       this.table.bodyChange();
+    }
+  }
+
+  dragWidthStarted(position: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    if (column.width && XIsFunction(column.dragWidthStarted)) {
+      column.dragWidthStarted({ position, column });
+      this.table.columnDragWidthStarted.emit({ position, column });
+    }
+  }
+
+  dragWidthEnded(position: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    if (column.width && XIsFunction(column.dragWidthEnded)) {
+      column.dragWidthEnded({ position, column });
+      this.table.columnDragWidthEnded.emit({ position, column });
     }
   }
 

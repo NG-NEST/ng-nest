@@ -1,2 +1,14 @@
-<x-table [(size)]="size" [columns]="columns" [data]="data" [rowHeight]="0" [scroll]="{ x: 1500, y: 600 }" virtualScroll bordered loading>
+<x-table
+  [(size)]="size"
+  [columns]="columns"
+  [data]="data"
+  [rowHeight]="0"
+  [scroll]="{ x: 1500, y: 600 }"
+  virtualScroll
+  bordered
+  loading
+  (columnDragWidthStarted)="columnDragWidthStarted($event)"
+  (columnDragWidthMoved)="columnDragWidthMoved($event)"
+  (columnDragWidthEnded)="columnDragWidthEnded($event)"
+>
 </x-table>

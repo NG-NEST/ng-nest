@@ -31,6 +31,7 @@ import { ExConfigOneComponent } from './config/config-one/config-one.component';
 import { ExConfigTwoComponent } from './config/config-two/config-two.component';
 import { ExDefaultComponent } from './default/default.component';
 import { ExDragColumnComponent } from './drag-column/drag-column.component';
+import { ExDragWidthComponent } from './drag-width/drag-width.component';
 
 const routers = [
   {
@@ -81,7 +82,8 @@ const routers = [
     ExSearchComponent,
     ExConfigOneComponent,
     ExConfigTwoComponent,
-    ExDragColumnComponent
+    ExDragColumnComponent,
+    ExDragWidthComponent
   ],
   providers: [ConfigService, CheckboxService, RowclassService]
 })

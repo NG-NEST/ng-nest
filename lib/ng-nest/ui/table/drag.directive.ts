@@ -5,7 +5,9 @@ import { takeUntil } from 'rxjs/operators';
 
 @Directive({ selector: '[xDrag]' })
 export class XDragDirective {
-  @Output() draging = new EventEmitter<{ x: number; y: number }>();
+  @Output() dragStarted = new EventEmitter<{ x: number; y: number }>();
+  @Output() dragMoved = new EventEmitter<{ x: number; y: number; offsetX: number; offsetY: number }>();
+  @Output() dragEnded = new EventEmitter<{ x: number; y: number }>();
   private _unSubject = new Subject<void>();
   doc: Document;
 
@@ -24,6 +26,7 @@ export class XDragDirective {
       const _unSub = new Subject<void>();
       this.renderer.setStyle(this.doc.documentElement, 'cursor', 'ew-resize');
       this.renderer.setStyle(this.doc.documentElement, 'user-select', 'none');
+      this.dragStarted.emit({ x, y });
       fromEvent<MouseEvent>(this.doc.documentElement, 'mousemove')
         .pipe(takeUntil(_unSub))
         .subscribe((moveMe: MouseEvent) => {
@@ -31,13 +34,14 @@ export class XDragDirective {
           offsetY = moveMe.pageY - y;
           x = moveMe.pageX;
           y = moveMe.pageY;
-          this.draging.emit({ x: offsetX, y: offsetY });
+          this.dragMoved.emit({ x, y, offsetX, offsetY });
         });
       fromEvent<MouseEvent>(this.doc.documentElement, 'mouseup')
         .pipe(takeUntil(_unSub))
         .subscribe(() => {
           this.renderer.removeStyle(this.doc.documentElement, 'cursor');
           this.renderer.removeStyle(this.doc.documentElement, 'user-select');
+          this.dragEnded.emit({ x, y });
           _unSub.next();
           _unSub.complete();
         });
