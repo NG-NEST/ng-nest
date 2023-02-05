@@ -1,3 +1,16 @@
+## [15.0.7](https://github.com/NG-NEST/ng-nest/compare/15.0.6...15.0.7) (2023-02-05)
+
+
+### Features
+
+* **module:date-picker:** add date rang ([#57](https://github.com/NG-NEST/ng-nest/issues/57)) ([1b29de0](https://github.com/NG-NEST/ng-nest/commit/1b29de0da98daec5293c900b7358b4ad2594a93d))
+* **module:switch:** add loading ([#95](https://github.com/NG-NEST/ng-nest/issues/95)) ([920edf1](https://github.com/NG-NEST/ng-nest/commit/920edf1b248f7761f3607f72cac4aa5ea93f99cc))
+* **module:switch:** add size ([#94](https://github.com/NG-NEST/ng-nest/issues/94)) ([0246366](https://github.com/NG-NEST/ng-nest/commit/024636692994e73cf54c11d7bc068b84f8e24282))
+* **module:switch:** add text and icon ([#92](https://github.com/NG-NEST/ng-nest/issues/92) [#93](https://github.com/NG-NEST/ng-nest/issues/93)) ([78b8d0e](https://github.com/NG-NEST/ng-nest/commit/78b8d0e2b3acf27cf0753dc89ce346d158f01ffe))
+* **module:table:** add drag width event ([#218](https://github.com/NG-NEST/ng-nest/issues/218)) ([b158da6](https://github.com/NG-NEST/ng-nest/commit/b158da62e3236e38578e5e2617e1b06e5ee73e05))
+
+
+
 ## [15.0.6](https://github.com/NG-NEST/ng-nest/compare/15.0.5...15.0.6) (2023-01-17)
 
 
