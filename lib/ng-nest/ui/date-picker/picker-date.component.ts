@@ -7,8 +7,8 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XChunk, XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
+import { XChunk, XIsChange, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import { XDateCell, XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 import { Subject } from 'rxjs';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
@@ -33,7 +33,9 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     'datePicker.sunday'
   ];
   now = new Date();
-  dates: Date[][] = [];
+  dates: XDateCell[] = [];
+  weekDates: XDateCell[][] = [];
+  clickCell?: XDateCell;
   locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
 
@@ -88,8 +90,95 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.setDays(this.display);
   }
 
+  isStartDate(date: Date) {
+    if (!this.rangeType || !this.rangeValue) return;
+    if (!XIsNull(this.rangeValue[0])) {
+      return this.datePipe.transform(this.rangeValue[0], 'yyyyMMdd') === this.datePipe.transform(date, 'yyyyMMdd');
+    }
+    return;
+  }
+
+  isEndDate(date: Date) {
+    if (!this.rangeType || !this.rangeValue) return;
+    if (!XIsNull(this.rangeValue[1])) {
+      return this.datePipe.transform(this.rangeValue[1], 'yyyyMMdd') === this.datePipe.transform(date, 'yyyyMMdd');
+    }
+    return;
+  }
+
+  setDatesState(cell: XDateCell) {
+    this.clearState(...this.dates);
+    for (let item of this.dates) {
+      this.setDayState(item);
+    }
+    this.onTdMouseenter(cell, false);
+  }
+
+  onTdMouseenter(cell: XDateCell, isEmit = true) {
+    const [start, end] = this.rangeValue;
+    if (!XIsNull(start) || !XIsNull(end)) {
+      const time = cell.date!.getTime();
+      for (let item of this.dates) {
+        const itemTime = item.date!.getTime();
+        this.clearState(item);
+        if (!XIsNull(start) && XIsNull(end)) {
+          item.isRangeHoverStartLeft = time < start! && itemTime === start!;
+          item.isRangeHoverStartRight = time > start! && itemTime === start!;
+          item.isRangeHover =
+            (time < start! && itemTime >= time && itemTime < start!) || (time > start! && itemTime > start! && itemTime <= time);
+          item.isRangeHoverStart = itemTime === time && time < start!;
+          item.isRangeHoverEnd = itemTime === time && time > start!;
+        } else if (XIsNull(start) && !XIsNull(end)) {
+          item.isRangeHoverEndLeft = time < end! && itemTime === end!;
+          item.isRangeHoverEndRight = time > end! && itemTime === end!;
+          item.isRangeHover = (time < end! && itemTime >= time && itemTime < end!) || (time > end! && itemTime > end! && itemTime <= time);
+          item.isRangeHoverStart = itemTime === time && time < end!;
+          item.isRangeHoverEnd = itemTime === time && time > end!;
+        } else if (!XIsNull(start) && !XIsNull(end)) {
+          item.isRangeHoverStartLeft = time < start! && itemTime === start!;
+          item.isRangeHoverEndRight = time > end! && itemTime === end!;
+          item.isRangeHover =
+            (time < start! && itemTime >= time && itemTime < start!) || (time > end! && itemTime > end! && itemTime <= time);
+          item.isRangeHoverStart = itemTime === time && time < start!;
+          item.isRangeHoverEnd = itemTime === time && time > end!;
+          if (this.rangeType === 'start') {
+            item.isInRangeHover = itemTime >= time! && itemTime <= end!;
+          } else if (this.rangeType === 'end') {
+            item.isInRangeHover = itemTime >= start! && itemTime <= time;
+          }
+        }
+      }
+      if (isEmit) {
+        this.rangeTdMouseenter.emit(cell);
+      } else {
+        this.cdr.detectChanges();
+      }
+    }
+  }
+
+  onTdMouseleave(cell: XDateCell, isEmit = true) {
+    const [start, end] = this.rangeValue;
+    if (!XIsNull(start) || !XIsNull(end)) {
+      this.clearState(...this.dates);
+      if (isEmit) this.rangeTdMouseleave.emit(cell);
+    }
+  }
+
+  clearState(...cells: XDateCell[]) {
+    for (let cell of cells) {
+      cell.isInRangeHover = false;
+      cell.isRangeHover = false;
+      cell.isRangeHoverStart = false;
+      cell.isRangeHoverEnd = false;
+      cell.isRangeHoverStartLeft = false;
+      cell.isRangeHoverStartRight = false;
+      cell.isRangeHoverEndLeft = false;
+      cell.isRangeHoverEndRight = false;
+    }
+  }
+
   setDays(date: Date) {
-    let dates: Date[] = [];
+    let dates: XDateCell[] = [];
     const year = date.getFullYear();
     const month = date.getMonth();
     const first = new Date(year, month, 1);
@@ -102,14 +191,15 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     let index = 1;
     while (day !== 1) {
       index--;
-      let date = new Date(year, month, index);
-      dates = [date, ...dates];
-      day = date.getDay();
+      const cell = { date: new Date(year, month, index) };
+      dates = [this.setDayState(cell), ...dates];
+      day = cell.date.getDay();
     }
 
     index = 1;
     do {
-      dates = [...dates, new Date(year, month, index)];
+      const cell: XDateCell = { date: new Date(year, month, index), isFirstDay: index === 1, isLastDay: index === lastDate };
+      dates = [...dates, this.setDayState(cell)];
       index++;
     } while (index <= lastDate);
 
@@ -117,24 +207,50 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     day = lastDay;
     while (day !== 0 || dates.length !== 7 * 6) {
       index++;
-      let date = new Date(year, month + 1, index);
-      dates = [...dates, date];
-      day = date.getDay();
+      const cell = { date: new Date(year, month + 1, index) };
+      dates = [...dates, this.setDayState(cell)];
+      day = cell.date.getDay();
     }
 
-    this.dates = XChunk(dates, 7);
+    this.dates = dates;
+    this.weekDates = XChunk(dates, 7);
 
     if (this.dates.length > 0) {
-      this.rangeChange.emit([dates[0], dates[dates.length - 1]]);
+      this.rangeChange.emit([dates[0].date!, dates[dates.length - 1].date!]);
     }
 
     this.cdr.detectChanges();
   }
 
-  dateClick(date: Date) {
-    this.model = date;
-    this.modelChange.emit(date);
-    this.cdr.markForCheck();
+  setDayState(cell: XDateCell): XDateCell {
+    const time = cell.date?.getTime()!;
+    const fdate = this.datePipe.transform(cell.date, 'yyyyMMdd');
+    const fdatem = this.datePipe.transform(cell.date, 'yyyyMM');
+    const fdisplaym = this.datePipe.transform(this.display, 'yyyyMM');
+    const fnow = this.datePipe.transform(this.now, 'yyyyMMdd');
+    cell.isLastOrNext = fdatem !== fdisplaym;
+    cell.isNow = fdate === fnow;
+    if (this.rangePicker) {
+      if (!this.rangeValue) return cell;
+      const [start, end] = this.rangeValue;
+      cell.isInRange = !!start && !!end && time >= start! && time <= end!;
+      cell.isRangeStartRight = !!start && !!end && fdate === this.datePipe.transform(start!, 'yyyyMMdd');
+      cell.isRangeEndLeft = !!start && !!end && fdate === this.datePipe.transform(end!, 'yyyyMMdd');
+    }
+    return cell;
+  }
+
+  dateClick(cell: XDateCell) {
+    this.model = cell.date;
+    this.modelChange.emit(cell.date);
+    if (this.rangePicker) {
+      this.clearState(...this.dates);
+      for (let item of this.dates) {
+        this.setDayState(item);
+      }
+      this.rangeDateClick.emit(cell);
+    }
+    this.cdr.detectChanges();
   }
 
   getLocaleMonth(date: Date) {
@@ -143,9 +259,9 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
   rangeDisabled(date: Date) {
     if (this.rangeType === 'end') {
-      return this.rangeStart !== '' && date.getTime() < this.rangeStart;
+      return this.rangeStart !== '' && date.getTime() < this.rangeStart!;
     } else if (this.rangeType === 'start') {
-      return this.rangeEnd !== '' && date.getTime() > this.rangeEnd;
+      return this.rangeEnd !== '' && date.getTime() > this.rangeEnd!;
     }
     return false;
   }
@@ -178,7 +294,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.cdr.detectChanges();
   }
 
-  trackByNode(_index: number, item: string | Date) {
+  trackByNode(_index: number, item: string | Date | XDateCell) {
     return item;
   }
 }

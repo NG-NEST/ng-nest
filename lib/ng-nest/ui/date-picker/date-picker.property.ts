@@ -251,7 +251,7 @@ export class XPickerDateProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model?: Date;
+  @Input() model?: Date | null;
   /**
    * @zh_CN 日期显示模板
    * @en_US Date display template
@@ -291,7 +291,7 @@ export class XPickerDateProperty extends XProperty {
    * @zh_CN 范围日期
    * @en_US Range date
    */
-  @Input() rangeValue: number[] = [];
+  @Input() rangeValue: (number | null)[] = [];
   /**
    * @zh_CN 当前选择的是开始/结束日期
    * @en_US The current choice is the start / end date
@@ -327,6 +327,133 @@ export class XPickerDateProperty extends XProperty {
    * @en_US display date event
    */
   @Output() displayChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 范围日期 mouseenter 事件
+   * @en_US Date mouseenter event
+   */
+  @Output() rangeTdMouseenter = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围日期 mouseleave 事件
+   * @en_US Date mouseleave event
+   */
+  @Output() rangeTdMouseleave = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围中的日期点击事件
+   * @en_US Range date click event
+   */
+  @Output() rangeDateClick = new EventEmitter<XDateCell>();
+}
+
+/**
+ * @zh_CN 单个日期数据对象
+ * @en_US 单个日期数据对象
+ */
+export interface XDateCell {
+  /**
+   * @zh_CN 日期
+   * @en_US Date
+   */
+  date?: Date;
+  /**
+   * @zh_CN 上个月或下个月的日期
+   * @en_US Date of the previous or next month
+   */
+  isLastOrNext?: boolean;
+  /**
+   * @zh_CN 当天
+   * @en_US Same day
+   */
+  isNow?: boolean;
+  /**
+   * @zh_CN 当月第一天
+   * @en_US The first day of the month
+   */
+  isFirstDay?: boolean;
+  /**
+   * @zh_CN 当月最后一天
+   * @en_US The last day of the month
+   */
+  isLastDay?: boolean;
+  /**
+   * @zh_CN 范围内日期
+   * @en_US 范围内日期
+   */
+  isInRange?: boolean;
+  /**
+   * @zh_CN 范围内 hover 选中
+   * @en_US 范围内 hover 选中
+   */
+  isInRangeHover?: boolean;
+  /**
+   * @zh_CN 范围内 hover 当前日期左边
+   * @en_US 范围内 hover 当前日期左边
+   */
+  isInRangeHoverLeft?: boolean;
+  /**
+   * @zh_CN 范围内 hover 当前日期右边
+   * @en_US 范围内 hover 当前日期右边
+   */
+  isInRangeHoverRight?: boolean;
+  /**
+   * @zh_CN 选中开始左边
+   * @en_US Range start left
+   */
+  isRangeStartLeft?: boolean;
+  /**
+   * @zh_CN 选中开始右边
+   * @en_US Range start right
+   */
+  isRangeStartRight?: boolean;
+  /**
+   * @zh_CN 选中结束左边
+   * @en_US Range start left
+   */
+  isRangeEndLeft?: boolean;
+  /**
+   * @zh_CN 选中结束右边
+   * @en_US Range start right
+   */
+  isRangeEndRight?: boolean;
+  /**
+   * @zh_CN 范围 hover
+   * @en_US Range hover
+   */
+  isRangeHover?: boolean;
+  /**
+   * @zh_CN hover 当前开始
+   * @en_US Range hover start
+   */
+  isRangeHoverStart?: boolean;
+  /**
+   * @zh_CN hover 当前结束
+   * @en_US End date
+   */
+  isRangeHoverEnd?: boolean;
+  /**
+   * @zh_CN hover 开始左边
+   * @en_US Range hover start left
+   */
+  isRangeHoverStartLeft?: boolean;
+  /**
+   * @zh_CN hover 开始右边
+   * @en_US Range hover start right
+   */
+  isRangeHoverStartRight?: boolean;
+  /**
+   * @zh_CN hover 结束左边
+   * @en_US Range hover end left
+   */
+  isRangeHoverEndLeft?: boolean;
+  /**
+   * @zh_CN hover 结束右边
+   * @en_US Range hover end right
+   */
+  isRangeHoverEndRight?: boolean;
+  /**
+   * @zh_CN 当前选中日期
+   * @en_US Current selected date
+   */
+  isActive?: boolean;
 }
 
 /**

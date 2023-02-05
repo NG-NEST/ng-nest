@@ -1,28 +1,37 @@
-<div #dateRange class="x-date-range" [class.x-date-range-active]="active">
+<div
+  #dateRange
+  class="x-date-range"
+  [class.x-date-range-active]="active"
+  [class.x-date-range-active-start]="activeType === 'start'"
+  [class.x-date-range-active-end]="activeType === 'end'"
+>
   <div class="x-date-range-row">
-    <x-input-group #inputGroup class="x-date-range-group" bordered="false" (click)="showPortal($event)">
+    <x-input-group #inputGroup class="x-date-range-group" (mouseenter)="menter()" (mouseleave)="mleave()" (click)="showPortal($event)">
       <x-input
         #inputStartCom
-        [class.x-input-active]="startActive"
+        class="x-data-range-input-start"
         type="text"
+        bordered="false"
         placeholder="开始日期"
-        (click)="showPortal($event, 'start')"
-        (xFocus)="startActive = true"
-        (xBlur)="startActive = false"
+        (xFocus)="onFocus('start')"
+        (xClick)="showPortal($event, 'start')"
         [(ngModel)]="startDisplay"
       ></x-input>
-      <x-icon type="fto-arrow-right"></x-icon>
+      <x-icon class="x-date-range-icon" type="fto-arrow-right"></x-icon>
       <x-input
         #inputEndCom
-        [class.x-input-active]="endActive"
+        class="x-data-range-input-end"
         type="text"
+        bordered="false"
         placeholder="结束日期"
-        (click)="showPortal($event, 'end')"
-        (xFocus)="endActive = true"
-        (xBlur)="endActive = false"
+        (xFocus)="onFocus('end')"
+        (xClick)="showPortal($event, 'end')"
         [(ngModel)]="endDisplay"
+        [icon]="icon"
+        (clearEmit)="clearEmit()"
+        [clearable]="showClearable"
       ></x-input>
-      <x-icon [type]="icon"></x-icon>
+      <div *ngIf="active" class="x-date-range-active-bar"></div>
     </x-input-group>
   </div>
 </div>

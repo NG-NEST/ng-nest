@@ -10,34 +10,25 @@ export function XToDate(date: XDate): Date {
   }
 }
 
-export function XAddSeconds(date: XDate, amount: number): Date {
+export function XAddMilliseconds(date: XDate, amount: number): Date {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf()) && amount) {
-    dt.setSeconds(dt.getSeconds() + amount);
-    return dt;
+    return new Date(dt.getTime() + amount);
   } else {
     return date as Date;
   }
+}
+
+export function XAddSeconds(date: XDate, amount: number): Date {
+  return XAddMilliseconds(date, amount * 1000);
 }
 
 export function XAddMinutes(date: XDate, amount: number): Date {
-  let dt = XToDate(date);
-  if (!isNaN(dt.valueOf()) && amount) {
-    dt.setMinutes(dt.getMinutes() + amount);
-    return dt;
-  } else {
-    return date as Date;
-  }
+  return XAddMilliseconds(date, amount * 60000);
 }
 
 export function XAddHours(date: XDate, amount: number): Date {
-  let dt = XToDate(date);
-  if (!isNaN(dt.valueOf()) && amount) {
-    dt.setHours(dt.getHours() + amount);
-    return dt;
-  } else {
-    return date as Date;
-  }
+  return XAddMilliseconds(date, amount * 3600000);
 }
 
 export function XAddDays(date: XDate, amount: number): Date {
@@ -53,7 +44,16 @@ export function XAddDays(date: XDate, amount: number): Date {
 export function XAddMonths(date: XDate, amount: number): Date {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf()) && amount) {
-    dt.setMonth(dt.getMonth() + amount);
+    const day = dt.getDate();
+    const month = dt.getMonth();
+    const endMonth = new Date(dt);
+    endMonth.setMonth(month + amount + 1, 0);
+    const endDay = endMonth.getDate();
+    if (day >= endDay) {
+      return endMonth;
+    } else {
+      dt.setFullYear(endMonth.getFullYear(), endMonth.getMonth(), day);
+    }
     return dt;
   } else {
     return date as Date;
@@ -61,11 +61,5 @@ export function XAddMonths(date: XDate, amount: number): Date {
 }
 
 export function XAddYears(date: XDate, amount: number): Date {
-  let dt = XToDate(date);
-  if (!isNaN(dt.valueOf()) && amount) {
-    dt.setFullYear(dt.getFullYear() + amount);
-    return dt;
-  } else {
-    return date as Date;
-  }
+  return XAddMonths(date, amount * 12);
 }

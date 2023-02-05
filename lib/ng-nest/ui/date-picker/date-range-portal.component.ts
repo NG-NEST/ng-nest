@@ -10,7 +10,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDateRangePortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddMonths, XAddYears } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddMonths, XAddYears, XIsNull } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -38,25 +38,26 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   type: XDatePickerType = 'date';
   display = new Date();
   model!: Date;
-  startModel!: Date;
-  endModel!: Date;
+  startModel!: Date | null;
+  endModel!: Date | null;
   startYear!: number;
   startDisplay: Date = new Date();
   endDisplay: Date = XAddMonths(this.startDisplay, 1);
-  value: number[] = [];
+  value: (number | null)[] = [];
   valueChange!: Subject<number[]>;
   positionChange!: Subject<any>;
-  inputActiveChange!: Subject<'start' | 'end'>;
+  activeTypeChange!: Subject<'start' | 'end'>;
   activeType!: 'start' | 'end';
   animating!: Function;
   closePortal!: Function;
   destroyPortal!: Function;
-  nodeEmit!: (date: Date[], sure?: boolean) => void;
-  startNodeEmit!: (date: Date) => void;
-  endNodeEmit!: (date: Date) => void;
+  nodeEmit!: (date: Date[], close?: boolean) => void;
+  startNodeEmit!: (date: Date | null, close?: boolean) => void;
+  endNodeEmit!: (date: Date | null, close?: boolean) => void;
   locale: XI18nDatePicker = {};
   time!: number;
   preset: XDatePickerPreset[] = [];
+  nodeClickCount = 0;
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
@@ -71,9 +72,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       this.placement = x;
       this.cdr.detectChanges();
     });
-    this.inputActiveChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
+    this.activeTypeChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.activeType = x;
-      this.setDefault();
     });
     this.i18n.localeChange
       .pipe(
@@ -99,7 +99,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     if (!XIsEmpty(this.value)) {
       this.setDefault();
     } else {
-      this.value = [];
+      this.value = [null, null];
       this.model = this.display;
       this.startModel = this.model;
       this.endModel = XAddMonths(this.model, 1);
@@ -116,12 +116,12 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   setDefault() {
     const type = this.activeType || 'start';
     if (type === 'start') {
-      this.startModel = new Date(this.value[0]);
+      this.startModel = new Date(this.value[0]!);
       this.startDisplay = this.startModel;
       this.endModel = XAddMonths(this.startModel, 1);
       this.endDisplay = this.endModel;
     } else if (type === 'end') {
-      this.endModel = new Date(this.value[1]);
+      this.endModel = new Date(this.value[1]!);
       this.endDisplay = this.endModel;
       this.startModel = XAddMonths(this.endModel, -1);
       this.startDisplay = this.startModel;
@@ -135,33 +135,39 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     this.endDisplay = XAddMonths(this.display, 1);
   }
 
-  dateChange(date: Date, type: 'start' | 'end') {
-    let time = date.getTime();
-    if (this.value.length === 0) {
-      this.value = [time];
-      this.startNodeEmit(date);
-    } else if (this.value.length === 1) {
-      if (time > this.value[0]) {
-        this.value = [...this.value, time];
-        this.endNodeEmit(date);
-      } else {
-        this.value = [time, ...this.value];
-        this.startNodeEmit(date);
-        this.endNodeEmit(new Date(this.value[1]));
+  dateChange(date: Date) {
+    this.nodeClickCount++;
+    let close = this.nodeClickCount === 2;
+    const time = date.getTime();
+    if (this.activeType === 'start') {
+      this.value[0] = time;
+      if (!XIsNull(this.value[1]) && time > this.value[1]!) {
+        if (this.nodeClickCount === 2) {
+          this.nodeClickCount--;
+        }
+        close = false;
+        this.endModel = null;
+        this.value[1] = null;
+        this.endNodeEmit(null, close);
       }
-      this.nodeEmit(this.value.map((x) => new Date(x)));
-    } else {
-      if (type === 'start') {
-        this.value = [time, this.value[1]];
-        this.startNodeEmit(date);
-      } else if (type === 'end') {
-        this.value = [this.value[0], time];
-        this.cdr.detectChanges();
-        this.endNodeEmit(date);
+      this.startNodeEmit(date, close);
+    } else if (this.activeType === 'end') {
+      this.value[1] = time;
+      if (!XIsNull(this.value[0]) && time < this.value[0]!) {
+        if (this.nodeClickCount === 2) {
+          this.nodeClickCount--;
+        }
+        close = false;
+        this.startModel = null;
+        this.value[0] = null;
+        this.startNodeEmit(null, close);
       }
+      this.endNodeEmit(date, close);
+    }
+    if (!this.value.includes(null)) {
       this.nodeEmit(
-        this.value.map((x) => new Date(x)),
-        type !== 'start'
+        this.value.map((x) => new Date(x!)),
+        close
       );
     }
   }

@@ -3,7 +3,7 @@
     <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)" [class.x-visibility]="!lastYearBtn"></x-button>
     <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)" [class.x-visibility]="!lastMonthBtn"></x-button>
     <div class="x-picker-date-year-month">
-      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
+      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date : 'yyyy' }}{{ locale.year }}</x-button>
       <x-button type="text" size="small" (click)="typeOnChange('month')">{{ getLocaleMonth(display) }}</x-button>
     </div>
     <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)" [class.x-visibility]="!nextYearBtn"></x-button>
@@ -17,25 +17,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let weeks of dates">
+        <tr *ngFor="let weeks of weekDates">
           <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
             <td
-              [class.x-date-last-or-next]="(week | date: 'yyyyMM') !== (display | date: 'yyyyMM')"
-              [class.x-date-now]="(week | date: 'yyyyMMdd') === (now | date: 'yyyyMMdd')"
-              (click)="dateTemp && dateClick(week)"
+              [class.x-date-last-or-next]="week.isLastOrNext"
+              [class.x-date-now]="week.isNow"
+              [class.x-date-first-day]="week.isFirstDay"
+              [class.x-date-last-day]="week.isLastDay"
+              [class.x-date-range-start]="rangePicker && isStartDate(week.date!)"
+              [class.x-date-range-end]="rangePicker && isEndDate(week.date!)"
+              [class.x-date-range-start-left]="rangePicker && week.isRangeStartLeft"
+              [class.x-date-range-start-right]="rangePicker && week.isRangeStartRight"
+              [class.x-date-range-end-left]="rangePicker && week.isRangeEndLeft"
+              [class.x-date-range-end-right]="rangePicker && week.isRangeEndRight"
+              [class.x-date-range-hover]="rangePicker && week.isRangeHover"
+              [class.x-date-range-hover-start-left]="rangePicker && week.isRangeHoverStartLeft"
+              [class.x-date-range-hover-start-right]="rangePicker && week.isRangeHoverStartRight"
+              [class.x-date-range-hover-end-left]="rangePicker && week.isRangeHoverEndLeft"
+              [class.x-date-range-hover-end-right]="rangePicker && week.isRangeHoverEndRight"
+              [class.x-date-range-hover-start]="rangePicker && week.isRangeHoverStart"
+              [class.x-date-range-hover-end]="rangePicker && week.isRangeHoverEnd"
+              [class.x-date-in-range]="rangePicker && week.isInRange"
+              [class.x-date-in-range-hover]="rangePicker && week.isInRangeHover"
+              [class.x-date-active]="!rangePicker && (week.date | date : 'yyyyMMdd') === (model | date : 'yyyyMMdd')"
+              title="{{ week.date | date : 'yyyy-MM-dd' }}"
+              (click)="dateClick(week)"
+              (mouseenter)="rangePicker && onTdMouseenter(week)"
+              (mouseleave)="rangePicker && onTdMouseleave(week)"
             >
-              <x-button
-                *ngIf="!dateTemp"
-                type="text"
-                size="mini"
-                title="{{ week | date: 'yyyy-MM-dd' }}"
-                [activated]="!rangePicker && (week | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')"
-                [disabled]="false"
-                (click)="dateClick(week)"
-                >{{ week | date: 'd' }}</x-button
-              >
+              <div *ngIf="!dateTemp" class="x-date-text">
+                {{ week.date | date : 'd' }}
+              </div>
               <ng-container *ngIf="dateTemp">
-                <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week }"></ng-container>
+                <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week.date }"></ng-container>
               </ng-container>
             </td>
           </ng-container>

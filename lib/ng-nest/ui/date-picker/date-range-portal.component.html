@@ -2,6 +2,7 @@
   <ng-container *ngSwitchCase="'date'">
     <div class="x-date-range-portal-body">
       <x-picker-date
+        #startPickerDate
         class="x-date-range-portal-start"
         [(display)]="startDisplay"
         [model]="startModel"
@@ -9,12 +10,15 @@
         [rangeType]="activeType"
         [nextYearBtn]="false"
         [nextMonthBtn]="false"
-        (modelChange)="dateChange($event, 'start')"
+        (modelChange)="dateChange($event)"
         (yearChange)="startYearChange($event)"
         (monthChange)="startMonthChange($event)"
+        (rangeTdMouseenter)="endPickerDate.setDatesState($event)"
+        (rangeDateClick)="endPickerDate.setDatesState($event)"
         rangePicker
       ></x-picker-date>
       <x-picker-date
+        #endPickerDate
         class="x-date-range-portal-end"
         [(display)]="endDisplay"
         [model]="endModel"
@@ -22,9 +26,11 @@
         [rangeType]="activeType"
         [lastYearBtn]="false"
         [lastMonthBtn]="false"
-        (modelChange)="dateChange($event, 'end')"
+        (modelChange)="dateChange($event)"
         (yearChange)="endYearChange($event)"
         (monthChange)="endMonthChange($event)"
+        (rangeTdMouseenter)="startPickerDate.setDatesState($event)"
+        (rangeDateClick)="startPickerDate.setDatesState($event)"
         rangePicker
       ></x-picker-date>
     </div>
@@ -35,7 +41,7 @@
   <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
   <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)"></x-button>
   <div class="x-date-range-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ startDisplay | date: 'yyyy' }}{{ locale.year }}</x-button>
+    <x-button type="text" size="small" (click)="typeChange('year')">{{ startDisplay | date : 'yyyy' }}{{ locale.year }}</x-button>
     <x-button type="text" size="small" (click)="typeChange('month')">{{ getLocaleMonth(startDisplay) }}</x-button>
   </div>
   <x-button icon="fto-chevron-right" size="small" onlyIcon style="visibility: hidden"></x-button>
@@ -46,7 +52,7 @@
   <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)" style="visibility: hidden"></x-button>
   <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)" style="visibility: hidden"></x-button>
   <div class="x-date-range-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ endDisplay | date: 'yyyy' }}{{ locale.year }}</x-button>
+    <x-button type="text" size="small" (click)="typeChange('year')">{{ endDisplay | date : 'yyyy' }}{{ locale.year }}</x-button>
     <x-button type="text" size="small" (click)="typeChange('month')">{{ getLocaleMonth(endDisplay) }}</x-button>
   </div>
   <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)"></x-button>

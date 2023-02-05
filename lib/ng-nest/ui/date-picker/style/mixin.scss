@@ -100,29 +100,186 @@
       td {
         padding: 0.25rem 0;
         text-align: center;
-        x-button .x-button {
-          width: 1.625rem;
+        cursor: pointer;
+        color: $--x-text-300;
+        position: relative;
+        .x-date-text {
+          width: 1.75rem;
           height: 1.5rem;
           margin: 0 auto;
-          border: 0.0625rem solid transparent;
-          &:hover {
-            background-color: $--x-primary-900;
+          border: $--x-border-width $--x-border-style transparent;
+          border-radius: $--x-border-radius;
+          transition: $--x-animation-duration-base;
+          position: relative;
+        }
+        &::before,
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          left: 0;
+          z-index: 1;
+          height: 1.5rem;
+          border: $--x-border-width dashed transparent;
+          transform: translate(0, -50%);
+          transition: $--x-animation-duration-base;
+          content: '';
+        }
+        &:hover:not(.x-date-in-range) {
+          .x-date-text {
+            background-color: $--x-background-a200;
           }
-          &-activated {
-            color: $--x-background-100;
+        }
+        &.x-date-active:not(.x-date-last-or-next),
+        &.x-date-range-start:not(.x-date-last-or-next),
+        &.x-date-range-end:not(.x-date-last-or-next) {
+          color: $--x-background-100;
+          .x-date-text {
             background-color: $--x-primary;
-            &:hover {
-              color: $--x-background-100;
+            border-color: $--x-primary;
+          }
+          &:hover {
+            color: $--x-background-100;
+            .x-date-text {
               background-color: $--x-primary;
             }
           }
         }
-        &.x-date-last-or-next x-button .x-button {
+        &.x-date-range-end-left:not(.x-date-last-or-next):not(.x-date-first-day):not(:first-child) {
+          .x-date-text {
+            z-index: 1;
+          }
+          &::after {
+            background-color: $--x-primary-800;
+            transform: translate(-0.25rem, -50%);
+            border-radius: $--x-border-radius;
+            z-index: 0;
+          }
+          &.x-date-in-range-hover {
+            &::after {
+              background-color: $--x-primary-700;
+            }
+          }
+        }
+        &.x-date-range-start-right:not(.x-date-last-or-next):not(.x-date-last-day):not(:last-child) {
+          .x-date-text {
+            z-index: 1;
+          }
+          &::after {
+            background-color: $--x-primary-800;
+            transform: translate(0.25rem, -50%);
+            border-radius: $--x-border-radius;
+            z-index: 0;
+          }
+          &.x-date-in-range-hover {
+            &::after {
+              background-color: $--x-primary-700;
+            }
+          }
+        }
+        &.x-date-in-range:not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) {
+          .x-date-text {
+            position: relative;
+            z-index: 1;
+          }
+          &::before {
+            background-color: $--x-primary-800;
+            z-index: 0;
+          }
+          &:first-child {
+            &::before {
+              transform: translate(0.25rem, -50%);
+            }
+          }
+          &:last-child {
+            &::before {
+              transform: translate(-0.25rem, -50%);
+            }
+          }
+          &.x-date-in-range-hover {
+            &-left::before {
+              transform: translate(-0.25rem, -50%);
+            }
+            &-right::before {
+              transform: translate(0.25rem, -50%);
+            }
+            &::before {
+              background-color: $--x-primary-700;
+            }
+          }
+        }
+        &.x-date-last-or-next {
           color: $--x-text-700;
         }
-        &.x-date-now x-button .x-button:not(.x-button-activated) {
+        &.x-date-range-hover {
+          &:not(.x-date-last-or-next)::before {
+            border-color: $--x-primary;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            transform: translate(-0.25rem, -50%);
+          }
+          &:first-child:not(.x-date-last-or-next),
+          &.x-date-first-day {
+            &::before {
+              border-left-color: $--x-primary;
+              transform: translate(0.25rem, -50%);
+            }
+            &.x-date-range-hover-end {
+              &::before {
+                width: 1.75rem;
+                transform: translate(0.25rem, -50%);
+              }
+            }
+          }
+          &:last-child:not(.x-date-last-or-next),
+          &.x-date-last-day {
+            &::before {
+              border-right-color: $--x-primary;
+              transform: translate(-0.25rem, -50%);
+            }
+            &.x-date-range-hover-start {
+              &::before {
+                width: 1.75rem;
+                transform: translate(0.25rem, -50%);
+              }
+            }
+          }
+          &-start:not(.x-date-last-or-next) {
+            &::before {
+              border-left-color: $--x-primary;
+              transform: translate(0.25rem, -50%);
+            }
+          }
+          &.x-date-range-hover-start:not(.x-date-last-or-next) {
+            &::before {
+              transform: translate(0.25rem, -50%);
+            }
+          }
+          &-end:not(.x-date-last-or-next) {
+            &::before {
+              border-right-color: $--x-primary;
+              transform: translate(-0.25rem, -50%);
+            }
+          }
+          &-start-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day),
+          &-end-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day) {
+            &::before {
+              border-top-color: $--x-primary;
+              border-bottom-color: $--x-primary;
+              transform: translate(-0.3125rem, -50%);
+            }
+          }
+          &-start-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day),
+          &-end-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day) {
+            &::before {
+              border-top-color: $--x-primary;
+              border-bottom-color: $--x-primary;
+              transform: translate(0.3125rem, -50%);
+            }
+          }
+        }
+        &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
           color: $--x-primary;
-          background-color: transparent;
           border-color: $--x-primary;
         }
       }
@@ -256,26 +413,28 @@
     .x-input-group {
       display: flex;
       align-items: center;
-      > #{$--x-prefix}-icon {
+      position: relative;
+      .x-date-range-icon {
         color: $--x-text-400;
         transition: all $--x-animation-duration-base;
         z-index: 2;
-        padding: 0.4rem;
+        font-size: 1rem;
+        width: 1.8rem;
       }
       > x-input {
-        width: 6rem;
         input {
           padding-left: 0 !important;
           padding-right: 0 !important;
+          background-color: transparent;
           margin-left: 0.4rem;
           margin-right: 0.4rem;
           border-radius: 0;
-          border-bottom: $--x-border-width $--x-border-style transparent;
         }
-        .x-input-active {
-          input {
-            border-color: $--x-primary;
-          }
+        &.x-data-range-input-start {
+          width: 6rem;
+        }
+        &.x-data-range-input-end {
+          width: 7.8rem;
         }
       }
     }
@@ -283,9 +442,32 @@
       @include hover();
     }
   }
+  &-active-bar {
+    position: absolute;
+    height: 0.125rem;
+    margin-left: 0.4rem;
+    bottom: -0.0625rem;
+    width: calc(50% - 2.2rem);
+    background-color: $--x-primary;
+    transition: $--x-animation-duration-base;
+  }
   &-active {
     .x-date-range-group {
       @include focus();
+    }
+  }
+  &-active-start {
+    .#{$--x-date-range-prefix} {
+      &-active-bar {
+        left: 0;
+      }
+    }
+  }
+  &-active-end {
+    .#{$--x-date-range-prefix} {
+      &-active-bar {
+        left: 50%;
+      }
     }
   }
 }

@@ -135,8 +135,8 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     const clearValue = this.value;
     this.value = '';
     this.change(this.value);
-    this.clearEmit.emit(clearValue);
     this.inputRef.nativeElement.focus();
+    this.clearEmit.emit(clearValue);
   }
 
   setFlexClass() {
