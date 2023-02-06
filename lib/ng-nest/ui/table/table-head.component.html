@@ -47,7 +47,7 @@
     <th
       *ngFor="let column of columns; trackBy: trackByItem"
       cdkDrag
-      [cdkDragDisabled]="!column.dragColumn"
+      [cdkDragDisabled]="column.draggingWidth || !column.dragColumn"
       (cdkDragStarted)="dragStarted($event, column)"
       (cdkDragEnded)="dragEnded(column)"
       [ngClass]="thClassMap"

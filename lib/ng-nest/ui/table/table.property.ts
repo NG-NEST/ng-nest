@@ -441,6 +441,11 @@ export interface XTableColumn extends XIdentityProperty {
    */
   dragWidth?: boolean;
   /**
+   * @zh_CN 正在拖动列宽
+   * @en_US Dragging width
+   */
+  draggingWidth?: boolean;
+  /**
    * @zh_CN 开始拖动列宽的事件
    * @en_US Event to started drag column width
    */

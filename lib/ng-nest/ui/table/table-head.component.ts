@@ -136,6 +136,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   dragWidthStarted(position: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    column.draggingWidth = true;
     if (column.width && XIsFunction(column.dragWidthStarted)) {
       column.dragWidthStarted({ position, column });
       this.table.columnDragWidthStarted.emit({ position, column });
@@ -143,6 +144,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   dragWidthEnded(position: { x: number; y: number }, column: XTableColumn | XTableCell) {
+    column.draggingWidth = false;
     if (column.width && XIsFunction(column.dragWidthEnded)) {
       column.dragWidthEnded({ position, column });
       this.table.columnDragWidthEnded.emit({ position, column });
