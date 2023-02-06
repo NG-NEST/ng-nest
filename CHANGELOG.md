@@ -1,3 +1,17 @@
+## [15.0.8](https://github.com/NG-NEST/ng-nest/compare/15.0.7...15.0.8) (2023-02-06)
+
+
+### Bug Fixes
+
+* **module:table:** fix the problem of dragging column and dragging width at the same time ([44255ff](https://github.com/NG-NEST/ng-nest/commit/44255ff577af514dc3d738e49e9eb4f5dcbb94b7))
+
+
+### Features
+
+* **module:switch:** size Add global configuration ([df0290a](https://github.com/NG-NEST/ng-nest/commit/df0290aa7ea3afbf36ce8ae983e841d8d6129ac7))
+
+
+
 ## [15.0.7](https://github.com/NG-NEST/ng-nest/compare/15.0.6...15.0.7) (2023-02-05)
 
 
