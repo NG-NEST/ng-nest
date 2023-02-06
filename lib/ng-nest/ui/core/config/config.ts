@@ -511,7 +511,9 @@ export interface XCountdownConfig {
 
 export interface XStepsConfig {}
 
-export interface XSwitchConfig {}
+export interface XSwitchConfig {
+  size?: XSize;
+}
 
 export interface XTableConfig {
   index?: number;
