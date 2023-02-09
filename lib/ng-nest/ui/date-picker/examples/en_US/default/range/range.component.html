@@ -1,0 +1,56 @@
+<div class="row">
+  <x-date-range [(ngModel)]="model" (ngModelChange)="change($event)" [label]="'Title(top)'"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [(ngModel)]="modelString"
+    (ngModelChange)="change($event)"
+    [label]="'Title(bottom)'"
+    direction="column-reverse"
+  ></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [(ngModel)]="modelDate"
+    (ngModelChange)="change($event)"
+    [style.width.rem]="18"
+    [label]="'Title(left)'"
+    direction="row"
+  ></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [(ngModel)]="modelNumber"
+    (ngModelChange)="change($event)"
+    [style.width.rem]="18"
+    [label]="'Title(right)'"
+    direction="row-reverse"
+  ></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Select month" [(ngModel)]="model" type="month"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Select year" [(ngModel)]="model" type="year"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Select date（time）" [(ngModel)]="modelDateTime" type="date-time"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Select date（minute）" [(ngModel)]="modelDateMinute" type="date-minute"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Select date（hour）" [(ngModel)]="modelDateHour" type="date-hour"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Required" required [(ngModel)]="model"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Disabled" disabled [(ngModel)]="model"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Bordered" [(ngModel)]="model" bordered="false"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range label="Placeholder" [(ngModel)]="model" [placeholder]="['开始', '结束']"></x-date-range>
+</div>

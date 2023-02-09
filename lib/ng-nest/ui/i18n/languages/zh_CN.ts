@@ -65,7 +65,16 @@ export default {
     sunday: '日',
     yesterday: '昨天',
     today: '今天',
-    tomorrow: '明天'
+    tomorrow: '明天',
+    selectDate: '请选择日期',
+    selectMonth: '请选择月份',
+    selectYear: '请选择年份',
+    startDate: '开始日期',
+    endDate: '结束日期',
+    startMonth: '开始月份',
+    endMonth: '结束月份',
+    startYear: '开始年份',
+    endYear: '结束年份'
   },
   timePicker: {
     am: '上午',

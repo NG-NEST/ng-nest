@@ -1,8 +1,8 @@
-<div class="x-date-range-portal {{ type }}" [ngSwitch]="type">
-  <ng-container *ngSwitchCase="'date'">
-    <div class="x-date-range-portal-body">
+<div class="x-date-range-portal {{ type }}">
+  <div class="x-date-range-portal-body" [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'date'">
       <x-picker-date
-        #startPickerDate
+        #startPicker
         class="x-date-range-portal-start"
         [(display)]="startDisplay"
         [model]="startModel"
@@ -11,14 +11,14 @@
         [nextYearBtn]="false"
         [nextMonthBtn]="false"
         (modelChange)="dateChange($event)"
-        (yearChange)="startYearChange($event)"
-        (monthChange)="startMonthChange($event)"
-        (rangeTdMouseenter)="endPickerDate.setDatesState($event)"
-        (rangeDateClick)="endPickerDate.setDatesState($event)"
+        (yearChange)="yearChange($event, 'start')"
+        (monthChange)="monthChange($event, 'start')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
         rangePicker
       ></x-picker-date>
       <x-picker-date
-        #endPickerDate
+        #endPicker
         class="x-date-range-portal-end"
         [(display)]="endDisplay"
         [model]="endModel"
@@ -27,34 +27,112 @@
         [lastYearBtn]="false"
         [lastMonthBtn]="false"
         (modelChange)="dateChange($event)"
-        (yearChange)="endYearChange($event)"
-        (monthChange)="endMonthChange($event)"
-        (rangeTdMouseenter)="startPickerDate.setDatesState($event)"
-        (rangeDateClick)="startPickerDate.setDatesState($event)"
+        (yearChange)="yearChange($event, 'end')"
+        (monthChange)="monthChange($event, 'end')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-date>
+    </ng-container>
+    <ng-container *ngSwitchCase="'month'">
+      <x-picker-month
+        #startPicker
+        class="x-date-range-portal-start"
+        [(display)]="startDisplay"
+        [model]="startModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [nextYearBtn]="false"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'start')"
+        (monthChange)="monthChange($event, 'start')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-month>
+      <x-picker-month
+        #endPicker
+        class="x-date-range-portal-end"
+        [(display)]="endDisplay"
+        [model]="endModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [lastYearBtn]="false"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'end')"
+        (monthChange)="monthChange($event, 'end')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-month>
+    </ng-container>
+    <ng-container *ngSwitchCase="'year'">
+      <x-picker-year
+        #startPicker
+        class="x-date-range-portal-start"
+        [(display)]="startDisplay"
+        [model]="startModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [nextYearBtn]="false"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'start')"
+        (monthChange)="monthChange($event, 'start')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-year>
+      <x-picker-year
+        #endPicker
+        class="x-date-range-portal-end"
+        [(display)]="endDisplay"
+        [model]="endModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [lastYearBtn]="false"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'end')"
+        (monthChange)="monthChange($event, 'end')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-year>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date-time'">
+      <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH:mm:ss', timeType: 'time' }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date-hour'">
+      <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH', timeType: 'hour' }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date-minute'">
+      <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH:mm', timeType: 'minute' }"></ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #dateTimeHourMinuteTpl let-timeFormat="timeFormat" let-timeType="timeType">
+  <div class="x-date-range-portal-content">
+    <div class="x-date-range-portal-date">
+      <x-picker-date
+        [class.x-date-range-portal-start]="activeType === 'start'"
+        [class.x-date-range-portal-end]="activeType === 'end'"
+        [(display)]="timeDisplay"
+        [(model)]="timeModel"
+        [rangeHover]="timeHover"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        (modelChange)="dateChange($event)"
         rangePicker
       ></x-picker-date>
     </div>
-  </ng-container>
-</div>
-
-<ng-template #startDateHeaderTpl>
-  <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
-  <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)"></x-button>
-  <div class="x-date-range-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ startDisplay | date : 'yyyy' }}{{ locale.year }}</x-button>
-    <x-button type="text" size="small" (click)="typeChange('month')">{{ getLocaleMonth(startDisplay) }}</x-button>
+    <div class="x-date-range-portal-time">
+      <div class="x-date-range-portal-time-label">
+        {{ time | date : timeFormat }}
+      </div>
+      <x-time-picker-frame [type]="timeType" [value]="time" (nodeEmit)="selectTime($event)" [defaultNow]="false"></x-time-picker-frame>
+    </div>
   </div>
-  <x-button icon="fto-chevron-right" size="small" onlyIcon style="visibility: hidden"></x-button>
-  <x-button icon="fto-chevrons-right" size="small" onlyIcon style="visibility: hidden"></x-button>
-</ng-template>
-
-<ng-template #endDateHeaderTpl>
-  <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)" style="visibility: hidden"></x-button>
-  <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)" style="visibility: hidden"></x-button>
-  <div class="x-date-range-portal-year-month">
-    <x-button type="text" size="small" (click)="typeChange('year')">{{ endDisplay | date : 'yyyy' }}{{ locale.year }}</x-button>
-    <x-button type="text" size="small" (click)="typeChange('month')">{{ getLocaleMonth(endDisplay) }}</x-button>
+  <div class="x-date-range-portal-footer">
+    <x-button type="primary" (click)="sureTime()" size="small" [disabled]="timeSureDisabled">{{ locale.sure }}</x-button>
   </div>
-  <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)"></x-button>
-  <x-button icon="fto-chevrons-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
 </ng-template>

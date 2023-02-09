@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
-import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsNull } from '@ng-nest/ui/core';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -25,21 +25,21 @@ import { Subject } from 'rxjs';
 })
 export class XTimePickerFrameComponent {
   @Input() type: XTimePickerType = 'time';
-  @Input() value!: number;
+  @Input() value!: number | null;
   @Input() use12Hours!: XBoolean;
   @Input() hourStep = 1;
   @Input() minuteStep = 1;
   @Input() secondStep = 1;
+  @Input() defaultNow = true;
   @Output() nodeEmit = new EventEmitter<Date>();
   @ViewChild('hourRef') hourRef?: ElementRef<HTMLElement>;
   @ViewChild('minuteRef') minuteRef?: ElementRef<HTMLElement>;
   @ViewChild('secondRef') secondRef?: ElementRef<HTMLElement>;
   @ViewChild('use12HoursRef') use12HoursRef?: ElementRef<HTMLElement>;
   model!: Date;
-  now = new Date();
-  hour: number = 0;
-  minute: number = 0;
-  second: number = 0;
+  hour!: number | null;
+  minute!: number | null;
+  second!: number | null;
   use12Hour: string = 'am';
   scrollAnimating: { [key: string]: boolean } = {};
   hourData: XIdentity[] = [];
@@ -136,23 +136,32 @@ export class XTimePickerFrameComponent {
   init() {
     if (!XIsEmpty(this.value)) {
       this.setDefault();
+      this.setTime(this.model);
     } else {
-      const def = new Date('1970-01-01');
-      this.model = new Date(
-        def.getFullYear(),
-        def.getMonth(),
-        def.getDate(),
-        this.now.getHours(),
-        this.now.getMinutes(),
-        this.now.getSeconds()
-      );
+      if (this.defaultNow) {
+        this.model = this.setNow();
+      } else {
+        this.hour = null;
+        this.minute = null;
+        this.second = null;
+      }
     }
-    this.setTime(this.model);
     this.cdr.detectChanges();
   }
 
   setDefault() {
-    this.model = new Date(this.value);
+    this.model = new Date(this.value!);
+  }
+
+  setNow() {
+    const def = new Date('1970-01-01');
+    const now = new Date();
+    return new Date(def.getFullYear(), def.getMonth(), def.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+  }
+
+  setZero() {
+    const def = new Date('1970-01-01');
+    return new Date(def.getFullYear(), def.getMonth(), def.getDate(), 0, 0, 0);
   }
 
   setTime(date: Date) {
@@ -180,14 +189,14 @@ export class XTimePickerFrameComponent {
   }
 
   setScrollTop(animating = false) {
-    this.selected('hour', this.hourRef?.nativeElement, this.hour, animating);
-    this.selected('minute', this.minuteRef?.nativeElement, this.minute, animating);
-    this.selected('second', this.secondRef?.nativeElement, this.second, animating);
+    this.selected('hour', this.hourRef?.nativeElement, this.hour!, animating);
+    this.selected('minute', this.minuteRef?.nativeElement, this.minute!, animating);
+    this.selected('second', this.secondRef?.nativeElement, this.second!, animating);
     this.selected('use12Hour', this.use12HoursRef?.nativeElement, this.use12Hour, animating);
   }
 
   selected(type: 'hour' | 'minute' | 'second' | 'use12Hour', ele?: HTMLElement, num?: number | string, animating = false) {
-    if (!ele) return;
+    if (!ele || XIsNull(num)) return;
     if (this.scrollAnimating[ele.className]) return;
     let len = Number(num);
     switch (type) {
@@ -219,33 +228,36 @@ export class XTimePickerFrameComponent {
   }
 
   itemClick(type: 'hour' | 'minute' | 'second' | 'use12Hours') {
+    if (XIsEmpty(this.model)) {
+      this.model = this.setZero();
+    }
     switch (type) {
       case 'minute':
-        this.model.setMinutes(this.minute);
+        this.model.setMinutes(this.minute!);
         break;
       case 'second':
-        this.model.setSeconds(this.second);
+        this.model.setSeconds(this.second!);
         break;
       case 'hour':
         if (this.use12Hours) {
           if (this.use12Hour === 'pm' && this.hour !== 12) {
-            this.model.setHours(this.hour + 12);
+            this.model.setHours(this.hour! + 12);
           } else if (this.use12Hour === 'am' && this.hour === 12) {
             this.model.setHours(0);
           } else {
-            this.model.setHours(this.hour);
+            this.model.setHours(this.hour!);
           }
         } else {
-          this.model.setHours(this.hour);
+          this.model.setHours(this.hour!);
         }
         break;
       case 'use12Hours':
         if (this.use12Hour === 'pm' && this.hour !== 12) {
-          this.model.setHours(this.hour + 12);
+          this.model.setHours(this.hour! + 12);
         } else if (this.use12Hour === 'am' && this.hour === 12) {
           this.model.setHours(0);
         } else {
-          this.model.setHours(this.hour);
+          this.model.setHours(this.hour!);
         }
         break;
     }

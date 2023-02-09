@@ -23,7 +23,6 @@
   width: 16rem;
   display: flex;
   flex-direction: column;
-  font-size: $--x-font-size-small;
   &.date-time {
     width: 27rem;
   }
@@ -33,9 +32,7 @@
   &.date-minute {
     width: 23.375rem;
   }
-  &-content {
-    display: flex;
-  }
+
   &-preset {
     display: flex;
     align-items: center;
@@ -47,6 +44,9 @@
   }
   &-body {
     padding: 0.4rem;
+  }
+  &-content {
+    display: flex;
   }
   &-footer {
     display: flex;
@@ -62,8 +62,11 @@
     flex-direction: column;
     border-left: $--x-date-picker-border;
     &-label {
-      padding: 0.5rem;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+      height: 2.5rem;
       border-bottom: $--x-date-picker-border;
     }
     .x-time-picker-frame {
@@ -79,15 +82,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
+    height: 2.5rem;
     border-bottom: $--x-border-width solid $--x-border;
+    color: $--x-text-500;
+    font-size: $--x-font-size-medium;
+    x-link {
+      height: 100%;
+      user-select: none;
+    }
+    .x-link {
+      padding: 0 0.25rem;
+    }
   }
   &-year-month {
     flex: 1;
     text-align: center;
+    color: $--x-text;
+    font-size: $--x-font-size;
   }
   &-body {
-    padding: 0.5rem;
+    padding: 0.1375rem 0.5rem;
     > table {
       width: 100%;
       border-collapse: collapse;
@@ -96,191 +111,81 @@
         font-weight: 400;
         height: 2rem;
         color: $--x-text-400;
+        user-select: none;
       }
       td {
-        padding: 0.25rem 0;
-        text-align: center;
-        cursor: pointer;
-        color: $--x-text-300;
+        user-select: none;
+      }
+    }
+    .x-picker-date-item {
+      padding: 0.25rem 0;
+      text-align: center;
+      cursor: pointer;
+      color: $--x-text-300;
+      position: relative;
+      .x-date-text {
+        width: 1.75rem;
+        height: 1.625rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border: $--x-border-width $--x-border-style transparent;
+        border-radius: $--x-border-radius;
+        transition: $--x-animation-duration-base;
         position: relative;
+      }
+      &::after,
+      &::before {
+        height: 1.625rem;
+      }
+      &:hover:not(.x-date-in-range) {
         .x-date-text {
-          width: 1.75rem;
-          height: 1.5rem;
-          margin: 0 auto;
-          border: $--x-border-width $--x-border-style transparent;
-          border-radius: $--x-border-radius;
-          transition: $--x-animation-duration-base;
-          position: relative;
+          background-color: $--x-background-a200;
         }
-        &::before,
-        &::after {
-          position: absolute;
-          top: 50%;
-          right: 0;
-          left: 0;
-          z-index: 1;
-          height: 1.5rem;
-          border: $--x-border-width dashed transparent;
-          transform: translate(0, -50%);
-          transition: $--x-animation-duration-base;
-          content: '';
+      }
+      &.x-date-active:not(.x-date-last-or-next) {
+        color: $--x-background-100;
+        .x-date-text {
+          background-color: $--x-primary;
+          border-color: $--x-primary;
         }
-        &:hover:not(.x-date-in-range) {
-          .x-date-text {
-            background-color: $--x-background-a200;
-          }
-        }
-        &.x-date-active:not(.x-date-last-or-next),
-        &.x-date-range-start:not(.x-date-last-or-next),
-        &.x-date-range-end:not(.x-date-last-or-next) {
+        &:hover {
           color: $--x-background-100;
           .x-date-text {
             background-color: $--x-primary;
-            border-color: $--x-primary;
           }
-          &:hover {
-            color: $--x-background-100;
-            .x-date-text {
-              background-color: $--x-primary;
+        }
+      }
+      &.x-date-last-or-next {
+        color: $--x-text-700;
+      }
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+        color: $--x-primary;
+        border-color: $--x-primary;
+      }
+      &.x-date-range-hover {
+        &:first-child:not(.x-date-last-or-next),
+        &.x-date-first-day {
+          &.x-date-range-hover-end {
+            &::before {
+              width: 1.75rem;
             }
           }
         }
-        &.x-date-range-end-left:not(.x-date-last-or-next):not(.x-date-first-day):not(:first-child) {
-          .x-date-text {
-            z-index: 1;
-          }
-          &::after {
-            background-color: $--x-primary-800;
-            transform: translate(-0.25rem, -50%);
-            border-radius: $--x-border-radius;
-            z-index: 0;
-          }
-          &.x-date-in-range-hover {
-            &::after {
-              background-color: $--x-primary-700;
+        &:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day {
+          &.x-date-range-hover-start {
+            &::before {
+              width: 1.75rem;
             }
           }
         }
-        &.x-date-range-start-right:not(.x-date-last-or-next):not(.x-date-last-day):not(:last-child) {
-          .x-date-text {
-            z-index: 1;
-          }
-          &::after {
-            background-color: $--x-primary-800;
-            transform: translate(0.25rem, -50%);
-            border-radius: $--x-border-radius;
-            z-index: 0;
-          }
-          &.x-date-in-range-hover {
-            &::after {
-              background-color: $--x-primary-700;
-            }
-          }
-        }
-        &.x-date-in-range:not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) {
-          .x-date-text {
-            position: relative;
-            z-index: 1;
-          }
+        &.x-date-first-day:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day:first-child:not(.x-date-last-or-next) {
           &::before {
-            background-color: $--x-primary-800;
-            z-index: 0;
+            width: 1.75rem;
           }
-          &:first-child {
-            &::before {
-              transform: translate(0.25rem, -50%);
-            }
-          }
-          &:last-child {
-            &::before {
-              transform: translate(-0.25rem, -50%);
-            }
-          }
-          &.x-date-in-range-hover {
-            &-left::before {
-              transform: translate(-0.25rem, -50%);
-            }
-            &-right::before {
-              transform: translate(0.25rem, -50%);
-            }
-            &::before {
-              background-color: $--x-primary-700;
-            }
-          }
-        }
-        &.x-date-last-or-next {
-          color: $--x-text-700;
-        }
-        &.x-date-range-hover {
-          &:not(.x-date-last-or-next)::before {
-            border-color: $--x-primary;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            transform: translate(-0.25rem, -50%);
-          }
-          &:first-child:not(.x-date-last-or-next),
-          &.x-date-first-day {
-            &::before {
-              border-left-color: $--x-primary;
-              transform: translate(0.25rem, -50%);
-            }
-            &.x-date-range-hover-end {
-              &::before {
-                width: 1.75rem;
-                transform: translate(0.25rem, -50%);
-              }
-            }
-          }
-          &:last-child:not(.x-date-last-or-next),
-          &.x-date-last-day {
-            &::before {
-              border-right-color: $--x-primary;
-              transform: translate(-0.25rem, -50%);
-            }
-            &.x-date-range-hover-start {
-              &::before {
-                width: 1.75rem;
-                transform: translate(0.25rem, -50%);
-              }
-            }
-          }
-          &-start:not(.x-date-last-or-next) {
-            &::before {
-              border-left-color: $--x-primary;
-              transform: translate(0.25rem, -50%);
-            }
-          }
-          &.x-date-range-hover-start:not(.x-date-last-or-next) {
-            &::before {
-              transform: translate(0.25rem, -50%);
-            }
-          }
-          &-end:not(.x-date-last-or-next) {
-            &::before {
-              border-right-color: $--x-primary;
-              transform: translate(-0.25rem, -50%);
-            }
-          }
-          &-start-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day),
-          &-end-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day) {
-            &::before {
-              border-top-color: $--x-primary;
-              border-bottom-color: $--x-primary;
-              transform: translate(-0.3125rem, -50%);
-            }
-          }
-          &-start-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day),
-          &-end-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day) {
-            &::before {
-              border-top-color: $--x-primary;
-              border-bottom-color: $--x-primary;
-              transform: translate(0.3125rem, -50%);
-            }
-          }
-        }
-        &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
-          color: $--x-primary;
-          border-color: $--x-primary;
         }
       }
     }
@@ -295,49 +200,110 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
+    height: 2.5rem;
     border-bottom: $--x-border-width solid $--x-border;
+    color: $--x-text-500;
+    font-size: $--x-font-size-medium;
+    x-link {
+      height: 100%;
+      user-select: none;
+    }
+    .x-link {
+      padding: 0 0.25rem;
+    }
   }
   &-year-month {
     flex: 1;
     text-align: center;
+    color: $--x-text;
+    font-size: $--x-font-size;
   }
   &-body {
-    padding: 0.5rem;
+    padding: 0.1375rem 0.5rem;
     > table {
       width: 100%;
       border-collapse: collapse;
       border-spacing: 0;
       td {
-        padding: 0.125rem 0;
-        text-align: center;
-        x-button .x-button {
-          width: 3.5rem;
-          height: 3.25rem;
-          margin: 0 auto;
-          border: 0.0625rem solid transparent;
-          &:hover {
-            background-color: $--x-primary-900;
-          }
-          &-activated {
-            color: $--x-background-100;
+        user-select: none;
+      }
+    }
+    .x-picker-date-item {
+      padding: 0.25rem 0;
+      text-align: center;
+      cursor: pointer;
+      color: $--x-text-300;
+      position: relative;
+      .x-date-text {
+        width: 3.5rem;
+        height: 3.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border: $--x-border-width $--x-border-style transparent;
+        border-radius: $--x-border-radius;
+        transition: $--x-animation-duration-base;
+        position: relative;
+      }
+      &::after,
+      &::before {
+        height: 3.25rem;
+      }
+      &:hover:not(.x-date-in-range) {
+        .x-date-text {
+          background-color: $--x-background-a200;
+        }
+      }
+      &.x-date-active:not(.x-date-last-or-next) {
+        color: $--x-background-100;
+        .x-date-text {
+          background-color: $--x-primary;
+          border-color: $--x-primary;
+        }
+        &:hover {
+          color: $--x-background-100;
+          .x-date-text {
             background-color: $--x-primary;
-            &:hover {
-              color: $--x-background-100;
-              background-color: $--x-primary;
+          }
+        }
+      }
+      &.x-date-last-or-next {
+        color: $--x-text-700;
+      }
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+        color: $--x-primary;
+        border-color: $--x-primary;
+      }
+      &.x-date-range-hover {
+        &:first-child:not(.x-date-last-or-next),
+        &.x-date-first-day {
+          &.x-date-range-hover-end {
+            &::before {
+              width: 3.5rem;
             }
           }
         }
-        &.x-date-last-or-next x-button .x-button {
-          color: $--x-text-700;
+        &:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day {
+          &.x-date-range-hover-start {
+            &::before {
+              width: 3.5rem;
+            }
+          }
         }
-        &.x-date-now x-button .x-button:not(.x-button-activated) {
-          color: $--x-primary;
-          background-color: transparent;
-          border-color: $--x-primary;
+        &.x-date-first-day:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day:first-child:not(.x-date-last-or-next) {
+          &::before {
+            width: 3.5rem;
+          }
         }
       }
     }
+  }
+  .x-visibility {
+    visibility: hidden;
   }
 }
 
@@ -346,99 +312,216 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
+    height: 2.5rem;
     border-bottom: $--x-border-width solid $--x-border;
+    color: $--x-text-500;
+    font-size: $--x-font-size-medium;
+    x-link {
+      height: 100%;
+      user-select: none;
+    }
+    .x-link {
+      padding: 0 0.25rem;
+    }
   }
   &-year-month {
     flex: 1;
     text-align: center;
+    color: $--x-text;
+    font-size: $--x-font-size;
   }
   &-body {
-    padding: 0.5rem;
+    padding: 0.1375rem 0.5rem;
     > table {
       width: 100%;
       border-collapse: collapse;
       border-spacing: 0;
       td {
-        padding: 0.125rem 0;
-        text-align: center;
-        x-button .x-button {
-          width: 3.5rem;
-          height: 3.25rem;
-          margin: 0 auto;
-          border: 0.0625rem solid transparent;
-          &:hover {
-            background-color: $--x-primary-900;
-          }
-          &-activated {
-            color: $--x-background-100;
+        user-select: none;
+      }
+    }
+    .x-picker-date-item {
+      padding: 0.25rem 0;
+      text-align: center;
+      cursor: pointer;
+      color: $--x-text-300;
+      position: relative;
+      .x-date-text {
+        width: 3.5rem;
+        height: 3.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border: $--x-border-width $--x-border-style transparent;
+        border-radius: $--x-border-radius;
+        transition: $--x-animation-duration-base;
+        position: relative;
+      }
+      &::after,
+      &::before {
+        height: 3.25rem;
+      }
+      &:hover:not(.x-date-in-range) {
+        .x-date-text {
+          background-color: $--x-background-a200;
+        }
+      }
+      &.x-date-active:not(.x-date-last-or-next) {
+        color: $--x-background-100;
+        .x-date-text {
+          background-color: $--x-primary;
+          border-color: $--x-primary;
+        }
+        &:hover {
+          color: $--x-background-100;
+          .x-date-text {
             background-color: $--x-primary;
-            &:hover {
-              color: $--x-background-100;
-              background-color: $--x-primary;
+          }
+        }
+      }
+      &.x-date-last-or-next {
+        color: $--x-text-700;
+      }
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+        color: $--x-primary;
+        border-color: $--x-primary;
+      }
+      &.x-date-range-hover {
+        &:first-child:not(.x-date-last-or-next),
+        &.x-date-first-day {
+          &.x-date-range-hover-end {
+            &::before {
+              width: 3.5rem;
             }
           }
         }
-        &.x-date-last-or-next x-button .x-button {
-          color: $--x-text-700;
+        &:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day {
+          &.x-date-range-hover-start {
+            &::before {
+              width: 3.5rem;
+            }
+          }
         }
-        &.x-date-now x-button .x-button:not(.x-button-activated) {
-          color: $--x-primary;
-          background-color: transparent;
-          border-color: $--x-primary;
+        &.x-date-first-day:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day:first-child:not(.x-date-last-or-next) {
+          &::before {
+            width: 3.5rem;
+          }
         }
       }
     }
+  }
+  .x-visibility {
+    visibility: hidden;
   }
 }
 
 @mixin date-range {
   width: 100%;
+  @include flex();
+  > label {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    color: $--x-text-300;
+    font-weight: 600;
+    @include text-align();
+  }
+  &.x-direction {
+    &-row {
+      > label {
+        padding: 0 0.5rem 0 0;
+      }
+    }
+    &-row-reverse {
+      > label {
+        padding: 0 0 0 0.5rem;
+      }
+    }
+    &-column {
+      align-items: inherit;
+    }
+    &-column-reverse {
+      align-items: inherit;
+    }
+  }
+  &-label-required {
+    &:before {
+      display: inline-block;
+      margin-right: 0.25rem;
+      color: $--x-danger;
+      line-height: 1;
+      font-size: $--x-font-size-small;
+      content: '*';
+    }
+  }
+  &-error-message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: $--x-font-size - 0.125rem;
+    color: $--x-danger;
+    margin-bottom: calc(calc(#{$--x-font-size} + 0.45rem) * -1);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &.x-invalid,
+  &.x-required {
+    > label {
+      color: $--x-danger;
+    }
+    .#{$--x-date-range-prefix}-input {
+      #{$--x-prefix}-icon {
+        color: $--x-danger;
+      }
+    }
+    .#{$--x-date-range-prefix}-row {
+      @include border-error();
+    }
+  }
   &-row {
     flex: 1;
     display: flex;
     align-items: center;
+    position: relative;
   }
   &-group {
-    display: inline-flex;
-    flex: 1;
     width: 100%;
     font-size: $--x-date-picker-font-size;
-    background-color: $--x-date-picker-background-color;
     background-image: none;
-    border: $--x-date-picker-border;
-    border-radius: $--x-date-picker-border-radius;
     box-shadow: $--x-date-picker-box-shadow;
     transition: all $--x-animation-duration-slow;
     .x-input-group {
       display: flex;
       align-items: center;
       position: relative;
-      .x-date-range-icon {
-        color: $--x-text-400;
-        transition: all $--x-animation-duration-base;
-        z-index: 2;
-        font-size: 1rem;
-        width: 1.8rem;
-      }
       > x-input {
+        flex: 1;
+        width: 50%;
         input {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-          background-color: transparent;
-          margin-left: 0.4rem;
-          margin-right: 0.4rem;
-          border-radius: 0;
-        }
-        &.x-data-range-input-start {
-          width: 6rem;
-        }
-        &.x-data-range-input-end {
-          width: 7.8rem;
+          padding-left: 0.4rem !important;
+          padding-right: 0.4rem !important;
         }
       }
     }
-    &:hover {
+  }
+  &-bordered {
+    .x-date-range-group {
+      border: $--x-date-picker-border;
+      border-radius: $--x-date-picker-border-radius;
+      .x-input-group {
+        > x-input input {
+          background-color: transparent;
+          border-radius: 0;
+        }
+      }
+    }
+    &:not(.x-disabled) .x-date-range-group:hover {
       @include hover();
     }
   }
@@ -470,6 +553,32 @@
       }
     }
   }
+  @include size('big', $--x-height-big, 0 $--x-padding-big);
+  @include size('large', $--x-height-large, 0 $--x-padding-large);
+  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
+  @include size('small', $--x-height-small, 0 $--x-padding-small);
+  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
+}
+
+@mixin size($size, $height, $padding) {
+  &-#{$size} {
+    > .#{$--x-date-range-prefix}-row .#{$--x-date-range-prefix}-input {
+      input {
+        height: $height;
+        line-height: $height;
+      }
+    }
+
+    > .#{$--x-date-range-prefix}-row {
+      height: $height;
+      line-height: $height;
+    }
+
+    > label {
+      height: $height;
+      line-height: $height;
+    }
+  }
 }
 
 @mixin date-range-portal {
@@ -484,25 +593,26 @@
   width: 34rem;
   display: flex;
   flex-direction: column;
-  font-size: $--x-font-size-small;
   &.date-time {
     width: 27rem;
+    .x-date-range-portal-body {
+      flex-direction: column;
+    }
   }
   &.date-hour {
     width: 19.75rem;
+    .x-date-range-portal-body {
+      flex-direction: column;
+    }
   }
   &.date-minute {
     width: 23.375rem;
+    .x-date-range-portal-body {
+      flex-direction: column;
+    }
   }
   &-content {
     display: flex;
-  }
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.4rem;
-    border-bottom: $--x-border-width solid $--x-border;
   }
   &-preset {
     display: flex;
@@ -519,6 +629,172 @@
   }
   &-body {
     display: flex;
+    .x-picker-date-item {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        border: $--x-border-width dashed transparent;
+        transform: translate(0, -50%);
+        transition: $--x-animation-duration-base;
+        content: '';
+      }
+      &.x-date-range-start:not(.x-date-last-or-next),
+      &.x-date-range-end:not(.x-date-last-or-next) {
+        color: $--x-background-100;
+        .x-date-text {
+          background-color: $--x-primary;
+          border-color: $--x-primary;
+        }
+        &:hover {
+          color: $--x-background-100;
+          .x-date-text {
+            background-color: $--x-primary;
+          }
+        }
+      }
+      &.x-date-range-end-left:not(.x-date-last-or-next):not(.x-date-first-day):not(:first-child) {
+        .x-date-text {
+          z-index: 1;
+        }
+        &::after {
+          background-color: $--x-primary-800;
+          transform: translate(-0.25rem, -50%);
+          border-radius: $--x-border-radius;
+          z-index: 0;
+        }
+        &.x-date-in-range-hover {
+          &::after {
+            background-color: $--x-primary-700;
+          }
+        }
+      }
+      &.x-date-range-start-right:not(.x-date-last-or-next):not(.x-date-last-day):not(:last-child) {
+        .x-date-text {
+          z-index: 1;
+        }
+        &::after {
+          background-color: $--x-primary-800;
+          transform: translate(0.25rem, -50%);
+          border-radius: $--x-border-radius;
+          z-index: 0;
+        }
+        &.x-date-in-range-hover {
+          &::after {
+            background-color: $--x-primary-700;
+          }
+        }
+      }
+      &.x-date-range-start.x-date-range-end.x-date-range-start-right:not(.x-date-last-or-next):not(.x-date-last-day):not(:last-child) {
+        &::after {
+          display: none;
+        }
+      }
+      &.x-date-in-range:not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) {
+        .x-date-text {
+          position: relative;
+          z-index: 1;
+        }
+        &::before {
+          background-color: $--x-primary-800;
+          z-index: 0;
+        }
+        &:first-child {
+          &::before {
+            transform: translate(0.25rem, -50%);
+          }
+        }
+        &:last-child {
+          &::before {
+            transform: translate(-0.25rem, -50%);
+          }
+        }
+        &.x-date-in-range-hover {
+          &-left::before {
+            transform: translate(-0.25rem, -50%);
+          }
+          &-right::before {
+            transform: translate(0.25rem, -50%);
+          }
+          &::before {
+            background-color: $--x-primary-700;
+          }
+        }
+      }
+      &.x-date-range-hover {
+        &:not(.x-date-last-or-next)::before {
+          border-color: $--x-primary;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          transform: translate(-0.25rem, -50%);
+        }
+        &:first-child:not(.x-date-last-or-next),
+        &.x-date-first-day {
+          &::before {
+            border-left-color: $--x-primary;
+            transform: translate(0.25rem, -50%);
+          }
+          &.x-date-range-hover-end {
+            &::before {
+              transform: translate(0.25rem, -50%);
+            }
+          }
+        }
+        &.x-date-first-day:last-child:not(.x-date-last-or-next) {
+          &::before {
+            transform: translate(0.25rem, -50%);
+          }
+        }
+        &:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day {
+          &::before {
+            border-right-color: $--x-primary;
+            transform: translate(-0.25rem, -50%);
+          }
+          &.x-date-range-hover-start {
+            &::before {
+              transform: translate(0.25rem, -50%);
+            }
+          }
+        }
+        &-start:not(.x-date-last-or-next) {
+          &::before {
+            border-left-color: $--x-primary;
+            transform: translate(0.25rem, -50%);
+          }
+        }
+        &.x-date-range-hover-start:not(.x-date-last-or-next) {
+          &::before {
+            transform: translate(0.25rem, -50%);
+          }
+        }
+        &-end:not(.x-date-last-or-next) {
+          &::before {
+            border-right-color: $--x-primary;
+            transform: translate(-0.25rem, -50%);
+          }
+        }
+        &-start-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day),
+        &-end-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day) {
+          &::before {
+            border-top-color: $--x-primary;
+            border-bottom-color: $--x-primary;
+            transform: translate(-0.3125rem, -50%);
+          }
+        }
+        &-start-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day),
+        &-end-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day) {
+          &::before {
+            border-top-color: $--x-primary;
+            border-bottom-color: $--x-primary;
+            transform: translate(0.3125rem, -50%);
+          }
+        }
+      }
+    }
   }
   &-start {
     flex: 1;
@@ -538,14 +814,19 @@
   &-time {
     display: flex;
     flex-direction: column;
+    border-left: $--x-date-picker-border;
     &-label {
-      padding: 0.4rem;
-      text-align: center;
-      border-left: $--x-date-picker-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+      height: 2.5rem;
+      border-bottom: $--x-date-picker-border;
     }
     .x-time-picker-frame {
-      border-width: $--x-border-width 0 0 $--x-border-width;
+      border-width: 0;
       box-shadow: none;
+      margin: 0;
     }
   }
 }

@@ -22,41 +22,43 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XDateRangeComponent } from './date-range.component';
 import { XDateRangePortalComponent } from './date-range-portal.component';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 @NgModule({
-    declarations: [
-        XDatePickerComponent,
-        XDatePickerPortalComponent,
-        XPickerDateComponent,
-        XPickerMonthComponent,
-        XPickerYearComponent,
-        XDatePickerProperty,
-        XPickerDateProperty,
-        XPickerMonthProperty,
-        XPickerYearProperty,
-        XDateRangeComponent,
-        XDateRangePortalComponent,
-        XDateRangeProperty
-    ],
-    exports: [
-        XDatePickerComponent,
-        XDateRangeComponent,
-        XDatePickerPortalComponent,
-        XPickerDateComponent,
-        XPickerMonthComponent,
-        XPickerYearComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        XPortalModule,
-        XTimePickerModule,
-        XInputModule,
-        XButtonModule,
-        XIconModule,
-        XI18nModule,
-        XBaseFormModule
-    ]
+  declarations: [
+    XDatePickerComponent,
+    XDatePickerPortalComponent,
+    XPickerDateComponent,
+    XPickerMonthComponent,
+    XPickerYearComponent,
+    XDatePickerProperty,
+    XPickerDateProperty,
+    XPickerMonthProperty,
+    XPickerYearProperty,
+    XDateRangeComponent,
+    XDateRangePortalComponent,
+    XDateRangeProperty
+  ],
+  exports: [
+    XDatePickerComponent,
+    XDateRangeComponent,
+    XDatePickerPortalComponent,
+    XPickerDateComponent,
+    XPickerMonthComponent,
+    XPickerYearComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XPortalModule,
+    XTimePickerModule,
+    XInputModule,
+    XLinkModule,
+    XButtonModule,
+    XIconModule,
+    XI18nModule,
+    XBaseFormModule
+  ]
 })
 export class XDatePickerModule {}

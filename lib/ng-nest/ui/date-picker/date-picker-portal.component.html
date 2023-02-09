@@ -3,10 +3,10 @@
     <x-picker-date [display]="display" [model]="model" [(type)]="type" (modelChange)="dateChange($event)"></x-picker-date>
     <div *ngIf="preset" class="x-date-picker-portal-preset">
       <ng-container *ngFor="let item of preset">
-        <x-button type="text" *ngIf="item.id === 'yesterday'" (click)="onYesterday()">{{ locale.yesterday }}</x-button>
-        <x-button type="text" *ngIf="item.id === 'today'" (click)="onToday()">{{ locale.today }}</x-button>
-        <x-button type="text" *ngIf="item.id === 'tomorrow'" (click)="onTomorrow()">{{ locale.tomorrow }}</x-button>
-        <x-button type="text" *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-button>
+        <x-link *ngIf="item.id === 'yesterday'" (click)="onYesterday()">{{ locale.yesterday }}</x-link>
+        <x-link *ngIf="item.id === 'today'" (click)="onToday()">{{ locale.today }}</x-link>
+        <x-link *ngIf="item.id === 'tomorrow'" (click)="onTomorrow()">{{ locale.tomorrow }}</x-link>
+        <x-link *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-link>
       </ng-container>
     </div>
   </ng-container>
@@ -34,12 +34,12 @@
     </div>
     <div class="x-date-picker-portal-time">
       <div class="x-date-picker-portal-time-label">
-        <x-button type="text" size="small">{{ time | date: timeFormat }}</x-button>
+        {{ time | date : timeFormat }}
       </div>
-      <x-time-picker-frame [type]="timeType" [value]="time" (nodeEmit)="selectTime($event)"></x-time-picker-frame>
+      <x-time-picker-frame [type]="timeType" [value]="time" size="small" (nodeEmit)="selectTime($event)"></x-time-picker-frame>
     </div>
   </div>
   <div class="x-date-picker-portal-footer">
-    <x-button type="primary" size="small" (click)="nodeEmit(model)">{{ locale.sure }}</x-button>
+    <x-button type="primary" (click)="nodeEmit(model)" size="small">{{ locale.sure }}</x-button>
   </div>
 </ng-template>

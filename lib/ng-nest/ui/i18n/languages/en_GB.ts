@@ -66,7 +66,16 @@ export default {
     sunday: 'Sun',
     yesterday: 'Yesterday',
     today: 'Today',
-    tomorrow: 'Tomorrow'
+    tomorrow: 'Tomorrow',
+    selectDate: 'Select date',
+    selectMonth: 'Select month',
+    selectYear: 'Select year',
+    startDate: 'Start date',
+    endDate: 'End date',
+    startMonth: 'Start month',
+    endMonth: 'End month',
+    startYear: 'Start year',
+    endYear: 'End year'
   },
   timePicker: {
     am: 'AM',

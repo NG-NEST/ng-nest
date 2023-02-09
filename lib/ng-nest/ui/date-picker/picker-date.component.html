@@ -1,13 +1,13 @@
 <div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp">
   <div class="x-picker-date-header" *ngIf="showHeader">
-    <x-button icon="fto-chevrons-left" size="small" onlyIcon (click)="nextYear(-1)" [class.x-visibility]="!lastYearBtn"></x-button>
-    <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextMonth(-1)" [class.x-visibility]="!lastMonthBtn"></x-button>
+    <x-link icon="fto-chevrons-left" (click)="nextYear(-1)" [class.x-visibility]="!lastYearBtn"></x-link>
+    <x-link icon="fto-chevron-left" (click)="nextMonth(-1)" [class.x-visibility]="!lastMonthBtn"></x-link>
     <div class="x-picker-date-year-month">
-      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date : 'yyyy' }}{{ locale.year }}</x-button>
-      <x-button type="text" size="small" (click)="typeOnChange('month')">{{ getLocaleMonth(display) }}</x-button>
+      <x-link (click)="typeOnChange('year')">{{ display | date : 'yyyy' }}{{ locale.year }}</x-link>
+      <x-link (click)="typeOnChange('month')">{{ getLocaleMonth(display) }}</x-link>
     </div>
-    <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextMonth(1)" [class.x-visibility]="!nextYearBtn"></x-button>
-    <x-button icon="fto-chevrons-right" size="small" onlyIcon (click)="nextYear(1)" [class.x-visibility]="!nextMonthBtn"></x-button>
+    <x-link icon="fto-chevron-right" (click)="nextMonth(1)" [class.x-visibility]="!nextMonthBtn"></x-link>
+    <x-link icon="fto-chevrons-right" (click)="nextYear(1)" [class.x-visibility]="!nextYearBtn"></x-link>
   </div>
   <div class="x-picker-date-body">
     <table cellspacing="0" cellpadding="0">
@@ -20,6 +20,7 @@
         <tr *ngFor="let weeks of weekDates">
           <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
             <td
+              class="x-picker-date-item"
               [class.x-date-last-or-next]="week.isLastOrNext"
               [class.x-date-now]="week.isNow"
               [class.x-date-first-day]="week.isFirstDay"
@@ -42,8 +43,8 @@
               [class.x-date-active]="!rangePicker && (week.date | date : 'yyyyMMdd') === (model | date : 'yyyyMMdd')"
               title="{{ week.date | date : 'yyyy-MM-dd' }}"
               (click)="dateClick(week)"
-              (mouseenter)="rangePicker && onTdMouseenter(week)"
-              (mouseleave)="rangePicker && onTdMouseleave(week)"
+              (mouseenter)="rangePicker && rangeHover && onTdMouseenter(week)"
+              (mouseleave)="rangePicker && rangeHover && onTdMouseleave(week)"
             >
               <div *ngIf="!dateTemp" class="x-date-text">
                 {{ week.date | date : 'd' }}

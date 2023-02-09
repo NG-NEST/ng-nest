@@ -263,6 +263,8 @@ export interface XDateRangeConfig {
   format?: string;
   clearable?: XBoolean;
   placement?: XCorner;
+  size?: XSize;
+  bordered?: XBoolean;
 }
 
 export interface XDialogConfig {
@@ -562,6 +564,7 @@ export interface XTimePickerConfig {
   size?: XSize;
   bordered?: XBoolean;
   use12Hours?: XBoolean;
+  defaultNow?: XBoolean;
 }
 
 export interface XTimeRangeConfig {}

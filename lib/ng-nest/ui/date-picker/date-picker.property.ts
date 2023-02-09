@@ -162,12 +162,12 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME, true) bordered!: XBoolean;
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
-   * @zh_CN 快捷选择按钮，支持今天,昨天,明天
-   * @en_US Quick selection button, support today, yesterday, tomorrow
+   * @zh_CN 日期提示信息
+   * @en_US Placeholder of date input
    */
-  @Input() @XDataConvert() preset: XData<XDatePickerPreset> = [];
+  @Input() override placeholder?: string[];
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -185,6 +185,11 @@ export interface XDateRangeOption extends XFormOption {
    * @en_US Tab key control order
    */
   tabindex?: number;
+  /**
+   * @zh_CN 日期提示信息
+   * @en_US Placeholder of date input
+   */
+  placeholder?: string[];
 }
 
 /**
@@ -287,6 +292,11 @@ export class XPickerDateProperty extends XProperty {
    * @en_US Next month
    */
   @Input() @XInputBoolean() nextMonthBtn: XBoolean = true;
+  /**
+   * @zh_CN 范围 hover 效果
+   * @en_US Range hover style
+   */
+  @Input() @XInputBoolean() rangeHover: XBoolean = true;
   /**
    * @zh_CN 范围日期
    * @en_US Range date
@@ -488,7 +498,7 @@ export class XPickerMonthProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model?: Date;
+  @Input() model?: Date | null;
   /**
    * @zh_CN 月份显示模板
    * @en_US Month display template
@@ -499,6 +509,31 @@ export class XPickerMonthProperty extends XProperty {
    * @en_US Display switch button
    */
   @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
+   * @zh_CN 范围选择
+   * @en_US Range picker
+   */
+  @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
+   * @zh_CN 上一年
+   * @en_US Last year
+   */
+  @Input() @XInputBoolean() lastYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 下一年
+   * @en_US Next year
+   */
+  @Input() @XInputBoolean() nextYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 范围月份
+   * @en_US Range date
+   */
+  @Input() rangeValue: (number | null)[] = [];
+  /**
+   * @zh_CN 当前选择的是开始/结束日期
+   * @en_US The current choice is the start / end date
+   */
+  @Input() rangeType!: XDatePickerRangType;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -514,6 +549,36 @@ export class XPickerMonthProperty extends XProperty {
    * @en_US Scope change event
    */
   @Output() rangeChange = new EventEmitter<Date[]>();
+  /**
+   * @zh_CN 选年的事件
+   * @en_US Year change event
+   */
+  @Output() yearChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 选月的事件
+   * @en_US Month change event
+   */
+  @Output() monthChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 显示月份事件
+   * @en_US display date event
+   */
+  @Output() displayChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 范围月份 mouseenter 事件
+   * @en_US Date mouseenter event
+   */
+  @Output() rangeTdMouseenter = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围月份 mouseleave 事件
+   * @en_US Date mouseleave event
+   */
+  @Output() rangeTdMouseleave = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围中的月份点击事件
+   * @en_US Range date click event
+   */
+  @Output() rangeDateClick = new EventEmitter<XDateCell>();
 }
 
 /**
@@ -542,12 +607,42 @@ export class XPickerYearProperty extends XProperty {
    * @zh_CN 选中的日期
    * @en_US Selected date
    */
-  @Input() model?: Date;
+  @Input() model?: Date | null;
+  /**
+   * @zh_CN 年份显示模板
+   * @en_US Month display template
+   */
+  @Input() yearTemp?: TemplateRef<any>;
   /**
    * @zh_CN 显示切换按钮
    * @en_US Display switch button
    */
   @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
+   * @zh_CN 范围选择
+   * @en_US Range picker
+   */
+  @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
+   * @zh_CN 上一年
+   * @en_US Last year
+   */
+  @Input() @XInputBoolean() lastYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 下一年
+   * @en_US Next year
+   */
+  @Input() @XInputBoolean() nextYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 范围年份
+   * @en_US Range date
+   */
+  @Input() rangeValue: (number | null)[] = [];
+  /**
+   * @zh_CN 当前选择的是开始/结束日期
+   * @en_US The current choice is the start / end date
+   */
+  @Input() rangeType!: XDatePickerRangType;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -563,4 +658,39 @@ export class XPickerYearProperty extends XProperty {
    * @en_US Start year change event
    */
   @Output() startChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 范围变化的事件
+   * @en_US Scope change event
+   */
+  @Output() rangeChange = new EventEmitter<Date[]>();
+  /**
+   * @zh_CN 选年的事件
+   * @en_US Year change event
+   */
+  @Output() yearChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 选月的事件
+   * @en_US Month change event
+   */
+  @Output() monthChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 显示月份事件
+   * @en_US display date event
+   */
+  @Output() displayChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 范围月份 mouseenter 事件
+   * @en_US Date mouseenter event
+   */
+  @Output() rangeTdMouseenter = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围月份 mouseleave 事件
+   * @en_US Date mouseleave event
+   */
+  @Output() rangeTdMouseleave = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围中的月份点击事件
+   * @en_US Range date click event
+   */
+  @Output() rangeDateClick = new EventEmitter<XDateCell>();
 }

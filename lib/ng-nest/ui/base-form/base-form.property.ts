@@ -37,7 +37,7 @@ export class XFormProp extends XProperty {
   /**
    * 输入提示信息
    */
-  @Input() placeholder?: string = '';
+  @Input() placeholder?: string | string[] = '';
   /**
    * 禁用
    */
@@ -128,7 +128,7 @@ export interface XFormOption {
   /**
    * 输入提示信息
    */
-  placeholder?: string;
+  placeholder?: string | string[];
   /**
    * 禁用
    */

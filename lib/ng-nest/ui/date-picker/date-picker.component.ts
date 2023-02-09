@@ -19,8 +19,9 @@ import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsStrin
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
@@ -72,7 +73,19 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
+  locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
+
+  get getPlaceholder() {
+    if (this.placeholder) return this.placeholder;
+    if (this.type === 'month') {
+      return this.locale.selectMonth;
+    } else if (this.type === 'year') {
+      return this.locale.selectYear;
+    } else {
+      return this.locale.selectDate;
+    }
+  }
 
   constructor(
     public renderer: Renderer2,
@@ -81,6 +94,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
+    private i18n: XI18nService,
     private overlay: Overlay
   ) {
     super();
@@ -114,6 +128,15 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
+    this.i18n.localeChange
+      .pipe(
+        map((x) => x.datePicker as XI18nDatePicker),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.locale = x;
+        this.cdr.markForCheck();
+      });
   }
 
   setFormat() {

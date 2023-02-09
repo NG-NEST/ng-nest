@@ -1,29 +1,41 @@
 <div
   #dateRange
   class="x-date-range"
+  [ngClass]="classMap"
+  [class.x-flex]="justify || align || direction"
+  [class.x-checked]="value"
+  [class.x-disabled]="disabled"
+  [class.x-required]="requiredIsEmpty"
+  [class.x-invalid]="invalid"
+  [class.x-date-range-bordered]="bordered"
   [class.x-date-range-active]="active"
   [class.x-date-range-active-start]="activeType === 'start'"
   [class.x-date-range-active-end]="activeType === 'end'"
 >
+  <label *ngIf="label" [class.x-date-range-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
   <div class="x-date-range-row">
     <x-input-group #inputGroup class="x-date-range-group" (mouseenter)="menter()" (mouseleave)="mleave()" (click)="showPortal($event)">
       <x-input
         #inputStartCom
-        class="x-data-range-input-start"
+        class="x-data-range-input x-data-range-input-start"
         type="text"
         bordered="false"
-        placeholder="开始日期"
+        [size]="size"
+        [disabled]="disabled"
+        [placeholder]="getStartPlaceholder"
         (xFocus)="onFocus('start')"
         (xClick)="showPortal($event, 'start')"
         [(ngModel)]="startDisplay"
+        icon="fto-arrow-right"
       ></x-input>
-      <x-icon class="x-date-range-icon" type="fto-arrow-right"></x-icon>
       <x-input
         #inputEndCom
-        class="x-data-range-input-end"
+        class="x-data-range-input x-data-range-input-end"
         type="text"
         bordered="false"
-        placeholder="结束日期"
+        [size]="size"
+        [disabled]="disabled"
+        [placeholder]="getEndPlaceholder"
         (xFocus)="onFocus('end')"
         (xClick)="showPortal($event, 'end')"
         [(ngModel)]="endDisplay"
@@ -33,5 +45,12 @@
       ></x-input>
       <div *ngIf="active" class="x-date-range-active-bar"></div>
     </x-input-group>
+    <span class="x-date-range-error-message" *ngIf="invalid">{{ invalidMessage }}</span>
+    <ng-container *ngIf="requiredIsEmpty || invalid">
+      <div class="x-border-error x-top-left"></div>
+      <div class="x-border-error x-top-right"></div>
+      <div class="x-border-error x-bottom-left"></div>
+      <div class="x-border-error x-bottom-right"></div>
+    </ng-container>
   </div>
 </div>

@@ -6,6 +6,16 @@
 
 #{$--x-date-range-prefix} {
   display: inline-block;
+  width: 15.6rem;
+  &.#{$--x-date-range-prefix}-date-time {
+    width: 23rem;
+  }
+  &.#{$--x-date-range-prefix}-date-minute {
+    width: 21rem;
+  }
+  &.#{$--x-date-range-prefix}-date-hour {
+    width: 19rem;
+  }
 }
 
 .#{$--x-date-range-prefix} {

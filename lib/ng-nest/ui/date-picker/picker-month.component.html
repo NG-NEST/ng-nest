@@ -1,30 +1,47 @@
 <div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
   <div class="x-picker-month-header" *ngIf="showHeader">
-    <x-button icon="fto-chevron-left" size="small" onlyIcon (click)="nextYear(-1)"></x-button>
+    <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
     <div class="x-picker-month-year-month">
-      <x-button type="text" size="small" (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-button>
+      <x-link (click)="typeOnChange('year')">{{ display | date : 'yyyy' }}{{ locale.year }}</x-link>
     </div>
-    <x-button icon="fto-chevron-right" size="small" onlyIcon (click)="nextYear(1)"></x-button>
+    <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYear(1)"></x-link>
   </div>
   <div class="x-picker-month-body">
     <table cellspacing="0" cellpadding="0">
-      <tr *ngFor="let months of dates">
+      <tr *ngFor="let months of chunkDates">
         <ng-container *ngFor="let month of months; trackBy: trackByMonth">
           <td
-            [class.x-date-last-or-next]="(month | date: 'yyyy') !== (display | date: 'yyyy')"
-            [class.x-date-now]="(month | date: 'yyyyMM') === (now | date: 'yyyyMM')"
-            (click)="monthTemp && monthClick(month)"
+            class="x-picker-date-item"
+            [class.x-date-last-or-next]="month.isLastOrNext"
+            [class.x-date-now]="month.isNow"
+            [class.x-date-first-day]="month.isFirstDay"
+            [class.x-date-last-day]="month.isLastDay"
+            [class.x-date-range-start]="rangePicker && isStartMonth(month.date!)"
+            [class.x-date-range-end]="rangePicker && isEndMonth(month.date!)"
+            [class.x-date-range-start-left]="rangePicker && month.isRangeStartLeft"
+            [class.x-date-range-start-right]="rangePicker && month.isRangeStartRight"
+            [class.x-date-range-end-left]="rangePicker && month.isRangeEndLeft"
+            [class.x-date-range-end-right]="rangePicker && month.isRangeEndRight"
+            [class.x-date-range-hover]="rangePicker && month.isRangeHover"
+            [class.x-date-range-hover-start-left]="rangePicker && month.isRangeHoverStartLeft"
+            [class.x-date-range-hover-start-right]="rangePicker && month.isRangeHoverStartRight"
+            [class.x-date-range-hover-end-left]="rangePicker && month.isRangeHoverEndLeft"
+            [class.x-date-range-hover-end-right]="rangePicker && month.isRangeHoverEndRight"
+            [class.x-date-range-hover-start]="rangePicker && month.isRangeHoverStart"
+            [class.x-date-range-hover-end]="rangePicker && month.isRangeHoverEnd"
+            [class.x-date-in-range]="rangePicker && month.isInRange"
+            [class.x-date-in-range-hover]="rangePicker && month.isInRangeHover"
+            [class.x-date-active]="!rangePicker && (month.date | date : 'yyyyMM') === (model | date : 'yyyyMM')"
+            title="{{ month.date | date : 'yyyy-MM' }}"
+            (click)="monthClick(month)"
+            (mouseenter)="rangePicker && onTdMouseenter(month)"
+            (mouseleave)="rangePicker && onTdMouseleave(month)"
           >
-            <x-button
-              *ngIf="!monthTemp"
-              type="text"
-              title="{{ month | date: 'yyyy-MM' }}"
-              [activated]="(month | date: 'yyyyMM') === (model | date: 'yyyyMM')"
-              (click)="monthClick(month)"
-              >{{ getLocaleMonth(month) }}</x-button
-            >
+            <div *ngIf="!monthTemp" class="x-date-text">
+              {{ getLocaleMonth(month.date!) }}
+            </div>
             <ng-container *ngIf="monthTemp">
-              <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month }"></ng-container>
+              <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month.date }"></ng-container>
             </ng-container>
           </td>
         </ng-container>
