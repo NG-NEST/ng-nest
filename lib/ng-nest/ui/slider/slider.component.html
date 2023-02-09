@@ -8,7 +8,12 @@
         [class.x-slider-disabled]="node.disabled"
         [title]="node.label"
       >
-        <x-link (click)="nodeClick($event, node, i)" [ngClass]="nodeClassMap" [href]="showAnchor ? '#' + node.id : ''">
+        <x-link
+          (click)="nodeClick($event, node, i)"
+          [ngClass]="nodeClassMap"
+          [href]="showAnchor ? '#' + node.id : ''"
+          [preventDefault]="showAnchor"
+        >
           <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
           <ng-container *ngIf="!nodeTpl">
             <ng-container *xOutlet="node.label">{{ node.label }}</ng-container>

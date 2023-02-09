@@ -26,7 +26,7 @@ export class ExActionComponent {
     this.activatedIndex = this.labels.length - 1;
   }
 
-  close(event: Event, node: XTabsNode) {
+  close(_event: Event, node: XTabsNode) {
     const closeIndex = this.labels.indexOf(node.id);
     let activatedIndex = 0;
     if (closeIndex === this.activatedIndex) {
@@ -42,6 +42,5 @@ export class ExActionComponent {
     }
     this.labels.splice(closeIndex, 1);
     this.activatedIndex = activatedIndex;
-    event.stopPropagation();
   }
 }

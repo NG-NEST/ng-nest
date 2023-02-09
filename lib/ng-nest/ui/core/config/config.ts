@@ -377,6 +377,7 @@ export interface XRippleConfig {
 export interface XLinkConfig {
   underline?: XBoolean;
   iconRight?: XBoolean;
+  preventDefault?: XBoolean;
 }
 
 export interface XListConfig {
