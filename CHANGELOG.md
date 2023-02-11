@@ -1,3 +1,12 @@
+## [15.0.10](https://github.com/NG-NEST/ng-nest/compare/15.0.9...15.0.10) (2023-02-11)
+
+
+### Bug Fixes
+
+* **module:tree:** fix activatedId bind error ([#219](https://github.com/NG-NEST/ng-nest/issues/219)) ([5b207d2](https://github.com/NG-NEST/ng-nest/commit/5b207d2a84e740c31ce539c2b0c1e5cc6888181a))
+
+
+
 ## [15.0.9](https://github.com/NG-NEST/ng-nest/compare/15.0.8...15.0.9) (2023-02-09)
 
 
