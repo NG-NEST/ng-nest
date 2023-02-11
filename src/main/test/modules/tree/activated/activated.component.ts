@@ -31,4 +31,7 @@ export class ExActivatedComponent {
 
   activatedId2 = [23];
   data2 = JSON.parse(JSON.stringify(this.data1));
+
+  activatedId3: any;
+  data3 = JSON.parse(JSON.stringify(this.data1));
 }

@@ -267,7 +267,20 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       getCount(node);
       this.nodes.splice(index + 1, delCount);
     }
+    this.addOrRemoveExpanded(node);
     this.nodes = [...this.nodes];
+  }
+
+  addOrRemoveExpanded(node: XTreeNode) {
+    if (node.open) {
+      if (!this.expanded.includes(node.id)) {
+        this.expanded.push(node.id);
+      }
+    } else {
+      if (this.expanded.includes(node.id)) {
+        this.expanded.splice(this.expanded.indexOf(node.id), 1);
+      }
+    }
   }
 
   setActivatedNode(nodes: XTreeNode[]) {
@@ -300,7 +313,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (before) {
       before.change && before.change();
     }
-
     if (!XIsEmpty(nodes)) {
       this.setDataChange(nodes);
     }

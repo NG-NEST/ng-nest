@@ -71,6 +71,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.tree.nodeOpen && !node.leaf && this.tree.onToggle(event, node);
     const onChange = () => {
       change && change();
+      event.preventDefault();
       event.stopPropagation();
       this.cdr.detectChanges();
     };
@@ -94,12 +95,14 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
           this.tree.activatedId.push(node.id);
         }
       }
-      this.tree.activatedIdChange.emit(this.tree.activatedId);
+    } else {
+      this.tree.activatedId = node.id;
     }
     if (this.tree.activatedNode) {
       if (this.tree.activatedNode.id === node.id && !this.tree.allowManyActivated) return;
     }
     this.tree.activatedNode = node;
+    this.tree.activatedIdChange.emit(this.tree.activatedId);
     this.tree.activatedChange.emit(node);
     this.tree.nodeClick.emit(node);
     onChange();

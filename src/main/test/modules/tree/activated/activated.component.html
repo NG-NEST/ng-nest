@@ -1,10 +1,14 @@
 <x-row space="1">
-  <x-col span="12">
+  <x-col span="24">
     选中数据：{{ activatedId1 | json }}
     <x-tree [data]="data1" multiple allowManyActivated [(activatedId)]="activatedId1"> </x-tree>
   </x-col>
-  <x-col span="12">
+  <x-col span="24">
     选中数据：{{ activatedId2 | json }}
     <x-tree [data]="data2" onlyLeaf nodeOpen multiple allowManyActivated [(activatedId)]="activatedId2"> </x-tree>
+  </x-col>
+  <x-col span="24">
+    选中数据：{{ activatedId3 | json }}
+    <x-tree [data]="data3" [(activatedId)]="activatedId3"> </x-tree>
   </x-col>
 </x-row>
