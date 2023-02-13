@@ -48,7 +48,7 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
       const childPath = path.join(demoPath, dir, child);
       const stat = fs.lstatSync(childPath);
       if (stat.isDirectory()) {
-        sortNodes = [...sortNodes, { id: `${dir}/${child}`, pid: dir, label: child, leaf: true }];
+        sortNodes = [...sortNodes, { id: `${dir}/${child}`, pid: dir, label: child }];
         getChildren(fs.readdirSync(childPath), `${dir}/${child}`);
       } else {
         sortNodes = [

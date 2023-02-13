@@ -402,7 +402,6 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   setDisplayValue(dateNumber: (number | null)[]) {
-    console.log(dateNumber);
     if (!dateNumber) return;
     if (!XIsNull(dateNumber[0])) {
       this.startDisplay = this.datePipe.transform(dateNumber[0], this.format) as string;

@@ -25,7 +25,7 @@ export class ExDefaultComponent {
       type: 'ts',
       highlightLines: {}
     },
-    { id: '1__my-app/e2e/src', pid: '1__my-app/e2e', label: 'src', leaf: true },
+    { id: '1__my-app/e2e/src', pid: '1__my-app/e2e', label: 'src' },
     {
       id: '1__my-app/e2e/protractor.conf.js',
       pid: '1__my-app/e2e',
@@ -122,9 +122,9 @@ export class ExDefaultComponent {
       type: 'ts',
       highlightLines: {}
     },
-    { id: '1__my-app/src/app', pid: '1__my-app/src', label: 'app', leaf: true },
-    { id: '1__my-app/src/assets', pid: '1__my-app/src', label: 'assets', leaf: true },
-    { id: '1__my-app/src/environments', pid: '1__my-app/src', label: 'environments', leaf: true },
+    { id: '1__my-app/src/app', pid: '1__my-app/src', label: 'app' },
+    { id: '1__my-app/src/assets', pid: '1__my-app/src', label: 'assets' },
+    { id: '1__my-app/src/environments', pid: '1__my-app/src', label: 'environments' },
     {
       id: '1__my-app/src/favicon.ico',
       pid: '1__my-app/src',
@@ -173,8 +173,8 @@ export class ExDefaultComponent {
       type: 'ts',
       highlightLines: {}
     },
-    { id: '1__my-app/e2e', pid: '1__my-app', label: 'e2e', leaf: true },
-    { id: '1__my-app/src', pid: '1__my-app', label: 'src', leaf: true },
+    { id: '1__my-app/e2e', pid: '1__my-app', label: 'e2e' },
+    { id: '1__my-app/src', pid: '1__my-app', label: 'src' },
     {
       id: '1__my-app/.editorconfig',
       pid: '1__my-app',

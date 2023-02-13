@@ -55,7 +55,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
   }
 
   catalogChange(node: XTreeFileNode) {
-    if (node?.leaf) return;
+    if (!node?.leaf) return;
     if (node.url && !node.contentLoaded) {
       this.time = new Date().getTime();
       this.loading = true;

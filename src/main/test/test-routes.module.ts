@@ -187,6 +187,10 @@ const testModules = [
   {
     path: 'color-picker',
     loadChildren: () => import('./modules/color-picker/color-picker.module').then((x) => x.TeColorPickerModule)
+  },
+  {
+    path: 'tree-file',
+    loadChildren: () => import('./modules/tree-file/tree-file.module').then((x) => x.TeTreeFileModule)
   }
 ];
 

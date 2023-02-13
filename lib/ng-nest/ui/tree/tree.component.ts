@@ -249,6 +249,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     if (node.open) {
       let addNodes: XTreeNode[] = [];
       const getNodes = (nd: XTreeNode) => {
+        if (XIsEmpty(nd.children)) return;
         for (let child of nd.children!) {
           addNodes.push(child);
           child.open && getNodes(child);
@@ -259,6 +260,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     } else {
       let delCount = 0;
       const getCount = (nd: XTreeNode) => {
+        if (XIsEmpty(nd.children)) return;
         delCount += nd.children!.length;
         for (let child of nd.children!) {
           child.open && getCount(child);
