@@ -1,3 +1,18 @@
+## [15.0.11](https://github.com/NG-NEST/ng-nest/compare/15.0.10...15.0.11) (2023-02-13)
+
+
+### Bug Fixes
+
+* **module:color-picker:** fix hover style ([944779b](https://github.com/NG-NEST/ng-nest/commit/944779bdae5ccc59df654c3c8eee0e9216b739ff))
+* **module:tree-file:** fix leaf error ([f9af8a4](https://github.com/NG-NEST/ng-nest/commit/f9af8a4e703bca6a3ddc7d46a464011393b9dd90))
+
+
+### Features
+
+* **module:date-picker:** add extra footer ([#65](https://github.com/NG-NEST/ng-nest/issues/65)) ([16e6130](https://github.com/NG-NEST/ng-nest/commit/16e613055a97a9afcd542dd52427756181fd09e9))
+
+
+
 ## [15.0.10](https://github.com/NG-NEST/ng-nest/compare/15.0.9...15.0.10) (2023-02-11)
 
 
