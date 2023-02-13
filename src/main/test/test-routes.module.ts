@@ -183,6 +183,10 @@ const testModules = [
   {
     path: 'switch',
     loadChildren: () => import('./modules/switch/switch.module').then((x) => x.TeSwitchModule)
+  },
+  {
+    path: 'color-picker',
+    loadChildren: () => import('./modules/color-picker/color-picker.module').then((x) => x.TeColorPickerModule)
   }
 ];
 

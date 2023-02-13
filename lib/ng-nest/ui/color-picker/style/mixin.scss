@@ -81,6 +81,9 @@
     margin-left: 0.4rem;
     position: relative;
     flex: 1;
+    .x-slider-select:hover:not(.x-disabled) .x-slider-select-track {
+      background-color: transparent;
+    }
     .x-slider-select > .x-slider-select-inner {
       > .x-slider-select-rail {
         height: 0.75rem;
