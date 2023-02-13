@@ -349,6 +349,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       valueChange: this.valueChange,
       positionChange: this.positionChange,
       activeType: this.activeType,
+      extraFooter: this.extraFooter,
+      preset: this.preset,
       activeTypeChange: this.activeTypeChange,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),

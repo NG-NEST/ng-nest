@@ -93,6 +93,15 @@ export interface XI18nDatePicker {
   yesterday?: string;
   today?: string;
   tomorrow?: string;
+  thisWeek?: string;
+  lastWeek?: string;
+  nextWeek?: string;
+  thisMonth?: string;
+  lastMonth?: string;
+  nextMonth?: string;
+  thisYear?: string;
+  lastYear?: string;
+  nextYear?: string;
   selectDate?: string;
   selectMonth?: string;
   selectYear?: string;

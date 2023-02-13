@@ -10,7 +10,7 @@ import {
   HostListener
 } from '@angular/core';
 import { XDatePickerPortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XTemplate } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -49,9 +49,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   locale: XI18nDatePicker = {};
   time: number = new Date().getTime();
   preset: XDatePickerPreset[] = [];
+  extraFooter?: XTemplate;
   inputCom!: XInputComponent;
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
+
+  get isDatePicker() {
+    return ['date', 'month', 'year'].includes(this.type);
+  }
 
   constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
 

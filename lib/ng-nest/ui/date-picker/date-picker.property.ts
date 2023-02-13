@@ -57,10 +57,15 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
-   * @zh_CN 快捷选择按钮，支持今天,昨天,明天
+   * @zh_CN 快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）
    * @en_US Quick selection button, support today, yesterday, tomorrow
    */
   @Input() @XDataConvert() preset: XData<XDatePickerPreset> = [];
+  /**
+   * @zh_CN 页脚
+   * @en_US Footer
+   */
+  @Input() extraFooter?: XTemplate;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -164,10 +169,20 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
   /**
+   * @zh_CN 快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）
+   * @en_US Quick selection button, support thisWeek, lastWeek, nextWeek, thisMonth, lastMonth, nextMonth, thisYear, lastYear, nextYear
+   */
+  @Input() @XDataConvert() preset: XData<XDateRangePreset> = [];
+  /**
    * @zh_CN 日期提示信息
    * @en_US Placeholder of date input
    */
   @Input() override placeholder?: string[];
+  /**
+   * @zh_CN 页脚
+   * @en_US Footer
+   */
+  @Input() extraFooter?: XTemplate;
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
@@ -202,6 +217,18 @@ export interface XDatePickerPreset extends XIdentityProperty {
    * @en_US Custom function
    */
   func: () => Date;
+}
+
+/**
+ * @zh_CN 快捷范围选择按钮
+ * @en_US Quick range selection button
+ */
+export interface XDateRangePreset extends XIdentityProperty {
+  /**
+   * @zh_CN 自定义函数
+   * @en_US Custom function
+   */
+  func: () => Date[];
 }
 
 /**

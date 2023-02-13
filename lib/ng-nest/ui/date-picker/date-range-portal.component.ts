@@ -10,8 +10,20 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XDateRangePortalPrefix, XDatePickerType, XDateCell } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddMonths, XAddYears, XIsNull } from '@ng-nest/ui/core';
+import { XDateRangePortalPrefix, XDatePickerType, XDateCell, XDateRangePreset } from './date-picker.property';
+import {
+  XIsEmpty,
+  XConnectBaseAnimation,
+  XPositionTopBottom,
+  XAddMonths,
+  XAddYears,
+  XIsNull,
+  XTemplate,
+  XIsArray,
+  XIsNumber,
+  XIsString,
+  XAddDays
+} from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
@@ -67,6 +79,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   timeModel!: Date | null;
   timeHover = false;
   nodeClickCount = 0;
+  preset: XDateRangePreset[] = [];
+  extraFooter?: XTemplate;
   private _unSubject = new Subject<void>();
 
   get timeSureDisabled() {
@@ -320,6 +334,37 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       this.endDisplay = XAddMonths(this.endDisplay, num);
     } else if (type === 'end') {
       this.startDisplay = XAddMonths(this.startDisplay, num);
+    }
+  }
+
+  onPreset(type: 'week' | 'month' | 'year', num = 0) {
+    let now = new Date();
+    if (type === 'week') {
+      now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const week = now.getDay();
+      const weekList = [1, 2, 3, 4, 5, 6, 7];
+      const index = weekList.indexOf(week);
+      this.nodeEmit([XAddDays(now, weekList[0] - (index + 1) + num * 7), XAddDays(now, weekList[6] - (index + 1) + num * 7)], true);
+    } else if (type === 'month') {
+      const month = XAddMonths(now, num);
+      const firstDay = new Date(month.getFullYear(), month.getMonth(), 1);
+      const lastDay = XAddDays(XAddMonths(firstDay, 1), -1);
+      this.nodeEmit([firstDay, lastDay], true);
+    } else if (type === 'year') {
+      let year = XAddYears(now, num);
+      let firstDay = new Date(year.getFullYear(), 0, 1);
+      let lastDay = XAddDays(XAddYears(firstDay, 1), -1);
+      this.nodeEmit([firstDay, lastDay], true);
+    }
+  }
+
+  onPresetFunc(item: XDateRangePreset) {
+    let value = item.func();
+    if (XIsArray(value) && value.length > 1) {
+      if (XIsNumber(value[0]) || XIsString(value[0])) {
+        value = value.map((x) => new Date(x));
+      }
+      this.nodeEmit(value, true);
     }
   }
 }

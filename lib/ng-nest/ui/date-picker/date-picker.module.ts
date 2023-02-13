@@ -23,6 +23,7 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
 import { XDateRangeComponent } from './date-range.component';
 import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XLinkModule } from '@ng-nest/ui/link';
+import { XOutletModule } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { XLinkModule } from '@ng-nest/ui/link';
     XButtonModule,
     XIconModule,
     XI18nModule,
-    XBaseFormModule
+    XBaseFormModule,
+    XOutletModule
   ]
 })
 export class XDatePickerModule {}

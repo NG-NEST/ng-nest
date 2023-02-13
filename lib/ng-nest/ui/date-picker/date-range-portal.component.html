@@ -108,6 +108,12 @@
       <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH:mm', timeType: 'minute' }"></ng-container>
     </ng-container>
   </div>
+  <ng-container *ngIf="isDatePicker">
+    <div *ngIf="extraFooter" class="x-date-range-portal-extra-footer">
+      <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+    </div>
+    <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
+  </ng-container>
 </div>
 
 <ng-template #dateTimeHourMinuteTpl let-timeFormat="timeFormat" let-timeType="timeType">
@@ -132,7 +138,34 @@
       <x-time-picker-frame [type]="timeType" [value]="time" (nodeEmit)="selectTime($event)" [defaultNow]="false"></x-time-picker-frame>
     </div>
   </div>
+  <ng-container *ngIf="!isDatePicker">
+    <div *ngIf="extraFooter" class="x-date-range-portal-extra-footer">
+      <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+    </div>
+  </ng-container>
   <div class="x-date-range-portal-footer">
+    <div class="x-date-range-portal-footer-left">
+      <ng-container *ngIf="!isDatePicker">
+        <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
+      </ng-container>
+    </div>
     <x-button type="primary" (click)="sureTime()" size="small" [disabled]="timeSureDisabled">{{ locale.sure }}</x-button>
+  </div>
+</ng-template>
+
+<ng-template #presetTpl>
+  <div *ngIf="preset" class="x-date-range-portal-preset">
+    <ng-container *ngFor="let item of preset">
+      <x-link *ngIf="item.id === 'thisWeek'" (click)="onPreset('week', 0)">{{ locale.thisWeek }}</x-link>
+      <x-link *ngIf="item.id === 'lastWeek'" (click)="onPreset('week', -1)">{{ locale.lastWeek }}</x-link>
+      <x-link *ngIf="item.id === 'nextWeek'" (click)="onPreset('week', 1)">{{ locale.nextWeek }}</x-link>
+      <x-link *ngIf="item.id === 'thisMonth'" (click)="onPreset('month', 0)">{{ locale.thisMonth }}</x-link>
+      <x-link *ngIf="item.id === 'lastMonth'" (click)="onPreset('month', -1)">{{ locale.lastMonth }}</x-link>
+      <x-link *ngIf="item.id === 'nextMonth'" (click)="onPreset('month', 1)">{{ locale.nextMonth }}</x-link>
+      <x-link *ngIf="item.id === 'thisYear'" (click)="onPreset('year', 0)">{{ locale.thisYear }}</x-link>
+      <x-link *ngIf="item.id === 'lastYear'" (click)="onPreset('year', -1)">{{ locale.lastYear }}</x-link>
+      <x-link *ngIf="item.id === 'nextYear'" (click)="onPreset('year', 1)">{{ locale.nextYear }}</x-link>
+      <x-link *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-link>
+    </ng-container>
   </div>
 </ng-template>

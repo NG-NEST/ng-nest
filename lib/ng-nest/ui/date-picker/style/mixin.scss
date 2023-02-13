@@ -37,9 +37,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     border-top: $--x-border-width solid $--x-border;
-    > x-button {
-      flex: 1;
+    > x-link {
+      padding: 0.25rem;
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
     }
   }
   &-body {
@@ -50,7 +54,20 @@
   }
   &-footer {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    border-top: $--x-date-picker-border;
+    padding: 0.5rem;
+    .x-date-picker-portal-preset {
+      border-top: none;
+      > x-link {
+        padding: 0 0.25rem;
+      }
+    }
+  }
+  &-extra-footer {
+    display: flex;
+    align-items: center;
     border-top: $--x-date-picker-border;
     padding: 0.5rem;
   }
@@ -618,10 +635,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     border-top: $--x-border-width solid $--x-border;
-    > x-button {
-      flex: 1;
+    > x-link {
+      padding: 0.25rem;
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
     }
+  }
+  &-extra-footer {
+    display: flex;
+    align-items: center;
+    border-top: $--x-date-picker-border;
+    padding: 0.5rem;
   }
   &-year-month {
     flex: 1;
@@ -804,9 +831,16 @@
   }
   &-footer {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     border-top: $--x-date-picker-border;
     padding: 0.5rem;
+    .x-date-range-portal-preset {
+      border-top: none;
+      > x-link {
+        padding: 0 0.25rem;
+      }
+    }
   }
   &-date {
     flex: 1;

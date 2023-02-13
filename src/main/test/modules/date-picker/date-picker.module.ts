@@ -25,6 +25,7 @@ import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { ExRangeComponent } from './range/range.component';
+import { ExFooterComponent } from './footer/footer.component';
 
 const routers = [{ path: '', component: TeDatePickerComponent }];
 
@@ -58,7 +59,8 @@ const routers = [{ path: '', component: TeDatePickerComponent }];
     ExLabelComponent,
     ExDisabledComponent,
     ExBorderedComponent,
-    ExRangeComponent
+    ExRangeComponent,
+    ExFooterComponent
   ]
 })
 export class TeDatePickerModule {}

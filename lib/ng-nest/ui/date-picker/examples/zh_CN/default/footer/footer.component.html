@@ -1,0 +1,42 @@
+<div class="row">
+  <x-date-picker [extraFooter]="'Custom footer'" label="Date" [(ngModel)]="modelPicker" (ngModelChange)="change($event)"></x-date-picker>
+</div>
+<div class="row">
+  <x-date-picker
+    [extraFooter]="'Custom footer'"
+    label="DateTime"
+    [(ngModel)]="modelPicker"
+    (ngModelChange)="change($event)"
+    type="date-time"
+  ></x-date-picker>
+</div>
+<div class="row">
+  <x-date-range [extraFooter]="'Custom footer'" label="DateRange" [(ngModel)]="modelRange" (ngModelChange)="change($event)"></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [extraFooter]="'Custom footer'"
+    label="Select month"
+    [(ngModel)]="modelMonth"
+    (ngModelChange)="change($event)"
+    type="month"
+  ></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [extraFooter]="'Custom footer'"
+    label="Select year"
+    [(ngModel)]="modelYear"
+    (ngModelChange)="change($event)"
+    type="year"
+  ></x-date-range>
+</div>
+<div class="row">
+  <x-date-range
+    [extraFooter]="'Custom footer'"
+    label="Select datetime"
+    [(ngModel)]="modelDateTime"
+    (ngModelChange)="change($event)"
+    type="date-time"
+  ></x-date-range>
+</div>
