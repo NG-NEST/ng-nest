@@ -1,3 +1,12 @@
+## [15.0.12](https://github.com/NG-NEST/ng-nest/compare/15.0.11...15.0.12) (2023-02-19)
+
+
+### Bug Fixes
+
+* **module:tree-file:** fix the problem of not displaying a single file ([9fddf75](https://github.com/NG-NEST/ng-nest/commit/9fddf75bd63d2cd7b46f955397bb0003700718de))
+
+
+
 ## [15.0.11](https://github.com/NG-NEST/ng-nest/compare/15.0.10...15.0.11) (2023-02-13)
 
 
