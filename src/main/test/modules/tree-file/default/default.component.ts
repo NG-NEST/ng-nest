@@ -264,4 +264,16 @@ export class ExDefaultComponent {
       highlightLines: {}
     }
   ];
+
+  uevfyzhj = [
+    { id: '__bash', label: 'bash' },
+    {
+      id: '__bash/1.bash',
+      pid: '__bash',
+      label: '1.bash',
+      url: 'docs/ui/getting-started/demo/__bash/1.bash',
+      type: 'bash',
+      highlightLines: { info: '11-12' }
+    }
+  ]
 }
