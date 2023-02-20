@@ -21,6 +21,8 @@ export class ExCheckboxComponent {
     { id: 'organization', label: 'organization', flex: 1, sort: true }
   ];
 
+  checkedRows: XTableRow[] = [];
+
   constructor(private service: CheckboxService) {}
 
   ngOnInit() {}

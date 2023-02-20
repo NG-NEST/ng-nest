@@ -1,3 +1,12 @@
+## [15.0.13](https://github.com/NG-NEST/ng-nest/compare/15.0.12...15.0.13) (2023-02-20)
+
+
+### Features
+
+* **module:table:** add checkbox output event ([e2cedc5](https://github.com/NG-NEST/ng-nest/commit/e2cedc5770957752de3df886d69bc87b95f8ba27))
+
+
+
 ## [15.0.12](https://github.com/NG-NEST/ng-nest/compare/15.0.11...15.0.12) (2023-02-19)
 
 
