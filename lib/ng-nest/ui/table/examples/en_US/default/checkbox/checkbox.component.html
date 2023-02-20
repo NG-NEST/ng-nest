@@ -2,5 +2,8 @@
   [columns]="columns"
   [data]="data"
   loading
+  [allowSelectRow]="false"
+  (headCheckboxChange)="headCheckboxChange($event)"
+  (bodyCheckboxChange)="bodyCheckboxChange($event)"
 >
 </x-table>

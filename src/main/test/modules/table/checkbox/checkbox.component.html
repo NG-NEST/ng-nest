@@ -1,1 +1,9 @@
-<x-table [columns]="columns" [data]="data" loading [allowSelectRow]="false"> </x-table>
+<x-table
+  [columns]="columns"
+  [data]="data"
+  loading
+  [allowSelectRow]="false"
+  (headCheckboxChange)="headCheckboxChange($event)"
+  (bodyCheckboxChange)="bodyCheckboxChange($event)"
+>
+</x-table>

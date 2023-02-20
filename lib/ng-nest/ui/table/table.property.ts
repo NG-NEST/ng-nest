@@ -108,7 +108,12 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 列头 checkbox 事件
    * @en_US head checkbox event
    */
-  @Output() headCheckboxChange = new EventEmitter<{ [property: string]: boolean }>();
+  @Output() headCheckboxChange = new EventEmitter<XTableHeadCheckbox>();
+  /**
+   * @zh_CN body checkbox 事件
+   * @en_US head checkbox event
+   */
+  @Output() bodyCheckboxChange = new EventEmitter<XTableRow>();
   /**
    * @zh_CN 允许行点击选中当前行
    * @en_US Allow row click to select
@@ -502,6 +507,23 @@ export interface XTableDragWidthEvent {
    * @en_US The column position refers to the offset position when dragging
    */
   position: { x: number; y: number };
+}
+
+/**
+ * @zh_CN 列头 checkbox 事件数据
+ * @en_US Column header checkbox event data
+ */
+export interface XTableHeadCheckbox {
+  /**
+   * @zh_CN 行数据
+   * @en_US Row data
+   */
+  rows: XTableRow[];
+  /**
+   * @zh_CN checkbox 数据
+   * @en_US Checkbox data
+   */
+  checkbox: { [property: string]: boolean };
 }
 
 /**

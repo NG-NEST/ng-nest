@@ -10,4 +10,5 @@ export * from './chunk';
 export * from './guid';
 export * from './group-by';
 export * from './resize';
+export * from './parent-path';
 export * from './property';

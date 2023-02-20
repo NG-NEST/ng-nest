@@ -32,7 +32,7 @@ import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angul
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent, XTableHeadCheckbox } from '@ng-nest/ui/table';
 
 @Component({
   selector: `${XTransferPrefix}`,
@@ -389,9 +389,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setButtonDisabled(source);
   }
 
-  onTableCheckedAll(row: { [prop: string]: boolean }, source: XTransferSource) {
+  onTableCheckedAll(row: XTableHeadCheckbox, source: XTransferSource) {
     if (!this.tableCheckboxColumn) return;
-    let checked = row[this.tableCheckboxColumn.id];
+    let checked = row.checkbox[this.tableCheckboxColumn.id];
     for (let item of source.list!) {
       if (!item.disabled) {
         item.checked = checked;

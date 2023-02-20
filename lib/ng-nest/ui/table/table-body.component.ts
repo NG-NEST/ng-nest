@@ -13,7 +13,7 @@ import {
   Input
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags, XParentPath } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -208,9 +208,9 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     if (row.disabled) return;
     this.activatedRow = row;
     if (this.table.allowCheckRow && this.table.rowChecked) {
-      if (!Array.from((event as any).path).find((x: any) => x.localName == 'x-checkbox')) {
+      if (!XParentPath(event.target as HTMLElement).includes('x-checkbox')) {
         row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
-        this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked);
+        this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked, row);
       }
     }
     this.activatedRowChange.emit(row);
