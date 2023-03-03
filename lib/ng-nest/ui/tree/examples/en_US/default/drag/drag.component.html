@@ -1,0 +1,8 @@
+<x-tree
+  [data]="data"
+  drag
+  expandedAll
+  (nodeDragStarted)="dragEvent('started', $event)"
+  (nodeDragEnded)="dragEvent('ended', $event)"
+>
+</x-tree>

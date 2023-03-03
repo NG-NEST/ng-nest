@@ -12,6 +12,7 @@ import {
   XAlign
 } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component, ElementRef } from '@angular/core';
+import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 
 /**
  * Tree
@@ -91,6 +92,11 @@ export class XTreeProperty extends XProperty {
    * @en_US Whether to allow multiple clicks on a node to trigger multiple events
    */
   @Input() @XInputBoolean() allowManyActivated?: XBoolean;
+  /**
+   * @zh_CN 拖动节点
+   * @en_US Drag node
+   */
+  @Input() @XInputBoolean() drag?: XBoolean;
   /**
    * @zh_CN 当前点击选中的节点变化的事件
    * @en_US The event of the currently clicked node change
@@ -201,6 +207,21 @@ export class XTreeProperty extends XProperty {
    * @en_US Node click event
    */
   @Output() activatedIdChange = new EventEmitter<any>();
+  /**
+   * @zh_CN 节点开始拖动事件
+   * @en_US Node drag started
+   */
+  @Output() nodeDragStarted = new EventEmitter<XTreeNodeDragEvent>();
+  /**
+   * @zh_CN 节点结束拖动事件
+   * @en_US Node drag ended
+   */
+  @Output() nodeDragEnded = new EventEmitter<XTreeNodeDragEvent>();
+  /**
+   * @zh_CN 节点正在拖动事件
+   * @en_US Node drag moved
+   */
+  @Output() nodeDragMoved = new EventEmitter<XTreeNodeDragEvent>();
 }
 
 /**
@@ -254,6 +275,11 @@ export interface XTreeNode extends XParentIdentityProperty<XTreeNode> {
    */
   loading?: boolean;
   /**
+   * @zh_CN 显示拖动指示器
+   * @en_US Show drag indicator
+   */
+  showDragIndicator?: boolean;
+  /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
    */
@@ -275,6 +301,33 @@ export interface XTreeAction extends XIdentityProperty {
    * @en_US Icon
    */
   icon?: string;
+}
+
+/**
+ * @zh_CN Tree 节点拖动事件
+ * @en_US Tree node drag event
+ */
+export interface XTreeNodeDragEvent {
+  /**
+   * @zh_CN 对应 cdk 中的事件
+   * @en_US drag cdk event
+   */
+  event?: CdkDragStart | CdkDragEnd | CdkDragMove<XTreeNode>;
+  /**
+   * @zh_CN 拖动的节点
+   * @en_US drag node
+   */
+  from?: XTreeNode;
+  /**
+   * @zh_CN 要拖动到的位置对应的节点
+   * @en_US Node corresponding to the position to drag
+   */
+  to?: XTreeNode;
+  /**
+   * @zh_CN 对应节点的前面还是后面
+   * @en_US The front or back of the corresponding node
+   */
+  position?: -1 | 1;
 }
 
 /**

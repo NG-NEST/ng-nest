@@ -265,7 +265,7 @@ export class ExDefaultComponent {
     }
   ];
 
-  uevfyzhj = [
+  dataone = [
     { id: '__bash', label: 'bash' },
     {
       id: '__bash/1.bash',

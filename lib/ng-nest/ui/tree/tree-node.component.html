@@ -8,6 +8,7 @@
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
   (click)="!node.disabled && onActivate($event, node)"
 >
+  <div class="x-tree-node-drag-indicator" *ngIf="showDragIndicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
   <x-icon
     *ngIf="!node.loading"
     [class.is-leaf]="node.leaf"
@@ -41,7 +42,7 @@
   </ng-template>
   <span class="x-tree-node-operations">
     <x-link
-      *ngFor="let action of tree.actions; trackBy: trackByItem"
+      *ngFor="let action of tree.actions; trackBy: trackByAction"
       [icon]="action.icon"
       [title]="action.label"
       (click)="onAction($event, action, node)"

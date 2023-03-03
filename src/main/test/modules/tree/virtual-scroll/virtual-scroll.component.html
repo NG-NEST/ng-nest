@@ -3,7 +3,7 @@
 <x-button (click)="addChild()" [disabled]="selected ? false : true">新增子节点</x-button>
 <x-button (click)="update()" [disabled]="selected ? false : true">修改节点</x-button>
 <x-button (click)="remove()" [disabled]="selected ? false : true">删除节点</x-button>
-<x-tree #treeCom [data]="data" virtualScroll (activatedChange)="info($event)"> </x-tree>
+<x-tree #treeCom [data]="data" virtualScroll (activatedChange)="info($event)" drag> </x-tree>
 <h2>懒加载</h2>
 <x-button (click)="addLazy()">新增根节点</x-button>
 <x-button (click)="addChildLazy()" [disabled]="selectedLazy ? false : true">新增子节点</x-button>

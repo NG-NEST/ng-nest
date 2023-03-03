@@ -1,15 +1,33 @@
 <div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf">
   <ng-container *ngIf="!virtualScroll; else virtualScrollTpl">
-    <x-tree-node
-      *ngFor="let node of nodes; trackBy: trackByItem"
-      [node]="node"
-      [lazy]="lazy"
-      [lazyData]="data"
-      [nodeHeight]="nodeHeight"
-      [nodeNowrap]="nodeNowrap"
-      [nodeAlignItems]="nodeAlignItems"
-      [tree]="this"
-    ></x-tree-node>
+    <div
+      class="x-tree-content"
+      #dropList
+      cdkDropList
+      [cdkDropListDisabled]="!drag"
+      [cdkDropListSortingDisabled]="true"
+      [hidden]="isEmpty"
+      [cdkDropListData]="nodes"
+      [cdkDropListEnterPredicate]="predicate"
+    >
+      <x-tree-node
+        *ngFor="let node of nodes; trackBy: trackByItem"
+        cdkDrag
+        [cdkDragDisabled]="node.disabled"
+        (cdkDragStarted)="cdkDragStarted($event)"
+        (cdkDragEnded)="cdkDragEnded($event)"
+        (cdkDragMoved)="cdkDragMoved($event)"
+        [cdkDragData]="node"
+        (nodeMouseenter)="nodeMouseenter($event)"
+        [node]="node"
+        [lazy]="lazy"
+        [lazyData]="data"
+        [nodeHeight]="nodeHeight"
+        [nodeNowrap]="nodeNowrap"
+        [nodeAlignItems]="nodeAlignItems"
+        [tree]="this"
+      ></x-tree-node>
+    </div>
   </ng-container>
 </div>
 
@@ -21,16 +39,34 @@
     [maxBufferPx]="maxBufferPx"
     [style.height.px]="virtualScrollHeight"
   >
-    <x-tree-node
-      *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
-      [node]="node"
-      [lazy]="lazy"
-      [lazyData]="data"
-      [nodeHeight]="nodeHeight"
-      [nodeNowrap]="nodeNowrap"
-      [nodeAlignItems]="nodeAlignItems"
-      [tree]="this"
-    ></x-tree-node>
+    <div
+      class="x-tree-content"
+      #dropList
+      cdkDropList
+      [cdkDropListDisabled]="!drag"
+      [cdkDropListSortingDisabled]="true"
+      [hidden]="isEmpty"
+      [cdkDropListData]="nodes"
+      [cdkDropListEnterPredicate]="predicate"
+    >
+      <x-tree-node
+        *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
+        cdkDrag
+        [cdkDragDisabled]="node.disabled"
+        (cdkDragStarted)="cdkDragStarted($event)"
+        (cdkDragEnded)="cdkDragEnded($event)"
+        (cdkDragMoved)="cdkDragMoved($event)"
+        [cdkDragData]="node"
+        (nodeMouseenter)="nodeMouseenter($event)"
+        [node]="node"
+        [lazy]="lazy"
+        [lazyData]="data"
+        [nodeHeight]="nodeHeight"
+        [nodeNowrap]="nodeNowrap"
+        [nodeAlignItems]="nodeAlignItems"
+        [tree]="this"
+      ></x-tree-node>
+    </div>
   </cdk-virtual-scroll-viewport>
 </ng-template>
 

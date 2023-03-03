@@ -19,19 +19,14 @@
   &-content {
     cursor: pointer;
     &.cdk-drop-list-dragging {
-      > x-list-option {
-        &:hover {
-          background-color: transparent;
-        }
-        &.cdk-drag-placeholder {
-          border-color: $--x-border;
-          color: $--x-text-400;
-          background-color: $--x-background-a100;
-          opacity: 0.9;
-        }
-        &:not(.cdk-drag-placeholder) {
-          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
-        }
+      x-list-option.cdk-drag-placeholder .x-list-option {
+        border-color: $--x-primary;
+        color: $--x-primary;
+        background-color: $--x-background;
+        opacity: 0.8;
+      }
+      x-list-option:not(.cdk-drag-placeholder) {
+        transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
       }
     }
   }
@@ -139,10 +134,10 @@
   &.cdk-drag-preview {
     .#{$--x-list-option-prefix} {
       @include option();
-      border-color: $--x-primary;
-      color: $--x-primary;
-      background-color: $--x-background;
-      opacity: 0.8;
+      border-color: $--x-border;
+      color: $--x-text-400;
+      background-color: $--x-background-a100;
+      opacity: 0.9;
     }
   }
   &.cdk-drag-animating {

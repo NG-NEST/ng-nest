@@ -6,10 +6,15 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostBinding,
-  Input
+  HostListener,
+  Input,
+  NgZone,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -20,7 +25,9 @@ import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
 })
 export class XTreeNodeComponent extends XTreeNodeProperty {
   @Input() tree: any;
+  @Output() nodeMouseenter = new EventEmitter<{ event: MouseEvent; node: XTreeNode; ele: ElementRef }>();
   @HostBinding('class.x-tree-node') rootClass = true;
+
   private _loading = false;
   public get loading() {
     return this._loading;
@@ -30,8 +37,36 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.cdr.detectChanges();
   }
 
+  private _unSubject = new Subject<void>();
+  get showDragIndicator() {
+    return this.tree.dragging && this.tree.hoverTreeNode?.id === this.node.id;
+  }
+
+  @HostListener('mouseenter', ['$event']) onMouseenter(event: MouseEvent) {
+    this.nodeMouseenter.emit({ event: event, node: this.node, ele: this.elementRef });
+  }
+
+  @HostListener('mouseleave') onMouseleave(_event: MouseEvent) {
+    if (!this.tree.dragging) return;
+    this.tree.hoverTreeNode?.change && this.tree.hoverTreeNode?.change();
+    this.cdr.detectChanges();
+  }
+
   get paddingLeft() {
     return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
+  }
+
+  get indicatorWidth() {
+    return `calc(100% - ${this.paddingLeft + (this.node.leaf ? 1.5 : 0)}rem)`;
+  }
+
+  get indicatorStyle() {
+    if (this.tree.dragPosition === 1) {
+      return { bottom: `${-0.125}rem` };
+    } else if (this.tree.dragPosition === -1) {
+      return { top: `${-0.125}rem` };
+    }
+    return {};
   }
 
   get getActivated() {
@@ -50,7 +85,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public ngZone: NgZone
   ) {
     super();
   }
@@ -58,12 +94,17 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   ngOnInit() {
     this.node.change = (check: boolean) => {
       if (check) this.setCheckbox();
-      this.cdr.detectChanges();
+      this?.cdr.detectChanges();
     };
     this.level = this.node?.level ? this.node.level : 0;
     if (!this.tree.levelCheck) return;
     if (this.node.checked) this.setCheckbox();
     this.setIndeterminate(this.node);
+  }
+
+  ngOnDestroy() {
+    this._unSubject.next();
+    this._unSubject.complete();
   }
 
   onActivate(event: Event, node: XTreeNode) {
@@ -178,7 +219,11 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     event.stopPropagation();
   }
 
-  trackByItem(_index: number, item: XTreeAction | XTreeNode) {
+  trackByItem(_index: number, item: XTreeNode) {
+    return `${item.id}-${item.level}`;
+  }
+
+  trackByAction(_index: number, item: XTreeAction) {
     return item.id;
   }
 }

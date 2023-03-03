@@ -10,10 +10,21 @@ import { XLinkModule } from '@ng-nest/ui/link';
 import { XTreeProperty, XTreeNodeProperty } from './tree.property';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [XTreeComponent, XTreeNodeComponent, XTreeProperty, XTreeNodeProperty],
   exports: [XTreeComponent, XTreeNodeComponent],
-  imports: [CommonModule, FormsModule, XIconModule, XCheckboxModule, XOutletModule, XLinkModule, ScrollingModule, XKeywordModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    DragDropModule,
+    XIconModule,
+    XCheckboxModule,
+    XOutletModule,
+    XLinkModule,
+    ScrollingModule,
+    XKeywordModule
+  ]
 })
 export class XTreeModule {}
