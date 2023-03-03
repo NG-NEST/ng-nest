@@ -18,9 +18,8 @@
         }
       }
       x-tree-node.cdk-drag-placeholder .x-tree-node-content {
-        border-color: $--x-primary;
         color: $--x-primary;
-        background-color: $--x-background;
+        background-color: $--x-background-a200;
         opacity: 0.8;
       }
       x-tree-node:not(.cdk-drag-placeholder) {
@@ -34,20 +33,12 @@
   &-content {
     position: relative;
     display: flex;
-    padding: 0.0625rem 0;
     border-radius: $--x-border-radius;
-    border: 0.0625rem dashed transparent;
     cursor: pointer;
     x-icon {
       padding: 0.25rem;
       font-size: 1rem;
       transition: $--x-animation-duration-base;
-      &.is-leaf {
-        visibility: hidden;
-      }
-      &.is-open {
-        transform: rotate(90deg);
-      }
       &:hover {
         color: $--x-text-200;
       }
@@ -56,6 +47,7 @@
       margin-right: 0.325rem;
       padding: 0.25rem 0;
     }
+
     &.x-disabled {
       color: var(--x-text-400);
       background-color: $--x-background-a200;
@@ -82,6 +74,42 @@
     color: $--x-text-300;
     margin-right: 0.125rem;
   }
+  &-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.is-leaf {
+      visibility: hidden;
+    }
+    &.is-open:not(.is-template) {
+      x-icon {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  &-line {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-vertical {
+      position: absolute;
+      height: 100%;
+      border-right: $--x-border-base;
+    }
+    &-horizontal {
+      position: absolute;
+      border-bottom: $--x-border-base;
+    }
+  }
+  &-last {
+    .#{$--x-tree-node-prefix}-line-vertical.is-last {
+      height: 50%;
+      top: 0;
+    }
+  }
   &-operations {
     display: none;
     .x-link {
@@ -99,7 +127,7 @@
   }
   &-drag-indicator {
     position: absolute;
-    height: 0.125rem;
+    height: 0.0625rem;
     border-radius: $--x-border-radius;
     background-color: $--x-primary;
     right: 0;
@@ -107,13 +135,13 @@
     &::before {
       position: absolute;
       top: -0.125rem;
-      left: -0.325rem;
-      width: 0.3875rem;
-      height: 0.3875rem;
+      left: -0.2625rem;
+      width: 0.325rem;
+      height: 0.325rem;
       background-color: transparent;
       border-color: $--x-primary;
       border-style: solid;
-      border-width: 0.125rem 0.125rem 0 0;
+      border-width: 0.0625rem 0.0625rem 0 0;
       content: ' ';
       transform: rotate(45deg);
     }

@@ -76,7 +76,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.875) @XInputNumber() spacing?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.5) @XInputNumber() spacing?: XNumber;
   /**
    * @zh_CN 标签自定义模板
    * @en_US Label custom template
@@ -192,6 +192,16 @@ export class XTreeProperty extends XProperty {
    * @en_US Only leaf nodes can be selected
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) onlyLeaf!: XBoolean;
+  /**
+   * @zh_CN 展开收起的图标自定义模版
+   * @en_US Expand the folded icon custom template
+   */
+  @Input() expandedIcon?: TemplateRef<void>;
+  /**
+   * @zh_CN 显示连接线
+   * @en_US Show line
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) showLine!: XBoolean;
   /**
    * @zh_CN 参数控制请求改变事件
    * @en_US Parameter control request change event

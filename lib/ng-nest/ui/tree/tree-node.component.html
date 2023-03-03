@@ -3,20 +3,45 @@
   [class.x-activated]="getActivated"
   [class.x-disabled]="node.disabled"
   [class.x-tree-node-sub]="!node.leaf"
+  [class.x-tree-node-last]="isChildrenLast"
   [style.padding-left.rem]="paddingLeft"
   [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
   (click)="!node.disabled && onActivate($event, node)"
 >
+  <div class="x-tree-node-line" *ngIf="tree.showLine && numLevel > 0" [style.width.rem]="paddingLeft">
+    <div
+      class="x-tree-node-line-vertical"
+      [hidden]="isParentLast[i - 1]"
+      [class.is-last]="i === verticalLevel.length"
+      [style.left.rem]="getVerticalLeft(i)"
+      *ngFor="let i of verticalLevel"
+    ></div>
+    <div
+      class="x-tree-node-line-horizontal"
+      [style.width.rem]="verticalWidth"
+      [style.left.rem]="getVerticalLeft(verticalLevel.length)"
+    ></div>
+  </div>
   <div class="x-tree-node-drag-indicator" *ngIf="showDragIndicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
-  <x-icon
-    *ngIf="!node.loading"
-    [class.is-leaf]="node.leaf"
-    [class.is-open]="node.open"
-    type="fto-chevron-right"
-    class="x-tree-node-right"
-    (click)="!tree.nodeOpen && tree.onToggle($event, node)"
-  ></x-icon>
+  <ng-container *ngIf="!node.loading">
+    <div
+      class="x-tree-node-right"
+      [class.is-leaf]="node.leaf"
+      [class.is-open]="node.open"
+      [class.is-template]="tree.expandedIcon"
+      [style.width.rem]="verticalWidth * 2"
+      (click)="!tree.nodeOpen && tree.onToggle($event, node)"
+    >
+      <ng-container *ngIf="tree.expandedIcon; else defaultIconTpl">
+        <ng-container *xOutlet="tree.expandedIcon; context: { $node: node }"></ng-container>
+      </ng-container>
+      <ng-template #defaultIconTpl>
+        <x-icon type="fto-chevron-right"></x-icon>
+      </ng-template>
+    </div>
+  </ng-container>
+
   <x-icon class="x-tree-node-loading" *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
   <x-checkbox
     *ngIf="tree.checkbox"

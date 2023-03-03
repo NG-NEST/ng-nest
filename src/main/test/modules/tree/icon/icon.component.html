@@ -1,0 +1,5 @@
+<x-tree [data]="data" [expandedIcon]="expandedIconTpl" showLine> </x-tree>
+
+<ng-template #expandedIconTpl let-node="$node">
+  <x-icon [type]="!node.open ? 'fto-plus-square' : 'fto-minus-square'"></x-icon>
+</ng-template>

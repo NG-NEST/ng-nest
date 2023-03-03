@@ -15,6 +15,7 @@ import {
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
+import { XTreeService } from './tree.service';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -52,6 +53,43 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.cdr.detectChanges();
   }
 
+  get isChildrenLast() {
+    let parent = this.tree.nodes.find((x: XTreeNode) => x.id === this.node.pid);
+    if (!parent) return false;
+    const index = parent.children.indexOf(this.node);
+    return index + 1 === parent.children.length;
+  }
+
+  get isParentLast() {
+    let parents = this.treeService.getParents(this.tree.nodes, this.node);
+    if (parents.length <= 1) return [];
+    const res: boolean[] = [];
+    parents.reduce((pre: XTreeNode, curr: XTreeNode) => {
+      if (pre === null) return curr;
+      const index = curr.children?.indexOf(pre)!;
+      res.push(index + 1 === curr.children?.length!);
+      return curr;
+    });
+
+    return res.reverse();
+  }
+
+  get numLevel() {
+    return Number(this.level);
+  }
+
+  get verticalLevel() {
+    if (this.numLevel > 0) {
+      return Array.from({ length: this.numLevel }).map((_x, index) => index + 1);
+    } else {
+      return [];
+    }
+  }
+
+  get verticalWidth() {
+    return Number(this.tree.spacing) / 2;
+  }
+
   get paddingLeft() {
     return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
   }
@@ -62,9 +100,9 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
 
   get indicatorStyle() {
     if (this.tree.dragPosition === 1) {
-      return { bottom: `${-0.125}rem` };
+      return { bottom: `${-0.0625}rem` };
     } else if (this.tree.dragPosition === -1) {
-      return { top: `${-0.125}rem` };
+      return { top: `${-0.0625}rem` };
     }
     return {};
   }
@@ -86,7 +124,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
     public configService: XConfigService,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public treeService: XTreeService
   ) {
     super();
   }
@@ -152,6 +191,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   onCheckboxChange() {
     this.setCheckbox();
     this.tree.checkboxChange.emit(this.node);
+  }
+
+  getVerticalLeft(i: number) {
+    return (i - 1) * Number(this.tree.spacing) + Number(this.tree.spacing) / 2;
   }
 
   setCheckbox() {

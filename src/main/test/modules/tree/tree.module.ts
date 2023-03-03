@@ -19,6 +19,9 @@ import { ExCheckboxComponent } from './checkbox/checkbox.component';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { ExActivatedComponent } from './activated/activated.component';
 import { ExDragComponent } from './drag/drag.component';
+import { ExIconComponent } from './icon/icon.component';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { ExLineComponent } from './line/line.component';
 
 const routers = [{ path: '', component: TeTreeComponent }];
 
@@ -31,7 +34,8 @@ const routers = [{ path: '', component: TeTreeComponent }];
     XTreeModule,
     XLayoutModule,
     XButtonModule,
-    XInputNumberModule
+    XInputNumberModule,
+    XIconModule
   ],
   declarations: [
     TeTreeComponent,
@@ -45,7 +49,9 @@ const routers = [{ path: '', component: TeTreeComponent }];
     ExCustomComponent,
     ExCheckboxComponent,
     ExActivatedComponent,
-    ExDragComponent
+    ExDragComponent,
+    ExIconComponent,
+    ExLineComponent
   ]
 })
 export class TeTreeModule {}

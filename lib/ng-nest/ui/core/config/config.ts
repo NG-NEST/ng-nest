@@ -590,6 +590,7 @@ export interface XTreeConfig {
   nodeAlignItems?: XAlign;
   virtualScroll?: boolean;
   onlyLeaf?: boolean;
+  showLine?: boolean;
 }
 
 export interface XTextareaConfig {
