@@ -13,6 +13,7 @@
         <ng-container *ngFor="let year of years; trackBy: trackByYear">
           <td
             class="x-picker-date-item"
+            [class.x-date-disabled]="year.isDisabled"
             [class.x-date-last-or-next]="year.isLastOrNext"
             [class.x-date-now]="year.isNow"
             [class.x-date-first-day]="year.isFirstDay"
@@ -34,9 +35,9 @@
             [class.x-date-in-range-hover]="rangePicker && year.isInRangeHover"
             [class.x-date-active]="!rangePicker && (year.date | date : 'yyyy') === (model | date : 'yyyy')"
             title="{{ year.date | date : 'yyyy' }}"
-            (click)="yearClick(year)"
-            (mouseenter)="rangePicker && onTdMouseenter(year)"
-            (mouseleave)="rangePicker && onTdMouseleave(year)"
+            (click)="!year.isDisabled && yearClick(year)"
+            (mouseenter)="!year.isDisabled && rangePicker && onTdMouseenter(year)"
+            (mouseleave)="!year.isDisabled && rangePicker && onTdMouseleave(year)"
           >
             <div *ngIf="!yearTemp" class="x-date-text">
               {{ year.date | date : 'yyyy' }}

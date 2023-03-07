@@ -205,6 +205,13 @@
           }
         }
       }
+      &.x-date-disabled {
+        cursor: default;
+        .x-date-text {
+          background-color: $--x-background-a200;
+          color: $--x-text-700;
+        }
+      }
     }
   }
   .x-visibility {
@@ -317,6 +324,13 @@
           }
         }
       }
+      &.x-date-disabled {
+        cursor: default;
+        .x-date-text {
+          background-color: $--x-background-a200;
+          color: $--x-text-700;
+        }
+      }
     }
   }
   .x-visibility {
@@ -427,6 +441,13 @@
           &::before {
             width: 3.5rem;
           }
+        }
+      }
+      &.x-date-disabled {
+        cursor: default;
+        .x-date-text {
+          background-color: $--x-background-a200;
+          color: $--x-text-700;
         }
       }
     }

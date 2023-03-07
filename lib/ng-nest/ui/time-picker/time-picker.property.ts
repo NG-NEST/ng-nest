@@ -77,6 +77,11 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    */
   @Input() @XDataConvert() preset: XData<XTimePickerPreset> = [];
   /**
+   * @zh_CN 禁用的时间
+   * @en_US Disabled time
+   */
+  @Input() disabledTime?: XTimePickerDisabledTime;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -141,3 +146,31 @@ export const XTimePickerPortalPrefix = 'x-time-picker-portal';
  * @decorator component
  */
 export const XTimePickerFramePrefix = 'x-time-picker-frame';
+
+/**
+ * @zh_CN 禁用时间的自定义类型
+ * @en_US Disable custom type of time
+ */
+export type XTimePickerDisabledTime = (param?: any) => XTimePickerDisabledTimeFn;
+
+/**
+ * @zh_CN 禁用时间的自定义函数
+ * @en_US Disable custom type of time
+ */
+export type XTimePickerDisabledTimeFn = {
+  /**
+   * @zh_CN 禁用小时的自定义函数
+   * @en_US Disable custom type of hours
+   */
+  disabledHours?: () => number[];
+  /**
+   * @zh_CN 禁用分钟的自定义函数
+   * @en_US Disable custom type of minutes
+   */
+  disabledMinutes?: () => number[];
+  /**
+   * @zh_CN 禁用秒的自定义函数
+   * @en_US Disable custom type of seconds
+   */
+  disabledSeconds?: () => number[];
+};

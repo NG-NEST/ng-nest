@@ -21,6 +21,7 @@
           <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
             <td
               class="x-picker-date-item"
+              [class.x-date-disabled]="week.isDisabled"
               [class.x-date-last-or-next]="week.isLastOrNext"
               [class.x-date-now]="week.isNow"
               [class.x-date-first-day]="week.isFirstDay"
@@ -42,9 +43,9 @@
               [class.x-date-in-range-hover]="rangePicker && week.isInRangeHover"
               [class.x-date-active]="!rangePicker && (week.date | date : 'yyyyMMdd') === (model | date : 'yyyyMMdd')"
               title="{{ week.date | date : 'yyyy-MM-dd' }}"
-              (click)="dateClick(week)"
-              (mouseenter)="rangePicker && rangeHover && onTdMouseenter(week)"
-              (mouseleave)="rangePicker && rangeHover && onTdMouseleave(week)"
+              (click)="!week.isDisabled && dateClick(week)"
+              (mouseenter)="!week.isDisabled && rangePicker && rangeHover && onTdMouseenter(week)"
+              (mouseleave)="!week.isDisabled && rangePicker && rangeHover && onTdMouseleave(week)"
             >
               <div *ngIf="!dateTemp" class="x-date-text">
                 {{ week.date | date : 'd' }}

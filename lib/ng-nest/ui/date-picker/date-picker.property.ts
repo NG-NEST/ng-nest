@@ -67,6 +67,16 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    */
   @Input() extraFooter?: XTemplate;
   /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
+  /**
+   * @zh_CN 禁用的时间
+   * @en_US Disabled time
+   */
+  @Input() disabledTime?: XDatePickerDisabledTime;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -184,6 +194,16 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    */
   @Input() extraFooter?: XTemplate;
   /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
+  /**
+   * @zh_CN 禁用的时间
+   * @en_US Disabled time
+   */
+  @Input() disabledTime?: XDatePickerDisabledTime;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
@@ -206,6 +226,40 @@ export interface XDateRangeOption extends XFormOption {
    */
   placeholder?: string[];
 }
+
+/**
+ * @zh_CN 禁用日期的自定义类型
+ * @en_US 禁用日期的自定义类型
+ */
+export type XDatePickerDisabledDate = (current: Date) => boolean;
+
+/**
+ * @zh_CN 禁用时间的自定义类型
+ * @en_US 禁用时间的自定义类型
+ */
+export type XDatePickerDisabledTime = (type?: XDatePickerRangType) => XDatePickerDisabledTimeFn;
+
+/**
+ * @zh_CN 禁用时间的自定义函数
+ * @en_US 禁用时间的自定义函数
+ */
+export type XDatePickerDisabledTimeFn = {
+  /**
+   * @zh_CN 禁用小时的自定义函数
+   * @en_US 禁用小时的自定义函数
+   */
+  disabledHours?: () => number[];
+  /**
+   * @zh_CN 禁用分钟的自定义函数
+   * @en_US 禁用分钟的自定义函数
+   */
+  disabledMinutes?: () => number[];
+  /**
+   * @zh_CN 禁用秒的自定义函数
+   * @en_US 禁用秒的自定义函数
+   */
+  disabledSeconds?: () => number[];
+};
 
 /**
  * @zh_CN 快捷选择按钮
@@ -334,6 +388,11 @@ export class XPickerDateProperty extends XProperty {
    * @en_US The current choice is the start / end date
    */
   @Input() rangeType!: XDatePickerRangType;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
   /**
    * @zh_CN 选择类型
    * @en_US Select type
@@ -491,6 +550,11 @@ export interface XDateCell {
    * @en_US Current selected date
    */
   isActive?: boolean;
+  /**
+   * @zh_CN 禁用日期
+   * @en_US Disabled date
+   */
+  isDisabled?: boolean;
 }
 
 /**
@@ -561,6 +625,11 @@ export class XPickerMonthProperty extends XProperty {
    * @en_US The current choice is the start / end date
    */
   @Input() rangeType!: XDatePickerRangType;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event
@@ -670,6 +739,11 @@ export class XPickerYearProperty extends XProperty {
    * @en_US The current choice is the start / end date
    */
   @Input() rangeType!: XDatePickerRangType;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
   /**
    * @zh_CN 选中的事件
    * @en_US Selected event

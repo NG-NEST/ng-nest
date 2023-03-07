@@ -10,7 +10,14 @@ import {
   HostListener,
   ViewChild
 } from '@angular/core';
-import { XDateRangePortalPrefix, XDatePickerType, XDateCell, XDateRangePreset } from './date-picker.property';
+import {
+  XDateRangePortalPrefix,
+  XDatePickerType,
+  XDateCell,
+  XDateRangePreset,
+  XDatePickerDisabledDate,
+  XDatePickerDisabledTime
+} from './date-picker.property';
 import {
   XIsEmpty,
   XConnectBaseAnimation,
@@ -31,6 +38,7 @@ import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XPickerMonthComponent } from './picker-month.component';
 import { XPickerYearComponent } from './picker-year.component';
 import { XPickerDateComponent } from './picker-date.component';
+import { XTimePickerFrameComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: `${XDateRangePortalPrefix}`,
@@ -53,6 +61,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
 
   @ViewChild('startPicker') startPicker!: XPickerDateComponent | XPickerMonthComponent | XPickerYearComponent;
   @ViewChild('endPicker') endPicker!: XPickerDateComponent | XPickerMonthComponent | XPickerYearComponent;
+  @ViewChild('timePickerFrame') timePickerFrame?: XTimePickerFrameComponent;
 
   type: XDatePickerType = 'date';
   display = new Date();
@@ -70,6 +79,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   animating!: Function;
   closePortal!: Function;
   destroyPortal!: Function;
+  disabledDate!: XDatePickerDisabledDate;
+  disabledTime!: XDatePickerDisabledTime;
   nodeEmit!: (date: Date[], close?: boolean) => void;
   startNodeEmit!: (date: Date | null, close?: boolean, isDatePicker?: boolean) => void;
   endNodeEmit!: (date: Date | null, close?: boolean, isDatePicker?: boolean) => void;
@@ -83,12 +94,24 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   extraFooter?: XTemplate;
   private _unSubject = new Subject<void>();
 
-  get timeSureDisabled() {
-    return XIsEmpty(this.value) || this.value.every((x) => x === null);
-  }
-
   get isDatePicker() {
     return ['date', 'month', 'year'].includes(this.type);
+  }
+
+  get sureDisabled() {
+    if (this.timePickerFrame && !XIsEmpty(this.time)) {
+      const dt = new Date(this.time!);
+      const hours = dt.getHours();
+      const minutes = dt.getMinutes();
+      const seconds = dt.getSeconds();
+      return (
+        this.timePickerFrame.setDisabled('hours', hours) ||
+        this.timePickerFrame.setDisabled('minutes', minutes) ||
+        this.timePickerFrame.setDisabled('seconds', seconds)
+      );
+    } else {
+      return true;
+    }
   }
 
   constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
@@ -104,6 +127,9 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     });
     this.activeTypeChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.activeType = x;
+      if (!XIsEmpty(this.startDisplay) && !XIsEmpty(this.endDisplay)) {
+        console.log(1111);
+      }
     });
     this.i18n.localeChange
       .pipe(
@@ -132,7 +158,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       this.value = [null, null];
       this.model = this.display;
       this.startModel = this.model;
-      this.endModel = this.setModelByType(this.model);
+      this.endModel = this.setModelByType(this.model, this.isDatePicker ? 1 : 0);
       this.setDisplay(this.model);
     }
     this.cdr.detectChanges();
@@ -153,11 +179,8 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setDatesState(cell: XDateCell) {
-    if (this.activeType === 'start') {
-      this.endPicker?.setDatesState(cell);
-    } else {
-      this.startPicker?.setDatesState(cell);
-    }
+    this.startPicker?.setDatesState(cell);
+    this.endPicker?.setDatesState(cell);
   }
 
   setDefault() {
@@ -166,7 +189,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     if (type === 'start') {
       this.startModel = new Date(this.value[0]!);
       this.startDisplay = this.startModel;
-      this.endModel = this.setModelByType(this.startModel);
+      this.endModel = this.setModelByType(this.startModel, this.isDatePicker ? 1 : 0);
       this.endDisplay = this.endModel!;
       this.timeModel = this.startModel;
       this.timeDisplay = this.startDisplay;
@@ -174,7 +197,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     } else if (type === 'end') {
       this.endModel = new Date(this.value[1]!);
       this.endDisplay = this.endModel;
-      this.startModel = this.setModelByType(this.endModel, -1);
+      this.startModel = this.setModelByType(this.endModel, this.isDatePicker ? -1 : 0);
       this.startDisplay = this.startModel!;
       this.timeModel = this.endModel;
       this.timeDisplay = this.endDisplay;
@@ -186,7 +209,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   setDisplay(date: Date) {
     this.display = new Date(date.getFullYear(), date.getMonth(), 1);
     this.startDisplay = this.display;
-    this.endDisplay = this.setModelByType(this.display);
+    this.endDisplay = this.setModelByType(this.display, this.isDatePicker ? 1 : 0);
   }
 
   dateChange(date: Date) {
@@ -303,7 +326,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   sureTime() {
-    if (this.value.every((x) => XIsNull(x))) return;
+    if (this.sureDisabled) return;
     const [start, end] = this.value;
     if (XIsNull(start) && !XIsNull(end)) {
       this.time = null;

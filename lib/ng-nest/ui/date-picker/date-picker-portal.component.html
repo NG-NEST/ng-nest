@@ -1,12 +1,30 @@
 <div class="x-date-picker-portal {{ type }}" [ngSwitch]="type" (click)="inputCom.inputFocus()">
   <ng-container *ngSwitchCase="'date'">
-    <x-picker-date [display]="display" [model]="model" [(type)]="type" (modelChange)="dateChange($event)"></x-picker-date>
+    <x-picker-date
+      [display]="display"
+      [model]="model"
+      [(type)]="type"
+      (modelChange)="dateChange($event)"
+      [disabledDate]="disabledDate"
+    ></x-picker-date>
   </ng-container>
   <ng-container *ngSwitchCase="'month'">
-    <x-picker-month [display]="display" [model]="model" [(type)]="type" (modelChange)="monthChange($event)"></x-picker-month>
+    <x-picker-month
+      [display]="display"
+      [model]="model"
+      [(type)]="type"
+      (modelChange)="monthChange($event)"
+      [disabledDate]="disabledDate"
+    ></x-picker-month>
   </ng-container>
   <ng-container *ngSwitchCase="'year'">
-    <x-picker-year [display]="display" [model]="model" [(type)]="type" (modelChange)="yearChange($event)"></x-picker-year>
+    <x-picker-year
+      [display]="display"
+      [model]="model"
+      [(type)]="type"
+      (modelChange)="yearChange($event)"
+      [disabledDate]="disabledDate"
+    ></x-picker-year>
   </ng-container>
   <ng-container *ngSwitchCase="'date-time'">
     <ng-container *ngTemplateOutlet="dateTimeHourMinuteTpl; context: { timeFormat: 'HH:mm:ss', timeType: 'time' }"></ng-container>
@@ -28,13 +46,26 @@
 <ng-template #dateTimeHourMinuteTpl let-timeFormat="timeFormat" let-timeType="timeType">
   <div class="x-date-picker-portal-content">
     <div class="x-date-picker-portal-date">
-      <x-picker-date [display]="display" [(type)]="type" [model]="model" (modelChange)="dateChange($event)"></x-picker-date>
+      <x-picker-date
+        [display]="display"
+        [(type)]="type"
+        [model]="model"
+        (modelChange)="dateChange($event)"
+        [disabledDate]="disabledDate"
+      ></x-picker-date>
     </div>
     <div class="x-date-picker-portal-time">
       <div class="x-date-picker-portal-time-label">
         {{ time | date : timeFormat }}
       </div>
-      <x-time-picker-frame [type]="timeType" [value]="time" size="small" (nodeEmit)="selectTime($event)"></x-time-picker-frame>
+      <x-time-picker-frame
+        #timePickerFrame
+        [type]="timeType"
+        [value]="time"
+        (nodeEmit)="selectTime($event)"
+        [disabledTime]="disabledTime"
+        [defaultNow]="false"
+      ></x-time-picker-frame>
     </div>
   </div>
   <ng-container *ngIf="!isDatePicker">
@@ -48,7 +79,7 @@
         <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
       </ng-container>
     </div>
-    <x-button type="primary" (click)="nodeEmit(model)" size="small">{{ locale.sure }}</x-button>
+    <x-button type="primary" (click)="!sureDisabled && nodeEmit(model)" size="small" [disabled]="sureDisabled">{{ locale.sure }}</x-button>
   </div>
 </ng-template>
 

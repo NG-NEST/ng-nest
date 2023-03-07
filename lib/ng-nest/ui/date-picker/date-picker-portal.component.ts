@@ -7,15 +7,23 @@ import {
   OnDestroy,
   AfterViewInit,
   HostBinding,
-  HostListener
+  HostListener,
+  ViewChild
 } from '@angular/core';
-import { XDatePickerPortalPrefix, XDatePickerPreset, XDatePickerType } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XTemplate } from '@ng-nest/ui/core';
+import {
+  XDatePickerDisabledDate,
+  XDatePickerDisabledTime,
+  XDatePickerPortalPrefix,
+  XDatePickerPreset,
+  XDatePickerType
+} from './date-picker.property';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XTemplate, XIsUndefined } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { XTimePickerFrameComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
@@ -36,6 +44,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.animating(true);
   }
 
+  @ViewChild('timePickerFrame') timePickerFrame?: XTimePickerFrameComponent;
+
   type: XDatePickerType = 'date';
   display = new Date();
   model!: Date;
@@ -47,15 +57,33 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   destroyPortal!: Function;
   nodeEmit!: (date: Date, sure?: boolean) => void;
   locale: XI18nDatePicker = {};
-  time: number = new Date().getTime();
+  time!: number | null;
   preset: XDatePickerPreset[] = [];
   extraFooter?: XTemplate;
   inputCom!: XInputComponent;
+  disabledDate!: XDatePickerDisabledDate;
+  disabledTime!: XDatePickerDisabledTime;
   private _type!: XDatePickerType;
   private _unSubject = new Subject<void>();
 
   get isDatePicker() {
     return ['date', 'month', 'year'].includes(this.type);
+  }
+
+  get sureDisabled() {
+    let res = XIsUndefined(this.time);
+    if (this.timePickerFrame && !XIsUndefined(this.time)) {
+      const dt = new Date(this.time!);
+      const hours = dt.getHours();
+      const minutes = dt.getMinutes();
+      const seconds = dt.getSeconds();
+      return (
+        this.timePickerFrame.setDisabled('hours', hours) ||
+        this.timePickerFrame.setDisabled('minutes', minutes) ||
+        this.timePickerFrame.setDisabled('seconds', seconds)
+      );
+    }
+    return res;
   }
 
   constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
@@ -116,7 +144,17 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     this.setDisplay(date);
     this.model = date;
     if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
-      this.setModelTime(this.model, new Date(this.time));
+      let time = new Date();
+      if (['date-hour', 'date-minute'].includes(this.type)) {
+        time.setSeconds(0);
+      }
+      if (this.type === 'date-hour') {
+        time.setMinutes(0);
+      }
+      if (!this.time) {
+        this.time = time.getTime();
+      }
+      this.setModelTime(this.model, new Date(this.time!));
       this.nodeEmit(this.model, false);
     } else {
       this.nodeEmit(this.model);
@@ -162,6 +200,9 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   selectTime(time: Date) {
+    if (!this.model) {
+      this.model = new Date();
+    }
     this.time = time.getTime();
     this.nodeEmit(this.setModelTime(this.model, time), false);
     this.cdr.detectChanges();

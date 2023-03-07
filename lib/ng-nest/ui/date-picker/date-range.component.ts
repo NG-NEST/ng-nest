@@ -288,7 +288,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
         this.setDisplayValue(this.numberValue);
       }
     }
-    if (!this.numberValue.includes(null) && !this.value.includes(null)) {
+    if (!this.numberValue.includes(null) && this.value && !this.value.includes(null)) {
       let numberValue = this.getNumberValue();
       if (this.numberValue[0] !== numberValue[0] || this.numberValue[1] !== numberValue[1]) {
         this.numberValue = numberValue;
@@ -352,6 +352,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       extraFooter: this.extraFooter,
       preset: this.preset,
       activeTypeChange: this.activeTypeChange,
+      disabledDate: this.disabledDate,
+      disabledTime: this.disabledTime,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (dates: Date[], close = true) => this.onNodeClick(dates, close),

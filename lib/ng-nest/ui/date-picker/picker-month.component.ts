@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XChunk, XIsChange, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
 import { XDateCell, XDatePickerType, XPickerMonthProperty } from './date-picker.property';
 import { DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
@@ -42,6 +42,14 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
       return this.rangeValue[1];
     }
     return '';
+  }
+
+  isDisabled(date: Date) {
+    if (this.disabledDate && XIsFunction(this.disabledDate)) {
+      return this.disabledDate(date);
+    } else {
+      return false;
+    }
   }
 
   constructor(
@@ -188,6 +196,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     const fnow = this.datePipe.transform(this.now, 'yyyyMM');
     cell.isLastOrNext = fmonthy !== fdisplayy;
     cell.isNow = fmonth === fnow;
+    cell.isDisabled = this.isDisabled(cell.date!);
     if (this.rangePicker) {
       if (!this.rangeValue) return cell;
       const [start, end] = this.rangeValue;

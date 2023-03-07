@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XChunk, XIsChange, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
 import { XDateCell, XPickerYearProperty } from './date-picker.property';
 import { DatePipe } from '@angular/common';
 
@@ -38,6 +38,14 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
       return this.rangeValue[1];
     }
     return '';
+  }
+
+  isDisabled(date: Date) {
+    if (this.disabledDate && XIsFunction(this.disabledDate)) {
+      return this.disabledDate(date);
+    } else {
+      return false;
+    }
   }
 
   constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe, public configService: XConfigService) {
@@ -164,6 +172,9 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
   setDayState(cell: XDateCell): XDateCell {
     const time = cell.date?.getTime()!;
     const fyear = this.datePipe.transform(cell.date, 'yyyy');
+    const fnow = this.datePipe.transform(this.now, 'yyyy');
+    cell.isNow = fyear === fnow;
+    cell.isDisabled = this.isDisabled(cell.date!);
     if (this.rangePicker) {
       if (!this.rangeValue) return cell;
       const [start, end] = this.rangeValue;

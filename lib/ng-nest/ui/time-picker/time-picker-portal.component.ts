@@ -9,7 +9,7 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { XTimePickerPortalPrefix, XTimePickerPreset, XTimePickerType } from './time-picker.property';
+import { XTimePickerDisabledTime, XTimePickerPortalPrefix, XTimePickerPreset, XTimePickerType } from './time-picker.property';
 import { XBoolean, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -46,6 +46,7 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   minuteStep!: number;
   secondStep!: number;
   preset: XTimePickerPreset[] = [];
+  disabledTime!: XTimePickerDisabledTime;
   nodeEmit!: (date: Date) => void;
   locale: XI18nTimePicker = {};
 

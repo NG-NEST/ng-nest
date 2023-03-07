@@ -73,8 +73,8 @@
   &:not(:first-child) {
     margin-top: $--x-border-width;
   }
-  &:hover,
-  &.x-active {
+  &:hover:not(.x-disabled),
+  &.x-active:not(.x-disabled) {
     background-color: $--x-background-a200;
   }
   &.x-list-divided {
@@ -89,7 +89,7 @@
       border-top: $--x-border-base;
     }
   }
-  &.x-selected {
+  &.x-selected:not(.x-disabled) {
     background-color: $--x-background-a400;
     color: $--x-primary;
     > x-icon {

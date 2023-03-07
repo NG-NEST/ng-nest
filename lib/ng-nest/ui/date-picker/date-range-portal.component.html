@@ -10,6 +10,7 @@
         [rangeType]="activeType"
         [nextYearBtn]="false"
         [nextMonthBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'start')"
         (monthChange)="monthChange($event, 'start')"
@@ -26,6 +27,7 @@
         [rangeType]="activeType"
         [lastYearBtn]="false"
         [lastMonthBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'end')"
         (monthChange)="monthChange($event, 'end')"
@@ -43,6 +45,7 @@
         [rangeValue]="value"
         [rangeType]="activeType"
         [nextYearBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'start')"
         (monthChange)="monthChange($event, 'start')"
@@ -58,6 +61,7 @@
         [rangeValue]="value"
         [rangeType]="activeType"
         [lastYearBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'end')"
         (monthChange)="monthChange($event, 'end')"
@@ -75,6 +79,7 @@
         [rangeValue]="value"
         [rangeType]="activeType"
         [nextYearBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'start')"
         (monthChange)="monthChange($event, 'start')"
@@ -90,6 +95,7 @@
         [rangeValue]="value"
         [rangeType]="activeType"
         [lastYearBtn]="false"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         (yearChange)="yearChange($event, 'end')"
         (monthChange)="monthChange($event, 'end')"
@@ -127,6 +133,7 @@
         [rangeHover]="timeHover"
         [rangeValue]="value"
         [rangeType]="activeType"
+        [disabledDate]="disabledDate"
         (modelChange)="dateChange($event)"
         rangePicker
       ></x-picker-date>
@@ -135,7 +142,15 @@
       <div class="x-date-range-portal-time-label">
         {{ time | date : timeFormat }}
       </div>
-      <x-time-picker-frame [type]="timeType" [value]="time" (nodeEmit)="selectTime($event)" [defaultNow]="false"></x-time-picker-frame>
+      <x-time-picker-frame
+        #timePickerFrame
+        [type]="timeType"
+        [value]="time"
+        (nodeEmit)="selectTime($event)"
+        [disabledTimeParam]="activeType"
+        [disabledTime]="disabledTime"
+        [defaultNow]="false"
+      ></x-time-picker-frame>
     </div>
   </div>
   <ng-container *ngIf="!isDatePicker">
@@ -149,7 +164,7 @@
         <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
       </ng-container>
     </div>
-    <x-button type="primary" (click)="sureTime()" size="small" [disabled]="timeSureDisabled">{{ locale.sure }}</x-button>
+    <x-button type="primary" (click)="!sureDisabled && sureTime()" size="small" [disabled]="sureDisabled">{{ locale.sure }}</x-button>
   </div>
 </ng-template>
 

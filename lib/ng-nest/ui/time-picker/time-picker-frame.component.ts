@@ -10,8 +10,8 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
-import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsNull } from '@ng-nest/ui/core';
+import { XTimePickerDisabledTime, XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
+import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsFunction, XIsNull } from '@ng-nest/ui/core';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -31,6 +31,8 @@ export class XTimePickerFrameComponent {
   @Input() minuteStep = 1;
   @Input() secondStep = 1;
   @Input() defaultNow = true;
+  @Input() disabledTime?: XTimePickerDisabledTime;
+  @Input() disabledTimeParam?: any;
   @Output() nodeEmit = new EventEmitter<Date>();
   @ViewChild('hourRef') hourRef?: ElementRef<HTMLElement>;
   @ViewChild('minuteRef') minuteRef?: ElementRef<HTMLElement>;
@@ -51,18 +53,17 @@ export class XTimePickerFrameComponent {
   private _unSubject = new Subject<void>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { value } = changes;
+    const { value, disabledTimeParam } = changes;
     if (XIsChange(value)) {
+      // this.setDataInit();
       this.init();
       this.setScrollTop(true);
     }
+    XIsChange(disabledTimeParam) && this.setDataInit();
   }
 
   ngOnInit() {
-    this.setHourData();
-    this.setMinuteData();
-    this.setSecondData();
-    this.setUse12HoursData();
+    this.setDataInit();
     this.init();
     this.i18n.localeChange
       .pipe(
@@ -84,19 +85,47 @@ export class XTimePickerFrameComponent {
 
   constructor(private cdr: ChangeDetectorRef, private i18n: XI18nService) {}
 
+  setDataInit() {
+    this.setHourData();
+    this.setMinuteData();
+    this.setSecondData();
+    this.setUse12HoursData();
+  }
+
+  setDisabled(type: 'hours' | 'minutes' | 'seconds', num: number) {
+    if (this.disabledTime && XIsFunction(this.disabledTime)) {
+      const disabledMap = this.disabledTime(this.disabledTimeParam);
+      const { disabledHours, disabledMinutes, disabledSeconds } = disabledMap;
+      let disabledNums: number[] = [];
+      if (type === 'hours') {
+        disabledNums = disabledHours ? disabledHours() : [];
+      } else if (type === 'minutes') {
+        disabledNums = disabledMinutes ? disabledMinutes() : [];
+      } else if (type === 'seconds') {
+        disabledNums = disabledSeconds ? disabledSeconds() : [];
+      }
+      return disabledNums.includes(num);
+    }
+
+    return false;
+  }
+
   setHourData() {
     let length = this.use12Hours ? 12 : 24;
     this.hourData = Array.from({ length: Math.ceil(length / this.hourStep) }).map((_, i) => {
       if (this.use12Hours && i === 0) {
         i = 12;
         return {
+          disabled: this.setDisabled('hours', i),
           label: this.prefixZero(i, 2),
           id: i
         };
       } else {
+        const num = i * this.hourStep;
         return {
-          label: this.prefixZero(i * this.hourStep, 2),
-          id: i * this.hourStep
+          disabled: this.setDisabled('hours', num),
+          label: this.prefixZero(num, 2),
+          id: num
         };
       }
     });
@@ -104,18 +133,22 @@ export class XTimePickerFrameComponent {
 
   setMinuteData() {
     this.minuteData = Array.from({ length: Math.ceil(60 / this.minuteStep) }).map((_, i) => {
+      const num = i * this.minuteStep;
       return {
-        label: this.prefixZero(i * this.minuteStep, 2),
-        id: i * this.minuteStep
+        disabled: this.setDisabled('minutes', num),
+        label: this.prefixZero(num, 2),
+        id: num
       };
     });
   }
 
   setSecondData() {
     this.secondData = Array.from({ length: Math.ceil(60 / this.secondStep) }).map((_, i) => {
+      const num: number = i * this.secondStep;
       return {
-        label: this.prefixZero(i * this.secondStep, 2),
-        id: i * this.secondStep
+        disabled: this.setDisabled('seconds', num),
+        label: this.prefixZero(num, 2),
+        id: num
       };
     });
   }
