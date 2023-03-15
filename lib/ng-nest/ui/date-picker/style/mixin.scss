@@ -23,6 +23,16 @@
   width: 16rem;
   display: flex;
   flex-direction: column;
+  &.week {
+    width: 18.125rem;
+    .x-picker-date-body .x-picker-date-item:not(.x-date-in-range):not(.x-date-active) .x-date-text {
+      background-color: transparent;
+    }
+    .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
+      background-color: $--x-background-a200;
+      border-radius: $--x-border-radius;
+    }
+  }
   &.date-time {
     width: 27rem;
   }
@@ -124,22 +134,50 @@
       width: 100%;
       border-collapse: collapse;
       border-spacing: 0;
+      tr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.x-date-week-active {
+          .x-picker-date-item,
+          .x-picker-date-item.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+            .x-date-text {
+            background-color: $--x-primary;
+            color: $--x-background-100;
+          }
+        }
+      }
+      tbody tr {
+        padding: 0.125rem 0;
+      }
       th {
+        flex: 1;
         font-weight: 400;
         height: 2rem;
+        line-height: 2rem;
         color: $--x-text-400;
         user-select: none;
       }
       td {
+        padding: 0.125rem 0;
+        flex: 1;
         user-select: none;
+        &:first-child {
+          border-top-left-radius: $--x-border-radius;
+          border-bottom-left-radius: $--x-border-radius;
+        }
+        &:last-child {
+          border-top-right-radius: $--x-border-radius;
+          border-bottom-right-radius: $--x-border-radius;
+        }
       }
     }
     .x-picker-date-item {
-      padding: 0.25rem 0;
       text-align: center;
       cursor: pointer;
       color: $--x-text-300;
       position: relative;
+      transition: $--x-animation-duration-base;
       .x-date-text {
         width: 1.75rem;
         height: 1.625rem;
@@ -207,10 +245,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        .x-date-text {
-          background-color: $--x-background-a200;
-          color: $--x-text-700;
-        }
+        background-color: $--x-background-a200;
+        color: $--x-text-700;
       }
     }
   }
@@ -249,12 +285,19 @@
       width: 100%;
       border-collapse: collapse;
       border-spacing: 0;
+      tr {
+        padding: 0.125rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       td {
+        flex: 1;
+        padding: 0.125rem 0;
         user-select: none;
       }
     }
     .x-picker-date-item {
-      padding: 0.25rem 0;
       text-align: center;
       cursor: pointer;
       color: $--x-text-300;
@@ -326,10 +369,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        .x-date-text {
-          background-color: $--x-background-a200;
-          color: $--x-text-700;
-        }
+        background-color: $--x-background-a200;
+        color: $--x-text-700;
       }
     }
   }
@@ -368,12 +409,19 @@
       width: 100%;
       border-collapse: collapse;
       border-spacing: 0;
+      tr {
+        padding: 0.125rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       td {
+        flex: 1;
+        padding: 0.125rem 0;
         user-select: none;
       }
     }
     .x-picker-date-item {
-      padding: 0.25rem 0;
       text-align: center;
       cursor: pointer;
       color: $--x-text-300;
@@ -445,10 +493,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        .x-date-text {
-          background-color: $--x-background-a200;
-          color: $--x-text-700;
-        }
+        background-color: $--x-background-a200;
+        color: $--x-text-700;
       }
     }
   }
@@ -631,6 +677,15 @@
   width: 34rem;
   display: flex;
   flex-direction: column;
+  &.week {
+    .x-picker-date-body .x-picker-date-item:not(.x-date-in-range):not(.x-date-active) .x-date-text {
+      background-color: transparent;
+    }
+    .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
+      background-color: $--x-background-a200;
+      border-radius: $--x-border-radius;
+    }
+  }
   &.date-time {
     width: 27rem;
     .x-date-range-portal-body {

@@ -21,6 +21,8 @@ export class ExRangeComponent {
 
   modelDateMinute: any;
 
+  modelWeek: any;
+
   change(event: any) {
     console.log(event);
   }

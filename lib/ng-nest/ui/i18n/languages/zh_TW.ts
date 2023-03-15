@@ -42,6 +42,7 @@ export default {
   },
   datePicker: {
     sure: '確認',
+    week: '周',
     month: '月',
     year: '年',
     january: '1月',
@@ -76,6 +77,7 @@ export default {
     lastYear: '去年',
     nextYear: '明年',
     selectDate: '請選擇日期',
+    selectWeek: '請選擇周',
     selectMonth: '請選擇月份',
     selectYear: '請選擇年份',
     startDate: '開始日期',
@@ -83,7 +85,9 @@ export default {
     startMonth: '開始月份',
     endMonth: '結束月份',
     startYear: '開始年份',
-    endYear: '結束年份'
+    endYear: '結束年份',
+    startWeek: '開始周',
+    endWeek: '結束周'
   },
   timePicker: {
     am: '上午',

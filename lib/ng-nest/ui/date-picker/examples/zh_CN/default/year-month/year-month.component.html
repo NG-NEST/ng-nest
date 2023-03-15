@@ -1,10 +1,9 @@
-<x-row>
-  <x-col span="12">
-    <x-date-picker [(ngModel)]="model1" label="年" type="year"></x-date-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="12">
-    <x-date-picker [(ngModel)]="model2" label="月" type="month"></x-date-picker>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-date-picker label="年" type="year" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-date-picker>
+</div>
+<div class="row">
+  <x-date-picker label="月" type="month" [(ngModel)]="model2" (ngModelChange)="change($event)"></x-date-picker>
+</div>
+<div class="row">
+  <x-date-picker label="周" type="week" [(ngModel)]="model3" (ngModelChange)="change($event)"></x-date-picker>
+</div>

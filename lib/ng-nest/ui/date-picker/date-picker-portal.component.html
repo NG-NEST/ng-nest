@@ -8,6 +8,15 @@
       [disabledDate]="disabledDate"
     ></x-picker-date>
   </ng-container>
+  <ng-container *ngSwitchCase="'week'">
+    <x-picker-date
+      [display]="display"
+      [model]="model"
+      [(type)]="type"
+      (modelChange)="dateChange($event)"
+      [disabledDate]="disabledDate"
+    ></x-picker-date>
+  </ng-container>
   <ng-container *ngSwitchCase="'month'">
     <x-picker-month
       [display]="display"

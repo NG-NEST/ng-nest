@@ -70,6 +70,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "disableHostCheck": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "ng-nest-site:build:production"

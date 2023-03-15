@@ -289,7 +289,7 @@ export interface XDateRangePreset extends XIdentityProperty {
  * @zh_CN 日期选择类型
  * @en_US Date selection type
  */
-export type XDatePickerType = 'date' | 'month' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
+export type XDatePickerType = 'date' | 'week' | 'month' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
 
 /**
  * @zh_CN 日期数据类型
@@ -555,6 +555,16 @@ export interface XDateCell {
    * @en_US Disabled date
    */
   isDisabled?: boolean;
+  /**
+   * @zh_CN 类型
+   * @en_US Type
+   */
+  type?: 'date' | 'week';
+  /**
+   * @zh_CN 第几周
+   * @en_US Week
+   */
+  week?: number;
 }
 
 /**

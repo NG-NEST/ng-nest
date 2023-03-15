@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
+import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction, XDateWeek, XDateYearWeek } from '@ng-nest/ui/core';
 import { XDateCell, XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 import { Subject } from 'rxjs';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
@@ -53,6 +53,10 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     return '';
   }
 
+  isWeekRange() {
+    return this.type === 'week' && this.rangePicker;
+  }
+
   isDisabled(date: Date) {
     if (this.disabledDate && XIsFunction(this.disabledDate)) {
       return this.disabledDate(date);
@@ -82,6 +86,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
         this.locale = x;
         this.cdr.markForCheck();
       });
+    this.setTitles();
   }
 
   ngOnChanges(simples: SimpleChanges) {
@@ -98,8 +103,31 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.setDays(this.display);
   }
 
-  isStartDate(date: Date) {
+  isWeekActive(week: XDateCell[]) {
+    if (week.length > 1) {
+      return XDateYearWeek(week[1].date!) === XDateYearWeek(this.model!);
+    }
+    return false;
+  }
+
+  isStartWeek(week: XDateCell[]) {
     if (!this.rangeType || !this.rangeValue) return;
+    if (!XIsNull(this.rangeValue[0]) && week.length > 1) {
+      return XDateYearWeek(week[1].date!) === XDateYearWeek(this.rangeValue[0]!);
+    }
+    return false;
+  }
+
+  isEndWeek(week: XDateCell[]) {
+    if (!this.rangeType || !this.rangeValue) return;
+    if (!XIsNull(this.rangeValue[1]) && week.length > 1) {
+      return XDateYearWeek(week[1].date!) === XDateYearWeek(this.rangeValue[1]!);
+    }
+    return false;
+  }
+
+  isStartDate(date: Date) {
+    if (this.type === 'week' || !this.rangeType || !this.rangeValue) return;
     if (!XIsNull(this.rangeValue[0])) {
       return this.datePipe.transform(this.rangeValue[0], 'yyyyMMdd') === this.datePipe.transform(date, 'yyyyMMdd');
     }
@@ -107,7 +135,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   }
 
   isEndDate(date: Date) {
-    if (!this.rangeType || !this.rangeValue) return;
+    if (this.type === 'week' || !this.rangeType || !this.rangeValue) return;
     if (!XIsNull(this.rangeValue[1])) {
       return this.datePipe.transform(this.rangeValue[1], 'yyyyMMdd') === this.datePipe.transform(date, 'yyyyMMdd');
     }
@@ -120,6 +148,12 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
       this.setDayState(item);
     }
     this.onTdMouseenter(cell, false);
+  }
+
+  setTitles() {
+    if (this.type === 'week') {
+      this.titles = ['datePicker.week', ...this.titles];
+    }
   }
 
   onTdMouseenter(cell: XDateCell, isEmit = true) {
@@ -222,6 +256,15 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
     this.dates = dates;
     this.weekDates = XChunk(dates, 7);
+
+    if (this.type === 'week') {
+      for (let item of this.dates) {
+        item.week = XDateWeek(item.date!);
+      }
+      for (let week of this.weekDates) {
+        week.unshift({ type: 'week', week: week[0].week! });
+      }
+    }
 
     if (this.dates.length > 0) {
       this.rangeChange.emit([dates[0].date!, dates[dates.length - 1].date!]);

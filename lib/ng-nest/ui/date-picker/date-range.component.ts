@@ -14,7 +14,18 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsDate,
+  XIsNumber,
+  XIsChange,
+  XCorner,
+  XClearClass,
+  XIsString,
+  XConfigService,
+  XIsNull,
+  XDateYearWeek
+} from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -48,6 +59,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       return this.locale.startMonth;
     } else if (this.type === 'year') {
       return this.locale.startYear;
+    } else if (this.type === 'week') {
+      return this.locale.startWeek;
     } else {
       return this.locale.startDate;
     }
@@ -59,6 +72,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       return this.locale.endMonth;
     } else if (this.type === 'year') {
       return this.locale.endYear;
+    } else if (this.type === 'week') {
+      return this.locale.endWeek;
     } else {
       return this.locale.endDate;
     }
@@ -365,7 +380,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   startNodeClick(node?: Date, close = false, isDatePicker: boolean = true) {
-    this.startDisplay = !node ? '' : (this.datePipe.transform(node, this.format) as string);
+    this.startDisplay = !node ? '' : this.type === 'week' ? XDateYearWeek(node)! : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputEndCom.inputFocus('after');
       this.activeTypeChange.next('end');
@@ -374,7 +389,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   endNodeClick(node?: Date, close = false, isDatePicker: boolean = true) {
-    this.endDisplay = !node ? '' : (this.datePipe.transform(node, this.format) as string);
+    this.endDisplay = !node ? '' : this.type === 'week' ? XDateYearWeek(node)! : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputStartCom.inputFocus('after');
       this.activeTypeChange.next('start');
@@ -406,10 +421,17 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   setDisplayValue(dateNumber: (number | null)[]) {
     if (!dateNumber) return;
     if (!XIsNull(dateNumber[0])) {
-      this.startDisplay = this.datePipe.transform(dateNumber[0], this.format) as string;
+      if (this.type === 'week') {
+        this.startDisplay = XDateYearWeek(dateNumber[0]!)!;
+      } else {
+        this.startDisplay = this.datePipe.transform(dateNumber[0], this.format) as string;
+      }
     }
     if (!XIsNull(dateNumber[1])) {
-      this.endDisplay = this.datePipe.transform(dateNumber[1], this.format) as string;
+      if (this.type === 'week') {
+      } else {
+        this.endDisplay = XDateYearWeek(dateNumber[1]!)!;
+      }
     }
   }
 

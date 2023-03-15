@@ -43,6 +43,7 @@ export default {
   },
   datePicker: {
     sure: 'Ok',
+    week: '',
     month: '',
     year: '',
     january: 'Jan',
@@ -77,6 +78,7 @@ export default {
     lastYear: 'Last year',
     nextYear: 'Next year',
     selectDate: 'Select date',
+    selectWeek: 'Select week',
     selectMonth: 'Select month',
     selectYear: 'Select year',
     startDate: 'Start date',
@@ -84,7 +86,9 @@ export default {
     startMonth: 'Start month',
     endMonth: 'End month',
     startYear: 'Start year',
-    endYear: 'End year'
+    endYear: 'End year',
+    startWeek: 'Start week',
+    endWeek: 'End week'
   },
   timePicker: {
     am: 'AM',

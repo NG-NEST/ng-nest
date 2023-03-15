@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
 export class ExYearMonthComponent {
   model1: any;
   model2: any;
+  model3: any;
 
-  change(_event: any) {
-    console.log(_event, this.model2);
+  change(event: any) {
+    console.log(event);
   }
 }

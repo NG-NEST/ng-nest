@@ -36,6 +36,44 @@
         rangePicker
       ></x-picker-date>
     </ng-container>
+    <ng-container *ngSwitchCase="'week'">
+      <x-picker-date
+        #startPicker
+        class="x-date-range-portal-start"
+        type = 'week'
+        [(display)]="startDisplay"
+        [model]="startModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [nextYearBtn]="false"
+        [nextMonthBtn]="false"
+        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'start')"
+        (monthChange)="monthChange($event, 'start')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-date>
+      <x-picker-date
+        #endPicker
+        class="x-date-range-portal-end"
+        type = 'week'
+        [(display)]="endDisplay"
+        [model]="endModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [lastYearBtn]="false"
+        [lastMonthBtn]="false"
+        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'end')"
+        (monthChange)="monthChange($event, 'end')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-date>
+    </ng-container>
     <ng-container *ngSwitchCase="'month'">
       <x-picker-month
         #startPicker

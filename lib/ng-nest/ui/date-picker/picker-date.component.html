@@ -17,10 +17,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let weeks of weekDates">
+        <tr
+          *ngFor="let weeks of weekDates"
+          [class.x-date-week-active]="!rangePicker && isWeekActive(weeks)"
+          [class.x-date-week-active]="isWeekRange && isStartWeek(weeks)"
+          [class.x-date-week-active]="isWeekRange && isEndWeek(weeks)"
+        >
           <ng-container *ngFor="let week of weeks; trackBy: trackByNode">
             <td
               class="x-picker-date-item"
+              [class.x-date-week]="week.type === 'week'"
               [class.x-date-disabled]="week.isDisabled"
               [class.x-date-last-or-next]="week.isLastOrNext"
               [class.x-date-now]="week.isNow"
@@ -41,14 +47,19 @@
               [class.x-date-range-hover-end]="rangePicker && week.isRangeHoverEnd"
               [class.x-date-in-range]="rangePicker && week.isInRange"
               [class.x-date-in-range-hover]="rangePicker && week.isInRangeHover"
-              [class.x-date-active]="!rangePicker && (week.date | date : 'yyyyMMdd') === (model | date : 'yyyyMMdd')"
+              [class.x-date-active]="
+                !rangePicker && week.type !== 'week' && (week.date | date : 'yyyyMMdd') === (model | date : 'yyyyMMdd')
+              "
               title="{{ week.date | date : 'yyyy-MM-dd' }}"
-              (click)="!week.isDisabled && dateClick(week)"
-              (mouseenter)="!week.isDisabled && rangePicker && rangeHover && onTdMouseenter(week)"
-              (mouseleave)="!week.isDisabled && rangePicker && rangeHover && onTdMouseleave(week)"
+              (click)="week.type !== 'week' && !week.isDisabled && dateClick(week)"
+              (mouseenter)="week.type !== 'week' && !week.isDisabled && rangePicker && rangeHover && onTdMouseenter(week)"
+              (mouseleave)="week.type !== 'week' && !week.isDisabled && rangePicker && rangeHover && onTdMouseleave(week)"
             >
               <div *ngIf="!dateTemp" class="x-date-text">
-                {{ week.date | date : 'd' }}
+                <ng-container [ngSwitch]="week.type">
+                  <ng-container *ngSwitchCase="'week'">{{ week.week }}</ng-container>
+                  <ng-container *ngSwitchDefault>{{ week.date | date : 'd' }}</ng-container>
+                </ng-container>
               </div>
               <ng-container *ngIf="dateTemp">
                 <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week.date }"></ng-container>

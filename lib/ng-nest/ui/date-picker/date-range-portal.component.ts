@@ -95,7 +95,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   private _unSubject = new Subject<void>();
 
   get isDatePicker() {
-    return ['date', 'month', 'year'].includes(this.type);
+    return ['date', 'week', 'month', 'year'].includes(this.type);
   }
 
   get sureDisabled() {
@@ -179,6 +179,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setDatesState(cell: XDateCell) {
+    if (this.type === 'week') return;
     this.startPicker?.setDatesState(cell);
     this.endPicker?.setDatesState(cell);
   }

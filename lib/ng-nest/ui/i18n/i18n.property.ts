@@ -103,6 +103,7 @@ export interface XI18nDatePicker {
   lastYear?: string;
   nextYear?: string;
   selectDate?: string;
+  selectWeek?: string;
   selectMonth?: string;
   selectYear?: string;
   startDate?: string;
@@ -111,6 +112,8 @@ export interface XI18nDatePicker {
   endMonth?: string;
   startYear?: string;
   endYear?: string;
+  startWeek?: string;
+  endWeek?: string;
 }
 
 export interface XI18nTimePicker {

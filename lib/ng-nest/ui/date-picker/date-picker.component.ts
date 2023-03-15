@@ -15,7 +15,18 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XIsChange, XCorner, XClearClass, XIsString, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsDate,
+  XIsNumber,
+  XIsChange,
+  XCorner,
+  XClearClass,
+  XIsString,
+  XConfigService,
+  XIsNull,
+  XDateYearWeek
+} from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
@@ -82,6 +93,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       return this.locale.selectMonth;
     } else if (this.type === 'year') {
       return this.locale.selectYear;
+    } else if (this.type === 'week') {
+      return this.locale.selectWeek;
     } else {
       return this.locale.selectDate;
     }
@@ -291,14 +304,18 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setDisplayValue(dateNumber: number | string) {
-    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue))) {
+    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue)) && this.type !== 'week') {
       this.displayValue = this.datePipe.transform(this.displayValue, this.format);
       this.numberValue = new Date(this.displayValue).getTime();
       this.value = this.getValue();
       this.modelChange();
       this.isInput = false;
     } else {
-      this.displayValue = this.datePipe.transform(dateNumber, this.format);
+      if (this.type === 'week') {
+        this.displayValue = XDateYearWeek(dateNumber);
+      } else {
+        this.displayValue = this.datePipe.transform(dateNumber, this.format);
+      }
     }
   }
 
