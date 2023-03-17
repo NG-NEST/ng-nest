@@ -1,5 +1,11 @@
 <div #slider class="x-slider" [ngClass]="classMap">
-  <x-link *ngIf="showArrow" [disabled]="offset === 0" class="x-slider-arrow-left" icon="fto-chevron-left" (click)="scrollPrev()"></x-link>
+  <x-link
+    *ngIf="autoShowArrow && showArrow"
+    [disabled]="offset === 0"
+    class="x-slider-arrow-left"
+    icon="fto-chevron-left"
+    (click)="scrollPrev()"
+  ></x-link>
   <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
     <ul #sliderNodes [style.transform]="transform">
       <li
@@ -24,7 +30,7 @@
     </ul>
   </div>
   <x-link
-    *ngIf="showArrow"
+    *ngIf="autoShowArrow && showArrow"
     [disabled]="offset === maxOffset"
     class="x-slider-arrow-right"
     icon="fto-chevron-right"

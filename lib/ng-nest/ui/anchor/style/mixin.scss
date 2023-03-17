@@ -14,9 +14,11 @@
   }
   &-slider {
     float: left;
-    overflow: hidden;
     &:hover {
       overflow-y: auto;
+    }
+    .x-slider {
+      overflow: hidden;
     }
   }
   @include layout(right, row, left);

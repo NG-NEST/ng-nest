@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'date-picker',
+  defaultPage: 'anchor',
   static: 'http://localhost:9494'
 };
 

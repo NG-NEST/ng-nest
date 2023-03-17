@@ -9,14 +9,15 @@ import {
   ViewChild,
   AfterViewInit,
   Inject,
-  OnDestroy
+  OnDestroy,
+  AfterContentChecked
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
 import { computedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
-import { throttleTime, takeUntil } from 'rxjs/operators';
+import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: `${XAnchorPrefix}`,
@@ -25,7 +26,7 @@ import { throttleTime, takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy {
+export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
   @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
   @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
   hElements!: NodeListOf<HTMLElement>;
@@ -33,6 +34,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   activatedIndex: number = 0;
   sliderHeight?: number;
   document: Document;
+  contentChange = new Subject();
   private _scrolling = false;
   private _fontSize: number;
   private _unSubject = new Subject<void>();
@@ -48,6 +50,9 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     this.document = doc;
     this._fontSize = parseFloat(computedStyle(this.document.documentElement, 'font-size'));
   }
+  ngAfterContentChecked(): void {
+    this.contentChange.next(this.elementRef.nativeElement.innerHTML);
+  }
 
   ngOnInit() {
     this.setClassMap();
@@ -57,6 +62,11 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   ngAfterViewInit() {
     this.setScroll();
+    this.contentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
+      this.setSliderData();
+      this.setHeight();
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnDestroy() {
@@ -105,7 +115,9 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   private setSliderData() {
-    this.hElements = this.content.nativeElement.querySelectorAll(':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5');
+    this.hElements = this.content.nativeElement.querySelectorAll(
+      ':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5,:scope> x-anchor-inner> h1,:scope> x-anchor-inner>h2,:scope> x-anchor-inner>h3,:scope> x-anchor-inner>h4,:scope> x-anchor-inner>h5'
+    );
     if (this.hElements.length > 0) {
       let list: XAnchorNode[] = [];
       this.hElements.forEach((x: HTMLElement, i: number) => {
@@ -134,12 +146,16 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   private setHeight() {
     if (this.scroll) {
-      let height = this.scroll.offsetHeight;
-      let top = parseFloat(computedStyle(this.scroll, 'padding-top'));
-      let borderTop = parseFloat(computedStyle(this.scroll, 'border-top'));
-      let bottom = parseFloat(computedStyle(this.scroll, 'padding-bottom'));
-      let borderBottom = parseFloat(computedStyle(this.scroll, 'border-bottom'));
-      this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
+      if (XIsEmpty(this.sliderData)) {
+        this.sliderHeight = 0;
+      } else {
+        let height = this.scroll.offsetHeight;
+        let top = parseFloat(computedStyle(this.scroll, 'padding-top'));
+        let borderTop = parseFloat(computedStyle(this.scroll, 'border-top'));
+        let bottom = parseFloat(computedStyle(this.scroll, 'padding-bottom'));
+        let borderBottom = parseFloat(computedStyle(this.scroll, 'border-bottom'));
+        this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
+      }
     }
   }
 

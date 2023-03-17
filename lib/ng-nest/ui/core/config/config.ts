@@ -502,6 +502,7 @@ export interface XSliderConfig {
   animated?: XBoolean;
   size?: XSize;
   showExpand?: XBoolean;
+  autoShowArrow?: XBoolean;
 }
 
 export interface XSliderSelectConfig {}

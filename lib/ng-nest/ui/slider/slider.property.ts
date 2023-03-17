@@ -73,6 +73,11 @@ export class XSliderProperty extends XProperty {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showExpand?: XBoolean;
   /**
+   * @zh_CN 节点显示不下的时候显示左右/上下的箭头
+   * @en_US 节点显示不下的时候显示左右/上下的箭头
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() autoShowArrow?: XBoolean;
+  /**
    * @zh_CN 展开所有弹框的最大高度
    * @en_US Expand the maximum height of all bomb frames
    */

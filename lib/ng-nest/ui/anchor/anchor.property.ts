@@ -37,6 +37,19 @@ export class XAnchorProperty extends XProperty {
 }
 
 /**
+ * Anchor inner
+ * @selector x-anchor-inner
+ * @decorator component
+ */
+export const XAnchorInnerPrefix = 'x-anchor-inner';
+
+/**
+ * Anchor inner Property
+ */
+@Component({ template: '' })
+export class XAnchorInnerProperty {}
+
+/**
  * Anchor Node
  */
 export interface XAnchorNode extends XIdentityProperty {

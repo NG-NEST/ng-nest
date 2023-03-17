@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent {}
+export class ExDefaultComponent {
+  constructor() {}
+}
