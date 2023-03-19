@@ -8,14 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { TeTreeFileComponent } from './tree-file.component';
+import { ExContentComponent } from './content/content.component';
 
 const routers = [{ path: '', component: TeTreeFileComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XTreeFileModule, XRadioModule, XLayoutModule, XInputModule],
-  declarations: [
-    TeTreeFileComponent,
-    ExDefaultComponent
-  ]
+  declarations: [TeTreeFileComponent, ExDefaultComponent, ExContentComponent]
 })
 export class TeTreeFileModule {}

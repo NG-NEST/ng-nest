@@ -61,8 +61,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
       this.loading = true;
       this.cdr.detectChanges();
       this.activatedNode = node;
-      node.fileType = XTreeFileImgs.indexOf((node.type as string).toLowerCase()) !== -1 ? 'img' : 'code';
-      node.crumbData = this.setCurmbData(node);
+      this.setNode(node);
       node.url = node.url?.indexOf(this.domain) === 0 ? node.url : `${this.domain}/${node.url}`;
       switch (node.fileType) {
         case 'code':
@@ -82,7 +81,20 @@ export class XTreeFileComponent extends XTreeFileProperty {
       }
     } else {
       this.activatedNode = node;
+      this.setNode(this.activatedNode);
       this.cdr.detectChanges();
+    }
+  }
+
+  setNode(node: XTreeFileNode) {
+    if (!node.type) {
+      node.type = 'bash';
+    }
+    if (!node.fileType) {
+      node.fileType = XTreeFileImgs.indexOf((node.type as string).toLowerCase()) !== -1 ? 'img' : 'code';
+    }
+    if (!node.crumbData) {
+      node.crumbData = this.setCurmbData(node);
     }
   }
 

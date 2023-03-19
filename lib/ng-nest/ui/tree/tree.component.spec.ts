@@ -16,6 +16,7 @@ import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
+import { XIconModule } from '@ng-nest/ui/icon';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -33,7 +34,8 @@ describe(XTreePrefix, () => {
         XFormModule,
         XLinkModule,
         XMessageModule,
-        XInputNumberModule
+        XInputNumberModule,
+        XIconModule
       ],
       declarations: [
         TestXTreeComponent,

@@ -559,7 +559,7 @@ export interface XDateCell {
    * @zh_CN 类型
    * @en_US Type
    */
-  type?: 'date' | 'week';
+  type?: XDatePickerType;
   /**
    * @zh_CN 第几周
    * @en_US Week

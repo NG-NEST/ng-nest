@@ -6,7 +6,7 @@ label: 'Highlight'
 
 Web code highlighted, encapsulating `prismjs` as angular components.
 
-> The component does not rely directly on `prismjs`, and the corresponding dependency needs to be added manually in `angular.json` when used.
+> The component does not directly depend on `prismjs`, and when using it, you need to manually add the corresponding dependency in angular.json (refer to the `angular.json` configuration for ` prismjs` in the `ng-nest` source code).
 
 ## Used alone
 

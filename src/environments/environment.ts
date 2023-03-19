@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'anchor',
+  defaultPage: 'tree-file',
   static: 'http://localhost:9494'
 };
 
