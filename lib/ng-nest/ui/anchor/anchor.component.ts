@@ -135,6 +135,8 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         ];
       });
       this.sliderData = list;
+    } else {
+      this.sliderData = [];
     }
   }
 

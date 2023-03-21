@@ -29,7 +29,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   @ViewChild('sliderScroll') sliderScroll!: ElementRef<HTMLElement>;
   @ViewChild('sliderNodes') sliderNodes!: ElementRef<HTMLElement>;
   nodes: XSliderNode[] = [];
-  activated!: XSliderNode;
+  activated!: XSliderNode | null;
   scrollClassMap: XClassMap = {};
   nodeClassMap: XClassMap = {};
   showArrow = false;
@@ -223,6 +223,8 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
       if (this.activated) {
         this.activatedId = this.activated.id;
       }
+    } else {
+      this.activated = null
     }
     this.setHighlight();
     this.setTranslate();
