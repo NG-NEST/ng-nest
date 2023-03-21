@@ -21,7 +21,7 @@ export class ExRangeComponent {
 
   modelDateMinute: any;
 
-  modelWeek: any;
+  modelWeek: any = ['2023-01-07', '2023-02-10']
 
   change(event: any) {
     console.log(event);

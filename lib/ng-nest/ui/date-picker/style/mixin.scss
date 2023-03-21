@@ -138,7 +138,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        &.x-date-week-active {
+        &.x-date-week-active,
+        &.x-date-week-start-active,
+        &.x-date-week-end-active {
           .x-picker-date-item,
           .x-picker-date-item.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
             .x-date-text {
@@ -681,9 +683,17 @@
     .x-picker-date-body .x-picker-date-item:not(.x-date-in-range):not(.x-date-active) .x-date-text {
       background-color: transparent;
     }
-    .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
-      background-color: $--x-background-a200;
-      border-radius: $--x-border-radius;
+    .x-picker-date-body tbody tr {
+      &.x-date-week-in-range:not(.x-date-week-start-active):not(.x-date-week-end-active) {
+        .x-picker-date-item {
+          background-color: $--x-primary-800;
+        }
+      }
+      &:not(.x-date-week-active):not(.x-date-week-start-active):not(.x-date-week-end-active):not(.x-date-week-in-range):hover
+        .x-picker-date-item {
+        background-color: $--x-background-a200;
+        border-radius: $--x-border-radius;
+      }
     }
   }
   &.date-time {

@@ -127,9 +127,6 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     });
     this.activeTypeChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.activeType = x;
-      if (!XIsEmpty(this.startDisplay) && !XIsEmpty(this.endDisplay)) {
-        console.log(1111);
-      }
     });
     this.i18n.localeChange
       .pipe(

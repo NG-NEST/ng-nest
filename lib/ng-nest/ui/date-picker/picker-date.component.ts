@@ -53,8 +53,12 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     return '';
   }
 
-  isWeekRange() {
+  get isWeekRange() {
     return this.type === 'week' && this.rangePicker;
+  }
+
+  get isNotWeekRange() {
+    return this.type !== 'week' && this.rangePicker;
   }
 
   isDisabled(date: Date) {
@@ -122,6 +126,15 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     if (!this.rangeType || !this.rangeValue) return;
     if (!XIsNull(this.rangeValue[1]) && week.length > 1) {
       return XDateYearWeek(week[1].date!) === XDateYearWeek(this.rangeValue[1]!);
+    }
+    return false;
+  }
+
+  isInRangeWeek(week: XDateCell[]) {
+    if (!this.rangeType || !this.rangeValue) return;
+    if (!XIsNull(this.rangeValue[0]) && !XIsNull(this.rangeValue[1]) && week.length > 1) {
+      let time = week[1].date?.getTime()!;
+      return time > this.rangeValue[0]! && time < this.rangeValue[1]!;
     }
     return false;
   }

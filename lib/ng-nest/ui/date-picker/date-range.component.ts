@@ -429,8 +429,9 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     }
     if (!XIsNull(dateNumber[1])) {
       if (this.type === 'week') {
-      } else {
         this.endDisplay = XDateYearWeek(dateNumber[1]!)!;
+      } else {
+        this.endDisplay = this.datePipe.transform(dateNumber[1], this.format) as string;
       }
     }
   }
