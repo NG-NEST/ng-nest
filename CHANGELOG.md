@@ -1,3 +1,17 @@
+## [15.0.15](https://github.com/NG-NEST/ng-nest/compare/15.0.14...15.0.15) (2023-03-21)
+
+
+### Bug Fixes
+
+* **module:anchor:** fix the anchor point is empty ([2f42c5f](https://github.com/NG-NEST/ng-nest/commit/2f42c5fd82efb8423af8bf6ca0b5400b64a5db53))
+
+
+### Features
+
+* **module:date-picker:** add date week range ( [#59](https://github.com/NG-NEST/ng-nest/issues/59) ) ([d0155e4](https://github.com/NG-NEST/ng-nest/commit/d0155e41cf8720a49854d5ce65911b74f75be90f))
+
+
+
 ## [15.0.14](https://github.com/NG-NEST/ng-nest/compare/15.0.13...15.0.14) (2023-03-19)
 
 
