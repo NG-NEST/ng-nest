@@ -1,3 +1,12 @@
+## [15.0.16](https://github.com/NG-NEST/ng-nest/compare/15.0.15...15.0.16) (2023-04-07)
+
+
+### Bug Fixes
+
+* **module:tree:** fix add node error ([f7847e1](https://github.com/NG-NEST/ng-nest/commit/f7847e1afc21aadaff22264ec8d73c488e920cb1))
+
+
+
 ## [15.0.15](https://github.com/NG-NEST/ng-nest/compare/15.0.14...15.0.15) (2023-03-21)
 
 
