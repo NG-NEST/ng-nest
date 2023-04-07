@@ -13,7 +13,7 @@ import {
   NgZone
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
-import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize, XRemove } from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
@@ -131,7 +131,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   insertNode(dragNode: XTreeNode, hoverNode: XTreeNode, dragPosition: -1 | 1) {
     let parent = this.nodes.find((x) => x.id === dragNode.pid);
     this.treeService.moveNode(this.treeData, dragNode, hoverNode, dragPosition);
-    this.setDataChange(this.treeData, true, false, parent);
+    this.setDataChange(this.treeData, true, false, true, parent);
   }
 
   cdkDragMoved(event: CdkDragMove<XTreeNode>) {
@@ -174,12 +174,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     });
   }
 
-  private setDataChange(value: XTreeNode[], regetChildren = false, init = true, lazyParant?: XTreeNode) {
+  private setDataChange(value: XTreeNode[], regetChildren = false, init = true, parentOpen = true, lazyParant?: XTreeNode) {
     if (XIsEmpty(this.checked)) this.checked = [];
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
-        node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0 || node.open;
+        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0 || node.open;
         node.checked = this.checked.indexOf(node.id) >= 0;
         node.childrenLoaded = node.open;
       }
@@ -200,9 +200,11 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     };
     this.treeData = value;
     this.nodes = value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0));
-    for (let item of value) {
-      if (!item.leaf && item.open) {
-        this.setParentOpen(value, item);
+    if (parentOpen) {
+      for (let item of value) {
+        if (!item.leaf && item.open) {
+          this.setParentOpen(value, item);
+        }
       }
     }
     this.setExpanded();
@@ -388,7 +390,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     }
   }
 
-  setActivatedNode(nodes: XTreeNode[]) {
+  setActivatedNode(nodes: XTreeNode[], parentOpen = true, dataChange = true) {
     if (XIsEmpty(this.activatedId) && this.multiple) {
       this.activatedId = [];
     }
@@ -399,7 +401,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         for (let i = 0; i < ids.length; i++) {
           let node = nodes.find((x) => x.id === ids[i]) as XTreeNode;
           if (node) {
-            this.setParentOpen(nodes, node);
+            parentOpen && this.setParentOpen(nodes, node);
             if (i === ids.length - 1) {
               this.activatedNode = node;
               this.activatedChange.emit(this.activatedNode);
@@ -411,15 +413,15 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       let activatedId = this.activatedId;
       this.activatedNode = nodes.find((x) => x.id == activatedId) as XTreeNode;
       if (this.activatedNode) {
-        this.setParentOpen(nodes, this.activatedNode);
+        parentOpen && this.setParentOpen(nodes, this.activatedNode);
         this.activatedChange.emit(this.activatedNode);
       }
     }
     if (before) {
       before.change && before.change();
     }
-    if (!XIsEmpty(nodes)) {
-      this.setDataChange(nodes);
+    if (!XIsEmpty(nodes) && dataChange) {
+      this.setDataChange(nodes, false, true, parentOpen);
     }
   }
 
@@ -430,10 +432,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (!XIsEmpty(parent)) {
         if (!this.expanded.includes(parent.id)) {
           this.expanded = [...this.expanded, parent.id];
-          parent.open = true;
-          parent.change && parent.change();
-          getParent(parent);
         }
+        parent.open = true;
+        parent.change && parent.change();
+        getParent(parent);
       }
     };
     getParent(node);
@@ -446,10 +448,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (!XIsEmpty(parent)) {
         if (!this.expanded.includes(parent.id)) {
           this.expanded = [...this.expanded, parent.id];
-          parent.open = true;
-          parent.change && parent.change();
-          getParent(parent);
         }
+        parent.open = true;
+        parent.change && parent.change();
+        getParent(parent);
       }
     };
     getParent(node);
@@ -493,30 +495,28 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   addNode(node: XTreeNode) {
-    let parent = this.treeData.find((x) => x.id === node.pid);
+    let parent = this.treeData.find((x) => x.id === node.pid)!;
     const _addNode = () => {
       if (parent) {
-        if (!parent.children) parent.children = [];
-        this.expanded = [...this.expanded, parent.id];
-        this.setActivatedId(node);
-        node.level = Number(parent.level) + 1;
+        node.level = parent.level! + 1;
         node.pid = parent.id;
         node.leaf = true;
-        this.treeData.push(node);
-        this.setActivatedNode(this.treeData);
-        parent.open = true;
         parent.leaf = false;
-        parent.children = [...parent.children, node];
-        this.virtualToggle(parent);
-        this.cdr.detectChanges();
-        parent.change && parent.change();
-      } else if (XIsEmpty(node.pid)) {
+        parent.open = true;
+        this.treeData = [...this.treeData, node];
+        this.setParentOpen(this.treeData, node);
+        this.setDataChange(this.treeData, true, false, false);
         this.setActivatedId(node);
+        this.setActivatedNode(this.nodes, true, false);
+        node.change && node.change();
+      } else if (XIsEmpty(node.pid)) {
         node.level = 0;
+        node.leaf = true;
         this.treeData = [...this.treeData, node];
         this.nodes = [...this.nodes, node];
-        this.setActivatedNode(this.treeData);
-        this.cdr.detectChanges();
+        this.setActivatedId(node);
+        this.setActivatedNode(this.nodes, true, false);
+        node.change && node.change();
       }
     };
     if (this.lazy && parent && !parent.childrenLoaded) {
@@ -542,35 +542,26 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   removeNode(node: XTreeNode) {
-    let parent = this.treeData.find((x) => x.id === node.pid);
+    let parent = this.treeData.find((x) => x.id === node.pid)!;
+    const removeChildren = (nd: XTreeNode) => {
+      XRemove(this.treeData, (x) => x.id === nd.id);
+      if (nd.children) {
+        for (let item of nd.children) {
+          removeChildren(item);
+        }
+      }
+    };
+    removeChildren(node);
+
     if (parent) {
       if (!parent.children) parent.children = [];
-      parent.children.splice(parent.children.indexOf(node), 1);
+      const childIndex = parent.children.findIndex((x) => x.id === node.id);
+      if (childIndex > -1) {
+        parent.children.splice(childIndex, 1);
+      }
       parent.leaf = parent.children.length === 0;
-      if (parent.leaf) {
-        this.setActivatedId(parent);
-      }
-      let index = this.nodes.indexOf(node);
-      let aindex = index - 1;
-      if (index === 0 && this.nodes.length > 1) {
-        aindex = 1;
-      }
-      let activatedNode = this.nodes[aindex];
-      this.setActivatedId(activatedNode);
-      this.setActivatedNode(this.nodes);
-      this.nodes.splice(index, 1);
-      this.nodes = [...this.nodes];
-      if (activatedNode) {
-        activatedNode.change && activatedNode.change();
-      }
-      this.cdr.detectChanges();
-      parent.change && parent.change();
-    } else if (XIsEmpty(node.pid)) {
-      this.treeData.splice(this.treeData.indexOf(node), 1);
-      this.nodes.splice(this.nodes.indexOf(node), 1);
-      this.nodes = [...this.nodes];
-      this.cdr.detectChanges();
     }
+    this.setDataChange(this.treeData, true, false, false);
   }
 
   updateNode(node: XTreeNode, nowNode: XTreeNode) {

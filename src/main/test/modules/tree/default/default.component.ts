@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { Component, ViewChild } from '@angular/core';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-default',
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
+  @ViewChild('treeRef') treeRef!: XTreeComponent;
   data: XTreeNode[] = [
     { id: 1, label: '一级 1' },
     { id: 2, label: '一级 2' },
@@ -27,4 +28,12 @@ export class ExDefaultComponent {
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
   ];
+
+  addNode() {
+    this.treeRef.addNode({ id: new Date().getTime(), label: '123132323', pid: 5 });
+  }
+
+  change(node: XTreeNode) {
+    console.log(node);
+  }
 }
