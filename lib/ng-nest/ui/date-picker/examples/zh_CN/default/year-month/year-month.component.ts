@@ -9,6 +9,7 @@ export class ExYearMonthComponent {
   model1: any;
   model2: any;
   model3: any;
+  model4: any;
 
   change(event: any) {
     console.log(event);

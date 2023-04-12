@@ -289,7 +289,7 @@ export interface XDateRangePreset extends XIdentityProperty {
  * @zh_CN 日期选择类型
  * @en_US Date selection type
  */
-export type XDatePickerType = 'date' | 'week' | 'month' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
+export type XDatePickerType = 'date' | 'week' | 'month' | 'quarter' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
 
 /**
  * @zh_CN 日期数据类型
@@ -686,6 +686,127 @@ export class XPickerMonthProperty extends XProperty {
    */
   @Output() rangeDateClick = new EventEmitter<XDateCell>();
 }
+
+/**
+ * PickerQuarter
+ * @selector x-picker-quarter
+ * @decorator component
+ */
+export const XPickerQuarterPrefix = 'x-picker-quarter';
+
+/**
+ * PickerQuarter Property
+ */
+@Component({ template: '' })
+export class XPickerQuarterProperty extends XProperty {
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Input() type: XDatePickerType = 'date';
+  /**
+   * @zh_CN 显示的日期
+   * @en_US Date displayed
+   */
+  @Input() display: Date = new Date();
+  /**
+   * @zh_CN 选中的日期
+   * @en_US Selected date
+   */
+  @Input() model?: Date | null;
+  /**
+   * @zh_CN 季度显示模板
+   * @en_US Month display template
+   */
+  @Input() quarterTemp?: TemplateRef<any>;
+  /**
+   * @zh_CN 显示切换按钮
+   * @en_US Display switch button
+   */
+  @Input() @XInputBoolean() showHeader: XBoolean = true;
+  /**
+   * @zh_CN 范围选择
+   * @en_US Range picker
+   */
+  @Input() @XInputBoolean() rangePicker?: XBoolean;
+  /**
+   * @zh_CN 上一年
+   * @en_US Last year
+   */
+  @Input() @XInputBoolean() lastYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 下一年
+   * @en_US Next year
+   */
+  @Input() @XInputBoolean() nextYearBtn: XBoolean = true;
+  /**
+   * @zh_CN 范围月份
+   * @en_US Range date
+   */
+  @Input() rangeValue: (number | null)[] = [];
+  /**
+   * @zh_CN 当前选择的是开始/结束日期
+   * @en_US The current choice is the start / end date
+   */
+  @Input() rangeType!: XDatePickerRangType;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  @Input() disabledDate?: XDatePickerDisabledDate;
+  /**
+   * @zh_CN 选中的事件
+   * @en_US Selected event
+   */
+  @Output() modelChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 选择类型
+   * @en_US Select type
+   */
+  @Output() typeChange = new EventEmitter<XDatePickerType>();
+  /**
+   * @zh_CN 范围变化的事件
+   * @en_US Scope change event
+   */
+  @Output() rangeChange = new EventEmitter<Date[]>();
+  /**
+   * @zh_CN 选年的事件
+   * @en_US Year change event
+   */
+  @Output() yearChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 选月的事件
+   * @en_US Month change event
+   */
+  @Output() monthChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 显示季度事件
+   * @en_US display date event
+   */
+  @Output() displayChange = new EventEmitter<Date>();
+  /**
+   * @zh_CN 范围季度 mouseenter 事件
+   * @en_US Date mouseenter event
+   */
+  @Output() rangeTdMouseenter = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围季度 mouseleave 事件
+   * @en_US Date mouseleave event
+   */
+  @Output() rangeTdMouseleave = new EventEmitter<XDateCell>();
+  /**
+   * @zh_CN 范围中的季度点击事件
+   * @en_US Range date click event
+   */
+  @Output() rangeDateClick = new EventEmitter<XDateCell>();
+}
+
+/**
+ * DateQuarter
+ * @selector xDateQuarter
+ * @decorator pipe
+ */
+export const XDateQuarterPrefix = 'xDateQuarter';
 
 /**
  * PickerYear

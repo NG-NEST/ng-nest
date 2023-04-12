@@ -25,7 +25,8 @@ import {
   XIsString,
   XConfigService,
   XIsNull,
-  XDateYearWeek
+  XDateYearWeek,
+  XDateYearQuarter
 } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
@@ -91,6 +92,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     if (this.placeholder) return this.placeholder;
     if (this.type === 'month') {
       return this.locale.selectMonth;
+    } else if (this.type === 'quarter') {
+      return this.locale.selectQuarter;
     } else if (this.type === 'year') {
       return this.locale.selectYear;
     } else if (this.type === 'week') {
@@ -158,6 +161,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
       this.format = 'yyyy-MM-dd';
     } else if (this.type === 'year') {
       this.format = 'yyyy';
+    } else if (this.type === 'quarter') {
+      this.format = 'yyyy-MM-dd';
     } else if (this.type === 'month') {
       this.format = 'yyyy-MM';
     } else if (this.type === 'date-time') {
@@ -304,7 +309,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setDisplayValue(dateNumber: number | string) {
-    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue)) && this.type !== 'week') {
+    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue)) && !['week', 'quarter'].includes(this.type)) {
       this.displayValue = this.datePipe.transform(this.displayValue, this.format);
       this.numberValue = new Date(this.displayValue).getTime();
       this.value = this.getValue();
@@ -313,6 +318,8 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     } else {
       if (this.type === 'week') {
         this.displayValue = XDateYearWeek(dateNumber);
+      } else if (this.type === 'quarter') {
+        this.displayValue = XDateYearQuarter(dateNumber);
       } else {
         this.displayValue = this.datePipe.transform(dateNumber, this.format);
       }

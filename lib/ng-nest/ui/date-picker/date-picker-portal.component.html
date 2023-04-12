@@ -26,6 +26,15 @@
       [disabledDate]="disabledDate"
     ></x-picker-month>
   </ng-container>
+  <ng-container *ngSwitchCase="'quarter'">
+    <x-picker-quarter
+      [display]="display"
+      [model]="model"
+      [(type)]="type"
+      (modelChange)="quarterChange($event)"
+      [disabledDate]="disabledDate"
+    ></x-picker-quarter>
+  </ng-container>
   <ng-container *ngSwitchCase="'year'">
     <x-picker-year
       [display]="display"

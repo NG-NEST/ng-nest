@@ -105,11 +105,14 @@ export interface XI18nDatePicker {
   selectDate?: string;
   selectWeek?: string;
   selectMonth?: string;
+  selectQuarter?: string;
   selectYear?: string;
   startDate?: string;
   endDate?: string;
   startMonth?: string;
   endMonth?: string;
+  startQuarter?: string;
+  endQuarter?: string;
   startYear?: string;
   endYear?: string;
   startWeek?: string;

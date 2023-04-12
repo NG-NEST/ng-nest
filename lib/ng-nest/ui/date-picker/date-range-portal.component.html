@@ -108,6 +108,40 @@
         rangePicker
       ></x-picker-month>
     </ng-container>
+    <ng-container *ngSwitchCase="'quarter'">
+      <x-picker-quarter
+        #startPicker
+        class="x-date-range-portal-start"
+        [(display)]="startDisplay"
+        [model]="startModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [nextYearBtn]="false"
+        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'start')"
+        (monthChange)="monthChange($event, 'start')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-quarter>
+      <x-picker-quarter
+        #endPicker
+        class="x-date-range-portal-end"
+        [(display)]="endDisplay"
+        [model]="endModel"
+        [rangeValue]="value"
+        [rangeType]="activeType"
+        [lastYearBtn]="false"
+        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event)"
+        (yearChange)="yearChange($event, 'end')"
+        (monthChange)="monthChange($event, 'end')"
+        (rangeTdMouseenter)="setDatesState($event)"
+        (rangeDateClick)="setDatesState($event)"
+        rangePicker
+      ></x-picker-quarter>
+    </ng-container>
     <ng-container *ngSwitchCase="'year'">
       <x-picker-year
         #startPicker

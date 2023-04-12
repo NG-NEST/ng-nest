@@ -23,6 +23,8 @@ export class ExRangeComponent {
 
   modelWeek: any;
 
+  modelQuarter: any;
+
   change(event: any) {
     console.log(event);
   }

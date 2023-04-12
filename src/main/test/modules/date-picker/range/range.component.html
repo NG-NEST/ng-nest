@@ -33,6 +33,9 @@
   <x-date-range label="选择周" [(ngModel)]="modelWeek" type="week"></x-date-range>
 </div>
 <div class="row">
+  <x-date-range label="选择季度" [(ngModel)]="modelWeek" type="quarter"></x-date-range>
+</div>
+<div class="row">
   <x-date-range label="选择日期（时间）" [(ngModel)]="modelDateTime" type="date-time"></x-date-range>
 </div>
 <div class="row">
@@ -53,5 +56,3 @@
 <div class="row">
   <x-date-range label="提示文字" [(ngModel)]="model" [placeholder]="['开始', '结束']"></x-date-range>
 </div>
-
-

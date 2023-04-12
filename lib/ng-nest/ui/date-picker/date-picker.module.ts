@@ -15,7 +15,8 @@ import {
   XPickerDateProperty,
   XPickerMonthProperty,
   XPickerYearProperty,
-  XDateRangeProperty
+  XDateRangeProperty,
+  XPickerQuarterProperty
 } from './date-picker.property';
 import { XI18nModule } from '@ng-nest/ui/i18n';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
@@ -24,6 +25,8 @@ import { XDateRangeComponent } from './date-range.component';
 import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XLinkModule } from '@ng-nest/ui/link';
 import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XPickerQuarterComponent } from './picker-quarter.component';
+import { XDateQuarterPipe } from './date-quarter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,14 +34,17 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
     XDatePickerPortalComponent,
     XPickerDateComponent,
     XPickerMonthComponent,
+    XPickerQuarterComponent,
     XPickerYearComponent,
     XDatePickerProperty,
     XPickerDateProperty,
     XPickerMonthProperty,
+    XPickerQuarterProperty,
     XPickerYearProperty,
     XDateRangeComponent,
     XDateRangePortalComponent,
-    XDateRangeProperty
+    XDateRangeProperty,
+    XDateQuarterPipe
   ],
   exports: [
     XDatePickerComponent,
@@ -46,7 +52,9 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
     XDatePickerPortalComponent,
     XPickerDateComponent,
     XPickerMonthComponent,
-    XPickerYearComponent
+    XPickerQuarterComponent,
+    XPickerYearComponent,
+    XDateQuarterPipe
   ],
   imports: [
     CommonModule,

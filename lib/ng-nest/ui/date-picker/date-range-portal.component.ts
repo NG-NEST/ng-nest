@@ -95,7 +95,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   private _unSubject = new Subject<void>();
 
   get isDatePicker() {
-    return ['date', 'week', 'month', 'year'].includes(this.type);
+    return ['date', 'quarter', 'week', 'month', 'year'].includes(this.type);
   }
 
   get sureDisabled() {
@@ -166,7 +166,7 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   setModelByType(byModel: Date, num: number = 1) {
-    if (this.type === 'month') {
+    if (['month', 'quarter'].includes(this.type)) {
       return XAddYears(byModel!, num);
     } else if (this.type === 'year') {
       return XAddYears(byModel!, 10 * num);

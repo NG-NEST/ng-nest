@@ -381,6 +381,130 @@
   }
 }
 
+@mixin picker-quarter {
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    height: 2.5rem;
+    border-bottom: $--x-border-width solid $--x-border;
+    color: $--x-text-500;
+    font-size: $--x-font-size-medium;
+    x-link {
+      height: 100%;
+      user-select: none;
+    }
+    .x-link {
+      padding: 0 0.25rem;
+    }
+  }
+  &-year-quarter {
+    flex: 1;
+    text-align: center;
+    color: $--x-text;
+    font-size: $--x-font-size;
+  }
+  &-body {
+    padding: 0.1375rem 0.5rem;
+    > table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      tr {
+        padding: 0.125rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      td {
+        flex: 1;
+        padding: 0.125rem 0;
+        user-select: none;
+      }
+    }
+    .x-picker-date-item {
+      text-align: center;
+      cursor: pointer;
+      color: $--x-text-300;
+      position: relative;
+      .x-date-text {
+        width: 3.5rem;
+        height: 3.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border: $--x-border-width $--x-border-style transparent;
+        border-radius: $--x-border-radius;
+        transition: $--x-animation-duration-base;
+        position: relative;
+      }
+      &::after,
+      &::before {
+        height: 3.25rem;
+      }
+      &:hover:not(.x-date-in-range) {
+        .x-date-text {
+          background-color: $--x-background-a200;
+        }
+      }
+      &.x-date-active:not(.x-date-last-or-next) {
+        color: $--x-background-100;
+        .x-date-text {
+          background-color: $--x-primary;
+          border-color: $--x-primary;
+        }
+        &:hover {
+          color: $--x-background-100;
+          .x-date-text {
+            background-color: $--x-primary;
+          }
+        }
+      }
+      &.x-date-last-or-next {
+        color: $--x-text-700;
+      }
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+        color: $--x-primary;
+        border-color: $--x-primary;
+      }
+      &.x-date-range-hover {
+        &:first-child:not(.x-date-last-or-next),
+        &.x-date-first-day {
+          &.x-date-range-hover-end {
+            &::before {
+              width: 3.5rem;
+            }
+          }
+        }
+        &:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day {
+          &.x-date-range-hover-start {
+            &::before {
+              width: 3.5rem;
+            }
+          }
+        }
+        &.x-date-first-day:last-child:not(.x-date-last-or-next),
+        &.x-date-last-day:first-child:not(.x-date-last-or-next) {
+          &::before {
+            width: 3.5rem;
+          }
+        }
+      }
+      &.x-date-disabled {
+        cursor: default;
+        background-color: $--x-background-a200;
+        color: $--x-text-700;
+      }
+    }
+  }
+  .x-visibility {
+    visibility: hidden;
+  }
+}
+
 @mixin picker-year {
   &-header {
     display: flex;

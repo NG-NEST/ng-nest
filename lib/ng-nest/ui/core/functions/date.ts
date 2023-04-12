@@ -88,6 +88,22 @@ export function XDateYearWeek(date: XDate) {
   return;
 }
 
+export function XDateYearQuarter(date: XDate) {
+  let dt = XToDate(date);
+  if (!isNaN(dt.valueOf())) {
+    return `${dt.getFullYear()}-${XDateQuarter(dt)}`;
+  }
+  return;
+}
+
+export function XDateQuarter(date: XDate) {
+  let dt = XToDate(date);
+  if (!isNaN(dt.valueOf())) {
+    return `Q${Math.ceil((dt.getMonth() + 1) / 3)}`;
+  }
+  return;
+}
+
 function getISOWeek(date: Date): number {
   const diff = startOfISOWeek(date).getTime() - startOfISOWeekYear(date).getTime();
   return Math.round(diff / 604800000) + 1;

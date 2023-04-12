@@ -4,6 +4,8 @@ export * from './date-range.component';
 export * from './date-range-portal.component';
 export * from './picker-date.component';
 export * from './picker-month.component';
+export * from './picker-quarter.component';
 export * from './picker-year.component';
 export * from './date-picker.module';
 export * from './date-picker.property';
+export * from './date-quarter.pipe';

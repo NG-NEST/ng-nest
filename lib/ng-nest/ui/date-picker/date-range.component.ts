@@ -24,7 +24,8 @@ import {
   XIsString,
   XConfigService,
   XIsNull,
-  XDateYearWeek
+  XDateYearWeek,
+  XDateYearQuarter
 } from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { DatePipe } from '@angular/common';
@@ -57,6 +58,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     if (this.placeholder && this.placeholder.length > 0) return this.placeholder[0];
     if (this.type === 'month') {
       return this.locale.startMonth;
+    } else if (this.type === 'quarter') {
+      return this.locale.startQuarter;
     } else if (this.type === 'year') {
       return this.locale.startYear;
     } else if (this.type === 'week') {
@@ -70,6 +73,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     if (this.placeholder && this.placeholder.length > 1) return this.placeholder[1];
     if (this.type === 'month') {
       return this.locale.endMonth;
+    } else if (this.type === 'quarter') {
+      return this.locale.endQuarter;
     } else if (this.type === 'year') {
       return this.locale.endYear;
     } else if (this.type === 'week') {
@@ -380,7 +385,13 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   startNodeClick(node?: Date, close = false, isDatePicker: boolean = true) {
-    this.startDisplay = !node ? '' : this.type === 'week' ? XDateYearWeek(node)! : this.datePipe.transform(node, this.format)!;
+    this.startDisplay = !node
+      ? ''
+      : this.type === 'week'
+      ? XDateYearWeek(node)!
+      : this.type === 'quarter'
+      ? XDateYearQuarter(node)!
+      : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputEndCom.inputFocus('after');
       this.activeTypeChange.next('end');
@@ -389,7 +400,13 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   endNodeClick(node?: Date, close = false, isDatePicker: boolean = true) {
-    this.endDisplay = !node ? '' : this.type === 'week' ? XDateYearWeek(node)! : this.datePipe.transform(node, this.format)!;
+    this.endDisplay = !node
+      ? ''
+      : this.type === 'week'
+      ? XDateYearWeek(node)!
+      : this.type === 'quarter'
+      ? XDateYearQuarter(node)!
+      : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputStartCom.inputFocus('after');
       this.activeTypeChange.next('start');
@@ -423,6 +440,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     if (!XIsNull(dateNumber[0])) {
       if (this.type === 'week') {
         this.startDisplay = XDateYearWeek(dateNumber[0]!)!;
+      } else if (this.type === 'quarter') {
+        this.startDisplay = XDateYearQuarter(dateNumber[0]!)!;
       } else {
         this.startDisplay = this.datePipe.transform(dateNumber[0], this.format) as string;
       }
@@ -430,6 +449,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     if (!XIsNull(dateNumber[1])) {
       if (this.type === 'week') {
         this.endDisplay = XDateYearWeek(dateNumber[1]!)!;
+      } else if (this.type === 'quarter') {
+        this.endDisplay = XDateYearQuarter(dateNumber[1]!)!;
       } else {
         this.endDisplay = this.datePipe.transform(dateNumber[1], this.format) as string;
       }
