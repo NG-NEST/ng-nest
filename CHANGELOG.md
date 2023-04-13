@@ -1,3 +1,19 @@
+## [15.0.17](https://github.com/NG-NEST/ng-nest/compare/15.0.16...15.0.17) (2023-04-13)
+
+
+### Bug Fixes
+
+* **module:date-picker:** fix week style ([214438f](https://github.com/NG-NEST/ng-nest/commit/214438fa47b9256623f48e57eb48b9d96357b060))
+
+
+### Features
+
+* **module:checkbox:** add tag type ([16a47bf](https://github.com/NG-NEST/ng-nest/commit/16a47bf23ea6a0b43cbd4afe00f9ba60f7d09add)), closes [#221](https://github.com/NG-NEST/ng-nest/issues/221)
+* **module:date-picker:** add quarter type ([#56](https://github.com/NG-NEST/ng-nest/issues/56)) ([47b45cb](https://github.com/NG-NEST/ng-nest/commit/47b45cb94e9e5632ffea71282996020590a2c716))
+* **module:radio:** add tag type ([2ac8148](https://github.com/NG-NEST/ng-nest/commit/2ac8148ab55dbf1ca2fbfe4d364af9dea2457551)), closes [#221](https://github.com/NG-NEST/ng-nest/issues/221)
+
+
+
 ## [15.0.16](https://github.com/NG-NEST/ng-nest/compare/15.0.15...15.0.16) (2023-04-07)
 
 
