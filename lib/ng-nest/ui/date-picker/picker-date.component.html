@@ -19,7 +19,7 @@
       <tbody>
         <tr
           *ngFor="let weeks of weekDates"
-          [class.x-date-week-active]="!rangePicker && isWeekActive(weeks)"
+          [class.x-date-week-active]="!rangePicker && isWeek && isWeekActive(weeks)"
           [class.x-date-week-start-active]="isWeekRange && isStartWeek(weeks)"
           [class.x-date-week-end-active]="isWeekRange && isEndWeek(weeks)"
           [class.x-date-week-in-range]="isWeekRange && isInRangeWeek(weeks)"

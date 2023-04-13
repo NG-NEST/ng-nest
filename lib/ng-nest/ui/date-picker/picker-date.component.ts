@@ -53,6 +53,10 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     return '';
   }
 
+  get isWeek() {
+    return this.type === 'week';
+  }
+
   get isWeekRange() {
     return this.type === 'week' && this.rangePicker;
   }
