@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { ExTagComponent } from './tag/tag.component';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { ExButtonComponent } from './button/button.component';
+import { ExDisabledComponent } from './disabled/disabled.component';
 
 const routers = [{ path: '', component: TeRadioComponent }];
 
@@ -43,6 +44,6 @@ const routers = [{ path: '', component: TeRadioComponent }];
     XInputModule,
     XTagModule
   ],
-  declarations: [TeRadioComponent, ExDefaultComponent, ExPerpostComponent, ExTagComponent, ExButtonComponent]
+  declarations: [TeRadioComponent, ExDefaultComponent, ExPerpostComponent, ExTagComponent, ExButtonComponent, ExDisabledComponent]
 })
 export class TeRadioModule {}

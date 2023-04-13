@@ -23,7 +23,7 @@
           class="x-radio-row-item"
           *ngFor="let item of nodes; trackBy: trackByItem"
           [class.x-checked]="item.id === value"
-          [class.x-disabled]="item.disabled"
+          [class.x-disabled]="disabled || item.disabled"
           (click)="radioClick($event, item)"
         >
           <span class="x-radio-box"></span>
