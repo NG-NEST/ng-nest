@@ -25,7 +25,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 })
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   @ViewChild('checkbox', { static: true }) checkbox!: ElementRef<HTMLElement>;
-  checkboxType: 'initial' | 'button' | 'icon' | 'tag' = 'initial';
+  checkboxType!: 'initial' | 'button' | 'icon' | 'tag';
 
   override writeValue(value: boolean | Array<any>) {
     this.value = value;
@@ -80,16 +80,14 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   setCheckboxType() {
     if (this.button) {
       this.checkboxType = 'button';
-      return;
-    }
-    if (this.icon) {
+    } else if (this.icon) {
       this.checkboxType = 'icon';
-      return;
-    }
-    if (this.tag) {
+    } else if (this.tag) {
       this.checkboxType = 'tag';
-      return;
+    } else {
+      this.checkboxType = 'initial';
     }
+    this.cdr.detectChanges();
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {
