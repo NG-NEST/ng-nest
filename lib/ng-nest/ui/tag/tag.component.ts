@@ -62,7 +62,7 @@ export class XTagComponent extends XTagProperty implements OnInit {
   }
 
   onClick() {
-    if (!this.checked) return;
+    if (!this.checked || this.manual) return;
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
   }

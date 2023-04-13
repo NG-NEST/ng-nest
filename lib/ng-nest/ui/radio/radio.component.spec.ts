@@ -21,6 +21,7 @@ import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
+import { XTagModule } from '@ng-nest/ui/tag';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRadioPrefix, () => {
@@ -42,7 +43,8 @@ describe(XRadioPrefix, () => {
         XFindModule,
         XTextareaModule,
         XTimePickerModule,
-        XInputModule
+        XInputModule,
+        XTagModule
       ],
       declarations: [
         TestXRadioComponent,

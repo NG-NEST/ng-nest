@@ -157,6 +157,24 @@
     $--x-info,
     $--x-info
   );
+  @include type(
+    'text',
+    $--x-text,
+    'transparent',
+    $--x-background-200,
+    $--x-text-400,
+    $--x-background-200,
+    'transparent',
+    $--x-text-400,
+    $--x-background-200,
+    'transparent',
+    $--x-primary,
+    $--x-primary,
+    'transparent',
+    $--x-white,
+    $--x-primary,
+    $--x-primary
+  );
 }
 
 @mixin type(

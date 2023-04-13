@@ -26,6 +26,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XRadioComponent extends XRadioProperty implements OnChanges {
   @ViewChild('radio', { static: true }) radio!: ElementRef<HTMLElement>;
   nodes: XRadioNode[] = [];
+  radioType: 'initial' | 'button' | 'icon' | 'tag' = 'initial';
   private _unSubject = new Subject<void>();
 
   get beforeIsTemplate() {
@@ -48,6 +49,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   ngOnInit() {
     this.setFlex(this.radio.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
+    this.setRadioType();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -70,11 +72,30 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
+  setRadioType() {
+    if (this.button) {
+      this.radioType = 'button';
+      return;
+    }
+    if (this.icon) {
+      this.radioType = 'icon';
+      return;
+    }
+    if (this.tag) {
+      this.radioType = 'tag';
+      return;
+    }
+  }
+
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled || node.id === this.value) return;
+    if (this.disabled || node.disabled || (!this.allowCancel && node.id === this.value)) return;
     this.formControlValidator();
-    this.value = node.id;
+    if (this.allowCancel && node.id === this.value) {
+      this.value = null;
+    } else {
+      this.value = node.id;
+    }
     this.cdr.detectChanges();
     if (this.onChange) this.onChange(this.value);
   }

@@ -43,12 +43,17 @@ export class XTagProperty extends XProperty {
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() disabled?: XBoolean;
+  @Input() @XInputBoolean() disabled: XBoolean = false;
   /**
    * @zh_CN 可选择标签
    * @en_US checked
    */
-  @Input() @XInputBoolean() checked?: XBoolean;
+  @Input() @XInputBoolean() checked: XBoolean = false;
+  /**
+   * @zh_CN 手动控制选择标签是否选中
+   * @en_US Manual control
+   */
+  @Input() @XInputBoolean() manual: XBoolean = false;
   /**
    * @zh_CN 选中
    * @en_US Selected

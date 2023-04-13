@@ -17,6 +17,8 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule } from '@angular/forms';
+import { ExTagComponent } from './tag/tag.component';
+import { XTagModule } from '@ng-nest/ui/tag';
 
 const routers = [{ path: '', component: TeRadioComponent }];
 
@@ -37,8 +39,9 @@ const routers = [{ path: '', component: TeRadioComponent }];
     XFindModule,
     XTextareaModule,
     XTimePickerModule,
-    XInputModule
+    XInputModule,
+    XTagModule
   ],
-  declarations: [TeRadioComponent, ExDefaultComponent, ExPerpostComponent]
+  declarations: [TeRadioComponent, ExDefaultComponent, ExPerpostComponent, ExTagComponent]
 })
 export class TeRadioModule {}
