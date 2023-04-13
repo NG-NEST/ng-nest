@@ -17,6 +17,9 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule } from '@angular/forms';
+import { ExTagComponent } from './tag/tag.component';
+import { XTagModule } from '@ng-nest/ui/tag';
+import { ExButtonComponent } from './button/button.component';
 
 const routers = [{ path: '', component: TeCheckboxComponent }];
 
@@ -37,8 +40,9 @@ const routers = [{ path: '', component: TeCheckboxComponent }];
     XFindModule,
     XTextareaModule,
     XTimePickerModule,
-    XInputModule
+    XInputModule,
+    XTagModule
   ],
-  declarations: [TeCheckboxComponent, ExDefaultComponent, ExPerpostComponent]
+  declarations: [TeCheckboxComponent, ExDefaultComponent, ExPerpostComponent, ExTagComponent, ExButtonComponent]
 })
 export class TeCheckboxModule {}

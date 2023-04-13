@@ -22,6 +22,7 @@ import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputModule } from '@ng-nest/ui/input';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XTagModule } from '@ng-nest/ui/tag';
 
 describe(XCheckboxPrefix, () => {
   beforeEach(() => {
@@ -42,7 +43,8 @@ describe(XCheckboxPrefix, () => {
         XFindModule,
         XTextareaModule,
         XTimePickerModule,
-        XInputModule
+        XInputModule,
+        XTagModule
       ],
       declarations: [
         TestXCheckboxComponent,

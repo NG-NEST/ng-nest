@@ -37,6 +37,11 @@
       position: relative;
       display: inline-flex;
       align-items: center;
+      x-tag {
+        &:not(:first-child) {
+          margin-left: 0.875rem;
+        }
+      }
     }
     &-item {
       position: relative;

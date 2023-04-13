@@ -1,0 +1,112 @@
+<div class="row">
+  <h4>Style</h4>
+</div>
+<div class="row">
+  <x-checkbox label="Category" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" tag></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="primary"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="success"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="info"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="warning"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Category"
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="danger"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <h4>Example</h4>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Synthesize"
+    direction="row"
+    [data]="data1"
+    [(ngModel)]="model1"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Type"
+    direction="row"
+    [data]="data2"
+    [(ngModel)]="model2"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="Year"
+    direction="row"
+    [data]="data3"
+    [(ngModel)]="model3"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  Selected Data:
+  <x-tag [@.disabled]="true" *ngFor="let item of selected" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+</div>

@@ -1,0 +1,112 @@
+<div class="row">
+  <h4>样式</h4>
+</div>
+<div class="row">
+  <x-checkbox label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" tag></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="primary"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="success"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="info"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="warning"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="danger"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <h4>示例</h4>
+</div>
+<div class="row">
+  <x-checkbox
+    label="综合："
+    direction="row"
+    [data]="data1"
+    [(ngModel)]="model1"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="类型："
+    direction="row"
+    [data]="data2"
+    [(ngModel)]="model2"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox
+    label="年份："
+    direction="row"
+    [data]="data3"
+    [(ngModel)]="model3"
+    (ngModelChange)="change($event)"
+    tagBordered="false"
+    tag
+  ></x-checkbox>
+</div>
+<div class="row">
+  选择的数据：
+  <x-tag [@.disabled]="true" *ngFor="let item of selected" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+</div>
