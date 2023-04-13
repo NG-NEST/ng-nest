@@ -26,7 +26,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 export class XRadioComponent extends XRadioProperty implements OnChanges {
   @ViewChild('radio', { static: true }) radio!: ElementRef<HTMLElement>;
   nodes: XRadioNode[] = [];
-  radioType: 'initial' | 'button' | 'icon' | 'tag' = 'initial';
+  radioType!: 'initial' | 'button' | 'icon' | 'tag';
   private _unSubject = new Subject<void>();
 
   get beforeIsTemplate() {
@@ -75,16 +75,14 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
   setRadioType() {
     if (this.button) {
       this.radioType = 'button';
-      return;
-    }
-    if (this.icon) {
+    } else if (this.icon) {
       this.radioType = 'icon';
-      return;
-    }
-    if (this.tag) {
+    } else if (this.tag) {
       this.radioType = 'tag';
-      return;
+    } else {
+      this.radioType = 'initial';
     }
+    this.cdr.detectChanges();
   }
 
   radioClick(event: Event, node: XRadioNode) {
