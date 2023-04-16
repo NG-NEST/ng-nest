@@ -245,6 +245,22 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() expandTpl?: XTemplate;
   /**
+   * @zh_CN 显示数据为空的提示
+   * @en_US Display a prompt with empty data
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showEmpty?: XBoolean;
+
+  /**
+   * @zh_CN 数据为空的提示图片地址或自定义模板
+   * @en_US Picture address or custom template
+   */
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) emptyImg?: XTemplate;
+  /**
+   * @zh_CN 数据为空的提示内容或自定义模板
+   * @en_US Content or custom template
+   */
+  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) emptyContent?: XTemplate;
+  /**
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event
    */

@@ -17,7 +17,7 @@
       </td>
     </tr>
   </ng-container>
-  <x-empty *ngIf="isEmpty && level === 0"></x-empty>
+  <x-empty [img]="table.emptyImg" [content]="table.emptyContent" *ngIf="table.showEmpty && isEmpty && level === 0"></x-empty>
 </tbody>
 
 <ng-template #virtualScrollTpl>

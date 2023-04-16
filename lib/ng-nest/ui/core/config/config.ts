@@ -18,7 +18,8 @@ import {
   XPlacement,
   XPositionTopBottom,
   XStatus,
-  XAlign
+  XAlign,
+  XTemplate
 } from '../interfaces';
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
@@ -306,7 +307,8 @@ export interface XDescriptionConfig {
 }
 
 export interface XEmptyConfig {
-  content?: string;
+  img?: XTemplate;
+  content?: XTemplate;
 }
 
 export interface XFindConfig {
@@ -537,6 +539,9 @@ export interface XTableConfig {
   expandedLevel?: XNumber;
   hiddenPaginationBorder?: XBoolean;
   hiddenWrapBorder?: XBoolean;
+  showEmpty?: XBoolean;
+  emptyImg?: XTemplate;
+  emptyContent?: XTemplate;
 }
 
 export interface XTabsConfig {
