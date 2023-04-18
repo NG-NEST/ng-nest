@@ -11,7 +11,7 @@ import {
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { XPortalProperty, XPortalOverlayRef, XPortalPlacement } from './portal.property';
-import { XPlacement, XPosition, XPlace } from '@ng-nest/ui/core';
+import { XPlacement, XPosition, XPlace, XComputed } from '@ng-nest/ui/core';
 
 /**
  * 动态创建视图服务
@@ -109,7 +109,7 @@ export class XPortalService {
 
   setResizable(ele: HTMLElement, place?: XPlace) {
     const { clientWidth, clientHeight } = ele;
-    const computedStyle = window.getComputedStyle(ele);
+    const computedStyle = XComputed(ele);
     const marginRight = parseFloat(computedStyle.marginRight);
     const marginBottom = parseFloat(computedStyle.marginBottom);
     let marginLeft = null;

@@ -1,6 +1,6 @@
 // tslint:disable no-any
 
-import { Injectable, Optional, Inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { XConfig, X_CONFIG, XComponentConfigKey, XComponentConfig } from './config';
 import { XThemeService, XTheme, X_THEME_COLORS, X_THEME_DARK_COLORS } from '../theme';
@@ -16,13 +16,11 @@ const isDefined = function (value?: any): boolean {
 export class XConfigService {
   private componentConfigUpdated$ = new Subject<keyof XComponentConfig>();
   private config: XConfig;
-  public themeService!: XThemeService;
+  private defaultConfig = inject(X_CONFIG, { optional: true })!;
+  public themeService = inject(XThemeService, { optional: true })!;
 
-  constructor(@Optional() themeService?: XThemeService, @Optional() @Inject(X_CONFIG) defaultConfig?: XConfig) {
-    this.config = defaultConfig || {};
-    if (themeService) {
-      this.themeService = themeService;
-    }
+  constructor() {
+    this.config = this.defaultConfig || {};
     this.setInitialTheme(this.config.theme);
   }
 

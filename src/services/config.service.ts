@@ -3,6 +3,8 @@ import { XI18nService, XI18nProperty, zh_CN, en_US } from '@ng-nest/ui/i18n';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
+import { XStorageService } from '@ng-nest/ui/core';
+import { Platform } from '@angular/cdk/platform';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -14,18 +16,25 @@ export class ConfigService {
   navName = 'NG-NEST';
 
   get lang() {
-    let lg = localStorage.getItem('Lang');
+    let lg = this.storage.getLocal('Lang');
     if (!lg) {
-      localStorage.setItem('Lang', this.defaultLang);
+      this.storage.setLocal('Lang', this.defaultLang);
       return this.defaultLang;
     }
     return lg;
   }
 
   set lang(value: string) {
-    localStorage.setItem('Lang', value);
+    this.storage.setLocal('Lang', value);
   }
-  constructor(public i18n: XI18nService, public http: HttpClient, private location: Location, private meta: Meta) {
+  constructor(
+    public i18n: XI18nService,
+    public http: HttpClient,
+    private location: Location,
+    private meta: Meta,
+    private storage: XStorageService,
+    private platform: Platform
+  ) {
     this.defaultLang = this.i18n.getLocaleId();
   }
 
@@ -49,7 +58,11 @@ export class ConfigService {
       this.setMeta();
       callback && callback();
     } else {
-      this.http.get<XI18nProperty>(`/assets/i18n/${lang}.json`).subscribe((x) => {
+      let url = `/assets/i18n/${lang}.json`;
+      if (!this.platform.isBrowser) {
+        url = `https://ngnest.com${url}`;
+      }
+      this.http.get<XI18nProperty>(url).subscribe((x) => {
         this.lang = lang as string;
         const localeProps = this.setLocaleProps(x, this.lang);
         this.i18n.setLocale(localeProps, true);

@@ -13,7 +13,7 @@ import {
   NgZone
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
-import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize, XRemove } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize, XRemove, XResizeObserver } from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
@@ -55,7 +55,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,

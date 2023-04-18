@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
+import { ChangeDetectorRef, Component, ViewEncapsulation, inject } from '@angular/core';
+import { DOCUMENT, Location, PlatformLocation } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
@@ -14,6 +14,7 @@ import { LayoutService } from '../layout.service';
 })
 export class NavComponent {
   theme: 'dark' | 'light' = 'light';
+  document = inject(DOCUMENT);
   get getActivatedIndex() {
     return this.layout.navs.map((x) => x.id).indexOf(this.layout.navActive?.id);
   }
@@ -24,10 +25,12 @@ export class NavComponent {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public cdr: ChangeDetectorRef,
-    public location: Location
+    public location: Location,
+    public locationPl: PlatformLocation
   ) {}
 
   action(type: string, param?: Menu | XSliderNode | string) {
+    const wd = this.document.defaultView!;
     switch (type) {
       case 'dark':
         this.theme = type;
@@ -46,7 +49,7 @@ export class NavComponent {
         this.layout.setLocale(type);
         break;
       case 'github':
-        window.open('https://github.com/NG-NEST', '_blank');
+        wd.open('https://github.com/NG-NEST', '_blank');
         break;
       case 'page':
         const menu = param as Menu;
@@ -56,14 +59,15 @@ export class NavComponent {
         break;
       case 'version':
         let index = this.config.versions.findIndex((x) => x === param);
+
         if (index <= 0) {
-          window.location.href = window.location.origin;
+          wd.location.href = wd.location.origin;
         } else {
-          window.location.href = window.location.origin + `/version/${param}/`;
+          wd.location.href = wd.location.origin + `/version/${param}/`;
         }
         break;
       case 'admin':
-        window.open('http://adminui.ngnest.com/', '_blank');
+        wd.open('http://adminui.ngnest.com/', '_blank');
         break;
     }
   }

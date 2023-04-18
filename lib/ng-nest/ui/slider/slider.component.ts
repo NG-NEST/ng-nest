@@ -14,7 +14,7 @@ import {
   SimpleChange
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
-import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData, XConfigService } from '@ng-nest/ui/core';
+import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 
@@ -59,7 +59,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     top: ''
   };
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   constructor(
     public renderer: Renderer2,
@@ -166,7 +166,12 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   setTranslate() {
-    if (XIsUndefined(this.sliderScroll) || XIsUndefined(this.sliderNodes)) return;
+    if (
+      XIsUndefined(this.sliderScroll) ||
+      XIsUndefined(this.sliderNodes) ||
+      typeof this.sliderScroll.nativeElement.getBoundingClientRect !== 'function'
+    )
+      return;
     const sliderRect = this.sliderScroll.nativeElement?.getBoundingClientRect();
     const sliderNodesRect = this.sliderNodes.nativeElement?.getBoundingClientRect();
     let moveIndex = ['bottom', 'right'].indexOf(this.direction) !== -1 ? Number(this.activatedIndex) + 2 : Number(this.activatedIndex);
@@ -224,7 +229,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
         this.activatedId = this.activated.id;
       }
     } else {
-      this.activated = null
+      this.activated = null;
     }
     this.setHighlight();
     this.setTranslate();

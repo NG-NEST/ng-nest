@@ -1,4 +1,4 @@
-import { Injectable, Inject, RendererFactory2, Renderer2 } from '@angular/core';
+import { Injectable, RendererFactory2, Renderer2, inject } from '@angular/core';
 import {
   XTheme,
   XColorsTheme,
@@ -14,6 +14,7 @@ import {
   X_THEME_BORDERS
 } from './theme';
 import { DOCUMENT } from '@angular/common';
+import { XComputed } from '../util';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,11 @@ export class XThemeService {
   private colorsStyleEle!: HTMLStyleElement;
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
+  private doc: Document = inject(DOCUMENT);
 
-  constructor(@Inject(DOCUMENT) private doc: any, private factory: RendererFactory2) {
+  constructor(private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);
-    this.declaration = getComputedStyle(this.doc.documentElement);
+    this.declaration = XComputed(this.doc.documentElement);
   }
 
   setInitialTheme(theme?: XTheme) {

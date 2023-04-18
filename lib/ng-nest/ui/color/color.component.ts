@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
-import { toHex, mixColors, XConfigService } from '@ng-nest/ui/core';
+import { toHex, mixColors, XConfigService, XComputed } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-color',
@@ -24,7 +24,7 @@ export class XColorComponent extends XColorProperty implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.hex || this.hex === 'var(--x-primary)') this.hex = getComputedStyle(this.doc.documentElement).getPropertyValue('--x-primary');
+    if (!this.hex || this.hex === 'var(--x-primary)') this.hex = XComputed(this.doc.documentElement).getPropertyValue('--x-primary');
     if (this.hex) this.setColors();
   }
 

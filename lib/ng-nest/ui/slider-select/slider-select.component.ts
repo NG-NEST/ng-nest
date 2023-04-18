@@ -12,7 +12,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
-import { XIsEmpty, XIsUndefined, XResize, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XResize, XClearClass, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
 import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -39,7 +39,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   override value = 0;
   displayValue = '0';
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   override get requiredIsEmpty() {
     return this.validator && this.required && (XIsEmpty(this.value) || this.value === 0);

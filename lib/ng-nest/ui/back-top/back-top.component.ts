@@ -6,13 +6,13 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Inject,
   OnDestroy,
   ViewChild,
   TemplateRef,
   ViewContainerRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { reqAnimFrame, XConfigService, XIsChange } from '@ng-nest/ui/core';
@@ -20,6 +20,7 @@ import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: `${XBackTopPrefix}`,
@@ -31,12 +32,12 @@ import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 export class XBackTopComponent extends XBackTopProperty implements OnInit, OnChanges, OnDestroy {
   @ViewChild('backTopTpl') backTopTpl!: TemplateRef<void>;
 
-  get scroll(): HTMLElement | Window {
-    return this._target || window;
+  get scroll(): HTMLElement | Window | null {
+    return this._target || this.doc.defaultView;
   }
 
   get scrollTop(): number {
-    if (this.scroll === window) {
+    if (this.scroll === this.doc.defaultView) {
       return this.doc.documentElement!.scrollTop;
     } else {
       return (this.scroll as HTMLElement).scrollTop;
@@ -44,16 +45,17 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
   }
 
   set scrollTop(top: number) {
-    if (this.scroll === window) {
-      this.doc.documentElement!.scrollTop = top;
+    if (this.scroll === this.doc.defaultView) {
+      this.doc.documentElement!.scrollTop = top!;
     } else {
-      (this.scroll as HTMLElement).scrollTop = top;
+      (this.scroll as HTMLElement).scrollTop = top!;
     }
   }
 
   visiable = false;
   scrolling = false;
   portalRef!: XPortalOverlayRef<any>;
+  private doc = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
   private _target: HTMLElement | null = null;
 
@@ -63,15 +65,15 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
     public cdr: ChangeDetectorRef,
     public portal: XPortalService,
     public viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) private doc: any,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public platform: Platform
   ) {
     super();
   }
   ngOnChanges(changes: SimpleChanges): void {
     const { target } = changes;
     if (XIsChange(target)) {
-      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
+      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target!;
       this.setScrollEvent();
     }
   }
@@ -92,6 +94,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
 
   private setScrollEvent() {
     this._unSubject.next();
+    if (!this.scroll) return;
     fromEvent(this.scroll, 'scroll')
       .pipe(throttleTime(20), takeUntil(this._unSubject))
       .subscribe(() => {

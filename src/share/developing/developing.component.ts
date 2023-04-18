@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class DevelopingComponent implements OnInit {
+  private wd = inject(DOCUMENT).defaultView!;
   constructor(public router: Router) {}
 
   ngOnInit() {}
@@ -15,6 +17,6 @@ export class DevelopingComponent implements OnInit {
     this.router.navigateByUrl(`/index/home`);
   }
   back() {
-    window.history.back();
+    this.wd.history.back();
   }
 }

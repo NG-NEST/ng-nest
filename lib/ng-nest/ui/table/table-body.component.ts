@@ -8,12 +8,12 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  Inject,
   ViewChild,
-  Input
+  Input,
+  inject
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags, XParentPath } from '@ng-nest/ui/core';
+import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags, XParentPath, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -34,22 +34,22 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
   get getItemSize() {
-    return this.rowHeight !== 0 && this.itemSize > this.rowHeight ? this.rowHeight : this.itemSize;
+    return this.rowHeight !== 0 && this.itemSize > Number(this.rowHeight) ? this.rowHeight : this.itemSize;
   }
 
   @ViewChild('tbody') tbody!: ElementRef<HTMLElement>;
   @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
   @Input() table: any;
 
+  private doc = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   constructor(
     // @Optional() @Host() public table: XTableComponent,
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) public doc: any,
     public configService: XConfigService
   ) {
     super();
@@ -96,7 +96,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
           this.setAdaptionHeight();
           this.setScroll();
         });
-      fromEvent(window, 'resize')
+      fromEvent(this.doc.defaultView!, 'resize')
         .pipe(takeUntil(this._unSubject))
         .subscribe(() => {
           this.setAdaptionHeight();

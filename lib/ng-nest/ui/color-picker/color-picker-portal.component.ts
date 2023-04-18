@@ -14,7 +14,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XComputed } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
@@ -254,7 +254,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   getPrimary() {
-    return getComputedStyle(this.doc.documentElement).getPropertyValue('--x-primary').trim();
+    return XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
   }
 
   hueChange() {

@@ -2,6 +2,7 @@ import { OnInit, Renderer2, ElementRef, Directive, OnDestroy } from '@angular/co
 import { fromEvent, of, Subject } from 'rxjs';
 import { delay, takeUntil, tap } from 'rxjs/operators';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
+import { XComputed } from '@ng-nest/ui/core';
 
 @Directive({
   selector: '[x-ripple]'
@@ -65,6 +66,6 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
   }
 
   enforceStyleRecalculation(element: HTMLElement) {
-    window.getComputedStyle(element).getPropertyValue('opacity');
+    XComputed(element).getPropertyValue('opacity');
   }
 }

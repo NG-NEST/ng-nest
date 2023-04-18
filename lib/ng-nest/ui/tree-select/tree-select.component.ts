@@ -27,7 +27,9 @@ import {
   XIsArray,
   XIsString,
   XRemove,
-  XResize
+  XResize,
+  XComputed,
+  XResizeObserver
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -112,7 +114,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   composition: boolean = false;
   multipleInputSizeChange = new Subject<number>();
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   constructor(
     public renderer: Renderer2,
@@ -222,7 +224,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       const ele = ivf.children[i] as HTMLElement;
       if (ele.tagName === 'X-TAG') {
         const { offsetTop, offsetWidth } = ele;
-        const style = getComputedStyle(ele);
+        const style = XComputed(ele);
         marginLeft = Number(style.marginLeft.replace('px', ''));
         marginTop = Number(style.marginTop.replace('px', ''));
         if (rowTagTop === -1) {

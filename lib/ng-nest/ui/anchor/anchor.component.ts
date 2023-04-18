@@ -8,12 +8,12 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   AfterViewInit,
-  Inject,
   OnDestroy,
-  AfterContentChecked
+  AfterContentChecked,
+  inject
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
-import { computedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
+import { XComputedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
 import { XSliderNode } from '@ng-nest/ui/slider';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -33,7 +33,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   sliderData: XSliderNode[] = [];
   activatedIndex: number = 0;
   sliderHeight?: number;
-  document: Document;
+  document: Document = inject(DOCUMENT);
   contentChange = new Subject();
   private _scrolling = false;
   private _fontSize: number;
@@ -43,12 +43,10 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) doc: any,
     public configService: XConfigService
   ) {
     super();
-    this.document = doc;
-    this._fontSize = parseFloat(computedStyle(this.document.documentElement, 'font-size'));
+    this._fontSize = parseFloat(XComputedStyle(this.document.documentElement, 'font-size'));
   }
   ngAfterContentChecked(): void {
     this.contentChange.next(this.elementRef.nativeElement.innerHTML);
@@ -79,7 +77,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
     this._scrolling = true;
     const hElement = this.hElements[index];
-    let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(computedStyle(hElement, 'margin-top'));
+    let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
@@ -90,7 +88,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   private setScroll() {
-    fromEvent(this.scroll ? this.scroll : window, 'scroll')
+    fromEvent(this.scroll ? this.scroll : this.document.defaultView!, 'scroll')
       .pipe(throttleTime(10), takeUntil(this._unSubject))
       .subscribe(() => {
         if (this._scrolling) return;
@@ -152,10 +150,10 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         this.sliderHeight = 0;
       } else {
         let height = this.scroll.offsetHeight;
-        let top = parseFloat(computedStyle(this.scroll, 'padding-top'));
-        let borderTop = parseFloat(computedStyle(this.scroll, 'border-top'));
-        let bottom = parseFloat(computedStyle(this.scroll, 'padding-bottom'));
-        let borderBottom = parseFloat(computedStyle(this.scroll, 'border-bottom'));
+        let top = parseFloat(XComputedStyle(this.scroll, 'padding-top'));
+        let borderTop = parseFloat(XComputedStyle(this.scroll, 'border-top'));
+        let bottom = parseFloat(XComputedStyle(this.scroll, 'padding-bottom'));
+        let borderBottom = parseFloat(XComputedStyle(this.scroll, 'border-bottom'));
         this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
       }
     }

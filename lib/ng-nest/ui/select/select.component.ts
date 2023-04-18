@@ -28,7 +28,9 @@ import {
   XIsString,
   XRemove,
   XResize,
-  XPlacement
+  XPlacement,
+  XComputed,
+  XResizeObserver
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -116,7 +118,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   composition: boolean = false;
   multipleInputSizeChange = new Subject<number>();
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   constructor(
     public renderer: Renderer2,
@@ -234,7 +236,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       const ele = ivf.children[i] as HTMLElement;
       if (ele.tagName === 'X-TAG') {
         const { offsetTop, offsetWidth } = ele;
-        const style = getComputedStyle(ele);
+        const style = XComputed(ele);
         marginLeft = Number(style.marginLeft.replace('px', ''));
         marginTop = Number(style.marginTop.replace('px', ''));
         if (rowTagTop === -1) {

@@ -8,9 +8,8 @@ import {
   ChangeDetectorRef,
   OnChanges,
   SimpleChanges,
-  Inject,
-  Optional,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
@@ -48,6 +47,7 @@ export const XViewBox = [
 export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   private _svgElement!: SVGElement;
   private _loaded: boolean = false;
+  private document = inject(DOCUMENT);
 
   @HostBinding('class.x-icon-spin') get getSpin() {
     return this.spin;
@@ -58,7 +58,6 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     private renderer: Renderer2,
     public iconService: XIconService,
     private cdr: ChangeDetectorRef,
-    @Optional() @Inject(DOCUMENT) private document: any,
     public configService: XConfigService
   ) {
     super();
@@ -110,7 +109,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
       if (firstChild) {
         this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
       }
-      this._svgElement = this.buildSvg(svgs.shift() as string) as SVGAElement;
+      this._svgElement = this.buildSvg(svgs.shift() as string) as SVGSVGElement;
       // this.setAnimates(svgs);
       this.setAttributes(this._svgElement);
       this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
@@ -138,8 +137,8 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     }
   }
 
-  buildSvg(svgStr: string): SVGAElement | undefined {
-    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGAElement;
+  buildSvg(svgStr: string): SVGSVGElement | undefined {
+    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
     svg.children.forEach((x) => {
@@ -191,7 +190,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
         let child = this._svgElement.children[i];
         let toChild = svg?.children[i];
         if (child?.nodeName === 'path' && toChild?.nodeName === 'path') {
-          let toAnimate = document.createElement('animate');
+          let toAnimate = this.document.createElement('animate');
           toAnimate.setAttribute('dur', '500ms');
           toAnimate.setAttribute('repeatCount', '1');
           toAnimate.setAttribute('attributeName', 'd');

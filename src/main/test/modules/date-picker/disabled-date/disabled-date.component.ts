@@ -1,5 +1,5 @@
 import { DatePipe, DOCUMENT } from '@angular/common';
-import { Component, Renderer2, Inject } from '@angular/core';
+import { Component, Renderer2, inject } from '@angular/core';
 import { XDatePickerDisabledDate, XDatePickerDisabledTime, XDatePickerRangType } from '@ng-nest/ui/date-picker';
 
 @Component({
@@ -9,10 +9,8 @@ import { XDatePickerDisabledDate, XDatePickerDisabledTime, XDatePickerRangType }
   providers: [DatePipe]
 })
 export class ExDisabledDateComponent {
-  document: Document;
-  constructor(private datePipe: DatePipe, private renderer: Renderer2, @Inject(DOCUMENT) doc: any) {
-    this.document = doc;
-  }
+  document = inject(DOCUMENT);
+  constructor(private datePipe: DatePipe, private renderer: Renderer2) {}
 
   ngOnInit() {
     let style = this.renderer.createElement('style');

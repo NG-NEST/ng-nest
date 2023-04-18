@@ -19,7 +19,7 @@ import {
   SkipSelf
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull, XResize } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
@@ -56,7 +56,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   loadMoreIndex = 0;
   icon: string = '';
   iconSpin: boolean = false;
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -303,7 +303,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     }
     const selected = !node.selected;
     if (selected) {
-      if (this.selectedNodes.length < this.multiple || this.multiple === 0) {
+      if (this.selectedNodes.length < Number(this.multiple) || this.multiple === 0) {
         node.selected = selected;
         this.selectedNodes = [...this.selectedNodes, node];
         if (this.selectedNodes.length === this.nodes.length) {

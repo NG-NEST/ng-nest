@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
+import { XStorageService } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ns-header',
@@ -14,16 +15,16 @@ export class HeaderComponent implements OnInit {
     { name: 'News', page: './news' }
   ];
 
-  lang = localStorage.getItem('Lang');
+  lang = this.storage.getLocal('Lang');
 
-  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService) {}
+  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService, private storage: XStorageService) {}
 
   ngOnInit() {
     this.layout.headerRef = this.ele;
   }
 
   push(page: string) {
-    localStorage.setItem('Lang', page);
+    this.storage.setLocal('Lang', page);
     location.href = `${location.origin}/${page}/${location.hash}`;
   }
 }

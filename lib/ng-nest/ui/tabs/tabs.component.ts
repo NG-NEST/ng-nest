@@ -15,7 +15,7 @@ import {
   Optional
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
-import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize } from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject, takeUntil, distinctUntilChanged, filter, startWith, delay } from 'rxjs';
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
@@ -33,7 +33,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
   private _tabsContentChange = new Subject<string>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   get activeIndex() {
     return Number(this.activatedIndex);

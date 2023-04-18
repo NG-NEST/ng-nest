@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
+import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService, XIsEmpty, XResizeObserver } from '@ng-nest/ui/core';
 import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -88,7 +88,7 @@ export class XFindComponent extends XFindProperty implements OnInit {
   height = 100;
 
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   override writeValue(value: any) {
     this.value = value;

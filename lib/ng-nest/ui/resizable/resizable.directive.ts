@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, HostBinding, HostListener, Inject, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
-import { XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
+import { XComputed, XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
@@ -106,7 +106,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     }
     this.createNode(...this.positions);
 
-    const computedStyle = window.getComputedStyle(this.ele);
+    const computedStyle = XComputed(this.ele);
     setTimeout(() => {
       this.minWidth = parseFloat(computedStyle.minWidth);
       this.maxWidth = parseFloat(computedStyle.maxWidth);

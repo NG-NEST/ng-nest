@@ -5,15 +5,25 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Inject,
   OnDestroy,
   ViewChild,
   AfterViewInit,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
-import { XIsEmpty, XConfigService, XIsNumber, XIsString, XResize, XIsObject, XResponseSize, XIsChange } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XConfigService,
+  XIsNumber,
+  XIsString,
+  XResize,
+  XIsObject,
+  XResponseSize,
+  XIsChange,
+  XResizeObserver
+} from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -28,9 +38,9 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
   isImgError: boolean = false;
 
   styleMap: { [key: string]: any } = {};
-  document!: Document;
+  document = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
-  private _resizeObserver!: ResizeObserver;
+  private _resizeObserver!: XResizeObserver;
 
   @ViewChild('labelRef') labelRef!: ElementRef<HTMLElement>;
 
@@ -38,11 +48,9 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    @Inject(DOCUMENT) document: any
+    public configService: XConfigService
   ) {
     super();
-    this.document = document;
   }
 
   ngOnDestroy(): void {

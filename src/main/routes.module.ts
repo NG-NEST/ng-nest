@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
       enableTracing: false,
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'top',
-      preloadingStrategy: XPreloadingStrategyService
+      preloadingStrategy: XPreloadingStrategyService,
+      initialNavigation: 'enabledBlocking'
     })
   ],
   exports: [RouterModule],

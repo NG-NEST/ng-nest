@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 
 @Component({
   selector: 'exception-404',
@@ -7,7 +8,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class Exception404Component {
+  document = inject(DOCUMENT);
+
   back() {
-    window.history.back();
+    this.document.defaultView?.history.back();
   }
 }

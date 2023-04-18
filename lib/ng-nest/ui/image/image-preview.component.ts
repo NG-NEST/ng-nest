@@ -7,11 +7,13 @@ import {
   ChangeDetectionStrategy,
   OnChanges,
   Inject,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XConfigService } from '@ng-nest/ui/core';
 import { X_DIALOG_DATA } from '@ng-nest/ui/dialog';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XImagePreviewPrefix}`,
@@ -36,6 +38,8 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
   activated?: XImageNode;
   total = 1;
   current = 1;
+
+  private document = inject(DOCUMENT);
 
   get getWrapperTransform() {
     return `translate3d(${this.position.x}px, ${this.position.y}px, 0)`;
@@ -110,13 +114,17 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
   onDragReleased() {
     let width = this.imageRef.nativeElement.offsetWidth * this.imgScale3d.x;
     let height = this.imageRef.nativeElement.offsetHeight * this.imgScale3d.x;
-    const clientWidth = document.documentElement.clientWidth;
-    const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+    const clientWidth = this.document.documentElement.clientWidth;
+    const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
     const isRotate = this.rotate % 180 !== 0;
     const box = this.imageRef.nativeElement.getBoundingClientRect();
-    const docElem = document.documentElement;
-    const left = box.left + (window.pageXOffset || docElem.scrollLeft) - (docElem.clientLeft || document.body.clientLeft || 0);
-    const top = box.top + (window.pageYOffset || docElem.scrollTop) - (docElem.clientTop || document.body.clientTop || 0);
+    const docElem = this.document.documentElement;
+    const left =
+      box.left +
+      (this.document.defaultView?.pageXOffset || docElem.scrollLeft) -
+      (docElem.clientLeft || this.document.body.clientLeft || 0);
+    const top =
+      box.top + (this.document.defaultView?.pageYOffset || docElem.scrollTop) - (docElem.clientTop || this.document.body.clientTop || 0);
     width = isRotate ? height : width;
     height = isRotate ? width : height;
 
