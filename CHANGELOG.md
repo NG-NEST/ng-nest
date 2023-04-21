@@ -1,3 +1,19 @@
+## [15.0.19](https://github.com/NG-NEST/ng-nest/compare/15.0.18...15.0.19) (2023-04-21)
+
+
+### Bug Fixes
+
+* **module:button:** fix button disabled ([68eb3fb](https://github.com/NG-NEST/ng-nest/commit/68eb3fb470e566084e392db52644f194e36d8c9e))
+* **ssr:** fix ssr error ([#222](https://github.com/NG-NEST/ng-nest/issues/222)) ([424bc7a](https://github.com/NG-NEST/ng-nest/commit/424bc7ac192e11948c3bafaa1a63098e44000dbb))
+
+
+### Features
+
+* **module:slider-select:** add reverse ([#91](https://github.com/NG-NEST/ng-nest/issues/91)) ([d07e9f1](https://github.com/NG-NEST/ng-nest/commit/d07e9f18f1e38fbe3172cf6885486758db2016cf))
+* **module:time-picker:** add placeholder i18n ([c979658](https://github.com/NG-NEST/ng-nest/commit/c97965872514a526fbb9585a70b62a4b3dc70539))
+
+
+
 ## [15.0.18](https://github.com/NG-NEST/ng-nest/compare/15.0.17...15.0.18) (2023-04-16)
 
 
