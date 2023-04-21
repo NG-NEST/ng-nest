@@ -32,7 +32,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   @ViewChild('railRef', { static: true }) railRef!: ElementRef<HTMLElement>;
   @ViewChild('processRef', { static: true }) processRef!: ElementRef<HTMLElement>;
   @ViewChild(XTooltipDirective, { static: true }) tooltip!: XTooltipDirective;
-  left: number = 0;
+  offset: number = 0;
   visible: boolean = false;
   manual: boolean = false;
   start!: number;
@@ -85,7 +85,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   change() {
-    const val = Number(((Number(this.max) - Number(this.min)) * Number(this.left)) / 100 + Number(this.min)).toFixed(
+    const val = Number(((Number(this.max) - Number(this.min)) * Number(this.offset)) / 100 + Number(this.min)).toFixed(
       Number(this.precision)
     );
     this.value = parseFloat(val);
@@ -99,8 +99,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   setLeft() {
-    this.left = Math.round(((this.value - Number(this.min)) * 100) / (Number(this.max) - Number(this.min)));
-    const start = this.left;
+    this.offset = Math.round(
+      ((this.value + (this.reverse ? Number(this.min) : -Number(this.min))) * 100) / (Number(this.max) - Number(this.min))
+    );
+    const start = this.offset;
     this.start = start;
     this.setDrag();
     this.cdr.detectChanges();
@@ -126,7 +128,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   onInnerClick(_$event: MouseEvent) {}
 
   started(drag: CdkDragStart) {
-    const start = this.left;
+    const start = this.offset;
     this.start = start;
     if (this.showTooltip) {
       this.manual = true;
@@ -158,6 +160,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   setDrag(distance: number = 0) {
+    if (typeof this.railRef.nativeElement.getBoundingClientRect !== 'function') return;
     let railBox = this.railRef.nativeElement.getBoundingClientRect();
     let stepWidth = railBox.width / ((Number(this.max) - Number(this.min)) / Number(this.step));
     let offset = Math.abs(distance % stepWidth);
@@ -169,10 +172,15 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
         : distance > 0
         ? distance + stepWidth - offset
         : distance - stepWidth + offset;
-    let x = (this.start / 100) * railBox.width + dis;
-    this.left = Math.round((x / railBox.width) * 100);
-    this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.left}%`);
-    this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.left}%`);
+
+    let x = (this.start / 100) * railBox.width + (this.reverse ? -dis : dis);
+    this.offset = Math.round((x / railBox.width) * 100);
+    if (this.reverse) {
+      this.renderer.setStyle(this.dragRef.nativeElement, 'right', `${this.offset}%`);
+    } else {
+      this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.offset}%`);
+    }
+    this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.offset}%`);
     this.renderer.removeStyle(this.dragRef.nativeElement, 'transform');
   }
 
