@@ -70,6 +70,19 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   locale: XI18nTimePicker = {};
   private _unSubject = new Subject<void>();
 
+  get getPlaceholder() {
+    if (this.placeholder) return this.placeholder;
+    if (this.type === 'time') {
+      return this.locale.selectTime;
+    } else if (this.type === 'hour') {
+      return this.locale.selectHour;
+    } else if (this.type === 'minute') {
+      return this.locale.selectMinute;
+    } else {
+      return this.locale.selectTime;
+    }
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,

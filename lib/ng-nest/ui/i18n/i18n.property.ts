@@ -123,6 +123,9 @@ export interface XI18nTimePicker {
   am?: string;
   pm?: string;
   now?: string;
+  selectTime?: string;
+  selectHour?: string;
+  selectMinute?: string;
 }
 
 export interface XI18nEmpty {

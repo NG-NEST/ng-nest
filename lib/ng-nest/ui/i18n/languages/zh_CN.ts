@@ -95,7 +95,10 @@ export default {
   timePicker: {
     am: '上午',
     pm: '下午',
-    now: '此刻'
+    now: '此刻',
+    selectTime: '请选择时间',
+    selectHour: '请选择小时',
+    selectMinute: '请选择分钟'
   },
   empty: {
     noData: '暂无数据'

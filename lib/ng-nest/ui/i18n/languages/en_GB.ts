@@ -96,7 +96,10 @@ export default {
   timePicker: {
     am: 'AM',
     pm: 'PM',
-    now: 'Now'
+    now: 'Now',
+    selectTime: 'Select time',
+    selectHour: 'Select hour',
+    selectMinute: 'Select minute'
   },
   empty: {
     noData: 'No data'
