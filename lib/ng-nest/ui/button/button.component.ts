@@ -9,7 +9,8 @@ import {
   Optional,
   Host,
   ElementRef,
-  Renderer2
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/core';
 import { delay, of } from 'rxjs';
@@ -25,6 +26,7 @@ import { XButtonsComponent } from './buttons.component';
 })
 export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
   transition = false;
+  @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
   constructor(
     @Optional() @Host() public buttons: XButtonsComponent,
     public cdr: ChangeDetectorRef,
@@ -42,8 +44,8 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
 
   ngOnChanges(changes: SimpleChanges): void {
     const { loading, disabled, activated, type, plain, size, direction } = changes;
-    if (XIsChange(loading)) this.disabled = this.loading;
-    XIsChange(disabled, activated) && this.cdr.detectChanges();
+    XIsChange(loading, disabled) && this.setDisabled();
+    XIsChange(activated) && this.cdr.detectChanges();
     XIsChange(type, plain, size, direction) && this.setClassMap();
   }
 
@@ -70,5 +72,15 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     if (!this.buttons?.space) return;
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${Number(this.buttons.space) / 2}rem`);
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${Number(this.buttons.space) / 2}rem`);
+  }
+
+  setDisabled() {
+    if (this.loading || this.disabled) {
+      this.renderer.setStyle(this.elementRef.nativeElement, 'pointer-events', 'none');
+      this.renderer.setStyle(this.buttonRef?.nativeElement, 'disabled', 'none');
+    } else {
+      this.renderer.removeStyle(this.elementRef.nativeElement, 'pointer-events');
+      this.renderer.removeStyle(this.buttonRef?.nativeElement, 'disabled');
+    }
   }
 }
