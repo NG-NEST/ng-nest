@@ -155,21 +155,27 @@
   }
   &-reverse {
     .#{$--x-slider-select-prefix} {
+      &-inner {
+        padding-right: 0;
+        padding-left: $--x-slider-select-button-size;
+      }
+      &-rail {
+        margin-left: math.div(-$--x-slider-select-button-size, 2);
+      }
       &-track {
         display: flex;
         justify-content: flex-end;
+        margin-left: math.div(-$--x-slider-select-button-size, 2);
       }
       &-drags {
         justify-content: flex-end;
+        right: auto;
       }
-    }
-    .x-slider-select-drag {
-      right: 0%;
     }
   }
   &:not(.x-slider-select-reverse) {
     .x-slider-select-drag {
-      left: 0%;
+      left: auto;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnDestroy, Input, AfterViewInit, Inject, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, Input, AfterViewInit, Renderer2, inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
@@ -12,9 +12,10 @@ export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
   @Input() outerElement!: HTMLElement;
   @Input() container!: HTMLElement;
 
+  private doc = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) public doc: any) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngAfterViewInit() {
     this.setSubject();

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
 import { toHex, mixColors, XConfigService, XComputed } from '@ng-nest/ui/core';
@@ -12,13 +12,9 @@ import { toHex, mixColors, XConfigService, XComputed } from '@ng-nest/ui/core';
 })
 export class XColorComponent extends XColorProperty implements OnInit {
   colors: string[] = [];
+  private doc = inject(DOCUMENT);
 
-  constructor(
-    @Inject(DOCUMENT) private doc: any,
-    private renderer: Renderer2,
-    private elementRef: ElementRef<HTMLElement>,
-    public configService: XConfigService
-  ) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
   }

@@ -56,7 +56,7 @@ export class XTreeFileProperty extends XTreeProperty {
    * @zh_CN 单位间距，这个与层级的乘积算出节点的左边距，单位 rem
    * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.5) @XInputNumber() override spacing?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() override spacing?: XNumber;
 }
 
 /**

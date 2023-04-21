@@ -10,7 +10,7 @@ import {
   OnChanges,
   OnDestroy,
   AfterViewInit,
-  Inject
+  inject
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
 import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
@@ -36,6 +36,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   activated?: XMenuNode;
   activatedElementRef!: ElementRef<HTMLElement>;
   expanded: any[] = [];
+  private doc = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
   private _target!: HTMLElement;
 
@@ -43,7 +44,6 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) public doc: any,
     public configService: XConfigService
   ) {
     super();
@@ -59,7 +59,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
     XIsChange(activatedId) && this.setActivatedNode(this.datas);
     XIsChange(collapsed) && this.setClassMap();
     if (XIsChange(target)) {
-      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target;
+      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target)! : this.target!;
     }
   }
 
@@ -146,7 +146,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       node.children = value.filter((y) => y.pid === node.id);
       node.leaf = node.children?.length > 0;
       if (node.leaf) {
-        node.open = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.indexOf(node.id) >= 0;
+        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0;
         node.childrenLoaded = node.open;
         node.children.map((y) => getChildren(y, level + 1));
         node.children = this.setCategory(node.children);

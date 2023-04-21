@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, Inject, Output, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -9,11 +9,9 @@ export class XDragDirective {
   @Output() dragMoved = new EventEmitter<{ x: number; y: number; offsetX: number; offsetY: number }>();
   @Output() dragEnded = new EventEmitter<{ x: number; y: number }>();
   private _unSubject = new Subject<void>();
-  doc: Document;
+  doc = inject(DOCUMENT);
 
-  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) document: any, private renderer: Renderer2) {
-    this.doc = document;
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown');

@@ -1,5 +1,15 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, HostBinding, HostListener, Inject, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+  inject
+} from '@angular/core';
 import { XComputed, XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
@@ -9,7 +19,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   @HostBinding('class.x-resizable-disabled') get getDisabled() {
     return !this.xResizable;
   }
-  document!: Document;
+  document = inject(DOCUMENT);
   ele!: HTMLElement;
   cornerPositions: XResizablePosition[] = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
   allPositions: XResizablePosition[] = ['left', 'right', 'top', 'bottom', ...this.cornerPositions];
@@ -28,9 +38,8 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
 
   firstLoaded = true;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, @Inject(DOCUMENT) doc: any) {
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     super();
-    this.document = doc;
     this.ele = this.elementRef.nativeElement;
   }
 

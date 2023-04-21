@@ -7,7 +7,7 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  Inject
+  inject
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -51,16 +51,14 @@ export class XUploadPortalComponent {
     left: number;
   };
 
-  doc: Document;
+  doc = inject(DOCUMENT);
 
   closePortal!: () => void;
   destroyPortal!: () => void;
   surePortal!: (blob: Blob) => void;
   private _unSubject = new Subject<void>();
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef, @Inject(DOCUMENT) document: any) {
-    this.doc = document;
-  }
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {}
 

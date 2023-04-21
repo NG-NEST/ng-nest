@@ -3,7 +3,7 @@ import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from
 import { HttpClient } from '@angular/common/http';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XCrumbNode } from '@ng-nest/ui/crumb';
-import { delay } from 'rxjs/operators';
+import { delay, finalize } from 'rxjs/operators';
 import { XHighlightLines } from '@ng-nest/ui/highlight';
 
 @Component({
@@ -67,7 +67,13 @@ export class XTreeFileComponent extends XTreeFileProperty {
         case 'code':
           this.http
             .get(node.url, { responseType: 'text' })
-            .pipe(delay(new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time))
+            .pipe(
+              delay(new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time),
+              finalize(() => {
+                this.loading = false;
+                this.cdr.detectChanges();
+              })
+            )
             .subscribe((x) => {
               node.content = x;
               node.contentLoaded = true;

@@ -25,6 +25,7 @@ import { ExSizeComponent } from './size/size.component';
 import { ExUse12hoursComponent } from './use12hours/use12hours.component';
 import { ExStepComponent } from './step/step.component';
 import { ExPresetComponent } from './preset/preset.component';
+import { ExRangeComponent } from './range/range.component';
 
 const routers = [{ path: '', component: TeTimePickerComponent }];
 
@@ -58,7 +59,8 @@ const routers = [{ path: '', component: TeTimePickerComponent }];
     ExSizeComponent,
     ExUse12hoursComponent,
     ExStepComponent,
-    ExPresetComponent
+    ExPresetComponent,
+    ExRangeComponent
   ]
 })
 export class TeTimePickerModule {}
