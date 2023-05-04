@@ -1,3 +1,12 @@
+## [15.0.20](https://github.com/NG-NEST/ng-nest/compare/15.0.19...15.0.20) (2023-05-04)
+
+
+### Bug Fixes
+
+* **module:tree:** fix node checkbox ([25560ae](https://github.com/NG-NEST/ng-nest/commit/25560aed544a201b45e5300f4d3818d92f91e5bd))
+
+
+
 ## [15.0.19](https://github.com/NG-NEST/ng-nest/compare/15.0.18...15.0.19) (2023-04-21)
 
 
