@@ -13,7 +13,17 @@ import {
   NgZone
 } from '@angular/core';
 import { XTreePrefix, XTreeNode, XTreeProperty } from './tree.property';
-import { XIsEmpty, XIsFunction, XIsUndefined, XIsChange, XSetData, XConfigService, XResize, XRemove, XResizeObserver } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsFunction,
+  XIsUndefined,
+  XIsChange,
+  XSetData,
+  XConfigService,
+  XResize,
+  XRemove,
+  XResizeObserver
+} from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
@@ -179,8 +189,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
-        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0 || node.open;
-        node.checked = this.checked.indexOf(node.id) >= 0;
+        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id) || node.open;
+        node.checked = this.checked.includes(node.id) || node.checked;
         node.childrenLoaded = node.open;
       }
       if (XIsUndefined(node.children) || regetChildren) {

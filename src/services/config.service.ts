@@ -36,11 +36,20 @@ export class ConfigService {
     private platform: Platform
   ) {
     this.defaultLang = this.i18n.getLocaleId();
+    this.handleLang();
   }
 
   init() {
     this.setLocale(this.checkPath());
     this.getVersions();
+  }
+
+  handleLang() {
+    let lang = this.lang;
+    if (lang.startsWith('"') && lang.endsWith('"')) {
+      lang = lang.replace(/\"/g, '');
+      this.lang = lang;
+    }
   }
 
   checkPath() {

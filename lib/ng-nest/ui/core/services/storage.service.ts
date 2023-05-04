@@ -1,5 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Injectable } from '@angular/core';
+import { XIsString } from '../interfaces';
 
 // @dynamic
 @Injectable({ providedIn: 'root' })
@@ -27,7 +28,11 @@ export class XStorageService {
    */
   setLocal(key: string, value: any) {
     if (this.platform.isBrowser) {
-      localStorage.setItem(key, JSON.stringify(value));
+      if (XIsString(value)) {
+        localStorage.setItem(key, value);
+      } else {
+        localStorage.setItem(key, JSON.stringify(value));
+      }
     }
   }
 
