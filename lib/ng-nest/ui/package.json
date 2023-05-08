@@ -1,6 +1,7 @@
 {
   "name": "@ng-nest/ui",
   "version": "16.0.0",
+  "license": "MIT",
   "homepage": "https://www.ngnest.com",
   "author": "ng-nest",
   "ng-update": {
