@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'header';
 /**
  * PageHeader Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPageHeaderPrefix}-property`, template: '' })
 export class XPageHeaderProperty {
   /**
    * @zh_CN 返回图标

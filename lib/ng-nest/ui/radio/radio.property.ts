@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'radio';
 /**
  * Radio Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XRadioPrefix}-property`, template: '' })
 export class XRadioProperty extends XControlValueAccessor<any> implements XRadioOption {
   /**
    * @zh_CN 单选框数据

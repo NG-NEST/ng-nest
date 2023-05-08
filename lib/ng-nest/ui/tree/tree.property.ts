@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'tree';
 /**
  * Tree Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTreePrefix}-property`, template: '' })
 export class XTreeProperty extends XProperty {
   /**
    * @zh_CN 节点数据
@@ -350,7 +350,7 @@ export const XTreeNodePrefix = 'x-tree-node';
 /**
  * TreeNode Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTreeNodePrefix}-property`, template: '' })
 export class XTreeNodeProperty extends XProperty {
   /**
    * @zh_CN 节点数据

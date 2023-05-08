@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'tag';
 /**
  * Tag Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTagPrefix}-property`, template: '' })
 export class XTagProperty extends XProperty {
   /**
    * @zh_CN 标签样式类型

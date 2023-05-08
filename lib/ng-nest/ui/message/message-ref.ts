@@ -8,6 +8,7 @@ export class XMessageRef {
     this.option = option;
   }
   close = () => {};
+  opened = () => {};
   closeAll = () => {};
   update = (_option: XMessageOption) => {};
 }

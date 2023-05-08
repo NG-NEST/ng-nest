@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'textarea';
 /**
  * Textarea Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTextareaPrefix}-property`, template: '' })
 export class XTextareaProperty extends XControlValueAccessor<any> implements XTextareaOption {
   /**
    * @zh_CN 清除按钮

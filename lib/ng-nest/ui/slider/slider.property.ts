@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'slider';
 /**
  * Slider Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XSliderPrefix}-property`, template: '' })
 export class XSliderProperty extends XProperty {
   /**
    * @zh_CN 节点数据

@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'progress';
 /**
  * Progress Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XProgressPrefix}-property`, template: '' })
 export class XProgressProperty extends XProperty {
   /**
    * @zh_CN 进度条类型

@@ -24,7 +24,7 @@ const X_CONFIG_NAME = 'tabs';
 /**
  * Tabs Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTabsPrefix}-property`, template: '' })
 export class XTabsProperty extends XProperty {
   /**
    * @zh_CN Data 数据
@@ -156,7 +156,7 @@ export const XTabPrefix = 'x-tab';
 /**
  * Tab Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTabPrefix}-property`, template: '' })
 export class XTabProperty {
   /**
    * @zh_CN 标签名称，支持自定义模板

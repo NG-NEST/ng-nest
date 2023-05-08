@@ -132,9 +132,9 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
       if (isNaN(Number(this.index)) || this.index === 0) {
         this.index = 1;
       }
-      if (this.index <= this.indexFirst) {
+      if (Number(this.index) <= this.indexFirst) {
         this.index = this.indexFirst;
-      } else if (this.index >= this.lastIndex) {
+      } else if (Number(this.index) >= this.lastIndex) {
         this.index = this.lastIndex;
       }
       this.jump(this.index as number);

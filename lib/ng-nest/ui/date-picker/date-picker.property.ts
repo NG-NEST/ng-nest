@@ -24,7 +24,7 @@ const X_CONFIG_NAME = 'datePicker';
 /**
  * DatePicker Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDatePickerPrefix}-property`, template: '' })
 export class XDatePickerProperty extends XControlValueAccessor<any> implements XDatePickerOption {
   /**
    * @zh_CN 选择类型
@@ -146,7 +146,7 @@ const X_CONFIG_RANGE_NAME = 'dateRange';
 /**
  * DateRange Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDateRangePrefix}-property`, template: '' })
 export class XDateRangeProperty extends XControlValueAccessor<any> implements XDateRangeOption {
   /**
    * @zh_CN 选择类型
@@ -321,7 +321,7 @@ export const XPickerDatePrefix = 'x-picker-date';
 /**
  * PickerDate Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPickerDatePrefix}-property`, template: '' })
 export class XPickerDateProperty extends XProperty {
   /**
    * @zh_CN 选择类型
@@ -583,7 +583,7 @@ export const XPickerMonthPrefix = 'x-picker-month';
 /**
  * PickerMonth Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPickerMonthPrefix}-property`, template: '' })
 export class XPickerMonthProperty extends XProperty {
   /**
    * @zh_CN 选择类型
@@ -697,7 +697,7 @@ export const XPickerQuarterPrefix = 'x-picker-quarter';
 /**
  * PickerQuarter Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPickerQuarterPrefix}-property`, template: '' })
 export class XPickerQuarterProperty extends XProperty {
   /**
    * @zh_CN 选择类型
@@ -818,7 +818,7 @@ export const XPickerYearPrefix = 'x-picker-year';
 /**
  * PickerYear Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPickerYearPrefix}-property`, template: '' })
 export class XPickerYearProperty extends XProperty {
   /**
    * @zh_CN 选择类型

@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'dropdown';
 /**
  * Dropdown Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDropdownPrefix}-property`, template: '' })
 export class XDropdownProperty extends XProperty {
   /**
    * @zh_CN 节点数据

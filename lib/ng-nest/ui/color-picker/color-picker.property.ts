@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'colorPicker';
 /**
  * ColorPicker Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XColorPickerPrefix}-property`, template: '' })
 export class XColorPickerProperty extends XControlValueAccessor<string> implements XColorPickerOption {
   /**
    * @zh_CN 展示方位

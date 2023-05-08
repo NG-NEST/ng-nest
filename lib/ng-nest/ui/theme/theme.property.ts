@@ -16,7 +16,7 @@ export const XThemeAmounts = [-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0
 /**
  * Theme Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XThemePrefix}-property`, template: '' })
 export class XThemeProperty extends XControlValueAccessor<XColorsTheme> {
   /**
    * @zh_CN 参数前缀

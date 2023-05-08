@@ -16,7 +16,7 @@ export const X_DRAWER_DATA = new InjectionToken<any>('XDrawerData');
 /**
  * Drawer Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDrawerPrefix}-property`, template: '' })
 export class XDrawerProperty extends XProperty {
   /**
    * @zh_CN 标题
@@ -125,7 +125,7 @@ export interface XDrawerOption {
 /**
  * Drawer Container Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDrawerContainerPrefix}-property`, template: '' })
 export class XDrawerContainerProperty extends XProperty {}
 
 /**

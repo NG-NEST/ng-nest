@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'card';
 /**
  * Card Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCardPrefix}-property`, template: '' })
 export class XCardProperty extends XProperty {
   /**
    * @zh_CN 卡片宽度

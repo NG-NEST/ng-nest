@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'transfer';
 /**
  * Transfer Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTransferPrefix}-property`, template: '' })
 export class XTransferProperty extends XControlValueAccessor<any[]> {
   /**
    * @zh_CN 数据对象
@@ -204,7 +204,7 @@ export interface XTransferSource {
    * @zh_CN 底部自定义模版
    * @en_US Bottom Custom Template
    */
-  footerTpl?: TemplateRef<void>;
+  footerTpl?: TemplateRef<any>;
   /**
    * @zh_CN 表格列头搜索自定义模板
    * @en_US table head search custom template

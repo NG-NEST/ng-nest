@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'upload';
 /**
  * Upload Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XUploadPrefix}-property`, template: '' })
 export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
   /**
    * @zh_CN 显示文字

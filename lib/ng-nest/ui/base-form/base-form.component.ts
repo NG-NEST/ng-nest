@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, forwardRef, Renderer2, Type } from '@angu
 import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, XSetFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
-@Component({ template: '' })
+@Component({ selector: 'x-control-value-accessor', template: '' })
 export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
   get invalid() {
     return this.validator && ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator);

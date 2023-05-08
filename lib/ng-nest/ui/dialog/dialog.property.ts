@@ -18,7 +18,7 @@ export const X_DIALOG_DATA = new InjectionToken<any>('XDialogData');
 /**
  * Dialog Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDialogPrefix}-property`, template: '' })
 export class XDialogProperty extends XAlertProperty {
   @Input() @XInputBoolean() visible: boolean = false;
   /**
@@ -266,7 +266,7 @@ export const X_DIALOG_CONTAINER = new InjectionToken('X_DIALOG_CONTAINER');
 /**
  * Dialog Container Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDialogContainerPrefix}-property`, template: '' })
 export class XDialogContainerProperty extends XProperty {}
 
 /**

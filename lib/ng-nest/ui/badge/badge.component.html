@@ -1,6 +1,6 @@
 <div #badge class="x-badge" [ngClass]="classMap" [class.x-badge-dot]="dot" [class.x-badge-standalone]="standalone">
   <ng-content></ng-content>
-  <ng-container *ngIf="value > 0 || dot">
+  <ng-container *ngIf="valueNumber > 0 || dot">
     <sup *ngIf="standalone" [@x-badge-standalone-animation] [style.marginRight]="getOffsetRight" [style.marginTop]="getOffsetTop">
       <ng-container *ngIf="!dot">
         <ng-container *ngTemplateOutlet="diaplayValueTpl"></ng-container>

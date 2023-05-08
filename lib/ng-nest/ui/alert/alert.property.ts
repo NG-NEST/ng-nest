@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'alert';
 /**
  * Alert Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XAlertPrefix}-property`, template: '' })
 export class XAlertProperty extends XProperty {
   /**
    * @zh_CN 隐藏

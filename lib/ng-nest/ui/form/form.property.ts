@@ -34,7 +34,7 @@ export type XFormTemplate = { [property: string]: TemplateRef<any> };
 /**
  * Form Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XFormPrefix}-property`, template: '' })
 export class XFormProperty extends XFormProp {
   /**
    * @zh_CN 表单 FormGroup
@@ -265,7 +265,7 @@ export const XControlPrefix = 'x-control';
 /**
  * Control Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XControlPrefix}-property`, template: '' })
 export class XControlProperty {
   /**
    * @zh_CN 控件对象

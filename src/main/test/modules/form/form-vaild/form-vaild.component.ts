@@ -29,9 +29,9 @@ export class ExFormVaildComponent {
       label: '用户',
       width: 300,
       inputValidator: (value: string) => {
-        return String(value).length > 5;
+        return String(value).trim().length > 0;
       },
-      message: '长度大于 5 个字符',
+      message: '必填',
       required: true
     },
     {

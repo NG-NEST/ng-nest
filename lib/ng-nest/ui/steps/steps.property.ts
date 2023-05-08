@@ -21,7 +21,7 @@ export const XStepsPrefix = 'x-steps';
 /**
  * Steps Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XStepsPrefix}-property`, template: '' })
 export class XStepsProperty extends XProperty {
   /**
    * @zh_CN 节点数据

@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'switch';
 /**
  * Switch Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XSwitchPrefix}-property`, template: '' })
 export class XSwitchProperty extends XControlValueAccessor<boolean> implements XSwitchOption {
   /**
    * @zh_CN 显示加载中

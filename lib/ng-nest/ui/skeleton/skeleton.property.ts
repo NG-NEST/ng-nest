@@ -11,7 +11,7 @@ export const XSkeletonPrefix = 'x-skeleton';
 /**
  * Skeleton Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XSkeletonPrefix}-property`, template: '' })
 export class XSkeletonProperty extends XProperty {
   /**
    * @zh_CN 骨架数据

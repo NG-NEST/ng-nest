@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'checkbox';
 /**
  * Checkbox Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCheckboxPrefix}-property`, template: '' })
 export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> implements XCheckboxOption {
   /**
    * @zh_CN 多选框数据

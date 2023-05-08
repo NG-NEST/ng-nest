@@ -24,7 +24,7 @@ const X_CONFIG_NAME = 'menu';
 /**
  * Menu Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XMenuPrefix}-property`, template: '' })
 export class XMenuProperty extends XProperty {
   /**
    * @zh_CN 节点数据
@@ -162,7 +162,7 @@ export const XMenuNodePrefix = 'x-menu-node';
 /**
  * Menu Node Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XMenuNodePrefix}-property`, template: '' })
 export class XMenuNodeProperty extends XProperty {
   /**
    * @zh_CN 节点数据

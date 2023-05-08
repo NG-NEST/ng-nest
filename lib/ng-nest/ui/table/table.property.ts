@@ -27,7 +27,7 @@ const X_CONFIG_NAME = 'table';
 /**
  * Table Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTablePrefix}-property`, template: '' })
 export class XTableProperty extends XPaginationProperty implements XTableOption {
   /**
    * @zh_CN 行数据
@@ -657,7 +657,7 @@ export const XTableHeadPrefix = 'x-table-head';
 /**
  * Table Head Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTableHeadPrefix}-property`, template: '' })
 export class XTableHeadProperty extends XProperty {
   /**
    * @zh_CN 列集合
@@ -706,7 +706,7 @@ export const XTableBodyPrefix = 'x-table-body';
 /**
  * Table Body Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTableBodyPrefix}-property`, template: '' })
 export class XTableBodyProperty extends XProperty {
   /**
    * @zh_CN 行数据
@@ -820,7 +820,7 @@ export const XTableFootPrefix = 'x-table-foot';
 /**
  * Table Foot Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTableFootPrefix}-property`, template: '' })
 export class XTableFootProperty extends XProperty {
   /**
    * @zh_CN 表格页尾

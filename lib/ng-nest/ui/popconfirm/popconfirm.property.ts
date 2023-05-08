@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'popconfirm';
 /**
  * Popconfirm Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPopconfirmPrefix}-property`, template: '' })
 export class XPopconfirmProperty extends XProperty {
   /**
    * @zh_CN 标题，支持自定义模板

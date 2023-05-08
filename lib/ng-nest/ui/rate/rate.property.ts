@@ -13,7 +13,7 @@ const X_CONFIG_NAME = 'rate';
 /**
  * Rate Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XRatePrefix}-property`, template: '' })
 export class XRateProperty extends XControlValueAccessor<any> implements XRateOption {
   /**
    * @zh_CN 评分个数

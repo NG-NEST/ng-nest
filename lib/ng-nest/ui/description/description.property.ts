@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'description';
 /**
  * Description Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDescriptionPrefix}-property`, template: '' })
 export class XDescriptionProperty extends XProperty {
   /**
    * @zh_CN 描述列表的标题，支持自定义模板
@@ -46,7 +46,7 @@ export const XDescriptionItemPrefix = 'x-description-item';
 /**
  * Description Item Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XDescriptionItemPrefix}-property`, template: '' })
 export class XDescriptionItemProperty {
   /**
    * @zh_CN 使用 grid 布局

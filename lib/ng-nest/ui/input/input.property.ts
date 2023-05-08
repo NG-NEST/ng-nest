@@ -23,7 +23,7 @@ const X_CONFIG_NAME = 'input';
 /**
  * Input Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XInputPrefix}-property`, template: '' })
 export class XInputProperty extends XControlValueAccessor<any> implements XInputOption {
   /**
    * @zh_CN 输入类型
@@ -257,7 +257,7 @@ const X_CONFIG_GROUP_NAME = 'inputGroup';
 /**
  * Input Group Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XInputGroupPrefix}-property`, template: '' })
 export class XInputGroupProperty extends XProperty {
   /**
    * @zh_CN 尺寸

@@ -11,7 +11,7 @@ export const XResultPrefix = 'x-result';
 /**
  * Result Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XResultPrefix}-property`, template: '' })
 export class XResultProperty extends XProperty {
   /**
    * @zh_CN 状态

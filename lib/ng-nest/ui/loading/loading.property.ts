@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'loading';
 /**
  * Loading Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XLoadingPrefix}-property`, template: '' })
 export class XLoadingProperty extends XProperty {
   /**
    * @zh_CN 显示 loading

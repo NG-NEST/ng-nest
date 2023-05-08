@@ -11,7 +11,7 @@ export const XTypographyPrefix = 'x-typography';
 /**
  * Typography Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTypographyPrefix}-property`, template: '' })
 export class XTypographyProperty extends XProperty {
   /**
    * @zh_CN 字体

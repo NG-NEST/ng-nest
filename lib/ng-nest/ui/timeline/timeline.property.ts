@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'timeline';
 /**
  * Timeline Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTimelinePrefix}-property`, template: '' })
 export class XTimelineProperty extends XProperty {
   /**
    * @zh_CN 数据

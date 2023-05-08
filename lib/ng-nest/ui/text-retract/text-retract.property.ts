@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'textRetract';
 /**
  * TextRetract Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTextRetractPrefix}-property`, template: '' })
 export class XTextRetractProperty {
   /**
    * @zh_CN 文本

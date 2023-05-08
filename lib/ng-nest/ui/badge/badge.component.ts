@@ -27,6 +27,10 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
   displayNums: any[] = [];
   maxNums: number[] = [];
 
+  get valueNumber() {
+    return Number(this.value);
+  }
+
   get getOffsetRight() {
     if (this.offset && XIsArray(this.offset) && this.offset.length > 0) {
       return `-${this.offset[0]}`;
@@ -67,7 +71,7 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
 
   setDisplayValue() {
     let toNumber = Number(this.value);
-    if (XIsNumber(toNumber) && this.max && toNumber > this.max) {
+    if (XIsNumber(toNumber) && this.max && toNumber > Number(this.max)) {
       this.displayValue = `${this.max}+`;
     } else {
       this.displayValue = `${this.value}`;

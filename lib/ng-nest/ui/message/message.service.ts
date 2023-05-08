@@ -94,6 +94,9 @@ export class XMessageService {
     ref.update = (_opt) => {
       this.updateMessage(_opt, opt);
     };
+    ref.opened = () => {
+      return this.messages[opt.placement!].list.includes(opt);
+    };
     this.setDuration(opt);
     this.createMessagePlacement(opt);
 

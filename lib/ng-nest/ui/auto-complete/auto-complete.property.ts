@@ -22,7 +22,7 @@ const X_CONFIG_NAME = 'autoComplete';
 /**
  * AutoComplete Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XAutoCompletePrefix}-property`, template: '' })
 export class XAutoCompleteProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 节点数据

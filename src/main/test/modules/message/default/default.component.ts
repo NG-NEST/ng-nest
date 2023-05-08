@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XMessageService } from '@ng-nest/ui/message';
+import { XMessageRef, XMessageService } from '@ng-nest/ui/message';
 import { XPlace } from '@ng-nest/ui/core';
 
 @Component({
@@ -8,8 +8,12 @@ import { XPlace } from '@ng-nest/ui/core';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
+  messageRef?: XMessageRef;
   constructor(private message: XMessageService) {}
   open(place: XPlace, title: string) {
-    this.message.info({ title: title + '消息', placement: place, displayType: 'single' });
+    if (this.messageRef?.opened()) {
+      return;
+    }
+    this.messageRef = this.message.info({ title: title + '消息', placement: place, displayType: 'single' });
   }
 }

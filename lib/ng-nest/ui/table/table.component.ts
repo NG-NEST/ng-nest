@@ -306,7 +306,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   setExpand(data: XTableRow[]) {
     const getChildren = (node: XTableRow, level: number) => {
       node.level = level;
-      node.expanded = Boolean(this.expandedAll) || level <= this.expandedLevel || this.expanded.includes(node.id);
+      node.expanded = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id);
       if (XIsUndefined(node.children)) node.children = data.filter((y) => y.pid === node.id);
       if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) > 0;
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));

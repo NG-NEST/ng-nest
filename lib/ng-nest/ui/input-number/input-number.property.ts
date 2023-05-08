@@ -14,7 +14,7 @@ const X_CONFIG_NAME = 'inputNumber';
 /**
  * InputNumber Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XInputNumberPrefix}-property`, template: '' })
 export class XInputNumberProperty extends XControlValueAccessor<any> implements XInputNumberOption {
   /**
    * @zh_CN 最小值

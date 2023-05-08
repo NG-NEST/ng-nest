@@ -32,7 +32,7 @@ export interface XFindSearchOption extends XFilter {
 /**
  * Find Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XFindPrefix}-property`, template: '' })
 export class XFindProperty extends XControlValueAccessor<any | any[]> implements XFindOption {
   /**
    * @zh_CN 尺寸

@@ -11,7 +11,7 @@ export const XStatisticPrefix = 'x-statistic';
 /**
  * Statistic Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XStatisticPrefix}-property`, template: '' })
 export class XStatisticProperty {
   /**
    * @zh_CN 显示值
@@ -51,7 +51,7 @@ const X_CONFIG_NAME = 'countdown';
 /**
  * Countdown Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCountdownPrefix}-property`, template: '' })
 export class XCountdownProperty extends XStatisticProperty {
   /**
    * @zh_CN 格式化

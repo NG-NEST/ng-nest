@@ -15,7 +15,7 @@ const X_CONFIG_NAME = 'treeFile';
 /**
  * TreeFile Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTreeFilePrefix}-property`, template: '' })
 export class XTreeFileProperty extends XTreeProperty {
   /**
    * @zh_CN 节点数据

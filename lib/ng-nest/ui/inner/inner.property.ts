@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'inner';
 /**
  * Inner Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XInnerPrefix}-property`, template: '' })
 export class XInnerProperty extends XProperty {
   /**
    * @zh_CN 内边距

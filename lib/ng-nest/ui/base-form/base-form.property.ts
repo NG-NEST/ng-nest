@@ -4,7 +4,7 @@ import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize
 /**
  * 表单对象共有的参数
  */
-@Component({ template: '' })
+@Component({ selector: 'x-form-prop', template: '' })
 export class XFormProp extends XProperty {
   /**
    * 标签

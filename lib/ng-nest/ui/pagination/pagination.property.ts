@@ -19,7 +19,7 @@ export const XPaginationSizeData = [10, 20, 50, 100];
 /**
  * Pagination Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XPaginationPrefix}-property`, template: '' })
 export class XPaginationProperty extends XProperty {
   /**
    * @zh_CN 当前页码

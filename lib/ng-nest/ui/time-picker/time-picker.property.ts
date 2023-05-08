@@ -24,7 +24,7 @@ const X_CONFIG_NAME = 'timePicker';
 /**
  * TimePicker Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTimePickerPrefix}-property`, template: '' })
 export class XTimePickerProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 时间类型

@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'backTop';
 /**
  * BackTop Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XBackTopPrefix}-property`, template: '' })
 export class XBackTopProperty extends XProperty {
   /**
    * @zh_CN 距离右边的距离

@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'button';
 /**
  * Button Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XButtonPrefix}-property`, template: '' })
 export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * @zh_CN 类型
@@ -186,7 +186,7 @@ const X_CONFIG_NAME_BUTTONS = 'buttons';
 /**
  * Buttons Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XButtonsPrefix}-property`, template: '' })
 export class XButtonsProperty extends XProperty {
   /**
    * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）

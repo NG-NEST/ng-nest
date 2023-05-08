@@ -13,7 +13,7 @@ export const XSliderSelectPrefix = 'x-slider-select';
 /**
  * SliderSelect Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XSliderSelectPrefix}-property`, template: '' })
 export class XSliderSelectProperty extends XControlValueAccessor<number> implements XSliderSelectOption {
   /**
    * @zh_CN 最小值

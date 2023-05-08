@@ -24,7 +24,7 @@ const X_CONFIG_NAME = 'cascade';
 /**
  * Cascade Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCascadePrefix}-property`, template: '' })
 export class XCascadeProperty extends XControlValueAccessor<any> implements XCascadeOption {
   /**
    * @zh_CN 节点数据

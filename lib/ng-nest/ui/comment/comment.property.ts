@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'comment';
 /**
  * Comment Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCommentPrefix}-property`, template: '' })
 export class XCommentProperty extends XProperty {
   /**
    * @zh_CN 评论数据
@@ -113,7 +113,7 @@ export const XCommentReplyPrefix = 'x-comment-reply';
 /**
  * Comment Reply Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCommentReplyPrefix}-property`, template: '' })
 export class XCommentReplyProperty extends XProperty {
   /**
    * @zh_CN 回复的最大字数

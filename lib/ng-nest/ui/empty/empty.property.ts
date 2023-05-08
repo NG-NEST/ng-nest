@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'empty';
 /**
  * Empty Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XEmptyPrefix}-property`, template: '' })
 export class XEmptyProperty {
   /**
    * @zh_CN 图片地址或自定义模板

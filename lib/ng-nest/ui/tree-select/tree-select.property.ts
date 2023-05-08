@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'treeSelect';
 /**
  * Tree Select Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XTreeSelectPrefix}-property`, template: '' })
 export class XTreeSelectProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 节点数据

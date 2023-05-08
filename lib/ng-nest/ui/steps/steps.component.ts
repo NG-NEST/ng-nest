@@ -82,7 +82,7 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
         if (XIsUndefined(this.activatedIndex)) {
           x.status = 'wait';
         } else if (XIsNumber(this.activatedIndex)) {
-          x.status = index < this.activatedIndex ? 'finish' : index === this.activatedIndex ? 'process' : 'wait';
+          x.status = index < Number(this.activatedIndex) ? 'finish' : index === this.activatedIndex ? 'process' : 'wait';
         }
         if (this.status && index === this.activatedIndex) x.status = this.status;
       }

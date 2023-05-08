@@ -22,7 +22,7 @@ const X_CONFIG_NAME = 'carousel';
 /**
  * Carousel Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCarouselPrefix}-property`, template: '' })
 export class XCarouselProperty extends XProperty {
   /**
    * @zh_CN 当前激活的幻灯片索引
@@ -104,7 +104,7 @@ export const XCarouselPanelPrefix = 'x-carousel-panel';
 /**
  * Carousel Panel Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCarouselPanelPrefix}-property`, template: '' })
 export class XCarouselPanelProperty extends XProperty {
   /**
    * @zh_CN 激活当前幻灯片

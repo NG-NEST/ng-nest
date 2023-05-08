@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'image';
 /**
  * Image Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XImagePrefix}-property`, template: '' })
 export class XImageProperty extends XProperty {
   /**
    * @zh_CN 图片显示地址
@@ -104,7 +104,7 @@ export const XImagePreviewPrefix = 'x-image-preview';
 /**
  * Image Preview Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XImagePreviewPrefix}-property`, template: '' })
 export class XImagePreviewProperty extends XProperty {}
 
 /**

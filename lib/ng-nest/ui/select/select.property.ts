@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'select';
 /**
  * Select Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XSelectPrefix}-property`, template: '' })
 export class XSelectProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 节点数据

@@ -1,5 +1,6 @@
 <x-row>
   <x-col span="8">
-    <x-tree [data]="data" checkbox> </x-tree>
+    <x-tree #treeCom [data]="data" checkbox> </x-tree>
+    <x-button (click)="getChecked()">huoqu</x-button>
   </x-col>
 </x-row>

@@ -25,7 +25,7 @@ const X_CONFIG_NAME = 'list';
 /**
  * List Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XListPrefix}-property`, template: '' })
 export class XListProperty extends XControlValueAccessor<any> {
   /**
    * @zh_CN 列表数据
@@ -219,7 +219,7 @@ export const XListOptionPrefix = 'x-list-option';
 /**
  * List Option Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XListOptionPrefix}-property`, template: '' })
 export class XListOptionProperty {
   /**
    * @zh_CN 节点参数

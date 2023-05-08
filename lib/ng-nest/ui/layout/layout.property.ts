@@ -11,7 +11,7 @@ export const XRowPrefix = 'x-row';
 /**
  * Row Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XRowPrefix}-property`, template: '' })
 export class XRowProperty extends XProperty {
   /**
    * @zh_CN 列间隔，rem
@@ -40,7 +40,7 @@ export const XColPrefix = 'x-col';
 /**
  * Col Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XColPrefix}-property`, template: '' })
 export class XColProperty extends XProperty {
   /**
    * @zh_CN 24栅格布局，列占的宽度

@@ -11,7 +11,7 @@ export const XHighlightPrefix = 'x-highlight';
 /**
  * Highlight Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XHighlightPrefix}-property`, template: '' })
 export class XHighlightProperty extends XProperty {
   /**
    * @zh_CN 代码类型

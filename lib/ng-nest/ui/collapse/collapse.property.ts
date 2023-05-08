@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'collapse';
 /**
  * Collapse Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCollapsePrefix}-property`, template: '' })
 export class XCollapseProperty extends XProperty {
   /**
    * @zh_CN 是否以手风琴的方式展示，只展开一个面板
@@ -72,7 +72,7 @@ export const XCollapsePanelPrefix = 'x-collapse-panel';
 /**
  * Collapse Panel Property
  */
-@Component({ template: '' })
+@Component({ selector: `${XCollapsePanelPrefix}-property`, template: '' })
 export class XCollapsePanelProperty extends XProperty {
   /**
    * @zh_CN 标题，支持模板自定义
