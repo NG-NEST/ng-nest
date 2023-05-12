@@ -349,7 +349,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         } else {
           let ids = [];
           let selected = [];
-          if (XIsObjectArray(this.value)) {
+          if (XIsObjectArray<XSelectNode[]>(this.value)) {
             this.objectArray = true;
             ids = this.value.map((x: XSelectNode) => x.id);
           } else {
@@ -389,7 +389,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   closeNode(event: Event, node: XSelectNode, index: number) {
     let inx = -1;
-    if (XIsObjectArray(this.value)) {
+    if (XIsObjectArray<XSelectNode[]>(this.value)) {
       inx = this.value.findIndex((y: XSelectNode) => y.id === node.id);
     } else {
       inx = this.value.findIndex((y: number | string) => y === node.id);

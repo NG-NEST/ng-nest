@@ -46,7 +46,7 @@ export function XIsNumber(value: any): value is number {
 export function XIsBoolean(value: any): value is boolean {
   return IsBoolean(value);
 }
-export function XIsObject(value: any): value is object {
+export function XIsObject<T>(value: any): value is T {
   return IsObject(value);
 }
 export function XIsNull(value: any): value is null {

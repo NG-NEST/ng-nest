@@ -35,11 +35,12 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
     return (value as []).map((x: any) => {
       if (XIsValue(x)) {
         return { label: x, id: x };
-      } else if (XIsObject(x)) {
+      } else if (XIsObject<{ label: any; id: any }>(x)) {
         x.label = XIsUndefined(x.label) || XIsNull(x.label) ? x.id : x.label;
         x.id = XIsUndefined(x.id) || XIsNull(x.id) ? x.label : x.id;
         return x;
       }
+      return x;
     });
   }
   return value;
