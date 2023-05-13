@@ -1,6 +1,14 @@
-<div class="box">
+<div class="box" #boxRef>
   <div class="top">
-    <x-button x-popover content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
+    <x-button
+      x-popover
+      content="上左上左上左上左上左上左上左上左上左上左"
+      [connectTo]="boxRef"
+      [visible]="true"
+      [panelClass]="['sit-nav', 'bb']"
+      placement="top-start"
+      >上左</x-button
+    >
     <x-button x-popover content="上中上中上中上中上中上中上中上中上中上中" placement="top">上中</x-button>
     <x-button x-popover content="上右上右上右上右上右上右上右上右上右上右" placement="top-end">上右</x-button>
   </div>

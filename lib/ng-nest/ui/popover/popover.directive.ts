@@ -1,4 +1,4 @@
-import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges } from '@angular/core';
+import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, HostBinding } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPrefix, XPopoverProperty } from './popover.property';
@@ -26,6 +26,10 @@ export class XPopoverDirective extends XPopoverProperty implements OnChanges {
     public configService: XConfigService
   ) {
     super();
+  }
+
+  @HostBinding('class.x-popover-show') get _show() {
+    return this.visible;
   }
 
   @HostListener('click') click() {
@@ -90,7 +94,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnChanges {
   hide() {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.timeoutShow) clearTimeout(this.timeoutShow);
-    if (this.portal.overlayRef?.hasAttached()) {
+    if (this.portal?.overlayRef?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.visible = false;
         this.portal.overlayRef?.dispose();
@@ -101,9 +105,14 @@ export class XPopoverDirective extends XPopoverProperty implements OnChanges {
 
   createPortal() {
     const config: OverlayConfig = {
+      panelClass: this.panelClass,
       backdropClass: '',
       positionStrategy: this.portalService.setPlacement({
-        elementRef: this.elementRef,
+        elementRef: this.connectTo
+          ? this.connectTo instanceof ElementRef
+            ? this.connectTo
+            : new ElementRef(this.connectTo)
+          : this.elementRef,
         placement: [this.placement as XPlacement, 'bottom', 'top', 'left', 'right']
       }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()

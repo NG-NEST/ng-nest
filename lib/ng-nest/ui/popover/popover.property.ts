@@ -1,5 +1,5 @@
 import { XPlacement, XTemplate, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Directive } from '@angular/core';
+import { Input, Output, EventEmitter, Directive, ElementRef } from '@angular/core';
 
 /**
  * Popover
@@ -29,6 +29,16 @@ export class XPopoverProperty extends XProperty {
    * @en_US At the bottom, support custom templates
    */
   @Input() footer?: XTemplate;
+  /**
+   * @zh_CN 内部样式
+   * @en_US panel class
+   */
+  @Input() panelClass?: string | string[];
+  /**
+   * @zh_CN 指定参考对象
+   * @en_US specify reference object
+   */
+  @Input() connectTo?: ElementRef<HTMLElement> | HTMLElement;
   /**
    * @zh_CN 弹出的位置
    * @en_US Pop-up position
