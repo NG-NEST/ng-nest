@@ -1,3 +1,23 @@
+## [16.0.1](https://github.com/NG-NEST/ng-nest/compare/16.0.0...16.0.1) (2023-05-13)
+
+
+### Bug Fixes
+
+* type asserts ([3364637](https://github.com/NG-NEST/ng-nest/commit/33646377289923d0a630fcda54c2aba0cddc0296))
+
+
+### Features
+
+* **data-type:** add derivation ([99c56ef](https://github.com/NG-NEST/ng-nest/commit/99c56efc4fc97e9290905d80e745e4e1a38569d2))
+* **module:popover:** add panel class and connect element ([a6c9c98](https://github.com/NG-NEST/ng-nest/commit/a6c9c9872a4305c28e376d171273780ac732c5fd))
+* **module:tooltip:** add panel class and connect element ([caa30a1](https://github.com/NG-NEST/ng-nest/commit/caa30a17f66472d302ecd5789c135be8e8e19105))
+
+
+
+# [16.0.0](https://github.com/NG-NEST/ng-nest/compare/15.0.20...16.0.0) (2023-05-08)
+
+
+
 ## [15.0.20](https://github.com/NG-NEST/ng-nest/compare/15.0.19...15.0.20) (2023-05-04)
 
 
