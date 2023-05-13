@@ -1,4 +1,4 @@
-import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, OnDestroy, HostBinding } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
 import { XTooltipPrefix, XTooltipProperty } from './tooltip.property';
@@ -24,6 +24,10 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
     private overlay: Overlay
   ) {
     super();
+  }
+
+  @HostBinding('class.x-tooltip-show') get _show() {
+    return this.visible;
   }
 
   @HostListener('mouseenter') mouseenter() {
@@ -71,9 +75,14 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
 
   createPortal() {
     const config: OverlayConfig = {
+      panelClass: this.panelClass,
       backdropClass: '',
       positionStrategy: this.portalService.setPlacement({
-        elementRef: this.elementRef,
+        elementRef: this.connectTo
+          ? this.connectTo instanceof ElementRef
+            ? this.connectTo
+            : new ElementRef(this.connectTo)
+          : this.elementRef,
         placement: [this.placement as XPlacement, 'bottom', 'top', 'left', 'right']
       }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()

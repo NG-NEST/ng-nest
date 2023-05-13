@@ -1,5 +1,5 @@
 import { XPlacement, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Directive } from '@angular/core';
+import { Input, Directive, ElementRef } from '@angular/core';
 
 /**
  * Tooltip
@@ -29,6 +29,16 @@ export class XTooltipProperty {
    * @en_US Show/hide
    */
   @Input() @XInputBoolean() visible?: XBoolean;
+  /**
+   * @zh_CN 内部样式
+   * @en_US panel class
+   */
+  @Input() panelClass?: string | string[];
+  /**
+   * @zh_CN 指定参考对象
+   * @en_US specify reference object
+   */
+  @Input() connectTo?: ElementRef<HTMLElement> | HTMLElement;
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
