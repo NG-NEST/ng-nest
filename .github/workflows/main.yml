@@ -24,7 +24,7 @@ jobs:
     - name: use node.js
       uses: actions/setup-node@v1
       with: 
-        node-version: 16.13.0
+        node-version: 16.14.0
     
     - name: build
       run: |

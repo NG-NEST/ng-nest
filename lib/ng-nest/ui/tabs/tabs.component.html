@@ -12,6 +12,7 @@
       [activatedIndex]="sliderOption.activatedIndex"
       [showExpand]="showExpand"
       [expandMaxHeight]="expandMaxHeight"
+      [trigger]="trigger"
       (indexChange)="activatedChange($event)"
     ></x-slider>
     <div #actionsRef class="x-tabs-actions" *ngIf="actionTpl">

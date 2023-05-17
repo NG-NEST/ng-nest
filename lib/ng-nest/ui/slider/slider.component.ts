@@ -15,8 +15,8 @@ import {
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
 import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
-import { takeUntil, debounceTime } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
+import { takeUntil, debounceTime, delay } from 'rxjs/operators';
 
 @Component({
   selector: `${XSliderPrefix}`,
@@ -34,6 +34,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   nodeClassMap: XClassMap = {};
   showArrow = false;
   activatedId = '';
+  timeoutHide: any;
+  hoverDelay = 200;
+  hoverDelayUnsub = new Subject<void>();
   private _offset: number = 0;
   get offset(): number {
     return this._offset;
@@ -87,6 +90,8 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     this._unSubject.next();
     this._unSubject.unsubscribe();
     this._resizeObserver?.disconnect();
+    this.hoverDelayUnsub.next();
+    this.hoverDelayUnsub.complete();
   }
 
   ngAfterViewInit(): void {
@@ -117,6 +122,24 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
         this.sizeChecked();
         this.setActivated();
       });
+  }
+
+  onEnter(event: Event | null, node: XSliderNode, index: number) {
+    if (node.disabled || this.trigger === 'click') return;
+    of(true)
+      .pipe(delay(this.hoverDelay), takeUntil(this.hoverDelayUnsub))
+      .subscribe(() => {
+        if (this.timeoutHide) {
+          clearTimeout(this.timeoutHide);
+          this.timeoutHide = null;
+        }
+        this.nodeClick(event, node, index)
+      });
+  }
+
+  onLeave(node: XSliderNode) {
+    if (node.disabled || this.trigger === 'click') return;
+    this.hoverDelayUnsub.next();
   }
 
   nodeClick(event: Event | null, node: XSliderNode, index: number) {

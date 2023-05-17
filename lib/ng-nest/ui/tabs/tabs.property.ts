@@ -9,7 +9,8 @@ import {
   XInputNumber,
   XNumber,
   XBoolean,
-  XWithConfig
+  XWithConfig,
+  XTrigger
 } from '@ng-nest/ui/core';
 import { Input, TemplateRef, Output, EventEmitter, Component } from '@angular/core';
 
@@ -46,6 +47,11 @@ export class XTabsProperty extends XProperty {
    * @en_US Layout
    */
   @Input() layout: XTabsLayout = 'top';
+  /**
+   * @zh_CN 触发方式
+   * @en_US Trigger mode
+   */
+  @Input() @XWithConfig<XTabsTrigger>(X_CONFIG_NAME, 'click') trigger!: XTabsTrigger;
   /**
    * @zh_CN 激活的序号
    * @en_US Activation number
@@ -124,6 +130,12 @@ export interface XTabsNode extends XIdentityProperty {
    */
   [property: string]: any;
 }
+
+/**
+ * @zh_CN 触发方式
+ * @en_US Trigger method
+ */
+export type XTabsTrigger = XTrigger;
 
 /**
  * @zh_CN 激活的tab

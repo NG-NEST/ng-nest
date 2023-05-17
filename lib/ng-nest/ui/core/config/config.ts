@@ -505,6 +505,7 @@ export interface XSliderConfig {
   size?: XSize;
   showExpand?: XBoolean;
   autoShowArrow?: XBoolean;
+  trigger?: XTrigger;
 }
 
 export interface XSliderSelectConfig {}
@@ -546,6 +547,7 @@ export interface XTableConfig {
 
 export interface XTabsConfig {
   size?: XSize;
+  trigger?: XTrigger;
 }
 
 export interface XTagConfig {

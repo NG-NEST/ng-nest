@@ -10,7 +10,8 @@ import {
   XSize,
   XNumber,
   XBoolean,
-  XWithConfig
+  XWithConfig,
+  XTrigger
 } from '@ng-nest/ui/core';
 import { TemplateRef, Input, EventEmitter, Output, Component } from '@angular/core';
 
@@ -42,6 +43,11 @@ export class XSliderProperty extends XProperty {
    * @en_US Currently active index
    */
   @Input() @XInputNumber() activatedIndex: XNumber = 0;
+  /**
+   * @zh_CN 触发方式
+   * @en_US Trigger mode
+   */
+  @Input() @XWithConfig<XSliderTrigger>(X_CONFIG_NAME, 'click') trigger!: XSliderTrigger;
   /**
    * @zh_CN 排列方式
    * @en_US Arrangement
@@ -115,6 +121,12 @@ export interface XSliderNode extends XIdentityProperty {
    */
   disabled?: boolean;
 }
+
+/**
+ * @zh_CN 触发方式
+ * @en_US Trigger method
+ */
+export type XSliderTrigger = XTrigger;
 
 /**
  * @zh_CN 布局方式
