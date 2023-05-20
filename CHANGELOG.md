@@ -1,3 +1,17 @@
+## [16.0.2](https://github.com/NG-NEST/ng-nest/compare/16.0.1...16.0.2) (2023-05-20)
+
+
+### Bug Fixes
+
+* **module:input:** input number maxlength ([ab46081](https://github.com/NG-NEST/ng-nest/commit/ab4608157882bf6a771268245b83bdc6639cf6b4))
+
+
+### Features
+
+* **module:tabs:** add hover trigger ([657532c](https://github.com/NG-NEST/ng-nest/commit/657532c60c5574115ab8670849bb201c70e52b74))
+
+
+
 ## [16.0.1](https://github.com/NG-NEST/ng-nest/compare/16.0.0...16.0.1) (2023-05-13)
 
 
