@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
 
@@ -38,7 +38,9 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   override writeValue(value: any) {
     this.value = value;
-    this.change(value);
+    this.isWriteValue = true;
+    this.valueChange.next(value);
+    this.isWriteValue = false;
     this.cdr.detectChanges();
   }
 
@@ -48,6 +50,9 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   paddingRight: number = 0.4;
   clearShow: boolean = false;
   flexClass: string[] = [];
+  valueChange = new Subject<any>();
+  isComposition = false;
+  isWriteValue = false;
   private _required: boolean = false;
   private _unSubject = new Subject<void>();
 
@@ -90,6 +95,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     this.setFlexClass();
     this.setInheritedValue();
     this.setClassMap();
+    this.setEvent();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -105,6 +111,42 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     this._unSubject.unsubscribe();
   }
 
+  setEvent() {
+    fromEvent(this.inputRef.nativeElement, 'compositionstart').subscribe(() => {
+      this.isComposition = true;
+    });
+    fromEvent(this.inputRef.nativeElement, 'compositionend').subscribe((x: Event) => {
+      this.isComposition = false;
+      this.inputCheckValue(x);
+    });
+    fromEvent<InputEvent>(this.inputRef.nativeElement, 'input').subscribe((x: InputEvent) => {
+      if (!this.isComposition) {
+        this.inputCheckValue(x);
+      }
+    });
+    this.valueChange
+      .pipe(
+        distinctUntilChanged((a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))),
+        takeUntil(this._unSubject)
+      )
+      .subscribe((x) => {
+        this.change(x);
+      });
+  }
+
+  inputCheckValue(x: Event) {
+    const input = x.target as HTMLInputElement;
+    let value = input.value;
+    if (this.type === 'number') {
+      const len = XIsEmpty(value) ? 0 : `${value}`.length;
+      if (len > Number(this.maxlength)) {
+        input.value = value.slice(0, Number(this.maxlength));
+      }
+    }
+    this.xInput.emit(x);
+    this.valueChange.next(input.value);
+  }
+
   change(value: any) {
     if (this._required && !this.disabled) {
       this.required = XIsEmpty(value);
@@ -115,7 +157,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
     }
     this.setPadding();
-    if (this.onChange) {
+    if (this.onChange && !this.isWriteValue) {
       if (this.type === 'number') {
         if (['', undefined, null].includes(value)) {
           value = null;
@@ -134,7 +176,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   onClear() {
     const clearValue = this.value;
     this.value = '';
-    this.change(this.value);
+    this.valueChange.next(this.value);
     this.inputRef.nativeElement.focus();
     this.clearEmit.emit(clearValue);
   }
@@ -203,7 +245,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   formControlChanges() {
-    this.change(this.value);
+    this.valueChange.next(this.value);
     this.ngOnInit();
     this.cdr.detectChanges();
   }

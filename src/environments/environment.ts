@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'popover',
+  defaultPage: 'input-number',
   static: 'http://localhost:9494'
 };
 
