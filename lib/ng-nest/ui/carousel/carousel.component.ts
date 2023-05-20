@@ -8,12 +8,15 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  ViewChild
+  ViewChild,
+  PLATFORM_ID,
+  inject
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
 import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: `${XCarouselPrefix}`,
@@ -29,6 +32,8 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   before!: number;
   timer: any;
   panelChanges: BehaviorSubject<any>[] = [];
+  platformId = inject(PLATFORM_ID);
+  isBrowser = true;
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
 
@@ -39,6 +44,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
     public configService: XConfigService
   ) {
     super();
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit() {
@@ -76,6 +82,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   resetInterval(): void {
+    if (!this.isBrowser) return;
     this.timer && clearInterval(this.timer);
     this.timer = setInterval(() => {
       this.setActiveItem(Number(this.active) + 1);

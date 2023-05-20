@@ -6,11 +6,14 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  NgZone
+  NgZone,
+  inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
 import { interval, Subscription } from 'rxjs';
 import { XConfigService } from '@ng-nest/ui/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: `${XCountdownPrefix}`,
@@ -24,9 +27,11 @@ export class XCountdownComponent extends XCountdownProperty implements OnInit, O
   period = 1000 / 30;
   private _target!: number;
   private _updater!: Subscription | null;
-
+  platformId = inject(PLATFORM_ID);
+  isBrowser = true;
   constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, public configService: XConfigService) {
     super();
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
@@ -56,6 +61,7 @@ export class XCountdownComponent extends XCountdownProperty implements OnInit, O
   }
 
   startTimer(): void {
+    if (!this.isBrowser) return;
     this.ngZone.runOutsideAngular(() => {
       this.stopTimer();
       this._updater = interval(this.period).subscribe(() => {
