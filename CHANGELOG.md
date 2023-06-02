@@ -1,3 +1,12 @@
+## [16.0.3](https://github.com/NG-NEST/ng-nest/compare/16.0.2...16.0.3) (2023-06-02)
+
+
+### Bug Fixes
+
+* **module:form:** solve form component pop-up scrolling issue ([5ffe9fb](https://github.com/NG-NEST/ng-nest/commit/5ffe9fb07853860883ad0b179e77efdf8a3f394a))
+
+
+
 ## [16.0.2](https://github.com/NG-NEST/ng-nest/compare/16.0.1...16.0.2) (2023-05-20)
 
 
