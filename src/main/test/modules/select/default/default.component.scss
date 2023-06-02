@@ -1,4 +1,14 @@
 :host {
+  height: 100rem;
+  display: block;
+  padding-top: 10rem;
+  .yonghu {
+    height: 20rem;
+    overflow: auto;
+  }
+  x-row {
+    height: 40rem;
+  }
   x-row > x-col {
     width: 15rem;
   }

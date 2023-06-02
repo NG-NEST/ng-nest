@@ -1,5 +1,5 @@
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subject } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -11,7 +11,8 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
 import {
@@ -25,12 +26,13 @@ import {
   XConfigService,
   XIsNull,
   XDateYearWeek,
-  XDateYearQuarter
+  XDateYearQuarter,
+  XParents
 } from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
-import { DatePipe } from '@angular/common';
+import { DOCUMENT, DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
@@ -133,6 +135,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   flexClass: string[] = [];
   locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
+  document = inject(DOCUMENT);
 
   constructor(
     public renderer: Renderer2,
@@ -201,6 +204,33 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
 
   setHostTypeClass() {
     this.renderer.addClass(this.elementRef.nativeElement, `x-date-range-${this.type}`);
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
+    }
   }
 
   setFormat() {

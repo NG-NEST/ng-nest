@@ -1,6 +1,6 @@
 import { XTimePickerPortalComponent } from './time-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subject } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,14 +10,15 @@ import {
   Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString, XParents } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { DatePipe } from '@angular/common';
+import { DOCUMENT, DatePipe } from '@angular/common';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { takeUntil, map } from 'rxjs/operators';
+import { takeUntil, map, filter } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 
@@ -69,6 +70,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
   valueType: 'date' | 'number' | 'string' = 'date';
   locale: XI18nTimePicker = {};
   private _unSubject = new Subject<void>();
+  document = inject(DOCUMENT);
 
   get getPlaceholder() {
     if (this.placeholder) return this.placeholder;
@@ -101,6 +103,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     this.setFormat();
     this.setClassMap();
     this.setSubject();
+    this.setParantScroll();
   }
 
   ngAfterViewInit() {
@@ -124,6 +127,33 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       } else if (this.type === 'minute') {
         this.format = 'HH:mm';
       }
+    }
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
     }
   }
 

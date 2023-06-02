@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,7 +10,8 @@ import {
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
@@ -21,7 +22,8 @@ import {
   XClearClass,
   XConfigService,
   XPositionTopBottom,
-  XIsFunction
+  XIsFunction,
+  XParents
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -30,6 +32,7 @@ import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionCha
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,
@@ -72,6 +75,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
+  document = inject(DOCUMENT);
 
   constructor(
     public renderer: Renderer2,
@@ -79,6 +83,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,
+    private elementRef: ElementRef,
     public configService: XConfigService
   ) {
     super();
@@ -88,6 +93,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.setFlex(this.autoComplete.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
+    this.setParantScroll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -142,6 +148,33 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         this.closeSubject.next();
       }
     });
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
+    }
   }
 
   portalAttached() {

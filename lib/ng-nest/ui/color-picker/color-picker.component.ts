@@ -1,6 +1,6 @@
 import { XColorPickerPortalComponent } from './color-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subject } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,14 +10,16 @@ import {
   Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XColorPickerProperty } from './color-picker.property';
-import { XIsEmpty, XCorner, XClearClass } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XClearClass, XParents } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'x-color-picker',
@@ -62,13 +64,15 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
+  document = inject(DOCUMENT);
 
   constructor(
     public renderer: Renderer2,
     public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
+    private overlay: Overlay,
+    public elementRef: ElementRef
   ) {
     super();
   }
@@ -77,6 +81,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
+    this.setParantScroll();
   }
 
   ngAfterViewInit() {
@@ -183,6 +188,33 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
       place !== this.placement && this.positionChange.next(place);
     });
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
+    }
   }
 
   setInstance() {

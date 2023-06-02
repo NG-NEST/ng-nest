@@ -87,7 +87,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     if (XIsEmpty(this.option.label)) this.option.label = '';
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
-    this._formControl = new UntypedFormControl(this._control.value);
+    this._formControl = new UntypedFormControl(this._control.value, { nonNullable: this._control.nonNullable });
     this.setValidators();
     this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.setMessages(x);

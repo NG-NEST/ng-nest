@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -11,7 +11,8 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  inject
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
@@ -30,16 +31,18 @@ import {
   XResize,
   XPlacement,
   XComputed,
-  XResizeObserver
+  XResizeObserver,
+  XParents
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XSelectPrefix}`,
@@ -119,12 +122,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   multipleInputSizeChange = new Subject<number>();
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
+  document = inject(DOCUMENT);
 
   constructor(
     public renderer: Renderer2,
     public override cdr: ChangeDetectorRef,
     private portalService: XPortalService,
     private viewContainerRef: ViewContainerRef,
+    public elementRef: ElementRef<HTMLElement>,
     private overlay: Overlay,
     public i18n: XI18nService,
     public configService: XConfigService
@@ -157,6 +162,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.locale = x;
         this.cdr.markForCheck();
       });
+    this.setParantScroll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -264,7 +270,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   menter() {
     if (this.disabled || !this.clearable || this.iconSpin) return;
     this.enter = true;
-    if (!XIsEmpty(this.displayValue)) {
+    if ((!this.multiple && !XIsEmpty(this.displayValue)) || (this.multiple && !XIsEmpty(this.displayNodes))) {
       this.icon = '';
       this.showClearable = true;
       this.cdr.detectChanges();
@@ -319,6 +325,33 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
     } else {
       this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
+    }
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
     }
   }
 

@@ -53,6 +53,7 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 
 @Component({
   selector: 'ex-default',
+  styleUrls: ['./default.component.scss'],
   templateUrl: './default.component.html',
   providers: [DefaultService, TreeService]
 })
@@ -577,7 +578,7 @@ export class ExDefaultComponent {
 
   ngOnInit() {
     // setTimeout(() => {
-      // this.formCom.formGroup.reset();
+    // this.formCom.formGroup.reset();
     // }, 3000);
   }
 }

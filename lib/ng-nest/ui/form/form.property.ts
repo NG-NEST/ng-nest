@@ -94,6 +94,11 @@ export interface XControlOption extends XIdentityProperty {
    */
   value?: any;
   /**
+   * @zh_CN 初始默认值
+   * @en_US Default value
+   */
+  defaultValue?: any;
+  /**
    * @zh_CN 控件类型
    * @en_US Control type
    */
@@ -160,6 +165,11 @@ export class XControl extends XIdentity implements XControlOption {
    * @en_US Value
    */
   value?: any;
+  /**
+   * @zh_CN 开启这个，执行 reset 的时候初始为设置的 value，默认为 null
+   * @en_US Enable this. When performing a reset, the initial value is the set value, which defaults to null
+   */
+  nonNullable?: any;
   /**
    * @zh_CN 控件类型
    * @en_US Control type

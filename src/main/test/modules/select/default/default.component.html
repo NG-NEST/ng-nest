@@ -1,17 +1,19 @@
-<x-row>
-  <x-col>
-    <x-select [data]="data1" [(ngModel)]="model1" portalWidth="300px"></x-select>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col>
-    <x-select
-      [selectAllText]="'选择所有用户'"
-      [data]="data2"
-      [(ngModel)]="model2"
-      portalMaxHeight="10rem"
-      [selectAll]="true"
-      multiple
-    ></x-select>
-  </x-col>
-</x-row>
+<div class="yonghu">
+  <x-row>
+    <x-col>
+      <!-- <x-select [data]="data1" [(ngModel)]="model1" portalWidth="300px"></x-select> -->
+    </x-col>
+  </x-row>
+  <x-row>
+    <x-col>
+      <x-select
+        [selectAllText]="'选择所有用户'"
+        [data]="data2"
+        [(ngModel)]="model2"
+        portalMaxHeight="10rem"
+        [selectAll]="true"
+        multiple
+      ></x-select>
+    </x-col>
+  </x-row>
+</div>

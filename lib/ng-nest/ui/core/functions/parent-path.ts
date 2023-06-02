@@ -7,3 +7,13 @@ export function XParentPath(ele: HTMLElement): string[] {
   }
   return path;
 }
+
+export function XParents(ele: HTMLElement): HTMLElement[] {
+  let res: HTMLElement[] = [];
+  let nowEle = ele;
+  while (nowEle.parentElement != null) {
+    res.push(nowEle.parentElement!);
+    nowEle = nowEle.parentNode as HTMLElement;
+  }
+  return res;
+}

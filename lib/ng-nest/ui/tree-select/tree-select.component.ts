@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, fromEvent } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -11,7 +11,8 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  inject
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectProperty, XTreeSelectPrefix } from './tree-select.property';
 import {
@@ -29,16 +30,18 @@ import {
   XRemove,
   XResize,
   XComputed,
-  XResizeObserver
+  XResizeObserver,
+  XParents
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XTreeSelectPortalComponent } from './tree-select-portal.component';
 import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nTreeSelect, XI18nService } from '@ng-nest/ui/i18n';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XTreeSelectPrefix}`,
@@ -115,6 +118,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   multipleInputSizeChange = new Subject<number>();
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
+  document = inject(DOCUMENT);
 
   constructor(
     public renderer: Renderer2,
@@ -123,7 +127,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,
     public i18n: XI18nService,
-    public configService: XConfigService
+    public configService: XConfigService,
+    public elementRef: ElementRef
   ) {
     super();
   }
@@ -145,6 +150,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         this.locale = x;
         this.cdr.markForCheck();
       });
+    this.setParantScroll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -208,6 +214,33 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         this.renderer.setStyle(input, 'width', `${x}px`);
       }
     });
+  }
+
+  setParantScroll() {
+    if (!this.document) return;
+    const parents = XParents(this.elementRef.nativeElement);
+    let firstScroll: HTMLElement | null = null;
+    for (let item of parents) {
+      if (item.clientHeight < item.scrollHeight) {
+        firstScroll = item;
+        break;
+      }
+    }
+    if (firstScroll && firstScroll.tagName !== 'BODY') {
+      fromEvent(firstScroll, 'scroll')
+        .pipe(
+          filter(() => this.portalAttached()!),
+          takeUntil(this._unSubject)
+        )
+        .subscribe(() => {
+          this.portal?.overlayRef?.updatePosition();
+          const eract = this.elementRef.nativeElement.getBoundingClientRect();
+          const frect = firstScroll!.getBoundingClientRect();
+          if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
+            this.closeSubject.next();
+          }
+        });
+    }
   }
 
   setMutipleInputSize() {

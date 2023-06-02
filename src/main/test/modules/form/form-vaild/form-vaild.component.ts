@@ -32,7 +32,8 @@ export class ExFormVaildComponent {
         return String(value).trim().length > 0;
       },
       message: '必填',
-      required: true
+      required: true,
+      value: 1111
     },
     {
       control: 'input',
@@ -63,7 +64,9 @@ export class ExFormVaildComponent {
     this.validForm(this.manualForm);
   }
 
-  resetValidator() {
-    this.form.resetValidator();
+  resetValidator() {}
+
+  reset() {
+    this.manualForm.formGroup.reset();
   }
 }
