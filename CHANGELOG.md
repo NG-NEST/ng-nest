@@ -1,3 +1,13 @@
+## [16.0.4](https://github.com/NG-NEST/ng-nest/compare/16.0.3...16.0.4) (2023-06-07)
+
+
+### Bug Fixes
+
+* **doc:** resolve the issue of document header dropdown list ([16c413f](https://github.com/NG-NEST/ng-nest/commit/16c413f8df799da9594f1998c5e0d1670fe67500))
+* **module:table:** solve the bubble problem of dragging column events ([7103545](https://github.com/NG-NEST/ng-nest/commit/7103545a78fe137e0346711c8efbfbbc0bb8a400))
+
+
+
 ## [16.0.3](https://github.com/NG-NEST/ng-nest/compare/16.0.2...16.0.3) (2023-06-02)
 
 
