@@ -1,0 +1,19 @@
+<x-table
+  [(size)]="size"
+  [columns]="columns"
+  [data]="data"
+  [rowHeight]="0"
+  [scroll]="{ x: 1500, y: 600 }"
+  bordered
+  virtualScroll
+  loading
+  [bodyColumnTpl]="{ actions: actionsTpl }"
+>
+</x-table>
+
+<ng-template #actionsTpl let-column="$column" let-row="$row">
+  <div>
+    <x-link type="primary">修改</x-link> &nbsp;&nbsp;
+    <x-link type="danger">删除</x-link>
+  </div>
+</ng-template>

@@ -13,6 +13,9 @@ import { ExRouterComponent } from './router/router.component';
 import { ExExampleComponent } from './example/example.component';
 import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
+import { XTableModule } from '@ng-nest/ui/table';
+import { ExScrollComponent } from './default/scroll/scroll.component';
+import { XLinkModule } from '@ng-nest/ui/link';
 
 const routers = [{ path: '', component: TeTabsComponent }];
 
@@ -25,8 +28,18 @@ const routers = [{ path: '', component: TeTabsComponent }];
     XExamplesModule,
     XButtonModule,
     XIconModule,
-    XHighlightModule
+    XHighlightModule,
+    XTableModule,
+    XLinkModule
   ],
-  declarations: [TeTabsComponent, ExDefaultComponent, ExActionComponent, ExExpandComponent, ExRouterComponent, ExExampleComponent]
+  declarations: [
+    TeTabsComponent,
+    ExDefaultComponent,
+    ExActionComponent,
+    ExExpandComponent,
+    ExRouterComponent,
+    ExExampleComponent,
+    ExScrollComponent
+  ]
 })
 export class TeTabsModule {}

@@ -146,6 +146,8 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
       this.table.scrollXWidth = ele.offsetWidth + ele.scrollWidth - ele.clientWidth;
     }
 
+    this.virtualBody.checkViewportSize();
+
     this.table.cdr.detectChanges();
   }
 

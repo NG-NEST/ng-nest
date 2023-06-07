@@ -1,4 +1,4 @@
-import { Subscription, interval } from 'rxjs';
+import { Subscription, fromEvent, interval } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -7,12 +7,13 @@ import {
   ChangeDetectorRef,
   Renderer2,
   ElementRef,
-  HostListener,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
@@ -35,14 +36,14 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   minDisabled: boolean = false;
   maxDisabled: boolean = false;
   mousedown$!: Subscription;
+  mouseup$!: Subscription;
   timer: any;
   icon: string = '';
   iconSpin = false;
   clearable = false;
+  isDown = false;
 
-  @HostListener('document:mouseup', ['$event']) onMouseup(event: Event) {
-    this.up(event);
-  }
+  document = inject(DOCUMENT);
 
   constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
@@ -77,9 +78,13 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
+    this.isDown = true;
     this.timer = setTimeout(() => {
       this.mousedown$ = interval(Number(this.debounce)).subscribe(() => {
         this.plus(event, limit, increase);
+      });
+      this.mouseup$ = fromEvent(this.document.documentElement, 'mouseup').subscribe((event: Event) => {
+        this.up(event);
       });
     }, 150);
   }
@@ -88,7 +93,9 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
+    this.isDown = false;
     if (this.mousedown$) this.mousedown$.unsubscribe();
+    if (this.mouseup$) this.mouseup$.unsubscribe();
   }
 
   plus(event: Event, limit: XNumber, increase: boolean = true) {
