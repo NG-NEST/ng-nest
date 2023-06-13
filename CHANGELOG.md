@@ -1,3 +1,12 @@
+## [16.0.5](https://github.com/NG-NEST/ng-nest/compare/16.0.4...16.0.5) (2023-06-13)
+
+
+### Bug Fixes
+
+* **module:table:** reset checkbox settings for column changes ([f94d329](https://github.com/NG-NEST/ng-nest/commit/f94d3291255c4def5ba25544f3dbe9696e8a2b65))
+
+
+
 ## [16.0.4](https://github.com/NG-NEST/ng-nest/compare/16.0.3...16.0.4) (2023-06-07)
 
 
