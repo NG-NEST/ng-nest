@@ -109,6 +109,10 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     const { data, checkedRow, columns, activatedRow, manual, showPagination, expandedAll, cellConfig } = simples;
     XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(data, checkedRow) && this.setData();
+    if (XIsChange(columns)) {
+      this.setRowChecked();
+      this.setRowExpand();
+    }
     XIsChange(columns, activatedRow, showPagination) && this.cdr.detectChanges();
     XIsChange(manual) && this.setManual();
     XIsChange(cellConfig) && this.setMerge();

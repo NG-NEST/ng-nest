@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class CheckboxService extends XRepositoryAbstract {
   organizations = ['制造中心', '研发中心', '财务中心', '营销中心', '行政中心'];
   positions = ['技术员', '销售', '经理', '总监', '生产员'];
-  users: User[] = Array.from({ length: 0 }).map((_x, i) => {
+  users: User[] = Array.from({ length: 1000 }).map((_x, i) => {
     i++;
     return {
       id: i,
