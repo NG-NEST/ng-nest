@@ -70,6 +70,26 @@ export class XCarouselProperty extends XProperty {
    */
   @Input() @XInputBoolean() card?: XBoolean;
   /**
+   * @zh_CN 显示文字
+   * @en_US Display text
+   */
+  @Input() text?: string;
+  /**
+   * @zh_CN 显示进度条
+   * @en_US Show progress
+   */
+  @Input() @XInputBoolean() progress?: XBoolean;
+  /**
+   * @zh_CN 进度条颜色
+   * @en_US Progress color
+   */
+  @Input() progressColor?: string;
+  /**
+   * @zh_CN 显示当前页面
+   * @en_US Show current page
+   */
+  @Input() @XInputBoolean() current?: XBoolean;
+  /**
    * @zh_CN 激活的序号改变的事件
    * @en_US The activated sequence number changed event
    */

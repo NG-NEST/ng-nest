@@ -114,18 +114,20 @@
       }
     }
     &-outside {
-      position: static;
-      transform: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      > li {
-        > x-button .x-button {
-          background-color: $--x-text-700;
-        }
-        &.x-activated {
+      .x-carousel-indicator {
+        position: static;
+        transform: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > li {
           > x-button .x-button {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: $--x-text-700;
+          }
+          &.x-activated {
+            > x-button .x-button {
+              background-color: rgba(0, 0, 0, 0.5);
+            }
           }
         }
       }
@@ -147,10 +149,10 @@
     }
   }
   &-horizontal {
-    overflow-x: hidden;
+    overflow: hidden;
   }
   &-vertical {
-    overflow-y: hidden;
+    overflow: hidden;
     > .x-carousel-indicator {
       right: 0;
       top: 50%;
@@ -165,6 +167,59 @@
           height: 1rem;
         }
       }
+    }
+  }
+  &-text {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+  }
+  &-progress {
+    position: absolute;
+    bottom: 0;
+    z-index: 11;
+    width: 100%;
+    height: 0.5rem;
+    x-progress {
+      position: relative;
+      height: 0.5rem;
+      display: block;
+      top: 0;
+      .x-progress {
+        position: relative;
+        top: -0.5625rem;
+      }
+      .x-progress-rail,
+      .x-progress-bg {
+        border-radius: 0;
+      }
+      .x-progress-rail {
+        background-color: transparent;
+      }
+    }
+  }
+  &-current {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 11;
+    padding: 0.5rem 0.75rem;
+    font-size: $--x-font-size-big;
+  }
+  &-active {
+    color: $--x-primary;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  &-count {
+    color: $--x-text;
+    font-weight: 600;
+  }
+  &-has-current {
+    .x-carousel-text {
+      padding-right: 5rem;
     }
   }
 }

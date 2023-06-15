@@ -1,7 +1,7 @@
 <x-row space="1">
   <x-col span="12">
     <div>默认 Hover 指示器触发</div>
-    <x-carousel height="12rem" outside>
+    <x-carousel height="12rem" outside [text]="text" progress current (activeChange)="activeChange($event)">
       <x-carousel-panel *ngFor="let item of list">
         <h3>{{ item }}</h3>
       </x-carousel-panel>
@@ -9,7 +9,7 @@
   </x-col>
   <x-col span="12">
     <div>Click 指示器触发</div>
-    <x-carousel height="12rem" trigger="click">
+    <x-carousel height="12rem" [text]="text" progress current (activeChange)="activeChange($event)">
       <x-carousel-panel *ngFor="let item of list">
         <h3>{{ item }}</h3>
       </x-carousel-panel>

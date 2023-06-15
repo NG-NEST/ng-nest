@@ -47,6 +47,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   }
 
   ngOnInit() {
+    this.carousel.count++;
     this.carousel.start++;
     this.index = this.carousel.start;
     this.setClass('x-carousel-card', Boolean(this.carousel.card));

@@ -31,11 +31,18 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   start: number = -1;
   before!: number;
   timer: any;
+  precentTimer: any;
   panelChanges: BehaviorSubject<any>[] = [];
   platformId = inject(PLATFORM_ID);
   isBrowser = true;
+  percent = 0;
+  count = 0;
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
+
+  get page() {
+    return Number(this.active) + 1;
+  }
 
   constructor(
     public renderer: Renderer2,
@@ -84,7 +91,15 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   resetInterval(): void {
     if (!this.isBrowser) return;
     this.timer && clearInterval(this.timer);
+    this.precentTimer && clearInterval(this.precentTimer);
+    this.percent = 0;
+    const js = Number(this.interval) / 100;
+    this.precentTimer = setInterval(() => {
+      this.percent += 1;
+      this.cdr.detectChanges();
+    }, js);
     this.timer = setInterval(() => {
+      this.percent = 0;
       this.setActiveItem(Number(this.active) + 1);
     }, Number(this.interval));
   }
