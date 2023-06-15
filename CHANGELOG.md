@@ -1,3 +1,12 @@
+## [16.0.6](https://github.com/NG-NEST/ng-nest/compare/16.0.5...16.0.6) (2023-06-15)
+
+
+### Features
+
+* **module:carousel:** add progress and text ([fe660a8](https://github.com/NG-NEST/ng-nest/commit/fe660a83af4be42a361173007466a516caf97bb4))
+
+
+
 ## [16.0.5](https://github.com/NG-NEST/ng-nest/compare/16.0.4...16.0.5) (2023-06-13)
 
 
