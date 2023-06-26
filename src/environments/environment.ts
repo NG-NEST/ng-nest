@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'carousel',
+  defaultPage: 'auto-complete',
   static: 'http://localhost:9494'
 };
 

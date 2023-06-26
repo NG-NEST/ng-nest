@@ -338,6 +338,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
           });
         }
       }
+      if (!this.onlySelect) {
+        this.onChange && this.onChange(value);
+      }
       return;
     }
     if (this.nodes) {
@@ -351,6 +354,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
           this.dataChange.next(this.searchNodes);
         }
       }
+    }
+    if (!this.onlySelect) {
+      this.onChange && this.onChange(value);
     }
   }
 
