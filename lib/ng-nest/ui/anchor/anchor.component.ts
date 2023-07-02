@@ -80,6 +80,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
+    console.log(scrollTop);
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 
@@ -159,6 +160,15 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     }
   }
 
+  getWidth() {
+    if (!this.affixWidth) return null;
+    if (this.affixWidth === '0') return 0;
+    if (XIsNumber(this.affixWidth)) return this.affixWidth;
+    else if (this.affixWidth.indexOf('rem') !== -1) return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixWidth.indexOf('px') !== -1) return Number(this.affixWidth.replace(/px/g, ''));
+    else return Number(this.affixWidth);
+  }
+
   private getTop() {
     if (this.affixTop === '0') return 0;
     if (XIsNumber(this.affixTop)) return Number(this.affixTop);
@@ -171,7 +181,10 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
     reqAnimFrame(() => {
-      element.scrollTop = element.scrollTop + perTick;
+      const num = element.scrollTop + perTick;
+      if (XIsNumber(num) && num !== Infinity) {
+        element.scrollTop = num;
+      }
       if (element.scrollTop === to || duration <= 0) {
         setTimeout(() => (this._scrolling = false), 20);
         return;

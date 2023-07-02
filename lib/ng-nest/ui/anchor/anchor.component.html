@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </div>
   <x-affix class="x-anchor-affix" [top]="affixTop">
-    <div class="x-anchor-slider" [style.height.px]="sliderHeight">
+    <div class="x-anchor-slider" [style.height.px]="sliderHeight" [style.width.px]="getWidth()">
       <x-slider
         [data]="sliderData"
         layout="column"

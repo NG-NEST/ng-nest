@@ -1,4 +1,4 @@
-import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
+import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPositionLeftRight, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -34,6 +34,11 @@ export class XAnchorProperty extends XProperty {
    * @en_US Alignment
    */
   @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify!: XJustify;
+  /**
+   * @zh_CN 对齐方式
+   * @en_US Alignment
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME) affixWidth!: XNumber;
 }
 
 /**

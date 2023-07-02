@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { XTimePickerDisabledTime, XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
-import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsFunction, XIsNull } from '@ng-nest/ui/core';
+import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsFunction, XIsNull, XIsNumber } from '@ng-nest/ui/core';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -305,7 +305,10 @@ export class XTimePickerFrameComponent {
     const perTick = (difference / duration) * 10;
     this.scrollAnimating[clsName] = true;
     reqAnimFrame(() => {
-      element.scrollTop = element.scrollTop + perTick;
+      const num = element.scrollTop + perTick;
+      if (XIsNumber(num) && num !== Infinity) {
+        element.scrollTop = num;
+      }
       if (element.scrollTop === to || duration <= 0) {
         this.scrollAnimating[clsName] = false;
         return;
