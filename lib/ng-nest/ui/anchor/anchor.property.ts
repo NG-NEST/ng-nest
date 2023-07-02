@@ -25,6 +25,11 @@ export class XAnchorProperty extends XProperty {
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop!: string;
   /**
+   * @zh_CN 导航宽度
+   * @en_US Navigation Width
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME) affixWidth!: XNumber;
+  /**
    * @zh_CN 导航相对内容位置
    * @en_US Navigation relative content position
    */
@@ -34,11 +39,6 @@ export class XAnchorProperty extends XProperty {
    * @en_US Alignment
    */
   @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify!: XJustify;
-  /**
-   * @zh_CN 对齐方式
-   * @en_US Alignment
-   */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME) affixWidth!: XNumber;
 }
 
 /**
