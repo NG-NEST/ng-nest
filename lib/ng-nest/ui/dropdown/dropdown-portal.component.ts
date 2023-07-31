@@ -29,7 +29,7 @@ export class XDropdownPortalComponent implements OnDestroy {
   @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
+    event.toState === 'void' && this.destroyPortal && this.destroyPortal();
   }
   @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
@@ -193,6 +193,7 @@ export class XDropdownPortalComponent implements OnDestroy {
     }
     this.node = node;
     if (!this.portalAttached()) {
+      console.log(this.node);
       this.createPortal();
     }
     this.cdr.detectChanges();
