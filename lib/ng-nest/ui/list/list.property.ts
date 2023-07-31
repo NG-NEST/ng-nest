@@ -141,6 +141,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
   /**
+   * @zh_CN 自定义数据对象样式
+   * @en_US Customize data object styles
+   */
+  @Input() optionClass?: (node: XListNode) => { [className: string]: boolean };
+  /**
    * @zh_CN Full event
    * @en_US 全选事件
    */
@@ -251,6 +256,11 @@ export class XListOptionProperty {
    * @en_US active
    */
   @Input() @XInputBoolean() active?: boolean;
+  /**
+   * @zh_CN 自定义数据对象样式
+   * @en_US Customize data object styles
+   */
+  @Input() optionClass?: (node: XListNode) => { [className: string]: boolean };
   /**
    * @zh_CN 图标
    * @en_US icon

@@ -21,6 +21,7 @@ import { XClassMap, XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/c
 export class XListOptionComponent extends XListOptionProperty implements Highlightable {
   @HostBinding('attr.role') role = 'option';
   classMap: XClassMap = {};
+
   constructor(public elementRef: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
@@ -32,6 +33,11 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
   setClassMap() {
     XClearClass(this.classMap);
     this.classMap[`${XListOptionPrefix}-${this.size}`] = this.size ? true : false;
+  }
+
+  getClassMap(optionClass: { [className: string]: boolean }, classMap: XClassMap) {
+    console.log(optionClass);
+    return { ...optionClass, ...classMap };
   }
 
   setActiveStyles(): void {

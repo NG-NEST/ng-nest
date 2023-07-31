@@ -45,6 +45,7 @@ export class XDropdownPortalComponent implements OnDestroy {
   positionChange!: Subject<any>;
   portalPositionChange: Subject<any> = new Subject();
   node!: XDropdownNode;
+  portalNode?: XDropdownNode | null;
   timeoutHide: any;
   timespan = 200;
   minWidth!: string | number;
@@ -69,6 +70,12 @@ export class XDropdownPortalComponent implements OnDestroy {
   get getMaxHeight() {
     return XIsString(this.maxHeight) ? this.maxHeight : `${this.maxHeight}px`;
   }
+
+  optionClass = (node: XDropdownNode) => {
+    return {
+      'x-dropdown-portal-hover': node.id === this.portalNode?.id
+    };
+  };
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover(true);
@@ -190,10 +197,11 @@ export class XDropdownPortalComponent implements OnDestroy {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.portalAttached() && this.node?.id !== node.id) {
       this.portal?.overlayRef?.dispose();
+      this.portalNode = null;
     }
     this.node = node;
     if (!this.portalAttached()) {
-      console.log(this.node);
+      this.portalNode = node;
       this.createPortal();
     }
     this.cdr.detectChanges();
@@ -203,6 +211,7 @@ export class XDropdownPortalComponent implements OnDestroy {
     if (this.portalAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.portal?.overlayRef?.dispose();
+        this.portalNode = null;
       });
     }
   }

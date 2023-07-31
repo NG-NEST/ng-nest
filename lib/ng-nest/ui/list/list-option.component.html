@@ -1,6 +1,6 @@
 <div
   class="x-list-option"
-  [ngClass]="classMap"
+  [ngClass]="optionClass ? getClassMap(optionClass(node!), classMap) : classMap"
   [class.x-selected]="selected"
   [class.x-disabled]="disabled"
   [class.x-active]="active"
