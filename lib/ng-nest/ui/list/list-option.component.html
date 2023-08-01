@@ -1,8 +1,9 @@
 <div
   class="x-list-option"
-  [ngClass]="optionClass ? getClassMap(optionClass(node!), classMap) : classMap"
+  [ngClass]="classMap"
   [class.x-selected]="selected"
   [class.x-disabled]="disabled"
+  [class.x-open-portal]="node?.openPortal"
   [class.x-active]="active"
   [class.x-list-icon]="icon"
   [class.x-list-divided]="divided"

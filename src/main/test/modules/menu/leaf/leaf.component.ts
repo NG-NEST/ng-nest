@@ -18,6 +18,9 @@ export class ExLeafComponent {
     { id: 10, pid: 5, label: '计算' },
     { id: 11, pid: 5, label: '网络' },
     { id: 12, pid: 5, label: '存储' },
-    { id: 13, pid: 5, label: '数据库' }
+    { id: 13, pid: 10, label: '数据库' },
+    { id: 14, pid: 10, label: '网络' },
+    { id: 15, pid: 10, label: '存储' },
+    { id: 16, pid: 10, label: '数据库' }
   ];
 }

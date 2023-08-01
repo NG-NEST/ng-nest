@@ -25,6 +25,14 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
   constructor(public elementRef: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef, public configService: XConfigService) {
     super();
   }
+
+  ngOnInit() {
+    if (this.node)
+      this.node.change = () => {
+        this.cdr.detectChanges();
+      };
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     const { size } = changes;
     XIsChange(size) && this.setClassMap();
@@ -33,11 +41,6 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
   setClassMap() {
     XClearClass(this.classMap);
     this.classMap[`${XListOptionPrefix}-${this.size}`] = this.size ? true : false;
-  }
-
-  getClassMap(optionClass: { [className: string]: boolean }, classMap: XClassMap) {
-    console.log(optionClass);
-    return { ...optionClass, ...classMap };
   }
 
   setActiveStyles(): void {

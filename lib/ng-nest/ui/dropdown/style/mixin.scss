@@ -19,6 +19,9 @@
   border-radius: $--x-border-radius;
   box-shadow: $--x-box-shadow-light;
   overflow: auto;
+  .x-open-portal {
+    background-color: $--x-background-a200;
+  }
 }
 
 @mixin dropdown-portal-child {

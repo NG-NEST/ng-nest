@@ -45,7 +45,7 @@ export class XDropdownPortalComponent implements OnDestroy {
   positionChange!: Subject<any>;
   portalPositionChange: Subject<any> = new Subject();
   node!: XDropdownNode;
-  portalNode?: XDropdownNode | null;
+  openNode!: XDropdownNode;
   timeoutHide: any;
   timespan = 200;
   minWidth!: string | number;
@@ -70,12 +70,6 @@ export class XDropdownPortalComponent implements OnDestroy {
   get getMaxHeight() {
     return XIsString(this.maxHeight) ? this.maxHeight : `${this.maxHeight}px`;
   }
-
-  optionClass = (node: XDropdownNode) => {
-    return {
-      'x-dropdown-portal-hover': node.id === this.portalNode?.id
-    };
-  };
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover(true);
@@ -196,12 +190,13 @@ export class XDropdownPortalComponent implements OnDestroy {
     if (!node.leaf || node.disabled || this.childAnimating) return;
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.portalAttached() && this.node?.id !== node.id) {
+      this.changeOpenNode(false);
       this.portal?.overlayRef?.dispose();
-      this.portalNode = null;
     }
     this.node = node;
     if (!this.portalAttached()) {
-      this.portalNode = node;
+      this.openNode = node;
+      this.changeOpenNode(true);
       this.createPortal();
     }
     this.cdr.detectChanges();
@@ -210,9 +205,18 @@ export class XDropdownPortalComponent implements OnDestroy {
   onLeave() {
     if (this.portalAttached()) {
       this.timeoutHide = setTimeout(() => {
+        this.changeOpenNode(false);
         this.portal?.overlayRef?.dispose();
-        this.portalNode = null;
       });
+    } else {
+      this.changeOpenNode(false);
+    }
+  }
+
+  changeOpenNode(open: boolean) {
+    if (this.openNode) {
+      this.openNode.openPortal = open;
+      this.openNode.change && this.openNode.change();
     }
   }
 }
