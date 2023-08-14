@@ -13,7 +13,7 @@ The NG-NEST style customization user the `VAR` variable in `CSS3` and provides c
 
 - Specify by [Global configuration](index/docs/en_US/ui/global-config)
 - Set through XConfigService
-- Through [Theme](index/docs/en_US/ui/components/theme) component set
+- Through [Theme](index/docs/en_US/components/theme) component set
 
 ## Global configuration
 
@@ -29,4 +29,4 @@ The XConfigService service is provided in NG-NEST to switch themes at run time, 
 
 ## Theme components
 
-Directly introducing [Theme](index/docs/en_US/ui/components/theme) components use, this component is a component form, can be directly through ngModel to set binding values.
+Directly introducing [Theme](index/docs/en_US/components/theme) components use, this component is a component form, can be directly through ngModel to set binding values.
