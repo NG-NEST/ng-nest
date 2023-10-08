@@ -24,6 +24,7 @@
   }
   > .x-icon {
     font-size: 0.925rem;
+    margin-bottom: 0.0625rem;
   }
   @include flex-direction();
   &.x-direction-row {

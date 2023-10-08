@@ -180,6 +180,7 @@ export interface XButtonConfig {
   plain?: XBoolean;
   round?: XBoolean;
   circle?: XBoolean;
+  attrType?: 'submit' | 'button' | 'reset';
 }
 
 export interface XButtonsConfig {

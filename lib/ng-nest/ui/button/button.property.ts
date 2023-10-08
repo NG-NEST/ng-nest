@@ -88,7 +88,7 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    * @zh_CN 按钮类型属性 submit,button,reset
    * @en_US Button type attribute. submit,button,reset
    */
-  @Input() @XWithConfig<XButtonAttrType>(X_CONFIG_NAME, 'submit') attrType?: XButtonAttrType;
+  @Input() @XWithConfig<XButtonAttrType>(X_CONFIG_NAME, 'button') attrType?: XButtonAttrType;
 }
 
 /**
