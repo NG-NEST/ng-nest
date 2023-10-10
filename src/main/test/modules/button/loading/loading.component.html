@@ -1,3 +1,36 @@
 <div class="row">
   <x-button icon="fto-save" type="primary" [loading]="loading" (click)="save()">保存</x-button>
 </div>
+
+<div class="row">
+  <x-button [loading]="loading">默认按钮</x-button>
+  <x-button type="primary" [loading]="loading">主要按钮</x-button>
+  <x-button type="success" [loading]="loading">成功按钮</x-button>
+  <x-button type="warning" [loading]="loading">警告按钮</x-button>
+  <x-button type="danger" [loading]="loading">危险按钮</x-button>
+  <x-button type="info" [loading]="loading">信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button plain [loading]="loading">朴素按钮</x-button>
+  <x-button type="primary" plain [loading]="loading">主要按钮</x-button>
+  <x-button type="success" plain [loading]="loading">成功按钮</x-button>
+  <x-button type="warning" plain [loading]="loading">警告按钮</x-button>
+  <x-button type="danger" plain [loading]="loading">危险按钮</x-button>
+  <x-button type="info" plain [loading]="loading">信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button round [loading]="loading">圆角按钮</x-button>
+  <x-button type="primary" round [loading]="loading">主要按钮</x-button>
+  <x-button type="success" round [loading]="loading">成功按钮</x-button>
+  <x-button type="warning" round [loading]="loading">警告按钮</x-button>
+  <x-button type="danger" round [loading]="loading">危险按钮</x-button>
+  <x-button type="info" round [loading]="loading">信息按钮</x-button>
+</div>
+<div class="row">
+  <x-button icon="fto-search" circle [loading]="loading"></x-button>
+  <x-button icon="fto-edit-3" type="primary" circle [loading]="loading"></x-button>
+  <x-button icon="fto-check" type="success" circle [loading]="loading"></x-button>
+  <x-button icon="fto-star" type="warning" circle [loading]="loading"></x-button>
+  <x-button icon="fto-trash-2" type="danger" circle [loading]="loading"></x-button>
+  <x-button icon="fto-trash" type="info" circle [loading]="loading"></x-button>
+</div>

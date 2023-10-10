@@ -1,11 +1,15 @@
 <div class="yonghu">
   <x-row>
     <x-col>
-      <!-- <x-select [data]="data1" [(ngModel)]="model1" portalWidth="300px"></x-select> -->
+      <form [formGroup]="form">
+        <x-select [data]="data1" formControlName="name"></x-select>
+        <x-select [data]="data2" formControlName="nameCom"></x-select>
+      </form>
+      
     </x-col>
   </x-row>
   <x-row>
-    <x-col>
+    <!-- <x-col>
       <x-select
         [selectAllText]="'选择所有用户'"
         [data]="data2"
@@ -14,6 +18,6 @@
         [selectAll]="true"
         multiple
       ></x-select>
-    </x-col>
+    </x-col> -->
   </x-row>
 </div>

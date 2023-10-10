@@ -7,11 +7,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExWidthComponent } from './width/width.component';
 import { ExLeafComponent } from './leaf/leaf.component';
+import { ExCollapsedComponent } from './collapsed/collapsed.component';
 
 const routers = [{ path: '', component: TeMenuComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XMenuModule, XLayoutModule],
-  declarations: [TeMenuComponent, ExDefaultComponent, ExWidthComponent, ExLeafComponent]
+  declarations: [TeMenuComponent, ExDefaultComponent, ExWidthComponent, ExLeafComponent, ExCollapsedComponent]
 })
 export class TeMenuModule {}

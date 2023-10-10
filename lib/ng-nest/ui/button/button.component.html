@@ -18,9 +18,8 @@
   [attr.type]="attrType"
 >
   <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
-  <x-icon *ngIf="loading" type="fto-loader" [spin]="loading"></x-icon>
+  <svg *ngIf="loading" class="x-button-circular" viewBox="25 25 50 50">
+    <circle class="x-button-path" cx="50" cy="50" r="20" fill="none" />
+  </svg>
   <span #content><ng-content></ng-content></span>
 </button>
-
-<!-- 提前加载 loading 的图标-->
-<x-icon *ngIf="loading" [style.display]="'none'" type="fto-loader"></x-icon>

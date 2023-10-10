@@ -1,10 +1,11 @@
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { ChangeDetectorRef, Component, forwardRef, Renderer2, Type } from '@angular/core';
+import { ChangeDetectorRef, Component, forwardRef, inject, Renderer2, Type } from '@angular/core';
 import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, XSetFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
 @Component({ selector: 'x-control-value-accessor', template: '' })
 export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
+  cdr = inject(ChangeDetectorRef);
   get invalid() {
     return this.validator && ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator);
   }
@@ -37,7 +38,6 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
       return this.message as string;
     }
   }
-  cdr!: ChangeDetectorRef;
   invalidIndex: number = 0;
   labelMap: XClassMap = {};
   value!: T;
@@ -56,6 +56,7 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
   }
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.cdr.markForCheck();
   }
   setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
     return XSetFlex(ele, renderer, justify, align, direction);

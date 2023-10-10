@@ -5,6 +5,7 @@
 @import './param';
 
 @mixin button {
+  position: relative;
   border: $--x-border-width solid;
   border-radius: $--x-border-radius;
   flex: 1;
@@ -46,6 +47,20 @@
       margin-left: 0;
     }
   }
+  &-circular {
+    margin-right: 0.25rem;
+    margin-left: -0.3125rem;
+    width: 1.5em;
+    height: 1.5em;
+    animation: loading-rotate 2s linear infinite;
+  }
+  &-path {
+    animation: loading-dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
   &-transition {
     transition: color $--x-animation-duration-base ease-in-out, background-color $--x-animation-duration-base ease-in-out,
       border $--x-animation-duration-base ease-in-out;
@@ -58,8 +73,12 @@
   }
   &-circle {
     border-radius: 50%;
-    padding: 0;
+    padding: 0 !important;
     width: 1.675rem;
+    .#{$--x-button}-circular {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
   &-only-icon,
   &-only-icon.#{$--x-button}-initial,
@@ -107,6 +126,9 @@
   color: #{$color};
   background-color: #{$background};
   border-color: #{$border};
+  .#{$--x-button}-path {
+    stroke: #{$color};
+  }
 }
 
 @mixin button-type(
@@ -273,5 +295,26 @@
         border-left-color: rgba(255, 255, 255, 0.2);
       }
     }
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -2.5rem;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -7.5rem;
   }
 }
