@@ -1,3 +1,34 @@
+## [16.0.8](https://github.com/NG-NEST/ng-nest/compare/16.0.7...16.0.8) (2023-10-10)
+
+
+### Bug Fixes
+
+* **module:button:** fix attrType global ([82132c9](https://github.com/NG-NEST/ng-nest/commit/82132c9664ed9adf0feb43204925180a3f7b6655))
+* **module:dropdown:** resolve leaving errors ([22bab47](https://github.com/NG-NEST/ng-nest/commit/22bab4721fe9f81983679c506962756cd0586164))
+
+
+### Features
+
+* **module:list:** add option class ([bf3cb99](https://github.com/NG-NEST/ng-nest/commit/bf3cb99f96daf904618287d2d645244a59773b6b))
+* **module:menu:** add hover open class ([8e2237c](https://github.com/NG-NEST/ng-nest/commit/8e2237cfab942479ef1dcb59a0091dd0b1db2ed2))
+* **module:table:** add pagination params ([a7aa51b](https://github.com/NG-NEST/ng-nest/commit/a7aa51b5b09aad291f52cebbb5751e539bf27c3c))
+
+
+
+## [16.0.7](https://github.com/NG-NEST/ng-nest/compare/16.0.6...16.0.7) (2023-07-02)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** fix input model change ([da8e5f8](https://github.com/NG-NEST/ng-nest/commit/da8e5f803e1370922a40b64b7b88fc02c6cc7299)), closes [#224](https://github.com/NG-NEST/ng-nest/issues/224)
+
+
+### Features
+
+* **module:anchor:** add affix width ([531f332](https://github.com/NG-NEST/ng-nest/commit/531f33256be0251ec11ab3c0075948bf74dd645d))
+
+
+
 ## [16.0.6](https://github.com/NG-NEST/ng-nest/compare/16.0.5...16.0.6) (2023-06-15)
 
 
