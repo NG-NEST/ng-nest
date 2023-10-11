@@ -11,11 +11,12 @@ import { ExIconComponent } from './icon/icon.component';
 import { ExLoadingComponent } from './loading/loading.component';
 import { ExSizeComponent } from './size/size.component';
 import { ExTextComponent } from './text/text.component';
+import { XIconModule } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeButtonComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XButtonModule, XLayoutModule],
+  imports: [RouterModule.forChild(routers), CommonModule, XButtonModule, XLayoutModule, XIconModule],
   declarations: [
     TeButtonComponent,
     ExDefaultComponent,

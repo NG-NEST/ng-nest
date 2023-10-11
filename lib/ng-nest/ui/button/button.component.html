@@ -9,6 +9,7 @@
   [class.x-button-round]="round"
   [class.x-button-circle]="circle"
   [class.x-button-icon]="icon && !content.innerHTML.trim()"
+  [class.x-button-icon-not-content]="icon && content.innerHTML.trim() === ''"
   [class.x-button-closable]="closable"
   [class.x-button-transition]="transition"
   [title]="title"
@@ -17,9 +18,12 @@
   [disabled]="disabled"
   [attr.type]="attrType"
 >
-  <x-icon *ngIf="icon && !loading" [type]="icon"></x-icon>
-  <svg *ngIf="loading" class="x-button-circular" viewBox="25 25 50 50">
-    <circle class="x-button-path" cx="50" cy="50" r="20" fill="none" />
-  </svg>
+  <x-icon *ngIf="direction === 'row' && icon && !loading" [type]="icon"></x-icon>
+  <span *ngIf="loading" class="x-button-loading">
+    <svg class="x-button-circular" viewBox="25 25 50 50">
+      <circle class="x-button-path" cx="50" cy="50" r="20" fill="none" />
+    </svg>
+  </span>
   <span #content><ng-content></ng-content></span>
+  <x-icon *ngIf="direction === 'row-reverse' && icon && !loading" [type]="icon"></x-icon>
 </button>

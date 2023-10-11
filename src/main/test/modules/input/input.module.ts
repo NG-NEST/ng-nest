@@ -8,11 +8,39 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExValidatorComponent } from './validator/validator.component';
 import { ExRequiredComponent } from './required/required.component';
+import { ExPerpostComponent } from './perpost/perpost.component';
+import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XButtonModule } from '@ng-nest/ui/button';
+import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XFindModule } from '@ng-nest/ui/find';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 const routers = [{ path: '', component: TeInputComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, ReactiveFormsModule, XInputModule, XLayoutModule],
-  declarations: [TeInputComponent, ExDefaultComponent, ExValidatorComponent, ExRequiredComponent]
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XInputModule,
+    XLayoutModule,
+    XRadioModule,
+    XSelectModule,
+    XButtonModule,
+    XDatePickerModule,
+    XAutoCompleteModule,
+    XCascadeModule,
+    XColorPickerModule,
+    XFindModule,
+    XTextareaModule,
+    XTimePickerModule
+  ],
+  declarations: [TeInputComponent, ExDefaultComponent, ExValidatorComponent, ExRequiredComponent, ExPerpostComponent]
 })
 export class TeInputModule {}

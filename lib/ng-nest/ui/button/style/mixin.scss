@@ -8,10 +8,6 @@
   position: relative;
   border: $--x-border-width solid;
   border-radius: $--x-border-radius;
-  flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   font-size: $--x-font-size-small;
   text-align: center;
   background-clip: border-box;
@@ -24,10 +20,9 @@
     outline: none;
   }
   > .x-icon {
-    font-size: 0.925rem;
-    margin-bottom: 0.0625rem;
+    font-size: 1rem;
+    vertical-align: -0.1875rem;
   }
-  @include flex-direction();
   &.x-direction-row {
     > .x-icon {
       margin-right: 0.25rem;
@@ -47,11 +42,16 @@
       margin-left: 0;
     }
   }
-  &-circular {
+  &-loading {
     margin-right: 0.25rem;
-    margin-left: -0.3125rem;
-    width: 1.5em;
-    height: 1.5em;
+    margin-left: -0.25rem;
+    font-size: 1rem;
+    vertical-align: -0.1875rem;
+  }
+
+  &-circular {
+    width: 1rem;
+    height: 1rem;
     animation: loading-rotate 2s linear infinite;
   }
   &-path {
@@ -75,7 +75,13 @@
     border-radius: 50%;
     padding: 0 !important;
     width: 1.675rem;
-    .#{$--x-button}-circular {
+    .#{$--x-button}-loading {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  &-icon-not-content {
+    .#{$--x-button}-loading {
       margin-right: 0;
       margin-left: 0;
     }
@@ -275,7 +281,7 @@
         padding: 0 0.4rem;
         background-color: transparent;
         &-icon {
-          padding: 0 0.2rem;
+          padding: 0.2rem 0.4rem;
           > .x-icon {
             font-size: 1.125rem;
           }

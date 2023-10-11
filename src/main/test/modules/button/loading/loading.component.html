@@ -1,5 +1,6 @@
-<div class="row">
+<div class="row" style="margin-top: 250px">
   <x-button icon="fto-save" type="primary" [loading]="loading" (click)="save()">保存</x-button>
+  <x-button type="primary" [loading]="loading">主要按钮</x-button>
 </div>
 
 <div class="row">
@@ -33,4 +34,33 @@
   <x-button icon="fto-star" type="warning" circle [loading]="loading"></x-button>
   <x-button icon="fto-trash-2" type="danger" circle [loading]="loading"></x-button>
   <x-button icon="fto-trash" type="info" circle [loading]="loading"></x-button>
+</div>
+
+<div class="row">
+  <x-button size="big" [loading]="loading">超大按钮</x-button>
+  <x-button size="large" [loading]="loading">大型按钮</x-button>
+  <x-button [loading]="loading">默认按钮</x-button>
+  <x-button size="small" [loading]="loading">小型按钮</x-button>
+  <x-button size="mini" [loading]="loading">迷你按钮</x-button>
+</div>
+<div class="row">
+  <x-button type="primary" size="big" [loading]="loading">超大按钮</x-button>
+  <x-button type="primary" size="large" [loading]="loading">大型按钮</x-button>
+  <x-button type="primary" [loading]="loading">默认按钮</x-button>
+  <x-button type="primary" size="small" [loading]="loading">小型按钮</x-button>
+  <x-button type="primary" size="mini" [loading]="loading">迷你按钮</x-button>
+</div>
+<div class="row">
+  <x-button type="primary" size="big" round [loading]="loading">超大按钮</x-button>
+  <x-button type="primary" size="large" round [loading]="loading">大型按钮</x-button>
+  <x-button type="primary" round [loading]="loading">默认按钮</x-button>
+  <x-button type="primary" size="small" round [loading]="loading">小型按钮</x-button>
+  <x-button type="primary" size="mini" round [loading]="loading">迷你按钮</x-button>
+</div>
+<div class="row">
+  <x-button icon="fto-share" type="primary" size="big" [loading]="loading"></x-button>
+  <x-button icon="fto-share" type="primary" size="large" [loading]="loading"></x-button>
+  <x-button icon="fto-share" type="primary" [loading]="loading"></x-button>
+  <x-button icon="fto-share" type="primary" size="small" [loading]="loading"></x-button>
+  <x-button icon="fto-share" type="primary" size="mini" [loading]="loading"></x-button>
 </div>
