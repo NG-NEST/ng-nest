@@ -11,11 +11,20 @@ import { ExPromptComponent } from './prompt/prompt.component';
 import { ExCustomComponent } from './custom/custom.component';
 import { XMessageModule } from '@ng-nest/ui/message';
 import { ExValidatorComponent } from './validator/validator.component';
+import { ExLoadingComponent } from './loading/loading.component';
 
 const routers = [{ path: '', component: TeMessageBoxComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routers), CommonModule, XMessageBoxModule, XMessageModule, XButtonModule, XLayoutModule],
-  declarations: [TeMessageBoxComponent, ExDefaultComponent, ExPromptComponent, ExCustomComponent, ExConfirmComponent, ExValidatorComponent]
+  declarations: [
+    TeMessageBoxComponent,
+    ExDefaultComponent,
+    ExPromptComponent,
+    ExCustomComponent,
+    ExConfirmComponent,
+    ExValidatorComponent,
+    ExLoadingComponent
+  ]
 })
 export class TeMessageBoxModule {}

@@ -21,13 +21,17 @@ export class ExServiceComponent {
   }
 
   createFullScreen(placement: XPlace) {
-    this.dialogService.create(ExServiceDialogComponent, {
+    const dialogRef = this.dialogService.create(ExServiceDialogComponent, {
       placement: placement, // 默认center
       width: '100%',
       height: '100%',
       draggable: true,
       resizable: true,
       data: { title: '标题', content: '传递内容信息，传递内容信息，传递内容信息' }
+    });
+
+    dialogRef.afterClose.subscribe((x) => {
+      console.log(x);
     });
   }
 }

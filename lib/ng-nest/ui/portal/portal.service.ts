@@ -59,7 +59,7 @@ export class XPortalService {
           // .withLockedPosition(true)
           .withFlexibleDimensions(false)
           .withPush(false)
-          .withPositions(this.setConnectedPosition(...param.placement))
+          .withPositions(this.setConnectedPosition(...param.placement!))
           .withTransformOriginOn(param.transformOriginOn!)
       );
     }

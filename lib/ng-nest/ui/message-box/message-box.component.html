@@ -44,7 +44,9 @@
       </div>
       <x-buttons space="1">
         <x-button *ngIf="msgInput.showCancel" (click)="onCancel()">{{ msgInput.cancelText }}</x-button>
-        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup!.invalid">{{ msgInput.confirmText }}</x-button>
+        <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup!.invalid" [loading]="loading">{{
+          msgInput.confirmText
+        }}</x-button>
       </x-buttons>
     </div>
   </ng-template>

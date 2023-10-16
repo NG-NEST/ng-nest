@@ -1,6 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ElementRef, Renderer2 } from '@angular/core';
-import { filter, take } from 'rxjs';
+import { Subject, filter, take } from 'rxjs';
 import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRefOption } from './dialog.property';
@@ -11,6 +11,7 @@ export class XDialogRef<C> {
   option!: XDialogRefOption;
   fullscreen = false;
   dragHandleRefs: ElementRef<HTMLElement>[] = [];
+  afterClose = new Subject<any>();
   private _isFristFullscreen = true;
   constructor(
     public overlayRef: OverlayRef,
@@ -19,7 +20,7 @@ export class XDialogRef<C> {
     public portalService: XPortalService
   ) {}
 
-  close() {
+  close(result?: any) {
     this.containerInstance.animationChanged
       .pipe(
         filter((event) => event.state === 'void' && event.action === 'done'),
@@ -27,6 +28,7 @@ export class XDialogRef<C> {
       )
       .subscribe(() => {
         this.overlayRef.detach();
+        this.afterClose.next(result);
       });
     this.containerInstance.placement = 'void';
   }

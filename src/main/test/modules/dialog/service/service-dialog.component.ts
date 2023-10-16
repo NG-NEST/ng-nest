@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { X_DIALOG_DATA } from '@ng-nest/ui/dialog';
 import { XDialogRef } from '@ng-nest/ui/dialog';
 
@@ -7,9 +7,12 @@ import { XDialogRef } from '@ng-nest/ui/dialog';
   templateUrl: './service-dialog.component.html'
 })
 export class ExServiceDialogComponent {
-  constructor(@Inject(X_DIALOG_DATA) public data: any, public dialogRef: XDialogRef<ExServiceDialogComponent>) {}
+  readonly data = inject(X_DIALOG_DATA);
+  readonly dialogRef = inject(XDialogRef<ExServiceDialogComponent>);
+
+  constructor() {}
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close({ result: 'closed' });
   }
 }

@@ -3,6 +3,7 @@ import { XAlertOption } from '@ng-nest/ui/alert';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XInputType } from '@ng-nest/ui/input';
+import { Observable } from 'rxjs';
 
 /**
  * MessageBox
@@ -126,6 +127,11 @@ export interface XMessageBoxOption extends XAlertOption {
    * @en_US Processing function before closing
    */
   beforeClose?: XMessageBoxCallback;
+  /**
+   * @zh_CN 确认加载
+   * @en_US confirm Loading
+   */
+  confirmLoading?: XMessageBoxConfirmLoading;
 }
 
 /**
@@ -135,6 +141,12 @@ export interface XMessageBoxOption extends XAlertOption {
 export interface XMessageBoxCallback {
   (action: XMessageBoxAction, message?: string): void;
 }
+
+/**
+ * @zh_CN 确认加载
+ * @en_US confirm Loading
+ */
+export type XMessageBoxConfirmLoading = () => Observable<boolean>;
 
 /**
  * @zh_CN 触发关闭的类型

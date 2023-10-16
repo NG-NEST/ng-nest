@@ -16,6 +16,7 @@ export class XMessageBoxComponent implements OnInit {
   messageBox!: XMessageBoxRef;
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
+  loading = false;
   constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
 
   get msgInput() {
@@ -65,9 +66,23 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   onConfirm() {
-    if (!this.msgInput.showInput || (this.msgInput.showInput && this.formGroup.valid)) {
-      this.action = 'confirm';
-      this.hideBox();
+    const hide = () => {
+      if (!this.msgInput.showInput || (this.msgInput.showInput && this.formGroup.valid)) {
+        this.action = 'confirm';
+        this.hideBox();
+      }
+    };
+    if (this.msgInput.confirmLoading && XIsFunction(this.msgInput.confirmLoading)) {
+      this.loading = true;
+      this.msgInput.confirmLoading().subscribe((x) => {
+        this.loading = false;
+        this.cdr.markForCheck();
+        if (!x) return;
+        this.action = 'confirm';
+        hide();
+      });
+    } else {
+      hide();
     }
   }
 
