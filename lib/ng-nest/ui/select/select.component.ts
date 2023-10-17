@@ -322,9 +322,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setSearchNodes(value: string | number) {
     if (this.caseSensitive) {
-      this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
+      this.searchNodes = this.nodes.filter((x) => String(x.label).indexOf(String(value)) >= 0);
     } else {
-      this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
+      this.searchNodes = this.nodes.filter((x) => String(x.label).toLowerCase().indexOf(String(value).toLowerCase()) >= 0);
     }
   }
 
