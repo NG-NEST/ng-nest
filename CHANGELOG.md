@@ -1,3 +1,18 @@
+## [16.0.9](https://github.com/NG-NEST/ng-nest/compare/16.0.8...16.0.9) (2023-10-17)
+
+
+### Bug Fixes
+
+* **module:button:** fix button loading jitter ([1878786](https://github.com/NG-NEST/ng-nest/commit/1878786b51e854a05c1429b409fe6c97ab2f58c3))
+* **module:select:** fix search error ([2bf4205](https://github.com/NG-NEST/ng-nest/commit/2bf4205e83170ad1b9189903b88cd88d9cc5766e))
+
+
+### Features
+
+* **module:message-box:** add confirm loading ([754c9b2](https://github.com/NG-NEST/ng-nest/commit/754c9b2448400224ffbe644f708831cafe673907))
+
+
+
 ## [16.0.8](https://github.com/NG-NEST/ng-nest/compare/16.0.7...16.0.8) (2023-10-10)
 
 
