@@ -143,7 +143,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setSubject();
     if (this.multiple) {
       this.valueTpl = this.multipleValueTpl;
-      this.inputPadding = 0.125;
     }
     if (this.portalWidth) {
       if (this.placement === 'bottom') {
