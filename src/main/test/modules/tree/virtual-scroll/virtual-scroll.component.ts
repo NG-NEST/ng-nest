@@ -15,7 +15,7 @@ export class ExVirtualScrollComponent {
     { id: 6, label: '二级 1-2', pid: 1 },
     { id: 7, label: '二级 1-3', pid: 1 },
     { id: 8, label: '二级 1-4', pid: 1 },
-    ...Array.from({ length: 1 }).map((_, index) => ({ id: 10000 + index, label: `二级 1-${index + 5}`, pid: 1 })),
+    ...Array.from({ length: 1000 }).map((_, index) => ({ id: 10000 + index, label: `二级 1-${index + 5}`, pid: 1 })),
     { id: 9, label: '二级 2-1', pid: 2 },
     { id: 10, label: '二级 2-2', pid: 2 },
     { id: 11, label: '二级 2-3', pid: 2 },
@@ -27,7 +27,7 @@ export class ExVirtualScrollComponent {
     { id: 21, label: '三级 1-1-1', pid: 5 },
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
-    ...Array.from({ length: 1 }).map((_, index) => ({ id: 20000 + index, label: `三级 1-1-${index + 4}`, pid: 5 }))
+    ...Array.from({ length: 1000 }).map((_, index) => ({ id: 20000 + index, label: `三级 1-1-${index + 4}`, pid: 5 }))
   ];
 
   dataLazy1: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
@@ -49,7 +49,7 @@ export class ExVirtualScrollComponent {
       setTimeout(() => {
         x.next(result);
         x.complete();
-      }, 10000);
+      }, 1000);
     });
   };
 
@@ -64,7 +64,7 @@ export class ExVirtualScrollComponent {
       setTimeout(() => {
         x.next(result);
         x.complete();
-      }, 10000);
+      }, 1000);
     });
   };
 

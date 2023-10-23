@@ -20,7 +20,7 @@
         #dragRef
         class="x-slider-select-drag"
         cdkDrag
-        cdkDragLockAxis="x"
+        [cdkDragLockAxis]="vertical ? 'y' : 'x'"
         [cdkDragDisabled]="disabled"
         [cdkDragBoundary]="innerRef"
         (cdkDragStarted)="started($event)"

@@ -46,6 +46,11 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
    */
   @Input() @XInputBoolean() reverse?: XBoolean;
   /**
+   * @zh_CN 垂直
+   * @en_US Vertical
+   */
+  @Input() @XInputBoolean() vertical?: XBoolean;
+  /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */

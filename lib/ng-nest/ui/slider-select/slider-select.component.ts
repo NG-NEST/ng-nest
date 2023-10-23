@@ -9,7 +9,8 @@ import {
   ElementRef,
   ViewChild,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  HostBinding
 } from '@angular/core';
 import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
 import { XIsEmpty, XIsUndefined, XResize, XClearClass, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
@@ -31,6 +32,9 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   @ViewChild('dragRef', { static: true }) dragRef!: ElementRef<HTMLElement>;
   @ViewChild('railRef', { static: true }) railRef!: ElementRef<HTMLElement>;
   @ViewChild('processRef', { static: true }) processRef!: ElementRef<HTMLElement>;
+  @HostBinding('class.x-slider-select-vertical') get getVertical() {
+    return this.vertical;
+  }
   @ViewChild(XTooltipDirective, { static: true }) tooltip!: XTooltipDirective;
   offset: number = 0;
   visible: boolean = false;
@@ -141,7 +145,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
 
   moved(drag: CdkDragMove) {
     let transform = drag.source.getFreeDragPosition();
-    this.setDrag(transform.x);
+    this.setDrag(this.vertical ? transform.y : transform.x);
     drag.source.reset();
     if (this.showTooltip) {
       this.tooltip.updatePortal();
@@ -162,25 +166,42 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   setDrag(distance: number = 0) {
     if (typeof this.railRef.nativeElement.getBoundingClientRect !== 'function') return;
     let railBox = this.railRef.nativeElement.getBoundingClientRect();
-    let stepWidth = railBox.width / ((Number(this.max) - Number(this.min)) / Number(this.step));
-    let offset = Math.abs(distance % stepWidth);
+    let railBoxLength = this.vertical ? railBox.height : railBox.width;
+    let stepLength = railBoxLength / ((Number(this.max) - Number(this.min)) / Number(this.step));
+    let offset = Math.abs(distance % stepLength);
     let dis =
-      offset < stepWidth / 2
+      offset < stepLength / 2
         ? distance > 0
           ? distance - offset
           : distance + offset
         : distance > 0
-        ? distance + stepWidth - offset
-        : distance - stepWidth + offset;
+        ? distance + stepLength - offset
+        : distance - stepLength + offset;
 
-    let x = (this.start / 100) * railBox.width + (this.reverse ? -dis : dis);
-    this.offset = Math.round((x / railBox.width) * 100);
-    if (this.reverse) {
-      this.renderer.setStyle(this.dragRef.nativeElement, 'right', `${this.offset}%`);
+    let x = (this.start / 100) * railBoxLength;
+    if (this.vertical) {
+      x += this.reverse ? dis : -dis;
     } else {
-      this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.offset}%`);
+      x += this.reverse ? -dis : dis;
     }
-    this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.offset}%`);
+    this.offset = Math.round((x / railBoxLength) * 100);
+
+    if (this.vertical) {
+      if (this.reverse) {
+        this.renderer.setStyle(this.dragRef.nativeElement, 'top', `${this.offset}%`);
+      } else {
+        this.renderer.setStyle(this.dragRef.nativeElement, 'bottom', `${this.offset}%`);
+      }
+      this.renderer.setStyle(this.processRef.nativeElement, 'height', `${this.offset}%`);
+    } else {
+      if (this.reverse) {
+        this.renderer.setStyle(this.dragRef.nativeElement, 'right', `${this.offset}%`);
+      } else {
+        this.renderer.setStyle(this.dragRef.nativeElement, 'left', `${this.offset}%`);
+      }
+      this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.offset}%`);
+    }
+
     this.renderer.removeStyle(this.dragRef.nativeElement, 'transform');
   }
 

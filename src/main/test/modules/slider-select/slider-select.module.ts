@@ -11,6 +11,7 @@ import { ExLabelComponent } from './label/label.component';
 import { ExLimitComponent } from './limit/limit.component';
 import { ExPrecisionComponent } from './precision/precision.component';
 import { ExReverseComponent } from './reverse/reverse.component';
+import { ExVerticalComponent } from './vertical/vertical.component';
 
 const routers = [{ path: '', component: TeSliderSelectComponent }];
 
@@ -23,7 +24,8 @@ const routers = [{ path: '', component: TeSliderSelectComponent }];
     ExLabelComponent,
     ExLimitComponent,
     ExPrecisionComponent,
-    ExReverseComponent
+    ExReverseComponent,
+    ExVerticalComponent
   ]
 })
 export class TeSliderSelectModule {}
