@@ -40,7 +40,7 @@
       [after]="afterButtonTpl"
       [pattern]="pattern"
       [message]="message"
-      (xInput)="formControlValidator()"
+      (xInput)="onInput($event); formControlValidator()"
     ></x-input>
     <ng-template #afterButtonTpl>
       <x-button
