@@ -9,10 +9,10 @@ $--x-slider-select-font-size: $--x-font-size;
 $--x-slider-select-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 轨道高度 */
-$--x-slider-select-track-height: calc(#{$--x-slider-select-height} / 4);
+$--x-slider-select-track-height: calc(#{$--x-slider-select-height} / 5);
 
 /* 滑块尺寸 */
-$--x-slider-select-button-size: 1rem;
+$--x-slider-select-button-size: 0.875rem;
 
 /* 内边距 */
 $--x-slider-select-padding: 0 $--x-control-padding-horizontal;

@@ -8,7 +8,7 @@
   [class.x-slider-select-reverse]="reverse"
 >
   <label *ngIf="label" [class.x-slider-select-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
-  <div class="x-slider-select-inner" #innerRef (click)="onInnerClick($event)">
+  <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>
       <div></div>
     </div>
@@ -17,25 +17,52 @@
     </div>
     <div class="x-slider-select-drags">
       <div
-        #dragRef
+        #dragStartRef
         class="x-slider-select-drag"
         cdkDrag
         [cdkDragLockAxis]="vertical ? 'y' : 'x'"
         [cdkDragDisabled]="disabled"
         [cdkDragBoundary]="innerRef"
-        (cdkDragStarted)="started($event)"
-        (cdkDragEnded)="ended($event)"
-        (cdkDragMoved)="moved($event)"
+        (cdkDragStarted)="started($event, 'start')"
+        (cdkDragEnded)="ended($event, 'start')"
+        (cdkDragMoved)="moved($event, 'start')"
       >
         <div
-          #tooltip
+          #tooltipStart
           x-tooltip
+          tabindex="0"
           class="x-slider-select-button"
+          [class.x-slider-select-button-actived]="startVisible"
           placement="top"
-          [disabled]="!showTooltip"
-          [content]="displayValue"
-          [visible]="visible"
-          [manual]="manual"
+          [disabled]="!showTooltip && !showStartTooltip"
+          [content]="startDisplayValue"
+          [visible]="startVisible"
+          [manual]="startManual"
+        ></div>
+      </div>
+      <div
+        [hidden]="!range"
+        #dragEndRef
+        class="x-slider-select-drag"
+        cdkDrag
+        [cdkDragLockAxis]="vertical ? 'y' : 'x'"
+        [cdkDragDisabled]="disabled"
+        [cdkDragBoundary]="innerRef"
+        (cdkDragStarted)="started($event, 'end')"
+        (cdkDragEnded)="ended($event, 'end')"
+        (cdkDragMoved)="moved($event, 'end')"
+      >
+        <div
+          #tooltipEnd
+          x-tooltip
+          tabindex="0"
+          class="x-slider-select-button"
+          [class.x-slider-select-button-actived]="endVisible"
+          placement="top"
+          [disabled]="!showTooltip && !showEndTooltip"
+          [content]="endDisplayValue"
+          [visible]="endVisible"
+          [manual]="endManual"
         ></div>
       </div>
     </div>

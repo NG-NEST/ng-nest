@@ -14,7 +14,7 @@ export const XSliderSelectPrefix = 'x-slider-select';
  * SliderSelect Property
  */
 @Component({ selector: `${XSliderSelectPrefix}-property`, template: '' })
-export class XSliderSelectProperty extends XControlValueAccessor<number> implements XSliderSelectOption {
+export class XSliderSelectProperty extends XControlValueAccessor<number | number[]> implements XSliderSelectOption {
   /**
    * @zh_CN 最小值
    * @en_US Minimum
@@ -50,6 +50,11 @@ export class XSliderSelectProperty extends XControlValueAccessor<number> impleme
    * @en_US Vertical
    */
   @Input() @XInputBoolean() vertical?: XBoolean;
+  /**
+   * @zh_CN 范围
+   * @en_US Range
+   */
+  @Input() @XInputBoolean() range?: XBoolean;
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
