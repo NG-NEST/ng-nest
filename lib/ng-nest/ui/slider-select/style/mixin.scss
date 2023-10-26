@@ -48,7 +48,8 @@
   }
   &-track {
     margin-left: math.div($--x-slider-select-button-size, 2);
-    width: calc(100% - #{$--x-slider-select-button-size});
+    width: 100%;
+    border-radius: $--x-slider-select-border-radius;
     position: absolute;
   }
   &-process {
@@ -80,6 +81,10 @@
     &-actived {
       transform: scale(1.2);
     }
+  }
+  &-bar {
+    width: 100%;
+    height: 100%;
   }
   &.x-invalid,
   &.x-required {
@@ -171,7 +176,7 @@
       &-track {
         display: flex;
         justify-content: flex-end;
-        margin-left: math.div(-$--x-slider-select-button-size, 2);
+        margin-right: math.div($--x-slider-select-button-size, 2);
       }
       &-drags {
         justify-content: flex-end;
@@ -186,7 +191,7 @@
       height: 100%;
       &-inner {
         padding-right: initial;
-        padding-top: 1rem;
+        padding-top: $--x-slider-select-button-size;
         align-items: initial;
         justify-content: center;
         height: 100%;
@@ -201,9 +206,9 @@
         display: flex;
         align-items: flex-end;
         margin-left: initial;
-        margin-top: math.div($--x-slider-select-button-size, -2);
+        margin-bottom: math.div($--x-slider-select-button-size, 2);
         width: $--x-slider-select-track-height;
-        height: calc(100% - #{$--x-slider-select-button-size});
+        height: 100%;
         position: absolute;
       }
       &-process {
@@ -217,12 +222,11 @@
         justify-content: center;
         right: auto;
       }
-
       &-reverse {
         .#{$--x-slider-select-prefix} {
           &-inner {
             padding-left: initial;
-            padding-bottom: 1rem;
+            padding-bottom: $--x-slider-select-button-size;
             padding-top: initial;
           }
           &-rail {
@@ -230,9 +234,30 @@
           }
           &-track {
             align-items: flex-start;
-            margin-top: math.div($--x-slider-select-button-size, 2);
+            margin-top: $--x-slider-select-button-size;
+            margin-bottom: initial;
+            margin-right: initial;
           }
         }
+      }
+      &-range {
+        &.#{$--x-slider-select-prefix}-reverse {
+          .#{$--x-slider-select-prefix} {
+            &-drags {
+              align-items: initial;
+            }
+            &-track {
+              margin-top: math.div($--x-slider-select-button-size, 2);
+            }
+          }
+        }
+      }
+    }
+  }
+  &-range {
+    .#{$--x-slider-select-prefix} {
+      &-process {
+        cursor: pointer;
       }
     }
   }

@@ -26,7 +26,7 @@ import {
   XIsArray,
   XIsNull
 } from '@ng-nest/ui/core';
-import { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { CdkDragMove, CdkDragStart, CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
@@ -39,7 +39,10 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
-export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit, OnDestroy, AfterViewInit {
+export class XSliderSelectComponent
+  extends XSliderSelectProperty
+  implements OnInit, OnDestroy, AfterViewInit
+{
   @ViewChild('sliderSelect', { static: true }) sliderSelect!: ElementRef<HTMLElement>;
   @ViewChild('dragStartRef', { static: true }) dragStartRef!: ElementRef<HTMLElement>;
   @ViewChild('dragEndRef', { static: true }) dragEndRef!: ElementRef<HTMLElement>;
@@ -51,6 +54,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   @ViewChildren(XTooltipDirective) tooltips!: QueryList<XTooltipDirective>;
   tooltipStart!: XTooltipDirective;
   tooltipEnd!: XTooltipDirective;
+
+  @ViewChild(CdkDrag) cdkDrag!: CdkDrag;
 
   override value: number | number[] = 0;
 
@@ -102,7 +107,13 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   }
 
   ngOnInit() {
-    this.setFlex(this.sliderSelect.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.sliderSelect.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setPrecision();
     this.setClassMap();
   }
@@ -134,7 +145,9 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
   change() {
     const getVal = (offset: number) => {
       return parseFloat(
-        Number(((Number(this.max) - Number(this.min)) * Number(offset)) / 100 + Number(this.min)).toFixed(Number(this.precision))
+        Number(
+          ((Number(this.max) - Number(this.min)) * Number(offset)) / 100 + Number(this.min)
+        ).toFixed(Number(this.precision))
       );
     };
     const startVal = getVal(this.startOffset);
@@ -162,7 +175,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     let startVal = 0,
       endVal = 0;
     const getOffset = (val: number) => {
-      return Math.round(((val + (this.reverse ? Number(this.min) : -Number(this.min))) * 100) / (Number(this.max) - Number(this.min)));
+      return Math.round(
+        ((val + (this.reverse ? Number(this.min) : -Number(this.min))) * 100) /
+          (Number(this.max) - Number(this.min))
+      );
     };
 
     if (this.isNumber) {
@@ -215,15 +231,16 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     }
   }
 
-  started(drag: CdkDragStart, type: 'start' | 'end' = 'start') {
-    if (type === 'start') {
+  started(drag: CdkDragStart, type: 'start' | 'end' | 'both' = 'start') {
+    if (['start', 'both'].includes(type)) {
       const start = this.startOffset;
       this.start = start;
       if (this.showStartTooltip) {
         this.startManual = true;
         this.startVisible = true;
       }
-    } else if (type === 'end') {
+    }
+    if (['end', 'both'].includes(type)) {
       const end = this.endOffset;
       this.end = end;
       if (this.showEndTooltip) {
@@ -236,27 +253,28 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
     this.dragStartEmit.emit(drag);
   }
 
-  moved(drag: CdkDragMove, type: 'start' | 'end' = 'start') {
+  moved(drag: CdkDragMove, type: 'start' | 'end' | 'both' = 'start') {
     let transform = drag.source.getFreeDragPosition();
     this.setDrag(this.vertical ? transform.y : transform.x, type);
     drag.source.reset();
-    if (type === 'start' && this.showStartTooltip) {
+    if (['start', 'both'].includes(type) && this.showStartTooltip) {
       this.tooltipStart.updatePortal();
     }
-    if (type === 'end' && this.showEndTooltip) {
+    if (['end', 'both'].includes(type) && this.showEndTooltip) {
       this.tooltipEnd.updatePortal();
     }
     this.change();
     this.dragMoveEmit.emit(drag);
   }
 
-  ended(drag: CdkDragEnd, type: 'start' | 'end' = 'start') {
-    if (type === 'start') {
+  ended(drag: CdkDragEnd, type: 'start' | 'end' | 'both' = 'start') {
+    if (['start', 'both'].includes(type)) {
       if (this.showStartTooltip) {
         this.startManual = false;
         this.startVisible = false;
       }
-    } else if (type === 'end') {
+    }
+    if (['end', 'both'].includes(type)) {
       if (this.showEndTooltip) {
         this.endManual = false;
         this.endVisible = false;
@@ -349,8 +367,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
         this.renderer.setStyle(this.processRef.nativeElement, 'width', `${this.startOffset}%`);
       }
     }
-
-    this.renderer.removeStyle(this.dragStartRef.nativeElement, 'transform');
   }
 
   formControlChanges() {

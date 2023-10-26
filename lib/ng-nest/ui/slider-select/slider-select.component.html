@@ -6,16 +6,33 @@
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
   [class.x-slider-select-reverse]="reverse"
+  [class.x-slider-select-range]="range"
 >
-  <label *ngIf="label" [class.x-slider-select-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label
+    *ngIf="label"
+    [class.x-slider-select-label-required]="required"
+    [style.width]="labelWidth"
+    [ngClass]="labelMap"
+    >{{ label }}</label
+  >
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>
       <div></div>
     </div>
-    <div class="x-slider-select-track" #trackRef>
-      <div class="x-slider-select-process" #processRef></div>
-    </div>
     <div class="x-slider-select-drags">
+      <div class="x-slider-select-track" #trackRef>
+        <div
+          #processRef
+          class="x-slider-select-process"
+          cdkDrag
+          [cdkDragLockAxis]="vertical ? 'y' : 'x'"
+          [cdkDragDisabled]="disabled || !range"
+          [cdkDragBoundary]="trackRef"
+          (cdkDragStarted)="started($event, 'both')"
+          (cdkDragEnded)="ended($event, 'both')"
+          (cdkDragMoved)="moved($event, 'both')"
+        ></div>
+      </div>
       <div
         #dragStartRef
         class="x-slider-select-drag"

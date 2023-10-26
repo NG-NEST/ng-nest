@@ -1,17 +1,17 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, Output, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, Renderer2, inject } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { XDragProperty } from './drag.property';
 
-@Directive({ selector: '[xDrag]' })
-export class XDragDirective {
-  @Output() dragStarted = new EventEmitter<{ x: number; y: number }>();
-  @Output() dragMoved = new EventEmitter<{ x: number; y: number; offsetX: number; offsetY: number }>();
-  @Output() dragEnded = new EventEmitter<{ x: number; y: number }>();
+@Directive({ selector: '[x-drag]' })
+export class XDragDirective extends XDragProperty {
   private _unSubject = new Subject<void>();
   doc = inject(DOCUMENT);
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super();
+  }
 
   ngOnInit() {
     const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown');

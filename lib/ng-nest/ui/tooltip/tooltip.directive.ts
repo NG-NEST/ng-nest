@@ -1,11 +1,25 @@
-import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, OnDestroy, HostBinding } from '@angular/core';
+import {
+  ElementRef,
+  ViewContainerRef,
+  Directive,
+  HostListener,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy,
+  HostBinding
+} from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
 import { XTooltipPrefix, XTooltipProperty } from './tooltip.property';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { XIsChange, XPlacement } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
-import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, Overlay } from '@angular/cdk/overlay';
+import {
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  Overlay
+} from '@angular/cdk/overlay';
 
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
@@ -98,10 +112,12 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {
@@ -129,6 +145,6 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   }
 
   updatePortal() {
-    this.portal.overlayRef?.updatePosition();
+    this.portal?.overlayRef?.updatePosition();
   }
 }
