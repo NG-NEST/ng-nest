@@ -70,12 +70,17 @@
     position: absolute;
     cursor: pointer;
   }
-  &-button {
-    width: $--x-slider-select-button-size;
-    height: $--x-slider-select-button-size;
+  &-button:not(.x-slider-select-custom-button) {
     border-radius: $--x-slider-select-button-size;
     border: calc(#{$--x-border-width} * 2) solid $--x-primary;
     background-color: $--x-background-a100;
+  }
+  &-button {
+    width: $--x-slider-select-button-size;
+    height: $--x-slider-select-button-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: $--x-animation-duration-base;
     &:hover,
     &-actived {
@@ -119,7 +124,7 @@
       &-drag {
         cursor: not-allowed;
       }
-      &-button {
+      &-button:not(.x-slider-select-custom-button) {
         border-color: $--x-primary-400;
       }
     }

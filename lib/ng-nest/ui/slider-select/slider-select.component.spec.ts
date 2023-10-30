@@ -11,6 +11,8 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
@@ -23,7 +25,9 @@ describe(XSliderSelectPrefix, () => {
         FormsModule,
         ReactiveFormsModule,
         XLayoutModule,
-        XTabsModule
+        XTabsModule,
+        XIconModule,
+        XButtonModule
       ],
       declarations: [
         TestXSliderSelectComponent,
@@ -217,7 +221,11 @@ class TestXSliderSelectPrecisionComponent {}
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-slider-select label="数量" [(ngModel)]="model" direction="column-reverse"></x-slider-select>
+        <x-slider-select
+          label="数量"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-slider-select>
       </x-col>
     </x-row>
     <x-row>

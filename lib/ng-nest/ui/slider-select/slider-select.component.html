@@ -50,12 +50,15 @@
           tabindex="0"
           class="x-slider-select-button"
           [class.x-slider-select-button-actived]="startVisible"
+          [class.x-slider-select-custom-button]="customButton"
           placement="top"
           [disabled]="!showTooltip && !showStartTooltip"
           [content]="startDisplayValue"
           [visible]="startVisible"
           [manual]="startManual"
-        ></div>
+        >
+          <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
+        </div>
       </div>
       <div
         [hidden]="!range"
@@ -75,12 +78,15 @@
           tabindex="0"
           class="x-slider-select-button"
           [class.x-slider-select-button-actived]="endVisible"
+          [class.x-slider-select-custom-button]="customButton"
           placement="top"
           [disabled]="!showTooltip && !showEndTooltip"
           [content]="endDisplayValue"
           [visible]="endVisible"
           [manual]="endManual"
-        ></div>
+        >
+          <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { XBoolean, XInputBoolean, XInputNumber, XNumber } from '@ng-nest/ui/core';
+import { XBoolean, XInputBoolean, XInputNumber, XNumber, XTemplate } from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -14,7 +14,10 @@ export const XSliderSelectPrefix = 'x-slider-select';
  * SliderSelect Property
  */
 @Component({ selector: `${XSliderSelectPrefix}-property`, template: '' })
-export class XSliderSelectProperty extends XControlValueAccessor<number | number[]> implements XSliderSelectOption {
+export class XSliderSelectProperty
+  extends XControlValueAccessor<number | number[]>
+  implements XSliderSelectOption
+{
   /**
    * @zh_CN 最小值
    * @en_US Minimum
@@ -55,6 +58,11 @@ export class XSliderSelectProperty extends XControlValueAccessor<number | number
    * @en_US Range
    */
   @Input() @XInputBoolean() range?: XBoolean;
+  /**
+   * @zh_CN 自定义滑块
+   * @en_US Custom button
+   */
+  @Input() customButton?: XTemplate;
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event

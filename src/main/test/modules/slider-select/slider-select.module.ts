@@ -13,11 +13,22 @@ import { ExPrecisionComponent } from './precision/precision.component';
 import { ExReverseComponent } from './reverse/reverse.component';
 import { ExVerticalComponent } from './vertical/vertical.component';
 import { ExRangeComponent } from './range/range.component';
+import { ExIconComponent } from './icon/icon.component';
+import { XIconModule } from '@ng-nest/ui/icon';
+import { XButtonModule } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeSliderSelectComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XSliderSelectModule, XLayoutModule],
+  imports: [
+    RouterModule.forChild(routers),
+    CommonModule,
+    FormsModule,
+    XSliderSelectModule,
+    XLayoutModule,
+    XIconModule,
+    XButtonModule
+  ],
   declarations: [
     TeSliderSelectComponent,
     ExDefaultComponent,
@@ -27,7 +38,8 @@ const routers = [{ path: '', component: TeSliderSelectComponent }];
     ExPrecisionComponent,
     ExReverseComponent,
     ExVerticalComponent,
-    ExRangeComponent
+    ExRangeComponent,
+    ExIconComponent
   ]
 })
 export class TeSliderSelectModule {}
