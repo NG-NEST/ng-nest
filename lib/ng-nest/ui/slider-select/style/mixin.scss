@@ -70,6 +70,34 @@
     position: absolute;
     cursor: pointer;
   }
+  &-marks {
+    position: absolute;
+    margin-left: math.div($--x-slider-select-button-size, 2);
+    width: 100%;
+    height: $--x-slider-select-height;
+    display: flex;
+    align-items: center;
+  }
+  &-mark {
+    position: absolute;
+    transform: translateX(-50%);
+    border-radius: $--x-slider-select-button-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::before {
+      content: ' ';
+      position: absolute;
+      width: math.div($--x-slider-select-button-size, 4/3);
+      height: math.div($--x-slider-select-button-size, 4/3);
+      border: calc(#{$--x-border-width} * 2) solid $--x-primary;
+      background-color: $--x-background-a100;
+      border-radius: $--x-slider-select-button-size;
+    }
+    &-label {
+      transform: translateY($--x-slider-select-button-size);
+    }
+  }
   &-button:not(.x-slider-select-custom-button) {
     border-radius: $--x-slider-select-button-size;
     border: calc(#{$--x-border-width} * 2) solid $--x-primary;
@@ -158,9 +186,6 @@
   }
   &:hover:not(.x-disabled) {
     .#{$--x-slider-select-prefix} {
-      &-track {
-        background-color: $--x-border-100;
-      }
       &-process {
         background-color: $--x-primary-100;
       }
@@ -177,6 +202,12 @@
       }
       &-rail {
         margin-left: math.div(-$--x-slider-select-button-size, 2);
+      }
+      &-marks {
+        margin-right: math.div($--x-slider-select-button-size, 2);
+      }
+      &-mark {
+        transform: translateX(50%);
       }
       &-track {
         display: flex;
@@ -214,7 +245,22 @@
         margin-bottom: math.div($--x-slider-select-button-size, 2);
         width: $--x-slider-select-track-height;
         height: 100%;
-        position: absolute;
+      }
+      &-marks {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-left: initial;
+        margin-bottom: math.div($--x-slider-select-button-size, 2);
+        width: $--x-slider-select-track-height;
+        height: 100%;
+      }
+      &-mark {
+        transform: translateX(0) translateY(50%);
+      }
+      &-mark-label {
+        transform: translateX(50%) translateY(0);
+        margin-left: $--x-slider-select-button-size;
       }
       &-process {
         height: 0%;
@@ -239,21 +285,16 @@
           }
           &-track {
             align-items: flex-start;
-            margin-top: $--x-slider-select-button-size;
-            margin-bottom: initial;
+            margin-bottom: math.div($--x-slider-select-button-size, -2);
             margin-right: initial;
           }
-        }
-      }
-      &-range {
-        &.#{$--x-slider-select-prefix}-reverse {
-          .#{$--x-slider-select-prefix} {
-            &-drags {
-              align-items: initial;
-            }
-            &-track {
-              margin-top: math.div($--x-slider-select-button-size, 2);
-            }
+          &-marks {
+            align-items: flex-start;
+            margin-bottom: math.div($--x-slider-select-button-size, -2);
+            margin-right: initial;
+          }
+          &-mark {
+            transform: translateX(0) translateY(-50%);
           }
         }
       }

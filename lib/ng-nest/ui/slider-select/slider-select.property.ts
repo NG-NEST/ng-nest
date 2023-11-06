@@ -64,6 +64,11 @@ export class XSliderSelectProperty
    */
   @Input() customButton?: XTemplate;
   /**
+   * @zh_CN 刻度标记，key 为实际数字，在 [min,max] 内，可通过 style 设置样式
+   * @en_US Scale marking, key is the actual number, in [min, max], you can set style through style
+   */
+  @Input() marks: XSliderSelectMark[] = [];
+  /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */
@@ -120,4 +125,31 @@ export interface XSliderSelectOption extends XFormOption {
    * @en_US Mobile end event
    */
   dragEnd?: (dragEnd: CdkDragEnd) => void;
+}
+
+/**
+ * @zh_CN 刻度标记
+ * @en_US Scale marking
+ */
+export interface XSliderSelectMark {
+  /**
+   * @zh_CN 数值
+   * @en_US Value
+   */
+  value: number;
+  /**
+   * @zh_CN 显示标签
+   * @en_US Label
+   */
+  label: string;
+  /**
+   * @zh_CN 标签样式
+   * @en_US style
+   */
+  style?: { [style: string]: any };
+  /**
+   * @zh_CN 实际偏移量（自动计算）
+   * @en_US Offset. automatic calculation
+   */
+  offset?: number;
 }

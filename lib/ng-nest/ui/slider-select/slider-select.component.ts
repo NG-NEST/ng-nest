@@ -14,7 +14,11 @@ import {
   ViewChildren,
   QueryList
 } from '@angular/core';
-import { XSliderSelectProperty, XSliderSelectPrefix } from './slider-select.property';
+import {
+  XSliderSelectProperty,
+  XSliderSelectPrefix,
+  XSliderSelectMark
+} from './slider-select.property';
 import {
   XIsEmpty,
   XIsUndefined,
@@ -57,7 +61,7 @@ export class XSliderSelectComponent
 
   @ViewChild(CdkDrag) cdkDrag!: CdkDrag;
 
-  override value: number | number[] = 0;
+  override value: number | number[] = Number(this.min);
 
   startOffset: number = 0;
   startVisible: boolean = false;
@@ -73,6 +77,8 @@ export class XSliderSelectComponent
   endDisplayValue = '0';
   showEndTooltip = true;
 
+  markList: XSliderSelectMark[] = [];
+
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
   isNumber = true;
@@ -85,9 +91,9 @@ export class XSliderSelectComponent
   override writeValue(value: number | number[]) {
     if (XIsNull(value) || XIsUndefined(value)) {
       if (this.range) {
-        value = [0, 0];
+        value = [Number(this.min), Number(this.min)];
       } else {
-        value = 0;
+        value = Number(this.min);
       }
     }
     this.value = value;
@@ -115,6 +121,7 @@ export class XSliderSelectComponent
       this.direction
     );
     this.setPrecision();
+    this.setMarks();
     this.setClassMap();
   }
 
@@ -171,15 +178,16 @@ export class XSliderSelectComponent
     this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
   }
 
+  getOffset(val: number) {
+    return Math.round(
+      ((val + (this.reverse ? -Number(this.min) : Number(this.min))) * 100) /
+        (Number(this.max) - Number(this.min))
+    );
+  }
+
   setLeft() {
     let startVal = 0,
       endVal = 0;
-    const getOffset = (val: number) => {
-      return Math.round(
-        ((val + (this.reverse ? Number(this.min) : -Number(this.min))) * 100) /
-          (Number(this.max) - Number(this.min))
-      );
-    };
 
     if (this.isNumber) {
       startVal = this.value as number;
@@ -187,11 +195,11 @@ export class XSliderSelectComponent
       startVal = this.value[0];
       endVal = this.value[1];
 
-      this.endOffset = getOffset(endVal);
+      this.endOffset = this.getOffset(endVal);
       const end = this.endOffset;
       this.end = end;
     }
-    this.startOffset = getOffset(startVal);
+    this.startOffset = this.getOffset(startVal);
     const start = this.startOffset;
     this.start = start;
 
@@ -228,6 +236,33 @@ export class XSliderSelectComponent
       } else {
         this.precision = stepStr.length - (indexpoint + 1);
       }
+    }
+  }
+
+  setMarks() {
+    if (!this.marks) return;
+    for (let mark of this.marks) {
+      const mk: XSliderSelectMark = {
+        value: mark.value,
+        label: mark.label,
+        style: { ...mark.style }
+      };
+      mk.offset = this.getOffset(mark.value);
+
+      if (this.reverse) {
+        if (this.vertical) {
+          mk.style!['top'] = `${mk.offset}%`;
+        } else {
+          mk.style!['right'] = `${mk.offset}%`;
+        }
+      } else {
+        if (this.vertical) {
+          mk.style!['bottom'] = `${mk.offset}%`;
+        } else {
+          mk.style!['left'] = `${mk.offset}%`;
+        }
+      }
+      this.markList.push(mk);
     }
   }
 

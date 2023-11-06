@@ -16,6 +16,7 @@ import { ExRangeComponent } from './range/range.component';
 import { ExIconComponent } from './icon/icon.component';
 import { XIconModule } from '@ng-nest/ui/icon';
 import { XButtonModule } from '@ng-nest/ui/button';
+import { ExMarksComponent } from './marks/marks.component';
 
 const routers = [{ path: '', component: TeSliderSelectComponent }];
 
@@ -39,7 +40,8 @@ const routers = [{ path: '', component: TeSliderSelectComponent }];
     ExReverseComponent,
     ExVerticalComponent,
     ExRangeComponent,
-    ExIconComponent
+    ExIconComponent,
+    ExMarksComponent
   ]
 })
 export class TeSliderSelectModule {}

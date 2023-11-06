@@ -33,6 +33,11 @@
           (cdkDragMoved)="moved($event, 'both')"
         ></div>
       </div>
+      <div class="x-slider-select-marks">
+        <div class="x-slider-select-mark" [ngStyle]="mark.style" *ngFor="let mark of markList">
+          <span class="x-slider-select-mark-label">{{ mark.label }}</span>
+        </div>
+      </div>
       <div
         #dragStartRef
         class="x-slider-select-drag"
