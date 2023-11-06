@@ -48,6 +48,8 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [maxlength]="maxlength"
+        [min]="min"
+        [min]="max"
         [(ngModel)]="value"
         (ngModelChange)="valueChange.next($event)"
         [style.padding-left.rem]="paddingLeft"

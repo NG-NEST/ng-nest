@@ -1,4 +1,4 @@
-import { Subscription, fromEvent, interval } from 'rxjs';
+import { Subject, Subscription, distinctUntilChanged, fromEvent, interval } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -10,10 +10,18 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XNumber,
+  XClearClass,
+  XConfigService,
+  isNotNil,
+  XIsFunction
+} from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
@@ -25,6 +33,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
   @ViewChild('inputNumber', { static: true }) inputNumber!: ElementRef<HTMLElement>;
+
+  @ViewChild(XInputComponent, { static: true }) inputEleRef!: XInputComponent;
 
   override writeValue(value: any) {
     this.value = value;
@@ -42,16 +52,30 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   iconSpin = false;
   clearable = false;
   isDown = false;
+  valueChange = new Subject<any>();
 
   document = inject(DOCUMENT);
 
-  constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
+  constructor(
+    public renderer: Renderer2,
+    public override cdr: ChangeDetectorRef,
+    public configService: XConfigService
+  ) {
     super();
   }
 
   ngOnInit() {
-    this.setFlex(this.inputNumber.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.inputNumber.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setClassMap();
+    this.valueChange.pipe(distinctUntilChanged()).subscribe((x) => {
+      this.onChange && this.onChange(x);
+    });
   }
 
   setClassMap() {
@@ -60,17 +84,26 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   setDisplayValue() {
-    if (!XIsEmpty(this.value)) this.displayValue = Number(this.value).toFixed(Number(this.precision));
-    if (!this.formatter) return;
-    const displayValue = isNotNil(this.formatter(Number(this.value))) ? this.formatter(Number(this.value)) : '';
-    if (isNotNil(displayValue)) {
-      this.displayValue = displayValue;
+    if (!XIsEmpty(this.value) && !this.formatter) {
+      this.displayValue = Number(this.value).toFixed(Number(this.precision));
+    } else if (this.formatter) {
+      const displayValue = isNotNil(this.formatter(Number(this.value)))
+        ? this.formatter(Number(this.value))
+        : '';
+      if (isNotNil(displayValue)) {
+        this.displayValue = displayValue;
+      }
     }
   }
 
   change(value: any) {
     this.verify(value);
-    if (this.onChange) this.onChange(this.value);
+    this.valueChange.next(this.value);
+    this.cdr.detectChanges();
+  }
+
+  onBlur() {
+    this.displayValue = this.displayValue;
     this.cdr.detectChanges();
   }
 
@@ -83,9 +116,11 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
       this.mousedown$ = interval(Number(this.debounce)).subscribe(() => {
         this.plus(event, limit, increase);
       });
-      this.mouseup$ = fromEvent(this.document.documentElement, 'mouseup').subscribe((event: Event) => {
-        this.up(event);
-      });
+      this.mouseup$ = fromEvent(this.document.documentElement, 'mouseup').subscribe(
+        (event: Event) => {
+          this.up(event);
+        }
+      );
     }, 150);
   }
 
@@ -109,7 +144,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     let value = Number(this.value) + limit;
     this.verify(value);
     this.cdr.detectChanges();
-    if (this.onChange) this.onChange(this.value);
+    this.valueChange.next(this.value);
   }
 
   verify(value: any) {
@@ -117,12 +152,25 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     this.value = value;
     if (Number.isNaN(+this.value)) {
       this.value = oldValue;
+      this.setDisplayValue();
       return;
     }
     this.maxDisabled = value >= this.max;
     this.minDisabled = value <= this.min;
     this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
     this.setDisplayValue();
+  }
+
+  onInput(x: Event) {
+    const input = x.target as HTMLInputElement;
+    let value = input.value;
+    if (XIsFunction(this.formatter)) {
+      value = value.replace(/[^0-9]/g, '');
+    }
+    this.verify(value);
+    this.inputEleRef.inputRef.nativeElement.value = this.displayValue;
+    this.cdr.detectChanges();
+    this.valueChange.next(this.value);
   }
 
   formControlChanges() {

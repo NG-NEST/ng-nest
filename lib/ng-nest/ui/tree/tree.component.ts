@@ -329,6 +329,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.setVirtualExpandedAll(item, this.expandedAll as boolean);
       }
     }
+    this.virtualBody?.checkViewportSize();
   }
 
   setExpanded() {
@@ -340,6 +341,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       item.change && item.change();
     }
     this.nodes = [...this.nodes];
+    this.virtualBody?.checkViewportSize();
   }
 
   setVirtualExpandedAll(item: XTreeNode, expandedAll: boolean) {

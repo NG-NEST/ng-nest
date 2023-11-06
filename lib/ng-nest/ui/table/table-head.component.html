@@ -1,6 +1,14 @@
-<thead #thead [ngStyle]="theadStyle" [class.x-table-head-top]="position === 'top'" [class.x-table-head-bottom]="position === 'bottom'">
+<thead
+  #thead
+  [ngStyle]="theadStyle"
+  [class.x-table-head-top]="position === 'top'"
+  [class.x-table-head-bottom]="position === 'bottom'"
+>
   <ng-container *ngIf="cellConfig; else columnsTpl">
-    <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns" [style.min-height.px]="getRowHeight">
+    <tr
+      [style.gridTemplateColumns]="cellConfig.gridTemplateColumns"
+      [style.min-height.px]="getRowHeight"
+    >
       <th
         *ngFor="let column of cellConfig.cells"
         [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
@@ -19,7 +27,7 @@
         <div
           *ngIf="column.dragWidth"
           class="x-table-drag-width"
-          xDrag
+          x-drag
           (dragMoved)="dragWidthMoved($event, column)"
           (dragStarted)="dragWidthStarted($event, column)"
           (dragEnded)="dragWidthEnded($event, column)"
@@ -65,14 +73,18 @@
     >
       <ng-container [ngSwitch]="case">
         <ng-container *ngSwitchCase="'search'">
-          <ng-container *ngTemplateOutlet="table.headSearchTpl; context: { $column: column }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="table.headSearchTpl; context: { $column: column }"
+          ></ng-container>
         </ng-container>
         <ng-container *ngSwitchDefault>
-          <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="columnBaseTpl; context: { column: column }"
+          ></ng-container>
           <div
             *ngIf="column.dragWidth"
             class="x-table-drag-width"
-            xDrag
+            x-drag
             (dragMoved)="dragWidthMoved($event, column)"
             (dragStarted)="dragWidthStarted($event, column)"
             (dragEnded)="dragWidthEnded($event, column)"
@@ -94,20 +106,28 @@
         [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
       ></x-checkbox>
       <ng-container *ngIf="!column.headChecked">
-        <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"
+        ></ng-container>
       </ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="'index'">
       <a>{{ column.label }}</a>
     </ng-container>
     <ng-container *ngSwitchDefault>
-      <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"
+      ></ng-container>
     </ng-container>
   </ng-container>
 </ng-template>
 
 <ng-template #cloumnDefaultTpl let-column="column">
-  <a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
+  <a
+    [class.x-table-sort]="column.sort"
+    (click)="onSort(column)"
+    [style.text-align]="column.textAlign"
+  >
     <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
       {{ column.label }}
     </ng-container>

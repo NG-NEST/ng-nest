@@ -14,7 +14,14 @@ import {
   HostBinding
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XIsChange,
+  XClearClass,
+  XConfigService,
+  XIsUndefined,
+  XIsFunction
+} from '@ng-nest/ui/core';
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
@@ -99,7 +106,8 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { clearable, size, labelAlign, justify, align, direction, icon, iconSpin, clearShow } = changes;
+    const { clearable, size, labelAlign, justify, align, direction, icon, iconSpin, clearShow } =
+      changes;
     XIsChange(clearable) && this.setClearable();
     XIsChange(size, labelAlign) && this.setClassMap();
     XIsChange(justify, align, direction) && this.setFlexClass();
@@ -126,7 +134,9 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     });
     this.valueChange
       .pipe(
-        distinctUntilChanged((a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))),
+        distinctUntilChanged(
+          (a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))
+        ),
         takeUntil(this._unSubject)
       )
       .subscribe((x) => {
@@ -187,7 +197,13 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
         this.renderer.removeClass(this.inputElement.nativeElement, cls);
       }
     }
-    this.flexClass = this.setFlex(this.inputElement.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.flexClass = this.setFlex(
+      this.inputElement.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
   }
 
   setClearable() {

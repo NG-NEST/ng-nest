@@ -44,7 +44,9 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 图标布局方式
    * @en_US Icon layout
    */
-  @Input() @XWithConfig<XInputIconLayoutType>(X_CONFIG_NAME, 'right') iconLayout: XInputIconLayoutType = 'right';
+  @Input()
+  @XWithConfig<XInputIconLayoutType>(X_CONFIG_NAME, 'right')
+  iconLayout: XInputIconLayoutType = 'right';
   /**
    * @zh_CN 图标动画
    * @en_US Icon animation
@@ -55,6 +57,16 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @en_US Enter the maximum length
    */
   @Input() @XInputNumber() maxlength!: XNumber;
+  /**
+   * @zh_CN 最大值
+   * @en_US Enter the max
+   */
+  @Input() @XInputNumber() max!: XNumber;
+  /**
+   * @zh_CN 最小值
+   * @en_US Enter the min
+   */
+  @Input() @XInputNumber() min!: XNumber;
   /**
    * @zh_CN 宽度
    * @en_US width
