@@ -27,7 +27,13 @@ import {
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
-import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList } from '@angular/cdk/drag-drop';
+import {
+  CdkDrag,
+  CdkDragEnd,
+  CdkDragMove,
+  CdkDragStart,
+  CdkDropList
+} from '@angular/cdk/drag-drop';
 import { XTreeService } from './tree.service';
 
 @Component({
@@ -134,7 +140,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.insertNode(event.source.data, this.hoverTreeNode, this.dragPosition);
       }
       this.hoverTreeNode.change && this.hoverTreeNode.change();
-      this.nodeDragEnded.emit({ event, from: event.source.data, to: this.hoverTreeNode, position: this.dragPosition });
+      this.nodeDragEnded.emit({
+        event,
+        from: event.source.data,
+        to: this.hoverTreeNode,
+        position: this.dragPosition
+      });
     }
   }
 
@@ -157,7 +168,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       this.dragPosition = 1;
     }
     this.hoverTreeNode.change && this.hoverTreeNode.change();
-    this.nodeDragMoved.emit({ event, from: this.draggingTreeNode!, to: this.hoverTreeNode, position: this.dragPosition });
+    this.nodeDragMoved.emit({
+      event,
+      from: this.draggingTreeNode!,
+      to: this.hoverTreeNode,
+      position: this.dragPosition
+    });
   }
 
   predicate(_drag: CdkDrag<XTreeNode>, _drop: CdkDropList<XTreeNode>) {
@@ -184,12 +200,22 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     });
   }
 
-  private setDataChange(value: XTreeNode[], regetChildren = false, init = true, parentOpen = true, lazyParant?: XTreeNode) {
+  private setDataChange(
+    value: XTreeNode[],
+    regetChildren = false,
+    init = true,
+    parentOpen = true,
+    lazyParant?: XTreeNode
+  ) {
     if (XIsEmpty(this.checked)) this.checked = [];
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
-        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id) || node.open;
+        node.open =
+          Boolean(this.expandedAll) ||
+          level <= Number(this.expandedLevel) ||
+          this.expanded.includes(node.id) ||
+          node.open;
         node.checked = this.checked.includes(node.id) || node.checked;
         node.childrenLoaded = node.open;
       }
@@ -202,7 +228,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
           }
         }
       }
-      if ((!this.lazy && (XIsUndefined(node.leaf) || regetChildren)) || node.id === lazyParant?.id) {
+      if (
+        (!this.lazy && (XIsUndefined(node.leaf) || regetChildren)) ||
+        node.id === lazyParant?.id
+      ) {
         node.leaf = (node.children?.length as number) === 0;
       }
       if (!node.leaf) node.children?.map((y) => getChildren(y, level + 1));
@@ -329,7 +358,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.setVirtualExpandedAll(item, this.expandedAll as boolean);
       }
     }
-    this.virtualBody?.checkViewportSize();
   }
 
   setExpanded() {
@@ -341,7 +369,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       item.change && item.change();
     }
     this.nodes = [...this.nodes];
-    this.virtualBody?.checkViewportSize();
   }
 
   setVirtualExpandedAll(item: XTreeNode, expandedAll: boolean) {
@@ -388,6 +415,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
     this.addOrRemoveExpanded(node);
     this.nodes = [...this.nodes];
+    this.virtualBody?.checkViewportSize();
+    this.cdr.detectChanges();
   }
 
   addOrRemoveExpanded(node: XTreeNode) {
@@ -409,7 +438,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     let before = this.activatedNode;
     if (this.multiple) {
       if (this.activatedId.length > 0) {
-        let ids = this.objectArray ? this.activatedId.map((x: XTreeNode) => x.id) : this.activatedId;
+        let ids = this.objectArray
+          ? this.activatedId.map((x: XTreeNode) => x.id)
+          : this.activatedId;
         for (let i = 0; i < ids.length; i++) {
           let node = nodes.find((x) => x.id === ids[i]) as XTreeNode;
           if (node) {

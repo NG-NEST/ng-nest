@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { XTooltipPortalPrefix } from './tooltip.property';
-import { XPlacement, XClassMap, XFadeAnimation } from '@ng-nest/ui/core';
+import { XPlacement, XClassMap, XFadeAnimation, XTemplate } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -49,7 +49,7 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
   destroy!: Function;
   placement!: XPlacement;
   previousPlacement!: XPlacement;
-  content!: string;
+  content!: XTemplate;
   color!: string;
   backgroundColor!: string;
   positionChange: Subject<any> = new Subject();

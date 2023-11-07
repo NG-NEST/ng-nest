@@ -58,12 +58,17 @@
           [class.x-slider-select-custom-button]="customButton"
           placement="top"
           [disabled]="!showTooltip && !showStartTooltip"
-          [content]="startDisplayValue"
+          [content]="tooltipStartTpl"
           [visible]="startVisible"
           [manual]="startManual"
         >
           <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
         </div>
+        <ng-template #tooltipStartTpl>
+          <ng-container *xOutlet="tooltipCustom; context: { $value: startDisplayValue }">{{
+            startDisplayValue
+          }}</ng-container>
+        </ng-template>
       </div>
       <div
         [hidden]="!range"
@@ -86,12 +91,17 @@
           [class.x-slider-select-custom-button]="customButton"
           placement="top"
           [disabled]="!showTooltip && !showEndTooltip"
-          [content]="endDisplayValue"
+          [content]="tooltipEndTpl"
           [visible]="endVisible"
           [manual]="endManual"
         >
           <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
         </div>
+        <ng-template #tooltipEndTpl>
+          <ng-container *xOutlet="tooltipCustom; context: { $value: endDisplayValue }">{{
+            endDisplayValue
+          }}</ng-container>
+        </ng-template>
       </div>
     </div>
   </div>
