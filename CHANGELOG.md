@@ -1,3 +1,23 @@
+## [16.0.10](https://github.com/NG-NEST/ng-nest/compare/16.0.9...16.0.10) (2023-11-06)
+
+
+### Bug Fixes
+
+* **module:input-number:** input add boundary assertion ([33ebeb9](https://github.com/NG-NEST/ng-nest/commit/33ebeb911299840bdb9cb7794b3a393e948a42d8)), closes [#72](https://github.com/NG-NEST/ng-nest/issues/72)
+* **module:select:** fix multiple select placeholder ([892d335](https://github.com/NG-NEST/ng-nest/commit/892d335d159e196f4d61b54e0d83df0948947d7a))
+
+
+### Features
+
+* **module:input:** add min and max ([49f8bcc](https://github.com/NG-NEST/ng-nest/commit/49f8bcc5c83380ce906ea35dbb06d472e5f53436))
+* **module:slider-select:** add icon slider ([b6912db](https://github.com/NG-NEST/ng-nest/commit/b6912dba72b1266abd9d43efc1cbb7ea011789b2)), closes [#87](https://github.com/NG-NEST/ng-nest/issues/87)
+* **module:slider-select:** add marks ([78b9eed](https://github.com/NG-NEST/ng-nest/commit/78b9eedc60cf7b1c1f18ec5ea27ed48af7ea4ba7)), closes [#86](https://github.com/NG-NEST/ng-nest/issues/86)
+* **module:slider-select:** add range ([81991ff](https://github.com/NG-NEST/ng-nest/commit/81991ff6c38de8bbcd7e29e9ccebce381c5c4216)), closes [#83](https://github.com/NG-NEST/ng-nest/issues/83)
+* **module:slider-select:** add range drag ([41de1d1](https://github.com/NG-NEST/ng-nest/commit/41de1d19da32ecdf98f4762010455a71441b7b90)), closes [#89](https://github.com/NG-NEST/ng-nest/issues/89)
+* **module:slider-select:** add vertical style ([1e5cf2b](https://github.com/NG-NEST/ng-nest/commit/1e5cf2b3f14e583c6336352bb6af660f3e4aad6c)), closes [#90](https://github.com/NG-NEST/ng-nest/issues/90)
+
+
+
 ## [16.0.9](https://github.com/NG-NEST/ng-nest/compare/16.0.8...16.0.9) (2023-10-17)
 
 
