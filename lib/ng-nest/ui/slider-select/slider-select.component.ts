@@ -61,7 +61,7 @@ export class XSliderSelectComponent
 
   @ViewChild(CdkDrag) cdkDrag!: CdkDrag;
 
-  override value: number | number[] = Number(this.min);
+  override value: number | number[] = 0;
 
   startOffset: number = 0;
   startVisible: boolean = false;
@@ -179,9 +179,11 @@ export class XSliderSelectComponent
   }
 
   getOffset(val: number) {
-    return Math.round(
-      ((val + (this.reverse ? -Number(this.min) : Number(this.min))) * 100) /
-        (Number(this.max) - Number(this.min))
+    return Math.abs(
+      Math.round(
+        ((val + (this.reverse ? -Number(this.min) : Number(this.min))) * 100) /
+          (Number(this.max) - Number(this.min))
+      )
     );
   }
 
@@ -199,6 +201,7 @@ export class XSliderSelectComponent
       const end = this.endOffset;
       this.end = end;
     }
+
     this.startOffset = this.getOffset(startVal);
     const start = this.startOffset;
     this.start = start;

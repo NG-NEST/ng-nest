@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --disable-host-check",
-    "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build",
+    "build": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build --base-href /version/16.0.10/",
     "build:ng-nest-ui": "node --max_old_space_size=81920 ./node_modules/@angular/cli/bin/ng build ng-nest-ui && npm run copy:scss && npm run build:scss && npm run clear:examples",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",
