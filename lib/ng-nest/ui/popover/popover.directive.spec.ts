@@ -71,7 +71,7 @@ describe(XPopoverPrefix, () => {
       <ng-template #contentTemp>
         <ul>
           <li>姓名：李永奇</li>
-          <li>邮箱：ng-nest@ng-nest.com</li>
+          <li>邮箱：ng-nest&#64;ng-nest.com</li>
         </ul>
       </ng-template>
     </div>
