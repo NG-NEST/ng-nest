@@ -1,0 +1,12 @@
+<x-row>
+  <x-col span="12">
+    <x-slider-select [(ngModel)]="model1" [tooltipCustom]="customTpl"></x-slider-select>
+  </x-col>
+  <x-col span="12">
+    <x-slider-select [(ngModel)]="model2" range [tooltipCustom]="customTpl"></x-slider-select>
+  </x-col>
+</x-row>
+
+<ng-template #customTpl let-value="$value">
+  <x-icon type="fto-user"></x-icon> {{ value }} %
+</ng-template>

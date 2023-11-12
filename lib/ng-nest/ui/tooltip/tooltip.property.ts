@@ -1,4 +1,4 @@
-import { XPlacement, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { XPlacement, XInputBoolean, XBoolean, XWithConfig, XTemplate } from '@ng-nest/ui/core';
 import { Input, Directive, ElementRef } from '@angular/core';
 
 /**
@@ -18,7 +18,7 @@ export class XTooltipProperty {
    * @zh_CN 内容
    * @en_US Content
    */
-  @Input() content?: string;
+  @Input() content!: XTemplate;
   /**
    * @zh_CN 显示位置
    * @en_US Display position

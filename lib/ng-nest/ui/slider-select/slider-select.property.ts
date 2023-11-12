@@ -69,6 +69,11 @@ export class XSliderSelectProperty
    */
   @Input() marks: XSliderSelectMark[] = [];
   /**
+   * @zh_CN 自定义 tooltip
+   * @en_US Custom tooltip
+   */
+  @Input() tooltipCustom!: XTemplate;
+  /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */
