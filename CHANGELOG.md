@@ -1,4 +1,8 @@
-## [16.0.10](https://github.com/NG-NEST/ng-nest/compare/16.0.9...16.0.10) (2023-11-06)
+## [16.0.11](https://github.com/NG-NEST/ng-nest/compare/16.0.10...16.0.11) (2023-11-12)
+
+
+
+## [16.0.10](https://github.com/NG-NEST/ng-nest/compare/16.0.9...16.0.10) (2023-11-07)
 
 
 ### Bug Fixes
