@@ -12,7 +12,7 @@ export function handlerDemo(page: NcPage, docDir: string, router: string) {
   router = router.replace(`/${page.lang}/`, '/');
   let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
   if (temp !== null) {
-    temp.syswords.imports += `import { environment } from 'src/environments/environment';\n`;
+    temp.syswords.imports += `import { environment } from '@environments';\n`;
     temp.syswords.constant += `static = environment.static;\n`;
     for (let child of children) {
       const treeFile = getTreeFile(demoPath, child, router);

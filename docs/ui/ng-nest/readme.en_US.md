@@ -25,7 +25,7 @@ npm 17.0.0
 
 ## Support Angular version
 
-Angular ^16.0.0 is currently supported by `@ng-nest/UI`.
+Angular ^17.0.0 is currently supported by `@ng-nest/ui`.
 
 ## Supporting environment
 

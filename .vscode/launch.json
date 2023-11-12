@@ -1,18 +1,20 @@
 {
-  // 使用 IntelliSense 了解相关属性。
-  // 悬停以查看现有属性的描述。
-  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng-nest-ui",
+      "name": "ng serve",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:9876/debug.html?spec=x-date-picker%20default.%20should%20create.&random=false",
-      "sourceMaps": true,
-      "webRoot": "${workspaceRoot}",
-      "trace": true,
-      "userDataDir": "${workspaceRoot}/.vscode/chrome"
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
     }
   ]
 }

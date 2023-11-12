@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { XSliderNode } from '@ng-nest/ui/slider';
-import { Menu } from 'src/environments/routes';
+import { Menu } from '@environments';
 import { LayoutService } from '../layout.service';
 
 @Component({

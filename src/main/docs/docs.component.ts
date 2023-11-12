@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ConfigService } from 'src/services/config.service';
-import { environment } from 'src/environments/environment.prod';
+import { ConfigService } from '../../services/config.service';
 import { LayoutService } from '../layout/layout.service';
-import { Menu } from 'src/environments/routes';
+import { environment } from '../../environments/environment';
+import { Menu } from '../../environments/routes';
 
 @Component({
   selector: 'ns-docs',

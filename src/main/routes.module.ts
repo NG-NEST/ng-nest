@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { mainRoutes, testRoutes } from '../environments/routes';
 import { XPreloadingStrategyService } from '@ng-nest/ui/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [

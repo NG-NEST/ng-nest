@@ -138,6 +138,11 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           let withConfig = getDocs(docItem, 'withConfig') as string;
           const label = getDocs(docItem, lang) as string;
           const description = getDocs(docItem, 'description') as string;
+          const attr = (
+            propd.length > 1 && propd[0].indexOf("'") !== -1
+              ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2')
+              : name
+          ).replace(/@/g, '&#64;');
           const property: NcPrope = {
             name: name,
             type: type,
@@ -146,9 +151,10 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             withConfig: Boolean(withConfig),
             description: description,
             decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
-            attr: propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name,
+            attr: attr,
             propType: propType
           };
+
           prop.properties.push(property);
         }
       }
@@ -175,6 +181,7 @@ export function getDocs(doc: object, prop: string, all: boolean = false) {
   for (const key in doc) {
     if (doc[key].toString().startsWith(`@${prop}`)) {
       let value = doc[key].replace(`@${prop}`, '').trim();
+      value = value.replace(/@/g, '&#64;');
       if (all) {
         results.push(value);
       } else {

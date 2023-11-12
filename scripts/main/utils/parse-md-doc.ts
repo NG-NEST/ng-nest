@@ -18,6 +18,7 @@ export function parseMdDoc(path: string) {
     const child = ast.children[i];
     contentStr += md(remark.stringify(child));
   }
+  contentStr = contentStr.replace(/@/g, '&#64;');
   return {
     meta: meta,
     content: contentStr

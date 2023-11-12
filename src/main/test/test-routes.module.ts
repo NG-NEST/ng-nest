@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { TestComponent } from './test.component';
 
 const testModules = [
@@ -34,7 +34,8 @@ const testModules = [
   },
   {
     path: 'popconfirm',
-    loadChildren: () => import('./modules/popconfirm/popconfirm.module').then((x) => x.TePopconfirmModule)
+    loadChildren: () =>
+      import('./modules/popconfirm/popconfirm.module').then((x) => x.TePopconfirmModule)
   },
   {
     path: 'message',
@@ -42,7 +43,8 @@ const testModules = [
   },
   {
     path: 'message-box',
-    loadChildren: () => import('./modules/message-box/message-box.module').then((x) => x.TeMessageBoxModule)
+    loadChildren: () =>
+      import('./modules/message-box/message-box.module').then((x) => x.TeMessageBoxModule)
   },
   {
     path: 'alert',
@@ -94,7 +96,8 @@ const testModules = [
   },
   {
     path: 'input-number',
-    loadChildren: () => import('./modules/input-number/input-number.module').then((x) => x.TeInputNumberModule)
+    loadChildren: () =>
+      import('./modules/input-number/input-number.module').then((x) => x.TeInputNumberModule)
   },
   {
     path: 'badge',
@@ -106,7 +109,8 @@ const testModules = [
   },
   {
     path: 'slider-select',
-    loadChildren: () => import('./modules/slider-select/slider-select.module').then((x) => x.TeSliderSelectModule)
+    loadChildren: () =>
+      import('./modules/slider-select/slider-select.module').then((x) => x.TeSliderSelectModule)
   },
   {
     path: 'upload',
@@ -118,7 +122,8 @@ const testModules = [
   },
   {
     path: 'auto-complete',
-    loadChildren: () => import('./modules/auto-complete/auto-complete.module').then((x) => x.TeAutoCompleteModule)
+    loadChildren: () =>
+      import('./modules/auto-complete/auto-complete.module').then((x) => x.TeAutoCompleteModule)
   },
   {
     path: 'dropdown',
@@ -146,7 +151,8 @@ const testModules = [
   },
   {
     path: 'tree-select',
-    loadChildren: () => import('./modules/tree-select/tree-select.module').then((x) => x.TeTreeSelectModule)
+    loadChildren: () =>
+      import('./modules/tree-select/tree-select.module').then((x) => x.TeTreeSelectModule)
   },
   {
     path: 'transfer',
@@ -154,7 +160,8 @@ const testModules = [
   },
   {
     path: 'highlight',
-    loadChildren: () => import('./modules/highlight/highlight.module').then((x) => x.TeHighlightModule)
+    loadChildren: () =>
+      import('./modules/highlight/highlight.module').then((x) => x.TeHighlightModule)
   },
   {
     path: 'anchor',
@@ -170,15 +177,18 @@ const testModules = [
   },
   {
     path: 'date-picker',
-    loadChildren: () => import('./modules/date-picker/date-picker.module').then((x) => x.TeDatePickerModule)
+    loadChildren: () =>
+      import('./modules/date-picker/date-picker.module').then((x) => x.TeDatePickerModule)
   },
   {
     path: 'pagination',
-    loadChildren: () => import('./modules/pagination/pagination.module').then((x) => x.TePaginationModule)
+    loadChildren: () =>
+      import('./modules/pagination/pagination.module').then((x) => x.TePaginationModule)
   },
   {
     path: 'time-picker',
-    loadChildren: () => import('./modules/time-picker/time-picker.module').then((x) => x.TeTimePickerModule)
+    loadChildren: () =>
+      import('./modules/time-picker/time-picker.module').then((x) => x.TeTimePickerModule)
   },
   {
     path: 'switch',
@@ -186,11 +196,13 @@ const testModules = [
   },
   {
     path: 'color-picker',
-    loadChildren: () => import('./modules/color-picker/color-picker.module').then((x) => x.TeColorPickerModule)
+    loadChildren: () =>
+      import('./modules/color-picker/color-picker.module').then((x) => x.TeColorPickerModule)
   },
   {
     path: 'tree-file',
-    loadChildren: () => import('./modules/tree-file/tree-file.module').then((x) => x.TeTreeFileModule)
+    loadChildren: () =>
+      import('./modules/tree-file/tree-file.module').then((x) => x.TeTreeFileModule)
   }
 ];
 

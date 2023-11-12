@@ -24,7 +24,7 @@ After completing all the steps in this tutorial, the final application will look
 
 ## Current environment
 
-angular ^16.0.0 | nestjs ^7.0.0
+angular ^17.0.0 | nestjs ^7.0.0
 
 Refer to the following address for environment installation:<a href="https://angular.cn/guide/setup-local" target="_blank">Angular</a> | <a href="https://docs.nestjs.com/" target="_blank">Nestjs</a>
 

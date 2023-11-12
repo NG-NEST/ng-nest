@@ -1,5 +1,19 @@
-import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, InjectionToken, ViewContainerRef } from '@angular/core';
+import {
+  XTemplate,
+  XPosition,
+  XProperty,
+  XInputBoolean,
+  XBoolean,
+  XWithConfig
+} from '@ng-nest/ui/core';
+import {
+  Input,
+  Output,
+  EventEmitter,
+  Component,
+  InjectionToken,
+  ViewContainerRef
+} from '@angular/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDrawerRef } from './drawer-ref';
 import { XDrawerPortalComponent } from './drawer-portal.component';
@@ -108,7 +122,7 @@ export interface XDrawerOption {
    */
   data?: any;
   /**
-   * @en_US 视图容器实例可以包含其他视图容器。
+   * @zh_CN 视图容器实例可以包含其他视图容器。
    * @en_US A view container instance can contain other view containers.
    */
   viewContainerRef?: ViewContainerRef;
@@ -119,8 +133,8 @@ export interface XDrawerOption {
  * @selector x-drawer-container
  * @decorator component
  */
- export const XDrawerContainerPrefix = 'x-drawer-container';
- export const X_DRAWER_CONTAINER = new InjectionToken('X_DRAWER_CONTAINER');
+export const XDrawerContainerPrefix = 'x-drawer-container';
+export const X_DRAWER_CONTAINER = new InjectionToken('X_DRAWER_CONTAINER');
 
 /**
  * Drawer Container Property

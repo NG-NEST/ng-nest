@@ -88,8 +88,8 @@
     &::before {
       content: ' ';
       position: absolute;
-      width: math.div($--x-slider-select-button-size, 4/3);
-      height: math.div($--x-slider-select-button-size, 4/3);
+      width: math.div($--x-slider-select-button-size, math.div(4, 3));
+      height: math.div($--x-slider-select-button-size, math.div(4, 3));
       border: calc(#{$--x-border-width} * 2) solid $--x-primary;
       background-color: $--x-background-a100;
       border-radius: $--x-slider-select-button-size;

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ConfigService } from '../../../services/config.service';
+import { ConfigService } from '@services';
 import { LayoutService } from '../layout.service';
 
 @Component({

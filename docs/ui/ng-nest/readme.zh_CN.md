@@ -25,7 +25,7 @@ npm 17.0.0
 
 ## 支持 Angular 版本
 
-`@ng-nest/ui` 目前最新支持 Angular ^16.0.0 版本。
+`@ng-nest/ui` 目前最新支持 Angular ^17.0.0 版本。
 
 ## 支持环境
 

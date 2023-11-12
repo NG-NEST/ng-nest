@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { XMenuNode } from '@ng-nest/ui/menu';
-import { menus } from 'src/environments/menus';
-import { Menu } from 'src/environments/routes';
+import { menus } from '../../environments/menus';
+import { Menu } from '../../environments/routes';
 
 @Component({
   selector: 'ns-test',

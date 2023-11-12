@@ -43,7 +43,15 @@ export class NcDocs {
     generateMenu(genMenusDir, this.menus);
   }
 
-  addChildren(page: NcPage, docDir: string, router: string, lang: string, index?: string, level?: number, isComponent = false) {
+  addChildren(
+    page: NcPage,
+    docDir: string,
+    router: string,
+    lang: string,
+    index?: string,
+    level?: number,
+    isComponent = false
+  ) {
     let children = fs.readdirSync(docDir);
     if (typeof level !== 'undefined') level--;
     children.forEach(async (x, i) => {
@@ -99,10 +107,20 @@ export class NcDocs {
     return child;
   }
 
-  createMenu(read: { meta: any; content?: string }, dirName: string, index: string, i: number, router: string, lang: string): NcMenu {
+  createMenu(
+    read: { meta: any; content?: string },
+    dirName: string,
+    index: string,
+    i: number,
+    router: string,
+    lang: string
+  ): NcMenu {
     const id = index == null ? `${i}` : `${index}-${i}`;
     const pid = index == null || languages.includes(index) ? null : `${index}`;
-    const menu: NcMenu = Object.assign({ id: id, pid: pid, name: dirName, router: router, lang: lang }, read.meta);
+    const menu: NcMenu = Object.assign(
+      { id: id, pid: pid, name: dirName, router: router, lang: lang },
+      read.meta
+    );
     this.menus = [...this.menus, menu];
     return menu;
   }

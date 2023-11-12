@@ -2,10 +2,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -21,36 +21,22 @@
     "strictNullChecks": true,
     "alwaysStrict": true,
     "inlineSources": true,
-    "module": "es2022",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2022",
-      "dom"
-    ],
+    "module": "ES2022",
+    "lib": ["ES2022", "dom"],
     "paths": {
-      "@ng-nest/ui": [
-        "./lib/ng-nest/ui/"
-      ],
-      "@ng-nest/ui/*": [
-        "./lib/ng-nest/ui/*"
-      ],
-      "@services": [
-        "./src/services/"
-      ],
-      "@services/*": [
-        "./src/services/*"
-      ],
-      "@utils": [
-        "./src/utils/"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ]
+      "@ng-nest/ui": ["./lib/ng-nest/ui/"],
+      "@ng-nest/ui/*": ["./lib/ng-nest/ui/*"],
+      "@services": ["./src/services/"],
+      "@services/*": ["./src/services/*"],
+      "@utils": ["./src/utils/"],
+      "@utils/*": ["./src/utils/*"],
+      "@environments": ["./src/environments/"],
+      "@environments/*": ["./src/environments/*"],
+      "@share": ["./src/share/"],
+      "@share/*": ["./src/share/*"]
     },
     "useDefineForClassFields": false
   },

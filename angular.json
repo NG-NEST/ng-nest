@@ -15,16 +15,25 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-nest-site/browser",
+            "outputPath": "dist/ng-nest-site",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"],
-            "styles": ["node_modules/prismjs/themes/prism.css", "lib/ng-nest/ui/style/core/index.scss", "src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "node_modules/prismjs/themes/prism.css",
+              "lib/ng-nest/ui/style/core/index.scss",
+              "src/styles.scss"
+            ],
             "scripts": [
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-scss.min.js",
@@ -35,12 +44,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -53,17 +56,19 @@
                   "maximumError": "100kb"
                 }
               ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json",
+              "serviceWorker": "ngsw-config.json",
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -94,76 +99,8 @@
             "inlineStyleLanguage": "scss",
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/manifest.webmanifest"]
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/ng-nest-site/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
-            },
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true,
-              "buildOptimizer": false
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "ng-nest-site:build:development",
-              "serverTarget": "ng-nest-site:server:development"
-            },
-            "production": {
-              "browserTarget": "ng-nest-site:build:production",
-              "serverTarget": "ng-nest-site:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ng-nest-site:build:production",
-              "serverTarget": "ng-nest-site:server:production"
-            },
-            "development": {
-              "browserTarget": "ng-nest-site:build:development",
-              "serverTarget": "ng-nest-site:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     },
@@ -200,7 +137,10 @@
             "karmaConfig": "lib/ng-nest/ui/karma.conf.js",
             "polyfills": ["zone.js", "zone.js/testing"],
             "codeCoverage": true,
-            "styles": ["lib/ng-nest/ui/style/core/index.scss", "node_modules/prismjs/themes/prism.css"],
+            "styles": [
+              "lib/ng-nest/ui/style/core/index.scss",
+              "node_modules/prismjs/themes/prism.css"
+            ],
             "scripts": [
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-scss.min.js",
@@ -214,13 +154,6 @@
               "progress": false,
               "browsers": "ChromeHeadlessCI"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["lib/ng-nest/ui/tsconfig.lib.json", "lib/ng-nest/ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
           }
         }
       }

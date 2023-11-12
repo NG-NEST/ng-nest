@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import { XConfigService, X_THEME_COLORS, X_THEME_DARK_COLORS } from '@ng-nest/ui/core';
-import { ConfigService } from 'src/services/config.service';
+import { ConfigService } from '@services';
 
 @Component({
   selector: 'ns-affix',
@@ -10,7 +10,11 @@ import { ConfigService } from 'src/services/config.service';
 })
 export class AffixComponent {
   theme: 'dark' | 'light' = 'light';
-  constructor(public layout: LayoutService, public configService: XConfigService, public config: ConfigService) {}
+  constructor(
+    public layout: LayoutService,
+    public configService: XConfigService,
+    public config: ConfigService
+  ) {}
 
   action(type: string) {
     switch (type) {

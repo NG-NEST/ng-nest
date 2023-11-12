@@ -1,4 +1,4 @@
-import { ShareModule } from 'src/share/share.module';
+import { ShareModule } from '@share';
 import { NgModule } from '@angular/core';
 import { {{ __capName }}Component } from './{{ __fileName }}.component';
 import { {{ __capName }}RoutesModule } from './{{ __fileName }}-routes.module';

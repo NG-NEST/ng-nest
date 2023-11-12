@@ -1,5 +1,21 @@
-import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig, XProperty } from '@ng-nest/ui/core';
+import {
+  Input,
+  Output,
+  EventEmitter,
+  Component,
+  ViewContainerRef,
+  InjectionToken
+} from '@angular/core';
+import {
+  XStatus,
+  XPlace,
+  XInputBoolean,
+  XTemplate,
+  XEffect,
+  XBoolean,
+  XWithConfig,
+  XProperty
+} from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -112,12 +128,18 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() override draggable?: XBoolean;
+  @Input()
+  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
+  @XInputBoolean()
+  override draggable?: XBoolean;
   /**
    * @zh_CN 调整弹框的大小
    * @en_US Adjust the size of the box
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() override resizable?: XBoolean;
+  @Input()
+  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
+  @XInputBoolean()
+  override resizable?: XBoolean;
   /**
    * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
    * @en_US Maximize the bullet box button, Will also display when resizable is enabled
@@ -352,7 +374,7 @@ export interface XDialogRefOption {
    */
   data?: any;
   /**
-   * @en_US 视图容器实例可以包含其他视图容器。
+   * @zh_CN 视图容器实例可以包含其他视图容器。
    * @en_US A view container instance can contain other view containers.
    */
   viewContainerRef?: ViewContainerRef;

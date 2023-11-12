@@ -5,7 +5,7 @@ import { XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { Observable } from 'rxjs';
 import { LayoutService } from '../layout.service';
-import { Menu } from 'src/environments/routes';
+import { Menu } from '@environments';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({

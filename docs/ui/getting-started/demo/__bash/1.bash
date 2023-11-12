@@ -8,8 +8,8 @@ $ ng --version
                 |___/
 
 
-Angular CLI: 16.0.0
-Node: 16.17.0
+Angular CLI: 17.0.0
+Node: 18.17.0
 OS: win32 x64
 
 Angular:
@@ -18,7 +18,7 @@ Ivy Workspace:
 
 Package                      Version
 ------------------------------------------------------
-@angular-devkit/architect    0.1600.0 (cli-only)
-@angular-devkit/core         16.0.0 (cli-only)
-@angular-devkit/schematics   16.0.0 (cli-only)
-@schematics/angular          16.0.0 (cli-only)
+@angular-devkit/architect    0.1700.0 (cli-only)
+@angular-devkit/core         17.0.0 (cli-only)
+@angular-devkit/schematics   17.0.0 (cli-only)
+@schematics/angular          17.0.0 (cli-only)

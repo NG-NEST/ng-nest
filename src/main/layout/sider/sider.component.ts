@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
-import { Menu } from 'src/environments/routes';
+import { Menu } from '@environments';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConfigService } from 'src/services/config.service';
+import { ConfigService } from '@services';
 
 @Component({
   selector: 'ns-sider',
@@ -10,7 +10,12 @@ import { ConfigService } from 'src/services/config.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SiderComponent {
-  constructor(public layout: LayoutService, public config: ConfigService, public router: Router, public activated: ActivatedRoute) {}
+  constructor(
+    public layout: LayoutService,
+    public config: ConfigService,
+    public router: Router,
+    public activated: ActivatedRoute
+  ) {}
 
   nodeClick(menu: Menu) {
     if (menu.type != 'router') {

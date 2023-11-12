@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
-import { ConfigService } from 'src/services/config.service';
+import { ConfigService } from '@services';
 
 @Component({
   selector: 'ns-root',
