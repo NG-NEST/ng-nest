@@ -8,15 +8,16 @@ import {
   ViewChild,
   ChangeDetectorRef,
   SimpleChanges,
-  Inject
+  Inject,
+  inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { delay, of } from 'rxjs';
 
-declare let Prism: any;
 @Component({
   selector: `${XHighlightPrefix}`,
   templateUrl: './highlight.component.html',
@@ -34,6 +35,11 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   document: Document;
   iconCopy = 'fto-copy';
 
+  platformId = inject(PLATFORM_ID);
+  isBrowser = true;
+
+  prism: any;
+
   constructor(
     public elementRef: ElementRef<HTMLElement>,
     public renderer: Renderer2,
@@ -44,6 +50,10 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
     super();
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
     this.document = document;
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.prism = (window as any)['Prism'];
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,17 +64,19 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   setData(): void {
     if (XIsEmpty(this.type)) return;
     if (XIsEmpty(this.data)) this.data = '';
-    if (!Prism) {
+    if (!this.prism && this.isBrowser) {
       console.warn(
         `${XHighlightPrefix}: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`
       );
       this.display = this.sanitizer.bypassSecurityTrustHtml(this.data as string);
       return;
     }
-    if (Prism?.languages?.[this.type as string]) {
+    if (this.prism?.languages?.[this.type as string]) {
       this.lines = (this.data as string).split(/\n(?!$)/g);
       this.display = this.sanitizer.bypassSecurityTrustHtml(
-        Prism.highlight(this.data, Prism.languages[this.type as string], this.type) + this.createLineNumbers() + this.createHighlightLines()
+        this.prism?.highlight(this.data, this.prism?.languages[this.type as string], this.type) +
+          this.createLineNumbers() +
+          this.createHighlightLines()
       );
     }
     this.cdr.detectChanges();
@@ -73,7 +85,9 @@ export class XHighlightComponent extends XHighlightProperty implements OnChanges
   createLineNumbers() {
     let result = '';
     if (this.lines?.length > 0) {
-      result = `<span class="line-numbers">${new Array(this.lines.length + 1).join('<span></span>')}</span>`;
+      result = `<span class="line-numbers">${new Array(this.lines.length + 1).join(
+        '<span></span>'
+      )}</span>`;
     }
     return result;
   }
