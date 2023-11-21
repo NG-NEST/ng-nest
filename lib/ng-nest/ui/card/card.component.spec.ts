@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCardComponent } from './card.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCardModule } from '@ng-nest/ui/card';
 import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.property';
@@ -25,7 +25,8 @@ describe(XCardPrefix, () => {
         XCardModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXCardComponent]

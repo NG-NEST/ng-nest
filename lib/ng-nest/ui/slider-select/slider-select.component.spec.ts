@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -24,7 +24,8 @@ describe(XSliderSelectPrefix, () => {
         XSliderSelectModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XTabsModule,
         XIconComponent,
         XButtonComponent

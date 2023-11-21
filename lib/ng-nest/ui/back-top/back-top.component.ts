@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnDestroy,
@@ -16,14 +14,16 @@ import {
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { reqAnimFrame, XConfigService, XIsChange, XIsNumber } from '@ng-nest/ui/core';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
-import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { Platform } from '@angular/cdk/platform';
+import { XPortalService, XPortalOverlayRef, XPortalModule } from '@ng-nest/ui/portal';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XBackTopPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XLinkComponent, XPortalModule],
   templateUrl: './back-top.component.html',
   styleUrls: ['./back-top.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -56,24 +56,18 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
   scrolling = false;
   portalRef!: XPortalOverlayRef<any>;
   private doc = inject(DOCUMENT);
+  private cdr = inject(ChangeDetectorRef);
+  private portal = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
   private _unSubject = new Subject<void>();
   private _target: HTMLElement | null = null;
+  configService = inject(XConfigService);
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public portal: XPortalService,
-    public viewContainerRef: ViewContainerRef,
-    public configService: XConfigService,
-    public platform: Platform
-  ) {
-    super();
-  }
   ngOnChanges(changes: SimpleChanges): void {
     const { target } = changes;
     if (XIsChange(target)) {
-      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target!;
+      this._target =
+        typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target!;
       this.setScrollEvent();
     }
   }
@@ -114,7 +108,10 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
           overlayConfig: {
             width: '2.5rem',
             height: '2.5rem',
-            positionStrategy: this.portal.setPlace('bottom-end', ...['0', this.right as string, this.bottom as string, '0'])
+            positionStrategy: this.portal.setPlace(
+              'bottom-end',
+              ...['0', this.right as string, this.bottom as string, '0']
+            )
           }
         });
       } else {

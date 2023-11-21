@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputNumberPrefix } from './input-number.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -22,7 +22,8 @@ describe(XInputNumberPrefix, () => {
         XInputNumberModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [
@@ -385,7 +386,12 @@ class TestXInputNumberSizeComponent {
         <x-input-number placeholder="请输入" bordered="false"></x-input-number>
       </x-col>
       <x-col span="24">
-        <x-input-number placeholder="请输入" bordered="false" label="数量:" direction="row"></x-input-number>
+        <x-input-number
+          placeholder="请输入"
+          bordered="false"
+          label="数量:"
+          direction="row"
+        ></x-input-number>
       </x-col>
       <x-col span="24">
         <x-input-number placeholder="请输入" bordered="false"></x-input-number>

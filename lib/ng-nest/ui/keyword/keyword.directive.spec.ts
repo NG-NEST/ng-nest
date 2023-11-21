@@ -5,13 +5,13 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XKeywordPrefix } from './keyword.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XKeywordModule } from './keyword.module';
+import { XKeywordDirective } from './keyword.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XKeywordModule, XButtonComponent],
+      imports: [HttpClientTestingModule, XKeywordDirective, XButtonComponent],
       declarations: [TestXKeywordComponent]
     }).compileComponents();
   });

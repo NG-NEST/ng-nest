@@ -23,11 +23,11 @@ export const mainRoutes: Routes = [
 ];
 
 export const testRoutes: Routes = [
-  {
-    path: `test`,
-    loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
-  },
-  { path: '', redirectTo: `test`, pathMatch: 'full' }
+  // {
+  //   path: `test`,
+  //   loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
+  // },
+  // { path: '', redirectTo: `test`, pathMatch: 'full' }
 ];
 
 /**

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.property';
@@ -20,7 +20,8 @@ describe(XAvatarPrefix, () => {
         HttpClientTestingModule,
         FormsModule,
         XAvatarComponent,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent,
         XBadgeComponent,
         XThemeModule

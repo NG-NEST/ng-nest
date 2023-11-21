@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix } from './color-picker.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -23,7 +23,8 @@ describe(XColorPickerPrefix, () => {
         XColorPickerModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [
@@ -168,7 +169,11 @@ class TestXColorPickerComponent {
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-color-picker label="颜色" [(ngModel)]="model" direction="column-reverse"></x-color-picker>
+        <x-color-picker
+          label="颜色"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-color-picker>
       </x-col>
     </x-row>
     <x-row>
@@ -288,13 +293,28 @@ class TestXColorPickerRequiredComponent {
         <x-color-picker [size]="size"></x-color-picker>
       </x-col>
       <x-col span="24">
-        <x-color-picker [size]="size" label="用户名" direction="row" maxlength="50"></x-color-picker>
+        <x-color-picker
+          [size]="size"
+          label="用户名"
+          direction="row"
+          maxlength="50"
+        ></x-color-picker>
       </x-col>
       <x-col span="24">
-        <x-color-picker [size]="size" label="用户名" direction="column" maxlength="50"></x-color-picker>
+        <x-color-picker
+          [size]="size"
+          label="用户名"
+          direction="column"
+          maxlength="50"
+        ></x-color-picker>
       </x-col>
       <x-col span="24">
-        <x-color-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-color-picker>
+        <x-color-picker
+          [size]="size"
+          icon="ado-user"
+          iconLayout="left"
+          maxlength="50"
+        ></x-color-picker>
       </x-col>
       <x-col span="24">
         <x-color-picker required clearable [size]="size"></x-color-picker>
@@ -338,7 +358,12 @@ class TestXColorPickerSizeComponent {
         <x-color-picker placeholder="请选择日期" bordered="false"></x-color-picker>
       </x-col>
       <x-col span="24">
-        <x-color-picker placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-color-picker>
+        <x-color-picker
+          placeholder="请选择日期"
+          bordered="false"
+          label="日生:"
+          direction="row"
+        ></x-color-picker>
       </x-col>
       <x-col span="24">
         <x-color-picker placeholder="请选择日期" bordered="false"></x-color-picker>

@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTreeFileComponent } from './tree-file.component';
 import { Component, DebugElement, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTreeFileModule } from '@ng-nest/ui/tree-file';
 import { FormsModule } from '@angular/forms';
 import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
@@ -25,7 +25,8 @@ describe(XTreeFilePrefix, () => {
         XTreeFileModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXTreeFileComponent]
@@ -135,7 +136,8 @@ class TreeFileServiceTest {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
+      <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs">
+      </x-tree-file>
     </div>
   `,
   styles: [

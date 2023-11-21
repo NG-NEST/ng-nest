@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.property';
@@ -22,7 +22,8 @@ describe(XBadgePrefix, () => {
         FormsModule,
         XBadgeComponent,
         XButtonComponent,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXBadgeComponent]

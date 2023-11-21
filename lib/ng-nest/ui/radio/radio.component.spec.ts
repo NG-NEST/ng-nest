@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XRadioComponent } from './radio.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XRadioPrefix, XRadioNode } from './radio.property';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
-import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
@@ -33,11 +33,12 @@ describe(XRadioPrefix, () => {
         XThemeModule,
         FormsModule,
         XRadioModule,
-        XAutoCompleteModule,
+        XAutoCompleteComponent,
         XSelectModule,
         XDatePickerModule,
         XButtonComponent,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XCascadeModule,
         XColorPickerModule,
         XFindModule,

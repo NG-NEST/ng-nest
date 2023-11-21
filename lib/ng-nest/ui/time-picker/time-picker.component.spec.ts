@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -23,7 +23,8 @@ describe(XTimePickerPrefix, () => {
         XTimePickerModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [
@@ -317,13 +318,31 @@ class TestXTimePickerHourOrMinuteComponent {
         <x-time-picker [(ngModel)]="model" [size]="size"></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="row" maxlength="50"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          [size]="size"
+          label="时间"
+          direction="row"
+          maxlength="50"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="column" maxlength="50"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          [size]="size"
+          label="时间"
+          direction="column"
+          maxlength="50"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          [size]="size"
+          icon="ado-user"
+          iconLayout="left"
+          maxlength="50"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
         <x-time-picker [(ngModel)]="model" required clearable [size]="size"></x-time-picker>
@@ -365,19 +384,43 @@ class TestXTimePickerSizeComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          placeholder="请选择时间"
+          bordered="false"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" label="时间:" direction="row"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          placeholder="请选择时间"
+          bordered="false"
+          label="时间:"
+          direction="row"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          placeholder="请选择时间"
+          bordered="false"
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" required></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          placeholder="请选择时间"
+          bordered="false"
+          required
+        ></x-time-picker>
       </x-col>
       <x-col span="24">
-        <x-time-picker [(ngModel)]="model" placeholder="没有边框" bordered="false" disabled></x-time-picker>
+        <x-time-picker
+          [(ngModel)]="model"
+          placeholder="没有边框"
+          bordered="false"
+          disabled
+        ></x-time-picker>
       </x-col>
     </x-row>
   `,

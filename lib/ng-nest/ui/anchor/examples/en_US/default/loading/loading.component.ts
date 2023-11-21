@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
+import { XAnchorComponent, XAnchorInnerComponent } from '@ng-nest/ui/anchor';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-loading',
+  standalone: true,
+  imports: [XButtonComponent, XAnchorComponent, XAnchorInnerComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
 export class ExLoadingComponent {
   html = ``;
   loadIndex = 0;
-  constructor() {}
 
-  ngOnInit() {}
   onLoadData() {
     this.html += `<h1>1 Theme</h1>
     <p>This is the topic-one information.</p>

@@ -38,7 +38,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
 
   private document = inject(DOCUMENT);
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
     this.setMapClass();

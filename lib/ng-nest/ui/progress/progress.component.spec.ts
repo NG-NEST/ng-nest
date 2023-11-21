@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XProgressComponent } from './progress.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XProgressModule } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.property';
@@ -25,7 +25,8 @@ describe(XProgressPrefix, () => {
         XProgressModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXProgressComponent]

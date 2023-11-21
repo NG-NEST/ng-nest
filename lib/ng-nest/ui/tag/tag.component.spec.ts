@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTagComponent } from './tag.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XTagPrefix } from './tag.property';
@@ -25,7 +25,8 @@ describe(XTagPrefix, () => {
         XTagModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXTagComponent]
@@ -140,7 +141,9 @@ describe(XTagPrefix, () => {
       <x-tag size="mini" closable disabled>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{ tag }}</x-tag>
+      <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{
+        tag
+      }}</x-tag>
     </div>
     <div class="row">
       <x-tag bordered="false" size="large" closable disabled>标签</x-tag>

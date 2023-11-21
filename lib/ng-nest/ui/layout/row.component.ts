@@ -1,8 +1,18 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, OnInit, HostBinding } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Renderer2,
+  ElementRef,
+  OnInit,
+  HostBinding,
+  inject
+} from '@angular/core';
 import { XRowPrefix, XRowProperty } from './layout.property';
 
 @Component({
   selector: `${XRowPrefix}`,
+  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./row.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -13,12 +23,11 @@ export class XRowComponent extends XRowProperty implements OnInit {
     return this.justify || this.align ? true : false;
   }
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XRowPrefix);
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XRowPrefix);
     this.setSpace();
     this.setJustify();
     this.setAlign();
@@ -26,8 +35,16 @@ export class XRowComponent extends XRowProperty implements OnInit {
 
   setSpace() {
     if (!this.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${Number(this.space) / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${Number(this.space) / 2}rem`);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'margin-left',
+      `-${Number(this.space) / 2}rem`
+    );
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'margin-right',
+      `-${Number(this.space) / 2}rem`
+    );
   }
 
   setJustify() {

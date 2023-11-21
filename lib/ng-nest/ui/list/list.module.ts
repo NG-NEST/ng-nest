@@ -12,7 +12,7 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XI18nDirective } from '@ng-nest/ui/i18n';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { XListDropGroup } from './list-drop-group.directive';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { XListDropGroup } from './list-drop-group.directive';
     XI18nDirective,
     XOutletDirective,
     ScrollingModule,
-    XKeywordModule
+    XKeywordDirective
   ]
 })
 export class XListModule {}

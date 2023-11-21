@@ -22,7 +22,7 @@ import { XRippleDirective } from '@ng-nest/ui/ripple';
 @Component({
   selector: `${XButtonPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XRippleDirective, XButtonProperty],
+  imports: [CommonModule, XIconComponent, XRippleDirective],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -34,7 +34,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
 
   private buttons = inject(XButtonsComponent, { optional: true, host: true });
   private cdr = inject(ChangeDetectorRef);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
   configService = inject(XConfigService);
 

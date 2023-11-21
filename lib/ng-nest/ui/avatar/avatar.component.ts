@@ -32,7 +32,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XAvatarPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective, XIconComponent, XAvatarProperty],
+  imports: [CommonModule, XOutletDirective, XIconComponent],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -52,7 +52,7 @@ export class XAvatarComponent
   @ViewChild('labelRef') labelRef!: ElementRef<HTMLElement>;
 
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
   private cdr = inject(ChangeDetectorRef);
   configService = inject(XConfigService);
 

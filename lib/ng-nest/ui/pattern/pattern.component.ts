@@ -19,7 +19,7 @@ import { PatternPrefix } from './pattern.property';
 })
 export class XPatternComponent implements OnInit {
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
 
   ngOnInit(): void {
     this.renderer.addClass(this.elementRef.nativeElement, PatternPrefix);

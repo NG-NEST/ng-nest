@@ -5,15 +5,15 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Optional,
-  Host,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XColPrefix, XColProperty } from './layout.property';
 import { XRowComponent } from './row.component';
 
 @Component({
   selector: `${XColPrefix}`,
+  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./col.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -24,12 +24,12 @@ export class XColComponent extends XColProperty implements OnInit {
     return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24 ? true : false;
   }
 
-  constructor(@Optional() @Host() public rowComponent: XRowComponent, private renderer: Renderer2, private elementRef: ElementRef) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XColPrefix);
-  }
+  private rowComponent = inject(XRowComponent, { optional: true, host: true });
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XColPrefix);
     this.setSpan();
     this.setOffset();
     this.setSpace();
@@ -49,8 +49,16 @@ export class XColComponent extends XColProperty implements OnInit {
 
   setSpace() {
     if (!this.rowComponent?.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-left', `${Number(this.rowComponent.space) / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'padding-right', `${Number(this.rowComponent.space) / 2}rem`);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'padding-left',
+      `${Number(this.rowComponent.space) / 2}rem`
+    );
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'padding-right',
+      `${Number(this.rowComponent.space) / 2}rem`
+    );
   }
 
   setLayout() {

@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XBackTopComponent } from './back-top.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XBackTopModule } from '@ng-nest/ui/back-top';
+import { XBackTopComponent } from '@ng-nest/ui/back-top';
 import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -17,7 +16,7 @@ describe(XBackTopPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XBackTopModule,
+        XBackTopComponent,
         XButtonComponent,
         BrowserAnimationsModule,
         XTabsModule,

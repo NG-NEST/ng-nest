@@ -1,17 +1,30 @@
-import { OnInit, Renderer2, ElementRef, Directive, OnDestroy, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  OnInit,
+  Renderer2,
+  ElementRef,
+  Directive,
+  OnDestroy,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges,
+  inject
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { XConfigService, XIsArray, XIsChange, XIsString, XIsUndefined } from '@ng-nest/ui/core';
 import { XKeywordPrefix, XKeywordProperty } from './keyword.property';
 
 @Directive({
-  selector: `[${XKeywordPrefix}]`
+  selector: `[${XKeywordPrefix}]`,
+  standalone: true
 })
-export class XKeywordDirective extends XKeywordProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class XKeywordDirective
+  extends XKeywordProperty
+  implements OnInit, OnChanges, OnDestroy, AfterViewInit
+{
   private _unSub = new Subject<void>();
-
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, public configService: XConfigService) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

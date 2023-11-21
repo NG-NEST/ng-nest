@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XListModule } from '@ng-nest/ui/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -26,7 +26,8 @@ describe(XListPrefix, () => {
         XListModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XInputNumberModule
       ],
       declarations: [TestXListComponent]
@@ -53,24 +54,58 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="6">
-        <x-list [data]="data1" [(ngModel)]="model1" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data1"
+          [(ngModel)]="model1"
+          (ngModelChange)="change()"
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
       <x-col span="6">
-        <x-list [data]="data2" [(ngModel)]="model2" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data2"
+          [(ngModel)]="model2"
+          (ngModelChange)="change()"
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
       <x-col span="6">
-        <x-list [data]="data3" [(ngModel)]="model3" (ngModelChange)="change()" multiple (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data3"
+          [(ngModel)]="model3"
+          (ngModelChange)="change()"
+          multiple
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
       <x-col span="6">
-        <x-list [data]="data4" [(ngModel)]="model4" multiple (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data4"
+          [(ngModel)]="model4"
+          multiple
+          (ngModelChange)="change()"
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
     </x-row>
     <x-row space="1">
       <x-col span="6">
-        <x-list [data]="data5" [(ngModel)]="model5" multiple="2" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data5"
+          [(ngModel)]="model5"
+          multiple="2"
+          (ngModelChange)="change()"
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
       <x-col span="6">
-        <x-list [data]="data6" [(ngModel)]="model6" multiple="2" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
+        <x-list
+          [data]="data6"
+          [(ngModel)]="model6"
+          multiple="2"
+          (ngModelChange)="change()"
+          (nodeClick)="nodeEmit()"
+        ></x-list>
       </x-col>
     </x-row>
     <x-row space="1">

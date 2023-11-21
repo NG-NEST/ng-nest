@@ -1,10 +1,14 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { ComponentFixture, TestBed, __core_private_testing_placeholder__ } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  __core_private_testing_placeholder__
+} from '@angular/core/testing';
 
 import { XRateComponent } from './rate.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
@@ -15,8 +19,22 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, FormsModule, XRateModule, XButtonComponent, XLayoutModule, XIconComponent],
-      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        XRateModule,
+        XButtonComponent,
+        XRowComponent,
+        XColComponent,
+        XIconComponent
+      ],
+      declarations: [
+        TestXRateComponent,
+        TestXRateHalfComponent,
+        TestXRateDisabledComponent,
+        TestXRateCustomComponent
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -111,7 +129,13 @@ class TestXRateComponent {
     </x-row>
     <x-row>
       <x-col span="24">
-        <x-rate label="评级" direction="row" [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
+        <x-rate
+          label="评级"
+          direction="row"
+          [(ngModel)]="model"
+          (ngModelChange)="chang($event)"
+          half
+        ></x-rate>
       </x-col>
     </x-row>
   `,

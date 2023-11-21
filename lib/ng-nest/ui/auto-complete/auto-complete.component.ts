@@ -13,7 +13,11 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
+import {
+  XAutoCompleteNode,
+  XAutoCompleteProperty,
+  XAutoCompletePrefix
+} from './auto-complete.property';
 import {
   XIsEmpty,
   XIsObservable,
@@ -25,17 +29,37 @@ import {
   XIsFunction,
   XParents
 } from '@ng-nest/ui/core';
-import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { XInputComponent } from '@ng-nest/ui/input';
+import {
+  XPortalService,
+  XPortalOverlayRef,
+  XPortalConnectedPosition,
+  XPortalModule
+} from '@ng-nest/ui/portal';
+import { XInputModule, XInputComponent } from '@ng-nest/ui/input';
 import { XAutoCompletePortalComponent } from './auto-complete-portal.component';
-import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  OverlayConfig
+} from '@angular/cdk/overlay';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
-import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    XPortalModule,
+    XInputModule,
+    XControlValueAccessor,
+    XAutoCompletePortalComponent
+  ],
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -75,22 +99,23 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   private _unSubject = new Subject<void>();
-  document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    private elementRef: ElementRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private document = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
+  override cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
-    this.setFlex(this.autoComplete.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.autoComplete.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setClassMap();
     this.setSubject();
     this.setParantScroll();
@@ -254,10 +279,12 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {
@@ -301,7 +328,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom.inputRef,
-      placement: [this.placement as XPositionTopBottom, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [
+        this.placement as XPositionTopBottom,
+        'bottom-start',
+        'bottom-end',
+        'top-start',
+        'top-end'
+      ],
       transformOriginOn: 'x-auto-complete-portal'
     });
   }
@@ -314,7 +347,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     if (this.caseSensitive) {
       this.searchNodes = this.nodes.filter((x) => x.label.indexOf(value) >= 0);
     } else {
-      this.searchNodes = this.nodes.filter((x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0);
+      this.searchNodes = this.nodes.filter(
+        (x) => (x.label as string).toLowerCase().indexOf((value as string).toLowerCase()) >= 0
+      );
     }
   }
 
@@ -329,13 +364,15 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
           this.icon = 'fto-loader';
           this.iconSpin = true;
           this.cdr.detectChanges();
-          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
-            this.icon = '';
-            this.iconSpin = false;
-            this.nodes = x;
-            this.dataChange.next(this.nodes);
-            this.cdr.detectChanges();
-          });
+          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, value as any).subscribe(
+            (x) => {
+              this.icon = '';
+              this.iconSpin = false;
+              this.nodes = x;
+              this.dataChange.next(this.nodes);
+              this.cdr.detectChanges();
+            }
+          );
         }
       }
       if (!this.onlySelect) {

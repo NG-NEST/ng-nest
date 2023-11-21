@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
@@ -20,7 +20,8 @@ describe(XLinkPrefix, () => {
         XThemeModule,
         FormsModule,
         XLinkComponent,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXLinkComponent]

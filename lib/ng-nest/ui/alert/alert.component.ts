@@ -30,8 +30,7 @@ import { XResizableDirective } from '@ng-nest/ui/resizable';
     XIconComponent,
     XButtonComponent,
     XOutletDirective,
-    XResizableDirective,
-    XAlertProperty
+    XResizableDirective
   ],
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],

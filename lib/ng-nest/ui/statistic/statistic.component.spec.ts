@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XStatisticComponent } from './statistic.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.property';
@@ -28,7 +28,8 @@ describe(XStatisticPrefix, () => {
         XButtonComponent,
         XCardModule,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXStatisticComponent]
@@ -59,7 +60,8 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}"> </x-statistic>
+          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}">
+          </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
@@ -95,12 +97,20 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-countdown [value]="deadline" label="倒计时（毫秒）" format="HH:mm:ss:SSS"></x-countdown>
+          <x-countdown
+            [value]="deadline"
+            label="倒计时（毫秒）"
+            format="HH:mm:ss:SSS"
+          ></x-countdown>
         </x-card>
       </x-col>
       <x-col span="24">
         <x-card>
-          <x-countdown [value]="deadline" label="倒计时（天）" format="D 天 H 时 m 分 s 秒"></x-countdown>
+          <x-countdown
+            [value]="deadline"
+            label="倒计时（天）"
+            format="D 天 H 时 m 分 s 秒"
+          ></x-countdown>
         </x-card>
       </x-col>
     </x-row>

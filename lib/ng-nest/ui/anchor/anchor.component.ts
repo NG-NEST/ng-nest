@@ -13,20 +13,33 @@ import {
   inject
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
-import { XComputedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
-import { XSliderNode } from '@ng-nest/ui/slider';
-import { DOCUMENT } from '@angular/common';
+import {
+  XComputedStyle,
+  XIsEmpty,
+  reqAnimFrame,
+  XIsNumber,
+  XIsUndefined,
+  XConfigService
+} from '@ng-nest/ui/core';
+import { XSliderNode, XSliderModule } from '@ng-nest/ui/slider';
+import { XAffixComponent } from '@ng-nest/ui/affix';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: `${XAnchorPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XAffixComponent, XSliderModule],
   templateUrl: './anchor.component.html',
   styleUrls: ['./anchor.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
+export class XAnchorComponent
+  extends XAnchorProperty
+  implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked
+{
   @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
   @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
   hElements!: NodeListOf<HTMLElement>;
@@ -36,23 +49,19 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   document: Document = inject(DOCUMENT);
   contentChange = new Subject();
   private _scrolling = false;
-  private _fontSize: number;
+  private _fontSize!: number;
   private _unSubject = new Subject<void>();
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-    this._fontSize = parseFloat(XComputedStyle(this.document.documentElement, 'font-size'));
-  }
   ngAfterContentChecked(): void {
     this.contentChange.next(this.elementRef.nativeElement.innerHTML);
   }
 
   ngOnInit() {
+    this._fontSize = parseFloat(XComputedStyle(this.document.documentElement, 'font-size'));
     this.setClassMap();
     this.setSliderData();
     this.setHeight();
@@ -77,10 +86,12 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
     this._scrolling = true;
     const hElement = this.hElements[index];
-    let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
+    let scrollTop =
+      hElement.offsetTop -
+      this.anchor.nativeElement.offsetTop -
+      parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
-    console.log(scrollTop);
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 
@@ -164,15 +175,18 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     if (!this.affixWidth) return null;
     if (this.affixWidth === '0') return 0;
     if (XIsNumber(this.affixWidth)) return this.affixWidth;
-    else if (this.affixWidth.indexOf('rem') !== -1) return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
-    else if (this.affixWidth.indexOf('px') !== -1) return Number(this.affixWidth.replace(/px/g, ''));
+    else if (this.affixWidth.indexOf('rem') !== -1)
+      return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixWidth.indexOf('px') !== -1)
+      return Number(this.affixWidth.replace(/px/g, ''));
     else return Number(this.affixWidth);
   }
 
   private getTop() {
     if (this.affixTop === '0') return 0;
     if (XIsNumber(this.affixTop)) return Number(this.affixTop);
-    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixTop.indexOf('rem') !== -1)
+      return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
     else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
     return 0;
   }

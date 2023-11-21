@@ -1,4 +1,12 @@
-import { XJustify, XAlign, XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean } from '@ng-nest/ui/core';
+import {
+  XJustify,
+  XAlign,
+  XProperty,
+  XInputNumber,
+  XInputBoolean,
+  XNumber,
+  XBoolean
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -11,7 +19,7 @@ export const XRowPrefix = 'x-row';
 /**
  * Row Property
  */
-@Component({ selector: `${XRowPrefix}-property`, template: '' })
+@Component({ selector: `${XRowPrefix}-property`, template: '', standalone: true })
 export class XRowProperty extends XProperty {
   /**
    * @zh_CN 列间隔，rem

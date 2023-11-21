@@ -5,21 +5,23 @@ import {
   ChangeDetectorRef,
   OnInit,
   OnDestroy,
-  Renderer2,
   HostBinding,
   HostListener,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  inject
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XListComponent } from '@ng-nest/ui/list';
+import { XListComponent, XListModule } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XAutoCompletePortalPrefix}`,
+  standalone: true,
+  imports: [XListModule],
   templateUrl: './auto-complete-portal.component.html',
   styleUrls: ['./auto-complete-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -56,8 +58,7 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   keywordText!: string;
   caseSensitive!: XBoolean;
   private _unSubject = new Subject<void>();
-
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {

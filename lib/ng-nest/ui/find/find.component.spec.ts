@@ -6,10 +6,21 @@ import { By } from '@angular/platform-browser';
 import { XFindModule } from '@ng-nest/ui/find';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFindPrefix, XFindSearchOption } from './find.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDialogOption } from '@ng-nest/ui/dialog';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy, XCloneDeep } from '@ng-nest/ui/core';
+import {
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XSort,
+  XId,
+  XOrderBy,
+  XCloneDeep
+} from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -26,7 +37,8 @@ describe(XFindPrefix, () => {
         XFindModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [
@@ -386,10 +398,12 @@ class TestXFindComponent {
     },
     getData: (visible: boolean = true) => {
       if (visible) console.log(this.table.query);
-      this.tableService.getList(this.table.index, this.table.size, this.table.query).subscribe((x) => {
-        [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
-        this.cdr.detectChanges();
-      });
+      this.tableService
+        .getList(this.table.index, this.table.size, this.table.query)
+        .subscribe((x) => {
+          [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
+          this.cdr.detectChanges();
+        });
     }
   };
 
@@ -403,7 +417,11 @@ class TestXFindComponent {
   model4 = { id: 1, label: '姓名1' };
 
   treeData4 = JSON.parse(JSON.stringify(this.treeService.data));
-  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {
+  constructor(
+    public tableService: UsersServiceTest,
+    public treeService: TreeServiceTest,
+    public cdr: ChangeDetectorRef
+  ) {
     // interval(100).subscribe((x) => this.cdr.detectChanges());
   }
   change() {
@@ -483,7 +501,8 @@ class TestXFindFunctionComponent {
       { id: 'position', label: '职位', flex: 1, sort: true },
       { id: 'organization', label: '组织机构', flex: 1, sort: true }
     ],
-    data: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query)
+    data: (index: number, size: number, query: XQuery) =>
+      this.tableService.getList(index, size, query)
   };
 
   model1 = { id: 1, label: '姓名1' };
@@ -499,7 +518,11 @@ class TestXFindFunctionComponent {
   model4 = { id: 1, label: '姓名1' };
 
   treeData4 = JSON.parse(JSON.stringify(this.treeService.data));
-  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {
+  constructor(
+    public tableService: UsersServiceTest,
+    public treeService: TreeServiceTest,
+    public cdr: ChangeDetectorRef
+  ) {
     // interval(100).subscribe((x) => this.cdr.detectChanges());
   }
   change() {

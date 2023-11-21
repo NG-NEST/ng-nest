@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCarouselComponent } from './carousel.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCarouselModule } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.property';
@@ -26,11 +26,17 @@ describe(XCarouselPrefix, () => {
         XCarouselModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent,
         XTabsModule
       ],
-      declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]
+      declarations: [
+        TestXCarouselComponent,
+        TestXCarouselCardComponent,
+        TestXCarouselDirectionComponent,
+        TestXCarouselTabsComponent
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {

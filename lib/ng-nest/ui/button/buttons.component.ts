@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: `${XButtonsPrefix}`,
   standalone: true,
-  imports: [CommonModule, XButtonsProperty],
+  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./buttons.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -30,7 +30,7 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
   }
 
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
   configService = inject(XConfigService);
 
   ngOnInit() {

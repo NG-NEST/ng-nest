@@ -20,7 +20,7 @@ import { XConfigService } from '@ng-nest/ui/core';
 })
 export class XApiComponent implements OnInit {
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
   configService = inject(XConfigService);
 
   ngOnInit(): void {

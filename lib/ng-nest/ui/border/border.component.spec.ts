@@ -1,11 +1,10 @@
 import { XDocModule } from '@ng-nest/ui/doc';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XBorderComponent } from './border.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XBorderModule } from '@ng-nest/ui/border';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
+import { XBorderComponent } from '@ng-nest/ui/border';
 import { XBorderPrefix } from './border.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +13,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XBorderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XBorderModule, XLayoutModule, XDocModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XBorderComponent,
+        XRowComponent,
+        XColComponent,
+        XDocModule
+      ],
       declarations: [TestXBorderComponent]
     }).compileComponents();
   });

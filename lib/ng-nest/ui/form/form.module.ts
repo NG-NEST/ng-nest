@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XFormComponent } from './form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XControlComponent } from './control.component';
 import { XFormProperty, XControlProperty } from './form.property';
 import { XInputModule } from '@ng-nest/ui/input';
@@ -22,11 +22,12 @@ import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XI18nDirective } from '@ng-nest/ui/i18n';
 
 const modules = [
-  XLayoutModule,
+  XRowComponent,
+  XColComponent,
   XIconComponent,
   XInputModule,
   XSelectModule,
@@ -42,7 +43,7 @@ const modules = [
   XTimePickerModule,
   XTextareaModule,
   XFindModule,
-  XAutoCompleteModule,
+  XAutoCompleteComponent,
   XOutletDirective,
   XControlValueAccessor,
   XI18nDirective

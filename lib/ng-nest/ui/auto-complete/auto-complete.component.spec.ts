@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XAutoCompleteComponent } from './auto-complete.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XAutoCompletePrefix, XAutoCompleteNode } from './auto-complete.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,10 +31,11 @@ describe(XAutoCompletePrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XThemeModule,
-        XAutoCompleteModule,
+        XAutoCompleteComponent,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule,
         XSelectModule,
         XButtonComponent,
@@ -170,7 +171,19 @@ describe(XAutoCompletePrefix, () => {
   });
 });
 
-const data: XData<XAutoCompleteNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XAutoCompleteNode> = [
+  'AAAA',
+  'AAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   template: `
@@ -218,17 +231,32 @@ class TestXAutoCompleteComponent {
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-auto-complete>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="row"
+        ></x-auto-complete>
       </x-col>
     </x-row>
     <x-row>
       <x-col>
-        <x-auto-complete label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-auto-complete>
+        <x-auto-complete
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="row-reverse"
+        ></x-auto-complete>
       </x-col>
     </x-row>
   `,
@@ -334,7 +362,11 @@ class TestXAutoCompleteRequiredComponent {
         <x-auto-complete [data]="data" [(ngModel)]="model"></x-auto-complete>
       </x-col>
       <x-col>
-        <x-auto-complete [data]="data" [(ngModel)]="model1" (ngModelChange)="change()"></x-auto-complete>
+        <x-auto-complete
+          [data]="data"
+          [(ngModel)]="model1"
+          (ngModelChange)="change()"
+        ></x-auto-complete>
       </x-col>
       <x-col>
         <x-auto-complete [data]="data1" [(ngModel)]="model2"></x-auto-complete>
@@ -363,7 +395,18 @@ class TestXAutoCompleteAsyncComponent {
   data = new Observable<string[]>((x) => {
     // 替换成http请求，或者data直接定义成 Observable 对象
     setTimeout(() => {
-      x.next(['qqq', 'qqqq', 'qqqqq', 'qqqqqq', 'qqqqqqqq', 'qqqqqqqqqqq', 'qqqqqqqqqqqqqq', '微信', '钉钉', '微博']);
+      x.next([
+        'qqq',
+        'qqqq',
+        'qqqqq',
+        'qqqqqq',
+        'qqqqqqqq',
+        'qqqqqqqqqqq',
+        'qqqqqqqqqqqqqq',
+        '微信',
+        '钉钉',
+        '微博'
+      ]);
       x.complete();
     }, 500);
   });
@@ -391,13 +434,31 @@ class TestXAutoCompleteAsyncComponent {
         <x-auto-complete [size]="size" [data]="data"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete [size]="size" label="用户名" [data]="data" direction="row" maxlength="50"></x-auto-complete>
+        <x-auto-complete
+          [size]="size"
+          label="用户名"
+          [data]="data"
+          direction="row"
+          maxlength="50"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete [size]="size" label="用户名" [data]="data" direction="column" maxlength="50"></x-auto-complete>
+        <x-auto-complete
+          [size]="size"
+          label="用户名"
+          [data]="data"
+          direction="column"
+          maxlength="50"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete [size]="size" icon="ado-user" [data]="data" iconLayout="left" maxlength="50"></x-auto-complete>
+        <x-auto-complete
+          [size]="size"
+          icon="ado-user"
+          [data]="data"
+          iconLayout="left"
+          maxlength="50"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete required clearable [size]="size" [data]="data"></x-auto-complete>
@@ -427,7 +488,19 @@ class TestXAutoCompleteAsyncComponent {
 class TestXAutoCompleteSizeComponent {
   radioData = ['big', 'large', 'medium', 'small', 'mini'];
   size = 'medium';
-  data: XData<XAutoCompleteNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+  data: XData<XAutoCompleteNode> = [
+    'AAAA',
+    'AAA',
+    'BBBB',
+    'CCCC',
+    'DDDD',
+    'EEEE',
+    'FFFF',
+    'GGGG',
+    'HHHH',
+    'IIII',
+    'JJJJ'
+  ];
   constructor(private cdr: ChangeDetectorRef) {}
   change($event: string) {
     console.log($event);
@@ -442,7 +515,12 @@ class TestXAutoCompleteSizeComponent {
         <x-auto-complete placeholder="请输入类内容" bordered="false"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入类内容" bordered="false" label="日生:" direction="row"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入类内容"
+          bordered="false"
+          label="日生:"
+          direction="row"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入类内容" bordered="false"></x-auto-complete>
@@ -495,7 +573,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入网址" [after]="afterSelectTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入网址" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入网址"
+          [before]="beforeSelectTpl"
+          [after]="afterSelectTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeButtonTpl"></x-auto-complete>
@@ -504,7 +586,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterButtonTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeButtonTpl"
+          [after]="afterButtonTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeInputTpl"></x-auto-complete>
@@ -513,7 +599,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterInputTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeInputTpl" [after]="afterInputTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeInputTpl"
+          [after]="afterInputTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeDatePickerTpl"></x-auto-complete>
@@ -522,16 +612,27 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterDatePickerTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeDatePickerTpl"
+          [after]="afterDatePickerTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeAutoCompleteTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeAutoCompleteTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [after]="afterAutoCompleteTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeAutoCompleteTpl"
+          [after]="afterAutoCompleteTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeCascadeTpl"></x-auto-complete>
@@ -540,7 +641,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterCascadeTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeCascadeTpl"
+          [after]="afterCascadeTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeColorPickerTpl"></x-auto-complete>
@@ -549,7 +654,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterColorPickerTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeColorPickerTpl"
+          [after]="afterColorPickerTpl"
+        ></x-auto-complete>
       </x-col>
       <x-col span="24">
         <x-auto-complete placeholder="请输入文字" [before]="beforeTimePickerTpl"></x-auto-complete>
@@ -558,7 +667,11 @@ class TestXAutoCompleteBorderedComponent {
         <x-auto-complete placeholder="请输入文字" [after]="afterTimePickerTpl"></x-auto-complete>
       </x-col>
       <x-col span="24">
-        <x-auto-complete placeholder="请输入文字" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-auto-complete>
+        <x-auto-complete
+          placeholder="请输入文字"
+          [before]="beforeTimePickerTpl"
+          [after]="afterTimePickerTpl"
+        ></x-auto-complete>
       </x-col>
     </x-row>
     <ng-template #beforeSelectTpl>

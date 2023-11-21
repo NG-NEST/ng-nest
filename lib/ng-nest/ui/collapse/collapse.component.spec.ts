@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCollapseComponent } from './collapse.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { FormsModule } from '@angular/forms';
 import { XCollapsePrefix } from './collapse.property';
@@ -25,7 +25,8 @@ describe(XCollapsePrefix, () => {
         XCollapseModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXCollapseComponent]
@@ -52,7 +53,9 @@ describe(XCollapsePrefix, () => {
       <x-collapse>
         <x-collapse-panel label="一致性 Consistency" active>
           <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>
+            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
+          </div>
         </x-collapse-panel>
         <x-collapse-panel label="反馈 Feedback" active>
           <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
@@ -73,7 +76,9 @@ describe(XCollapsePrefix, () => {
       <x-collapse accordion>
         <x-collapse-panel label="一致性 Consistency" active>
           <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>
+            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
+          </div>
         </x-collapse-panel>
         <x-collapse-panel label="反馈 Feedback">
           <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
@@ -95,7 +100,9 @@ describe(XCollapsePrefix, () => {
         <x-collapse-panel [label]="labelTmpOne" active>
           <ng-template #labelTmpOne> <x-icon type="fto-home"></x-icon> 一致性 </ng-template>
           <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+          <div>
+            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
+          </div>
         </x-collapse-panel>
         <x-collapse-panel [label]="labelTmpTwo">
           <ng-template #labelTmpTwo> <x-icon type="fto-heart"></x-icon> 反馈 </ng-template>

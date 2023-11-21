@@ -3,6 +3,7 @@ import { XAnchorInnerPrefix, XAnchorInnerProperty } from './anchor.property';
 
 @Component({
   selector: `${XAnchorInnerPrefix}`,
+  standalone: true,
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

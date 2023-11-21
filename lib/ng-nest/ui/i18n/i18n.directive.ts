@@ -21,7 +21,7 @@ export class XI18nDirective implements OnInit, OnChanges, OnDestroy {
   @Input('x-i18n') path!: string;
   private _unSubject = new Subject<void>();
   private locale = inject(XI18nService);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
     this.locale.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.setLocale());

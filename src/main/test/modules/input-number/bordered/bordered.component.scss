@@ -1,8 +1,0 @@
-:host {
-  x-row:not(:first-child) {
-    margin-top: 1rem;
-  }
-  x-row > x-col > x-input-number {
-    width: 10rem;
-  }
-}

@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XSkeletonComponent } from './skeleton.component';
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.property';
@@ -29,7 +29,8 @@ describe(XSkeletonPrefix, () => {
         XSwitchModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XAvatarComponent,
         XIconComponent,
         XLinkComponent
@@ -84,7 +85,10 @@ describe(XSkeletonPrefix, () => {
             <x-skeleton [loading]="loadingList" [data]="dataCustom" active>
               <x-row justify="start" space="1">
                 <x-col inherit class="content">
-                  <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png" size="medium"></x-avatar>
+                  <x-avatar
+                    src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+                    size="medium"
+                  ></x-avatar>
                 </x-col>
                 <x-col class="content">
                   <x-row>
@@ -112,7 +116,11 @@ describe(XSkeletonPrefix, () => {
                   </x-row>
                 </x-col>
                 <x-col inherit class="content">
-                  <img src="https://ngnest.com/assets/img/logo/logo-144x144.png" [style.width]="'10rem'" [style.height]="'9rem'" />
+                  <img
+                    src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+                    [style.width]="'10rem'"
+                    [style.height]="'9rem'"
+                  />
                 </x-col>
               </x-row>
             </x-skeleton>
@@ -172,7 +180,13 @@ class TestXSkeletonComponent {
             {
               space: 1,
               flex: true,
-              cols: [{ width: '3rem' }, { width: '3rem' }, { width: '3rem' }, { type: 'transparent' }, { width: '9rem' }]
+              cols: [
+                { width: '3rem' },
+                { width: '3rem' },
+                { width: '3rem' },
+                { type: 'transparent' },
+                { width: '9rem' }
+              ]
             }
           ]
         },

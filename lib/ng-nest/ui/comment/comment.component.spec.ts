@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCommentComponent } from './comment.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCommentModule } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
 import { XCommentPrefix, XCommentNode } from './comment.property';
@@ -27,7 +27,8 @@ describe(XCommentPrefix, () => {
         XCommentModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXCommentComponent]
@@ -51,7 +52,12 @@ describe(XCommentPrefix, () => {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-comment [data]="data" (likeClick)="likeClick($event)" (sureClick)="sureClick($event)" (moreClick)="moreClick($event)"></x-comment>
+      <x-comment
+        [data]="data"
+        (likeClick)="likeClick($event)"
+        (sureClick)="sureClick($event)"
+        (moreClick)="moreClick($event)"
+      ></x-comment>
     </div>
   `,
   styles: [

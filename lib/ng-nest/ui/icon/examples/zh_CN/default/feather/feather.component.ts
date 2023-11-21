@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-feather',
   standalone: true,
-  imports: [CommonModule, XIconComponent, XTabsModule, XLayoutModule],
+  imports: [CommonModule, XIconComponent, XTabsModule, XRowComponent, XColComponent],
   templateUrl: './feather.component.html',
   styleUrls: ['./feather.component.scss']
 })

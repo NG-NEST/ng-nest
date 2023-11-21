@@ -9,7 +9,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XTreeProperty, XTreeNodeProperty } from './tree.property';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     XOutletDirective,
     XLinkComponent,
     ScrollingModule,
-    XKeywordModule
+    XKeywordDirective
   ]
 })
 export class XTreeModule {}

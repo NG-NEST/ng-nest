@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAnchorComponent } from './anchor.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAnchorModule } from '@ng-nest/ui/anchor';
+import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -13,7 +12,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XAnchorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAnchorModule, XThemeModule, XButtonComponent],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XAnchorComponent,
+        XThemeModule,
+        XButtonComponent
+      ],
       declarations: [TestXAnchorComponent]
     }).compileComponents();
   });

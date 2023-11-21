@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.property';
@@ -25,7 +25,8 @@ describe(XEmptyPrefix, () => {
         XEmptyComponent,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXEmptyComponent]

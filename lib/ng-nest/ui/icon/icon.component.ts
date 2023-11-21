@@ -57,7 +57,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   private _svgElement!: SVGElement;
   private _loaded: boolean = false;
   private document = inject(DOCUMENT);
-  private elementRef = inject(ElementRef<HTMLElement>);
+  private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
   private iconService = inject(XIconService);
   private cdr = inject(ChangeDetectorRef);

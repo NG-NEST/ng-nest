@@ -11,7 +11,7 @@ import { XTransferProperty } from './transfer.property';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTableModule } from '@ng-nest/ui/table';
-import { XKeywordModule } from '@ng-nest/ui/keyword';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 
@@ -29,7 +29,7 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
     XControlValueAccessor,
     XTreeModule,
     XTableModule,
-    XKeywordModule,
+    XKeywordDirective,
     XLinkComponent,
     XI18nPipe
   ]

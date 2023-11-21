@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XTransferComponent } from './transfer.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTransferModule } from '@ng-nest/ui/transfer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.property';
@@ -29,7 +29,8 @@ describe(XTransferPrefix, () => {
         XTransferModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent,
         XTreeModule,
         XSelectModule,
@@ -103,7 +104,12 @@ describe(XTransferPrefix, () => {
 class TestXTransferComponent {
   value = [1, 3, 7];
   data: XTransferNode[] = Array.from({ length: 15 }).map((_x, i) => {
-    return { id: i + 1, label: '用户 ' + (i + 1), icon: 'fto-user', disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
+    return {
+      id: i + 1,
+      label: '用户 ' + (i + 1),
+      icon: 'fto-user',
+      disabled: [3, 5, 9].indexOf(i + 1) >= 0
+    };
   });
   constructor() {
     // interval(10).subscribe(x => {

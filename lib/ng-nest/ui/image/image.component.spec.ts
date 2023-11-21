@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XImageComponent } from './image.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XImageModule } from '@ng-nest/ui/image';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +26,8 @@ describe(XImagePrefix, () => {
         XImageModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent,
         XDialogModule
       ],

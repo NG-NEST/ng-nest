@@ -22,7 +22,7 @@ import {
 @Component({
   selector: `${XBadgePrefix}`,
   standalone: true,
-  imports: [CommonModule, XBadgeProperty],
+  imports: [CommonModule],
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,

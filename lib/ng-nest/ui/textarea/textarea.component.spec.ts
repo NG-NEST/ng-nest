@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTextareaPrefix } from './textarea.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -15,7 +15,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XTextareaModule, FormsModule, ReactiveFormsModule, XLayoutModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XTextareaModule, FormsModule, ReactiveFormsModule, XRowComponent, XColComponent],
       declarations: [
         TestXTextareaComponent,
         TestXTextareaLabelComponent,

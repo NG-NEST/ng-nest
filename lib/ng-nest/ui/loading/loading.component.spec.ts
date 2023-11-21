@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XLoadingComponent } from './loading.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import { XLoadingPrefix } from './loading.property';
@@ -28,7 +28,8 @@ describe(XLoadingPrefix, () => {
         XLoadingModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXLoadingComponent]
@@ -70,7 +71,13 @@ describe(XLoadingPrefix, () => {
     </div>
 
     <div class="row">
-      <div [x-loading]="true" background="rgba(0,0,0,0.9)" color="rgba(170,170,170,1)" icon="fto-loader" text="努力加载中">
+      <div
+        [x-loading]="true"
+        background="rgba(0,0,0,0.9)"
+        color="rgba(170,170,170,1)"
+        icon="fto-loader"
+        text="努力加载中"
+      >
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XResultComponent } from './result.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XResultModule } from '@ng-nest/ui/result';
 import { FormsModule } from '@angular/forms';
 import { XResultPrefix } from './result.property';
@@ -25,7 +25,8 @@ describe(XResultPrefix, () => {
         XResultModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXResultComponent]
@@ -49,7 +50,11 @@ describe(XResultPrefix, () => {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-result status="success" title="成功购买云服务器！" subTitle="订单号：2020031413092700001，云服务器配置需要1-5分钟，请稍候。">
+      <x-result
+        status="success"
+        title="成功购买云服务器！"
+        subTitle="订单号：2020031413092700001，云服务器配置需要1-5分钟，请稍候。"
+      >
         <x-buttons space="2">
           <x-button type="primary">返回列表</x-button>
           <x-button>再次购买</x-button>
@@ -87,7 +92,12 @@ describe(XResultPrefix, () => {
       </x-result>
     </div>
     <div class="row">
-      <x-result icon="fto-smile" status="success" title="自定义图标" subTitle="感谢您参与我们的调查。">
+      <x-result
+        icon="fto-smile"
+        status="success"
+        title="自定义图标"
+        subTitle="感谢您参与我们的调查。"
+      >
         <x-button type="primary">返回列表</x-button>
       </x-result>
     </div>

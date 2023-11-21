@@ -22,7 +22,6 @@ import { XFormProp } from './base-form.property';
 @Component({
   selector: 'x-control-value-accessor',
   standalone: true,
-  imports: [XFormProp],
   template: ''
 })
 export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {

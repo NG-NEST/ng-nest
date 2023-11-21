@@ -1,9 +1,0 @@
-<h4 x-dialog-title x-dialog-drag-handle>{{ data.title }}</h4>
-<div x-dialog-content>
-  <p>{{ data.content }} {{ data.content }}</p>
-</div>
-<div x-dialog-actions>
-  <x-button x-dialog-fullscreen>{{ dialogRef.fullscreen ? '最小化' : '最大化' }}</x-button>
-  <x-button x-dialog-close>通过指令关闭</x-button>
-  <x-button (click)="close()">通过服务方法关闭</x-button>
-</div>

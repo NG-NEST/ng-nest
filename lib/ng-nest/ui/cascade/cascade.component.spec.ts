@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
@@ -24,7 +24,8 @@ describe(XCascadePrefix, () => {
         XCascadeModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule,
         XIconComponent
       ],
@@ -221,7 +222,12 @@ class TestXCascadeComponent {
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-cascade>
+        <x-cascade
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-cascade>
       </x-col>
     </x-row>
     <x-row>
@@ -231,7 +237,12 @@ class TestXCascadeComponent {
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-cascade>
+        <x-cascade
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="row-reverse"
+        ></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -336,13 +347,31 @@ class TestXCascadeRequiredComponent {
         <x-cascade [data]="data" [size]="size"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade [data]="data" [size]="size" label="用户名" direction="row" maxlength="50"></x-cascade>
+        <x-cascade
+          [data]="data"
+          [size]="size"
+          label="用户名"
+          direction="row"
+          maxlength="50"
+        ></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade [data]="data" [size]="size" label="用户名" direction="column" maxlength="50"></x-cascade>
+        <x-cascade
+          [data]="data"
+          [size]="size"
+          label="用户名"
+          direction="column"
+          maxlength="50"
+        ></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade [data]="data" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-cascade>
+        <x-cascade
+          [data]="data"
+          [size]="size"
+          icon="ado-user"
+          iconLayout="left"
+          maxlength="50"
+        ></x-cascade>
       </x-col>
       <x-col span="24">
         <x-cascade [data]="data" required clearable [size]="size"></x-cascade>
@@ -387,7 +416,13 @@ class TestXCascadeSizeComponent {
         <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-cascade>
+        <x-cascade
+          [data]="data"
+          placeholder="请选择日期"
+          bordered="false"
+          label="日生:"
+          direction="row"
+        ></x-cascade>
       </x-col>
       <x-col span="24">
         <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
@@ -426,13 +461,26 @@ class TestXCascadeBorderedComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
+        <x-cascade
+          [data]="data"
+          placeholder="请选择"
+          [nodeTpl]="nodeTpl"
+          [valueTpl]="valueTpl"
+        ></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade [data]="data" [(ngModel)]="model" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
+        <x-cascade
+          [data]="data"
+          [(ngModel)]="model"
+          placeholder="请选择"
+          [nodeTpl]="nodeTpl"
+          [valueTpl]="valueTpl"
+        ></x-cascade>
       </x-col>
     </x-row>
-    <ng-template #nodeTpl let-node="$node"> <x-icon type="fto-map-pin"></x-icon> {{ node.label }} </ng-template>
+    <ng-template #nodeTpl let-node="$node">
+      <x-icon type="fto-map-pin"></x-icon> {{ node.label }}
+    </ng-template>
     <ng-template #valueTpl let-nodes="$nodes">
       <ng-container *ngFor="let node of nodes; index as i">
         <x-icon type="fto-chevron-right" *ngIf="i > 0"></x-icon> {{ node.label }}

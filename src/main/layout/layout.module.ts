@@ -8,10 +8,10 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XSliderModule } from '@ng-nest/ui/slider';
-import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { FormsModule } from '@angular/forms';
 import { LayoutModule as CdkLayoutModule } from '@angular/cdk/layout';
 import { LayoutComponent } from './layout.component';
@@ -50,9 +50,10 @@ const components = [
     XAffixComponent,
     XI18nPipe,
     XLinkComponent,
-    XLayoutModule,
+    XRowComponent,
+    XColComponent,
     XSliderModule,
-    XAutoCompleteModule,
+    XAutoCompleteComponent,
     CdkLayoutModule,
     LayoutRoutesModule
   ],

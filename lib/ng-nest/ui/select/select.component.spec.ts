@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSelectPrefix, XSelectNode } from './select.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +24,8 @@ describe(XSelectPrefix, () => {
         XSelectModule,
         FormsModule,
         ReactiveFormsModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [
@@ -150,7 +151,19 @@ describe(XSelectPrefix, () => {
   });
 });
 
-const data: XData<XSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XSelectNode> = [
+  'AAAA',
+  'AAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   template: `
@@ -200,7 +213,12 @@ class TestXSelectComponent {
     </x-row>
     <x-row>
       <x-col>
-        <x-select label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-select>
+        <x-select
+          label="方式"
+          [data]="data"
+          [(ngModel)]="model"
+          direction="column-reverse"
+        ></x-select>
       </x-col>
     </x-row>
     <x-row>
@@ -393,13 +411,24 @@ class TestXSelectMultipleComponent {
     <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
-        <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)" [nodeTpl]="nodeTpl"></x-select>
+        <x-select
+          [data]="data1"
+          [(ngModel)]="model1"
+          (ngModelChange)="change($event)"
+          [nodeTpl]="nodeTpl"
+        ></x-select>
       </x-col>
       <ng-template #nodeTpl let-node="$node">
         <span *ngIf="node" class="select-item"> {{ node?.label }}<sup>2</sup> </span>
       </ng-template>
       <x-col span="8">
-        <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change($event)" [nodeTpl]="multipleNodeTpl" multiple></x-select>
+        <x-select
+          [data]="data2"
+          [(ngModel)]="model2"
+          (ngModelChange)="change($event)"
+          [nodeTpl]="multipleNodeTpl"
+          multiple
+        ></x-select>
       </x-col>
       <ng-template #multipleNodeTpl let-node="$node" let-isValue="$isValue">
         <span *ngIf="node && !isValue" class="select-item"> {{ node?.label }} <sup>2</sup> </span>
@@ -453,13 +482,31 @@ class TestXSelectCustomNodeComponent {
         <x-select [size]="size" [data]="data"></x-select>
       </x-col>
       <x-col span="24">
-        <x-select [size]="size" [data]="data" label="用户名" direction="row" maxlength="50"></x-select>
+        <x-select
+          [size]="size"
+          [data]="data"
+          label="用户名"
+          direction="row"
+          maxlength="50"
+        ></x-select>
       </x-col>
       <x-col span="24">
-        <x-select [size]="size" [data]="data" label="用户名" direction="column" maxlength="50"></x-select>
+        <x-select
+          [size]="size"
+          [data]="data"
+          label="用户名"
+          direction="column"
+          maxlength="50"
+        ></x-select>
       </x-col>
       <x-col span="24">
-        <x-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
+        <x-select
+          [size]="size"
+          [data]="data"
+          icon="ado-user"
+          iconLayout="left"
+          maxlength="50"
+        ></x-select>
       </x-col>
       <x-col span="24">
         <x-select required clearable [size]="size" [data]="data"></x-select>
@@ -504,7 +551,13 @@ class TestXSelectSizeComponent {
         <x-select [data]="data" placeholder="请选择" bordered="false"></x-select>
       </x-col>
       <x-col span="24">
-        <x-select [data]="data" placeholder="请选择" bordered="false" label="日生:" direction="row"></x-select>
+        <x-select
+          [data]="data"
+          placeholder="请选择"
+          bordered="false"
+          label="日生:"
+          direction="row"
+        ></x-select>
       </x-col>
       <x-col span="24">
         <x-select [data]="data" placeholder="请选择" bordered="false"></x-select>

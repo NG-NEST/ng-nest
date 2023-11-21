@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCalendarModule, XCalendarComponent } from '@ng-nest/ui/calendar';
 import { FormsModule } from '@angular/forms';
 import { XCalendarPrefix, XCalendarData } from './calendar.property';
@@ -27,7 +27,8 @@ describe(XCalendarPrefix, () => {
         XCalendarModule,
         XButtonComponent,
         XContainerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XIconComponent
       ],
       declarations: [TestXCalendarComponent]
@@ -72,7 +73,11 @@ describe(XCalendarPrefix, () => {
 })
 class TestXCalendarComponent {
   data: XCalendarData = {};
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef, private pipeDate: DatePipe) {
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef,
+    private pipeDate: DatePipe
+  ) {
     interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });

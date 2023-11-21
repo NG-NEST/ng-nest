@@ -5,7 +5,7 @@ import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } fro
 import { By } from '@angular/platform-browser';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
@@ -28,7 +28,8 @@ describe(XTreePrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         XTreeModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XButtonComponent,
         XLinkComponent,
         XFormModule,
@@ -242,7 +243,8 @@ class TestXTreeLazyComponent {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
-        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
+        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox>
+        </x-tree>
       </x-col>
     </x-row>
   `,
@@ -269,7 +271,8 @@ class TestXTreeCheckedComponent {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
-        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
+        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox>
+        </x-tree>
       </x-col>
     </x-row>
   `,
@@ -345,10 +348,14 @@ class TestXTreeCustomComponent {
       <x-col span="8">
         <ul class="operations">
           <li>当前激活的节点：{{ activatedNode?.label }}</li>
-          <li><x-button (click)="setCheckedKeys([9, 11, 21, 23])">通过 Key 值设置选中的节点</x-button></li>
+          <li>
+            <x-button (click)="setCheckedKeys([9, 11, 21, 23])">通过 Key 值设置选中的节点</x-button>
+          </li>
           <li><x-button (click)="getCheckedKeys()">获取选中的节点的 Key 值</x-button></li>
           <li>
-            <x-button (click)="setExpandedAll()">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button>
+            <x-button (click)="setExpandedAll()">{{
+              expandedAll ? '全部收起' : '全部展开'
+            }}</x-button>
           </li>
           <li>{{ content | json }}</li>
         </ul>
@@ -568,7 +575,11 @@ class TestXTreeOperationComponent {
       ]
     }
   ];
-  constructor(private service: OrganizationService, private message: XMessageService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: OrganizationService,
+    private message: XMessageService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   action(type: string, node: Organization) {
     switch (type) {

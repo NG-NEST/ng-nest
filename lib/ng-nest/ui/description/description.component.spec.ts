@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XDescriptionComponent } from './description.component';
 import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { XDescriptionPrefix } from './description.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -23,7 +23,8 @@ describe(XDescriptionPrefix, () => {
         XThemeModule,
         XDescriptionModule,
         XRadioModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XDocModule
       ],
       declarations: [
@@ -119,7 +120,12 @@ class TestXDescriptionComponent {}
     <x-theme showDark></x-theme>
     <x-description title="UserInfo" bordered>
       <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
-      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
+      <x-description-item
+        label="基本资料"
+        gridArea="2/1/5/2"
+        justify="center"
+        align="center"
+      ></x-description-item>
       <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
       <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
       <x-description-item label="密码：" gridArea="2/4">******</x-description-item>
@@ -148,9 +154,21 @@ class TestXDescriptionBorderedComponent {}
   template: `
     <x-theme showDark></x-theme>
     <x-description title="UserInfo" bordered gridTemplateColumns="100px 1fr 1fr 1fr 1fr 1fr 1fr">
-      <x-description-item label="编码" justify="center" align="center" gridArea="1/1/2/2" heading></x-description-item>
+      <x-description-item
+        label="编码"
+        justify="center"
+        align="center"
+        gridArea="1/1/2/2"
+        heading
+      ></x-description-item>
       <x-description-item gridArea="1/2/1/8">909090</x-description-item>
-      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center" heading></x-description-item>
+      <x-description-item
+        label="基本资料"
+        gridArea="2/1/5/2"
+        justify="center"
+        align="center"
+        heading
+      ></x-description-item>
       <x-description-item label="姓名" gridArea="2/2" heading></x-description-item>
       <x-description-item gridArea="2/3">张三</x-description-item>
       <x-description-item label="账号" gridArea="2/4" heading></x-description-item>
@@ -173,7 +191,13 @@ class TestXDescriptionBorderedComponent {}
     <x-description title="UserInfo" bordered gridTemplateColumns="100px 1fr 1fr 1fr">
       <x-description-item label="编码" gridArea="1/1/1/5" heading></x-description-item>
       <x-description-item gridArea="2/1/2/5">909090</x-description-item>
-      <x-description-item label="基本资料" gridArea="3/1/9/2" justify="center" align="center" heading></x-description-item>
+      <x-description-item
+        label="基本资料"
+        gridArea="3/1/9/2"
+        justify="center"
+        align="center"
+        heading
+      ></x-description-item>
       <x-description-item label="姓名" gridArea="3/2" heading></x-description-item>
       <x-description-item gridArea="4/2">张三</x-description-item>
       <x-description-item label="账号" gridArea="3/3" heading></x-description-item>
@@ -213,7 +237,12 @@ class TestXDescriptionGridComponent {}
     <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
     <x-description title="UserInfo" bordered [size]="size">
       <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
-      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
+      <x-description-item
+        label="基本资料"
+        gridArea="2/1/5/2"
+        justify="center"
+        align="center"
+      ></x-description-item>
       <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
       <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
       <x-description-item label="密码：" gridArea="2/4">******</x-description-item>

@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XTreeSelectModule } from '@ng-nest/ui/tree-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTreeSelectPrefix, XTreeSelectNode } from './tree-select.property';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -25,7 +25,8 @@ describe(XTreeSelectPrefix, () => {
         FormsModule,
         ReactiveFormsModule,
         XInputModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XRadioModule
       ],
       declarations: [TestXTreeSelectComponent]
@@ -45,7 +46,19 @@ describe(XTreeSelectPrefix, () => {
   });
 });
 
-const data: XData<XTreeSelectNode> = ['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const data: XData<XTreeSelectNode> = [
+  'AAAA',
+  'AAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   template: ` <x-tree-select [data]="data"></x-tree-select> `,

@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
-import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
@@ -34,10 +34,11 @@ describe(XCheckboxPrefix, () => {
         FormsModule,
         XCheckboxModule,
         XButtonComponent,
-        XAutoCompleteModule,
+        XAutoCompleteComponent,
         XSelectModule,
         XDatePickerModule,
-        XLayoutModule,
+        XRowComponent,
+        XColComponent,
         XCascadeModule,
         XColorPickerModule,
         XFindModule,
@@ -144,7 +145,11 @@ const iconData: XData<XCheckboxNode> = [
     <x-theme showDark></x-theme>
     <x-row>
       <x-col span="24">
-        <x-checkbox [data]="['一个选项']" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-checkbox>
+        <x-checkbox
+          [data]="['一个选项']"
+          [(ngModel)]="model1"
+          (ngModelChange)="change($event)"
+        ></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data"></x-checkbox>
@@ -218,7 +223,12 @@ class TestXCheckboxDisabledComponent {
         <x-checkbox [data]="data" button></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" button></x-checkbox>
+        <x-checkbox
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="change($event)"
+          button
+        ></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data" button disabled></x-checkbox>
@@ -262,7 +272,12 @@ class TestXCheckboxButtonComponent {
         <x-checkbox [data]="data" icon></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" icon></x-checkbox>
+        <x-checkbox
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="change($event)"
+          icon
+        ></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data" icon disabled></x-checkbox>
@@ -366,7 +381,11 @@ class TestXCheckboxAsyncComponent {
         ></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
+        <x-checkbox
+          [data]="data"
+          [(ngModel)]="model"
+          (ngModelChange)="itemChange($event)"
+        ></x-checkbox>
       </x-col>
     </x-row>
   `,

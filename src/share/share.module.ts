@@ -12,7 +12,7 @@ import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { XI18nDirective } from '@ng-nest/ui/i18n';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
-import { XAnchorModule } from '@ng-nest/ui/anchor';
+import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { NsAdaptionModule } from './adaption/adaption.module';
 
 const modules = [
@@ -24,7 +24,7 @@ const modules = [
   NsAdaptionModule,
   XDocModule,
   XExamplesModule,
-  XAnchorModule,
+  XAnchorComponent,
   XApiComponent,
   XTabsModule,
   XHighlightModule,
