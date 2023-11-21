@@ -5,7 +5,8 @@ import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
 
 @Directive({
-  selector: '[x-ripple]'
+  selector: '[x-ripple]',
+  standalone: true
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
   duration = 800;

@@ -5,9 +5,9 @@ import { ExDefaultComponent } from './default/default.component';
 import { TeTooltipComponent } from './tooltip.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExCustomComponent } from './custom/custom.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeTooltipComponent }];
 
@@ -15,10 +15,10 @@ const routers = [{ path: '', component: TeTooltipComponent }];
   imports: [
     RouterModule.forChild(routers),
     CommonModule,
-    XButtonModule,
+    XButtonComponent,
     XTooltipModule,
     XLayoutModule,
-    XIconModule
+    XIconComponent
   ],
   declarations: [TeTooltipComponent, ExDefaultComponent, ExCustomComponent]
 })

@@ -14,7 +14,7 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
 import { FormsModule } from '@angular/forms';
 import { ExTagComponent } from './tag/tag.component';
@@ -34,7 +34,7 @@ const routers = [{ path: '', component: TeRadioComponent }];
     XAutoCompleteModule,
     XSelectModule,
     XDatePickerModule,
-    XButtonModule,
+    XButtonComponent,
     XLayoutModule,
     XCascadeModule,
     XColorPickerModule,

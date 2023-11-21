@@ -1,14 +1,13 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XBadgeComponent } from './badge.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XBadgeModule } from '@ng-nest/ui/badge';
+import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -21,10 +20,10 @@ describe(XBadgePrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XBadgeModule,
-        XButtonModule,
+        XBadgeComponent,
+        XButtonComponent,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXBadgeComponent]
     }).compileComponents();

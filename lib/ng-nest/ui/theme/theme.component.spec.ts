@@ -8,7 +8,7 @@ import { XThemePrefix } from './theme.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XFormModule } from '@ng-nest/ui/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -21,7 +21,7 @@ describe(XThemePrefix, () => {
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        XButtonModule,
+        XButtonComponent,
         XThemeModule,
         XSwitchModule,
         XFormModule

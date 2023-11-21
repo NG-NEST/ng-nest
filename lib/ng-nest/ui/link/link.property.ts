@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'link';
 /**
  * Link Property
  */
-@Component({ selector: `${XLinkPrefix}-property`, template: '' })
+@Component({ selector: `${XLinkPrefix}-property`, template: '', standalone: true })
 export class XLinkProperty extends XProperty {
   /**
    * @zh_CN 链接

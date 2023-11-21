@@ -6,7 +6,7 @@ import { TeDialogComponent } from './dialog.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 import { ExServiceComponent } from './service/service.component';
 import { ExServiceDialogComponent } from './service/service-dialog.component';
@@ -16,8 +16,8 @@ import { ExCustomComponent } from './custom/custom.component';
 import { ExContainerComponent } from './container/container.component';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XIconModule } from '@ng-nest/ui/icon';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { XFormModule } from '@ng-nest/ui/form';
 import { ExFormComponent } from './form/form.component';
 
@@ -32,11 +32,11 @@ const routers = [{ path: '', component: TeDialogComponent }];
     XDialogModule,
     XLayoutModule,
     XRadioModule,
-    XButtonModule,
+    XButtonComponent,
     DragDropModule,
     XInputModule,
-    XIconModule,
-    XLinkModule,
+    XIconComponent,
+    XLinkComponent,
     XFormModule
   ],
   declarations: [

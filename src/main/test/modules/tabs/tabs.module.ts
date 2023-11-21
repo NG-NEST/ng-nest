@@ -6,8 +6,8 @@ import { TeTabsComponent } from './tabs.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExActionComponent } from './action/action.component';
-import { XButtonModule } from '@ng-nest/ui/button';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ExExpandComponent } from './expand/expand.component';
 import { ExRouterComponent } from './router/router.component';
 import { ExExampleComponent } from './example/example.component';
@@ -15,7 +15,7 @@ import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
 import { XTableModule } from '@ng-nest/ui/table';
 import { ExScrollComponent } from './default/scroll/scroll.component';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 const routers = [{ path: '', component: TeTabsComponent }];
 
@@ -26,11 +26,12 @@ const routers = [{ path: '', component: TeTabsComponent }];
     XTabsModule,
     XLayoutModule,
     XExamplesModule,
-    XButtonModule,
-    XIconModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XIconComponent,
     XHighlightModule,
     XTableModule,
-    XLinkModule
+    XLinkComponent
   ],
   declarations: [
     TeTabsComponent,

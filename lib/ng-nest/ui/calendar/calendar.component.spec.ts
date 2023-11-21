@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
@@ -7,7 +7,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCalendarModule, XCalendarComponent } from '@ng-nest/ui/calendar';
 import { FormsModule } from '@angular/forms';
 import { XCalendarPrefix, XCalendarData } from './calendar.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { DatePipe } from '@angular/common';
@@ -25,10 +25,10 @@ describe(XCalendarPrefix, () => {
         XThemeModule,
         FormsModule,
         XCalendarModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXCalendarComponent]
     }).compileComponents();

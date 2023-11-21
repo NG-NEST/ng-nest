@@ -1,13 +1,37 @@
-import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  ValidatorFn
+} from '@angular/forms';
 import { ChangeDetectorRef, Component, forwardRef, inject, Renderer2, Type } from '@angular/core';
-import { XJustify, XAlign, XDirection, XIsEmpty, XClassMap, XSetFlex, XBoolean, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
+import {
+  XJustify,
+  XAlign,
+  XDirection,
+  XIsEmpty,
+  XClassMap,
+  XSetFlex,
+  XBoolean,
+  XIsUndefined,
+  XIsFunction
+} from '@ng-nest/ui/core';
 import { XFormProp } from './base-form.property';
 
-@Component({ selector: 'x-control-value-accessor', template: '' })
+@Component({
+  selector: 'x-control-value-accessor',
+  standalone: true,
+  imports: [XFormProp],
+  template: ''
+})
 export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
   cdr = inject(ChangeDetectorRef);
   get invalid() {
-    return this.validator && ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator);
+    return (
+      this.validator &&
+      ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator)
+    );
   }
   get invalidPattern(): boolean {
     if (!this.validator || XIsUndefined(this.pattern)) return false;
@@ -58,7 +82,13 @@ export class XControlValueAccessor<T> extends XFormProp implements ControlValueA
     this.disabled = disabled;
     this.cdr.markForCheck();
   }
-  setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
+  setFlex(
+    ele: Element,
+    renderer: Renderer2,
+    justify?: XJustify,
+    align?: XAlign,
+    direction?: XDirection
+  ) {
     return XSetFlex(ele, renderer, justify, align, direction);
   }
   formControlValidator() {

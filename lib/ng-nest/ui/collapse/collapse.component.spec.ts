@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCollapseComponent } from './collapse.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { FormsModule } from '@angular/forms';
 import { XCollapsePrefix } from './collapse.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -23,10 +23,10 @@ describe(XCollapsePrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XCollapseModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXCollapseComponent]
     }).compileComponents();

@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
@@ -35,7 +35,7 @@ describe(XInputPrefix, () => {
         XLayoutModule,
         XRadioModule,
         XSelectModule,
-        XButtonModule,
+        XButtonComponent,
         XDatePickerModule,
         XAutoCompleteModule,
         XCascadeModule,

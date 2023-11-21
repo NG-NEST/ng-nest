@@ -1,11 +1,10 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XLinkComponent } from './link.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XLinkPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, FormsModule, XLinkModule, XLayoutModule, XIconModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        FormsModule,
+        XLinkComponent,
+        XLayoutModule,
+        XIconComponent
+      ],
       declarations: [TestXLinkComponent]
     }).compileComponents();
   });

@@ -2,7 +2,7 @@
   .row:not(:last-child) {
     margin-bottom: 1rem;
   }
-  .row > x-button:not(:first-child) {
+  .row > x-buttons:not(:first-child) {
     margin-left: 1rem;
   }
 }

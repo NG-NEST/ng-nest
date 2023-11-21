@@ -5,9 +5,9 @@ import { XSliderSelectComponent } from './slider-select.component';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XSliderSelectProperty } from './slider-select.property';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XDragModule } from '@ng-nest/ui/drag';
-import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XSliderSelectComponent, XSliderSelectProperty],
@@ -18,9 +18,9 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
     ReactiveFormsModule,
     DragDropModule,
     XTooltipModule,
-    XBaseFormModule,
+    XControlValueAccessor,
     XDragModule,
-    XOutletModule
+    XOutletDirective
   ]
 })
 export class XSliderSelectModule {}

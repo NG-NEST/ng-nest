@@ -4,7 +4,7 @@ import { XMessageBoxComponent } from './message-box.component';
 import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.property';
 import { XMessageBoxService } from './message-box.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonModule, XMessageModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonComponent, XMessageModule],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
   });

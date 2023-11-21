@@ -1,7 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-font-awesome',
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XTabsModule, XLayoutModule],
   templateUrl: './font-awesome.component.html',
   styleUrls: ['./font-awesome.component.scss']
 })

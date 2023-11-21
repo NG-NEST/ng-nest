@@ -12,7 +12,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 describe(XSwitchPrefix, () => {
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe(XSwitchPrefix, () => {
         XLayoutModule,
         XRadioModule,
         XInputModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
     }).compileComponents();

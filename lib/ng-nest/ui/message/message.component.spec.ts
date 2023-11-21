@@ -4,7 +4,7 @@ import { XMessageComponent } from './message.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageModule } from '@ng-nest/ui/message';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +22,7 @@ describe(XMessagePrefix, () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonComponent],
       declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
       providers: [
         {

@@ -1,16 +1,15 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAvatarComponent } from './avatar.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XAvatarModule } from '@ng-nest/ui/avatar';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XBadgeModule } from '@ng-nest/ui/badge';
+import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAvatarPrefix, () => {
@@ -20,10 +19,10 @@ describe(XAvatarPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         FormsModule,
-        XAvatarModule,
+        XAvatarComponent,
         XLayoutModule,
-        XIconModule,
-        XBadgeModule,
+        XIconComponent,
+        XBadgeComponent,
         XThemeModule
       ],
       declarations: [TestXAvatarComponent]

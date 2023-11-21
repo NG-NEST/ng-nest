@@ -24,17 +24,24 @@ import {
   XIsChange,
   XResizeObserver
 } from '@ng-nest/ui/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XAvatarPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XOutletDirective, XIconComponent, XAvatarProperty],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnChanges, AfterViewInit {
+export class XAvatarComponent
+  extends XAvatarProperty
+  implements OnDestroy, OnChanges, AfterViewInit
+{
   isImgError: boolean = false;
 
   styleMap: { [key: string]: any } = {};
@@ -44,14 +51,10 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnCh
 
   @ViewChild('labelRef') labelRef!: ElementRef<HTMLElement>;
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef<HTMLElement>);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnDestroy(): void {
     this._unSubject.next();

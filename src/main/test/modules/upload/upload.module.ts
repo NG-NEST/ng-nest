@@ -8,12 +8,12 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExImgComponent } from './img/img.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeUploadComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XUploadModule, XLayoutModule, XIconModule],
+  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, XUploadModule, XLayoutModule, XIconComponent],
   declarations: [TeUploadComponent, ExDefaultComponent, ExCustomComponent, ExImgComponent]
 })
 export class TeUploadModule {}

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix } from './date-picker.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
@@ -33,7 +33,7 @@ describe(XDatePickerPrefix, () => {
         FormsModule,
         ReactiveFormsModule,
         XLayoutModule,
-        XButtonModule,
+        XButtonComponent,
         XRadioModule,
         XSelectModule,
         XInputModule,

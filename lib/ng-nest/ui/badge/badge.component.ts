@@ -2,18 +2,27 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  inject
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsChange, XIsEmpty, XConfigService, XIsArray, XBadgeAnimation, XBadgeStandaloneAnimation } from '@ng-nest/ui/core';
+import {
+  XIsNumber,
+  XIsChange,
+  XIsEmpty,
+  XConfigService,
+  XIsArray,
+  XBadgeAnimation,
+  XBadgeStandaloneAnimation
+} from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
+  standalone: true,
+  imports: [CommonModule, XBadgeProperty],
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -45,14 +54,7 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
     return null;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();
@@ -62,8 +64,6 @@ export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges
     const { value } = simples;
     XIsChange(value) && this.setDisplayValue();
   }
-
-  ngAfterViewInit() {}
 
   setClassMap() {
     this.classMap[`${XBadgePrefix}-${this.type}`] = !XIsEmpty(this.type);

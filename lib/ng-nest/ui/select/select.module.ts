@@ -7,10 +7,10 @@ import { XPortalModule } from '@ng-nest/ui/portal';
 import { XListModule } from '@ng-nest/ui/list';
 import { XSelectPortalComponent } from './select-portal.component';
 import { XSelectProperty } from './select.property';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XI18nDirective } from '@ng-nest/ui/i18n';
 import { XTagModule } from '@ng-nest/ui/tag';
-import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @NgModule({
   declarations: [XSelectComponent, XSelectPortalComponent, XSelectProperty],
@@ -22,10 +22,10 @@ import { XOutletModule } from '@ng-nest/ui/outlet';
     XPortalModule,
     XInputModule,
     XListModule,
-    XBaseFormModule,
+    XControlValueAccessor,
     XTagModule,
-    XI18nModule,
-    XOutletModule
+    XI18nDirective,
+    XOutletDirective
   ]
 })
 export class XSelectModule {}

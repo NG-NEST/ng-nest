@@ -1,25 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XRippleDirective } from './ripple.directive';
+import { XRippleDirective } from '@ng-nest/ui/ripple';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRipplePrefix } from './ripple.property';
-import { XButtonModule } from '@ng-nest/ui/button';
-import { XRippleModule } from './ripple.module';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XRippleModule, XButtonModule],
-      declarations: [TestXRippleComponent]
+      imports: [HttpClientTestingModule, XRippleDirective, XButtonComponent],
+      declarations: [TestXRippleDirective]
     }).compileComponents();
   });
   describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXRippleComponent>;
+    let fixture: ComponentFixture<TestXRippleDirective>;
     let debugElement: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRippleComponent);
+      fixture = TestBed.createComponent(TestXRippleDirective);
       fixture.detectChanges();
       debugElement = fixture.debugElement.query(By.directive(XRippleDirective));
     });
@@ -76,4 +75,4 @@ describe(XRipplePrefix, () => {
     `
   ]
 })
-class TestXRippleComponent {}
+class TestXRippleDirective {}

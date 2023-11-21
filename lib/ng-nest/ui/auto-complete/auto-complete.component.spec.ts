@@ -19,9 +19,9 @@ import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAutoCompletePrefix, () => {
@@ -37,7 +37,7 @@ describe(XAutoCompletePrefix, () => {
         XLayoutModule,
         XRadioModule,
         XSelectModule,
-        XButtonModule,
+        XButtonComponent,
         XInputModule,
         XCascadeModule,
         XColorPickerModule,
@@ -45,7 +45,7 @@ describe(XAutoCompletePrefix, () => {
         XTextareaModule,
         XTimePickerModule,
         XDatePickerModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [
         TestXAutoCompleteComponent,

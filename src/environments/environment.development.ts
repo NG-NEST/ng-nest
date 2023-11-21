@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'highlight',
+  defaultPage: 'empty',
   static: 'http://localhost:9494'
 };

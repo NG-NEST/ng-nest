@@ -1,4 +1,4 @@
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -33,7 +33,7 @@ describe(XCheckboxPrefix, () => {
         XThemeModule,
         FormsModule,
         XCheckboxModule,
-        XButtonModule,
+        XButtonComponent,
         XAutoCompleteModule,
         XSelectModule,
         XDatePickerModule,

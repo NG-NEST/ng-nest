@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-label',
+  standalone: true,
+  imports: [XAvatarComponent, XButtonComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']
 })

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { XButtonModule } from '@ng-nest/ui/button';
   ],
   imports: [
     BrowserModule,
-    XButtonModule
+    XButtonComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

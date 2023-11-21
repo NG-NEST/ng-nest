@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { mainRoutes } from 'src/environments/routes';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XSliderModule } from '@ng-nest/ui/slider';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { XCrumbModule } from '@ng-nest/ui/crumb';
     CommonModule,
     XMenuModule,
     XSliderModule,
-    XIconModule,
+    XIconComponent,
     XCrumbModule,
     RouterModule.forChild([
       {

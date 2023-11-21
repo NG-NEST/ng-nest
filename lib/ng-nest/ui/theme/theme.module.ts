@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { XThemeComponent } from './theme.component';
 import { XThemeProperty } from './theme.property';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XI18nModule } from '@ng-nest/ui/i18n';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XI18nDirective } from '@ng-nest/ui/i18n';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 @NgModule({
   declarations: [XThemeComponent, XThemeProperty],
@@ -18,11 +18,11 @@ import { XBaseFormModule } from '@ng-nest/ui/base-form';
     FormsModule,
     ReactiveFormsModule,
     XSwitchModule,
-    XButtonModule,
+    XButtonComponent,
     XLayoutModule,
     XFormModule,
-    XI18nModule,
-    XBaseFormModule
+    XI18nDirective,
+    XControlValueAccessor
   ]
 })
 export class XThemeModule {}

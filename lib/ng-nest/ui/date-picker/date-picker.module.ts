@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XPortalModule } from '@ng-nest/ui/portal';
-import { XIconModule } from '@ng-nest/ui/icon';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDatePickerComponent } from './date-picker.component';
 import { XDatePickerPortalComponent } from './date-picker-portal.component';
 import { XPickerDateComponent } from './picker-date.component';
@@ -18,13 +18,13 @@ import {
   XDateRangeProperty,
   XPickerQuarterProperty
 } from './date-picker.property';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XDateRangeComponent } from './date-range.component';
 import { XDateRangePortalComponent } from './date-range-portal.component';
-import { XLinkModule } from '@ng-nest/ui/link';
-import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XPickerQuarterComponent } from './picker-quarter.component';
 import { XDateQuarterPipe } from './date-quarter.pipe';
 
@@ -63,12 +63,12 @@ import { XDateQuarterPipe } from './date-quarter.pipe';
     XPortalModule,
     XTimePickerModule,
     XInputModule,
-    XLinkModule,
-    XButtonModule,
-    XIconModule,
-    XI18nModule,
-    XBaseFormModule,
-    XOutletModule
+    XLinkComponent,
+    XButtonComponent,
+    XIconComponent,
+    XI18nPipe,
+    XControlValueAccessor,
+    XOutletDirective
   ]
 })
 export class XDatePickerModule {}

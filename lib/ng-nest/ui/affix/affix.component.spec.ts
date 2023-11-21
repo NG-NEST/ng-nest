@@ -1,22 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XAffixComponent } from './affix.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAffixModule } from '@ng-nest/ui/affix';
+import { XAffixComponent } from '@ng-nest/ui/affix';
 import { XAffixPrefix } from './affix.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAffixPrefix, () => {
-  beforeEach((() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAffixModule, XButtonModule, XThemeModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XAffixComponent,
+        XButtonComponent,
+        XThemeModule
+      ],
       declarations: [TestXAffixComponent]
     }).compileComponents();
-  }));
+  });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAffixComponent>;
     let affix: DebugElement;

@@ -10,7 +10,7 @@ import { ExValidatorComponent } from './validator/validator.component';
 import { ExRequiredComponent } from './required/required.component';
 import { ExPerpostComponent } from './perpost/perpost.component';
 import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XCascadeModule } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
@@ -32,7 +32,7 @@ const routers = [{ path: '', component: TeInputComponent }];
     XLayoutModule,
     XRadioModule,
     XSelectModule,
-    XButtonModule,
+    XButtonComponent,
     XDatePickerModule,
     XAutoCompleteModule,
     XCascadeModule,

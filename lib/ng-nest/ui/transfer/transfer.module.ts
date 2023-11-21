@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { XTransferComponent } from './transfer.component';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XOutletModule } from '@ng-nest/ui/outlet';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XTransferProperty } from './transfer.property';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTableModule } from '@ng-nest/ui/table';
 import { XKeywordModule } from '@ng-nest/ui/keyword';
-import { XLinkModule } from '@ng-nest/ui/link';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 
 @NgModule({
   declarations: [XTransferComponent, XTransferProperty],
@@ -22,16 +22,16 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
     CommonModule,
     FormsModule,
     DragDropModule,
-    XOutletModule,
+    XOutletDirective,
     XCheckboxModule,
-    XButtonModule,
+    XButtonComponent,
     XInputModule,
-    XBaseFormModule,
+    XControlValueAccessor,
     XTreeModule,
     XTableModule,
     XKeywordModule,
-    XLinkModule,
-    XI18nModule
+    XLinkComponent,
+    XI18nPipe
   ]
 })
 export class XTransferModule {}

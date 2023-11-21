@@ -4,10 +4,10 @@ import { UserComponent } from './user.component';
 import { RouterModule } from '@angular/router';
 import { XTableModule } from '@ng-nest/ui/table';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XFormModule } from '@ng-nest/ui/form';
 import { XMessageModule } from '@ng-nest/ui/message';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
 
 @NgModule({
@@ -15,10 +15,10 @@ import { XMessageBoxModule } from '@ng-nest/ui/message-box';
   imports: [
     CommonModule,
     XTableModule,
-    XButtonModule,
+    XButtonComponent,
     XFormModule,
     XMessageModule,
-    XLinkModule,
+    XLinkComponent,
     XMessageBoxModule,
     RouterModule.forChild([
       { path: '', component: UserComponent },

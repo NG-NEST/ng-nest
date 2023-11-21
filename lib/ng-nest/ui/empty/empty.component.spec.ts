@@ -1,14 +1,13 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XEmptyComponent } from './empty.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XEmptyModule } from '@ng-nest/ui/empty';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -23,11 +22,11 @@ describe(XEmptyPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XEmptyModule,
-        XButtonModule,
+        XEmptyComponent,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXEmptyComponent]
     }).compileComponents();

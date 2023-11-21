@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XDrawerComponent } from './drawer.component';
-import { XOutletModule } from '@ng-nest/ui/outlet';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPortalModule } from '@ng-nest/ui/portal';
 import { XDrawerContainerProperty, XDrawerProperty } from './drawer.property';
 import { XDrawerService } from './drawer.service';
@@ -29,7 +29,7 @@ import { XDrawerContainerComponent } from './drawer-container.component';
     XDrawerPortalComponent,
     XDrawerContainerComponent
   ],
-  imports: [CommonModule, XOutletModule, XButtonModule, XPortalModule],
+  imports: [CommonModule, XOutletDirective, XButtonComponent, XPortalModule],
   providers: [XDrawerService]
 })
 export class XDrawerModule {}

@@ -3,7 +3,8 @@ import { XI18nService } from './i18n.service';
 
 @Pipe({
   name: 'xI18n',
-  pure: false
+  pure: false,
+  standalone: true
 })
 export class XI18nPipe implements PipeTransform {
   private localeId: any;

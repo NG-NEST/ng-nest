@@ -11,14 +11,14 @@ import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonModule, XFormModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonComponent, XFormModule],
       declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
     }).compileComponents();
   });

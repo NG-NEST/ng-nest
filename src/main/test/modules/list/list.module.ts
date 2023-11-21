@@ -11,7 +11,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { ExLoadMoreComponent } from './load-more/load-more.component';
 import { ExScrollComponent } from './scroll/scroll.component';
 import { XDialogModule } from '@ng-nest/ui/dialog';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { ExKeywordComponent } from './keyword/keyword.component';
 
@@ -25,7 +25,7 @@ const routers = [{ path: '', component: TeListComponent }];
     XListModule,
     XRadioModule,
     XLayoutModule,
-    XButtonModule,
+    XButtonComponent,
     XDialogModule,
     XInputNumberModule
   ],

@@ -6,7 +6,7 @@ import { TeCollapseComponent } from './collapse.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExIconComponent } from './icon/icon.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ExGhostComponent } from './ghost/ghost.component';
 import { ExArrowComponent } from './arrow/arrow.component';
 import { ExBorderComponent } from './border/border.component';
@@ -15,7 +15,7 @@ import { ExDisabledComponent } from './disabled/disabled.component';
 const routers = [{ path: '', component: TeCollapseComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XCollapseModule, XLayoutModule, XIconModule],
+  imports: [RouterModule.forChild(routers), CommonModule, XCollapseModule, XLayoutModule, XIconComponent],
   declarations: [
     TeCollapseComponent,
     ExDefaultComponent,

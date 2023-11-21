@@ -5,7 +5,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 import { XCrumbPrefix } from './crumb.property';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -14,7 +14,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XCrumbModule, XIconModule, XTagModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XCrumbModule, XIconComponent, XTagModule],
       declarations: [TestXCrumbComponent]
     }).compileComponents();
   });

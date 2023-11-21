@@ -1,4 +1,4 @@
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XUploadComponent } from './upload.component';
@@ -9,7 +9,7 @@ import { XUploadModule } from '@ng-nest/ui/upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XUploadPrefix, () => {
@@ -20,9 +20,9 @@ describe(XUploadPrefix, () => {
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        XIconModule,
+        XIconComponent,
         XUploadModule,
-        XButtonModule,
+        XButtonComponent,
         XLayoutModule
       ],
       declarations: [TestXUploadComponent, TestXUploadDisabledComponent, TestXUploadImgComponent, TestXUploadImgCutComponent]

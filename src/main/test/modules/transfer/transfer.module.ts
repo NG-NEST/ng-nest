@@ -9,12 +9,12 @@ import { ExTreeComponent } from './tree/tree.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExCustomComponent } from './custom/custom.component';
 import { ExDragComponent } from './drag/drag.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { ExTableComponent } from './table/table.component';
 import { XTableModule } from '@ng-nest/ui/table';
 import { ExFooterComponent } from './footer/footer.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExSearchComponent } from './search/search.component';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XInputModule } from '@ng-nest/ui/input';
@@ -29,9 +29,9 @@ const routers = [{ path: '', component: TeTransferComponent }];
     FormsModule,
     ReactiveFormsModule,
     XTransferModule,
-    XButtonModule,
+    XButtonComponent,
     XLayoutModule,
-    XIconModule,
+    XIconComponent,
     XTreeModule,
     XTableModule,
     XSelectModule,

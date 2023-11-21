@@ -17,17 +17,17 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
-import { XOutletModule } from '@ng-nest/ui/outlet';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XAutoCompleteModule } from '@ng-nest/ui/auto-complete';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XI18nDirective } from '@ng-nest/ui/i18n';
 
 const modules = [
   XLayoutModule,
-  XIconModule,
+  XIconComponent,
   XInputModule,
   XSelectModule,
   XCascadeModule,
@@ -43,9 +43,9 @@ const modules = [
   XTextareaModule,
   XFindModule,
   XAutoCompleteModule,
-  XOutletModule,
-  XBaseFormModule,
-  XI18nModule
+  XOutletDirective,
+  XControlValueAccessor,
+  XI18nDirective
 ];
 
 @NgModule({

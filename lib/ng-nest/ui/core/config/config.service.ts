@@ -37,7 +37,10 @@ export class XConfigService {
 
   set<T extends XComponentConfigKey>(componentName: T, value: XComponentConfig[T]): void {
     if (this.config?.components) {
-      this.config.components[componentName] = { ...this.config.components[componentName], ...value };
+      this.config.components[componentName] = {
+        ...this.config.components[componentName],
+        ...value
+      };
       this.componentConfigUpdated$.next(componentName);
     }
   }
@@ -46,7 +49,11 @@ export class XConfigService {
     let colors = theme?.colors;
     if (!colors) colors = X_THEME_DARK_COLORS;
     this.setTheme({
-      colors: this.themeService.getDefineColors(Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors), '', true)
+      colors: this.themeService.getDefineColors(
+        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
+        '',
+        true
+      )
     });
   }
 
@@ -54,7 +61,11 @@ export class XConfigService {
     let colors = theme?.colors;
     if (!colors) colors = X_THEME_COLORS;
     this.setTheme({
-      colors: this.themeService.getDefineColors(Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors), '', false)
+      colors: this.themeService.getDefineColors(
+        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
+        '',
+        false
+      )
     });
   }
 
@@ -73,7 +84,11 @@ export class XConfigService {
 
 // tslint:disable-next-line:typedef
 export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultValue?: T) {
-  return function ConfigDecorator(target: any, propName: any, originalDescriptor?: TypedPropertyDescriptor<T>): any {
+  return function ConfigDecorator(
+    target: any,
+    propName: any,
+    originalDescriptor?: TypedPropertyDescriptor<T>
+  ): any {
     const privatePropName = `$$__assignedValue__${propName}`;
 
     Object.defineProperty(target, privatePropName, {
@@ -84,7 +99,10 @@ export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultV
 
     return {
       get(): T | undefined {
-        const originalValue = originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
+        const originalValue =
+          originalDescriptor && originalDescriptor.get
+            ? originalDescriptor.get.bind(this)()
+            : this[privatePropName];
 
         if (isDefined(originalValue)) {
           return originalValue;

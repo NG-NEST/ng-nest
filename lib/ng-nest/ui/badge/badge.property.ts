@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'badge';
 /**
  * Badge Property
  */
-@Component({ selector: `${XBadgePrefix}-property`, template: '' })
+@Component({ selector: `${XBadgePrefix}-property`, template: '', standalone: true })
 export class XBadgeProperty extends XProperty {
   /**
    * @zh_CN 背景颜色

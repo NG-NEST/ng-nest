@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XResultComponent } from './result.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XResultModule } from '@ng-nest/ui/result';
 import { FormsModule } from '@angular/forms';
 import { XResultPrefix } from './result.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -23,10 +23,10 @@ describe(XResultPrefix, () => {
         XThemeModule,
         FormsModule,
         XResultModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXResultComponent]
     }).compileComponents();

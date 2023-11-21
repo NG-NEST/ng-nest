@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XPatternComponent } from './pattern.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPatternModule } from './pattern.module';
+import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { PatternPrefix } from './pattern.property';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(PatternPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XPatternModule],
+      imports: [HttpClientTestingModule, XPatternComponent],
       declarations: [TestXPatternComponent]
     }).compileComponents();
   });

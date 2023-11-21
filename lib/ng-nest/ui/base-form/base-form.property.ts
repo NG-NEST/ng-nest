@@ -1,10 +1,19 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { XAlign, XBoolean, XDirection, XInputBoolean, XJustify, XProperty, XSize, XTemplate } from '@ng-nest/ui/core';
+import {
+  XAlign,
+  XBoolean,
+  XDirection,
+  XInputBoolean,
+  XJustify,
+  XProperty,
+  XSize,
+  XTemplate
+} from '@ng-nest/ui/core';
 
 /**
  * 表单对象共有的参数
  */
-@Component({ selector: 'x-form-prop', template: '' })
+@Component({ selector: 'x-form-prop', template: '', standalone: true })
 export class XFormProp extends XProperty {
   /**
    * 标签

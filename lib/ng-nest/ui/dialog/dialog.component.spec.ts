@@ -4,7 +4,7 @@ import { XDialogComponent } from './dialog.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDialogModule } from '@ng-nest/ui/dialog';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogPrefix } from './dialog.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
@@ -12,8 +12,8 @@ import { XMessageBoxService, XMessageBoxModule, XMessageBoxAction } from '@ng-ne
 import { FormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XIconModule } from '@ng-nest/ui/icon';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
@@ -31,9 +31,9 @@ describe(XDialogPrefix, () => {
         XInputModule,
         XRadioModule,
         XDialogModule,
-        XButtonModule,
-        XIconModule,
-        XLinkModule,
+        XButtonComponent,
+        XIconComponent,
+        XLinkComponent,
         XFormModule,
         XMessageBoxModule
       ],

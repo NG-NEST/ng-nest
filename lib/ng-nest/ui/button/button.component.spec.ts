@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XButtonComponent } from './button.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -11,7 +10,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XButtonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XButtonModule, XThemeModule],
+      imports: [HttpClientTestingModule, XButtonComponent, XButtonsComponent, XThemeModule],
       declarations: [
         TestXButtonComponent,
         TestXButtonDiabledComponent,
@@ -325,7 +324,9 @@ class TestXButtonIconComponent {}
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" plain>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain>下一页</x-button>
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain
+          >下一页</x-button
+        >
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" plain></x-button>
@@ -359,7 +360,9 @@ class TestXButtonIconComponent {}
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" round>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round>下一页</x-button>
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round
+          >下一页</x-button
+        >
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" round></x-button>

@@ -14,7 +14,6 @@ type Task<T> = {
 // @dynamic
 @Injectable()
 export class XIconService {
-  rootUrl = `https://ngnest.com/static/icons/`;
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskXm: number = 0;
@@ -23,7 +22,9 @@ export class XIconService {
 
   constructor(private sanitizer: DomSanitizer, @Optional() private http: HttpClient) {
     if (!http) {
-      throw new Error(`${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
+      throw new Error(
+        `${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
+      );
     }
   }
 
@@ -69,13 +70,13 @@ export class XIconService {
     }
   }
 
-  getSvgs(...icons: string[]): Observable<string[]> {
-    return Observable.create((subscriber: Subscriber<string[]>) => {
+  getSvgs(root: string, ...icons: string[]): Observable<string[]> {
+    return new Observable((subscriber: Subscriber<string[]>) => {
       let result: string[] = [];
       icons.forEach((icon, index) =>
         this.addTask({
           name: icon,
-          observable: this.getSvgElement(icon),
+          observable: this.getSvgElement(root, icon),
           callback: (svg: string) => {
             result.push(svg);
             if (index === icons.length - 1) {
@@ -88,8 +89,8 @@ export class XIconService {
     });
   }
 
-  getSvgElement(icon: string): Observable<string> {
-    const url = `${this.rootUrl}${icon}.svg`;
+  getSvgElement(root: string, icon: string): Observable<string> {
+    const url = `${root}${icon}.svg`;
     const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
     return this.http.get(safeUrl as string, { responseType: 'text' });
   }

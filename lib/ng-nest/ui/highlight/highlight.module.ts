@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XHighlightComponent } from './highlight.component';
 import { XHighlightProperty } from './highlight.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @NgModule({
   declarations: [XHighlightComponent, XHighlightProperty],
   exports: [XHighlightComponent],
-  imports: [CommonModule, XButtonModule]
+  imports: [CommonModule, XButtonComponent]
 })
 export class XHighlightModule {}

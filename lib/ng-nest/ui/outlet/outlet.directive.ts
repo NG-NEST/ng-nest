@@ -1,11 +1,22 @@
-import { Directive, TemplateRef, Input, ViewContainerRef, SimpleChanges, EmbeddedViewRef, OnChanges, SimpleChange } from '@angular/core';
+import {
+  Directive,
+  TemplateRef,
+  Input,
+  ViewContainerRef,
+  SimpleChanges,
+  EmbeddedViewRef,
+  OnChanges,
+  SimpleChange,
+  inject
+} from '@angular/core';
 
-@Directive({ selector: '[xOutlet]' })
+@Directive({ selector: '[xOutlet]', standalone: true })
 export class XOutletDirective implements OnChanges {
   @Input() xOutletContext: any;
   @Input() xOutlet: any | TemplateRef<any>;
   private embeddedViewRef!: EmbeddedViewRef<any>;
-  constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<any>) {}
+  private viewContainer = inject(ViewContainerRef);
+  private templateRef = inject(TemplateRef<any>);
 
   ngOnChanges(changes: SimpleChanges): void {
     const shouldRecreateView = (ctxChanges: SimpleChanges): boolean => {

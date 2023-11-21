@@ -9,14 +9,14 @@ import { XTablePrefix, XTableColumn, XTableCellConfig } from './table.property';
 import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
 import { map as rxjsMap, delay } from 'rxjs/operators';
-import { XIconModule } from '@ng-nest/ui/icon';
-import { XAvatarModule } from '@ng-nest/ui/avatar';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XDialogModule } from '@ng-nest/ui/dialog';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -30,11 +30,11 @@ describe(XTablePrefix, () => {
         FormsModule,
         XDescriptionModule,
         XTableModule,
-        XIconModule,
-        XAvatarModule,
+        XIconComponent,
+        XAvatarComponent,
         XDialogModule,
-        XButtonModule,
-        XLinkModule,
+        XButtonComponent,
+        XLinkComponent,
         XInputModule,
         XSelectModule,
         XSwitchModule

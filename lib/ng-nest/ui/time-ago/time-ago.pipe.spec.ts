@@ -3,14 +3,14 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
 import { XTimeAgoPrefix } from './time-ago.property';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimeAgoPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XTimeAgoModule, XButtonModule],
+      imports: [HttpClientTestingModule, XTimeAgoModule, XButtonComponent],
       declarations: [TestXTimeAgoComponent]
     }).compileComponents();
   });

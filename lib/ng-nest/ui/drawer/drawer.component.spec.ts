@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
 import { XDrawerPrefix } from './drawer.property';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XButtonModule } from '@ng-nest/ui/button';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -25,9 +25,9 @@ describe(XDrawerPrefix, () => {
         XDrawerModule,
         FormsModule,
         XInputModule,
-        XIconModule,
+        XIconComponent,
         XRadioModule,
-        XButtonModule
+        XButtonComponent
       ],
       declarations: [TestXDrawerComponent, TestXDrawerTitleComponent, TestXDrawerCustomComponent, TestXDrawerMultipleComponent]
     }).compileComponents();

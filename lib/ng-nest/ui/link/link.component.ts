@@ -8,13 +8,20 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostListener,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XLinkPrefix, XLinkProperty } from './link.property';
 import { XConfigService, XIsEmpty } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XRippleDirective } from '@ng-nest/ui/ripple';
 
 @Component({
   selector: `${XLinkPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XOutletDirective, XRippleDirective, XLinkProperty],
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -35,14 +42,9 @@ export class XLinkComponent extends XLinkProperty implements OnInit, AfterViewIn
     this.cdr.detectChanges();
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

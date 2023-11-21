@@ -6,19 +6,23 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   ChangeDetectorRef,
-  Optional,
-  Host,
   ElementRef,
   Renderer2,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/core';
 import { delay, of } from 'rxjs';
 import { XButtonPrefix, XButtonProperty } from './button.property';
 import { XButtonsComponent } from './buttons.component';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XRippleDirective } from '@ng-nest/ui/ripple';
 
 @Component({
   selector: `${XButtonPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XRippleDirective, XButtonProperty],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -27,15 +31,12 @@ import { XButtonsComponent } from './buttons.component';
 export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
   transition = false;
   @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
-  constructor(
-    @Optional() @Host() public buttons: XButtonsComponent,
-    public cdr: ChangeDetectorRef,
-    public elementRef: ElementRef<HTMLElement>,
-    public renderer: Renderer2,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+
+  private buttons = inject(XButtonsComponent, { optional: true, host: true });
+  private cdr = inject(ChangeDetectorRef);
+  private elementRef = inject(ElementRef<HTMLElement>);
+  private renderer = inject(Renderer2);
+  configService = inject(XConfigService);
 
   ngOnInit(): void {
     this.setSpace();
@@ -70,8 +71,16 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
 
   setSpace() {
     if (!this.buttons?.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${Number(this.buttons.space) / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${Number(this.buttons.space) / 2}rem`);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'margin-left',
+      `${Number(this.buttons.space) / 2}rem`
+    );
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'margin-right',
+      `${Number(this.buttons.space) / 2}rem`
+    );
   }
 
   setDisabled() {

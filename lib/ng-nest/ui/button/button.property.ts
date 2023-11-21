@@ -1,5 +1,15 @@
 import { Input, Component } from '@angular/core';
-import { XProperty, XDirection, XSize, XInputBoolean, XInputNumber, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XDirection,
+  XSize,
+  XInputBoolean,
+  XInputNumber,
+  XNumber,
+  XBoolean,
+  XType,
+  XWithConfig
+} from '@ng-nest/ui/core';
 
 /**
  * Button
@@ -12,7 +22,7 @@ const X_CONFIG_NAME = 'button';
 /**
  * Button Property
  */
-@Component({ selector: `${XButtonPrefix}-property`, template: '' })
+@Component({ selector: `${XButtonPrefix}-property`, template: '', standalone: true })
 export class XButtonProperty extends XProperty implements XButtonOption {
   /**
    * @zh_CN 类型
@@ -186,7 +196,7 @@ const X_CONFIG_NAME_BUTTONS = 'buttons';
 /**
  * Buttons Property
  */
-@Component({ selector: `${XButtonsPrefix}-property`, template: '' })
+@Component({ selector: `${XButtonsPrefix}-property`, template: '', standalone: true })
 export class XButtonsProperty extends XProperty {
   /**
    * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）

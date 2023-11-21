@@ -8,13 +8,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExMoreFormComponent } from './more-form/more-form.component';
 import { ExFormVaildComponent } from './form-vaild/form-vaild.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExOtherComponent } from './other/other.component';
 
 const routers = [{ path: '', component: TeFormComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, ReactiveFormsModule, XFormModule, XLayoutModule, XButtonModule],
+  imports: [RouterModule.forChild(routers), CommonModule, FormsModule, ReactiveFormsModule, XFormModule, XLayoutModule, XButtonComponent],
   declarations: [TeFormComponent, ExDefaultComponent, ExMoreFormComponent, ExFormVaildComponent, ExOtherComponent]
 })
 export class TeFormModule {}

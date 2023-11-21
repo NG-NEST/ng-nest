@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XPaginationModule } from '@ng-nest/ui/pagination';
-import { XOutletModule } from '@ng-nest/ui/outlet';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { XEmptyModule } from '@ng-nest/ui/empty';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XCheckboxModule } from '@ng-nest/ui/checkbox';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { XTableComponent } from './table.component';
 import { XTableHeadComponent } from './table-head.component';
 import { XTableBodyComponent } from './table-body.component';
 import { XTableFootComponent } from './table-foot.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XDragModule } from '@ng-nest/ui/drag';
 
@@ -38,13 +38,13 @@ import { XDragModule } from '@ng-nest/ui/drag';
     CommonModule,
     FormsModule,
     XPaginationModule,
-    XOutletModule,
+    XOutletDirective,
     XCheckboxModule,
-    XIconModule,
-    XButtonModule,
+    XIconComponent,
+    XButtonComponent,
     ScrollingModule,
     DragDropModule,
-    XEmptyModule,
+    XEmptyComponent,
     XLoadingModule,
     XDragModule
   ]

@@ -7,15 +7,15 @@ import { XDocModule } from '@ng-nest/ui/doc';
 import { XDocPrefix } from './doc.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLayoutModule } from '@ng-nest/ui/layout';
-import { XBadgeModule } from '@ng-nest/ui/badge';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XBadgeComponent } from '@ng-nest/ui/badge';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XExamplesModule } from '@ng-nest/ui/examples';
-import { XApiModule } from '@ng-nest/ui/api';
+import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XHighlightModule } from '@ng-nest/ui/highlight';
-import { XPatternModule } from '@ng-nest/ui/pattern';
+import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDocPrefix, () => {
@@ -26,15 +26,15 @@ describe(XDocPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         XDocModule,
-        XIconModule,
+        XIconComponent,
         XLayoutModule,
-        XBadgeModule,
-        XButtonModule,
+        XBadgeComponent,
+        XButtonComponent,
         XExamplesModule,
-        XApiModule,
+        XApiComponent,
         XTabsModule,
         XHighlightModule,
-        XPatternModule
+        XPatternComponent
       ],
       declarations: [TestXDocComponent, ExColorComponent, ExCustomComponent, ExDefaultComponent, ExDotComponent, ExMaxComponent]
     }).compileComponents();
@@ -409,7 +409,7 @@ export class ExDotComponent {}
 })
 export class ExColorComponent {}
 `;
-  vcwurln = `import { XBadgeModule } from '@ng-nest/ui/badge';`;
+  vcwurln = `import { XBadgeComponent } from '@ng-nest/ui/badge';`;
 }
 
 @Component({

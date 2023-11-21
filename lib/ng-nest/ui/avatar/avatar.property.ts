@@ -1,4 +1,14 @@
-import { XSize, XTemplate, XProperty, XWithConfig, XShape, XFit, XResponseSize, XNumber, XInputNumber } from '@ng-nest/ui/core';
+import {
+  XSize,
+  XTemplate,
+  XProperty,
+  XWithConfig,
+  XShape,
+  XFit,
+  XResponseSize,
+  XNumber,
+  XInputNumber
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -12,7 +22,7 @@ const X_CONFIG_NAME = 'avatar';
 /**
  * Avatar Property
  */
-@Component({ selector: `${XAvatarPrefix}-property`, template: '' })
+@Component({ selector: `${XAvatarPrefix}-property`, template: '', standalone: true })
 export class XAvatarProperty extends XProperty {
   /**
    * @zh_CN 显示字符
@@ -84,5 +94,5 @@ export const XAvatarGroupPrefix = 'x-avatar-group';
 /**
  * Avatar Group Property
  */
-@Component({ selector: `${XAvatarGroupPrefix}-property`, template: '' })
+@Component({ selector: `${XAvatarGroupPrefix}-property`, template: '', standalone: true })
 export class XAvatarGroupProperty extends XProperty {}

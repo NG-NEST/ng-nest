@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XBackTopModule } from '@ng-nest/ui/back-top';
 import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -18,7 +18,7 @@ describe(XBackTopPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XBackTopModule,
-        XButtonModule,
+        XButtonComponent,
         BrowserAnimationsModule,
         XTabsModule,
         XThemeModule

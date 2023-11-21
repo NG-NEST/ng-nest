@@ -7,8 +7,8 @@ import { XTreeModule } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
-import { XButtonModule } from '@ng-nest/ui/button';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { XFormModule, XFormRow } from '@ng-nest/ui/form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UntypedFormGroup } from '@angular/forms';
@@ -16,7 +16,7 @@ import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -29,13 +29,13 @@ describe(XTreePrefix, () => {
         XThemeModule,
         XTreeModule,
         XLayoutModule,
-        XButtonModule,
-        XLinkModule,
+        XButtonComponent,
+        XLinkComponent,
         XFormModule,
-        XLinkModule,
+        XLinkComponent,
         XMessageModule,
         XInputNumberModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [
         TestXTreeComponent,

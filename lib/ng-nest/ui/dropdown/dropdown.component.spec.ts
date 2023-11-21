@@ -5,8 +5,8 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XDropdownPrefix, XDropdownNode } from './dropdown.property';
-import { XLinkModule } from '@ng-nest/ui/link';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -15,7 +15,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XDropdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XDropdownModule, XButtonModule, XLinkModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XDropdownModule, XButtonComponent, XLinkComponent, XLayoutModule],
       declarations: [TestXDropdownComponent]
     }).compileComponents();
   });

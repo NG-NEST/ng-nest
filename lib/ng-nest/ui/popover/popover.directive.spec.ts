@@ -1,4 +1,4 @@
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XPopoverDirective } from './popover.directive';
@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { XPopoverModule } from '@ng-nest/ui/popover';
 import { XPopoverPrefix } from './popover.property';
 import { interval } from 'rxjs';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -15,7 +15,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XPopoverModule, XButtonModule, XIconModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XPopoverModule, XButtonComponent, XIconComponent],
       declarations: [TestXPopoverComponent]
     }).compileComponents();
   });

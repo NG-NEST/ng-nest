@@ -11,10 +11,16 @@ import {
   HostBinding,
   inject
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import {
+  warnIconTypeNotFound,
+  warnSVGTagNotFound,
+  XIsChange,
+  XIsEmpty,
+  XConfigService
+} from '@ng-nest/ui/core';
 
 // 来源路径对应
 export const XSouceUrl: { [property: string]: string } = {
@@ -39,33 +45,31 @@ export const XViewBox = [
 
 @Component({
   selector: `${XIconPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconProperty],
   templateUrl: './icon.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [XIconService]
 })
 export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   private _svgElement!: SVGElement;
   private _loaded: boolean = false;
   private document = inject(DOCUMENT);
+  private elementRef = inject(ElementRef<HTMLElement>);
+  private renderer = inject(Renderer2);
+  private iconService = inject(XIconService);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   @HostBinding('class.x-icon-spin') get getSpin() {
     return this.spin;
   }
 
-  constructor(
-    public elementRef: ElementRef<HTMLElement>,
-    private renderer: Renderer2,
-    public iconService: XIconService,
-    private cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-    this.iconService.rootUrl = this.href as string;
+  ngOnInit() {
     this.renderer.addClass(this.elementRef.nativeElement, XIconPrefix);
   }
-
-  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const { type, spin } = changes;
@@ -100,7 +104,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     if (!XIsEmpty(toIcon)) {
       icons = [...icons, toIcon];
     }
-    this.iconService.getSvgs(...icons).subscribe((x) => this.setSvgs(x));
+    this.iconService.getSvgs(this.href!, ...icons).subscribe((x) => this.setSvgs(x));
   }
 
   setSvgs(svgs: string[]) {
@@ -138,7 +142,10 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   buildSvg(svgStr: string): SVGSVGElement | undefined {
-    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement;
+    const result = this.document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'svg'
+    ) as SVGSVGElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
     svg.children.forEach((x) => {

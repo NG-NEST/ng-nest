@@ -9,15 +9,15 @@ import { ConfigService } from './config/config.service';
 import { RowclassService } from './rowclass/rowclass.service';
 import { TeTableComponent } from './table.component';
 import { ExExpandComponent } from './expand/expand.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogModule } from '@ng-nest/ui/dialog';
 import { ExAdaptionComponent } from './adaption/adaption.component';
 import { CommonModule } from '@angular/common';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { ExHeaderComponent } from './header/header.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ExScrollComponent } from './scroll/scroll.component';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { ExFixComponent } from './fix/fix.component';
 import { ExHeadComponent } from './head/head.component';
 import { FormsModule } from '@angular/forms';
@@ -56,11 +56,11 @@ const routers = [
     CommonModule,
     FormsModule,
     XTableModule,
-    XButtonModule,
-    XIconModule,
+    XButtonComponent,
+    XIconComponent,
     XDialogModule,
     XDescriptionModule,
-    XLinkModule,
+    XLinkComponent,
     XInputModule,
     XSwitchModule,
     XSelectModule,

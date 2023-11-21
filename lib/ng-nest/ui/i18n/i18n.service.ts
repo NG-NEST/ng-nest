@@ -23,7 +23,9 @@ export class XI18nService {
     let content = this._getObjectPath(this._locale, path) as string;
     if (typeof content === 'string') {
       if (data) {
-        Object.keys(data).forEach((key) => (content = content.replace(new RegExp(`%${key}%`, 'g'), data[key])));
+        Object.keys(data).forEach(
+          (key) => (content = content.replace(new RegExp(`%${key}%`, 'g'), data[key]))
+        );
       }
       return content;
     }

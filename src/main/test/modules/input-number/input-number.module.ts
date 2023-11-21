@@ -6,7 +6,7 @@ import { TeInputNumberComponent } from './input-number.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExFormatComponent } from './format/format.component';
 import { ExBorderedComponent } from './bordered/bordered.component';
 import { ExDisabledComponent } from './disabled/disabled.component';
@@ -26,7 +26,7 @@ const routers = [{ path: '', component: TeInputNumberComponent }];
     FormsModule,
     XInputNumberModule,
     XLayoutModule,
-    XButtonModule,
+    XButtonComponent,
     XRadioModule
   ],
   declarations: [

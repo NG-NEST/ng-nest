@@ -6,12 +6,12 @@ import { ExLoadingComponent } from './loading/loading.component';
 import { TeAnchorComponent } from './anchor.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 const routers = [{ path: '', component: TeAnchorComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XAnchorModule, XLayoutModule, XButtonModule],
+  imports: [RouterModule.forChild(routers), CommonModule, XAnchorModule, XLayoutModule, XButtonComponent],
   declarations: [TeAnchorComponent, ExDefaultComponent, ExLoadingComponent]
 })
 export class TeAnchorModule {}

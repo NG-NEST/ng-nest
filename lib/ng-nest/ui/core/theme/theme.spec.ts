@@ -1,5 +1,5 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
 import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -69,7 +69,7 @@ describe('x-theme', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
+      imports: [XButtonComponent, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
       declarations: [XGlobalThemeTestBasicComponent],
       providers: [
         {

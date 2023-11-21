@@ -7,11 +7,11 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XListModule } from '@ng-nest/ui/list';
 import { XPortalModule } from '@ng-nest/ui/portal';
 import { XCascadeProperty } from './cascade.property';
-import { XBaseFormModule } from '@ng-nest/ui/base-form';
+import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
 @NgModule({
     declarations: [XCascadeComponent, XCascadePortalComponent, XCascadeProperty],
     exports: [XCascadeComponent, XCascadePortalComponent],
-    imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule, XBaseFormModule]
+    imports: [CommonModule, FormsModule, XPortalModule, ReactiveFormsModule, XInputModule, XListModule, XControlValueAccessor]
 })
 export class XCascadeModule {}

@@ -1,7 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XLayoutModule } from '@ng-nest/ui/layout';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-ant-design',
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XTabsModule, XLayoutModule],
   templateUrl: './ant-design.component.html',
   styleUrls: ['./ant-design.component.scss']
 })

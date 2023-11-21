@@ -1,12 +1,12 @@
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
-import { XButtonModule, XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonComponent } from '@ng-nest/ui/button';
 import { XConfigService } from './config.service';
 import { X_CONFIG, XConfig } from './config';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSize } from '@ng-nest/ui/core';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Component({
@@ -41,7 +41,7 @@ describe('x-config', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonModule, HttpClientTestingModule, XDropdownModule, XLinkModule],
+      imports: [XButtonComponent, HttpClientTestingModule, XDropdownModule, XLinkComponent],
       declarations: [NzGlobalConfigTestBasicComponent],
       providers: [
         {

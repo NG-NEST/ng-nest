@@ -13,7 +13,7 @@ import { ExSizeComponent } from './size/size.component';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XInputModule } from '@ng-nest/ui/input';
 import { ExTextComponent } from './text/text.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 const routers = [{ path: '', component: TeSwitchComponent }];
 
@@ -26,7 +26,7 @@ const routers = [{ path: '', component: TeSwitchComponent }];
     XLayoutModule,
     XRadioModule,
     XInputModule,
-    XIconModule
+    XIconComponent
   ],
   declarations: [
     TeSwitchComponent,

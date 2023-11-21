@@ -7,7 +7,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { ExVirtualScrollComponent } from './virtual-scroll/virtual-scroll.component';
 import { ExControlComponent } from './control/control.component';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { FormsModule } from '@angular/forms';
 import { ExStatusComponent } from './status/status.component';
@@ -16,11 +16,11 @@ import { ExLazyComponent } from './lazy/lazy.component';
 import { ExHeightComponent } from './height/height.component';
 import { ExCustomComponent } from './custom/custom.component';
 import { ExCheckboxComponent } from './checkbox/checkbox.component';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { ExActivatedComponent } from './activated/activated.component';
 import { ExDragComponent } from './drag/drag.component';
 import { ExIconComponent } from './icon/icon.component';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ExLineComponent } from './line/line.component';
 
 const routers = [{ path: '', component: TeTreeComponent }];
@@ -30,12 +30,12 @@ const routers = [{ path: '', component: TeTreeComponent }];
     RouterModule.forChild(routers),
     CommonModule,
     FormsModule,
-    XLinkModule,
+    XLinkComponent,
     XTreeModule,
     XLayoutModule,
-    XButtonModule,
+    XButtonComponent,
     XInputNumberModule,
-    XIconModule
+    XIconComponent
   ],
   declarations: [
     TeTreeComponent,

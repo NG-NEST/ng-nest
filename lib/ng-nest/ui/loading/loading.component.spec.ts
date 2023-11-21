@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XLoadingComponent } from './loading.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import { XLoadingPrefix } from './loading.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -26,10 +26,10 @@ describe(XLoadingPrefix, () => {
         FormsModule,
         BrowserAnimationsModule,
         XLoadingModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXLoadingComponent]
     }).compileComponents();

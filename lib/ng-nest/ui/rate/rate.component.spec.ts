@@ -1,4 +1,4 @@
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed, __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 import { XRateComponent } from './rate.component';
@@ -9,13 +9,13 @@ import { XRateModule } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, FormsModule, XRateModule, XButtonModule, XLayoutModule, XIconModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, FormsModule, XRateModule, XButtonComponent, XLayoutModule, XIconComponent],
       declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
     }).compileComponents();
   });

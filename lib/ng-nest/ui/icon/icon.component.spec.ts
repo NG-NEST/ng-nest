@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XIconComponent } from './icon.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XIconPrefix } from './icon.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +12,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XIconPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XIconModule, XLayoutModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XIconComponent, XLayoutModule],
       declarations: [TestXIconComponent]
     }).compileComponents();
   });

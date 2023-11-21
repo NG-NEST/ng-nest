@@ -6,7 +6,7 @@ import { TeDatePickerComponent } from './date-picker.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExYearMonthComponent } from './year-month/year-month.component';
 import { ExTodayComponent } from './today/today.component';
 import { ExTimeComponent } from './time/time.component';
@@ -38,7 +38,7 @@ const routers = [{ path: '', component: TeDatePickerComponent }];
     XLayoutModule,
     XDatePickerModule,
     ReactiveFormsModule,
-    XButtonModule,
+    XButtonComponent,
     XRadioModule,
     XSelectModule,
     XInputModule,

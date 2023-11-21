@@ -4,7 +4,7 @@ import { XNotificationComponent } from './notification.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XNotificationModule } from '@ng-nest/ui/notification';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XNotificationPrefix } from './notification.property';
 import { XNotificationService } from './notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +15,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonComponent],
       declarations: [TestXNotificationComponent, TestXNotificationTypeComponent]
     }).compileComponents();
   });

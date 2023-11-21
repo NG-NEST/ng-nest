@@ -1,12 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { XResizableModule } from '@ng-nest/ui/resizable';
+import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { XResizablePrefix } from './resizable.property';
 
 describe(XResizablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XResizableModule]
+      imports: [HttpClientTestingModule, XResizableDirective]
     }).compileComponents();
   });
   describe(`default.`, () => {

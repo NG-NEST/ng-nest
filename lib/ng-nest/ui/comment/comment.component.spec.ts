@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCommentComponent } from './comment.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCommentModule } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
 import { XCommentPrefix, XCommentNode } from './comment.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
@@ -25,10 +25,10 @@ describe(XCommentPrefix, () => {
         XThemeModule,
         FormsModule,
         XCommentModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXCommentComponent]
     }).compileComponents();

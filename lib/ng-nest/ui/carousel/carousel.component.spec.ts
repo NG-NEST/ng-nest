@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XCarouselComponent } from './carousel.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XCarouselModule } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,10 +24,10 @@ describe(XCarouselPrefix, () => {
         XThemeModule,
         FormsModule,
         XCarouselModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XIconModule,
+        XIconComponent,
         XTabsModule
       ],
       declarations: [TestXCarouselComponent, TestXCarouselCardComponent, TestXCarouselDirectionComponent, TestXCarouselTabsComponent]

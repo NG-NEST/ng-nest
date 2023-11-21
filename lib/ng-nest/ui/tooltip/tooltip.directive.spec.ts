@@ -1,4 +1,4 @@
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTooltipDirective } from './tooltip.directive';
@@ -13,7 +13,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XTooltipPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonComponent],
       declarations: [TestXTooltipComponent]
     }).compileComponents();
   });

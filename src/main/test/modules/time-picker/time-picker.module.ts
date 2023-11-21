@@ -4,7 +4,7 @@ import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XInputModule } from '@ng-nest/ui/input';
@@ -37,7 +37,7 @@ const routers = [{ path: '', component: TeTimePickerComponent }];
     XLayoutModule,
     XDatePickerModule,
     ReactiveFormsModule,
-    XButtonModule,
+    XButtonComponent,
     XRadioModule,
     XSelectModule,
     XInputModule,

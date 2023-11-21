@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XMenuModule } from '@ng-nest/ui/menu';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
-import { XLinkModule } from '@ng-nest/ui/link';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDrawerModule } from '@ng-nest/ui/drawer';
-import { XAffixModule } from '@ng-nest/ui/affix';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XAffixComponent } from '@ng-nest/ui/affix';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XSliderModule } from '@ng-nest/ui/slider';
@@ -41,15 +41,15 @@ const components = [
   imports: [
     CommonModule,
     FormsModule,
-    XIconModule,
+    XIconComponent,
     XMenuModule,
-    XButtonModule,
+    XButtonComponent,
     XDropdownModule,
     XSelectModule,
     XDrawerModule,
-    XAffixModule,
-    XI18nModule,
-    XLinkModule,
+    XAffixComponent,
+    XI18nPipe,
+    XLinkComponent,
     XLayoutModule,
     XSliderModule,
     XAutoCompleteModule,

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XDialogComponent } from './dialog.component';
-import { XAlertModule } from '@ng-nest/ui/alert';
+import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XPortalModule } from '@ng-nest/ui/portal';
-import { XButtonModule } from '@ng-nest/ui/button';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XOutletModule } from '@ng-nest/ui/outlet';
-import { XResizableModule } from '@ng-nest/ui/resizable';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogContainerProperty, XDialogProperty } from './dialog.property';
 import {
@@ -22,7 +22,7 @@ import {
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogService } from './dialog.service';
 import { XDialogContainerComponent } from './dialog-container.component';
-import { XI18nModule } from '@ng-nest/ui/i18n';
+import { XI18nDirective } from '@ng-nest/ui/i18n';
 
 @NgModule({
   declarations: [
@@ -55,13 +55,14 @@ import { XI18nModule } from '@ng-nest/ui/i18n';
     ReactiveFormsModule,
     DragDropModule,
     XInputModule,
-    XButtonModule,
-    XIconModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XIconComponent,
     XPortalModule,
-    XAlertModule,
-    XOutletModule,
-    XResizableModule,
-    XI18nModule
+    XAlertComponent,
+    XOutletDirective,
+    XResizableDirective,
+    XI18nDirective
   ],
   providers: [XDialogService]
 })

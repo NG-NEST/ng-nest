@@ -5,13 +5,13 @@ import { ExDefaultComponent } from './default/default.component';
 import { TeMessageComponent } from './message.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExLoadingComponent } from './loading/loading.component';
 
 const routers = [{ path: '', component: TeMessageComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routers), CommonModule, XMessageModule, XButtonModule, XLayoutModule],
+  imports: [RouterModule.forChild(routers), CommonModule, XMessageModule, XButtonComponent, XLayoutModule],
   declarations: [TeMessageComponent, ExDefaultComponent, ExLoadingComponent]
 })
 export class TeMessageModule {}

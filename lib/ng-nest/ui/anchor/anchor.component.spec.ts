@@ -6,14 +6,14 @@ import { By } from '@angular/platform-browser';
 import { XAnchorModule } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
 import { XThemeModule } from '@ng-nest/ui/theme';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAnchorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAnchorModule, XThemeModule, XButtonModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XAnchorModule, XThemeModule, XButtonComponent],
       declarations: [TestXAnchorComponent]
     }).compileComponents();
   });

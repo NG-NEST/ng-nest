@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XStatisticComponent } from './statistic.component';
@@ -8,7 +8,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XCardModule } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
@@ -25,11 +25,11 @@ describe(XStatisticPrefix, () => {
         XThemeModule,
         FormsModule,
         XStatisticModule,
-        XButtonModule,
+        XButtonComponent,
         XCardModule,
         XContainerModule,
         XLayoutModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [TestXStatisticComponent]
     }).compileComponents();

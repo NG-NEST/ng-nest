@@ -1,4 +1,4 @@
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XSkeletonComponent } from './skeleton.component';
@@ -8,11 +8,11 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.property';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerModule } from '@ng-nest/ui/container';
 import { XSwitchModule } from '@ng-nest/ui/switch';
-import { XAvatarModule } from '@ng-nest/ui/avatar';
-import { XLinkModule } from '@ng-nest/ui/link';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
+import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -27,12 +27,12 @@ describe(XSkeletonPrefix, () => {
         FormsModule,
         XSkeletonModule,
         XSwitchModule,
-        XButtonModule,
+        XButtonComponent,
         XContainerModule,
         XLayoutModule,
-        XAvatarModule,
-        XIconModule,
-        XLinkModule
+        XAvatarComponent,
+        XIconComponent,
+        XLinkComponent
       ],
       declarations: [TestXSkeletonComponent]
     }).compileComponents();

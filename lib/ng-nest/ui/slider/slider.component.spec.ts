@@ -7,7 +7,7 @@ import { XSliderModule } from '@ng-nest/ui/slider';
 import { XSliderPrefix, XSliderNode } from './slider.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -15,7 +15,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XSliderModule, XThemeModule, BrowserAnimationsModule, XIconModule, XTabsModule],
+      imports: [HttpClientTestingModule, XSliderModule, XThemeModule, BrowserAnimationsModule, XIconComponent, XTabsModule],
       declarations: [TestXSliderComponent]
     }).compileComponents();
   });

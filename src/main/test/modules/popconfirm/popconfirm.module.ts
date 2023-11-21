@@ -5,7 +5,7 @@ import { ExDefaultComponent } from './default/default.component';
 import { TePopconfirmComponent } from './popconfirm.component';
 import { XLayoutModule } from '@ng-nest/ui/layout';
 import { CommonModule } from '@angular/common';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { ExAsyncCloseComponent } from './async-close/async-close.component';
 import { ExConditionComponent } from './condition/condition.component';
 import { XSwitchModule } from '@ng-nest/ui/switch';
@@ -20,7 +20,7 @@ const routers = [{ path: '', component: TePopconfirmComponent }];
     CommonModule,
     XPopconfirmModule,
     XLayoutModule,
-    XButtonModule,
+    XButtonComponent,
     FormsModule,
     XSwitchModule,
     XMessageModule

@@ -11,8 +11,8 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { XIconModule } from '@ng-nest/ui/icon';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
@@ -26,8 +26,8 @@ describe(XSliderSelectPrefix, () => {
         ReactiveFormsModule,
         XLayoutModule,
         XTabsModule,
-        XIconModule,
-        XButtonModule
+        XIconComponent,
+        XButtonComponent
       ],
       declarations: [
         TestXSliderSelectComponent,

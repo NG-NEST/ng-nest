@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XApiComponent } from './api.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XApiModule } from './api.module';
+import { XApiComponent } from '@ng-nest/ui/api';
 import { XApiPrefix } from './api.property';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XApiPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XApiModule],
+      imports: [HttpClientTestingModule, XApiComponent],
       declarations: [TestXApiComponent]
     }).compileComponents();
   });

@@ -3,7 +3,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TestComponent } from './test.component';
 
-const testModules = [
+const testModules: Routes = [
+  {
+    path: 'affix',
+    loadComponent: () => import('./modules/affix/affix.component').then((x) => x.TeAffixComponent)
+  },
+  {
+    path: 'icon',
+    loadComponent: () => import('./modules/icon/icon.component').then((x) => x.TeIconComponent)
+  },
+  {
+    path: 'empty',
+    loadComponent: () => import('./modules/empty/empty.component').then((x) => x.TeEmptyComponent)
+  },
+  {
+    path: 'link',
+    loadComponent: () => import('./modules/link/link.component').then((x) => x.TeLinkComponent)
+  },
+  {
+    path: 'alert',
+    loadComponent: () => import('./modules/alert/alert.component').then((x) => x.TeAlertComponent)
+  },
   {
     path: 'table',
     loadChildren: () => import('./modules/table/table.module').then((x) => x.TeTableModule)
@@ -45,10 +65,6 @@ const testModules = [
     path: 'message-box',
     loadChildren: () =>
       import('./modules/message-box/message-box.module').then((x) => x.TeMessageBoxModule)
-  },
-  {
-    path: 'alert',
-    loadChildren: () => import('./modules/alert/alert.module').then((x) => x.TeAlertModule)
   },
   {
     path: 'find',
@@ -101,7 +117,7 @@ const testModules = [
   },
   {
     path: 'badge',
-    loadChildren: () => import('./modules/badge/badge.module').then((x) => x.TeBadgeModule)
+    loadComponent: () => import('./modules/badge/badge.component').then((x) => x.TeBadgeComponent)
   },
   {
     path: 'list',
@@ -131,7 +147,8 @@ const testModules = [
   },
   {
     path: 'button',
-    loadChildren: () => import('./modules/button/button.module').then((x) => x.TeButtonModule)
+    loadComponent: () =>
+      import('./modules/button/button.component').then((x) => x.TeButtonComponent)
   },
   {
     path: 'textarea',
@@ -147,7 +164,8 @@ const testModules = [
   },
   {
     path: 'avatar',
-    loadChildren: () => import('./modules/avatar/avatar.module').then((x) => x.TeAvatarModule)
+    loadComponent: () =>
+      import('./modules/avatar/avatar.component').then((x) => x.TeAvatarComponent)
   },
   {
     path: 'tree-select',

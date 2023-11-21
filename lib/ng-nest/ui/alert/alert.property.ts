@@ -1,4 +1,14 @@
-import { XStatus, XTemplate, XEffect, XProperty, XInputBoolean, XInputNumber, XBoolean, XNumber, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XStatus,
+  XTemplate,
+  XEffect,
+  XProperty,
+  XInputBoolean,
+  XInputNumber,
+  XBoolean,
+  XNumber,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
@@ -14,7 +24,7 @@ const X_CONFIG_NAME = 'alert';
 /**
  * Alert Property
  */
-@Component({ selector: `${XAlertPrefix}-property`, template: '' })
+@Component({ selector: `${XAlertPrefix}-property`, template: '', standalone: true })
 export class XAlertProperty extends XProperty {
   /**
    * @zh_CN 隐藏

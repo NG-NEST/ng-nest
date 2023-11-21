@@ -11,7 +11,7 @@ import { XLayoutModule } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCascadePrefix, () => {
@@ -26,7 +26,7 @@ describe(XCascadePrefix, () => {
         ReactiveFormsModule,
         XLayoutModule,
         XRadioModule,
-        XIconModule
+        XIconComponent
       ],
       declarations: [
         TestXCascadeComponent,

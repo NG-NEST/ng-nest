@@ -14,13 +14,12 @@ import { XComputed, XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
-@Directive({ selector: '[xResizable]' })
+@Directive({ selector: '[xResizable]', standalone: true })
 export class XResizableDirective extends XResizableProperty implements OnInit, OnDestroy {
   @HostBinding('class.x-resizable-disabled') get getDisabled() {
     return !this.xResizable;
   }
-  document = inject(DOCUMENT);
-  ele!: HTMLElement;
+
   cornerPositions: XResizablePosition[] = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
   allPositions: XResizablePosition[] = ['left', 'right', 'top', 'bottom', ...this.cornerPositions];
   positions: XResizablePosition[] = [];
@@ -35,13 +34,11 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
 
   positionNodes: { [key: string]: HTMLElement } = {};
   activatingNodes: HTMLElement[] = [];
-
   firstLoaded = true;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    super();
-    this.ele = this.elementRef.nativeElement;
-  }
+  private document = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef<HTMLElement>);
 
   ngOnInit() {
     this.setMapClass();
@@ -74,8 +71,10 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     }
     if (!direction) return;
 
-    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
-    const { clientWidth, clientHeight, offsetLeft, offsetTop } = this.ele;
+    const evt = event.type.startsWith('touch')
+      ? (event as TouchEvent).targetTouches[0]
+      : (event as MouseEvent);
+    const { clientWidth, clientHeight, offsetLeft, offsetTop } = this.elementRef.nativeElement;
     const { screenX, screenY } = evt;
     const isTouchEvent = event.type.startsWith('touch');
     const moveEvent = isTouchEvent ? 'touchmove' : 'mousemove';
@@ -90,13 +89,23 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     });
     const mouseMoveSub = fromEvent(document, moveEvent)
       .pipe(takeUntil(mouseup))
-      .subscribe((ev) => this.move(ev as MouseEvent | TouchEvent, clientWidth, clientHeight, offsetTop, offsetLeft, screenX, screenY));
+      .subscribe((ev) =>
+        this.move(
+          ev as MouseEvent | TouchEvent,
+          clientWidth,
+          clientHeight,
+          offsetTop,
+          offsetLeft,
+          screenX,
+          screenY
+        )
+      );
 
     this.mouseUpSub.add(mouseMoveSub);
   }
 
   setMapClass() {
-    this.renderer.addClass(this.ele, XResizablePrefix);
+    this.renderer.addClass(this.elementRef.nativeElement, XResizablePrefix);
   }
 
   setPosition() {
@@ -115,7 +124,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     }
     this.createNode(...this.positions);
 
-    const computedStyle = XComputed(this.ele);
+    const computedStyle = XComputed(this.elementRef.nativeElement);
     setTimeout(() => {
       this.minWidth = parseFloat(computedStyle.minWidth);
       this.maxWidth = parseFloat(computedStyle.maxWidth);
@@ -159,15 +168,15 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     for (let cla of classes) {
       const pos = this.renderer.createElement('div');
       this.renderer.addClass(pos, `x-resizable-${cla}`);
-      this.renderer.appendChild(this.ele, pos);
+      this.renderer.appendChild(this.elementRef.nativeElement, pos);
       this.positionNodes[cla] = pos;
     }
   }
 
   initResize(event: MouseEvent | TouchEvent, direction: XResizablePosition) {
     this.direction = direction;
-    this.renderer.addClass(this.ele, `x-resizable-resizing`);
-    let { clientWidth, clientHeight, offsetLeft, offsetTop } = this.ele;
+    this.renderer.addClass(this.elementRef.nativeElement, `x-resizable-resizing`);
+    let { clientWidth, clientHeight, offsetLeft, offsetTop } = this.elementRef.nativeElement;
     this.newBox = { clientWidth, clientHeight, offsetLeft, offsetTop };
     event.stopPropagation();
     this.resizeBegin.emit();
@@ -179,9 +188,11 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   endResize(event: MouseEvent | TouchEvent) {
-    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
+    const evt = event.type.startsWith('touch')
+      ? (event as TouchEvent).targetTouches[0]
+      : (event as MouseEvent);
     this.direction = null;
-    this.renderer.removeClass(this.ele, `x-resizable-resizing`);
+    this.renderer.removeClass(this.elementRef.nativeElement, `x-resizable-resizing`);
     for (const node of this.activatingNodes) {
       this.renderer.removeClass(node, 'x-resizable-activating');
     }
@@ -189,14 +200,32 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     this.resizeEnd.emit({ event: evt, ...this.newBox });
   }
 
-  move(event: MouseEvent | TouchEvent, width: number, height: number, top: number, left: number, screenX: number, screenY: number) {
-    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
+  move(
+    event: MouseEvent | TouchEvent,
+    width: number,
+    height: number,
+    top: number,
+    left: number,
+    screenX: number,
+    screenY: number
+  ) {
+    const evt = event.type.startsWith('touch')
+      ? (event as TouchEvent).targetTouches[0]
+      : (event as MouseEvent);
     const movementX = evt.screenX - screenX;
     const movementY = evt.screenY - screenY;
 
     this.newBox = {
-      clientWidth: width - (['bottom-start', 'left', 'top-start'].includes(this.direction as string) ? movementX : -movementX),
-      clientHeight: height - (['top-start', 'top', 'top-end'].includes(this.direction as string) ? movementY : -movementY),
+      clientWidth:
+        width -
+        (['bottom-start', 'left', 'top-start'].includes(this.direction as string)
+          ? movementX
+          : -movementX),
+      clientHeight:
+        height -
+        (['top-start', 'top', 'top-end'].includes(this.direction as string)
+          ? movementY
+          : -movementY),
       offsetLeft: left + movementX,
       offsetTop: top + movementY
     };
@@ -212,7 +241,12 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     this.resizing.emit({ ...this.newBox, event: evt, direction: this.direction });
   }
 
-  resizeBox(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }) {
+  resizeBox(box: {
+    clientWidth: number;
+    clientHeight: number;
+    offsetLeft: number;
+    offsetTop: number;
+  }) {
     if (this.ghost) return;
     const overMinWidth = !this.minWidth || box.clientWidth >= this.minWidth;
     const underMaxWidth = !this.maxWidth || box.clientWidth <= this.maxWidth;
@@ -222,61 +256,61 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     switch (this.direction) {
       case 'right':
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         break;
       case 'top-end':
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
       case 'bottom-end':
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
       case 'bottom-start':
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
       case 'left':
         console.log(this.minWidth);
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         break;
       case 'top-start':
         if (overMinWidth && underMaxWidth) {
-          this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
-          this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'left', `${box.offsetLeft}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);
         }
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
       case 'top':
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'top', `${box.offsetTop}px`);
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'top', `${box.offsetTop}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
       case 'bottom':
         if (overMinHeight && underMaxHeight) {
-          this.renderer.setStyle(this.ele, 'height', `${box.clientHeight}px`);
+          this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${box.clientHeight}px`);
         }
         break;
     }

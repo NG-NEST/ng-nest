@@ -7,11 +7,11 @@ import { XTabsModule } from '@ng-nest/ui/tabs';
 import { XTabsPrefix, XTabsLayout } from './tabs.property';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
-import { XIconModule } from '@ng-nest/ui/icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTabsPrefix, () => {
@@ -24,8 +24,8 @@ describe(XTabsPrefix, () => {
         FormsModule,
         XTabsModule,
         XRadioModule,
-        XIconModule,
-        XButtonModule
+        XIconComponent,
+        XButtonComponent
       ],
       declarations: [TestXTabsComponent]
     }).compileComponents();

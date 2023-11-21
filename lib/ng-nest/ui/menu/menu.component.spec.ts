@@ -4,7 +4,7 @@ import { XMenuComponent } from './menu.component';
 import { Component, DebugElement, ChangeDetectorRef, NgModule } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMenuModule } from '@ng-nest/ui/menu';
-import { XButtonModule } from '@ng-nest/ui/button';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -16,7 +16,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XMenuPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonModule, TestMenuRoutesModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonComponent, TestMenuRoutesModule],
       declarations: [
         TestXMenuComponent,
         TestXMenuExpandedComponent,
