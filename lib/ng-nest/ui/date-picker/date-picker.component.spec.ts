@@ -14,7 +14,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
@@ -39,7 +39,7 @@ describe(XDatePickerPrefix, () => {
         XSelectModule,
         XInputModule,
         XAutoCompleteComponent,
-        XCascadeModule,
+        XCascadeComponent,
         XColorPickerModule,
         XFindModule,
         XTextareaModule,

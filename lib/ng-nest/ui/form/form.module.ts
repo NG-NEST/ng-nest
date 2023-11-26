@@ -7,8 +7,8 @@ import { XControlComponent } from './control.component';
 import { XFormProperty, XControlProperty } from './form.property';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
-import { XCascadeModule } from '@ng-nest/ui/cascade';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
@@ -31,8 +31,8 @@ const modules = [
   XIconComponent,
   XInputModule,
   XSelectModule,
-  XCascadeModule,
-  XCheckboxModule,
+  XCascadeComponent,
+  XCheckboxComponent,
   XColorPickerModule,
   XDatePickerModule,
   XInputNumberModule,

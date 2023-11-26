@@ -1,9 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { XCheckboxNode } from '@ng-nest/ui/checkbox';
+import { FormsModule } from '@angular/forms';
+import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XData } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-check-all',
+  standalone: true,
+  imports: [FormsModule, XCheckboxComponent],
   templateUrl: './check-all.component.html',
   styleUrls: ['./check-all.component.scss']
 })

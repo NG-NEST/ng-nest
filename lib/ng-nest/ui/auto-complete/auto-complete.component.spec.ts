@@ -14,7 +14,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
-import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
@@ -40,7 +40,7 @@ describe(XAutoCompletePrefix, () => {
         XSelectModule,
         XButtonComponent,
         XInputModule,
-        XCascadeModule,
+        XCascadeComponent,
         XColorPickerModule,
         XFindModule,
         XTextareaModule,

@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
@@ -13,13 +12,25 @@ import {
   inject
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
+import {
+  XIsUndefined,
+  XIsChange,
+  XIsEmpty,
+  XNumber,
+  XResize,
+  XConfigService,
+  XResizeObserver
+} from '@ng-nest/ui/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XProgressModule } from '@ng-nest/ui/progress';
 
 @Component({
   selector: `${XCarouselPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XButtonComponent, XProgressModule],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -39,22 +50,15 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   count = 0;
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   get page() {
     return Number(this.active) + 1;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
-
   ngOnInit() {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.setClassMap();
   }
 

@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-async',
+  standalone: true,
+  imports: [FormsModule, XCheckboxComponent, XButtonComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })

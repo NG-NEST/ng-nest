@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { XCascadeNode } from '@ng-nest/ui/cascade';
+import { FormsModule } from '@angular/forms';
+import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
 import { XData } from '@ng-nest/ui/core';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-hover',
+  standalone: true,
+  imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent],
   templateUrl: './hover.component.html',
   styleUrls: ['./hover.component.scss']
 })

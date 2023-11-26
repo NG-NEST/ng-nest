@@ -23,11 +23,11 @@ export const mainRoutes: Routes = [
 ];
 
 export const testRoutes: Routes = [
-  // {
-  //   path: `test`,
-  //   loadChildren: () => import('../main/test/test.module').then((x) => x.TestModule)
-  // },
-  // { path: '', redirectTo: `test`, pathMatch: 'full' }
+  { path: '', redirectTo: `test`, pathMatch: 'full' },
+  {
+    path: `test`,
+    loadChildren: () => import('../main/test/test-routes.modules').then((x) => x.TestRoutes)
+  }
 ];
 
 /**
@@ -35,10 +35,22 @@ export const testRoutes: Routes = [
  */
 export const layoutRoutes: Routes = [
   { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('../main//home/home.module').then((x) => x.HomeModule) },
-  { path: 'demo', loadChildren: () => import('../main/demo/demo.module').then((x) => x.DemoModule) },
-  { path: 'docs', loadChildren: () => import('../main/docs/docs.module').then((x) => x.NsDocsModule) },
-  { path: 'news', loadChildren: () => import('../main/news/news.module').then((x) => x.NewsModule) },
+  {
+    path: 'home',
+    loadChildren: () => import('../main/home/home.module').then((x) => x.HomeModule)
+  },
+  {
+    path: 'demo',
+    loadChildren: () => import('../main/demo/demo.module').then((x) => x.DemoModule)
+  },
+  {
+    path: 'docs',
+    loadChildren: () => import('../main/docs/docs.module').then((x) => x.NsDocsModule)
+  },
+  {
+    path: 'news',
+    loadChildren: () => import('../main/news/news.module').then((x) => x.NewsModule)
+  },
 
   ...shareRoutes
 ];

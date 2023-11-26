@@ -1,30 +1,48 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  OnDestroy
+  OnDestroy,
+  inject,
+  OnInit
 } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
-import { DatePipe, LowerCasePipe } from '@angular/common';
-import { XI18nService, XI18nCalendar } from '@ng-nest/ui/i18n';
+import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { XI18nService, XI18nCalendar, XI18nDirective } from '@ng-nest/ui/i18n';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XCalendarPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XLinkComponent,
+    XTooltipModule,
+    XRadioModule,
+    XDatePickerModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XI18nDirective
+  ],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DatePipe, LowerCasePipe]
 })
-export class XCalendarComponent extends XCalendarProperty implements OnChanges, OnDestroy {
+export class XCalendarComponent extends XCalendarProperty implements OnInit, OnChanges, OnDestroy {
   now: Date = new Date();
   datetime: Date = new Date();
   activatedDate: Date = new Date();
@@ -36,18 +54,11 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   ];
 
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public datePipe: DatePipe,
-    public lowerCasePipe: LowerCasePipe,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private datePipe = inject(DatePipe);
+  private lowerCasePipe = inject(LowerCasePipe);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange
@@ -115,11 +126,16 @@ export class XCalendarComponent extends XCalendarProperty implements OnChanges, 
   }
 
   getLocaleMonth(date: Date) {
-    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
+    return (this.locale as any)[
+      this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)
+    ];
   }
 
   dateOnChange(date: Date) {
-    if (this.datePipe.transform(date, 'yyyy-MM-dd') !== this.datePipe.transform(this.activatedDate, 'yyyy-MM-dd')) {
+    if (
+      this.datePipe.transform(date, 'yyyy-MM-dd') !==
+      this.datePipe.transform(this.activatedDate, 'yyyy-MM-dd')
+    ) {
       this.activatedDate = date;
       this.dateChange.emit(this.activatedDate);
       this.cdr.markForCheck();

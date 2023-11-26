@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XTransferComponent } from './transfer.component';
 import { FormsModule } from '@angular/forms';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XInputModule } from '@ng-nest/ui/input';
@@ -23,7 +23,7 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
     FormsModule,
     DragDropModule,
     XOutletDirective,
-    XCheckboxModule,
+    XCheckboxComponent,
     XButtonComponent,
     XInputModule,
     XControlValueAccessor,

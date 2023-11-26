@@ -22,7 +22,7 @@ const X_CONFIG_NAME = 'carousel';
 /**
  * Carousel Property
  */
-@Component({ selector: `${XCarouselPrefix}-property`, template: '' })
+@Component({ selector: `${XCarouselPrefix}-property`, template: '', standalone: true })
 export class XCarouselProperty extends XProperty {
   /**
    * @zh_CN 当前激活的幻灯片索引
@@ -48,7 +48,9 @@ export class XCarouselProperty extends XProperty {
    * @zh_CN 幻灯片轮播方向
    * @en_US Slide rotation direction
    */
-  @Input() @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal') direction?: XCarouselDirection;
+  @Input()
+  @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal')
+  direction?: XCarouselDirection;
   /**
    * @zh_CN 自动切换
    * @en_US Automatic switching
@@ -124,7 +126,7 @@ export const XCarouselPanelPrefix = 'x-carousel-panel';
 /**
  * Carousel Panel Property
  */
-@Component({ selector: `${XCarouselPanelPrefix}-property`, template: '' })
+@Component({ selector: `${XCarouselPanelPrefix}-property`, template: '', standalone: true })
 export class XCarouselPanelProperty extends XProperty {
   /**
    * @zh_CN 激活当前幻灯片

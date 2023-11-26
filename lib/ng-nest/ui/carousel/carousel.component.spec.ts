@@ -1,11 +1,10 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCarouselComponent } from './carousel.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCarouselModule } from '@ng-nest/ui/carousel';
+import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carousel';
 import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -23,7 +22,8 @@ describe(XCarouselPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XCarouselModule,
+        XCarouselComponent,
+        XCarouselPanelComponent,
         XButtonComponent,
         XContainerModule,
         XRowComponent,

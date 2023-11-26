@@ -1,5 +1,6 @@
 // Tag
 
+@use 'sass:math';
 @import '../../style/themes/default';
 @import '../../style/mixins/index';
 @import './param';
@@ -21,7 +22,6 @@
     border-radius: 50%;
     cursor: pointer;
     padding: 0.0625rem;
-    width: 0.8125rem;
     font-size: calc(#{$--x-font-size-small} + 0.0625rem);
     transition: 0.3s;
     &:hover {
@@ -245,9 +245,6 @@
     height: $height;
     line-height: $height;
     padding: 0 $padding;
-    > .x-icon {
-      right: -$padding/2;
-    }
   }
 }
 

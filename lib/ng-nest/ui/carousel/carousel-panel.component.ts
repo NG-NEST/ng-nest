@@ -6,24 +6,26 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Host,
-  Optional
+  inject,
+  OnDestroy
 } from '@angular/core';
 import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.property';
 import { XDropAnimation, XConfigService } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
-import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './carousel-panel.component.html',
   styleUrls: ['./carousel-panel.component.scss'],
   animations: [XDropAnimation],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCarouselPanelComponent extends XCarouselPanelProperty implements OnInit {
+export class XCarouselPanelComponent extends XCarouselPanelProperty implements OnInit, OnDestroy {
   index!: number;
   width!: number;
   height!: number;
@@ -34,39 +36,37 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   inStage = false;
   updateSub = new BehaviorSubject(false);
   unSubject = new Subject<void>();
-
-  constructor(
-    @Optional() @Host() public carousel: XCarouselComponent,
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public sanitizer: DomSanitizer,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  carousel = inject(XCarouselComponent, { optional: true, host: true });
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.carousel.count++;
-    this.carousel.start++;
-    this.index = this.carousel.start;
-    this.setClass('x-carousel-card', Boolean(this.carousel.card));
-    this.carousel.panelChanges.push(this.updateSub);
+    if (this.carousel) {
+      this.carousel.count++;
+      this.carousel.start++;
+      this.index = this.carousel.start;
+      this.setClass('x-carousel-card', Boolean(this.carousel.card));
+      this.carousel.panelChanges.push(this.updateSub);
+    }
     this.updateSub.pipe(takeUntil(this.unSubject)).subscribe((x) => {
       if (x) this.update();
     });
   }
 
   ngOnDestroy(): void {
-    this.carousel.start--;
-    const idx = this.carousel.panelChanges.indexOf(this.updateSub);
-    this.carousel.panelChanges.splice(idx, 1);
+    if (this.carousel) {
+      this.carousel.start--;
+      const idx = this.carousel.panelChanges.indexOf(this.updateSub);
+      this.carousel.panelChanges.splice(idx, 1);
+    }
     this.unSubject.next();
     this.unSubject.complete();
   }
 
   setActive() {
-    const isActive: boolean = this.carousel.active === this.index;
+    const isActive: boolean = this.carousel?.active === this.index;
     if (this.active !== isActive) {
       this.active = isActive;
       this.setClass('x-activated', this.active);
@@ -74,9 +74,9 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   }
 
   setStyles() {
+    if (!this.carousel) return;
     this.width = this.elementRef.nativeElement.offsetWidth;
     this.height = this.elementRef.nativeElement.offsetHeight;
-
     let translate: number;
     let offset: number = Number(this.carousel.active) - this.index;
     let distance = this.width;
@@ -87,10 +87,10 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       }
       this.inStage = Math.round(Math.abs(offset)) <= 1;
       this.setClass('x-carousel-in-stage', this.inStage);
-      translate = this.calcCardTranslate(this.index, Number(this.carousel.active));
+      translate = this.calcCardTranslate(this.index, Number(this.carousel.active))!;
       this.scale = offset === 0 ? 1 : this.cardScale;
     } else {
-      if (this.carousel.direction === 'vertical') {
+      if (this.carousel?.direction === 'vertical') {
         distance = this.height;
         translateType = 'translateY';
       }
@@ -110,10 +110,15 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       this.carousel.start === Math.abs(offset) ||
       Boolean(this.carousel.card);
     this.setClass('x-carousel-animating', this.animating);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'transform', `${translateType}(${translate}px) scale(${this.scale})`);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'transform',
+      `${translateType}(${translate}px) scale(${this.scale})`
+    );
   }
 
   calcCardTranslate(index: number, activeIndex: number) {
+    if (!this.carousel) return;
     const parentWidth = this.carousel.carousel.nativeElement.offsetWidth;
     let offset: number = index - activeIndex;
     let activeFirstOrLast = this.carousel.start > 1 && this.carousel.start === Math.abs(offset);
@@ -134,6 +139,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   }
 
   panelClick() {
+    if (!this.carousel) return;
     if (this.carousel.card && this.carousel.active !== this.index) {
       this.carousel.autoplay && this.carousel.resetInterval();
       this.carousel.setActiveItem(this.index);

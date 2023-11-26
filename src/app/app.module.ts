@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MainRoutesModule } from '../main/routes.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '@environments';
 
 @NgModule({
   declarations: [AppComponent],

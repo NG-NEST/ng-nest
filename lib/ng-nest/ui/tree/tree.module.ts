@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { XTreeComponent } from './tree.component';
 import { XTreeNodeComponent } from './tree-node.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XTreeProperty, XTreeNodeProperty } from './tree.property';
@@ -20,7 +20,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     DragDropModule,
     XIconComponent,
-    XCheckboxModule,
+    XCheckboxComponent,
     XOutletDirective,
     XLinkComponent,
     ScrollingModule,

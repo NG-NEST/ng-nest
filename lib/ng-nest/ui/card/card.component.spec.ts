@@ -1,11 +1,10 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCardComponent } from './card.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCardModule } from '@ng-nest/ui/card';
+import { XCardComponent } from '@ng-nest/ui/card';
 import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -22,7 +21,7 @@ describe(XCardPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XCardModule,
+        XCardComponent,
         XButtonComponent,
         XContainerModule,
         XRowComponent,

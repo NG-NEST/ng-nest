@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { XCascadeNode } from '@ng-nest/ui/cascade';
+import { FormsModule } from '@angular/forms';
+import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
 import { XData, XSize } from '@ng-nest/ui/core';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-size',
+  standalone: true,
+  imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent, XRadioModule],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']
 })

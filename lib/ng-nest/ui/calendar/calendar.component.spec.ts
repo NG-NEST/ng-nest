@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCalendarModule, XCalendarComponent } from '@ng-nest/ui/calendar';
+import { XCalendarComponent } from '@ng-nest/ui/calendar';
 import { FormsModule } from '@angular/forms';
 import { XCalendarPrefix, XCalendarData } from './calendar.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -24,7 +24,7 @@ describe(XCalendarPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XCalendarModule,
+        XCalendarComponent,
         XButtonComponent,
         XContainerModule,
         XRowComponent,

@@ -1,12 +1,10 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XCheckboxComponent } from './checkbox.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
@@ -15,7 +13,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XDatePickerModule } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerModule } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
@@ -32,14 +30,14 @@ describe(XCheckboxPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XCheckboxModule,
+        XCheckboxComponent,
         XButtonComponent,
         XAutoCompleteComponent,
         XSelectModule,
         XDatePickerModule,
         XRowComponent,
         XColComponent,
-        XCascadeModule,
+        XCascadeComponent,
         XColorPickerModule,
         XFindModule,
         XTextareaModule,

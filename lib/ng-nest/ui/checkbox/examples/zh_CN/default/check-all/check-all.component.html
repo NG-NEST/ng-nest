@@ -1,13 +1,11 @@
-<x-row>
-  <x-col span="24">
-    <x-checkbox
-      [data]="checkAllData"
-      [(ngModel)]="checkAll"
-      (ngModelChange)="change($event)"
-      [indeterminate]="indeterminate"
-    ></x-checkbox>
-  </x-col>
-  <x-col span="24">
-    <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-checkbox
+    [data]="checkAllData"
+    [(ngModel)]="checkAll"
+    (ngModelChange)="change($event)"
+    [indeterminate]="indeterminate"
+  ></x-checkbox>
+</div>
+<div class="row">
+  <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
+</div>

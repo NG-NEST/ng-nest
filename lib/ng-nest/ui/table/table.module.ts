@@ -5,7 +5,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
-import { XCheckboxModule } from '@ng-nest/ui/checkbox';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import {
@@ -39,7 +39,7 @@ import { XDragModule } from '@ng-nest/ui/drag';
     FormsModule,
     XPaginationModule,
     XOutletDirective,
-    XCheckboxModule,
+    XCheckboxComponent,
     XIconComponent,
     XButtonComponent,
     ScrollingModule,

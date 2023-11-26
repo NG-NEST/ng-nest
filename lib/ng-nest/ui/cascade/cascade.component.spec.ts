@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XCascadeComponent } from './cascade.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCascadeModule } from '@ng-nest/ui/cascade';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
@@ -21,7 +21,7 @@ describe(XCascadePrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XThemeModule,
-        XCascadeModule,
+        XCascadeComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,

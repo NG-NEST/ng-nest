@@ -8,22 +8,49 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  inject,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XClearClass, XConfigService, XBoolean, XJustify, XAlign, XDirection } from '@ng-nest/ui/core';
-import { XValueAccessor } from '@ng-nest/ui/base-form';
+import {
+  XIsChange,
+  XSetData,
+  XClearClass,
+  XConfigService,
+  XBoolean,
+  XJustify,
+  XAlign,
+  XDirection
+} from '@ng-nest/ui/core';
+import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XTagModule } from '@ng-nest/ui/tag';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XTagModule,
+    XOutletDirective,
+    XControlValueAccessor
+  ],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCheckboxComponent)]
 })
-export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
+export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnChanges, OnDestroy {
   @ViewChild('checkbox', { static: true }) checkbox!: ElementRef<HTMLElement>;
   checkboxType!: 'initial' | 'button' | 'icon' | 'tag';
 
@@ -47,17 +74,18 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   nodes: XCheckboxNode[] = [];
   single: boolean = false;
   private _unSubject = new Subject<void>();
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(this.checkbox.nativeElement, this.renderer, this.justify as XJustify, this.align as XAlign, this.direction as XDirection);
+    this.setFlex(
+      this.checkbox.nativeElement,
+      this.renderer,
+      this.justify as XJustify,
+      this.align as XAlign,
+      this.direction as XDirection
+    );
     this.setClassMap();
     this.setCheckboxType();
   }

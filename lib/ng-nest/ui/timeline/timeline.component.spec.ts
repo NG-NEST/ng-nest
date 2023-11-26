@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XTimelineModule } from '@ng-nest/ui/timeline';
 import { XTimelinePrefix, XTimelineNode } from './timeline.property';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
-import { XCardModule } from '@ng-nest/ui/card';
+import { XCardComponent } from '@ng-nest/ui/card';
 import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -23,7 +23,7 @@ describe(XTimelinePrefix, () => {
         FormsModule,
         XThemeModule,
         XTimelineModule,
-        XCardModule,
+        XCardComponent,
         XTimeAgoModule,
         XRadioModule
       ],

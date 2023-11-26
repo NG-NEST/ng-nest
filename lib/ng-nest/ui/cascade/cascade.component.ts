@@ -12,26 +12,60 @@ import {
   OnChanges,
   ViewContainerRef,
   ViewChild,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XCascadeNode, XCascadeProperty } from './cascade.property';
-import { XIsEmpty, XIsChange, XSetData, XGetChildren, XCorner, XClearClass, XParents } from '@ng-nest/ui/core';
-import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import {
+  XIsEmpty,
+  XIsChange,
+  XSetData,
+  XGetChildren,
+  XCorner,
+  XClearClass,
+  XParents,
+  XConfigService
+} from '@ng-nest/ui/core';
+import {
+  XPortalService,
+  XPortalOverlayRef,
+  XPortalConnectedPosition,
+  XPortalModule
+} from '@ng-nest/ui/portal';
+import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT } from '@angular/common';
+import { XValueAccessor,XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XPortalModule,
+    ReactiveFormsModule,
+    XInputModule,
+    XControlValueAccessor
+  ],
   templateUrl: './cascade.component.html',
   styleUrls: ['./cascade.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCascadeComponent)]
 })
-export class XCascadeComponent extends XCascadeProperty implements OnInit, OnChanges {
+export class XCascadeComponent
+  extends XCascadeProperty
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+{
   @ViewChild('cascade', { static: true }) cascade!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
@@ -55,27 +89,33 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
   protalHeight!: number;
   maxNodes: number = 6;
   protalTobottom: boolean = true;
-  override valueTplContext: { $node: any; $nodes: any; $isValue: boolean } = { $node: null, $nodes: null, $isValue: true };
+  override valueTplContext: { $node: any; $nodes: any; $isValue: boolean } = {
+    $node: null,
+    $nodes: null,
+    $isValue: true
+  };
   valueChange: Subject<any> = new Subject();
   dataChange: Subject<any> = new Subject();
   positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
-  document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    public elementRef: ElementRef,
-    private overlay: Overlay
-  ) {
-    super();
-  }
+  private document = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private elementRef = inject(ElementRef);
+  private overlay = inject(Overlay);
+  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(this.cascade.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.cascade.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setClassMap();
     this.setSubject();
     this.setParantScroll();
@@ -215,13 +255,15 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      if (place !== this.placement) {
-        this.positionChange.next(place);
-        this.cdr.detectChanges();
-      }
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+        if (place !== this.placement) {
+          this.positionChange.next(place);
+          this.cdr.detectChanges();
+        }
+      });
   }
 
   setInstance() {
@@ -240,7 +282,8 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, OnCha
       inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node),
+      nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) =>
+        this.onNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { XCalendarData } from '@ng-nest/ui/calendar';
+import { XCalendarComponent, XCalendarData } from '@ng-nest/ui/calendar';
 import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ex-header',
+  standalone: true,
+  imports: [XCalendarComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   providers: [DatePipe]

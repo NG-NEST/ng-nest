@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { XCheckboxNode } from '@ng-nest/ui/checkbox';
+import { FormsModule } from '@angular/forms';
+import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XData } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-icon',
+  standalone: true,
+  imports: [FormsModule, XCheckboxComponent],
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })

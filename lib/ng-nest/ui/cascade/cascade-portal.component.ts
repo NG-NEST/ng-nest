@@ -8,16 +8,22 @@ import {
   OnDestroy,
   HostBinding,
   HostListener,
-  TemplateRef
+  TemplateRef,
+  inject
 } from '@angular/core';
 import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
 import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { CommonModule } from '@angular/common';
+import { XListModule } from '@ng-nest/ui/list';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade-portal',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XListModule],
   templateUrl: './cascade-portal.component.html',
   styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -51,8 +57,8 @@ export class XCascadePortalComponent implements OnInit, OnDestroy {
   hoverDelayUnSub = new Subject<void>();
   inputCom!: XInputComponent;
   private _unSubject = new Subject<void>();
-
-  constructor(public ngZone: NgZone, public cdr: ChangeDetectorRef) {}
+  private ngZone = inject(NgZone);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.init();

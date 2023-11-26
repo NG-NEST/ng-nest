@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { XCascadeNode } from '@ng-nest/ui/cascade';
+import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
 import { XData } from '@ng-nest/ui/core';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-bordered',
+  standalone: true,
+  imports: [XRowComponent, XColComponent, XCascadeComponent],
   templateUrl: './bordered.component.html',
   styleUrls: ['./bordered.component.scss']
 })
