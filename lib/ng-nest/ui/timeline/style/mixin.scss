@@ -7,6 +7,12 @@
 
 @mixin timeline {
   display: block;
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
   > ul {
     padding-left: math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
     > li {

@@ -47,8 +47,10 @@
     transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
   }
   &-droplist {
+    margin: 0;
     height: 100%;
     padding: 0.25rem;
+    list-style: none;
     &.cdk-drop-list-dragging {
       .#{$--x-transfer}-item {
         &:hover {
@@ -101,6 +103,7 @@
 }
 
 @mixin transfer-li {
+  margin: 0;
   padding: 0.125rem 0.25rem;
   border-radius: $--x-border-radius;
   display: flex;
