@@ -1,4 +1,19 @@
-## [16.0.10](https://github.com/NG-NEST/ng-nest/compare/16.0.9...16.0.10) (2023-11-06)
+## [17.0.1](https://github.com/NG-NEST/ng-nest/compare/17.0.0...17.0.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* **angular17:** @ replace ([3b21cfd](https://github.com/NG-NEST/ng-nest/commit/3b21cfdcf15d4e60db8b4ebaeebcc313674f2bad))
+* **style:** fix global style ul li ([1133ec7](https://github.com/NG-NEST/ng-nest/commit/1133ec781addc2063f0253375e02b186ada85a43))
+
+
+### Features
+
+* **module:slider-select:** add tooltip template ([a0e79c2](https://github.com/NG-NEST/ng-nest/commit/a0e79c289ac177f1d07bd1f2a4ee31fb77890603)), closes [#85](https://github.com/NG-NEST/ng-nest/issues/85)
+
+
+
+## [16.0.10](https://github.com/NG-NEST/ng-nest/compare/16.0.9...16.0.10) (2023-11-07)
 
 
 ### Bug Fixes
