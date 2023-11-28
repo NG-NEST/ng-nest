@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [FormsModule, XColorPickerComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

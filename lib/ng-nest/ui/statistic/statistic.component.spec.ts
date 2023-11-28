@@ -9,7 +9,7 @@ import { XStatisticModule } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { XCardComponent } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +27,7 @@ describe(XStatisticPrefix, () => {
         XStatisticModule,
         XButtonComponent,
         XCardComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

@@ -11,12 +11,28 @@ import {
   TemplateRef,
   ViewContainerRef,
   OnDestroy,
-  Optional,
-  Inject,
-  HostBinding
+  HostBinding,
+  inject,
+  OnInit,
+  AfterViewInit
 } from '@angular/core';
-import { XMoveBoxAnimation, XIsChange, XIsFunction, XConfigService, XIsEmpty, XClearClass, XOpacityAnimation } from '@ng-nest/ui/core';
-import { XDialogPrefix, XDialogOverlayRef, XDialogProperty, XDialogContainer, XDialogAction, X_DIALOG_CONTAINER } from './dialog.property';
+import {
+  XMoveBoxAnimation,
+  XIsChange,
+  XIsFunction,
+  XConfigService,
+  XIsEmpty,
+  XClearClass,
+  XOpacityAnimation
+} from '@ng-nest/ui/core';
+import {
+  XDialogPrefix,
+  XDialogOverlayRef,
+  XDialogProperty,
+  XDialogContainer,
+  XDialogAction,
+  X_DIALOG_CONTAINER
+} from './dialog.property';
 import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
@@ -25,23 +41,29 @@ import { map, takeUntil } from 'rxjs/operators';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
 import { XDialogContainerComponent } from './dialog-container.component';
+import { CommonModule } from '@angular/common';
+import { XAlertComponent } from '@ng-nest/ui/alert';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XDialogPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XAlertComponent, XButtonComponent, XButtonsComponent, XOutletDirective],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
-export class XDialogComponent extends XDialogProperty implements OnChanges, OnDestroy {
+export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   @HostBinding('class.x-dialog-visible') get getVisible() {
     return this.visible;
   }
   @ViewChild('dialogTpl') dialogTpl!: TemplateRef<void>;
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
-  scrollStrategy: BlockScrollStrategy;
+  scrollStrategy!: BlockScrollStrategy;
   locale: XI18nDialog = {};
   overlayElement?: HTMLElement;
   dialogContent?: HTMLElement;
@@ -78,22 +100,18 @@ export class XDialogComponent extends XDialogProperty implements OnChanges, OnDe
       : {};
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public viewContainerRef: ViewContainerRef,
-    public protalService: XPortalService,
-    public overlay: Overlay,
-    public i18n: XI18nService,
-    public configService: XConfigService,
-    @Optional() @Inject(X_DIALOG_CONTAINER) public container?: XDialogContainerComponent
-  ) {
-    super();
-    this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
+  private viewContainerRef = inject(ViewContainerRef);
+  private protalService = inject(XPortalService);
+  private overlay = inject(Overlay);
+  private i18n = inject(XI18nService);
+  container = inject<XDialogContainerComponent>(X_DIALOG_CONTAINER, { optional: true });
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
     this.i18n.localeChange
       .pipe(
         map((x) => x.dialog as XI18nDialog),

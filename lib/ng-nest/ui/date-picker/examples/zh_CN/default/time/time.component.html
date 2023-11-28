@@ -1,15 +1,9 @@
-<x-row>
-  <x-col span="6">
-    <x-date-picker [(ngModel)]="model1" label="时分秒" [type]="'date-time'"></x-date-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="6">
-    <x-date-picker [(ngModel)]="model2" label="时分" [type]="'date-minute'"></x-date-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="6">
-    <x-date-picker [(ngModel)]="model3" label="时" [type]="'date-hour'"></x-date-picker>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-date-picker [(ngModel)]="model1" label="时分秒" [type]="'date-time'"></x-date-picker>
+</div>
+<div class="row">
+  <x-date-picker [(ngModel)]="model2" label="时分" [type]="'date-minute'"></x-date-picker>
+</div>
+<div class="row">
+  <x-date-picker [(ngModel)]="model3" label="时" [type]="'date-hour'"></x-date-picker>
+</div>

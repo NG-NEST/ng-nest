@@ -1,21 +1,39 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  inject
 } from '@angular/core';
 import { XCommentPrefix, XCommentNode, XCommentProperty } from './comment.property';
 import { XIsEmpty, XIsChange, XSetData, XGetChildren, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nPipe } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XTextRetractModule } from '@ng-nest/ui/text-retract';
+import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { CommonModule } from '@angular/common';
+import { XCommentReplyComponent } from './comment-reply.component';
 
 @Component({
   selector: `${XCommentPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XI18nPipe,
+    XLinkComponent,
+    XAvatarComponent,
+    XButtonComponent,
+    XButtonsComponent,
+    XTextRetractModule,
+    XTimeAgoModule,
+    XCommentReplyComponent
+  ],
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -24,16 +42,9 @@ import { takeUntil } from 'rxjs/operators';
 export class XCommentComponent extends XCommentProperty implements OnChanges {
   nodes: XCommentNode[] = [];
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public i18n: XI18nService,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => {
@@ -87,7 +98,7 @@ export class XCommentComponent extends XCommentProperty implements OnChanges {
   private setData() {
     XSetData<XCommentNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XCommentNode>(x, y, 0));
-      this.cdr.detectChanges();
+      this.cdr?.detectChanges();
     });
   }
 }

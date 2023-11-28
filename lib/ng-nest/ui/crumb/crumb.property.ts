@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'crumb';
 /**
  * Crumb Property
  */
-@Component({ selector: `${XCrumbPrefix}-property`, template: '' })
+@Component({ selector: `${XCrumbPrefix}-property`, template: '', standalone: true })
 export class XCrumbProperty extends XProperty {
   /**
    * @zh_CN 节点数据

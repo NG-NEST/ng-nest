@@ -1,11 +1,10 @@
 // import {} from 'jasmine';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { XDrawerComponent } from './drawer.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { XDrawerModule } from '@ng-nest/ui/drawer';
+import { XDrawerComponent } from '@ng-nest/ui/drawer';
 import { XDrawerPrefix } from './drawer.property';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -22,14 +21,19 @@ describe(XDrawerPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XThemeModule,
-        XDrawerModule,
+        XDrawerComponent,
         FormsModule,
         XInputModule,
         XIconComponent,
         XRadioModule,
         XButtonComponent
       ],
-      declarations: [TestXDrawerComponent, TestXDrawerTitleComponent, TestXDrawerCustomComponent, TestXDrawerMultipleComponent]
+      declarations: [
+        TestXDrawerComponent,
+        TestXDrawerTitleComponent,
+        TestXDrawerCustomComponent,
+        TestXDrawerMultipleComponent
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {

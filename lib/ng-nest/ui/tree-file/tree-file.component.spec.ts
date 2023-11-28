@@ -9,7 +9,7 @@ import { XTreeFileModule } from '@ng-nest/ui/tree-file';
 import { FormsModule } from '@angular/forms';
 import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -24,7 +24,7 @@ describe(XTreeFilePrefix, () => {
         HttpClientTestingModule,
         XTreeFileModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

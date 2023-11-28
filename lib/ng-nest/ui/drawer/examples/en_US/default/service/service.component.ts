@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { XDrawerService } from '@ng-nest/ui/drawer';
 import { ExServiceDrawerComponent } from './service-drawer.component';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-service',
+  standalone: true,
+  imports: [XButtonComponent],
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss']
 })

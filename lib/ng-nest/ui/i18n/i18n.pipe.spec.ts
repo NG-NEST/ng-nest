@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { XI18nPipe, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XI18nPrefix } from './i18n.property';
-import { XCommentModule, XCommentNode } from '@ng-nest/ui/comment';
+import { XCommentComponent, XCommentNode } from '@ng-nest/ui/comment';
 import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService } from './i18n.service';
@@ -18,7 +18,7 @@ describe(XI18nPrefix, () => {
         XI18nDirective,
         HttpClientTestingModule,
         XButtonComponent,
-        XCommentModule
+        XCommentComponent
       ],
       declarations: [TestXI18nComponent]
     }).compileComponents();

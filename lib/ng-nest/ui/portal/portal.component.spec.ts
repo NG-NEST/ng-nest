@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
-import { XPortalModule } from '@ng-nest/ui/portal';
 import { PortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
@@ -10,7 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(PortalPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XPortalModule],
+      imports: [HttpClientTestingModule],
       declarations: [TestXPortalComponent]
     }).compileComponents();
   });

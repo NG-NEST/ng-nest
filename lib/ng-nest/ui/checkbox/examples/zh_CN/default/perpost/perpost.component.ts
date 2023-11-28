@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
@@ -20,10 +20,10 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     XSelectModule,
     XButtonComponent,
     XInputModule,
-    XDatePickerModule,
+    XDatePickerComponent,
     XAutoCompleteComponent,
     XCascadeComponent,
-    XColorPickerModule,
+    XColorPickerComponent,
     XTimePickerModule
   ],
   templateUrl: './perpost.component.html',

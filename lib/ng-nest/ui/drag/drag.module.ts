@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { XDragDirective } from './drag.directive';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [XDragDirective],
   exports: [XDragDirective],
-  imports: [CommonModule]
+  imports: [XDragDirective]
 })
 export class XDragModule {}

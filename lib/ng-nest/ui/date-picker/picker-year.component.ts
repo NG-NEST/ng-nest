@@ -3,16 +3,19 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Renderer2,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
 import { XDateCell, XPickerYearProperty } from './date-picker.property';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'x-picker-year',
+  standalone: true,
+  imports: [CommonModule, XLinkComponent],
   templateUrl: './picker-year.component.html',
   styleUrls: ['./picker-year.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -48,9 +51,9 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
     }
   }
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public datePipe: DatePipe, public configService: XConfigService) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private datePipe = inject(DatePipe);
+  configService = inject(XConfigService);
 
   ngOnChanges(simples: SimpleChanges) {
     const { display } = simples;
@@ -96,20 +99,24 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
           item.isRangeHoverStartLeft = time < start! && itemTime === start!;
           item.isRangeHoverStartRight = time > start! && itemTime === start!;
           item.isRangeHover =
-            (time < start! && itemTime >= time && itemTime < start!) || (time > start! && itemTime > start! && itemTime <= time);
+            (time < start! && itemTime >= time && itemTime < start!) ||
+            (time > start! && itemTime > start! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < start!;
           item.isRangeHoverEnd = itemTime === time && time > start!;
         } else if (XIsNull(start) && !XIsNull(end)) {
           item.isRangeHoverEndLeft = time < end! && itemTime === end!;
           item.isRangeHoverEndRight = time > end! && itemTime === end!;
-          item.isRangeHover = (time < end! && itemTime >= time && itemTime < end!) || (time > end! && itemTime > end! && itemTime <= time);
+          item.isRangeHover =
+            (time < end! && itemTime >= time && itemTime < end!) ||
+            (time > end! && itemTime > end! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < end!;
           item.isRangeHoverEnd = itemTime === time && time > end!;
         } else if (!XIsNull(start) && !XIsNull(end)) {
           item.isRangeHoverStartLeft = time < start! && itemTime === start!;
           item.isRangeHoverEndRight = time > end! && itemTime === end!;
           item.isRangeHover =
-            (time < start! && itemTime >= time && itemTime < start!) || (time > end! && itemTime > end! && itemTime <= time);
+            (time < start! && itemTime >= time && itemTime < start!) ||
+            (time > end! && itemTime > end! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < start!;
           item.isRangeHoverEnd = itemTime === time && time > end!;
           if (this.rangeType === 'start') {

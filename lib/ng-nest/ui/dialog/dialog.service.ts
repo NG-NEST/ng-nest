@@ -1,13 +1,13 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { Injectable, Renderer2, RendererFactory2, TemplateRef } from '@angular/core';
+import { Injectable, RendererFactory2, TemplateRef, inject } from '@angular/core';
 import { fillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
 import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XDialogService {
   default: XDialogRefOption = {
     placement: 'center',
@@ -22,15 +22,13 @@ export class XDialogService {
   };
   configDefault?: XDialogConfig;
 
-  renderer!: Renderer2;
+  private portalService = inject(XPortalService);
+  private configService = inject(XConfigService);
+  private overlay = inject(Overlay);
+  private rendererFactory = inject(RendererFactory2);
+  private renderer = this.rendererFactory.createRenderer(null, null);
 
-  constructor(
-    public portalService: XPortalService,
-    public configService: XConfigService,
-    public overlay: Overlay,
-    public rendererFactory: RendererFactory2
-  ) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
+  constructor() {
     this.configDefault = this.configService.getConfigForComponent(X_DIALOG_CONFIG_NAME);
     Object.assign(this.default, this.configDefault);
   }

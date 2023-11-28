@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XColorComponent } from './color.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XColorModule } from '@ng-nest/ui/color';
+import { XColorComponent } from '@ng-nest/ui/color';
 import { XColorPrefix } from './color.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -13,7 +12,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XColorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XColorModule, XRowComponent, XColComponent],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XColorComponent,
+        XRowComponent,
+        XColComponent
+      ],
       declarations: [TestXColorComponent]
     }).compileComponents();
   });
@@ -37,7 +43,14 @@ describe(XColorPrefix, () => {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="12"><x-color label="Primary"></x-color></x-col>
-      <x-col span="12"><x-color class="black" label="Background" hex="#f5f7fa" [amounts]="[0.3, 0.6, 0.9]"></x-color></x-col>
+      <x-col span="12"
+        ><x-color
+          class="black"
+          label="Background"
+          hex="#f5f7fa"
+          [amounts]="[0.3, 0.6, 0.9]"
+        ></x-color
+      ></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="12"><x-color label="Success" hex="#67c23a"></x-color></x-col>
@@ -47,21 +60,31 @@ describe(XColorPrefix, () => {
     </x-row>
     <x-row space="1">
       <x-col span="6"><x-color label="主要文字" hex="#303133" [amounts]="[]"></x-color></x-col>
-      <x-col span="6"><x-color class="black" label="一级边框" hex="#dcdfe6" [amounts]="[]"></x-color></x-col>
+      <x-col span="6"
+        ><x-color class="black" label="一级边框" hex="#dcdfe6" [amounts]="[]"></x-color
+      ></x-col>
       <x-col span="6"><x-color label="基础黑色" hex="#000000" [amounts]="[]"></x-color></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="6"><x-color label="常规文字" hex="#606266" [amounts]="[]"></x-color></x-col>
-      <x-col span="6"><x-color class="black" label="二级边框" hex="#e4e7ed" [amounts]="[]"></x-color></x-col>
-      <x-col span="6"><x-color class="border black" label="基础白色" hex="#ffffff" [amounts]="[]"></x-color></x-col>
+      <x-col span="6"
+        ><x-color class="black" label="二级边框" hex="#e4e7ed" [amounts]="[]"></x-color
+      ></x-col>
+      <x-col span="6"
+        ><x-color class="border black" label="基础白色" hex="#ffffff" [amounts]="[]"></x-color
+      ></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="6"><x-color label="次要文字" hex="#909399" [amounts]="[]"></x-color></x-col>
-      <x-col span="6"><x-color class="black" label="三级边框" hex="#ebeef5" [amounts]="[]"></x-color></x-col>
+      <x-col span="6"
+        ><x-color class="black" label="三级边框" hex="#ebeef5" [amounts]="[]"></x-color
+      ></x-col>
     </x-row>
     <x-row space="1">
       <x-col span="6"><x-color label="占位文字" hex="#c0c4cc" [amounts]="[]"></x-color></x-col>
-      <x-col span="6"><x-color class="black" label="四级边框" hex="#f2f6fc" [amounts]="[]"></x-color></x-col>
+      <x-col span="6"
+        ><x-color class="black" label="四级边框" hex="#f2f6fc" [amounts]="[]"></x-color
+      ></x-col>
     </x-row>
   `,
   styles: [

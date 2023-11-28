@@ -9,7 +9,7 @@ import { XSkeletonModule } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLinkComponent } from '@ng-nest/ui/link';
@@ -28,7 +28,7 @@ describe(XSkeletonPrefix, () => {
         XSkeletonModule,
         XSwitchModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XAvatarComponent,

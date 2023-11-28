@@ -1,12 +1,10 @@
-<x-row>
-  <x-col span="8">
-    <x-dropdown [data]="data">
-      <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> Hover me </x-button>
-    </x-dropdown>
-  </x-col>
-  <x-col span="8">
-    <x-dropdown [data]="data" trigger="click">
-      <x-link type="primary" icon="fto-chevron-down" iconRight> Click me </x-link>
-    </x-dropdown>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-dropdown [data]="data">
+    <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> Hover me </x-button>
+  </x-dropdown>
+</div>
+<div class="row">
+  <x-dropdown [data]="data" trigger="click">
+    <x-link type="primary" icon="fto-chevron-down" iconRight> Click me </x-link>
+  </x-dropdown>
+</div>

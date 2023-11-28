@@ -3,7 +3,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
 import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XConfig, X_CONFIG } from '../config';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -69,7 +69,7 @@ describe('x-theme', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonComponent, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerModule, FormsModule, ReactiveFormsModule],
+      imports: [XButtonComponent, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerComponent, FormsModule, ReactiveFormsModule],
       declarations: [XGlobalThemeTestBasicComponent],
       providers: [
         {

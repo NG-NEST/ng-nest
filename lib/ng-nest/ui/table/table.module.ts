@@ -20,7 +20,7 @@ import { XTableBodyComponent } from './table-body.component';
 import { XTableFootComponent } from './table-foot.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { XDragModule } from '@ng-nest/ui/drag';
+import { XDragDirective } from '@ng-nest/ui/drag';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { XDragModule } from '@ng-nest/ui/drag';
     DragDropModule,
     XEmptyComponent,
     XLoadingModule,
-    XDragModule
+    XDragDirective
   ]
 })
 export class XTableModule {}

@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XDocComponent } from './doc.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDocModule } from '@ng-nest/ui/doc';
+import { XDocComponent } from '@ng-nest/ui/doc';
 import { XDocPrefix } from './doc.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -25,7 +23,7 @@ describe(XDocPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XThemeModule,
-        XDocModule,
+        XDocComponent,
         XIconComponent,
         XRowComponent,
         XColComponent,
@@ -82,10 +80,7 @@ describe(XDocPrefix, () => {
                   <div class="x-examples-info">
                     <ul>
                       <li>展示新消息数量。</li>
-                      <li>
-                        定义 <code>value</code> 属性，它接受 <code>number</code> 或者
-                        <code>string</code>。
-                      </li>
+                      <li>定义 <code>value</code> 属性，它接受 <code>number</code> 或者 <code>string</code>。</li>
                     </ul>
                   </div>
 
@@ -108,9 +103,8 @@ describe(XDocPrefix, () => {
 
                   <div class="x-examples-info">
                     <p>
-                      由 <code>max</code> 属性定义，它接受一个
-                      <code>number</code>，需要注意的是，只有当 <code>value</code> 为
-                      <code>number</code> 时，它才会生效。
+                      由 <code>max</code> 属性定义，它接受一个 <code>number</code>，需要注意的是，只有当
+                      <code>value</code> 为 <code>number</code> 时，它才会生效。
                     </p>
                   </div>
 
@@ -134,10 +128,7 @@ describe(XDocPrefix, () => {
                   <div class="x-examples-info">
                     <ul>
                       <li>可以显示数字以外的文本内容。</li>
-                      <li>
-                        定义 <code>value</code> 为
-                        <code>string</code> 类型是时可以用于显示自定义文本。
-                      </li>
+                      <li>定义 <code>value</code> 为 <code>string</code> 类型是时可以用于显示自定义文本。</li>
                     </ul>
                   </div>
 

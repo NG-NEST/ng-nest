@@ -16,12 +16,15 @@ import {
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
 import { AnimationEvent } from '@angular/animations';
-import { CdkDrag, CdkDragEnd, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragEnd, CdkDragHandle, DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
-import { XResizableEvent } from '@ng-nest/ui/resizable';
+import { XResizableDirective, XResizableEvent } from '@ng-nest/ui/resizable';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-dialog-portal',
+  standalone: true,
+  imports: [CommonModule, DragDropModule, XResizableDirective],
   templateUrl: './dialog-portal.component.html',
   styleUrls: ['./dialog-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

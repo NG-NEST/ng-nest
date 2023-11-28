@@ -1,11 +1,11 @@
 :host {
-  x-row {
+  .box {
     margin: 1rem 0;
   }
-  x-row:first-child {
+  .box:first-child {
     margin-top: 0;
   }
-  x-row:last-child {
+  .box:last-child {
     margin-bottom: 0;
   }
   x-color.border {

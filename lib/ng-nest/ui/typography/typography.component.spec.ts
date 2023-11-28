@@ -1,4 +1,4 @@
-import { XDocModule } from '@ng-nest/ui/doc';
+import { XDocComponent } from '@ng-nest/ui/doc';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XTypographyComponent } from './typography.component';
@@ -17,7 +17,7 @@ describe(XTypographyPrefix, () => {
         XTypographyModule,
         XRowComponent,
         XColComponent,
-        XDocModule
+        XDocComponent
       ],
       declarations: [TestXTypographyComponent]
     }).compileComponents();

@@ -2,28 +2,33 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Inject,
   ChangeDetectorRef,
   OnInit,
   ElementRef,
-  NgZone,
   Renderer2,
   OnDestroy,
   ViewChild,
   HostListener,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
 import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XComputed } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
-import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
+import { CommonModule, DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
-import { XInputComponent } from '@ng-nest/ui/input';
+import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
+import { XTabsModule } from '@ng-nest/ui/tabs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, DragDropModule, XSliderSelectModule, XTabsModule, XInputModule],
   templateUrl: './color-picker-portal.component.html',
   styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -68,16 +73,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   hex!: string;
 
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public elementRef: ElementRef<HTMLElement>,
-    public renderer: Renderer2,
-    @Inject(DOCUMENT) public doc: any,
-    public ngZone: NgZone,
-    public cdr: ChangeDetectorRef,
-    public decimal: DecimalPipe,
-    public percent: PercentPipe
-  ) {}
+  private doc = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
+  private decimal = inject(DecimalPipe);
+  private percent = inject(PercentPipe);
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: string) => {
@@ -241,7 +241,10 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
         s = (s * v) / (2 - l * 2);
       }
     }
-    [this.hsla.s, this.hsla.l] = [Number(this.decimal.transform(s, '1.2-2')), Number(this.decimal.transform(l, '1.2-2'))];
+    [this.hsla.s, this.hsla.l] = [
+      Number(this.decimal.transform(s, '1.2-2')),
+      Number(this.decimal.transform(l, '1.2-2'))
+    ];
     this.setHslaPercent();
     Object.assign(this.rgba, this.hslaToRgba(this.hsla));
     this.hex = this.rgbaToHex(this.rgba);

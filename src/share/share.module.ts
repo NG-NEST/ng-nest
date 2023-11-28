@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { XDocModule } from '@ng-nest/ui/doc';
+import { XDocComponent } from '@ng-nest/ui/doc';
 import { XExamplesModule } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
@@ -22,7 +22,7 @@ const modules = [
   HttpClientModule,
   ReactiveFormsModule,
   NsAdaptionModule,
-  XDocModule,
+  XDocComponent,
   XExamplesModule,
   XAnchorComponent,
   XApiComponent,

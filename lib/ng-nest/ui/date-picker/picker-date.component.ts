@@ -3,19 +3,22 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Renderer2,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction, XDateWeek, XDateYearWeek } from '@ng-nest/ui/core';
 import { XDateCell, XDatePickerType, XPickerDatePrefix, XPickerDateProperty } from './date-picker.property';
 import { Subject } from 'rxjs';
-import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nDatePicker, XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
-import { DatePipe, LowerCasePipe } from '@angular/common';
+import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XPickerDatePrefix}`,
+  standalone: true,
+  imports: [CommonModule, XLinkComponent, XI18nPipe],
   templateUrl: './picker-date.component.html',
   styleUrls: ['./picker-date.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -73,16 +76,11 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     }
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public datePipe: DatePipe,
-    public lowerCasePipe: LowerCasePipe,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private datePipe = inject(DatePipe);
+  private lowerCasePipe = inject(LowerCasePipe);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange
@@ -184,20 +182,24 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
           item.isRangeHoverStartLeft = time < start! && itemTime === start!;
           item.isRangeHoverStartRight = time > start! && itemTime === start!;
           item.isRangeHover =
-            (time < start! && itemTime >= time && itemTime < start!) || (time > start! && itemTime > start! && itemTime <= time);
+            (time < start! && itemTime >= time && itemTime < start!) ||
+            (time > start! && itemTime > start! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < start!;
           item.isRangeHoverEnd = itemTime === time && time > start!;
         } else if (XIsNull(start) && !XIsNull(end)) {
           item.isRangeHoverEndLeft = time < end! && itemTime === end!;
           item.isRangeHoverEndRight = time > end! && itemTime === end!;
-          item.isRangeHover = (time < end! && itemTime >= time && itemTime < end!) || (time > end! && itemTime > end! && itemTime <= time);
+          item.isRangeHover =
+            (time < end! && itemTime >= time && itemTime < end!) ||
+            (time > end! && itemTime > end! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < end!;
           item.isRangeHoverEnd = itemTime === time && time > end!;
         } else if (!XIsNull(start) && !XIsNull(end)) {
           item.isRangeHoverStartLeft = time < start! && itemTime === start!;
           item.isRangeHoverEndRight = time > end! && itemTime === end!;
           item.isRangeHover =
-            (time < start! && itemTime >= time && itemTime < start!) || (time > end! && itemTime > end! && itemTime <= time);
+            (time < start! && itemTime >= time && itemTime < start!) ||
+            (time > end! && itemTime > end! && itemTime <= time);
           item.isRangeHoverStart = itemTime === time && time < start!;
           item.isRangeHoverEnd = itemTime === time && time > end!;
           if (this.rangeType === 'start') {
@@ -257,7 +259,11 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
     index = 1;
     do {
-      const cell: XDateCell = { date: new Date(year, month, index), isFirstDay: index === 1, isLastDay: index === lastDate };
+      const cell: XDateCell = {
+        date: new Date(year, month, index),
+        isFirstDay: index === 1,
+        isLastDay: index === lastDate
+      };
       dates = [...dates, this.setDayState(cell)];
       index++;
     } while (index <= lastDate);

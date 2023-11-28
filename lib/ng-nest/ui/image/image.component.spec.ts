@@ -6,11 +6,10 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XImageModule } from '@ng-nest/ui/image';
-import { XDialogModule } from '@ng-nest/ui/dialog';
 import { FormsModule } from '@angular/forms';
 import { XImagePrefix } from './image.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -25,11 +24,10 @@ describe(XImagePrefix, () => {
         FormsModule,
         XImageModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent,
-        XDialogModule
+        XIconComponent
       ],
       declarations: [TestXImageComponent]
     }).compileComponents();

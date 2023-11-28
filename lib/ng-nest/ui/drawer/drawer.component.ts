@@ -2,18 +2,15 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewChild,
   SimpleChanges,
   OnChanges,
   TemplateRef,
   ViewContainerRef,
-  Optional,
-  Inject,
-  HostBinding
+  HostBinding,
+  inject,
+  OnDestroy
 } from '@angular/core';
 import { XDrawerPrefix, XDrawerProperty, X_DRAWER_CONTAINER } from './drawer.property';
 import { XIsChange, XIsEmpty, XSlideAnimation, XConfigService, XClearClass } from '@ng-nest/ui/core';
@@ -21,16 +18,21 @@ import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
 import { XDrawerContainerComponent } from './drawer-container.component';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { CommonModule } from '@angular/common';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XDrawerPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XOutletDirective, XButtonComponent],
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XSlideAnimation]
 })
-export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChanges {
+export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChanges, OnDestroy {
   @HostBinding('class.x-drawer-visible') get getVisible() {
     return this.visible;
   }
@@ -40,18 +42,11 @@ export class XDrawerComponent extends XDrawerProperty implements OnInit, OnChang
   width = '100%';
   height = '100%';
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public overlay: Overlay,
-    public portalService: XPortalService,
-    public viewContainerRef: ViewContainerRef,
-    public configService: XConfigService,
-    @Optional() @Inject(X_DRAWER_CONTAINER) public container?: XDrawerContainerComponent
-  ) {
-    super();
-  }
+  private overlay = inject(Overlay);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  container = inject<XDrawerContainerComponent>(X_DRAWER_CONTAINER, { optional: true });
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

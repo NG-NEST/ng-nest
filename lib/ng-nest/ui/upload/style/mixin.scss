@@ -17,8 +17,11 @@
     }
   }
   &-files {
-    margin-top: 0.4rem;
+    padding: 0;
+    margin: 0.4rem 0 0 0;
+    list-style: none;
     > li {
+      margin: 0;
       padding: 0 0.2rem;
       height: calc(#{$--x-font-size} + 0.6rem);
       line-height: calc(#{$--x-font-size} + 0.6rem);

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XAddMonths } from '@ng-nest/ui/core';
+import { XDateRangeComponent } from '@ng-nest/ui/date-picker';
 
 @Component({
   selector: 'ex-range',
+  standalone: true,
+  imports: [FormsModule, XDateRangeComponent],
   templateUrl: './range.component.html',
   styleUrls: ['./range.component.scss']
 })

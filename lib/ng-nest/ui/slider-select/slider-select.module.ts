@@ -6,7 +6,7 @@ import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XSliderSelectProperty } from './slider-select.property';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { XDragModule } from '@ng-nest/ui/drag';
+import { XDragDirective } from '@ng-nest/ui/drag';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
     DragDropModule,
     XTooltipModule,
     XControlValueAccessor,
-    XDragModule,
+    XDragDirective,
     XOutletDirective
   ]
 })

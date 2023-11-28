@@ -81,17 +81,15 @@
     margin-left: 0.4rem;
     position: relative;
     flex: 1;
-    .x-slider-select:hover:not(.x-disabled) .x-slider-select-track {
+    .x-slider-select:hover:not(.x-disabled) .x-slider-select-process {
       background-color: transparent;
     }
     .x-slider-select > .x-slider-select-inner {
-      > .x-slider-select-rail {
+      .x-slider-select-rail {
         height: 0.75rem;
       }
-      > .x-slider-select-track {
-        > .x-slider-select-process {
-          background-color: transparent;
-        }
+      .x-slider-select-process {
+        background-color: transparent;
       }
       > .x-slider-select-drags > .x-slider-select-drag > .x-slider-select-button {
         border-color: $--x-border;

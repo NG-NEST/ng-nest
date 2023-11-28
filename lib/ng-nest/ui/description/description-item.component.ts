@@ -1,8 +1,11 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
 import { XDescriptionItemPrefix, XDescriptionItemProperty } from './description.property';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XDescriptionItemPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <ng-template>
       <ng-content></ng-content>
@@ -14,7 +17,4 @@ import { XDescriptionItemPrefix, XDescriptionItemProperty } from './description.
 })
 export class XDescriptionItemComponent extends XDescriptionItemProperty {
   @ViewChild(TemplateRef, { static: true }) content!: TemplateRef<void>;
-  constructor() {
-    super();
-  }
 }

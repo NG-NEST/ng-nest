@@ -22,8 +22,7 @@ export const TestRoutes: Routes = [
       },
       {
         path: 'auto-complete',
-        loadComponent: () =>
-          import('./auto-complete/auto-complete.component').then((x) => x.TeAutoCompleteComponent)
+        loadComponent: () => import('./auto-complete/auto-complete.component').then((x) => x.TeAutoCompleteComponent)
       },
       {
         path: 'avatar',
@@ -31,8 +30,7 @@ export const TestRoutes: Routes = [
       },
       {
         path: 'back-top',
-        loadComponent: () =>
-          import('./back-top/back-top.component').then((x) => x.TeBackTopComponent)
+        loadComponent: () => import('./back-top/back-top.component').then((x) => x.TeBackTopComponent)
       },
       {
         path: 'badge',
@@ -44,8 +42,7 @@ export const TestRoutes: Routes = [
       },
       {
         path: 'calendar',
-        loadComponent: () =>
-          import('./calendar/calendar.component').then((x) => x.TeCalendarComponent)
+        loadComponent: () => import('./calendar/calendar.component').then((x) => x.TeCalendarComponent)
       },
       {
         path: 'card',
@@ -53,8 +50,7 @@ export const TestRoutes: Routes = [
       },
       {
         path: 'carousel',
-        loadComponent: () =>
-          import('./carousel/carousel.component').then((x) => x.TeCarouselComponent)
+        loadComponent: () => import('./carousel/carousel.component').then((x) => x.TeCarouselComponent)
       },
       {
         path: 'cascade',
@@ -62,8 +58,51 @@ export const TestRoutes: Routes = [
       },
       {
         path: 'checkbox',
-        loadComponent: () =>
-          import('./checkbox/checkbox.component').then((x) => x.TeCheckboxComponent)
+        loadComponent: () => import('./checkbox/checkbox.component').then((x) => x.TeCheckboxComponent)
+      },
+      {
+        path: 'collapse',
+        loadComponent: () => import('./collapse/collapse.component').then((x) => x.TeCollapseComponent)
+      },
+      {
+        path: 'color',
+        loadComponent: () => import('./color/color.component').then((x) => x.TeColorComponent)
+      },
+      {
+        path: 'color-picker',
+        loadComponent: () => import('./color-picker/color-picker.component').then((x) => x.TeColorPickerComponent)
+      },
+      {
+        path: 'comment',
+        loadComponent: () => import('./comment/comment.component').then((x) => x.TeCommentComponent)
+      },
+      {
+        path: 'container',
+        loadComponent: () => import('./container/container.component').then((x) => x.TeContainerComponent)
+      },
+      {
+        path: 'crumb',
+        loadComponent: () => import('./crumb/crumb.component').then((x) => x.TeCrumbComponent)
+      },
+      {
+        path: 'date-picker',
+        loadComponent: () => import('./date-picker/date-picker.component').then((x) => x.TeDatePickerComponent)
+      },
+      {
+        path: 'description',
+        loadComponent: () => import('./description/description.component').then((x) => x.TeDescriptionComponent)
+      },
+      {
+        path: 'dialog',
+        loadComponent: () => import('./dialog/dialog.component').then((x) => x.TeDialogComponent)
+      },
+      {
+        path: 'drawer',
+        loadComponent: () => import('./drawer/drawer.component').then((x) => x.TeDrawerComponent)
+      },
+      {
+        path: 'dropdown',
+        loadComponent: () => import('./dropdown/dropdown.component').then((x) => x.TeDropdownComponent)
       }
     ]
   }

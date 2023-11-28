@@ -1,21 +1,33 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Renderer2,
+  ElementRef,
+  SimpleChanges,
+  inject
+} from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
 import { XConfigService } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XContainerPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty implements OnInit {
-  constructor(private renderer: Renderer2, private elementRef: ElementRef<HTMLElement>, public configService: XConfigService) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
     this.setDirection();
   }
 

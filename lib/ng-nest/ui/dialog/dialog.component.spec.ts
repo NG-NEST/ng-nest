@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XDialogComponent } from './dialog.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogPrefix } from './dialog.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +16,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 import { XFormModule } from '@ng-nest/ui/form';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XDialogComponent } from './dialog.component';
 
 describe(XDialogPrefix, () => {
   beforeEach(() => {
@@ -30,7 +28,7 @@ describe(XDialogPrefix, () => {
         FormsModule,
         XInputModule,
         XRadioModule,
-        XDialogModule,
+        XDialogComponent,
         XButtonComponent,
         XIconComponent,
         XLinkComponent,
@@ -97,7 +95,9 @@ describe(XDialogPrefix, () => {
       (cancel)="refresh()"
       (confirm)="refresh()"
     >
-      <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
+      <span
+        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
+      >
     </x-dialog>
 
     <div class="row">
@@ -138,7 +138,14 @@ describe(XDialogPrefix, () => {
 
     <div class="row">
       <x-button (click)="customForm()">自定义表单</x-button>
-      <x-dialog title="表单" [(visible)]="visibleForm" (close)="refresh()" (cancel)="refresh()" (confirm)="refresh()" buttonsCenter>
+      <x-dialog
+        title="表单"
+        [(visible)]="visibleForm"
+        (close)="refresh()"
+        (cancel)="refresh()"
+        (confirm)="refresh()"
+        buttonsCenter
+      >
         <ul class="custom-form">
           <li><x-input label="账号" direction="row"></x-input></li>
           <li><x-input label="邮箱" direction="row"></x-input></li>
@@ -157,7 +164,9 @@ describe(XDialogPrefix, () => {
         (cancel)="refresh()"
         (confirm)="refresh()"
       >
-        <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
+        <span
+          >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
+        >
         <ng-template #titleTpl>
           <x-icon type="fto-user"></x-icon>
         </ng-template>
@@ -292,7 +301,9 @@ class TestXDialogComponent {
     </div>
 
     <x-dialog title="标题" [(visible)]="visible" draggable>
-      <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>
+      <span
+        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
+      >
     </x-dialog>
   `,
   styles: [

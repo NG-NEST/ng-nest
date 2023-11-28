@@ -1,20 +1,12 @@
-<x-row>
-  <x-col span="12">
-    <x-color-picker label="color" [(ngModel)]="model"></x-color-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="12">
-    <x-color-picker label="color" [(ngModel)]="model" direction="column-reverse"></x-color-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="12">
-    <x-color-picker label="color" [(ngModel)]="model" direction="row"></x-color-picker>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="12">
-    <x-color-picker label="color" [(ngModel)]="model" direction="row-reverse"></x-color-picker>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-color-picker label="Select" [(ngModel)]="model"></x-color-picker>
+</div>
+<div class="row">
+  <x-color-picker label="Select" [(ngModel)]="model" direction="column-reverse"></x-color-picker>
+</div>
+<div class="row">
+  <x-color-picker label="Select" [(ngModel)]="model" direction="row"></x-color-picker>
+</div>
+<div class="row">
+  <x-color-picker label="Select" [(ngModel)]="model" direction="row-reverse"></x-color-picker>
+</div>

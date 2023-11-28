@@ -30,15 +30,23 @@ import {
   XDateYearQuarter,
   XParents
 } from '@ng-nest/ui/core';
-import { XInputComponent } from '@ng-nest/ui/input';
+import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe } from '@angular/common';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, XInputModule],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -106,19 +114,15 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     }
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public configService: XConfigService,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe,
-    private i18n: XI18nService,
-    private elementRef: ElementRef,
-    private overlay: Overlay
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  configService = inject(XConfigService);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private datePipe = inject(DatePipe);
+  private i18n = inject(XI18nService);
+  private elementRef = inject(ElementRef);
+  private overlay = inject(Overlay);
 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -341,7 +345,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   setDisplayValue(dateNumber: number | string) {
-    if (this.isInput && isNaN(this.displayValue) && !isNaN(Date.parse(this.displayValue)) && !['week', 'quarter'].includes(this.type)) {
+    if (
+      this.isInput &&
+      isNaN(this.displayValue) &&
+      !isNaN(Date.parse(this.displayValue)) &&
+      !['week', 'quarter'].includes(this.type)
+    ) {
       this.displayValue = this.datePipe.transform(this.displayValue, this.format);
       this.numberValue = new Date(this.displayValue).getTime();
       this.value = this.getValue();

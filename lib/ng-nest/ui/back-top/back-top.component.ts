@@ -17,13 +17,13 @@ import { reqAnimFrame, XConfigService, XIsChange, XIsNumber } from '@ng-nest/ui/
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
-import { XPortalService, XPortalOverlayRef, XPortalModule } from '@ng-nest/ui/portal';
+import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XBackTopPrefix}`,
   standalone: true,
-  imports: [CommonModule, XLinkComponent, XPortalModule],
+  imports: [CommonModule, XLinkComponent],
   templateUrl: './back-top.component.html',
   styleUrls: ['./back-top.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,31 +1,49 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  inject,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import { XIsChange, XIsEmpty, XSetData, XGetChildren, XConfigService, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
+import {
+  XIsChange,
+  XIsEmpty,
+  XSetData,
+  XGetChildren,
+  XConfigService,
+  XPositionTopBottom,
+  XPlacement
+} from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
 import { debounceTime, delay, takeUntil } from 'rxjs/operators';
-import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import {
+  ConnectedOverlayPositionChange,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayConfig
+} from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XDropdownPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDropdownComponent extends XDropdownProperty implements OnChanges {
+export class XDropdownComponent extends XDropdownProperty implements OnInit, OnChanges, OnDestroy {
   @ViewChild('dropdown', { static: true }) dropdown!: ElementRef<HTMLElement>;
   datas: XDropdownNode[] = [];
   nodes: XDropdownNode[] = [];
@@ -40,18 +58,11 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   closeSubject: Subject<void> = new Subject();
   activatedIdSub = new Subject<any>();
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setSubject();
@@ -162,10 +173,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {
@@ -201,7 +214,13 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.dropdown,
-      placement: [this.placement as XPlacement, 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
+      placement: [
+        this.placement as XPlacement,
+        'bottom-start',
+        'top-start',
+        'bottom-end',
+        'top-end'
+      ],
       transformOriginOn: 'x-dropdown-portal'
     });
   }
@@ -210,7 +229,9 @@ export class XDropdownComponent extends XDropdownProperty implements OnChanges {
     XSetData<XDropdownNode>(this.data, this._unSubject).subscribe((x) => {
       this.datas = x;
       if (!this.children) {
-        this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(x, y, 0));
+        this.nodes = x
+          .filter((y) => XIsEmpty(y.pid))
+          .map((y) => XGetChildren<XDropdownNode>(x, y, 0));
       } else {
         this.nodes = x;
       }

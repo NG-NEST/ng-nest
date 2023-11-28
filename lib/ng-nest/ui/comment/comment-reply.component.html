@@ -1,10 +1,6 @@
 <div #commentReply class="x-comment-reply">
   <x-input [placeholder]="'comment.placeholder' | xI18n" [maxlength]="maxlength" [(ngModel)]="inputValue"></x-input>
   <div class="x-comment-reply-buttons">
-    <x-buttons>
-      <!-- <x-button icon="fto-smile" onlyIcon></x-button>
-      <x-button icon="fto-image" onlyIcon></x-button> -->
-    </x-buttons>
     <x-button type="primary" (click)="sureOnClick()">{{ 'comment.sure' | xI18n }}</x-button>
   </div>
 </div>

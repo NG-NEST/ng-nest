@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { XCrumbComponent } from '@ng-nest/ui/crumb';
 
 @Component({
   selector: 'ex-icon',
+  standalone: true,
+  imports: [XCrumbComponent],
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {

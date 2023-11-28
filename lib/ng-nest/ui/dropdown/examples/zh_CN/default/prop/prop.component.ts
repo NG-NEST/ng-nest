@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: 'ex-prop',
+  standalone: true,
+  imports: [XDropdownComponent, XButtonComponent],
   templateUrl: './prop.component.html'
 })
 export class ExPropComponent {

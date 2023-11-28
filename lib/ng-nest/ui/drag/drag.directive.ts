@@ -1,21 +1,18 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XDragProperty } from './drag.property';
 
-@Directive({ selector: '[x-drag]' })
-export class XDragDirective extends XDragProperty {
+@Directive({ selector: '[x-drag]', standalone: true })
+export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
   private _unSubject = new Subject<void>();
-  doc = inject(DOCUMENT);
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super();
-  }
+  private doc = inject(DOCUMENT);
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
 
   ngOnInit() {
     const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown');
-
     mouseDown.subscribe((downMe: MouseEvent) => {
       let x = downMe.pageX;
       let y = downMe.pageY;

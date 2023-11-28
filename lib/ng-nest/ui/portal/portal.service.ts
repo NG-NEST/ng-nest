@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
   StaticProvider,
   RendererFactory2,
-  Renderer2
+  inject
 } from '@angular/core';
 import { Overlay, OverlayRef, PositionStrategy, ConnectedPosition, ComponentType } from '@angular/cdk/overlay';
 import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
@@ -16,12 +16,12 @@ import { XPlacement, XPosition, XPlace, XComputed } from '@ng-nest/ui/core';
 /**
  * 动态创建视图服务
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XPortalService {
-  renderer!: Renderer2;
-  constructor(public overlay: Overlay, public injector: Injector, public rendererFactory: RendererFactory2) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
-  }
+  overlay = inject(Overlay);
+  injector = inject(Injector);
+  private rendererFactory = inject(RendererFactory2);
+  renderer = this.rendererFactory.createRenderer(null, null);
 
   attach<T>(option: XPortalProperty): XPortalOverlayRef<T> {
     let portal: XPortalOverlayRef<T> = {};
@@ -48,7 +48,11 @@ export class XPortalService {
     return Injector.create({ parent: injector || this.injector, providers });
   }
 
-  setPlacement(param?: { elementRef?: ElementRef; placement?: XPlace[] | XPlacement[]; transformOriginOn?: string }): PositionStrategy {
+  setPlacement(param?: {
+    elementRef?: ElementRef;
+    placement?: XPlace[] | XPlacement[];
+    transformOriginOn?: string;
+  }): PositionStrategy {
     if (!param) {
       return this.overlay.position().global().centerHorizontally().centerVertically();
     } else {

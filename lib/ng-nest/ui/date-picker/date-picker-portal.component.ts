@@ -8,7 +8,8 @@ import {
   AfterViewInit,
   HostBinding,
   HostListener,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import {
   XDatePickerDisabledDate,
@@ -17,16 +18,42 @@ import {
   XDatePickerPreset,
   XDatePickerType
 } from './date-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XAddDays, XTemplate, XIsUndefined } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XConnectBaseAnimation,
+  XPositionTopBottom,
+  XAddDays,
+  XTemplate,
+  XIsUndefined
+} from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { DatePipe, LowerCasePipe } from '@angular/common';
+import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XTimePickerFrameComponent } from '@ng-nest/ui/time-picker';
+import { XTimePickerFrameComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XPickerDateComponent } from './picker-date.component';
+import { XPickerMonthComponent } from './picker-month.component';
+import { XPickerQuarterComponent } from './picker-quarter.component';
+import { XPickerYearComponent } from './picker-year.component';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XPickerDateComponent,
+    XPickerMonthComponent,
+    XPickerQuarterComponent,
+    XPickerYearComponent,
+    XTimePickerModule,
+    XButtonComponent,
+    XLinkComponent,
+    XOutletDirective
+  ],
   templateUrl: './date-picker-portal.component.html',
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -86,7 +113,8 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
     return res;
   }
 
-  constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -220,7 +248,14 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   setModelTime(date: Date, time: Date) {
-    this.model = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), time.getSeconds());
+    this.model = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      time.getHours(),
+      time.getMinutes(),
+      time.getSeconds()
+    );
     return this.model;
   }
 }

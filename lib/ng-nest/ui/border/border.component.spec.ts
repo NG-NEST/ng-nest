@@ -1,4 +1,4 @@
-import { XDocModule } from '@ng-nest/ui/doc';
+import { XDocComponent } from '@ng-nest/ui/doc';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Component, DebugElement } from '@angular/core';
@@ -20,7 +20,7 @@ describe(XBorderPrefix, () => {
         XBorderComponent,
         XRowComponent,
         XColComponent,
-        XDocModule
+        XDocComponent
       ],
       declarations: [TestXBorderComponent]
     }).compileComponents();

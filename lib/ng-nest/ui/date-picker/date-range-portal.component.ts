@@ -33,15 +33,31 @@ import {
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { DatePipe, LowerCasePipe } from '@angular/common';
+import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XPickerMonthComponent } from './picker-month.component';
 import { XPickerYearComponent } from './picker-year.component';
 import { XPickerDateComponent } from './picker-date.component';
-import { XTimePickerFrameComponent } from '@ng-nest/ui/time-picker';
+import { XTimePickerFrameComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XPickerQuarterComponent } from './picker-quarter.component';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XDateRangePortalPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XPickerDateComponent,
+    XPickerMonthComponent,
+    XPickerYearComponent,
+    XPickerQuarterComponent,
+    XTimePickerModule,
+    XButtonComponent,
+    XLinkComponent,
+    XOutletDirective
+  ],
   templateUrl: './date-range-portal.component.html',
   styleUrls: ['./date-range-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -114,7 +130,12 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
     }
   }
 
-  constructor(public datePipe: DatePipe, public lowerCasePipe: LowerCasePipe, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
+  constructor(
+    public datePipe: DatePipe,
+    public lowerCasePipe: LowerCasePipe,
+    public cdr: ChangeDetectorRef,
+    public i18n: XI18nService
+  ) {}
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
@@ -271,7 +292,14 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
         time.setMinutes(0);
       }
 
-      return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), time.getSeconds()).getTime();
+      return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        time.getHours(),
+        time.getMinutes(),
+        time.getSeconds()
+      ).getTime();
     }
   }
 
@@ -365,7 +393,10 @@ export class XDateRangePortalComponent implements OnInit, OnDestroy, AfterViewIn
       const week = now.getDay();
       const weekList = [1, 2, 3, 4, 5, 6, 7];
       const index = weekList.indexOf(week);
-      this.nodeEmit([XAddDays(now, weekList[0] - (index + 1) + num * 7), XAddDays(now, weekList[6] - (index + 1) + num * 7)], true);
+      this.nodeEmit(
+        [XAddDays(now, weekList[0] - (index + 1) + num * 7), XAddDays(now, weekList[6] - (index + 1) + num * 7)],
+        true
+      );
     } else if (type === 'month') {
       const month = XAddMonths(now, num);
       const firstDay = new Date(month.getFullYear(), month.getMonth(), 1);

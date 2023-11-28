@@ -9,7 +9,7 @@ import { XTransferModule } from '@ng-nest/ui/transfer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XTreeModule } from '@ng-nest/ui/tree';
@@ -28,7 +28,7 @@ describe(XTransferPrefix, () => {
         ReactiveFormsModule,
         XTransferModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent,

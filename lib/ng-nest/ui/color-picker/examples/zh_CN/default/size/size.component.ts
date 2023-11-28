@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XSize } from '@ng-nest/ui/core';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-size',
+  standalone: true,
+  imports: [FormsModule, XColorPickerComponent, XRadioModule],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']
 })

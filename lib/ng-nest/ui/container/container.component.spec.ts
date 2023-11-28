@@ -1,9 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XContainerComponent } from './container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XContainerModule } from '@ng-nest/ui/container';
+import {
+  XContainerComponent,
+  XAsideComponent,
+  XHeaderComponent,
+  XFooterComponent,
+  XMainComponent
+} from '@ng-nest/ui/container';
 import { XContainerPrefix } from './container.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -12,7 +17,16 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XContainerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XContainerModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XContainerComponent,
+        XAsideComponent,
+        XHeaderComponent,
+        XFooterComponent,
+        XMainComponent
+      ],
       declarations: [TestXContainerComponent]
     }).compileComponents();
   });

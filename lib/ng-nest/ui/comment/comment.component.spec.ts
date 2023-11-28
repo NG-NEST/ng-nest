@@ -1,15 +1,14 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XCommentComponent } from './comment.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCommentModule } from '@ng-nest/ui/comment';
+import { XCommentComponent } from '@ng-nest/ui/comment';
 import { FormsModule } from '@angular/forms';
 import { XCommentPrefix, XCommentNode } from './comment.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,9 +23,9 @@ describe(XCommentPrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XCommentModule,
+        XCommentComponent,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

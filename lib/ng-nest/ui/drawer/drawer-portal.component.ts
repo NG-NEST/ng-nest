@@ -1,4 +1,4 @@
-import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+import { BasePortalOutlet, PortalModule, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,9 +13,12 @@ import {
 import { XSlideAnimation } from '@ng-nest/ui/core';
 import { XDrawerAnimationEvent, XDrawerAnimationState } from './drawer.property';
 import { AnimationEvent } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-drawer-portal',
+  standalone: true,
+  imports: [CommonModule, PortalModule],
   templateUrl: './drawer-portal.component.html',
   styleUrls: ['./drawer-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -34,10 +37,6 @@ export class XDrawerPortalComponent extends BasePortalOutlet {
   @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet!: CdkPortalOutlet;
 
   animationChanged = new EventEmitter<XDrawerAnimationEvent>();
-
-  constructor() {
-    super();
-  }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
     if (this.portalOutlet.hasAttached()) {

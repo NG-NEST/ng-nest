@@ -5,16 +5,18 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Optional,
-  Host,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XFooterPrefix, XFooterProperty } from './container.property';
 import { XContainerComponent } from './container.component';
 import { XConfigService } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XFooterPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -24,17 +26,13 @@ export class XFooterComponent extends XFooterProperty implements OnInit {
   @HostBinding(`style.height.rem`) get getHeight() {
     return this.height;
   }
-  constructor(
-    @Optional() @Host() public container: XContainerComponent,
-    private renderer: Renderer2,
-    private elementRef: ElementRef<HTMLElement>,
-    public configService: XConfigService
-  ) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XFooterPrefix);
-  }
+  private container = inject(XContainerComponent, { optional: true, host: true });
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XFooterPrefix);
     this.setDirection();
   }
 

@@ -15,10 +15,20 @@ import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng
 import { XConnectBaseAnimation, XIsString, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ConnectedOverlayPositionChange, FlexibleConnectedPositionStrategy, Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import {
+  ConnectedOverlayPositionChange,
+  FlexibleConnectedPositionStrategy,
+  Overlay,
+  OverlayConfig
+} from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { XListModule } from '@ng-nest/ui/list';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XListModule],
   templateUrl: './dropdown-portal.component.html',
   styleUrls: ['./dropdown-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,13 +1,13 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable, TemplateRef, inject } from '@angular/core';
 import { fillDefault, XConfigService, XDrawerConfig } from '@ng-nest/ui/core';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XDrawerPortalComponent } from './drawer-portal.component';
 import { XDrawerRef } from './drawer-ref';
 import { XDrawerOption, X_DRAWER_CONFIG_NAME, X_DRAWER_DATA } from './drawer.property';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XDrawerService {
   default: XDrawerOption = {
     placement: 'right',
@@ -16,8 +16,11 @@ export class XDrawerService {
     backdropClose: true
   };
   configDefault?: XDrawerConfig;
+  private portalService = inject(XPortalService);
+  private configService = inject(XConfigService);
+  private overlay = inject(Overlay);
 
-  constructor(public portalService: XPortalService, public configService: XConfigService, public overlay: Overlay) {
+  constructor() {
     this.configDefault = this.configService.getConfigForComponent(X_DRAWER_CONFIG_NAME);
     Object.assign(this.default, this.configDefault);
   }

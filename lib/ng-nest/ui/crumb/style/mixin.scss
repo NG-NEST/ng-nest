@@ -5,9 +5,13 @@
 @import './param';
 
 @mixin crumb {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   > li {
     padding: 0;
+    margin: 0;
     white-space: nowrap;
     box-sizing: border-box;
     display: flex;

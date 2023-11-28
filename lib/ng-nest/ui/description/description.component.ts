@@ -1,20 +1,34 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ContentChildren, QueryList, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ContentChildren,
+  QueryList,
+  SimpleChanges,
+  inject,
+  OnInit,
+  AfterViewInit,
+  OnChanges
+} from '@angular/core';
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
 import { XClearClass, XConfigService, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
+import { CommonModule } from '@angular/common';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XDescriptionPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XOutletDirective],
   templateUrl: './description.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDescriptionComponent extends XDescriptionProperty {
+export class XDescriptionComponent extends XDescriptionProperty implements OnInit, AfterViewInit, OnChanges {
   @ContentChildren(XDescriptionItemComponent) items!: QueryList<XDescriptionItemComponent>;
-  constructor(public configService: XConfigService) {
-    super();
-  }
+
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

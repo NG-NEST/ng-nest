@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPosition } from '@ng-nest/ui/core';
+import { XDrawerComponent } from '@ng-nest/ui/drawer';
+import { XRadioModule } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [FormsModule, XRadioModule, XButtonComponent, XDrawerComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

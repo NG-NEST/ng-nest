@@ -9,8 +9,8 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XColorPickerModule } from '@ng-nest/ui/color-picker';
-import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
+import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XInputNumberModule } from '@ng-nest/ui/input-number';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XRateModule } from '@ng-nest/ui/rate';
@@ -33,8 +33,8 @@ const modules = [
   XSelectModule,
   XCascadeComponent,
   XCheckboxComponent,
-  XColorPickerModule,
-  XDatePickerModule,
+  XColorPickerComponent,
+  XDatePickerComponent,
   XInputNumberModule,
   XRadioModule,
   XRateModule,

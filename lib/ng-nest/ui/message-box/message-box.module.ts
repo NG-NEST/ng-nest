@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XMessageBoxComponent } from './message-box.component';
 import { XAlertComponent } from '@ng-nest/ui/alert';
-import { XPortalModule } from '@ng-nest/ui/portal';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    XPortalModule,
     XInputModule,
     XButtonComponent,
     XButtonsComponent,

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTreeSelectComponent } from './tree-select.component';
 import { XInputModule } from '@ng-nest/ui/input';
-import { XPortalModule } from '@ng-nest/ui/portal';
 import { XListModule } from '@ng-nest/ui/list';
 import { XTreeSelectPortalComponent } from './tree-select-portal.component';
 import { XTreeSelectProperty } from './tree-select.property';
@@ -21,7 +20,6 @@ import { XEmptyComponent } from '@ng-nest/ui/empty';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    XPortalModule,
     XInputModule,
     XListModule,
     XControlValueAccessor,

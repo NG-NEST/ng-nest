@@ -30,8 +30,7 @@ import {
 import {
   XPortalService,
   XPortalOverlayRef,
-  XPortalConnectedPosition,
-  XPortalModule
+  XPortalConnectedPosition
 } from '@ng-nest/ui/portal';
 import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
 import {
@@ -51,7 +50,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    XPortalModule,
     ReactiveFormsModule,
     XInputModule,
     XControlValueAccessor

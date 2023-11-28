@@ -9,7 +9,7 @@ import { XLoadingModule } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import { XLoadingPrefix } from './loading.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +27,7 @@ describe(XLoadingPrefix, () => {
         BrowserAnimationsModule,
         XLoadingModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

@@ -5,14 +5,20 @@ import {
   OnChanges,
   SimpleChanges,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy,
+  inject
 } from '@angular/core';
 import { XCrumbPrefix, XCrumbNode, XCrumbProperty } from './crumb.property';
 import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCrumbPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XLinkComponent, XOutletDirective],
   templateUrl: './crumb.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -21,10 +27,8 @@ import { Subject } from 'rxjs';
 export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDestroy {
   nodes: XCrumbNode[] = [];
   private _unSubject = new Subject<void>();
-
-  constructor(private cdr: ChangeDetectorRef, public configService: XConfigService) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;

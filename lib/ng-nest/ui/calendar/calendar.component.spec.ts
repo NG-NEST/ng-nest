@@ -8,7 +8,7 @@ import { XCalendarComponent } from '@ng-nest/ui/calendar';
 import { FormsModule } from '@angular/forms';
 import { XCalendarPrefix, XCalendarData } from './calendar.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +26,7 @@ describe(XCalendarPrefix, () => {
         FormsModule,
         XCalendarComponent,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

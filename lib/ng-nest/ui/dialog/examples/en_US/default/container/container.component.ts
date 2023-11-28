@@ -1,10 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPlace } from '@ng-nest/ui/core';
-import { XDialogAction } from '@ng-nest/ui/dialog';
-import { XMessageBoxAction, XMessageBoxService } from '@ng-nest/ui/message-box';
+import { XDialogAction, XDialogComponent, XDialogContainerComponent } from '@ng-nest/ui/dialog';
+import { XMessageBoxAction, XMessageBoxModule, XMessageBoxService } from '@ng-nest/ui/message-box';
 
 @Component({
   selector: 'ex-container',
+  standalone: true,
+  imports: [CommonModule, XDialogContainerComponent, XDialogComponent, XButtonComponent, XMessageBoxModule],
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss']
 })

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XAddDays } from '@ng-nest/ui/core';
+import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-picker';
 
 @Component({
   selector: 'ex-today',
+  standalone: true,
+  imports: [FormsModule, XDatePickerComponent, XDateRangeComponent],
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss']
 })

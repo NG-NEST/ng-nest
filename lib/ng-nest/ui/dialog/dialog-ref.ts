@@ -13,6 +13,7 @@ export class XDialogRef<C> {
   dragHandleRefs: ElementRef<HTMLElement>[] = [];
   afterClose = new Subject<any>();
   private _isFristFullscreen = true;
+
   constructor(
     public overlayRef: OverlayRef,
     public containerInstance: XDialogPortalComponent,
@@ -91,7 +92,9 @@ export class XDialogRef<C> {
       }
       this.renderer.removeClass(overlayElement, 'x-dialog-portal-fullscreen');
       if (this._isFristFullscreen && defaultMaximize) {
-        dialogRef.overlayRef?.updatePositionStrategy(this.portalService.setPlace(this.option.placement, this.option.offset!));
+        dialogRef.overlayRef?.updatePositionStrategy(
+          this.portalService.setPlace(this.option.placement, this.option.offset!)
+        );
         this.renderer.addClass(hostElement, PortalResizablePrefix);
         setTimeout(() => {
           Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, this.option.placement));

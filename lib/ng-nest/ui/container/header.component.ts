@@ -5,16 +5,18 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  Optional,
-  Host,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XHeaderPrefix, XHeaderProperty } from './container.property';
 import { XContainerComponent } from './container.component';
 import { XConfigService } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XHeaderPrefix}`,
+  standalone: true,
+  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -24,24 +26,19 @@ export class XHeaderComponent extends XHeaderProperty implements OnInit {
   @HostBinding(`style.height.rem`) get getHeight() {
     return this.height;
   }
-
-  constructor(
-    @Optional() @Host() public container: XContainerComponent,
-    private renderer: Renderer2,
-    private elementRef: ElementRef<HTMLElement>,
-    public configService: XConfigService
-  ) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XHeaderPrefix);
-  }
+  private container = inject(XContainerComponent, { optional: true, host: true });
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XHeaderPrefix);
     this.setDirection();
   }
 
   setDirection() {
     if (!this.container || this.container.direction) return;
     this.container.direction = 'column';
-    this.container.setDirection()
+    this.container.setDirection();
   }
 }

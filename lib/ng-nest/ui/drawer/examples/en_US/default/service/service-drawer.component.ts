@@ -1,12 +1,22 @@
-import { Component, Inject } from '@angular/core';
-import { X_DRAWER_DATA, XDrawerRef } from '@ng-nest/ui/drawer';
+import { Component, inject } from '@angular/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import {
+  X_DRAWER_DATA,
+  XDrawerCloseDirective,
+  XDrawerContentDirective,
+  XDrawerRef,
+  XDrawerTitleDirective
+} from '@ng-nest/ui/drawer';
 
 @Component({
   selector: 'ex-service-drawer',
+  standalone: true,
+  imports: [XButtonComponent, XDrawerTitleDirective, XDrawerContentDirective, XDrawerCloseDirective],
   templateUrl: './service-drawer.component.html'
 })
 export class ExServiceDrawerComponent {
-  constructor(@Inject(X_DRAWER_DATA) public data: any, public drawerRef: XDrawerRef<ExServiceDrawerComponent>) {}
+  data = inject(X_DRAWER_DATA);
+  drawerRef = inject(XDrawerRef<ExServiceDrawerComponent>);
 
   close() {
     this.drawerRef.close();

@@ -12,7 +12,9 @@ import {
   ViewContainerRef,
   ViewChild,
   SimpleChanges,
-  inject
+  inject,
+  OnDestroy,
+  AfterViewInit
 } from '@angular/core';
 import { XDatePickerModelType, XDateRangePrefix, XDateRangeProperty } from './date-picker.property';
 import {
@@ -29,23 +31,31 @@ import {
   XDateYearQuarter,
   XParents
 } from '@ng-nest/ui/core';
-import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
-import { DOCUMENT, DatePipe } from '@angular/common';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { XInputComponent, XInputGroupComponent, XInputModule } from '@ng-nest/ui/input';
+import { CommonModule, DOCUMENT, DatePipe } from '@angular/common';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XDateRangePrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XInputModule],
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XDateRangeComponent), DatePipe]
 })
-export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges {
+export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild('dateRange', { static: true }) dateRange!: ElementRef<HTMLElement>;
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
   @ViewChild('inputStartCom', { static: true }) inputStartCom!: XInputComponent;
@@ -135,21 +145,16 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   flexClass: string[] = [];
   locale: XI18nDatePicker = {};
   private _unSubject = new Subject<void>();
-  document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef,
-    public configService: XConfigService,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe,
-    private overlay: Overlay,
-    private i18n: XI18nService
-  ) {
-    super();
-  }
+  private document = inject(DOCUMENT);
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private datePipe = inject(DatePipe);
+  private overlay = inject(Overlay);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setFlex(this.dateRange.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -199,7 +204,13 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
         this.renderer.removeClass(this.dateRange.nativeElement, cls);
       }
     }
-    this.flexClass = this.setFlex(this.dateRange.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.flexClass = this.setFlex(
+      this.dateRange.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
   }
 
   setHostTypeClass() {
@@ -374,7 +385,10 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       .pipe(takeUntil(this._unSubject))
       .subscribe((event: MouseEvent) => {
         const clickTarget = event.target as HTMLElement;
-        if (clickTarget !== this.inputStartCom.inputRef.nativeElement && clickTarget !== this.inputEndCom.inputRef.nativeElement) {
+        if (
+          clickTarget !== this.inputStartCom.inputRef.nativeElement &&
+          clickTarget !== this.inputEndCom.inputRef.nativeElement
+        ) {
           this.closeSubject.next();
         }
       });
@@ -407,8 +421,10 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
       nodeEmit: (dates: Date[], close = true) => this.onNodeClick(dates, close),
-      startNodeEmit: (node: Date, close = false, isDatePicker: boolean = true) => this.startNodeClick(node, close, isDatePicker),
-      endNodeEmit: (node: Date, close = false, isDatePicker: boolean = true) => this.endNodeClick(node, close, isDatePicker),
+      startNodeEmit: (node: Date, close = false, isDatePicker: boolean = true) =>
+        this.startNodeClick(node, close, isDatePicker),
+      endNodeEmit: (node: Date, close = false, isDatePicker: boolean = true) =>
+        this.endNodeClick(node, close, isDatePicker),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();

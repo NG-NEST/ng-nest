@@ -8,7 +8,7 @@ import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule } from '@angular/forms';
 import { XEmptyPrefix } from './empty.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
@@ -24,7 +24,7 @@ describe(XEmptyPrefix, () => {
         FormsModule,
         XEmptyComponent,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

@@ -1,9 +1,18 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { XDatePickerDisabledDate, XDatePickerDisabledTime, XDatePickerRangType } from '@ng-nest/ui/date-picker';
+import { FormsModule } from '@angular/forms';
+import {
+  XDatePickerComponent,
+  XDatePickerDisabledDate,
+  XDatePickerDisabledTime,
+  XDatePickerRangType,
+  XDateRangeComponent
+} from '@ng-nest/ui/date-picker';
 
 @Component({
   selector: 'ex-disabled-date',
+  standalone: true,
+  imports: [FormsModule, XDatePickerComponent, XDateRangeComponent],
   templateUrl: './disabled-date.component.html',
   styleUrls: ['./disabled-date.component.scss'],
   providers: [DatePipe]

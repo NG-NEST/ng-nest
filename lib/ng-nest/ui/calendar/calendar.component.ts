@@ -14,7 +14,7 @@ import { XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
 import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
 import { XI18nService, XI18nCalendar, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
@@ -31,7 +31,9 @@ import { FormsModule } from '@angular/forms';
     XLinkComponent,
     XTooltipModule,
     XRadioModule,
-    XDatePickerModule,
+    XDatePickerComponent,
+    XPickerDateComponent,
+    XPickerMonthComponent,
     XButtonComponent,
     XButtonsComponent,
     XI18nDirective
@@ -126,16 +128,11 @@ export class XCalendarComponent extends XCalendarProperty implements OnInit, OnC
   }
 
   getLocaleMonth(date: Date) {
-    return (this.locale as any)[
-      this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)
-    ];
+    return (this.locale as any)[this.lowerCasePipe.transform(this.datePipe.transform(date, 'LLLL') as string)];
   }
 
   dateOnChange(date: Date) {
-    if (
-      this.datePipe.transform(date, 'yyyy-MM-dd') !==
-      this.datePipe.transform(this.activatedDate, 'yyyy-MM-dd')
-    ) {
+    if (this.datePipe.transform(date, 'yyyy-MM-dd') !== this.datePipe.transform(this.activatedDate, 'yyyy-MM-dd')) {
       this.activatedDate = date;
       this.dateChange.emit(this.activatedDate);
       this.cdr.markForCheck();

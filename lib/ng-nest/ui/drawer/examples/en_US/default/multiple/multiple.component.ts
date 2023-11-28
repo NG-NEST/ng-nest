@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XDrawerComponent } from '@ng-nest/ui/drawer';
 
 @Component({
   selector: 'ex-multiple',
+  standalone: true,
+  imports: [XButtonComponent, XDrawerComponent],
   templateUrl: './multiple.component.html',
   styleUrls: ['./multiple.component.scss']
 })

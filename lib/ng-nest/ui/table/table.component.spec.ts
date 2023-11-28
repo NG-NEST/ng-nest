@@ -6,12 +6,22 @@ import { By } from '@angular/platform-browser';
 import { XTableModule } from '@ng-nest/ui/table';
 import { FormsModule } from '@angular/forms';
 import { XTablePrefix, XTableColumn, XTableCellConfig } from './table.property';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import {
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XGroupBy,
+  XSort,
+  XId,
+  XOrderBy
+} from '@ng-nest/ui/core';
 import { Observable, interval } from 'rxjs';
 import { map as rxjsMap, delay } from 'rxjs/operators';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
-import { XDialogModule } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputModule } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
@@ -32,7 +42,6 @@ describe(XTablePrefix, () => {
         XTableModule,
         XIconComponent,
         XAvatarComponent,
-        XDialogModule,
         XButtonComponent,
         XLinkComponent,
         XInputModule,

@@ -9,38 +9,48 @@
           <x-link>{{ node.author }}</x-link>
           <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
         </div>
-        <p>
+        <div>
           <x-text-retract [content]="node.content"></x-text-retract>
-        </p>
+        </div>
         <div class="x-comment-action">
           <x-buttons>
             <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" onlyIcon>
-              {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}</x-button
-            >
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon
-              >{{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}</x-button
-            >
+              {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
+            </x-button>
+            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>
+              {{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}
+            </x-button>
           </x-buttons>
         </div>
-        <x-comment-reply *ngIf="node.commentShow" [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
+        <x-comment-reply
+          *ngIf="node.commentShow"
+          [maxlength]="contentMax"
+          (sureClick)="sureOnClick($event, node)"
+        ></x-comment-reply>
         <ul>
           <li *ngFor="let child of node.children; trackBy: trackByNode">
             <div>
-              <p>
+              <div>
                 <x-link>{{ child.author }}</x-link>
                 <ng-container *ngIf="child.replyAuthor">
-                  <span class="x-comment-reply">{{ 'comment.reply' | xI18n }}</span> <x-link>{{ child.replyAuthor }}</x-link></ng-container
-                >：
+                  <span class="x-comment-reply">{{ 'comment.reply' | xI18n }}</span>
+                  <x-link>{{ child.replyAuthor }}</x-link>
+                </ng-container>
+                ：
                 <span>
                   <x-text-retract [content]="child.content"></x-text-retract>
                 </span>
-              </p>
+              </div>
               <div class="x-comment-action">
                 <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                 <x-buttons>
-                  <x-button icon="fto-message-square" [activated]="child.commentShow" (click)="replyOnClick(child)" onlyIcon>{{
-                    'comment.reply' | xI18n
-                  }}</x-button>
+                  <x-button
+                    icon="fto-message-square"
+                    [activated]="child.commentShow"
+                    (click)="replyOnClick(child)"
+                    onlyIcon
+                    >{{ 'comment.reply' | xI18n }}</x-button
+                  >
                   <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>
                     {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
                   >
@@ -54,7 +64,9 @@
             </div>
           </li>
           <li class="x-comment-more" *ngIf="hasMore(node)">
-            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight>{{ 'comment.more' | xI18n }} </x-link>
+            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight
+              >{{ 'comment.more' | xI18n }}
+            </x-link>
           </li>
         </ul>
       </div>

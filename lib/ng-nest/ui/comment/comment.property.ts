@@ -1,4 +1,13 @@
-import { XDate, XData, XProperty, XParentIdentityProperty, XDataConvert, XInputNumber, XNumber, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XDate,
+  XData,
+  XProperty,
+  XParentIdentityProperty,
+  XDataConvert,
+  XInputNumber,
+  XNumber,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component } from '@angular/core';
 
 /**
@@ -12,7 +21,7 @@ const X_CONFIG_NAME = 'comment';
 /**
  * Comment Property
  */
-@Component({ selector: `${XCommentPrefix}-property`, template: '' })
+@Component({ selector: `${XCommentPrefix}-property`, template: '', standalone: true })
 export class XCommentProperty extends XProperty {
   /**
    * @zh_CN 评论数据
@@ -113,7 +122,7 @@ export const XCommentReplyPrefix = 'x-comment-reply';
 /**
  * Comment Reply Property
  */
-@Component({ selector: `${XCommentReplyPrefix}-property`, template: '' })
+@Component({ selector: `${XCommentReplyPrefix}-property`, template: '', standalone: true })
 export class XCommentReplyProperty extends XProperty {
   /**
    * @zh_CN 回复的最大字数

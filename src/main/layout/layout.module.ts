@@ -5,7 +5,7 @@ import { XMenuModule } from '@ng-nest/ui/menu';
 import { XDropdownModule } from '@ng-nest/ui/dropdown';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XDrawerModule } from '@ng-nest/ui/drawer';
+import { XDrawerComponent } from '@ng-nest/ui/drawer';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
@@ -46,7 +46,7 @@ const components = [
     XButtonComponent,
     XDropdownModule,
     XSelectModule,
-    XDrawerModule,
+    XDrawerComponent,
     XAffixComponent,
     XI18nPipe,
     XLinkComponent,

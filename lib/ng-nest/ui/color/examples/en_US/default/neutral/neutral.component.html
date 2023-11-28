@@ -1,18 +1,26 @@
-<x-row space="1">
-  <x-col span="6"><x-color label="main text" hex="#303133" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color class="black" label="Level 1 border" hex="#dcdfe6" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color label="base black" hex="#000000" [amounts]="[]"></x-color></x-col>
-</x-row>
-<x-row space="1">
-  <x-col span="6"><x-color label="Conventional text" hex="#606266" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color class="black" label="Level 2 border" hex="#e4e7ed" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color class="border black" label="base white" hex="#ffffff" [amounts]="[]"></x-color></x-col>
-</x-row>
-<x-row space="1">
-  <x-col span="6"><x-color label="Secondary text" hex="#909399" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color class="black" label="Level 3 border" hex="#ebeef5" [amounts]="[]"></x-color></x-col>
-</x-row>
-<x-row space="1">
-  <x-col span="6"><x-color label="Placeholder text" hex="#c0c4cc" [amounts]="[]"></x-color></x-col>
-  <x-col span="6"><x-color class="black" label="Level 4 border" hex="#f2f6fc" [amounts]="[]"></x-color></x-col>
-</x-row>
+<div class="box">
+  <div class="row"><x-color label="Main text" hex="#303133" [amounts]="[]"></x-color></div>
+  <div class="row"><x-color label="Conventional text" hex="#606266" [amounts]="[]"></x-color></div>
+  <div class="row"><x-color label="Secondary text" hex="#909399" [amounts]="[]"></x-color></div>
+  <div class="row"><x-color label="Holding text" hex="#c0c4cc" [amounts]="[]"></x-color></div>
+</div>
+<div class="box">
+  <div class="row">
+    <x-color class="black" label="First border" hex="#dcdfe6" [amounts]="[]"></x-color>
+  </div>
+  <div class="row">
+    <x-color class="black" label="Secondary border" hex="#e4e7ed" [amounts]="[]"></x-color>
+  </div>
+  <div class="row">
+    <x-color class="black" label="Three border" hex="#ebeef5" [amounts]="[]"></x-color>
+  </div>
+  <div class="row">
+    <x-color class="black" label="Four border" hex="#f2f6fc" [amounts]="[]"></x-color>
+  </div>
+</div>
+<div class="box">
+  <div class="row"><x-color label="Basic black" hex="#000000" [amounts]="[]"></x-color></div>
+  <div class="row">
+    <x-color class="border black" label="Basic white" hex="#ffffff" [amounts]="[]"></x-color>
+  </div>
+</div>

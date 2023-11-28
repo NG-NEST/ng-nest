@@ -11,25 +11,35 @@ import {
   ElementRef,
   ViewContainerRef,
   ViewChild,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XColorPickerProperty } from './color-picker.property';
 import { XIsEmpty, XCorner, XClearClass, XParents } from '@ng-nest/ui/core';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT } from '@angular/common';
+import { XControlValueAccessor, XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-color-picker',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputModule, XControlValueAccessor],
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XColorPickerComponent)]
 })
-export class XColorPickerComponent extends XColorPickerProperty implements OnInit {
+export class XColorPickerComponent extends XColorPickerProperty implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
@@ -65,17 +75,12 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   closeSubject: Subject<void> = new Subject();
   private _unSubject = new Subject<void>();
   document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    public elementRef: ElementRef
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
     this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -86,7 +91,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   ngAfterViewInit() {
     this.setPortal();
-    // this.setValueStyle();
   }
 
   ngOnDestroy(): void {

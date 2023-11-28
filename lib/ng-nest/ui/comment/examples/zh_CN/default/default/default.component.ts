@@ -1,9 +1,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { XCommentNode } from '@ng-nest/ui/comment';
+import { XCommentComponent, XCommentNode } from '@ng-nest/ui/comment';
 import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [XCommentComponent],
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {

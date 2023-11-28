@@ -1,10 +1,9 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XDatePickerComponent } from './date-picker.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDatePickerModule } from '@ng-nest/ui/date-picker';
+import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDatePickerPrefix } from './date-picker.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
@@ -15,7 +14,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XColorPickerModule } from '@ng-nest/ui/color-picker';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindModule } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
@@ -29,7 +28,8 @@ describe(XDatePickerPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XDatePickerModule,
+        XDatePickerComponent,
+        XDateRangeComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
@@ -40,7 +40,7 @@ describe(XDatePickerPrefix, () => {
         XInputModule,
         XAutoCompleteComponent,
         XCascadeComponent,
-        XColorPickerModule,
+        XColorPickerComponent,
         XFindModule,
         XTextareaModule,
         XTimePickerModule
@@ -126,9 +126,7 @@ describe(XDatePickerPrefix, () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXDatePickerHourMinuteSecondComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(
-        By.directive(TestXDatePickerHourMinuteSecondComponent)
-      );
+      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerHourMinuteSecondComponent));
     });
     it('should create.', () => {
       expect(debugElement).toBeDefined();
@@ -434,20 +432,10 @@ class TestXDatePickerHourMinuteSecondComponent {
         <x-date-picker [size]="size" label="用户名" direction="row" maxlength="50"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          [size]="size"
-          label="用户名"
-          direction="column"
-          maxlength="50"
-        ></x-date-picker>
+        <x-date-picker [size]="size" label="用户名" direction="column" maxlength="50"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          [size]="size"
-          icon="ado-user"
-          iconLayout="left"
-          maxlength="50"
-        ></x-date-picker>
+        <x-date-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker required clearable [size]="size"></x-date-picker>
@@ -491,12 +479,7 @@ class TestXDatePickerSizeComponent {
         <x-date-picker placeholder="请选择日期" bordered="false"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          placeholder="请选择日期"
-          bordered="false"
-          label="日生:"
-          direction="row"
-        ></x-date-picker>
+        <x-date-picker placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker placeholder="请选择日期" bordered="false"></x-date-picker>
@@ -549,11 +532,7 @@ class TestXDatePickerBorderedComponent {
         <x-date-picker placeholder="请输入网址" [after]="afterSelectTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          placeholder="请输入网址"
-          [before]="beforeSelectTpl"
-          [after]="afterSelectTpl"
-        ></x-date-picker>
+        <x-date-picker placeholder="请输入网址" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker placeholder="请输入文字" [before]="beforeButtonTpl"></x-date-picker>
@@ -562,11 +541,7 @@ class TestXDatePickerBorderedComponent {
         <x-date-picker placeholder="请输入文字" [after]="afterButtonTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeButtonTpl"
-          [after]="afterButtonTpl"
-        ></x-date-picker>
+        <x-date-picker placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker placeholder="请输入文字" [before]="beforeInputTpl"></x-date-picker>
@@ -575,11 +550,7 @@ class TestXDatePickerBorderedComponent {
         <x-date-picker placeholder="请输入文字" [after]="afterInputTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeInputTpl"
-          [after]="afterInputTpl"
-        ></x-date-picker>
+        <x-date-picker placeholder="请输入文字" [before]="beforeInputTpl" [after]="afterInputTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker placeholder="请输入文字" [before]="beforeDatePickerTpl"></x-date-picker>
@@ -614,11 +585,7 @@ class TestXDatePickerBorderedComponent {
         <x-date-picker placeholder="请输入文字" [after]="afterCascadeTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeCascadeTpl"
-          [after]="afterCascadeTpl"
-        ></x-date-picker>
+        <x-date-picker placeholder="请输入文字" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-date-picker>
       </x-col>
       <x-col span="24">
         <x-date-picker placeholder="请输入文字" [before]="beforeColorPickerTpl"></x-date-picker>

@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XCrumbComponent } from './crumb.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCrumbModule } from '@ng-nest/ui/crumb';
+import { XCrumbComponent } from '@ng-nest/ui/crumb';
 import { XCrumbPrefix } from './crumb.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTagModule } from '@ng-nest/ui/tag';
@@ -14,7 +12,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XCrumbModule, XIconComponent, XTagModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XCrumbComponent,
+        XIconComponent,
+        XTagModule
+      ],
       declarations: [TestXCrumbComponent]
     }).compileComponents();
   });

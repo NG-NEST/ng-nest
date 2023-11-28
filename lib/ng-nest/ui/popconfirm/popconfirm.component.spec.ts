@@ -9,7 +9,7 @@ import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
 import { FormsModule } from '@angular/forms';
 import { XPopconfirmPrefix } from './popconfirm.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -27,7 +27,7 @@ describe(XPopconfirmPrefix, () => {
         FormsModule,
         XPopconfirmModule,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent,

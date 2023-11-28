@@ -8,7 +8,7 @@ import { XCardComponent } from '@ng-nest/ui/card';
 import { FormsModule } from '@angular/forms';
 import { XCardPrefix } from './card.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerModule } from '@ng-nest/ui/container';
+import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -23,7 +23,7 @@ describe(XCardPrefix, () => {
         FormsModule,
         XCardComponent,
         XButtonComponent,
-        XContainerModule,
+        XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent

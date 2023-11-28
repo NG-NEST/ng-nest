@@ -1,4 +1,7 @@
 :host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
   x-color.black {
     color: var(--x-text-a300);
   }
