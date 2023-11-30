@@ -4,7 +4,7 @@ import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
@@ -19,7 +19,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     XCheckboxComponent,
     XSelectModule,
     XButtonComponent,
-    XInputModule,
+    XInputComponent,
     XDatePickerComponent,
     XAutoCompleteComponent,
     XCascadeComponent,

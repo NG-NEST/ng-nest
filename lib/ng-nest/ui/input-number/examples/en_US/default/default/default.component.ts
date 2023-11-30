@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  standalone: true,
+  imports: [XInputNumberComponent],
+  templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {}

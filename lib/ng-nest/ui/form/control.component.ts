@@ -7,7 +7,8 @@ import {
   ChangeDetectorRef,
   OnInit,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  inject
 } from '@angular/core';
 import {
   XControlProperty,
@@ -46,21 +47,70 @@ import {
   XAutoCompleteControl,
   XAutoCompleteControlOption
 } from './form.property';
-import { FormControlName, Validators, UntypedFormControl, ValidatorFn, ControlValueAccessor, FormControlStatus } from '@angular/forms';
+import {
+  FormControlName,
+  Validators,
+  UntypedFormControl,
+  ValidatorFn,
+  ControlValueAccessor,
+  FormControlStatus,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
+import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
+import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRateModule } from '@ng-nest/ui/rate';
+import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
+import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XFindComponent } from '@ng-nest/ui/find';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 
 @Component({
   selector: 'x-control',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XInputComponent,
+    XSelectModule,
+    XCascadeComponent,
+    XCheckboxComponent,
+    XColorPickerComponent,
+    XDatePickerComponent,
+    XInputNumberComponent,
+    XRadioModule,
+    XRateModule,
+    XSliderSelectModule,
+    XSwitchModule,
+    XTimePickerModule,
+    XTextareaModule,
+    XFindComponent,
+    XAutoCompleteComponent
+  ],
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
+export class XControlComponent
+  extends XControlProperty
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @Input() override option!: XFormControlOption;
   @Input() form: any;
   @ViewChild(FormControlName) control!: FormControlName;
@@ -71,15 +121,9 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   private _validatorFns: ValidatorFn[] = [];
   private _unSubject = new Subject<void>();
   private _formControl!: UntypedFormControl;
-
-  constructor(
-    // @Host() @Optional() public form: XFormComponent,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.option = { ...this.option };
@@ -87,7 +131,9 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     if (XIsEmpty(this.option.label)) this.option.label = '';
     this.option.label = `${this.option.label}${this.form.labelSuffix}`;
     this._control = this.createControl(this.option);
-    this._formControl = new UntypedFormControl(this._control.value, { nonNullable: this._control.nonNullable });
+    this._formControl = new UntypedFormControl(this._control.value, {
+      nonNullable: this._control.nonNullable
+    });
     this.setValidators();
     this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
       this.setMessages(x);
@@ -116,7 +162,8 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   ngAfterViewInit() {
     Object.assign(this.control.valueAccessor!, this._control as ControlValueAccessor);
     this.form.controlTypes[this._control.id] = this._control;
-    this.form.controlComponents[this._control.id] = this.control.valueAccessor as XFormControlComponent;
+    this.form.controlComponents[this._control.id] = this.control
+      .valueAccessor as XFormControlComponent;
     this.form.controlComponents[this._control.id].formControlChanges();
   }
 
@@ -139,7 +186,10 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       this.setPattern();
     }
     if (XIsFunction(this._control.inputValidator)) {
-      this._validatorFns = [...this._validatorFns, XFormInputValidator(this._control.inputValidator!)];
+      this._validatorFns = [
+        ...this._validatorFns,
+        XFormInputValidator(this._control.inputValidator!)
+      ];
     }
     this._formControl.setValidators(this._validatorFns);
     this._formControl.updateValueAndValidity();
@@ -157,13 +207,18 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         this._validatorFns = [...this._validatorFns, Validators.pattern(pt)];
       }
     } else {
-      this._validatorFns = [...this._validatorFns, Validators.pattern(this._control.pattern as RegExp)];
+      this._validatorFns = [
+        ...this._validatorFns,
+        Validators.pattern(this._control.pattern as RegExp)
+      ];
     }
   }
 
   getPatternMsg(pattern: string) {
     if (Array.isArray(this._control.pattern)) {
-      return (this._control.message as Array<any>)[this._control.pattern.findIndex((x) => String(x) === pattern)];
+      return (this._control.message as Array<any>)[
+        this._control.pattern.findIndex((x) => String(x) === pattern)
+      ];
     } else {
       return this._control.message;
     }
@@ -178,7 +233,10 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         if (key === 'required') {
           messages = [...messages, `${label} ${this.locale?.required || 'required'}`];
         } else if (key === 'pattern') {
-          messages = [...messages, `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
+          messages = [
+            ...messages,
+            `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`
+          ];
         } else if (key === 'inputValidator') {
           messages = [...messages, `${label} ${this._control.message}`];
         }

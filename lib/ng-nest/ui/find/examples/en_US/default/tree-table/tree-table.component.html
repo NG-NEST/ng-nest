@@ -1,4 +1,4 @@
-<x-row>
+<div class="row">
   <x-find
     label="tree table single select"
     [(ngModel)]="model"
@@ -10,8 +10,8 @@
     [treeData]="treeService.getTreeList"
     treeTableConnect="organizationId"
   ></x-find>
-</x-row>
-<x-row [style.margin-top.rem]="1">
+</div>
+<div class="row">
   <x-find
     label="tree table multiple select"
     dialogWidth="65rem"
@@ -25,4 +25,4 @@
     treeTableConnect="organizationId"
     multiple
   ></x-find>
-</x-row>
+</div>

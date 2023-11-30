@@ -31,7 +31,7 @@ import {
   XDateYearQuarter,
   XParents
 } from '@ng-nest/ui/core';
-import { XInputComponent, XInputGroupComponent, XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { CommonModule, DOCUMENT, DatePipe } from '@angular/common';
 import {
   Overlay,
@@ -48,14 +48,17 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: `${XDateRangePrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XInputModule],
+  imports: [CommonModule, FormsModule, XInputComponent, XInputGroupComponent],
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XDateRangeComponent), DatePipe]
 })
-export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class XDateRangeComponent
+  extends XDateRangeProperty
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   @ViewChild('dateRange', { static: true }) dateRange!: ElementRef<HTMLElement>;
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
   @ViewChild('inputStartCom', { static: true }) inputStartCom!: XInputComponent;
@@ -157,7 +160,13 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(this.dateRange.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.dateRange.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setHostTypeClass();
     this.setFormat();
     this.setClassMap();
@@ -397,10 +406,12 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {

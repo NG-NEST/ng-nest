@@ -1,4 +1,4 @@
-import { Injectable, Optional, Inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import zh_CN from './languages/zh_CN';
 import { XI18nProperty, X_I18N } from './i18n.property';
@@ -15,8 +15,10 @@ export class XI18nService {
     return this._change.asObservable();
   }
 
-  constructor(@Optional() @Inject(X_I18N) locale: XI18nProperty) {
-    this.setLocale(locale || zh_CN);
+  private locale = inject<XI18nProperty>(X_I18N, { optional: true });
+
+  constructor() {
+    this.setLocale(this.locale || zh_CN);
   }
 
   translate(path: string, data?: any) {

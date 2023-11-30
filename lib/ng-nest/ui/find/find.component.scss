@@ -13,6 +13,12 @@
   @include find-dialog();
 }
 
+.#{$--x-find-prefix}-dialog-container {
+  .x-dialog-content {
+    overflow: initial;
+  }
+}
+
 .#{$--x-find-prefix}-search {
   display: flex;
   padding: 0.3rem;

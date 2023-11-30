@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { XTableModule } from '@ng-nest/ui/table';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XFormModule } from '@ng-nest/ui/form';
+import { XFormComponent } from '@ng-nest/ui/form';
 import { XMessageModule } from '@ng-nest/ui/message';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { XMessageModule } from '@ng-nest/ui/message';
     CommonModule,
     XTableModule,
     XButtonComponent,
-    XFormModule,
+    XFormComponent,
     XMessageModule,
     RouterModule.forChild([
       { path: '', component: UserComponent },

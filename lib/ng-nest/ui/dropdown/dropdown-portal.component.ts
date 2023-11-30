@@ -22,13 +22,13 @@ import {
   OverlayConfig
 } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { XListModule } from '@ng-nest/ui/list';
+import { XListComponent } from '@ng-nest/ui/list';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XListModule],
+  imports: [CommonModule, FormsModule, XListComponent],
   templateUrl: './dropdown-portal.component.html',
   styleUrls: ['./dropdown-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

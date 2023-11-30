@@ -15,13 +15,11 @@ import { XLinkPrefix, XLinkProperty } from './link.property';
 import { XConfigService, XIsEmpty } from '@ng-nest/ui/core';
 import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XRippleDirective } from '@ng-nest/ui/ripple';
 
 @Component({
   selector: `${XLinkPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective, XRippleDirective, XLinkProperty],
+  imports: [CommonModule, XIconComponent],
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   encapsulation: ViewEncapsulation.None,

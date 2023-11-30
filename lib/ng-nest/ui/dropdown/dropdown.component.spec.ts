@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XDropdownComponent } from './dropdown.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDropdownModule } from '@ng-nest/ui/dropdown';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XDropdownPrefix, XDropdownNode } from './dropdown.property';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -15,7 +13,16 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XDropdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XDropdownModule, XButtonComponent, XLinkComponent, XRowComponent, XColComponent],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XDropdownComponent,
+        XButtonComponent,
+        XLinkComponent,
+        XRowComponent,
+        XColComponent
+      ],
       declarations: [TestXDropdownComponent]
     }).compileComponents();
   });
@@ -46,17 +53,23 @@ describe(XDropdownPrefix, () => {
     </div>
     <div class="row">
       <x-dropdown [data]="data">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
+          下拉菜单
+        </x-button>
       </x-dropdown>
     </div>
     <div class="row">
       <x-dropdown [data]="dataProp" trigger="click">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
+          下拉菜单
+        </x-button>
       </x-dropdown>
     </div>
     <div class="row">
       <x-dropdown [data]="dataLeaf">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
+          下拉菜单
+        </x-button>
       </x-dropdown>
     </div>
   `,

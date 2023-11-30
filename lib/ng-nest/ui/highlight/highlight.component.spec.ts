@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XHighlightComponent } from './highlight.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XHighlightModule } from '@ng-nest/ui/highlight';
+import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix, XHighlightLines } from './highlight.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -12,7 +10,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XHighlightPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XHighlightModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        XThemeModule,
+        XHighlightComponent
+      ],
       declarations: [TestXHighlightComponent]
     }).compileComponents();
   });
@@ -34,7 +37,12 @@ describe(XHighlightPrefix, () => {
   selector: 'test-x-highlight',
   template: `
     <x-theme showDark></x-theme>
-    <x-highlight *ngFor="let item of list" [type]="item.type" [data]="item.data" [highlightLines]="item.highlightLines"></x-highlight>
+    <x-highlight
+      *ngFor="let item of list"
+      [type]="item.type"
+      [data]="item.data"
+      [highlightLines]="item.highlightLines"
+    ></x-highlight>
   `,
   styles: [
     `

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XFormComponent } from './form.component';
 import { Component, DebugElement, ViewChild, Injectable, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFormModule } from '@ng-nest/ui/form';
+import { XFormComponent } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
@@ -18,7 +18,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonComponent, XFormModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonComponent, XFormComponent],
       declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
     }).compileComponents();
   });

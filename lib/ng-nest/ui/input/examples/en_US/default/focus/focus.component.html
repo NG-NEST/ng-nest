@@ -1,12 +1,10 @@
-<x-row>
-  <x-col span="24">
-    <x-buttons>
-      <x-button (click)="inputCom.inputFocus('select')">Focus (selected text)</x-button>
-      <x-button (click)="inputCom.inputFocus('before')">Focus (cursor before writing)</x-button>
-      <x-button (click)="inputCom.inputFocus()">Focus (after the cursor, default)</x-button>
-    </x-buttons>
-  </x-col>
-  <x-col span="24">
-    <x-input #inputCom [style.width.rem]="15" [(ngModel)]="inputValue"></x-input>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-buttons>
+    <x-button (click)="inputCom.inputFocus('select')">Focus (selected text)</x-button>
+    <x-button (click)="inputCom.inputFocus('before')">Focus (cursor before writing)</x-button>
+    <x-button (click)="inputCom.inputFocus()">Focus (after the cursor, default)</x-button>
+  </x-buttons>
+</div>
+<div class="row">
+  <x-input #inputCom [style.width.rem]="15" [(ngModel)]="inputValue"></x-input>
+</div>

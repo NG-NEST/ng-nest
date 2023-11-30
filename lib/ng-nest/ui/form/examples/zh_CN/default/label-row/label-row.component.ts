@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XControl } from '@ng-nest/ui/form';
+import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-label-row',
+  standalone: true,
+  imports: [XFormComponent],
   templateUrl: './label-row.component.html'
 })
 export class ExLabelRowComponent {
@@ -41,7 +43,13 @@ export class ExLabelRowComponent {
       id: 'file',
       label: '文件'
     },
-    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员' },
+    {
+      control: 'select',
+      id: 'type',
+      label: '角色',
+      data: ['普通用户', '管理员', '销售'],
+      value: '管理员'
+    },
     {
       control: 'cascade',
       id: 'city',

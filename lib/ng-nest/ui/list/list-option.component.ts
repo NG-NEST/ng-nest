@@ -4,27 +4,34 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  OnChanges,
+  OnInit,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
+  inject
 } from '@angular/core';
 import { XListOptionPrefix, XListOptionProperty } from './list.property';
 import { Highlightable } from '@angular/cdk/a11y';
 import { XClassMap, XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
 
 @Component({
   selector: `${XListOptionPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XKeywordDirective],
   templateUrl: './list-option.component.html',
   styleUrls: ['./list-option.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XListOptionComponent extends XListOptionProperty implements Highlightable {
+export class XListOptionComponent extends XListOptionProperty implements Highlightable, OnInit, OnChanges {
   @HostBinding('attr.role') role = 'option';
   classMap: XClassMap = {};
-
-  constructor(public elementRef: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef, public configService: XConfigService) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     if (this.node)

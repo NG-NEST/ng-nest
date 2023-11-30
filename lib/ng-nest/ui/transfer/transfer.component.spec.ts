@@ -15,7 +15,7 @@ import { XThemeModule } from '@ng-nest/ui/theme';
 import { XTreeModule } from '@ng-nest/ui/tree';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { XSelectModule } from '@ng-nest/ui/select';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 describe(XTransferPrefix, () => {
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe(XTransferPrefix, () => {
         XIconComponent,
         XTreeModule,
         XSelectModule,
-        XInputModule
+        XInputComponent
       ],
       declarations: [TestXTransferComponent]
     }).compileComponents();

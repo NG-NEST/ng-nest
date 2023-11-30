@@ -8,7 +8,7 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XProgressModule } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -24,6 +24,7 @@ describe(XProgressPrefix, () => {
         FormsModule,
         XProgressModule,
         XButtonComponent,
+        XButtonsComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,

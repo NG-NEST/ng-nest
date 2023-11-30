@@ -6,6 +6,7 @@ export const X_LIST_DROP_GROUP = new InjectionToken<XListDropGroup>('XListDropGr
 
 @Directive({
   selector: '[xListDropGroup]',
+  standalone: true,
   providers: [{ provide: X_LIST_DROP_GROUP, useExisting: XListDropGroup }]
 })
 export class XListDropGroup implements OnDestroy {

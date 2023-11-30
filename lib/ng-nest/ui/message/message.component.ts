@@ -1,11 +1,15 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
 import { XMessagePrefix, XMessageOption, XMessagePlacementRef } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: `${XMessagePrefix}`,
+  standalone: true,
+  imports: [CommonModule, XAlertComponent],
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -14,8 +18,7 @@ import { delay } from 'rxjs/operators';
 })
 export class XMessageComponent {
   message: XMessagePlacementRef = { ref: {}, list: [], closeAll: () => {} };
-
-  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
+  cdr = inject(ChangeDetectorRef);
 
   onClose(item: XMessageOption) {
     this.message.list?.splice(this.message.list.indexOf(item), 1);

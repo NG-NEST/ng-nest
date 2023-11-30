@@ -8,52 +8,44 @@ import {
   ViewChild,
   ChangeDetectorRef,
   SimpleChanges,
-  Inject,
   inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  OnInit
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { delay, of } from 'rxjs';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XHighlightPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XButtonComponent],
   templateUrl: './highlight.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XHighlightComponent extends XHighlightProperty implements OnChanges {
+export class XHighlightComponent extends XHighlightProperty implements OnInit, OnChanges {
   @ViewChild('code') codeRef!: ElementRef<HTMLElement>;
 
   display!: SafeHtml;
   lines: string[] = [];
   lineHeight = 1.1875;
-
-  document: Document;
   iconCopy = 'fto-copy';
 
   platformId = inject(PLATFORM_ID);
-  isBrowser = true;
+  isBrowser = isPlatformBrowser(this.platformId);
+  prism = this.isBrowser ? (window as any)['Prism'] : null;
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
+  private sanitizer = inject(DomSanitizer);
 
-  prism: any;
-
-  constructor(
-    public elementRef: ElementRef<HTMLElement>,
-    public renderer: Renderer2,
-    public cdr: ChangeDetectorRef,
-    public sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) document: any
-  ) {
-    super();
+  ngOnInit(): void {
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
-    this.document = document;
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
-      this.prism = (window as any)['Prism'];
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -1,5 +1,8 @@
 :host {
-  x-row > x-col:not(:first-child) {
+  .row x-input {
+    width: 18rem;
+  }
+  .row:not(:first-child) {
     margin-top: 1rem;
   }
 }

@@ -7,9 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { XDrawerComponent } from '@ng-nest/ui/drawer';
 import { XDrawerPrefix } from './drawer.property';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -23,10 +23,11 @@ describe(XDrawerPrefix, () => {
         XThemeModule,
         XDrawerComponent,
         FormsModule,
-        XInputModule,
+        XInputComponent,
         XIconComponent,
         XRadioModule,
-        XButtonComponent
+        XButtonComponent,
+        XButtonsComponent
       ],
       declarations: [
         TestXDrawerComponent,

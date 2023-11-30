@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-precision',
-  templateUrl: './precision.component.html',
-  styleUrls: ['./precision.component.scss']
+  standalone: true,
+  imports: [XInputNumberComponent],
+  templateUrl: './precision.component.html'
 })
 export class ExPrecisionComponent {}

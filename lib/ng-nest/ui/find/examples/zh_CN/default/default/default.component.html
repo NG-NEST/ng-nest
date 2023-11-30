@@ -1,6 +1,17 @@
-<x-row>
-  <x-find label="表格单选" [(ngModel)]="model" [tableColumns]="tableColumns" [tableData]="tableData"></x-find>
-</x-row>
-<x-row [style.margin-top.rem]="1">
-  <x-find label="表格多选" [(ngModel)]="modelMultiple" [tableColumns]="tableColumns" [tableData]="tableData" multiple></x-find>
-</x-row>
+<div class="row">
+  <x-find
+    label="表格单选"
+    [(ngModel)]="model"
+    [tableColumns]="tableColumns"
+    [tableData]="tableData"
+  ></x-find>
+</div>
+<div class="row">
+  <x-find
+    label="表格多选"
+    [(ngModel)]="modelMultiple"
+    [tableColumns]="tableColumns"
+    [tableData]="tableData"
+    multiple
+  ></x-find>
+</div>

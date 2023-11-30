@@ -5,7 +5,7 @@ import { XImageComponent } from './image.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XImageModule } from '@ng-nest/ui/image';
+import { XImageComponent } from '@ng-nest/ui/image';
 import { FormsModule } from '@angular/forms';
 import { XImagePrefix } from './image.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -22,7 +22,7 @@ describe(XImagePrefix, () => {
         HttpClientTestingModule,
         XThemeModule,
         FormsModule,
-        XImageModule,
+        XImageComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,

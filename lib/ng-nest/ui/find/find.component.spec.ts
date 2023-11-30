@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XFindComponent } from './find.component';
 import { Component, DebugElement, ChangeDetectorRef, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XFindModule } from '@ng-nest/ui/find';
+import { XFindComponent } from '@ng-nest/ui/find';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
@@ -34,7 +32,7 @@ describe(XFindPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XThemeModule,
-        XFindModule,
+        XFindComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,

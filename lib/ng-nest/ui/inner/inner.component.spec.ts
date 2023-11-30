@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XInnerComponent } from './inner.component';
+import { XInnerComponent } from '@ng-nest/ui/inner';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XInnerModule } from './inner.module';
 import { XInnerPrefix } from './inner.property';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XInnerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XInnerModule],
+      imports: [HttpClientTestingModule, XInnerComponent],
       declarations: [TestXInnerComponent]
     }).compileComponents();
   });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XFormRow } from '@ng-nest/ui/form';
+import { XFormComponent, XFormRow } from '@ng-nest/ui/form';
 import { XData, XQuery } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
@@ -49,10 +49,23 @@ const DATA_CASCADE: XData<XCalendarNode> = [
 
 const DATA_CHECKBOX: XData<XCheckboxNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
 
-const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const DATA_SELECT: XData<XSelectNode> = [
+  'AAAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [XFormComponent],
   templateUrl: './default.component.html',
   providers: [DefaultService, TreeService]
 })
@@ -65,13 +78,44 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { id: 'cascade', control: 'cascade', label: 'defalut', span: 8, data: DATA_CASCADE },
-        { id: 'cascadeDisabled', control: 'cascade', label: 'disabled', span: 8, data: DATA_CASCADE, value: 22, disabled: true },
-        { id: 'cascadeRequired', control: 'cascade', label: 'required', span: 8, data: DATA_CASCADE, required: true },
-        { id: 'cascadePlaceholder', control: 'cascade', label: 'prompt select', span: 8, data: DATA_CASCADE, placeholder: '请选择城市' }
+        {
+          id: 'cascadeDisabled',
+          control: 'cascade',
+          label: 'disabled',
+          span: 8,
+          data: DATA_CASCADE,
+          value: 22,
+          disabled: true
+        },
+        {
+          id: 'cascadeRequired',
+          control: 'cascade',
+          label: 'required',
+          span: 8,
+          data: DATA_CASCADE,
+          required: true
+        },
+        {
+          id: 'cascadePlaceholder',
+          control: 'cascade',
+          label: 'prompt select',
+          span: 8,
+          data: DATA_CASCADE,
+          placeholder: '请选择城市'
+        }
       ]
     },
     {
-      controls: [{ control: 'cascade', id: 'cascadeRow', label: 'label position', direction: 'row', span: 8, data: DATA_CASCADE }]
+      controls: [
+        {
+          control: 'cascade',
+          id: 'cascadeRow',
+          label: 'label position',
+          direction: 'row',
+          span: 8,
+          data: DATA_CASCADE
+        }
+      ]
     },
     {
       title: 'Checkbox',
@@ -135,9 +179,28 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { control: 'color-picker', id: 'colorPicker', label: 'defalut', span: 8 },
-        { control: 'color-picker', id: 'colorPickerDisabled', label: 'disabled', span: 8, value: '#1976d2', disabled: true },
-        { control: 'color-picker', id: 'colorPickerRequired', label: 'required', span: 8, required: true },
-        { control: 'color-picker', id: 'colorPickerPlaceholder', label: 'prompt select', span: 8, placeholder: '请选择颜色' }
+        {
+          control: 'color-picker',
+          id: 'colorPickerDisabled',
+          label: 'disabled',
+          span: 8,
+          value: '#1976d2',
+          disabled: true
+        },
+        {
+          control: 'color-picker',
+          id: 'colorPickerRequired',
+          label: 'required',
+          span: 8,
+          required: true
+        },
+        {
+          control: 'color-picker',
+          id: 'colorPickerPlaceholder',
+          label: 'prompt select',
+          span: 8,
+          placeholder: '请选择颜色'
+        }
       ]
     },
     {
@@ -145,11 +208,42 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { control: 'date-picker', id: 'datePicker', label: 'defalut', span: 8 },
-        { control: 'date-picker', id: 'datePickerDisabled', label: 'disabled', span: 8, value: '2020-05-19', disabled: true },
-        { control: 'date-picker', id: 'datePickerRequired', label: 'required', span: 8, required: true },
-        { control: 'date-picker', id: 'datePickerPlaceholder', label: 'prompt select', span: 8, placeholder: '请选择日期' },
-        { control: 'date-picker', id: 'datePickerYear', label: 'select year', span: 8, type: 'year' },
-        { control: 'date-picker', id: 'datePickerMonth', label: 'select month', span: 8, type: 'month' }
+        {
+          control: 'date-picker',
+          id: 'datePickerDisabled',
+          label: 'disabled',
+          span: 8,
+          value: '2020-05-19',
+          disabled: true
+        },
+        {
+          control: 'date-picker',
+          id: 'datePickerRequired',
+          label: 'required',
+          span: 8,
+          required: true
+        },
+        {
+          control: 'date-picker',
+          id: 'datePickerPlaceholder',
+          label: 'prompt select',
+          span: 8,
+          placeholder: '请选择日期'
+        },
+        {
+          control: 'date-picker',
+          id: 'datePickerYear',
+          label: 'select year',
+          span: 8,
+          type: 'year'
+        },
+        {
+          control: 'date-picker',
+          id: 'datePickerMonth',
+          label: 'select month',
+          span: 8,
+          type: 'month'
+        }
       ]
     },
     {
@@ -157,10 +251,37 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { control: 'input-number', id: 'inputNumber', label: 'defalut', span: 8 },
-        { control: 'input-number', id: 'inputNumberDisabled', label: 'disabled', span: 8, value: 20, disabled: true },
-        { control: 'input-number', id: 'inputNumberRequired', label: 'required', span: 8, required: true },
-        { control: 'input-number', id: 'inputNumberMinMax', label: 'restricted size (-10 to 10)', span: 8, min: -10, max: 10 },
-        { control: 'input-number', id: 'inputNumberPrecision', label: 'precision', span: 8, precision: 2, step: 0.1 }
+        {
+          control: 'input-number',
+          id: 'inputNumberDisabled',
+          label: 'disabled',
+          span: 8,
+          value: 20,
+          disabled: true
+        },
+        {
+          control: 'input-number',
+          id: 'inputNumberRequired',
+          label: 'required',
+          span: 8,
+          required: true
+        },
+        {
+          control: 'input-number',
+          id: 'inputNumberMinMax',
+          label: 'restricted size (-10 to 10)',
+          span: 8,
+          min: -10,
+          max: 10
+        },
+        {
+          control: 'input-number',
+          id: 'inputNumberPrecision',
+          label: 'precision',
+          span: 8,
+          precision: 2,
+          step: 0.1
+        }
       ]
     },
     {
@@ -245,9 +366,31 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { control: 'radio', id: 'radio', label: 'defalut', span: 8, data: DATA_CHECKBOX },
-        { control: 'radio', id: 'radioDisabled', label: 'disabled', span: 8, data: DATA_CHECKBOX, value: 'QQ', disabled: true },
-        { control: 'radio', id: 'radioRequired', label: 'will choose', span: 8, data: DATA_CHECKBOX, required: true },
-        { control: 'radio', id: 'radioButton', label: 'button style', span: 8, data: DATA_CHECKBOX, button: true },
+        {
+          control: 'radio',
+          id: 'radioDisabled',
+          label: 'disabled',
+          span: 8,
+          data: DATA_CHECKBOX,
+          value: 'QQ',
+          disabled: true
+        },
+        {
+          control: 'radio',
+          id: 'radioRequired',
+          label: 'will choose',
+          span: 8,
+          data: DATA_CHECKBOX,
+          required: true
+        },
+        {
+          control: 'radio',
+          id: 'radioButton',
+          label: 'button style',
+          span: 8,
+          data: DATA_CHECKBOX,
+          button: true
+        },
         {
           control: 'radio',
           id: 'radioButtonDisabled',
@@ -301,9 +444,31 @@ export class ExDefaultComponent {
       icon: 'fto-list',
       controls: [
         { control: 'select', id: 'select', label: 'defalut', span: 8, data: DATA_SELECT },
-        { control: 'select', id: 'selectDisabled', label: 'disabled', span: 8, data: DATA_SELECT, value: 'BBBB', disabled: true },
-        { control: 'select', id: 'selectRequired', label: 'required', span: 8, data: DATA_SELECT, required: true },
-        { control: 'select', id: 'selectPlaceholder', label: 'prompt select', span: 8, data: DATA_SELECT, placeholder: 'select city' },
+        {
+          control: 'select',
+          id: 'selectDisabled',
+          label: 'disabled',
+          span: 8,
+          data: DATA_SELECT,
+          value: 'BBBB',
+          disabled: true
+        },
+        {
+          control: 'select',
+          id: 'selectRequired',
+          label: 'required',
+          span: 8,
+          data: DATA_SELECT,
+          required: true
+        },
+        {
+          control: 'select',
+          id: 'selectPlaceholder',
+          label: 'prompt select',
+          span: 8,
+          data: DATA_SELECT,
+          placeholder: 'select city'
+        },
         {
           control: 'select',
           id: 'selectAsync',
@@ -425,7 +590,8 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) =>
+            this.defaultService.getList(index, size, query),
           label: 'table single select',
           span: 8
         },
@@ -438,7 +604,8 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) =>
+            this.defaultService.getList(index, size, query),
           multiple: true,
           label: 'table multiple select',
           span: 8
@@ -459,7 +626,8 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) =>
+            this.defaultService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           label: 'tree table single select',
@@ -475,7 +643,8 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) =>
+            this.defaultService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           multiple: true,
@@ -499,7 +668,8 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) =>
+            this.defaultService.getList(index, size, query),
           label: 'required',
           span: 8,
           required: true

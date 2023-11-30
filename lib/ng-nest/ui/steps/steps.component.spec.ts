@@ -5,7 +5,7 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XStepsModule } from '@ng-nest/ui/steps';
 import { XStepsPrefix } from './steps.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XTabsModule } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
@@ -14,7 +14,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XStepsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XStepsModule, XButtonComponent, XTabsModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        XStepsModule,
+        XButtonComponent,
+        XButtonsComponent,
+        XTabsModule
+      ],
       declarations: [TestXStepsComponent, TestXStepsDotComponent]
     }).compileComponents();
   });

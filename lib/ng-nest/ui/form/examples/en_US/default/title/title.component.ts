@@ -1,14 +1,23 @@
 import { Component } from '@angular/core';
-import { XControl } from '@ng-nest/ui/form';
+import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-title',
+  standalone: true,
+  imports: [XFormComponent],
   templateUrl: './title.component.html'
 })
 export class ExTitleComponent {
   controls: XControl[] = [
     { control: 'input', id: 'name', label: 'name', required: true, maxlength: 10 },
-    { control: 'input', id: 'id', label: 'code', disabled: true, value: '001001001', required: true },
+    {
+      control: 'input',
+      id: 'id',
+      label: 'code',
+      disabled: true,
+      value: '001001001',
+      required: true
+    },
     {
       control: 'input',
       id: 'account',
@@ -50,6 +59,12 @@ export class ExTitleComponent {
     { control: 'switch', id: 'disabled', label: 'disabled' },
     { control: 'time-picker', id: 'time', label: 'time', required: true },
     { control: 'slider-select', id: 'process', label: 'process', required: true },
-    { control: 'checkbox', id: 'hobby', label: 'hobby', data: ['table tennis', 'basketball', 'football'], required: true }
+    {
+      control: 'checkbox',
+      id: 'hobby',
+      label: 'hobby',
+      data: ['table tennis', 'basketball', 'football'],
+      required: true
+    }
   ];
 }

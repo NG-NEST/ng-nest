@@ -11,11 +11,11 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XFindModule } from '@ng-nest/ui/find';
+import { XFindComponent } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -38,10 +38,10 @@ describe(XAutoCompletePrefix, () => {
         XRadioModule,
         XSelectModule,
         XButtonComponent,
-        XInputModule,
+        XInputComponent,
         XCascadeComponent,
         XColorPickerComponent,
-        XFindModule,
+        XFindComponent,
         XTextareaModule,
         XTimePickerModule,
         XDatePickerComponent,

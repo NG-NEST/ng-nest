@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { XListComponent } from '@ng-nest/ui/list';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-load-more',
+  standalone: true,
+  imports: [XListComponent],
   templateUrl: './load-more.component.html',
   styleUrls: ['./load-more.component.scss']
 })

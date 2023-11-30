@@ -23,13 +23,14 @@ import { map as rxjsMap, delay } from 'rxjs/operators';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XDialogComponent } from '@ng-nest/ui/dialog';
 
 describe(XTablePrefix, () => {
   beforeEach(() => {
@@ -44,9 +45,10 @@ describe(XTablePrefix, () => {
         XAvatarComponent,
         XButtonComponent,
         XLinkComponent,
-        XInputModule,
+        XInputComponent,
         XSelectModule,
-        XSwitchModule
+        XSwitchModule,
+        XDialogComponent
       ],
       declarations: [
         TestXTableComponent,
@@ -293,7 +295,8 @@ interface User extends XId {
   providers: [UsersServiceTest]
 })
 class TestXTableComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', type: 'index' },
     { id: 'name', label: '用户', sort: true },
@@ -342,7 +345,8 @@ class TestXTableComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableScrollComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 200, sort: true },
@@ -391,7 +395,8 @@ class TestXTableScrollComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableBorderedComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 200, sort: true },
@@ -440,7 +445,8 @@ class TestXTableBorderedComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableWidthDragComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', width: 100, left: 0, type: 'index' },
     { id: 'name', label: '用户', width: 150, sort: true, dragWidth: true },
@@ -702,7 +708,8 @@ class TestXTableMergeColumnComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableCheckboxComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(1000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(1000));
   columns: XTableColumn[] = [
     { id: 'checked', label: '', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
     { id: 'index', label: '序号', flex: 0.5, type: 'index' },
@@ -721,19 +728,44 @@ class TestXTableCheckboxComponent {
 @Component({
   template: `
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="58" rowSize="big"> </x-table>
+      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="58" rowSize="big">
+      </x-table>
     </div>
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="50" rowSize="large"> </x-table>
+      <x-table
+        [columns]="columns"
+        [data]="data"
+        [size]="10"
+        loading
+        [rowHeight]="50"
+        rowSize="large"
+      >
+      </x-table>
     </div>
     <div class="row">
       <x-table [columns]="columns" [data]="data" [size]="10" loading> </x-table>
     </div>
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="32" rowSize="small"> </x-table>
+      <x-table
+        [columns]="columns"
+        [data]="data"
+        [size]="10"
+        loading
+        [rowHeight]="32"
+        rowSize="small"
+      >
+      </x-table>
     </div>
     <div class="row">
-      <x-table [columns]="columns" [data]="data" [size]="10" loading [rowHeight]="24" rowSize="mini"> </x-table>
+      <x-table
+        [columns]="columns"
+        [data]="data"
+        [size]="10"
+        loading
+        [rowHeight]="24"
+        rowSize="mini"
+      >
+      </x-table>
     </div>
   `,
   styles: [
@@ -754,7 +786,8 @@ class TestXTableCheckboxComponent {
   providers: [UsersServiceTest]
 })
 class TestXTableRowSizeComponent {
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [
     { id: 'index', label: '序号', flex: 0.5, left: 0, type: 'index' },
     { id: 'name', label: '用户', flex: 1.5, sort: true },
@@ -837,7 +870,8 @@ class TestXTableRowSizeComponent {
 })
 class TestXTablePaginationComponent {
   size = 100;
-  data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query).pipe(delay(2000));
+  data = (index: number, size: number, query: XQuery) =>
+    this.service.getList(index, size, query).pipe(delay(2000));
   columns: XTableColumn[] = [{ id: 'name', label: '用户', flex: 1.5, sort: true }];
 
   constructor(private service: UsersServiceTest) {}

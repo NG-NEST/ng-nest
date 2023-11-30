@@ -1,4 +1,4 @@
-import { Injectable, Optional, SecurityContext } from '@angular/core';
+import { Injectable, SecurityContext, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber } from 'rxjs';
@@ -12,16 +12,18 @@ type Task<T> = {
 };
 
 // @dynamic
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XIconService {
   caches: { [property: string]: any } = {};
   queue: Task<any>[] = [];
   activeTaskXm: number = 0;
   isRunningTask = false;
   limit: number = 10;
+  sanitizer = inject(DomSanitizer);
+  http = inject(HttpClient, { optional: true })!;
 
-  constructor(private sanitizer: DomSanitizer, @Optional() private http: HttpClient) {
-    if (!http) {
+  constructor() {
+    if (!this.http) {
       throw new Error(
         `${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
       );

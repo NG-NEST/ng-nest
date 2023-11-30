@@ -9,7 +9,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XUploadPortalComponent } from './upload-portal.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { XImageModule } from '@ng-nest/ui/image';
+import { XImageComponent, XImageGroupComponent } from '@ng-nest/ui/image';
 import { XProgressModule } from '@ng-nest/ui/progress';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { XProgressModule } from '@ng-nest/ui/progress';
     XButtonComponent,
     XIconComponent,
     XControlValueAccessor,
-    XImageModule,
+    XImageComponent,
+    XImageGroupComponent,
     XProgressModule
   ]
 })

@@ -103,6 +103,54 @@ export const TestRoutes: Routes = [
       {
         path: 'dropdown',
         loadComponent: () => import('./dropdown/dropdown.component').then((x) => x.TeDropdownComponent)
+      },
+      {
+        path: 'find',
+        loadComponent: () => import('./find/find.component').then((x) => x.TeFindComponent)
+      },
+      {
+        path: 'form',
+        loadComponent: () => import('./form/form.component').then((x) => x.TeFormComponent)
+      },
+      {
+        path: 'highlight',
+        loadComponent: () => import('./highlight/highlight.component').then((x) => x.TeHighlightComponent)
+      },
+      {
+        path: 'image',
+        loadComponent: () => import('./image/image.component').then((x) => x.TeImageComponent)
+      },
+      {
+        path: 'input',
+        loadComponent: () => import('./input/input.component').then((x) => x.TeInputComponent)
+      },
+      {
+        path: 'input-number',
+        loadComponent: () => import('./input-number/input-number.component').then((x) => x.TeInputNumberComponent)
+      },
+      {
+        path: 'layout',
+        loadComponent: () => import('./layout/layout.component').then((x) => x.TeLayoutComponent)
+      },
+      {
+        path: 'link',
+        loadComponent: () => import('./link/link.component').then((x) => x.TeLinkComponent)
+      },
+      {
+        path: 'list',
+        loadComponent: () => import('./list/list.component').then((x) => x.TeListComponent)
+      },
+      {
+        path: 'loading',
+        loadComponent: () => import('./loading/loading.component').then((x) => x.TeLoadingComponent)
+      },
+      {
+        path: 'menu',
+        loadComponent: () => import('./menu/menu.component').then((x) => x.TeMenuComponent)
+      },
+      {
+        path: 'message',
+        loadComponent: () => import('./message/message.component').then((x) => x.TeMessageComponent)
       }
     ]
   }

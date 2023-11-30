@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XMenuComponent } from './menu.component';
 import { Component, DebugElement, ChangeDetectorRef, NgModule } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMenuModule } from '@ng-nest/ui/menu';
+import { XMenuComponent } from '@ng-nest/ui/menu';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +14,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XMenuPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMenuModule, XButtonComponent, TestMenuRoutesModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeModule,
+        XMenuComponent,
+        XButtonComponent,
+        TestMenuRoutesModule
+      ],
       declarations: [
         TestXMenuComponent,
         TestXMenuExpandedComponent,
@@ -120,7 +125,12 @@ describe(XMenuPrefix, () => {
 })
 class TestXMenuComponent {
   data = ['最新活动', '产品', '解决方案', '帮助和支持'];
-  dataIcon = ['最新活动', { label: '产品', icon: 'fto-package' }, '解决方案', { label: '帮助和支持', icon: 'fto-phone' }];
+  dataIcon = [
+    '最新活动',
+    { label: '产品', icon: 'fto-package' },
+    '解决方案',
+    { label: '帮助和支持', icon: 'fto-phone' }
+  ];
   dataLeaf = [
     {
       id: '1-8',
@@ -1189,7 +1199,8 @@ export class TestMenuRoutesModule {}
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-menu [data]="data" (nodeClick)="nodeClick($event)" [(activatedId)]="activatedId" [portalMinWidth]="'10rem'"> </x-menu>
+      <x-menu [data]="data" (nodeClick)="nodeClick($event)" [(activatedId)]="activatedId" [portalMinWidth]="'10rem'">
+      </x-menu>
     </div>
   `,
   styles: [

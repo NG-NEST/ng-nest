@@ -1,5 +1,14 @@
-import { Injectable } from '@angular/core';
-import { XTemplate, XIsXTemplate, XIsEmpty, fillDefault, XIsString, XConfigService, XMessageConfig, XIsUndefined } from '@ng-nest/ui/core';
+import { Injectable, inject } from '@angular/core';
+import {
+  XTemplate,
+  XIsXTemplate,
+  XIsEmpty,
+  fillDefault,
+  XIsString,
+  XConfigService,
+  XMessageConfig,
+  XIsUndefined
+} from '@ng-nest/ui/core';
 import {
   XMessageOverlayRef,
   XMessageType,
@@ -15,7 +24,7 @@ import { delay } from 'rxjs/operators';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XMessageRef } from './message-ref';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XMessageService {
   messages: XMessagePlacement = {};
 
@@ -32,10 +41,11 @@ export class XMessageService {
     hide: false
   };
 
-  configDefault?: XMessageConfig;
+  private portal = inject(XPortalService);
+  private configService = inject(XConfigService);
+  configDefault?: XMessageConfig = this.configService.getConfigForComponent(X_MESSAGE_CONFIG_NAME);
 
-  constructor(public portal: XPortalService, public configService: XConfigService) {
-    this.configDefault = this.configService.getConfigForComponent(X_MESSAGE_CONFIG_NAME);
+  constructor() {
     Object.assign(this.default, this.configDefault);
   }
 

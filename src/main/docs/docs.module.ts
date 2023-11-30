@@ -2,10 +2,10 @@ import { ShareModule } from '@share';
 import { NgModule } from '@angular/core';
 import { NsDocsComponent } from './docs.component';
 import { NsDocsRoutesModule } from './docs-routes.module';
-import { XMenuModule } from '@ng-nest/ui/menu';
+import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @NgModule({
-  imports: [ShareModule, NsDocsRoutesModule, XMenuModule],
+  imports: [ShareModule, NsDocsRoutesModule, XMenuComponent],
   declarations: [NsDocsComponent],
   exports: [NsDocsComponent]
 })

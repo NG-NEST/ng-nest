@@ -9,7 +9,7 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { XFormModule, XFormRow } from '@ng-nest/ui/form';
+import { XFormComponent, XFormRow } from '@ng-nest/ui/form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UntypedFormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
 import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XInputNumberModule } from '@ng-nest/ui/input-number';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTreePrefix, () => {
@@ -32,10 +32,10 @@ describe(XTreePrefix, () => {
         XColComponent,
         XButtonComponent,
         XLinkComponent,
-        XFormModule,
+        XFormComponent,
         XLinkComponent,
         XMessageModule,
-        XInputNumberModule,
+        XInputNumberComponent,
         XIconComponent
       ],
       declarations: [

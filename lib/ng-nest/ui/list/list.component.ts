@@ -5,7 +5,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Renderer2,
   SimpleChanges,
   OnChanges,
   QueryList,
@@ -14,24 +13,48 @@ import {
   HostBinding,
   HostListener,
   ViewChildren,
-  Optional,
-  Inject,
-  SkipSelf
+  inject
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XIsChange, XSetData, XConfigService, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  XIsChange,
+  XSetData,
+  XConfigService,
+  XIsEmpty,
+  XIsUndefined,
+  XIsNull,
+  XResize,
+  XResizeObserver
+} from '@ng-nest/ui/core';
+import { CdkDrag, CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { map, takeUntil, debounceTime } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { XListDropGroup, X_LIST_DROP_GROUP } from './list-drop-group.directive';
+import { CommonModule } from '@angular/common';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XListPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    ScrollingModule,
+    XIconComponent,
+    XEmptyComponent,
+    XListOptionComponent,
+    XOutletDirective
+  ],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -119,20 +142,10 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    public elementRef: ElementRef<HTMLElement>,
-    public configService: XConfigService,
-    private i18n: XI18nService,
-    @Optional()
-    @Inject(X_LIST_DROP_GROUP)
-    @SkipSelf()
-    private group?: XListDropGroup
-  ) {
-    super();
-  }
+  override cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  private group = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange

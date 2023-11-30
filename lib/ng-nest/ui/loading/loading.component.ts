@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
@@ -11,14 +9,20 @@ import {
   HostBinding,
   ViewChild,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
+  inject
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
 import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XLoadingPrefix}, [${XLoadingPrefix}]`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XOutletDirective],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -33,16 +37,10 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
 
   sizeNumber?: number;
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public portal: XPortalService,
-    public viewContainerRef: ViewContainerRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private portal = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

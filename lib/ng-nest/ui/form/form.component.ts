@@ -1,4 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  SimpleChanges,
+  inject,
+  OnChanges,
+  AfterViewInit
+} from '@angular/core';
 import {
   XFormProperty,
   XFormRow,
@@ -9,23 +18,37 @@ import {
   XFormControlType
 } from './form.property';
 import { XIsChange, XBoolean, XConfigService } from '@ng-nest/ui/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
+import { CommonModule } from '@angular/common';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XControlComponent } from './control.component';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XFormPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XRowComponent,
+    XColComponent,
+    XOutletDirective,
+    XIconComponent,
+    XControlComponent
+  ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XFormComponent extends XFormProperty implements OnInit {
+export class XFormComponent extends XFormProperty implements OnInit, OnChanges, AfterViewInit {
   controlsType!: 'controls' | 'rows';
   controlComponents: { [property: string]: XFormControlComponent } = {};
   controlTypes: { [property: string]: XFormControlType } = {};
   formId = Number(Math.random().toString().substring(2, 6) + Date.now()).toString(36);
-
-  constructor(public cdr: ChangeDetectorRef, public configService: XConfigService) {
-    super();
-  }
+  configService = inject(XConfigService);
 
   ngOnChanges(changes: SimpleChanges) {
     const { disabled } = changes;

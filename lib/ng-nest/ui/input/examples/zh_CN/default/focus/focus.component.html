@@ -1,12 +1,10 @@
-<x-row>
-  <x-col span="24">
-    <x-buttons>
-      <x-button (click)="inputCom.inputFocus('select')">设置焦点（选中文字）</x-button>
-      <x-button (click)="inputCom.inputFocus('before')">设置焦点（光标在文字前）</x-button>
-      <x-button (click)="inputCom.inputFocus()">设置焦点（光标在文字后，默认）</x-button>
-    </x-buttons>
-  </x-col>
-  <x-col span="24">
-    <x-input #inputCom [style.width.rem]="15" [(ngModel)]="inputValue"></x-input>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-buttons>
+    <x-button (click)="inputCom.inputFocus('select')">设置焦点（选中文字）</x-button>
+    <x-button (click)="inputCom.inputFocus('before')">设置焦点（光标在文字前）</x-button>
+    <x-button (click)="inputCom.inputFocus()">设置焦点（光标在文字后，默认）</x-button>
+  </x-buttons>
+</div>
+<div class="row">
+  <x-input #inputCom [style.width.rem]="15" [(ngModel)]="inputValue"></x-input>
+</div>

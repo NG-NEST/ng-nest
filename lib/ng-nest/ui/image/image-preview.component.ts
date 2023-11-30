@@ -1,28 +1,29 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  OnChanges,
-  Inject,
   ViewChild,
-  inject
+  inject,
+  OnInit
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { X_DIALOG_DATA } from '@ng-nest/ui/dialog';
-import { DOCUMENT } from '@angular/common';
+import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XImagePreviewPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, DragDropModule, XDialogCloseDirective],
   templateUrl: './image-preview.component.html',
   styleUrls: ['./image-preview.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XImagePreviewComponent extends XImagePreviewProperty implements OnChanges {
+export class XImagePreviewComponent extends XImagePreviewProperty implements OnInit {
   imgScale3d = {
     x: 1,
     y: 1,
@@ -50,21 +51,12 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
 
   @ViewChild('imageRef') imageRef!: ElementRef<HTMLImageElement>;
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    @Inject(X_DIALOG_DATA) public data: XImageNode[]
-  ) {
-    super();
-  }
+  data = inject<XImageNode[]>(X_DIALOG_DATA);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setActivated();
   }
-
-  ngOnChanges() {}
 
   initialization() {
     this.imgScale3d = {
@@ -115,7 +107,8 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
     let width = this.imageRef.nativeElement.offsetWidth * this.imgScale3d.x;
     let height = this.imageRef.nativeElement.offsetHeight * this.imgScale3d.x;
     const clientWidth = this.document.documentElement.clientWidth;
-    const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
+    const clientHeight =
+      this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
     const isRotate = this.rotate % 180 !== 0;
     const box = this.imageRef.nativeElement.getBoundingClientRect();
     const docElem = this.document.documentElement;
@@ -124,7 +117,9 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnC
       (this.document.defaultView?.pageXOffset || docElem.scrollLeft) -
       (docElem.clientLeft || this.document.body.clientLeft || 0);
     const top =
-      box.top + (this.document.defaultView?.pageYOffset || docElem.scrollTop) - (docElem.clientTop || this.document.body.clientTop || 0);
+      box.top +
+      (this.document.defaultView?.pageYOffset || docElem.scrollTop) -
+      (docElem.clientTop || this.document.body.clientTop || 0);
     width = isRotate ? height : width;
     height = isRotate ? width : height;
 

@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
@@ -15,10 +14,15 @@ import {
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
 import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { XSliderModule } from '@ng-nest/ui/slider';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
+import { XMenuNodeComponent } from './menu-node.component';
 
 @Component({
   selector: `${XMenuPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XSliderModule, XDropdownComponent, XMenuNodeComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -39,15 +43,8 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   private doc = inject(DOCUMENT);
   private _unSubject = new Subject<void>();
   private _target!: HTMLElement;
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();
@@ -146,7 +143,8 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       node.children = value.filter((y) => y.pid === node.id);
       node.leaf = node.children?.length > 0;
       if (node.leaf) {
-        node.open = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0;
+        node.open =
+          Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0;
         node.childrenLoaded = node.open;
         node.children.map((y) => getChildren(y, level + 1));
         node.children = this.setCategory(node.children);

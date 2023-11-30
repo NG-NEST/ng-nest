@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer/drawer.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XRadioModule } from '@ng-nest/ui/radio';
 
 @Component({
@@ -15,7 +15,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
     FormsModule,
     XButtonComponent,
     XButtonsComponent,
-    XInputModule,
+    XInputComponent,
     XRadioModule,
     XDrawerComponent,
     XIconComponent

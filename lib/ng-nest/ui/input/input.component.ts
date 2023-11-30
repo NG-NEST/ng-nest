@@ -9,9 +9,9 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges,
-  Optional,
   TemplateRef,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
 import {
@@ -25,9 +25,15 @@ import {
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XInputPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconComponent, XOutletDirective],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -87,15 +93,11 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return `calc(100% - ${this.paddingLeft + this.paddingRight}rem)`;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    @Optional() public inputGroup: XInputGroupComponent
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  private inputGroup = inject(XInputGroupComponent, { optional: true });
+  elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setPadding();

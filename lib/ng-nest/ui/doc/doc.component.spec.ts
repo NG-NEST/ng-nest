@@ -9,10 +9,10 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XExamplesModule } from '@ng-nest/ui/examples';
+import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XHighlightModule } from '@ng-nest/ui/highlight';
+import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -29,10 +29,10 @@ describe(XDocPrefix, () => {
         XColComponent,
         XBadgeComponent,
         XButtonComponent,
-        XExamplesModule,
+        XExamplesComponent,
         XApiComponent,
         XTabsModule,
-        XHighlightModule,
+        XHighlightComponent,
         XPatternComponent
       ],
       declarations: [

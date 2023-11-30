@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XImageComponent, XImageGroupComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss']
+  standalone: true,
+  imports: [XImageComponent, XImageGroupComponent],
+  templateUrl: './group.component.html'
 })
 export class ExGroupComponent {}

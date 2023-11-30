@@ -1,4 +1,15 @@
-<x-row><x-find label="tree single select" [(ngModel)]="model" [treeData]="treeService.getTreeList"></x-find></x-row>
-<x-row [style.margin-top.rem]="1"
-  ><x-find label="tree multiple select" [(ngModel)]="modelMultiple" [treeData]="treeService.getTreeList" multiple></x-find
-></x-row>
+<div class="row">
+  <x-find
+    label="tree single select"
+    [(ngModel)]="model"
+    [treeData]="treeService.getTreeList"
+  ></x-find>
+</div>
+<div class="row">
+  <x-find
+    label="tree multiple select"
+    [(ngModel)]="modelMultiple"
+    [treeData]="treeService.getTreeList"
+    multiple
+  ></x-find>
+</div>

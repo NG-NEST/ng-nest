@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XImageComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  standalone: true,
+  imports: [XImageComponent],
+  templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {}

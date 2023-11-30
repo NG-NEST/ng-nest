@@ -7,27 +7,63 @@ import {
   Renderer2,
   ElementRef,
   ViewChild,
-  SimpleChanges
+  SimpleChanges,
+  inject,
+  OnChanges,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XClearClass, XResize, XIsUndefined, XIsChange, XConfigService, XIsEmpty, XResizeObserver } from '@ng-nest/ui/core';
-import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
+import {
+  XClearClass,
+  XResize,
+  XIsUndefined,
+  XIsChange,
+  XConfigService,
+  XIsEmpty,
+  XResizeObserver
+} from '@ng-nest/ui/core';
+import { XTableComponent, XTableRow, XTableModule } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
-import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
-import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { XTreeNode, XTreeComponent, XTreeModule } from '@ng-nest/ui/tree';
+import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XTagModule } from '@ng-nest/ui/tag';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XFindPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XTagModule,
+    XButtonComponent,
+    XDialogComponent,
+    XTableModule,
+    XTreeModule,
+    XIconComponent,
+    XEmptyComponent,
+    XInputComponent,
+    XControlValueAccessor
+  ],
   templateUrl: './find.component.html',
   styleUrls: ['./find.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XFindComponent)]
 })
-export class XFindComponent extends XFindProperty implements OnInit {
+export class XFindComponent
+  extends XFindProperty
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   @ViewChild('find', { static: true }) find!: ElementRef<HTMLElement>;
   @ViewChild('dialogCom') dialogCom!: XDialogComponent;
   @ViewChild('tableCom') tableCom!: XTableComponent;
@@ -68,7 +104,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
 
   get hasTree() {
     return (
-      (Array.isArray(this.treeData) && this.treeData.length > 0) || this.treeData instanceof Function || this.treeData instanceof Observable
+      (Array.isArray(this.treeData) && this.treeData.length > 0) ||
+      this.treeData instanceof Function ||
+      this.treeData instanceof Observable
     );
   }
 
@@ -95,9 +133,9 @@ export class XFindComponent extends XFindProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnChanges(simples: SimpleChanges) {
     const { tableData, labelAlign, size } = simples;
@@ -322,7 +360,10 @@ export class XFindComponent extends XFindProperty implements OnInit {
         field.value = node.id;
         field.operation = '=';
       } else {
-        this.tableQuery.filter = [...this.tableQuery.filter, { field: this.treeTableConnect, value: node.id, operation: '=' }];
+        this.tableQuery.filter = [
+          ...this.tableQuery.filter,
+          { field: this.treeTableConnect, value: node.id, operation: '=' }
+        ];
       }
       this.tableCom.change(1);
       this.treeActivatedId = node.id;

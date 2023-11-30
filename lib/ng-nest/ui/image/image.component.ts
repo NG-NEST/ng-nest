@@ -1,14 +1,12 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnInit,
-  Optional,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XImageNode, XImagePrefix, XImageProperty } from './image.property';
 import { XConfigService, XIsChange } from '@ng-nest/ui/core';
@@ -18,9 +16,14 @@ import { XI18nImage, XI18nService } from '@ng-nest/ui/i18n';
 import { map, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XImageGroupComponent } from './image-group.component';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XImagePrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XOutletDirective],
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -35,17 +38,12 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
   get getPreviewText() {
     return this.previewText || this.locale.previewText;
   }
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public dialog: XDialogService,
-    public i18n: XI18nService,
-    @Optional() public group: XImageGroupComponent
-  ) {
-    super();
-  }
+
+  private cdr = inject(ChangeDetectorRef);
+  private dialog = inject(XDialogService);
+  private i18n = inject(XI18nService);
+  private group = inject(XImageGroupComponent, { optional: true });
+  configService = inject(XConfigService);
 
   ngOnInit(): void {
     if (this.group) {
@@ -81,7 +79,12 @@ export class XImageComponent extends XImageProperty implements OnInit, OnChanges
     let data: XImageNode[] = [];
     if (this.group) {
       const activatedIndex = this.group.images.indexOf(this);
-      data = this.group.images.map((x, index) => ({ src: x.src, alt: x.alt, fallback: x.fallback, activated: index === activatedIndex }));
+      data = this.group.images.map((x, index) => ({
+        src: x.src,
+        alt: x.alt,
+        fallback: x.fallback,
+        activated: index === activatedIndex
+      }));
     } else {
       data = [{ src: this.src, alt: this.alt, fallback: this.fallback }];
     }

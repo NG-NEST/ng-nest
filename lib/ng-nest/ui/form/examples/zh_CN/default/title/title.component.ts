@@ -1,14 +1,23 @@
 import { Component } from '@angular/core';
-import { XControl } from '@ng-nest/ui/form';
+import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-title',
+  standalone: true,
+  imports: [XFormComponent],
   templateUrl: './title.component.html'
 })
 export class ExTitleComponent {
   controls: XControl[] = [
     { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10 },
-    { control: 'input', id: 'id', label: '编码', disabled: true, value: '001001001', required: true },
+    {
+      control: 'input',
+      id: 'id',
+      label: '编码',
+      disabled: true,
+      value: '001001001',
+      required: true
+    },
     {
       control: 'input',
       id: 'account',
@@ -19,7 +28,14 @@ export class ExTitleComponent {
     },
     { control: 'input', id: 'password', label: '密码', type: 'password', required: true },
     { control: 'input', id: 'file', label: '文件', required: true },
-    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true },
+    {
+      control: 'select',
+      id: 'type',
+      label: '角色',
+      data: ['普通用户', '管理员', '销售'],
+      value: '管理员',
+      required: true
+    },
     {
       control: 'cascade',
       id: 'city',
@@ -43,6 +59,12 @@ export class ExTitleComponent {
     { control: 'switch', id: 'disabled', label: '禁用' },
     { control: 'time-picker', id: 'time', label: '时间', required: true },
     { control: 'slider-select', id: 'process', label: '进度', required: true },
-    { control: 'checkbox', id: 'active', label: '爱好', data: ['乒乓球', '篮球', '足球'], required: true }
+    {
+      control: 'checkbox',
+      id: 'active',
+      label: '爱好',
+      data: ['乒乓球', '篮球', '足球'],
+      required: true
+    }
   ];
 }

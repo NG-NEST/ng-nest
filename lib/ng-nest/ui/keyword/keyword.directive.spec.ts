@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XKeywordDirective } from './keyword.directive';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XKeywordPrefix } from './keyword.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XKeywordDirective } from './keyword.module';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XKeywordPrefix, () => {

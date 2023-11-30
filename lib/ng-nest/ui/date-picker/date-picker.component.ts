@@ -15,7 +15,11 @@ import {
   SimpleChanges,
   inject
 } from '@angular/core';
-import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
+import {
+  XDatePickerPrefix,
+  XDatePickerProperty,
+  XDatePickerModelType
+} from './date-picker.property';
 import {
   XIsEmpty,
   XIsDate,
@@ -30,7 +34,7 @@ import {
   XDateYearQuarter,
   XParents
 } from '@ng-nest/ui/core';
-import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe } from '@angular/common';
 import {
   Overlay,
@@ -46,7 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: `${XDatePickerPrefix}`,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, XInputModule],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -125,7 +129,13 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   private overlay = inject(Overlay);
 
   ngOnInit() {
-    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
+    this.setFlex(
+      this.datePicker.nativeElement,
+      this.renderer,
+      this.justify,
+      this.align,
+      this.direction
+    );
     this.setFormat();
     this.setClassMap();
     this.setSubject();
@@ -250,7 +260,9 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   getValue() {
     if (this.numberValue === '') return null;
-    return ['date', 'string'].includes(this.modelType) ? new Date(this.numberValue) : this.numberValue;
+    return ['date', 'string'].includes(this.modelType)
+      ? new Date(this.numberValue)
+      : this.numberValue;
   }
 
   portalAttached() {
@@ -297,10 +309,12 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      place !== this.placement && this.positionChange.next(place);
-    });
+    position.positionChanges
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((pos: ConnectedOverlayPositionChange) => {
+        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+        place !== this.placement && this.positionChange.next(place);
+      });
   }
 
   setInstance() {

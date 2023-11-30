@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XListModule } from '@ng-nest/ui/list';
+import { XListComponent } from '@ng-nest/ui/list';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTimePickerComponent } from './time-picker.component';
 import { XTimePickerPortalComponent } from './time-picker-portal.component';
@@ -19,8 +19,8 @@ import { XI18nDirective } from '@ng-nest/ui/i18n';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    XInputModule,
-    XListModule,
+    XInputComponent,
+    XListComponent,
     XButtonComponent,
     XIconComponent,
     XControlValueAccessor,

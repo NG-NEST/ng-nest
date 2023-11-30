@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XTransferProperty } from './transfer.property';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
@@ -25,7 +25,7 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
     XOutletDirective,
     XCheckboxComponent,
     XButtonComponent,
-    XInputModule,
+    XInputComponent,
     XControlValueAccessor,
     XTreeModule,
     XTableModule,

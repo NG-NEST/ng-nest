@@ -1,26 +1,16 @@
 <x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-row>
-  <x-col span="8">
-    <x-find [size]="size"></x-find>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="8">
-    <x-find [size]="size" label="用户名" direction="row"></x-find>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="8">
-    <x-find [size]="size" label="用户名"></x-find>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="8">
-    <x-find [size]="size" [(ngModel)]="model" multiple></x-find>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="8">
-    <x-find disabled [size]="size"></x-find>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-find [size]="size"></x-find>
+</div>
+<div class="row">
+  <x-find [size]="size" label="用户名" direction="row"></x-find>
+</div>
+<div class="row">
+  <x-find [size]="size" label="用户名"></x-find>
+</div>
+<div class="row">
+  <x-find [size]="size" [(ngModel)]="model" multiple></x-find>
+</div>
+<div class="row">
+  <x-find disabled [size]="size"></x-find>
+</div>

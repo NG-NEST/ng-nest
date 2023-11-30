@@ -5,7 +5,7 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XMessageBoxService } from './message-box.service';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
@@ -17,7 +17,7 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    XInputModule,
+    XInputComponent,
     XButtonComponent,
     XButtonsComponent,
     XIconComponent,

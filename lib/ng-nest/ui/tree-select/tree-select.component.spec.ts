@@ -11,7 +11,7 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTreeSelectPrefix, () => {
@@ -24,7 +24,7 @@ describe(XTreeSelectPrefix, () => {
         XTreeSelectModule,
         FormsModule,
         ReactiveFormsModule,
-        XInputModule,
+        XInputComponent,
         XRowComponent,
         XColComponent,
         XRadioModule

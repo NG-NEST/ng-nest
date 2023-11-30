@@ -1,7 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XListComponent } from '@ng-nest/ui/list';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XListComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

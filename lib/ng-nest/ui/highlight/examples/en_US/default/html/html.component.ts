@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: 'ex-html',
+  standalone: true,
+  imports: [XHighlightComponent],
   templateUrl: './html.component.html'
 })
 export class ExHtmlComponent {

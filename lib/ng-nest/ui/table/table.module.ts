@@ -6,7 +6,7 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XLoadingModule } from '@ng-nest/ui/loading';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import {
   XTableProperty,
@@ -45,7 +45,7 @@ import { XDragDirective } from '@ng-nest/ui/drag';
     ScrollingModule,
     DragDropModule,
     XEmptyComponent,
-    XLoadingModule,
+    XLoadingComponent,
     XDragDirective
   ]
 })

@@ -15,10 +15,10 @@ import { XSelectModule } from '@ng-nest/ui/select';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XFindModule } from '@ng-nest/ui/find';
+import { XFindComponent } from '@ng-nest/ui/find';
 import { XTextareaModule } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -37,11 +37,11 @@ describe(XDatePickerPrefix, () => {
         XButtonComponent,
         XRadioModule,
         XSelectModule,
-        XInputModule,
+        XInputComponent,
         XAutoCompleteComponent,
         XCascadeComponent,
         XColorPickerComponent,
-        XFindModule,
+        XFindComponent,
         XTextareaModule,
         XTimePickerModule
       ],

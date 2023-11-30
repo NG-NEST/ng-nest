@@ -15,13 +15,13 @@ import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.pr
 import { Subject, BehaviorSubject } from 'rxjs';
 import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XListComponent, XListModule } from '@ng-nest/ui/list';
+import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XAutoCompletePortalPrefix}`,
   standalone: true,
-  imports: [XListModule],
+  imports: [XListComponent],
   templateUrl: './auto-complete-portal.component.html',
   styleUrls: ['./auto-complete-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

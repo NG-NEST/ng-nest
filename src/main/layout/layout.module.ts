@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XMenuModule } from '@ng-nest/ui/menu';
-import { XDropdownModule } from '@ng-nest/ui/dropdown';
+import { XMenuComponent } from '@ng-nest/ui/menu';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer';
@@ -42,9 +42,9 @@ const components = [
     CommonModule,
     FormsModule,
     XIconComponent,
-    XMenuModule,
+    XMenuComponent,
     XButtonComponent,
-    XDropdownModule,
+    XDropdownComponent,
     XSelectModule,
     XDrawerComponent,
     XAffixComponent,

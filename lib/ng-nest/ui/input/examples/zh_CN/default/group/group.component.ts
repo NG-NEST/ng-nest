@@ -1,7 +1,33 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
+import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
+import { XFindComponent } from '@ng-nest/ui/find';
+import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
+import { XSelectModule } from '@ng-nest/ui/select';
+import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-group',
+  standalone: true,
+  imports: [
+    CommonModule,
+    XInputComponent,
+    XInputGroupComponent,
+    XSelectModule,
+    XButtonComponent,
+    XDatePickerComponent,
+    XAutoCompleteComponent,
+    XCascadeComponent,
+    XColorPickerComponent,
+    XFindComponent,
+    XTimePickerModule,
+    XTextareaModule
+  ],
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']
 })

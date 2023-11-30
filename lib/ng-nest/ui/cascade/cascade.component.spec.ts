@@ -1,7 +1,5 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XCascadeComponent } from './cascade.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';

@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XInputNumberComponent } from './input-number.component';
 import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XInputNumberModule } from '@ng-nest/ui/input-number';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputNumberPrefix } from './input-number.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
@@ -19,7 +17,7 @@ describe(XInputNumberPrefix, () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         XThemeModule,
-        XInputNumberModule,
+        XInputNumberComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
@@ -386,12 +384,7 @@ class TestXInputNumberSizeComponent {
         <x-input-number placeholder="请输入" bordered="false"></x-input-number>
       </x-col>
       <x-col span="24">
-        <x-input-number
-          placeholder="请输入"
-          bordered="false"
-          label="数量:"
-          direction="row"
-        ></x-input-number>
+        <x-input-number placeholder="请输入" bordered="false" label="数量:" direction="row"></x-input-number>
       </x-col>
       <x-col span="24">
         <x-input-number placeholder="请输入" bordered="false"></x-input-number>

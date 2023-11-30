@@ -1,11 +1,9 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XLoadingComponent } from './loading.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XLoadingModule } from '@ng-nest/ui/loading';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
 import { FormsModule } from '@angular/forms';
 import { XLoadingPrefix } from './loading.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -25,7 +23,7 @@ describe(XLoadingPrefix, () => {
         XThemeModule,
         FormsModule,
         BrowserAnimationsModule,
-        XLoadingModule,
+        XLoadingComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,

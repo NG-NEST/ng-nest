@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XImageComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-fallback',
-  templateUrl: './fallback.component.html',
-  styleUrls: ['./fallback.component.scss']
+  standalone: true,
+  imports: [XImageComponent],
+  templateUrl: './fallback.component.html'
 })
 export class ExFallbackComponent {}

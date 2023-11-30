@@ -27,12 +27,8 @@ import {
   XParents,
   XConfigService
 } from '@ng-nest/ui/core';
-import {
-  XPortalService,
-  XPortalOverlayRef,
-  XPortalConnectedPosition
-} from '@ng-nest/ui/portal';
-import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
+import { XInputComponent } from '@ng-nest/ui/input';
 import {
   Overlay,
   OverlayConfig,
@@ -40,20 +36,14 @@ import {
   ConnectedOverlayPositionChange
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XValueAccessor,XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    XInputModule,
-    XControlValueAccessor
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
   templateUrl: './cascade.component.html',
   styleUrls: ['./cascade.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -6,7 +6,7 @@ import { XPaginationProperty } from './pagination.property';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XSelectModule } from '@ng-nest/ui/select';
 import { FormsModule } from '@angular/forms';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
     XButtonsComponent,
     XI18nPipe,
     XSelectModule,
-    XInputModule,
+    XInputComponent,
     XOutletDirective
   ]
 })

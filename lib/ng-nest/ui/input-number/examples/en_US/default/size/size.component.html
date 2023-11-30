@@ -1,21 +1,25 @@
 <x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-row>
-  <x-col span="24">
+<div class="row">
     <x-input-number [size]="size"></x-input-number>
-  </x-col>
-  <x-col span="24">
+</div>
+<div class="row">
+
     <x-input-number [size]="size" label="Number" direction="row"></x-input-number>
-  </x-col>
-  <x-col span="24">
+</div>
+<div class="row">
+
     <x-input-number [size]="size" label="Number" direction="column"></x-input-number>
-  </x-col>
-  <x-col span="24">
+</div>
+<div class="row">
+
     <x-input-number [size]="size" precision="2" step="0.1"></x-input-number>
-  </x-col>
-  <x-col span="24">
+</div>
+<div class="row">
+
     <x-input-number required [size]="size"></x-input-number>
-  </x-col>
-  <x-col span="24">
+</div>
+<div class="row">
+
     <x-input-number disabled [size]="size"></x-input-number>
-  </x-col>
-</x-row>
+</div>
+

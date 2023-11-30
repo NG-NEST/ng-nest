@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { XDocComponent } from '@ng-nest/ui/doc';
-import { XExamplesModule } from '@ng-nest/ui/examples';
+import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XHighlightModule } from '@ng-nest/ui/highlight';
+import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { XI18nDirective } from '@ng-nest/ui/i18n';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -23,11 +23,11 @@ const modules = [
   ReactiveFormsModule,
   NsAdaptionModule,
   XDocComponent,
-  XExamplesModule,
+  XExamplesComponent,
   XAnchorComponent,
   XApiComponent,
   XTabsModule,
-  XHighlightModule,
+  XHighlightComponent,
   XPatternComponent,
   XI18nDirective,
   XButtonComponent,

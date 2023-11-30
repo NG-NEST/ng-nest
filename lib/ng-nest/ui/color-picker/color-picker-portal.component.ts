@@ -19,7 +19,7 @@ import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
 import { CommonModule, DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
-import { XInputComponent, XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
 import { XTabsModule } from '@ng-nest/ui/tabs';
@@ -28,7 +28,14 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, DragDropModule, XSliderSelectModule, XTabsModule, XInputModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DragDropModule,
+    XSliderSelectModule,
+    XTabsModule,
+    XInputComponent
+  ],
   templateUrl: './color-picker-portal.component.html',
   styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -69,7 +76,10 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   drag = false;
 
   rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
-  hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = { h: 0, a: 1 };
+  hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = {
+    h: 0,
+    a: 1
+  };
   hex!: string;
 
   private _unSubject = new Subject<void>();
@@ -101,7 +111,9 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.panel = this.panelRef.nativeElement.getBoundingClientRect();
     this.plate = this.plateRef.nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
+    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector(
+      '.x-slider-select-rail div'
+    )!;
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
@@ -222,7 +234,10 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   moved(drag: CdkDragMove) {
     const transform = drag.source.getFreeDragPosition();
     drag.source.reset();
-    this.transform = { x: transform.x + this.initTransform.x, y: transform.y + this.initTransform.y };
+    this.transform = {
+      x: transform.x + this.initTransform.x,
+      y: transform.y + this.initTransform.y
+    };
     let left = this.transform.x + this.offset;
     let top = this.transform.y + this.offset;
     this.setLetfTop(left, top);
@@ -252,8 +267,10 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setHslaPercent() {
-    this.hsla.sp = this.hsla.s === 0 ? '0%' : (this.percent.transform(this.hsla.s, '1.0-0') as string);
-    this.hsla.lp = this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
+    this.hsla.sp =
+      this.hsla.s === 0 ? '0%' : (this.percent.transform(this.hsla.s, '1.0-0') as string);
+    this.hsla.lp =
+      this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
   }
 
   getPrimary() {
@@ -268,7 +285,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setPlateBackground() {
-    this.renderer.setStyle(this.plateRef.nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.renderer.setStyle(
+      this.plateRef.nativeElement,
+      'background-color',
+      `hsl(${this.hsla.h}, 100%, 50%)`
+    );
   }
 
   setRailBackground() {
@@ -323,7 +344,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       g = hue2rgb(p, q, h / 360);
       b = hue2rgb(p, q, h / 360 - 1 / 3);
     }
-    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255), a: Number(hsla.a) };
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255),
+      a: Number(hsla.a)
+    };
   }
 
   rgbaToHex(rgba: { r?: number; g?: number; b?: number; a?: number }) {

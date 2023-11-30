@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeModule } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { XRadioModule } from '@ng-nest/ui/radio';
-import { XInputModule } from '@ng-nest/ui/input';
+import { XInputComponent } from '@ng-nest/ui/input';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 describe(XSwitchPrefix, () => {
@@ -27,7 +27,7 @@ describe(XSwitchPrefix, () => {
         XRowComponent,
         XColComponent,
         XRadioModule,
-        XInputModule,
+        XInputComponent,
         XIconComponent
       ],
       declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]

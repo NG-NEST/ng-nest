@@ -4,7 +4,7 @@ import { XThemeComponent } from './theme.component';
 import { XThemeProperty } from './theme.property';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XFormModule } from '@ng-nest/ui/form';
+import { XFormComponent } from '@ng-nest/ui/form';
 import { XSwitchModule } from '@ng-nest/ui/switch';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XI18nDirective } from '@ng-nest/ui/i18n';
@@ -21,7 +21,7 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
     XButtonComponent,
     XRowComponent,
     XColComponent,
-    XFormModule,
+    XFormComponent,
     XI18nDirective,
     XControlValueAccessor
   ]

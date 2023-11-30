@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { XTableModule } from '@ng-nest/ui/table';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XFormModule } from '@ng-nest/ui/form';
+import { XFormComponent } from '@ng-nest/ui/form';
 import { XMessageModule } from '@ng-nest/ui/message';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XMessageBoxModule } from '@ng-nest/ui/message-box';
@@ -16,7 +16,7 @@ import { XMessageBoxModule } from '@ng-nest/ui/message-box';
     CommonModule,
     XTableModule,
     XButtonComponent,
-    XFormModule,
+    XFormComponent,
     XMessageModule,
     XLinkComponent,
     XMessageBoxModule,

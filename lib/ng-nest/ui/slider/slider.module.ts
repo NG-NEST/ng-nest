@@ -5,11 +5,11 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XSliderProperty } from './slider.property';
-import { XDropdownModule } from '@ng-nest/ui/dropdown';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 
 @NgModule({
   declarations: [XSliderComponent, XSliderProperty],
   exports: [XSliderComponent],
-  imports: [CommonModule, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownModule]
+  imports: [CommonModule, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownComponent]
 })
 export class XSliderModule {}

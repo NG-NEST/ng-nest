@@ -10,21 +10,18 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import {
-  XIsEmpty,
-  XNumber,
-  XClearClass,
-  XConfigService,
-  isNotNil,
-  XIsFunction
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil, XIsFunction } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XButtonComponent],
   templateUrl: './input-number.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -55,23 +52,12 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   valueChange = new Subject<any>();
 
   document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(
-      this.inputNumber.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.inputNumber.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.valueChange.pipe(distinctUntilChanged()).subscribe((x) => {
       this.onChange && this.onChange(x);
@@ -87,9 +73,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (!XIsEmpty(this.value) && !this.formatter) {
       this.displayValue = Number(this.value).toFixed(Number(this.precision));
     } else if (this.formatter) {
-      const displayValue = isNotNil(this.formatter(Number(this.value)))
-        ? this.formatter(Number(this.value))
-        : '';
+      const displayValue = isNotNil(this.formatter(Number(this.value))) ? this.formatter(Number(this.value)) : '';
       if (isNotNil(displayValue)) {
         this.displayValue = displayValue;
       }
@@ -116,11 +100,9 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
       this.mousedown$ = interval(Number(this.debounce)).subscribe(() => {
         this.plus(event, limit, increase);
       });
-      this.mouseup$ = fromEvent(this.document.documentElement, 'mouseup').subscribe(
-        (event: Event) => {
-          this.up(event);
-        }
-      );
+      this.mouseup$ = fromEvent(this.document.documentElement, 'mouseup').subscribe((event: Event) => {
+        this.up(event);
+      });
     }, 150);
   }
 
