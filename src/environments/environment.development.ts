@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  layout: 'index',
-  defaultPage: 'docs',
+  layout: 'test',
+  defaultPage: 'tree',
   static: 'https://ngnest.com/static'
 };
