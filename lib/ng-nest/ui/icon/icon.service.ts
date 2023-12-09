@@ -11,7 +11,6 @@ type Task<T> = {
   callback: Function;
 };
 
-// @dynamic
 @Injectable({ providedIn: 'root' })
 export class XIconService {
   caches: { [property: string]: any } = {};
@@ -24,9 +23,7 @@ export class XIconService {
 
   constructor() {
     if (!this.http) {
-      throw new Error(
-        `${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
-      );
+      throw new Error(`${XIconPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
     }
   }
 
@@ -38,30 +35,31 @@ export class XIconService {
   private execute<T>(task: Task<T>) {
     this.isRunningTask = true;
     if (XHasIn(this.caches, task.name)) {
+      
       task.callback(this.caches[task.name]);
       this.activeTaskXm--;
       this.isRunningTask = false;
       this.runTask();
       return;
     }
-    return task.observable.subscribe(
-      (result) => {
+    return task.observable.subscribe({
+      next: (result) => {
         this.caches[task.name] = result;
         task.callback(result);
         return result;
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         this.activeTaskXm--;
         this.isRunningTask = false;
         this.runTask();
       },
-      () => {
+      complete: () => {
         this.activeTaskXm--;
         this.isRunningTask = false;
         this.runTask();
       }
-    );
+    });
   }
 
   private runTask() {

@@ -11,16 +11,10 @@ import {
   HostBinding,
   inject
 } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import {
-  warnIconTypeNotFound,
-  warnSVGTagNotFound,
-  XIsChange,
-  XIsEmpty,
-  XConfigService
-} from '@ng-nest/ui/core';
+import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 // 来源路径对应
 export const XSouceUrl: { [property: string]: string } = {
@@ -46,12 +40,10 @@ export const XViewBox = [
 @Component({
   selector: `${XIconPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './icon.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XIconService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   private _svgElement!: SVGElement;
@@ -142,10 +134,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   buildSvg(svgStr: string): SVGSVGElement | undefined {
-    const result = this.document.createElementNS(
-      'http://www.w3.org/2000/svg',
-      'svg'
-    ) as SVGSVGElement;
+    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement;
     const svg = this.createSvg(svgStr);
     if (!svg) return;
     svg.children.forEach((x) => {
