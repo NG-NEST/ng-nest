@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix } from './color-picker.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XColorPickerPrefix, () => {
@@ -18,13 +18,13 @@ describe(XColorPickerPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XColorPickerComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule
+        XRadioComponent
       ],
       declarations: [
         TestXColorPickerComponent,

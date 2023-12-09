@@ -3,14 +3,13 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ViewChild,
   ViewContainerRef,
   OnInit,
   OnDestroy,
-  Optional
+  inject
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
 import { XConfigService, XIsArray, XIsTemplateRef } from '@ng-nest/ui/core';
@@ -20,9 +19,25 @@ import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
 import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XUploadPortalComponent } from './upload-portal.component';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XImageComponent, XImageGroupComponent } from '@ng-nest/ui/image';
+import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: `${XUploadPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XIconComponent,
+    XOutletDirective,
+    XButtonComponent,
+    XImageGroupComponent,
+    XImageComponent,
+    XProgressComponent
+  ],
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -52,24 +67,19 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     this.setFiles();
     this.cdr.detectChanges();
   }
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    @Optional() public http: HttpClient,
-    public override cdr: ChangeDetectorRef,
-    public portalService: XPortalService,
-    public viewContainerRef: ViewContainerRef,
-    public i18n: XI18nService,
-    public configService: XConfigService
-  ) {
-    super();
-    if (!http) {
-      throw new Error(`${XUploadPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
-    }
-  }
+  private http = inject(HttpClient, { optional: true });
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    if (!this.http) {
+      throw new Error(
+        `${XUploadPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
+      );
+    }
     this.i18n.localeChange
       .pipe(
         map((x) => x.upload as XI18nUpload),
@@ -155,7 +165,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
       headers: new HttpHeaders(this.headers)
     });
     this.http
-      .request(req)
+      ?.request(req)
       .pipe(
         map((event) =>
           this.getEventMessage(event, file, (body: BlobPart) => {

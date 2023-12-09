@@ -4,7 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -16,7 +16,7 @@ describe(XAnchorPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         XAnchorComponent,
-        XThemeModule,
+        XThemeComponent,
         XButtonComponent
       ],
       declarations: [TestXAnchorComponent]

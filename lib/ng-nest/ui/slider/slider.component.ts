@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
@@ -11,15 +10,33 @@ import {
   ViewChild,
   AfterViewInit,
   OnDestroy,
-  SimpleChange
+  SimpleChange,
+  inject
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
-import { XClassMap, XIsChange, XResize, XPosition, XIsUndefined, XIsEmpty, XSetData, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
+import {
+  XClassMap,
+  XIsChange,
+  XResize,
+  XPosition,
+  XIsUndefined,
+  XIsEmpty,
+  XSetData,
+  XConfigService,
+  XResizeObserver
+} from '@ng-nest/ui/core';
 import { Subject, of } from 'rxjs';
 import { takeUntil, debounceTime, delay } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: `${XSliderPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownComponent],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -63,15 +80,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   };
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();
@@ -83,7 +94,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     XIsChange(layout) && this.setChange(this.classMap, layout);
     XIsChange(justify) && this.setChange(this.scrollClassMap, justify, 'x-justify');
     XIsChange(nodeJustify) && this.setChange(this.nodeClassMap, nodeJustify, 'x-justify');
-    XIsChange(activatedIndex) && this.setDirection(activatedIndex.currentValue, activatedIndex.previousValue) && this.setActivated();
+    XIsChange(activatedIndex) &&
+      this.setDirection(activatedIndex.currentValue, activatedIndex.previousValue) &&
+      this.setActivated();
   }
 
   ngOnDestroy(): void {
@@ -133,7 +146,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
           clearTimeout(this.timeoutHide);
           this.timeoutHide = null;
         }
-        this.nodeClick(event, node, index)
+        this.nodeClick(event, node, index);
       });
   }
 
@@ -197,7 +210,10 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
       return;
     const sliderRect = this.sliderScroll.nativeElement?.getBoundingClientRect();
     const sliderNodesRect = this.sliderNodes.nativeElement?.getBoundingClientRect();
-    let moveIndex = ['bottom', 'right'].indexOf(this.direction) !== -1 ? Number(this.activatedIndex) + 2 : Number(this.activatedIndex);
+    let moveIndex =
+      ['bottom', 'right'].indexOf(this.direction) !== -1
+        ? Number(this.activatedIndex) + 2
+        : Number(this.activatedIndex);
     moveIndex = moveIndex > this.nodes.length ? this.nodes.length : moveIndex === 0 ? 1 : moveIndex;
     let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
@@ -260,7 +276,9 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   setHighlight() {
     if (XIsUndefined(this.sliderNodes)) return;
-    const activeEle: HTMLElement = this.sliderNodes.nativeElement.querySelector(`li:nth-child(${Number(this.activatedIndex) + 1})`)!;
+    const activeEle: HTMLElement = this.sliderNodes.nativeElement.querySelector(
+      `li:nth-child(${Number(this.activatedIndex) + 1})`
+    )!;
     if (!activeEle) return;
     this.highlightBox = {
       width: `${activeEle.offsetWidth}px`,

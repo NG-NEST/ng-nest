@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XRateComponent } from '@ng-nest/ui/rate';
 
 @Component({
   selector: 'ex-color',
+  standalone: true,
+  imports: [FormsModule, XRateComponent, XIconComponent],
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']
 })

@@ -6,16 +6,15 @@ import { NcExamples, NcCates } from '../interfaces/examples';
 import {
   replaceKey,
   randomString,
-  generateTabs,
-  handlerTabs,
   hanlderCates,
   generateCates,
   hanlderPattern,
   generatePatterns,
-  hanlderSpec,
+  hanlderModule,
   hanlderProp,
   generateProps,
-  hasIn
+  hasIn,
+  firstLetterCapital
 } from '.';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
@@ -30,7 +29,7 @@ export async function handlerComponent(page: NcPage) {
   handlerExamples(page);
   await handlerApi(page);
   await handlerPattern(page);
-  await handlerSpec(page);
+  await handlerModule(page);
 }
 
 /**
@@ -48,25 +47,6 @@ export function handlerExamples(page: NcPage): Promise<void> {
   examples.tplPath = path.join(tplDir, 'examples-component.template.html');
   let func = '';
   while (func == '' || hasIn(comTpl.syswords.constant, func)) func = randomString();
-
-  // let tabs = handlerTabs({
-  //   layout: NcTabsLayoutEnum.Left,
-  //   nodeJustify: NcTabsNodeJustifyEnum.Start,
-  //   size: NcTabsSizeEnum.Large,
-  //   tabsType: NcTabsTypeEnum.Block,
-  //   tabsAnimated: false,
-  //   tabsLinkRouter: false,
-  //   folderPath: `${examples.path}/${page.lang}`
-  // });
-  // tabs.tabs.forEach((x) => {
-  //   let cates: NcCates = { folderPath: path.join(tabs.folderPath, x.name) };
-  //   hanlderCates(cates, page);
-  //   generateCates(cates, comTpl);
-  //   if (cates.content) {
-  //     x.content = cates.content;
-  //   }
-  // });
-  // generateTabs(tabs);
   let folderPath = path.join(`${examples.path}/${page.lang}`, 'default');
   let cates: NcCates = { folderPath };
   hanlderCates(cates, page);
@@ -96,33 +76,32 @@ export async function handlerPattern(page: NcPage) {
   page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
 }
 
-export async function handlerSpec(page: NcPage) {
-  const fileTypes = ['component', 'directive', 'pipe'];
-  let fsPath = '';
-  for (let fileTpye of fileTypes) {
-    fsPath = path.join(page.path, `${page.name}.${fileTpye}.spec.ts`);
-    if (fs.existsSync(fsPath)) break;
-  }
-  let specs = await hanlderSpec(fsPath);
-  let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
-  specs.forEach((x) => {
-    mod.syswords.imports += `${x.import}\n`;
-    mod.syswords.modules += `, ${x.module}`;
-    if (x.import.indexOf(`@ng-nest/ui/${page.name}`) !== -1) {
-      let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
-      if (temp !== null) {
-        let tpl = fs.readFileSync(path.join(tplDir, 'highlight-component.template.html'), 'utf8');
-        let param = randomString(7);
-        tpl = replaceKey(tpl, '__type', 'typescript');
-        tpl = replaceKey(tpl, '__data', param);
-        temp.syswords.constant += `${param} = \`${x.import}\`;\n`;
-        page.custom = replaceKey(page.custom, '__component', `${tpl}`);
-      }
-    }
-  });
+export async function handlerModule(page: NcPage) {
+  let fsPath = path.join(page.path, `${page.name}.module.ts`);
+  if (!fs.existsSync(fsPath)) return;
+  let module = await hanlderModule(fsPath);
+  if (!module) return;
+  let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
+  if (!temp) return;
+  let tpl = fs.readFileSync(path.join(tplDir, 'highlight-component.template.html'), 'utf8');
+  let param = randomString(7);
+  tpl = replaceKey(tpl, '__type', 'typescript');
+  tpl = replaceKey(tpl, '__data', param);
 
-  let htl = page.templates.find((x) => x.type === 'custom' && x.name === 'custom-component');
-  if (htl) {
-    htl.syswords.modules = specs.map((x) => `'${x.name}'`).join(', ');
+  
+  if (module.exports.length !== 0) {
+    let text = `import { ${module.exports.map((x) => x).join(', ')} } from '@ng-nest/ui/${page.name}';\n// or`;
+    text += `\nimport { ${module.module} } from '@ng-nest/ui/${page.name}';\``;
+    temp.syswords.constant += `${param} = \`${text}`;
+  } else {
+    let text = `// Using root service`;
+    text += `\nimport { X${page.name
+      .replace(/_/g, '')
+      .split('-')
+      .map((x) => firstLetterCapital(x))
+      .join('')}Service } from '@ng-nest/ui/${page.name}';\``;
+    temp.syswords.constant += `${param} = \`${text}`;
   }
+
+  page.custom = replaceKey(page.custom, '__component', `${tpl}`);
 }

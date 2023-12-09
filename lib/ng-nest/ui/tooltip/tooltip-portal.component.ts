@@ -10,15 +10,20 @@ import {
   Renderer2,
   HostListener,
   AfterViewInit,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { XTooltipPortalPrefix } from './tooltip.property';
 import { XPlacement, XClassMap, XFadeAnimation, XTemplate } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XTooltipPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XOutletDirective],
   templateUrl: './tooltip-portal.component.html',
   styleUrls: ['./tooltip-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -54,8 +59,8 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
   backgroundColor!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
-
-  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.contentChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {

@@ -15,14 +15,14 @@ import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
 import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { XSliderModule } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XMenuNodeComponent } from './menu-node.component';
 
 @Component({
   selector: `${XMenuPrefix}`,
   standalone: true,
-  imports: [CommonModule, XSliderModule, XDropdownComponent, XMenuNodeComponent],
+  imports: [CommonModule, XSliderComponent, XDropdownComponent, XMenuNodeComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   encapsulation: ViewEncapsulation.None,

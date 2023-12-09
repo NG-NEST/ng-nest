@@ -6,7 +6,7 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XColorComponent } from '@ng-nest/ui/color';
 import { XColorPrefix } from './color.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XColorPrefix, () => {
@@ -15,7 +15,7 @@ describe(XColorPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XColorComponent,
         XRowComponent,
         XColComponent

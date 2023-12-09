@@ -1,16 +1,21 @@
-<x-row>
-  <x-col span="24">
-    <x-upload action="https://jsonplaceholder.typicode.com/posts/" [text]="textTpl" type="img" multiple></x-upload>
-    <ng-template #textTpl>
-      <x-icon class="upload-icon" type="fto-upload"></x-icon>
-      <span>选择图片</span>
-    </ng-template>
-  </x-col>
-  <x-col span="24">
-    <x-upload action="https://jsonplaceholder.typicode.com/posts/" [text]="textTpl" type="img" multiple [(ngModel)]="imgs" multipleModel="add"></x-upload>
-    <ng-template #textTpl>
-      <x-icon class="upload-icon" type="fto-upload"></x-icon>
-      <span>选择图片</span>
-    </ng-template>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-upload action="https://jsonplaceholder.typicode.com/posts/" [text]="textTpl" type="img" multiple></x-upload>
+  <ng-template #textTpl>
+    <x-icon class="upload-icon" type="fto-upload"></x-icon>
+    <span>选择图片</span>
+  </ng-template>
+</div>
+<div class="row">
+  <x-upload
+    action="https://jsonplaceholder.typicode.com/posts/"
+    [text]="textTpl"
+    type="img"
+    multiple
+    [(ngModel)]="imgs"
+    multipleModel="add"
+  ></x-upload>
+  <ng-template #textTpl>
+    <x-icon class="upload-icon" type="fto-upload"></x-icon>
+    <span>选择图片</span>
+  </ng-template>
+</div>

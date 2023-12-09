@@ -1,20 +1,17 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XPopconfirmComponent } from './popconfirm.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XPopconfirmModule } from '@ng-nest/ui/popconfirm';
+import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
 import { FormsModule } from '@angular/forms';
 import { XPopconfirmPrefix } from './popconfirm.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XSwitchModule } from '@ng-nest/ui/switch';
-import { XMessageModule } from '@ng-nest/ui/message';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XPopconfirmPrefix, () => {
@@ -23,16 +20,15 @@ describe(XPopconfirmPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XPopconfirmModule,
+        XPopconfirmComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent,
-        XSwitchModule,
-        XMessageModule
+        XSwitchComponent
       ],
       declarations: [TestXPopconfirmComponent]
     }).compileComponents();

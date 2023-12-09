@@ -13,7 +13,7 @@ import { NcTemplate } from '../interfaces/template';
  */
 export function hanlderCates(cates: NcCates, page: NcPage) {
   let folder = fs.readdirSync(cates.folderPath, 'utf8');
-  let mod = page.templates.find((x) => x.type == 'default' && x.name == 'module');
+  let component = page.templates.find((x) => x.type == 'default' && x.name == 'component');
   cates.list = [];
   folder.forEach((x) => {
     let catePath = path.join(cates.folderPath, x);
@@ -26,7 +26,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           label: readme.meta.label,
           path: catePath
         };
-        handlerCodeBoxes(cate, readme, mod, page);
+        handlerCodeBoxes(cate, readme, component, page);
         cates.list.push(cate);
         cates.list = orderBy(cates.list, ['order'], ['asc']);
       }
@@ -41,7 +41,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
  * @param {NcCate} cate
  * @param {*} readme
  */
-export function handlerCodeBoxes(cate: NcCate, readme, module: NcTemplate, page: NcPage) {
+export function handlerCodeBoxes(cate: NcCate, readme, component: NcTemplate, page: NcPage) {
   let folder = fs.readdirSync(cate.path, 'utf8');
   let box: NcCodeBox = {
     codes: [],
@@ -62,13 +62,15 @@ export function handlerCodeBoxes(cate: NcCate, readme, module: NcTemplate, page:
         const matchClassName = code.content.match(/export class (\S*) /);
         if (matchSelector.length > 1) cate.selector = matchSelector[1];
         if (matchClassName.length > 1) cate.className = matchClassName[1];
-        cate.rootPath = `./${cate.path.slice(cate.path.lastIndexOf('examples'), cate.path.length).replace(/\\/g, '/')}/${x.slice(
-          0,
-          x.lastIndexOf(code.type) - 1
-        )}`;
+        cate.rootPath = `./${cate.path
+          .slice(cate.path.lastIndexOf('examples'), cate.path.length)
+          .replace(/\\/g, '/')}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
         if (cate.className) {
-          module.syswords.declarations += `, ${cate.className}`;
-          module.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(`/${page.lang}/`, '/')}';\n`;
+          component.syswords.declarations += `, ${cate.className}`;
+          component.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(
+            `/${page.lang}/`,
+            '/'
+          )}';\n`;
         }
       }
       box.codes.push(code);

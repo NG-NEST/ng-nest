@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { AdaptionService, User } from './adaption.service';
 import { XQuery, XSort } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XDialogComponent } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ex-adaption',
+  standalone: true,
+  imports: [XTableComponent, XButtonComponent, XDialogComponent],
   templateUrl: './adaption.component.html',
   providers: [AdaptionService]
 })

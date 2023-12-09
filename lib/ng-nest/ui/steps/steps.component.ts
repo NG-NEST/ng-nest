@@ -2,22 +2,26 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  inject
 } from '@angular/core';
 import { XStepsPrefix, XStepsNode, XStepsProperty } from './steps.property';
 import { XIsChange, XIsUndefined, XIsNumber, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XStepsPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XOutletDirective],
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -26,15 +30,8 @@ import { map } from 'rxjs/operators';
 export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   nodes: XStepsNode[] = [];
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();
@@ -82,7 +79,8 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
         if (XIsUndefined(this.activatedIndex)) {
           x.status = 'wait';
         } else if (XIsNumber(this.activatedIndex)) {
-          x.status = index < Number(this.activatedIndex) ? 'finish' : index === this.activatedIndex ? 'process' : 'wait';
+          x.status =
+            index < Number(this.activatedIndex) ? 'finish' : index === this.activatedIndex ? 'process' : 'wait';
         }
         if (this.status && index === this.activatedIndex) x.status = this.status;
       }

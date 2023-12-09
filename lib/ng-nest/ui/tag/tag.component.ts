@@ -2,26 +2,29 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   HostBinding,
-  HostListener
+  HostListener,
+  inject,
+  OnChanges
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
 import { XIsEmpty, XConfigService, XIsChange, XClearClass, XBaseAnimation } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTagPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XBaseAnimation]
 })
-export class XTagComponent extends XTagProperty implements OnInit {
+export class XTagComponent extends XTagProperty implements OnInit, OnChanges {
   @HostBinding('@x-base-animation') public animation = true;
   animating = false;
   @HostListener('@x-base-animation.done', ['$event']) done() {
@@ -32,15 +35,7 @@ export class XTagComponent extends XTagProperty implements OnInit {
   @HostListener('@x-base-animation.start', ['$event']) start() {
     this.animating = true;
   }
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

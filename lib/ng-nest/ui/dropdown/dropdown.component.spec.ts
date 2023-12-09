@@ -7,7 +7,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDropdownPrefix, () => {
@@ -16,7 +16,7 @@ describe(XDropdownPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XDropdownComponent,
         XButtonComponent,
         XLinkComponent,

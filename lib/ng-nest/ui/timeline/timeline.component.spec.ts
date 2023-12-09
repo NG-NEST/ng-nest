@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTimelineComponent } from './timeline.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTimelineModule } from '@ng-nest/ui/timeline';
+import { XTimelineComponent } from '@ng-nest/ui/timeline';
 import { XTimelinePrefix, XTimelineNode } from './timeline.property';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 import { XCardComponent } from '@ng-nest/ui/card';
-import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -21,11 +19,11 @@ describe(XTimelinePrefix, () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         FormsModule,
-        XThemeModule,
-        XTimelineModule,
+        XThemeComponent,
+        XTimelineComponent,
         XCardComponent,
-        XTimeAgoModule,
-        XRadioModule
+        XTimeAgoPipe,
+        XRadioComponent
       ],
       declarations: [TestXTimelineComponent]
     }).compileComponents();

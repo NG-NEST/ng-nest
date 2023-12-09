@@ -12,7 +12,9 @@ import {
   ViewContainerRef,
   ViewChild,
   TemplateRef,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
@@ -37,22 +39,42 @@ import {
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectPortalComponent } from './select-portal.component';
-import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  OverlayConfig
+} from '@angular/cdk/overlay';
 import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
-import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
+import {
+  DOWN_ARROW,
+  UP_ARROW,
+  ENTER,
+  MAC_ENTER,
+  ESCAPE,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  TAB,
+  BACKSPACE
+} from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XTagComponent } from '@ng-nest/ui/tag';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XSelectPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XTagComponent, XInputComponent, XOutletDirective],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSelectComponent)]
 })
-export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges {
+export class XSelectComponent extends XSelectProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('select', { static: true }) select!: ElementRef<HTMLElement>;
   @ViewChild('multipleValueTpl', { static: true }) multipleValueTpl!: TemplateRef<void>;
@@ -123,19 +145,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
   document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    public elementRef: ElementRef<HTMLElement>,
-    private overlay: Overlay,
-    public i18n: XI18nService,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private elementRef = inject(ElementRef);
+  private overlay = inject(Overlay);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setFlex(this.select.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -207,12 +224,17 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
-      this.modelChange(x);
-    });
+    this.inputChange
+      .pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.modelChange(x);
+      });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
-      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)) {
+      if (
+        !this.portalAttached() &&
+        [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)
+      ) {
         this.inputChange.next(this.displayValue);
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
@@ -323,7 +345,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.caseSensitive) {
       this.searchNodes = this.nodes.filter((x) => String(x.label).indexOf(String(value)) >= 0);
     } else {
-      this.searchNodes = this.nodes.filter((x) => String(x.label).toLowerCase().indexOf(String(value).toLowerCase()) >= 0);
+      this.searchNodes = this.nodes.filter(
+        (x) => String(x.label).toLowerCase().indexOf(String(value).toLowerCase()) >= 0
+      );
     }
   }
 

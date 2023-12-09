@@ -1,31 +1,27 @@
-<x-row space="1">
-  <x-col span="24">
-    <table>
-      <tr>
-        <th width="80">Row height</th>
-        <th width="140">Value</th>
-        <th>Display</th>
-      </tr>
-      <tr>
-        <td>No row height</td>
-        <td>line-height: 1rem</td>
-        <td [style.line-height.rem]="1" [innerHtml]="text"></td>
-      </tr>
-      <tr>
-        <td>compact</td>
-        <td>line-height: 1.3rem</td>
-        <td [style.line-height.rem]="1.3" [innerHtml]="text"></td>
-      </tr>
-      <tr>
-        <td>conventional</td>
-        <td>line-height: 1.5rem</td>
-        <td [style.line-height.rem]="1.5" [innerHtml]="text"></td>
-      </tr>
-      <tr>
-        <td>increase</td>
-        <td>line-height: 1.75rem</td>
-        <td [style.line-height.rem]="1.75" [innerHtml]="text"></td>
-      </tr>
-    </table>
-  </x-col>
-</x-row>
+<table>
+  <tr>
+    <th width="80">Row height</th>
+    <th width="140">Value</th>
+    <th>Display</th>
+  </tr>
+  <tr>
+    <td>No row height</td>
+    <td>line-height: 1rem</td>
+    <td [style.line-height.rem]="1" [innerHtml]="text"></td>
+  </tr>
+  <tr>
+    <td>compact</td>
+    <td>line-height: 1.3rem</td>
+    <td [style.line-height.rem]="1.3" [innerHtml]="text"></td>
+  </tr>
+  <tr>
+    <td>conventional</td>
+    <td>line-height: 1.5rem</td>
+    <td [style.line-height.rem]="1.5" [innerHtml]="text"></td>
+  </tr>
+  <tr>
+    <td>increase</td>
+    <td>line-height: 1.75rem</td>
+    <td [style.line-height.rem]="1.75" [innerHtml]="text"></td>
+  </tr>
+</table>

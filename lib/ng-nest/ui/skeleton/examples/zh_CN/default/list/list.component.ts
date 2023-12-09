@@ -1,8 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { XSkeletonRow } from '@ng-nest/ui/skeleton';
+import { FormsModule } from '@angular/forms';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-list',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XSkeletonComponent,
+    XSwitchComponent,
+    XLinkComponent,
+    XRowComponent,
+    XColComponent,
+    XAvatarComponent
+  ],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

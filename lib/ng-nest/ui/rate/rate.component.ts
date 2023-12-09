@@ -1,17 +1,33 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ViewChild,
+  OnInit,
+  inject
+} from '@angular/core';
 import { XIsEmpty, XClearClass, XConfigService, XIsString, XIsObject } from '@ng-nest/ui/core';
 import { XRatePrefix, XRateProperty } from './rate.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XRatePrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XButtonComponent, XIconComponent],
   templateUrl: './rate.component.html',
   styleUrls: ['./rate.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRateComponent)]
 })
-export class XRateComponent extends XRateProperty {
+export class XRateComponent extends XRateProperty implements OnInit {
   @ViewChild('rate', { static: true }) rate!: ElementRef<HTMLElement>;
   rates: number[] = [];
 
@@ -48,14 +64,10 @@ export class XRateComponent extends XRateProperty {
   }
 
   rateNodes: any = [];
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setRates();

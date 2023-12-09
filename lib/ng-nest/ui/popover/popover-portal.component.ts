@@ -9,15 +9,20 @@ import {
   ViewChild,
   Renderer2,
   HostListener,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { XPopoverPortalPrefix, XPopoverTrigger } from './popover.property';
 import { XTemplate, XPlacement, XClassMap, XFadeAnimation } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XPopoverPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XOutletDirective],
   templateUrl: './popover-portal.component.html',
   styleUrls: ['./popover-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -60,8 +65,8 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   width!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
-
-  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {}
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.contentChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {

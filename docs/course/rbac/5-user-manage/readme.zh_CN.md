@@ -126,7 +126,7 @@ DTO 用于展示层与服务层之间的数据传输，我们在 `users` 中定�
 
 {{ __17\__ui:src/main/system/users/user.component.ts:true:true }}
 
-- 在 `user.module.ts` 中添加 `XTableModule` 模块的引入
+- 在 `user.module.ts` 中添加 `XTableComponent` 模块的引入
 - 在 `user.component.html` 和 `uesr.component.ts` 中使用 `table` 组件
 - `columns` 配置 `table` 列
 - `data` 指定 `table` 显示数据，此处配置为一个返回类型为 `Observable` 可观察对象的函数

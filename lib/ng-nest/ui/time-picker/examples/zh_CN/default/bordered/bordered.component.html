@@ -1,17 +1,21 @@
-<x-row>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" label="时间:" direction="row"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" required></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" placeholder="没有边框" bordered="false" disabled></x-time-picker>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker
+    [(ngModel)]="model"
+    placeholder="请选择时间"
+    bordered="false"
+    label="时间:"
+    direction="row"
+  ></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" placeholder="请选择时间" bordered="false" required></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" placeholder="没有边框" bordered="false" disabled></x-time-picker>
+</div>

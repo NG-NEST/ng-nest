@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './config.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableCellConfig, XTableColumn } from '@ng-nest/ui/table';
+import { XTableCellConfig, XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-config',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './config.component.html',
   providers: [ConfigService]
 })

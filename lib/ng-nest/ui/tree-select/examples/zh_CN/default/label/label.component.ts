@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-label',
+  standalone: true,
+  imports: [XTreeSelectComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']
 })

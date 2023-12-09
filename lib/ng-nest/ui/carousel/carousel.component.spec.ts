@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { XCarouselPrefix } from './carousel.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCarouselPrefix, () => {
@@ -20,7 +20,7 @@ describe(XCarouselPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XCarouselComponent,
         XCarouselPanelComponent,
@@ -29,7 +29,8 @@ describe(XCarouselPrefix, () => {
         XRowComponent,
         XColComponent,
         XIconComponent,
-        XTabsModule
+        XTabsComponent,
+        XTabComponent
       ],
       declarations: [
         TestXCarouselComponent,

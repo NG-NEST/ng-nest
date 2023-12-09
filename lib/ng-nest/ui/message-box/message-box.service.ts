@@ -1,11 +1,11 @@
-import { ComponentRef, Injectable } from '@angular/core';
+import { ComponentRef, Injectable, inject } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault, XIsString } from '@ng-nest/ui/core';
 import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XI18nService } from '@ng-nest/ui/i18n';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XMessageBoxService {
   default: XMessageBoxOption = {
     type: 'info',
@@ -23,7 +23,8 @@ export class XMessageBoxService {
     hide: false
   };
 
-  constructor(public portal: XPortalService, public i18n: XI18nService) {}
+  private portal = inject(XPortalService);
+  private i18n = inject(XI18nService);
 
   alert(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
     return this.createMessageBox(option, { showIcon: false, showCancel: false, showInput: false });

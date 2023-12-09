@@ -2,9 +2,12 @@ import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from '@a
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
 import { ContentComponent } from './content/content.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'ns-layout',
+  standalone: true,
+  imports: [HeaderComponent, ContentComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   encapsulation: ViewEncapsulation.None

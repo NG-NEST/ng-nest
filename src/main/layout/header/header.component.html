@@ -1,13 +1,35 @@
-<x-button class="menu" *ngIf="layout.small || layout.xsmall" icon="fto-list" (click)="layout.leftDrawerVisible = true" onlyIcon></x-button>
+<x-button
+  class="menu"
+  *ngIf="layout.small || layout.xsmall"
+  icon="fto-list"
+  (click)="layout.leftDrawerVisible = true"
+  onlyIcon
+></x-button>
 <ns-logo></ns-logo>
 <ns-search></ns-search>
 <ns-nav></ns-nav>
-<x-button class="menu right" *ngIf="layout.xsmall" icon="fto-list" (click)="layout.rightDrawerVisible = true" onlyIcon></x-button>
+<x-button
+  class="menu right"
+  *ngIf="layout.xsmall"
+  icon="fto-list"
+  (click)="layout.rightDrawerVisible = true"
+  onlyIcon
+></x-button>
 
-<x-drawer [visible]="layout.leftDrawerVisible" placement="left" (close)="layout.leftDrawerVisible = false" size="16.25rem">
+<x-drawer
+  [visible]="layout.leftDrawerVisible"
+  placement="left"
+  (close)="layout.leftDrawerVisible = false"
+  size="16.25rem"
+>
   <ns-sider class="drawer"></ns-sider>
 </x-drawer>
 
-<x-drawer [visible]="layout.rightDrawerVisible" placement="right" (close)="layout.rightDrawerVisible = false" size="12.25rem">
+<x-drawer
+  [visible]="layout.rightDrawerVisible"
+  placement="right"
+  (close)="layout.rightDrawerVisible = false"
+  size="12.25rem"
+>
   <ns-nav class="drawer"></ns-nav>
 </x-drawer>

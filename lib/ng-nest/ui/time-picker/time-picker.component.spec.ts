@@ -9,8 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTimePickerPrefix } from './time-picker.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimePickerPrefix, () => {
@@ -19,13 +19,13 @@ describe(XTimePickerPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
+        XThemeComponent,
         XTimePickerModule,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule
+        XRadioComponent
       ],
       declarations: [
         TestXTimePickerComponent,

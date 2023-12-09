@@ -1,30 +1,54 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+  inject,
+  AfterViewInit
+} from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import {
   XConfigService,
-  XThemeService,
   XColorsTheme,
   XTheme,
   X_THEME_COLOR_KEYS,
   X_THEME_COLORS,
   X_THEME_DARK_COLORS
 } from '@ng-nest/ui/core';
-import { UntypedFormGroup } from '@angular/forms';
-import { XControl } from '@ng-nest/ui/form';
+import { FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { XControl, XFormComponent } from '@ng-nest/ui/form';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
+import { XI18nDirective, XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'x-theme',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    XSwitchComponent,
+    XButtonComponent,
+    XRowComponent,
+    XColComponent,
+    XFormComponent,
+    XI18nDirective
+  ],
   templateUrl: './theme.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XThemeComponent)]
 })
-export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy {
+export class XThemeComponent extends XThemeProperty implements OnInit, AfterViewInit, OnDestroy {
   formGroup = new UntypedFormGroup({});
 
   theme: XTheme = {
@@ -47,8 +71,6 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
 
   override value: XColorsTheme = {};
 
-  themeService: XThemeService;
-
   locale: XI18nTheme = {};
 
   private _unSubject = new Subject<void>();
@@ -56,16 +78,22 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
   override writeValue(value: XColorsTheme) {
     this.value = value;
     if (this.value && Object.keys(this.value).length > 0) {
-      this.theme = { colors: this.themeService.getDefineColors(Object.assign({}, X_THEME_COLORS, this.value), '', this.dark as boolean) };
+      this.theme = {
+        colors: this.themeService.getDefineColors(
+          Object.assign({}, X_THEME_COLORS, this.value),
+          '',
+          this.dark as boolean
+        )
+      };
       this.formGroup.patchValue(this.theme.colors as XColorsTheme);
     }
     this.cdr.detectChanges();
   }
 
-  constructor(public configService: XConfigService, public i18n: XI18nService, public override cdr: ChangeDetectorRef) {
-    super();
-    this.themeService = this.configService.themeService;
-  }
+  override cdr = inject(ChangeDetectorRef);
+  public i18n = inject(XI18nService);
+  configService = inject(XConfigService);
+  themeService = this.configService.themeService;
 
   ngOnInit() {
     this.theme = this.configService.getTheme(true);
@@ -92,7 +120,9 @@ export class XThemeComponent extends XThemeProperty implements OnInit, OnDestroy
       let changes = this.getChanges(x);
       if (this.isOneAndInColorKeys(changes)) {
         let [key, value] = Object.entries(changes)[0];
-        let colors = !this.dark ? this.themeService.setRoot(key, value, '') : this.themeService.setDarkRoot(key, value, '');
+        let colors = !this.dark
+          ? this.themeService.setRoot(key, value, '')
+          : this.themeService.setDarkRoot(key, value, '');
         Object.assign(x, colors);
         this.currentColors = x;
         this.formGroup.patchValue(x);

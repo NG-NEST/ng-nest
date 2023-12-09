@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [XTreeComponent],
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {

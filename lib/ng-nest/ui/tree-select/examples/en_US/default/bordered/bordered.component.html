@@ -1,17 +1,15 @@
-<x-row>
-  <x-col span="24">
-    <x-tree-select [data]="data1" placeholder="请选择" bordered="false"></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select [data]="data2" placeholder="请选择" bordered="false" label="日生:" direction="row"></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select [data]="data3" placeholder="请选择" bordered="false"></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select [data]="data4" placeholder="请选择" bordered="false" required></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select [data]="data5" placeholder="没有边框" bordered="false" disabled></x-tree-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-tree-select [data]="data1" placeholder="Select" bordered="false"></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data2" placeholder="Select" bordered="false" label="Many:" direction="row"></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data3" placeholder="Select" bordered="false"></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data4" placeholder="Select" bordered="false" required></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data5" placeholder="No border" bordered="false" disabled></x-tree-select>
+</div>

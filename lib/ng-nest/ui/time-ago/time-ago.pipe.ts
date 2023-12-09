@@ -1,21 +1,22 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { XToDate, XDate } from '@ng-nest/ui/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
+import { XToDate } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 import { XTimeAgoPrefix } from './time-ago.property';
 import { XI18nService, XI18nTimeAgo } from '@ng-nest/ui/i18n';
 
-@Pipe({ name: `${XTimeAgoPrefix}`, pure: false })
-export class XTimeAgoPipe implements PipeTransform {
-  locale: XI18nTimeAgo = {};
+@Pipe({ name: `${XTimeAgoPrefix}`, standalone: true })
+export class XTimeAgoPipe extends DatePipe implements PipeTransform {
+  localeI18n: XI18nTimeAgo = {};
   private catchContent: any;
-  constructor(private datePipe: DatePipe, private i18n: XI18nService) {}
-  transform(input?: XDate): string {
+  private i18n = inject(XI18nService);
+
+  override transform(input?: any): any {
     if (!input) return '';
     const date = XToDate(input);
     if (isNaN(date.valueOf())) {
       return input as string;
     }
-    this.locale = this.i18n.getLocale().timeAgo as XI18nTimeAgo;
+    this.localeI18n = this.i18n.getLocale().timeAgo as XI18nTimeAgo;
     const content = this.getDiff(date);
     if (this.catchContent !== content) {
       this.catchContent = content;
@@ -40,16 +41,16 @@ export class XTimeAgoPipe implements PipeTransform {
     const secondDiff = diffValue / second;
     let result = '';
     if (date.getFullYear() !== now.getFullYear()) {
-      result = this.datePipe.transform(time, 'yyyy-MM-dd') as string;
+      result = super.transform(time, 'yyyy-MM-dd') as string;
     } else if (dayDiff >= 1) {
-      result = this.datePipe.transform(time, 'MM-dd HH:mm') as string;
+      result = super.transform(time, 'MM-dd HH:mm') as string;
     } else if (hourDiff >= 1) {
-      result = `${Math.floor(hourDiff)}${this.locale.hoursAgo}`;
+      result = `${Math.floor(hourDiff)}${this.localeI18n.hoursAgo}`;
     } else if (minDiff >= 1) {
-      result = `${Math.floor(minDiff)}${this.locale.minutesAgo}`;
+      result = `${Math.floor(minDiff)}${this.localeI18n.minutesAgo}`;
     } else if (secondDiff >= 1) {
-      result = `${Math.floor(secondDiff)}${this.locale.secondsAgo}`;
-    } else result = this.locale.just as string;
+      result = `${Math.floor(secondDiff)}${this.localeI18n.secondsAgo}`;
+    } else result = this.localeI18n.just as string;
     return result;
   }
 }

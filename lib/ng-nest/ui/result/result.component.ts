@@ -1,9 +1,20 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  inject
+} from '@angular/core';
 import { XResultPrefix, XResultProperty } from './result.property';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XResultPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XOutletDirective],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -13,14 +24,7 @@ export class XResultComponent extends XResultProperty implements OnInit {
   get strIcon() {
     return this.icon as string;
   }
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

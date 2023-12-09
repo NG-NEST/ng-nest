@@ -1,11 +1,14 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
-import { Menu } from '@environments';
+import { Menu } from '@interfaces';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@services';
+import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-sider',
+  standalone: true,
+  imports: [XMenuComponent],
   templateUrl: './sider.component.html',
   encapsulation: ViewEncapsulation.None
 })

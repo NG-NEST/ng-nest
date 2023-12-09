@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-eva',
   standalone: true,
-  imports: [CommonModule, XIconComponent, XTabsModule, XRowComponent, XColComponent],
+  imports: [CommonModule, XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './eva.component.html',
   styleUrls: ['./eva.component.scss']
 })

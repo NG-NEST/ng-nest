@@ -12,7 +12,7 @@ const X_CONFIG_NAME = 'container';
 /**
  * Container Property
  */
-@Component({ selector: `${XContainerPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XContainerPrefix}-property`, template: '' })
 export class XContainerProperty extends XProperty {
   /**
    * @zh_CN flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column
@@ -32,7 +32,7 @@ const X_CONFIG_NAME_HEADER = 'header';
 /**
  * Header Property
  */
-@Component({ selector: `${XHeaderPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XHeaderPrefix}-property`, template: '' })
 export class XHeaderProperty extends XProperty {
   /**
    * @zh_CN 高度，rem
@@ -52,7 +52,7 @@ const X_CONFIG_NAME_ASIDE = 'aside';
 /**
  * Aside Property
  */
-@Component({ selector: `${XAsidePrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XAsidePrefix}-property`, template: '' })
 export class XAsideProperty extends XProperty {
   /**
    * @zh_CN 宽度，rem
@@ -79,7 +79,7 @@ const X_CONFIG_NAME_FOOTER = 'footer';
 /**
  * Footer Property
  */
-@Component({ selector: `${XFooterPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XFooterPrefix}-property`, template: '' })
 export class XFooterProperty extends XProperty {
   /**
    * @zh_CN 高度，rem

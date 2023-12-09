@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-drag',
+  standalone: true,
+  imports: [XTreeComponent],
   templateUrl: './drag.component.html'
 })
 export class ExDragComponent {

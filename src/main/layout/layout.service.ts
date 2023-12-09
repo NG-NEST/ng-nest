@@ -5,10 +5,10 @@ import { Subject } from 'rxjs';
 import { CdkScrollable } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments';
 import { ConfigService } from '@services';
-import { Menu } from '../../environments/routes';
-import { menus } from '../../environments/menus';
+import { Menu } from '@interfaces';
+import { menus } from '../../app/app.menus';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
@@ -41,12 +41,7 @@ export class LayoutService {
     return route;
   }
 
-  constructor(
-    private router: Router,
-    private config: ConfigService,
-    private location: Location,
-    private title: Title
-  ) {
+  constructor(private router: Router, private config: ConfigService, private location: Location, private title: Title) {
     this.setMenusLang();
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x) => {
       const rt = x as NavigationEnd;

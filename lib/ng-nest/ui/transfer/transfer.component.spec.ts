@@ -1,20 +1,18 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTransferComponent } from './transfer.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTransferModule } from '@ng-nest/ui/transfer';
+import { XTransferComponent } from '@ng-nest/ui/transfer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTransferPrefix, XTransferNode } from './transfer.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XTreeModule } from '@ng-nest/ui/tree';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XTreeComponent } from '@ng-nest/ui/tree';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 describe(XTransferPrefix, () => {
@@ -23,17 +21,17 @@ describe(XTransferPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         ReactiveFormsModule,
-        XTransferModule,
+        XTransferComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
         XIconComponent,
-        XTreeModule,
-        XSelectModule,
+        XTreeComponent,
+        XSelectComponent,
         XInputComponent
       ],
       declarations: [TestXTransferComponent]

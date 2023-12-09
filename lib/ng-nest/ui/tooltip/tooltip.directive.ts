@@ -6,7 +6,8 @@ import {
   OnChanges,
   SimpleChanges,
   OnDestroy,
-  HostBinding
+  HostBinding,
+  inject
 } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
@@ -21,7 +22,7 @@ import {
   Overlay
 } from '@angular/cdk/overlay';
 
-@Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
+@Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}`, standalone: true })
 export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
   portal!: XPortalOverlayRef<XTooltipPortalComponent>;
   box!: DOMRect;
@@ -30,15 +31,10 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
   timeoutHide: any;
   timeoutShow: any;
   private _unSubject = new Subject();
-
-  constructor(
-    private elementRef: ElementRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay
-  ) {
-    super();
-  }
+  private elementRef = inject(ElementRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
 
   @HostBinding('class.x-tooltip-show') get _show() {
     return this.visible;
@@ -112,12 +108,10 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {

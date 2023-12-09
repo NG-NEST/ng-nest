@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { XUploadComponent } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  standalone: true,
+  imports: [XUploadComponent],
+  templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {}

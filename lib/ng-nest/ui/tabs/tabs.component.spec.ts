@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTabsComponent } from './tabs.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XTabsPrefix, XTabsLayout } from './tabs.property';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -20,10 +18,11 @@ describe(XTabsPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XTabsModule,
-        XRadioModule,
+        XTabsComponent,
+        XTabComponent,
+        XRadioComponent,
         XIconComponent,
         XButtonComponent
       ],

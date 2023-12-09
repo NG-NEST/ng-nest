@@ -5,7 +5,7 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { interval } from 'rxjs';
@@ -17,7 +17,7 @@ describe(XMenuPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
+        XThemeComponent,
         XMenuComponent,
         XButtonComponent,
         TestMenuRoutesModule

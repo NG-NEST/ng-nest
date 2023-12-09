@@ -64,18 +64,18 @@ import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
 import { CommonModule } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { XRadioModule } from '@ng-nest/ui/radio';
-import { XRateModule } from '@ng-nest/ui/rate';
-import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
-import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XRateComponent } from '@ng-nest/ui/rate';
+import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 
@@ -87,18 +87,18 @@ import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
     FormsModule,
     ReactiveFormsModule,
     XInputComponent,
-    XSelectModule,
+    XSelectComponent,
     XCascadeComponent,
     XCheckboxComponent,
     XColorPickerComponent,
     XDatePickerComponent,
     XInputNumberComponent,
-    XRadioModule,
-    XRateModule,
-    XSliderSelectModule,
-    XSwitchModule,
+    XRadioComponent,
+    XRateComponent,
+    XSliderSelectComponent,
+    XSwitchComponent,
     XTimePickerModule,
-    XTextareaModule,
+    XTextareaComponent,
     XFindComponent,
     XAutoCompleteComponent
   ],

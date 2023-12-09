@@ -5,7 +5,7 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer/drawer.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-custom',
@@ -16,7 +16,7 @@ import { XRadioModule } from '@ng-nest/ui/radio';
     XButtonComponent,
     XButtonsComponent,
     XInputComponent,
-    XRadioModule,
+    XRadioComponent,
     XDrawerComponent,
     XIconComponent
   ],

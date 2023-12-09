@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBorderComponent } from '@ng-nest/ui/border';
 import { XBorderPrefix } from './border.property';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -16,7 +16,7 @@ describe(XBorderPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XBorderComponent,
         XRowComponent,
         XColComponent,

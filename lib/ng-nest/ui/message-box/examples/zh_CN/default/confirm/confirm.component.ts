@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 import { XMessageService } from '@ng-nest/ui/message';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ex-confirm',
+  standalone: true,
+  imports: [CommonModule, XButtonComponent],
   templateUrl: './confirm.component.html'
 })
 export class ExConfirmComponent {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { XIsEmpty, XRemove } from '@ng-nest/ui/core';
 import { XTreeNode } from './tree.property';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XTreeService {
   getChildren(data: XTreeNode[], node: XTreeNode) {
     const res: XTreeNode[] = [];

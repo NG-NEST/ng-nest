@@ -5,11 +5,11 @@ import {
   ChangeDetectorRef,
   OnInit,
   OnDestroy,
-  Renderer2,
   HostBinding,
   HostListener,
   TemplateRef,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -18,9 +18,13 @@ import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTreeSelect } from '@ng-nest/ui/i18n';
 import { XTreeComponent } from '@ng-nest/ui/tree';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XTreeSelectPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XTreeComponent, XEmptyComponent],
   templateUrl: './tree-select-portal.component.html',
   styleUrls: ['./tree-select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -81,7 +85,8 @@ export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
     return this.selectAllText || this.locale.selectAllText;
   }
 
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, public i18n: XI18nService) {}
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {

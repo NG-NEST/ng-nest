@@ -1,21 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XSliderComponent } from './slider.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSliderModule } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XSliderPrefix, XSliderNode } from './slider.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XTabsModule } from '@ng-nest/ui/tabs';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XSliderModule, XThemeModule, BrowserAnimationsModule, XIconComponent, XTabsModule],
+      imports: [
+        HttpClientTestingModule,
+        XSliderComponent,
+        XThemeComponent,
+        BrowserAnimationsModule,
+        XIconComponent,
+        XTabsComponent,
+        XTabComponent
+      ],
       declarations: [TestXSliderComponent]
     }).compileComponents();
   });

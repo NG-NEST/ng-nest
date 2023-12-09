@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { XTimelineNode } from '@ng-nest/ui/timeline';
+import { XTimelineComponent, XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-color',
+  standalone: true,
+  imports: [XTimelineComponent],
   templateUrl: './color.component.html'
 })
 export class ExColorComponent {

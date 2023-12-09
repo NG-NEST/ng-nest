@@ -12,13 +12,10 @@ import {
   AfterViewInit,
   HostBinding,
   ViewChildren,
-  QueryList
+  QueryList,
+  inject
 } from '@angular/core';
-import {
-  XSliderSelectProperty,
-  XSliderSelectPrefix,
-  XSliderSelectMark
-} from './slider-select.property';
+import { XSliderSelectProperty, XSliderSelectPrefix, XSliderSelectMark } from './slider-select.property';
 import {
   XIsEmpty,
   XIsUndefined,
@@ -30,23 +27,34 @@ import {
   XIsArray,
   XIsNull
 } from '@ng-nest/ui/core';
-import { CdkDragMove, CdkDragStart, CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop';
+import { CdkDragMove, CdkDragStart, CdkDragEnd, CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XDragDirective } from '@ng-nest/ui/drag';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XSliderSelectPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    XTooltipDirective,
+    XDragDirective,
+    XOutletDirective
+  ],
   templateUrl: './slider-select.component.html',
   styleUrls: ['./slider-select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSliderSelectComponent)]
 })
-export class XSliderSelectComponent
-  extends XSliderSelectProperty
-  implements OnInit, OnDestroy, AfterViewInit
-{
+export class XSliderSelectComponent extends XSliderSelectProperty implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('sliderSelect', { static: true }) sliderSelect!: ElementRef<HTMLElement>;
   @ViewChild('dragStartRef', { static: true }) dragStartRef!: ElementRef<HTMLElement>;
   @ViewChild('dragEndRef', { static: true }) dragEndRef!: ElementRef<HTMLElement>;
@@ -103,23 +111,13 @@ export class XSliderSelectComponent
     this.setDisplayValue();
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(
-      this.sliderSelect.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.sliderSelect.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setPrecision();
     this.setMarks();
     this.setClassMap();
@@ -152,9 +150,9 @@ export class XSliderSelectComponent
   change() {
     const getVal = (offset: number) => {
       return parseFloat(
-        Number(
-          ((Number(this.max) - Number(this.min)) * Number(offset)) / 100 + Number(this.min)
-        ).toFixed(Number(this.precision))
+        Number(((Number(this.max) - Number(this.min)) * Number(offset)) / 100 + Number(this.min)).toFixed(
+          Number(this.precision)
+        )
       );
     };
     const startVal = getVal(this.startOffset);
@@ -181,8 +179,7 @@ export class XSliderSelectComponent
   getOffset(val: number) {
     return Math.abs(
       Math.round(
-        ((val + (this.reverse ? -Number(this.min) : Number(this.min))) * 100) /
-          (Number(this.max) - Number(this.min))
+        ((val + (this.reverse ? -Number(this.min) : Number(this.min))) * 100) / (Number(this.max) - Number(this.min))
       )
     );
   }

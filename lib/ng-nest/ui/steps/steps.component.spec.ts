@@ -1,14 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XStepsComponent } from './steps.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XStepsModule } from '@ng-nest/ui/steps';
+import { XStepsComponent } from '@ng-nest/ui/steps';
 import { XStepsPrefix } from './steps.property';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XStepsPrefix, () => {
@@ -17,11 +15,12 @@ describe(XStepsPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
-        XStepsModule,
+        XThemeComponent,
+        XStepsComponent,
         XButtonComponent,
         XButtonsComponent,
-        XTabsModule
+        XTabsComponent,
+        XTabComponent
       ],
       declarations: [TestXStepsComponent, TestXStepsDotComponent]
     }).compileComponents();

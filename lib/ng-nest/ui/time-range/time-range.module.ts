@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { XTimeRangePipe } from './time-range.pipe';
 
 @NgModule({
-  declarations: [XTimeRangePipe],
-  exports: [XTimeRangePipe]
+  exports: [XTimeRangePipe],
+  imports: [XTimeRangePipe]
 })
 export class XTimeRangeModule {}

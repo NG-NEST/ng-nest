@@ -1,11 +1,9 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XUploadComponent } from './upload.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XUploadModule } from '@ng-nest/ui/upload';
+import { XUploadComponent } from '@ng-nest/ui/upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,11 +19,17 @@ describe(XUploadPrefix, () => {
         FormsModule,
         ReactiveFormsModule,
         XIconComponent,
-        XUploadModule,
+        XUploadComponent,
         XButtonComponent,
-        XRowComponent, XColComponent
+        XRowComponent,
+        XColComponent
       ],
-      declarations: [TestXUploadComponent, TestXUploadDisabledComponent, TestXUploadImgComponent, TestXUploadImgCutComponent]
+      declarations: [
+        TestXUploadComponent,
+        TestXUploadDisabledComponent,
+        TestXUploadImgComponent,
+        TestXUploadImgCutComponent
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -171,7 +175,14 @@ class TestXUploadImgComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-upload action="http://localhost:3000/upload" [text]="textTpl" type="img" [(ngModel)]="files" multiple imgCut></x-upload>
+        <x-upload
+          action="http://localhost:3000/upload"
+          [text]="textTpl"
+          type="img"
+          [(ngModel)]="files"
+          multiple
+          imgCut
+        ></x-upload>
 
         <ng-template #textTpl>
           <x-icon class="upload-icon" type="fto-upload"></x-icon>

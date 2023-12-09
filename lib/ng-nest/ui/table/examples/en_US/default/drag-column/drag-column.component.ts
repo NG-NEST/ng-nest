@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { DragColumnService } from './drag-column.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-drag-column',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './drag-column.component.html',
   providers: [DragColumnService]
 })

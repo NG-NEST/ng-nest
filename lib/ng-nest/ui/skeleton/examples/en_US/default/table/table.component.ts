@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XSkeletonRow } from '@ng-nest/ui/skeleton';
+import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
 
 @Component({
   selector: 'ex-table',
+  standalone: true,
+  imports: [XSkeletonComponent],
   templateUrl: './table.component.html'
 })
 export class ExTableComponent {

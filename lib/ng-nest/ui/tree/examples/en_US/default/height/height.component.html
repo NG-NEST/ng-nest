@@ -1,13 +1,9 @@
-<x-row>
-  <x-col span="8" [style.width.px]="280">
-    <x-tree [data]="data"> </x-tree>
-  </x-col>
-  <x-col span="8" [style.width.px]="280">
-    <x-tree [data]="data1" [nodeNowrap]="false" [nodeAlignItems]="'start'"> </x-tree>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col span="8" [style.width.px]="280">
-    <x-tree [data]="data2"> </x-tree>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-tree [data]="data"> </x-tree>
+</div>
+<div class="row">
+  <x-tree [data]="data1" [nodeNowrap]="false" [nodeAlignItems]="'start'"> </x-tree>
+</div>
+<div class="row">
+  <x-tree [data]="data2"> </x-tree>
+</div>

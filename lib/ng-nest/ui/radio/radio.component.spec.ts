@@ -1,27 +1,25 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XRadioComponent } from './radio.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { XRadioPrefix, XRadioNode } from './radio.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XRadioPrefix, () => {
@@ -30,11 +28,11 @@ describe(XRadioPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XRadioModule,
+        XRadioComponent,
         XAutoCompleteComponent,
-        XSelectModule,
+        XSelectComponent,
         XDatePickerComponent,
         XButtonComponent,
         XRowComponent,
@@ -42,10 +40,10 @@ describe(XRadioPrefix, () => {
         XCascadeComponent,
         XColorPickerComponent,
         XFindComponent,
-        XTextareaModule,
+        XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagModule
+        XTagComponent
       ],
       declarations: [
         TestXRadioComponent,

@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XUploadComponent } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-img',
+  standalone: true,
+  imports: [FormsModule, XUploadComponent, XIconComponent],
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss']
 })

@@ -1,11 +1,15 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
 import { XNotificationPrefix, XNotificationOption, XNotificationRef } from './notification.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: `${XNotificationPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XAlertComponent],
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -15,7 +19,7 @@ import { delay } from 'rxjs/operators';
 export class XNotificationComponent {
   notification: XNotificationRef = { list: [] };
 
-  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
+  cdr = inject(ChangeDetectorRef);
 
   onClose(item: XNotificationOption) {
     this.notification.list?.splice(this.notification.list.indexOf(item), 1);

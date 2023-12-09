@@ -15,8 +15,8 @@ import { takeUntil } from 'rxjs/operators';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { XTextRetractModule } from '@ng-nest/ui/text-retract';
-import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { CommonModule } from '@angular/common';
 import { XCommentReplyComponent } from './comment-reply.component';
 
@@ -30,8 +30,8 @@ import { XCommentReplyComponent } from './comment-reply.component';
     XAvatarComponent,
     XButtonComponent,
     XButtonsComponent,
-    XTextRetractModule,
-    XTimeAgoModule,
+    XTextRetractComponent,
+    XTimeAgoPipe,
     XCommentReplyComponent
   ],
   templateUrl: './comment.component.html',

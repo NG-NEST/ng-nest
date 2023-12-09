@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { XTransferNode } from '@ng-nest/ui/transfer';
+import { FormsModule } from '@angular/forms';
+import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-inverse',
+  standalone: true,
+  imports: [FormsModule, XTransferComponent],
   templateUrl: './inverse.component.html'
 })
 export class ExInverseComponent {

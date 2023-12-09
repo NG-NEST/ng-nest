@@ -1,12 +1,10 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  inject
 } from '@angular/core';
 import { XProgressPrefix, XProgressProperty } from './progress.property';
 import {
@@ -20,9 +18,14 @@ import {
   XIsNumber
 } from '@ng-nest/ui/core';
 import { XProgressColorNode } from './progress.property';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XProgressPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XIconComponent],
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -41,14 +44,7 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
     return XIsNumber(this.percent) ? 100 - Number(this.percent) : 100;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  configService = inject(XConfigService);
 
   ngOnChanges(simples: SimpleChanges) {
     const { status, percent, gradient, steps, type, notchAngle } = simples;
@@ -99,9 +95,9 @@ export class XProgressComponent extends XProgressProperty implements OnChanges {
     } else {
       const { from, to, direction = 'to right', ...percents } = this.gradient || {};
       if (Object.keys(percents).length !== 0) {
-        this.linearGradient = `linear-gradient(${direction}, ${this.sortGradient(percents as { [percent: string]: string }).map(
-          ({ key, value }) => `${value} ${key}%`
-        )})`;
+        this.linearGradient = `linear-gradient(${direction}, ${this.sortGradient(
+          percents as { [percent: string]: string }
+        ).map(({ key, value }) => `${value} ${key}%`)})`;
         return;
       }
       this.linearGradient = `linear-gradient(${direction}, ${from}, ${to})`;

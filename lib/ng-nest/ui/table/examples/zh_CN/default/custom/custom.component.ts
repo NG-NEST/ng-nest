@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { CustomService } from './custom.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
+import { XAvatarComponent } from '@ng-nest/ui/avatar';
 
 @Component({
   selector: 'ex-custom',
+  standalone: true,
+  imports: [XTableComponent, XAvatarComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss'],
   providers: [CustomService]

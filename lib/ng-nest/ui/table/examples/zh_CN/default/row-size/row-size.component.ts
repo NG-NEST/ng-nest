@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RowSizeService } from './row-size.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-row-size',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './row-size.component.html',
   providers: [RowSizeService]
 })

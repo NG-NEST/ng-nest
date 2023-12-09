@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
+import { FormsModule } from '@angular/forms';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-async',
+  standalone: true,
+  imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })

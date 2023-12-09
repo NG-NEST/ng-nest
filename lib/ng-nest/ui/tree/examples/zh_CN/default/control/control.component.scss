@@ -1,4 +1,7 @@
 :host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
   .operations > li:not(:first-child) {
     margin-top: 1rem;
   }

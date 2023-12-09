@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { XTransferNode } from '@ng-nest/ui/transfer';
+import { FormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-custom',
+  standalone: true,
+  imports: [FormsModule, XTransferComponent, XIconComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

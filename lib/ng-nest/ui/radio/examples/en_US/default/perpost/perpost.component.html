@@ -1,59 +1,58 @@
-<x-row>
-  <x-col span="14">
-    <x-radio [data]="data" before="https://" after=".com"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [after]="afterButtonTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" before="https://" after=".com" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [after]="afterButtonTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-radio>
-  </x-col>
-  <x-col span="14">
-    <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-radio>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-radio [data]="data" before="https://" after=".com"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [after]="afterButtonTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" before="https://" after=".com" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [after]="afterButtonTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-radio>
+</div>
+<div class="row">
+  <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-radio>
+</div>
+
 <ng-template #beforeSelectTpl>
   <x-select [style.width.rem]="6" [data]="['http://', 'https://']"></x-select>
 </ng-template>

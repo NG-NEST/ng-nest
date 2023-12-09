@@ -1,8 +1,5 @@
 :host {
-  x-row {
-    margin-top: 10rem;
-  }
-  x-row:not(:first-child) {
+  .row:not(:first-child) {
     margin-top: 1rem;
   }
 }

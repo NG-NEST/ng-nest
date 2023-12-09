@@ -1,21 +1,19 @@
 <x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-row>
-  <x-col span="24">
-    <x-select [size]="size" [data]="data"></x-select>
-  </x-col>
-  <x-col span="24">
-    <x-select [size]="size" [data]="data" label="User" direction="row" maxlength="50"></x-select>
-  </x-col>
-  <x-col span="24">
-    <x-select [size]="size" [data]="data" label="User" direction="column" maxlength="50"></x-select>
-  </x-col>
-  <x-col span="24">
-    <x-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
-  </x-col>
-  <x-col span="24">
-    <x-select required clearable [size]="size" [data]="data"></x-select>
-  </x-col>
-  <x-col span="24">
-    <x-select disabled [size]="size" [data]="data"></x-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-select [size]="size" [data]="data"></x-select>
+</div>
+<div class="row">
+  <x-select [size]="size" [data]="data" label="User" direction="row" maxlength="50"></x-select>
+</div>
+<div class="row">
+  <x-select [size]="size" [data]="data" label="User" direction="column" maxlength="50"></x-select>
+</div>
+<div class="row">
+  <x-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
+</div>
+<div class="row">
+  <x-select required clearable [size]="size" [data]="data"></x-select>
+</div>
+<div class="row">
+  <x-select disabled [size]="size" [data]="data"></x-select>
+</div>

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XSize } from '@ng-nest/ui/core';
-import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-size',
+  standalone: true,
+  imports: [FormsModule, XTreeSelectComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']
 })

@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XPaginationComponent } from './pagination.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPaginationModule } from '@ng-nest/ui/pagination';
+import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { XPaginationPrefix } from './pagination.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -13,7 +11,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XPaginationModule, XButtonComponent],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
       declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
     }).compileComponents();
   });

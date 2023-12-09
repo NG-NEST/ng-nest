@@ -1,17 +1,15 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTreeFileComponent } from './tree-file.component';
 import { Component, DebugElement, Injectable } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTreeFileModule } from '@ng-nest/ui/tree-file';
+import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
 import { FormsModule } from '@angular/forms';
 import { XTreeFilePrefix, XTreeFileNode } from './tree-file.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTreeFilePrefix, () => {
@@ -19,10 +17,10 @@ describe(XTreeFilePrefix, () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        XThemeModule,
+        XThemeComponent,
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XTreeFileModule,
+        XTreeFileComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
@@ -136,8 +134,7 @@ class TreeFileServiceTest {
   template: `
     <x-theme showDark></x-theme>
     <div class="row">
-      <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs">
-      </x-tree-file>
+      <x-tree-file [data]="service.data" activatedId="13" domain="https://ngnest.com/static/docs"> </x-tree-file>
     </div>
   `,
   styles: [

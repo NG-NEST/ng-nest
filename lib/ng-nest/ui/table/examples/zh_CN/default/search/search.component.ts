@@ -2,9 +2,15 @@ import { Component, ViewChild } from '@angular/core';
 import { SearchService } from './search.service';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-search',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XTableComponent, XInputComponent, XSelectComponent],
   templateUrl: './search.component.html',
   providers: [SearchService]
 })

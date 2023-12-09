@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { XData } from '@ng-nest/ui/core';
 import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
@@ -17,7 +17,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
   imports: [
     FormsModule,
     XCheckboxComponent,
-    XSelectModule,
+    XSelectComponent,
     XButtonComponent,
     XInputComponent,
     XDatePickerComponent,

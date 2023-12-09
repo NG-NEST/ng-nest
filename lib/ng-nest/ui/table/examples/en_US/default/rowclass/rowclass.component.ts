@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RowclassService } from './rowclass.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-rowclass',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './rowclass.component.html',
   styleUrls: ['./rowclass.component.scss'],
   providers: [RowclassService]

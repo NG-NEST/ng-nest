@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { XTransferNode } from '@ng-nest/ui/transfer';
+import { FormsModule } from '@angular/forms';
+import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-tree',
+  standalone: true,
+  imports: [FormsModule, XTransferComponent],
   templateUrl: './tree.component.html'
 })
 export class ExTreeComponent {

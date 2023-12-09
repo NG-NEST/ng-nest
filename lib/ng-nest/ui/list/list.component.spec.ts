@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -20,8 +20,8 @@ describe(XListPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
-        XRadioModule,
+        XThemeComponent,
+        XRadioComponent,
         XListComponent,
         FormsModule,
         ReactiveFormsModule,

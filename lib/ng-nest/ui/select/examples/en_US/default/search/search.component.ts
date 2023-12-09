@@ -1,14 +1,35 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-search',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XSelectComponent],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  default = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ', 'KKKK', 'LLLL', 'MMMM', 'NNNN', 'VVVV'];
+  default = [
+    'AAAA',
+    'BBBB',
+    'CCCC',
+    'DDDD',
+    'EEEE',
+    'FFFF',
+    'GGGG',
+    'HHHH',
+    'IIII',
+    'JJJJ',
+    'KKKK',
+    'LLLL',
+    'MMMM',
+    'NNNN',
+    'VVVV'
+  ];
 
   data = [...this.default];
   model = '';

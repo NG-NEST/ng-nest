@@ -8,7 +8,6 @@ import {
   XDialogFullscreenDirective,
   XDialogTitleDirective
 } from './dialog-portal.directives';
-import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogContainerComponent } from './dialog-container.component';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { XDialogContainerComponent } from './dialog-container.component';
     XDialogContentDirective,
     XDialogActionsDirective,
     XDialogDragHandleDirective,
-    XDialogFullscreenDirective,
-    XDialogPortalComponent
+    XDialogFullscreenDirective
   ],
   imports: [
     XDialogComponent,
@@ -31,8 +29,7 @@ import { XDialogContainerComponent } from './dialog-container.component';
     XDialogContentDirective,
     XDialogActionsDirective,
     XDialogDragHandleDirective,
-    XDialogFullscreenDirective,
-    XDialogPortalComponent
+    XDialogFullscreenDirective
   ]
 })
 export class XDialogModule {}

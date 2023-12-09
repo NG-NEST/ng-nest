@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { XSliderSelectMark } from '@ng-nest/ui/slider-select';
+import { FormsModule } from '@angular/forms';
+import { XSliderSelectComponent, XSliderSelectMark } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-marks',
+  standalone: true,
+  imports: [FormsModule, XSliderSelectComponent],
   templateUrl: './marks.component.html',
   styleUrls: ['./marks.component.scss']
 })

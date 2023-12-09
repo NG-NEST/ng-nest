@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [DatePipe, XTimeAgoPipe],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent implements OnInit {
+export class ExDefaultComponent {
   format = 'yyyy-MM-dd HH:mm:ss';
   date = new Date();
   dateSeconds = XAddSeconds(this.date, -5);
@@ -15,7 +19,4 @@ export class ExDefaultComponent implements OnInit {
   dateDays = XAddDays(this.date, -5);
   dateMonths = XAddMonths(this.date, -5);
   dateYears = XAddYears(this.date, -5);
-  constructor() {}
-
-  ngOnInit() {}
 }

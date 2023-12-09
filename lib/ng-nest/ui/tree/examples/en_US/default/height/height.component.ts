@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-height',
-  templateUrl: './height.component.html'
+  standalone: true,
+  imports: [XTreeComponent],
+  templateUrl: './height.component.html',
+  styleUrls: ['./height.component.scss']
 })
 export class ExHeightComponent {
   data: XTreeNode[] = [

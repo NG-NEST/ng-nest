@@ -1,9 +1,33 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XData } from '@ng-nest/ui/core';
-import { XRadioNode } from '@ng-nest/ui/radio';
+import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-perpost',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XRadioComponent,
+    XSelectComponent,
+    XButtonComponent,
+    XInputComponent,
+    XDatePickerComponent,
+    XAutoCompleteComponent,
+    XCascadeComponent,
+    XColorPickerComponent,
+    XTimePickerModule
+  ],
   templateUrl: './perpost.component.html',
   styleUrls: ['./perpost.component.scss']
 })

@@ -2,19 +2,44 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   SimpleChanges,
   ViewChild,
-  Input
+  Input,
+  inject
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber, XClassMap, XIsFunction } from '@ng-nest/ui/core';
-import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  removeNgTag,
+  XIsEmpty,
+  XSort,
+  XIsChange,
+  XConfigService,
+  XNumber,
+  XClassMap,
+  XIsFunction
+} from '@ng-nest/ui/core';
+import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
+import { XDragDirective } from '@ng-nest/ui/drag';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XTableHeadPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XDragDirective,
+    DragDropModule,
+    XCheckboxComponent,
+    XOutletDirective,
+    XIconComponent
+  ],
   templateUrl: './table-head.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -28,15 +53,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
-  constructor(
-    // @Optional() @Host() public table: XTableComponent,
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnChanges(simples: SimpleChanges) {
     const { columns, scrollYWidth, scrollXWidth, cellConfig } = simples;
@@ -124,7 +143,10 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  dragWidthMoved(position: { x: number; y: number; offsetX: number; offsetY: number }, column: XTableColumn | XTableCell) {
+  dragWidthMoved(
+    position: { x: number; y: number; offsetX: number; offsetY: number },
+    column: XTableColumn | XTableCell
+  ) {
     if (column.width) {
       (column.width as number) += position.offsetX;
       if (column.width < 60) column.width = 60;

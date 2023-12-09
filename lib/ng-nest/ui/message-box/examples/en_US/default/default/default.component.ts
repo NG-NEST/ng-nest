@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 import { XMessageService } from '@ng-nest/ui/message';
 import { XPlace } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [CommonModule, XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

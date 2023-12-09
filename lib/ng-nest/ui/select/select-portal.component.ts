@@ -18,9 +18,13 @@ import { map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XListComponent],
   templateUrl: './select-portal.component.html',
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

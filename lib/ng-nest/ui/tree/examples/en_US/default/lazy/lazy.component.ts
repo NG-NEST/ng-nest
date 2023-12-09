@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-lazy',
-  templateUrl: './lazy.component.html',
-  styleUrls: ['./lazy.component.scss']
+  standalone: true,
+  imports: [XTreeComponent],
+  templateUrl: './lazy.component.html'
 })
 export class ExLazyComponent {
   data: XTreeNode[] = [

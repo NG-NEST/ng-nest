@@ -2,7 +2,13 @@
   <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
 </div>
 <div class="row">
-  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" [space]="0.25"></x-pagination>
+  <x-pagination
+    [index]="index"
+    [size]="size"
+    [total]="total"
+    (indexChange)="change($event)"
+    [space]="0.25"
+  ></x-pagination>
 </div>
 <div class="row">
   <x-pagination

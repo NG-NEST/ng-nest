@@ -1,13 +1,9 @@
-<x-row>
-  <x-col>
-    <x-select [data]="data1" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-select>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col>
-    <x-select [data]="data2" [(ngModel)]="model2" [nodeTpl]="multipleNodeTpl" multiple></x-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-select [data]="data1" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-select>
+</div>
+<div class="row">
+  <x-select [data]="data2" [(ngModel)]="model2" [nodeTpl]="multipleNodeTpl" multiple></x-select>
+</div>
 
 <ng-template #nodeTpl let-node="$node">
   <span *ngIf="node" class="select-item"> {{ node?.label }}<sup>2</sup> </span>

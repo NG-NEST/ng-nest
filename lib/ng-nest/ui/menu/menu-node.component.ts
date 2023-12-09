@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { XIconComponent } from '../icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

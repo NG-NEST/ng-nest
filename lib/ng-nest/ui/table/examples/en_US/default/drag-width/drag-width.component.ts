@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { DragWidthService } from './drag-width.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn, XTableDragWidthEvent } from '@ng-nest/ui/table';
+import { XTableComponent, XTableColumn, XTableDragWidthEvent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-drag-width',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './drag-width.component.html',
   providers: [DragWidthService]
 })

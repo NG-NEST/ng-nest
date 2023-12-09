@@ -21,7 +21,7 @@ import {
   XIsUndefined,
   XConfigService
 } from '@ng-nest/ui/core';
-import { XSliderNode, XSliderModule } from '@ng-nest/ui/slider';
+import { XSliderNode, XSliderComponent } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -30,7 +30,7 @@ import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: `${XAnchorPrefix}`,
   standalone: true,
-  imports: [CommonModule, XAffixComponent, XSliderModule],
+  imports: [CommonModule, XAffixComponent, XSliderComponent],
   templateUrl: './anchor.component.html',
   styleUrls: ['./anchor.component.scss'],
   encapsulation: ViewEncapsulation.None,

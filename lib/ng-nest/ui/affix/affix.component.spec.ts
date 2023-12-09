@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { XAffixPrefix } from './affix.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -17,7 +17,7 @@ describe(XAffixPrefix, () => {
         HttpClientTestingModule,
         XAffixComponent,
         XButtonComponent,
-        XThemeModule
+        XThemeComponent
       ],
       declarations: [TestXAffixComponent]
     }).compileComponents();

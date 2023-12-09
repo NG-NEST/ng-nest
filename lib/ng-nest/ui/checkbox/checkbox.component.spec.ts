@@ -9,18 +9,18 @@ import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 
 describe(XCheckboxPrefix, () => {
   beforeEach(() => {
@@ -28,22 +28,22 @@ describe(XCheckboxPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XCheckboxComponent,
         XButtonComponent,
         XAutoCompleteComponent,
-        XSelectModule,
+        XSelectComponent,
         XDatePickerComponent,
         XRowComponent,
         XColComponent,
         XCascadeComponent,
         XColorPickerComponent,
         XFindComponent,
-        XTextareaModule,
+        XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagModule
+        XTagComponent
       ],
       declarations: [
         TestXCheckboxComponent,

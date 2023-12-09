@@ -126,7 +126,7 @@ Open the front-end project, here we use the `table` component to create our list
 
 {{ __17\__ui:src/main/system/users/user.component.ts:true:true }}
 
-- Adding a `XTableModule` module in `user.module.ts`
+- Adding a `XTableComponent` component in `user.module.ts`
 - Using `table` components in `user.component.html` and `uesr.component.ts`
 - `columns` configuration
 - `data` specify the `table` display data, configure it to a return type to `Observable` Observe the function of the object

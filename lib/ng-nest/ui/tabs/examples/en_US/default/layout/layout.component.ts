@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { XTabsLayout } from '@ng-nest/ui/tabs';
+import { XTabComponent, XTabsComponent, XTabsLayout } from '@ng-nest/ui/tabs';
 import { XJustify } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-layout',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XTabsComponent, XTabComponent, XRadioComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })

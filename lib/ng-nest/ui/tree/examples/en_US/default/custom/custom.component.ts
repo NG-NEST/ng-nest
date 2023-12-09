@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-custom',
+  standalone: true,
+  imports: [CommonModule, XTreeComponent, XLinkComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

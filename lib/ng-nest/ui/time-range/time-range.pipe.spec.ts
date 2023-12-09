@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { XTimeRangeModule } from '@ng-nest/ui/time-range';
+import { XTimeRangePipe } from '@ng-nest/ui/time-range';
 import { XTimeRangePrefix } from './time-range.property';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTimeRangePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XTimeRangeModule],
+      imports: [HttpClientTestingModule, XTimeRangePipe],
       declarations: [TestXTimeRangeComponent]
     }).compileComponents();
   });

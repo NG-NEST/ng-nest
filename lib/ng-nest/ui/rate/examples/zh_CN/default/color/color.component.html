@@ -1,28 +1,26 @@
-<x-row>
-  <x-col span="24">
-    <x-rate [color]="colorOne" [ngModel]="4"></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model1" [color]="colorTwo"></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model2" [color]="colorTwo"></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model3" [color]="colorTwo"></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model4" disabled [color]="colorTwo"></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model5" disabled [color]="colorThree" half></x-rate>
-  </x-col>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model5" [color]="colorThree" half [customTemp]="iconTpl"></x-rate>
-  </x-col>
-  <ng-template #iconTpl><x-icon type="fto-eye"></x-icon></ng-template>
-  <x-col span="24">
-    <x-rate [(ngModel)]="model5" [count]="10" [color]="colorThree" half [customTemp]="textTpl"></x-rate>
-  </x-col>
-  <ng-template #textTpl>0</ng-template>
-</x-row>
+<div class="row">
+  <x-rate [color]="colorOne" [ngModel]="4"></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model1" [color]="colorTwo"></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model2" [color]="colorTwo"></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model3" [color]="colorTwo"></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model4" disabled [color]="colorTwo"></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model5" disabled [color]="colorThree" half></x-rate>
+</div>
+<div class="row">
+  <x-rate [(ngModel)]="model5" [color]="colorThree" half [customTemp]="iconTpl"></x-rate>
+</div>
+<ng-template #iconTpl><x-icon type="fto-eye"></x-icon></ng-template>
+<div class="row">
+  <x-rate [(ngModel)]="model5" [count]="10" [color]="colorThree" half [customTemp]="textTpl"></x-rate>
+</div>
+<ng-template #textTpl>0</ng-template>

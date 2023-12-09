@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { FixService } from './fix.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'ex-fix',
+  standalone: true,
+  imports: [XTableComponent, XLinkComponent],
   templateUrl: './fix.component.html',
   providers: [FixService]
 })

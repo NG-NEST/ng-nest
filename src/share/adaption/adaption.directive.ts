@@ -5,7 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[ns-adaption]'
+  selector: '[ns-adaption]',
+  standalone: true
 })
 export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
   @Input() outerHeight: number = 0;
@@ -37,6 +38,10 @@ export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
 
   setAdaptionHeight() {
     const outerHeight = this.outerElement ? this.outerElement.clientHeight : this.outerHeight;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${this.doc.documentElement.clientHeight - outerHeight}px`);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'height',
+      `${this.doc.documentElement.clientHeight - outerHeight}px`
+    );
   }
 }

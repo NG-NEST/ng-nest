@@ -1,20 +1,18 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XSkeletonComponent } from './skeleton.component';
 import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XSkeletonModule } from '@ng-nest/ui/skeleton';
+import { XSkeletonComponent } from '@ng-nest/ui/skeleton';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonPrefix, XSkeletonRow } from './skeleton.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
-import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XSkeletonPrefix, () => {
@@ -23,10 +21,10 @@ describe(XSkeletonPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XSkeletonModule,
-        XSwitchModule,
+        XSkeletonComponent,
+        XSwitchComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
@@ -85,10 +83,7 @@ describe(XSkeletonPrefix, () => {
             <x-skeleton [loading]="loadingList" [data]="dataCustom" active>
               <x-row justify="start" space="1">
                 <x-col inherit class="content">
-                  <x-avatar
-                    src="https://ngnest.com/assets/img/logo/logo-144x144.png"
-                    size="medium"
-                  ></x-avatar>
+                  <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png" size="medium"></x-avatar>
                 </x-col>
                 <x-col class="content">
                   <x-row>

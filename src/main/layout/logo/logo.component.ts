@@ -1,13 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ConfigService } from '@services';
-import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'ns-logo',
+  standalone: true,
   templateUrl: './logo.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class LogoComponent {
-  versions = [];
-  constructor(public layoutService: LayoutService, public config: ConfigService) {}
-}
+export class LogoComponent {}

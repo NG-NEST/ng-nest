@@ -28,11 +28,11 @@ export function handlerDemo(page: NcPage, docDir: string, router: string) {
       page.custom = replaceKey(page.custom, `__${child}${params?.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
     }
   }
-  if (children.length > 0) {
-    let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
-    mod.syswords.imports += `import { XTreeFileModule } from '@ng-nest/ui/tree-file';\n`;
-    mod.syswords.modules += `, XTreeFileModule`;
-  }
+  // if (children.length > 0) {
+  //   let mod = page.templates.find((x) => x.type === 'default' && x.name === 'module');
+  //   mod.syswords.imports += `import { XTreeFileComponent } from '@ng-nest/ui/tree-file';\n`;
+  //   mod.syswords.modules += `, XTreeFileComponent`;
+  // }
 }
 
 export function getTreeFile(demoPath: string, demo: string, router: string) {

@@ -6,12 +6,12 @@ import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { XDrawerComponent } from '@ng-nest/ui/drawer';
 import { XDrawerPrefix } from './drawer.property';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XDrawerPrefix, () => {
@@ -20,12 +20,12 @@ describe(XDrawerPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XDrawerComponent,
         FormsModule,
         XInputComponent,
         XIconComponent,
-        XRadioModule,
+        XRadioComponent,
         XButtonComponent,
         XButtonsComponent
       ],

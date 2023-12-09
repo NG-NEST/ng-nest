@@ -12,7 +12,7 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -22,7 +22,7 @@ describe(XCalendarPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XCalendarComponent,
         XButtonComponent,

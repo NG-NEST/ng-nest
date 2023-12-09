@@ -10,8 +10,8 @@ import * as fs from 'fs-extra';
  */
 export function generateMenu(genDir: string, menus: NcMenu[]) {
   fs.writeFileSync(
-    `${genDir}/menus.ts`,
-    `import { Menu } from './routes';
+    `${genDir}/app.menus.ts`,
+    `import { Menu } from '@interfaces';
 export const menus: Menu[] = ${JSON.stringify(menus, null, 2)}`,
     'utf8'
   );

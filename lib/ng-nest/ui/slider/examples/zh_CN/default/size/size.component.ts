@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { XData } from '@ng-nest/ui/core';
-import { XSliderNode } from '@ng-nest/ui/slider';
+import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-size',
+  standalone: true,
+  imports: [XSliderComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']
 })

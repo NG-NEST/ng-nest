@@ -1,18 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { layoutRoutes } from '../../environments/routes';
+import { LayoutRoutes as LRoutes } from '../../app/app.routes';
 
-const routes: Routes = [
+export const LayoutRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: layoutRoutes
+    children: LRoutes
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class LayoutRoutesModule {}

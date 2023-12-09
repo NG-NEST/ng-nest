@@ -5,10 +5,8 @@ import { XMainComponent } from './main.component';
 import { XAsideComponent } from './aside.component';
 import { XHeaderComponent } from './header.component';
 
-const components = [XContainerComponent, XHeaderComponent, XAsideComponent, XMainComponent, XFooterComponent];
-
 @NgModule({
-  imports: [...components],
-  exports: [...components]
+  imports: [XContainerComponent, XHeaderComponent, XAsideComponent, XMainComponent, XFooterComponent],
+  exports: [XContainerComponent, XHeaderComponent, XAsideComponent, XMainComponent, XFooterComponent]
 })
 export class XContainerModule {}

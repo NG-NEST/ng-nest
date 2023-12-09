@@ -46,7 +46,7 @@ export const XViewBox = [
 @Component({
   selector: `${XIconPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconProperty],
+  imports: [CommonModule],
   templateUrl: './icon.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

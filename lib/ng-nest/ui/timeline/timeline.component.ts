@@ -2,35 +2,36 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  inject,
+  OnDestroy
 } from '@angular/core';
 import { XTimelinePrefix, XTimelineNode, XTimelineProperty } from './timeline.property';
 import { XIsChange, XSetData, XConfigService, XClearClass } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTimelinePrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent, XTimeAgoPipe, XLinkComponent, XOutletDirective],
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTimelineComponent extends XTimelineProperty implements OnInit, OnChanges {
+export class XTimelineComponent extends XTimelineProperty implements OnInit, OnChanges, OnDestroy {
   nodes: XTimelineNode[] = [];
   private _unSubject = new Subject<void>();
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

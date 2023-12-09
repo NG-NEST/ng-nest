@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { XDropdownComponent } from './dropdown.component';
-import { XDropdownPortalComponent } from './dropdown-portal.component';
-
 @NgModule({
-  imports: [XDropdownComponent, XDropdownPortalComponent],
-  exports: [XDropdownComponent, XDropdownPortalComponent]
+  imports: [XDropdownComponent],
+  exports: [XDropdownComponent]
 })
 export class XDropdownModule {}

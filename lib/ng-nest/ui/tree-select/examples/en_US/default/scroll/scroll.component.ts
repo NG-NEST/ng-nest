@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-scroll',
-  templateUrl: './scroll.component.html',
-  styleUrls: ['./scroll.component.scss']
+  standalone: true,
+  imports: [XTreeSelectComponent],
+  templateUrl: './scroll.component.html'
 })
 export class ExScrollComponent {
   data = [

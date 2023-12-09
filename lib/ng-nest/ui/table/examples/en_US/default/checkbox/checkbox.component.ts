@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CheckboxService } from './checkbox.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn, XTableHeadCheckbox, XTableRow } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent, XTableHeadCheckbox, XTableRow } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-checkbox',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './checkbox.component.html',
   providers: [CheckboxService]
 })

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 import { XMessageService } from '@ng-nest/ui/message';
+import { CommonModule } from '@angular/common';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-prompt',
+  standalone: true,
+  imports: [CommonModule, XButtonComponent],
   templateUrl: './prompt.component.html'
 })
 export class ExPromptComponent {
@@ -13,7 +17,8 @@ export class ExPromptComponent {
       title: 'Submit content',
       content: 'Please enter email',
       inputValue: 'ngnest@163',
-      inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+      inputPattern:
+        /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
       inputInvalidMessage: 'Incorrect email format',
       callback: (action: XMessageBoxAction, msg) => {
         if (action === 'confirm') {
@@ -33,7 +38,9 @@ export class ExPromptComponent {
       content: 'Please enter email',
       inputValue: 'ngnest@163',
       inputValidator: (value: string) => {
-        let reg = new RegExp(/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/);
+        let reg = new RegExp(
+          /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+        );
         return reg.test(value);
       },
       inputInvalidMessage: 'Incorrect email format',

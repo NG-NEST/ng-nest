@@ -21,8 +21,7 @@ import { CommonModule, DOCUMENT, DecimalPipe, PercentPipe } from '@angular/commo
 import { takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -32,8 +31,9 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     DragDropModule,
-    XSliderSelectModule,
-    XTabsModule,
+    XSliderSelectComponent,
+    XTabsComponent,
+    XTabComponent,
     XInputComponent
   ],
   templateUrl: './color-picker-portal.component.html',
@@ -111,9 +111,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.panel = this.panelRef.nativeElement.getBoundingClientRect();
     this.plate = this.plateRef.nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector(
-      '.x-slider-select-rail div'
-    )!;
+    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
@@ -267,10 +265,8 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setHslaPercent() {
-    this.hsla.sp =
-      this.hsla.s === 0 ? '0%' : (this.percent.transform(this.hsla.s, '1.0-0') as string);
-    this.hsla.lp =
-      this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
+    this.hsla.sp = this.hsla.s === 0 ? '0%' : (this.percent.transform(this.hsla.s, '1.0-0') as string);
+    this.hsla.lp = this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
   }
 
   getPrimary() {
@@ -285,11 +281,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setPlateBackground() {
-    this.renderer.setStyle(
-      this.plateRef.nativeElement,
-      'background-color',
-      `hsl(${this.hsla.h}, 100%, 50%)`
-    );
+    this.renderer.setStyle(this.plateRef.nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
   }
 
   setRailBackground() {

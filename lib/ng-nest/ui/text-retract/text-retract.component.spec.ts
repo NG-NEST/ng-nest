@@ -1,11 +1,9 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTextRetractComponent } from './text-retract.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTextRetractModule } from '@ng-nest/ui/text-retract';
+import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
 import { FormsModule } from '@angular/forms';
 import { XTextRetractPrefix } from './text-retract.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
@@ -18,7 +16,7 @@ describe(XTextRetractPrefix, () => {
       imports: [
         HttpClientTestingModule,
         FormsModule,
-        XTextRetractModule,
+        XTextRetractComponent,
         XRowComponent,
         XColComponent,
         XButtonComponent,

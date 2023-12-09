@@ -1,8 +1,6 @@
-<x-row>
-  <x-col span="24">
-    <x-tree-select [data]="data1" disabled></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select [data]="data2" [(ngModel)]="model" disabled></x-tree-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-tree-select [data]="data1" disabled></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data2" [(ngModel)]="model" disabled></x-tree-select>
+</div>

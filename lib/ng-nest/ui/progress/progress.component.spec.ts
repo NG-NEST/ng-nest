@@ -1,17 +1,15 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XProgressComponent } from './progress.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XProgressModule } from '@ng-nest/ui/progress';
+import { XProgressComponent } from '@ng-nest/ui/progress';
 import { FormsModule } from '@angular/forms';
 import { XProgressPrefix } from './progress.property';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XProgressPrefix, () => {
@@ -20,9 +18,9 @@ describe(XProgressPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XProgressModule,
+        XProgressComponent,
         XButtonComponent,
         XButtonsComponent,
         XContainerComponent,

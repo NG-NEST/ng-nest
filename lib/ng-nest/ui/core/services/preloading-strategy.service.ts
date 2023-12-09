@@ -3,7 +3,7 @@ import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 // @dynamic
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XPreloadingStrategyService implements PreloadingStrategy {
   // 需要预加载的模块
   preloadedModules: string[] = [];

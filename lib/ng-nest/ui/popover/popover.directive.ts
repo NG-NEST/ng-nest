@@ -1,13 +1,27 @@
-import { ElementRef, ViewContainerRef, Directive, HostListener, OnChanges, SimpleChanges, HostBinding } from '@angular/core';
+import {
+  ElementRef,
+  ViewContainerRef,
+  Directive,
+  HostListener,
+  OnChanges,
+  SimpleChanges,
+  HostBinding,
+  inject
+} from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
 import { XPopoverPrefix, XPopoverProperty } from './popover.property';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, Overlay } from '@angular/cdk/overlay';
+import {
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  Overlay
+} from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
 import { XPlacement, XIsChange, XConfigService } from '@ng-nest/ui/core';
 
-@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
+@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}`, standalone: true })
 export class XPopoverDirective extends XPopoverProperty implements OnChanges {
   portal!: XPortalOverlayRef<XPopoverPortalComponent>;
   box!: DOMRect;
@@ -17,16 +31,11 @@ export class XPopoverDirective extends XPopoverProperty implements OnChanges {
   timeoutShow: any;
   private _unSubject = new Subject<void>();
   private realPlacement!: XPlacement;
-
-  constructor(
-    private elementRef: ElementRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private elementRef = inject(ElementRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
+  configService = inject(XConfigService);
 
   @HostBinding('class.x-popover-show') get _show() {
     return this.visible;

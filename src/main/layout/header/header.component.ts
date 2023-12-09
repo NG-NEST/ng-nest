@@ -1,9 +1,26 @@
 import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import { XStorageService } from '@ng-nest/ui/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { CommonModule } from '@angular/common';
+import { LogoComponent } from '../logo/logo.component';
+import { SearchComponent } from '../search/search.component';
+import { NavComponent } from '../nav/nav.component';
+import { XDrawerComponent } from '@ng-nest/ui/drawer';
+import { SiderComponent } from '../sider/sider.component';
 
 @Component({
   selector: 'ns-header',
+  standalone: true,
+  imports: [
+    CommonModule,
+    XButtonComponent,
+    LogoComponent,
+    SearchComponent,
+    NavComponent,
+    XDrawerComponent,
+    SiderComponent
+  ],
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None
 })

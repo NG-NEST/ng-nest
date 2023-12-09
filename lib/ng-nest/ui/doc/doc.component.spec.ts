@@ -4,14 +4,14 @@ import { By } from '@angular/platform-browser';
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { XDocPrefix } from './doc.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -22,7 +22,7 @@ describe(XDocPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XDocComponent,
         XIconComponent,
         XRowComponent,
@@ -31,7 +31,8 @@ describe(XDocPrefix, () => {
         XButtonComponent,
         XExamplesComponent,
         XApiComponent,
-        XTabsModule,
+        XTabsComponent,
+        XTabComponent,
         XHighlightComponent,
         XPatternComponent
       ],

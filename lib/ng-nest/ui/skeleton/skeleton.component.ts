@@ -2,32 +2,29 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  inject
 } from '@angular/core';
 import { XSkeletonPrefix, XSkeletonProperty } from './skeleton.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { CommonModule } from '@angular/common';
+import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: `${XSkeletonPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XRowComponent, XColComponent],
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSkeletonComponent extends XSkeletonProperty implements OnInit, OnChanges {
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();

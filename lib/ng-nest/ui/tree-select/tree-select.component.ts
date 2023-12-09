@@ -12,7 +12,9 @@ import {
   ViewContainerRef,
   ViewChild,
   TemplateRef,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectProperty, XTreeSelectPrefix } from './tree-select.property';
 import {
@@ -36,22 +38,32 @@ import {
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XTreeSelectPortalComponent } from './tree-select-portal.component';
-import { Overlay, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange, OverlayConfig } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange,
+  OverlayConfig
+} from '@angular/cdk/overlay';
 import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nTreeSelect, XI18nService } from '@ng-nest/ui/i18n';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { XTagComponent } from '@ng-nest/ui/tag';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTreeSelectPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XTagComponent, XOutletDirective],
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XTreeSelectComponent)]
 })
-export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit, OnChanges {
+export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
   @ViewChild('treeSelect', { static: true }) treeSelect!: ElementRef<HTMLElement>;
   @ViewChild('multipleValueTpl', { static: true }) multipleValueTpl!: TemplateRef<void>;
@@ -119,19 +131,14 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   private _unSubject = new Subject<void>();
   private _resizeObserver!: XResizeObserver;
   document = inject(DOCUMENT);
-
-  constructor(
-    public renderer: Renderer2,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private overlay: Overlay,
-    public i18n: XI18nService,
-    public configService: XConfigService,
-    public elementRef: ElementRef
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlay = inject(Overlay);
+  private i18n = inject(XI18nService);
+  private elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setFlex(this.treeSelect.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -196,12 +203,17 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
       this.closePortal();
     });
-    this.inputChange.pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject)).subscribe((x) => {
-      this.modelChange(x);
-    });
+    this.inputChange
+      .pipe(debounceTime(this.debounceTime as number), distinctUntilChanged(), takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.modelChange(x);
+      });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this._unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
-      if (!this.portalAttached() && [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)) {
+      if (
+        !this.portalAttached() &&
+        [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)
+      ) {
         this.inputChange.next(this.displayValue);
       }
       // if (this.portalAttached() && [ESCAPE].includes(keyCode)) {

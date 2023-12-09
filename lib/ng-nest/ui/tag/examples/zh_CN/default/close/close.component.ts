@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { XTagComponent } from '@ng-nest/ui/tag';
 
 @Component({
   selector: 'ex-close',
+  standalone: true,
+  imports: [CommonModule, XTagComponent],
   templateUrl: './close.component.html',
   styleUrls: ['./close.component.scss']
 })

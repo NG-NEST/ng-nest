@@ -1,23 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XMessageBoxComponent } from './message-box.component';
 import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMessageBoxModule } from '@ng-nest/ui/message-box';
+import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.property';
 import { XMessageBoxService } from './message-box.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
-import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XMessageService } from '@ng-nest/ui/message';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageBoxModule, XButtonComponent, XMessageModule],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeComponent,
+        XMessageBoxComponent,
+        XButtonComponent
+      ],
       declarations: [TestXMessageBoxComponent]
     }).compileComponents();
   });
@@ -145,7 +149,8 @@ class TestXMessageBoxComponent {
   alert(place: XPlace, title: string) {
     this.msgBox.alert({
       title: '弹框 ' + title,
-      content: '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
+      content:
+        '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
       placement: place,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });
@@ -172,7 +177,8 @@ class TestXMessageBoxComponent {
       title: '提交内容',
       content: '请输入邮箱',
       inputValue: 'ngnest@163',
-      inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+      inputPattern:
+        /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
       inputInvalidMessage: '邮箱格式不正确',
       callback: (action: XMessageBoxAction, msg) => {
         if (action === 'confirm') {

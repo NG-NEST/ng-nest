@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: `${XEmptyPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective, XIconComponent, XI18nPipe, XEmptyProperty],
+  imports: [CommonModule, XOutletDirective, XIconComponent, XI18nPipe],
   templateUrl: './empty.component.html',
   styleUrls: ['./empty.component.scss'],
   encapsulation: ViewEncapsulation.None,

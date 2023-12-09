@@ -26,7 +26,7 @@ import {
   XDirection
 } from '@ng-nest/ui/core';
 import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -40,7 +40,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     XButtonComponent,
     XButtonsComponent,
-    XTagModule,
+    XTagComponent,
     XOutletDirective,
     XControlValueAccessor
   ],

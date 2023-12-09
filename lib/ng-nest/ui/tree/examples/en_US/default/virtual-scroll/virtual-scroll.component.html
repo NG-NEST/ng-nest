@@ -13,5 +13,6 @@
 <h4>Scroll Height Adaption</h4>
 <x-input-number label="Height" [(ngModel)]="scrollHeight" step="10" min="100" max="800"></x-input-number>
 <div #adaptionRef class="ex-scroll-list" [style.height.px]="scrollHeight">
-  <x-tree [data]="getData2" virtualScroll lazy (activatedChange)="infoLazy($event)" [heightAdaption]="adaptionRef"> </x-tree>
+  <x-tree [data]="getData2" virtualScroll lazy (activatedChange)="infoLazy($event)" [heightAdaption]="adaptionRef">
+  </x-tree>
 </div>

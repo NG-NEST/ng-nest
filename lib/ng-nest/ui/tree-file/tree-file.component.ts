@@ -1,13 +1,28 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, Optional } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from './tree-file.property';
 import { HttpClient } from '@angular/common/http';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
-import { XCrumbNode } from '@ng-nest/ui/crumb';
+import { XCrumbComponent, XCrumbNode } from '@ng-nest/ui/crumb';
 import { delay, finalize } from 'rxjs/operators';
-import { XHighlightLines } from '@ng-nest/ui/highlight';
+import { XHighlightComponent, XHighlightLines } from '@ng-nest/ui/highlight';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
+import { XTreeComponent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XTreeComponent,
+    XLinkComponent,
+    XCrumbComponent,
+    XIconComponent,
+    XLoadingComponent,
+    XHighlightComponent
+  ],
   templateUrl: './tree-file.component.html',
   styleUrls: ['./tree-file.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -35,20 +50,16 @@ export class XTreeFileComponent extends XTreeFileProperty {
     return this.activatedNode?.highlightLines as XHighlightLines;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    @Optional() public http: HttpClient,
-    public configService: XConfigService
-  ) {
-    super();
-    if (!http) {
-      throw new Error(`${XTreeFilePrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`);
-    }
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private http = inject(HttpClient, { optional: true })!;
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    if (!this.http) {
+      throw new Error(
+        `${XTreeFilePrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
+      );
+    }
     if (!this.showTree && this.activatedId) {
       this.catalogChange((this.data as XTreeFileNode[]).find((x) => x.id == this.activatedId) as XTreeFileNode);
     }
@@ -68,7 +79,9 @@ export class XTreeFileComponent extends XTreeFileProperty {
           this.http
             .get(node.url, { responseType: 'text' })
             .pipe(
-              delay(new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time),
+              delay(
+                new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time
+              ),
               finalize(() => {
                 this.loading = false;
                 this.cdr.detectChanges();

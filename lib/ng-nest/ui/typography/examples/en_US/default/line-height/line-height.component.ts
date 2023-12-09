@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ex-line-height',
+  standalone: true,
   templateUrl: './line-height.component.html'
 })
 export class ExLineHeightComponent {

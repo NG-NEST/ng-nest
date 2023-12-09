@@ -2,42 +2,40 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject,
+  OnDestroy
 } from '@angular/core';
 import { XTextRetractPrefix, XTextRetractProperty } from './text-retract.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XLinkComponent, XI18nPipe],
   templateUrl: './text-retract.component.html',
   styleUrls: ['./text-retract.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTextRetractComponent extends XTextRetractProperty implements OnInit, OnChanges {
+export class XTextRetractComponent extends XTextRetractProperty implements OnInit, OnChanges, OnDestroy {
   displayValue!: string;
   retract: boolean = false;
   unfold: boolean = true;
 
   private _unSubject = new Subject<void>();
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setDisplayValue();

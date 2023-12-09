@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeFileNode } from '@ng-nest/ui/tree-file';
+import { XTreeFileComponent, XTreeFileNode } from '@ng-nest/ui/tree-file';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [XTreeFileComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
@@ -56,7 +58,13 @@ export class ExDefaultComponent {
       label: 'app.component.html',
       url: 'docs/ui/getting-started/demo/3.2__my-app/src/app/app.component.html',
       type: 'html',
-      highlightLines: { primary: '5,13,21', success: '6,14,22', warning: '7,15,23', danger: '8,16,24', info: '9,17,25,28-33' }
+      highlightLines: {
+        primary: '5,13,21',
+        success: '6,14,22',
+        warning: '7,15,23',
+        danger: '8,16,24',
+        info: '9,17,25,28-33'
+      }
     },
     {
       id: '1__my-app/src/app/app.component.scss',

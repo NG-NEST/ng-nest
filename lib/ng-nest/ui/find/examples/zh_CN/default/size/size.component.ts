@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSize } from '@ng-nest/ui/core';
 import { XFindComponent } from '@ng-nest/ui/find';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-size',
   standalone: true,
-  imports: [FormsModule, XFindComponent, XRadioModule],
+  imports: [FormsModule, XFindComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']
 })

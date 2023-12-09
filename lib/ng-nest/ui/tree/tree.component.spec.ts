@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTreeComponent } from './tree.component';
 import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTreeModule } from '@ng-nest/ui/tree';
+import { XTreeComponent } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable } from 'rxjs';
@@ -14,8 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UntypedFormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
-import { XMessageModule, XMessageService } from '@ng-nest/ui/message';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XMessageService } from '@ng-nest/ui/message';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -26,15 +24,14 @@ describe(XTreePrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
-        XTreeModule,
+        XThemeComponent,
+        XTreeComponent,
         XRowComponent,
         XColComponent,
         XButtonComponent,
         XLinkComponent,
         XFormComponent,
         XLinkComponent,
-        XMessageModule,
         XInputNumberComponent,
         XIconComponent
       ],
@@ -243,8 +240,7 @@ class TestXTreeLazyComponent {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
-        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox>
-        </x-tree>
+        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
       </x-col>
     </x-row>
   `,
@@ -271,8 +267,7 @@ class TestXTreeCheckedComponent {
     <x-theme showDark></x-theme>
     <x-row space="1">
       <x-col span="8">
-        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox>
-        </x-tree>
+        <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
       </x-col>
     </x-row>
   `,
@@ -353,9 +348,7 @@ class TestXTreeCustomComponent {
           </li>
           <li><x-button (click)="getCheckedKeys()">获取选中的节点的 Key 值</x-button></li>
           <li>
-            <x-button (click)="setExpandedAll()">{{
-              expandedAll ? '全部收起' : '全部展开'
-            }}</x-button>
+            <x-button (click)="setExpandedAll()">{{ expandedAll ? '全部收起' : '全部展开' }}</x-button>
           </li>
           <li>{{ content | json }}</li>
         </ul>
@@ -575,11 +568,7 @@ class TestXTreeOperationComponent {
       ]
     }
   ];
-  constructor(
-    private service: OrganizationService,
-    private message: XMessageService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private service: OrganizationService, private message: XMessageService, private cdr: ChangeDetectorRef) {}
 
   action(type: string, node: Organization) {
     switch (type) {

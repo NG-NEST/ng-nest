@@ -25,24 +25,21 @@ import {
   XResizeObserver
 } from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject, takeUntil } from 'rxjs';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { XTreeNodeComponent } from './tree-node.component';
-import {
-  CdkDrag,
-  CdkDragEnd,
-  CdkDragMove,
-  CdkDragStart,
-  CdkDropList
-} from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
 import { XTreeService } from './tree.service';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTreePrefix}`,
+  standalone: true,
+  imports: [CommonModule, DragDropModule, ScrollingModule, XTreeNodeComponent, XIconComponent],
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XTreeService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeComponent extends XTreeProperty implements OnChanges {
   @ViewChild('tree', { static: true }) tree!: ElementRef<HTMLElement>;
@@ -228,10 +225,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
           }
         }
       }
-      if (
-        (!this.lazy && (XIsUndefined(node.leaf) || regetChildren)) ||
-        node.id === lazyParant?.id
-      ) {
+      if ((!this.lazy && (XIsUndefined(node.leaf) || regetChildren)) || node.id === lazyParant?.id) {
         node.leaf = (node.children?.length as number) === 0;
       }
       if (!node.leaf) node.children?.map((y) => getChildren(y, level + 1));
@@ -438,9 +432,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     let before = this.activatedNode;
     if (this.multiple) {
       if (this.activatedId.length > 0) {
-        let ids = this.objectArray
-          ? this.activatedId.map((x: XTreeNode) => x.id)
-          : this.activatedId;
+        let ids = this.objectArray ? this.activatedId.map((x: XTreeNode) => x.id) : this.activatedId;
         for (let i = 0; i < ids.length; i++) {
           let node = nodes.find((x) => x.id === ids[i]) as XTreeNode;
           if (node) {

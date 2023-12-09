@@ -7,7 +7,7 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { FormsModule } from '@angular/forms';
 import { XAvatarPrefix } from './avatar.property';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -24,7 +24,7 @@ describe(XAvatarPrefix, () => {
         XColComponent,
         XIconComponent,
         XBadgeComponent,
-        XThemeModule
+        XThemeComponent
       ],
       declarations: [TestXAvatarComponent]
     }).compileComponents();

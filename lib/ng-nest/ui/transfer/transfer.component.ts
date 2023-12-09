@@ -2,14 +2,13 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
   OnDestroy,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty, XTransferType } from './transfer.property';
 import {
@@ -28,14 +27,37 @@ import {
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
-import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
+import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XI18nPipe, XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { XTableColumn, XTableComponent, XTableHeadCheckbox } from '@ng-nest/ui/table';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
+import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XTransferPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    DragDropModule,
+    XOutletDirective,
+    XCheckboxComponent,
+    XButtonComponent,
+    XInputComponent,
+    XTreeComponent,
+    XTableComponent,
+    XKeywordDirective,
+    XLinkComponent,
+    XI18nPipe
+  ],
   templateUrl: './transfer.component.html',
   styleUrls: ['./transfer.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -95,16 +117,10 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       return this.value;
     }
   }
-
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  
+  override cdr = inject(ChangeDetectorRef)
+  private i18n = inject(XI18nService)
+  configService = inject(XConfigService)
 
   ngOnInit() {
     this.setTitles();
@@ -196,7 +212,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       return x;
     });
     if (this.type === 'tree' && source.direction === 'left') {
-      this.treeActivatedId = $event ? source.list!.map((x) => x.id)! : source.list!.filter((x) => x.disabled).map((x) => x.id);
+      this.treeActivatedId = $event
+        ? source.list!.map((x) => x.id)!
+        : source.list!.filter((x) => x.disabled).map((x) => x.id);
     }
     source.checkedCount = $event ? list.length : 0;
     source.indeterminate = $event;
@@ -253,7 +271,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   private moveTree(from: XTransferSource, to: XTransferSource) {
     let checkedItems: XTransferNode[] = [];
     if (to.direction === 'right') {
-      checkedItems = from.list?.filter((x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id))!;
+      checkedItems = from.list?.filter(
+        (x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id)
+      )!;
       checkedItems.forEach((x: XTreeNode) => {
         x.disabled = true;
         x.change && x.change();
@@ -541,11 +561,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
 
   getTableData() {
     if (XIsFunction(this.data)) {
-      (this.data as Function)(this.tableIndex, this.tableSize, this.tableQuery).subscribe((x: XResultList<XTransferNode>) => {
-        this.tableTotal = x.total!;
-        this.tableData = x.list!;
-        this.setList(x.list!);
-      });
+      (this.data as Function)(this.tableIndex, this.tableSize, this.tableQuery).subscribe(
+        (x: XResultList<XTransferNode>) => {
+          this.tableTotal = x.total!;
+          this.tableData = x.list!;
+          this.setList(x.list!);
+        }
+      );
     }
   }
 
@@ -596,8 +618,10 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
 
   private setHiddenCheckAll() {
     if (XIsEmpty(this.hiddenCheckAll)) return;
-    if (this.hiddenCheckAll!.length > 0 && XIsBoolean(this.hiddenCheckAll![0])) this.left.hiddenCheckAll = this.hiddenCheckAll![0];
-    if (this.hiddenCheckAll!.length > 1 && XIsBoolean(this.hiddenCheckAll![1])) this.right.hiddenCheckAll = this.hiddenCheckAll![1];
+    if (this.hiddenCheckAll!.length > 0 && XIsBoolean(this.hiddenCheckAll![0]))
+      this.left.hiddenCheckAll = this.hiddenCheckAll![0];
+    if (this.hiddenCheckAll!.length > 1 && XIsBoolean(this.hiddenCheckAll![1]))
+      this.right.hiddenCheckAll = this.hiddenCheckAll![1];
     this.cdr.detectChanges();
   }
 

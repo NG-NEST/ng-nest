@@ -1,12 +1,16 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
 import { XPageHeaderPrefix, XPageHeaderProperty } from './page-header.property';
 import { XConfigService } from '@ng-nest/ui/core';
 import { XI18nService, XI18nPageHeader } from '@ng-nest/ui/i18n';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XButtonComponent],
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -20,9 +24,9 @@ export class XPageHeaderComponent extends XPageHeaderProperty {
     return this.backText || this.locale.back;
   }
 
-  constructor(public configService: XConfigService, public cdr: ChangeDetectorRef, public i18n: XI18nService) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange

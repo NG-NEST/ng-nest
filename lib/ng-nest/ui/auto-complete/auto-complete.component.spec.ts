@@ -9,14 +9,14 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
@@ -29,20 +29,20 @@ describe(XAutoCompletePrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XAutoCompleteComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule,
-        XSelectModule,
+        XRadioComponent,
+        XSelectComponent,
         XButtonComponent,
         XInputComponent,
         XCascadeComponent,
         XColorPickerComponent,
         XFindComponent,
-        XTextareaModule,
+        XTextareaComponent,
         XTimePickerModule,
         XDatePickerComponent,
         XIconComponent

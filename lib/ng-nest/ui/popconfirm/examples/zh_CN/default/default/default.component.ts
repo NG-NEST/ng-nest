@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [XPopconfirmComponent, XButtonComponent],
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { XTimelineNode } from '@ng-nest/ui/timeline';
+import { XTimelineComponent, XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
+import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
   selector: 'ex-icon',
+  standalone: true,
+  imports: [XTimelineComponent, XCardComponent],
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {

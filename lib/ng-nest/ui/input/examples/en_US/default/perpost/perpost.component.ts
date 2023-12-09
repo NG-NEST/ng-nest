@@ -6,7 +6,7 @@ import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
@@ -15,7 +15,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
   imports: [
     CommonModule,
     XInputComponent,
-    XSelectModule,
+    XSelectComponent,
     XButtonComponent,
     XDatePickerComponent,
     XAutoCompleteComponent,

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeFileNode } from '@ng-nest/ui/tree-file';
+import { XTreeFileComponent, XTreeFileNode } from '@ng-nest/ui/tree-file';
 
 @Component({
   selector: 'ex-content',
+  standalone: true,
+  imports: [XTreeFileComponent],
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })

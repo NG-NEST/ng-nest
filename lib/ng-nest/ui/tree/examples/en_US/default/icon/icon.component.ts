@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-icon',
+  standalone: true,
+  imports: [XTreeComponent, XIconComponent],
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {

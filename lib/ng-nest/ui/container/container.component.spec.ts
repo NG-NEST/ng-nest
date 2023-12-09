@@ -11,7 +11,7 @@ import {
 } from '@ng-nest/ui/container';
 import { XContainerPrefix } from './container.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XContainerPrefix, () => {
@@ -20,7 +20,7 @@ describe(XContainerPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XContainerComponent,
         XAsideComponent,
         XHeaderComponent,

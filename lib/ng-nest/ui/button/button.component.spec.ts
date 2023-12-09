@@ -4,13 +4,13 @@ import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XButtonPrefix } from './button.property';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XButtonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XButtonComponent, XButtonsComponent, XThemeModule],
+      imports: [HttpClientTestingModule, XButtonComponent, XButtonsComponent, XThemeComponent],
       declarations: [
         TestXButtonComponent,
         TestXButtonDiabledComponent,

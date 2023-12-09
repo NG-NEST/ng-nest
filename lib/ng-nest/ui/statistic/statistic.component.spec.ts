@@ -1,11 +1,9 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XStatisticComponent } from './statistic.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XStatisticModule } from '@ng-nest/ui/statistic';
+import { XStatisticComponent, XCountdownComponent } from '@ng-nest/ui/statistic';
 import { FormsModule } from '@angular/forms';
 import { XStatisticPrefix } from './statistic.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -13,7 +11,7 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { XCardComponent } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XStatisticPrefix, () => {
@@ -22,9 +20,10 @@ describe(XStatisticPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XStatisticModule,
+        XStatisticComponent,
+        XCountdownComponent,
         XButtonComponent,
         XCardComponent,
         XContainerComponent,
@@ -60,8 +59,7 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}">
-          </x-statistic>
+          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}"> </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
@@ -97,20 +95,12 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-countdown
-            [value]="deadline"
-            label="倒计时（毫秒）"
-            format="HH:mm:ss:SSS"
-          ></x-countdown>
+          <x-countdown [value]="deadline" label="倒计时（毫秒）" format="HH:mm:ss:SSS"></x-countdown>
         </x-card>
       </x-col>
       <x-col span="24">
         <x-card>
-          <x-countdown
-            [value]="deadline"
-            label="倒计时（天）"
-            format="D 天 H 时 m 分 s 秒"
-          ></x-countdown>
+          <x-countdown [value]="deadline" label="倒计时（天）" format="D 天 H 时 m 分 s 秒"></x-countdown>
         </x-card>
       </x-col>
     </x-row>

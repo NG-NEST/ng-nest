@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRowPrefix } from './layout.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(`${XRowPrefix}`, () => {
@@ -14,7 +14,7 @@ describe(`${XRowPrefix}`, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
+        XThemeComponent,
         XRowComponent,
         XColComponent
       ],

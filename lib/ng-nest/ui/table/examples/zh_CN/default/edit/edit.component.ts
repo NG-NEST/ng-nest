@@ -1,9 +1,27 @@
 import { Component } from '@angular/core';
-import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XGuid } from '@ng-nest/ui/core';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { CommonModule } from '@angular/common';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-edit',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XTableComponent,
+    XButtonComponent,
+    XLinkComponent,
+    XInputComponent,
+    XSelectComponent,
+    XSwitchComponent
+  ],
   templateUrl: './edit.component.html'
 })
 export class ExEditComponent {
@@ -22,10 +40,6 @@ export class ExEditComponent {
   ];
 
   positionOptions = ['技术员', '销售', '经理', '总监', '生产员'];
-
-  constructor() {}
-
-  ngOnInit() {}
 
   add() {
     this.data = [...this.data, { id: XGuid(), name: '', position: '', status: false }];

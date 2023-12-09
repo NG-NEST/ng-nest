@@ -19,7 +19,7 @@ export const XRowPrefix = 'x-row';
 /**
  * Row Property
  */
-@Component({ selector: `${XRowPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XRowPrefix}-property`, template: '' })
 export class XRowProperty extends XProperty {
   /**
    * @zh_CN 列间隔，rem

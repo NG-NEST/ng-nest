@@ -8,16 +8,31 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  inject
 } from '@angular/core';
 import { XTimePickerDisabledTime, XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
-import { reqAnimFrame, XBoolean, XIdentity, XIsChange, XIsEmpty, XIsFunction, XIsNull, XIsNumber } from '@ng-nest/ui/core';
+import {
+  reqAnimFrame,
+  XBoolean,
+  XIdentity,
+  XIsChange,
+  XIsEmpty,
+  XIsFunction,
+  XIsNull,
+  XIsNumber
+} from '@ng-nest/ui/core';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { XListComponent } from '@ng-nest/ui/list';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XTimePickerFramePrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XListComponent],
   templateUrl: './time-picker-frame.component.html',
   styleUrls: ['./time-picker-frame.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -51,6 +66,8 @@ export class XTimePickerFrameComponent {
   locale: XI18nTimePicker = {};
   isInit = false;
   private _unSubject = new Subject<void>();
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
 
   ngOnChanges(changes: SimpleChanges): void {
     const { value, disabledTimeParam } = changes;
@@ -82,8 +99,6 @@ export class XTimePickerFrameComponent {
   ngAfterViewInit() {
     this.setScrollTop();
   }
-
-  constructor(private cdr: ChangeDetectorRef, private i18n: XI18nService) {}
 
   setDataInit() {
     this.setHourData();
@@ -189,7 +204,14 @@ export class XTimePickerFrameComponent {
   setNow() {
     const def = new Date('1970-01-01');
     const now = new Date();
-    return new Date(def.getFullYear(), def.getMonth(), def.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+    return new Date(
+      def.getFullYear(),
+      def.getMonth(),
+      def.getDate(),
+      now.getHours(),
+      now.getMinutes(),
+      now.getSeconds()
+    );
   }
 
   setZero() {
@@ -228,7 +250,12 @@ export class XTimePickerFrameComponent {
     this.selected('use12Hour', this.use12HoursRef?.nativeElement, this.use12Hour, animating);
   }
 
-  selected(type: 'hour' | 'minute' | 'second' | 'use12Hour', ele?: HTMLElement, num?: number | string, animating = false) {
+  selected(
+    type: 'hour' | 'minute' | 'second' | 'use12Hour',
+    ele?: HTMLElement,
+    num?: number | string,
+    animating = false
+  ) {
     if (!ele || XIsNull(num)) return;
     if (this.scrollAnimating[ele.className]) return;
     let len = Number(num);

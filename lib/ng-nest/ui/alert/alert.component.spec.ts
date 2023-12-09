@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { FormsModule } from '@angular/forms';
 import { XAlertPrefix } from './alert.property';
-import { XStatisticModule } from '@ng-nest/ui/statistic';
+import { XCountdownComponent } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XAlertPrefix, () => {
@@ -21,8 +21,8 @@ describe(XAlertPrefix, () => {
         BrowserAnimationsModule,
         XButtonComponent,
         XAlertComponent,
-        XStatisticModule,
-        XThemeModule
+        XCountdownComponent,
+        XThemeComponent
       ],
       declarations: [TestXAlertComponent]
     }).compileComponents();

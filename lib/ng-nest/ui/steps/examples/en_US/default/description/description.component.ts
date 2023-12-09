@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { XData } from '@ng-nest/ui/core';
-import { XStepsNode } from '@ng-nest/ui/steps';
+import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-description',
+  standalone: true,
+  imports: [XStepsComponent],
   templateUrl: './description.component.html'
 })
 export class ExDescriptionComponent {

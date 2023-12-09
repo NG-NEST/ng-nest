@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { HeaderService } from './header.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-header',
+  standalone: true,
+  imports: [XTableComponent, XButtonComponent, XIconComponent],
   templateUrl: './header.component.html',
   providers: [HeaderService]
 })

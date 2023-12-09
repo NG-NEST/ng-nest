@@ -1,13 +1,17 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
 import { LayoutService } from '../layout/layout.service';
-import { environment } from '../../environments/environment';
-import { Menu } from '../../environments/routes';
+import { environment } from '@environments';
+import { Menu } from '@interfaces';
+import { NsAdaptionDirective } from '@share';
+import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-docs',
+  standalone: true,
+  imports: [RouterOutlet, NsAdaptionDirective, XMenuComponent],
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
   encapsulation: ViewEncapsulation.None

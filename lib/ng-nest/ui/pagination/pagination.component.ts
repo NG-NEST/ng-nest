@@ -6,23 +6,43 @@ import {
   SimpleChanges,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  inject,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
 import { ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { XInputComponent } from '@ng-nest/ui/input';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XPaginationPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XI18nPipe,
+    XSelectComponent,
+    XInputComponent,
+    XOutletDirective
+  ],
   templateUrl: './pagination.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPaginationComponent extends XPaginationProperty implements OnChanges {
+export class XPaginationComponent extends XPaginationProperty implements OnInit, OnChanges, OnDestroy {
   lastIndex!: number;
   indexes: number[] = [];
   indexFirst: number = 1;
@@ -48,18 +68,14 @@ export class XPaginationComponent extends XPaginationProperty implements OnChang
     return Number(this.index) === this.lastIndex;
   }
 
-  constructor(
-    public configService: XConfigService,
-    public elementRef: ElementRef<HTMLElement>,
-    public renderer: Renderer2,
-    public cdr: ChangeDetectorRef,
-    public i18n: XI18nService
-  ) {
-    super();
-    this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
-  }
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
+    this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
     this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
     this.inputSize = Number(this.size);
   }

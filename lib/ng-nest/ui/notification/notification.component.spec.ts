@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { XNotificationComponent } from './notification.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XNotificationModule } from '@ng-nest/ui/notification';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XNotificationPrefix } from './notification.property';
 import { XNotificationService } from './notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XCorner } from '@ng-nest/ui/core';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { XNotificationComponent } from '@ng-nest/ui/notification';
 
 describe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XNotificationModule, XButtonComponent],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XButtonComponent],
       declarations: [TestXNotificationComponent, TestXNotificationTypeComponent]
     }).compileComponents();
   });
@@ -91,7 +90,8 @@ class TestXNotificationComponent {
   open(place: XCorner, title: string) {
     this.notification.info({
       title: `${title} 消息`,
-      content: '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
+      content:
+        '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。',
       placement: place
     });
   }
@@ -107,22 +107,41 @@ class TestXNotificationComponent {
       <x-button (click)="notification.error({ title: '错误提示', content: content })">错误提示</x-button>
     </div>
     <div class="row">
-      <x-button type="success" plain (click)="notification.success({ title: '成功提示', content: content, effect: 'light' })"
+      <x-button
+        type="success"
+        plain
+        (click)="notification.success({ title: '成功提示', content: content, effect: 'light' })"
         >成功提示</x-button
       >
-      <x-button type="info" plain (click)="notification.info({ title: '消息提示', content: content, effect: 'light' })">消息提示</x-button>
-      <x-button type="warning" plain (click)="notification.warning({ title: '警告提示', content: content, effect: 'light' })"
+      <x-button type="info" plain (click)="notification.info({ title: '消息提示', content: content, effect: 'light' })"
+        >消息提示</x-button
+      >
+      <x-button
+        type="warning"
+        plain
+        (click)="notification.warning({ title: '警告提示', content: content, effect: 'light' })"
         >警告提示</x-button
       >
-      <x-button type="danger" plain (click)="notification.error({ title: '错误提示', content: content, effect: 'light' })"
+      <x-button
+        type="danger"
+        plain
+        (click)="notification.error({ title: '错误提示', content: content, effect: 'light' })"
         >错误提示</x-button
       >
     </div>
     <div class="row">
-      <x-button type="success" (click)="notification.success({ title: '成功提示', content: content, effect: 'dark' })">成功提示</x-button>
-      <x-button type="info" (click)="notification.info({ title: '消息提示', content: content, effect: 'dark' })">消息提示</x-button>
-      <x-button type="warning" (click)="notification.warning({ title: '警告提示', content: content, effect: 'dark' })">警告提示</x-button>
-      <x-button type="danger" (click)="notification.error({ title: '错误提示', content: content, effect: 'dark' })">错误提示</x-button>
+      <x-button type="success" (click)="notification.success({ title: '成功提示', content: content, effect: 'dark' })"
+        >成功提示</x-button
+      >
+      <x-button type="info" (click)="notification.info({ title: '消息提示', content: content, effect: 'dark' })"
+        >消息提示</x-button
+      >
+      <x-button type="warning" (click)="notification.warning({ title: '警告提示', content: content, effect: 'dark' })"
+        >警告提示</x-button
+      >
+      <x-button type="danger" (click)="notification.error({ title: '错误提示', content: content, effect: 'dark' })"
+        >错误提示</x-button
+      >
     </div>
   `,
   styles: [
@@ -142,6 +161,7 @@ class TestXNotificationComponent {
   ]
 })
 class TestXNotificationTypeComponent {
-  content = '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
+  content =
+    '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
   constructor() {}
 }

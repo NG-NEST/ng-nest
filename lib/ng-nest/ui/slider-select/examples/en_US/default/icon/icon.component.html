@@ -1,11 +1,9 @@
-<x-row>
-  <x-col span="24">
-    <x-slider-select [(ngModel)]="model1" customButton="❤️"></x-slider-select>
-  </x-col>
-  <x-col span="24">
-    <x-slider-select [(ngModel)]="model1" [customButton]="iconTpl"></x-slider-select>
-    <ng-template #iconTpl>
-      <x-button icon="fto-volume-1" type="success" size="small"></x-button>
-    </ng-template>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-slider-select [(ngModel)]="model1" customButton="❤️"></x-slider-select>
+</div>
+<div class="row">
+  <x-slider-select [(ngModel)]="model1" [customButton]="iconTpl"></x-slider-select>
+  <ng-template #iconTpl>
+    <x-button icon="fto-volume-1" type="success" size="small"></x-button>
+  </ng-template>
+</div>

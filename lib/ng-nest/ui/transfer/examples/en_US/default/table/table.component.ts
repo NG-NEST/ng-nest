@@ -3,9 +3,12 @@ import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 import { XTransferComponent } from '@ng-nest/ui/transfer';
 import { TableService } from './table.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-table',
+  standalone: true,
+  imports: [FormsModule, XTransferComponent],
   templateUrl: './table.component.html',
   providers: [TableService]
 })

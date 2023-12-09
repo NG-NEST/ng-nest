@@ -5,11 +5,15 @@ import { XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { Observable } from 'rxjs';
 import { LayoutService } from '../layout.service';
-import { Menu } from '@environments';
+import { Menu } from '@interfaces';
 import { debounceTime } from 'rxjs/operators';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: 'ns-search',
+  standalone: true,
+  imports: [XAutoCompleteComponent, XI18nPipe],
   templateUrl: './search.component.html',
   encapsulation: ViewEncapsulation.None
 })

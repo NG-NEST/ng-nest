@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { XTimeAgoModule } from '@ng-nest/ui/time-ago';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { XTimeAgoPrefix } from './time-ago.property';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -10,7 +10,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe(XTimeAgoPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XTimeAgoModule, XButtonComponent],
+      imports: [HttpClientTestingModule, XTimeAgoPipe, XButtonComponent],
       declarations: [TestXTimeAgoComponent]
     }).compileComponents();
   });

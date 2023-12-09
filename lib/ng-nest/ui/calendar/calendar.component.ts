@@ -16,8 +16,8 @@ import { XI18nService, XI18nCalendar, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
-import { XRadioModule } from '@ng-nest/ui/radio';
-import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -29,8 +29,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     XLinkComponent,
-    XTooltipModule,
-    XRadioModule,
+    XTooltipDirective,
+    XRadioComponent,
     XDatePickerComponent,
     XPickerDateComponent,
     XPickerMonthComponent,

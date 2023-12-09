@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XSkeletonRow } from '@ng-nest/ui/skeleton';
+import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
 
 @Component({
   selector: 'ex-complex',
+  standalone: true,
+  imports: [XSkeletonComponent],
   templateUrl: './complex.component.html'
 })
 export class ExComplexComponent {

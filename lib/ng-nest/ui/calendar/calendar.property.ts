@@ -11,7 +11,7 @@ export const XCalendarPrefix = 'x-calendar';
 /**
  * Calendar Property
  */
-@Component({ selector: `${XCalendarPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XCalendarPrefix}-property`, template: '' })
 export class XCalendarProperty extends XProperty {
   /**
    * @zh_CN 事务数据对象

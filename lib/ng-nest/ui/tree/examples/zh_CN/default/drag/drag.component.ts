@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-drag',
+  standalone: true,
+  imports: [XTreeComponent],
   templateUrl: './drag.component.html'
 })
 export class ExDragComponent {
@@ -32,7 +34,9 @@ export class ExDragComponent {
     if (type === 'started') {
       console.log('开始拖动节点：', event.from?.label);
     } else {
-      console.log(`拖动节点 [${event.from?.label}] 至 [${event.to?.label}] 节点的 ${event.position === -1 ? '前面' : '后面'}`);
+      console.log(
+        `拖动节点 [${event.from?.label}] 至 [${event.to?.label}] 节点的 ${event.position === -1 ? '前面' : '后面'}`
+      );
     }
   }
 }

@@ -13,14 +13,38 @@ import {
   inject
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
-import { removeNgTag, XIsChange, XResize, XConfigService, XNumber, stripTags, XParentPath, XResizeObserver } from '@ng-nest/ui/core';
+import {
+  removeNgTag,
+  XIsChange,
+  XResize,
+  XConfigService,
+  XNumber,
+  stripTags,
+  XParentPath,
+  XResizeObserver
+} from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { takeUntil } from 'rxjs/operators';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XEmptyComponent,
+    ScrollingModule,
+    XOutletDirective,
+    XCheckboxComponent,
+    XButtonComponent
+  ],
   templateUrl: './table-body.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

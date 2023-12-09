@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
+import { FormsModule } from '@angular/forms';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-leaf',
+  standalone: true,
+  imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './leaf.component.html',
   styleUrls: ['./leaf.component.scss']
 })

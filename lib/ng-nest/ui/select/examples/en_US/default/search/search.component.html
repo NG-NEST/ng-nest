@@ -1,52 +1,66 @@
-<x-row>
-  <x-col>
-    <x-select label="search" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" search [caseSensitive]="false"></x-select>
-  </x-col>
-  <x-col>
-    <x-select label="Asynchronous search" [data]="dataAsync" [(ngModel)]="modelAsync" (ngModelChange)="change($event)" search async></x-select>
-  </x-col>
-  <x-col>
-    <x-select
-      label="Search for multiple choices"
-      [data]="dataMultiple"
-      [(ngModel)]="modelMultiple"
-      (ngModelChange)="change($event)"
-      search
-      multiple
-    ></x-select>
-  </x-col>
-  <x-col>
-    <x-select
-      label="Search for multiple choices(Async)"
-      [data]="dataAsync"
-      [(ngModel)]="modelMultipleAsync"
-      (ngModelChange)="change($event)"
-      search
-      multiple
-      async
-    ></x-select>
-  </x-col>
-  <x-col>
-    <x-select
-      label="Search for multiple choices(More)"
-      [maxTagCount]="3"
-      [data]="dataMultipleMore"
-      [(ngModel)]="modelMultipleMore"
-      (ngModelChange)="change($event)"
-      multiple
-    ></x-select>
-  </x-col>
-  <x-col>
-    <x-select
-      label="Search for multiple choices(Template)"
-      [maxTagCount]="3"
-      [maxTagContent]="maxTagContentTpl"
-      [data]="dataMultipleMoreTpl"
-      [(ngModel)]="modelMultipleMoreTpl"
-      (ngModelChange)="change($event)"
-      search
-      multiple
-    ></x-select>
-    <ng-template #maxTagContentTpl let-surplus="$surplus" let-total="$total">more{{ surplus }},total{{ total }}</ng-template>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-select
+    label="search"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    search
+    [caseSensitive]="false"
+  ></x-select>
+</div>
+<div class="row">
+  <x-select
+    label="Asynchronous search"
+    [data]="dataAsync"
+    [(ngModel)]="modelAsync"
+    (ngModelChange)="change($event)"
+    search
+    async
+  ></x-select>
+</div>
+<div class="row">
+  <x-select
+    label="Search for multiple choices"
+    [data]="dataMultiple"
+    [(ngModel)]="modelMultiple"
+    (ngModelChange)="change($event)"
+    search
+    multiple
+  ></x-select>
+</div>
+<div class="row">
+  <x-select
+    label="Search for multiple choices(Async)"
+    [data]="dataAsync"
+    [(ngModel)]="modelMultipleAsync"
+    (ngModelChange)="change($event)"
+    search
+    multiple
+    async
+  ></x-select>
+</div>
+<div class="row">
+  <x-select
+    label="Search for multiple choices(More)"
+    [maxTagCount]="3"
+    [data]="dataMultipleMore"
+    [(ngModel)]="modelMultipleMore"
+    (ngModelChange)="change($event)"
+    multiple
+  ></x-select>
+</div>
+<div class="row">
+  <x-select
+    label="Search for multiple choices(Template)"
+    [maxTagCount]="3"
+    [maxTagContent]="maxTagContentTpl"
+    [data]="dataMultipleMoreTpl"
+    [(ngModel)]="modelMultipleMoreTpl"
+    (ngModelChange)="change($event)"
+    search
+    multiple
+  ></x-select>
+  <ng-template #maxTagContentTpl let-surplus="$surplus" let-total="$total"
+    >more{{ surplus }},total{{ total }}</ng-template
+  >
+</div>

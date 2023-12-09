@@ -13,7 +13,9 @@ import {
   HostBinding,
   HostListener,
   ViewChildren,
-  inject
+  inject,
+  AfterRenderPhase,
+  afterRender
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
 import {
@@ -146,6 +148,18 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   private i18n = inject(XI18nService);
   private group = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
   configService = inject(XConfigService);
+
+  constructor() {
+    super();
+    afterRender(
+      () => {
+        if (this.virtualScroll && this.scrollHeight) {
+          this.virtualBody?.checkViewportSize();
+        }
+      },
+      { phase: AfterRenderPhase.MixedReadWrite }
+    );
+  }
 
   ngOnInit() {
     this.i18n.localeChange

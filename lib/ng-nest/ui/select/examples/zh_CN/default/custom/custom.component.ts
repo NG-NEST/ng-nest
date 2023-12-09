@@ -1,7 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-custom',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XSelectComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

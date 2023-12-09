@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { XData } from '@ng-nest/ui/core';
-import { XSelectNode } from '@ng-nest/ui/select';
+import { XSelectComponent, XSelectNode } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-bordered',
+  standalone: true,
+  imports: [XSelectComponent],
   templateUrl: './bordered.component.html',
   styleUrls: ['./bordered.component.scss']
 })

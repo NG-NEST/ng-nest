@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { XTimelineMode, XTimelineNode } from '@ng-nest/ui/timeline';
+import { XTimelineComponent, XTimelineMode, XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { FormsModule } from '@angular/forms';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
 @Component({
   selector: 'ex-mode',
+  standalone: true,
+  imports: [FormsModule, XTimelineComponent, XRadioComponent, XTimeAgoPipe],
   templateUrl: './mode.component.html'
 })
 export class ExModeComponent {

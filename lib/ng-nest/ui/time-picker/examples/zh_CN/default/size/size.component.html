@@ -1,18 +1,16 @@
 <x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-row>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" [size]="size"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="row"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="column"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" required clearable [size]="size"></x-time-picker>
-  </x-col>
-  <x-col span="24">
-    <x-time-picker [(ngModel)]="model" disabled [size]="size"></x-time-picker>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" [size]="size"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="row"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" [size]="size" label="时间" direction="column"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" required clearable [size]="size"></x-time-picker>
+</div>
+<div class="row">
+  <x-time-picker [(ngModel)]="model" disabled [size]="size"></x-time-picker>
+</div>

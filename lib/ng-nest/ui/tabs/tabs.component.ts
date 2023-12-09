@@ -12,7 +12,10 @@ import {
   QueryList,
   ElementRef,
   Renderer2,
-  Optional
+  inject,
+  OnDestroy,
+  AfterContentChecked,
+  AfterViewInit
 } from '@angular/core';
 import { XTabsPrefix, XTabsNode, XTabsProperty } from './tabs.property';
 import { XIsChange, XSetData, XIsEmpty, XConfigService, XResize, XResizeObserver } from '@ng-nest/ui/core';
@@ -20,15 +23,22 @@ import { Subject, takeUntil, distinctUntilChanged, filter, startWith, delay } fr
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { XTabContentComponent } from './tab-content.component';
 
 @Component({
   selector: `${XTabsPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XSliderComponent, XTabContentComponent],
   templateUrl: './tabs.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
+export class XTabsComponent
+  extends XTabsProperty
+  implements OnInit, OnChanges, OnDestroy, AfterContentChecked, AfterViewInit
+{
   sliderOption = new XSliderProperty();
   tabs: XTabsNode[] = [];
   private _unSubject = new Subject<void>();
@@ -44,14 +54,10 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   @ViewChild(XSliderComponent) slider!: XSliderComponent;
   @ViewChild('actionsRef') actionsRef!: ElementRef<HTMLElement>;
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public renderer: Renderer2,
-    @Optional() private router: Router
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private renderer = inject(Renderer2);
+  private router = inject(Router, { optional: true });
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setClassMap();
@@ -129,7 +135,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   updateRouterActive() {
-    if (!this.router.navigated) return;
+    if (!this.router?.navigated) return;
     const index = this.findShouldActiveTabIndex();
     if (index !== -1 && index !== this.activeIndex) {
       this.activatedIndex = index;
@@ -139,7 +145,7 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
 
   findShouldActiveTabIndex(): number {
     const tabs = this.listTabs.toArray();
-    const isActive = this.isLinkActive(this.router);
+    const isActive = this.isLinkActive(this.router!);
 
     return tabs.findIndex((tab) => {
       const c = tab.linkDirective;
@@ -187,7 +193,13 @@ export class XTabsComponent extends XTabsProperty implements OnInit, OnChanges {
   }
 
   private setNodeJustify() {
-    this.nodeJustify = this.nodeJustify ? this.nodeJustify : this.layout === 'left' ? 'end' : this.layout === 'right' ? 'start' : 'center';
+    this.nodeJustify = this.nodeJustify
+      ? this.nodeJustify
+      : this.layout === 'left'
+      ? 'end'
+      : this.layout === 'right'
+      ? 'start'
+      : 'center';
   }
 
   private setData() {

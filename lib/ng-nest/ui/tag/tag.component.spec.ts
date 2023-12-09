@@ -1,17 +1,15 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTagComponent } from './tag.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XTagPrefix } from './tag.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTagPrefix, () => {
@@ -20,9 +18,9 @@ describe(XTagPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XTagModule,
+        XTagComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
@@ -141,9 +139,7 @@ describe(XTagPrefix, () => {
       <x-tag size="mini" closable disabled>标签</x-tag>
     </div>
     <div class="row">
-      <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{
-        tag
-      }}</x-tag>
+      <x-tag *ngFor="let tag of tags" type="primary" closable disabled (close)="close(tag)">{{ tag }}</x-tag>
     </div>
     <div class="row">
       <x-tag bordered="false" size="large" closable disabled>标签</x-tag>

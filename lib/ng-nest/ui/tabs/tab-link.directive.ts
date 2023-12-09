@@ -3,7 +3,8 @@ import { RouterLink } from '@angular/router';
 
 @Directive({
   selector: 'ng-template[xTabLink]',
-  exportAs: 'xTabLinkTemplate'
+  exportAs: 'xTabLinkTemplate',
+  standalone: true,
 })
 export class XTabLinkTemplateDirective {
   constructor(@Host() public templateRef: TemplateRef<void>) {}
@@ -11,7 +12,8 @@ export class XTabLinkTemplateDirective {
 
 @Directive({
   selector: 'a[x-tab-link]',
-  exportAs: 'xTabLink'
+  exportAs: 'xTabLink',
+  standalone: true,
 })
 export class XTabLinkDirective {
   constructor(

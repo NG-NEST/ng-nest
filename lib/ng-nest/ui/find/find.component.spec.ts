@@ -21,8 +21,8 @@ import {
 } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XFindPrefix, () => {
@@ -31,13 +31,13 @@ describe(XFindPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XFindComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule
+        XRadioComponent
       ],
       declarations: [
         TestXFindComponent,

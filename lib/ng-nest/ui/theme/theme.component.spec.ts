@@ -1,15 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XThemeComponent } from './theme.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XThemePrefix } from './theme.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XFormComponent } from '@ng-nest/ui/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
-import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -23,8 +21,8 @@ describe(XThemePrefix, () => {
         ReactiveFormsModule,
         XButtonComponent,
         XButtonsComponent,
-        XThemeModule,
-        XSwitchModule,
+        XThemeComponent,
+        XSwitchComponent,
         XFormComponent
       ],
       declarations: [TestXThemeComponent]
@@ -190,9 +188,7 @@ describe(XThemePrefix, () => {
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" plain>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain
-          >下一页</x-button
-        >
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" plain>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" plain></x-button>
@@ -226,9 +222,7 @@ describe(XThemePrefix, () => {
       </x-buttons>
       <x-buttons>
         <x-button type="primary" icon="fto-chevron-left" round>上一页</x-button>
-        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round
-          >下一页</x-button
-        >
+        <x-button type="primary" icon="fto-chevron-right" direction="row-reverse" round>下一页</x-button>
       </x-buttons>
       <x-buttons>
         <x-button icon="fto-edit-3" type="primary" round></x-button>

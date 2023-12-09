@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,21 +6,28 @@ import {
   TemplateRef,
   ViewEncapsulation,
   ElementRef,
-  Renderer2
+  Renderer2,
+  OnInit,
+  inject
 } from '@angular/core';
 import { XBoolean } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-tab-content',
   preserveWhitespaces: false,
+  standalone: true,
+  imports: [CommonModule],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './tab-content.component.html'
 })
-export class XTabContentComponent {
+export class XTabContentComponent implements OnInit {
   @Input() content!: TemplateRef<void>;
   @Input() active: XBoolean = false;
-  constructor(private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+
+  ngOnInit(): void {
     this.renderer.addClass(this.elementRef.nativeElement, 'x-tab-content');
   }
 }

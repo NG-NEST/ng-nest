@@ -7,8 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -18,13 +18,13 @@ describe(XCascadePrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XCascadeComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule,
+        XRadioComponent,
         XIconComponent
       ],
       declarations: [

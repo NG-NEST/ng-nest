@@ -1,19 +1,24 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTooltipDirective } from './tooltip.directive';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTooltipPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, BrowserAnimationsModule, XTooltipModule, XButtonComponent],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeComponent,
+        BrowserAnimationsModule,
+        XTooltipDirective,
+        XButtonComponent
+      ],
       declarations: [TestXTooltipComponent]
     }).compileComponents();
   });
@@ -58,7 +63,9 @@ describe(XTooltipPrefix, () => {
       </div>
     </div>
     <div class="row">
-      <x-button x-tooltip content="自定义控制显示/隐藏" [visible]="visible" (click)="custom()" manual>自定义控制显示/隐藏</x-button>
+      <x-button x-tooltip content="自定义控制显示/隐藏" [visible]="visible" (click)="custom()" manual
+        >自定义控制显示/隐藏</x-button
+      >
     </div>
   `,
   styles: [

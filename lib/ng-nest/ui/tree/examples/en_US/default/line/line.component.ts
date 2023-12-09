@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-line',
+  standalone: true,
+  imports: [XTreeComponent],
   templateUrl: './line.component.html'
 })
 export class ExLineComponent {

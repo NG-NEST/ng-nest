@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-default',
+  standalone: true,
+  imports: [FormsModule, XSelectComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { BorderedService } from './bordered.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-bordered',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './bordered.component.html',
   providers: [BorderedService]
 })

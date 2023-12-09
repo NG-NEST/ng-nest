@@ -9,7 +9,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { RouterModule } from '@angular/router';
 import { mainRoutes } from 'src/environments/routes';
 import { XMenuComponent } from '@ng-nest/ui/menu';
-import { XSliderModule } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XCrumbModule } from '@ng-nest/ui/crumb';
 
@@ -18,7 +18,7 @@ import { XCrumbModule } from '@ng-nest/ui/crumb';
   imports: [
     CommonModule,
     XMenuComponent,
-    XSliderModule,
+    XSliderComponent,
     XIconComponent,
     XCrumbModule,
     RouterModule.forChild([

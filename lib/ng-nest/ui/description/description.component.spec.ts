@@ -7,9 +7,9 @@ import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { XDescriptionPrefix } from './description.property';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -20,9 +20,9 @@ describe(XDescriptionPrefix, () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         FormsModule,
-        XThemeModule,
+        XThemeComponent,
         XDescriptionModule,
-        XRadioModule,
+        XRadioComponent,
         XRowComponent,
         XColComponent,
         XDocComponent

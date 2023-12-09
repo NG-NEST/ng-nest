@@ -11,7 +11,7 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XLoadingPrefix, () => {
@@ -20,7 +20,7 @@ describe(XLoadingPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         BrowserAnimationsModule,
         XLoadingComponent,

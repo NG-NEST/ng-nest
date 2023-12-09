@@ -36,7 +36,9 @@
       "@environments": ["./src/environments/"],
       "@environments/*": ["./src/environments/*"],
       "@share": ["./src/share/"],
-      "@share/*": ["./src/share/*"]
+      "@share/*": ["./src/share/*"],
+      "@interfaces": ["./src/interfaces/"],
+      "@interfaces/*": ["./src/interfaces/*"]
     },
     "useDefineForClassFields": false
   },

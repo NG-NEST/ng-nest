@@ -8,31 +8,35 @@ import {
   OnChanges,
   NgZone,
   inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  OnDestroy
 } from '@angular/core';
 import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
 import { interval, Subscription } from 'rxjs';
 import { XConfigService } from '@ng-nest/ui/core';
 import { isPlatformBrowser } from '@angular/common';
+import { XTimeRangePipe } from '@ng-nest/ui/time-range';
+import { XStatisticComponent } from './statistic.component';
 
 @Component({
   selector: `${XCountdownPrefix}`,
+  standalone: true,
+  imports: [XStatisticComponent, XTimeRangePipe],
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCountdownComponent extends XCountdownProperty implements OnInit, OnChanges {
+export class XCountdownComponent extends XCountdownProperty implements OnInit, OnChanges, OnDestroy {
   diff!: number;
   period = 1000 / 30;
   private _target!: number;
   private _updater!: Subscription | null;
   platformId = inject(PLATFORM_ID);
-  isBrowser = true;
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone, public configService: XConfigService) {
-    super();
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  isBrowser = isPlatformBrowser(this.platformId);
+  private cdr = inject(ChangeDetectorRef);
+  private ngZone = inject(NgZone);
+  configService = inject(XConfigService);
 
   ngOnInit(): void {
     this.syncTimer();

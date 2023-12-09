@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeNode } from '@ng-nest/ui/tree';
+import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-checkbox',
+  standalone: true,
+  imports: [XTreeComponent],
   templateUrl: './checkbox.component.html'
 })
 export class ExCheckboxComponent {

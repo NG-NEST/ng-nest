@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-async',
+  standalone: true,
+  imports: [FormsModule, XSelectComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })

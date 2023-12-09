@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
 import {
   XNotificationOption,
@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { XPortalService } from '@ng-nest/ui/portal';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class XNotificationService {
   notifications: XNotificationPlacement = {};
 
@@ -27,7 +27,7 @@ export class XNotificationService {
     showIcon: true
   };
 
-  constructor(public portal: XPortalService) {}
+  private portal = inject(XPortalService);
 
   info(option: XTemplate | XNotificationOption): XNotificationRef {
     return this.createNotification(option, 'info');
@@ -80,7 +80,10 @@ export class XNotificationService {
         list: [option]
       };
     } else {
-      this.notifications[option.placement].list = [...(this.notifications[option.placement].list as XNotificationOption[]), option];
+      this.notifications[option.placement].list = [
+        ...(this.notifications[option.placement].list as XNotificationOption[]),
+        option
+      ];
     }
     this.notificationChange(this.notifications[option.placement]);
 

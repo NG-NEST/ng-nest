@@ -14,6 +14,7 @@ export * from './handler-tabs';
 export * from './handler-cates';
 export * from './handler-pattern';
 export * from './handler-spec';
+export * from './handler-module';
 export * from './handler-prop';
 export * from './handler-demo';
 export * from './generate-cates';

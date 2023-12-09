@@ -1,14 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { DevelopingComponent } from '@share/developing/developing.component';
 
 @Component({
   selector: 'ns-news',
+  standalone: true,
+  imports: [DevelopingComponent],
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NewsComponent implements OnInit {
-  constructor(public router: Router) {}
-
-  ngOnInit() {}
-}
+export class NewsComponent {}

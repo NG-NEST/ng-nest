@@ -3,13 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XMessageComponent } from './message.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XMessageModule } from '@ng-nest/ui/message';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XMessagePrefix, () => {
@@ -22,7 +21,7 @@ describe(XMessagePrefix, () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XMessageModule, XButtonComponent],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XButtonComponent],
       declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
       providers: [
         {

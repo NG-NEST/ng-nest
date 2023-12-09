@@ -13,7 +13,7 @@ import {
 /**
  * 表单对象共有的参数
  */
-@Component({ selector: 'x-form-prop', template: '', standalone: true })
+@Component({ selector: 'x-form-prop', template: '' })
 export class XFormProp extends XProperty {
   /**
    * 标签

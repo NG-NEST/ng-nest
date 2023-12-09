@@ -11,26 +11,36 @@ import {
   ElementRef,
   ViewContainerRef,
   ViewChild,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
 import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString, XParents } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe } from '@angular/common';
-import { Overlay, OverlayConfig, FlexibleConnectedPositionStrategy, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayConfig,
+  FlexibleConnectedPositionStrategy,
+  ConnectedOverlayPositionChange
+} from '@angular/cdk/overlay';
 import { takeUntil, map, filter } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XTimePickerPrefix}`,
+  standalone: true,
+  imports: [FormsModule, XInputComponent],
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
-export class XTimePickerComponent extends XTimePickerProperty implements OnInit {
+export class XTimePickerComponent extends XTimePickerProperty implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('datePicker', { static: true }) datePicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
@@ -85,18 +95,14 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
     }
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    private portalService: XPortalService,
-    private viewContainerRef: ViewContainerRef,
-    private datePipe: DatePipe,
-    private overlay: Overlay,
-    private i18n: XI18nService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
+  override cdr = inject(ChangeDetectorRef);
+  private portalService = inject(XPortalService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private datePipe = inject(DatePipe);
+  private overlay = inject(Overlay);
+  private i18n = inject(XI18nService);
 
   ngOnInit() {
     this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
@@ -295,7 +301,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit 
       let dt = new Date(date);
       let hour = dt.getHours();
       let suffix = hour >= 12 ? this.locale.pm : this.locale.am;
-      this.displayValue = `${this.datePipe.transform(dt.setHours(hour === 0 ? 12 : hour > 12 ? hour - 12 : hour), this.format)} ${suffix}`;
+      this.displayValue = `${this.datePipe.transform(
+        dt.setHours(hour === 0 ? 12 : hour > 12 ? hour - 12 : hour),
+        this.format
+      )} ${suffix}`;
     } else {
       this.displayValue = this.datePipe.transform(date, this.format);
     }

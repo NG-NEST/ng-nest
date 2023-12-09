@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { XCrumbComponent } from '@ng-nest/ui/crumb';
 import { XCrumbPrefix } from './crumb.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCrumbPrefix, () => {
@@ -15,10 +15,10 @@ describe(XCrumbPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XCrumbComponent,
         XIconComponent,
-        XTagModule
+        XTagComponent
       ],
       declarations: [TestXCrumbComponent]
     }).compileComponents();

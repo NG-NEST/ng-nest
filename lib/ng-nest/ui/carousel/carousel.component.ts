@@ -25,12 +25,12 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XProgressModule } from '@ng-nest/ui/progress';
+import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: `${XCarouselPrefix}`,
   standalone: true,
-  imports: [CommonModule, XButtonComponent, XProgressModule],
+  imports: [CommonModule, XButtonComponent, XProgressComponent],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   encapsulation: ViewEncapsulation.None,

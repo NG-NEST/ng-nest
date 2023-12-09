@@ -12,7 +12,7 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XCommentPrefix, () => {
@@ -21,7 +21,7 @@ describe(XCommentPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XCommentComponent,
         XButtonComponent,

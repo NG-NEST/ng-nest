@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XFormComponent } from './form.component';
 import { Component, DebugElement, ViewChild, Injectable, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent } from '@ng-nest/ui/form';

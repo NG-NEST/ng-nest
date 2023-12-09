@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { XRadioNode } from '@ng-nest/ui/radio';
+import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
 import { XData } from '@ng-nest/ui/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-icon',
+  standalone: true,
+  imports: [FormsModule, XRadioComponent],
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })

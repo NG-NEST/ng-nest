@@ -10,15 +10,38 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
-import { XTablePrefix, XTableProperty, XTableColumn, XTableRow, XTableCell, XTableCellConfigRule } from './table.property';
+import {
+  XTablePrefix,
+  XTableProperty,
+  XTableColumn,
+  XTableRow,
+  XTableCell,
+  XTableCellConfigRule
+} from './table.property';
 import { XIsChange, XIsEmpty, XResultList, XNumber, XSort, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
+import { XTableHeadComponent } from './table-head.component';
+import { XTableFootComponent } from './table-foot.component';
+import { XTableBodyComponent } from './table-body.component';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTablePrefix}`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    XOutletDirective,
+    XLoadingComponent,
+    XTableHeadComponent,
+    XTableFootComponent,
+    XTableBodyComponent,
+    XPaginationComponent
+  ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -310,7 +333,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   setExpand(data: XTableRow[]) {
     const getChildren = (node: XTableRow, level: number) => {
       node.level = level;
-      node.expanded = Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id);
+      node.expanded =
+        Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id);
       if (XIsUndefined(node.children)) node.children = data.filter((y) => y.pid === node.id);
       if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) > 0;
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { of } from 'rxjs/internal/observable/of';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-loading',
+  standalone: true,
+  imports: [FormsModule, XSwitchComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })

@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XSwitchComponent } from './switch.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSwitchModule } from '@ng-nest/ui/switch';
+import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSwitchPrefix } from './switch.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
@@ -20,13 +18,13 @@ describe(XSwitchPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
-        XSwitchModule,
+        XThemeComponent,
+        XSwitchComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioModule,
+        XRadioComponent,
         XInputComponent,
         XIconComponent
       ],

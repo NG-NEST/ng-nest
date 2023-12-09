@@ -1,17 +1,15 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XResultComponent } from './result.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XResultModule } from '@ng-nest/ui/result';
+import { XResultComponent } from '@ng-nest/ui/result';
 import { FormsModule } from '@angular/forms';
 import { XResultPrefix } from './result.property';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XResultPrefix, () => {
@@ -20,9 +18,9 @@ describe(XResultPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
-        XResultModule,
+        XResultComponent,
         XButtonComponent,
         XButtonsComponent,
         XContainerComponent,

@@ -8,10 +8,12 @@ import {
   OnInit
 } from '@angular/core';
 import { PatternPrefix } from './pattern.property';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-pattern',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './pattern.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

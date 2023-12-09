@@ -6,7 +6,7 @@ import { NcPage } from '../interfaces/page';
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
 export function handlerPage(page: NcPage) {
-  let templates: NcTplName[] = ['component', 'module', 'routes-module'];
+  let templates: NcTplName[] = ['component', 'routes-module'];
   templates.unshift({
     name: `${page.type}-component`,
     extension: 'html',
@@ -49,7 +49,7 @@ export function pageAddChildren(page: NcPage, children: NcPage[]) {
       children.forEach((x, index) => {
         let route = `      {
         path: '${x.name}',
-        loadChildren: () => import('./${x.name}/${x.fileName}.module').then(x => x.${x.capName}Module)
+        loadChildren: () => import('./${x.name}/${x.fileName}-routes.module').then(x => x.${x.capName}Routes)
       }`;
         if (x.default) {
           route = `      {

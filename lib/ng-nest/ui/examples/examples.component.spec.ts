@@ -3,13 +3,13 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XExamplesPrefix } from './examples.property';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XExamplesPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XExamplesComponent, HttpClientTestingModule, XTabsModule],
+      imports: [XExamplesComponent, HttpClientTestingModule, XTabsComponent, XTabComponent],
       declarations: [TestXExamplesComponent]
     }).compileComponents();
   });
@@ -41,8 +41,8 @@ describe(XExamplesPrefix, () => {
                 <p>基础的按钮用法。</p>
                 <ul>
                   <li>
-                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和
-                    <code>circle</code> 属性来定义 Button 的样式。
+                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和 <code>circle</code> 属性来定义
+                    Button 的样式。
                   </li>
                 </ul>
               </div>
@@ -62,8 +62,8 @@ describe(XExamplesPrefix, () => {
                 <p>基础的按钮用法。</p>
                 <ul>
                   <li>
-                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和
-                    <code>circle</code> 属性来定义 Button 的样式。
+                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和 <code>circle</code> 属性来定义
+                    Button 的样式。
                   </li>
                 </ul>
               </div>
@@ -83,8 +83,8 @@ describe(XExamplesPrefix, () => {
                 <p>基础的按钮用法。</p>
                 <ul>
                   <li>
-                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和
-                    <code>circle</code> 属性来定义 Button 的样式。
+                    使用 <code>type</code> 、 <code>plain</code>、 <code>round</code> 和 <code>circle</code> 属性来定义
+                    Button 的样式。
                   </li>
                 </ul>
               </div>
@@ -107,10 +107,7 @@ describe(XExamplesPrefix, () => {
               <div class="x-examples-info">
                 <p>按钮不可用状态。</p>
                 <ul>
-                  <li>
-                    你可以使用 <code>disabled</code> 属性来定义按钮是否可用，它接受一个
-                    <code>Boolean</code> 值。
-                  </li>
+                  <li>你可以使用 <code>disabled</code> 属性来定义按钮是否可用，它接受一个 <code>Boolean</code> 值。</li>
                 </ul>
               </div>
 
@@ -153,10 +150,7 @@ describe(XExamplesPrefix, () => {
               <div class="x-examples-info">
                 <p>带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。</p>
                 <ul>
-                  <li>
-                    使用 <code>icon</code> 属性即可，<code>icon</code> 的列表可以参考
-                    <code>icon</code> 组件。
-                  </li>
+                  <li>使用 <code>icon</code> 属性即可，<code>icon</code> 的列表可以参考 <code>icon</code> 组件。</li>
                   <li>使用 <code>direction</code> 可以设置在文字右边的图标 。</li>
                 </ul>
               </div>
@@ -202,8 +196,7 @@ describe(XExamplesPrefix, () => {
                 <p>点击按钮后进行数据加载操作，在按钮上显示加载状态。</p>
                 <ul>
                   <li>
-                    要设置为 <code>loading</code> 状态，只要设置 <code>loading</code> 属性为
-                    <code>true</code> 即可。
+                    要设置为 <code>loading</code> 状态，只要设置 <code>loading</code> 属性为 <code>true</code> 即可。
                   </li>
                 </ul>
               </div>

@@ -1,46 +1,44 @@
-<x-row>
-  <x-col span="24">
-    <x-tree-select
-      [style.width.rem]="18"
-      label="输入搜索"
-      [data]="data1"
-      [(ngModel)]="model1"
-      (ngModelChange)="change($event)"
-      search
-    ></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select
-      [style.width.rem]="18"
-      label="输入搜索（异步）"
-      [data]="data2"
-      [(ngModel)]="model2"
-      (ngModelChange)="change($event)"
-      search
-      async
-    ></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select
-      [style.width.rem]="18"
-      label="搜索多选"
-      [data]="data3"
-      [(ngModel)]="model3"
-      (ngModelChange)="change($event)"
-      search
-      multiple
-    ></x-tree-select>
-  </x-col>
-  <x-col span="24">
-    <x-tree-select
-      [style.width.rem]="18"
-      label="搜索多选（异步）"
-      [data]="data4"
-      [(ngModel)]="model4"
-      (ngModelChange)="change($event)"
-      search
-      multiple
-      async
-    ></x-tree-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-tree-select
+    [style.width.rem]="18"
+    label="输入搜索"
+    [data]="data1"
+    [(ngModel)]="model1"
+    (ngModelChange)="change($event)"
+    search
+  ></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select
+    [style.width.rem]="18"
+    label="输入搜索（异步）"
+    [data]="data2"
+    [(ngModel)]="model2"
+    (ngModelChange)="change($event)"
+    search
+    async
+  ></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select
+    [style.width.rem]="18"
+    label="搜索多选"
+    [data]="data3"
+    [(ngModel)]="model3"
+    (ngModelChange)="change($event)"
+    search
+    multiple
+  ></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select
+    [style.width.rem]="18"
+    label="搜索多选（异步）"
+    [data]="data4"
+    [(ngModel)]="model4"
+    (ngModelChange)="change($event)"
+    search
+    multiple
+    async
+  ></x-tree-select>
+</div>

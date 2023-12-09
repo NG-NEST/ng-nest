@@ -23,14 +23,14 @@ import {
   XIsEmpty,
   XResizeObserver
 } from '@ng-nest/ui/core';
-import { XTableComponent, XTableRow, XTableModule } from '@ng-nest/ui/table';
+import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
-import { XTreeNode, XTreeComponent, XTreeModule } from '@ng-nest/ui/tree';
+import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { XTagModule } from '@ng-nest/ui/tag';
+import { XTagComponent } from '@ng-nest/ui/tag';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -44,11 +44,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    XTagModule,
+    XTagComponent,
     XButtonComponent,
     XDialogComponent,
-    XTableModule,
-    XTreeModule,
+    XTableComponent,
+    XTreeComponent,
     XIconComponent,
     XEmptyComponent,
     XInputComponent,

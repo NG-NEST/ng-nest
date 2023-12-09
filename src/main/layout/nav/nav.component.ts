@@ -1,14 +1,20 @@
 import { ChangeDetectorRef, Component, ViewEncapsulation, inject } from '@angular/core';
-import { DOCUMENT, Location, PlatformLocation } from '@angular/common';
+import { CommonModule, DOCUMENT, Location, PlatformLocation } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
-import { XSliderNode } from '@ng-nest/ui/slider';
-import { Menu } from '@environments';
+import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { Menu } from '@interfaces';
 import { LayoutService } from '../layout.service';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ns-nav',
+  standalone: true,
+  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe],
   templateUrl: './nav.component.html',
   encapsulation: ViewEncapsulation.None
 })

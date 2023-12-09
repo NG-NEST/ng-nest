@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XTreeSelectNode } from '@ng-nest/ui/tree-select';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-bordered',
+  standalone: true,
+  imports: [XTreeSelectComponent],
   templateUrl: './bordered.component.html',
   styleUrls: ['./bordered.component.scss']
 })

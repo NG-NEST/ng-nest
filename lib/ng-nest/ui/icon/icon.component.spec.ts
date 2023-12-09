@@ -6,13 +6,13 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XIconPrefix } from './icon.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XIconPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeModule, XIconComponent, XRowComponent, XColComponent],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, XThemeComponent, XIconComponent, XRowComponent, XColComponent],
       declarations: [TestXIconComponent]
     }).compileComponents();
   });

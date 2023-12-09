@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'no-auth',
+  standalone: true,
   template: ``,
   encapsulation: ViewEncapsulation.None
 })
-export class NoAuthComponent implements OnInit {
-  constructor(public router: Router) {}
-
-  ngOnInit() {}
-}
+export class NoAuthComponent {}

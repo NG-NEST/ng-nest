@@ -1,9 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-virtual-scroll',
+  standalone: true,
+  imports: [FormsModule, XTreeComponent, XButtonComponent, XInputNumberComponent],
   templateUrl: './virtual-scroll.component.html'
 })
 export class ExVirtualScrollComponent {

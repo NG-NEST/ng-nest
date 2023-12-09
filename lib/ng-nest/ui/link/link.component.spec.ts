@@ -8,7 +8,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XLinkPrefix, () => {
@@ -17,7 +17,7 @@ describe(XLinkPrefix, () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XLinkComponent,
         XRowComponent,

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { RouterModule } from '@angular/router';
-import { XTableModule } from '@ng-nest/ui/table';
+import { XTableComponent } from '@ng-nest/ui/table';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
@@ -10,7 +10,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   declarations: [UserComponent, UserDetailComponent],
   imports: [
     CommonModule,
-    XTableModule,
+    XTableComponent,
     XButtonComponent,
     RouterModule.forChild([
       { path: '', component: UserComponent },

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { XTimelineNode } from '@ng-nest/ui/timeline';
+import { XTimelineComponent, XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
+import { XCardComponent } from '@ng-nest/ui/card';
+import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
 @Component({
   selector: 'ex-custom',
+  standalone: true,
+  imports: [XTimelineComponent, XCardComponent, XTimeAgoPipe],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

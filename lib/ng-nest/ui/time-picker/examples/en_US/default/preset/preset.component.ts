@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XAddHours } from '@ng-nest/ui/core';
+import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-preset',
-  templateUrl: './preset.component.html',
-  styleUrls: ['./preset.component.scss']
+  standalone: true,
+  imports: [FormsModule, XTimePickerComponent],
+  templateUrl: './preset.component.html'
 })
 export class ExPresetComponent {
   model: any;

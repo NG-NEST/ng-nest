@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
@@ -7,21 +7,26 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XClamp } from '@ng-nest/ui/core';
 import { XUploadCutType, XUploadNode, XUploadPortalPrefix } from './upload.property';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XUploadPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XIconComponent],
   templateUrl: './upload-portal.component.html',
   styleUrls: ['./upload-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XUploadPortalComponent {
+export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
   file?: XUploadNode;
   @ViewChild('imgRef') imgRef!: ElementRef<HTMLElement>;
   @ViewChild('imgClipRef') imgClipRef!: ElementRef<HTMLElement>;
@@ -57,10 +62,8 @@ export class XUploadPortalComponent {
   destroyPortal!: () => void;
   surePortal!: (blob: Blob) => void;
   private _unSubject = new Subject<void>();
-
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
-
-  ngOnInit() {}
+  private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
 
   ngAfterViewInit() {
     this.setCut();
@@ -206,7 +209,11 @@ export class XUploadPortalComponent {
     );
     this.renderer.setStyle(this.cutRef.nativeElement, 'width', `${this.cutBox.width}px`);
     this.renderer.setStyle(this.cutRef.nativeElement, 'height', `${this.cutBox.height}px`);
-    this.renderer.setStyle(this.cutRef.nativeElement, 'transform', `translate3d(${this.cutBox.x}px, ${this.cutBox.y}px, 0)`);
+    this.renderer.setStyle(
+      this.cutRef.nativeElement,
+      'transform',
+      `translate3d(${this.cutBox.x}px, ${this.cutBox.y}px, 0)`
+    );
   }
 
   sure() {

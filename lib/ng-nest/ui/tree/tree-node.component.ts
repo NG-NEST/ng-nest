@@ -1,24 +1,40 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostBinding,
   HostListener,
   Input,
-  NgZone,
   Output,
-  EventEmitter
+  EventEmitter,
+  inject
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XTreeService } from './tree.service';
+import { CommonModule } from '@angular/common';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
+import { FormsModule } from '@angular/forms';
+import { XKeywordDirective } from '@ng-nest/ui/keyword';
+import { XLinkComponent } from '@ng-nest/ui/link';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    XIconComponent,
+    XCheckboxComponent,
+    XOutletDirective,
+    XLinkComponent,
+    XKeywordDirective
+  ],
   templateUrl: './tree-node.component.html',
   styleUrls: ['./tree-node.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -119,16 +135,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     }
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public ngZone: NgZone,
-    public treeService: XTreeService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private treeService = inject(XTreeService);
+  elementRef = inject(ElementRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.node.change = (check: boolean) => {

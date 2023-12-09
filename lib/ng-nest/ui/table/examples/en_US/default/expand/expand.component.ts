@@ -1,8 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XDescriptionComponent, XDescriptionItemComponent } from '@ng-nest/ui/description';
+import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-expand',
+  standalone: true,
+  imports: [CommonModule, XTableComponent, XButtonComponent, XDescriptionComponent, XDescriptionItemComponent],
   templateUrl: './expand.component.html',
   styleUrls: ['./expand.component.scss']
 })

@@ -5,13 +5,13 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogPrefix } from './dialog.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
-import { XMessageBoxService, XMessageBoxModule, XMessageBoxAction } from '@ng-nest/ui/message-box';
+import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 import { FormsModule } from '@angular/forms';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XRadioModule } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 import { XFormComponent } from '@ng-nest/ui/form';
@@ -24,16 +24,15 @@ describe(XDialogPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XInputComponent,
-        XRadioModule,
+        XRadioComponent,
         XDialogComponent,
         XButtonComponent,
         XIconComponent,
         XLinkComponent,
-        XFormComponent,
-        XMessageBoxModule
+        XFormComponent
       ],
       declarations: [TestXDialogComponent, TestXDialogDraggableComponent]
     }).compileComponents();

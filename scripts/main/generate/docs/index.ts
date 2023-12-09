@@ -8,7 +8,6 @@ import {
   parseMdDoc,
   generateMenu,
   handlerComponent,
-  getThemes,
   handlerDemo,
   orderBy
 } from '../../utils';
@@ -18,7 +17,7 @@ import * as fs from 'fs-extra';
 export const docsDir = path.resolve(__dirname, '../../../../docs');
 export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui');
 export const genDir = path.resolve(__dirname, '../../../../src/main/docs');
-export const genMenusDir = path.resolve(__dirname, '../../../../src/environments');
+export const genMenusDir = path.resolve(__dirname, '../../../../src/app');
 export const docsPrefix = 'docs';
 export const languages = ['zh_CN', 'en_US'];
 

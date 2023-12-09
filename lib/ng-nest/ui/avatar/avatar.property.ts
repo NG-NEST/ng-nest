@@ -22,7 +22,7 @@ const X_CONFIG_NAME = 'avatar';
 /**
  * Avatar Property
  */
-@Component({ selector: `${XAvatarPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XAvatarPrefix}-property`, template: '' })
 export class XAvatarProperty extends XProperty {
   /**
    * @zh_CN 显示字符
@@ -94,5 +94,5 @@ export const XAvatarGroupPrefix = 'x-avatar-group';
 /**
  * Avatar Group Property
  */
-@Component({ selector: `${XAvatarGroupPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XAvatarGroupPrefix}-property`, template: '' })
 export class XAvatarGroupProperty extends XProperty {}

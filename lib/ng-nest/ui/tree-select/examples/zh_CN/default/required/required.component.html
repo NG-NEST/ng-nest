@@ -1,8 +1,6 @@
-<x-row>
-  <x-col>
-    <x-tree-select [data]="data1" required></x-tree-select>
-  </x-col>
-  <x-col>
-    <x-tree-select [data]="data2" [(ngModel)]="model" label="选择" required></x-tree-select>
-  </x-col>
-</x-row>
+<div class="row">
+  <x-tree-select [data]="data1" required></x-tree-select>
+</div>
+<div class="row">
+  <x-tree-select [data]="data2" [(ngModel)]="model" label="选择" required></x-tree-select>
+</div>

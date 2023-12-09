@@ -4,20 +4,30 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   OnInit,
-  Renderer2,
   OnDestroy,
   HostBinding,
-  HostListener
+  HostListener,
+  inject
 } from '@angular/core';
-import { XTimePickerDisabledTime, XTimePickerPortalPrefix, XTimePickerPreset, XTimePickerType } from './time-picker.property';
+import {
+  XTimePickerDisabledTime,
+  XTimePickerPortalPrefix,
+  XTimePickerPreset,
+  XTimePickerType
+} from './time-picker.property';
 import { XBoolean, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
+import { XTimePickerFrameComponent } from './time-picker-frame.component';
+import { CommonModule } from '@angular/common';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XTimePickerFrameComponent, XButtonComponent],
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -51,8 +61,8 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
   locale: XI18nTimePicker = {};
 
   private _unSubject = new Subject<void>();
-
-  constructor(public renderer: Renderer2, public cdr: ChangeDetectorRef, private i18n: XI18nService) {}
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
 
   ngOnInit(): void {
     this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: any) => {

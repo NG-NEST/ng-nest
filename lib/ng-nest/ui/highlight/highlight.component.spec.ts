@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix, XHighlightLines } from './highlight.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XHighlightPrefix, () => {
@@ -13,7 +13,7 @@ describe(XHighlightPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         XHighlightComponent
       ],
       declarations: [TestXHighlightComponent]

@@ -1,21 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XTextareaComponent } from './textarea.component';
 import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTextareaPrefix } from './textarea.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeModule, XTextareaModule, FormsModule, ReactiveFormsModule, XRowComponent, XColComponent],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        XThemeComponent,
+        XTextareaComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent
+      ],
       declarations: [
         TestXTextareaComponent,
         TestXTextareaLabelComponent,
@@ -226,7 +233,13 @@ class TestXTextareaIconComponent {}
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-textarea icon="ado-user" clearable [(ngModel)]="modelIcon" iconLayout="left" (ngModelChange)="change()"></x-textarea>
+        <x-textarea
+          icon="ado-user"
+          clearable
+          [(ngModel)]="modelIcon"
+          iconLayout="left"
+          (ngModelChange)="change()"
+        ></x-textarea>
       </x-col>
     </x-row>
   `,
@@ -346,13 +359,25 @@ class TestXTextareaRequiredComponent {
         <x-textarea [(ngModel)]="value" (ngModelChange)="change()" label="用户名" maxlength="50"></x-textarea>
       </x-col>
       <x-col span="24">
-        <x-textarea [(ngModel)]="value" (ngModelChange)="change()" label="用户名" direction="row" maxlength="50"></x-textarea>
+        <x-textarea
+          [(ngModel)]="value"
+          (ngModelChange)="change()"
+          label="用户名"
+          direction="row"
+          maxlength="50"
+        ></x-textarea>
       </x-col>
       <x-col span="24">
         <x-textarea [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" maxlength="50"></x-textarea>
       </x-col>
       <x-col span="24">
-        <x-textarea [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" iconLayout="left" maxlength="50"></x-textarea>
+        <x-textarea
+          [(ngModel)]="value"
+          (ngModelChange)="change()"
+          icon="ado-user"
+          iconLayout="left"
+          maxlength="50"
+        ></x-textarea>
       </x-col>
     </x-row>
   `,

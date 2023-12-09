@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-multiple',
+  standalone: true,
+  imports: [FormsModule, XSelectComponent],
   templateUrl: './multiple.component.html',
   styleUrls: ['./multiple.component.scss']
 })

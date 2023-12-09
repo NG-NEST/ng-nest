@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-multiple',
+  standalone: true,
+  imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './multiple.component.html',
   styleUrls: ['./multiple.component.scss']
 })

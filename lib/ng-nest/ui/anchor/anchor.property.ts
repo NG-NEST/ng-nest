@@ -19,7 +19,7 @@ const X_CONFIG_NAME = 'anchor';
 /**
  * Anchor Property
  */
-@Component({ selector: `${XAnchorPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XAnchorPrefix}-property`, template: '' })
 export class XAnchorProperty extends XProperty {
   /**
    * @zh_CN 滚动区域对象
@@ -58,7 +58,7 @@ export const XAnchorInnerPrefix = 'x-anchor-inner';
 /**
  * Anchor inner Property
  */
-@Component({ selector: `${XAnchorInnerPrefix}-property`, template: '', standalone: true })
+@Component({ selector: `${XAnchorInnerPrefix}-property`, template: '' })
 export class XAnchorInnerProperty {}
 
 /**

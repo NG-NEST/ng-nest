@@ -8,22 +8,32 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  inject,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
 import { XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XTagComponent } from '@ng-nest/ui/tag';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XRadioPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent extends XRadioProperty implements OnChanges {
+export class XRadioComponent extends XRadioProperty implements OnInit, OnChanges, OnDestroy {
   @ViewChild('radio', { static: true }) radio!: ElementRef<HTMLElement>;
   nodes: XRadioNode[] = [];
   radioType!: 'initial' | 'button' | 'icon' | 'tag';
@@ -37,14 +47,9 @@ export class XRadioComponent extends XRadioProperty implements OnChanges {
     return this.after instanceof TemplateRef;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setFlex(this.radio.nativeElement, this.renderer, this.justify, this.align, this.direction);

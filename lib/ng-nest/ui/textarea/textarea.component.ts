@@ -8,14 +8,20 @@ import {
   ElementRef,
   ViewChild,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { XTextareaPrefix, XTextareaProperty } from './textarea.property';
 import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTextareaPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconComponent],
   templateUrl: './textarea.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -51,14 +57,9 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public override cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setPadding();

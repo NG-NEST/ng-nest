@@ -1,4 +1,4 @@
-import { OnInit, Renderer2, ElementRef, Directive, OnDestroy } from '@angular/core';
+import { OnInit, Renderer2, ElementRef, Directive, OnDestroy, inject } from '@angular/core';
 import { fromEvent, of, Subject } from 'rxjs';
 import { delay, takeUntil, tap } from 'rxjs/operators';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
@@ -11,10 +11,8 @@ import { XComputed } from '@ng-nest/ui/core';
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
   duration = 800;
   private _unSub = new Subject<void>();
-
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
     if (this.disabled) return;

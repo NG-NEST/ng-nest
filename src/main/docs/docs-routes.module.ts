@@ -1,27 +1,20 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { NsDocsComponent } from './docs.component';
 
-const routes: Routes = [
+export const DocRoutes: Routes = [
   {
     path: '',
     component: NsDocsComponent,
     children: [
       { path: '', redirectTo: 'zh_CN', pathMatch: 'full' },
-      // {
-      //   path: 'zh_CN',
-      //   loadChildren: () => import('./zh_CN/docs-zh_CN.module').then((x) => x.NsDocsZhCNModule)
-      // },
-      // {
-      //   path: 'en_US',
-      //   loadChildren: () => import('./en_US/docs-en_US.module').then((x) => x.NsDocsEnUSModule)
-      // }
+      {
+        path: 'zh_CN',
+        loadChildren: () => import('./zh_CN/docs-zh_CN-routes.module').then((x) => x.NsDocsZhCNRoutes)
+      },
+      {
+        path: 'en_US',
+        loadChildren: () => import('./en_US/docs-en_US-routes.module').then((x) => x.NsDocsEnUSRoutes)
+      }
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class NsDocsRoutesModule {}

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(XBadgePrefix, () => {
@@ -18,7 +18,7 @@ describe(XBadgePrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
+        XThemeComponent,
         FormsModule,
         XBadgeComponent,
         XButtonComponent,

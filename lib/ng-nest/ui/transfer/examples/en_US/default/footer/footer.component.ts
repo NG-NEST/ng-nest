@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { XTransferNode } from '@ng-nest/ui/transfer';
+import { FormsModule } from '@angular/forms';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-footer',
+  standalone: true,
+  imports: [FormsModule, XTransferComponent, XButtonComponent],
   templateUrl: './footer.component.html'
 })
 export class ExFooterComponent {

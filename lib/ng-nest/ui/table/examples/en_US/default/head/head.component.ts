@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { HeadService } from './head.service';
 import { XQuery } from '@ng-nest/ui/core';
-import { XTableColumn } from '@ng-nest/ui/table';
+import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-head',
+  standalone: true,
+  imports: [XTableComponent],
   templateUrl: './head.component.html',
   providers: [HeadService]
 })

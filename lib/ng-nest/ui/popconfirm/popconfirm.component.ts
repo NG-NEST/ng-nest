@@ -1,12 +1,26 @@
-import { Renderer2, ElementRef, ChangeDetectorRef, Component, ChangeDetectionStrategy, ViewEncapsulation, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  OnDestroy,
+  inject
+} from '@angular/core';
 import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
 import { XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nPopconfirm } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { XPopoverDirective } from '@ng-nest/ui/popover';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XPopconfirmPrefix}`,
+  standalone: true,
+  imports: [CommonModule, XPopoverDirective, XButtonComponent, XIconComponent, XOutletDirective],
   templateUrl: './popconfirm.component.html',
   styleUrls: ['./popconfirm.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -28,15 +42,9 @@ export class XPopconfirmComponent extends XPopconfirmProperty implements OnDestr
     return this.confirmText || this.locale.confirmText;
   }
 
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public i18n: XI18nService
-  ) {
-    super();
-  }
+  private cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.i18n.localeChange

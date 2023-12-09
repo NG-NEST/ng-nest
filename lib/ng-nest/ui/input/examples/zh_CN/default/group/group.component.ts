@@ -7,8 +7,8 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
-import { XSelectModule } from '@ng-nest/ui/select';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XSelectComponent } from '@ng-nest/ui/select';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
@@ -18,7 +18,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     CommonModule,
     XInputComponent,
     XInputGroupComponent,
-    XSelectModule,
+    XSelectComponent,
     XButtonComponent,
     XDatePickerComponent,
     XAutoCompleteComponent,
@@ -26,7 +26,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     XColorPickerComponent,
     XFindComponent,
     XTimePickerModule,
-    XTextareaModule
+    XTextareaComponent
   ],
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']

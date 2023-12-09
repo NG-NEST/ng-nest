@@ -7,31 +7,38 @@ import {
   Renderer2,
   ElementRef,
   ViewChild,
-  SimpleChanges
+  SimpleChanges,
+  inject,
+  OnChanges
 } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
 import { XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XSwitchPrefix}`,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, XLoadingComponent, XOutletDirective],
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSwitchComponent)]
 })
-export class XSwitchComponent extends XSwitchProperty implements OnInit {
+export class XSwitchComponent extends XSwitchProperty implements OnInit, OnChanges {
   @ViewChild('switch', { static: true }) switch!: ElementRef<HTMLElement>;
 
   override writeValue(value: any) {
     this.value = value;
     this.cdr.detectChanges();
   }
-
-  constructor(public renderer: Renderer2, public override cdr: ChangeDetectorRef, public configService: XConfigService) {
-    super();
-  }
+  private renderer = inject(Renderer2);
+  override cdr = inject(ChangeDetectorRef);
+  configService = inject(XConfigService);
 
   ngOnChanges(changes: SimpleChanges): void {
     const { size, labelAlign } = changes;

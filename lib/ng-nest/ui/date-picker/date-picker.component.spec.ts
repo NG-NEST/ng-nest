@@ -10,13 +10,13 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { XRadioModule } from '@ng-nest/ui/radio';
-import { XSelectModule } from '@ng-nest/ui/select';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaModule } from '@ng-nest/ui/textarea';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
@@ -35,14 +35,14 @@ describe(XDatePickerPrefix, () => {
         XRowComponent,
         XColComponent,
         XButtonComponent,
-        XRadioModule,
-        XSelectModule,
+        XRadioComponent,
+        XSelectComponent,
         XInputComponent,
         XAutoCompleteComponent,
         XCascadeComponent,
         XColorPickerComponent,
         XFindComponent,
-        XTextareaModule,
+        XTextareaComponent,
         XTimePickerModule
       ],
       declarations: [

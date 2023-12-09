@@ -1,8 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { XTabsNode } from '@ng-nest/ui/tabs';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
+import { XTabComponent, XTabsComponent, XTabsNode } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-action',
+  standalone: true,
+  imports: [CommonModule, XTabComponent, XTabsComponent, XIconComponent, XButtonComponent],
   templateUrl: './action.component.html',
   styleUrls: ['./action.component.scss']
 })

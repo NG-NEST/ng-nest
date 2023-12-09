@@ -1,15 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { XSliderSelectComponent } from './slider-select.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSliderSelectModule } from '@ng-nest/ui/slider-select';
+import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSliderSelectPrefix } from './slider-select.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTabsModule } from '@ng-nest/ui/tabs';
+import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeModule } from '@ng-nest/ui/theme';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -20,13 +18,14 @@ describe(XSliderSelectPrefix, () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        XThemeModule,
-        XSliderSelectModule,
+        XThemeComponent,
+        XSliderSelectComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XTabsModule,
+        XTabsComponent,
+        XTabComponent,
         XIconComponent,
         XButtonComponent
       ],
@@ -222,11 +221,7 @@ class TestXSliderSelectPrecisionComponent {}
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-slider-select
-          label="数量"
-          [(ngModel)]="model"
-          direction="column-reverse"
-        ></x-slider-select>
+        <x-slider-select label="数量" [(ngModel)]="model" direction="column-reverse"></x-slider-select>
       </x-col>
     </x-row>
     <x-row>

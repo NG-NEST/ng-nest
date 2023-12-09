@@ -1,9 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { XUploadComponent } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-custom',
-  templateUrl: './custom.component.html',
-  styleUrls: ['./custom.component.scss']
+  standalone: true,
+  imports: [CommonModule, FormsModule, XUploadComponent],
+  templateUrl: './custom.component.html'
 })
 export class ExCustomComponent {
   model1 = [{ url: 'http://127.0.0.1:3000/upload/1650888347319-test.txt', name: 'test.txt' }];

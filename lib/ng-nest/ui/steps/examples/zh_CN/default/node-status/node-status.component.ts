@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { XStepsNode } from '@ng-nest/ui/steps';
+import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-node-status',
+  standalone: true,
+  imports: [XStepsComponent],
   templateUrl: './node-status.component.html'
 })
 export class ExNodeStatusComponent {

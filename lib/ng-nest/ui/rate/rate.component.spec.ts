@@ -1,15 +1,9 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
-import {
-  ComponentFixture,
-  TestBed,
-  __core_private_testing_placeholder__
-} from '@angular/core/testing';
-
-import { XRateComponent } from './rate.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XRateModule } from '@ng-nest/ui/rate';
+import { XRateComponent } from '@ng-nest/ui/rate';
 import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,18 +17,13 @@ describe(XRatePrefix, () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         FormsModule,
-        XRateModule,
+        XRateComponent,
         XButtonComponent,
         XRowComponent,
         XColComponent,
         XIconComponent
       ],
-      declarations: [
-        TestXRateComponent,
-        TestXRateHalfComponent,
-        TestXRateDisabledComponent,
-        TestXRateCustomComponent
-      ]
+      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -129,13 +118,7 @@ class TestXRateComponent {
     </x-row>
     <x-row>
       <x-col span="24">
-        <x-rate
-          label="评级"
-          direction="row"
-          [(ngModel)]="model"
-          (ngModelChange)="chang($event)"
-          half
-        ></x-rate>
+        <x-rate label="评级" direction="row" [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
       </x-col>
     </x-row>
   `,
