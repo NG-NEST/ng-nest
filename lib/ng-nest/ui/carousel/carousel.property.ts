@@ -48,9 +48,7 @@ export class XCarouselProperty extends XProperty {
    * @zh_CN 幻灯片轮播方向
    * @en_US Slide rotation direction
    */
-  @Input()
-  @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal')
-  direction?: XCarouselDirection;
+  @Input() @XWithConfig<XCarouselDirection>(X_CONFIG_NAME, 'horizontal') direction?: XCarouselDirection;
   /**
    * @zh_CN 自动切换
    * @en_US Automatic switching

@@ -1,12 +1,11 @@
 import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout/layout.service';
-import { CommonModule } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ns-home',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None

@@ -13,33 +13,23 @@ import {
   inject
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
-import {
-  XComputedStyle,
-  XIsEmpty,
-  reqAnimFrame,
-  XIsNumber,
-  XIsUndefined,
-  XConfigService
-} from '@ng-nest/ui/core';
+import { XComputedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
 import { XSliderNode, XSliderComponent } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgClass } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: `${XAnchorPrefix}`,
   standalone: true,
-  imports: [CommonModule, XAffixComponent, XSliderComponent],
+  imports: [NgClass, XAffixComponent, XSliderComponent],
   templateUrl: './anchor.component.html',
   styleUrls: ['./anchor.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAnchorComponent
-  extends XAnchorProperty
-  implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked
-{
+export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
   @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
   @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
   hElements!: NodeListOf<HTMLElement>;
@@ -87,9 +77,7 @@ export class XAnchorComponent
     this._scrolling = true;
     const hElement = this.hElements[index];
     let scrollTop =
-      hElement.offsetTop -
-      this.anchor.nativeElement.offsetTop -
-      parseFloat(XComputedStyle(hElement, 'margin-top'));
+      hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
@@ -175,18 +163,15 @@ export class XAnchorComponent
     if (!this.affixWidth) return null;
     if (this.affixWidth === '0') return 0;
     if (XIsNumber(this.affixWidth)) return this.affixWidth;
-    else if (this.affixWidth.indexOf('rem') !== -1)
-      return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
-    else if (this.affixWidth.indexOf('px') !== -1)
-      return Number(this.affixWidth.replace(/px/g, ''));
+    else if (this.affixWidth.indexOf('rem') !== -1) return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixWidth.indexOf('px') !== -1) return Number(this.affixWidth.replace(/px/g, ''));
     else return Number(this.affixWidth);
   }
 
   private getTop() {
     if (this.affixTop === '0') return 0;
     if (XIsNumber(this.affixTop)) return Number(this.affixTop);
-    else if (this.affixTop.indexOf('rem') !== -1)
-      return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
     else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
     return 0;
   }

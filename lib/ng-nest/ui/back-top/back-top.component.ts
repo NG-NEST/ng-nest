@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { reqAnimFrame, XConfigService, XIsChange, XIsNumber } from '@ng-nest/ui/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
@@ -23,7 +23,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 @Component({
   selector: `${XBackTopPrefix}`,
   standalone: true,
-  imports: [CommonModule, XLinkComponent],
+  imports: [NgClass, NgTemplateOutlet, XLinkComponent],
   templateUrl: './back-top.component.html',
   styleUrls: ['./back-top.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -66,8 +66,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
   ngOnChanges(changes: SimpleChanges): void {
     const { target } = changes;
     if (XIsChange(target)) {
-      this._target =
-        typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target!;
+      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target) : this.target!;
       this.setScrollEvent();
     }
   }

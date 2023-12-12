@@ -14,24 +14,17 @@ import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XResizableDirective } from '@ng-nest/ui/resizable';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XAlertPrefix}`,
   standalone: true,
-  imports: [
-    CommonModule,
-    DragDropModule,
-    XIconComponent,
-    XButtonComponent,
-    XOutletDirective,
-    XResizableDirective
-  ],
+  imports: [NgClass, NgTemplateOutlet, DragDropModule, XIconComponent, XButtonComponent, XOutletDirective, XResizableDirective],
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -64,8 +57,7 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
     this.classMap = {
       [`${XAlertPrefix}-${this.type}`]: !XIsEmpty(this.type),
       [`x-${this.effect}`]: !XIsEmpty(this.effect),
-      [`${XAlertPrefix}-icon-medium`]:
-        !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon),
+      [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon),
       [`${XAlertPrefix}-draggable`]: Boolean(this.draggable)
     };
   }

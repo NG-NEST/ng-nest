@@ -1,4 +1,10 @@
-<x-button (click)="action('en_US')" *ngIf="config.lang === 'zh_CN'" size="big" circle>En</x-button>
-<x-button (click)="action('zh_CN')" *ngIf="config.lang === 'en_US'" size="big" circle>中</x-button>
-<x-button (click)="action('dark')" *ngIf="theme === 'light'" title="暗黑风格" size="big" icon="fto-moon" circle></x-button>
-<x-button (click)="action('light')" *ngIf="theme === 'dark'" title="明亮风格" size="big" icon="fto-sun" circle></x-button>
+@if (config.lang === 'zh_CN') {
+  <x-button (click)="action('en_US')" size="big" circle>En</x-button>
+} @else if (config.lang === 'en_US') {
+  <x-button (click)="action('zh_CN')" size="big" circle>中</x-button>
+}
+@if (theme === 'light') {
+  <x-button (click)="action('dark')" title="暗黑风格" size="big" icon="fto-moon" circle></x-button>
+} @else if (theme === 'dark') {
+  <x-button (click)="action('light')" title="明亮风格" size="big" icon="fto-sun" circle></x-button>
+}

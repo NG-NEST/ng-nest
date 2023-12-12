@@ -7,9 +7,15 @@
   [ngStyle]="styleMap"
   [style.backgroundColor]="backgroundColor"
 >
-  <img *ngIf="src && !isImgError" [src]="src" [style.object-fit]="fit" (error)="imgError()" />
-  <x-icon *ngIf="icon" [type]="icon"></x-icon>
-  <x-icon *ngIf="isImgError" type="fto-image"></x-icon>
+  @if (src && !isImgError) {
+    <img [src]="src" [style.object-fit]="fit" (error)="imgError()" />
+  }
+  @if (icon) {
+    <x-icon [type]="icon"></x-icon>
+  }
+  @if (isImgError) {
+    <x-icon type="fto-image"></x-icon>
+  }
   <span #labelRef *xOutlet="label; context: { $label: label }">
     {{ label }}
   </span>

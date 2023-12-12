@@ -7,7 +7,7 @@ import {
   OnChanges,
   inject
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
 import {
   XIsNumber,
@@ -22,7 +22,7 @@ import {
 @Component({
   selector: `${XBadgePrefix}`,
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass, NgTemplateOutlet],
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,

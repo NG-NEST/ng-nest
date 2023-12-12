@@ -1,54 +1,68 @@
-<div
-  #alert
-  class="x-alert"
-  cdkDrag
-  (cdkDragEnded)="dragEnded.emit($event)"
-  [cdkDragFreeDragPosition]="dragFreeDragPosition"
-  [cdkDragDisabled]="!draggable"
-  [cdkDragBoundary]="dragBoundary"
-  [ngClass]="classMap"
-  *ngIf="!hide"
-  @x-fade-animation
-  [@.disabled]="disabledAnimation"
-  (@x-fade-animation.done)="onCloseAnimationDone()"
-  [xResizable]="resizable!"
-  (resizing)="resizing.emit($event)"
-  [offsetLeft]="offsetLeft"
-  [offsetTop]="offsetTop"
-  [style.minWidth]="minWidth"
-  [style.minHeight]="minHeight"
->
-  <ng-container *ngIf="showIcon">
-    <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
-  </ng-container>
-  <ng-template #iconTpl>
-    <ng-container [ngSwitch]="type">
-      <x-icon class="x-alert-icon" *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
-      <x-icon class="x-alert-icon" *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
-      <x-icon class="x-alert-icon" *ngSwitchCase="'warning'" type="adf-exclamation-circle"></x-icon>
-      <x-icon class="x-alert-icon" *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
-      <x-icon class="x-alert-icon" *ngSwitchCase="'loading'" type="fto-loader" [spin]="true"></x-icon>
-    </ng-container>
-  </ng-template>
-  <div class="x-alert-inner">
-    <span class="x-alert-title" cdkDragHandle [class.x-bold]="title && content">
-      <ng-container *xOutlet="title; context: { $iconTpl: iconTpl }">{{ title }}</ng-container>
-    </span>
-    <div class="x-alert-content" *ngIf="content">
-      <ng-container *xOutlet="content; context: { $iconTpl: iconTpl }">{{ content }}</ng-container>
-    </div>
-    <div class="x-alert-close">
-      <div class="x-alert-operation" *xOutlet="operationTpl">{{ operationTpl }}</div>
-      <x-button
-        *ngIf="!hideClose"
-        size="small"
-        [icon]="!closeText ? 'fto-x' : ''"
-        [onlyIcon]="!closeText"
-        [type]="closeText ? 'text' : 'initial'"
-        (click)="onClose()"
-        closable
-        >{{ closeText }}</x-button
-      >
+@if (!hide) {
+  <div
+    #alert
+    class="x-alert"
+    cdkDrag
+    (cdkDragEnded)="dragEnded.emit($event)"
+    [cdkDragFreeDragPosition]="dragFreeDragPosition"
+    [cdkDragDisabled]="!draggable"
+    [cdkDragBoundary]="dragBoundary"
+    [ngClass]="classMap"
+    @x-fade-animation
+    [@.disabled]="disabledAnimation"
+    (@x-fade-animation.done)="onCloseAnimationDone()"
+    [xResizable]="resizable!"
+    (resizing)="resizing.emit($event)"
+    [offsetLeft]="offsetLeft"
+    [offsetTop]="offsetTop"
+    [style.minWidth]="minWidth"
+    [style.minHeight]="minHeight"
+  >
+    @if (showIcon) {
+      <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
+    }
+    <ng-template #iconTpl>
+      @switch (type) {
+        @case ('success') {
+          <x-icon class="x-alert-icon" type="adf-check-circle"></x-icon>
+        }
+        @case ('info') {
+          <x-icon class="x-alert-icon" type="adf-info-circle"></x-icon>
+        }
+        @case ('warning') {
+          <x-icon class="x-alert-icon" type="adf-exclamation-circle"></x-icon>
+        }
+        @case ('error') {
+          <x-icon class="x-alert-icon" type="adf-close-circle"></x-icon>
+        }
+        @case ('loading') {
+          <x-icon class="x-alert-icon" type="fto-loader" [spin]="true"></x-icon>
+        }
+      }
+    </ng-template>
+    <div class="x-alert-inner">
+      <span class="x-alert-title" cdkDragHandle [class.x-bold]="title && content">
+        <ng-container *xOutlet="title; context: { $iconTpl: iconTpl }">{{ title }}</ng-container>
+      </span>
+      @if (content) {
+        <div class="x-alert-content">
+          <ng-container *xOutlet="content; context: { $iconTpl: iconTpl }">{{ content }}</ng-container>
+        </div>
+      }
+      <div class="x-alert-close">
+        <div class="x-alert-operation" *xOutlet="operationTpl">{{ operationTpl }}</div>
+        @if (!hideClose) {
+          <x-button
+            size="small"
+            [icon]="!closeText ? 'fto-x' : ''"
+            [onlyIcon]="!closeText"
+            [type]="closeText ? 'text' : 'initial'"
+            (click)="onClose()"
+            closable
+            >{{ closeText }}</x-button
+          >
+        }
+      </div>
     </div>
   </div>
-</div>
+}

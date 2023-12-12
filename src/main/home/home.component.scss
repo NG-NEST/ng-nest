@@ -124,10 +124,10 @@ ns-home {
               to($--x-primary),
               color-stop(0.5, #fff)
             ) 0 0 no-repeat;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          -webkit-animation: shine 7s infinite;
+          background-clip: text;
+          animation: shine 7s infinite;
           text-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+          -webkit-text-fill-color: transparent;
         }
         &.description {
           color: rgba(255, 255, 255, 0.6);

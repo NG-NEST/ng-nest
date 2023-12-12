@@ -24,7 +24,7 @@ import {
   XIsChange,
   XResizeObserver
 } from '@ng-nest/ui/core';
-import { DOCUMENT, CommonModule } from '@angular/common';
+import { DOCUMENT, NgClass, NgStyle } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -32,16 +32,13 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XAvatarPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective, XIconComponent],
+  imports: [NgClass, NgStyle, XOutletDirective, XIconComponent],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent
-  extends XAvatarProperty
-  implements OnDestroy, OnChanges, AfterViewInit
-{
+export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnChanges, AfterViewInit {
   isImgError: boolean = false;
 
   styleMap: { [key: string]: any } = {};

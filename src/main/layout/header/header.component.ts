@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core'
 import { LayoutService } from '../layout.service';
 import { XStorageService } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { SearchComponent } from '../search/search.component';
 import { NavComponent } from '../nav/nav.component';
@@ -12,15 +11,7 @@ import { SiderComponent } from '../sider/sider.component';
 @Component({
   selector: 'ns-header',
   standalone: true,
-  imports: [
-    CommonModule,
-    XButtonComponent,
-    LogoComponent,
-    SearchComponent,
-    NavComponent,
-    XDrawerComponent,
-    SiderComponent
-  ],
+  imports: [XButtonComponent, LogoComponent, SearchComponent, NavComponent, XDrawerComponent, SiderComponent],
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -43,5 +34,13 @@ export class HeaderComponent implements OnInit {
   push(page: string) {
     this.storage.setLocal('Lang', page);
     location.href = `${location.origin}/${page}/${location.hash}`;
+  }
+
+  onLeftDrawer(visible: boolean) {
+    this.layout.leftDrawerVisible = visible;
+  }
+
+  onRightDrawer(visible: boolean) {
+    this.layout.rightDrawerVisible = visible;
   }
 }

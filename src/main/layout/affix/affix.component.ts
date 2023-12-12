@@ -3,12 +3,11 @@ import { LayoutService } from '../layout.service';
 import { XConfigService, X_THEME_COLORS, X_THEME_DARK_COLORS } from '@ng-nest/ui/core';
 import { ConfigService } from '@services';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ns-affix',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './affix.component.html',
   encapsulation: ViewEncapsulation.None
 })
