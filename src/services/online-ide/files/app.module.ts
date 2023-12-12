@@ -7,7 +7,9 @@ export function importFromProviders(selector: string, providers: string[]) {
 
 export function importFromOtherSelectors(selector: string, otherSelectors: string[]) {
   if (otherSelectors.length === 0) return '';
-  return otherSelectors.map((x) => `import { Ex${classify(x)}Component } from "./${selector}/${x}.component";`).join('\n');
+  return otherSelectors
+    .map((x) => `import { Ex${classify(x)}Component } from "./${selector}/${x}.component";`)
+    .join('\n');
 }
 
 export function importProviders(providers: string[]) {
@@ -28,13 +30,14 @@ import { NgModule } from '@angular/core';
   
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgNestModule } from './ng-nest.module';
 import { Ex${classify(selector)}Component } from "./${selector}/${selector}.component";
 ${importFromOtherSelectors(selector, otherSelectors)}
 ${importFromProviders(selector, providers)}
 @NgModule({
-  declarations: [AppComponent, Ex${classify(selector)}Component, ${declarationOtherSelectors(otherSelectors)}],
-  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgNestModule],
+  declarations: [AppComponent, ${declarationOtherSelectors(otherSelectors)}],
+  imports: [BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientModule, Ex${classify(
+    selector
+  )}Component,],
   providers: [${importProviders(providers)}],
   bootstrap: [AppComponent]
 })

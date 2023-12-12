@@ -107,7 +107,7 @@ export function generateTools(name: string, otherNames: string[], providers: str
       content="从 StackBlitz 打开"
       placement="top"
       (click)="
-        this.ois.openStackBlitz('${name}', [${otherNames.join(', ')}], [{{ __modules }}], [${providers.join(', ')}], {
+        this.ois.openStackBlitz('${name}', [${otherNames.join(', ')}], [${providers.join(', ')}], {
           ${files.join(', ')}
         })
       "

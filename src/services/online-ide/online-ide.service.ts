@@ -5,7 +5,6 @@ import mainTs from './files/main';
 import polyfillTS from './files/polyfills';
 import appComponentTs from './files/app.component';
 import appModuleTs from './files/app.module';
-import ngNestModuleTs from './files/ng-nest.module';
 import environmentTS from './files/environment';
 import tsconfigTS from './files/tsconfig.json';
 import tsconfigAppTS from './files/tsconfig.app.json';
@@ -31,7 +30,6 @@ export class OnlineIdeService {
   openStackBlitz(
     selector: string,
     otherSelectors: string[],
-    modules: string[],
     providers: string[],
     files: { [fileName: string]: string }
   ) {
@@ -49,7 +47,6 @@ export class OnlineIdeService {
         'src/main.ts': mainTs,
         'src/polyfills.ts': polyfillTS,
         'src/app/app.module.ts': appModuleTs(selector, otherSelectors, providers),
-        'src/app/ng-nest.module.ts': ngNestModuleTs(modules),
         'src/app/app.component.ts': appComponentTs,
         'src/app/app.component.html': `<ex-${selector}></ex-${selector}>`,
         'src/styles.scss': '/* You can add global styles to this file, and also import other style files */',
