@@ -1,9 +1,9 @@
 <div #calendar class="x-calendar" [ngClass]="classMap">
   <div class="x-calendar-header">
     <div class="x-calendar-header-left">
-      <ng-container *ngIf="headerLeftTemp">
+      @if (headerLeftTemp) {
         <ng-container *ngTemplateOutlet="headerLeftTemp"></ng-container>
-      </ng-container>
+      }
     </div>
     <div class="x-calendar-header-right">
       <x-date-picker [(ngModel)]="datetime" [type]="model" showHeader="false" [clearable]="false"></x-date-picker>
@@ -15,47 +15,61 @@
     </div>
   </div>
   <div class="x-calendar-body">
-    <x-picker-date
-      *ngIf="model === 'month'"
-      [display]="datetime"
-      (modelChange)="dateOnChange($event)"
-      (rangeChange)="rangeOnChange($event)"
-      [dateTemp]="dateTemp"
-      showHeader="false"
-    ></x-picker-date>
-    <x-picker-month
-      *ngIf="model === 'year'"
-      [display]="datetime"
-      (modelChange)="dateOnChange($event)"
-      (rangeChange)="rangeOnChange($event)"
-      [monthTemp]="monthTemp"
-      showHeader="false"
-    ></x-picker-month>
+    @if (model === 'month') {
+      <x-picker-date
+        [display]="datetime"
+        (modelChange)="dateOnChange($event)"
+        (rangeChange)="rangeOnChange($event)"
+        [dateTemp]="dateTemp"
+        showHeader="false"
+      ></x-picker-date>
+    }
+    @if (model === 'year') {
+      <x-picker-month
+        [display]="datetime"
+        (modelChange)="dateOnChange($event)"
+        (rangeChange)="rangeOnChange($event)"
+        [monthTemp]="monthTemp"
+        showHeader="false"
+      ></x-picker-month>
+    }
   </div>
 </div>
 
 <ng-template #dateTemp let-date="date$">
   <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate | date: 'yyyyMMdd')">
     <span [title]="date | date: 'yyyy-MM-dd'">{{ date | date: 'd' }}</span>
-    <div class="x-calendar-date-content" *ngIf="displayType === 'calendar'">
-      <ul *ngIf="getDate(date)">
-        <li *ngFor="let item of getDate(date); trackBy: trackByDate">
-          <span [title]="item.id + item.label">{{ item.id }}{{ item.label }}</span>
-        </li>
-      </ul>
-    </div>
+    @if (displayType === 'calendar') {
+      <div class="x-calendar-date-content">
+        @if (getDate(date)) {
+          <ul>
+            @for (item of getDate(date); track item.id + item.label) {
+              <li>
+                <span [title]="item.id + item.label">{{ item.id }}{{ item.label }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
   </div>
 </ng-template>
 
 <ng-template #monthTemp let-date="date$">
   <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate | date: 'yyyyMM')">
     <span [title]="date | date: 'yyyy-MM'">{{ getLocaleMonth(date) }}</span>
-    <div class="x-calendar-month-content" *ngIf="displayType === 'calendar'">
-      <ul *ngIf="getMonth(date)">
-        <li *ngFor="let item of getMonth(date); trackBy: trackByMonth">
-          <x-link x-tooltip [content]="item.label" placement="top">{{ item.id }}</x-link>
-        </li>
-      </ul>
-    </div>
+    @if (displayType === 'calendar') {
+      <div class="x-calendar-month-content">
+        @if (getMonth(date)) {
+          <ul>
+            @for (item of getMonth(date); track item.id) {
+              <li>
+                <x-link x-tooltip [content]="item.label" placement="top">{{ item.id }}</x-link>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
   </div>
 </ng-template>

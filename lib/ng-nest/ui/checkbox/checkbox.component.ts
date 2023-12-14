@@ -30,13 +30,13 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
     FormsModule,
     XButtonComponent,
     XButtonsComponent,
@@ -147,10 +147,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnC
       this.single = this.nodes.length === 1;
       this.cdr.detectChanges();
     });
-  }
-
-  trackByItem(_index: number, item: XCheckboxNode) {
-    return item.id;
   }
 
   formControlChanges() {

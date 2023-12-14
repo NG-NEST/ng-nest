@@ -13,12 +13,10 @@ import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.propert
 import { XDropAnimation, XConfigService } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './carousel-panel.component.html',
   styleUrls: ['./carousel-panel.component.scss'],
   animations: [XDropAnimation],

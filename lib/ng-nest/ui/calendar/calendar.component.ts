@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty, XCalendarNode } from './calendar.property';
 import { XIsChange, XConfigService, XIsEmpty } from '@ng-nest/ui/core';
-import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { XI18nService, XI18nCalendar, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
@@ -26,7 +26,9 @@ import { FormsModule } from '@angular/forms';
   selector: `${XCalendarPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
+    NgTemplateOutlet,
+    DatePipe,
     FormsModule,
     XLinkComponent,
     XTooltipDirective,
@@ -157,10 +159,6 @@ export class XCalendarComponent extends XCalendarProperty implements OnInit, OnC
 
   getMonth(date: Date): XCalendarNode[] {
     return this.monthData?.[this.datePipe.transform(date, 'yyyy-MM') as string];
-  }
-
-  trackByDate(_index: number, item: XCalendarNode) {
-    return `${item.id}-${item.label}`;
   }
 
   trackByMonth(_index: number, item: XCalendarNode) {

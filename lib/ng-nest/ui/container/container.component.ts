@@ -10,12 +10,10 @@ import {
 } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XContainerPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,18 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  inject
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XCollapsePrefix, XCollapseProperty } from './collapse.property';
 import { XIsArray, XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCollapsePrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './collapse.component.html',
   styleUrls: ['./collapse.component.scss'],
   encapsulation: ViewEncapsulation.None,

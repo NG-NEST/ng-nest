@@ -1,7 +1,9 @@
 <div #card class="x-card" [ngClass]="classMap" [style.width]="width">
-  <div class="x-card-header" *ngIf="header">
-    <ng-container *xOutlet="header">{{ header }}</ng-container>
-  </div>
+  @if (header) {
+    <div class="x-card-header">
+      <ng-container *xOutlet="header">{{ header }}</ng-container>
+    </div>
+  }
   <div class="x-card-body" [ngStyle]="bodyStyle">
     <ng-content></ng-content>
   </div>

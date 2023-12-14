@@ -12,79 +12,92 @@
   [class.x-checkbox-after-template]="afterIsTemplate"
   [class.x-checkbox-before-template]="beforeIsTemplate"
 >
-  <label *ngIf="label" [class.x-checkbox-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label) {
+    <label [class.x-checkbox-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
+      label
+    }}</label>
+  }
   <div class="x-checkbox-row">
-    <div class="x-checkbox-row-before" *ngIf="before">
-      <ng-container *xOutlet="before">{{ before }}</ng-container>
+    @if (before) {
+      <div class="x-checkbox-row-before">
+        <ng-container *xOutlet="before">{{ before }}</ng-container>
+      </div>
+    }
+    <div class="x-checkbox-row-list">
+      @switch (checkboxType) {
+        @case ('initial') {
+          @for (item of nodes; track item.id) {
+            <div
+              class="x-checkbox-row-item"
+              [class.x-checked]="getChecked(item.id)"
+              [class.x-disabled]="disabled || item.disabled"
+              [class.x-indeterminate]="indeterminate"
+              (click)="checkboxClick($event, item)"
+            >
+              <span class="x-checkbox-box"></span>
+              <span class="x-checkbox-label">
+                <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
+              </span>
+            </div>
+          }
+        }
+        @case ('button') {
+          <x-buttons>
+            @for (item of nodes; track item.id) {
+              <x-button
+                [icon]="item.icon"
+                [title]="item.title"
+                [size]="size"
+                [type]="type"
+                [activated]="getChecked(item.id)"
+                [disabled]="getDisabled(item.disabled)"
+                attrType="button"
+                (click)="checkboxClick($event, item)"
+                >{{ item.label }}</x-button
+              >
+            }
+          </x-buttons>
+        }
+        @case ('icon') {
+          <x-buttons>
+            @for (item of nodes; track item.id) {
+              <x-button
+                [icon]="item.icon"
+                [title]="item.title"
+                [size]="size"
+                [type]="type"
+                [activated]="getChecked(item.id)"
+                [disabled]="getDisabled(item.disabled)"
+                attrType="button"
+                (click)="checkboxClick($event, item)"
+                >{{ item.label }}</x-button
+              >
+            }
+          </x-buttons>
+        }
+        @case ('tag') {
+          @for (item of nodes; track item.id) {
+            <x-tag
+              *ngFor="let item of nodes; trackBy: trackByItem"
+              checked
+              manual
+              [type]="type"
+              [size]="size"
+              [bordered]="tagBordered"
+              [dark]="tagDark"
+              [disabled]="getDisabled(item.disabled)"
+              [selected]="getChecked(item.id)"
+              (click)="checkboxClick($event, item)"
+              >{{ item.label }}</x-tag
+            >
+          }
+        }
+      }
     </div>
-    <div class="x-checkbox-row-list" [ngSwitch]="checkboxType">
-      <ng-container *ngSwitchCase="'initial'">
-        <div
-          class="x-checkbox-row-item"
-          *ngFor="let item of nodes; trackBy: trackByItem"
-          [class.x-checked]="getChecked(item.id)"
-          [class.x-disabled]="disabled || item.disabled"
-          [class.x-indeterminate]="indeterminate"
-          (click)="checkboxClick($event, item)"
-        >
-          <span class="x-checkbox-box"></span>
-          <span class="x-checkbox-label">
-            <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
-          </span>
-        </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="'button'">
-        <x-buttons>
-          <x-button
-            *ngFor="let item of nodes; trackBy: trackByItem"
-            [icon]="item.icon"
-            [title]="item.title"
-            [size]="size"
-            [type]="type"
-            [activated]="getChecked(item.id)"
-            [disabled]="getDisabled(item.disabled)"
-            attrType="button"
-            (click)="checkboxClick($event, item)"
-            >{{ item.label }}</x-button
-          >
-        </x-buttons>
-      </ng-container>
-      <ng-container *ngSwitchCase="'icon'">
-        <x-buttons>
-          <x-button
-            *ngFor="let item of nodes; trackBy: trackByItem"
-            [icon]="item.icon"
-            [title]="item.title"
-            [size]="size"
-            [type]="type"
-            [activated]="getChecked(item.id)"
-            [disabled]="getDisabled(item.disabled)"
-            attrType="button"
-            (click)="checkboxClick($event, item)"
-            >{{ item.label }}</x-button
-          >
-        </x-buttons>
-      </ng-container>
-      <ng-container *ngSwitchCase="'tag'">
-        <x-tag
-          *ngFor="let item of nodes; trackBy: trackByItem"
-          checked
-          manual
-          [type]="type"
-          [size]="size"
-          [bordered]="tagBordered"
-          [dark]="tagDark"
-          [disabled]="getDisabled(item.disabled)"
-          [selected]="getChecked(item.id)"
-          (click)="checkboxClick($event, item)"
-          >{{ item.label }}</x-tag
-        >
-      </ng-container>
-    </div>
-    <div class="x-checkbox-row-after" *ngIf="after">
-      <ng-container *xOutlet="after">{{ after }}</ng-container>
-    </div>
+    @if (after) {
+      <div class="x-checkbox-row-after">
+        <ng-container *xOutlet="after">{{ after }}</ng-container>
+      </div>
+    }
   </div>
 </div>
-
-<ng-template #default> </ng-template>

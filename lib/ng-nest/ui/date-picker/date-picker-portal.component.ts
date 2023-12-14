@@ -28,7 +28,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XTimePickerFrameComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
@@ -44,7 +44,8 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XDatePickerPortalPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgTemplateOutlet,
+    DatePipe,
     XPickerDateComponent,
     XPickerMonthComponent,
     XPickerQuarterComponent,

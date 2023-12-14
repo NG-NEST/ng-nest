@@ -1,20 +1,14 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  inject
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XCardPrefix, XCardProperty } from './card.property';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: `${XCardPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, NgStyle, XIconComponent, XOutletDirective],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,

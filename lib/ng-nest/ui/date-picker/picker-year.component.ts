@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
 import { XDateCell, XPickerYearProperty } from './date-picker.property';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'x-picker-year',
   standalone: true,
-  imports: [CommonModule, XLinkComponent],
+  imports: [DatePipe, NgTemplateOutlet, XLinkComponent],
   templateUrl: './picker-year.component.html',
   styleUrls: ['./picker-year.component.scss'],
   encapsulation: ViewEncapsulation.None,

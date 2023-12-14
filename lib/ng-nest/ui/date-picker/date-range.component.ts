@@ -32,7 +32,7 @@ import {
   XParents
 } from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
-import { CommonModule, DOCUMENT, DatePipe } from '@angular/common';
+import { DOCUMENT, DatePipe, NgClass } from '@angular/common';
 import {
   Overlay,
   OverlayConfig,
@@ -48,17 +48,14 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: `${XDateRangePrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XInputComponent, XInputGroupComponent],
+  imports: [NgClass, FormsModule, XInputComponent, XInputGroupComponent],
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XDateRangeComponent), DatePipe]
 })
-export class XDateRangeComponent
-  extends XDateRangeProperty
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
-{
+export class XDateRangeComponent extends XDateRangeProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild('dateRange', { static: true }) dateRange!: ElementRef<HTMLElement>;
   @ViewChild('inputGroup', { static: true }) inputGroup!: XInputGroupComponent;
   @ViewChild('inputStartCom', { static: true }) inputStartCom!: XInputComponent;
@@ -160,13 +157,7 @@ export class XDateRangeComponent
   configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(
-      this.dateRange.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.dateRange.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setHostTypeClass();
     this.setFormat();
     this.setClassMap();
@@ -320,16 +311,16 @@ export class XDateRangeComponent
     return this.modelType === 'date'
       ? this.numberValue.map((x) => new Date(x!))
       : this.modelType === 'string'
-      ? this.numberValue.map((x) => this.datePipe.transform(x, this.format))
-      : this.numberValue;
+        ? this.numberValue.map((x) => this.datePipe.transform(x, this.format))
+        : this.numberValue;
   }
 
   getNumberValue() {
     return this.modelType === 'date'
       ? this.value.map((x: Date) => x.getTime())
       : this.modelType === 'string'
-      ? this.value.map((x: string) => new Date(x).getTime())
-      : this.value;
+        ? this.value.map((x: string) => new Date(x).getTime())
+        : this.value;
   }
 
   portalAttached() {
@@ -406,12 +397,10 @@ export class XDateRangeComponent
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -445,10 +434,10 @@ export class XDateRangeComponent
     this.startDisplay = !node
       ? ''
       : this.type === 'week'
-      ? XDateYearWeek(node)!
-      : this.type === 'quarter'
-      ? XDateYearQuarter(node)!
-      : this.datePipe.transform(node, this.format)!;
+        ? XDateYearWeek(node)!
+        : this.type === 'quarter'
+          ? XDateYearQuarter(node)!
+          : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputEndCom.inputFocus('after');
       this.activeTypeChange.next('end');
@@ -460,10 +449,10 @@ export class XDateRangeComponent
     this.endDisplay = !node
       ? ''
       : this.type === 'week'
-      ? XDateYearWeek(node)!
-      : this.type === 'quarter'
-      ? XDateYearQuarter(node)!
-      : this.datePipe.transform(node, this.format)!;
+        ? XDateYearWeek(node)!
+        : this.type === 'quarter'
+          ? XDateYearQuarter(node)!
+          : this.datePipe.transform(node, this.format)!;
     if (!close && isDatePicker) {
       this.inputStartCom.inputFocus('after');
       this.activeTypeChange.next('start');

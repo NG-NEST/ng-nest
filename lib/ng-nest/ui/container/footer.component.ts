@@ -11,12 +11,10 @@ import {
 import { XFooterPrefix, XFooterProperty } from './container.property';
 import { XContainerComponent } from './container.component';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XFooterPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./footer.component.scss'],
   encapsulation: ViewEncapsulation.None,

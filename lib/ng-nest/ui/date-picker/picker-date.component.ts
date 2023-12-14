@@ -12,13 +12,13 @@ import { XDateCell, XDatePickerType, XPickerDatePrefix, XPickerDateProperty } fr
 import { Subject } from 'rxjs';
 import { XI18nDatePicker, XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
-import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XPickerDatePrefix}`,
   standalone: true,
-  imports: [CommonModule, XLinkComponent, XI18nPipe],
+  imports: [DatePipe, NgTemplateOutlet, XLinkComponent, XI18nPipe],
   templateUrl: './picker-date.component.html',
   styleUrls: ['./picker-date.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -367,9 +367,5 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
     this.type = type;
     this.typeChange.emit(type);
     this.cdr.detectChanges();
-  }
-
-  trackByNode(_index: number, item: string | Date | XDateCell) {
-    return item;
   }
 }

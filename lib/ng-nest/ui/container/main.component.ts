@@ -9,12 +9,10 @@ import {
 } from '@angular/core';
 import { XMainPrefix } from './container.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XMainPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None,

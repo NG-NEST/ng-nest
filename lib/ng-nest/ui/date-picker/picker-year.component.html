@@ -1,53 +1,58 @@
 <div class="x-picker-year">
-  <div class="x-picker-year-header" *ngIf="showHeader">
-    <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYears(-10)"></x-link>
-    <div class="x-picker-year-year-month">
-      <x-link>{{ start }}</x-link> -
-      <x-link>{{ end }}</x-link>
+  @if (showHeader) {
+    <div class="x-picker-year-header">
+      <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYears(-10)"></x-link>
+      <div class="x-picker-year-year-month">
+        <x-link>{{ start }}</x-link> -
+        <x-link>{{ end }}</x-link>
+      </div>
+      <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYears(10)"></x-link>
     </div>
-    <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYears(10)"></x-link>
-  </div>
+  }
   <div class="x-picker-year-body">
     <table cellspacing="0" cellpadding="0">
-      <tr *ngFor="let years of chunkDates">
-        <ng-container *ngFor="let year of years; trackBy: trackByYear">
-          <td
-            class="x-picker-date-item"
-            [class.x-date-disabled]="year.isDisabled"
-            [class.x-date-last-or-next]="year.isLastOrNext"
-            [class.x-date-now]="year.isNow"
-            [class.x-date-first-day]="year.isFirstDay"
-            [class.x-date-last-day]="year.isLastDay"
-            [class.x-date-range-start]="rangePicker && isStartYear(year.date!)"
-            [class.x-date-range-end]="rangePicker && isEndYear(year.date!)"
-            [class.x-date-range-start-left]="rangePicker && year.isRangeStartLeft"
-            [class.x-date-range-start-right]="rangePicker && year.isRangeStartRight"
-            [class.x-date-range-end-left]="rangePicker && year.isRangeEndLeft"
-            [class.x-date-range-end-right]="rangePicker && year.isRangeEndRight"
-            [class.x-date-range-hover]="rangePicker && year.isRangeHover"
-            [class.x-date-range-hover-start-left]="rangePicker && year.isRangeHoverStartLeft"
-            [class.x-date-range-hover-start-right]="rangePicker && year.isRangeHoverStartRight"
-            [class.x-date-range-hover-end-left]="rangePicker && year.isRangeHoverEndLeft"
-            [class.x-date-range-hover-end-right]="rangePicker && year.isRangeHoverEndRight"
-            [class.x-date-range-hover-start]="rangePicker && year.isRangeHoverStart"
-            [class.x-date-range-hover-end]="rangePicker && year.isRangeHoverEnd"
-            [class.x-date-in-range]="rangePicker && year.isInRange"
-            [class.x-date-in-range-hover]="rangePicker && year.isInRangeHover"
-            [class.x-date-active]="!rangePicker && (year.date | date : 'yyyy') === (model | date : 'yyyy')"
-            title="{{ year.date | date : 'yyyy' }}"
-            (click)="!year.isDisabled && yearClick(year)"
-            (mouseenter)="!year.isDisabled && rangePicker && onTdMouseenter(year)"
-            (mouseleave)="!year.isDisabled && rangePicker && onTdMouseleave(year)"
-          >
-            <div *ngIf="!yearTemp" class="x-date-text">
-              {{ year.date | date : 'yyyy' }}
-            </div>
-            <ng-container *ngIf="yearTemp">
-              <ng-container *ngTemplateOutlet="yearTemp; context: { date$: year.date }"></ng-container>
-            </ng-container>
-          </td>
-        </ng-container>
-      </tr>
+      @for (years of chunkDates; track years) {
+        <tr>
+          @for (year of years; track year) {
+            <td
+              class="x-picker-date-item"
+              [class.x-date-disabled]="year.isDisabled"
+              [class.x-date-last-or-next]="year.isLastOrNext"
+              [class.x-date-now]="year.isNow"
+              [class.x-date-first-day]="year.isFirstDay"
+              [class.x-date-last-day]="year.isLastDay"
+              [class.x-date-range-start]="rangePicker && isStartYear(year.date!)"
+              [class.x-date-range-end]="rangePicker && isEndYear(year.date!)"
+              [class.x-date-range-start-left]="rangePicker && year.isRangeStartLeft"
+              [class.x-date-range-start-right]="rangePicker && year.isRangeStartRight"
+              [class.x-date-range-end-left]="rangePicker && year.isRangeEndLeft"
+              [class.x-date-range-end-right]="rangePicker && year.isRangeEndRight"
+              [class.x-date-range-hover]="rangePicker && year.isRangeHover"
+              [class.x-date-range-hover-start-left]="rangePicker && year.isRangeHoverStartLeft"
+              [class.x-date-range-hover-start-right]="rangePicker && year.isRangeHoverStartRight"
+              [class.x-date-range-hover-end-left]="rangePicker && year.isRangeHoverEndLeft"
+              [class.x-date-range-hover-end-right]="rangePicker && year.isRangeHoverEndRight"
+              [class.x-date-range-hover-start]="rangePicker && year.isRangeHoverStart"
+              [class.x-date-range-hover-end]="rangePicker && year.isRangeHoverEnd"
+              [class.x-date-in-range]="rangePicker && year.isInRange"
+              [class.x-date-in-range-hover]="rangePicker && year.isInRangeHover"
+              [class.x-date-active]="!rangePicker && (year.date | date: 'yyyy') === (model | date: 'yyyy')"
+              title="{{ year.date | date: 'yyyy' }}"
+              (click)="!year.isDisabled && yearClick(year)"
+              (mouseenter)="!year.isDisabled && rangePicker && onTdMouseenter(year)"
+              (mouseleave)="!year.isDisabled && rangePicker && onTdMouseleave(year)"
+            >
+              @if (yearTemp) {
+                <ng-container *ngTemplateOutlet="yearTemp; context: { date$: year.date }"></ng-container>
+              } @else {
+                <div class="x-date-text">
+                  {{ year.date | date: 'yyyy' }}
+                </div>
+              }
+            </td>
+          }
+        </tr>
+      }
     </table>
   </div>
 </div>

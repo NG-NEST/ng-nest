@@ -18,12 +18,18 @@
   [disabled]="disabled"
   [attr.type]="attrType"
 >
-  <x-icon *ngIf="direction === 'row' && icon && !loading" [type]="icon"></x-icon>
-  <span *ngIf="loading" class="x-button-loading">
-    <svg class="x-button-circular" viewBox="25 25 50 50">
-      <circle class="x-button-path" cx="50" cy="50" r="20" fill="none" />
-    </svg>
-  </span>
+  @if (direction === 'row' && icon && !loading) {
+    <x-icon [type]="icon"></x-icon>
+  }
+  @if (loading) {
+    <span class="x-button-loading">
+      <svg class="x-button-circular" viewBox="25 25 50 50">
+        <circle class="x-button-path" cx="50" cy="50" r="20" fill="none" />
+      </svg>
+    </span>
+  }
   <span #content><ng-content></ng-content></span>
-  <x-icon *ngIf="direction === 'row-reverse' && icon && !loading" [type]="icon"></x-icon>
+  @if (direction === 'row-reverse' && icon && !loading) {
+    <x-icon [type]="icon"></x-icon>
+  }
 </button>

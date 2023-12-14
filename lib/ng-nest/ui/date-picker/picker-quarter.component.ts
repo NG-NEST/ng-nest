@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { XChunk, XIsChange, XConfigService, XIsNull, XIsFunction } from '@ng-nest/ui/core';
 import { XDateCell, XDatePickerType, XPickerQuarterProperty } from './date-picker.property';
-import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XI18nDatePicker, XI18nService } from '@ng-nest/ui/i18n';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -20,7 +20,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 @Component({
   selector: 'x-picker-quarter',
   standalone: true,
-  imports: [CommonModule, XLinkComponent, XDateQuarterPipe],
+  imports: [DatePipe, NgTemplateOutlet, XLinkComponent, XDateQuarterPipe],
   templateUrl: './picker-quarter.component.html',
   styleUrls: ['./picker-quarter.component.scss'],
   encapsulation: ViewEncapsulation.None,

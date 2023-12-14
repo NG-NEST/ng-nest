@@ -33,7 +33,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { CommonModule, DatePipe, LowerCasePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
 import { XPickerMonthComponent } from './picker-month.component';
 import { XPickerYearComponent } from './picker-year.component';
@@ -48,7 +48,8 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XDateRangePortalPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgTemplateOutlet,
+    DatePipe,
     XPickerDateComponent,
     XPickerMonthComponent,
     XPickerYearComponent,

@@ -1,16 +1,22 @@
 <ul #crumbs class="x-crumb">
-  <li *ngFor="let node of nodes; index as i; trackBy: trackByNode">
-    <x-link
-      [title]="nodeTpl ? node.label : ''"
-      [icon]="node.icon"
-      [disabled]="node.disabled || i === nodes.length - 1"
-      (click)="action('click', node, $event)"
-    >
-      <ng-container *ngIf="!nodeTpl">{{ node.label }}</ng-container>
-      <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
-    </x-link>
-    <span class="x-crumb-separator" *ngIf="i !== nodes.length - 1">
-      <ng-container *xOutlet="separator">{{ separator }}</ng-container>
-    </span>
-  </li>
+  @for (node of nodes; track node.id; let i = $index) {
+    <li>
+      <x-link
+        [title]="nodeTpl ? node.label : ''"
+        [icon]="node.icon"
+        [disabled]="node.disabled || i === nodes.length - 1"
+        (click)="action('click', node, $event)"
+      >
+        @if (!nodeTpl) {
+          {{ node.label }}
+        }
+        <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+      </x-link>
+      @if (i !== nodes.length - 1) {
+        <span class="x-crumb-separator">
+          <ng-container *xOutlet="separator">{{ separator }}</ng-container>
+        </span>
+      }
+    </li>
+  }
 </ul>

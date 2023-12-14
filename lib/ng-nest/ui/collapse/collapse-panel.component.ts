@@ -11,12 +11,11 @@ import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [XIconComponent, XOutletDirective],
   templateUrl: './collapse-panel.component.html',
   styleUrls: ['./collapse-panel.component.scss'],
   animations: [XDropAnimation],

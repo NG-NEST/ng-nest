@@ -13,13 +13,13 @@ import {
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
 import { XClearClass, XConfigService, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
-import { CommonModule } from '@angular/common';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XDescriptionPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective],
+  imports: [NgClass, NgTemplateOutlet, XOutletDirective],
   templateUrl: './description.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

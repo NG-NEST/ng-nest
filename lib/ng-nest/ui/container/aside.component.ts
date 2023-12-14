@@ -10,12 +10,10 @@ import {
 } from '@angular/core';
 import { XAsidePrefix, XAsideProperty } from './container.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XAsidePrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./aside.component.scss'],
   encapsulation: ViewEncapsulation.None,

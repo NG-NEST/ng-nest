@@ -41,15 +41,15 @@ import { map, takeUntil } from 'rxjs/operators';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
 import { XDialogContainerComponent } from './dialog-container.component';
-import { CommonModule } from '@angular/common';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { NgStyle, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XDialogPrefix}`,
   standalone: true,
-  imports: [CommonModule, XAlertComponent, XButtonComponent, XButtonsComponent, XOutletDirective],
+  imports: [NgStyle, NgTemplateOutlet, XAlertComponent, XButtonComponent, XButtonsComponent, XOutletDirective],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,

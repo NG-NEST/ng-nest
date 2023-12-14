@@ -13,12 +13,11 @@ import { Subject } from 'rxjs';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XCommentReplyPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XInputComponent, XI18nPipe, XButtonComponent],
+  imports: [FormsModule, XInputComponent, XI18nPipe, XButtonComponent],
   templateUrl: './comment-reply.component.html',
   styleUrls: ['./comment-reply.component.scss'],
   encapsulation: ViewEncapsulation.None,

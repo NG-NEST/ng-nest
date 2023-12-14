@@ -26,13 +26,13 @@ import {
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
 import { XControlValueAccessor, XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-color-picker',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,

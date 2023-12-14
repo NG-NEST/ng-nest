@@ -1,5 +1,7 @@
 <ng-template #drawerTpl>
-  <div class="x-drawer-backdrop" *ngIf="container" (click)="closePortal()"></div>
+  @if (container) {
+    <div class="x-drawer-backdrop" (click)="closePortal()"></div>
+  }
   <div
     class="x-drawer"
     [ngClass]="classMap"
@@ -8,17 +10,19 @@
     [class.x-drawer-visible]="visible"
     [@x-slide-animation]="placement"
   >
-    <div class="x-drawer-header" *ngIf="title">
-      <div class="x-drawer-title">
-        <ng-container *xOutlet="title">{{ title }}</ng-container>
+    @if (title) {
+      <div class="x-drawer-header">
+        <div class="x-drawer-title">
+          <ng-container *xOutlet="title">{{ title }}</ng-container>
+        </div>
+        <x-button class="x-drawer-close" icon="fto-x" (click)="closePortal()" onlyIcon closable></x-button>
       </div>
-      <x-button class="x-drawer-close" icon="fto-x" (click)="closePortal()" onlyIcon closable></x-button>
-    </div>
+    }
     <div class="x-drawer-content">
       <ng-content></ng-content>
     </div>
   </div>
 </ng-template>
-<ng-container *ngIf="container">
+@if (container) {
   <ng-container *ngTemplateOutlet="drawerTpl"></ng-container>
-</ng-container>
+}

@@ -11,12 +11,10 @@ import {
 import { XHeaderPrefix, XHeaderProperty } from './container.property';
 import { XContainerComponent } from './container.component';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XHeaderPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,

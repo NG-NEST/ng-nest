@@ -1,52 +1,57 @@
 <div class="x-picker-quarter" [class.x-date-picker-quartertemp]="quarterTemp">
-  <div class="x-picker-quarter-header" *ngIf="showHeader">
-    <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
-    <div class="x-picker-quarter-year-quarter">
-      <x-link (click)="typeOnChange('year')">{{ display | date : 'yyyy' }}{{ locale.year }}</x-link>
+  @if (showHeader) {
+    <div class="x-picker-quarter-header">
+      <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
+      <div class="x-picker-quarter-year-quarter">
+        <x-link (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-link>
+      </div>
+      <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYear(1)"></x-link>
     </div>
-    <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYear(1)"></x-link>
-  </div>
+  }
   <div class="x-picker-quarter-body">
     <table cellspacing="0" cellpadding="0">
-      <tr *ngFor="let quarters of chunkDates">
-        <ng-container *ngFor="let quarter of quarters; trackBy: trackByQuarter">
-          <td
-            class="x-picker-date-item"
-            [class.x-date-disabled]="quarter.isDisabled"
-            [class.x-date-last-or-next]="quarter.isLastOrNext"
-            [class.x-date-now]="quarter.isNow"
-            [class.x-date-first-day]="quarter.isFirstDay"
-            [class.x-date-last-day]="quarter.isLastDay"
-            [class.x-date-range-start]="rangePicker && isStartQuarter(quarter.date!)"
-            [class.x-date-range-end]="rangePicker && isEndQuarter(quarter.date!)"
-            [class.x-date-range-start-left]="rangePicker && quarter.isRangeStartLeft"
-            [class.x-date-range-start-right]="rangePicker && quarter.isRangeStartRight"
-            [class.x-date-range-end-left]="rangePicker && quarter.isRangeEndLeft"
-            [class.x-date-range-end-right]="rangePicker && quarter.isRangeEndRight"
-            [class.x-date-range-hover]="rangePicker && quarter.isRangeHover"
-            [class.x-date-range-hover-start-left]="rangePicker && quarter.isRangeHoverStartLeft"
-            [class.x-date-range-hover-start-right]="rangePicker && quarter.isRangeHoverStartRight"
-            [class.x-date-range-hover-end-left]="rangePicker && quarter.isRangeHoverEndLeft"
-            [class.x-date-range-hover-end-right]="rangePicker && quarter.isRangeHoverEndRight"
-            [class.x-date-range-hover-start]="rangePicker && quarter.isRangeHoverStart"
-            [class.x-date-range-hover-end]="rangePicker && quarter.isRangeHoverEnd"
-            [class.x-date-in-range]="rangePicker && quarter.isInRange"
-            [class.x-date-in-range-hover]="rangePicker && quarter.isInRangeHover"
-            [class.x-date-active]="!rangePicker && (quarter.date | date : 'yyyyMM') === (model | date : 'yyyyMM')"
-            title="{{ quarter.date | xDateQuarter : true }}"
-            (click)="!quarter.isDisabled && quarterClick(quarter)"
-            (mouseenter)="!quarter.isDisabled && rangePicker && onTdMouseenter(quarter)"
-            (mouseleave)="!quarter.isDisabled && rangePicker && onTdMouseleave(quarter)"
-          >
-            <div *ngIf="!quarterTemp" class="x-date-text">
-              {{ quarter.date | xDateQuarter }}
-            </div>
-            <ng-container *ngIf="quarterTemp">
-              <ng-container *ngTemplateOutlet="quarterTemp; context: { date$: quarter.date }"></ng-container>
-            </ng-container>
-          </td>
-        </ng-container>
-      </tr>
+      @for (quarters of chunkDates; track quarters) {
+        <tr>
+          @for (quarter of quarters; track quarter) {
+            <td
+              class="x-picker-date-item"
+              [class.x-date-disabled]="quarter.isDisabled"
+              [class.x-date-last-or-next]="quarter.isLastOrNext"
+              [class.x-date-now]="quarter.isNow"
+              [class.x-date-first-day]="quarter.isFirstDay"
+              [class.x-date-last-day]="quarter.isLastDay"
+              [class.x-date-range-start]="rangePicker && isStartQuarter(quarter.date!)"
+              [class.x-date-range-end]="rangePicker && isEndQuarter(quarter.date!)"
+              [class.x-date-range-start-left]="rangePicker && quarter.isRangeStartLeft"
+              [class.x-date-range-start-right]="rangePicker && quarter.isRangeStartRight"
+              [class.x-date-range-end-left]="rangePicker && quarter.isRangeEndLeft"
+              [class.x-date-range-end-right]="rangePicker && quarter.isRangeEndRight"
+              [class.x-date-range-hover]="rangePicker && quarter.isRangeHover"
+              [class.x-date-range-hover-start-left]="rangePicker && quarter.isRangeHoverStartLeft"
+              [class.x-date-range-hover-start-right]="rangePicker && quarter.isRangeHoverStartRight"
+              [class.x-date-range-hover-end-left]="rangePicker && quarter.isRangeHoverEndLeft"
+              [class.x-date-range-hover-end-right]="rangePicker && quarter.isRangeHoverEndRight"
+              [class.x-date-range-hover-start]="rangePicker && quarter.isRangeHoverStart"
+              [class.x-date-range-hover-end]="rangePicker && quarter.isRangeHoverEnd"
+              [class.x-date-in-range]="rangePicker && quarter.isInRange"
+              [class.x-date-in-range-hover]="rangePicker && quarter.isInRangeHover"
+              [class.x-date-active]="!rangePicker && (quarter.date | date: 'yyyyMM') === (model | date: 'yyyyMM')"
+              title="{{ quarter.date | xDateQuarter: true }}"
+              (click)="!quarter.isDisabled && quarterClick(quarter)"
+              (mouseenter)="!quarter.isDisabled && rangePicker && onTdMouseenter(quarter)"
+              (mouseleave)="!quarter.isDisabled && rangePicker && onTdMouseleave(quarter)"
+            >
+              @if (quarterTemp) {
+                <ng-container *ngTemplateOutlet="quarterTemp; context: { date$: quarter.date }"></ng-container>
+              } @else {
+                <div class="x-date-text">
+                  {{ quarter.date | xDateQuarter }}
+                </div>
+              }
+            </td>
+          }
+        </tr>
+      }
     </table>
   </div>
 </div>

@@ -17,7 +17,7 @@ import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XComputed } from '
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
-import { CommonModule, DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
+import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -27,15 +27,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    DragDropModule,
-    XSliderSelectComponent,
-    XTabsComponent,
-    XTabComponent,
-    XInputComponent
-  ],
+  imports: [FormsModule, DragDropModule, XSliderSelectComponent, XTabsComponent, XTabComponent, XInputComponent],
   templateUrl: './color-picker-portal.component.html',
   styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

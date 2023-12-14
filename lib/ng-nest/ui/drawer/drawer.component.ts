@@ -19,13 +19,13 @@ import { Subscription } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
 import { XDrawerContainerComponent } from './drawer-container.component';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XDrawerPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective, XButtonComponent],
+  imports: [NgClass, NgTemplateOutlet, XOutletDirective, XButtonComponent],
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
   encapsulation: ViewEncapsulation.None,

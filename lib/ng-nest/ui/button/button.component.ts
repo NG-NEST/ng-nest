@@ -15,14 +15,14 @@ import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/co
 import { delay, of } from 'rxjs';
 import { XButtonPrefix, XButtonProperty } from './button.property';
 import { XButtonsComponent } from './buttons.component';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRippleDirective } from '@ng-nest/ui/ripple';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XButtonPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XRippleDirective],
+  imports: [NgClass, XIconComponent, XRippleDirective],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -71,16 +71,8 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
 
   setSpace() {
     if (!this.buttons?.space) return;
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-left',
-      `${Number(this.buttons.space) / 2}rem`
-    );
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-right',
-      `${Number(this.buttons.space) / 2}rem`
-    );
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${Number(this.buttons.space) / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${Number(this.buttons.space) / 2}rem`);
   }
 
   setDisabled() {

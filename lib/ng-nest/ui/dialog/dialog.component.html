@@ -1,5 +1,7 @@
 <ng-template #dialogTpl>
-  <div class="x-dialog-backdrop" *ngIf="container && hasBackdrop" [@x-opacity-animation]="visible" (click)="onClose('close')"></div>
+  @if (container && hasBackdrop) {
+    <div class="x-dialog-backdrop" [@x-opacity-animation]="visible" (click)="onClose('close')"></div>
+  }
   <div
     class="x-dialog"
     [@x-move-box-animation]="placement"
@@ -43,21 +45,32 @@
     </div>
     <div class="x-dialog-buttons" [class.x-dialog-buttons-center]="buttonsCenter">
       <ng-container *xOutlet="footer">
-        <x-buttons space="1" *ngIf="showCancel || showConfirm">
-          <x-button *ngIf="showCancel" (click)="onClose('cancel')">{{ getCancelText }}</x-button>
-          <x-button *ngIf="showConfirm" type="primary" (click)="onClose('confirm')">{{ getConfirmText }}</x-button>
-        </x-buttons>
+        @if (showCancel || showConfirm) {
+          <x-buttons space="1">
+            @if (showCancel) {
+              <x-button (click)="onClose('cancel')">{{ getCancelText }}</x-button>
+            }
+            @if (showConfirm) {
+              <x-button type="primary" (click)="onClose('confirm')">{{ getConfirmText }}</x-button>
+            }
+          </x-buttons>
+        }
       </ng-container>
     </div>
   </div>
 </ng-template>
 
 <ng-template #operationTpl>
-  <ng-container *ngIf="maximize || resizable">
-    <x-button size="small" [icon]="isMaximize ? 'fto-minimize' : 'fto-maximize'" [onlyIcon]="true" (click)="onSize()"></x-button>
-  </ng-container>
+  @if (maximize || resizable) {
+    <x-button
+      size="small"
+      [icon]="isMaximize ? 'fto-minimize' : 'fto-maximize'"
+      [onlyIcon]="true"
+      (click)="onSize()"
+    ></x-button>
+  }
 </ng-template>
 
-<ng-container *ngIf="container && visible">
+@if (container && visible) {
   <ng-container *ngTemplateOutlet="dialogTpl"></ng-container>
-</ng-container>
+}

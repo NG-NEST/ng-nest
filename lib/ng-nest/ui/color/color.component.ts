@@ -7,14 +7,13 @@ import {
   ElementRef,
   inject
 } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
 import { toHex, mixColors, XConfigService, XComputed } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-color',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './color.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -40,9 +39,5 @@ export class XColorComponent extends XColorProperty implements OnInit {
       colors.push(toHex(mixColors(this.merge as string, this.hex.trim(), amount as number)));
     }
     this.colors = colors;
-  }
-
-  trackByColor(_index: number, item: string) {
-    return item;
   }
 }

@@ -13,12 +13,12 @@ import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XCrumbPrefix}`,
   standalone: true,
-  imports: [CommonModule, XLinkComponent, XOutletDirective],
+  imports: [NgTemplateOutlet, XLinkComponent, XOutletDirective],
   templateUrl: './crumb.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -49,10 +49,6 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
         });
         break;
     }
-  }
-
-  trackByNode(_index: number, item: XCrumbNode) {
-    return item.id;
   }
 
   private setData() {

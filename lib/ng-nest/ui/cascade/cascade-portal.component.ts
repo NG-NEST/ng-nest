@@ -16,14 +16,13 @@ import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { CommonModule } from '@angular/common';
 import { XListComponent } from '@ng-nest/ui/list';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade-portal',
   standalone: true,
-  imports: [CommonModule, FormsModule, XListComponent],
+  imports: [FormsModule, XListComponent],
   templateUrl: './cascade-portal.component.html',
   styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

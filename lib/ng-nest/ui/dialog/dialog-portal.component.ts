@@ -1,10 +1,4 @@
-import {
-  BasePortalOutlet,
-  CdkPortalOutlet,
-  ComponentPortal,
-  PortalModule,
-  TemplatePortal
-} from '@angular/cdk/portal';
+import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,12 +19,11 @@ import { AnimationEvent } from '@angular/animations';
 import { CdkDrag, CdkDragEnd, CdkDragHandle, DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
 import { XResizableDirective, XResizableEvent } from '@ng-nest/ui/resizable';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-dialog-portal',
   standalone: true,
-  imports: [CommonModule, DragDropModule, PortalModule, XResizableDirective],
+  imports: [DragDropModule, PortalModule, XResizableDirective],
   templateUrl: './dialog-portal.component.html',
   styleUrls: ['./dialog-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -40,20 +33,14 @@ import { CommonModule } from '@angular/common';
 export class XDialogPortalComponent extends BasePortalOutlet {
   // @HostBinding('class.x-dialog-portal') _has = true;
   @HostBinding('@x-move-box-animation') public placement?: XDialogAnimationState;
-  @HostListener('@x-move-box-animation.done', ['$event']) done({
-    toState,
-    totalTime
-  }: AnimationEvent) {
+  @HostListener('@x-move-box-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({
       action: 'done',
       state: toState as XDialogAnimationState,
       totalTime
     });
   }
-  @HostListener('@x-move-box-animation.start', ['$event']) start({
-    toState,
-    totalTime
-  }: AnimationEvent) {
+  @HostListener('@x-move-box-animation.start', ['$event']) start({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({
       action: 'start',
       state: toState as XDialogAnimationState,
@@ -89,12 +76,8 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   }
 
   ngOnInit() {
-    this.dialogBox['draggable'] = this.defaultMaximize
-      ? this.dialogBox['draggable']
-      : this.option.draggable;
-    this.dialogBox['resizable'] = this.defaultMaximize
-      ? this.dialogBox['resizable']
-      : this.option.resizable;
+    this.dialogBox['draggable'] = this.defaultMaximize ? this.dialogBox['draggable'] : this.option.draggable;
+    this.dialogBox['resizable'] = this.defaultMaximize ? this.dialogBox['resizable'] : this.option.resizable;
   }
 
   ngAfterViewInit() {
@@ -124,15 +107,10 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   }
 
   resizing(event: XResizableEvent) {
-    const contentHeight =
-      Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
+    const contentHeight = Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
     this.renderer.setStyle(this.dialogContent, 'max-height', 'initial');
     this.renderer.setStyle(this.dialogContent, 'flex', 'initial');
-    if (
-      ['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(
-        event.direction as string
-      )
-    ) {
+    if (['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(event.direction as string)) {
       this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
     }
   }

@@ -12,25 +12,17 @@ import {
   inject
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import {
-  XIsUndefined,
-  XIsChange,
-  XIsEmpty,
-  XNumber,
-  XResize,
-  XConfigService,
-  XResizeObserver
-} from '@ng-nest/ui/core';
+import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { NgClass, isPlatformBrowser } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: `${XCarouselPrefix}`,
   standalone: true,
-  imports: [CommonModule, XButtonComponent, XProgressComponent],
+  imports: [NgClass, XButtonComponent, XProgressComponent],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -124,9 +116,5 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
 
   getActivated(index: number) {
     return Number(this.active) === index;
-  }
-
-  trackByPanel(index: number, _item: any) {
-    return index;
   }
 }

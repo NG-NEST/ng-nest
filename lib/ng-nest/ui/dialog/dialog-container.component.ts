@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { XDialogContainerProperty, X_DIALOG_CONTAINER } from './dialog.property';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-dialog-container',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './dialog-container.component.html',
   styleUrls: ['./dialog-container.component.scss'],
   encapsulation: ViewEncapsulation.None,

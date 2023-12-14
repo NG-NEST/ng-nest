@@ -10,12 +10,10 @@ import {
 } from '@angular/core';
 import { XButtonsPrefix, XButtonsProperty } from './button.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XButtonsPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   template: '<ng-content></ng-content>',
   styleUrls: ['./buttons.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -40,15 +38,7 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
 
   setSpace() {
     if (!this.space) return;
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-left',
-      `-${Number(this.space) / 2}rem`
-    );
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-right',
-      `-${Number(this.space) / 2}rem`
-    );
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${Number(this.space) / 2}rem`);
+    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${Number(this.space) / 2}rem`);
   }
 }

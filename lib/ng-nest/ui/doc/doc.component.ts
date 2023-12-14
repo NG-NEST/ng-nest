@@ -8,12 +8,10 @@ import {
   inject
 } from '@angular/core';
 import { XDocPrefix } from './doc.property';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-doc',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './doc.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -13,12 +13,11 @@ import {
 import { XSlideAnimation } from '@ng-nest/ui/core';
 import { XDrawerAnimationEvent, XDrawerAnimationState } from './drawer.property';
 import { AnimationEvent } from '@angular/animations';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'x-drawer-portal',
   standalone: true,
-  imports: [CommonModule, PortalModule],
+  imports: [PortalModule],
   templateUrl: './drawer-portal.component.html',
   styleUrls: ['./drawer-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
