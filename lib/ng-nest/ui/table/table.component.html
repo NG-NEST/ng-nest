@@ -13,20 +13,23 @@
   [class.x-table-td-adaption-height]="rowHeight == 0"
   [class.x-table-cell-config]="cellConfig"
 >
-  <caption #caption class="x-table-header" *ngIf="header" [style.height.px]="getRowHeight" [style.min-height.px]="getRowHeight">
-    <ng-container *xOutlet="header">{{ header }}</ng-container>
-  </caption>
-  <x-table-head
-    *ngIf="showHeader && (headerPosition === 'top' || headerPosition === 'top-bottom')"
-    [columns]="columns"
-    [rowHeight]="rowHeight"
-    [columnTpl]="headColumnTpl"
-    [scrollYWidth]="scrollYWidth"
-    [scrollXWidth]="scrollXWidth"
-    [cellConfig]="cellConfig?.thead"
-    [position]="'top'"
-    [table]="this"
-  ></x-table-head>
+  @if (header) {
+    <caption #caption class="x-table-header" [style.height.px]="getRowHeight" [style.min-height.px]="getRowHeight">
+      <ng-container *xOutlet="header">{{ header }}</ng-container>
+    </caption>
+  }
+  @if (showHeader && (headerPosition === 'top' || headerPosition === 'top-bottom')) {
+    <x-table-head
+      [columns]="columns"
+      [rowHeight]="rowHeight"
+      [columnTpl]="headColumnTpl"
+      [scrollYWidth]="scrollYWidth"
+      [scrollXWidth]="scrollXWidth"
+      [cellConfig]="cellConfig?.thead"
+      [position]="'top'"
+      [table]="this"
+    ></x-table-head>
+  }
   <x-table-body
     [data]="treeTable ? treeTableData : tableData"
     [columns]="columns"
@@ -49,79 +52,87 @@
     (activatedRowChange)="activatedRowChange.emit($event)"
     [table]="this"
   ></x-table-body>
-  <x-table-head
-    *ngIf="showHeader && (headerPosition === 'bottom' || headerPosition === 'top-bottom')"
-    [columns]="columns"
-    [rowHeight]="rowHeight"
-    [columnTpl]="headColumnTpl"
-    [scrollYWidth]="scrollYWidth"
-    [scrollXWidth]="scrollXWidth"
-    [cellConfig]="cellConfig?.thead"
-    [position]="'bottom'"
-    [table]="this"
-  ></x-table-head>
-  <x-table-foot *ngIf="footer" [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
-  <div
-    *ngIf="hasStickyTopRight()"
-    #stickyTopRightEle
-    class="x-table-sticky-right-scroll"
-    [class.x-table-border-bottom]="headSearchTpl"
-    [style.top.px]="getStickyTopScrollTop"
-    [style.width.px]="scrollYWidth"
-    [style.height.px]="getRowHeight"
-    [style.min-height.px]="getRowHeight"
-  ></div>
-  <div
-    *ngIf="hasStickyTopRight() && headSearchTpl"
-    class="x-table-sticky-right-scroll"
-    [style.top.px]="getStickyTopScrollTop + getStickyTopRightEleHeight"
-    [style.width.px]="scrollYWidth"
-    [style.height.px]="getRowHeight"
-    [style.min-height.px]="getRowHeight"
-  ></div>
-  <div
-    *ngIf="hasStickyBottomRight()"
-    #stickyBottomRightEle
-    class="x-table-sticky-right-scroll"
-    [style.bottom.px]="getStickyBottomScrollTop"
-    [style.width.px]="scrollYWidth"
-    [style.height.px]="getRowHeight"
-    [style.min-height.px]="getRowHeight"
-  ></div>
-  <div
-    *ngIf="hasStickyBottomRight() && headSearchTpl"
-    class="x-table-sticky-right-scroll"
-    [class.x-table-border-bottom]="headSearchTpl"
-    [style.bottom.px]="getStickyBottomScrollTop + getStickyBottomRightEleHeight"
-    [style.width.px]="scrollYWidth"
-    [style.height.px]="getRowHeight"
-    [style.min-height.px]="getRowHeight"
-  ></div>
+  @if (showHeader && (headerPosition === 'bottom' || headerPosition === 'top-bottom')) {
+    <x-table-head
+      [columns]="columns"
+      [rowHeight]="rowHeight"
+      [columnTpl]="headColumnTpl"
+      [scrollYWidth]="scrollYWidth"
+      [scrollXWidth]="scrollXWidth"
+      [cellConfig]="cellConfig?.thead"
+      [position]="'bottom'"
+      [table]="this"
+    ></x-table-head>
+  }
+  @if (footer) {
+    <x-table-foot [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
+  }
+  @if (hasStickyTopRight()) {
+    <div
+      #stickyTopRightEle
+      class="x-table-sticky-right-scroll"
+      [class.x-table-border-bottom]="headSearchTpl"
+      [style.top.px]="getStickyTopScrollTop"
+      [style.width.px]="scrollYWidth"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
+    ></div>
+  }
+  @if (hasStickyTopRight() && headSearchTpl) {
+    <div
+      class="x-table-sticky-right-scroll"
+      [style.top.px]="getStickyTopScrollTop + getStickyTopRightEleHeight"
+      [style.width.px]="scrollYWidth"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
+    ></div>
+  }
+  @if (hasStickyBottomRight()) {
+    <div
+      #stickyBottomRightEle
+      class="x-table-sticky-right-scroll"
+      [style.bottom.px]="getStickyBottomScrollTop"
+      [style.width.px]="scrollYWidth"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
+    ></div>
+  }
+  @if (hasStickyBottomRight() && headSearchTpl) {
+    <div
+      class="x-table-sticky-right-scroll"
+      [class.x-table-border-bottom]="headSearchTpl"
+      [style.bottom.px]="getStickyBottomScrollTop + getStickyBottomRightEleHeight"
+      [style.width.px]="scrollYWidth"
+      [style.height.px]="getRowHeight"
+      [style.min-height.px]="getRowHeight"
+    ></div>
+  }
 </table>
-<x-pagination
-  #pagination
-  *ngIf="showPagination && size"
-  [(index)]="index"
-  [(size)]="size"
-  [(query)]="query"
-  [total]="total"
-  (indexChange)="change($event)"
-  (sizeChange)="change($event)"
-  [showEllipsis]="showEllipsis"
-  [showTotal]="showTotal"
-  [space]="space"
-  [hiddenBorder]="hiddenPaginationBorder!"
-  [showSize]="showSize"
-  [showJump]="showJump"
-  [jumpWidth]="jumpWidth"
-  [showInputSize]="showInputSize"
-  [inputSizeWidth]="inputSizeWidth"
-  [sizeData]="sizeData"
-  [sizeWidth]="sizeWidth"
-  [pageLinkSize]="pageLinkSize"
-  [disabled]="disabled"
-  [totalTpl]="totalTpl"
-  [simple]="simple"
-  [simpleIndexWidth]="simpleIndexWidth"
->
-</x-pagination>
+@if (showPagination && size) {
+  <x-pagination
+    #pagination
+    [(index)]="index"
+    [(size)]="size"
+    [(query)]="query"
+    [total]="total"
+    (indexChange)="change($event)"
+    (sizeChange)="change($event)"
+    [showEllipsis]="showEllipsis"
+    [showTotal]="showTotal"
+    [space]="space"
+    [hiddenBorder]="hiddenPaginationBorder!"
+    [showSize]="showSize"
+    [showJump]="showJump"
+    [jumpWidth]="jumpWidth"
+    [showInputSize]="showInputSize"
+    [inputSizeWidth]="inputSizeWidth"
+    [sizeData]="sizeData"
+    [sizeWidth]="sizeWidth"
+    [pageLinkSize]="pageLinkSize"
+    [disabled]="disabled"
+    [totalTpl]="totalTpl"
+    [simple]="simple"
+    [simpleIndexWidth]="simpleIndexWidth"
+  >
+  </x-pagination>
+}

@@ -6,9 +6,13 @@
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <span *ngIf="node"> {{ node?.label }}[{{ node.id }}]</span>
+  @if (node) {
+    <span> {{ node.label }}[{{ node.id }}]</span>
+  }
 </ng-template>
 
 <ng-template #multipleNodeTpl let-node="$node">
-  <span *ngIf="node" [style.flex]="1"> {{ node?.label }}[{{ node?.id }}] </span>
+  @if (node) {
+    <span [style.flex]="1"> {{ node.label }}[{{ node.id }}] </span>
+  }
 </ng-template>

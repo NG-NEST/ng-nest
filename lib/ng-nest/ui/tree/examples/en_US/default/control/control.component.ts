@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
@@ -6,7 +6,7 @@ import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 @Component({
   selector: 'ex-control',
   standalone: true,
-  imports: [CommonModule, XTreeComponent, XButtonComponent],
+  imports: [JsonPipe, XTreeComponent, XButtonComponent],
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss']
 })

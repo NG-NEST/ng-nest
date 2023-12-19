@@ -1,8 +1,8 @@
 <div class="x-list">
-  <ng-container *ngIf="header">
+  @if (header) {
     <div #headerRef class="x-list-header" *xOutlet="header">{{ header }}</div>
-  </ng-container>
-  <ng-container *ngIf="selectAll && multiple === 0">
+  }
+  @if (selectAll && multiple === 0) {
     <div #selectAllRef class="x-list-select-all">
       <x-list-option
         [size]="size"
@@ -12,83 +12,86 @@
         (click)="onSelectAllNodes()"
       ></x-list-option>
     </div>
-  </ng-container>
-  <cdk-virtual-scroll-viewport
-    #virtualBody
-    *ngIf="virtualScroll; else contentTpl"
-    [itemSize]="getItemSize"
-    [minBufferPx]="minBufferPx"
-    [maxBufferPx]="maxBufferPx"
-    class="x-list-content"
-    [style.height.px]="getVirtualScrollHeight"
-    [hidden]="isEmpty"
-  >
-    <x-list-option
-      *cdkVirtualFor="let node of nodes; trackBy: trackByNode"
-      [node]="node"
-      [checked]="checked"
-      [nodeTpl]="nodeTpl"
-      [selected]="node.selected"
-      [disabled]="node.disabled"
-      [openPortal]="node.openPortal"
-      [(active)]="node.active"
-      [icon]="node.icon"
-      [label]="node.label"
-      [leaf]="node.leaf"
-      [size]="size"
-      [keywordText]="keywordText"
-      [caseSensitive]="caseSensitive"
-      (click)="onNodeClick($event, node)"
-      (mouseenter)="onMouseenter($event, node)"
-      (mouseleave)="onMouseleave($event, node)"
-    ></x-list-option>
-  </cdk-virtual-scroll-viewport>
-
-  <ng-container *ngIf="loadMore && !isEmpty">
+  }
+  @if (virtualScroll) {
+    <cdk-virtual-scroll-viewport
+      #virtualBody
+      [itemSize]="getItemSize"
+      [minBufferPx]="minBufferPx"
+      [maxBufferPx]="maxBufferPx"
+      class="x-list-content"
+      [style.height.px]="getVirtualScrollHeight"
+      [hidden]="isEmpty"
+    >
+      <x-list-option
+        *cdkVirtualFor="let node of nodes; trackBy: trackByNode"
+        [node]="node"
+        [checked]="checked"
+        [nodeTpl]="nodeTpl"
+        [selected]="node.selected"
+        [disabled]="node.disabled"
+        [openPortal]="node.openPortal"
+        [(active)]="node.active"
+        [icon]="node.icon"
+        [label]="node.label"
+        [leaf]="node.leaf"
+        [size]="size"
+        [keywordText]="keywordText"
+        [caseSensitive]="caseSensitive"
+        (click)="onNodeClick($event, node)"
+        (mouseenter)="onMouseenter($event, node)"
+        (mouseleave)="onMouseleave($event, node)"
+      ></x-list-option>
+    </cdk-virtual-scroll-viewport>
+  } @else {
+    <div
+      class="x-list-content"
+      cdkDropList
+      (cdkDropListDropped)="dropCdk($event)"
+      [cdkDropListDisabled]="!drag"
+      [hidden]="isEmpty"
+      [cdkDropListData]="nodes"
+      [cdkDropListEnterPredicate]="predicate"
+    >
+      @for (node of nodes; track node.id) {
+        <x-list-option
+          cdkDrag
+          [cdkDragDisabled]="node.disabled"
+          [node]="node"
+          [checked]="checked"
+          [nodeTpl]="nodeTpl"
+          [selected]="node.selected"
+          [disabled]="node.disabled"
+          [(active)]="node.active"
+          [openPortal]="node.openPortal"
+          [icon]="node.icon"
+          [label]="node.label"
+          [leaf]="node.leaf"
+          [size]="size"
+          [keywordText]="keywordText"
+          [caseSensitive]="caseSensitive"
+          (click)="onNodeClick($event, node)"
+          (mouseenter)="onMouseenter($event, node)"
+          (mouseleave)="onMouseleave($event, node)"
+        ></x-list-option>
+      }
+    </div>
+  }
+  @if (loadMore && !isEmpty) {
     <div #loadMoreRef class="x-list-load-more">
       <x-list-option [size]="size" [nodeTpl]="loadMoreTpl" (click)="onLoadMore()"></x-list-option>
     </div>
     <ng-template #loadMoreTpl>
-      <x-icon *ngIf="icon && iconSpin" [type]="icon" [spin]="iconSpin"></x-icon>
+      @if (icon && iconSpin) {
+        <x-icon [type]="icon" [spin]="iconSpin"></x-icon>
+      }
       {{ icon && iconSpin ? getLoadingMoreText : getLoadMoreText }}
     </ng-template>
-  </ng-container>
-  <x-empty *ngIf="isEmpty"></x-empty>
-  <ng-container *ngIf="footer">
+  }
+  @if (isEmpty) {
+    <x-empty></x-empty>
+  }
+  @if (footer) {
     <div #footerRef class="x-list-footer" *xOutlet="footer">{{ footer }}</div>
-  </ng-container>
+  }
 </div>
-
-<ng-template #contentTpl>
-  <div
-    class="x-list-content"
-    cdkDropList
-    (cdkDropListDropped)="dropCdk($event)"
-    [cdkDropListDisabled]="!drag"
-    [hidden]="isEmpty"
-    [cdkDropListData]="nodes"
-    [cdkDropListEnterPredicate]="predicate"
-  >
-    <x-list-option
-      *ngFor="let node of nodes; trackBy: trackByNode"
-      cdkDrag
-      [cdkDragDisabled]="node.disabled"
-      [node]="node"
-      [checked]="checked"
-      [nodeTpl]="nodeTpl"
-      [selected]="node.selected"
-      [disabled]="node.disabled"
-      [(active)]="node.active"
-      [openPortal]="node.openPortal"
-      [icon]="node.icon"
-      [label]="node.label"
-      [leaf]="node.leaf"
-      [size]="size"
-      [keywordText]="keywordText"
-      [caseSensitive]="caseSensitive"
-      (click)="onNodeClick($event, node)"
-      (mouseenter)="onMouseenter($event, node)"
-      (mouseleave)="onMouseleave($event, node)"
-    ></x-list-option>
-  </div>
-</ng-template>

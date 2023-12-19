@@ -8,13 +8,9 @@
   [class.x-invalid]="invalid"
   [ngClass]="classMap"
 >
-  <label
-    *ngIf="label"
-    [class.x-find-label-required]="required"
-    [style.width]="labelWidth"
-    [ngClass]="labelMap"
-    >{{ label }}</label
-  >
+  @if (label) {
+    <label [class.x-find-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  }
   <div class="x-find-row">
     <x-button
       #buttonCom
@@ -26,28 +22,17 @@
       (click)="showModal()"
     ></x-button>
     <div class="x-find-tags">
-      <ng-container *ngIf="multiple; else singleTpl">
-        <x-tag
-          *ngFor="let item of value; index as i; trackBy: trackByItem"
-          closable
-          [size]="size"
-          [bordered]="bordered"
-          [disabled]="disabled"
-          (close)="tagClose(i)"
-          >{{ item[columnLabel] }}</x-tag
-        >
-      </ng-container>
-      <ng-template #singleTpl>
-        <x-tag
-          *ngIf="value"
-          closable
-          [disabled]="disabled"
-          [bordered]="bordered"
-          [size]="size"
-          (close)="tagClose()"
-          >{{ value[columnLabel] }}</x-tag
-        >
-      </ng-template>
+      @if (multiple) {
+        @for (item of value; track item.id; let i = $index) {
+          <x-tag closable [size]="size" [bordered]="bordered" [disabled]="disabled" (close)="tagClose(i)">{{
+            item[columnLabel]
+          }}</x-tag>
+        }
+      } @else if (value) {
+        <x-tag closable [disabled]="disabled" [bordered]="bordered" [size]="size" (close)="tagClose()">{{
+          value[columnLabel]
+        }}</x-tag>
+      }
     </div>
   </div>
 </div>
@@ -67,87 +52,85 @@
   (confirm)="sure()"
 >
   <div class="x-find-dialog" [class.x-find-dialog-tree-table]="hasTable && hasTree">
-    <div
-      class="x-find-dialog-tree"
-      *ngIf="hasTree"
-      #treeRef
-      [style.height.px]="hasTreeTable && multiple && height"
-    >
-      <x-tree
-        #treeCom
-        [data]="treeData"
-        nodeHeight="1.8"
-        [(manual)]="dialogVisible"
-        [activatedId]="treeActivatedId"
-        [expandedLevel]="treeExpandedLevel"
-        (activatedChange)="treeActivatedClick($event)"
-        [checkbox]="hasTreeMultiple"
-        [checked]="treeChecked"
-        (checkboxChange)="treeCheckboxChange($event)"
-        [levelCheck]="!hasTreeMultiple"
-      ></x-tree>
-    </div>
-    <div class="x-find-dialog-table" *ngIf="hasTable" #tableRef>
-      <div class="x-find-search" *ngIf="hasSearch">
-        <x-input
-          [label]="search.label"
-          direction="row"
-          (xKeydown)="searchKeyDown($event)"
-          [(ngModel)]="search.value"
-        ></x-input>
-        <x-button type="primary" plain (click)="searchClick()">{{
-          search.button || '查询'
-        }}</x-button>
+    @if (hasTree) {
+      <div class="x-find-dialog-tree" #treeRef [style.height.px]="hasTreeTable && multiple && height">
+        <x-tree
+          #treeCom
+          [data]="treeData"
+          nodeHeight="1.8"
+          [(manual)]="dialogVisible"
+          [activatedId]="treeActivatedId"
+          [expandedLevel]="treeExpandedLevel"
+          (activatedChange)="treeActivatedClick($event)"
+          [checkbox]="hasTreeMultiple"
+          [checked]="treeChecked"
+          (checkboxChange)="treeCheckboxChange($event)"
+          [levelCheck]="!hasTreeMultiple"
+        ></x-tree>
       </div>
-      <x-table
-        #tableCom
-        [data]="tableData"
-        [columns]="tableColumns"
-        [(manual)]="dialogVisible"
-        [(index)]="tableIndex"
-        [(size)]="tableSize"
-        [query]="tableQuery"
-        [total]="tableTotal"
-        [allowSelectRow]="!multiple"
-        [allowCheckRow]="multiple"
-        [checkedRow]="tableCheckedRow"
-        [loading]="tableLoading"
-        (indexChange)="tableIndexChange.emit($event)"
-        (sortChange)="tableSortChange.emit($event)"
-        [(activatedRow)]="tableActivatedRow"
-        (activatedRowChange)="tableActivatedRowChange($event)"
-        [rowHeight]="tableRowHeight"
-        [bodyHeight]="tableBodyHeight"
-        [virtualScroll]="tableVirtualScroll"
-        [minBufferPx]="tableMinBufferPx"
-        [maxBufferPx]="tableMaxBufferPx"
-        [adaptionHeight]="tableAdaptionHeight"
-        [docPercent]="tableDocPercent"
-      ></x-table>
-    </div>
-    <div
-      *ngIf="multiple"
-      class="x-find-dialog-checked"
-      [class.x-find-empty]="getEmpty"
-      [style.height.px]="height"
-    >
-      <x-empty *ngIf="getEmpty" [content]="dialogEmptyContent"></x-empty>
-      <div class="x-find-dialog-tags">
-        <x-tag
-          *ngFor="let item of temp; index as i; trackBy: trackByItem"
-          closable
-          (close)="tempClose(i, item)"
-        >
-          <span>{{ item[columnLabel] }}</span>
-        </x-tag>
+    }
+    @if (hasTable) {
+      <div class="x-find-dialog-table" #tableRef>
+        @if (hasSearch) {
+          <div class="x-find-search">
+            <x-input
+              [label]="search.label"
+              direction="row"
+              (xKeydown)="searchKeyDown($event)"
+              [(ngModel)]="search.value"
+            ></x-input>
+            <x-button type="primary" plain (click)="searchClick()">{{ search.button || '查询' }}</x-button>
+          </div>
+        }
+        <x-table
+          #tableCom
+          [data]="tableData"
+          [columns]="tableColumns"
+          [(manual)]="dialogVisible"
+          [(index)]="tableIndex"
+          [(size)]="tableSize"
+          [query]="tableQuery"
+          [total]="tableTotal"
+          [allowSelectRow]="!multiple"
+          [allowCheckRow]="multiple"
+          [checkedRow]="tableCheckedRow"
+          [loading]="tableLoading"
+          (indexChange)="tableIndexChange.emit($event)"
+          (sortChange)="tableSortChange.emit($event)"
+          [(activatedRow)]="tableActivatedRow"
+          (activatedRowChange)="tableActivatedRowChange($event)"
+          [rowHeight]="tableRowHeight"
+          [bodyHeight]="tableBodyHeight"
+          [virtualScroll]="tableVirtualScroll"
+          [minBufferPx]="tableMinBufferPx"
+          [maxBufferPx]="tableMaxBufferPx"
+          [adaptionHeight]="tableAdaptionHeight"
+          [docPercent]="tableDocPercent"
+        ></x-table>
       </div>
-    </div>
+    }
+    @if (multiple) {
+      <div class="x-find-dialog-checked" [class.x-find-empty]="getEmpty" [style.height.px]="height">
+        @if (getEmpty) {
+          <x-empty [content]="dialogEmptyContent"></x-empty>
+        }
+        <div class="x-find-dialog-tags">
+          @for (item of temp; track item.id; let i = $index) {
+            <x-tag closable (close)="tempClose(i, item)">
+              <span>{{ item[columnLabel] }}</span>
+            </x-tag>
+          }
+        </div>
+      </div>
+    }
   </div>
 </x-dialog>
 
 <ng-template #treeLabelTpl let-node="$node">
   <div class="x-find-dialog-tree-node">
     <span>{{ node.label }} </span>
-    <x-icon type="fto-check" *ngIf="node.$checked"></x-icon>
+    @if (node.$checked) {
+      <x-icon type="fto-check"></x-icon>
+    }
   </div>
 </ng-template>

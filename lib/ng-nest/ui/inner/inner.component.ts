@@ -11,12 +11,10 @@ import {
 } from '@angular/core';
 import { XInnerPrefix, XInnerProperty } from './inner.property';
 import { XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XInnerPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './inner.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

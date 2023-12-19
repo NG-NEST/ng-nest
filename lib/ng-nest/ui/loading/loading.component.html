@@ -1,26 +1,25 @@
 <ng-content></ng-content>
 
-<ng-container *ngIf="!fullScreen">
-  <ng-container *ngTemplateOutlet="loadingTpl"></ng-container>
-</ng-container>
-
-<ng-template #loadingTpl>
-  <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" [style.zIndex]="zIndex" *ngIf="loading">
+@if (!fullScreen && loading) {
+  <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" [style.zIndex]="zIndex">
     <div class="x-loading-spinner" [style.color]="color">
-      <ng-container *ngIf="icon; else circularTpl">
+      @if (icon) {
         <div class="x-loading-icon" [style.font-size.px]="sizeNumber">
           <x-icon [type]="icon"></x-icon>
         </div>
-      </ng-container>
+      } @else {
+        <svg
+          class="x-loading-circular"
+          [style.width.px]="sizeNumber"
+          [style.height.px]="sizeNumber"
+          viewBox="25 25 50 50"
+        >
+          <circle class="x-loading-path" cx="50" cy="50" r="20" fill="none" />
+        </svg>
+      }
       <div class="x-loading-text">
         <ng-container *xOutlet="text">{{ text }}</ng-container>
       </div>
     </div>
   </div>
-</ng-template>
-
-<ng-template #circularTpl>
-  <svg class="x-loading-circular" [style.width.px]="sizeNumber" [style.height.px]="sizeNumber" viewBox="25 25 50 50">
-    <circle class="x-loading-path" cx="50" cy="50" r="20" fill="none" />
-  </svg>
-</ng-template>
+}

@@ -12,7 +12,7 @@ import {
 import { XTimelinePrefix, XTimelineNode, XTimelineProperty } from './timeline.property';
 import { XIsChange, XSetData, XConfigService, XClearClass } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { XLinkComponent } from '@ng-nest/ui/link';
@@ -21,7 +21,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XTimelinePrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XTimeAgoPipe, XLinkComponent, XOutletDirective],
+  imports: [NgClass, DatePipe, XIconComponent, XTimeAgoPipe, XLinkComponent, XOutletDirective],
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   encapsulation: ViewEncapsulation.None,

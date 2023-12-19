@@ -22,12 +22,18 @@
     ></x-select>
   </div>
   <div class="item lang">
-    <x-button (click)="action('en_US')" *ngIf="config.lang === 'zh_CN'">{{ 'header.english' | xI18n }}</x-button>
-    <x-button (click)="action('zh_CN')" *ngIf="config.lang === 'en_US'">{{ 'header.chinese' | xI18n }}</x-button>
+    @if (config.lang === 'zh_CN') {
+      <x-button (click)="action('en_US')">{{ 'header.english' | xI18n }}</x-button>
+    } @else if (config.lang === 'en_US') {
+      <x-button (click)="action('zh_CN')">{{ 'header.chinese' | xI18n }}</x-button>
+    }
   </div>
   <div class="item theme">
-    <x-button (click)="action('dark')" *ngIf="theme === 'light'" title="{{ 'header.dark' | xI18n }}" icon="fto-moon"></x-button>
-    <x-button (click)="action('light')" *ngIf="theme === 'dark'" title="{{ 'header.light' | xI18n }}" icon="fto-sun"></x-button>
+    @if (theme === 'light') {
+      <x-button (click)="action('dark')" title="{{ 'header.dark' | xI18n }}" icon="fto-moon"></x-button>
+    } @else if (theme === 'dark') {
+      <x-button (click)="action('light')" title="{{ 'header.light' | xI18n }}" icon="fto-sun"></x-button>
+    }
   </div>
   <div class="item github">
     <x-button (click)="action('github')" icon="ado-github" onlyIcon></x-button>

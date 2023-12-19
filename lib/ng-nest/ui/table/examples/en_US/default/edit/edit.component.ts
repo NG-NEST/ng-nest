@@ -3,7 +3,6 @@ import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XGuid } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { CommonModule } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
@@ -13,7 +12,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'ex-edit',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     XTableComponent,
     XButtonComponent,

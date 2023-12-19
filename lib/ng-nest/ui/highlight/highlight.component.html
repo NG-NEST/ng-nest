@@ -2,5 +2,7 @@
   <code #code class="language-{{ type }}" [innerHTML]="display"></code>
 </pre>
 <div class="x-highlight-actions">
-  <x-button *ngIf="showCopy" [icon]="iconCopy" onlyIcon (click)="onCopy()"></x-button>
+  @if (showCopy) {
+    <x-button [icon]="iconCopy" onlyIcon (click)="onCopy()"></x-button>
+  }
 </div>

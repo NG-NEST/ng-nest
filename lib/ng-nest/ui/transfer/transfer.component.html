@@ -2,123 +2,162 @@
   <div class="x-transfer-box" [class.x-transfer-has-footer]="left.footerTpl">
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left }"></ng-container>
     <div [ngStyle]="left.listStyle!" class="x-transfer-list">
-      <ng-container [ngSwitch]="type">
-        <ul
-          *ngSwitchCase="'list'"
-          cdkDropList
-          (cdkDropListDropped)="dropCdk($event)"
-          [cdkDropListData]="left.list"
-          [cdkDropListDisabled]="!drag && type === 'list'"
-          [cdkDropListEnterPredicate]="predicate"
-          class="x-transfer-droplist"
-        >
-          <li class="x-transfer-item" *ngFor="let node of left.list; trackBy: trackByNode" cdkDrag [cdkDragData]="node">
-            <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left }"></ng-container>
-          </li>
-        </ul>
-        <x-tree
-          *ngSwitchCase="'tree'"
-          [data]="left.list!"
-          multiple
-          allowManyActivated
-          [(activatedId)]="treeActivatedId"
-          (nodeClick)="onTreeNodeClick($event)"
-          [labelTpl]="treeLabelTpl"
-        ></x-tree>
-        <ng-template #treeLabelTpl let-node="$node">
-          <span class="x-transfer-tree-label" x-keyword [text]="left.searchInput!">{{ node.label }}</span>
-        </ng-template>
-        <x-table
-          #leftTableCom
-          *ngSwitchCase="'table'"
-          [data]="tableData"
-          [columns]="tableColumns!"
-          [(size)]="tableSize"
-          [(index)]="tableIndex"
-          (indexChange)="getTableData()"
-          [query]="tableQuery"
-          [total]="tableTotal"
-          (activatedRowChange)="onTableCheckedRow($event, left)"
-          (headCheckboxChange)="onTableCheckedAll($event, left)"
-          hiddenWrapBorder
-          hiddenPaginationBorder
-          showEllipsis="false"
-          showTotal="false"
-          paginationPosition="bottom-center"
-          allowSelectRow="false"
-          [headSearchTpl]="left.tableHeadSearchTpl"
-        ></x-table>
-      </ng-container>
+      @switch (type) {
+        @case ('list') {
+          <ul
+            cdkDropList
+            (cdkDropListDropped)="dropCdk($event)"
+            [cdkDropListData]="left.list"
+            [cdkDropListDisabled]="!drag && type === 'list'"
+            [cdkDropListEnterPredicate]="predicate"
+            class="x-transfer-droplist"
+          >
+            @for (node of left.list; track node.id) {
+              <li class="x-transfer-item" cdkDrag [cdkDragData]="node">
+                <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left }"></ng-container>
+              </li>
+            }
+          </ul>
+        }
+        @case ('tree') {
+          <x-tree
+            [data]="left.list!"
+            multiple
+            allowManyActivated
+            [(activatedId)]="treeActivatedId"
+            (nodeClick)="onTreeNodeClick($event)"
+            [labelTpl]="treeLabelTpl"
+          ></x-tree>
+          <ng-template #treeLabelTpl let-node="$node">
+            <span class="x-transfer-tree-label" x-keyword [text]="left.searchInput!">{{ node.label }}</span>
+          </ng-template>
+        }
+        @case ('table') {
+          <x-table
+            #leftTableCom
+            [data]="tableData"
+            [columns]="tableColumns!"
+            [(size)]="tableSize"
+            [(index)]="tableIndex"
+            (indexChange)="getTableData()"
+            [query]="tableQuery"
+            [total]="tableTotal"
+            (activatedRowChange)="onTableCheckedRow($event, left)"
+            (headCheckboxChange)="onTableCheckedAll($event, left)"
+            hiddenWrapBorder
+            hiddenPaginationBorder
+            showEllipsis="false"
+            showTotal="false"
+            paginationPosition="bottom-center"
+            allowSelectRow="false"
+            [headSearchTpl]="left.tableHeadSearchTpl"
+          ></x-table>
+        }
+      }
     </div>
-    <div class="x-transfer-footer" *ngIf="left.footerTpl">
-      <ng-container *ngTemplateOutlet="left.footerTpl; context: { $source: left }"></ng-container>
-    </div>
+    @if (left.footerTpl) {
+      <div class="x-transfer-footer">
+        <ng-container *ngTemplateOutlet="left.footerTpl; context: { $source: left }"></ng-container>
+      </div>
+    }
   </div>
   <div class="x-transfer-buttons">
-    <x-button type="primary" icon="fto-chevron-right" [disabled]="left.disabledButton" (click)="move(left, right)"></x-button>
-    <x-button type="primary" icon="fto-chevron-left" [disabled]="right.disabledButton" (click)="move(right, left)"></x-button>
+    <x-button
+      type="primary"
+      icon="fto-chevron-right"
+      [disabled]="left.disabledButton"
+      (click)="move(left, right)"
+    ></x-button>
+    <x-button
+      type="primary"
+      icon="fto-chevron-left"
+      [disabled]="right.disabledButton"
+      (click)="move(right, left)"
+    ></x-button>
   </div>
   <div class="x-transfer-box" [class.x-transfer-has-footer]="right.footerTpl">
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right }"></ng-container>
-    <div [ngSwitch]="type" [ngStyle]="right.listStyle!" class="x-transfer-list">
-      <x-table
-        #rightTableCom
-        *ngSwitchCase="'table'"
-        [data]="right.list!"
-        [columns]="tableColumns!"
-        (activatedRowChange)="onTableCheckedRow($event, right)"
-        (headCheckboxChange)="onTableCheckedAll($event, right)"
-        hiddenWrapBorder
-        hiddenPaginationBorder
-        showPagination="false"
-        showEllipsis="false"
-        showTotal="false"
-        paginationPosition="bottom-center"
-        allowSelectRow="false"
-        [headSearchTpl]="right.tableHeadSearchTpl"
-      ></x-table>
-      <ul
-        *ngSwitchDefault
-        cdkDropList
-        (cdkDropListDropped)="dropCdk($event)"
-        [cdkDropListData]="right.list"
-        [cdkDropListDisabled]="!drag || (drag && type !== 'list')"
-        [cdkDropListEnterPredicate]="predicate"
-        class="x-transfer-droplist"
-      >
-        <li class="x-transfer-item" *ngFor="let node of right.list; trackBy: trackByNode" cdkDrag [cdkDragData]="node">
-          <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
-        </li>
-      </ul>
+
+    <div [ngStyle]="right.listStyle!" class="x-transfer-list">
+      @switch (type) {
+        @case ('table') {
+          <x-table
+            #rightTableCom
+            [data]="right.list!"
+            [columns]="tableColumns!"
+            (activatedRowChange)="onTableCheckedRow($event, right)"
+            (headCheckboxChange)="onTableCheckedAll($event, right)"
+            hiddenWrapBorder
+            hiddenPaginationBorder
+            showPagination="false"
+            showEllipsis="false"
+            showTotal="false"
+            paginationPosition="bottom-center"
+            allowSelectRow="false"
+            [headSearchTpl]="right.tableHeadSearchTpl"
+          ></x-table>
+        }
+        @default {
+          <ul
+            cdkDropList
+            (cdkDropListDropped)="dropCdk($event)"
+            [cdkDropListData]="right.list"
+            [cdkDropListDisabled]="!drag || (drag && type !== 'list')"
+            [cdkDropListEnterPredicate]="predicate"
+            class="x-transfer-droplist"
+          >
+            @for (node of right.list; track node.id) {
+              <li class="x-transfer-item" cdkDrag [cdkDragData]="node">
+                <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
+              </li>
+            }
+          </ul>
+        }
+      }
     </div>
-    <div class="x-transfer-footer" *ngIf="right.footerTpl">
-      <ng-container *ngTemplateOutlet="right.footerTpl; context: { $source: right }"></ng-container>
-    </div>
+    @if (right.footerTpl) {
+      <div class="x-transfer-footer">
+        <ng-container *ngTemplateOutlet="right.footerTpl; context: { $source: right }"></ng-container>
+      </div>
+    }
   </div>
 </div>
 
 <ng-template #sourceTitleTpl let-source="source">
   <div class="x-transfer-title">
     <div class="x-transfer-title-left">
-      <x-checkbox
-        *ngIf="source.title && !source.hiddenCheckAll"
-        [data]="[titleTpl ? '' : source.title]"
-        [(ngModel)]="source.checkedAll"
-        (ngModelChange)="checkedAllChange($event, source)"
-        [indeterminate]="source.indeterminate"
-      ></x-checkbox>
-      <span *ngIf="source.title && source.hiddenCheckAll">{{ source.title }}</span>
-      <x-link *ngIf="inverse && type === 'list'" class="x-transfer-inverse" type="primary" (click)="onInverse(source)">{{
-        'transfer.inverse' | xI18n
-      }}</x-link>
+      @if (source.title && !source.hiddenCheckAll) {
+        <x-checkbox
+          [data]="[titleTpl ? '' : source.title]"
+          [(ngModel)]="source.checkedAll"
+          (ngModelChange)="checkedAllChange($event, source)"
+          [indeterminate]="source.indeterminate"
+        ></x-checkbox>
+      }
+      @if (source.title && source.hiddenCheckAll) {
+        <span>{{ source.title }}</span>
+      }
+      @if (inverse && type === 'list') {
+        <x-link class="x-transfer-inverse" type="primary" (click)="onInverse(source)">{{
+          'transfer.inverse' | xI18n
+        }}</x-link>
+      }
     </div>
-    <ng-container *xOutlet="titleTpl; context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
+    <ng-container
+      *xOutlet="titleTpl; context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
     >
   </div>
-  <div class="x-transfer-search" *ngIf="search && type !== 'table'">
-    <x-input icon="fto-search" [(ngModel)]="source.searchInput" (ngModelChange)="onSearchInputChange(source)" clearable></x-input>
-  </div>
+  @if (search && type !== 'table') {
+    <div class="x-transfer-search">
+      <x-input
+        icon="fto-search"
+        [(ngModel)]="source.searchInput"
+        (ngModelChange)="onSearchInputChange(source)"
+        clearable
+      ></x-input>
+    </div>
+  }
 </ng-template>
 
 <ng-template #sourceNodeTpl let-node="node" let-source="source">

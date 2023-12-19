@@ -18,12 +18,12 @@ import { XTooltipPortalPrefix } from './tooltip.property';
 import { XPlacement, XClassMap, XFadeAnimation, XTemplate } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XTooltipPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective],
+  imports: [NgClass, XOutletDirective],
   templateUrl: './tooltip-portal.component.html',
   styleUrls: ['./tooltip-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -21,13 +21,12 @@ import { map, takeUntil } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { XTimePickerFrameComponent } from './time-picker-frame.component';
-import { CommonModule } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, XTimePickerFrameComponent, XButtonComponent],
+  imports: [XTimePickerFrameComponent, XButtonComponent],
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

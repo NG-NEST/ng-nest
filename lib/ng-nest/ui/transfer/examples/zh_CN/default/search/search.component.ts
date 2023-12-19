@@ -4,14 +4,13 @@ import { XTableColumn } from '@ng-nest/ui/table';
 import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 import { SearchService } from './search.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: 'ex-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, XTransferComponent, XInputComponent, XSelectComponent],
+  imports: [FormsModule, XTransferComponent, XInputComponent, XSelectComponent],
   templateUrl: './search.component.html',
   providers: [SearchService]
 })

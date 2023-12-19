@@ -4,7 +4,9 @@
 <ns-logo></ns-logo>
 <ns-search></ns-search>
 <ns-nav></ns-nav>
-<x-button class="menu right" *ngIf="layout.xsmall" icon="fto-list" (click)="onRightDrawer(true)" onlyIcon></x-button>
+@if (layout.xsmall) {
+  <x-button class="menu right" icon="fto-list" (click)="onRightDrawer(true)" onlyIcon></x-button>
+}
 <x-drawer [visible]="layout.leftDrawerVisible" placement="left" (close)="onLeftDrawer(false)" size="16.25rem">
   <ns-sider class="drawer"></ns-sider>
 </x-drawer>

@@ -24,7 +24,7 @@ import {
   XResizeObserver
 } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { takeUntil } from 'rxjs/operators';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
@@ -37,7 +37,8 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   selector: `${XTableBodyPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
+    NgTemplateOutlet,
     FormsModule,
     XEmptyComponent,
     ScrollingModule,

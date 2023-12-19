@@ -37,23 +37,20 @@ import {
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
 import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
   templateUrl: './cascade.component.html',
   styleUrls: ['./cascade.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCascadeComponent)]
 })
-export class XCascadeComponent
-  extends XCascadeProperty
-  implements OnInit, AfterViewInit, OnChanges, OnDestroy
-{
+export class XCascadeComponent extends XCascadeProperty implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('cascade', { static: true }) cascade!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
@@ -97,13 +94,7 @@ export class XCascadeComponent
   configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setFlex(
-      this.cascade.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.cascade.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
     this.setParantScroll();
@@ -243,15 +234,13 @@ export class XCascadeComponent
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        if (place !== this.placement) {
-          this.positionChange.next(place);
-          this.cdr.detectChanges();
-        }
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      if (place !== this.placement) {
+        this.positionChange.next(place);
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   setInstance() {
@@ -270,8 +259,7 @@ export class XCascadeComponent
       inputCom: this.inputCom,
       closePortal: () => this.closeSubject.next(),
       destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) =>
-        this.onNodeClick(node),
+      nodeEmit: (node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node),
       animating: (ing: boolean) => (this.animating = ing)
     });
     componentRef.changeDetectorRef.detectChanges();

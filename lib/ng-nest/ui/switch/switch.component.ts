@@ -14,7 +14,7 @@ import {
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
 import { XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -22,7 +22,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XSwitchPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XLoadingComponent, XOutletDirective],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, XLoadingComponent, XOutletDirective],
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],
   encapsulation: ViewEncapsulation.None,

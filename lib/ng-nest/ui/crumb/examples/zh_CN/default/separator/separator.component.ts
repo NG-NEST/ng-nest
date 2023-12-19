@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XCrumbComponent } from '@ng-nest/ui/crumb';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -6,7 +5,7 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 @Component({
   selector: 'ex-separator',
   standalone: true,
-  imports: [CommonModule, XCrumbComponent, XIconComponent],
+  imports: [XCrumbComponent, XIconComponent],
   templateUrl: './separator.component.html'
 })
 export class ExSeparatorComponent {

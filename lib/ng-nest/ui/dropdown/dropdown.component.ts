@@ -32,12 +32,12 @@ import {
   Overlay,
   OverlayConfig
 } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XDropdownPrefix}`,
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -173,12 +173,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -214,13 +212,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.dropdown,
-      placement: [
-        this.placement as XPlacement,
-        'bottom-start',
-        'top-start',
-        'bottom-end',
-        'top-end'
-      ],
+      placement: [this.placement as XPlacement, 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
       transformOriginOn: 'x-dropdown-portal'
     });
   }
@@ -229,9 +221,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
     XSetData<XDropdownNode>(this.data, this._unSubject).subscribe((x) => {
       this.datas = x;
       if (!this.children) {
-        this.nodes = x
-          .filter((y) => XIsEmpty(y.pid))
-          .map((y) => XGetChildren<XDropdownNode>(x, y, 0));
+        this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(x, y, 0));
       } else {
         this.nodes = x;
       }

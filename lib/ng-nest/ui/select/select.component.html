@@ -42,27 +42,28 @@
 </div>
 
 <ng-template #multipleValueTpl>
-  <x-tag
-    [@.disabled]="true"
-    *ngFor="let node of displayNodes; index as i"
-    [closable]="!disabled"
-    (close)="closeNode($event, node, i)"
-    [size]="size"
-    >{{ node.label }}</x-tag
-  >
-  <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
-    <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
-      displayMore
-    }}</ng-container>
-  </x-tag>
-  <x-input
-    #multipleInput
-    *ngIf="search"
-    bordered="false"
-    [size]="size"
-    inputPadding="0.275"
-    [(ngModel)]="multipleSearchValue"
-    (xInput)="onInput($event)"
-    (xKeydown)="onKeydown($event)"
-  ></x-input>
+  @for (node of displayNodes; track node.id; let i = $index) {
+    <x-tag [@.disabled]="true" [closable]="!disabled" (close)="closeNode($event, node, i)" [size]="size">{{
+      node.label
+    }}</x-tag>
+  }
+  @if (showDisplayMore) {
+    <x-tag [@.disabled]="true" [size]="size">
+      <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
+        displayMore
+      }}</ng-container>
+    </x-tag>
+  }
+
+  @if (search) {
+    <x-input
+      #multipleInput
+      bordered="false"
+      [size]="size"
+      inputPadding="0.275"
+      [(ngModel)]="multipleSearchValue"
+      (xInput)="onInput($event)"
+      (xKeydown)="onKeydown($event)"
+    ></x-input>
+  }
 </ng-template>

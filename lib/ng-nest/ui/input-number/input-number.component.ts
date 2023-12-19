@@ -13,15 +13,15 @@ import {
 import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil, XIsFunction } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule, DOCUMENT } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XButtonComponent],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XButtonComponent],
   templateUrl: './input-number.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

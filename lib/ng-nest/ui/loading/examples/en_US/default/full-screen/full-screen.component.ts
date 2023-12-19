@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -8,7 +7,7 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'ex-full-screen',
   standalone: true,
-  imports: [CommonModule, XLoadingComponent, XButtonComponent],
+  imports: [XLoadingComponent, XButtonComponent],
   templateUrl: './full-screen.component.html'
 })
 export class ExFullScreenComponent {

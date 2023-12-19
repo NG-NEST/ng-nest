@@ -9,6 +9,8 @@
   [attr.href]="href"
   [attr.target]="target"
 >
-  <x-icon *ngIf="icon" [type]="icon"></x-icon>
+  @if (icon) {
+    <x-icon [type]="icon"></x-icon>
+  }
   <span #content><ng-content></ng-content></span>
 </a>

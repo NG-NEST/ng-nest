@@ -1,9 +1,19 @@
-<a *ngIf="node.routerLink && !node.leaf; else menuTpl" [routerLink]="node.routerLink">
+@if (node.routerLink && !node.leaf) {
+  <a [routerLink]="node.routerLink">
+    <ng-container *ngTemplateOutlet="menuTpl"></ng-container>
+  </a>
+} @else {
   <ng-container *ngTemplateOutlet="menuTpl"></ng-container>
-</a>
+}
 
 <ng-template #menuTpl>
-  <x-icon class="x-menu-icon" *ngIf="node.icon" [type]="node.icon"></x-icon>
-  <span class="x-menu-text" *ngIf="node.label">{{ node.label }}</span>
-  <x-icon class="x-menu-arrow" *ngIf="node.leaf" [class.is-open]="node.open" type="fto-chevron-down"></x-icon>
+  @if (node.icon) {
+    <x-icon class="x-menu-icon" [type]="node.icon"></x-icon>
+  }
+  @if (node.label) {
+    <span class="x-menu-text">{{ node.label }}</span>
+  }
+  @if (node.leaf) {
+    <x-icon class="x-menu-arrow" [class.is-open]="node.open" type="fto-chevron-down"></x-icon>
+  }
 </ng-template>

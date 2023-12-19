@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
@@ -7,7 +6,7 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 @Component({
   selector: 'ex-resizable',
   standalone: true,
-  imports: [CommonModule, XDialogComponent, XButtonComponent],
+  imports: [XDialogComponent, XButtonComponent],
   templateUrl: './resizable.component.html',
   styleUrls: ['./resizable.component.scss']
 })

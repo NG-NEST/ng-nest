@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
@@ -6,7 +5,7 @@ import { XDialogComponent } from '@ng-nest/ui/dialog';
 @Component({
   selector: 'ex-draggable',
   standalone: true,
-  imports: [CommonModule, XButtonComponent, XDialogComponent],
+  imports: [XButtonComponent, XDialogComponent],
   templateUrl: './draggable.component.html',
   styleUrls: ['./draggable.component.scss']
 })

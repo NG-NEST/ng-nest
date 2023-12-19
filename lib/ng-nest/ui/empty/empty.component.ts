@@ -13,12 +13,11 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XEmptyPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective, XIconComponent, XI18nPipe],
+  imports: [XOutletDirective, XIconComponent, XI18nPipe],
   templateUrl: './empty.component.html',
   styleUrls: ['./empty.component.scss'],
   encapsulation: ViewEncapsulation.None,

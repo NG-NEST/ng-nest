@@ -1,24 +1,31 @@
 <div class="x-image" [ngClass]="classMap">
-  <img
-    *ngIf="!isError && !fallback"
-    [hidden]="placeholder && !isLoaded"
-    class="x-image-img"
-    [src]="src"
-    [style.width]="width"
-    [style.height]="height"
-    (error)="onError($event)"
-    (load)="onLoad($event)"
-  />
-  <img *ngIf="placeholder && !isLoaded" class="x-image-img" [src]="placeholder" [style.width]="width" [style.height]="height" />
-  <div *ngIf="isError && !fallback" class="x-image-error-icon" [style.width]="width" [style.height]="height">
-    <x-icon type="fto-image"></x-icon>
-  </div>
-  <ng-container *xOutlet="previewTpl; context: { $image: this }">
-    <div class="x-image-overlay" *ngIf="!isError" (click)="onPreview()">
-      <div class="x-image-text">
-        <x-icon type="fto-eye"></x-icon>
-        <span>{{ getPreviewText }}</span>
-      </div>
+  @if (!isError && !fallback) {
+    <img
+      [hidden]="placeholder && !isLoaded"
+      class="x-image-img"
+      [src]="src"
+      [style.width]="width"
+      [style.height]="height"
+      (error)="onError($event)"
+      (load)="onLoad($event)"
+    />
+  }
+  @if (placeholder && !isLoaded) {
+    <img class="x-image-img" [src]="placeholder" [style.width]="width" [style.height]="height" />
+  }
+  @if (isError && !fallback) {
+    <div class="x-image-error-icon" [style.width]="width" [style.height]="height">
+      <x-icon type="fto-image"></x-icon>
     </div>
+  }
+  <ng-container *xOutlet="previewTpl; context: { $image: this }">
+    @if (!isError) {
+      <div class="x-image-overlay" (click)="onPreview()">
+        <div class="x-image-text">
+          <x-icon type="fto-eye"></x-icon>
+          <span>{{ getPreviewText }}</span>
+        </div>
+      </div>
+    }
   </ng-container>
 </div>

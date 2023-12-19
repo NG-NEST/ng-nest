@@ -55,11 +55,11 @@
         (mouseup)="up($event)"
       ></x-button>
     </ng-template>
-    <ng-container *ngIf="invalid">
+    @if (invalid) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>
       <div class="x-border-error x-bottom-right"></div>
-    </ng-container>
+    }
   </div>
 </div>

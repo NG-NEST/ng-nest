@@ -17,14 +17,12 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
-import { CommonModule } from '@angular/common';
 import { XCommentReplyComponent } from './comment-reply.component';
 
 @Component({
   selector: `${XCommentPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
     XI18nPipe,
     XLinkComponent,
     XAvatarComponent,

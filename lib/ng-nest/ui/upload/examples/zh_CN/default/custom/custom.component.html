@@ -11,6 +11,8 @@
 ></x-upload>
 <ng-template #filesTpl let-files="$files">
   <ul>
-    <li *ngFor="let file of files">{{ file.name }} - {{ file.state }}</li>
+    @for (file of files; track file.name + file.state) {
+      <li>{{ file.name }} - {{ file.state }}</li>
+    }
   </ul>
 </ng-template>

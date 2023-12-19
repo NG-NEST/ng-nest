@@ -28,7 +28,7 @@ import {
   XResize,
   XResizeObserver
 } from '@ng-nest/ui/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
@@ -37,7 +37,6 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { XListDropGroup, X_LIST_DROP_GROUP } from './list-drop-group.directive';
-import { CommonModule } from '@angular/common';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
@@ -47,10 +46,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   selector: `${XListPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule,
+    CdkDropList,
+    CdkDrag,
     ScrollingModule,
     XIconComponent,
     XEmptyComponent,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageService } from '@ng-nest/ui/message';
@@ -6,7 +5,7 @@ import { XMessageService } from '@ng-nest/ui/message';
 @Component({
   selector: 'ex-loading',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './loading.component.html'
 })
 export class ExLoadingComponent {

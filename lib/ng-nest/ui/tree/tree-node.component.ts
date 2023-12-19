@@ -15,7 +15,7 @@ import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tr
 import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XTreeService } from './tree.service';
-import { CommonModule } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgStyle,
     FormsModule,
     XIconComponent,
     XCheckboxComponent,

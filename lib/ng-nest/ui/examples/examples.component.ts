@@ -8,12 +8,10 @@ import {
   OnInit
 } from '@angular/core';
 import { XExamplesPrefix } from './examples.property';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XExamplesPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './examples.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -11,7 +10,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   selector: 'ex-custom',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     XButtonComponent,
     XButtonsComponent,

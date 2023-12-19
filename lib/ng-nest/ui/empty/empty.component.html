@@ -1,20 +1,16 @@
 <div #empty class="x-empty">
-  <ng-container *ngIf="img; else imgDefaultTemp">
+  @if (img) {
     <ng-container *xOutlet="img">
       <img class="x-empty-img" [src]="img" />
     </ng-container>
-  </ng-container>
-  <ng-container *ngIf="content; else contentDefaultTemp">
+  } @else {
+    <x-icon type="fto-inbox"></x-icon>
+  }
+  @if (content) {
     <ng-container *xOutlet="content">
       <span>{{ content }}</span>
     </ng-container>
-  </ng-container>
+  } @else {
+    <span>{{ 'empty.noData' | xI18n }}</span>
+  }
 </div>
-
-<ng-template #imgDefaultTemp>
-  <x-icon type="fto-inbox"></x-icon>
-</ng-template>
-
-<ng-template #contentDefaultTemp>
-  <span>{{ 'empty.noData' | xI18n }}</span>
-</ng-template>

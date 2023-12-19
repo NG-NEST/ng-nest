@@ -14,14 +14,13 @@ import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XLinkComponent, XI18nPipe],
+  imports: [FormsModule, XLinkComponent, XI18nPipe],
   templateUrl: './text-retract.component.html',
   styleUrls: ['./text-retract.component.scss'],
   encapsulation: ViewEncapsulation.None,

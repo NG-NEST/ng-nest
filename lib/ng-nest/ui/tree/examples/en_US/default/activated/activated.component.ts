@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-activated',
   standalone: true,
-  imports: [CommonModule, XTreeComponent],
+  imports: [JsonPipe, XTreeComponent],
   templateUrl: './activated.component.html'
 })
 export class ExActivatedComponent {

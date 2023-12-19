@@ -1,20 +1,26 @@
 <div #popoverPortal class="x-popover-portal" [ngClass]="classMap" (click)="stopPropagation($event)">
   <div class="x-popover-portal-inner" [style.width]="width">
-    <div *ngIf="title" class="x-popover-portal-title">
-      <ng-container *xOutlet="title">
-        {{ title }}
-      </ng-container>
-    </div>
-    <div *ngIf="content" class="x-popover-portal-content">
-      <ng-container *xOutlet="content">
-        {{ content }}
-      </ng-container>
-    </div>
-    <div *ngIf="footer" class="x-popover-portal-footer">
-      <ng-container *xOutlet="footer">
-        {{ footer }}
-      </ng-container>
-    </div>
+    @if (title) {
+      <div class="x-popover-portal-title">
+        <ng-container *xOutlet="title">
+          {{ title }}
+        </ng-container>
+      </div>
+    }
+    @if (content) {
+      <div class="x-popover-portal-content">
+        <ng-container *xOutlet="content">
+          {{ content }}
+        </ng-container>
+      </div>
+    }
+    @if (footer) {
+      <div class="x-popover-portal-footer">
+        <ng-container *xOutlet="footer">
+          {{ footer }}
+        </ng-container>
+      </div>
+    }
   </div>
   <div #popoverArrow class="x-popover-portal-arrow"></div>
 </div>

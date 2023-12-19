@@ -14,14 +14,14 @@ import { XStepsPrefix, XStepsNode, XStepsProperty } from './steps.property';
 import { XIsChange, XIsUndefined, XIsNumber, XSetData, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XStepsPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, XIconComponent, XOutletDirective],
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -92,9 +92,5 @@ export class XStepsComponent extends XStepsProperty implements OnInit, OnChanges
   private setActivated() {
     this.nodes = this.setStatus(this.nodes);
     this.cdr.detectChanges();
-  }
-
-  trackByNode(_index: number, item: XStepsNode) {
-    return item.id;
   }
 }

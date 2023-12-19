@@ -11,13 +11,13 @@ import {
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
 import { XIsEmpty, XConfigService, XIsChange, XClearClass, XBaseAnimation } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTagPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent],
+  imports: [NgClass, XIconComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
   encapsulation: ViewEncapsulation.None,

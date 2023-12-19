@@ -1,75 +1,85 @@
 <div #comment class="x-comment">
   <div class="x-comment-list">
-    <div class="x-comment-item" *ngFor="let node of nodes; trackBy: trackByNode">
-      <div class="x-comment-avatar">
-        <x-avatar [src]="node.src"></x-avatar>
+    @for (node of nodes; track node.id) {
+      <div class="x-comment-item">
+        <div class="x-comment-avatar">
+          <x-avatar [src]="node.src"></x-avatar>
+        </div>
+        <div class="x-comment-content">
+          <div class="x-comment-author">
+            <x-link>{{ node.author }}</x-link>
+            <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
+          </div>
+          <div>
+            <x-text-retract [content]="node.content"></x-text-retract>
+          </div>
+          <div class="x-comment-action">
+            <x-buttons>
+              <x-button
+                icon="fto-message-square"
+                [activated]="node.commentShow"
+                (click)="commentOnClick(node)"
+                onlyIcon
+              >
+                {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
+              </x-button>
+              <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>
+                {{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}
+              </x-button>
+            </x-buttons>
+          </div>
+          @if (node.commentShow) {
+            <x-comment-reply [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
+          }
+          <ul>
+            @for (child of node.children; track child.id) {
+              <li>
+                <div>
+                  <div>
+                    <x-link>{{ child.author }}</x-link>
+                    @if (child.replyAuthor) {
+                      <span class="x-comment-reply">{{ 'comment.reply' | xI18n }}</span>
+                      <x-link>{{ child.replyAuthor }}</x-link>
+                    }
+                    ：
+                    <span>
+                      <x-text-retract [content]="child.content"></x-text-retract>
+                    </span>
+                  </div>
+                  <div class="x-comment-action">
+                    <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
+                    <x-buttons>
+                      <x-button
+                        icon="fto-message-square"
+                        [activated]="child.commentShow"
+                        (click)="replyOnClick(child)"
+                        onlyIcon
+                        >{{ 'comment.reply' | xI18n }}</x-button
+                      >
+                      <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>
+                        {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
+                      >
+                    </x-buttons>
+                  </div>
+                  @if (child.commentShow) {
+                    <x-comment-reply
+                      [maxlength]="contentMax"
+                      (sureClick)="sureOnClick($event, child)"
+                    ></x-comment-reply>
+                  }
+                </div>
+              </li>
+            }
+            @if (hasMore(node)) {
+              <li class="x-comment-more">
+                <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight
+                  >{{ 'comment.more' | xI18n }}
+                </x-link>
+              </li>
+            }
+          </ul>
+        </div>
       </div>
-      <div class="x-comment-content">
-        <div class="x-comment-author">
-          <x-link>{{ node.author }}</x-link>
-          <span class="x-comment-time">{{ node.datetime | xTimeAgo }}</span>
-        </div>
-        <div>
-          <x-text-retract [content]="node.content"></x-text-retract>
-        </div>
-        <div class="x-comment-action">
-          <x-buttons>
-            <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" onlyIcon>
-              {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
-            </x-button>
-            <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>
-              {{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}
-            </x-button>
-          </x-buttons>
-        </div>
-        <x-comment-reply
-          *ngIf="node.commentShow"
-          [maxlength]="contentMax"
-          (sureClick)="sureOnClick($event, node)"
-        ></x-comment-reply>
-        <ul>
-          <li *ngFor="let child of node.children; trackBy: trackByNode">
-            <div>
-              <div>
-                <x-link>{{ child.author }}</x-link>
-                <ng-container *ngIf="child.replyAuthor">
-                  <span class="x-comment-reply">{{ 'comment.reply' | xI18n }}</span>
-                  <x-link>{{ child.replyAuthor }}</x-link>
-                </ng-container>
-                ：
-                <span>
-                  <x-text-retract [content]="child.content"></x-text-retract>
-                </span>
-              </div>
-              <div class="x-comment-action">
-                <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
-                <x-buttons>
-                  <x-button
-                    icon="fto-message-square"
-                    [activated]="child.commentShow"
-                    (click)="replyOnClick(child)"
-                    onlyIcon
-                    >{{ 'comment.reply' | xI18n }}</x-button
-                  >
-                  <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>
-                    {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
-                  >
-                </x-buttons>
-              </div>
-              <x-comment-reply
-                *ngIf="child.commentShow"
-                [maxlength]="contentMax"
-                (sureClick)="sureOnClick($event, child)"
-              ></x-comment-reply>
-            </div>
-          </li>
-          <li class="x-comment-more" *ngIf="hasMore(node)">
-            <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight
-              >{{ 'comment.more' | xI18n }}
-            </x-link>
-          </li>
-        </ul>
-      </div>
-    </div>
+    }
   </div>
 </div>

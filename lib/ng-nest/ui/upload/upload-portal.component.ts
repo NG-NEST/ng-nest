@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ViewEncapsulation,
@@ -20,7 +20,7 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 @Component({
   selector: `${XUploadPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent],
+  imports: [XIconComponent],
   templateUrl: './upload-portal.component.html',
   styleUrls: ['./upload-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

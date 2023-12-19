@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
@@ -11,7 +11,7 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
   selector: 'ex-list',
   standalone: true,
   imports: [
-    CommonModule,
+    NgStyle,
     FormsModule,
     XSkeletonComponent,
     XSwitchComponent,

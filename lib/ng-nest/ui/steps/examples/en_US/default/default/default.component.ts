@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XStepsComponent } from '@ng-nest/ui/steps';
@@ -6,7 +5,7 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
 @Component({
   selector: 'ex-default',
   standalone: true,
-  imports: [CommonModule, XStepsComponent, XButtonComponent],
+  imports: [XStepsComponent, XButtonComponent],
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {

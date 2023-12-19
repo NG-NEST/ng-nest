@@ -5,7 +5,7 @@ import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 import { XCrumbComponent, XCrumbNode } from '@ng-nest/ui/crumb';
 import { delay, finalize } from 'rxjs/operators';
 import { XHighlightComponent, XHighlightLines } from '@ng-nest/ui/highlight';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -15,7 +15,7 @@ import { XTreeComponent } from '@ng-nest/ui/tree';
   selector: `${XTreeFilePrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
     XTreeComponent,
     XLinkComponent,
     XCrumbComponent,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XCorner } from '@ng-nest/ui/core';
@@ -7,7 +6,7 @@ import { XNotificationService } from '@ng-nest/ui/notification';
 @Component({
   selector: 'ex-default',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

@@ -31,7 +31,7 @@ import { CdkDragMove, CdkDragStart, CdkDragEnd, CdkDrag, DragDropModule } from '
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XDragDirective } from '@ng-nest/ui/drag';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -40,7 +40,8 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XSliderSelectPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
+    NgStyle,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
@@ -331,8 +332,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnI
           ? distance - offset
           : distance + offset
         : distance > 0
-        ? distance + stepLength - offset
-        : distance - stepLength + offset;
+          ? distance + stepLength - offset
+          : distance - stepLength + offset;
 
     const setOffset = (d: number) => {
       let x1 = (d / 100) * railBoxLength;

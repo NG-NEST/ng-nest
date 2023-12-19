@@ -3,13 +3,12 @@ import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
 import { XNotificationPrefix, XNotificationOption, XNotificationRef } from './notification.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: `${XNotificationPrefix}`,
   standalone: true,
-  imports: [CommonModule, XAlertComponent],
+  imports: [XAlertComponent],
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -45,9 +44,5 @@ export class XNotificationComponent {
           this.onClose(item);
         });
     }
-  }
-
-  trackByItem(_index: number, item: XNotificationOption) {
-    return `${item.title}-${item.content}`;
   }
 }

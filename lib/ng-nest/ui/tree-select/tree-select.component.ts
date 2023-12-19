@@ -48,7 +48,7 @@ import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filte
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nTreeSelect, XI18nService } from '@ng-nest/ui/i18n';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -56,7 +56,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XTreeSelectPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XInputComponent, XTagComponent, XOutletDirective],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XTagComponent, XOutletDirective],
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -11,7 +11,6 @@ import { XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XI18nService, XI18nPopconfirm } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -20,7 +19,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XPopconfirmPrefix}`,
   standalone: true,
-  imports: [CommonModule, XPopoverDirective, XButtonComponent, XIconComponent, XOutletDirective],
+  imports: [XPopoverDirective, XButtonComponent, XIconComponent, XOutletDirective],
   templateUrl: './popconfirm.component.html',
   styleUrls: ['./popconfirm.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -34,14 +34,14 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XFindPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
     FormsModule,
     ReactiveFormsModule,
     XTagComponent,
@@ -60,10 +60,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XFindComponent)]
 })
-export class XFindComponent
-  extends XFindProperty
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
-{
+export class XFindComponent extends XFindProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild('find', { static: true }) find!: ElementRef<HTMLElement>;
   @ViewChild('dialogCom') dialogCom!: XDialogComponent;
   @ViewChild('tableCom') tableCom!: XTableComponent;
@@ -374,10 +371,6 @@ export class XFindComponent
 
   treeCheckboxChange(node: XTreeNode) {
     this.treeMultiple(node);
-  }
-
-  trackByItem(_index: number, item: any) {
-    return item.id;
   }
 
   formControlChanges() {

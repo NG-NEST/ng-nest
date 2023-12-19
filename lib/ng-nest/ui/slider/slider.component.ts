@@ -27,7 +27,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Subject, of } from 'rxjs';
 import { takeUntil, debounceTime, delay } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -36,7 +36,7 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 @Component({
   selector: `${XSliderPrefix}`,
   standalone: true,
-  imports: [CommonModule, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownComponent],
+  imports: [NgClass, NgStyle, NgTemplateOutlet, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownComponent],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -299,9 +299,5 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
 
   getActivated(index: number) {
     return Number(this.activatedIndex) === index;
-  }
-
-  trackByNode(_index: number, item: XSliderNode) {
-    return item.id;
   }
 }

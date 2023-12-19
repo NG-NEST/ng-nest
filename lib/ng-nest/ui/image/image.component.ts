@@ -16,14 +16,14 @@ import { XI18nImage, XI18nService } from '@ng-nest/ui/i18n';
 import { map, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XImageGroupComponent } from './image-group.component';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XImagePrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, XIconComponent, XOutletDirective],
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   encapsulation: ViewEncapsulation.None,

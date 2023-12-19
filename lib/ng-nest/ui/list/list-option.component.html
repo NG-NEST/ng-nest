@@ -9,14 +9,19 @@
   [class.x-list-divided]="divided"
 >
   <div class="x-list-option-content">
-    <ng-container *ngIf="!nodeTpl">
-      <x-icon [type]="icon" *ngIf="icon"></x-icon>
-      <span x-keyword [text]="keywordText" [caseSensitive]="caseSensitive">{{ label }}</span>
-    </ng-container>
-    <ng-container *ngIf="nodeTpl">
+    @if (nodeTpl) {
       <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
-    </ng-container>
+    } @else {
+      @if (icon) {
+        <x-icon [type]="icon"></x-icon>
+      }
+      <span x-keyword [text]="keywordText" [caseSensitive]="caseSensitive">{{ label }}</span>
+    }
   </div>
-  <x-icon class="x-list-leaf" type="fto-chevron-right" *ngIf="leaf"></x-icon>
-  <x-icon class="x-list-checked" type="fto-check" *ngIf="checked && !leaf && selected"></x-icon>
+  @if (leaf) {
+    <x-icon class="x-list-leaf" type="fto-chevron-right"></x-icon>
+  }
+  @if (checked && !leaf && selected) {
+    <x-icon class="x-list-checked" type="fto-check"></x-icon>
+  }
 </div>

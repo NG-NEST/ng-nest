@@ -1,5 +1,42 @@
 <div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf">
-  <ng-container *ngIf="!virtualScroll; else virtualScrollTpl">
+  @if (virtualScroll) {
+    <cdk-virtual-scroll-viewport
+      #virtualBody
+      [itemSize]="itemSize"
+      [minBufferPx]="minBufferPx"
+      [maxBufferPx]="maxBufferPx"
+      [style.height.px]="virtualScrollHeight"
+    >
+      <div
+        class="x-tree-content"
+        #dropList
+        cdkDropList
+        [cdkDropListDisabled]="!drag"
+        [cdkDropListSortingDisabled]="true"
+        [hidden]="isEmpty"
+        [cdkDropListData]="nodes"
+        [cdkDropListEnterPredicate]="predicate"
+      >
+        <x-tree-node
+          *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
+          cdkDrag
+          [cdkDragDisabled]="node.disabled"
+          (cdkDragStarted)="cdkDragStarted($event)"
+          (cdkDragEnded)="cdkDragEnded($event)"
+          (cdkDragMoved)="cdkDragMoved($event)"
+          [cdkDragData]="node"
+          (nodeMouseenter)="nodeMouseenter($event)"
+          [node]="node"
+          [lazy]="lazy"
+          [lazyData]="data"
+          [nodeHeight]="nodeHeight"
+          [nodeNowrap]="nodeNowrap"
+          [nodeAlignItems]="nodeAlignItems"
+          [tree]="this"
+        ></x-tree-node>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  } @else {
     <div
       class="x-tree-content"
       #dropList
@@ -10,65 +47,29 @@
       [cdkDropListData]="nodes"
       [cdkDropListEnterPredicate]="predicate"
     >
-      <x-tree-node
-        *ngFor="let node of nodes; trackBy: trackByItem"
-        cdkDrag
-        [cdkDragDisabled]="node.disabled"
-        (cdkDragStarted)="cdkDragStarted($event)"
-        (cdkDragEnded)="cdkDragEnded($event)"
-        (cdkDragMoved)="cdkDragMoved($event)"
-        [cdkDragData]="node"
-        (nodeMouseenter)="nodeMouseenter($event)"
-        [node]="node"
-        [lazy]="lazy"
-        [lazyData]="data"
-        [nodeHeight]="nodeHeight"
-        [nodeNowrap]="nodeNowrap"
-        [nodeAlignItems]="nodeAlignItems"
-        [tree]="this"
-      ></x-tree-node>
+      @for (node of nodes; track node.id) {
+        <x-tree-node
+          cdkDrag
+          [cdkDragDisabled]="node.disabled"
+          (cdkDragStarted)="cdkDragStarted($event)"
+          (cdkDragEnded)="cdkDragEnded($event)"
+          (cdkDragMoved)="cdkDragMoved($event)"
+          [cdkDragData]="node"
+          (nodeMouseenter)="nodeMouseenter($event)"
+          [node]="node"
+          [lazy]="lazy"
+          [lazyData]="data"
+          [nodeHeight]="nodeHeight"
+          [nodeNowrap]="nodeNowrap"
+          [nodeAlignItems]="nodeAlignItems"
+          [tree]="this"
+        ></x-tree-node>
+      }
     </div>
-  </ng-container>
+  }
 </div>
 
-<ng-template #virtualScrollTpl>
-  <cdk-virtual-scroll-viewport
-    #virtualBody
-    [itemSize]="itemSize"
-    [minBufferPx]="minBufferPx"
-    [maxBufferPx]="maxBufferPx"
-    [style.height.px]="virtualScrollHeight"
-  >
-    <div
-      class="x-tree-content"
-      #dropList
-      cdkDropList
-      [cdkDropListDisabled]="!drag"
-      [cdkDropListSortingDisabled]="true"
-      [hidden]="isEmpty"
-      [cdkDropListData]="nodes"
-      [cdkDropListEnterPredicate]="predicate"
-    >
-      <x-tree-node
-        *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
-        cdkDrag
-        [cdkDragDisabled]="node.disabled"
-        (cdkDragStarted)="cdkDragStarted($event)"
-        (cdkDragEnded)="cdkDragEnded($event)"
-        (cdkDragMoved)="cdkDragMoved($event)"
-        [cdkDragData]="node"
-        (nodeMouseenter)="nodeMouseenter($event)"
-        [node]="node"
-        [lazy]="lazy"
-        [lazyData]="data"
-        [nodeHeight]="nodeHeight"
-        [nodeNowrap]="nodeNowrap"
-        [nodeAlignItems]="nodeAlignItems"
-        [tree]="this"
-      ></x-tree-node>
-    </div>
-  </cdk-virtual-scroll-viewport>
-</ng-template>
-
 <!-- 提前加载loading的图标-->
-<x-icon *ngIf="lazy" [style.display]="'none'" type="fto-loader"></x-icon>
+@if (lazy) {
+  <x-icon [style.display]="'none'" type="fto-loader"></x-icon>
+}

@@ -9,5 +9,7 @@
   (click)="onClick()"
 >
   <ng-content></ng-content>
-  <x-icon type="fto-x" *ngIf="closable" (click)="onClose($event)"></x-icon>
+  @if (closable) {
+    <x-icon type="fto-x" (click)="onClose($event)"></x-icon>
+  }
 </div>

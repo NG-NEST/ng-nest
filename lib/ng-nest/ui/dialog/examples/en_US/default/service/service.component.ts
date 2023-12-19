@@ -3,12 +3,11 @@ import { XPlace } from '@ng-nest/ui/core';
 import { XDialogService } from '@ng-nest/ui/dialog';
 import { ExServiceDialogComponent } from './service-dialog.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ex-service',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss']
 })

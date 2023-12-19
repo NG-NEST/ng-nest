@@ -1,7 +1,10 @@
 <div class="x-text-retract">
   {{ displayValue }}
-  <ng-container *ngIf="retract">
-    <x-link type="primary" (click)="toggle()" *ngIf="unfold">...{{ 'textRetract.unfold' | xI18n }}</x-link>
-    <x-link type="primary" (click)="toggle()" *ngIf="!unfold">{{ 'textRetract.packUp' | xI18n }}</x-link>
-  </ng-container>
+  @if (retract) {
+    @if (unfold) {
+      <x-link type="primary" (click)="toggle()">...{{ 'textRetract.unfold' | xI18n }}</x-link>
+    } @else {
+      <x-link type="primary" (click)="toggle()">{{ 'textRetract.packUp' | xI18n }}</x-link>
+    }
+  }
 </div>

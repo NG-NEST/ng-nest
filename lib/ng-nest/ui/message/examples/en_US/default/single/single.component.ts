@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { XMessageService } from '@ng-nest/ui/message';
 import { XPlace } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-single',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './single.component.html',
   styleUrls: ['./single.component.scss']
 })

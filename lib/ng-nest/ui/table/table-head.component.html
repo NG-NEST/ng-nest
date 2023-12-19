@@ -4,40 +4,41 @@
   [class.x-table-head-top]="position === 'top'"
   [class.x-table-head-bottom]="position === 'bottom'"
 >
-  <ng-container *ngIf="cellConfig; else columnsTpl">
-    <tr
-      [style.gridTemplateColumns]="cellConfig.gridTemplateColumns"
-      [style.min-height.px]="getRowHeight"
-    >
-      <th
-        *ngFor="let column of cellConfig.cells"
-        [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
-        [class.x-table-sticky-left]="table.getStickyLeft(column)"
-        [class.x-table-sticky-right]="table.getStickyRight(column)"
-        [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
-        [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
-        [class.x-table-width-drag]="column.dragWidth"
-        [style.grid-area]="column.gridArea"
-        [style.left.px]="column.left"
-        [style.right.px]="column.right"
-        [style.min-height.px]="getRowHeight"
-        [title]="column?.label"
-      >
-        <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
-        <div
-          *ngIf="column.dragWidth"
-          class="x-table-drag-width"
-          x-drag
-          (dragMoved)="dragWidthMoved($event, column)"
-          (dragStarted)="dragWidthStarted($event, column)"
-          (dragEnded)="dragWidthEnded($event, column)"
-        ></div>
-      </th>
+  @if (cellConfig) {
+    <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns" [style.min-height.px]="getRowHeight">
+      @for (column of cellConfig.cells; track column.id) {
+        <th
+          [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
+          [class.x-table-sticky-left]="table.getStickyLeft(column)"
+          [class.x-table-sticky-right]="table.getStickyRight(column)"
+          [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
+          [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
+          [class.x-table-width-drag]="column.dragWidth"
+          [style.grid-area]="column.gridArea"
+          [style.left.px]="column.left"
+          [style.right.px]="column.right"
+          [style.min-height.px]="getRowHeight"
+          [title]="column?.label"
+        >
+          <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
+          @if (column.dragWidth) {
+            <div
+              class="x-table-drag-width"
+              x-drag
+              (dragMoved)="dragWidthMoved($event, column)"
+              (dragStarted)="dragWidthStarted($event, column)"
+              (dragEnded)="dragWidthEnded($event, column)"
+            ></div>
+          }
+        </th>
+      }
     </tr>
-  </ng-container>
-  <ng-container *ngIf="table.headSearchTpl">
+  } @else {
+    <ng-container *ngTemplateOutlet="columnsTpl"></ng-container>
+  }
+  @if (table.headSearchTpl) {
     <ng-container *ngTemplateOutlet="columnsTpl; context: { case: 'search' }"></ng-container>
-  </ng-container>
+  }
 </thead>
 
 <ng-template #columnsTpl let-case="case">
@@ -52,91 +53,83 @@
     [style.width.px]="scrollXWidth"
     [class.x-table-search]="case === 'search'"
   >
-    <th
-      *ngFor="let column of columns; trackBy: trackByItem"
-      cdkDrag
-      [cdkDragDisabled]="column.draggingWidth || !column.dragColumn"
-      (cdkDragStarted)="dragStarted($event, column)"
-      (cdkDragEnded)="dragEnded(column)"
-      [ngClass]="thClassMap"
-      [class.x-table-th]="true"
-      [class.x-table-sticky]="table.getSticky(column)"
-      [class.x-table-sticky-left]="table.getStickyLeft(column)"
-      [class.x-table-sticky-right]="table.getStickyRight(column)"
-      [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
-      [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
-      [style.min-height.px]="getRowHeight"
-      [style.width.px]="getColumnWidth(column)"
-      [style.left.px]="column.left"
-      [style.right.px]="getColumnRight(column.right)"
-      [style.flex]="getFlex(column)"
-    >
-      <ng-container [ngSwitch]="case">
-        <ng-container *ngSwitchCase="'search'">
-          <ng-container
-            *ngTemplateOutlet="table.headSearchTpl; context: { $column: column }"
-          ></ng-container>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <ng-container
-            *ngTemplateOutlet="columnBaseTpl; context: { column: column }"
-          ></ng-container>
-          <div
-            *ngIf="column.dragWidth"
-            class="x-table-drag-width"
-            x-drag
-            (dragMoved)="dragWidthMoved($event, column)"
-            (dragStarted)="dragWidthStarted($event, column)"
-            (dragEnded)="dragWidthEnded($event, column)"
-          ></div>
-        </ng-container>
-      </ng-container>
-    </th>
+    @for (column of columns; track column.id) {
+      <th
+        cdkDrag
+        [cdkDragDisabled]="column.draggingWidth || !column.dragColumn"
+        (cdkDragStarted)="dragStarted($event, column)"
+        (cdkDragEnded)="dragEnded(column)"
+        [ngClass]="thClassMap"
+        [class.x-table-th]="true"
+        [class.x-table-sticky]="table.getSticky(column)"
+        [class.x-table-sticky-left]="table.getStickyLeft(column)"
+        [class.x-table-sticky-right]="table.getStickyRight(column)"
+        [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
+        [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
+        [style.min-height.px]="getRowHeight"
+        [style.width.px]="getColumnWidth(column)"
+        [style.left.px]="column.left"
+        [style.right.px]="getColumnRight(column.right)"
+        [style.flex]="getFlex(column)"
+      >
+        @switch (case) {
+          @case ('search') {
+            <ng-container *ngTemplateOutlet="table.headSearchTpl; context: { $column: column }"></ng-container>
+          }
+          @default {
+            <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
+            @if (column.dragWidth) {
+              <div
+                class="x-table-drag-width"
+                x-drag
+                (dragMoved)="dragWidthMoved($event, column)"
+                (dragStarted)="dragWidthStarted($event, column)"
+                (dragEnded)="dragWidthEnded($event, column)"
+              ></div>
+            }
+          }
+        }
+      </th>
+    }
   </tr>
 </ng-template>
 
 <ng-template #columnBaseTpl let-column="column">
-  <ng-container [ngSwitch]="column.type">
-    <ng-container *ngSwitchCase="'checkbox'">
-      <x-checkbox
-        *ngIf="column.headChecked"
-        [data]="[{ id: true, label: column.label }]"
-        [(ngModel)]="table.checkedValues[column.id]"
-        (ngModelChange)="table.headChecked($event, column)"
-        [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
-      ></x-checkbox>
-      <ng-container *ngIf="!column.headChecked">
-        <ng-container
-          *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"
-        ></ng-container>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'index'">
+  @switch (column.type) {
+    @case ('checkbox') {
+      @if (column.headChecked) {
+        <x-checkbox
+          [data]="[{ id: true, label: column.label }]"
+          [(ngModel)]="table.checkedValues[column.id]"
+          (ngModelChange)="table.headChecked($event, column)"
+          [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
+        ></x-checkbox>
+      }
+      @if (!column.headChecked) {
+        <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+      }
+    }
+    @case ('index') {
       <a>{{ column.label }}</a>
-    </ng-container>
-    <ng-container *ngSwitchDefault>
-      <ng-container
-        *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"
-      ></ng-container>
-    </ng-container>
-  </ng-container>
+    }
+    @default {
+      <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
+    }
+  }
 </ng-template>
 
 <ng-template #cloumnDefaultTpl let-column="column">
-  <a
-    [class.x-table-sort]="column.sort"
-    (click)="onSort(column)"
-    [style.text-align]="column.textAlign"
-  >
+  <a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
     <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
       {{ column.label }}
     </ng-container>
-    <x-icon
-      *ngIf="column.sort"
-      type="fto-bar-chart"
-      class="x-table-sort-icon"
-      [class.x-table-icon-up]="sortStr === column.id + ' desc'"
-      [class.x-table-icon-down]="sortStr === column.id + ' asc'"
-    ></x-icon>
+    @if (column.sort) {
+      <x-icon
+        type="fto-bar-chart"
+        class="x-table-sort-icon"
+        [class.x-table-icon-up]="sortStr === column.id + ' desc'"
+        [class.x-table-icon-down]="sortStr === column.id + ' asc'"
+      ></x-icon>
+    }
   </a>
 </ng-template>

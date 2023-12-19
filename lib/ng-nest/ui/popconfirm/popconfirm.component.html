@@ -18,7 +18,9 @@
 <ng-template #titleTpl>
   <div class="x-popconfirm-title">
     <ng-container *xOutlet="title">
-      <x-icon *ngIf="icon" [style.color]="iconColor" [type]="icon"></x-icon>
+      @if (icon) {
+        <x-icon [style.color]="iconColor" [type]="icon"></x-icon>
+      }
       <span>{{ title }}</span>
     </ng-container>
   </div>

@@ -10,12 +10,10 @@ import {
 import { XTabPrefix, XTabProperty } from './tabs.property';
 import { XConfigService } from '@ng-nest/ui/core';
 import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directive';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XTabPrefix}`,
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './tab.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

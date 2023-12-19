@@ -19,18 +19,18 @@ import { XI18nService, XI18nUpload } from '@ng-nest/ui/i18n';
 import { XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XUploadPortalComponent } from './upload-portal.component';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XImageComponent, XImageGroupComponent } from '@ng-nest/ui/image';
 import { XProgressComponent } from '@ng-nest/ui/progress';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XUploadPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgTemplateOutlet,
     XIconComponent,
     XOutletDirective,
     XButtonComponent,
@@ -62,17 +62,18 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
 
   private _unSubject = new Subject<void>();
 
-  override writeValue(value: XUploadNode[]) {
-    this.value = value;
-    this.setFiles();
-    this.cdr.detectChanges();
-  }
   private http = inject(HttpClient, { optional: true });
   override cdr = inject(ChangeDetectorRef);
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private i18n = inject(XI18nService);
   configService = inject(XConfigService);
+
+  override writeValue(value: XUploadNode[]) {
+    this.value = value;
+    this.setFiles();
+    this.cdr.detectChanges();
+  }
 
   ngOnInit() {
     if (!this.http) {
@@ -224,10 +225,6 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
     return;
   }
 
-  trackByItem(_index: number, item: XUploadNode) {
-    return `${item.name}-${item.lastModified}`;
-  }
-
   onImgCut(file: XUploadNode, index: number) {
     this.portal = this.portalService.attach({
       content: XUploadPortalComponent,
@@ -273,12 +270,10 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
   destroyPortal() {
     this.portal?.overlayRef?.dispose();
   }
-
   imgError(_event: ErrorEvent, file: XUploadNode) {
     file.state = 'error';
     this.cdr.detectChanges();
   }
-
   imgLoad(file: XUploadNode) {
     file.state = 'success';
     this.cdr.detectChanges();

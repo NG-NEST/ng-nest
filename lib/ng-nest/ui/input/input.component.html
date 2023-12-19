@@ -20,24 +20,31 @@
   [class.x-input-value-template]="valueTpl"
   [ngClass]="classMap"
 >
-  <label *ngIf="label" [class.x-input-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label) {
+    <label [class.x-input-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  }
   <div class="x-input-row">
-    <div class="x-input-row-before" *ngIf="before" [class.x-input-row-before-template]="beforeIsTemplate">
-      <ng-container *xOutlet="before">{{ before }}</ng-container>
-    </div>
-    <div class="x-input-input" (mouseenter)="xMouseenter.emit($event)" (mouseleave)="xMouseleave.emit($event)">
-      <div
-        #inputValueRef
-        class="x-input-value-template-value"
-        [style.left.rem]="paddingLeft"
-        [style.padding-left]="0"
-        [style.padding-right]="0"
-        [style.width]="getTemplateWidth"
-        (click)="xClick.emit($event)"
-        *ngIf="valueTpl"
-      >
-        <ng-container *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"></ng-container>
+    @if (before) {
+      <div class="x-input-row-before" [class.x-input-row-before-template]="beforeIsTemplate">
+        <ng-container *xOutlet="before">{{ before }}</ng-container>
       </div>
+    }
+    <div class="x-input-input" (mouseenter)="xMouseenter.emit($event)" (mouseleave)="xMouseleave.emit($event)">
+      @if (valueTpl) {
+        <div
+          #inputValueRef
+          class="x-input-value-template-value"
+          [style.left.rem]="paddingLeft"
+          [style.padding-left]="0"
+          [style.padding-right]="0"
+          [style.width]="getTemplateWidth"
+          (click)="xClick.emit($event)"
+        >
+          <ng-container
+            *ngTemplateOutlet="valueTpl; context: valueTplContext ? valueTplContext : { $value: value }"
+          ></ng-container>
+        </div>
+      }
       <input
         #inputRef
         [class.x-input-has-value-template]="valueTpl"
@@ -61,24 +68,29 @@
         (compositionstart)="xComposition.next(true)"
         (compositionend)="xComposition.next(false)"
       />
-      <x-icon *ngIf="clearShow && !iconSpin" class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
-      <x-icon
-        *ngIf="icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft || iconSpin)"
-        [type]="icon"
-        [spin]="iconSpin"
-        (click)="xClick.emit($event)"
-      ></x-icon>
-      <span class="x-input-max-length" *ngIf="maxlength">{{ lengthTotal }}</span>
-      <span class="x-input-error-message" *ngIf="invalid">{{ invalidMessage }}</span>
-      <ng-container *ngIf="requiredIsEmpty || invalid">
+      @if (clearShow && !iconSpin) {
+        <x-icon class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
+      }
+      @if (icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft || iconSpin)) {
+        <x-icon [type]="icon" [spin]="iconSpin" (click)="xClick.emit($event)"></x-icon>
+      }
+      @if (maxlength) {
+        <span class="x-input-max-length">{{ lengthTotal }}</span>
+      }
+      @if (invalid) {
+        <span class="x-input-error-message">{{ invalidMessage }}</span>
+      }
+      @if (requiredIsEmpty || invalid) {
         <div class="x-border-error x-top-left"></div>
         <div class="x-border-error x-top-right"></div>
         <div class="x-border-error x-bottom-left"></div>
         <div class="x-border-error x-bottom-right"></div>
-      </ng-container>
+      }
     </div>
-    <div class="x-input-row-after" *ngIf="after" [class.x-input-row-after-template]="afterIsTemplate">
-      <ng-container *xOutlet="after">{{ after }}</ng-container>
-    </div>
+    @if (after) {
+      <div class="x-input-row-after" [class.x-input-row-after-template]="afterIsTemplate">
+        <ng-container *xOutlet="after">{{ after }}</ng-container>
+      </div>
+    }
   </div>
 </div>

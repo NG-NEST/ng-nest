@@ -59,7 +59,7 @@ import {
 } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nSelect, XI18nService } from '@ng-nest/ui/i18n';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -67,7 +67,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XSelectPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XTagComponent, XInputComponent, XOutletDirective],
+  imports: [FormsModule, ReactiveFormsModule, XTagComponent, XInputComponent, XOutletDirective],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,

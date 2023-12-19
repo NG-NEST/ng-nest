@@ -26,13 +26,12 @@ import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XListComponent } from '@ng-nest/ui/list';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XTimePickerFramePrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XListComponent],
+  imports: [FormsModule, XListComponent],
   templateUrl: './time-picker-frame.component.html',
   styleUrls: ['./time-picker-frame.component.scss'],
   encapsulation: ViewEncapsulation.None,

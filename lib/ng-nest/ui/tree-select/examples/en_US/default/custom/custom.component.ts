@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
@@ -6,7 +5,7 @@ import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 @Component({
   selector: 'ex-custom',
   standalone: true,
-  imports: [CommonModule, FormsModule, XTreeSelectComponent],
+  imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

@@ -1,5 +1,7 @@
 <x-tabs activatedIndex="3">
-  <x-tab *ngFor="let label of labels" [label]="label">
-    <div [style.padding.rem]="0.625">{{ label }}</div>
-  </x-tab>
+  @for (label of labels; track label) {
+    <x-tab [label]="label">
+      <div [style.padding.rem]="0.625">{{ label }}</div>
+    </x-tab>
+  }
 </x-tabs>

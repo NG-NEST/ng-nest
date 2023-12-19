@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSize } from '@ng-nest/ui/core';
@@ -9,7 +8,7 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 @Component({
   selector: 'ex-scroll',
   standalone: true,
-  imports: [CommonModule, FormsModule, XListComponent, XRadioComponent, XInputNumberComponent],
+  imports: [FormsModule, XListComponent, XRadioComponent, XInputNumberComponent],
   templateUrl: './scroll.component.html',
   styleUrls: ['./scroll.component.scss']
 })

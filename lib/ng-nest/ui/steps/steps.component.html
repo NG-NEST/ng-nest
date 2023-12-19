@@ -1,26 +1,39 @@
 <div #steps class="x-steps" [ngClass]="classMap">
-  <div class="x-steps-node x-steps-{{ node.status }}" *ngFor="let node of nodes; index as i; trackBy: trackByNode">
-    <div class="x-steps-header">
-      <ng-container *xOutlet="customTpl; context: { $node: node, $index: i }">
-        <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
-          <x-icon *ngIf="node.icon; else iconTpl" [type]="node.icon"></x-icon>
-          <ng-template #iconTpl>
-            <ng-container [ngSwitch]="node.status">
-              <x-icon *ngSwitchCase="'finish'" type="fto-check"></x-icon>
-              <x-icon *ngSwitchCase="'error'" type="fto-x"></x-icon>
-              <span *ngSwitchDefault>{{ getIndex(i) }}</span>
-            </ng-container>
-          </ng-template>
-        </div>
-      </ng-container>
-      <span class="x-steps-line" *ngIf="layout === 'column'"></span>
-    </div>
-    <div class="x-steps-content">
-      <div class="x-steps-title">
-        <span class="x-steps-label">{{ node.label }}</span>
-        <span class="x-steps-line" *ngIf="layout === 'row'"></span>
+  @for (node of nodes; track node.id; let i = $index) {
+    <div class="x-steps-node x-steps-{{ node.status }}">
+      <div class="x-steps-header">
+        <ng-container *xOutlet="customTpl; context: { $node: node, $index: i }">
+          <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
+            @if (node.icon) {
+              <x-icon [type]="node.icon"></x-icon>
+            } @else {
+              @switch (node.status) {
+                @case ('finish') {
+                  <x-icon type="fto-check"></x-icon>
+                }
+                @case ('error') {
+                  <x-icon type="fto-x"></x-icon>
+                }
+                @default {
+                  <span>{{ getIndex(i) }}</span>
+                }
+              }
+            }
+          </div>
+        </ng-container>
+        @if (layout === 'column') {
+          <span class="x-steps-line"></span>
+        }
       </div>
-      <div class="x-steps-description">{{ node.description }}</div>
+      <div class="x-steps-content">
+        <div class="x-steps-title">
+          <span class="x-steps-label">{{ node.label }}</span>
+          @if (layout === 'row') {
+            <span class="x-steps-line"></span>
+          }
+        </div>
+        <div class="x-steps-description">{{ node.description }}</div>
+      </div>
     </div>
-  </div>
+  }
 </div>

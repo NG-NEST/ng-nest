@@ -17,7 +17,7 @@ import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
 import { XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XTagComponent } from '@ng-nest/ui/tag';
@@ -26,7 +26,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XRadioPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
+  imports: [NgClass, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -108,10 +108,6 @@ export class XRadioComponent extends XRadioProperty implements OnInit, OnChanges
       this.nodes = x;
       this.cdr.detectChanges();
     });
-  }
-
-  trackByItem(_index: number, item: XRadioNode) {
-    return item.id;
   }
 
   formControlChanges() {

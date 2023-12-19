@@ -14,29 +14,29 @@
 </x-table>
 
 <ng-template #headSearchTpl let-column="$column">
-  <ng-container [ngSwitch]="column.id">
-    <ng-container *ngSwitchCase="'name'">
+  @switch (column.id) {
+    @case ('name') {
       <x-input [style.width.%]="100" [(ngModel)]="name" (ngModelChange)="change($event, 'name')"></x-input>
-    </ng-container>
-    <ng-container *ngSwitchCase="'phone'">
+    }
+    @case ('phone') {
       <x-input [style.width.%]="100" [(ngModel)]="phone" (ngModelChange)="change($event, 'phone')"></x-input>
-    </ng-container>
-    <ng-container *ngSwitchCase="'position'">
+    }
+    @case ('position') {
       <x-select
         [style.width.%]="100"
         [(ngModel)]="position"
         (ngModelChange)="change($event, 'position')"
         [data]="service.positions"
       ></x-select>
-    </ng-container>
-    <ng-container *ngSwitchCase="'organization'">
+    }
+    @case ('organization') {
       <x-select
         [style.width.%]="100"
         [(ngModel)]="organization"
         (ngModelChange)="change($event, 'organization')"
         [data]="service.organizations"
       ></x-select>
-    </ng-container>
-    <ng-container *ngSwitchDefault></ng-container>
-  </ng-container>
+    }
+    @default {}
+  }
 </ng-template>

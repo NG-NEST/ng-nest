@@ -14,14 +14,14 @@ import {
 import { XTextareaPrefix, XTextareaProperty } from './textarea.property';
 import { XIsEmpty, XIsChange, XClearClass, XConfigService } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTextareaPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconComponent],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, XIconComponent],
   templateUrl: './textarea.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

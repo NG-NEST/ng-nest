@@ -8,13 +8,11 @@
   [class.x-slider-select-reverse]="reverse"
   [class.x-slider-select-range]="range"
 >
-  <label
-    *ngIf="label"
-    [class.x-slider-select-label-required]="required"
-    [style.width]="labelWidth"
-    [ngClass]="labelMap"
-    >{{ label }}</label
-  >
+  @if (label) {
+    <label [class.x-slider-select-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
+      label
+    }}</label>
+  }
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>
       <div></div>
@@ -34,9 +32,11 @@
         ></div>
       </div>
       <div class="x-slider-select-marks">
-        <div class="x-slider-select-mark" [ngStyle]="mark.style" *ngFor="let mark of markList">
-          <span class="x-slider-select-mark-label">{{ mark.label }}</span>
-        </div>
+        @for (mark of markList; track mark.label) {
+          <div class="x-slider-select-mark" [ngStyle]="mark.style">
+            <span class="x-slider-select-mark-label">{{ mark.label }}</span>
+          </div>
+        }
       </div>
       <div
         #dragStartRef

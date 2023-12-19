@@ -1,12 +1,18 @@
 <div class="x-image-preview" [ngClass]="classMap">
   <div class="x-image-preview-header">
     <div class="x-image-preview-header-left">
-      <span class="x-image-preview-current" *ngIf="total != 1">{{ current }} / {{ total }}</span>
+      @if (total != 1) {
+        <span class="x-image-preview-current">{{ current }} / {{ total }}</span>
+      }
     </div>
     <div class="x-image-preview-header-center">
       <x-icon type="fto-corner-up-left" (click)="onRotate(-90)"></x-icon>
       <x-icon type="fto-corner-up-right" (click)="onRotate(90)"></x-icon>
-      <x-icon type="fto-zoom-out" [class.x-image-preview-disabled]="imgScale3d.x === 1" (click)="imgScale3d.x > 1 && onScale(-1)"></x-icon>
+      <x-icon
+        type="fto-zoom-out"
+        [class.x-image-preview-disabled]="imgScale3d.x === 1"
+        (click)="imgScale3d.x > 1 && onScale(-1)"
+      ></x-icon>
       <x-icon type="fto-zoom-in" (click)="onScale(1)"></x-icon>
     </div>
     <div class="x-image-preview-header-right">
@@ -20,22 +26,28 @@
     [cdkDragFreeDragPosition]="position"
     (cdkDragReleased)="onDragReleased()"
   >
-    <img #imageRef [src]="activated?.src" [attr.alt]="activated?.alt" cdkDragHandle [style.transform]="getImgTransform" />
+    <img
+      #imageRef
+      [src]="activated?.src"
+      [attr.alt]="activated?.alt"
+      cdkDragHandle
+      [style.transform]="getImgTransform"
+    />
   </div>
-  <div
-    *ngIf="data && data.length > 1"
-    [class.x-image-preview-disabled]="current === 1"
-    class="x-image-preview-left"
-    (click)="current > 1 && onCurrentChange(-1)"
-  >
-    <x-icon type="fto-chevron-left"></x-icon>
-  </div>
-  <div
-    *ngIf="data && data.length > 1"
-    [class.x-image-preview-disabled]="current === total"
-    class="x-image-preview-right"
-    (click)="current != total && onCurrentChange(1)"
-  >
-    <x-icon type="fto-chevron-right"></x-icon>
-  </div>
+  @if (data && data.length > 1) {
+    <div
+      [class.x-image-preview-disabled]="current === 1"
+      class="x-image-preview-left"
+      (click)="current > 1 && onCurrentChange(-1)"
+    >
+      <x-icon type="fto-chevron-left"></x-icon>
+    </div>
+    <div
+      [class.x-image-preview-disabled]="current === total"
+      class="x-image-preview-right"
+      (click)="current != total && onCurrentChange(1)"
+    >
+      <x-icon type="fto-chevron-right"></x-icon>
+    </div>
+  }
 </div>

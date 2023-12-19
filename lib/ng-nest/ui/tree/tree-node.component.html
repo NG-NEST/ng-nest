@@ -9,22 +9,29 @@
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
   (click)="!node.disabled && onActivate($event, node)"
 >
-  <div class="x-tree-node-line" *ngIf="tree.showLine && numLevel > 0" [style.width.rem]="paddingLeft">
-    <div
-      class="x-tree-node-line-vertical"
-      [hidden]="isParentLast[i - 1]"
-      [class.is-last]="i === verticalLevel.length"
-      [style.left.rem]="getVerticalLeft(i)"
-      *ngFor="let i of verticalLevel"
-    ></div>
-    <div
-      class="x-tree-node-line-horizontal"
-      [style.width.rem]="verticalWidth"
-      [style.left.rem]="getVerticalLeft(verticalLevel.length)"
-    ></div>
-  </div>
-  <div class="x-tree-node-drag-indicator" *ngIf="showDragIndicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
-  <ng-container *ngIf="!node.loading">
+  @if (tree.showLine && numLevel > 0) {
+    <div class="x-tree-node-line" [style.width.rem]="paddingLeft">
+      @for (i of verticalLevel; track i) {
+        <div
+          class="x-tree-node-line-vertical"
+          [hidden]="isParentLast[i - 1]"
+          [class.is-last]="i === verticalLevel.length"
+          [style.left.rem]="getVerticalLeft(i)"
+        ></div>
+      }
+      <div
+        class="x-tree-node-line-horizontal"
+        [style.width.rem]="verticalWidth"
+        [style.left.rem]="getVerticalLeft(verticalLevel.length)"
+      ></div>
+    </div>
+  }
+  @if (showDragIndicator) {
+    <div class="x-tree-node-drag-indicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
+  }
+  @if (node.loading) {
+    <x-icon class="x-tree-node-loading" type="fto-loader" [spin]="node.loading"></x-icon>
+  } @else {
     <div
       class="x-tree-node-right"
       [class.is-leaf]="node.leaf"
@@ -33,45 +40,42 @@
       [style.width.rem]="verticalWidth * 2"
       (click)="!tree.nodeOpen && tree.onToggle($event, node)"
     >
-      <ng-container *ngIf="tree.expandedIcon; else defaultIconTpl">
+      @if (tree.expandedIcon) {
         <ng-container *xOutlet="tree.expandedIcon; context: { $node: node }"></ng-container>
-      </ng-container>
-      <ng-template #defaultIconTpl>
+      } @else {
         <x-icon type="fto-chevron-right"></x-icon>
-      </ng-template>
+      }
     </div>
-  </ng-container>
-
-  <x-icon class="x-tree-node-loading" *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
-  <x-checkbox
-    *ngIf="tree.checkbox"
-    [data]="[{ label: '', id: node.id }]"
-    [(ngModel)]="node.checked"
-    (ngModelChange)="onCheckboxChange()"
-    [indeterminate]="node.indeterminate"
-    [disabled]="node.disabled!"
-    (click)="$event.stopPropagation()"
-  ></x-checkbox>
-  <span
-    class="x-tree-node-label"
-    [class.nowrap]="node.nowrap === false || node.nowrap === true ? node.nowrap : nodeNowrap"
-    [title]="node.label"
-    x-keyword
-    [text]="tree.keywordText"
-    [caseSensitive]="tree.caseSensitive"
-    *ngIf="!tree.labelTpl; else labelTpl"
-    >{{ node.label }}</span
-  >
-  <ng-template #labelTpl>
+  }
+  @if (tree.checkbox) {
+    <x-checkbox
+      [data]="[{ label: '', id: node.id }]"
+      [(ngModel)]="node.checked"
+      (ngModelChange)="onCheckboxChange()"
+      [indeterminate]="node.indeterminate"
+      [disabled]="node.disabled!"
+      (click)="$event.stopPropagation()"
+    ></x-checkbox>
+  }
+  @if (!tree.labelTpl) {
+    <span
+      class="x-tree-node-label"
+      [class.nowrap]="node.nowrap === false || node.nowrap === true ? node.nowrap : nodeNowrap"
+      [title]="node.label"
+      x-keyword
+      [text]="tree.keywordText"
+      [caseSensitive]="tree.caseSensitive"
+      >{{ node.label }}</span
+    >
+  } @else {
     <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
-  </ng-template>
+  }
   <span class="x-tree-node-operations">
-    <x-link
-      *ngFor="let action of tree.actions; trackBy: trackByAction"
-      [icon]="action.icon"
-      [title]="action.label"
-      (click)="onAction($event, action, node)"
-    ></x-link>
+    @for (action of tree.actions; track action.id) {
+      <x-link [icon]="action.icon" [title]="action.label" (click)="onAction($event, action, node)"></x-link>
+    }
   </span>
-  <x-icon class="x-tree-node-checked" type="fto-check" *ngIf="tree.multiple && getActivated"></x-icon>
+  @if (tree.multiple && getActivated) {
+    <x-icon class="x-tree-node-checked" type="fto-check"></x-icon>
+  }
 </div>

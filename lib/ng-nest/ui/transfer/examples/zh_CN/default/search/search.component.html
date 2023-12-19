@@ -19,11 +19,16 @@
 </x-transfer>
 
 <ng-template #leftHeadSearchTpl let-column="$column">
-  <ng-container [ngSwitch]="column.id">
-    <ng-container *ngSwitchCase="'name'">
-      <x-input [style.width.%]="100" ngDefaultControl [(ngModel)]="name" (ngModelChange)="change($event, 'name')"></x-input>
-    </ng-container>
-    <ng-container *ngSwitchCase="'position'">
+  @switch (column.id) {
+    @case ('name') {
+      <x-input
+        [style.width.%]="100"
+        ngDefaultControl
+        [(ngModel)]="name"
+        (ngModelChange)="change($event, 'name')"
+      ></x-input>
+    }
+    @case ('position') {
       <x-select
         ngDefaultControl
         [style.width.%]="100"
@@ -31,8 +36,8 @@
         (ngModelChange)="change($event, 'position')"
         [data]="service.positions"
       ></x-select>
-    </ng-container>
-    <ng-container *ngSwitchCase="'organization'">
+    }
+    @case ('organization') {
       <x-select
         ngDefaultControl
         [style.width.%]="100"
@@ -40,7 +45,7 @@
         (ngModelChange)="change($event, 'organization')"
         [data]="service.organizations"
       ></x-select>
-    </ng-container>
-    <ng-container *ngSwitchDefault></ng-container>
-  </ng-container>
+    }
+    @default {}
+  }
 </ng-template>

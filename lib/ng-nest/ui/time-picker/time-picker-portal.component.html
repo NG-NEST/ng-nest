@@ -9,10 +9,15 @@
     [disabledTime]="disabledTime"
     (nodeEmit)="nodeEmit($event)"
   ></x-time-picker-frame>
-  <div *ngIf="preset" class="x-time-picker-portal-preset">
-    <ng-container *ngFor="let item of preset">
-      <x-button type="text" *ngIf="!item.func && item.id === 'now'" (click)="onNow()">{{ locale.now }}</x-button>
-      <x-button type="text" *ngIf="item.func" (click)="onPresetFunc(item)">{{ item.label }}</x-button>
-    </ng-container>
-  </div>
+  @if (preset) {
+    <div class="x-time-picker-portal-preset">
+      @for (item of preset; track item) {
+        @if (!!item.func) {
+          <x-button type="text" (click)="onPresetFunc(item)">{{ item.label }}</x-button>
+        } @else if (!item.func && item.id === 'now') {
+          <x-button type="text" (click)="onNow()">{{ locale.now }}</x-button>
+        }
+      }
+    </div>
+  }
 </div>

@@ -29,13 +29,12 @@ import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrollin
 import { XTreeNodeComponent } from './tree-node.component';
 import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
 import { XTreeService } from './tree.service';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTreePrefix}`,
   standalone: true,
-  imports: [CommonModule, DragDropModule, ScrollingModule, XTreeNodeComponent, XIconComponent],
+  imports: [DragDropModule, ScrollingModule, XTreeNodeComponent, XIconComponent],
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,

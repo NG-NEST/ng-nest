@@ -1,5 +1,5 @@
 <div class="x-notification">
-  <ng-container *ngFor="let item of notification.list; trackBy: trackByItem">
+  @for (item of notification.list; track item) {
     <x-alert
       [@x-move-animation]="item.placement"
       (@x-move-animation.done)="moveDone($event)"
@@ -18,5 +18,5 @@
       manual
       disabledAnimation
     ></x-alert>
-  </ng-container>
+  }
 </div>

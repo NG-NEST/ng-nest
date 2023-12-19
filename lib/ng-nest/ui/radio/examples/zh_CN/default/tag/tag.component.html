@@ -2,7 +2,14 @@
   <h4>样式</h4>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
   <x-radio
@@ -16,19 +23,59 @@
   ></x-radio>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" type="primary" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="primary"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" type="success" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="success"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" type="info" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="info"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" type="warning" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="warning"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
-  <x-radio label="分类：" direction="row" [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" type="danger" tag></x-radio>
+  <x-radio
+    label="分类："
+    direction="row"
+    [data]="data"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    type="danger"
+    tag
+  ></x-radio>
 </div>
 <div class="row">
   <h4>示例</h4>
@@ -71,5 +118,7 @@
 </div>
 <div class="row">
   选择的数据：
-  <x-tag [@.disabled]="true" *ngFor="let item of selected" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+  @for (item of selected; track item) {
+    <x-tag [@.disabled]="true" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+  }
 </div>

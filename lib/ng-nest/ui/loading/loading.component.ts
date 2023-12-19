@@ -15,14 +15,14 @@ import {
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
 import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XLoadingPrefix}, [${XLoadingPrefix}]`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, NgTemplateOutlet, XIconComponent, XOutletDirective],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -32,7 +32,7 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nPipe, XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { XTableColumn, XTableComponent, XTableHeadCheckbox } from '@ng-nest/ui/table';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
@@ -45,7 +45,9 @@ import { XLinkComponent } from '@ng-nest/ui/link';
   selector: `${XTransferPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     DragDropModule,
     XOutletDirective,
@@ -117,10 +119,10 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       return this.value;
     }
   }
-  
-  override cdr = inject(ChangeDetectorRef)
-  private i18n = inject(XI18nService)
-  configService = inject(XConfigService)
+
+  override cdr = inject(ChangeDetectorRef);
+  private i18n = inject(XI18nService);
+  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setTitles();

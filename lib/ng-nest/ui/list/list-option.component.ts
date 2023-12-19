@@ -13,14 +13,14 @@ import {
 import { XListOptionPrefix, XListOptionProperty } from './list.property';
 import { Highlightable } from '@angular/cdk/a11y';
 import { XClassMap, XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XListOptionPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XKeywordDirective],
+  imports: [NgClass, NgTemplateOutlet, XIconComponent, XKeywordDirective],
   templateUrl: './list-option.component.html',
   styleUrls: ['./list-option.component.scss'],
   encapsulation: ViewEncapsulation.None,

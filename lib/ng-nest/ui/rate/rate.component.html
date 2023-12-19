@@ -6,32 +6,40 @@
   [class.x-required]="requiredIsEmpty"
   [class.x-invalid]="invalid"
 >
-  <label *ngIf="label" [class.x-rate-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label) {
+    <label [class.x-rate-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  }
   <div class="x-rate-icons" (mouseleave)="leaveRates()">
-    <div
-      class="x-rate-icon"
-      [class.activated]="rate <= hoverActivated"
-      [class.half-activated]="rate <= hoverHalfActivated"
-      [style.color]="rate <= hoverActivated ? getColor : ''"
-      *ngFor="let rate of rates; index as i; trackBy: trackByItem"
-    >
+    @for (rate of rates; track rate; let i = $index) {
       <div
-        *ngIf="half"
-        class="x-rate-half"
-        [style.color]="rate <= hoverHalfActivated ? getColor : ''"
-        (mouseenter)="rateHalfHover(rate, $event)"
-        (click)="rateHalfClick(rate, $event)"
+        class="x-rate-icon"
+        [class.activated]="rate <= hoverActivated"
+        [class.half-activated]="rate <= hoverHalfActivated"
+        [style.color]="rate <= hoverActivated ? getColor : ''"
       >
-        <ng-container *ngIf="customTemp; else iconTpl">
-          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
-        </ng-container>
+        @if (half) {
+          <div
+            class="x-rate-half"
+            [style.color]="rate <= hoverHalfActivated ? getColor : ''"
+            (mouseenter)="rateHalfHover(rate, $event)"
+            (click)="rateHalfClick(rate, $event)"
+          >
+            @if (customTemp) {
+              <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+            } @else {
+              <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
+            }
+          </div>
+        }
+        <div class="x-rate-back" (mouseenter)="rateHover(rate, $event)" (click)="rateClick(rate, $event)">
+          @if (customTemp) {
+            <ng-container *ngTemplateOutlet="customTemp"></ng-container>
+          } @else {
+            <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
+          }
+        </div>
       </div>
-      <div class="x-rate-back" (mouseenter)="rateHover(rate, $event)" (click)="rateClick(rate, $event)">
-        <ng-container *ngIf="customTemp; else iconTpl">
-          <ng-container *ngTemplateOutlet="customTemp"></ng-container>
-        </ng-container>
-      </div>
-    </div>
+    }
   </div>
 </div>
 

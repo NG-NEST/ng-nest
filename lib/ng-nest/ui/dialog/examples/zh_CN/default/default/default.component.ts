@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XPlace } from '@ng-nest/ui/core';
@@ -8,7 +7,7 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 @Component({
   selector: 'ex-default',
   standalone: true,
-  imports: [CommonModule, XButtonModule, XDialogComponent],
+  imports: [XButtonModule, XDialogComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

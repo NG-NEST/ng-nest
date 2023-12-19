@@ -8,44 +8,43 @@
   [ngClass]="classMap"
   (ngSubmit)="onSubmit($event)"
 >
-  <ng-container [ngSwitch]="controlsType">
-    <ng-container *ngSwitchCase="'controls'">
+  @switch (controlsType) {
+    @case ('controls') {
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls }"> </ng-container>
-    </ng-container>
-    <ng-container *ngSwitchCase="'rows'">
+    }
+    @case ('rows') {
       <ng-container *ngTemplateOutlet="rowsTemp; context: { rows: controls }"></ng-container>
-    </ng-container>
-  </ng-container>
+    }
+  }
   <div class="x-form-content" #content><ng-content></ng-content></div>
 </form>
 
 <ng-template #rowsTemp let-rows="rows">
-  <ng-container *ngFor="let row of rows">
+  @for (row of rows; track row.id) {
     <div class="x-form-category" [hidden]="row.hidden">
       <ng-container *ngTemplateOutlet="titleTemp; context: { row: row }"></ng-container>
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: row.controls }"></ng-container>
     </div>
-  </ng-container>
+  }
 </ng-template>
 
 <ng-template #controlsTemp let-controls="controls">
   <x-row [space]="space">
-    <x-col
-      [style.padding-top.rem]="space"
-      [span]="!control.span ? span : control.span"
-      *ngFor="let control of controls; trackBy: trackByControl"
-      [hidden]="control.hidden"
-    >
-      <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
-        <x-control [option]="control" [form]="this"></x-control>
-      </ng-container>
-    </x-col>
+    @for (control of controls; track control.id) {
+      <x-col [style.padding-top.rem]="space" [span]="!control.span ? span : control.span" [hidden]="control.hidden">
+        <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
+          <x-control [option]="control" [form]="this"></x-control>
+        </ng-container>
+      </x-col>
+    }
   </x-row>
 </ng-template>
 
 <ng-template #titleTemp let-row="row">
   <label class="x-form-title">
-    <x-icon *ngIf="row.icon" [type]="row.icon"></x-icon>
+    @if (row.icon) {
+      <x-icon [type]="row.icon"></x-icon>
+    }
     <span>{{ row.title }}</span>
   </label>
 </ng-template>

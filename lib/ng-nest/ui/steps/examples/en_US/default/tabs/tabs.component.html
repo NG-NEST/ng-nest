@@ -10,8 +10,14 @@
 </div>
 <div class="row">
   <x-buttons space="1">
-    <x-button (click)="pre()" *ngIf="activated > 0">Previous</x-button>
-    <x-button (click)="next()" *ngIf="activated < 2">Next step</x-button>
-    <x-button type="primary" (click)="done()" *ngIf="activated === 2">Submit</x-button>
+    @if (activated > 0) {
+      <x-button (click)="pre()">Previous</x-button>
+    }
+    @if (activated < 2) {
+      <x-button (click)="next()">Next step</x-button>
+    }
+    @if (activated === 2) {
+      <x-button type="primary" (click)="done()">Submit</x-button>
+    }
   </x-buttons>
 </div>

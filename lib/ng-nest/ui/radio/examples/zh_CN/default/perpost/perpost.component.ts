@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
@@ -16,7 +15,6 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
   selector: 'ex-perpost',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     XRadioComponent,
     XSelectComponent,

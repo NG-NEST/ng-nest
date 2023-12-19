@@ -62,7 +62,6 @@ import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
@@ -83,7 +82,6 @@ import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
   selector: 'x-control',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     XInputComponent,

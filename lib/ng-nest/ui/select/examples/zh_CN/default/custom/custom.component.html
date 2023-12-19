@@ -6,12 +6,19 @@
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <span *ngIf="node" class="select-item"> {{ node?.label }}<sup>2</sup> </span>
+  @if (node) {
+    <span class="select-item"> {{ node?.label }}<sup>2</sup> </span>
+  }
 </ng-template>
 
 <ng-template #multipleNodeTpl let-node="$node" let-isValue="$isValue">
-  <span *ngIf="node && !isValue" class="select-item"> {{ node?.label }} <sup>2</sup> </span>
-  <span *ngIf="node && isValue">
-    <span class="select-item" *ngFor="let item of node"> {{ item.label }} <sup>2</sup> </span>
-  </span>
+  @if (node && !isValue) {
+    <span class="select-item"> {{ node?.label }} <sup>2</sup> </span>
+  } @else if (node && isValue) {
+    <span>
+      @for (item of node; track item.id) {
+        <span class="select-item"> {{ item.label }} <sup>2</sup> </span>
+      }
+    </span>
+  }
 </ng-template>

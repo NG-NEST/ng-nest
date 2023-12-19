@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +16,7 @@ import { XBoolean } from '@ng-nest/ui/core';
   selector: 'x-tab-content',
   preserveWhitespaces: false,
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgTemplateOutlet],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './tab-content.component.html'

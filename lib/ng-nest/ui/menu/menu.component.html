@@ -1,35 +1,41 @@
 <div #menu class="x-menu" [ngClass]="classMap" [style.width]="layout === 'column' ? width : ''">
-  <div class="x-menu-nodes" *ngIf="layout === 'column'">
-    <ng-container *ngFor="let node of nodes; trackBy: trackByNode">
-      <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>
-    </ng-container>
-  </div>
-  <x-slider
-    *ngIf="layout === 'row'"
-    [data]="nodes"
-    [size]="size"
-    [nodeTpl]="nodeRowTpl"
-    [nodeJustify]="'center'"
-    [activatedIndex]="rootIndex"
-    (indexChange)="rootIndexChange($event)"
-  ></x-slider>
+  @if (layout === 'column') {
+    <div class="x-menu-nodes">
+      @for (node of nodes; track node.id) {
+        <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>
+      }
+    </div>
+  }
+  @if (layout === 'row') {
+    <x-slider
+      [data]="nodes"
+      [size]="size"
+      [nodeTpl]="nodeRowTpl"
+      [nodeJustify]="'center'"
+      [activatedIndex]="rootIndex"
+      (indexChange)="rootIndexChange($event)"
+    ></x-slider>
+  }
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  <x-dropdown
-    *ngIf="node.level === 0 && collapsed"
-    [disabled]="!node.leaf"
-    [data]="node.children"
-    [trigger]="trigger"
-    placement="right-start"
-    [(activatedId)]="activatedId"
-    (nodeClick)="onNodeClick($event)"
-    [portalMinWidth]="portalMinWidth"
-    children
-  >
+  @if (node.level === 0 && collapsed) {
+    <x-dropdown
+      [disabled]="!node.leaf"
+      [data]="node.children"
+      [trigger]="trigger"
+      placement="right-start"
+      [(activatedId)]="activatedId"
+      (nodeClick)="onNodeClick($event)"
+      [portalMinWidth]="portalMinWidth"
+      children
+    >
+      <x-menu-node [node]="node" [menu]="this"></x-menu-node>
+    </x-dropdown>
+  }
+  @if (!collapsed) {
     <x-menu-node [node]="node" [menu]="this"></x-menu-node>
-  </x-dropdown>
-  <x-menu-node *ngIf="!collapsed" [node]="node" [menu]="this"></x-menu-node>
+  }
 </ng-template>
 
 <ng-template #nodeRowTpl let-node="$node">
@@ -59,9 +65,11 @@
   >
     <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
   </div>
-  <div class="x-menu-nodes" *ngIf="node.childrenLoaded || (node.leaf && node.open)" [hidden]="!node.open">
-    <ng-container *ngFor="let child of node.children; trackBy: trackByNode">
-      <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: child }"></ng-container>
-    </ng-container>
-  </div>
+  @if (node.childrenLoaded || (node.leaf && node.open)) {
+    <div class="x-menu-nodes" [hidden]="!node.open">
+      @for (child of node.children; track child.id) {
+        <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: child }"></ng-container>
+      }
+    </div>
+  }
 </ng-template>

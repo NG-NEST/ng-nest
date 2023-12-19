@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XUploadComponent } from '@ng-nest/ui/upload';
@@ -6,7 +5,7 @@ import { XUploadComponent } from '@ng-nest/ui/upload';
 @Component({
   selector: 'ex-custom',
   standalone: true,
-  imports: [CommonModule, FormsModule, XUploadComponent],
+  imports: [FormsModule, XUploadComponent],
   templateUrl: './custom.component.html'
 })
 export class ExCustomComponent {

@@ -23,13 +23,13 @@ import { Subject, takeUntil, distinctUntilChanged, filter, startWith, delay } fr
 import { XSliderComponent, XSliderProperty } from '@ng-nest/ui/slider';
 import { XTabComponent } from './tab.component';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XTabContentComponent } from './tab-content.component';
 
 @Component({
   selector: `${XTabsPrefix}`,
   standalone: true,
-  imports: [CommonModule, XSliderComponent, XTabContentComponent],
+  imports: [NgClass, XSliderComponent, XTabContentComponent],
   templateUrl: './tabs.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

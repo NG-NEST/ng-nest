@@ -13,13 +13,13 @@ import {
 } from '@angular/core';
 import { XLinkPrefix, XLinkProperty } from './link.property';
 import { XConfigService, XIsEmpty } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XLinkPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent],
+  imports: [NgClass, XIconComponent],
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   encapsulation: ViewEncapsulation.None,

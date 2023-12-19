@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
@@ -7,7 +6,7 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 @Component({
   selector: 'ex-tag',
   standalone: true,
-  imports: [CommonModule, FormsModule, XCheckboxComponent, XTagComponent],
+  imports: [FormsModule, XCheckboxComponent, XTagComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })

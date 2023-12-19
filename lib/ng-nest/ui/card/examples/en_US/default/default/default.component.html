@@ -1,7 +1,9 @@
 <div class="row">
   <x-card width="20rem">
     <ul>
-      <li *ngFor="let item of list">{{ 'list content ' + item }}</li>
+      @for (item of list; track item) {
+        <li>{{ 'list content ' + item }}</li>
+      }
     </ul>
   </x-card>
 </div>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
@@ -9,7 +8,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 @Component({
   selector: 'ex-custom',
   standalone: true,
-  imports: [CommonModule, XFormComponent, XButtonComponent, XDialogComponent, XIconComponent, XLinkComponent],
+  imports: [XFormComponent, XButtonComponent, XDialogComponent, XIconComponent, XLinkComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

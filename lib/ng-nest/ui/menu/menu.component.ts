@@ -14,7 +14,7 @@ import {
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
 import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XMenuNodeComponent } from './menu-node.component';
@@ -22,7 +22,7 @@ import { XMenuNodeComponent } from './menu-node.component';
 @Component({
   selector: `${XMenuPrefix}`,
   standalone: true,
-  imports: [CommonModule, XSliderComponent, XDropdownComponent, XMenuNodeComponent],
+  imports: [NgClass, NgTemplateOutlet, XSliderComponent, XDropdownComponent, XMenuNodeComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -208,9 +208,5 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       }
     };
     getParent(node);
-  }
-
-  trackByNode(_index: number, item: XMenuNode) {
-    return item.id;
   }
 }

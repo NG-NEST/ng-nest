@@ -17,16 +17,18 @@
 </ng-template>
 
 <ng-template #bodyTdTpl let-column="$column" let-row="$row">
-  <ng-container [ngSwitch]="column.id">
-    <ng-container *ngSwitchCase="'name'">
+  @switch (column.id) {
+    @case ('name') {
       <x-input [style.width.%]="100" [(ngModel)]="row.name"></x-input>
-    </ng-container>
-    <ng-container *ngSwitchCase="'position'">
+    }
+    @case ('position') {
       <x-select [style.width.%]="100" [(ngModel)]="row.position" [data]="positionOptions"></x-select>
-    </ng-container>
-    <ng-container *ngSwitchCase="'status'">
+    }
+    @case ('status') {
       <x-switch [(ngModel)]="row.status"></x-switch>
-    </ng-container>
-    <ng-container *ngSwitchDefault>{{ row[column.id] }}</ng-container>
-  </ng-container>
+    }
+    @default {
+      {{ row[column.id] }}
+    }
+  }
 </ng-template>

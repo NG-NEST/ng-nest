@@ -4,25 +4,6 @@
   (click)="inputCom.inputFocus(); stopPropagation($event)"
   [style.maxHeight]="portalMaxHeight"
 >
-  <!-- <x-list
-    #list
-    [data]="data"
-    [(ngModel)]="value"
-    (nodeClick)="nodeClick($event)"
-    (keyManagerChange)="onActive($event)"
-    (keyManagerTabOut)="onTabOut()"
-    (onSelectAll)="onSelectAll($event)"
-    checked
-    [objectArray]="objectArray"
-    [multiple]="multiple"
-    [selectAll]="selectAll"
-    [selectAllText]="getSelectAllText"
-    [nodeTpl]="nodeTpl"
-    [scrollElement]="search ? scrollNull : treeSelectPortal"
-    [virtualScroll]="virtualScroll"
-    [size]="size"
-    [heightAdaption]="treeSelectPortal"
-  ></x-list> -->
   <x-tree
     #tree
     [data]="data"
@@ -41,5 +22,7 @@
     [onlyLeaf]="onlyLeaf"
     [nodeOpen]="onlyLeaf"
   ></x-tree>
-  <x-empty *ngIf="isEmpty"></x-empty>
+  @if (isEmpty) {
+    <x-empty></x-empty>
+  }
 </div>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
@@ -6,7 +5,7 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
 @Component({
   selector: 'ex-form-vaild',
   standalone: true,
-  imports: [CommonModule, XButtonComponent, XFormComponent],
+  imports: [XButtonComponent, XFormComponent],
   templateUrl: './form-vaild.component.html'
 })
 export class ExFormVaildComponent {

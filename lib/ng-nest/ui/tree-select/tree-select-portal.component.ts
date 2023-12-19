@@ -19,12 +19,11 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTreeSelect } from '@ng-nest/ui/i18n';
 import { XTreeComponent } from '@ng-nest/ui/tree';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XTreeSelectPortalPrefix}`,
   standalone: true,
-  imports: [CommonModule, XTreeComponent, XEmptyComponent],
+  imports: [XTreeComponent, XEmptyComponent],
   templateUrl: './tree-select-portal.component.html',
   styleUrls: ['./tree-select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,

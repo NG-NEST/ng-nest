@@ -15,14 +15,14 @@ import {
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import { XIsChange, XIsEmpty } from '@ng-nest/ui/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { delay, of } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: `${XHighlightPrefix}`,
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './highlight.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

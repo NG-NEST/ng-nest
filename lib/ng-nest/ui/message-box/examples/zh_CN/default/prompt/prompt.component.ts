@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 import { XMessageService } from '@ng-nest/ui/message';
-import { CommonModule } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-prompt',
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './prompt.component.html'
 })
 export class ExPromptComponent {

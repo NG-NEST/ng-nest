@@ -5,7 +5,9 @@
       <x-button type="text">操作按钮</x-button>
     </ng-template>
     <ul>
-      <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
+      @for (item of list; track item) {
+        <li>{{ '列表内容 ' + item }}</li>
+      }
     </ul>
   </x-card>
 </div>

@@ -1,19 +1,34 @@
 <div #result class="x-result" [ngClass]="classMap">
   <div class="x-result-icon">
-    <ng-container *ngIf="!icon; else iconTpl" [ngSwitch]="status">
-      <x-icon *ngSwitchCase="'success'" type="adf-check-circle"></x-icon>
-      <x-icon *ngSwitchCase="'info'" type="adf-info-circle"></x-icon>
-      <x-icon *ngSwitchCase="'warning'" type="adf-warning"></x-icon>
-      <x-icon *ngSwitchCase="'error'" type="adf-close-circle"></x-icon>
-      <x-icon *ngSwitchCase="'403'" type="fto-lock"></x-icon>
-      <x-icon *ngSwitchCase="'404'" type="fto-code"></x-icon>
-      <x-icon *ngSwitchCase="'500'" type="adf-close-circle"></x-icon>
-    </ng-container>
-    <ng-template #iconTpl>
+    @if (icon) {
       <ng-container *xOutlet="icon">
         <x-icon [type]="strIcon"></x-icon>
       </ng-container>
-    </ng-template>
+    } @else {
+      @switch (status) {
+        @case ('success') {
+          <x-icon type="adf-check-circle"></x-icon>
+        }
+        @case ('info') {
+          <x-icon type="adf-info-circle"></x-icon>
+        }
+        @case ('warning') {
+          <x-icon type="adf-warning"></x-icon>
+        }
+        @case ('error') {
+          <x-icon type="adf-close-circle"></x-icon>
+        }
+        @case ('403') {
+          <x-icon type="fto-lock"></x-icon>
+        }
+        @case ('404') {
+          <x-icon type="fto-code"></x-icon>
+        }
+        @case ('500') {
+          <x-icon type="adf-close-circle"></x-icon>
+        }
+      }
+    }
   </div>
 
   <div class="x-result-title">

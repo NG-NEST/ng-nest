@@ -23,7 +23,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
 import { XTableHeadComponent } from './table-head.component';
 import { XTableFootComponent } from './table-foot.component';
@@ -34,7 +34,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XTablePrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
     XOutletDirective,
     XLoadingComponent,
     XTableHeadComponent,

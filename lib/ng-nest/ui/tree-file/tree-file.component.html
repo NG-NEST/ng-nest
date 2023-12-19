@@ -1,32 +1,44 @@
 <div #treeFile class="x-tree-file" [ngClass]="classMap" [class.x-tree-file-toggle]="toggle">
-  <div class="x-tree-file-catalog" [style.max-height.rem]="catalogHeight" *ngIf="showTree">
-    <x-tree
-      [data]="data"
-      (activatedChange)="catalogChange($event)"
-      nodeOpen
-      [expandedAll]="expandedAll"
-      [expandedLevel]="expandedLevel"
-      [expanded]="expanded"
-      [spacing]="spacing"
-      [activatedId]="activatedId"
-    ></x-tree>
-  </div>
-  <div class="x-tree-file-body" [x-loading]="loading">
-    <div class="x-tree-file-crumb" *ngIf="showCrumb">
-      <x-link icon="fto-menu" *ngIf="showToggle && showTree" (click)="menuToggle()"></x-link>
-      <x-crumb [data]="getCrumbData" [separator]="separatorTpl"></x-crumb>
-      <ng-template #separatorTpl>
-        <x-icon type="fto-chevron-right"></x-icon>
-      </ng-template>
+  @if (showTree) {
+    <div class="x-tree-file-catalog" [style.max-height.rem]="catalogHeight">
+      <x-tree
+        [data]="data"
+        (activatedChange)="catalogChange($event)"
+        nodeOpen
+        [expandedAll]="expandedAll"
+        [expandedLevel]="expandedLevel"
+        [expanded]="expanded"
+        [spacing]="spacing"
+        [activatedId]="activatedId"
+      ></x-tree>
     </div>
-    <div class="x-tree-file-content" [style.max-height.rem]="codeHeight" [ngSwitch]="activatedNode?.fileType">
-      <div *ngSwitchCase="'img'" class="x-tree-file-img"><img [src]="activatedNode?.url" (load)="imgOnload()"/></div>
-      <x-highlight
-        *ngSwitchCase="'code'"
-        [type]="activatedNode?.type"
-        [data]="activatedNode?.content"
-        [highlightLines]="getHighlightLines"
-      ></x-highlight>
+  }
+  <div class="x-tree-file-body" [x-loading]="loading">
+    @if (showCrumb) {
+      <div class="x-tree-file-crumb">
+        @if (showToggle && showTree) {
+          <x-link icon="fto-menu" (click)="menuToggle()"></x-link>
+        }
+        <x-crumb [data]="getCrumbData" [separator]="separatorTpl"></x-crumb>
+        <ng-template #separatorTpl>
+          <x-icon type="fto-chevron-right"></x-icon>
+        </ng-template>
+      </div>
+    }
+
+    <div class="x-tree-file-content" [style.max-height.rem]="codeHeight">
+      @switch (activatedNode?.fileType) {
+        @case ('img') {
+          <div class="x-tree-file-img"><img [src]="activatedNode?.url" (load)="imgOnload()" /></div>
+        }
+        @case ('code') {
+          <x-highlight
+            [type]="activatedNode?.type"
+            [data]="activatedNode?.content"
+            [highlightLines]="getHighlightLines"
+          ></x-highlight>
+        }
+      }
     </div>
   </div>
 </div>

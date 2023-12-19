@@ -3,13 +3,12 @@ import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
 import { XMessagePrefix, XMessageOption, XMessagePlacementRef } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: `${XMessagePrefix}`,
   standalone: true,
-  imports: [CommonModule, XAlertComponent],
+  imports: [XAlertComponent],
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -42,9 +41,5 @@ export class XMessageComponent {
         .pipe(delay(item.duration))
         .subscribe(() => this.onClose(item));
     }
-  }
-
-  trackByNode(_index: number, item: XMessageOption) {
-    return item.id;
   }
 }

@@ -23,7 +23,6 @@ import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { XI18nDirective, XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
@@ -32,7 +31,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
   selector: 'x-theme',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     XSwitchComponent,

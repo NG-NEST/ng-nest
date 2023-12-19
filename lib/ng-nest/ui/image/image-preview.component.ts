@@ -10,14 +10,14 @@ import {
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XConfigService } from '@ng-nest/ui/core';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XImagePreviewPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, DragDropModule, XDialogCloseDirective],
+  imports: [NgClass, XIconComponent, DragDropModule, XDialogCloseDirective],
   templateUrl: './image-preview.component.html',
   styleUrls: ['./image-preview.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -107,8 +107,7 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
     let width = this.imageRef.nativeElement.offsetWidth * this.imgScale3d.x;
     let height = this.imageRef.nativeElement.offsetHeight * this.imgScale3d.x;
     const clientWidth = this.document.documentElement.clientWidth;
-    const clientHeight =
-      this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
+    const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
     const isRotate = this.rotate % 180 !== 0;
     const box = this.imageRef.nativeElement.getBoundingClientRect();
     const docElem = this.document.documentElement;

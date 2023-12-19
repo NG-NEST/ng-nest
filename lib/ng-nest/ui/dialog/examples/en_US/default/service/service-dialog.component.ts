@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import {
@@ -16,7 +15,6 @@ import { XDialogRef } from '@ng-nest/ui/dialog';
   selector: 'ex-service-dialog',
   standalone: true,
   imports: [
-    CommonModule,
     XButtonComponent,
     XDialogTitleDirective,
     XDialogDragHandleDirective,

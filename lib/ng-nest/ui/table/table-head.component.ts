@@ -21,7 +21,7 @@ import {
   XIsFunction
 } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XDragDirective } from '@ng-nest/ui/drag';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -32,7 +32,9 @@ import { FormsModule } from '@angular/forms';
   selector: `${XTableHeadPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgStyle,
+    NgClass,
+    NgTemplateOutlet,
     FormsModule,
     XDragDirective,
     DragDropModule,
@@ -206,9 +208,5 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   dragChange() {
     this.table.bodyChange();
-  }
-
-  trackByItem(_index: number, item: XTableColumn) {
-    return item.id;
   }
 }

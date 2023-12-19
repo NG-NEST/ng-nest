@@ -1,49 +1,58 @@
 <div class="x-control" [formGroup]="form.formGroup">
-  <ng-container [ngSwitch]="option.control">
-    <ng-container *ngSwitchCase="'input'">
+  @switch (option.control) {
+    @case ('input') {
       <x-input [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-input>
-    </ng-container>
-    <ng-container *ngSwitchCase="'select'">
+    }
+    @case ('select') {
       <x-select [formControlName]="option.id"></x-select>
-    </ng-container>
-    <ng-container *ngSwitchCase="'cascade'">
+    }
+    @case ('cascade') {
       <x-cascade [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-cascade>
-    </ng-container>
-    <ng-container *ngSwitchCase="'checkbox'">
+    }
+    @case ('checkbox') {
       <x-checkbox [formControlName]="option.id"></x-checkbox>
-    </ng-container>
-    <ng-container *ngSwitchCase="'color-picker'">
+    }
+    @case ('color-picker') {
       <x-color-picker [formControlName]="option.id"></x-color-picker>
-    </ng-container>
-    <ng-container *ngSwitchCase="'date-picker'">
-      <x-date-picker [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-date-picker>
-    </ng-container>
-    <ng-container *ngSwitchCase="'input-number'">
+    }
+    @case ('date-picker') {
+      <x-date-picker
+        [formControlName]="option.id"
+        (nodeEmit)="option.nodeClick && option.nodeClick($event)"
+      ></x-date-picker>
+    }
+    @case ('input-number') {
       <x-input-number [formControlName]="option.id"></x-input-number>
-    </ng-container>
-    <ng-container *ngSwitchCase="'radio'">
+    }
+    @case ('radio') {
       <x-radio [formControlName]="option.id"></x-radio>
-    </ng-container>
-    <ng-container *ngSwitchCase="'rate'">
+    }
+    @case ('rate') {
       <x-rate [formControlName]="option.id"></x-rate>
-    </ng-container>
-    <ng-container *ngSwitchCase="'slider-select'">
+    }
+    @case ('slider-select') {
       <x-slider-select [formControlName]="option.id"></x-slider-select>
-    </ng-container>
-    <ng-container *ngSwitchCase="'switch'">
+    }
+    @case ('switch') {
       <x-switch [formControlName]="option.id"></x-switch>
-    </ng-container>
-    <ng-container *ngSwitchCase="'time-picker'">
+    }
+    @case ('time-picker') {
       <x-time-picker [formControlName]="option.id"></x-time-picker>
-    </ng-container>
-    <ng-container *ngSwitchCase="'textarea'">
-      <x-textarea [formControlName]="option.id" (clearEmit)="option.clearClick && option.clearClick($event)"></x-textarea>
-    </ng-container>
-    <ng-container *ngSwitchCase="'auto-complete'">
-      <x-auto-complete [formControlName]="option.id" (nodeEmit)="option.nodeClick && option.nodeClick($event)"></x-auto-complete>
-    </ng-container>
-    <ng-container *ngSwitchCase="'find'">
+    }
+    @case ('textarea') {
+      <x-textarea
+        [formControlName]="option.id"
+        (clearEmit)="option.clearClick && option.clearClick($event)"
+      ></x-textarea>
+    }
+    @case ('auto-complete') {
+      <x-auto-complete
+        [formControlName]="option.id"
+        (nodeEmit)="option.nodeClick && option.nodeClick($event)"
+      ></x-auto-complete>
+    }
+    @case ('find') {
       <x-find [formControlName]="option.id"></x-find>
-    </ng-container>
-  </ng-container>
+    }
+  }
 </div>

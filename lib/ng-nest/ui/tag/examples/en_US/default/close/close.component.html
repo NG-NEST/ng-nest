@@ -1,5 +1,7 @@
 <div class="row">
-  <x-tag *ngFor="let tag of tags" type="primary" closable (close)="close(tag)">{{ tag }}</x-tag>
+  @for (tag of tags; track tag) {
+    <x-tag type="primary" closable (close)="close(tag)">{{ tag }}</x-tag>
+  }
 </div>
 <div class="row">
   <x-tag closable>label</x-tag>

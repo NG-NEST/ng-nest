@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges, inject } from '@angular/core';
 import { XStatisticPrefix, XStatisticProperty } from './statistic.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: `${XStatisticPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective],
+  imports: [NgStyle, XOutletDirective],
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.scss'],
   encapsulation: ViewEncapsulation.None,

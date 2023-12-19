@@ -4,14 +4,22 @@
   </div>
   <div class="x-statistic-value" [ngStyle]="valueStyle">
     <ng-container *xOutlet="value">
-      <span class="x-statistic-value-prefix" *ngIf="prefix">
-        <ng-container *xOutlet="prefix">{{ prefix }}</ng-container>
-      </span>
-      <span class="x-statistic-value-int" *ngIf="displayInt">{{ displayInt }}</span>
-      <span class="x-statistic-value-decimal" *ngIf="displayDecimal">{{ displayDecimal }}</span>
-      <span class="x-statistic-value-suffix" *ngIf="suffix">
-        <ng-container *xOutlet="suffix">{{ suffix }}</ng-container>
-      </span>
+      @if (prefix) {
+        <span class="x-statistic-value-prefix">
+          <ng-container *xOutlet="prefix">{{ prefix }}</ng-container>
+        </span>
+      }
+      @if (displayInt) {
+        <span class="x-statistic-value-int">{{ displayInt }}</span>
+      }
+      @if (displayDecimal) {
+        <span class="x-statistic-value-decimal">{{ displayDecimal }}</span>
+      }
+      @if (suffix) {
+        <span class="x-statistic-value-suffix">
+          <ng-container *xOutlet="suffix">{{ suffix }}</ng-container>
+        </span>
+      }
     </ng-container>
   </div>
 </div>

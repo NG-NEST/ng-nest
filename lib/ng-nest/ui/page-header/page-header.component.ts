@@ -5,12 +5,11 @@ import { XI18nService, XI18nPageHeader } from '@ng-nest/ui/i18n';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
   standalone: true,
-  imports: [CommonModule, XButtonComponent],
+  imports: [XButtonComponent],
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss'],
   encapsulation: ViewEncapsulation.None,

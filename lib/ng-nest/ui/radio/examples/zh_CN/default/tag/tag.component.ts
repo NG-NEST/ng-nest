@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
@@ -8,7 +7,7 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 @Component({
   selector: 'ex-tag',
   standalone: true,
-  imports: [CommonModule, FormsModule, XRadioComponent, XTagComponent],
+  imports: [FormsModule, XRadioComponent, XTagComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })

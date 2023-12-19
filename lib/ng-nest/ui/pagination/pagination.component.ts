@@ -17,7 +17,6 @@ import { Subject } from 'rxjs';
 import { XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
 import { takeUntil } from 'rxjs/operators';
 import { ENTER } from '@angular/cdk/keycodes';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
@@ -28,7 +27,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XPaginationPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     XButtonComponent,
     XButtonsComponent,
@@ -188,9 +186,5 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit,
 
   getActivated(index: number) {
     return Number(this.index) === index;
-  }
-
-  trackByItem(_index: number, item: number) {
-    return item;
   }
 }

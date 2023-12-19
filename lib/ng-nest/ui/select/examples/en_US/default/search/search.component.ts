@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
@@ -8,7 +7,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ex-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, XSelectComponent],
+  imports: [FormsModule, XSelectComponent],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })

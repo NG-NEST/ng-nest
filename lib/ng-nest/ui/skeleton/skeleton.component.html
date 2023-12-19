@@ -1,35 +1,36 @@
-<ng-container *ngIf="!loading">
-  <ng-content></ng-content>
-</ng-container>
-
-<ng-container *ngIf="loading">
+@if (loading) {
   <div #skeleton class="x-skeleton" [ngClass]="classMap">
     <ng-container *ngTemplateOutlet="rowsTpl; context: { rows: data }"></ng-container>
   </div>
-</ng-container>
+} @else {
+  <ng-content></ng-content>
+}
 
 <ng-template #rowsTpl let-rows="rows">
-  <x-row *ngFor="let row of rows" [space]="row.space" [justify]="row.flex ? 'start' : undefined" [ngStyle]="row.style">
-    <x-col
-      *ngFor="let col of row.cols"
-      [span]="col.span"
-      [inherit]="col.width || col.height ? true : false"
-      [ngStyle]="col.style"
-      [style.padding-top.rem]="border && row.space / 2"
-      [style.padding-bottom.rem]="border && row.space / 2"
-      [ngClass]="{
-        title: col.type === 'title',
-        img: col.type === 'img',
-        avatar: col.type === 'avatar',
-        transparent: col.type === 'transparent',
-        'has-child': col.rows
-      }"
-    >
-      <div [style.width]="col.width" [style.height]="col.height">
-        <ng-container *ngIf="col.rows">
-          <ng-container *ngTemplateOutlet="rowsTpl; context: { rows: col.rows }"></ng-container>
-        </ng-container>
-      </div>
-    </x-col>
-  </x-row>
+  @for (row of rows; track row) {
+    <x-row [space]="row.space" [justify]="row.flex ? 'start' : undefined" [ngStyle]="row.style">
+      @for (col of row.cols; track col) {
+        <x-col
+          [span]="col.span"
+          [inherit]="col.width || col.height ? true : false"
+          [ngStyle]="col.style"
+          [style.padding-top.rem]="border && row.space / 2"
+          [style.padding-bottom.rem]="border && row.space / 2"
+          [ngClass]="{
+            title: col.type === 'title',
+            img: col.type === 'img',
+            avatar: col.type === 'avatar',
+            transparent: col.type === 'transparent',
+            'has-child': col.rows
+          }"
+        >
+          <div [style.width]="col.width" [style.height]="col.height">
+            @if (col.rows) {
+              <ng-container *ngTemplateOutlet="rowsTpl; context: { rows: col.rows }"></ng-container>
+            }
+          </div>
+        </x-col>
+      }
+    </x-row>
+  }
 </ng-template>

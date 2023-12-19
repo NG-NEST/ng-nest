@@ -14,18 +14,11 @@ import {
   inject
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import {
-  XIsEmpty,
-  XIsChange,
-  XClearClass,
-  XConfigService,
-  XIsUndefined,
-  XIsFunction
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -33,7 +26,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 @Component({
   selector: `${XInputPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, NgStyle, NgTemplateOutlet, FormsModule, ReactiveFormsModule, XIconComponent, XOutletDirective],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -108,8 +101,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { clearable, size, labelAlign, justify, align, direction, icon, iconSpin, clearShow } =
-      changes;
+    const { clearable, size, labelAlign, justify, align, direction, icon, iconSpin, clearShow } = changes;
     XIsChange(clearable) && this.setClearable();
     XIsChange(size, labelAlign) && this.setClassMap();
     XIsChange(justify, align, direction) && this.setFlexClass();
@@ -136,9 +128,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     });
     this.valueChange
       .pipe(
-        distinctUntilChanged(
-          (a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))
-        ),
+        distinctUntilChanged((a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))),
         takeUntil(this._unSubject)
       )
       .subscribe((x) => {
@@ -232,16 +222,16 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       this.maxlength && this.icon && this.iconLayout === 'right'
         ? (this.lengthTotal.length + 2) * 0.385
         : this.icon && this.iconLayout === 'left'
-        ? Number(this.inputIconPadding)
-        : Number(this.inputPadding);
+          ? Number(this.inputIconPadding)
+          : Number(this.inputPadding);
     this.paddingRight =
       this.maxlength && this.icon && this.iconLayout === 'left'
         ? (this.lengthTotal.length + 2) * 0.385
         : (this.icon || this.clearShow) && this.iconLayout === 'right'
-        ? Number(this.inputIconPadding)
-        : this.maxlength && !this.icon
-        ? (this.lengthTotal.length + 2) * 0.385
-        : Number(this.inputPadding);
+          ? Number(this.inputIconPadding)
+          : this.maxlength && !this.icon
+            ? (this.lengthTotal.length + 2) * 0.385
+            : Number(this.inputPadding);
   }
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {

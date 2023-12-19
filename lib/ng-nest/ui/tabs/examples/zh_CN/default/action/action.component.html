@@ -1,13 +1,17 @@
 <x-tabs type="card" [activatedIndex]="activatedIndex" [actionTpl]="actionTpl" [nodeTpl]="nodeTpl">
-  <x-tab *ngFor="let label of labels; index as i" [label]="label">
-    <div [style.padding.rem]="0.625">{{ label }}</div>
-  </x-tab>
+  @for (label of labels; track label; let i = $index) {
+    <x-tab [label]="label">
+      <div [style.padding.rem]="0.625">{{ label }}</div>
+    </x-tab>
+  }
 </x-tabs>
 
 <ng-template #nodeTpl let-node="$node">
   <div class="ex-action-custom-node">
     <span>{{ node.label }}</span>
-    <x-icon type="fto-x" (click)="close($event, node)" *ngIf="labels.length > 1"></x-icon>
+    @if (labels.length > 1) {
+      <x-icon type="fto-x" (click)="close($event, node)"></x-icon>
+    }
   </div>
 </ng-template>
 

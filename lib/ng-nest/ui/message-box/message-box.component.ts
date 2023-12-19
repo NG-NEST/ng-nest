@@ -3,7 +3,6 @@ import { XIsFunction, XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
 import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
-import { CommonModule } from '@angular/common';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -14,7 +13,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   selector: `${XMessageBoxPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     XInputComponent,

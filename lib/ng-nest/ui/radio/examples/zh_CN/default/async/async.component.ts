@@ -4,12 +4,11 @@ import { XData } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ex-async',
   standalone: true,
-  imports: [CommonModule, FormsModule, XButtonComponent, XRadioComponent],
+  imports: [FormsModule, XButtonComponent, XRadioComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })

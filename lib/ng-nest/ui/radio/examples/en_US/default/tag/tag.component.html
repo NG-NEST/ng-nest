@@ -118,7 +118,7 @@
 </div>
 <div class="row">
   Selected Data:
-  <x-tag [@.disabled]="true" *ngFor="let item of selected" type="primary" closable (close)="close(item)">{{
-    item
-  }}</x-tag>
+  @for (item of selected; track item) {
+    <x-tag [@.disabled]="true" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+  }
 </div>

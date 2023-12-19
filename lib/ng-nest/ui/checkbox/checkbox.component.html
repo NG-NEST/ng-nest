@@ -78,7 +78,6 @@
         @case ('tag') {
           @for (item of nodes; track item.id) {
             <x-tag
-              *ngFor="let item of nodes; trackBy: trackByItem"
               checked
               manual
               [type]="type"

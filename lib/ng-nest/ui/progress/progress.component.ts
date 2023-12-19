@@ -1,11 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges, inject } from '@angular/core';
 import { XProgressPrefix, XProgressProperty } from './progress.property';
 import {
   XIsFunction,
@@ -18,14 +11,14 @@ import {
   XIsNumber
 } from '@ng-nest/ui/core';
 import { XProgressColorNode } from './progress.property';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XProgressPrefix}`,
   standalone: true,
-  imports: [CommonModule, FormsModule, XIconComponent],
+  imports: [NgClass, NgTemplateOutlet, FormsModule, XIconComponent],
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.scss'],
   encapsulation: ViewEncapsulation.None,

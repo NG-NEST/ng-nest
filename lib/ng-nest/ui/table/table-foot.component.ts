@@ -11,12 +11,11 @@ import {
 import { XTableFootPrefix, XTableFootProperty } from './table.property';
 import { removeNgTag } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: `${XTableFootPrefix}`,
   standalone: true,
-  imports: [CommonModule, XOutletDirective],
+  imports: [XOutletDirective],
   templateUrl: './table-foot.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

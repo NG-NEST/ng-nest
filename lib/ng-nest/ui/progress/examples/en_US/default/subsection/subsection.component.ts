@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XProgressComponent } from '@ng-nest/ui/progress';
@@ -6,7 +5,7 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
 @Component({
   selector: 'ex-subsection',
   standalone: true,
-  imports: [CommonModule, XProgressComponent, XButtonComponent, XButtonsComponent],
+  imports: [XProgressComponent, XButtonComponent, XButtonsComponent],
   templateUrl: './subsection.component.html',
   styleUrls: ['./subsection.component.scss']
 })

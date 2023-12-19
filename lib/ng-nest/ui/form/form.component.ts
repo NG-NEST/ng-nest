@@ -20,7 +20,7 @@ import {
 import { XIsChange, XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XControlComponent } from './control.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -29,7 +29,8 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   selector: `${XFormPrefix}`,
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
+    NgTemplateOutlet,
     FormsModule,
     ReactiveFormsModule,
     XRowComponent,
@@ -141,9 +142,5 @@ export class XFormComponent extends XFormProperty implements OnInit, OnChanges, 
   onSubmit(event: SubmitEvent) {
     this.setValidator();
     this.xSubmit.emit(event);
-  }
-
-  trackByControl(_index: number, item: XFormControlOption) {
-    return item.id;
   }
 }

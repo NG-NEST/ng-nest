@@ -3,29 +3,30 @@
   [ngClass]="classMap"
   [class.x-progress-steps]="stepsArray.length > 0"
   [class.x-progress-steps-flex]="stepFlex"
-  [ngSwitch]="type"
 >
-  <ng-container *ngSwitchCase="'circle'">
-    <ng-container *ngTemplateOutlet="circleTpl"> </ng-container>
-  </ng-container>
-  <ng-container *ngSwitchCase="'dashboard'">
-    <ng-container *ngTemplateOutlet="dashboardTpl"> </ng-container>
-  </ng-container>
-  <ng-container *ngSwitchDefault>
-    <ng-container *ngTemplateOutlet="lineTpl"> </ng-container>
-  </ng-container>
+  @switch (type) {
+    @case ('circle') {
+      <ng-container *ngTemplateOutlet="circleTpl"> </ng-container>
+    }
+    @case ('dashboard') {
+      <ng-container *ngTemplateOutlet="dashboardTpl"> </ng-container>
+    }
+    @default {
+      <ng-container *ngTemplateOutlet="lineTpl"> </ng-container>
+    }
+  }
 </div>
 
 <ng-template #lineTpl>
-  <ng-container *ngIf="stepsArray.length === 0">
+  @if (stepsArray.length === 0) {
     <ng-container *ngTemplateOutlet="trackTpl"></ng-container>
-  </ng-container>
-  <ng-container *ngIf="stepsArray.length > 0">
+  }
+  @if (stepsArray.length > 0) {
     <ng-container *ngTemplateOutlet="stepsTpl"></ng-container>
-  </ng-container>
-  <ng-container *ngIf="info && !inside">
+  }
+  @if (info && !inside) {
     <ng-container *ngTemplateOutlet="textTpl"></ng-container>
-  </ng-container>
+  }
 </ng-template>
 
 <ng-template #circleTpl>
@@ -56,7 +57,11 @@
 
 <ng-template #trackTpl>
   <div class="x-progress-track">
-    <div class="x-progress-rail" [class.x-progress-mask]="subsection" [style.background-image]="subsection ? subLinearGradient : 'none'">
+    <div
+      class="x-progress-rail"
+      [class.x-progress-mask]="subsection"
+      [style.background-image]="subsection ? subLinearGradient : 'none'"
+    >
       <div
         class="x-progress-bg"
         [style.width.%]="percent"
@@ -65,48 +70,55 @@
         [style.height]="height"
         [style.line-height]="height"
       >
-        <ng-container *ngIf="info && inside">
+        @if (info && inside) {
           <ng-container *ngTemplateOutlet="textTpl"></ng-container>
-        </ng-container>
+        }
       </div>
-      <div
-        *ngIf="subsection"
-        class="x-progress-bg-mask"
-        [style.width.%]="maskWidth"
-        [style.height]="height"
-        [style.line-height]="height"
-      ></div>
+      @if (subsection) {
+        <div
+          class="x-progress-bg-mask"
+          [style.width.%]="maskWidth"
+          [style.height]="height"
+          [style.line-height]="height"
+        ></div>
+      }
     </div>
   </div>
 </ng-template>
 
 <ng-template #stepsTpl>
-  <div
-    *ngFor="let step of stepsArray"
-    class="x-progress-step"
-    [class.x-progress-step-active]="step"
-    [style.background-color]="currentColor"
-    [style.width]="stepWidth"
-    [style.flex]="stepFlex ? 1 : 'none'"
-    [style.height]="height"
-    [style.line-height]="height"
-  ></div>
+  @for (step of stepsArray; track i; let i = $index) {
+    <div
+      class="x-progress-step"
+      [class.x-progress-step-active]="step"
+      [style.background-color]="currentColor"
+      [style.width]="stepWidth"
+      [style.flex]="stepFlex ? 1 : 'none'"
+      [style.height]="height"
+      [style.line-height]="height"
+    ></div>
+  }
 </ng-template>
 
 <ng-template #textTpl>
-  <span class="x-progress-text" [ngSwitch]="status">
-    <ng-container *ngSwitchCase="'success'">
-      <x-icon type="fto-check-circle"></x-icon>
-    </ng-container>
-    <ng-container *ngSwitchCase="'exception'">
-      <x-icon type="fto-x-circle"></x-icon>
-    </ng-container>
-    <ng-container *ngSwitchCase="'warning'">
-      <x-icon type="fto-help-circle"></x-icon>
-    </ng-container>
-    <ng-container *ngSwitchDefault>
-      <ng-container *ngIf="format; else defaultTemp">{{ onFormat(percent) }}</ng-container>
-      <ng-template #defaultTemp>{{ percent }}%</ng-template>
-    </ng-container>
+  <span class="x-progress-text">
+    @switch (status) {
+      @case ('success') {
+        <x-icon type="fto-check-circle"></x-icon>
+      }
+      @case ('exception') {
+        <x-icon type="fto-x-circle"></x-icon>
+      }
+      @case ('warning') {
+        <x-icon type="fto-help-circle"></x-icon>
+      }
+      @default {
+        @if (format) {
+          {{ onFormat(percent) }}
+        } @else {
+          {{ percent }}%
+        }
+      }
+    }
   </span>
 </ng-template>

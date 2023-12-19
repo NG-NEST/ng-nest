@@ -1,20 +1,14 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  inject
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XResultPrefix, XResultProperty } from './result.property';
 import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XResultPrefix}`,
   standalone: true,
-  imports: [CommonModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, XIconComponent, XOutletDirective],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
   encapsulation: ViewEncapsulation.None,
