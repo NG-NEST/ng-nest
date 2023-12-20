@@ -10,13 +10,13 @@ import {
 } from '@angular/core';
 import { XSkeletonPrefix, XSkeletonProperty } from './skeleton.property';
 import { XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: `${XSkeletonPrefix}`,
   standalone: true,
-  imports: [NgClass, NgStyle, XRowComponent, XColComponent],
+  imports: [NgClass, NgTemplateOutlet, NgStyle, XRowComponent, XColComponent],
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.scss'],
   encapsulation: ViewEncapsulation.None,
