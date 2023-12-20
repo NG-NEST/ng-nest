@@ -1,3 +1,13 @@
+## [17.0.3](https://github.com/NG-NEST/ng-nest/compare/17.0.2...17.0.3) (2023-12-20)
+
+
+### Bug Fixes
+
+* **module:loading:** fix template not find ([18ab0b1](https://github.com/NG-NEST/ng-nest/commit/18ab0b1ff41bf8694a33fb1a65a511df02de964e))
+* **module:skeleton:** fix template not find ([48a26bb](https://github.com/NG-NEST/ng-nest/commit/48a26bb1c4cb6d9d99b1a8d58a02c978c37f4a2a))
+
+
+
 ## [17.0.2](https://github.com/NG-NEST/ng-nest/compare/17.0.0...17.0.2) (2023-12-09)
 
 
