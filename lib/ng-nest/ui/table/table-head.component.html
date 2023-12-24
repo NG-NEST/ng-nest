@@ -103,6 +103,7 @@
           [(ngModel)]="table.checkedValues[column.id]"
           (ngModelChange)="table.headChecked($event, column)"
           [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
+          single
         ></x-checkbox>
       }
       @if (!column.headChecked) {

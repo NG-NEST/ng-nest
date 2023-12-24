@@ -72,7 +72,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnC
   }
 
   nodes: XCheckboxNode[] = [];
-  single: boolean = false;
   private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   override cdr = inject(ChangeDetectorRef);
@@ -144,7 +143,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnC
   private setData() {
     XSetData<XCheckboxNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
-      this.single = this.nodes.length === 1;
       this.cdr.detectChanges();
     });
   }

@@ -7,7 +7,9 @@ import {
   ExDisabledComponent,
   ExIconComponent,
   ExPerpostComponent,
-  ExTagComponent
+  ExTagComponent,
+  ExVerticalComponent,
+  ExSingleComponent
 } from '@ng-nest/ui/checkbox/examples';
 
 @Component({
@@ -21,7 +23,9 @@ import {
     ExDisabledComponent,
     ExIconComponent,
     ExPerpostComponent,
-    ExTagComponent
+    ExTagComponent,
+    ExVerticalComponent,
+    ExSingleComponent
   ],
   templateUrl: './checkbox.component.html'
 })

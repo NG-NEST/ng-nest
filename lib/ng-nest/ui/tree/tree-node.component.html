@@ -55,6 +55,7 @@
       [indeterminate]="node.indeterminate"
       [disabled]="node.disabled!"
       (click)="$event.stopPropagation()"
+      single
     ></x-checkbox>
   }
   @if (!tree.labelTpl) {

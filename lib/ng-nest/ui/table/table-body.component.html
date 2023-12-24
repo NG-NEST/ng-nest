@@ -114,6 +114,7 @@
         [(ngModel)]="row[column.id]"
         [disabled]="row.disabled"
         (ngModelChange)="table.bodyChecked($event, column, row)"
+        single
       ></x-checkbox>
     }
     @case ('index') {
