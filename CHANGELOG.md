@@ -1,3 +1,13 @@
+## [17.0.4](https://github.com/NG-NEST/ng-nest/compare/17.0.3...17.0.4) (2023-12-24)
+
+
+### Features
+
+* **module:checkbox:** add vertical param ([0c9976d](https://github.com/NG-NEST/ng-nest/commit/0c9976dc050171d2997c29839553447373f0d5f1))
+* **module:radio:** add vertical param ([4ea84df](https://github.com/NG-NEST/ng-nest/commit/4ea84df2f479b377cbbc0105f138ba748d17fc82))
+
+
+
 ## [17.0.3](https://github.com/NG-NEST/ng-nest/compare/17.0.2...17.0.3) (2023-12-20)
 
 
