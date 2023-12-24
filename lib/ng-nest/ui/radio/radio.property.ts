@@ -62,6 +62,11 @@ export class XRadioProperty extends XControlValueAccessor<any> implements XRadio
    */
   @Input() @XInputBoolean() allowCancel?: XBoolean;
   /**
+   * @zh_CN 垂直布局，不支持 button 和 icon 样式
+   * @en_US Vertical layout, does not support button and icon styles
+   */
+  @Input() @XInputBoolean() vertical: XBoolean = false;
+  /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
