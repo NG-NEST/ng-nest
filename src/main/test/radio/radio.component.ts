@@ -6,7 +6,8 @@ import {
   ExButtonComponent,
   ExDisabledComponent,
   ExPerpostComponent,
-  ExTagComponent
+  ExTagComponent,
+  ExVerticalComponent
 } from '@ng-nest/ui/radio/examples';
 
 @Component({
@@ -19,7 +20,8 @@ import {
     ExButtonComponent,
     ExDisabledComponent,
     ExPerpostComponent,
-    ExTagComponent
+    ExTagComponent,
+    ExVerticalComponent
   ],
   templateUrl: './radio.component.html'
 })

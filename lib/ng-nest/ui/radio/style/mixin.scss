@@ -87,6 +87,25 @@
     }
   }
 
+  &-vertical {
+    .#{$--x-radio-prefix}-row-list {
+      flex-direction: column;
+      align-items: flex-start;
+      x-tag {
+        margin-left: 0;
+        &:not(:first-child) {
+          margin-top: 0.25rem;
+        }
+      }
+    }
+    .#{$--x-radio-prefix}-row-item {
+      margin-right: 0;
+      &:not(:first-child) {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
   &-box {
     border: 0.0625rem solid var(--x-border);
     border-radius: 100%;
