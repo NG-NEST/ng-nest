@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { ExTagComponent } from './tag/tag.component';
 import { XTagModule } from '@ng-nest/ui/tag';
 import { ExButtonComponent } from './button/button.component';
+import { ExSingleComponent } from './single/single.component';
+import { ExVerticalComponent } from './vertical/vertical.component';
 
 const routers = [{ path: '', component: TeCheckboxComponent }];
 
@@ -43,6 +45,14 @@ const routers = [{ path: '', component: TeCheckboxComponent }];
     XInputModule,
     XTagModule
   ],
-  declarations: [TeCheckboxComponent, ExDefaultComponent, ExPerpostComponent, ExTagComponent, ExButtonComponent]
+  declarations: [
+    TeCheckboxComponent,
+    ExDefaultComponent,
+    ExPerpostComponent,
+    ExTagComponent,
+    ExButtonComponent,
+    ExSingleComponent,
+    ExVerticalComponent
+  ]
 })
 export class TeCheckboxModule {}

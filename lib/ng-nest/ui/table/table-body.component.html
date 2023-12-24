@@ -110,6 +110,7 @@
         [data]="[{ id: true, label: '' }]"
         [(ngModel)]="row[column.id]"
         [disabled]="row.disabled"
+        single
         (ngModelChange)="table.bodyChecked($event, column, row)"
       ></x-checkbox>
     </ng-container>

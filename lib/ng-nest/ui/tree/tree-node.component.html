@@ -9,7 +9,11 @@
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
   (click)="!node.disabled && onActivate($event, node)"
 >
-  <div class="x-tree-node-line" *ngIf="tree.showLine && numLevel > 0" [style.width.rem]="paddingLeft">
+  <div
+    class="x-tree-node-line"
+    *ngIf="tree.showLine && numLevel > 0"
+    [style.width.rem]="paddingLeft"
+  >
     <div
       class="x-tree-node-line-vertical"
       [hidden]="isParentLast[i - 1]"
@@ -23,7 +27,12 @@
       [style.left.rem]="getVerticalLeft(verticalLevel.length)"
     ></div>
   </div>
-  <div class="x-tree-node-drag-indicator" *ngIf="showDragIndicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
+  <div
+    class="x-tree-node-drag-indicator"
+    *ngIf="showDragIndicator"
+    [style.width]="indicatorWidth"
+    [ngStyle]="indicatorStyle"
+  ></div>
   <ng-container *ngIf="!node.loading">
     <div
       class="x-tree-node-right"
@@ -42,7 +51,12 @@
     </div>
   </ng-container>
 
-  <x-icon class="x-tree-node-loading" *ngIf="node.loading" type="fto-loader" [spin]="node.loading"></x-icon>
+  <x-icon
+    class="x-tree-node-loading"
+    *ngIf="node.loading"
+    type="fto-loader"
+    [spin]="node.loading"
+  ></x-icon>
   <x-checkbox
     *ngIf="tree.checkbox"
     [data]="[{ label: '', id: node.id }]"
@@ -51,6 +65,7 @@
     [indeterminate]="node.indeterminate"
     [disabled]="node.disabled!"
     (click)="$event.stopPropagation()"
+    single
   ></x-checkbox>
   <span
     class="x-tree-node-label"
@@ -73,5 +88,9 @@
       (click)="onAction($event, action, node)"
     ></x-link>
   </span>
-  <x-icon class="x-tree-node-checked" type="fto-check" *ngIf="tree.multiple && getActivated"></x-icon>
+  <x-icon
+    class="x-tree-node-checked"
+    type="fto-check"
+    *ngIf="tree.multiple && getActivated"
+  ></x-icon>
 </div>

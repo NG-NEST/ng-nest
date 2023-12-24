@@ -12,7 +12,16 @@ import {
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XClearClass, XConfigService, XBoolean, XJustify, XAlign, XDirection } from '@ng-nest/ui/core';
+import {
+  XIsChange,
+  XSetData,
+  XClearClass,
+  XConfigService,
+  XBoolean,
+  XJustify,
+  XAlign,
+  XDirection
+} from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 
 @Component({
@@ -45,7 +54,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   }
 
   nodes: XCheckboxNode[] = [];
-  single: boolean = false;
   private _unSubject = new Subject<void>();
   constructor(
     public renderer: Renderer2,
@@ -57,7 +65,13 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   }
 
   ngOnInit() {
-    this.setFlex(this.checkbox.nativeElement, this.renderer, this.justify as XJustify, this.align as XAlign, this.direction as XDirection);
+    this.setFlex(
+      this.checkbox.nativeElement,
+      this.renderer,
+      this.justify as XJustify,
+      this.align as XAlign,
+      this.direction as XDirection
+    );
     this.setClassMap();
     this.setCheckboxType();
   }
@@ -116,7 +130,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges {
   private setData() {
     XSetData<XCheckboxNode>(this.data, this._unSubject).subscribe((x) => {
       this.nodes = x;
-      this.single = this.nodes.length === 1;
       this.cdr.detectChanges();
     });
   }

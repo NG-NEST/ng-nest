@@ -103,6 +103,7 @@
         [data]="[{ id: true, label: column.label }]"
         [(ngModel)]="table.checkedValues[column.id]"
         (ngModelChange)="table.headChecked($event, column)"
+        single
         [indeterminate]="table.checkedValues[column.id + table.indeterminate]"
       ></x-checkbox>
       <ng-container *ngIf="!column.headChecked">

@@ -1,4 +1,13 @@
-import { XData, XTemplate, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import {
+  XData,
+  XTemplate,
+  XIdentityProperty,
+  XDataConvert,
+  XInputBoolean,
+  XSize,
+  XBoolean,
+  XWithConfig
+} from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
@@ -15,7 +24,10 @@ const X_CONFIG_NAME = 'checkbox';
  * Checkbox Property
  */
 @Component({ selector: `${XCheckboxPrefix}-property`, template: '' })
-export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any>> implements XCheckboxOption {
+export class XCheckboxProperty
+  extends XControlValueAccessor<boolean | Array<any>>
+  implements XCheckboxOption
+{
   /**
    * @zh_CN 多选框数据
    * @en_US Checkbox data
@@ -55,12 +67,22 @@ export class XCheckboxProperty extends XControlValueAccessor<boolean | Array<any
    * @zh_CN tag 标签边框
    * @en_US Tag bordered
    */
-  @Input() tagBordered: XBoolean = true;
+  @Input() @XInputBoolean() tagBordered: XBoolean = true;
   /**
    * @zh_CN tag 标签深色主题
    * @en_US Tag dark theme
    */
-  @Input() tagDark: XBoolean = false;
+  @Input() @XInputBoolean() tagDark: XBoolean = false;
+  /**
+   * @zh_CN 只有一个选项，启动此参数时，value 的值为 true / false
+   * @en_US There is only one option, when this parameter is activated, the value is true or false
+   */
+  @Input() @XInputBoolean() single: XBoolean = false;
+  /**
+   * @zh_CN 垂直布局，不支持 button 和 icon 样式
+   * @en_US Vertical layout, does not support button and icon styles
+   */
+  @Input() @XInputBoolean() vertical: XBoolean = false;
   /**
    * @zh_CN 前置标签
    * @en_US Before label
@@ -123,6 +145,11 @@ export interface XCheckboxOption extends XFormOption {
    * @en_US Tag dark theme
    */
   tagDark?: XBoolean;
+  /**
+   * @zh_CN 只有一个选项，启动此参数时，value 的值为 true / false
+   * @en_US There is only one option, when this parameter is activated, the value is true or false
+   */
+  single?: XBoolean;
   /**
    * @zh_CN 前置标签
    * @en_US Before label

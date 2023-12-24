@@ -106,6 +106,7 @@
         [(ngModel)]="source.checkedAll"
         (ngModelChange)="checkedAllChange($event, source)"
         [indeterminate]="source.indeterminate"
+        single
       ></x-checkbox>
       <span *ngIf="source.title && source.hiddenCheckAll">{{ source.title }}</span>
       <x-link *ngIf="inverse && type === 'list'" class="x-transfer-inverse" type="primary" (click)="onInverse(source)">{{
@@ -127,6 +128,7 @@
     [disabled]="node.disabled"
     [(ngModel)]="node.checked"
     (ngModelChange)="checkedChange($event, source)"
+    single
   ></x-checkbox>
   <ng-template #labelTpl>
     <span x-keyword [text]="source.searchInput!">{{ node.label }}</span>

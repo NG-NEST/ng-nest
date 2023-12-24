@@ -7,12 +7,19 @@
   [class.x-invalid]="invalid"
   [class.x-checkbox-button]="button"
   [class.x-checkbox-icon]="icon"
+  [class.x-checkbox-vertical]="vertical"
   [class.x-checkbox-after]="after"
   [class.x-checkbox-before]="before"
   [class.x-checkbox-after-template]="afterIsTemplate"
   [class.x-checkbox-before-template]="beforeIsTemplate"
 >
-  <label *ngIf="label" [class.x-checkbox-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  <label
+    *ngIf="label"
+    [class.x-checkbox-label-required]="required"
+    [style.width]="labelWidth"
+    [ngClass]="labelMap"
+    >{{ label }}</label
+  >
   <div class="x-checkbox-row">
     <div class="x-checkbox-row-before" *ngIf="before">
       <ng-container *xOutlet="before">{{ before }}</ng-container>
@@ -29,7 +36,9 @@
         >
           <span class="x-checkbox-box"></span>
           <span class="x-checkbox-label">
-            <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
+            <ng-container *xOutlet="item.label; context: { $node: item }">{{
+              item.label
+            }}</ng-container>
           </span>
         </div>
       </ng-container>

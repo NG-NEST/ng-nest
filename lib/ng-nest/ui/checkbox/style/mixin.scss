@@ -113,6 +113,25 @@
     }
   }
 
+  &-vertical {
+    .#{$--x-checkbox-prefix}-row-list {
+      flex-direction: column;
+      align-items: flex-start;
+      x-tag {
+        margin-left: 0;
+        &:not(:first-child) {
+          margin-top: 0.25rem;
+        }
+      }
+    }
+    .#{$--x-checkbox-prefix}-row-item {
+      margin-right: 0;
+      &:not(:first-child) {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
   &-box {
     border: $--x-border-width solid $--x-border;
     width: 1rem;
