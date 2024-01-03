@@ -1,4 +1,12 @@
-import { Component, ViewEncapsulation, Renderer2, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  OnInit
+} from '@angular/core';
 import { XIsFunction, XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
 import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,11 +16,13 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
   standalone: true,
   imports: [
+    NgTemplateOutlet,
     FormsModule,
     ReactiveFormsModule,
     XInputComponent,
@@ -20,7 +30,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
     XButtonsComponent,
     XIconComponent,
     XAlertComponent,
-    XOutletDirective,
+    XOutletDirective
   ],
   templateUrl: './message-box.component.html',
   styleUrls: ['./message-box.component.scss'],
@@ -33,7 +43,11 @@ export class XMessageBoxComponent implements OnInit {
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
   loading = false;
-  constructor(public renderer: Renderer2, public elementRef: ElementRef<HTMLElement>, public cdr: ChangeDetectorRef) {}
+  constructor(
+    public renderer: Renderer2,
+    public elementRef: ElementRef<HTMLElement>,
+    public cdr: ChangeDetectorRef
+  ) {}
 
   get msgInput() {
     return this.messageBox.input!;
