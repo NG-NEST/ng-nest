@@ -83,5 +83,6 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
       this.renderer.removeStyle(this.elementRef.nativeElement, 'pointer-events');
       this.renderer.removeStyle(this.buttonRef?.nativeElement, 'disabled');
     }
+    this.cdr.detectChanges();
   }
 }
