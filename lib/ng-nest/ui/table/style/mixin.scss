@@ -121,11 +121,10 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background-a200;
-          color: $--x-primary;
+          background-color: $--x-background-a400;
         }
       }
-      &:hover {
+      &:hover:not(.x-table-activated) {
         > td {
           background-color: $--x-background-a200;
         }
@@ -335,7 +334,13 @@
     calc(#{$--x-font-size} / 4 * 3),
     calc(#{$--x-font-size} * 4 / 3)
   );
-  @include body-table-th-size(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), $--x-font-size);
+  @include body-table-th-size(
+    medium,
+    calc(#{$--x-font-size} / 2),
+    $--x-font-size,
+    calc(#{$--x-font-size} / 2),
+    $--x-font-size
+  );
   @include body-table-th-size(
     small,
     calc(#{$--x-font-size} / 3),

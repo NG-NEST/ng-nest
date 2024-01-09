@@ -298,10 +298,20 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.cellConfig.tbody = setRule(this.cellConfig.tbody);
   }
 
+  pageChange(type: 'index' | 'size') {
+    this.dataIsFunc && this.getDataByFunc();
+    if (type === 'index') {
+      this.indexChange.emit(Number(this.index));
+    } else if (type === 'size') {
+      this.sizeChange.emit(Number(this.size));
+    }
+    this.resetScroll();
+  }
+
   change(index: number) {
     this.index = index;
     this.dataIsFunc && this.getDataByFunc();
-    this.indexChange.emit(index);
+    this.indexChange.emit(this.index);
     this.resetScroll();
   }
 
