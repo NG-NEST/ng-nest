@@ -2,6 +2,7 @@
   <div
     #alert
     class="x-alert"
+    [class.x-alert-has-close]="!hideClose"
     cdkDrag
     (cdkDragEnded)="dragEnded.emit($event)"
     [cdkDragFreeDragPosition]="dragFreeDragPosition"

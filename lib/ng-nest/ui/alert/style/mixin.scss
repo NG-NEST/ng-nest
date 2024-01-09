@@ -23,6 +23,11 @@
   &-title.x-bold {
     font-weight: 600;
   }
+  &-has-close {
+    .x-alert-title {
+      margin-right: 1.425rem;
+    }
+  }
   &-content {
     font-size: $--x-alert-content-font-size;
     line-height: 1.325rem;
