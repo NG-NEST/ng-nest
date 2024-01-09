@@ -53,7 +53,6 @@ export interface XMessageOption extends XAlertOption {
   /**
    * @zh_CN 宽度
    * @en_US Width
-   * @default '16rem'
    * @withConfig true
    */
   width?: string;

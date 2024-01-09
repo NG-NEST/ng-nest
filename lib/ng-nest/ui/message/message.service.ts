@@ -30,7 +30,6 @@ export class XMessageService {
 
   default: XMessageOption = {
     type: 'info',
-    width: '16rem',
     placement: 'top',
     offset: '2rem',
     effect: 'white',
