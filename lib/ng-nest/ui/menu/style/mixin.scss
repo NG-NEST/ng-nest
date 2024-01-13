@@ -6,10 +6,14 @@
 
 @mixin menu {
   &-icon.x-icon {
+    width: 1rem;
+    height: 1rem;
     font-size: 1rem;
     transition: opacity $--x-animation-duration-base;
   }
   &-arrow.x-icon {
+    width: 1rem;
+    height: 1rem;
     transition: opacity $--x-animation-duration-base;
     &.is-open {
       transform: rotate(180deg);
@@ -54,7 +58,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: width $--x-animation-duration-base, background-color $--x-animation-duration-base;
+      transition:
+        width $--x-animation-duration-base,
+        background-color $--x-animation-duration-base;
       border-right: 0.125rem solid $--x-border;
       position: relative;
       user-select: none;
@@ -62,7 +68,9 @@
       .#{$--x-menu}-text {
         flex: 1;
         margin: 0 0.25rem;
-        transition: background-color $--x-animation-duration-base, opacity $--x-animation-duration-base;
+        transition:
+          background-color $--x-animation-duration-base,
+          opacity $--x-animation-duration-base;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
