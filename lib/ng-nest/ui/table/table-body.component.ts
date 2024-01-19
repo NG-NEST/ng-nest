@@ -225,8 +225,10 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
       if (this.bodyHeight < 0) this.bodyHeight = 0;
       this.minBufferPx = this.bodyHeight;
       this.maxBufferPx = this.bodyHeight * 1.2;
-      this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
-      this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
+      if (this.virtualBody) {
+        this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
+        this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
+      }
       this.cdr.detectChanges();
     }
   }
