@@ -1,3 +1,23 @@
+## [17.0.5](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.5) (2024-01-23)
+
+
+### Bug Fixes
+
+* **module:alert:** fix close style ([026527c](https://github.com/NG-NEST/ng-nest/commit/026527c5c11393460d632f59e15f32e5f9933a18))
+* **module:button:** manual refresh ([5f02a62](https://github.com/NG-NEST/ng-nest/commit/5f02a62a3d31e959831a4080159e890665fc4023))
+* **module:input-number:** fix decimals and negative numbers ([4330871](https://github.com/NG-NEST/ng-nest/commit/4330871880b98b4aeab4c660751a91f1ac486e92))
+* **module:message-box:** fix template outlet error ([18392f2](https://github.com/NG-NEST/ng-nest/commit/18392f2d5723dd05bc8db0ddf924f83dd8268e7f))
+* **module:message:** remove default width ([e32975a](https://github.com/NG-NEST/ng-nest/commit/e32975abe05592130ff563db1ff12184b4eabd14))
+* **module:table:** fix page index and size events ([5947eb5](https://github.com/NG-NEST/ng-nest/commit/5947eb5aef657fe00a2a3f06d827792e54a38fa6))
+* **module:table:** fix virtualBody error ([9275806](https://github.com/NG-NEST/ng-nest/commit/9275806c198e03dffc2531b12be4c076ba87685e))
+
+
+### Features
+
+* **module:menu:** fixed icon width ([3794dd3](https://github.com/NG-NEST/ng-nest/commit/3794dd3df5a2b1a4bfab93a4a9bed28099b41d3d))
+
+
+
 ## [17.0.4](https://github.com/NG-NEST/ng-nest/compare/17.0.3...17.0.4) (2023-12-24)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "17.0.4",
+  "version": "17.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --disable-host-check",
