@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'message',
+  defaultPage: 'input-number',
   static: 'https://ngnest.com/static'
 };

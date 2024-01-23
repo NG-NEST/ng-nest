@@ -41,6 +41,7 @@
       [pattern]="pattern"
       [message]="message"
       (xInput)="onInput($event); formControlValidator()"
+      (xBlur)="onBlur()"
     ></x-input>
     <ng-template #afterButtonTpl>
       <x-button

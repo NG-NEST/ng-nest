@@ -10,7 +10,7 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil, XIsFunction } from '@ng-nest/ui/core';
+import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil, XIsFunction, XIsString } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -129,18 +129,22 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     this.valueChange.next(this.value);
   }
 
-  verify(value: any) {
+  verify(value: string | number) {
+    if (XIsString(value) && Number(value).toString() !== value) {
+      return;
+    }
+    value = Number(Number(value).toFixed(Number(this.precision)));
     const oldValue: number = this.value;
     this.value = value;
     if (Number.isNaN(+this.value)) {
       this.value = oldValue;
       this.setDisplayValue();
-      return;
+    } else {
+      this.maxDisabled = value >= Number(this.max);
+      this.minDisabled = value <= Number(this.min);
+      this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
+      this.setDisplayValue();
     }
-    this.maxDisabled = value >= this.max;
-    this.minDisabled = value <= this.min;
-    this.value = this.maxDisabled ? this.max : this.minDisabled ? this.min : value;
-    this.setDisplayValue();
   }
 
   onInput(x: Event) {
