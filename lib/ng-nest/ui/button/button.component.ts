@@ -9,7 +9,9 @@ import {
   ElementRef,
   Renderer2,
   ViewChild,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/core';
 import { delay, of } from 'rxjs';
@@ -18,6 +20,7 @@ import { XButtonsComponent } from './buttons.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRippleDirective } from '@ng-nest/ui/ripple';
 import { NgClass } from '@angular/common';
+import { FocusMonitor } from '@angular/cdk/a11y';
 
 @Component({
   selector: `${XButtonPrefix}`,
@@ -28,7 +31,7 @@ import { NgClass } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
+export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   transition = false;
   @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
 
@@ -36,6 +39,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   private cdr = inject(ChangeDetectorRef);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
+  private focusMontitor = inject(FocusMonitor);
   configService = inject(XConfigService);
 
   ngOnInit(): void {
@@ -43,11 +47,19 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     this.setClassMap();
   }
 
+  ngAfterViewInit() {
+    this.focusMontitor.monitor(this.buttonRef, true);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     const { loading, disabled, activated, type, plain, size, direction } = changes;
     XIsChange(loading, disabled) && this.setDisabled();
     XIsChange(activated) && this.cdr.detectChanges();
     XIsChange(type, plain, size, direction) && this.setClassMap();
+  }
+
+  ngOnDestroy() {
+    this.focusMontitor.stopMonitoring(this.buttonRef);
   }
 
   setClassMap() {

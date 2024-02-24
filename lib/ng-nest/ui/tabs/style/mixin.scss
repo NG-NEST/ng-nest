@@ -188,7 +188,7 @@
       &-#{$layout} {
         border: $--x-border-base;
         border-#{$layout}: none;
-        box-shadow: $--x-box-shadow-light;
+        box-shadow: $--x-box-shadow;
         .#{$--x-tabs-prefix}-list {
           border-#{$border}: none;
           > x-slider {

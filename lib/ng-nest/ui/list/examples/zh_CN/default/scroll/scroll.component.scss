@@ -1,7 +1,7 @@
 :host {
   .ex-scroll-list {
     border: 0.0625rem solid var(--x-border-300);
-    border-radius: 0.125rem;
+    border-radius: var(--x-border-radius);
     width: 20rem;
     margin-top: 1rem;
   }

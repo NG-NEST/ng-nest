@@ -37,6 +37,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   @ViewChild('inputElement', { static: true }) inputElement!: ElementRef<HTMLElement>;
   @ViewChild('inputRef', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('inputValueRef') inputValueRef!: ElementRef<HTMLElement>;
+  @ViewChild('maxLengthRef') maxLengthRef!: ElementRef<HTMLElement>;
 
   @HostBinding('style.width.px') get getWidth() {
     return this.width;
@@ -52,8 +53,8 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
 
   valueLength: number = 0;
   lengthTotal: string = '';
-  paddingLeft: number = 0.4;
-  paddingRight: number = 0.4;
+  paddingLeft: number = 0.75;
+  paddingRight: number = 0.75;
   clearShow: boolean = false;
   flexClass: string[] = [];
   valueChange = new Subject<any>();
@@ -74,6 +75,14 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return !XIsEmpty(this.icon) && this.iconLayout === 'right';
   }
 
+  get getMaxLengthWidth() {
+    if (this.getIconLayoutRight) {
+      return this.paddingLeft;
+    } else {
+      return this.paddingRight;
+    }
+  }
+
   get beforeIsTemplate() {
     return this.before instanceof TemplateRef;
   }
@@ -86,6 +95,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     return `calc(100% - ${this.paddingLeft + this.paddingRight}rem)`;
   }
 
+  focused = false;
   private renderer = inject(Renderer2);
   override cdr = inject(ChangeDetectorRef);
   private inputGroup = inject(XInputGroupComponent, { optional: true });
@@ -106,6 +116,7 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
     XIsChange(size, labelAlign) && this.setClassMap();
     XIsChange(justify, align, direction) && this.setFlexClass();
     XIsChange(icon, iconSpin, clearShow) && this.cdr.detectChanges();
+    XIsChange(size) && this.setPadding();
   }
 
   ngOnDestroy() {
@@ -114,18 +125,36 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   setEvent() {
-    fromEvent(this.inputRef.nativeElement, 'compositionstart').subscribe(() => {
-      this.isComposition = true;
-    });
-    fromEvent(this.inputRef.nativeElement, 'compositionend').subscribe((x: Event) => {
-      this.isComposition = false;
-      this.inputCheckValue(x);
-    });
-    fromEvent<InputEvent>(this.inputRef.nativeElement, 'input').subscribe((x: InputEvent) => {
-      if (!this.isComposition) {
+    fromEvent(this.inputRef.nativeElement, 'compositionstart')
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.isComposition = true;
+      });
+    fromEvent(this.inputRef.nativeElement, 'compositionend')
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((x: Event) => {
+        this.isComposition = false;
         this.inputCheckValue(x);
-      }
-    });
+      });
+    fromEvent(this.inputRef.nativeElement, 'focus')
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.focused = true;
+        this.cdr.detectChanges();
+      });
+    fromEvent(this.inputRef.nativeElement, 'blur')
+      .pipe(takeUntil(this._unSubject))
+      .subscribe(() => {
+        this.focused = false;
+        this.cdr.detectChanges();
+      });
+    fromEvent<InputEvent>(this.inputRef.nativeElement, 'input')
+      .pipe(takeUntil(this._unSubject))
+      .subscribe((x: InputEvent) => {
+        if (!this.isComposition) {
+          this.inputCheckValue(x);
+        }
+      });
     this.valueChange
       .pipe(
         distinctUntilChanged((a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))),
@@ -220,17 +249,17 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   setPadding() {
     this.paddingLeft =
       this.maxlength && this.icon && this.iconLayout === 'right'
-        ? (this.lengthTotal.length + 2) * 0.385
+        ? (this.lengthTotal.length + 2) * 0.5
         : this.icon && this.iconLayout === 'left'
           ? Number(this.inputIconPadding)
           : Number(this.inputPadding);
     this.paddingRight =
       this.maxlength && this.icon && this.iconLayout === 'left'
-        ? (this.lengthTotal.length + 2) * 0.385
+        ? (this.lengthTotal.length + 2) * 0.5
         : (this.icon || this.clearShow) && this.iconLayout === 'right'
           ? Number(this.inputIconPadding)
           : this.maxlength && !this.icon
-            ? (this.lengthTotal.length + 2) * 0.385
+            ? (this.lengthTotal.length + 2) * 0.5
             : Number(this.inputPadding);
   }
 

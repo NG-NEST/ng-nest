@@ -1,4 +1,9 @@
-<div #selectPortal class="x-select-portal" (click)="inputCom.inputFocus(); stopPropagation($event)" [style.maxHeight]="portalMaxHeight">
+<div
+  #selectPortal
+  class="x-select-portal"
+  (click)="inputCom.inputFocus(); stopPropagation($event)"
+  [style.maxHeight]="portalMaxHeight"
+>
   <x-list
     #list
     [data]="data"
@@ -19,5 +24,6 @@
     [heightAdaption]="selectPortal"
     [keywordText]="keywordText"
     [caseSensitive]="caseSensitive"
+    [inPortal]="true"
   ></x-list>
 </div>

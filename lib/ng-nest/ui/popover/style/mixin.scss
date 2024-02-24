@@ -20,7 +20,7 @@
     padding: $--x-font-size;
     border: $--x-border-base;
     border-radius: $--x-border-radius;
-    box-shadow: $--x-box-shadow-light;
+    box-shadow: $--x-box-shadow;
   }
   .#{$--x-popover-portal-prefix}-title {
     margin-bottom: calc(#{$--x-font-size} - 0.5rem);

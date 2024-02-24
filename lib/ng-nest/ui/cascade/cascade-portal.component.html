@@ -7,7 +7,8 @@
       (nodeClick)="nodeClick($event)"
       (nodeMouseenter)="nodeTrigger === 'hover' && nodeMouseenter($event)"
       (nodeMouseleave)="nodeTrigger === 'hover' && nodeMouseleave()"
-      checked
+      [checked]="true"
+      [inPortal]="true"
     ></x-list>
   }
 </div>

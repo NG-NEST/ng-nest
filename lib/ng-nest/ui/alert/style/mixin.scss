@@ -33,6 +33,9 @@
     line-height: 1.325rem;
     margin: 0.25rem 0 0 0;
   }
+  &-icon-content {
+    align-items: flex-start;
+  }
   &-icon.x-icon {
     font-size: $--x-alert-icon-font-size;
     margin-right: 0.5rem;
@@ -60,7 +63,7 @@
       color: $color;
       background-color: $background;
       border-color: transparent;
-      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
+      box-shadow: $--x-box-shadow;
       x-button.#{$--x-alert}-close .x-button {
         color: $close-color;
         &:hover {
@@ -72,7 +75,7 @@
       color: $background;
       background-color: $color;
       border-color: transparent;
-      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
+      box-shadow: $--x-box-shadow;
       x-button.#{$--x-alert}-close .x-button {
         color: $background;
         &:hover {
@@ -84,7 +87,7 @@
       color: $--x-text-300;
       background-color: $--x-background;
       border-color: transparent;
-      box-shadow: $--x-box-shadow $--x-box-shadow-base-color;
+      box-shadow: $--x-box-shadow;
       .#{$--x-alert}-icon.x-icon {
         color: $color;
       }

@@ -101,12 +101,12 @@ export class XInputProperty extends XControlValueAccessor<any> implements XInput
    * @zh_CN 输入框内边距，rem。主要指输入框中的左右内边距
    * @en_US Enter the border of the input box, rem.
    */
-  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.4) inputPadding!: XNumber;
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.75) inputPadding!: XNumber;
   /**
    * @zh_CN 输入框内边距(包含图标)，rem。主要指输入框中的有图标的时候左右内边距
    * @en_US Enter the border between the input box (including icon), rem.
    */
-  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.8) inputIconPadding!: XNumber;
+  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 2.15) inputIconPadding!: XNumber;
   /**
    * @zh_CN 前置标签
    * @en_US Before label

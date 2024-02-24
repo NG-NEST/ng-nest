@@ -7,7 +7,7 @@
 @mixin drawer {
   background-color: $--x-background;
   position: relative;
-  box-shadow: $--x-box-shadow-light;
+  box-shadow: $--x-box-shadow;
   &-header {
     padding: 1rem 1rem 0.5rem 1rem;
   }
@@ -43,7 +43,7 @@
   width: 100%;
   background-color: $--x-background;
   position: relative;
-  box-shadow: $--x-box-shadow-light;
+  box-shadow: $--x-box-shadow;
   overflow: auto;
   padding: 1rem;
   &-title {

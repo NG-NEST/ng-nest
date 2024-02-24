@@ -19,15 +19,16 @@
   &-bordered {
     border-left: $--x-border-base;
     border-right: $--x-border-base;
+    border-radius: $--x-border-radius;
     x-collapse-panel {
       .x-collapse-panel {
         &-header {
-          padding-left: 0.625rem;
-          padding-right: 0.625rem;
+          padding-left: $--x-padding-medium;
+          padding-right: $--x-padding-medium;
         }
         &-body {
-          padding-left: 0.625rem;
-          padding-right: 0.625rem;
+          padding-left: $--x-padding-medium;
+          padding-right: $--x-padding-medium;
         }
       }
     }
@@ -54,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.625rem 0;
+    padding: $--x-padding-medium 0;
     border-bottom: $--x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;

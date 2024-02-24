@@ -11,6 +11,6 @@ import { XCountdownComponent } from '@ng-nest/ui/statistic';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  deadline = XAddSeconds(new Date(), 10).getTime();
+  deadline = XAddSeconds(new Date(), 1000).getTime();
   close() {}
 }

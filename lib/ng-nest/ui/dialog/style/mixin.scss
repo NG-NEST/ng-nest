@@ -83,9 +83,8 @@
   min-height: inherit;
   max-height: inherit;
   background-color: $--x-background;
-  box-shadow: $--x-box-shadow-light;
-  border: 0.0625rem solid transparent;
-  border-radius: $--x-border-radius;
+  box-shadow: $--x-box-shadow;
+  border-radius: $--x-border-portal-radius;
   &-title {
     font-weight: 600;
     color: $--x-text-300;

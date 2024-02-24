@@ -10,7 +10,7 @@ ns-docs {
     left: 0;
     top: $header-height;
     transition: margin $transition-duration-slow, opacity $transition-duration-slow;
-    box-shadow: $--x-box-shadow-light;
+    box-shadow: $--x-box-shadow;
     > section {
       position: relative;
       height: 100%;

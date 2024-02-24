@@ -141,6 +141,11 @@ export class XListProperty extends XControlValueAccessor<any> {
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
   /**
+   * @zh_CN 在弹框中选择时的样式，根据尺寸来决定
+   * @en_US The style selected in the pop-up box is determined by size
+   */
+  @Input() @XInputBoolean() inPortal!: XBoolean;
+  /**
    * @zh_CN Full event
    * @en_US 全选事件
    */
@@ -317,4 +322,9 @@ export class XListOptionProperty {
  * @zh_CN 拖动相关的数据
  * @en_US Drag related data
  */
-export type XListDragDrop = { data: XListNode[]; current: XListNode; currentIndex: number; event: CdkDragDrop<XListNode[]> };
+export type XListDragDrop = {
+  data: XListNode[];
+  current: XListNode;
+  currentIndex: number;
+  event: CdkDragDrop<XListNode[]>;
+};

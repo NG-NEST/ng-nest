@@ -11,7 +11,7 @@ ns-header {
   box-sizing: border-box;
   opacity: 1;
   transition: margin $transition-duration-slow, opacity $transition-duration-slow;
-  box-shadow: $--x-box-shadow-light;
+  box-shadow: $--x-box-shadow;
   > x-button.menu {
     margin: 0 0.875rem;
     .x-button .x-icon {

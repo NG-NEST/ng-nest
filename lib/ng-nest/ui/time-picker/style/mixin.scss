@@ -17,9 +17,8 @@
   height: 100%;
   font-size: $--x-time-picker-font-size;
   color: $--x-text;
-  border: $--x-time-picker-border;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-portal-radius;
+  box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   &-preset {
     display: flex;

@@ -40,7 +40,8 @@
     $--x-button-initial-plain-disabled-background,
     $--x-button-initial-plain-disabled-border,
     $--x-button-initial-box-shadow-color,
-    $--x-button-initial-plain-box-shadow-color
+    $--x-button-initial-plain-box-shadow-color,
+    $--x-button-initial-ripple-background
   );
   @include button-type(
     'primary',
@@ -69,7 +70,8 @@
     $--x-button-primary-plain-disabled-background,
     $--x-button-primary-plain-disabled-border,
     $--x-button-primary-box-shadow-color,
-    $--x-button-primary-plain-box-shadow-color
+    $--x-button-primary-plain-box-shadow-color,
+    $--x-button-primary-ripple-background
   );
   @include button-type(
     'success',
@@ -98,7 +100,8 @@
     $--x-button-success-plain-disabled-background,
     $--x-button-success-plain-disabled-border,
     $--x-button-success-box-shadow-color,
-    $--x-button-success-plain-box-shadow-color
+    $--x-button-success-plain-box-shadow-color,
+    $--x-button-success-ripple-background
   );
   @include button-type(
     'warning',
@@ -127,7 +130,8 @@
     $--x-button-warning-plain-disabled-background,
     $--x-button-warning-plain-disabled-border,
     $--x-button-warning-box-shadow-color,
-    $--x-button-warning-plain-box-shadow-color
+    $--x-button-warning-plain-box-shadow-color,
+    $--x-button-warning-ripple-background
   );
   @include button-type(
     'danger',
@@ -156,7 +160,8 @@
     $--x-button-danger-plain-disabled-background,
     $--x-button-danger-plain-disabled-border,
     $--x-button-danger-box-shadow-color,
-    $--x-button-danger-plain-box-shadow-color
+    $--x-button-danger-plain-box-shadow-color,
+    $--x-button-danger-ripple-background
   );
   @include button-type(
     'info',
@@ -185,6 +190,7 @@
     $--x-button-info-plain-disabled-background,
     $--x-button-info-plain-disabled-border,
     $--x-button-info-box-shadow-color,
-    $--x-button-info-plain-box-shadow-color
+    $--x-button-info-plain-box-shadow-color,
+    $--x-button-info-ripple-background
   );
 }

@@ -1,13 +1,19 @@
 @mixin border-error() {
   .x-border-error {
     position: absolute;
-    height: 0.5rem;
-    width: 0.5rem;
+    height: 0.75rem;
+    width: 0.75rem;
     z-index: 10;
     @include border-placement(top, left);
     @include border-placement(top, right);
     @include border-placement(bottom, left);
     @include border-placement(bottom, right);
+  }
+}
+
+@mixin border-error-focus() {
+  .x-border-error {
+    border-width: 0.125rem !important;
   }
 }
 

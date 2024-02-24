@@ -178,23 +178,18 @@
         position: absolute;
         color: $--x-text-400;
         font-size: $--x-input-icon-font-size;
-        padding: $--x-input-icon-padding;
         right: 0;
         left: inherit;
         opacity: 0;
         cursor: pointer;
         z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         &:hover {
           color: $--x-text-300;
         }
       }
-      // > input,
-      // > .#{$--x-input-prefix}-value-template-value {
-      //   &:hover + .#{$--x-input-prefix}-clear,
-      //   &:focus + .#{$--x-input-prefix}-clear {
-      //     opacity: 1;
-      //   }
-      // }
       &:hover {
         > input,
         > .#{$--x-input-prefix}-value-template-value {
@@ -209,9 +204,6 @@
         > .#{$--x-input-prefix}-clear {
           opacity: 1;
         }
-        > input {
-          padding-right: calc(#{$--x-input-icon-font-size} + #{$--x-input-icon-padding} * 2) !important;
-        }
       }
     }
   }
@@ -221,6 +213,10 @@
     color: $--x-text-400;
     padding: 0 $--x-input-icon-padding;
     right: 0;
+    width: 3rem;
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
   }
   &.x-direction {
     &-row {
@@ -245,11 +241,13 @@
       > #{$--x-prefix}-icon {
         position: absolute;
         font-size: $--x-input-icon-font-size;
-        padding: $--x-input-icon-padding;
-        &.#{$--x-prefix}-icon-spin {
-          padding: 0;
-          margin: $--x-input-icon-padding;
-        }
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        // &.#{$--x-prefix}-icon-spin {
+        //   padding: 0;
+        //   margin: $--x-input-icon-padding;
+        // }
       }
     }
   }
@@ -379,6 +377,10 @@
         height: $height;
         line-height: $height;
       }
+      > x-icon {
+        height: $height;
+        width: $height;
+      }
     }
 
     > .#{$--x-input-prefix}-row {
@@ -412,6 +414,13 @@
       .x-button:hover,
       .x-button:focus {
         z-index: 1;
+      }
+      .x-button {
+        box-shadow: none !important;
+        border: $--x-input-border;
+        &:hover {
+          @include hover();
+        }
       }
     }
     > *:first-child {
