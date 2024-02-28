@@ -29,7 +29,6 @@
     }
     .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
       background-color: $--x-background-a200;
-      border-radius: $--x-border-radius;
       &:first-child {
         border-top-left-radius: $--x-border-radius;
         border-bottom-left-radius: $--x-border-radius;

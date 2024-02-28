@@ -1,8 +1,10 @@
 :host {
   .row {
-    width: 16rem;
-    height: 10rem;
-    padding: 0.5rem;
+    width: 32rem;
+    height: 20rem;
+    padding: 1rem;
+    border: 0.0625rem solid var(--x-border);
+    border-radius: var(--x-border-radius);
     background-color: rgba(0, 0, 0, 0.03);
     position: relative;
   }

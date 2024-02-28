@@ -75,6 +75,16 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() plain?: XBoolean;
   /**
+   * @zh_CN 平铺按钮
+   * @en_US Flat button
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() flat?: XBoolean;
+  /**
+   * @zh_CN 文字按钮
+   * @en_US Text button
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() text?: XBoolean;
+  /**
    * @zh_CN 圆角按钮
    * @en_US Round button
    */

@@ -72,6 +72,7 @@
   }
   &-disabled {
     transform: none !important;
+    opacity: 0.6;
   }
   &-round {
     border-radius: 5rem;
@@ -115,9 +116,6 @@
     &:active {
       @include button-color($--x-button-hover, $--x-button-initial-hover-background, transparent);
     }
-  }
-  &-text {
-    color: $--x-primary;
   }
   &-closable {
     color: $--x-text-400;
@@ -211,13 +209,33 @@
       &.cdk-program-focused:not(.x-button-disabled),
       &.cdk-keyboard-focused:not(.x-button-disabled) {
         @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
-        box-shadow: $--x-box-shadow-hover;
       }
       &:active {
         @include button-color($plain-active, $plain-active-background, $plain-active-border);
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
+      }
+    }
+    &-text {
+      box-shadow: none;
+      @include button-color($plain-color, transparent, $plain-border);
+      &:hover:not(.x-button-disabled),
+      &.cdk-program-focused:not(.x-button-disabled),
+      &.cdk-keyboard-focused:not(.x-button-disabled) {
+        box-shadow: none;
+        @include button-color($plain-color, $plain-background, $plain-border);
+      }
+      &.#{$--x-button}-disabled {
+        @include disabled($plain-disabled, transparent, $plain-disabled-border);
+      }
+    }
+    &-flat {
+      box-shadow: none;
+      &:hover:not(.x-button-disabled),
+      &.cdk-program-focused:not(.x-button-disabled),
+      &.cdk-keyboard-focused:not(.x-button-disabled) {
+        box-shadow: none;
       }
     }
     &.#{$--x-button}-activated {
@@ -227,9 +245,6 @@
     .x-ripple-element {
       background-color: $ripple-background;
     }
-    // @if $type!= 'initial' {
-    //   border: none;
-    // }
   }
 }
 

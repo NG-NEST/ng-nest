@@ -48,10 +48,10 @@
         @if (showCancel || showConfirm) {
           <x-buttons space="1">
             @if (showCancel) {
-              <x-button (click)="onClose('cancel')">{{ getCancelText }}</x-button>
+              <x-button (click)="onClose('cancel')" flat>{{ getCancelText }}</x-button>
             }
             @if (showConfirm) {
-              <x-button type="primary" (click)="onClose('confirm')">{{ getConfirmText }}</x-button>
+              <x-button type="primary" flat (click)="onClose('confirm')">{{ getConfirmText }}</x-button>
             }
           </x-buttons>
         }
