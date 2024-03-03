@@ -218,4 +218,14 @@ export class XButtonsProperty extends XProperty {
    * @en_US Hide border
    */
   @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS) @XInputBoolean() hiddenBorder?: XBoolean;
+  /**
+   * @zh_CN 显示阴影
+   * @en_US show box shadow
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS, true) @XInputBoolean() boxShadow?: XBoolean;
+  /**
+   * @zh_CN 圆角按钮
+   * @en_US Round button
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME_BUTTONS) @XInputBoolean() round?: XBoolean;
 }

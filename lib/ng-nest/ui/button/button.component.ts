@@ -44,6 +44,7 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
 
   ngOnInit(): void {
     this.setSpace();
+    this.setRound();
     this.setClassMap();
   }
 
@@ -86,6 +87,13 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     if (!this.buttons?.space) return;
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${Number(this.buttons.space) / 2}rem`);
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${Number(this.buttons.space) / 2}rem`);
+  }
+
+  setRound() {
+    if (!this.buttons?.round) return;
+    if (this.round === undefined) {
+      this.round = true;
+    }
   }
 
   setDisabled() {

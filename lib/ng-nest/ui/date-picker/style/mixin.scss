@@ -718,6 +718,7 @@
     background-image: none;
     box-shadow: $--x-date-picker-box-shadow;
     transition: all $--x-animation-duration-slow;
+    border-radius: $--x-border-radius;
     .x-input-group {
       display: flex;
       align-items: center;
@@ -729,6 +730,9 @@
           padding-left: $--x-padding-medium !important;
           padding-right: $--x-padding-medium !important;
         }
+        .x-input-row > .x-input-input > input {
+          box-shadow: none;
+        }
       }
     }
   }
@@ -739,7 +743,6 @@
       .x-input-group {
         > x-input input {
           background-color: transparent;
-          border-radius: 0;
         }
       }
     }
@@ -773,6 +776,18 @@
       &-active-bar {
         left: 50%;
       }
+    }
+  }
+  &-input-start {
+    .x-input-row > .x-input-input > input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  &-input-end {
+    .x-input-row > .x-input-input > input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
   @include size('big', $--x-height-big, 0 $--x-padding-big);

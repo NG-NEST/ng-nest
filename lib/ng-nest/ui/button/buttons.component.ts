@@ -26,6 +26,12 @@ export class XButtonsComponent extends XButtonsProperty implements OnInit {
   @HostBinding('class.x-buttons-hiddenBorder') get getHiddenBorder() {
     return this.hiddenBorder;
   }
+  @HostBinding('class.x-buttons-box-shadow') get getBoxShadow() {
+    return this.boxShadow;
+  }
+  @HostBinding('class.x-buttons-round') get getRound() {
+    return this.round;
+  }
 
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);

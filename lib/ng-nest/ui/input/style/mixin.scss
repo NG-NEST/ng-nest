@@ -97,6 +97,7 @@
       &:focus {
         > input {
           @include focus();
+          
           outline: 0;
         }
       }

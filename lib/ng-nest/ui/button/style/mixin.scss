@@ -260,6 +260,7 @@
 @mixin buttons {
   display: inline-flex;
   position: relative;
+
   &:not(.#{$--x-buttons}-space) {
     > #{$--x-button} {
       .#{$--x-button} {
@@ -267,6 +268,7 @@
         border-right-width: $--x-border-width;
         border-radius: 0;
         position: relative;
+        box-shadow: none;
         &-round {
           border-radius: 0;
         }
@@ -322,6 +324,13 @@
         }
       }
     }
+  }
+  &-box-shadow:not(.#{$--x-buttons}-space) {
+    border-radius: $--x-border-radius;
+    box-shadow: $--x-box-shadow;
+  }
+  &-round:not(.#{$--x-buttons}-space) {
+    border-radius: 5rem;
   }
 }
 

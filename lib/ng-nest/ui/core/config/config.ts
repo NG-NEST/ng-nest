@@ -188,6 +188,7 @@ export interface XButtonConfig {
 export interface XButtonsConfig {
   space?: XNumber;
   hiddenBorder?: XBoolean;
+  showBoxShadow?: XBoolean;
 }
 
 export interface XCalendarConfig {}
