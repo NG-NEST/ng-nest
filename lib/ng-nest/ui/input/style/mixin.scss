@@ -306,7 +306,6 @@
     &-template {
       .#{$--x-input-prefix}-input {
         > input {
-          margin-left: calc(#{$--x-border-width} * -1);
           &:hover,
           &:focus {
             z-index: 1;
@@ -325,7 +324,6 @@
     &-template {
       > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
         > input {
-          margin-right: calc(#{$--x-border-width} * -1);
           &:hover,
           &:focus {
             z-index: 1;

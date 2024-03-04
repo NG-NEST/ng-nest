@@ -191,7 +191,7 @@
 ) {
   &-#{$type} {
     @include button-color($color, $background, $border);
-    &:hover:not(.x-button-disabled),
+    &:hover:not(.x-button-disabled):not(.x-button-activated),
     &.cdk-program-focused:not(.x-button-disabled),
     &.cdk-keyboard-focused:not(.x-button-disabled) {
       @include button-color($hover, $hover-background, $hover-border);
@@ -205,22 +205,26 @@
     }
     &-plain {
       @include button-color($plain-color, $plain-background, $plain-border);
-      &:hover:not(.x-button-disabled),
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
       &.cdk-program-focused:not(.x-button-disabled),
       &.cdk-keyboard-focused:not(.x-button-disabled) {
-        @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
+        @include button-color($color, $plain-hover-background, $plain-hover-border);
       }
-      &:active {
-        @include button-color($plain-active, $plain-active-background, $plain-active-border);
+      &:active:not(.x-button-disabled) {
+        @include button-color($color, $plain-active-background, $plain-active-border);
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
+      }
+      &.#{$--x-button}-activated {
+        z-index: 2;
+        @include button-color($active, $active-background, $active-border);
       }
     }
     &-text {
       box-shadow: none;
       @include button-color($plain-color, transparent, $plain-border);
-      &:hover:not(.x-button-disabled),
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
       &.cdk-program-focused:not(.x-button-disabled),
       &.cdk-keyboard-focused:not(.x-button-disabled) {
         box-shadow: none;
@@ -232,7 +236,7 @@
     }
     &-flat {
       box-shadow: none;
-      &:hover:not(.x-button-disabled),
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
       &.cdk-program-focused:not(.x-button-disabled),
       &.cdk-keyboard-focused:not(.x-button-disabled) {
         box-shadow: none;
@@ -276,9 +280,6 @@
         &-activated {
           z-index: 1;
         }
-      }
-      &:not(:first-child) .#{$--x-button} {
-        margin-left: -1px;
       }
       &:hover {
         z-index: 1;

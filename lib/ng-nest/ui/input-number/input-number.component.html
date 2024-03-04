@@ -11,6 +11,8 @@
         attrType="button"
         (mousedown)="!minDisabled && down($event, step, false)"
         (mouseup)="up($event)"
+        plain
+        flat
       ></x-button>
     </ng-template>
     <x-input
@@ -54,6 +56,8 @@
         attrType="button"
         (mousedown)="!maxDisabled && down($event, step)"
         (mouseup)="up($event)"
+        plain
+        flat
       ></x-button>
     </ng-template>
     @if (invalid) {

@@ -43,7 +43,7 @@
           }
         }
         @case ('button') {
-          <x-buttons>
+          <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
                 [icon]="item.icon"
@@ -54,13 +54,14 @@
                 [disabled]="getDisabled(item.disabled)"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
+                plain
                 >{{ item.label }}</x-button
               >
             }
           </x-buttons>
         }
         @case ('icon') {
-          <x-buttons>
+          <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
                 [icon]="item.icon"
@@ -71,6 +72,7 @@
                 [disabled]="getDisabled(item.disabled)"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
+                plain
                 >{{ item.label }}</x-button
               >
             }

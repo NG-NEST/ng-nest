@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   layout: 'test',
-  defaultPage: 'date-picker',
+  defaultPage: 'empty',
   static: 'https://ngnest.com/static'
 };
