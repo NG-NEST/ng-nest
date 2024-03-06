@@ -45,7 +45,7 @@
   &-top-end {
     padding-bottom: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      bottom: 0.2rem;
+      bottom: 0.3rem;
       border-bottom-width: 0;
       border-top-color: $--x-text;
     }
@@ -62,7 +62,7 @@
   &-left-end {
     padding-right: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      right: 0.2rem;
+      right: 0.3rem;
       border-right-width: 0;
       border-left-color: $--x-text;
     }
@@ -79,7 +79,7 @@
   &-right-end {
     padding-left: $--x-tooltip-distance;
     > .#{$--x-tooltip-portal-prefix}-arrow {
-      left: 0.2rem;
+      left: 0.3rem;
       border-left-width: 0;
       border-right-color: $--x-text;
     }
@@ -96,7 +96,7 @@
   &-bottom-end {
     padding-top: $--x-tooltip-distance;
     .#{$--x-tooltip-portal-prefix}-arrow {
-      top: 0.2rem;
+      top: 0.3rem;
       border-top-width: 0;
       border-bottom-color: $--x-text;
     }
