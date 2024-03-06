@@ -50,7 +50,7 @@ export class XFormProperty extends XFormProp {
    * @zh_CN 控件间距，单位rem
    * @en_US Control spacing, unit rem
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() space?: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.75) @XInputNumber() space?: XNumber;
   /**
    * @zh_CN 控件宽度，24栅格
    * @en_US Control width, 24 grid
