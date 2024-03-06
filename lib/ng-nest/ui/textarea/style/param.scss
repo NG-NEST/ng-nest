@@ -9,10 +9,10 @@ $--x-textarea-font-size: $--x-font-size;
 $--x-textarea-height: calc(#{$--x-font-size} + 0.875rem);
 
 /* 行高 */
-$--x-textarea-line-height: calc(#{$--x-font-size} + 0.325rem);
+$--x-textarea-line-height: calc(#{$--x-font-size} + 0.5rem);
 
 /* 内边距 */
-$--x-textarea-padding: 0.4rem;
+$--x-textarea-padding: 0.5rem;
 
 /* 文字颜色 */
 $--x-textarea-color: $--x-text;
@@ -39,4 +39,4 @@ $--x-textarea-disabled-color: $--x-text-500;
 $--x-textarea-icon-font-size: $--x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-textarea-icon-padding: 0.4rem;
+$--x-textarea-icon-padding: 0.75rem;

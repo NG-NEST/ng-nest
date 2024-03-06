@@ -1,4 +1,12 @@
-import { XInputBoolean, XInputNumber, XSize, XNumber, XBoolean, XWithConfig, XPositionLeftRight } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XInputNumber,
+  XSize,
+  XNumber,
+  XBoolean,
+  XWithConfig,
+  XPositionLeftRight
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
@@ -44,7 +52,7 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    * @zh_CN 高度
    * @en_US height
    */
-  @Input() height: string = '4rem';
+  @Input() height: string = '6rem';
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event

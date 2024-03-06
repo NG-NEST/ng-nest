@@ -127,7 +127,7 @@
           opacity: 1;
         }
         > textarea {
-          padding-right: calc(#{$--x-textarea-icon-font-size} + #{$--x-textarea-icon-padding} * 2) !important;
+          padding-right: 2.15rem !important;
         }
       }
     }
@@ -170,7 +170,7 @@
   &-icon-left {
     > .#{$--x-textarea-prefix}-row {
       > textarea {
-        padding-left: $--x-textarea-icon-font-size + $--x-textarea-icon-padding * 2;
+        padding-left: 2.15rem;
       }
       > #{$--x-prefix}-icon {
         left: 0;
