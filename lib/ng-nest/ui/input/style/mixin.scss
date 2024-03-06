@@ -97,7 +97,7 @@
       &:focus {
         > input {
           @include focus();
-          
+
           outline: 0;
         }
       }
@@ -137,7 +137,7 @@
     left: 0;
     font-size: $--x-input-font-size - 0.125rem;
     color: $--x-danger;
-    margin-bottom: calc(calc(#{$--x-input-font-size} + 0.45rem) * -1);
+    margin-bottom: calc(calc(#{$--x-input-font-size}) * -2);
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
