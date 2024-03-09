@@ -5,21 +5,20 @@
     padding: 1rem;
     border: 0.0625rem solid var(--x-border);
     border-radius: var(--x-border-radius);
-    background-color: rgba(0, 0, 0, 0.03);
     position: relative;
   }
   .row x-button {
     position: absolute;
   }
   .row x-button:nth-child(2) {
-    right: 0.5rem;
+    right: 1rem;
   }
   .row x-button:nth-child(3) {
-    left: 0.5rem;
-    bottom: 0.5rem;
+    left: 1rem;
+    bottom: 1rem;
   }
   .row x-button:nth-child(4) {
-    right: 0.5rem;
-    bottom: 0.5rem;
+    right: 1rem;
+    bottom: 1rem;
   }
 }

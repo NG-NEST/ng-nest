@@ -28,7 +28,9 @@ export const X_THEME_MERGE = '#ffffff';
 
 export const X_THEME_BLACK_MERGE = '#cccccc';
 
-export const X_THEME_AMOUNTS = [0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+export const X_THEME_AMOUNTS = [
+  0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9
+];
 
 export const X_THEME_BACKGROUNDS = [-0.2, -0.3, -0.4];
 
@@ -63,7 +65,7 @@ export const X_THEME_COLORS: XColorsTheme = {
   danger: '#f56c6c',
   info: '#909399',
   text: '#333333',
-  border: '#dddddd',
+  border: '#e6e6e6',
   background: '#ffffff'
 };
 

@@ -111,7 +111,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   box!: DOMRect;
   protalHeight!: number;
   maxNodes: number = 6;
-  inputPadding = 0.4;
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;
@@ -146,7 +145,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     this.setSubject();
     if (this.multiple) {
       this.valueTpl = this.multipleValueTpl;
-      this.inputPadding = 0.125;
     }
     this.i18n.localeChange
       .pipe(

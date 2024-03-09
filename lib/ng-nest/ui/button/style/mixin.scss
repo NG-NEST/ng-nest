@@ -268,8 +268,6 @@
   &:not(.#{$--x-buttons}-space) {
     > #{$--x-button} {
       .#{$--x-button} {
-        border-left-width: $--x-border-width;
-        border-right-width: $--x-border-width;
         border-radius: 0;
         position: relative;
         box-shadow: none;

@@ -17,6 +17,7 @@
       flex-wrap: wrap;
       width: initial;
       height: initial !important;
+      left: 0.125rem !important;
       > x-tag {
         display: inline-flex;
         margin-left: 0.0625rem;
@@ -32,7 +33,6 @@
       > x-input {
         margin-top: 0.125rem;
         width: 5rem;
-        min-width: 3rem;
         .x-input {
           @include input-size('big', $--x-height-large, 0 $--x-padding-large);
           @include input-size('large', $--x-height-medium, 0 $--x-padding-medium);
@@ -49,8 +49,7 @@
 }
 
 @mixin tree-select-portal {
-  margin: 0.0625rem 0;
-  font-size: $--x-tree-select-font-size;
+  padding: 0.25rem;
   color: $--x-text;
   width: 100%;
   border-radius: $--x-border-portal-radius;

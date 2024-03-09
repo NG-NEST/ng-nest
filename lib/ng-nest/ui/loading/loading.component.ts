@@ -13,7 +13,7 @@ import {
   inject
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass, XCorner } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -34,6 +34,10 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
   }
   @ViewChild('loadingTpl') loadingTpl!: TemplateRef<void>;
   portalRef!: XPortalOverlayRef<any>;
+
+  get isRadius() {
+    return !(this.radius instanceof Array) && Boolean(this.radius);
+  }
 
   sizeNumber?: number;
 
@@ -71,6 +75,13 @@ export class XLoadingComponent extends XLoadingProperty implements OnInit, OnCha
       }
     }
     this.cdr.detectChanges();
+  }
+
+  includeRadius(cover: XCorner) {
+    if (!(this.radius instanceof Array)) {
+      return false;
+    }
+    return this.radius.includes(cover);
   }
 
   createFullScreen() {

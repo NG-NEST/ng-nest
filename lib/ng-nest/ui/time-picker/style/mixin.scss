@@ -67,4 +67,16 @@
       }
     }
   }
+
+  &-use12Hours {
+    width: 4.5rem;
+    > x-list {
+      > .x-list {
+        width: 4.5rem;
+        > x-list-option {
+          min-width: 4.5rem;
+        }
+      }
+    }
+  }
 }

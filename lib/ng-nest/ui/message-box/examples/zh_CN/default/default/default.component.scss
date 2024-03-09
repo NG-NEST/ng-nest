@@ -5,10 +5,11 @@
     padding: 1rem;
     border: 0.0625rem solid var(--x-border);
     border-radius: var(--x-border-radius);
-    background-color: rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
   }
   .row {
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

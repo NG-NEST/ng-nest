@@ -18,14 +18,18 @@
       opacity: 1;
       height: fit-content;
       &.x-tab-content-unactivated {
-        transition: height 0s, opacity 0s;
+        transition:
+          height 0s,
+          opacity 0s;
         height: 0;
         opacity: 0;
       }
     }
     &-animated {
       > .x-tab-content {
-        transition: transform $--x-animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1), height 0s,
+        transition:
+          transform $--x-animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1),
+          height 0s,
           opacity $--x-animation-duration-slow;
         &.x-tab-content-unactivated {
           display: inherit;
@@ -105,24 +109,31 @@
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
         > .#{$--x-tabs-prefix}-list {
-          border-#{$border}: $--x-border-base;
+          // border-#{$border}: $--x-border-base;
+          padding-#{$border}: 0.25rem;
           > x-slider {
             width: 100%;
-            .x-slider-scroll > ul > li {
-              &.x-slider-highlight {
-                border-#{$border}: none;
-                border-#{$border-radius-first}: 0;
-                border-#{$border-radius-second}: 0;
-              }
-            }
           }
+        }
+        > .#{$--x-tabs-prefix}-contents {
+          background-color: $--x-background-a200;
+          border-radius: $--x-border-radius;
         }
       }
     }
   }
 }
 
-@mixin tag($layout, $border, $border-radio-first, $border-radio-second, $border-none, $border-activated, $border-size, $border-position) {
+@mixin tag(
+  $layout,
+  $border,
+  $border-radio-first,
+  $border-radio-second,
+  $border-none,
+  $border-activated,
+  $border-size,
+  $border-position
+) {
   &-tag {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
@@ -217,6 +228,7 @@
                       border-#{$border-li-second}: $--x-border-base;
                       border-#{$border}-color: $--x-background;
                       background-color: $--x-background;
+                      border-radius: 0;
                     }
                     &.x-slider-activated {
                       border-#{$border}-color: $--x-background;

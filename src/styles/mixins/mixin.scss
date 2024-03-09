@@ -25,12 +25,12 @@
     /*滚动条里面小方块*/
     border-radius: 0.75rem;
     // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    background: $--x-text-500;
+    background: rgba(0, 0, 0, 0.1);
   }
   ::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
     // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 0.75rem;
-    background: $--x-background-a500;
+    background: rgba(0, 0, 0, 0.05);
   }
 }

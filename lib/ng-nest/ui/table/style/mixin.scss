@@ -17,7 +17,6 @@
     position: relative;
     overflow: hidden;
     display: block;
-    background-color: $--x-background;
     min-height: 42px;
     > tr {
       width: 100%;
@@ -31,6 +30,12 @@
         font-weight: 600;
         background-color: $--x-background;
         border-bottom: $--x-border-base;
+        &:first-child {
+          border-top-left-radius: $--x-border-radius;
+        }
+        &:last-child {
+          border-top-right-radius: $--x-border-radius;
+        }
         > a {
           display: inline-flex;
           align-items: center;
@@ -121,16 +126,18 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background-a400;
+          background-color: $--x-background-a300;
         }
       }
       &:hover:not(.x-table-activated) {
         > td {
-          background-color: $--x-background-a200;
+          background-color: $--x-background-a100;
         }
       }
       &:last-child {
-        border-bottom: none;
+        > td {
+          border-bottom: none;
+        }
       }
     }
     x-empty {
@@ -233,6 +240,7 @@
   &-footer {
     display: flex;
     align-items: center;
+    border-top: $--x-border-base;
   }
   &-sticky-right-scroll {
     position: absolute;

@@ -6,7 +6,18 @@
 
 <ng-template #loadingTpl>
   @if (loading) {
-    <div #loading class="x-loading" [ngClass]="classMap" [style.background]="background" [style.zIndex]="zIndex">
+    <div
+      #loading
+      class="x-loading"
+      [ngClass]="classMap"
+      [style.background]="background"
+      [style.zIndex]="zIndex"
+      [class.x-loading-radius]="isRadius"
+      [class.x-loading-top-left-radius]="includeRadius('top-start')"
+      [class.x-loading-top-right-radius]="includeRadius('top-end')"
+      [class.x-loading-bottom-left-radius]="includeRadius('bottom-start')"
+      [class.x-loading-bottom-left-radius]="includeRadius('bottom-end')"
+    >
       <div class="x-loading-spinner" [style.color]="color">
         @if (icon) {
           <div class="x-loading-icon" [style.font-size.px]="sizeNumber">

@@ -11,13 +11,13 @@
 <div class="row">
   <x-buttons space="1">
     @if (activated > 0) {
-      <x-button (click)="pre()">上一步</x-button>
+      <x-button (click)="pre()" flat>上一步</x-button>
     }
     @if (activated < 2) {
-      <x-button (click)="next()">下一步</x-button>
+      <x-button (click)="next()" flat>下一步</x-button>
     }
     @if (activated === 2) {
-      <x-button type="primary" (click)="done()">提交</x-button>
+      <x-button type="primary" (click)="done()" flat>提交</x-button>
     }
   </x-buttons>
 </div>

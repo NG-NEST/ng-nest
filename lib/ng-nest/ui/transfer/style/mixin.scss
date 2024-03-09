@@ -42,9 +42,15 @@
     border-bottom-right-radius: $--x-border-radius;
     overflow: auto;
   }
+  &-tree {
+    padding: 0 0.125rem;
+  }
   &-item {
     @include transfer-li();
-    transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+    transition:
+      border-color $--x-animation-duration-base,
+      background-color $--x-animation-duration-base,
+      color $--x-animation-duration-base;
   }
   &-droplist {
     margin: 0;

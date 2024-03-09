@@ -34,10 +34,12 @@
     position: relative;
     display: flex;
     border-radius: $--x-border-radius;
+    margin: 0.125rem 0;
+    line-height: $--x-height-small;
     cursor: pointer;
     x-icon {
       padding: 0.25rem;
-      font-size: 1rem;
+      font-size: 1.25rem;
       transition: $--x-animation-duration-base;
       &:hover {
         color: $--x-text-200;

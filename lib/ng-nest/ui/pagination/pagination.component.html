@@ -12,18 +12,22 @@
     <span>{{ lastIndex }}</span>
   </div>
 } @else {
-  <x-buttons [space]="space" [hiddenBorder]="hiddenBorder">
+  <x-buttons [space]="space" [hiddenBorder]="hiddenBorder" boxShadow="false">
     @if (showEllipsis) {
       <x-button
         [icon]="'fto-chevrons-left'"
         [title]="'pagination.first' | xI18n"
         [disabled]="disabled || firstActivated"
         (click)="jump(1)"
+        plain
+        flat
       ></x-button>
     }
     <ng-container *xOutlet="previousTpl"></ng-container>
     @for (item of indexes; track item) {
-      <x-button [disabled]="disabled" [activated]="getActivated(item)" (click)="jump(item)">{{ item }}</x-button>
+      <x-button [disabled]="disabled" plain flat [activated]="getActivated(item)" (click)="jump(item)">{{
+        item
+      }}</x-button>
     }
     <ng-container *xOutlet="nextTpl"></ng-container>
     @if (showEllipsis && !simple) {
@@ -32,6 +36,8 @@
         [title]="'pagination.last' | xI18n"
         [disabled]="disabled || lastActivated"
         (click)="jump(lastIndex)"
+        plain
+        flat
       ></x-button>
     }
   </x-buttons>
@@ -73,7 +79,7 @@
   </div>
 }
 @if (showTotal) {
-  <x-button [disabled]="disabled" class="x-pagination-total" [type]="hiddenBorder === true ? 'text' : 'initial'"
+  <x-button [disabled]="disabled" plain flat class="x-pagination-total"
     ><ng-container *xOutlet="totalTpl; context: { $total: total }"
       >{{ 'pagination.total' | xI18n }} {{ total }} {{ 'pagination.item' | xI18n }}</ng-container
     ></x-button
@@ -81,21 +87,23 @@
 }
 <ng-template #previousTpl>
   <x-button
-    [type]="hiddenBorder ? 'text' : 'initial'"
     [icon]="'fto-chevron-left'"
     [title]="'pagination.previous' | xI18n"
     [disabled]="disabled || leftDisabled"
     (click)="jump(-1, true)"
+    plain
+    flat
   ></x-button>
 </ng-template>
 
 <ng-template #nextTpl>
   <x-button
-    [type]="hiddenBorder ? 'text' : 'initial'"
     [icon]="'fto-chevron-right'"
     [title]="'pagination.next' | xI18n"
     [disabled]="disabled || rightDisabled"
     (click)="jump(1, true)"
+    plain
+    flat
   ></x-button>
 </ng-template>
 

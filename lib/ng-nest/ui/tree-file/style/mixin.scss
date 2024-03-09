@@ -26,6 +26,9 @@
         &.x-activated {
           background-color: $--x-border;
         }
+        x-icon {
+          font-size: 1rem;
+        }
       }
     }
   }
