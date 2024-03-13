@@ -48,7 +48,7 @@
           z-index: 1;
           width: 0;
           height: 0;
-          border-radius: $--x-border-radius;
+          border-radius: $--x-border-small-radius;
           background-color: rgba(0, 0, 0, 0.05);
           &-animated {
             transition:
@@ -61,6 +61,16 @@
       }
     }
   }
+  &:not(.x-slider-show-arrow) {
+    > .#{$--x-slider}-scroll {
+      > ul {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: $--x-border-radius;
+        padding: 0.25rem;
+      }
+    }
+  }
+
   &-activated {
     color: $--x-primary;
   }
@@ -86,6 +96,9 @@
     }
   }
   &-show-arrow {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: $--x-border-radius;
+    padding: 0.25rem;
     > .#{$--x-slider}-scroll {
       justify-content: start !important;
     }

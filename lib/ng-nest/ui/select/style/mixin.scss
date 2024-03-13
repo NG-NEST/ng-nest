@@ -51,7 +51,7 @@
 @mixin select-portal {
   color: $--x-text;
   width: 100%;
-  border-radius: $--x-border-portal-radius;
+  border-radius: $--x-border-small-radius;
   box-shadow: $--x-box-shadow;
   position: relative;
   display: flex;

@@ -10,7 +10,9 @@ ns-header {
   align-items: center;
   box-sizing: border-box;
   opacity: 1;
-  transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  transition:
+    margin $transition-duration-slow,
+    opacity $transition-duration-slow;
   box-shadow: $--x-box-shadow;
   > x-button.menu {
     margin: 0 0.875rem;
@@ -67,32 +69,16 @@ ns-nav {
       &:not(:first-child) {
         margin-left: 1rem;
       }
-      &.version {
-        width: 6rem;
-      }
       &.github {
         .x-button > .x-icon {
           font-size: 1.25rem;
         }
       }
-      &.lang {
-        .x-button {
-          width: 4.625rem;
-        }
+      &.no-margin {
+        margin-left: 0;
       }
       &.slider {
         font-size: 0.925rem;
-        .x-slider-scroll > ul > li {
-          > x-link {
-            height: $header-height - 1rem;
-          }
-          &.x-slider-highlight {
-            border: 0;
-            border-bottom: 0.125rem solid $--x-border;
-            border-color: $--x-primary;
-            background-color: transparent;
-          }
-        }
       }
     }
   }
@@ -119,10 +105,6 @@ ns-search {
         width: 100%;
       }
     }
-    .x-auto-complete > .x-auto-complete-row > x-input > .x-input > .x-input-row > .x-input-input > input {
-      border-color: transparent;
-      border-bottom: 0.0625rem solid $--x-border;
-    }
   }
 }
 
@@ -138,7 +120,9 @@ ns-sider {
   z-index: 9;
   border-right: 0.0625rem solid $--x-border;
   // box-shadow: $box-shadow;
-  transition: margin $transition-duration-slow, opacity $transition-duration-slow;
+  transition:
+    margin $transition-duration-slow,
+    opacity $transition-duration-slow;
   > section {
     position: relative;
     height: 100%;
@@ -177,7 +161,9 @@ ns-sider {
 ns-content {
   width: 100%;
   display: block;
-  transition: padding-left $transition-duration-slow, padding-top $transition-duration-slow;
+  transition:
+    padding-left $transition-duration-slow,
+    padding-top $transition-duration-slow;
   padding-bottom: $header-height;
   > ns-footer {
     width: 100%;

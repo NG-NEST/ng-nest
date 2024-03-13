@@ -142,6 +142,7 @@ export interface XAlertConfig {
 
 export interface XAnchorConfig {
   affixTop?: string;
+  affixBottom?: string;
   affixWidth?: string;
   layout?: XPositionLeftRight;
   justify?: XJustify;

@@ -15,7 +15,7 @@
   margin: 0.0625rem 0;
   font-size: $--x-color-picker-font-size;
   color: $--x-text;
-  border-radius: $--x-border-portal-radius;
+  border-radius: $--x-border-small-radius;
   box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   width: 15rem;
@@ -31,7 +31,7 @@
     width: 100%;
     height: 8rem;
     display: flex;
-    border-radius: $--x-border-portal-radius;
+    border-radius: $--x-border-small-radius;
     position: relative;
   }
   &-white,

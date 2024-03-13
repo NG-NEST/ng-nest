@@ -15,8 +15,8 @@
   "header": {
     "components": "Components",
     "version": "version",
-    "chinese": "中文",
-    "english": "English",
+    "chinese": "中",
+    "english": "EN",
     "dark": "Dark",
     "light": "Light",
     "search": "Search components"

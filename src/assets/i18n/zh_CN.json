@@ -15,8 +15,8 @@
   "header": {
     "components": "组件",
     "version": "版本",
-    "chinese": "Chinese",
-    "english": "English",
+    "chinese": "ZH",
+    "english": "EN",
     "dark": "暗黑风格",
     "light": "明亮风格",
     "search": "搜索组件"

@@ -22,9 +22,8 @@ export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
       nodeJustify: NcTabsNodeJustifyEnum.Center,
-      size: NcTabsSizeEnum.Big,
+      size: NcTabsSizeEnum.Medium,
       tabsType: NcTabsTypeEnum.Block,
-      tabsAnimated: false,
       tabsLinkRouter: false,
       folderPath: cates.folderPath
     });
@@ -69,7 +68,8 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     let param = '';
     while (param == '' || hasIn(comTpl.syswords.constant, param)) param = randomString();
     let tpl = highlightTpl;
-    let content = x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
+    let content =
+      x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
     let ext = x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length);
     let type = extToType[ext];
     tpl = replaceKey(tpl, '__type', type);
@@ -79,7 +79,8 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     }
     comTpl.syswords.constant += `${param}=\`${content}\`;\n`;
     files.push(`'src/app/${tab.name}/${x.name}': ${param}`);
-    if (x.name.lastIndexOf('.service.ts') == x.name.length - 11) providers.push(`'${x.name.replace('.service.ts', '')}'`);
+    if (x.name.lastIndexOf('.service.ts') == x.name.length - 11)
+      providers.push(`'${x.name.replace('.service.ts', '')}'`);
     if (childTabs.tabs.length - 1 !== index) comTpl.syswords.constant += `  `;
     if (x.name == `${tab.name}.component.ts`) {
       html = `<${cate.selector}></${cate.selector}>`;
@@ -89,8 +90,8 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     x.content = tpl;
   });
   tab.content = `
-  <div class="x-examples-html">${html}${generateTools(tab.name, otherNames, providers, files)}</div>\n
   ${tab.content ? `<div class="x-examples-info">${tab.content}</div>\n` : ''}
+  <div class="x-examples-html">${html}${generateTools(tab.name, otherNames, providers, files)}</div>\n
   <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 
@@ -103,6 +104,7 @@ export function generateTools(name: string, otherNames: string[], providers: str
     <x-button
       icon="fto-zap"
       onlyIcon
+      flat
       x-tooltip
       content="从 StackBlitz 打开"
       placement="top"
