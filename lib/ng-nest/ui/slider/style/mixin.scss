@@ -64,7 +64,7 @@
   &:not(.x-slider-show-arrow) {
     > .#{$--x-slider}-scroll {
       > ul {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: $--x-background-a200;
         border-radius: $--x-border-radius;
         padding: 0.25rem;
       }
@@ -96,7 +96,7 @@
     }
   }
   &-show-arrow {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: $--x-background-a200;
     border-radius: $--x-border-radius;
     padding: 0.25rem;
     > .#{$--x-slider}-scroll {

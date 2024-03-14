@@ -50,6 +50,10 @@
       > p {
         font-weight: 400;
         margin: 0.875rem 0 0;
+
+        .x-highlight {
+          border: 0.125rem solid $--x-background-a200;
+        }
       }
 
       > ul {
@@ -98,7 +102,11 @@
       }
 
       > p > x-tree-file {
-        font-family: Segoe WPC, Segoe UI, Microsoft YaHei, sans-serif;
+        font-family:
+          Segoe WPC,
+          Segoe UI,
+          Microsoft YaHei,
+          sans-serif;
       }
 
       > pre {

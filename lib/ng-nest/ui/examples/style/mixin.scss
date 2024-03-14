@@ -16,7 +16,7 @@
   .#{$prefix}-tools {
     position: absolute;
     position: absolute;
-    bottom: -1.25rem;
+    top: -1rem;
     left: 0;
     display: flex;
     width: 100%;
@@ -26,11 +26,13 @@
     }
   }
   .#{$prefix}-code {
-    padding: 1rem 0;
+    margin-top: 0.25rem;
     > x-tabs > .x-tabs {
       border-radius: 0.125rem;
       > .x-tabs-contents > .x-tab-content > .x-highlight {
-        border-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border: 0;
         > pre {
           background-color: transparent;
         }
@@ -39,7 +41,6 @@
   }
   .#{$prefix}-info {
     padding: 1rem 1.5rem;
-    border-radius: 0.125rem;
     background-color: $--x-background-a200;
     > p {
       margin: 0.25rem 0 0;

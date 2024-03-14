@@ -105,6 +105,7 @@ export function generateTools(name: string, otherNames: string[], providers: str
       icon="fto-zap"
       onlyIcon
       flat
+      plain
       x-tooltip
       content="从 StackBlitz 打开"
       placement="top"

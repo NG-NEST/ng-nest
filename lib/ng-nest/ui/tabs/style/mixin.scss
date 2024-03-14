@@ -93,10 +93,54 @@
   @include block(bottom, top, top-left-radius, top-right-radius);
   @include block(left, right, top-right-radius, bottom-right-radius);
 
-  @include tag(top, bottom, top-left-radius, top-right-radius, left, bottom, width, bottom);
-  @include tag(right, left, top-right-radius, bottom-right-radius, top, left, height, left);
-  @include tag(bottom, bottom, bottom-left-radius, bottom-right-radius, left, top, width, top);
-  @include tag(left, right, top-left-radius, bottom-left-radius, top, right, height, right);
+  @include tag(
+    top,
+    bottom,
+    top-left-radius,
+    top-right-radius,
+    bottom-left-radius,
+    bottom-right-radius,
+    left,
+    bottom,
+    width,
+    bottom
+  );
+  @include tag(
+    right,
+    left,
+    top-right-radius,
+    bottom-right-radius,
+    top-left-radius,
+    bottom-left-radius,
+    top,
+    left,
+    height,
+    left
+  );
+  @include tag(
+    bottom,
+    bottom,
+    bottom-left-radius,
+    bottom-right-radius,
+    top-left-radius,
+    top-right-radius,
+    left,
+    top,
+    width,
+    top
+  );
+  @include tag(
+    left,
+    right,
+    top-left-radius,
+    bottom-left-radius,
+    top-right-radius,
+    bottom-right-radius,
+    top,
+    right,
+    height,
+    right
+  );
 
   @include card(top, bottom, width, top, bottom, left, right, first, left, last, right);
   @include card(right, left, height, left, right, top, bottom, first, top, last, bottom);
@@ -127,8 +171,10 @@
 @mixin tag(
   $layout,
   $border,
-  $border-radio-first,
-  $border-radio-second,
+  $border-radius-first,
+  $border-radius-second,
+  $border-radius-three,
+  $border-radius-four,
   $border-none,
   $border-activated,
   $border-size,
@@ -147,19 +193,31 @@
                 position: absolute;
                 #{$border-position}: 0;
                 #{$border-size}: 100%;
-                border-#{$border}: $--x-border-base;
+                border-#{$border}: $--x-tabs-border-base;
+              }
+              &:not(.x-slider-show-arrow) > .x-slider-scroll > ul {
+                background-color: $--x-background-a200;
+                border-radius: 0;
+                border-#{$border-radius-first}: $--x-border-radius;
+                border-#{$border-radius-second}: $--x-border-radius;
+                padding: 0;
+              }
+              &.x-slider-show-arrow {
+                padding: 0;
+                border-#{$border-radius-three}: 0;
+                border-#{$border-radius-four}: 0;
               }
               &-scroll {
                 > ul {
                   z-index: 1;
+
                   > li {
-                    border: $--x-border-base;
-                    background-color: $--x-background;
+                    border: $--x-tabs-border-base;
                     &:first-child {
-                      border-#{$border-radio-first}: 0.125rem;
+                      border-#{$border-radius-first}: $--x-border-radius;
                     }
                     &:nth-last-child(2) {
-                      border-#{$border-radio-second}: 0.125rem;
+                      border-#{$border-radius-second}: $--x-border-radius;
                     }
                     &:not(:first-child) {
                       border-#{$border-none}: none;
@@ -169,12 +227,21 @@
                     }
                     &.x-slider-activated {
                       border-#{$border-activated}-color: $--x-background;
+                      background-color: $--x-background;
+                      border-#{$border-radius-first}: $--x-border-radius;
+                      border-#{$border-radius-second}: $--x-border-radius;
                     }
                   }
                 }
               }
             }
           }
+        }
+        .#{$--x-tabs-prefix}-contents {
+          border: $--x-tabs-border-base;
+          border-#{$layout}: none;
+          border-#{$border-radius-three}: $--x-border-radius;
+          border-#{$border-radius-four}: $--x-border-radius;
         }
       }
     }
@@ -205,6 +272,11 @@
           > x-slider {
             width: 100%;
             .x-slider {
+              &:not(.x-slider-show-arrow) > .x-slider-scroll > ul {
+                background-color: transparent;
+                border-radius: 0;
+                padding: 0;
+              }
               &-scroll {
                 background-color: $--x-background;
                 &::after,
