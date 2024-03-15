@@ -1,4 +1,4 @@
-import { XData, XProperty, XDataConvert, XInputBoolean, XBoolean, XPlacement, XWithConfig, XTrigger } from '@ng-nest/ui/core';
+import { XData, XProperty, XDataConvert, XInputBoolean, XBoolean, XPlacement, XWithConfig, XTrigger, XSize } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
@@ -70,6 +70,11 @@ export class XDropdownProperty extends XProperty {
    * @en_US The currently activated menu
    */
   @Input() activatedId: any;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event

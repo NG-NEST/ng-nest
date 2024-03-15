@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
-import { XConnectBaseAnimation, XIsString, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XIsString, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
@@ -50,6 +50,7 @@ export class XDropdownPortalComponent implements OnDestroy {
   portalHover!: Function;
   animating!: Function;
   destroyPortal!: Function;
+  size!: XSize;
   portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   positionChange!: Subject<any>;
   portalPositionChange: Subject<any> = new Subject();
@@ -166,6 +167,7 @@ export class XDropdownPortalComponent implements OnDestroy {
       maxWidth: this.maxWidth,
       minHeight: this.minHeight,
       maxHeight: this.maxHeight,
+      size: this.size,
       close: () => this.closePortal(),
       placement: this.portalPlacement,
       positionChange: this.portalPositionChange,

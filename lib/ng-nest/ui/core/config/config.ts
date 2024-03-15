@@ -304,6 +304,7 @@ export interface XDrawerConfig {
 export interface XDropdownConfig {
   trigger?: XTrigger;
   placement?: XPlacement;
+  size?: XSize;
 }
 
 export interface XDescriptionConfig {
