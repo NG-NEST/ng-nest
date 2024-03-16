@@ -1,3 +1,12 @@
+## [17.0.6](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.6) (2024-03-16)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix handles type error ([b87f4f0](https://github.com/NG-NEST/ng-nest/commit/b87f4f067ff698b643f68961d94cb5e327713cb7))
+
+
+
 ## [17.0.5](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.5) (2024-01-23)
 
 
