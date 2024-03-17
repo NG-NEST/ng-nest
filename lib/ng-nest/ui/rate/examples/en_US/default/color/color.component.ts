@@ -16,9 +16,9 @@ export class ExColorComponent {
   model3 = 3;
   model4 = 4;
   model5 = 1;
-  colorOne = '#1976d2';
+  colorOne = '#3B82F6';
   colorTwo = {
-    '#1976d2': (value: number) => value === 1,
+    '#3B82F6': (value: number) => value === 1,
     '#67c23a': (value: number) => value === 2,
     '#e6a23c': (value: number) => value === 3,
     '#f56c6c': (value: number) => value > 3

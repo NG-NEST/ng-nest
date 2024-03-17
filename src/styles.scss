@@ -3,17 +3,15 @@
 @import './styles/index.scss';
 
 @font-face {
-  font-family: 'titillium';
-  src: url('assets/fonts/titillium.eot?#') format('eot'), url('assets/fonts/titillium.woff') format('woff'),
-    url('assets/fonts/titillium.ttf') format('truetype'), url('assets/fonts/titillium.svg#titillium') format('svg');
+  font-family: 'Inter';
+  src: url('assets/fonts/inter.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ubuntu';
-  src: url('assets/fonts/ubuntu.eot?#') format('eot'), url('assets/fonts/ubuntu.ttf') format('truetype'),
-    url('assets/fonts/ubuntu.woff') format('woff'), url('assets/fonts/ubuntu.svg#ubuntu') format('svg');
+  font-family: 'DM Mono';
+  src: url('assets/fonts/dm-mono.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -76,16 +74,83 @@ a {
 code,
 pre,
 tt {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-family:
+    DM Mono,
+    SFMono-Regular,
+    Consolas,
+    Liberation Mono,
+    Menlo,
+    Courier,
+    monospace;
 }
 
 body,
 input {
-  font-family: 'ubuntu', -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+  font-family:
+    Inter,
+    -apple-system,
+    SF UI Text,
+    Arial,
+    PingFang SC,
+    Hiragino Sans GB,
+    Microsoft YaHei,
+    WenQuanYi Micro Hei,
+    sans-serif;
 }
 
-a,
-p,
-span {
-  letter-spacing: 0.03rem;
+.language-typescript,
+.language-ts {
+  .token.decorator .token.operator,
+  .token.decorator .token.function,
+  .token.keyword {
+    color: #0546ff;
+  }
+
+  .token.class-name,
+  .token.property {
+    color: #f637e3;
+  }
+
+  .token.string,
+  .token.boolean {
+    color: #fa2c05;
+  }
+
+  // .token.function {
+  //   color: #e90364;
+  // }
+
+  // .token.function.function-variable {
+  //   color: #474747;
+  // }
+
+  .token.comment {
+    color: #746e7c;
+  }
+}
+
+.language-html {
+  .token.tag,
+  .token.punctuation {
+    color: #0546ff;
+  }
+  .token.attr-name {
+    color: #f637e3;
+  }
+  .token.attr-value,
+  .token.attr-value .token.punctuation {
+    color: #fa2c05;
+  }
+}
+
+.language-scss {
+  .token.selector {
+    color: #0546ff;
+  }
+  .token.property {
+    color: #f637e3;
+  }
+  .token.punctuation {
+    color: #474747;
+  }
 }

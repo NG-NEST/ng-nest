@@ -1,7 +1,7 @@
 {
   "name": "NG-NEST",
   "short_name": "NG-NEST",
-  "theme_color": "#1976d2",
+  "theme_color": "#3B82F6",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",

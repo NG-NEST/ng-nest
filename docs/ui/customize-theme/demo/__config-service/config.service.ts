@@ -30,7 +30,7 @@ export class AffixComponent implements OnInit {
 
 // 系统默认
 export const X_THEME_COLORS: XColorsTheme = {
-  primary: '#1976d2',
+  primary: '#3B82F6',
   success: '#67c23a',
   warning: '#e6a23c',
   danger: '#f56c6c',

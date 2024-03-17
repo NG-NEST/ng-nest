@@ -25,7 +25,7 @@
       text-shadow: none;
       white-space: inherit;
       min-width: 100%;
-      color: $--x-text;
+      color: $--x-text-100;
       > span.line-numbers {
         position: absolute;
         pointer-events: none;
@@ -63,23 +63,6 @@
         @include line-highlight-type(info, $--x-info);
       }
     }
-  }
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    color: $--x-text;
-    background: transparent;
-  }
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
-    color: #e6a23c;
   }
   &-actions {
     position: absolute;

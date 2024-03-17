@@ -184,7 +184,7 @@ export class ExDefaultComponent {
           id: 'colorPickerDisabled',
           label: 'disabled',
           span: 8,
-          value: '#1976d2',
+          value: '#3B82F6',
           disabled: true
         },
         {

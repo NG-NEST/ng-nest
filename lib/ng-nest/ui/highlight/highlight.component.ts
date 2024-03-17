@@ -18,6 +18,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { delay, of } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { XHighlightService } from './highlight.service';
 
 @Component({
   selector: `${XHighlightPrefix}`,
@@ -38,11 +39,11 @@ export class XHighlightComponent extends XHighlightProperty implements OnInit, O
 
   platformId = inject(PLATFORM_ID);
   isBrowser = isPlatformBrowser(this.platformId);
-  prism = this.isBrowser ? (window as any)['Prism'] : null;
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
   private cdr = inject(ChangeDetectorRef);
   private sanitizer = inject(DomSanitizer);
+  private highlight = inject(XHighlightService);
 
   ngOnInit(): void {
     this.renderer.addClass(this.elementRef.nativeElement, XHighlightPrefix);
@@ -56,17 +57,17 @@ export class XHighlightComponent extends XHighlightProperty implements OnInit, O
   setData(): void {
     if (XIsEmpty(this.type)) return;
     if (XIsEmpty(this.data)) this.data = '';
-    if (!this.prism && this.isBrowser) {
+    if (!this.highlight.prism && this.isBrowser) {
       console.warn(
         `${XHighlightPrefix}: [${this.type}] file are not supported, the prismjs plugin is used for highlight, so configure the introduction in angular.json.`
       );
       this.display = this.sanitizer.bypassSecurityTrustHtml(this.data as string);
       return;
     }
-    if (this.prism?.languages?.[this.type as string]) {
+    if (this.highlight.prism?.languages?.[this.type as string]) {
       this.lines = (this.data as string).split(/\n(?!$)/g);
       this.display = this.sanitizer.bypassSecurityTrustHtml(
-        this.prism?.highlight(this.data, this.prism?.languages[this.type as string], this.type) +
+        this.highlight.prism?.highlight(this.data, this.highlight.prism?.languages[this.type as string], this.type) +
           this.createLineNumbers() +
           this.createHighlightLines()
       );
@@ -77,9 +78,7 @@ export class XHighlightComponent extends XHighlightProperty implements OnInit, O
   createLineNumbers() {
     let result = '';
     if (this.lines?.length > 0) {
-      result = `<span class="line-numbers">${new Array(this.lines.length + 1).join(
-        '<span></span>'
-      )}</span>`;
+      result = `<span class="line-numbers">${new Array(this.lines.length + 1).join('<span></span>')}</span>`;
     }
     return result;
   }

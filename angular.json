@@ -24,14 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": [
-              "node_modules/prismjs/themes/prism.css",
-              "lib/ng-nest/ui/style/core/index.scss",
-              "src/styles.scss"
-            ],
+            "styles": ["lib/ng-nest/ui/style/core/index.scss", "src/styles.scss"],
             "scripts": [
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-javascript.min.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
               "node_modules/prismjs/components/prism-json.min.js",
               "node_modules/prismjs/components/prism-bash.min.js"

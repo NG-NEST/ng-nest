@@ -5,6 +5,7 @@
       (nodeChange)="action('page', $event)"
       [activatedIndex]="getActivatedIndex"
       [layout]="layout.xsmall ? 'column' : 'row'"
+      [size]="'small'"
     >
     </x-slider>
   </div>
@@ -19,7 +20,7 @@
     ></x-select>
   </div>
   <div class="item">
-    <x-button (click)="action('admin')" text type="primary">Admin</x-button>
+    <x-button (click)="action('admin')" text>Admin</x-button>
   </div>
   <div class="item lang no-margin">
     @if (config.lang === 'zh_CN') {

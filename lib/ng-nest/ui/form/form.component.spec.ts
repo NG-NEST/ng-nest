@@ -500,7 +500,7 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { control: 'color-picker', id: 'colorPicker', label: '默认', span: 8 },
-        { control: 'color-picker', id: 'colorPickerDisabled', label: '禁用', span: 8, value: '#1976d2', disabled: true },
+        { control: 'color-picker', id: 'colorPickerDisabled', label: '禁用', span: 8, value: '#3B82F6', disabled: true },
         { control: 'color-picker', id: 'colorPickerRequired', label: '必填', span: 8, required: true },
         { control: 'color-picker', id: 'colorPickerPlaceholder', label: '提示选择', span: 8, placeholder: '请选择颜色' }
       ]
