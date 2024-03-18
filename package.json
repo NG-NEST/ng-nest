@@ -62,7 +62,6 @@
     "@types/jasmine": "~5.1.0",
     "@types/marked": "^1.2.2",
     "@types/node": "^18.18.0",
-    "@types/prismjs": "^1.26.3",
     "codelyzer": "^6.0.2",
     "cpx": "^1.5.0",
     "cz-conventional-changelog": "^3.3.0",

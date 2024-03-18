@@ -3,7 +3,6 @@ import {
   ExDefaultComponent,
   ExDisabledComponent,
   ExGroupComponent,
-  ExIconComponent,
   ExLoadingComponent,
   ExSizeComponent,
   ExTextComponent
@@ -16,7 +15,6 @@ import {
     ExDefaultComponent,
     ExDisabledComponent,
     ExGroupComponent,
-    ExIconComponent,
     ExLoadingComponent,
     ExSizeComponent,
     ExTextComponent
