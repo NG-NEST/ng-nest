@@ -100,12 +100,10 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
 
 export function generateTools(name: string, otherNames: string[], providers: string[], files: string[]) {
   return `<div class="x-examples-tools">  
-  <x-buttons space="0.2" hiddenBorder>
     <x-button
       icon="fto-zap"
       onlyIcon
       flat
-      plain
       x-tooltip
       content="从 StackBlitz 打开"
       placement="top"
@@ -115,7 +113,6 @@ export function generateTools(name: string, otherNames: string[], providers: str
         })
       "
     ></x-button>
-  </x-buttons>
 </div>`;
 }
 

@@ -81,16 +81,14 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   }
 
   ngAfterViewInit() {
-    let list = new QueryList<CdkDragHandle>();
     if (this.dialogRef.dragHandleRefs.length === 0) {
       this.dialogBox['draggable'] = false;
       this.option.draggable = false;
       return;
     }
     for (let item of this.dialogRef.dragHandleRefs) {
-      list.reset([...list.toArray(), new CdkDragHandle(item, this.dragRef)]);
+      this.dragRef._addHandle(new CdkDragHandle(item, this.dragRef));
     }
-    this.dragRef._handles = list;
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {

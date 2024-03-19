@@ -5,7 +5,7 @@
 @import './param';
 
 @mixin doc {
-  padding: 0 1.5rem;
+  padding: 0 3rem;
   display: block;
   font-size: 0.875rem;
   > x-anchor > .x-anchor {
@@ -95,10 +95,12 @@
 
       li > code,
       p > code {
-        background-color: $--x-primary-900;
-        border: $--x-border-width solid $--x-primary-800;
-        padding: 0 0.25rem;
-        border-radius: $--x-border-radius;
+        position: relative;
+        padding: 0 0.325rem;
+        color: $--x-danger;
+        background: $--x-background-a400;
+        border-radius: 0.325rem;
+        display: inline-block;
       }
 
       > p > x-tree-file {

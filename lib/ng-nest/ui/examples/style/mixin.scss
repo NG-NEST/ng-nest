@@ -7,7 +7,7 @@
 @mixin examples {
   display: block;
   .#{$prefix}-html {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 3.75rem;
     border: 0.125rem solid $--x-background-a200;
     border-bottom-left-radius: $--x-border-radius;
     border-bottom-right-radius: $--x-border-radius;
@@ -15,15 +15,13 @@
   }
   .#{$prefix}-tools {
     position: absolute;
-    position: absolute;
-    top: -1rem;
-    left: 0;
-    display: flex;
+    bottom: 0;
+    right: 0;
     width: 100%;
+    display: flex;
     justify-content: center;
-    .x-buttons {
-      padding: 0 0.25rem;
-    }
+    align-items: center;
+    border-top: 0.125rem dashed $--x-background-a200;
   }
   .#{$prefix}-code {
     margin-top: 0.25rem;
@@ -51,9 +49,12 @@
     > ul {
       margin: 0.25rem 0;
       > li {
-        list-style-type: square;
+        list-style-type: decimal;
         margin-left: 1.25rem;
         line-height: 1.75rem;
+        &::marker {
+          color: $--x-text-500;
+        }
       }
     }
   }

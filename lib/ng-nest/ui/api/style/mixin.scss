@@ -12,12 +12,11 @@
         font-size: 1.25rem;
       }
       &:last-child {
-        padding: 0.125rem;
-        margin-left: 0.5rem;
-        border: 0.0625rem solid $--x-primary;
-        color: $--x-primary;
-        font-size: 0.825rem;
-        border-radius: $--x-border-radius;
+        margin-left: 1rem;
+        padding: 0.25rem 0.325rem;
+        color: $--x-danger;
+        background: $--x-background-a400;
+        border-radius: 0.325rem;
       }
     }
   }

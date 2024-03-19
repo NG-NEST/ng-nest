@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { XStorageService } from '@ng-nest/ui/core';
 import { Platform } from '@angular/cdk/platform';
+import { PrismService } from './prism.service';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -33,10 +34,12 @@ export class ConfigService {
     private location: Location,
     private meta: Meta,
     private storage: XStorageService,
-    private platform: Platform
+    private platform: Platform,
+    private prism: PrismService
   ) {
     this.defaultLang = this.i18n.getLocaleId();
     this.handleLang();
+    this.prism.init();
   }
 
   init() {
@@ -100,14 +103,16 @@ export class ConfigService {
   }
 
   getVersions() {
-    this.http.get<{ versions: string[] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x) => {
-      const versions = x.versions;
-      if (!versions.includes(this.version)) {
-        if (versions.length > 0) {
-          versions.splice(1, 0, this.version);
+    this.http
+      .get<{ versions: string[] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`)
+      .subscribe((x) => {
+        const versions = x.versions;
+        if (!versions.includes(this.version)) {
+          if (versions.length > 0) {
+            versions.splice(1, 0, this.version);
+          }
         }
-      }
-      this.versions = versions;
-    });
+        this.versions = versions;
+      });
   }
 }
