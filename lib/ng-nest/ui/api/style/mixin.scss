@@ -7,6 +7,9 @@
 @mixin api {
   display: block;
   > .#{$prefix}-selector {
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
     > span {
       &:first-child {
         font-size: 1.25rem;
@@ -15,27 +18,26 @@
         margin-left: 1rem;
         padding: 0.25rem 0.325rem;
         color: $--x-danger;
-        background: $--x-background-a400;
+        background: $--x-danger-900;
         border-radius: 0.325rem;
       }
     }
   }
   > .#{$prefix}-interface {
-    margin-top: 1rem;
     > tr {
       > td {
         &:nth-child(1) {
           width: 20%;
           > span {
-            color: #690;
+            color: #f637e3;
           }
         }
         &:nth-child(3) {
-          color: #07a;
+          color: #3b82f6;
           width: 22%;
         }
         &:nth-child(4) {
-          color: #dd4a68;
+          color: #fa2c05;
           width: 16%;
         }
       }
@@ -45,7 +47,7 @@
     > tr {
       > td {
         &:nth-child(1) {
-          color: #07a;
+          color: #dd4a68;
           width: 20%;
         }
         &:nth-child(3) {
@@ -59,12 +61,12 @@
     width: 100%;
     background: $--x-background;
     border-collapse: collapse;
-    border: $--x-border-base;
+    border-bottom: 0.125rem solid $--x-background-a200;
     tr > th,
     tr > td {
-      border-bottom: $--x-border-base;
+      border-bottom: 0.125rem solid $--x-background-a200;
       text-align: left;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0;
     }
     tr {
       &:last-child {

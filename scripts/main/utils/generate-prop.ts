@@ -1,4 +1,4 @@
-import { NcProp, NcPropType, NcDecorator, NcPrope } from '../interfaces/prop';
+import { NcProp, NcPropType } from '../interfaces/prop';
 
 /**
  * 生成属性文件代码
@@ -59,7 +59,9 @@ export function generateProps(...types: NcProp[]) {
               extend = x.extends.replace('<', '&lt;');
               extend = extend.replace('>', '&gt;');
             }
-            head = `<h3>${x.name}${extend ? ` {{ "api.extends" | xI18n }} ${extend} {{ "api.extendsDescription" | xI18n }}` : ''}</h3>
+            head = `<h3>${x.name}${
+              extend ? ` {{ "api.extends" | xI18n }} ${extend} {{ "api.extendsDescription" | xI18n }}` : ''
+            }</h3>
             <p>${x.description}</p>`;
           }
           if (inputTable !== '') {

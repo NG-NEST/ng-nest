@@ -4,7 +4,7 @@ export interface Menu {
   label?: string;
   name?: string;
   enLabel?: string;
-  router?: string;
+  routerLink?: string | any[];
   icon?: string;
   type?: string;
   order?: number;

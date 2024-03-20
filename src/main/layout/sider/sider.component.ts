@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
-import { Menu } from '@interfaces';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@services';
 import { XMenuComponent } from '@ng-nest/ui/menu';
@@ -19,12 +18,4 @@ export class SiderComponent {
     public router: Router,
     public activated: ActivatedRoute
   ) {}
-
-  nodeClick(menu: Menu) {
-    if (menu.type != 'router') {
-      this.router.navigate([menu.router], { relativeTo: this.activated });
-      this.layout.leftDrawerVisible = false;
-      this.layout.defaultActivatedId = menu.id;
-    }
-  }
 }

@@ -33,7 +33,7 @@ export class LayoutService {
 
   getCurrentMenu(url: string): Menu {
     let route = menus.find(
-      (x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.router}`) === 0
+      (x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.routerLink}`) === 0
     ) as Menu;
     if (route) {
       this.defaultActivatedId = route.id;
@@ -41,7 +41,12 @@ export class LayoutService {
     return route;
   }
 
-  constructor(private router: Router, private config: ConfigService, private location: Location, private title: Title) {
+  constructor(
+    private router: Router,
+    private config: ConfigService,
+    private location: Location,
+    private title: Title
+  ) {
     this.setMenusLang();
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd)).subscribe((x) => {
       const rt = x as NavigationEnd;
@@ -73,7 +78,7 @@ export class LayoutService {
   setNav() {
     this.navs = this.menusLang[this.config.lang].filter((x) => x.pid === null);
     let navActive = this.navs.find(
-      (x) => this.location.path().indexOf(`/${environment.layout}/${x.router}`) === 0
+      (x) => this.location.path().indexOf(`/${environment.layout}/${x.routerLink}`) === 0
     ) as Menu;
     this.setNavActive(navActive);
   }

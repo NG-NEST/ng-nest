@@ -144,9 +144,6 @@ ns-sider {
       &.x-activated::after {
         border-right: none;
       }
-      &.x-menu-category > x-menu-node {
-        // border-color: rgba(0, 0, 0, 0.1);
-      }
     }
   }
   &.drawer {

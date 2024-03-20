@@ -36,7 +36,7 @@ export class NsDocsComponent {
 
   nodeClick(menu: Menu) {
     if (menu.type === 'router') return;
-    let router = menu.router as string;
+    let router = menu.routerLink as string;
     if (router.startsWith('docs/')) {
       router = router.replace('docs/', '');
     }

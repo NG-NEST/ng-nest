@@ -40,7 +40,7 @@ export class XCarouselProperty extends XProperty {
    */
   @Input() @XWithConfig<XCarouselTrigger>(X_CONFIG_NAME, 'hover') trigger?: XCarouselTrigger;
   /**
-   * @zh_CN 箭头显示影藏方式
+   * @zh_CN 箭头显示隐藏方式
    * @en_US Arrow shows how to hide
    */
   @Input() @XWithConfig<XCarouselArrow>(X_CONFIG_NAME, 'hover') arrow?: XCarouselArrow;

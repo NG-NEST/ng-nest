@@ -72,9 +72,9 @@ export class NcDocs {
             const menu = this.createMenu(read, x, index, i, thisRouter, lang);
             if (x === 'components') {
               child.path = componentsDir;
-              this.addChildren(child, componentsDir, menu.router, lang, menu.id, 1, true);
+              this.addChildren(child, componentsDir, menu.routerLink, lang, menu.id, 1, true);
             } else if (level !== 0) {
-              this.addChildren(child, dir, menu.router, lang, menu.id, level);
+              this.addChildren(child, dir, menu.routerLink, lang, menu.id, level);
             }
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
@@ -111,15 +111,12 @@ export class NcDocs {
     dirName: string,
     index: string,
     i: number,
-    router: string,
+    routerLink: string,
     lang: string
   ): NcMenu {
     const id = index == null ? `${i}` : `${index}-${i}`;
     const pid = index == null || languages.includes(index) ? null : `${index}`;
-    const menu: NcMenu = Object.assign(
-      { id: id, pid: pid, name: dirName, router: router, lang: lang },
-      read.meta
-    );
+    const menu: NcMenu = Object.assign({ id, pid, name: dirName, routerLink, lang }, read.meta);
     this.menus = [...this.menus, menu];
     return menu;
   }

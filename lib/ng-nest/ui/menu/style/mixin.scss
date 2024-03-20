@@ -85,6 +85,7 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           text-decoration: none;
+          color: $--x-text;
         }
       }
       &.x-activated {
@@ -96,6 +97,11 @@
           height: 100%;
           right: -0.125rem;
           top: 0;
+        }
+        #{$--x-menu}-node {
+          > a {
+            color: $--x-primary;
+          }
         }
       }
       &.#{$--x-menu}-category {

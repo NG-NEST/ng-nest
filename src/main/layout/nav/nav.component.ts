@@ -60,7 +60,7 @@ export class NavComponent {
       case 'page':
         const menu = param as Menu;
         this.layout.setNavActive(menu);
-        this.router.navigate([menu.router], { relativeTo: this.activatedRoute });
+        this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });
         this.cdr.detectChanges();
         break;
       case 'version':
