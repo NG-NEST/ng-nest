@@ -79,6 +79,9 @@ export class NcDocs {
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
             }
+            if (child.name === 'button') {
+              console.log(child.props);
+            }
 
             generatePage(child);
           }

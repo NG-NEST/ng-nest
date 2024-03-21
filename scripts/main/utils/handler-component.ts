@@ -65,8 +65,8 @@ export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf('__api') === -1) return;
   const propertyPath = path.join(page.path, `${page.name}.property.ts`);
   if (fs.existsSync(propertyPath)) {
-    let props = await hanlderProp(propertyPath, page.lang);
-    page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...props)}</x-api>`);
+    page.props = await hanlderProp(propertyPath, page.lang);
+    page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...page.props)}</x-api>`);
   }
 }
 
@@ -88,7 +88,6 @@ export async function handlerModule(page: NcPage) {
   tpl = replaceKey(tpl, '__type', 'typescript');
   tpl = replaceKey(tpl, '__data', param);
 
-  
   if (module.exports.length !== 0) {
     let text = `import { ${module.exports.map((x) => x).join(', ')} } from '@ng-nest/ui/${page.name}';\n// or`;
     text += `\nimport { ${module.module} } from '@ng-nest/ui/${page.name}';\``;
