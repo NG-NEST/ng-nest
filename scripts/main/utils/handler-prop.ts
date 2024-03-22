@@ -28,12 +28,46 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     let isReadComDir = false;
     let isReadType = false;
     let isReadConst = false;
+    let isReadEnum = false;
+    let isReadFunction = false;
     let docItem: any = {};
 
     lines.on('line', (line: string) => {
       line = line.trim();
       if (isReadDoc) {
         docItem[index] = line.startsWith('*') ? line.replace('*', '').trim() : line;
+      }
+      if (isReadConst) {
+        if (line === '') {
+          props.push(prop);
+          prop = {};
+          isReadConst = false;
+        } else {
+          prop.value += line;
+        }
+      }
+      if (isReadEnum) {
+        if (line === '}') {
+          prop.value += '}';
+          props.push(prop);
+          prop = {};
+          isReadEnum = false;
+        } else {
+          if (!prop.value) {
+            prop.value = '{';
+          }
+          prop.value += line;
+        }
+      }
+      if (isReadFunction) {
+        if (!line.endsWith('{')) {
+          prop.name += line;
+        } else {
+          prop.name += line.substring(0, line.length - 1);
+          props.push(prop);
+          prop = {};
+          isReadFunction = false;
+        }
       }
       if (line.startsWith('/**')) {
         isReadDoc = true;
@@ -75,12 +109,16 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             case NcPropType.Const:
               isReadConst = true;
               prop.value = line.replace(/(.*) \= (.*);/, '$2');
+              if (prop.value === line) {
+                prop.value = line.replace(/(.*) \= (.*)/, '$2');
+              }
+              if (prop.name.endsWith(':')) {
+                prop.name = prop.name.slice(0, prop.name.length - 1);
+              }
               if (prop.name.endsWith('Prefix')) {
                 prop.selector = getDocs(docItem, 'selector') as string;
                 prop.decorator = getDocs(docItem, 'decorator') as NcDecorator;
               }
-              props.push(prop);
-              prop = {};
               break;
             case NcPropType.Interface:
             case NcPropType.Class:
@@ -91,6 +129,26 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
               prop.value = line.replace(/(.*) \= (.*);/, '$2');
               props.push(prop);
               prop = {};
+              isReadType = false;
+              break;
+            case NcPropType.Function:
+              isReadFunction = true;
+
+              prop.name = line.replace(/(.*) function (.*)\{/, '$2').trim();
+              if (line === 'export function XSetFlex(') {
+                console.log("__________________________________");
+                console.log(prop.name, line);
+              }
+              if (prop.name === line) {
+                prop.name = line.replace(/(.*) function (.*)/, '$2');
+              } else {
+                props.push(prop);
+                prop = {};
+                isReadFunction = false;
+              }
+              break;
+            case NcPropType.Enum:
+              isReadEnum = true;
               break;
           }
         }
@@ -139,9 +197,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           const label = getDocs(docItem, lang) as string;
           const description = getDocs(docItem, 'description') as string;
           const attr = (
-            propd.length > 1 && propd[0].indexOf("'") !== -1
-              ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2')
-              : name
+            propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
           ).replace(/@/g, '&#64;');
           const property: NcPrope = {
             name: name,

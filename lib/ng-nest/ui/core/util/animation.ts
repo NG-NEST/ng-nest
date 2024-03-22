@@ -26,27 +26,5 @@ function getRequestAnimationFrame(): typeof requestAnimationFrame {
 
   return prefix ? (window as any)[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
 }
-// export function cancelRequestAnimationFrame(id: number): any {
-//   if (typeof window === "undefined") {
-//     return null;
-//   }
-//   if (window.cancelAnimationFrame) {
-//     return window.cancelAnimationFrame(id);
-//   }
-//   const prefix = availablePrefixes.filter(
-//     key =>
-//       `${key}CancelAnimationFrame` in window ||
-//       `${key}CancelRequestAnimationFrame` in window
-//   )[0];
-
-//   return prefix
-//     ? (
-//         (window as any)[`${prefix}CancelAnimationFrame`] ||
-//         (window as any)[`${prefix}CancelRequestAnimationFrame`]
-//       )
-//         // @ts-ignore
-//         .call(this, id)
-//     : clearTimeout(id);
-// }
 
 export const reqAnimFrame = getRequestAnimationFrame();

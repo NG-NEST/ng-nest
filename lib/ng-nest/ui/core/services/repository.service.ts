@@ -21,7 +21,10 @@ export abstract class XRepositoryAbstract {
 
 export class XRepositoryService<Entity extends XId> extends XRepositoryAbstract {
   api = '';
-  constructor(public http: XHttpService, public input: XRepositoryInput) {
+  constructor(
+    public http: XHttpService,
+    public input: XRepositoryInput
+  ) {
     super();
     this.api = typeof input.api !== 'undefined' ? input.api : '';
   }

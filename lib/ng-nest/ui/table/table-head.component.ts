@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
 import {
-  removeNgTag,
+  XRemoveNgTag,
   XIsEmpty,
   XSort,
   XIsChange,
@@ -65,7 +65,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
+    XRemoveNgTag(this.elementRef.nativeElement);
     this.setStyle();
   }
 

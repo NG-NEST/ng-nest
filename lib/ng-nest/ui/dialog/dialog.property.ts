@@ -1,21 +1,5 @@
-import {
-  Input,
-  Output,
-  EventEmitter,
-  Component,
-  ViewContainerRef,
-  InjectionToken
-} from '@angular/core';
-import {
-  XStatus,
-  XPlace,
-  XInputBoolean,
-  XTemplate,
-  XEffect,
-  XBoolean,
-  XWithConfig,
-  XProperty
-} from '@ng-nest/ui/core';
+import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
+import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig, XProperty } from '@ng-nest/ui/core';
 import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
@@ -380,8 +364,16 @@ export interface XDialogRefOption {
   viewContainerRef?: ViewContainerRef;
 }
 
+/**
+ * @zh_CN 弹框动画状态
+ * @en_US Dialog animation status
+ */
 export type XDialogAnimationState = XPlace | 'void';
 
+/**
+ * @zh_CN 弹框动画事件
+ * @en_US Dialog animation Event
+ */
 export interface XDialogAnimationEvent {
   state: XDialogAnimationState;
   action: 'start' | 'done';

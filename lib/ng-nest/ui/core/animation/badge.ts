@@ -1,11 +1,22 @@
 import { AnimationTriggerMetadata, trigger, style, animate, transition } from '@angular/animations';
 import { XDuration } from './consts';
 
-// 进场动画
+/**
+ * @zh_CN 进场动画
+ * @en_US Enter an animation
+ */
 const XDURATION_SLOW_EASE_IN = `${XDuration.Slow} ease-in`;
-// 移除动画
+
+/**
+ * @zh_CN 移除动画
+ * @en_US Remove animation
+ */
 const XDURATION_SLOW_EASE_OUT = `${XDuration.Slow} ease-out`;
 
+/**
+ * @zh_CN Badge 动画
+ * @en_US Badge animation
+ */
 export const XBadgeAnimation: AnimationTriggerMetadata = trigger('x-badge-animation', [
   transition(':enter', [
     style({ opacity: 0, transform: 'scale(0) translate(50%, -50%)' }),
@@ -29,6 +40,10 @@ export const XBadgeAnimation: AnimationTriggerMetadata = trigger('x-badge-animat
   ])
 ]);
 
+/**
+ * @zh_CN Badge 独立存在时的动画
+ * @en_US The animation when Badge exists independently
+ */
 export const XBadgeStandaloneAnimation: AnimationTriggerMetadata = trigger('x-badge-standalone-animation', [
   transition(':enter', [
     style({ opacity: 0, transform: 'scale(0)' }),

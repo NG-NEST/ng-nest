@@ -24,17 +24,23 @@ import {
 import { InjectionToken } from '@angular/core';
 import { XTheme } from '../theme';
 
+/**
+ * @zh_CN 组件和主题全局配置信息
+ * @en_US Component and theme global configuration information
+ */
 export interface XConfig {
   components?: XComponentConfig;
   theme?: XTheme;
 }
 
 export type XConfigKey = keyof XConfig;
-
 export type XComponentConfigKey = keyof XComponentConfig;
-
 export const X_CONFIG = new InjectionToken<XConfig>('x-config');
 
+/**
+ * @zh_CN 组件全局配置
+ * @en_US Global configuration of the component
+ */
 export interface XComponentConfig {
   affix?: XAffixConfig;
   alert?: XAlertConfig;

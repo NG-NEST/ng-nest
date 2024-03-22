@@ -44,7 +44,7 @@ export class XTransferProperty extends XControlValueAccessor<any[]> {
    */
   @Input() @XWithConfig<string[]>(X_CONFIG_NAME) titles!: string[];
   /**
-   * @zh_CN 穿梭框样式，使用方式于 ngStyle 相同
+   * @zh_CN 穿梭框样式，使用方式与 ngStyle 相同
    * @en_US shuttle box style, same as ngStyle
    */
   @Input() @XWithConfig<XTransferListStyle>(X_CONFIG_NAME) listStyle!: XTransferListStyle;
@@ -213,16 +213,19 @@ export interface XTransferSource {
 }
 
 /**
- * Transfer direction
+ * @zh_CN 数据方向
+ * @en_US Transfer direction
  */
 export type XTransferDirection = 'left' | 'right';
 
 /**
- * Transfer type
+ * @zh_CN 数据类型
+ * @en_US Transfer type
  */
 export type XTransferType = 'list' | 'tree' | 'table';
 
 /**
- * Transfer list style
+ * @zh_CN 穿梭框样式，使用方式与 ngStyle 相同
+ * @en_US shuttle box style, same as ngStyle
  */
 export type XTransferListStyle = XStyleMap | XStyleMap[];

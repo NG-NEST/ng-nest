@@ -229,34 +229,34 @@ export interface XDateRangeOption extends XFormOption {
 
 /**
  * @zh_CN 禁用日期的自定义类型
- * @en_US 禁用日期的自定义类型
+ * @en_US Custom type of disabled date
  */
 export type XDatePickerDisabledDate = (current: Date) => boolean;
 
 /**
  * @zh_CN 禁用时间的自定义类型
- * @en_US 禁用时间的自定义类型
+ * @en_US Custom type of disable time
  */
 export type XDatePickerDisabledTime = (type?: XDatePickerRangType) => XDatePickerDisabledTimeFn;
 
 /**
  * @zh_CN 禁用时间的自定义函数
- * @en_US 禁用时间的自定义函数
+ * @en_US Custom function of disable time
  */
 export type XDatePickerDisabledTimeFn = {
   /**
    * @zh_CN 禁用小时的自定义函数
-   * @en_US 禁用小时的自定义函数
+   * @en_US Disable hour custom function
    */
   disabledHours?: () => number[];
   /**
    * @zh_CN 禁用分钟的自定义函数
-   * @en_US 禁用分钟的自定义函数
+   * @en_US Disable the custom function of the minute
    */
   disabledMinutes?: () => number[];
   /**
    * @zh_CN 禁用秒的自定义函数
-   * @en_US 禁用秒的自定义函数
+   * @en_US Custom function of disable seconds
    */
   disabledSeconds?: () => number[];
 };

@@ -10,7 +10,7 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import { XIsEmpty, XNumber, XClearClass, XConfigService, isNotNil, XIsFunction, XIsString } from '@ng-nest/ui/core';
+import { XIsEmpty, XNumber, XClearClass, XConfigService, XIsNotNil, XIsFunction, XIsString } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -73,8 +73,8 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (!XIsEmpty(this.value) && !this.formatter) {
       this.displayValue = Number(this.value).toFixed(Number(this.precision));
     } else if (this.formatter) {
-      const displayValue = isNotNil(this.formatter(Number(this.value))) ? this.formatter(Number(this.value)) : '';
-      if (isNotNil(displayValue)) {
+      const displayValue = XIsNotNil(this.formatter(Number(this.value))) ? this.formatter(Number(this.value)) : '';
+      if (XIsNotNil(displayValue)) {
         this.displayValue = displayValue;
       }
     }

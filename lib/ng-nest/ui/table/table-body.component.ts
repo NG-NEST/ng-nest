@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
 import {
-  removeNgTag,
+  XRemoveNgTag,
   XIsChange,
   XResize,
   XConfigService,
@@ -86,8 +86,8 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
   }
 
   ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
-    if (this.level > 0) removeNgTag(this.tbody.nativeElement);
+    XRemoveNgTag(this.elementRef.nativeElement);
+    if (this.level > 0) XRemoveNgTag(this.tbody.nativeElement);
     if (this.scroll?.y && !this.bodyHeight) {
       this.bodyHeight = this.scroll.y;
     }

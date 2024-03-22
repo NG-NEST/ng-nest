@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, XFillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
 import {
   XNotificationOption,
   XNotificationOverlayRef,
@@ -66,7 +66,7 @@ export class XNotificationService {
       opt = option as XNotificationOption;
       opt.type = type;
     }
-    fillDefault(opt, this.default);
+    XFillDefault(opt, this.default);
     return this.createNotificationPlacement(opt);
   }
 

@@ -14,7 +14,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XWarnIconTypeNotFound, XWarnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
 
 // 来源路径对应
 export const XSouceUrl: { [property: string]: string } = {
@@ -121,7 +121,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     const souceUrl = XSouceUrl[souce];
     const fileName = split.join('-');
     if (!souceUrl || !fileName) {
-      warnIconTypeNotFound();
+      XWarnIconTypeNotFound();
     }
     return `${souceUrl}${fileName}`;
   }
@@ -151,7 +151,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     this.setAttribute(result, svg.ele, 'stroke-linecap');
     this.setAttribute(result, svg.ele, 'stroke-linejoin');
     if (!result) {
-      warnSVGTagNotFound();
+      XWarnSVGTagNotFound();
     }
 
     return result;

@@ -15,21 +15,28 @@ import {
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-export function XToBoolean(value: XBoolean): boolean {
-  // if (XIsString(value)) {
-  //   return ['', 'true'].indexOf(String(value).trim()) !== -1;
-  // } else {
-  //   return Boolean(value);
-  // }
+/**
+ * @zh_CN 转换 value 为 boolean 值
+ * @en_US Convert the value to boolean value
+ */
+function XToBoolean(value: XBoolean): boolean {
   return coerceBooleanProperty(value);
 }
 
+/**
+ * @zh_CN 转换 value 为 number 值
+ * @en_US Convert the value to Number value
+ */
 function XToNumber(value: number | string): number;
 function XToNumber<D>(value: number | string, fallback: D): number | D;
 function XToNumber(value: number | string, fallbackValue: number = 0): number {
   return _isNumberValue(value) ? Number(value) : fallbackValue;
 }
 
+/**
+ * @zh_CN 转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]
+ * @en_US Convert value as the specified list data [{ label: any; id: any }, ....]
+ */
 export function XToDataConvert<T>(value: XData<T>): XData<T> {
   if (XIsArray(value)) {
     return (value as []).map((x: any) => {
@@ -46,7 +53,16 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
   return value;
 }
 
-export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert = true, funcParam: any = null): Observable<T[]> {
+/**
+ * @zh_CN 根据 data 的类型获取实际的数据
+ * @en_US Obtain actual data based on the type of data
+ */
+export function XSetData<T>(
+  data: XData<T>,
+  unSubject: Subject<void>,
+  toConvert = true,
+  funcParam: any = null
+): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
     const result = (res: T[]) => {
       x.next(res);
@@ -80,6 +96,10 @@ export function XSetData<T>(data: XData<T>, unSubject: Subject<void>, toConvert 
   });
 }
 
+/**
+ * @zh_CN 根据 id、pid 获取子节点
+ * @en_US Obtain sub-nodes based on ID and PID
+ */
 export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], node: T, level: number) {
   node.level = level;
   node.children = nodes.filter((y) => y.pid === node.id);
@@ -88,6 +108,10 @@ export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], n
   return node;
 }
 
+/**
+ * @zh_CN 将对象键值对反转
+ * @en_US Reversal the key value of the object
+ */
 export function XInvertKeyValues(obj: any): Map<any, any> {
   return Object.keys(obj).reduce((nw, key) => {
     nw.set(obj[key], key);
@@ -95,6 +119,10 @@ export function XInvertKeyValues(obj: any): Map<any, any> {
   }, new Map());
 }
 
+/**
+ * @zh_CN 设置样式名称为 false
+ * @en_US Set style name is false
+ */
 export function XClearClass(...classMaps: XClassMap[]) {
   classMaps.forEach((classMap) => {
     for (const key in classMap) {
@@ -103,6 +131,10 @@ export function XClearClass(...classMaps: XClassMap[]) {
   });
 }
 
+/**
+ * @zh_CN 创建属性装饰器的工厂函数
+ * @en_US Factory functions that create attribute decorators
+ */
 function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
   function propDecorator(target: any, propName: string, originalDescriptor?: TypedPropertyDescriptor<any>): any {
     const privatePropName = `$$__${propName}`;
@@ -118,7 +150,9 @@ function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (targe
 
     return {
       get(): string {
-        return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
+        return originalDescriptor && originalDescriptor.get
+          ? originalDescriptor.get.bind(this)()
+          : this[privatePropName];
       },
       set(value: T): void {
         if (originalDescriptor && originalDescriptor.set) {
@@ -132,18 +166,34 @@ function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (targe
   return propDecorator;
 }
 
-export function XInputBoolean(): any {
+/**
+ * @zh_CN 创建 XInputBoolean 属性装饰器
+ * @en_US Create XInputBoolean Properties
+ */
+export function XInputBoolean() {
   return propDecoratorFactory('XInputBoolean', XToBoolean);
 }
 
-export function XInputNumber(): any {
+/**
+ * @zh_CN 创建 XInputNumber 属性装饰器
+ * @en_US Create XInputNumber Properties
+ */
+export function XInputNumber() {
   return propDecoratorFactory('XInputNumber', XToNumber);
 }
 
-export function XDataConvert(): any {
+/**
+ * @zh_CN 创建 XDataConvert 属性装饰器
+ * @en_US Create XDataConvert Properties
+ */
+export function XDataConvert() {
   return propDecoratorFactory('XDataConvert', XToDataConvert);
 }
 
+/**
+ * @zh_CN 限制给定数值 value 的范围
+ * @en_US Limit the range of the given value value
+ */
 export function XClamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }

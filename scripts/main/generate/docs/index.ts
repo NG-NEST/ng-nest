@@ -1,5 +1,6 @@
 import { NcPage } from '../../interfaces/page';
 import { NcMenu } from '../../interfaces/menu';
+import { NcProp, NcPropType } from '../../interfaces/prop';
 import {
   handlerPage,
   createRouterOutlet,
@@ -9,15 +10,18 @@ import {
   generateMenu,
   handlerComponent,
   handlerDemo,
-  orderBy
+  orderBy,
+  handlerCore
 } from '../../utils';
-import * as path from 'path';
-import * as fs from 'fs-extra';
+import { NcCore } from '../../interfaces/core';
+import { join, resolve } from 'node:path';
+import { readdirSync, statSync } from 'fs-extra';
 
-export const docsDir = path.resolve(__dirname, '../../../../docs');
-export const componentsDir = path.resolve(__dirname, '../../../../lib/ng-nest/ui');
-export const genDir = path.resolve(__dirname, '../../../../src/main/docs');
-export const genMenusDir = path.resolve(__dirname, '../../../../src/app');
+export const docsDir = resolve(__dirname, '../../../../docs');
+export const componentsDir = resolve(__dirname, '../../../../lib/ng-nest/ui');
+export const genDir = resolve(__dirname, '../../../../src/main/docs');
+export const genMenusDir = resolve(__dirname, '../../../../src/app');
+export const genCoreTypesDir = resolve(__dirname, '../../../../src/app');
 export const docsPrefix = 'docs';
 export const languages = ['zh_CN', 'en_US'];
 
@@ -25,24 +29,32 @@ export class NcDocs {
   page: NcPage;
   genDir: string = genDir;
   menus: NcMenu[] = [];
+  propTypes: NcProp[] = [];
+  core: NcCore;
 
   constructor() {
-    languages.forEach(async (lang) => {
-      await this.genPages(lang, docsPrefix);
+    [1].forEach(async () => {
+      await handlerCore();
     });
+
+    // languages.forEach(async (lang) => {
+    //   await this.genPages(lang, docsPrefix);
+    // });
   }
 
   async genPages(lang: string, outPath: string) {
     this.page = createRouterOutlet(`${outPath}-${lang}`);
-    this.page.genDir = path.join(genDir, lang);
+    this.page.genDir = join(genDir, lang);
     handlerPage(this.page);
-    this.addChildren(this.page, docsDir, `${outPath}/${lang}`, lang);
+    await this.addChildren(this.page, docsDir, `${outPath}/${lang}`, lang);
+
     generatePage(this.page);
     this.menus = orderBy(this.menus, ['lang', 'pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
+    // generateCoreTypes(genCoreTypesDir, )
   }
 
-  addChildren(
+  async addChildren(
     page: NcPage,
     docDir: string,
     router: string,
@@ -51,18 +63,19 @@ export class NcDocs {
     level?: number,
     isComponent = false
   ) {
-    let children = fs.readdirSync(docDir);
+    let children = readdirSync(docDir);
     if (typeof level !== 'undefined') level--;
-    children.forEach(async (x, i) => {
+    for (let i = 0; i < children.length; i++) {
+      const x = children[i];
       if (x === 'demo') {
         handlerDemo(page, docDir, router);
       } else {
-        const dir = path.join(docDir, x);
-        const stat = fs.statSync(dir);
+        const dir = join(docDir, x);
+        const stat = statSync(dir);
         if (stat.isDirectory()) {
-          const read = parseMdDoc(path.join(dir, `${isComponent ? 'docs/' : ''}readme.${lang}.md`));
+          const read = parseMdDoc(join(dir, `${isComponent ? 'docs/' : ''}readme.${lang}.md`));
           if (read && !read.meta.hidden) {
-            const folder = path.join(page.genDir, x);
+            const folder = join(page.genDir, x);
             const child = this.createChild(read, x, folder, lang);
             child.genDir = folder;
             child.path = dir;
@@ -72,22 +85,24 @@ export class NcDocs {
             const menu = this.createMenu(read, x, index, i, thisRouter, lang);
             if (x === 'components') {
               child.path = componentsDir;
-              this.addChildren(child, componentsDir, menu.routerLink, lang, menu.id, 1, true);
+              await this.addChildren(child, componentsDir, menu.routerLink, lang, menu.id, 1, true);
             } else if (level !== 0) {
-              this.addChildren(child, dir, menu.routerLink, lang, menu.id, level);
+              await this.addChildren(child, dir, menu.routerLink, lang, menu.id, level);
             }
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
-            }
-            if (child.name === 'button') {
-              console.log(child.props);
+              const types = child.props.filter((x) => x.type === NcPropType.Type);
+              if (types && types.length > 0) {
+                this.propTypes.push(...types);
+              }
             }
 
             generatePage(child);
           }
         }
       }
-    });
+    }
+    children.forEach(async (x, i) => {});
     page.children = orderBy(page.children, ['order']);
     pageAddChildren(page, page.children);
   }

@@ -1,8 +1,5 @@
 /**
- * 组件中的属性文件对象
- *
- * @export
- * @interface NcProp
+ * 属性文件对象
  */
 export interface NcProp {
   /**
@@ -93,6 +90,7 @@ export interface NcPrope {
 export enum NcPropType {
   Interface = 'interface',
   Class = 'class',
+  Function = 'function',
   Const = 'const',
   Type = 'type',
   Enum = 'enum'

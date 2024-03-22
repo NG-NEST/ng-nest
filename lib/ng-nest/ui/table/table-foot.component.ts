@@ -9,7 +9,7 @@ import {
   inject
 } from '@angular/core';
 import { XTableFootPrefix, XTableFootProperty } from './table.property';
-import { removeNgTag } from '@ng-nest/ui/core';
+import { XRemoveNgTag } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
@@ -29,7 +29,7 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
   private elementRef = inject(ElementRef);
 
   ngOnInit() {
-    removeNgTag(this.elementRef.nativeElement);
+    XRemoveNgTag(this.elementRef.nativeElement);
   }
 
   ngAfterViewInit() {

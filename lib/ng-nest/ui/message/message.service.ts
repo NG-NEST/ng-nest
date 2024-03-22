@@ -3,7 +3,7 @@ import {
   XTemplate,
   XIsXTemplate,
   XIsEmpty,
-  fillDefault,
+  XFillDefault,
   XIsString,
   XConfigService,
   XMessageConfig,
@@ -89,7 +89,7 @@ export class XMessageService {
       opt = option as XMessageOption;
       opt.type = type;
     }
-    fillDefault(opt, this.default);
+    XFillDefault(opt, this.default);
     const ref = new XMessageRef(opt);
     if (XIsUndefined(opt.placement)) {
       return ref;

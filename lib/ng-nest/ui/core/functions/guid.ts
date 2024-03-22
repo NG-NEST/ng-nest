@@ -1,5 +1,6 @@
 /**
- * 生成 GUID
+ * @zh_CN 生成 GUID
+ * @en_US GUID
  */
 export function XGuid() {
   let S4 = () => {

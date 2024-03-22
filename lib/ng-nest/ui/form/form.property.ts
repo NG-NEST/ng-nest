@@ -284,6 +284,9 @@ export class XControlProperty {
   @Input() option?: XControlOption;
 }
 
+/**
+ * Form control
+ */
 export class XFormControl extends UntypedFormControl {
   /**
    * @zh_CN 提示信息
@@ -292,6 +295,10 @@ export class XFormControl extends UntypedFormControl {
   messages?: string[] = [];
 }
 
+/**
+ * @zh_CN 表单控件参数
+ * @en_US Form control option
+ */
 export type XFormControlOption =
   | XInputControlOption
   | XSelectControlOption
@@ -308,6 +315,10 @@ export type XFormControlOption =
   | XFindControlOption
   | XTemplateControlOption;
 
+/**
+ * @zh_CN 表单控件组件
+ * @en_US Form control component
+ */
 export type XFormControlComponent =
   | XInputComponent
   | XSelectComponent
@@ -325,6 +336,10 @@ export type XFormControlComponent =
   | XFindComponent
   | XAutoCompleteComponent;
 
+/**
+ * @zh_CN 表单控件类型
+ * @en_US Form control type
+ */
 export type XFormControlType =
   | XInputControl
   | XSelectControl
@@ -342,6 +357,10 @@ export type XFormControlType =
   | XFindControl
   | XAutoCompleteControl;
 
+/**
+ * @zh_CN 表单控件类型
+ * @en_US Form control type
+ */
 export type XControlType =
   | 'input'
   | 'select'

@@ -1,6 +1,3 @@
-import { NcTabsLayoutEnum, NcTabsNodeJustifyEnum, NcTabsSizeEnum, NcTabsTypeEnum } from './../interfaces/tabs';
-import * as path from 'path';
-import * as fs from 'fs-extra';
 import { NcPage } from '../interfaces/page';
 import { NcExamples, NcCates } from '../interfaces/examples';
 import {
@@ -16,8 +13,10 @@ import {
   hasIn,
   firstLetterCapital
 } from '.';
+import { join, resolve } from 'node:path';
+import { existsSync, readFileSync } from 'fs-extra';
 
-const tplDir = path.resolve(__dirname, '../../main/templates');
+const tplDir = resolve(__dirname, '../../main/templates');
 
 /**
  * 组件处理
@@ -43,28 +42,28 @@ export function handlerExamples(page: NcPage): Promise<void> {
   let examples: NcExamples = {};
   let comTpl = page.templates.find((x) => x.name == 'component');
 
-  examples.path = path.join(page.path, `examples`);
-  examples.tplPath = path.join(tplDir, 'examples-component.template.html');
+  examples.path = join(page.path, `examples`);
+  examples.tplPath = join(tplDir, 'examples-component.template.html');
   let func = '';
   while (func == '' || hasIn(comTpl.syswords.constant, func)) func = randomString();
-  let folderPath = path.join(`${examples.path}/${page.lang}`, 'default');
+  let folderPath = join(`${examples.path}/${page.lang}`, 'default');
   let cates: NcCates = { folderPath };
   hanlderCates(cates, page);
   generateCates(cates, comTpl);
 
-  let examplesTpl = fs.readFileSync(examples.tplPath, 'utf8');
+  let examplesTpl = readFileSync(examples.tplPath, 'utf8');
   page.custom = replaceKey(page.custom, '__examples', replaceKey(examplesTpl, '__tabs', cates.content));
   page.copyDir.push({
     from: `${examples.path}/${page.lang}`,
-    to: path.join(page.genDir, 'examples'),
+    to: join(page.genDir, 'examples'),
     exclude: ['.md']
   });
 }
 
 export async function handlerApi(page: NcPage) {
   if (page.custom.indexOf('__api') === -1) return;
-  const propertyPath = path.join(page.path, `${page.name}.property.ts`);
-  if (fs.existsSync(propertyPath)) {
+  const propertyPath = join(page.path, `${page.name}.property.ts`);
+  if (existsSync(propertyPath)) {
     page.props = await hanlderProp(propertyPath, page.lang);
     page.custom = replaceKey(page.custom, '__api', `<x-api>${generateProps(...page.props)}</x-api>`);
   }
@@ -72,18 +71,18 @@ export async function handlerApi(page: NcPage) {
 
 export async function handlerPattern(page: NcPage) {
   if (page.custom.indexOf('__pattern') === -1) return;
-  let patterns = await hanlderPattern(path.join(page.path, 'style', `param.scss`));
+  let patterns = await hanlderPattern(join(page.path, 'style', `param.scss`));
   page.custom = replaceKey(page.custom, '__pattern', `<x-pattern>${generatePatterns(...patterns)}</x-pattern>`);
 }
 
 export async function handlerModule(page: NcPage) {
-  let fsPath = path.join(page.path, `${page.name}.module.ts`);
-  if (!fs.existsSync(fsPath)) return;
+  let fsPath = join(page.path, `${page.name}.module.ts`);
+  if (!existsSync(fsPath)) return;
   let module = await hanlderModule(fsPath);
   if (!module) return;
   let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
   if (!temp) return;
-  let tpl = fs.readFileSync(path.join(tplDir, 'highlight-component.template.html'), 'utf8');
+  let tpl = readFileSync(join(tplDir, 'highlight-component.template.html'), 'utf8');
   let param = randomString(7);
   tpl = replaceKey(tpl, '__type', 'typescript');
   tpl = replaceKey(tpl, '__data', param);

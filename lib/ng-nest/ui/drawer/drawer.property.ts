@@ -1,19 +1,5 @@
-import {
-  XTemplate,
-  XPosition,
-  XProperty,
-  XInputBoolean,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
-import {
-  Input,
-  Output,
-  EventEmitter,
-  Component,
-  InjectionToken,
-  ViewContainerRef
-} from '@angular/core';
+import { XTemplate, XPosition, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { Input, Output, EventEmitter, Component, InjectionToken, ViewContainerRef } from '@angular/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDrawerRef } from './drawer-ref';
 import { XDrawerPortalComponent } from './drawer-portal.component';
@@ -150,8 +136,16 @@ export interface XDrawerPortalOverlayRef extends XPortalOverlayRef<XDrawerPortal
   drawerRef?: XDrawerRef<any>;
 }
 
+/**
+ * @zh_CN 抽屉动画状态
+ * @en_US Drawer animation status
+ */
 export type XDrawerAnimationState = XPosition | 'void';
 
+/**
+ * @zh_CN 抽屉动画事件
+ * @en_US Drawer animation event
+ */
 export interface XDrawerAnimationEvent {
   state: XDrawerAnimationState;
   action: 'start' | 'done';

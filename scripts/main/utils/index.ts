@@ -17,6 +17,7 @@ export * from './handler-spec';
 export * from './handler-module';
 export * from './handler-prop';
 export * from './handler-demo';
+export * from './handler-core';
 export * from './generate-cates';
 export * from './generate-page';
 export * from './generate-menu';

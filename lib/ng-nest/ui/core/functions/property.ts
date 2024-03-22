@@ -1,11 +1,13 @@
 import { XClassMap } from '../interfaces';
 
 /**
- * 组件公共属性
+ * @zh_CN 组件公共属性
+ * @en_US Public attributes of the component
  */
 export class XProperty {
   /**
-   * 样式映射属性
+   * @zh_CN 样式映射
+   * @en_US Style mapping
    */
   classMap: XClassMap = {};
 }

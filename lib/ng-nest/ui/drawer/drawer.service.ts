@@ -1,7 +1,7 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable, TemplateRef, inject } from '@angular/core';
-import { fillDefault, XConfigService, XDrawerConfig } from '@ng-nest/ui/core';
+import { XFillDefault, XConfigService, XDrawerConfig } from '@ng-nest/ui/core';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XDrawerPortalComponent } from './drawer-portal.component';
 import { XDrawerRef } from './drawer-ref';
@@ -26,7 +26,7 @@ export class XDrawerService {
   }
 
   create<T>(content: TemplateRef<any> | ComponentType<T>, option: XDrawerOption = {}): XDrawerRef<T> {
-    fillDefault(option, this.default);
+    XFillDefault(option, this.default);
     const width = ['left', 'right'].includes(option.placement as string) ? option.size : '100%';
     const height = ['top', 'bottom'].includes(option.placement as string) ? option.size : '100%';
     const portal = this.portalService.attach<XDrawerPortalComponent>({
