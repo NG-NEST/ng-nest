@@ -135,10 +135,6 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
               isReadFunction = true;
 
               prop.name = line.replace(/(.*) function (.*)\{/, '$2').trim();
-              if (line === 'export function XSetFlex(') {
-                console.log("__________________________________");
-                console.log(prop.name, line);
-              }
               if (prop.name === line) {
                 prop.name = line.replace(/(.*) function (.*)/, '$2');
               } else {

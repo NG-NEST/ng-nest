@@ -5,7 +5,7 @@ import { XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { Observable } from 'rxjs';
 import { LayoutService } from '../layout.service';
-import { Menu } from '@interfaces';
+import { AppMenu } from '@interfaces';
 import { debounceTime } from 'rxjs/operators';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
@@ -35,7 +35,7 @@ export class SearchComponent {
     public cdr: ChangeDetectorRef
   ) {}
 
-  pagaTo(menu: Menu) {
+  pagaTo(menu: AppMenu) {
     this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });
   }
 }

@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { environment } from '@environments';
 import { ConfigService } from '@services';
-import { Menu } from '@interfaces';
+import { AppMenu } from '@interfaces';
 import { menus } from '../../app/app.menus';
 
 @Injectable({ providedIn: 'root' })
@@ -21,20 +21,20 @@ export class LayoutService {
   leftDrawerVisible = false;
   rightDrawerVisible = false;
   defaultActivatedId: any;
-  menus: Menu[] = [];
+  menus: AppMenu[] = [];
   menusChange!: () => void;
-  menusLang: { [lang: string]: Menu[] } = {};
-  navs: Menu[] = [];
-  navActive!: Menu;
-  navChildrenCatch: { [lang: string]: { [key: string]: Menu[] } } = {
+  menusLang: { [lang: string]: AppMenu[] } = {};
+  navs: AppMenu[] = [];
+  navActive!: AppMenu;
+  navChildrenCatch: { [lang: string]: { [key: string]: AppMenu[] } } = {
     zh_CN: {},
     en_US: {}
   };
 
-  getCurrentMenu(url: string): Menu {
+  getCurrentMenu(url: string): AppMenu {
     let route = menus.find(
       (x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.routerLink}`) === 0
-    ) as Menu;
+    ) as AppMenu;
     if (route) {
       this.defaultActivatedId = route.id;
     }
@@ -70,7 +70,7 @@ export class LayoutService {
     const beforeLang = this.config.lang;
     this.config.setLocale(lang, () => {
       this.navs = this.menusLang[lang].filter((x) => x.pid === null);
-      this.setNavActive(this.navs.find((x) => x.id === this.navActive.id) as Menu);
+      this.setNavActive(this.navs.find((x) => x.id === this.navActive.id) as AppMenu);
       this.router.navigateByUrl(this.location.path().replace(`/${beforeLang}/`, `/${lang}/`));
     });
   }
@@ -79,11 +79,11 @@ export class LayoutService {
     this.navs = this.menusLang[this.config.lang].filter((x) => x.pid === null);
     let navActive = this.navs.find(
       (x) => this.location.path().indexOf(`/${environment.layout}/${x.routerLink}`) === 0
-    ) as Menu;
+    ) as AppMenu;
     this.setNavActive(navActive);
   }
 
-  setNavActive(menu: Menu) {
+  setNavActive(menu: AppMenu) {
     if (!menu) {
       return;
     }
@@ -100,7 +100,7 @@ export class LayoutService {
           nav.pid = null;
           return nav;
         });
-      const getChildren = (data: Menu[]) => {
+      const getChildren = (data: AppMenu[]) => {
         data.forEach((item) => {
           const children = langMenus.filter((x) => x.pid === item.id);
           if (children.length > 0) {

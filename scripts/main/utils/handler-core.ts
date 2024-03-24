@@ -6,9 +6,14 @@ import { NcProp, NcPropType } from '../interfaces/prop';
 
 export const coreDir = resolve(__dirname, '../../../lib/ng-nest/ui/core');
 
-export async function handlerCore(): Promise<NcCore> {
+export async function handlerCore(lang: string): Promise<NcCore> {
   const result: NcCore = {
-    types: []
+    types: [],
+    interfaces: [],
+    classes: [],
+    functions: [],
+    consts: [],
+    enums: []
   };
   const filePaths: string[] = [];
   traverseDirectorySync(coreDir, (filePath: string) => {
@@ -19,13 +24,16 @@ export async function handlerCore(): Promise<NcCore> {
 
   const props: NcProp[] = [];
   for (let filePath of filePaths) {
-    props.push(...(await hanlderProp(filePath, 'en_US')));
+    props.push(...(await hanlderProp(filePath, lang)));
   }
 
   for (let prop of props) {
-    if (prop.type === NcPropType.Function) {
-      console.log(prop);
-    }
+    if (prop.type === NcPropType.Type) result.types.push(prop);
+    if (prop.type === NcPropType.Interface) result.interfaces.push(prop);
+    if (prop.type === NcPropType.Function) result.functions.push(prop);
+    if (prop.type === NcPropType.Class) result.classes.push(prop);
+    if (prop.type === NcPropType.Const) result.consts.push(prop);
+    if (prop.type === NcPropType.Enum) result.enums.push(prop);
   }
 
   return result;

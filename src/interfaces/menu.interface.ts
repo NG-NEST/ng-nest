@@ -1,4 +1,4 @@
-export interface Menu {
+export interface AppMenu {
   id?: string;
   pid?: string | null;
   label?: string;

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services/config.service';
 import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
-import { Menu } from '@interfaces';
+import { AppMenu } from '@interfaces';
 import { LayoutService } from '../layout.service';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
@@ -35,7 +35,7 @@ export class NavComponent {
     public locationPl: PlatformLocation
   ) {}
 
-  action(type: string, param?: Menu | XSliderNode | string) {
+  action(type: string, param?: AppMenu | XSliderNode | string) {
     const wd = this.document.defaultView!;
     switch (type) {
       case 'dark':
@@ -58,7 +58,7 @@ export class NavComponent {
         wd.open('https://github.com/NG-NEST', '_blank');
         break;
       case 'page':
-        const menu = param as Menu;
+        const menu = param as AppMenu;
         this.layout.setNavActive(menu);
         this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });
         this.cdr.detectChanges();

@@ -25,3 +25,4 @@ export * from './generate-cates';
 export * from './generate-tabs';
 export * from './generate-prop';
 export * from './generate-pattern';
+export * from './generate-core';

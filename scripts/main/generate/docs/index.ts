@@ -11,7 +11,8 @@ import {
   handlerComponent,
   handlerDemo,
   orderBy,
-  handlerCore
+  handlerCore,
+  generateCore
 } from '../../utils';
 import { NcCore } from '../../interfaces/core';
 import { join, resolve } from 'node:path';
@@ -21,7 +22,7 @@ export const docsDir = resolve(__dirname, '../../../../docs');
 export const componentsDir = resolve(__dirname, '../../../../lib/ng-nest/ui');
 export const genDir = resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = resolve(__dirname, '../../../../src/app');
-export const genCoreTypesDir = resolve(__dirname, '../../../../src/app');
+export const genCoreDir = resolve(__dirname, '../../../../src/app');
 export const docsPrefix = 'docs';
 export const languages = ['zh_CN', 'en_US'];
 
@@ -33,13 +34,10 @@ export class NcDocs {
   core: NcCore;
 
   constructor() {
-    [1].forEach(async () => {
-      await handlerCore();
+    languages.forEach(async (lang) => {
+      await this.genPages(lang, docsPrefix);
+      await this.genCore(lang);
     });
-
-    // languages.forEach(async (lang) => {
-    //   await this.genPages(lang, docsPrefix);
-    // });
   }
 
   async genPages(lang: string, outPath: string) {
@@ -137,6 +135,11 @@ export class NcDocs {
     const menu: NcMenu = Object.assign({ id, pid, name: dirName, routerLink, lang }, read.meta);
     this.menus = [...this.menus, menu];
     return menu;
+  }
+
+  async genCore(lang: string) {
+    this.core = await handlerCore(lang);
+    generateCore(join(genDir, lang), this.core);
   }
 }
 global['NcDocs'] = new NcDocs();

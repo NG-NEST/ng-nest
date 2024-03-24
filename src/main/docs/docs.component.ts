@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
 import { LayoutService } from '../layout/layout.service';
 import { environment } from '@environments';
-import { Menu } from '@interfaces';
+import { AppMenu } from '@interfaces';
 import { NsAdaptionDirective } from '@share';
 import { XMenuComponent } from '@ng-nest/ui/menu';
 
@@ -34,7 +34,7 @@ export class NsDocsComponent {
     }
   }
 
-  nodeClick(menu: Menu) {
+  nodeClick(menu: AppMenu) {
     if (menu.type === 'router') return;
     let router = menu.routerLink as string;
     if (router.startsWith('docs/')) {
