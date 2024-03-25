@@ -1,11 +1,4 @@
-export interface AppCore {
-  types?: AppProp[];
-  interfaces?: AppProp[];
-  classes?: AppProp[];
-  functions?: AppProp[];
-  consts?: AppProp[];
-  enums?: AppProp[];
-}
+export type AppCore = AppProp[];
 
 /**
  * 属性文件对象
@@ -51,6 +44,17 @@ export interface AppProp {
    * 实现的接口 interface
    */
   implements?: string;
+  /**
+   * 参数，仅当 type 等于 'function' 时
+   */
+  params?: { [key: string]: string };
+  /**
+   * 返回类型，仅当 type 等于 'function' 时
+   */
+  returnType?: string;
+  /**
+   * 其它属性
+   */
   [property: string]: any;
 }
 

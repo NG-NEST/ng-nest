@@ -26,21 +26,29 @@ export type XNumber = number | string;
 export type XTemplate = string | number | Date | TemplateRef<any>;
 
 /**
+ * @zh_CN 函数返回类型
+ * @en_US Function return type
+ */
+export type XTypeFunc = (object: any) => boolean;
+
+/**
  * @zh_CN 类型判断
  * @en_US Type judgment
  */
-export const XIsType = (type: string) => (object: any) => Object.prototype.toString.call(object) === `[object ${type}]`;
+export function XIsType(type: string): XTypeFunc {
+  return (object: any) => Object.prototype.toString.call(object) === `[object ${type}]`;
+}
 
 /**
  * @zh_CN 值改变判断
  * @en_US Value change judgment
  */
-export const XIsChange = (...changes: SimpleChange[]) => {
+export function XIsChange(...changes: SimpleChange[]): boolean {
   for (let change of changes) {
     if (change?.currentValue !== change?.previousValue) return true;
   }
   return false;
-};
+}
 
 const IsString = XIsType('String');
 const IsArray = XIsType('Array');

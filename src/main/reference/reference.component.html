@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Params</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>ReturnType</th>
+    <th>Value</th>
+  </tr>
+  @for (item of data; track item.name) {
+    <tr>
+      <td>{{ item.type }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.params | json }}</td>
+      <td>{{ item.label }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.returnType }}</td>
+      <td>{{ item.value }}</td>
+    </tr>
+  }
+</table>

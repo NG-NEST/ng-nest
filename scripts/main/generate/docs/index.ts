@@ -35,7 +35,7 @@ export class NcDocs {
 
   constructor() {
     languages.forEach(async (lang) => {
-      await this.genPages(lang, docsPrefix);
+      // await this.genPages(lang, docsPrefix);
       await this.genCore(lang);
     });
   }
@@ -49,7 +49,6 @@ export class NcDocs {
     generatePage(this.page);
     this.menus = orderBy(this.menus, ['lang', 'pid', 'category', 'order', 'label']);
     generateMenu(genMenusDir, this.menus);
-    // generateCoreTypes(genCoreTypesDir, )
   }
 
   async addChildren(
@@ -100,7 +99,6 @@ export class NcDocs {
         }
       }
     }
-    children.forEach(async (x, i) => {});
     page.children = orderBy(page.children, ['order']);
     pageAddChildren(page, page.children);
   }

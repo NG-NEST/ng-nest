@@ -282,7 +282,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
 
     if (this.type === 'week') {
       for (let item of this.dates) {
-        item.week = XDateWeek(item.date!);
+        item.week = XDateWeek(item.date!)!;
       }
       for (let week of this.weekDates) {
         week.unshift({ type: 'week', week: week[0].week! });

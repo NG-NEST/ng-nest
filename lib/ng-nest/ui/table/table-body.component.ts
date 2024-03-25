@@ -19,7 +19,7 @@ import {
   XResize,
   XConfigService,
   XNumber,
-  stripTags,
+  XStripTags,
   XParentPath,
   XResizeObserver
 } from '@ng-nest/ui/core';
@@ -203,7 +203,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
 
   getTitle(row: XTableRow, column: XTableCell | any) {
     let it = row[column.id as string];
-    return it ? stripTags(it) : '';
+    return it ? XStripTags(it) : '';
   }
 
   setAdaptionHeight() {

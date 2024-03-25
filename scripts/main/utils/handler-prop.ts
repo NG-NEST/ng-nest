@@ -24,13 +24,28 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     let index = 1;
     let doc = [];
     let isReadDoc = false;
-    let isReadProp = false;
+    let isReadClassInterface = false;
     let isReadComDir = false;
     let isReadType = false;
     let isReadConst = false;
     let isReadEnum = false;
     let isReadFunction = false;
     let docItem: any = {};
+
+    const addProp = () => {
+      props.push(prop);
+      prop = {};
+    };
+
+    const addParams = (str: string) => {
+      const paramRegex = /(\w+): (\w+(?:\[\]|<.*?>)?)/g;
+      let paramMap: { [key: string]: string } = {};
+      let match: RegExpExecArray;
+      while ((match = paramRegex.exec(str)) !== null) {
+        paramMap[match[1]] = match[2];
+      }
+      return paramMap;
+    };
 
     lines.on('line', (line: string) => {
       line = line.trim();
@@ -39,9 +54,20 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       }
       if (isReadConst) {
         if (line === '') {
-          props.push(prop);
-          prop = {};
+          const val = prop.value as string;
+          if (val.endsWith(';')) {
+            prop.value = val.slice(0, val.length - 1);
+          }
           isReadConst = false;
+          addProp();
+        } else {
+          prop.value += line;
+        }
+      }
+      if (isReadType) {
+        if (line === '') {
+          isReadType = false;
+          addProp();
         } else {
           prop.value += line;
         }
@@ -49,9 +75,8 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       if (isReadEnum) {
         if (line === '}') {
           prop.value += '}';
-          props.push(prop);
-          prop = {};
           isReadEnum = false;
+          addProp();
         } else {
           if (!prop.value) {
             prop.value = '{';
@@ -60,13 +85,15 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         }
       }
       if (isReadFunction) {
-        if (!line.endsWith('{')) {
-          prop.name += line;
-        } else {
-          prop.name += line.substring(0, line.length - 1);
-          props.push(prop);
-          prop = {};
+        if (line.endsWith('{')) {
+          prop['_params'] = prop['_params'] + line.slice(0, line.lastIndexOf(':')).trim();
+          prop.params = addParams(prop['_params']);
+          prop.returnType = line.slice(2, line.length - 1).trim();
+          delete prop['_params'];
           isReadFunction = false;
+          addProp();
+        } else {
+          prop['_params'] += line;
         }
       }
       if (line.startsWith('/**')) {
@@ -82,82 +109,100 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         docItem = {};
       } else if (line.startsWith('@Component') || line.startsWith('@Directive')) {
         isReadComDir = true;
-      } else if (line.startsWith('export')) {
+      } else if (line.startsWith('export ')) {
         let docItem = doc.find((x) => x.end == index - (isReadComDir ? 2 : 1));
         let undocument = getDocs(docItem, 'undocument') as string;
         if (docItem && undocument !== 'true') {
-          let type = line.replace('export', '').trim();
-          prop.type = type.slice(0, type.indexOf(' ')) as NcPropType;
-          let name = type.replace(prop.type, '').trim();
-          prop.name = name.slice(0, name.indexOf(' '));
-          let overLine = name.replace(`${prop.name}`, '').trim();
-          if (overLine.startsWith('extends')) {
-            overLine = overLine.replace('extends', '').trim();
-            prop.extends = overLine.slice(0, overLine.indexOf(' '));
-            overLine = overLine.replace(`${prop.extends}`, '').trim();
+          const tmatch = line.match(/\S+\s+\S+/);
+          if (tmatch) {
+            prop.type = tmatch[0].split(' ')[1] as NcPropType;
           }
-          if (overLine.startsWith('implements')) {
-            overLine = overLine.replace('implements', '').trim();
-            prop.implements = overLine.slice(0, overLine.indexOf(' '));
-            overLine = overLine.replace(`${prop.implements}`, '').trim();
-          }
-          const labelLang = getDocs(docItem, lang) as string;
-          prop.label = labelLang ? labelLang : docItem[docItem.start + 1];
-          prop.description = getDocs(docItem, 'description') as string;
+          let eline = line.replace(/^.*? \S+ \s*/, '');
+          const { label, description } = getLabelAndDescription(docItem, lang);
+          prop.label = label ? label : docItem[docItem.start + 1];
+          prop.description = description;
           prop.properties = [];
           switch (prop.type) {
             case NcPropType.Const:
-              isReadConst = true;
-              prop.value = line.replace(/(.*) \= (.*);/, '$2');
-              if (prop.value === line) {
-                prop.value = line.replace(/(.*) \= (.*)/, '$2');
-              }
-              if (prop.name.endsWith(':')) {
-                prop.name = prop.name.slice(0, prop.name.length - 1);
-              }
-              if (prop.name.endsWith('Prefix')) {
-                prop.selector = getDocs(docItem, 'selector') as string;
-                prop.decorator = getDocs(docItem, 'decorator') as NcDecorator;
+              if (!isReadConst) {
+                isReadConst = true;
+                prop.name = eline.match(/^\S+/)[0];
+                if (prop.name.endsWith(':')) {
+                  prop.name = prop.name.slice(0, prop.name.indexOf(':'));
+                }
+                prop.value = eline.match(/=\s*(.*)/)[1].trim();
+                if (prop.value.endsWith(';')) {
+                  prop.value = prop.name.slice(0, prop.name.length - 1);
+                  isReadConst = false;
+                  addProp();
+                }
               }
               break;
             case NcPropType.Interface:
             case NcPropType.Class:
-              isReadProp = true;
+              if (!isReadClassInterface) {
+                isReadClassInterface = true;
+                prop.name = eline.match(/^\S+/)[0];
+                eline = eline.replace(prop.name, '').trim();
+                if (eline.startsWith('extends ')) {
+                  eline = eline.replace('extends', '').trim();
+                  prop.extends = eline.slice(0, eline.indexOf(' '));
+                  eline = eline.replace(`${prop.extends}`, '').trim();
+                }
+                if (eline.startsWith('implements ')) {
+                  eline = eline.replace('implements', '').trim();
+                  prop.implements = eline.slice(0, eline.indexOf(' '));
+                  eline = eline.replace(`${prop.implements}`, '').trim();
+                }
+              }
               break;
             case NcPropType.Type:
-              isReadType = true;
-              prop.value = line.replace(/(.*) \= (.*);/, '$2');
-              props.push(prop);
-              prop = {};
-              isReadType = false;
+              if (!isReadType) {
+                isReadType = true;
+                prop.name = eline.match(/^\S+/)[0];
+                prop.value = eline.replace(/(.*) \= (.*);/, '$2');
+                if (prop.value.endsWith(';')) {
+                  prop.value = prop.name.slice(0, prop.name.indexOf(';'));
+                  isReadType = false;
+                  addProp();
+                }
+              }
               break;
             case NcPropType.Function:
-              isReadFunction = true;
-
-              prop.name = line.replace(/(.*) function (.*)\{/, '$2').trim();
-              if (prop.name === line) {
-                prop.name = line.replace(/(.*) function (.*)/, '$2');
-              } else {
-                props.push(prop);
-                prop = {};
-                isReadFunction = false;
+              if (!isReadFunction) {
+                isReadFunction = true;
+                prop.name = eline.slice(0, eline.indexOf('('));
+                eline = eline.replace(prop.name, '');
+                if (eline.endsWith('{')) {
+                  prop['_params'] = eline.slice(0, eline.lastIndexOf(':')).trim();
+                  prop.params = addParams(prop['_params']);
+                  eline = eline.replace(prop['_params'], '').trim();
+                  prop.returnType = eline.slice(1, eline.length - 1).trim();
+                  delete prop['_params'];
+                  isReadFunction = false;
+                  addProp();
+                } else {
+                  prop['_params'] = eline;
+                }
               }
               break;
             case NcPropType.Enum:
-              isReadEnum = true;
+              if (!isReadEnum) {
+                isReadEnum = true;
+                prop.name = eline.match(/^\S+/)[0];
+              }
               break;
           }
         }
-      } else if (line.startsWith('}')) {
-        isReadProp = false;
+      } else if (line === '}') {
+        isReadClassInterface = false;
         isReadComDir = false;
         if (JSON.stringify(prop) != '{}') {
-          props.push(prop);
-          prop = {};
+          addProp();
         }
       }
-      if (!isReadDoc && isReadProp && line != '' && !line.startsWith('export')) {
-        const docItem = doc.find((x) => x.end == index - 1);
+      if (!isReadDoc && isReadClassInterface && line !== '' && !line.startsWith('export')) {
+        const docItem = doc.find((x) => x.end === index - 1);
         let ix = line.indexOf(': ');
         if (line.startsWith('[')) {
           ix = line.indexOf(': ', line.indexOf(': ') + ': '.length);
@@ -190,8 +235,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         if (docItem) {
           let def = getDocs(docItem, 'default') as string;
           let withConfig = getDocs(docItem, 'withConfig') as string;
-          const label = getDocs(docItem, lang) as string;
-          const description = getDocs(docItem, 'description') as string;
+          const { label, description } = getLabelAndDescription(docItem, lang);
           const attr = (
             propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
           ).replace(/@/g, '&#64;');
@@ -243,4 +287,34 @@ export function getDocs(doc: object, prop: string, all: boolean = false) {
     }
   }
   return all ? results : result;
+}
+
+/**
+ * 根据指定语言获取注释内容中的标签和描述
+ * @param doc
+ * @param lang
+ */
+export function getLabelAndDescription(doc: object, lang: string) {
+  const result = {
+    label: '',
+    description: ''
+  };
+  let dStart = false;
+  for (const key in doc) {
+    const val = doc[key].toString();
+    if (val.startsWith(`@${lang}`)) {
+      result.label = val.replace(`@${lang}`, '').trim();
+      dStart = true;
+    } else if (dStart) {
+      if (!val.startsWith(`@`) && val !== '' && !['start', 'end'].includes(key)) {
+        result.description += `${result.description !== '' ? '\n' : ''}${val}`;
+      } else {
+        dStart = false;
+      }
+    }
+  }
+  result.label = result.label.replace(/@/g, '&#64;');
+  result.description = result.description.replace(/@/g, '&#64;');
+
+  return result;
 }

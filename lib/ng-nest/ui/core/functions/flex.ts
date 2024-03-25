@@ -11,7 +11,7 @@ export function XSetFlex(
   justify?: XJustify,
   align?: XAlign,
   direction?: XDirection
-) {
+): string[] {
   let result: string[] = [];
   if (!XIsEmpty(justify)) {
     const justifyStr = `x-justify-${justify}`;

@@ -42,6 +42,14 @@ export interface NcProp {
    * 实现的接口 interface
    */
   implements?: string;
+  /**
+   * 参数，仅当 type 等于 'function' 时
+   */
+  params?: { [key: string]: string };
+  /**
+   * 返回类型，仅当 type 等于 'function' 时
+   */
+  returnType?: string;
 }
 
 export interface NcPrope {

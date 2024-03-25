@@ -175,7 +175,33 @@ export class XThemeService {
   }
 }
 
-export function mixColors(color1: string, color2: string, weight: number) {
+/**
+ * @zh_CN RGB 颜色值
+ * @en_US RGB color value
+ */
+export interface XRGBColor {
+  /**
+   * @zh_CN 红
+   * @en_US Red
+   */
+  r: number;
+  /**
+   * @zh_CN 绿
+   * @en_US Green
+   */
+  g: number;
+  /**
+   * @zh_CN 蓝
+   * @en_US Blue
+   */
+  b: number;
+}
+
+/**
+ * @zh_CN 根据权重混合2种颜色
+ * @en_US Mix 2 colors according to heavy weights
+ */
+export function mixColors(color1: string, color2: string, weight: number): XRGBColor {
   let rgb1 = toRgb(color1);
   let rgb2 = toRgb(color2);
   let weight1 = weight;
@@ -195,11 +221,19 @@ export function mixColors(color1: string, color2: string, weight: number) {
   return result;
 }
 
-export function toHex(rgb: { r: number; g: number; b: number }) {
+/**
+ * @zh_CN RGB 颜色转换为 Hex
+ * @en_US RGB color converts to hex
+ */
+export function toHex(rgb: { r: number; g: number; b: number }): string {
   return '#' + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
 }
 
-export function toRgb(hex: string) {
+/**
+ * @zh_CN Hex 颜色转换为 RGB
+ * @en_US Hex color converts to RGB
+ */
+export function toRgb(hex: string): XRGBColor {
   if (hex.indexOf('#') == 0) hex = hex.slice(1);
   let num = parseInt(hex, 16);
   let r = num >> 16;

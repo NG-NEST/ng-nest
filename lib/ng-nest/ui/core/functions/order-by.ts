@@ -2,7 +2,7 @@
  * @zh_CN 根据指定元素来排序
  * @en_US Sort by specified elements
  */
-export function XOrderBy<T>(collection: Array<T>, iteratees: Array<string>, orders?: Array<'asc' | 'desc'>): T[] {
+export function XOrderBy<T>(collection: Array<T>, iteratees: Array<string>, orders?: Array<'asc' | 'desc'>): Array<T> {
   if (!iteratees) return collection;
   if (!orders) orders = [];
 

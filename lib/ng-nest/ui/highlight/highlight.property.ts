@@ -37,7 +37,8 @@ export class XHighlightProperty extends XProperty {
 
 /**
  * @zh_CN 高亮行数据
+ * 示例：{'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
  * @en_US Highlight row data
- * @description {'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
+ * Example：{'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
  */
 export type XHighlightLines = { [property: string]: string };

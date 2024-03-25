@@ -104,7 +104,7 @@ export function XAddYears(date: XDate, amount: number): Date {
  * @zh_CN 获取给定日期的 ISO 周数
  * @en_US Get the number of ISO weeks of the given date
  */
-export function XDateWeek(date: XDate) {
+export function XDateWeek(date: XDate): number | undefined {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf())) {
     return getISOWeek(dt);
@@ -116,7 +116,7 @@ export function XDateWeek(date: XDate) {
  * @zh_CN 获取指定日期的 ISO 周年份
  * @en_US Get the ISO anniversary of the specified date
  */
-export function XDateWeekYear(date: XDate) {
+export function XDateWeekYear(date: XDate): number | undefined {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf())) {
     return getISOWeekYear(dt);
@@ -128,36 +128,36 @@ export function XDateWeekYear(date: XDate) {
  * @zh_CN 获取指定日期的年份和周数
  * @en_US Get the year and week of the specified date
  */
-export function XDateYearWeek(date: XDate) {
+export function XDateYearWeek(date: XDate): string {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf())) {
     return `${getISOWeekYear(dt)}-${getISOWeek(dt)}`;
   }
-  return;
+  return '';
 }
 
 /**
  * @zh_CN 获取指定日期的年份和季度
  * @en_US Get the year and quarter of the specified date
  */
-export function XDateYearQuarter(date: XDate) {
+export function XDateYearQuarter(date: XDate): string {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf())) {
     return `${dt.getFullYear()}-${XDateQuarter(dt)}`;
   }
-  return;
+  return '';
 }
 
 /**
  * @zh_CN 获取指定日期所属的季度
  * @en_US Get the season when the specified date belongs
  */
-export function XDateQuarter(date: XDate) {
+export function XDateQuarter(date: XDate): string {
   let dt = XToDate(date);
   if (!isNaN(dt.valueOf())) {
     return `Q${Math.ceil((dt.getMonth() + 1) / 3)}`;
   }
-  return;
+  return '';
 }
 
 /**

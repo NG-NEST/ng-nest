@@ -29,7 +29,15 @@ import { XTheme } from '../theme';
  * @en_US Component and theme global configuration information
  */
 export interface XConfig {
+  /**
+   * @zh_CN 组件配置信息
+   * @en_US Component configuration information
+   */
   components?: XComponentConfig;
+  /**
+   * @zh_CN 主题全配置信息
+   * @en_US theme configuration information
+   */
   theme?: XTheme;
 }
 

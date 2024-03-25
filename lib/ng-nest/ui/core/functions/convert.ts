@@ -100,7 +100,7 @@ export function XSetData<T>(
  * @zh_CN 根据 id、pid 获取子节点
  * @en_US Obtain sub-nodes based on ID and PID
  */
-export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], node: T, level: number) {
+export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], node: T, level: number): T {
   node.level = level;
   node.children = nodes.filter((y) => y.pid === node.id);
   node.leaf = node.children?.length > 0;
@@ -123,7 +123,7 @@ export function XInvertKeyValues(obj: any): Map<any, any> {
  * @zh_CN 设置样式名称为 false
  * @en_US Set style name is false
  */
-export function XClearClass(...classMaps: XClassMap[]) {
+export function XClearClass(...classMaps: XClassMap[]): void {
   classMaps.forEach((classMap) => {
     for (const key in classMap) {
       classMap[key] = false;
@@ -132,10 +132,16 @@ export function XClearClass(...classMaps: XClassMap[]) {
 }
 
 /**
+ * @zh_CN 属性装饰器返回类型
+ * @en_US Attribute decorator return type
+ */
+export type XPropDecorator = (target: any, propName: string) => void;
+
+/**
  * @zh_CN 创建属性装饰器的工厂函数
  * @en_US Factory functions that create attribute decorators
  */
-function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (target: any, propName: string) => void {
+function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): XPropDecorator {
   function propDecorator(target: any, propName: string, originalDescriptor?: TypedPropertyDescriptor<any>): any {
     const privatePropName = `$$__${propName}`;
 
@@ -170,7 +176,7 @@ function propDecoratorFactory<T, D>(name: string, fallback: (v: T) => D): (targe
  * @zh_CN 创建 XInputBoolean 属性装饰器
  * @en_US Create XInputBoolean Properties
  */
-export function XInputBoolean() {
+export function XInputBoolean(): XPropDecorator {
   return propDecoratorFactory('XInputBoolean', XToBoolean);
 }
 
@@ -178,7 +184,7 @@ export function XInputBoolean() {
  * @zh_CN 创建 XInputNumber 属性装饰器
  * @en_US Create XInputNumber Properties
  */
-export function XInputNumber() {
+export function XInputNumber(): XPropDecorator {
   return propDecoratorFactory('XInputNumber', XToNumber);
 }
 
@@ -186,7 +192,7 @@ export function XInputNumber() {
  * @zh_CN 创建 XDataConvert 属性装饰器
  * @en_US Create XDataConvert Properties
  */
-export function XDataConvert() {
+export function XDataConvert(): XPropDecorator {
   return propDecoratorFactory('XDataConvert', XToDataConvert);
 }
 
@@ -194,6 +200,6 @@ export function XDataConvert() {
  * @zh_CN 限制给定数值 value 的范围
  * @en_US Limit the range of the given value value
  */
-export function XClamp(value: number, min: number, max: number) {
+export function XClamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
