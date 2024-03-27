@@ -270,7 +270,7 @@
       .#{$--x-button} {
         border-radius: 0;
         position: relative;
-        box-shadow: none;
+        box-shadow: none !important;
         &-round {
           border-radius: 0;
         }
@@ -313,6 +313,7 @@
         border: none;
         padding: 0 $--x-padding-small;
         background-color: transparent;
+        box-shadow: none !important;
         &-icon {
           > .x-icon {
             font-size: 1.125rem;

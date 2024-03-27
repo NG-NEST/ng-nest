@@ -135,20 +135,14 @@
         width: 100%;
         background: $--x-background;
         border-collapse: collapse;
-        border: $--x-border-base;
+        border-bottom: 0.125rem solid $--x-background-a200;
         tr > th,
         tr > td {
-          border-bottom: $--x-border-base;
+          border-bottom: 0.125rem solid $--x-background-a200;
           text-align: left;
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 0;
         }
         tr {
-          &:last-child {
-            > th,
-            > td {
-              border-width: 0px;
-            }
-          }
           th {
             white-space: nowrap;
             color: $--x-text;

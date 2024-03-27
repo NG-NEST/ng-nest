@@ -79,6 +79,10 @@ ns-nav {
       }
       &.slider {
         font-size: 0.925rem;
+
+        .x-slider-scroll > ul > li {
+          min-width: 5rem;
+        }
       }
     }
   }

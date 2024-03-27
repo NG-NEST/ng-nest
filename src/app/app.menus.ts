@@ -22,14 +22,6 @@ export const menus: AppMenu[] = [
     "type": "router"
   },
   {
-    "id": "1-35",
-    "pid": "1",
-    "name": "highlight",
-    "routerLink": "docs/en_US/components/highlight",
-    "lang": "en_US",
-    "label": "Highlight"
-  },
-  {
     "id": "1-9",
     "pid": "1",
     "name": "border",
@@ -688,6 +680,15 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
+    "id": "1-35",
+    "pid": "1",
+    "name": "highlight",
+    "routerLink": "docs/en_US/components/highlight",
+    "lang": "en_US",
+    "label": "Highlight",
+    "category": "Other"
+  },
+  {
     "id": "2-0",
     "pid": "2",
     "name": "rbac",
@@ -754,7 +755,7 @@ export const menus: AppMenu[] = [
     "label": "6. Service Optimize"
   },
   {
-    "id": "5",
+    "id": "4",
     "pid": null,
     "name": "ui",
     "routerLink": "docs/en_US/ui",
@@ -765,8 +766,8 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
-    "id": "5-5",
-    "pid": "5",
+    "id": "4-5",
+    "pid": "4",
     "name": "ng-nest",
     "routerLink": "docs/en_US/ui/ng-nest",
     "lang": "en_US",
@@ -775,8 +776,8 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
-    "id": "5-4",
-    "pid": "5",
+    "id": "4-4",
+    "pid": "4",
     "name": "introduction",
     "routerLink": "docs/en_US/ui/introduction",
     "lang": "en_US",
@@ -784,8 +785,8 @@ export const menus: AppMenu[] = [
     "label": "Introduction"
   },
   {
-    "id": "5-1",
-    "pid": "5",
+    "id": "4-1",
+    "pid": "4",
     "name": "getting-started",
     "routerLink": "docs/en_US/ui/getting-started",
     "lang": "en_US",
@@ -793,8 +794,8 @@ export const menus: AppMenu[] = [
     "label": "Getting Started"
   },
   {
-    "id": "5-0",
-    "pid": "5",
+    "id": "4-0",
+    "pid": "4",
     "name": "customize-theme",
     "routerLink": "docs/en_US/ui/customize-theme",
     "lang": "en_US",
@@ -802,8 +803,8 @@ export const menus: AppMenu[] = [
     "label": "Custom theme"
   },
   {
-    "id": "5-2",
-    "pid": "5",
+    "id": "4-2",
+    "pid": "4",
     "name": "global-config",
     "routerLink": "docs/en_US/ui/global-config",
     "lang": "en_US",
@@ -811,8 +812,8 @@ export const menus: AppMenu[] = [
     "label": "Global Config"
   },
   {
-    "id": "5-3",
-    "pid": "5",
+    "id": "4-3",
+    "pid": "4",
     "name": "i18n",
     "routerLink": "docs/en_US/ui/i18n",
     "lang": "en_US",
@@ -820,7 +821,7 @@ export const menus: AppMenu[] = [
     "label": "Internationalization"
   },
   {
-    "id": "5",
+    "id": "4",
     "pid": null,
     "name": "ui",
     "routerLink": "docs/zh_CN/ui",
@@ -849,23 +850,6 @@ export const menus: AppMenu[] = [
     "order": 3,
     "label": "教程",
     "type": "router"
-  },
-  {
-    "id": "1-7",
-    "pid": "1",
-    "name": "badge",
-    "routerLink": "docs/zh_CN/components/badge",
-    "lang": "zh_CN",
-    "label": "Badge 标记",
-    "category": "Data"
-  },
-  {
-    "id": "1-35",
-    "pid": "1",
-    "name": "highlight",
-    "routerLink": "docs/zh_CN/components/highlight",
-    "lang": "zh_CN",
-    "label": "Highlight 代码高亮"
   },
   {
     "id": "1-9",
@@ -956,6 +940,15 @@ export const menus: AppMenu[] = [
     "routerLink": "docs/zh_CN/components/avatar",
     "lang": "zh_CN",
     "label": "Avatar 头像",
+    "category": "Data"
+  },
+  {
+    "id": "1-7",
+    "pid": "1",
+    "name": "badge",
+    "routerLink": "docs/zh_CN/components/badge",
+    "lang": "zh_CN",
+    "label": "Badge 标记",
     "category": "Data"
   },
   {
@@ -1517,6 +1510,15 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
+    "id": "1-35",
+    "pid": "1",
+    "name": "highlight",
+    "routerLink": "docs/zh_CN/components/highlight",
+    "lang": "zh_CN",
+    "label": "Highlight 代码高亮",
+    "category": "Other"
+  },
+  {
     "id": "2-0",
     "pid": "2",
     "name": "rbac",
@@ -1583,8 +1585,8 @@ export const menus: AppMenu[] = [
     "label": "6. 服务优化"
   },
   {
-    "id": "5-5",
-    "pid": "5",
+    "id": "4-5",
+    "pid": "4",
     "name": "ng-nest",
     "routerLink": "docs/zh_CN/ui/ng-nest",
     "lang": "zh_CN",
@@ -1593,8 +1595,8 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
-    "id": "5-4",
-    "pid": "5",
+    "id": "4-4",
+    "pid": "4",
     "name": "introduction",
     "routerLink": "docs/zh_CN/ui/introduction",
     "lang": "zh_CN",
@@ -1602,8 +1604,8 @@ export const menus: AppMenu[] = [
     "label": "简介"
   },
   {
-    "id": "5-1",
-    "pid": "5",
+    "id": "4-1",
+    "pid": "4",
     "name": "getting-started",
     "routerLink": "docs/zh_CN/ui/getting-started",
     "lang": "zh_CN",
@@ -1611,8 +1613,8 @@ export const menus: AppMenu[] = [
     "label": "快速上手"
   },
   {
-    "id": "5-0",
-    "pid": "5",
+    "id": "4-0",
+    "pid": "4",
     "name": "customize-theme",
     "routerLink": "docs/zh_CN/ui/customize-theme",
     "lang": "zh_CN",
@@ -1620,8 +1622,8 @@ export const menus: AppMenu[] = [
     "label": "定制主题"
   },
   {
-    "id": "5-2",
-    "pid": "5",
+    "id": "4-2",
+    "pid": "4",
     "name": "global-config",
     "routerLink": "docs/zh_CN/ui/global-config",
     "lang": "zh_CN",
@@ -1629,8 +1631,8 @@ export const menus: AppMenu[] = [
     "label": "全局配置"
   },
   {
-    "id": "5-3",
-    "pid": "5",
+    "id": "4-3",
+    "pid": "4",
     "name": "i18n",
     "routerLink": "docs/zh_CN/ui/i18n",
     "lang": "zh_CN",

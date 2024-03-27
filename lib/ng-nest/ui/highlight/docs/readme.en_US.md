@@ -1,5 +1,6 @@
 ---
 label: 'Highlight'
+category: 'Other'
 ---
 
 # Highlight

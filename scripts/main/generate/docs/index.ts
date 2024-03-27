@@ -35,7 +35,7 @@ export class NcDocs {
 
   constructor() {
     languages.forEach(async (lang) => {
-      // await this.genPages(lang, docsPrefix);
+      await this.genPages(lang, docsPrefix);
       await this.genCore(lang);
     });
   }

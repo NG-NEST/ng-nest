@@ -39,7 +39,12 @@
   }
   .#{$prefix}-info {
     padding: 1rem 1.5rem;
-    background-color: $--x-background-a200;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
+    border-top: 0.125rem solid $--x-background-a200;
+    border-left: 0.125rem solid $--x-background-a200;
+    border-right: 0.125rem solid $--x-background-a200;
+    background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;
       &:first-of-type {

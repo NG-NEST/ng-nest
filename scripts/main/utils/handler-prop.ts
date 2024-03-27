@@ -130,6 +130,10 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                 if (prop.name.endsWith(':')) {
                   prop.name = prop.name.slice(0, prop.name.indexOf(':'));
                 }
+                if (prop.name.endsWith('Prefix')) {
+                  prop.selector = getDocs(docItem, 'selector') as string;
+                  prop.decorator = getDocs(docItem, 'decorator') as NcDecorator;
+                }
                 prop.value = eline.match(/=\s*(.*)/)[1].trim();
                 if (prop.value.endsWith(';')) {
                   prop.value = prop.name.slice(0, prop.name.length - 1);
