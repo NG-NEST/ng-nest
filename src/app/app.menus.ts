@@ -766,7 +766,7 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
-    "id": "4-5",
+    "id": "4-4",
     "pid": "4",
     "name": "ng-nest",
     "routerLink": "docs/en_US/ui/ng-nest",
@@ -774,15 +774,6 @@ export const menus: AppMenu[] = [
     "order": 0,
     "label": "NG-NEST",
     "default": true
-  },
-  {
-    "id": "4-4",
-    "pid": "4",
-    "name": "introduction",
-    "routerLink": "docs/en_US/ui/introduction",
-    "lang": "en_US",
-    "order": 1,
-    "label": "Introduction"
   },
   {
     "id": "4-1",
@@ -819,6 +810,43 @@ export const menus: AppMenu[] = [
     "lang": "en_US",
     "order": 4,
     "label": "Internationalization"
+  },
+  {
+    "id": "2-0-0",
+    "pid": "2-0",
+    "name": "1-introduction",
+    "routerLink": "docs/zh_CN/course/rbac/1-introduction",
+    "lang": "zh_CN",
+    "order": 1,
+    "label": "1. 简介",
+    "default": true
+  },
+  {
+    "id": "2-0-1",
+    "pid": "2-0",
+    "name": "2-create-project",
+    "routerLink": "docs/zh_CN/course/rbac/2-create-project",
+    "lang": "zh_CN",
+    "order": 2,
+    "label": "2. 创建项目"
+  },
+  {
+    "id": "2-0-3",
+    "pid": "2-0",
+    "name": "4-ui-navigation",
+    "routerLink": "docs/zh_CN/course/rbac/4-ui-navigation",
+    "lang": "zh_CN",
+    "order": 4,
+    "label": "4. 导航栏"
+  },
+  {
+    "id": "2-0-5",
+    "pid": "2-0",
+    "name": "6-service-optimize",
+    "routerLink": "docs/zh_CN/course/rbac/6-service-optimize",
+    "lang": "zh_CN",
+    "order": 6,
+    "label": "6. 服务优化"
   },
   {
     "id": "4",
@@ -1530,25 +1558,6 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
-    "id": "2-0-0",
-    "pid": "2-0",
-    "name": "1-introduction",
-    "routerLink": "docs/zh_CN/course/rbac/1-introduction",
-    "lang": "zh_CN",
-    "order": 1,
-    "label": "1. 简介",
-    "default": true
-  },
-  {
-    "id": "2-0-1",
-    "pid": "2-0",
-    "name": "2-create-project",
-    "routerLink": "docs/zh_CN/course/rbac/2-create-project",
-    "lang": "zh_CN",
-    "order": 2,
-    "label": "2. 创建项目"
-  },
-  {
     "id": "2-0-2",
     "pid": "2-0",
     "name": "3-ui-frame",
@@ -1556,15 +1565,6 @@ export const menus: AppMenu[] = [
     "lang": "zh_CN",
     "order": 3,
     "label": "3. 前端框架页"
-  },
-  {
-    "id": "2-0-3",
-    "pid": "2-0",
-    "name": "4-ui-navigation",
-    "routerLink": "docs/zh_CN/course/rbac/4-ui-navigation",
-    "lang": "zh_CN",
-    "order": 4,
-    "label": "4. 导航栏"
   },
   {
     "id": "2-0-4",
@@ -1576,16 +1576,7 @@ export const menus: AppMenu[] = [
     "label": "5. 用户管理"
   },
   {
-    "id": "2-0-5",
-    "pid": "2-0",
-    "name": "6-service-optimize",
-    "routerLink": "docs/zh_CN/course/rbac/6-service-optimize",
-    "lang": "zh_CN",
-    "order": 6,
-    "label": "6. 服务优化"
-  },
-  {
-    "id": "4-5",
+    "id": "4-4",
     "pid": "4",
     "name": "ng-nest",
     "routerLink": "docs/zh_CN/ui/ng-nest",
@@ -1593,15 +1584,6 @@ export const menus: AppMenu[] = [
     "order": 0,
     "label": "NG-NEST",
     "default": true
-  },
-  {
-    "id": "4-4",
-    "pid": "4",
-    "name": "introduction",
-    "routerLink": "docs/zh_CN/ui/introduction",
-    "lang": "zh_CN",
-    "order": 1,
-    "label": "简介"
   },
   {
     "id": "4-1",

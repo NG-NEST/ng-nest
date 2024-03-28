@@ -8,7 +8,7 @@
   display: block;
   line-height: 0;
   width: 100%;
-  border: $--x-border-base;
+  border: 0.125rem solid $--x-background-a200;
   border-radius: $--x-border-radius;
   position: relative;
   > pre {
@@ -53,9 +53,8 @@
         pointer-events: none;
         line-height: inherit;
         white-space: pre;
-        width: calc(100% + 3.5rem);
+        width: calc(100% + 5rem);
         left: -3.5rem;
-        border-radius: $--x-border-radius;
         @include line-highlight-type(primary, $--x-primary);
         @include line-highlight-type(success, $--x-success);
         @include line-highlight-type(warning, $--x-warning);

@@ -50,6 +50,7 @@
           height: 0;
           border-radius: $--x-border-small-radius;
           background-color: $--x-background;
+          box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.05);
           &-animated {
             transition:
               width $--x-animation-duration-base,

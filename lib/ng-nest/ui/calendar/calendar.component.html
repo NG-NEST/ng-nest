@@ -7,9 +7,9 @@
     </div>
     <div class="x-calendar-header-right">
       <x-date-picker [(ngModel)]="datetime" [type]="model" showHeader="false" [clearable]="false"></x-date-picker>
-      <x-buttons>
-        <x-button (click)="action(-1)">{{ model === 'month' ? locale.lastMonth : locale.lastYear }}</x-button>
-        <x-button (click)="action(1)">{{ model === 'month' ? locale.nextMonth : locale.nextYear }}</x-button>
+      <x-buttons [boxShadow]="false">
+        <x-button (click)="action(-1)" plain>{{ model === 'month' ? locale.lastMonth : locale.lastYear }}</x-button>
+        <x-button (click)="action(1)" plain>{{ model === 'month' ? locale.nextMonth : locale.nextYear }}</x-button>
       </x-buttons>
       <x-radio [data]="radioData" [(ngModel)]="model" (ngModelChange)="modelOnChange()" button></x-radio>
     </div>

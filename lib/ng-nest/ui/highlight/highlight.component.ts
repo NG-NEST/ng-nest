@@ -34,7 +34,7 @@ export class XHighlightComponent extends XHighlightProperty implements OnInit, O
 
   display!: SafeHtml;
   lines: string[] = [];
-  lineHeight = 1.1875;
+  lineHeight = 1.375;
   iconCopy = 'fto-copy';
 
   platformId = inject(PLATFORM_ID);

@@ -8,7 +8,7 @@
   display: flex;
   background-color: $--x-background;
   border-radius: $--x-border-radius;
-  border: $--x-border-base;
+  border: 0.125rem solid $--x-background-a200;
   color: $--x-text;
   &-catalog {
     width: 0;
@@ -41,14 +41,13 @@
   }
   &-crumb {
     background-color: $--x-background;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
     display: flex;
     > x-link {
-      line-height: 1.5rem;
-      height: 1.5rem;
+      line-height: 1.75rem;
+      height: 1.75rem;
       transition: $--x-animation-duration-base;
-      &:hover {
-        // background-color: $--x-border;
-      }
       > a {
         padding: 0 0.5rem;
       }
