@@ -99,7 +99,8 @@ input {
 }
 
 .language-typescript,
-.language-ts {
+.language-ts,
+.language-json {
   .token.decorator,
   .token.keyword,
   .token.builtin {
@@ -145,11 +146,15 @@ input {
 
 .language-scss {
   .token.selector,
-  .token.function {
+  .token.function,
+  .token.keyword {
     color: #0546ff;
   }
   .token.property {
     color: #f637e3;
+  }
+  .token.string {
+    color: #fa2c05;
   }
   .token.punctuation {
     color: #474747;

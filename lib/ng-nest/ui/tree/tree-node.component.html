@@ -4,7 +4,7 @@
   [class.x-disabled]="node.disabled"
   [class.x-tree-node-sub]="!node.leaf"
   [class.x-tree-node-last]="isChildrenLast"
-  [style.padding-left.rem]="paddingLeft"
+  [style.padding-left.rem]="paddingLeft + 0.5"
   [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
   [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
   (click)="!node.disabled && onActivate($event, node)"

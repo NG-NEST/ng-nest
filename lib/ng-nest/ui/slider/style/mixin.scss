@@ -99,9 +99,10 @@
   &-show-arrow {
     background-color: $--x-background-a200;
     border-radius: $--x-border-radius;
-    padding: 0.25rem;
+    padding: 0 0.25rem;
     > .#{$--x-slider}-scroll {
       justify-content: start !important;
+      padding: 0.25rem 0;
     }
   }
   &-row {

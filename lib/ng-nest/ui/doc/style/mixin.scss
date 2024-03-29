@@ -68,24 +68,13 @@
         > p {
           margin: 0;
         }
-        &:before {
-          content: ' ';
-          position: absolute;
-          top: calc(#{$--x-border-width} * -1);
-          left: calc(#{$--x-border-width} * -1);
-          height: calc(100% + calc(#{$--x-border-width} * 2));
-          width: 0.25rem;
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
-          background-color: $--x-border;
-        }
       }
 
       > blockquote {
         margin-top: 0.875rem;
-        background-color: $--x-background;
+        background-color: $--x-background-a100;
         border-radius: $--x-border-radius;
-        border: $--x-border-200-base;
+        border: 0.125rem solid $--x-background-a200;
         color: $--x-text-400;
       }
 

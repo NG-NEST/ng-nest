@@ -18,18 +18,6 @@
     transition: $--x-animation-duration-slow;
     .x-tree {
       padding: 0.5rem;
-      &-node-content {
-        height: 1.375rem;
-        &:hover {
-          background-color: $--x-border;
-        }
-        &.x-activated {
-          background-color: $--x-border;
-        }
-        x-icon {
-          font-size: 1rem;
-        }
-      }
     }
   }
   &-body {
@@ -94,7 +82,7 @@
     > .#{$--x-tree-file}-catalog {
       width: 16rem;
       opacity: 1;
-      border-right: $--x-border-base;
+      border-right: 0.125 solid $--x-background-a200;
     }
   }
 }

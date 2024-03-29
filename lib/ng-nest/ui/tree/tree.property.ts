@@ -156,7 +156,7 @@ export class XTreeProperty extends XProperty {
    * @zh_CN itemSize，对应 cdk scroll 中的参数，开启虚拟滚动才生效
    * @en_US itemSize，corresponding to the parameters in cdk scroll
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 26) @XInputNumber() itemSize!: number;
+  @Input() @XWithConfig<number>(X_CONFIG_NAME, 34) @XInputNumber() itemSize!: number;
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数，开启虚拟滚动才生效
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
