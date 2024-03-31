@@ -43,7 +43,7 @@
           }
         }
         &:not(:last-child) > div {
-          border-bottom: 0.0625rem solid $--x-border-100;
+          border-bottom: $--x-border-deep-base;
         }
         &.x-comment-more {
           padding: 0.875rem;
@@ -88,7 +88,7 @@
   &-item {
     display: flex;
     padding: 1rem 0;
-    border-bottom: 0.0625rem solid $--x-border-100;
+    border-bottom: $--x-border-deep-base;
     &:first-child {
       padding-top: 0;
     }
@@ -113,6 +113,9 @@
     .x-buttons:not(.x-buttons-space) > .x-button:not(:first-child) {
       margin-left: 0.5rem;
     }
+  }
+  &-input {
+    width: 100%;
   }
   &-sure {
     display: flex;

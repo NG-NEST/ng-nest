@@ -56,7 +56,7 @@
     > .#{$--x-popover-portal-prefix}-arrow {
       bottom: 0.1rem;
       border-bottom-width: 0;
-      border-top-color: $--x-border-500;
+      border-top-color: $--x-border-200;
     }
     .#{$--x-popover-portal-prefix}-arrow:after {
       bottom: 0.1rem;
@@ -73,7 +73,7 @@
     > .#{$--x-popover-portal-prefix}-arrow {
       right: 0.1rem;
       border-right-width: 0;
-      border-left-color: $--x-border-500;
+      border-left-color: $--x-border-200;
     }
     .#{$--x-popover-portal-prefix}-arrow:after {
       right: 0.1rem;
@@ -90,7 +90,7 @@
     > .#{$--x-popover-portal-prefix}-arrow {
       left: 0.1rem;
       border-left-width: 0;
-      border-right-color: $--x-border-500;
+      border-right-color: $--x-border-200;
     }
     .#{$--x-popover-portal-prefix}-arrow:after {
       left: 0.1rem;
@@ -107,7 +107,7 @@
     .#{$--x-popover-portal-prefix}-arrow {
       top: 0.1rem;
       border-top-width: 0;
-      border-bottom-color: $--x-border-500;
+      border-bottom-color: $--x-border-200;
     }
     .#{$--x-popover-portal-prefix}-arrow:after {
       top: 0.1rem;

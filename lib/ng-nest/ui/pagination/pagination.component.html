@@ -1,7 +1,7 @@
 @if (simple) {
   <div class="x-pagination-simple">
     <x-input
-      [bordered]="!hiddenBorder"
+      [bordered]="showBackground"
       [before]="previousTpl"
       [after]="nextTpl"
       [style.width.px]="simpleIndexWidth"
@@ -12,7 +12,7 @@
     <span>{{ lastIndex }}</span>
   </div>
 } @else {
-  <x-buttons [space]="space" [hiddenBorder]="hiddenBorder" boxShadow="false">
+  <x-buttons [space]="space" [hiddenBorder]="!showBackground" boxShadow="false">
     @if (showEllipsis) {
       <x-button
         [icon]="'fto-chevrons-left'"
@@ -49,7 +49,7 @@
     [data]="sizeData"
     clearable="false"
     [disabled]="disabled"
-    [bordered]="!hiddenBorder"
+    [bordered]="showBackground"
     [nodeTpl]="nodeTpl"
     [(ngModel)]="size"
     (ngModelChange)="sizeChanged()"
@@ -60,7 +60,7 @@
     <x-input
       [style.width.px]="inputSizeWidth"
       [disabled]="disabled"
-      [bordered]="!hiddenBorder"
+      [bordered]="showBackground"
       [(ngModel)]="inputSize"
       (xKeydown)="onInputSizeKeydown($event)"
     ></x-input>
@@ -71,7 +71,7 @@
   <div class="x-pagination-jump">
     <span>{{ 'pagination.jump' | xI18n }}</span>
     <x-input
-      [bordered]="!hiddenBorder"
+      [bordered]="showBackground"
       [style.width.px]="jumpWidth"
       [(ngModel)]="jumpPage"
       (xKeydown)="onJumpKeydown($event)"

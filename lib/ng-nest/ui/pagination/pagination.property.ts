@@ -1,4 +1,14 @@
-import { XProperty, XInputNumber, XNumber, XQuery, XWithConfig, XBoolean, XInputBoolean, XData, XTemplate } from '@ng-nest/ui/core';
+import {
+  XProperty,
+  XInputNumber,
+  XNumber,
+  XQuery,
+  XWithConfig,
+  XBoolean,
+  XInputBoolean,
+  XData,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XSelectNode } from '@ng-nest/ui/select';
 
@@ -60,12 +70,12 @@ export class XPaginationProperty extends XProperty {
    * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
    * @en_US Button spacing, unit rem (calculated according to the ratio of 1rem = 16px)
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() space!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.25) @XInputNumber() space!: XNumber;
   /**
-   * @zh_CN 隐藏边框
-   * @en_US Hide border
+   * @zh_CN 添加背景色
+   * @en_US Show background
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenBorder!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showBackground!: XBoolean;
   /**
    * @zh_CN 显示分页条数
    * @en_US Show size

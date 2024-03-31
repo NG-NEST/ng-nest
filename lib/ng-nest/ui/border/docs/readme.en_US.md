@@ -1,6 +1,7 @@
 ---
 label: 'Border'
 category: 'Basic'
+hidden: true
 ---
 
 # Border

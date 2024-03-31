@@ -59,17 +59,23 @@
     > x-alert .x-alert {
       left: 0 !important;
       top: 0 !important;
+      border-radius: 0 !important;
     }
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 7rem) !important;
-      height: calc(100vh - 7rem) !important;
+      max-height: calc(100vh - 8rem) !important;
+      height: calc(100vh - 8rem) !important;
     }
   }
   &-default-maximize {
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 7rem) !important;
-      height: calc(100vh - 7rem) !important;
+      max-height: calc(100vh - 8rem) !important;
+      height: calc(100vh - 8rem) !important;
       flex: initial;
+    }
+    > x-alert .x-alert {
+      left: 0 !important;
+      top: 0 !important;
+      border-radius: 0 !important;
     }
   }
 }

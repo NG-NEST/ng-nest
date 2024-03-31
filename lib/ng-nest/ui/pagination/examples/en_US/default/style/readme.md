@@ -3,6 +3,8 @@ order: 2
 label: 'Style'
 ---
 
-- Use the `space` to set the spacing between the page number
-- Use `hiddenBorder` to hide the border
-- Use `showTotal` to display / hide the total number
+- use `space` spacing between to set the page number
+- use `showBackground` to display the background color
+- use `showTotal` to show/hide the total number
+- use `showEllipsis` to show/hide the first page
+- use `pageLinkSize` to control up to display the number of pages

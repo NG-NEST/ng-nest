@@ -27,7 +27,7 @@
       min-width: 8rem;
     }
     &:not(:first-child) {
-      border-left: $--x-border-width solid $--x-border;
+      border-left: $--x-border-deep-base;
     }
   }
 }

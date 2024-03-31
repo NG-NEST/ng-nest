@@ -1,6 +1,7 @@
 ---
 label: 'Border 边框'
 category: 'Basic'
+hidden: true
 ---
 
 # Border 边框

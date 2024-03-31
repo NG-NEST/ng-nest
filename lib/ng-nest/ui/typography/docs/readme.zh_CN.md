@@ -1,6 +1,7 @@
 ---
 label: 'Typography 字体'
 category: 'Basic'
+hidden: true
 ---
 
 # Typography 字体

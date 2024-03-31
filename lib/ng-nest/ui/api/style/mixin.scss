@@ -61,10 +61,10 @@
     width: 100%;
     background: $--x-background;
     border-collapse: collapse;
-    border-bottom: 0.125rem solid $--x-background-a200;
+    border-bottom: $--x-border-deep-base;
     tr > th,
     tr > td {
-      border-bottom: 0.125rem solid $--x-background-a200;
+      border-bottom: $--x-border-deep-base;
       text-align: left;
       padding: 0.5rem 0;
     }

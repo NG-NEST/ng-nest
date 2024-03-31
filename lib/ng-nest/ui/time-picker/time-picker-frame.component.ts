@@ -272,7 +272,7 @@ export class XTimePickerFrameComponent {
         len = this.use12HoursData.findIndex((x) => x.id === num);
         break;
     }
-    let current = ele.querySelector(`.x-list x-list-option:nth-child(${len + 1})`) as HTMLElement;
+    const current = ele.querySelector(`.x-list x-list-option:nth-child(${len + 1})`) as HTMLElement;
     if (current) {
       if (animating) {
         this.scrollTo(ele, current.offsetTop, 120);

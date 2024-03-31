@@ -128,14 +128,12 @@
       width: 14rem;
       margin-right: 1rem;
       padding-right: 1rem;
-      border-right: $--x-border-base;
-    }
-    .#{$--x-find-prefix}-dialog-table {
+      border-right: $--x-border-deep-base;
     }
   }
   &-checked {
     margin-left: 1rem;
-    border-left: $--x-border-base;
+    border-left: $--x-border-deep-base;
     padding-left: 1rem;
     width: 10rem;
     overflow-y: auto;

@@ -81,16 +81,16 @@
 </div>
 
 <ng-template #beforeSelectTpl>
-  <x-select [style.width.%]="30" [data]="['http://', 'ws://', 'file://']"></x-select>
+  <x-select [style.width.rem]="7" [data]="['http://', 'ws://', 'file://']"></x-select>
 </ng-template>
 <ng-template #afterSelectTpl>
-  <x-select [style.width.%]="30" [data]="['.com', '.cn', '.org']"></x-select>
+  <x-select [style.width.rem]="7" [data]="['.com', '.cn', '.org']"></x-select>
 </ng-template>
 <ng-template #beforeButtonTpl>
-  <x-button>Search</x-button>
+  <x-button flat plain>Search</x-button>
 </ng-template>
 <ng-template #afterButtonTpl>
-  <x-button icon="fto-search"></x-button>
+  <x-button icon="fto-search" flat plain></x-button>
 </ng-template>
 <ng-template #beforeInputTpl>
   <x-input [style.width.%]="30"></x-input>
@@ -99,40 +99,40 @@
   <x-input [style.width.%]="30"></x-input>
 </ng-template>
 <ng-template #beforeDatePickerTpl>
-  <x-date-picker [style.width.%]="30"></x-date-picker>
+  <x-date-picker [style.width.rem]="12"></x-date-picker>
 </ng-template>
 <ng-template #afterDatePickerTpl>
-  <x-date-picker [style.width.%]="30"></x-date-picker>
+  <x-date-picker [style.width.rem]="12"></x-date-picker>
 </ng-template>
 <ng-template #beforeAutoCompleteTpl>
   <x-auto-complete
-    [style.width.%]="40"
+    [style.width.rem]="12"
     [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
     placeholder="Such as: aa"
   ></x-auto-complete>
 </ng-template>
 <ng-template #afterAutoCompleteTpl>
   <x-auto-complete
-    [style.width.%]="40"
+    [style.width.rem]="12"
     [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
     placeholder="Such as: aa"
   ></x-auto-complete>
 </ng-template>
 <ng-template #beforeCascadeTpl>
-  <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="12" [data]="cascadeData"></x-cascade>
 </ng-template>
 <ng-template #afterCascadeTpl>
-  <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="12" [data]="cascadeData"></x-cascade>
 </ng-template>
 <ng-template #beforeColorPickerTpl>
-  <x-color-picker [style.width.%]="30"></x-color-picker>
+  <x-color-picker [style.width.rem]="12"></x-color-picker>
 </ng-template>
 <ng-template #afterColorPickerTpl>
-  <x-color-picker [style.width.%]="30"></x-color-picker>
+  <x-color-picker [style.width.rem]="12"></x-color-picker>
 </ng-template>
 <ng-template #beforeTimePickerTpl>
-  <x-time-picker [style.width.%]="30"></x-time-picker>
+  <x-time-picker [style.width.rem]="12"></x-time-picker>
 </ng-template>
 <ng-template #afterTimePickerTpl>
-  <x-time-picker [style.width.%]="30"></x-time-picker>
+  <x-time-picker [style.width.rem]="12"></x-time-picker>
 </ng-template>

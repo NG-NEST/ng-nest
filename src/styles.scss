@@ -113,7 +113,8 @@ input {
     color: #f637e3;
   }
 
-  .token.string {
+  .token.string,
+  .token.number {
     color: #fa2c05;
   }
 

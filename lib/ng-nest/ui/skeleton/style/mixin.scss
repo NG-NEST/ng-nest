@@ -50,14 +50,14 @@
     x-row {
       margin: 0 !important;
       x-col {
-        border-left: 0.0625rem solid $--x-border;
-        border-bottom: 0.0625rem solid $--x-border;
+        border-left: $--x-border-deep-base;
+        border-bottom: $--x-border-deep-base;
       }
       x-col:last-child {
-        border-right: 0.0625rem solid $--x-border;
+        border-right: $--x-border-deep-base;
       }
       &:first-child x-col {
-        border-top: 0.0625rem solid $--x-border;
+        border-top: $--x-border-deep-base;
       }
     }
   }

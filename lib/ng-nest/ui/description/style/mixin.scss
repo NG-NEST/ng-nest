@@ -29,9 +29,9 @@
   &-bordered {
     .#{$--x-description-prefix} {
       &-item {
-        border: $--x-border-base;
-        margin-left: -1px;
-        margin-top: -1px;
+        border: $--x-border-deep-base;
+        margin-left: -0.125rem;
+        margin-top: -0.125rem;
       }
     }
   }

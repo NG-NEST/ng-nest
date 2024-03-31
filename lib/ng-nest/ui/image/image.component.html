@@ -1,15 +1,13 @@
 <div class="x-image" [ngClass]="classMap">
-  @if (!isError && !fallback) {
-    <img
-      [hidden]="placeholder && !isLoaded"
-      class="x-image-img"
-      [src]="src"
-      [style.width]="width"
-      [style.height]="height"
-      (error)="onError($event)"
-      (load)="onLoad($event)"
-    />
-  }
+  <img
+    [hidden]="placeholder && !isLoaded"
+    class="x-image-img"
+    [src]="src"
+    [style.width]="width"
+    [style.height]="height"
+    (error)="onError($event)"
+    (load)="onLoad($event)"
+  />
   @if (placeholder && !isLoaded) {
     <img class="x-image-img" [src]="placeholder" [style.width]="width" [style.height]="height" />
   }

@@ -96,7 +96,7 @@
           }
           td {
             height: 6.75rem;
-            border-top: 0.125rem solid $--x-border;
+            border-top: $--x-border-deep-base;
             text-align: left;
             .x-calendar-date,
             .x-calendar-month {
@@ -131,11 +131,11 @@
     }
   }
   &-card {
-    border: 0.125rem solid $--x-background-a200;
+    border: $--x-border-deep-base;
     border-radius: $--x-border-radius;
     .x-calendar-header {
       padding: 0.5rem;
-      border-bottom: 0.125rem solid $--x-background-a200;
+      border-bottom: $--x-border-deep-base;
       justify-content: center;
     }
     .x-calendar-body {

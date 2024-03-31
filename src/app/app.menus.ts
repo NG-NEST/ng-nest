@@ -22,15 +22,6 @@ export const menus: AppMenu[] = [
     "type": "router"
   },
   {
-    "id": "1-9",
-    "pid": "1",
-    "name": "border",
-    "routerLink": "docs/en_US/components/border",
-    "lang": "en_US",
-    "label": "Border",
-    "category": "Basic"
-  },
-  {
     "id": "1-10",
     "pid": "1",
     "name": "button",
@@ -92,15 +83,6 @@ export const menus: AppMenu[] = [
     "routerLink": "docs/en_US/components/theme",
     "lang": "en_US",
     "label": "Theme",
-    "category": "Basic"
-  },
-  {
-    "id": "1-96",
-    "pid": "1",
-    "name": "typography",
-    "routerLink": "docs/en_US/components/typography",
-    "lang": "en_US",
-    "label": "Typography",
     "category": "Basic"
   },
   {
@@ -812,43 +794,6 @@ export const menus: AppMenu[] = [
     "label": "Internationalization"
   },
   {
-    "id": "2-0-0",
-    "pid": "2-0",
-    "name": "1-introduction",
-    "routerLink": "docs/zh_CN/course/rbac/1-introduction",
-    "lang": "zh_CN",
-    "order": 1,
-    "label": "1. 简介",
-    "default": true
-  },
-  {
-    "id": "2-0-1",
-    "pid": "2-0",
-    "name": "2-create-project",
-    "routerLink": "docs/zh_CN/course/rbac/2-create-project",
-    "lang": "zh_CN",
-    "order": 2,
-    "label": "2. 创建项目"
-  },
-  {
-    "id": "2-0-3",
-    "pid": "2-0",
-    "name": "4-ui-navigation",
-    "routerLink": "docs/zh_CN/course/rbac/4-ui-navigation",
-    "lang": "zh_CN",
-    "order": 4,
-    "label": "4. 导航栏"
-  },
-  {
-    "id": "2-0-5",
-    "pid": "2-0",
-    "name": "6-service-optimize",
-    "routerLink": "docs/zh_CN/course/rbac/6-service-optimize",
-    "lang": "zh_CN",
-    "order": 6,
-    "label": "6. 服务优化"
-  },
-  {
     "id": "4",
     "pid": null,
     "name": "ui",
@@ -878,15 +823,6 @@ export const menus: AppMenu[] = [
     "order": 3,
     "label": "教程",
     "type": "router"
-  },
-  {
-    "id": "1-9",
-    "pid": "1",
-    "name": "border",
-    "routerLink": "docs/zh_CN/components/border",
-    "lang": "zh_CN",
-    "label": "Border 边框",
-    "category": "Basic"
   },
   {
     "id": "1-10",
@@ -950,15 +886,6 @@ export const menus: AppMenu[] = [
     "routerLink": "docs/zh_CN/components/theme",
     "lang": "zh_CN",
     "label": "Theme 主题",
-    "category": "Basic"
-  },
-  {
-    "id": "1-96",
-    "pid": "1",
-    "name": "typography",
-    "routerLink": "docs/zh_CN/components/typography",
-    "lang": "zh_CN",
-    "label": "Typography 字体",
     "category": "Basic"
   },
   {
@@ -1558,6 +1485,25 @@ export const menus: AppMenu[] = [
     "default": true
   },
   {
+    "id": "2-0-0",
+    "pid": "2-0",
+    "name": "1-introduction",
+    "routerLink": "docs/zh_CN/course/rbac/1-introduction",
+    "lang": "zh_CN",
+    "order": 1,
+    "label": "1. 简介",
+    "default": true
+  },
+  {
+    "id": "2-0-1",
+    "pid": "2-0",
+    "name": "2-create-project",
+    "routerLink": "docs/zh_CN/course/rbac/2-create-project",
+    "lang": "zh_CN",
+    "order": 2,
+    "label": "2. 创建项目"
+  },
+  {
     "id": "2-0-2",
     "pid": "2-0",
     "name": "3-ui-frame",
@@ -1567,6 +1513,15 @@ export const menus: AppMenu[] = [
     "label": "3. 前端框架页"
   },
   {
+    "id": "2-0-3",
+    "pid": "2-0",
+    "name": "4-ui-navigation",
+    "routerLink": "docs/zh_CN/course/rbac/4-ui-navigation",
+    "lang": "zh_CN",
+    "order": 4,
+    "label": "4. 导航栏"
+  },
+  {
     "id": "2-0-4",
     "pid": "2-0",
     "name": "5-user-manage",
@@ -1574,6 +1529,15 @@ export const menus: AppMenu[] = [
     "lang": "zh_CN",
     "order": 5,
     "label": "5. 用户管理"
+  },
+  {
+    "id": "2-0-5",
+    "pid": "2-0",
+    "name": "6-service-optimize",
+    "routerLink": "docs/zh_CN/course/rbac/6-service-optimize",
+    "lang": "zh_CN",
+    "order": 6,
+    "label": "6. 服务优化"
   },
   {
     "id": "4-4",

@@ -8,7 +8,7 @@
   display: block;
   .#{$prefix}-html {
     padding: 1.5rem 1.5rem 3.75rem;
-    border: 0.125rem solid $--x-background-a200;
+    border: $--x-border-deep-base;
     border-bottom-left-radius: $--x-border-radius;
     border-bottom-right-radius: $--x-border-radius;
     position: relative;
@@ -21,7 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 0.125rem dashed $--x-background-a200;
+    border-top: 0.125rem dashed $--x-border-500;
   }
   .#{$prefix}-code {
     margin-top: 0.25rem;
@@ -41,9 +41,9 @@
     padding: 1rem 1.5rem;
     border-top-left-radius: $--x-border-radius;
     border-top-right-radius: $--x-border-radius;
-    border-top: 0.125rem solid $--x-background-a200;
-    border-left: 0.125rem solid $--x-background-a200;
-    border-right: 0.125rem solid $--x-background-a200;
+    border-top: $--x-border-deep-base;
+    border-left: $--x-border-deep-base;
+    border-right: $--x-border-deep-base;
     background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;
@@ -54,8 +54,8 @@
     > ul {
       margin: 0.25rem 0;
       > li {
-        list-style-type: decimal;
-        margin-left: 1.25rem;
+        list-style-type: circle;
+        margin: 0.125rem 0.125rem 0.125rem 1.25rem;
         line-height: 1.75rem;
         &::marker {
           color: $--x-text-500;
