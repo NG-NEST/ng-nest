@@ -11,35 +11,19 @@
   <x-checkbox [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl"></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeDatePickerTpl"
-    [after]="afterDatePickerTpl"
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeAutoCompleteTpl"
-    [after]="afterAutoCompleteTpl"
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-checkbox>
 </div>
 <div class="row">
   <x-checkbox [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeColorPickerTpl"
-    [after]="afterColorPickerTpl"
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeTimePickerTpl"
-    [after]="afterTimePickerTpl"
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-checkbox>
 </div>
 <div class="row">
   <x-checkbox [data]="data" before="https://" after=".com" button></x-checkbox>
@@ -54,44 +38,19 @@
   <x-checkbox [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeDatePickerTpl"
-    [after]="afterDatePickerTpl"
-    button
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeAutoCompleteTpl"
-    [after]="afterAutoCompleteTpl"
-    button
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeCascadeTpl"
-    [after]="afterCascadeTpl"
-    button
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeColorPickerTpl"
-    [after]="afterColorPickerTpl"
-    button
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox
-    [data]="data"
-    [before]="beforeTimePickerTpl"
-    [after]="afterTimePickerTpl"
-    button
-  ></x-checkbox>
+  <x-checkbox [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-checkbox>
 </div>
 <ng-template #beforeSelectTpl>
   <x-select [style.width.rem]="6" [data]="['http://', 'https://']"></x-select>
@@ -100,10 +59,10 @@
   <x-select [style.width.rem]="5" [data]="['.com', '.cn', '.org']"></x-select>
 </ng-template>
 <ng-template #beforeButtonTpl>
-  <x-button>查询</x-button>
+  <x-button flat plain>查询</x-button>
 </ng-template>
 <ng-template #afterButtonTpl>
-  <x-button icon="fto-search"></x-button>
+  <x-button icon="fto-search" flat plain></x-button>
 </ng-template>
 <ng-template #beforeInputTpl>
   <x-input [style.width.%]="30"></x-input>
