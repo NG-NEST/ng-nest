@@ -43,7 +43,7 @@
     font-weight: bold;
   }
   &-portal {
-    padding: 0.25rem;
+    padding: 0.125rem 0.25rem;
     x-list-option .x-list-option {
       padding: 0 calc(#{$--x-padding-medium} - 0.5rem);
       margin: 0.125rem 0;
