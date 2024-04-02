@@ -2,6 +2,9 @@
   .row:not(:first-child) {
     margin-top: 1rem;
   }
+  .row x-select {
+    width: 20rem;
+  }
 }
 
 .select-item {
