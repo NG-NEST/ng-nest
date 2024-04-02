@@ -20,8 +20,7 @@ export class ExTableComponent {
     { id: 'checked', label: '', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
     { id: 'index', label: 'serial', flex: 0.5, left: 0, type: 'index' },
     { id: 'name', label: 'user', flex: 1 },
-    { id: 'position', label: 'position', flex: 1 },
-    { id: 'organization', label: 'organization', flex: 1 }
+    { id: 'position', label: 'position', flex: 1 }
   ];
 
   constructor(private service: TableService) {}
