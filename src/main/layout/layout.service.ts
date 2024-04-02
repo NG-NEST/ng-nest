@@ -31,10 +31,8 @@ export class LayoutService {
     en_US: {}
   };
 
-  getCurrentMenu(url: string): AppMenu {
-    let route = menus.find(
-      (x) => x.type !== 'router' && url.indexOf(`/${environment.layout}/${x.routerLink}`) === 0
-    ) as AppMenu;
+  getCurrentMenu(url: string): AppMenu | undefined {
+    let route = menus.find((x) => x.type !== 'router' && url.endsWith(`${x.routerLink}`));
     if (route) {
       this.defaultActivatedId = route.id;
     }
