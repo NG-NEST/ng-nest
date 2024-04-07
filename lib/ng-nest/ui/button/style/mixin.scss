@@ -18,6 +18,7 @@
   touch-action: manipulation;
   will-change: color, background-color, border, box-shadow;
   box-shadow: $--x-box-shadow;
+  width: 100%;
   &:focus {
     outline: none;
   }
