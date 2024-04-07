@@ -11,10 +11,12 @@ import {
   XSize,
   XParentIdentityProperty,
   XIdentityProperty,
-  XTemplate
+  XTemplate,
+  XQuery
 } from '@ng-nest/ui/core';
 import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
-import { XPaginationProperty, XPaginationOption } from '@ng-nest/ui/pagination';
+import { XPaginationProperty, XPaginationOption, XPaginationSizeData } from '@ng-nest/ui/pagination';
+import { XSelectNode } from '@ng-nest/ui/select';
 
 /**
  * Table
@@ -260,6 +262,121 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Content or custom template
    */
   @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) emptyContent?: XTemplate;
+  /**
+   * @zh_CN 当前页码
+   * @en_US Current page number
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() override index!: XNumber;
+  /**
+   * @zh_CN 每页显示条数
+   * @en_US Number of items displayed per page
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) @XInputNumber() override size!: XNumber;
+  /**
+   * @zh_CN 总数
+   * @en_US Total
+   */
+  @Input() @XInputNumber() override total: XNumber = 0;
+  /**
+   * @zh_CN 查询条件
+   * @en_US Query conditions
+   */
+  @Input() override query: XQuery = {};
+  /**
+   * @zh_CN 最多显示的分页数量
+   * @en_US The largest number of pages display
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 5) @XInputNumber() override pageLinkSize!: XNumber;
+  /**
+   * @zh_CN 显示首尾页跳转
+   * @en_US Display the first and last page
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() override showEllipsis!: XBoolean;
+  /**
+   * @zh_CN 显示总条数
+   * @en_US Display the total
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() override showTotal!: XBoolean;
+  /**
+   * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
+   * @en_US Button spacing, unit rem (calculated according to the ratio of 1rem = 16px)
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.25) @XInputNumber() override space!: XNumber;
+  /**
+   * @zh_CN 添加背景色
+   * @en_US Show background
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showBackground!: XBoolean;
+  /**
+   * @zh_CN 显示分页条数
+   * @en_US Show size
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showSize!: XBoolean;
+  /**
+   * @zh_CN 分页条数选择框的宽度
+   * @en_US size with select
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 110) @XInputNumber() override sizeWidth!: XNumber;
+  /**
+   * @zh_CN 显示输入分页条数（不能跟下拉选项同时使用）
+   * @en_US Display the number of input page breaks (cannot exist with the drop-down options of page breaks)
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showInputSize!: XBoolean;
+  /**
+   * @zh_CN 分页条数输入框的宽度
+   * @en_US size with input
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() override inputSizeWidth!: XNumber;
+  /**
+   * @zh_CN 分页条数的宽度
+   * @en_US size with
+   */
+  @Input() @XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME, XPaginationSizeData) override sizeData!: XData<XSelectNode>;
+  /**
+   * @zh_CN 禁用整个分页
+   * @en_US disabled
+   */
+  @Input() @XInputBoolean() override disabled!: XBoolean;
+  /**
+   * @zh_CN 显示跳转输入框
+   * @en_US Show size
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showJump!: XBoolean;
+  /**
+   * @zh_CN 跳转页的宽度
+   * @en_US size with
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() override jumpWidth!: XNumber;
+  /**
+   * @zh_CN 总数自定义模板
+   * @en_US Total template
+   */
+  @Input() override totalTpl?: XTemplate;
+  /**
+   * @zh_CN 简单分页
+   * @en_US Simple
+   */
+  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override simple!: XBoolean;
+  /**
+   * @zh_CN 简单分页输入框宽度
+   * @en_US Simple index with
+   */
+  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 130) @XInputNumber() override simpleIndexWidth!: XNumber;
+  /**
+   * @zh_CN 页码变化的事件
+   * @en_US Page number change event
+   */
+  @Output() override queryChange = new EventEmitter<XQuery>();
+  /**
+   * @zh_CN 页码变化的事件
+   * @en_US Page number change event
+   */
+  @Output() override indexChange = new EventEmitter<number>();
+  /**
+   * @zh_CN 每页显示条数变化的事件
+   * @en_US Show the number of events on each page
+   */
+  @Output() override sizeChange = new EventEmitter<number>();
   /**
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event
@@ -639,7 +756,13 @@ export type XTableHeaderPosition = 'top' | 'bottom' | 'top-bottom';
  * @zh_CN 分页器位置
  * @en_US Paging position
  */
-export type XPaginationPosition = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+export type XPaginationPosition =
+  | 'top-left'
+  | 'top-center'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-center'
+  | 'bottom-right';
 
 /**
  * @zh_CN 模板

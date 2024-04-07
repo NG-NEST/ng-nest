@@ -57,6 +57,26 @@ export class XTreeFileProperty extends XTreeProperty {
    * @en_US Unit spacing, the product of this and the level calculates the left margin of the node, the unit is rem
    */
   @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() override spacing?: XNumber;
+  /**
+   * @zh_CN 当前激活的节点 Id, 当 multiple 为 true 时，值为数组（默认是 Id 数组，objectArray 为 true，对象数组）
+   * @en_US Currently active node Id. When Multiple is true, the value is the Id array
+   */
+  @Input() override activatedId: any;
+  /**
+   * @zh_CN 展开的节点
+   * @en_US Expanded node
+   */
+  @Input() override expanded: any[] = [];
+  /**
+   * @zh_CN 展开所有节点
+   * @en_US Expand all nodes
+   */
+  @Input() @XInputBoolean() override expandedAll?: XBoolean;
+  /**
+   * @zh_CN 默认展开的层级
+   * @en_US Default expanded level
+   */
+  @Input() @XInputNumber() override expandedLevel: XNumber = -1;
 }
 
 /**

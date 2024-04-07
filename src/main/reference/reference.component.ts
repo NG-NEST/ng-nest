@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { core } from '../docs/en_US/docs.types';
 import { JsonPipe } from '@angular/common';
-// import { XOrderBy } from '@ng-nest/ui/core';
+import { AppProp } from '@interfaces';
 
 @Component({
   selector: 'no-auth',
@@ -12,4 +12,12 @@ import { JsonPipe } from '@angular/common';
 })
 export class ReferenceComponent {
   data = core;
+
+  getTypes(type: string) {
+    const types: AppProp[] = [];
+    const ty = this.data.find((x) => x.name === type)!;
+    ty && types.push(ty);
+
+    console.log(types);
+  }
 }
