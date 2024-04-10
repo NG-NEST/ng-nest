@@ -1,9 +1,11 @@
-## [16.0.13](https://github.com/NG-NEST/ng-nest/compare/16.0.12...16.0.13) (2024-04-10)
+## [16.0.14](https://github.com/NG-NEST/ng-nest/compare/16.0.13...16.0.14) (2024-04-10)
 
 
 ### Bug Fixes
 
+* **module:tree:** fix checked property ([92c7cf9](https://github.com/NG-NEST/ng-nest/commit/92c7cf90bb3baca00219cb6e778ed079ff0f5033))
 * **module:tree:** fix checked property ([0ba77da](https://github.com/NG-NEST/ng-nest/commit/0ba77da58e187b55c6819ba6ac7fb24d94573d2a))
+* **module:tree:** fix track rule ([6695147](https://github.com/NG-NEST/ng-nest/commit/66951473a767c9bca47a0e320c5b05c9033796b9))
 
 
 
