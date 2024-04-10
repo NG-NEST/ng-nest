@@ -62,7 +62,8 @@ export class XPopoverPortalComponent implements OnInit, OnDestroy {
   portalHover!: Function;
   closePortal!: Function;
   viewInit!: Function;
-  width!: string;
+  minWidth!: string;
+  maxWidth!: string;
   positionChange: Subject<any> = new Subject();
   private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);

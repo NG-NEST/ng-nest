@@ -222,6 +222,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
       setParent(parent);
     };
     setParent(this.node);
+    this.cdr.detectChanges();
   }
 
   setChildrenCheckbox(checked: boolean) {

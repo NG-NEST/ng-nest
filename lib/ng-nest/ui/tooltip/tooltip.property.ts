@@ -23,7 +23,7 @@ export class XTooltipProperty {
    * @zh_CN 显示位置
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement?: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'top') placement?: XPlacement;
   /**
    * @zh_CN 显示/隐藏
    * @en_US Show/hide

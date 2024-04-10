@@ -14,6 +14,7 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
+import { XPopoverDirective } from '@ng-nest/ui/popover';
 
 const modules = [
   CommonModule,
@@ -34,7 +35,8 @@ const modules = [
   XButtonsComponent,
   XButtonComponent,
   XTooltipDirective,
-  XTreeFileComponent
+  XTreeFileComponent,
+  XPopoverDirective
 ];
 
 @NgModule({

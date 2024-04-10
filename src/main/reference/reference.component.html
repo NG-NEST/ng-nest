@@ -1,4 +1,22 @@
-<a href="javascript:void(0)" (click)="getTypes('XPosition')">XPosition</a>
+<div class="container">
+  <a
+    href="javascript:void(0)"
+    x-popover
+    [content]="tpl"
+    [minWidth]="'10rem'"
+    [maxWidth]="'20rem'"
+    (mouseenter)="getTypes('XPosition')"
+    >XPosition</a
+  >
+
+  <ng-template #tpl>
+    @if (prop?.type === 'type') {
+      <p>{{ typeValues }}</p>
+      <p>{{ prop?.label }}</p>
+      <p>{{ prop?.description }}</p>
+    }
+  </ng-template>
+</div>
 
 <table>
   <tr>
@@ -13,7 +31,17 @@
   @for (item of data; track item.name) {
     <tr>
       <td>{{ item.type }}</td>
-      <td>{{ item.name }}</td>
+      <td>
+        <a
+          href="javascript:void(0)"
+          x-popover
+          [content]="tpl"
+          [minWidth]="'10rem'"
+          [maxWidth]="'20rem'"
+          (mouseenter)="getTypes(item.name!)"
+          >{{ item.name }}</a
+        >
+      </td>
       <td>{{ item.params | json }}</td>
       <td>{{ item.label }}</td>
       <td>{{ item.description }}</td>

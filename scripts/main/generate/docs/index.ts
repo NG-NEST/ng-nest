@@ -22,7 +22,7 @@ export const docsDir = resolve(__dirname, '../../../../docs');
 export const componentsDir = resolve(__dirname, '../../../../lib/ng-nest/ui');
 export const genDir = resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = resolve(__dirname, '../../../../src/app');
-export const genCoreDir = resolve(__dirname, '../../../../src/app');
+export const genCoreDir = resolve(__dirname, '../../../../src/interfaces');
 export const docsPrefix = 'docs';
 export const languages = ['zh_CN', 'en_US'];
 
@@ -30,13 +30,15 @@ export class NcDocs {
   page: NcPage;
   genDir: string = genDir;
   menus: NcMenu[] = [];
-  propTypes: NcProp[] = [];
-  core: NcCore;
+  props: NcProp[] = [];
 
   constructor() {
     languages.forEach(async (lang) => {
+      this.props = [];
       await this.genPages(lang, docsPrefix);
-      await this.genCore(lang);
+      await this.genProps(lang, this.props);
+
+      console.log(this.props[0]);
     });
   }
 
@@ -88,9 +90,8 @@ export class NcDocs {
             }
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
-              const types = child.props.filter((x) => x.type === NcPropType.Type);
-              if (types && types.length > 0) {
-                this.propTypes.push(...types);
+              if (child.props && child.props.length > 0) {
+                this.props.push(...child.props);
               }
             }
 
@@ -135,9 +136,9 @@ export class NcDocs {
     return menu;
   }
 
-  async genCore(lang: string) {
-    this.core = await handlerCore(lang);
-    generateCore(join(genDir, lang), this.core);
+  async genProps(lang: string, props: NcProp[]) {
+    const core = await handlerCore(lang);
+    generateCore(join(genCoreDir), lang, [...core, ...props]);
   }
 }
 global['NcDocs'] = new NcDocs();

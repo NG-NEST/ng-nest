@@ -794,6 +794,17 @@ export const menus: AppMenu[] = [
     "label": "Internationalization"
   },
   {
+    "id": "5",
+    "pid": null,
+    "name": "ui",
+    "routerLink": "docs/zh_CN/ui",
+    "lang": "zh_CN",
+    "order": 1,
+    "label": "UI 库",
+    "type": "router",
+    "default": true
+  },
+  {
     "id": "1",
     "pid": null,
     "name": "components",
@@ -1527,17 +1538,6 @@ export const menus: AppMenu[] = [
     "lang": "zh_CN",
     "order": 6,
     "label": "6. 服务优化"
-  },
-  {
-    "id": "5",
-    "pid": null,
-    "name": "ui",
-    "routerLink": "docs/zh_CN/ui",
-    "lang": "zh_CN",
-    "order": 1,
-    "label": "UI 库",
-    "type": "router",
-    "default": true
   },
   {
     "id": "5-4",

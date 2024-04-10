@@ -33,10 +33,16 @@ export function generateProps(...types: NcProp[]) {
             if (!isWithConfig && y.withConfig) {
               isWithConfig = true;
             }
+            let ty = y.type.startsWith('X')
+              ? `<code class="popover" x-popover [content]="typeTpl"
+              [minWidth]="'10rem'"
+              [maxWidth]="'20rem'"
+              (mouseenter)="types.getTypes('${x.name}','${y.type}')" [innerText]="'${y.type}'"></code>`
+              : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
               <td>${y.label}<span>${y.description}</span></td>
-              <td><code [innerHTML]="'${y.type}'"></code></td>
+              <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
               <td>${isWithConfig ? '✔' : ''}</td>
             </tr>`;

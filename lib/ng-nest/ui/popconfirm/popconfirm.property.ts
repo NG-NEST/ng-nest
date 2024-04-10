@@ -37,10 +37,15 @@ export class XPopconfirmProperty extends XProperty {
    */
   @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'click') trigger?: XPopoverTrigger;
   /**
-   * @zh_CN 宽度
-   * @en_US Width
+   * @zh_CN 最大宽度
+   * @en_US Max width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') maxWidth?: string;
+  /**
+   * @zh_CN 最小宽度
+   * @en_US Min width
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') minWidth?: string;
   /**
    * @zh_CN 图标
    * @en_US Icon

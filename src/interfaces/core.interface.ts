@@ -53,6 +53,14 @@ export interface AppProp {
    */
   returnType?: string;
   /**
+   * 实际类型值，仅当 type 等于 'type' 时
+   */
+  typeValues?: string[];
+  /**
+   * 子属性，继承的属性
+   */
+  children?: AppProp[];
+  /**
    * 其它属性
    */
   [property: string]: any;

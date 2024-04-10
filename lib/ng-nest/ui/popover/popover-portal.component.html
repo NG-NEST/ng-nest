@@ -1,5 +1,5 @@
 <div #popoverPortal class="x-popover-portal" [ngClass]="classMap" (click)="stopPropagation($event)">
-  <div class="x-popover-portal-inner" [style.width]="width">
+  <div class="x-popover-portal-inner" [style.minWidth]="minWidth" [style.maxWidth]="maxWidth">
     @if (title) {
       <div class="x-popover-portal-title">
         <ng-container *xOutlet="title">

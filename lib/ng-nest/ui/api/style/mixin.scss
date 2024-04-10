@@ -35,6 +35,9 @@
         &:nth-child(3) {
           color: #3b82f6;
           width: 22%;
+          .popover {
+            cursor: default;
+          }
         }
         &:nth-child(4) {
           color: #fa2c05;
@@ -55,6 +58,17 @@
           width: 35%;
         }
       }
+    }
+  }
+  &-popover {
+    .value {
+      color: #fa2c05;
+    }
+    .label {
+      color: $--x-text;
+    }
+    .description {
+      color: $--x-text-200;
     }
   }
   table {

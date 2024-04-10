@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { OnlineIdeService } from '@services';
+import { DomSanitizer } from '@angular/platform-browser';
+import { OnlineIdeService, TypesService } from '@services';
 import { ShareModule } from '@share';
 {{ __imports }}
 @Component({
@@ -10,6 +11,10 @@ import { ShareModule } from '@share';
   encapsulation: ViewEncapsulation.None
 })
 export class {{ __capName }}Component {
-  constructor(public ois: OnlineIdeService) {}
+  constructor(public ois: OnlineIdeService, public types: TypesService, public ds: DomSanitizer) {}
   {{ __constant }}
+
+  safeHTML(str: string) {
+    return this.ds.bypassSecurityTrustHtml(str);
+  } 
 }

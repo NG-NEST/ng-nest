@@ -169,7 +169,8 @@ export class XPopoverDirective extends XPopoverProperty implements OnChanges {
       positionChange: this.positionChange,
       trigger: this.trigger,
       placement: this.placement,
-      width: this.width,
+      maxWidth: this.maxWidth,
+      minWidth: this.minWidth,
       portalHover: (hover: boolean) => {
         if (this.timeoutHide && hover) {
           clearTimeout(this.timeoutHide);

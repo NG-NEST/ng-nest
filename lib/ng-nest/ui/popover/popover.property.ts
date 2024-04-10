@@ -43,17 +43,22 @@ export class XPopoverProperty extends XProperty {
    * @zh_CN 弹出的位置
    * @en_US Pop-up position
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement?: XPlacement;
+  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'top') placement?: XPlacement;
   /**
    * @zh_CN 激活方式
    * @en_US Activation method
    */
   @Input() @XWithConfig<XPopoverTrigger>(X_CONFIG_NAME, 'hover') trigger?: XPopoverTrigger;
   /**
-   * @zh_CN 宽度
-   * @en_US Width
+   * @zh_CN 最大宽度
+   * @en_US Max width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') width?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') maxWidth?: string;
+  /**
+   * @zh_CN 最小宽度
+   * @en_US Min width
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '10rem') minWidth?: string;
   /**
    * @zh_CN 显示/隐藏控制
    * @en_US Show/hide control
