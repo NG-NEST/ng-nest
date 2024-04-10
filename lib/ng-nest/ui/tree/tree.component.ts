@@ -616,6 +616,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   trackByItem(_index: number, item: XTreeNode) {
-    return `${item.id}-${item.level}`;
+    return item;
   }
 }
