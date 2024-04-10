@@ -1,9 +1,10 @@
-## [17.0.6](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.6) (2024-03-16)
+## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.7) (2024-04-10)
 
 
 ### Bug Fixes
 
 * **module:dialog:** fix handles type error ([b87f4f0](https://github.com/NG-NEST/ng-nest/commit/b87f4f067ff698b643f68961d94cb5e327713cb7))
+* **module:tree:** fix checked property ([04f72ec](https://github.com/NG-NEST/ng-nest/commit/04f72ec0617fc82bfad86c73b570668f164fef32))
 
 
 
