@@ -1,3 +1,12 @@
+## [17.0.8](https://github.com/NG-NEST/ng-nest/compare/17.0.7...17.0.8) (2024-04-10)
+
+
+### Bug Fixes
+
+* **module:tree:** fix track rule ([074ce1e](https://github.com/NG-NEST/ng-nest/commit/074ce1eb17cc998d5aaa07ad10ac576b075547b1))
+
+
+
 ## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.7) (2024-04-10)
 
 
