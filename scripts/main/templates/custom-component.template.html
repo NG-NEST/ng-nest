@@ -5,8 +5,8 @@
 <ng-template #typeTpl>
   @if (types.prop?.type === 'type') {
   <div class="x-api-popover">
-    <p class="value">{{ types.typeValues }}</p>
     <p class="label">{{ types.prop?.label }}</p>
+    <p class="value"><code>{{ types.typeValues }}</code></p>
     <p class="description">{{ types.prop?.description }}</p>
   </div>
   }

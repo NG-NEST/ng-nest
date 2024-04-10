@@ -37,6 +37,7 @@
           width: 22%;
           .popover {
             cursor: default;
+            border-bottom: $--x-border-width solid;
           }
         }
         &:nth-child(4) {
@@ -61,11 +62,14 @@
     }
   }
   &-popover {
+    .label {
+      padding-bottom: 0.5rem;
+      color: $--x-text;
+      border-bottom: $--x-border-deep-base;
+    }
     .value {
       color: #fa2c05;
-    }
-    .label {
-      color: $--x-text;
+      padding-top: 0.5rem;
     }
     .description {
       color: $--x-text-200;

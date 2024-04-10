@@ -36,7 +36,7 @@ export function generateProps(...types: NcProp[]) {
             let ty = y.type.startsWith('X')
               ? `<code class="popover" x-popover [content]="typeTpl"
               [minWidth]="'10rem'"
-              [maxWidth]="'20rem'"
+              [maxWidth]="'30rem'"
               (mouseenter)="types.getTypes('${x.name}','${y.type}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>

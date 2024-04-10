@@ -37,8 +37,6 @@ export class NcDocs {
       this.props = [];
       await this.genPages(lang, docsPrefix);
       await this.genProps(lang, this.props);
-
-      console.log(this.props[0]);
     });
   }
 

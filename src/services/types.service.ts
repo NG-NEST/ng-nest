@@ -17,7 +17,7 @@ export class TypesService {
   }
 
   prop?: AppProp;
-  getTypes(str: string) {
+  getTypes(_propName: string, propType: string) {
     const getTy = (name: string, values: string[]) => {
       if (!name.startsWith('X')) {
         values.push(name);
@@ -45,7 +45,7 @@ export class TypesService {
       return null;
     };
     const values: string[] = [];
-    const prop = getTy(str, values);
+    const prop = getTy(propType, values);
     if (prop) {
       prop.typeValues = values;
     }

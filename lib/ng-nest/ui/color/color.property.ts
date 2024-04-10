@@ -1,4 +1,4 @@
-import { XProperty, XNumber, XWithConfig } from '@ng-nest/ui/core';
+import { XProperty, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -10,6 +10,10 @@ export const XColorPrefix = 'x-color';
 
 const X_CONFIG_NAME = 'color';
 
+/**
+ * @zh_CN 颜色权重比例
+ * @en_US Color weightings
+ */
 export const XAmounts = [-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
 /**
@@ -31,10 +35,10 @@ export class XColorProperty extends XProperty {
    * @zh_CN 混合的颜色
    * @en_US Mixed colors
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#ffffff') merge?: string;
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#ffffff') merge!: string;
   /**
    * @zh_CN 混合的颜色占比
    * @en_US Proportion of mixed colors
    */
-  @Input() @XWithConfig<XNumber[]>(X_CONFIG_NAME, XAmounts) amounts?: XNumber[];
+  @Input() @XWithConfig<number[]>(X_CONFIG_NAME, XAmounts) amounts!: number[];
 }
