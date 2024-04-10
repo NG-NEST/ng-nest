@@ -61,6 +61,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   hoverTreeNode!: XTreeNode;
   hoverTreeEle!: ElementRef;
   draggingTreeNode: XTreeNode | null = null;
+  hasChecked = false;
 
   get isEmpty() {
     return XIsEmpty(this.nodes);
@@ -203,7 +204,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     parentOpen = true,
     lazyParant?: XTreeNode
   ) {
-    if (XIsEmpty(this.checked)) this.checked = [];
+    if (XIsEmpty(this.checked) || !this.hasChecked) this.checked = [];
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
@@ -316,6 +317,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   setCheckedKeys(keys: any[] = []) {
+    if (!XIsEmpty(keys)) this.hasChecked = true;
     const setChildren = (nodes: XTreeNode[], clear = false) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
@@ -351,6 +353,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.setVirtualExpandedAll(item, this.expandedAll as boolean);
       }
     }
+    this.virtualBody?.checkViewportSize();
   }
 
   setExpanded() {
