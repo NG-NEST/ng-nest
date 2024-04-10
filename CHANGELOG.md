@@ -1,3 +1,12 @@
+## [16.0.13](https://github.com/NG-NEST/ng-nest/compare/16.0.12...16.0.13) (2024-04-10)
+
+
+### Bug Fixes
+
+* **module:tree:** fix checked property ([0ba77da](https://github.com/NG-NEST/ng-nest/commit/0ba77da58e187b55c6819ba6ac7fb24d94573d2a))
+
+
+
 ## [16.0.12](https://github.com/NG-NEST/ng-nest/compare/16.0.11...16.0.12) (2023-12-24)
 
 
