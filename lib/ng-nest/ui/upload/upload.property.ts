@@ -1,4 +1,13 @@
-import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig, XNumber, XInputNumber } from '@ng-nest/ui/core';
+import {
+  XInputBoolean,
+  XBoolean,
+  XTemplate,
+  XPosition,
+  XCorner,
+  XWithConfig,
+  XNumber,
+  XInputNumber
+} from '@ng-nest/ui/core';
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { XControlValueAccessor } from '@ng-nest/ui/base-form';
 
@@ -154,7 +163,8 @@ export type XUploadMultipleModel = 'cover' | 'add';
 export type XUploadCutType = XPosition | XCorner | '';
 
 /**
- * Upload Portal
+ * @zh_CN 上传显示窗口
+ * @en_US Upload portal
  * @selector x-upload-portal
  * @decorator component
  */

@@ -3,7 +3,10 @@ import { TemplateRef, SimpleChange } from '@angular/core';
 
 /**
  * @zh_CN data 数据类型
+ * 通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等
  * @en_US Data data type
+ * General generic data types, generally is index set,
+ * can subscribe to the object and flow data for the array, function, etc
  */
 export type XData<T> = T[] | Observable<T[] | any[]> | any[] | Function;
 

@@ -11,6 +11,10 @@ export const XThemePrefix = 'x-theme';
 
 const X_CONFIG_NAME = 'theme';
 
+/**
+ * @zh_CN 混合的颜色占比
+ * @en_US Proportion of mixed colors
+ */
 export const XThemeAmounts = [-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
 /**

@@ -32,12 +32,13 @@ export class NcDocs {
   menus: NcMenu[] = [];
   props: NcProp[] = [];
 
-  constructor() {
-    languages.forEach(async (lang) => {
+  async init() {
+    while (languages.length > 0) {
+      const lang = languages.shift()!;
       this.props = [];
       await this.genPages(lang, docsPrefix);
       await this.genProps(lang, this.props);
-    });
+    }
   }
 
   async genPages(lang: string, outPath: string) {
@@ -140,3 +141,4 @@ export class NcDocs {
   }
 }
 global['NcDocs'] = new NcDocs();
+global['NcDocs'].init();

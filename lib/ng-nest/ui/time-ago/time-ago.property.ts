@@ -1,6 +1,6 @@
 /**
  * TimeAgo
  * @selector xTimeAgo
- * @decorator Pipe
+ * @decorator pipe
  */
 export const XTimeAgoPrefix = 'xTimeAgo';

@@ -1,6 +1,6 @@
 /**
  * TimeRange
  * @selector xTimeRange
- * @decorator Pipe
+ * @decorator pipe
  */
 export const XTimeRangePrefix = 'xTimeRange';

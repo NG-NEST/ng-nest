@@ -4,7 +4,7 @@ import { XTemplate } from '@ng-nest/ui/core';
 /**
  * I18n
  * @selector xI18n
- * @decorator Pipe
+ * @decorator pipe
  */
 export const XI18nPrefix = 'xI18n';
 

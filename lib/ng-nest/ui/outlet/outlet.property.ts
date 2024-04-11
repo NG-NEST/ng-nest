@@ -1,6 +1,6 @@
 /**
  * Outlet 指令名称
  * @selector x-outlet
- * @decorator Directive
+ * @decorator directive
  */
 export const XOutletPrefix = 'x-outlet';

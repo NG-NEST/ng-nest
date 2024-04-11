@@ -55,7 +55,7 @@ export interface AppProp {
   /**
    * 实际类型值，仅当 type 等于 'type' 时
    */
-  typeValues?: string[];
+  actualValue?: string[];
   /**
    * 子属性，继承的属性
    */
@@ -109,6 +109,6 @@ export interface AppPrope {
 /**
  * 导出的对象类型
  */
-export type AppPropType = 'interface' | 'class' | 'function' | 'const' | 'type' | 'enum';
+export type AppPropType = 'interface' | 'class' | 'function' | 'const' | 'type' | 'enum' | 'group';
 
 export type AppDecorator = 'component' | 'directive' | 'pipe';

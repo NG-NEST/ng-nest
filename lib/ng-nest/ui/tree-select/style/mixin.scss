@@ -57,7 +57,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-tree-select-height} * 6) + calc(#{$--x-border-width} * 7));
   x-tree {

@@ -3,7 +3,7 @@ import { Directive, EventEmitter, Output } from '@angular/core';
 /**
  * Drag 指令名称
  * @selector x-drag
- * @decorator Directive
+ * @decorator directive
  */
 export const XDragPrefix = 'x-drag';
 

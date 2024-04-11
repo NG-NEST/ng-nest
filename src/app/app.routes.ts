@@ -17,10 +17,6 @@ export const MainRoutes: Routes = [
     path: `${environment.layout}`,
     loadChildren: () => import('../main/layout/layout-routes.module').then((x) => x.LayoutRoutes)
   },
-  {
-    path: `reference`,
-    loadChildren: () => import('../main/reference/reference-routes.module').then((x) => x.ReferenceRoutes)
-  },
   { path: '', redirectTo: `${environment.layout}`, pathMatch: 'full' },
 
   ...ShareRoutes

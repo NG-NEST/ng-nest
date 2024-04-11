@@ -3,11 +3,34 @@
 </x-doc>
 
 <ng-template #typeTpl>
-  @if (types.prop?.type === 'type') {
-  <div class="x-api-popover">
-    <p class="label">{{ types.prop?.label }}</p>
-    <p class="value"><code>{{ types.typeValues }}</code></p>
-    <p class="description">{{ types.prop?.description }}</p>
-  </div>
+  <ng-container *ngTemplateOutlet="typeChild; context: { prop: types.prop }"></ng-container>
+</ng-template>
+
+<ng-template #typeChild let-prop="prop">
+  @if (prop) {
+    @if (prop.type === 'type') {
+      <div class="x-api-popover">
+        <p class="label">
+          <code [innerText]="prop.name"></code><span>{{ prop.label }}</span>
+        </p>
+        <p class="description" *ngIf="prop.description">{{ prop.description }}</p>
+        <p class="value" *ngIf="prop.actualValue">
+          @for (val of prop.actualValue; track val) {
+            <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
+          }
+        </p>
+      </div>
+    } @else if (prop.type === 'interface') {
+      <div class="x-api-popover">
+        <p class="label">
+          <code [innerText]="prop.name"></code><span>{{ prop.label }}</span>
+        </p>
+        <p class="description" *ngIf="prop.description">{{ prop.description }}</p>
+      </div>
+    } @else if (prop.type === 'group') {
+      @for (child of prop.children; track child.name) {
+        <ng-container *ngTemplateOutlet="typeChild; context: { prop: child }"></ng-container>
+      }
+    }
   }
 </ng-template>

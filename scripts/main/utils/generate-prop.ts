@@ -37,7 +37,7 @@ export function generateProps(...types: NcProp[]) {
               ? `<code class="popover" x-popover [content]="typeTpl"
               [minWidth]="'10rem'"
               [maxWidth]="'30rem'"
-              (mouseenter)="types.getTypes('${x.name}','${y.type}')" [innerText]="'${y.type}'"></code>`
+              (mouseenter)="types.getTypes('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
@@ -117,9 +117,9 @@ export function generateProps(...types: NcProp[]) {
           break;
         case NcPropType.Type:
           typeTable += `<tr>
-            <td><code [innerHTML]="'${x.name}'"></code></td>
+            <td><code [innerText]="'${x.name}'"></code></td>
             <td>${x.label}</td>
-            <td><code [innerHTML]="'${replaceEscape(x.value as string)}'"></code></td>
+            <td><code [innerText]="'${replaceEscape(x.value as string)}'"></code></td>
           </tr>`;
           break;
       }
@@ -144,7 +144,9 @@ export function generateProps(...types: NcProp[]) {
 export function replaceEscape(str: string) {
   let map = {
     "'": "\\'",
-    '"': '\\"'
+    '"': '\\"',
+    '<': '\\<',
+    '>': '\\>'
   };
   return str.replace(/[&<>"']/g, (m) => map[m]);
 }

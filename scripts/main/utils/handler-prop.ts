@@ -136,7 +136,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                 }
                 prop.value = eline.match(/=\s*(.*)/)[1].trim();
                 if (prop.value.endsWith(';')) {
-                  prop.value = prop.name.slice(0, prop.name.length - 1);
+                  prop.value = prop.value.slice(0, prop.value.length - 1);
                   isReadConst = false;
                   addProp();
                 }

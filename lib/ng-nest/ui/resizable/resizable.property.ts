@@ -12,7 +12,7 @@ import {
 /**
  * Resizable 指令名称
  * @selector x-resizable
- * @decorator Directive
+ * @decorator directive
  */
 export const XResizablePrefix = 'x-resizable';
 // const X_CONFIG_NAME = 'resizable';

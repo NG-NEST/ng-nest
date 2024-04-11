@@ -55,7 +55,7 @@
   box-shadow: $--x-box-shadow;
   position: relative;
   display: flex;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-select-height} * 6) + calc(#{$--x-border-width} * 7));
 }
