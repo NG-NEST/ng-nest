@@ -14,23 +14,35 @@ export class TypesService {
 
   prop?: AppProp;
 
-  getTypes(propType: string, propName: string) {
-    this.prop = this.setTypes(propType, propName)!;
+  get lang() {
+    return this.config.lang as 'zh_CN' | 'en_US';
   }
 
-  private setTypes(propType: string, propName?: string) {
-    const data = this.data[this.config.lang as 'zh_CN' | 'en_US'];
-    const getTy = (tyName: string, values: string[]) => {
-      if (!tyName.startsWith('X')) {
-        values.push(tyName);
+  typeMap = new Map<string, AppProp>();
+
+  getTypes(propType: string, propName: string) {
+    let key = `${this.lang}-${propType}-${propName}`;
+    let type = this.typeMap.get(key);
+    if (!type) {
+      type = this.setTypes(this.lang, propType, propName)!;
+      this.typeMap.set(key, type);
+    }
+    this.prop = type;
+  }
+
+  private setTypes(lang: 'zh_CN' | 'en_US', propType: string, propName?: string) {
+    const data = this.data[lang];
+    const getTy = (pType: string, pName: string, values: string[]) => {
+      if (!pType.startsWith('X')) {
+        values.push(pType);
         return null;
       }
 
-      let ty = data[propType];
+      let ty = data[pType];
       if (!ty) {
-        ty = data[propName!];
+        ty = data[pName!];
         if (ty && ty.properties) {
-          const property = ty.properties.find((x) => x.type === propType);
+          const property = ty.properties.find((x) => x.type === pType);
           ty = this.setGroup(property)!;
 
           return ty;
@@ -42,7 +54,7 @@ export class TypesService {
           if (XIsString(value)) {
             const vals = this.splitParts(value);
             for (let val of vals) {
-              const child = getTy(val, values);
+              const child = getTy(val, pName, values);
               if (child) {
                 ty.children.push(child);
               }
@@ -55,7 +67,7 @@ export class TypesService {
       return null;
     };
     const values: string[] = [];
-    const prop = getTy(propType, values);
+    const prop = getTy(propType, propName!, values);
     if (prop) {
       prop.actualValue = values;
     }
@@ -63,6 +75,7 @@ export class TypesService {
   }
 
   private splitParts(value: string) {
+    if (value.indexOf('|') < 0) return [value];
     const regex = /(\w+)\[\]|(\w+)<([^>]+)>|(\w+)/g;
     const parts = [];
     let match;
@@ -93,17 +106,17 @@ export class TypesService {
       regex1 = /^(\w+)<(\w+)>$/;
       let match = type.match(regex1);
       if (match) {
-        ty.children.push(this.setTypes(`${match[1]}<T>`)!);
-        ty.children.push(this.setTypes(match[2])!);
+        ty.children.push(this.setTypes(this.lang, `${match[1]}<T>`)!);
+        ty.children.push(this.setTypes(this.lang, match[2])!);
       }
     } else if (regex2.test(type)) {
       regex2 = /^(.*?)\[]$/;
       let match = type.match(regex2);
       if (match) {
-        ty.children.push({ ...this.setTypes(match[1])!, isArray: true });
+        ty.children.push({ ...this.setTypes(this.lang, match[1])!, isArray: true });
       }
     } else if (type.startsWith('X')) {
-      ty.children.push(this.setTypes(type)!);
+      ty.children.push(this.setTypes(this.lang, type)!);
     } else {
       ty.children.push({ name: type, label, description });
     }

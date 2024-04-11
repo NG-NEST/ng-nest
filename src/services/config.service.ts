@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XI18nService, XI18nProperty, zh_CN, en_US } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nProperty, zh_CN, en_US, XI18nLanguage } from '@ng-nest/ui/i18n';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
@@ -9,14 +9,14 @@ import { PrismService } from './prism.service';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  defaultLang: string;
+  defaultLang: XI18nLanguage;
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions: string[] = [];
   version = '17.0.5';
   navName = 'NG-NEST';
 
-  get lang() {
+  get lang(): XI18nLanguage {
     let lg = this.storage.getLocal('Lang');
     if (!lg) {
       this.storage.setLocal('Lang', this.defaultLang);

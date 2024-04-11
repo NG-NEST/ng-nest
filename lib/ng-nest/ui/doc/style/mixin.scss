@@ -81,10 +81,10 @@
       li > code,
       p > code {
         position: relative;
-        padding: 0 0.325rem;
+        padding: 0 0.5rem;
         color: $--x-danger;
         background: $--x-danger-900;
-        border-radius: 0.325rem;
+        border-radius: $--x-border-small-radius;
         display: inline-block;
       }
 

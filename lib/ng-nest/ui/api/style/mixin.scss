@@ -16,10 +16,10 @@
       }
       &:last-child {
         margin-left: 1rem;
-        padding: 0.25rem 0.325rem;
+        padding: 0.25rem 0.5rem;
         color: $--x-danger;
         background: $--x-danger-900;
-        border-radius: 0.325rem;
+        border-radius: $--x-border-small-radius;
       }
     }
   }
@@ -79,16 +79,24 @@
       > span {
         margin-left: 1rem;
       }
+      .type {
+        margin-left: 1rem;
+        padding: 0 0.5rem;
+        color: $--x-danger;
+        background: $--x-danger-900;
+        border-radius: $--x-border-small-radius;
+        line-height: 1.5rem;
+      }
     }
     .value {
       color: #fa2c05;
-      padding: $--x-padding-mini;
+      padding: $--x-padding-mini $--x-padding-medium;
       border-radius: $--x-border-small-radius;
       background-color: $--x-background-a200;
     }
     .description {
       color: $--x-text-200;
-      padding: $--x-padding-mini;
+      padding: $--x-padding-mini $--x-padding-medium;
       border-radius: $--x-border-small-radius;
       background-color: $--x-background-a200;
     }
