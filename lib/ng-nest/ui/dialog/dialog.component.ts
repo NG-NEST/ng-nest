@@ -186,7 +186,9 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
         width: this.width,
         height: this.height,
         minWidth: this.minWidth,
+        maxWidth: this.maxWidth,
         minHeight: this.minHeight,
+        maxHeight: this.maxHeight,
         positionStrategy: this.protalService.setPlace(this.placement, this.offset)
       }
     });
@@ -197,7 +199,9 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       width: this.width,
       height: this.height,
       minWidth: this.minWidth,
-      minHeight: this.minHeight
+      minHeight: this.minHeight,
+      maxWidth: this.maxWidth,
+      maxHeight: this.maxHeight
     });
     if (this.resizable && !this.isDefaultMaximize) {
       this.renderer.addClass(hostElement, PortalResizablePrefix);

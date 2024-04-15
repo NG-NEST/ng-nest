@@ -1,6 +1,6 @@
 import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
 import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig, XProperty } from '@ng-nest/ui/core';
-import { XAlertProperty, XAlertOption } from '@ng-nest/ui/alert';
+import { XAlertProperty } from '@ng-nest/ui/alert';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 import { XDialogPortalComponent } from './dialog-portal.component';
@@ -40,7 +40,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') width?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) width?: string;
   /**
    * @zh_CN 高度
    * @en_US Height
@@ -50,12 +50,22 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '18rem') override minWidth?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') override minWidth?: string;
+  /**
+   * @zh_CN 最大宽度
+   * @en_US Min width
+   */
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') maxWidth?: string;
   /**
    * @zh_CN 最小高度
    * @en_US Min height
    */
   @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '8rem') override minHeight?: string;
+  /**
+   * @zh_CN 最大高度
+   * @en_US Min height
+   */
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) maxHeight?: string;
   /**
    * @zh_CN 样式主题
    * @en_US Style theme
@@ -167,100 +177,6 @@ export class XDialogProperty extends XAlertProperty {
   @Output() closeDone = new EventEmitter<any>();
 }
 
-export interface XDialogOption extends XAlertOption {
-  visible?: boolean;
-  /**
-   * @zh_CN 方位，九宫格
-   * @en_US Direction, nine grid
-   */
-  placement?: XPlace;
-  /**
-   * @zh_CN 偏移距离
-   * @en_US Offset distance
-   */
-  offset?: string;
-  /**
-   * @zh_CN 类型
-   * @en_US Types of
-   */
-  type?: XDialogType;
-  /**
-   * @zh_CN 宽度
-   * @en_US Width
-   */
-  width?: string;
-  /**
-   * @zh_CN 高度
-   * @en_US Height
-   */
-  height?: string;
-  /**
-   * @zh_CN 样式主题
-   * @en_US Style theme
-   */
-  effect?: XEffect;
-  /**
-   * @zh_CN 底部自定义模板
-   * @en_US Custom template at the bottom
-   */
-  footer?: XTemplate;
-  /**
-   * @zh_CN 显示取消按钮
-   * @en_US Show cancel button
-   */
-  showCancel?: XBoolean;
-  /**
-   * @zh_CN 取消按钮文字
-   * @en_US Cancel button text
-   */
-  cancelText?: string;
-  /**
-   * @zh_CN 显示确认按钮
-   * @en_US Show confirmation button
-   */
-  showConfirm?: XBoolean;
-  /**
-   * @zh_CN 确认按钮文字
-   * @en_US Confirm button text
-   */
-  confirmText?: string;
-  /**
-   * @zh_CN 点击遮罩关闭
-   * @en_US Click the mask to close
-   */
-  backdropClose?: XBoolean;
-  /**
-   * @zh_CN 是否显示背景遮罩
-   * @en_US Whether to display the background mask
-   */
-  hasBackdrop?: XBoolean;
-  /**
-   * @zh_CN 自定义样式名
-   * @en_US Custom style name
-   */
-  className?: string;
-  /**
-   * @zh_CN 按钮居中
-   * @en_US Button center
-   */
-  buttonsCenter?: XBoolean;
-  /**
-   * @zh_CN 拖动对话框
-   * @en_US Drag dialog
-   */
-  draggable?: boolean;
-  /**
-   * @zh_CN 调整弹框的大小
-   * @en_US Adjust the size of the box
-   */
-  resizable?: boolean;
-  /**
-   * @zh_CN 关闭前处理函数
-   * @en_US Processing function before closing
-   */
-  beforeClose?: (action: XDialogAction) => void;
-}
-
 /**
  * Dialog Container
  * @selector x-dialog-container
@@ -296,7 +212,6 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 宽度
    * @en_US Width
-   * @default '32rem'
    * @withConfig true
    */
   width?: string;
@@ -341,10 +256,17 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 最小宽度
    * @en_US Min width
-   * @default '18rem'
+   * @default '32rem'
    * @withConfig true
    */
   minWidth?: string;
+  /**
+   * @zh_CN 最大宽度
+   * @en_US Max width
+   * @default '32rem'
+   * @withConfig true
+   */
+  maxWidth?: string;
   /**
    * @zh_CN 最小高度
    * @en_US Min height
@@ -352,6 +274,12 @@ export interface XDialogRefOption {
    * @withConfig true
    */
   minHeight?: string;
+  /**
+   * @zh_CN 最大高度
+   * @en_US Max height
+   * @withConfig true
+   */
+  maxHeight?: string;
   /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"

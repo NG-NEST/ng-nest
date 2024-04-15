@@ -12,8 +12,8 @@ export class XDialogService {
   default: XDialogRefOption = {
     placement: 'center',
     offset: '1rem',
-    width: '32rem',
-    minWidth: '18rem',
+    minWidth: '32rem',
+    maxWidth: '32rem',
     minHeight: '8rem',
     backdropClose: true,
     hasBackdrop: true,
@@ -45,7 +45,9 @@ export class XDialogService {
         width: option.width,
         height: option.height,
         minWidth: option.minWidth,
+        maxWidth: option.maxWidth,
         minHeight: option.minHeight,
+        maxHeight: option.maxHeight,
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
     });
@@ -63,7 +65,9 @@ export class XDialogService {
       width: defaultMaximize ? this.default.width : option.width,
       height: defaultMaximize ? null : option.height,
       minWidth: option.minWidth,
-      minHeight: option.minHeight
+      maxWidth: option.maxWidth,
+      minHeight: option.minHeight,
+      maxHeight: option.maxHeight
     });
     instance.placement = option.placement;
     instance.option = option;
